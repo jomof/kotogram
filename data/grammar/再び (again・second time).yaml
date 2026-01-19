@@ -1,0 +1,223 @@
+grammar_point: 再び (again・second time)
+learn_before:
+  - Verb[stem] (conjunction)
+  - 〜如し・〜ごとし (like・as if)
+  - あえて (daringly)
+  - は (topic and contrast)
+  - を経て (after process or experience)
+meaning: Again, once more, a second time.
+pronunciation:
+  katakana: フタタビ
+  romaji: futatabi
+formation:
+  Adverbial Usage: '[再び] + Verb/Verb Phrase: Placed before a verb or verb phrase to indicate a repetition
+    of an action'
+jlpt: N3
+etymology: The term 「再び」 is derived from 「二度 (にど)」, meaning "twice" or "a second time," with the 「び」 acting
+  as a suffix indicating frequency or repetition. Over time, 「再び」 evolved to specifically denote something
+  happening for the second time.
+writeup: 「再び」 is an adverb that means "to repeat". It is typically translated as "again," "once more,"
+  or "a second time." While it often appears at the beginning of a sentence, it can also be placed before
+  the verb or clause it modifies.Despite meaning "to repeat," 「再び」 has the nuance of repeating something
+  specifically "for the second time." Because of this, it is not used to highlight things that needs to
+  be repeated over and over again.Unlike 「また」, which is frequently used to express "again," 「再び」 is quite
+  formal and is more often seen in books or articles than in casual spoken language.
+false_friends:
+  - term: 更に (even more)
+    meaning: Again, even more, furthermore, in addition.
+    kind: similar expression
+    nuance: Unlike 「再び」 which denotes a distinct reoccurrence or 'second time', 「更に」 implies an incremental
+      increase, addition, or continuation beyond the current state, often meaning 'moreover' or 'further'.
+    grammar_point: 更に (even more)
+  - term: また (again; also; or)
+    meaning: Again; also; moreover; in addition.
+    kind: synonym
+    nuance: 「また」 is a general term for "again" and is used in a wide range of contexts, including simple
+      repetition or adding items. 「再び」 is more formal and specifically implies a second occurrence after
+      a distinct pause or significant event.
+    grammar_point: また (again; also; or)
+  - term: 二度と (never again)
+    meaning: Never again; no more.
+    kind: similar expression
+    nuance: While 「再び」 signifies a reoccurrence, 「二度と」 is used exclusively with negative verbs to express
+      that something will definitively not happen again, emphasizing a finality to the absence of repetition.
+    grammar_point: <strongly-suggest>:二度と (never again)
+post_false_friends_writeup: To avoid confusion, remember that 「再び」 is best used for situations where something
+  is happening for a second time, and its formality makes it more suitable for written or formal spoken
+  contexts. 「また」 is more versatile for everyday use when simply indicating repetition. 「更に」 indicates
+  additional increase.
+examples:
+  - english: He failed, but he challenged again.
+    japanese:
+      - 彼 は 失敗 し た が、{再び} 挑戦 し た。
+      - 彼 は 失敗 し た が、{再び} 挑ん だ。
+      - 彼 は 失敗 し た が、{再び} 挑戦 を 行っ た。
+    english_literally: He failed, but he once more challenged.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 失敗 し た が、{また} 挑戦 し た。
+        english: He failed, but he tried again.
+        hint: 「また」 is a general term for 'again', suggesting simple repetition. 「再び」 implies a more significant
+          re-attempt after a distinct interruption or setback, highlighting that this is a second, distinct
+          challenge. We're looking for a second, significant attempt.
+    scene: A man failed at a task and is trying again after a period of reflection.
+    register: formal
+    setting: serious
+  - english: Someday, I want to return to the town where I spent my student days.
+    japanese:
+      - 学生 時代 を 過ごし た 町 に、いつ か {再び} 戻り たい。
+      - 学生 時代 を 過ごし た 町 に、いつ か {再び} 戻り たい と 思っ て い ます。
+      - 学生 時代 を 過ごし た 町 に、いつ か {再び} 帰り たい。
+      - 学生 時代 を 過ごし た 町 に、いつ か {再び} 帰郷 し たい。
+    english_literally: To the town where I spent my student days, someday, I want to return once more.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 時代 を 過ごし た 町 に、いつ か {また} 戻り たい。
+        english: Someday, I want to return to the town where I spent my student days (general repetition).
+        hint: 「また」 expresses a general desire to return. 「再び」 conveys a more profound, perhaps long-awaited,
+          return to a cherished place, emphasizing that this is a second, significant return after a long
+          absence. We're looking for a second, profound return.
+    scene: Someone fondly remembers their youth and hopes to revisit a significant place, implying a deeper,
+      more meaningful return.
+    register: teineigo (polite)
+    setting: reflective
+  - english: After taking a break, I set about writing my thesis once more.
+    japanese:
+      - 休憩 を 挟ん で、{再び} 論文 の 執筆 に 取り掛かっ た。
+      - 休憩 を 挟ん で、{再び} 論文 の 執筆 に 着手 し た。
+      - 休憩 を 挟ん で、{再び} 論文 を 書き 始め た。
+    english_literally: Inserting a break, I once more set about writing my thesis.
+    competing_grammar:
+      - competing_japanese:
+          - 休憩 を 挟ん で、{また} 論文 の 執筆 に 取り掛かっ た。
+        english: After taking a break, I continued writing my thesis.
+        hint: 「また」 simply implies continuing the work. 「再び」 emphasizes restarting after a clear interruption,
+          marking this as the second instance of seriously engaging with the task. We're looking for a
+          distinct restart.
+    scene: A student resumes academic work after a short respite, emphasizing a distinct restart.
+    register: semi-formal
+    setting: academic
+  - english: Unexpectedly, I was able to reunite with an old friend in this place.
+    japanese:
+      - 思いがけ ず、旧友 と この 地 で {再び} 出会う こと が でき た。
+      - 思いがけ ず、旧友 と この 地 で {再び} 出会え た。
+      - 思いがけ ず、旧友 と この 地 で {再び} 再会 でき た。
+    english_literally: Unexpectedly, with an old friend in this place, I was able to meet once more.
+    competing_grammar:
+      - competing_japanese:
+          - 思いがけ ず、旧友 と この 地 で {また} 出会う こと が でき た。
+        english: Unexpectedly, I was able to meet an old friend in this place (simple encounter).
+        hint: 「また」 is too casual for a significant reunion after a long time. 「再び」 adds a sense of specialness
+          and serendipity to the second encounter, implying a more meaningful reunion. We're looking for
+          a special, meaningful reunion.
+    scene: Two old friends bump into each other in an unexpected location after a long time apart, highlighting
+      the special nature of the reunion.
+    register: formal
+    setting: storytelling
+  - english: He started building a tower with blocks again.
+    japanese:
+      - 彼 は {再び} ブロック で 塔 を 組み 始め た。
+      - 彼 は {再び} ブロック で 塔 を 作り 始め た。
+    english_literally: He once more started building a tower with blocks.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {また} ブロック で 塔 を 組み 始め た。
+        english: He started building a tower with blocks again (simple repetition).
+        hint: 「また」 is general for repetition. 「再び」 specifically points out that this is the second instance
+          of him starting to build the tower, perhaps after the first one fell or was knocked down. We're
+          looking for a second distinct attempt.
+    scene: A child's block tower collapsed, and he starts rebuilding it, marking this as the second attempt.
+    register: formal
+    setting: informative
+  - english: I swore to myself not to repeat the same mistake again.
+    japanese:
+      - 同じ 過ち を {再び} 繰り返さ ない よう、心 に 誓っ た。
+      - 同じ 過ち を {再び} 繰り返さ ない と、心 に 誓っ た。
+      - 同じ 過ち を {再び} 犯さ ない よう、心 に 誓っ た。
+    english_literally: So as not to repeat the same mistake once more, I swore in my heart.
+    competing_grammar:
+      - competing_japanese:
+          - 同じ 過ち を {また} 繰り返さ ない よう、心 に 誓っ た。
+        english: I swore to myself not to repeat the same mistake again (general resolve).
+        hint: 「また」 would lessen the gravity of the oath. 「再び」 emphasizes avoiding a second occurrence
+          of a serious error, highlighting the firm resolve against repeating it. We're looking for a
+          solemn resolve against a second offense.
+    scene: Someone makes a New Year's resolution to avoid past errors, emphasizing the solemnity of avoiding
+      a second offense.
+    register: formal
+    setting: reflective
+  - english: It is an honor to meet you again.
+    japanese:
+      - あなた と {再び} お 目 に かかれ て、光栄 です。
+      - あなた と {再び} お 目 に かかれ て、光栄 に 存じ ます。
+    english_literally: With you, being able to meet once more, is an honor.
+    competing_grammar:
+      - competing_japanese:
+          - あなた と {また} お 目 に かかれ て、光栄 です。
+        english: It is an honor to meet you again (general polite).
+        hint: 「また」 would be less formal. 「再び」 coupled with 「お目にかかる」 (honorific for 'meet') reinforces
+          the formality and respectful nature of the second, significant meeting in a professional context.
+          We're looking for a highly formal and significant second encounter.
+    scene: A CEO greets a high-ranking business partner they previously met, using highly respectful language
+      for a second meeting.
+    register: sonkeigo (respectful)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「お目にかかれて光栄です」 is highly respectful, typical in business or formal settings. 「再び」
+      elevates this further, indicating a significant and honored second encounter. This phrase is typically
+      used by male speakers in professional contexts to show utmost deference to clients or superiors.
+      In this context, 「お目にかかれて」 refers to meeting someone of higher status, making it suitable for a
+      CEO speaking to a business partner.
+  - english: Spring has returned once again.
+    japanese:
+      - '{再び} 春 が 来 た。'
+      - '{再び} 春 が 訪れ た。'
+    english_literally: Once more, spring has come.
+    competing_grammar:
+      - competing_japanese:
+          - '{また} 春 が 来 た。'
+        english: Spring has come again.
+        hint: 「また」 is a general term for 'again'. 「再び」 emphasizes a significant, perhaps awaited, return
+          of spring, suggesting a renewed cycle. We're looking for the return of a season after a full
+          cycle.
+    scene: Observing the cyclical return of spring after winter.
+    register: formal
+    setting: reflective
+  - english: After many difficulties, he rose to the top once more.
+    japanese:
+      - 多く の 困難 を 乗り越え、彼 は {再び} トップ に 躍り出 た。
+      - 多く の 困難 を 乗り越え、彼 は {再び} トップ に 返り咲い た。
+    english_literally: Overcoming many difficulties, he once more sprang to the top.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 困難 を 乗り越え、彼 は {また} トップ に 躍り出 た。
+        english: Overcoming many difficulties, he rose to the top again.
+        hint: 「また」 suggests a simple repetition. 「再び」 highlights a remarkable comeback or resurgence after
+          a period of struggle, emphasizing the significance of this second ascent. We're looking for
+          a powerful resurgence.
+    scene: A person achieves success again after facing significant setbacks, akin to a comeback story.
+    register: formal
+    setting: inspirational
+  - english: After years of absence, the ancient festival was revived once more.
+    japanese:
+      - 長年 の 中断 を 経 て、その 古い 祭り が {再び} 開催 さ れ た。
+      - 長年 の 中断 を 経 て、その 古い 祭り が {再び} 復活 し た。
+    english_literally: After years of interruption, that old festival was once more held.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 中断 を 経 て、その 古い 祭り が {また} 開催 さ れ た。
+        english: After years of interruption, the old festival was held again.
+        hint: 「また」 implies a straightforward reoccurrence. 「再び」 conveys the profound significance of an
+          important tradition being re-established after a long break, implying a cultural or historical
+          revival. We're looking for a significant revival.
+    scene: A community celebrates the return of a long-dormant cultural event, highlighting its historical
+      importance.
+    register: formal
+    setting: informative
+post_example_writeup: As you can see from the examples, 「再び」 is consistently used to mark a significant
+  second occurrence or a restart after a noticeable pause or change. Its formal nature lends itself well
+  to situations demanding a sense of gravity, solemnity, or profound return, distinguishing it from the
+  more casual and general 「また」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/再び

@@ -1,0 +1,287 @@
+grammar_point: で (means・method)
+learn_before:
+  - Verb[ました] (polite past)
+meaning: by means of, with, using, at (location of action), (cause)
+pronunciation:
+  katakana: テ・デ
+  romaji: te・de
+formation:
+  Noun + で: Indicates the means, instrument, material, cause, total amount, or location where an action
+    occurs.
+  Verb[て]-form: Connects actions, where the first action is the means, method, or cause for the second;
+    or a sequence of actions.
+jlpt: N5
+etymology: The particle 「で」 originates from the continuative form (連用形, ren'yōkei) of classical copulas
+  like 「なり」 or 「だ」, initially indicating a state or condition from which an action proceeds. This explains
+  its diverse uses for location of action, means, and cause. The て-form of verbs (Verb[て]) has a separate
+  origin, evolving from older imperative forms to convey sequential or connective relationships. When
+  used together, as in Noun[で] or Verb[て]-form, they collectively express the means or method by which
+  an action is performed, highlighting 'how' something is done.
+writeup: |-
+  The grammatical patterns involving the particle 「で」 and the て-form of verbs are fundamental in Japanese for expressing the **means**, **method**, or **instrument** by which an action is carried out. This concept extends beyond physical tools to include circumstances, preceding actions, or even states.
+
+  One of the most common uses of 「で」 with a **noun** is to express the **means or instrument** by which an action is performed. This can include physical tools, modes of transportation, or even abstract methods like language. For example, to say you write with a pen, you would use 「ペン で 書く」.
+
+  「で」 can also denote the **material** something is made of, particularly when the material has undergone a transformation and is not immediately apparent in the final product. For instance, explaining that sake is made from rice, you would use 「お酒は米 で 造られる」.
+
+  Furthermore, 「で」 is used to indicate the **cause or reason** for something, especially when the outcome is an unintentional state or an event. An example would be expressing that you are absent from work due to a cold: 「風邪 で 会社 を 休む」.
+
+  When paired with numbers or quantities, it can specify a **limit or scope**, such as a total amount or a specific range. For example, 「全て で 500円」 (500 yen in total).
+
+  Lastly, and perhaps one of its most frequently encountered uses, 「で」 marks the **location where an action takes place**. This is a crucial distinction from the particle 「に」, which typically marks the location of existence or the destination of movement. If you eat at a restaurant, you would say 「レストラン で 食べる」, because eating is an action happening at that location. In contrast, if you are simply *at* the restaurant, you would use 「レストラン に いる」.
+
+  When a verb is used in its **て-form (Verb[て])**, it primarily functions as a conjunctive, indicating that the action of the first verb is the *means* or *cause* for the subsequent action. The emphasis is often on how the first action leads to or facilitates the second. For example, 「走って行く」 (go by running) implies that running is the means of going.
+
+  It is crucial to consider the entire sentence and the context of the main clause to correctly interpret the nuance. Whether it's a simple sequence, a direct tool usage, a material, a cause, or a location, the meaning conveyed by 「で」 or the Verb[て]-form always centers on clarifying *how* an action is accomplished.
+false_friends:
+  - term: に (static location・time)
+    meaning: Indicates the static location of existence or the destination of movement.
+    kind: often confused with
+    nuance: Unlike 「で」 which specifies the location *where an action occurs*, 「に」 indicates where something
+      *exists* or where something *goes*. For example, 「公園 に いる」 (I am in the park) vs. 「公園 で 走る」 (I run
+      in the park).
+    grammar_point: に (static location・time)
+  - term: を (path of movement)
+    meaning: Indicates the path or area through which movement occurs.
+    kind: often confused with
+    nuance: While 「で」 can specify the vehicle used for movement (e.g., 「バス で 行く」), 「を」 marks the actual
+      route or space traversed (e.g., 「道 を 歩く」 - walk along the road).
+    grammar_point: を (path of movement)
+  - term: から (from・reason)
+    meaning: Indicates origin, source, or reason.
+    kind: often confused with
+    nuance: While 「で」 can denote a cause or the means, 「から」 emphasizes the origin (spatial/temporal) or
+      a more direct reason for an action/state. 「で」 focuses more on the *how* an action happens, whereas
+      「から」 focuses on the *why* or *where from*.
+    grammar_point: から (from)
+  - term: によって・による・により (means・cause・dependency)
+    meaning: By means of, according to, depending on, because of.
+    kind: similar expression
+    nuance: 「によって」 shares meanings of 'by means of' or 'due to' with 「で」, but it is generally more formal
+      and often used to state the agent of a passive action or the method of an official decision/statement.
+      「で」 is more common and broad in everyday speech.
+    grammar_point: '[Noun]によって (means・method)'
+  - term: にて (formal at・by means of)
+    meaning: In, at, with, using (formal).
+    kind: similar expression
+    nuance: 「にて」 is a more formal and archaic equivalent of 「で」 for indicating means or location. It is
+      typically used in written language, announcements, or very formal contexts, whereas 「で」 is the standard
+      for everyday conversation.
+    grammar_point: にて (formal at・by means of)
+  - term: を通じて・を通して (medium・means)
+    meaning: Through, via, by means of, throughout.
+    kind: similar expression
+    nuance: While both can mean 'by means of,' 「を通じて」 and 「を通して」 specifically imply using something as
+      a medium or channel for communication, learning, or a continuous state/process. 「で」 is more general
+      for any means or instrument.
+    grammar_point: を通じて・を通して (medium・means)
+  - term: '''[Verb-stem]ながら (while doing)'''
+    meaning: while; during; simultaneously
+    kind: often confused with
+    nuance: 「〜ながら」 indicates two actions occurring simultaneously. In contrast, the て-form often implies
+      the first action is the *means* or *method* for the second action, or that the first action *leads
+      to* the second, rather than merely happening at the same time.
+    grammar_point: <suggest>:'[Verb-stem]ながら (while doing)'
+  - term: Verb[て] (and then)
+    meaning: And, then (linking events)
+    kind: similar expression
+    nuance: While this grammar point emphasizes the *means* or *method*, `Verb[て] (and then)` solely focuses
+      on a simple sequence of events. For instance, 「起きて、歯を磨いた」 (I woke up, then brushed my teeth) is
+      a sequence, not 'brushing teeth by waking up'.
+    grammar_point: Verb[て] (and then)
+  - term: Verb[て] (non-sequential events)
+    meaning: Indicates non-sequential events, contrast, or parallel actions/states (and, but, while).
+    kind: similar expression
+    nuance: This form of the て-form connects events that are not necessarily sequential or causal, sometimes
+      even expressing contrast. Our grammar point focuses on the means/method or direct cause. For example,
+      「雨が降って、傘をさした」 (It rained, and I opened my umbrella) is a direct consequence, fitting our grammar
+      point, but 「彼は背が高くて、スポーツが得意だ」 (He is tall, and good at sports) uses the て-form for a non-sequential,
+      descriptive connection.
+    grammar_point: Verb[て] (non-sequential events)
+post_false_friends_writeup: When encountering the particle 「で」 or the て-form of a verb, it is crucial
+  to understand their distinct but sometimes overlapping functions. While 「に」 indicates a static location
+  or destination, 「で」 precisely specifies *where an action occurs*. For movement, 「を」 marks the path traversed,
+  whereas 「で」 denotes the vehicle used. 「から」 typically indicates origin or a direct reason, while 「で」
+  can signify the immediate cause or general means, focusing more on *how* an action happens. Formal alternatives
+  like 「によって」 and 「にて」, and medium-focused expressions like 「を通じて・を通して」, often convey similar meanings
+  but with different levels of formality or emphasis. Similarly, the て-form primarily highlights the means,
+  method, or sequence of actions, which must be distinguished from simultaneous actions with 「〜ながら」, or
+  simple non-sequential linking of events. Context is paramount for accurate interpretation.
+examples:
+  - english: I wrote a letter with a pen.
+    japanese:
+      - ペン {で} 手紙 を 書き まし た。
+      - ペン {で} 手紙 を 書い た。
+      - ペン {で} 手紙 書い た よ。
+    english_literally: With a pen, a letter I wrote.
+    competing_grammar:
+      - competing_japanese:
+          - ペン を 手紙 を 書き まし た。
+        english: I wrote a letter and a pen.
+        hint: The particle 「を」 marks the direct object of a verb. Here, you are using the pen as an instrument,
+          not an object. We're looking for the particle that indicates the tool used.
+    scene: You are explaining how you completed a task that required a specific writing tool.
+    register: teineigo (polite)
+    setting: informative
+  - english: Let's meet at the park.
+    japanese:
+      - 公園 {で} 会い ましょう。
+      - 公園 {で} 会おう。
+      - 公園 {で} 会い ませ ん か。
+      - 公園 {で} 会わ ない？
+    english_literally: At the park, let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 に 会い ましょう。
+        english: Let's meet to the park.
+        hint: 「に」 indicates direction or a static location where something exists. Here, meeting is an
+          action that takes place *at* the park. We're looking for the particle that marks the location
+          of an action.
+    scene: Suggesting a place for a casual meetup.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I rested at home due to a cold.
+    japanese:
+      - 風邪 {で} 家 を 休み まし た。
+      - 風邪 {で} 家 を 休ん だ。
+      - 風邪 {で} 家 で 休ん で た よ。
+    english_literally: By cold, home I rested (from).
+    competing_grammar:
+      - competing_japanese:
+          - 風邪 から 家 を 休み まし た。
+        english: I rested at home from a cold.
+        hint: While 「から」 can indicate a reason, 「で」 is more natural for a direct cause of a state or action
+          like resting due to an illness. We're looking for the particle that indicates the direct cause/reason.
+    scene: Explaining to a colleague why you were absent from work.
+    register: teineigo (polite)
+    setting: apologetic
+  - english: This sake is made from rice.
+    japanese:
+      - この お 酒 は 米 {で} 造ら れ て い ます。
+      - この お 酒 は 米 {で} 造ら れ て いる。
+      - この 清酒 は 米 {で} 醸造 さ れ ます。
+    english_literally: This sake, by rice, is made.
+    competing_grammar:
+      - competing_japanese:
+          - この お 酒 は 米 から 造ら れ て い ます。
+        english: This sake is made starting from rice.
+        hint: While 「から」 can indicate raw material, 「で」 is preferred when the material undergoes a significant
+          transformation and is not immediately obvious in the final product. We're looking for the particle
+          that denotes the material something is made of when transformation occurs.
+    scene: A sake brewer explaining the ingredients of their product.
+    register: teineigo (polite)
+    setting: informative
+  - english: I go to work by train every day.
+    japanese:
+      - 毎日、電車 {で} 会社 に 行き ます。
+      - 毎日、電車 {で} 会社 に 行く。
+      - 毎日、電車 {で} 会社 に 行っ てる。
+      - 毎日、電車 {で} 会社 へ 行く。
+    english_literally: Every day, by train, to company I go.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、電車 に 会社 に 行き ます。
+        english: Every day, I go to company to the train.
+        hint: 「に」 indicates direction or a destination. Here, the train is the means of transport, not
+          a destination. We're looking for the particle that indicates the means of transportation.
+    scene: Discussing your daily commute with a friend.
+    register: casual
+    setting: casual slang
+  - english: There are 20 people in total.
+    japanese:
+      - 全部 {で} 20 人 です。
+      - 全部 {で} 20 人 だ。
+      - 合計 {で} 20 名 様 です。
+      - 全部 {で} 20 人 いる。
+    english_literally: All in, 20 people it is.
+    competing_grammar:
+      - competing_japanese:
+          - 全部 に 20 人 です。
+        english: To all, it is 20 people.
+        hint: 「に」 is not used to indicate a total or sum. 「で」 is used to mark the total amount when summarizing.
+          We're looking for the particle that indicates a total or scope.
+    scene: Counting the number of participants for an event.
+    register: teineigo (polite)
+    setting: informative
+  - english: I checked the news on the internet.
+    japanese:
+      - インターネット {で} ニュース を チェック し まし た。
+      - インターネット {で} ニュース を チェック し た。
+      - ネット {で} ニュース 見 た よ。
+      - インターネット {で} 報道 を 確認 し まし た。
+    english_literally: By internet, news I checked.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット に ニュース を チェック し まし た。
+        english: I checked the news to the internet.
+        hint: 「に」 indicates a specific point or destination, not the medium or platform used for an action.
+          We're looking for the particle that marks the means or medium of an action.
+    scene: Talking about how you got information.
+    register: teineigo (polite)
+    setting: informative
+  - english: I am studying Japanese by working hard every day.
+    japanese:
+      - 毎日 {頑張っ て}、日本 語 を 勉強 し て い ます。
+      - 毎日 {頑張っ て}、日本 語 を 勉強 し て いる。
+      - 毎日 {頑張っ て} 日本 語 勉強 し てる よ。
+    english_literally: Every day, working hard, I am studying Japanese.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 頑張る {から} 日本 語 を 勉強 し て い ます。
+        english: I am studying Japanese because I work hard every day.
+        hint: 「〜から」 indicates a reason. We are looking for the method of studying.
+      - competing_japanese:
+          - 毎日 頑張り {ながら} 日本 語 を 勉強 し て い ます。
+        english: While working hard every day, I am studying Japanese.
+        hint: 「〜ながら」 signifies simultaneous actions. We are looking for 'working hard' as the means to
+          study.
+    scene: A student is discussing their daily routine and study methods.
+    register: casual
+    setting: informative
+    nuance: 「頑張って」 indicates that the effort of 'working hard' is the means or method used to study Japanese,
+      highlighting diligence and active application.
+  - english: I went to bed early because I was tired.
+    japanese:
+      - '{疲れ て} 早く 寝 まし た。'
+      - '{疲れ て} 早く 寝 た。'
+      - '{疲れ て} 早く 寝 ちゃっ た。'
+    english_literally: Being tired, I slept early.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ た {から} 早く 寝 まし た。
+        english: Because I was tired, I went to bed early.
+        hint: 「〜から」 clearly states a reason. We are looking for 'being tired' as the state or condition
+          that led to sleeping early, often implying an immediate consequence rather than a formal reason.
+    scene: Someone explaining why they went to bed earlier than usual.
+    register: casual
+    setting: informative
+    nuance: 「疲れて」 indicates that being tired is the cause or reason for going to bed early. While similar
+      to 「〜から」, the て-form here often implies a more direct, immediate consequence or a state that leads
+      to the next action.
+  - english: If you speak with a smile, everyone will likely feel at ease.
+    japanese:
+      - '{笑顔 で} 話せ ば、みんな 安心 する でしょう。'
+      - '{笑顔 で} 話せ ば、皆 安心 する でしょ う。'
+      - '{笑顔 で} 話せ ば、みんな 安心 する だろ う。'
+    english_literally: If you speak with a smiling face, everyone will feel relief.
+    competing_grammar:
+      - competing_japanese:
+          - 笑顔 で 話し {ながら}、みんな 安心 する でしょう。
+        english: While speaking with a smile, everyone will feel at ease.
+        hint: 「〜ながら」 suggests two actions happening simultaneously. We are looking for adopting a smiling
+          demeanor as the method of speaking.
+    scene: Someone is giving advice on how to make others comfortable in a social setting.
+    register: casual
+    setting: persuasive
+    nuance: 「笑顔で」 describes the manner or state (with a smile) as the means by which the act of speaking
+      will make others feel at ease. It highlights the positive impact of one's demeanor on communication.
+post_example_writeup: As illustrated by these examples, both the particle 「で」 and the て-form of verbs
+  are versatile in indicating the means, method, instrument, material, cause, or location of an action.
+  When using 「で」 with nouns, pay close attention to whether it signifies the instrument used, the material
+  something is made from, the reason something occurred, or the precise location where an action takes
+  place. For the て-form of verbs, recognize how the preceding action serves as the means, method, or cause
+  for the subsequent event. Understanding these nuances and distinguishing them from similar expressions
+  is crucial for accurate and natural Japanese communication, ensuring you precisely convey *how* an action
+  is performed.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verb-て-noun-で-b

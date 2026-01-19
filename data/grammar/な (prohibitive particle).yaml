@@ -1,0 +1,680 @@
+grammar_point: な (prohibitive particle)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - どうぞ (here you are・please・invitation)
+  - にする (to decide or make)
+meaning: Don't, Do not (Prohibitive)
+pronunciation:
+  katakana: ナ
+  romaji: na
+formation:
+  Verb in dictionary form + な: Expresses a strong prohibition or command not to do something.
+jlpt: N5
+etymology: The particle 「な」 is believed to have originated from the older negative imperative form 「な～そ」.
+  Over time, the 「そ」 was dropped, leaving just 「な」 as the prohibitive form. This linguistic evolution
+  highlights its historical role as a direct and forceful command.
+writeup: |-
+  The particle 「な」 attaches directly to the dictionary form of a verb to express a strong, direct prohibition, equivalent to saying "Don't!" or "Do not!". It conveys a forceful command to prevent an particular action.
+
+  Due to its directness, 「な」 is primarily used in casual, informal speech. Traditionally, it is more commonly employed by male speakers, particularly when addressing individuals of equal or lower status, or subordinates. However, in highly emotional or urgent situations—such as a sudden warning or outburst of frustration—it can be used by anyone, regardless of gender.
+
+  Therefore, it is crucial to use 「な」 with caution, as it can sound harsh, impolite, or even rude if directed towards superiors, strangers, or in formal settings. It lacks the politeness and deference found in other prohibitive expressions.
+
+  To soften the intensity of the prohibition, the particle 「よ」 can be appended, forming 「～なよ」. This mitigates the directness, transforming the expression into more of a warning, advice, or a gentle plea rather than an outright command. For example, 「するなよ」 (Don't do it, okay?) is significantly milder than 「するな」 (Don't do it!). This distinction is vital for proper communication.
+false_friends:
+  - term: てください
+    meaning: Please do (Polite request)
+    kind: antonym
+    nuance: Unlike 「な」, which is a strong prohibition, 「てください」 is a polite request to perform an action.
+      They are opposite in function and politeness.
+    grammar_point: てください (polite request)
+  - term: てごらん
+    meaning: (Please) try to, (Please) look
+    kind: antonym
+    nuance: 「てごらん」 is an encouragement or suggestion for someone to try or observe something, implying
+      a gentle invitation. It is not used for prohibition like 「な」.
+    grammar_point: '[Verb-て]ごらん (gentle suggestion)'
+  - term: なさい
+    meaning: Command to do
+    kind: antonym
+    nuance: While both are commands, 「なさい」 tells someone to *do* something in a milder, often parental
+      or instructional tone, whereas 「な」 tells someone *not to do* something, with a more forceful tone.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: たまえ
+    meaning: (Please) do!, Ask to, Beg to, (Order somebody to do something)
+    kind: antonym
+    nuance: 「たまえ」 is an archaic or very formal/authoritative command to do something, typically used by
+      a superior to a subordinate. It contrasts with 「な」 by being an affirmative command and also differs
+      greatly in register.
+    grammar_point: たまえ (light command)
+  - term: ないでください
+    meaning: Please don't (Polite request)
+    kind: synonym
+    nuance: Both 「な」 and 「ないでください」 prohibit an action, but 「ないでください」 is a polite and softer request, suitable
+      for general situations, whereas 「な」 is direct and informal, often perceived as harsh.
+    grammar_point: ないでください・ないで (please don't)
+  - term: ないで
+    meaning: Without doing or don't
+    kind: similar expression
+    nuance: While 「ないで」 can form part of a negative request (e.g., 「食べないでください」), its primary use is to
+      indicate doing something 'without' performing another action (e.g., 「食べないで話す」 - talk without eating)
+      or connecting clauses. It is not a direct prohibitive particle like 「な」.
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: べきではない
+    meaning: Should not, must not, ought not to
+    kind: similar expression
+    nuance: 「べきではない」 conveys a moral or logical obligation not to do something, indicating that an action
+      is inappropriate or inadvisable based on principles or common sense. 「な」, however, is a direct,
+      imperative prohibition from the speaker.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: てはいけない
+    meaning: Must not do, Cannot do (prohibition)
+    kind: similar expression
+    nuance: 「してはいけない」 signifies a general prohibition, stating that an action is forbidden or not allowed,
+      often due to rules or circumstances. 「な」 is a more personal and forceful direct command from the
+      speaker to prevent an action.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+post_false_friends_writeup: 「な」 is a strong and direct prohibition. Its usage often implies authority,
+  urgency, or strong emotion. When politeness or a softer tone is required, opt for expressions like 「～ないでください」
+  or 「～ない方がいい」. While expressions such as 「～べきではない」 or 「～してはいけない」 also convey negative injunctions, they
+  refer to what is generally inadvisable or forbidden, rather than a direct command from the speaker,
+  which is the specific function of 「な」.
+examples:
+  - english: Don't run! It's dangerous!
+    japanese:
+      - 走る {な}！危ない！
+      - 走る {な} よ！危ない！
+      - 走る {な}！危ねえ ぞ！
+      - 走る {な}！危険 だ ぞ！
+      - ここ で 走る {な}！
+      - 急 に 走る {な}！
+      - 廊下 を 走る {な}！
+      - あぶない から 走る {な}！
+      - 走る {な} って 言っ た でしょ！
+      - ここ で 走る {な}！危ない から！
+      - 君 たち、走る {な}！
+    english_literally: Run do not! Dangerous!
+    competing_grammar:
+      - competing_japanese:
+          - 走ら {ない で ください}
+        english: Please don't run.
+        hint: The teacher is issuing an immediate, strong prohibition due to danger. 「走らないでください」 would
+          be too polite and indirect for such an urgent situation, lacking the necessary force. We're
+          looking for a very direct, strong prohibition.
+      - competing_japanese:
+          - 走る {べき で は ない}
+        english: You shouldn't run.
+        hint: 「走るべきではない」 suggests a general rule or advisability. The scene requires a direct, immediate
+          command to stop an an action, not a general statement about what one shouldn't do.
+      - competing_japanese:
+          - 走っ {ちゃ ダメ}！
+        english: You mustn't run!
+        hint: 「走っちゃ ダメ」 is a common and slightly less harsh way to prohibit an action in casual speech,
+          often used with children. Here, we're looking for a very direct, strong prohibition.
+      - competing_japanese:
+          - 走っ {て は いけ ない}！
+        english: You must not run!
+        hint: 「走って は いけない」 expresses a general rule or strong prohibition. While similar in meaning, it
+          lacks the immediate, personal, direct command feel of the grammar point.
+      - competing_japanese:
+          - 走り {なさい}！
+        english: Run!
+        hint: 「走りなさい」 is an affirmative command to perform an action, often with a milder or instructional
+          tone. We're looking for a direct prohibition, an order *not* to run.
+      - competing_japanese:
+          - 走ら {ない で}
+        english: Don't run
+        hint: 「走らないで」 is an incomplete negative te-form. While it can imply a softer prohibition, it lacks
+          the definitive, forceful command of the grammar point. We're looking for a very direct, strong
+          prohibition.
+      - competing_japanese:
+          - 走る {なかれ}
+        english: Run not!
+        hint: This is an archaic or classical form of prohibition, primarily found in written or very
+          formal/poetic contexts. We're looking for a modern, direct, casual prohibition.
+    scene: A teacher spots a child running in the school hallway.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: This is a direct, urgent command from a female teacher to a child. Even though 「な」 is often
+      associated with male speech, its use here is justified by the immediate danger and the speaker's
+      authority, making the command forceful and clear. The urgency overrides typical gendered usage.
+  - english: Don't leak other people's secrets, okay?
+    japanese:
+      - 他人 の 秘密 を 漏らす {な} よ。
+      - 人 の 秘密 を 漏らす {な} よ。
+      - 誰 か の 秘密 を 漏らす {な} よ。
+      - 他人 の 秘密 は 漏らす {な} よ。
+      - 秘密 を 漏らす {な} よ。
+      - 誰 に も 秘密 を 漏らす {な} よ。
+      - 変 な こと 言う {な} よ。
+      - その 話 は 誰 に も する {な} よ。
+      - あんまり 人 の こと 言う {な} よ。
+      - あいつ に は 秘密 を 漏らす {な} よ。
+    english_literally: Other people's secrets leak do not okay.
+    competing_grammar:
+      - competing_japanese:
+          - 他人 の 秘密 を 漏らさ {ない で ください}
+        english: Please don't leak other people's secrets.
+        hint: The addition of 「よ」 softens the prohibition, making it sound like a gentle warning or advice
+          between friends rather than a harsh command. 「漏らさないでください」 would be too formal for a casual conversation
+          between close friends.
+      - competing_japanese:
+          - 他人 の 秘密 を 漏らす {べき で は ない}
+        english: You shouldn't leak other people's secrets.
+        hint: 「漏らすべきではない」 expresses a moral obligation, which is too strong for the friendly, advisory
+          tone of the scene. The scene implies a more personal piece of advice rather than a general ethical
+          rule.
+      - competing_japanese:
+          - 他人 の 秘密 を 漏らさ {ない 方 が いい} よ。
+        english: It's better not to leak other people's secrets.
+        hint: 「ない 方 が いい」 is advice that something is better not to do. This example uses a softer prohibition,
+          like gentle advice, but it's still a direct command, not just a suggestion.
+      - competing_japanese:
+          - 他人 の 秘密 は 言っ {ちゃ ダメ}。
+        english: You mustn't tell other people's secrets.
+        hint: 「言っちゃ ダメ」 is a casual prohibition, but 「漏らす な よ」 carries a slightly more solemn or serious
+          tone for advice between close friends.
+      - competing_japanese:
+          - 他人 の 秘密 を 漏らさ {ない で}
+        english: Don't leak other people's secrets.
+        hint: 「漏らさないで」 is an incomplete negative te-form. While it can imply an omitted request like `ください`
+          or `くれ`, the grammar point provides a direct, slightly softened prohibition due to `よ`. We're
+          looking for a direct prohibition that feels like gentle advice.
+      - competing_japanese:
+          - 他人 の 秘密 を 漏らし {て は いけ ない}
+        english: You must not leak other people's secrets.
+        hint: 「漏らしてはいけない」 states that an action is forbidden or not allowed. While strong, it lacks the
+          personal, advisory tone of the grammar point, which is closer to a direct piece of advice. We're
+          looking for a direct, but gentle prohibition.
+      - competing_japanese:
+          - 漏らし {て は なら ない}
+        english: You must not leak it.
+        hint: This is a very strong, formal prohibition, often used for rules or laws. The scene calls
+          for a friendly, advisory tone, softened by 「よ」, not a strict rule.
+    scene: A close friend advises another not to gossip.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The speaker is a younger female. The use of 「なよ」 softens the prohibition, making it a friendly
+      piece of advice. This form is common in casual conversations among friends, regardless of gender,
+      especially when delivering a warning with a caring tone.
+  - english: Don't contact him anymore. It's none of your business.
+    japanese:
+      - もう 彼 に 連絡 する {な}。君 に は 関係 ない。
+      - もう 彼 に は 連絡 する {な}。お前 に は 関係 ない。
+      - もう あいつ に 連絡 する {な}。お前 に は 関係 ない。
+      - もう 彼 に 連絡 する {な}。お前 に は 関係 ない こと だ。
+      - 二 度 と 彼 に 連絡 する {な}。
+      - あいつ に 連絡 する {な}。余計 な お 世話 だ。
+      - もう 連絡 する {な}。
+      - これ 以上、彼 と 関わる {な}。
+      - 余計 な 口出し は する {な}。
+      - これ 以上、彼 と 話す {な}。
+      - 手 を 出す {な}。
+      - 彼 の こと は もう 構う {な}。
+    english_literally: Anymore him contact do not. For you relationship not exist.
+    competing_grammar:
+      - competing_japanese:
+          - もう 彼 に 連絡 し {ない で ください}
+        english: Please don't contact him anymore.
+        hint: The speaker is giving firm, direct advice to a close male friend, implying exasperation
+          with the friend's actions. 「連絡 しないでください」 would be too formal and distant for this context, failing
+          to convey the speaker's strong opinion.
+      - competing_japanese:
+          - もう 彼 に 連絡 する {べき で は ない}
+        english: You shouldn't contact him anymore.
+        hint: 「連絡 するべきではない」 implies a logical conclusion or a general rule, which is less about direct
+          intervention in a personal situation. The scene calls for a direct, authoritative instruction
+          from one friend to another.
+      - competing_japanese:
+          - もう 彼 に 連絡 し {ない 方 が いい}。
+        english: You shouldn't contact him anymore.
+        hint: This suggests something is better not to do, but the original sentence is a direct, strong
+          command, emphasizing the speaker's firm stance.
+      - competing_japanese:
+          - もう 彼 に 連絡 し {て は いけ ない}。
+        english: You must not contact him anymore.
+        hint: 「て は いけない」 states that an action is forbidden or not allowed. While strong, it lacks the
+          personal, direct order implied by the grammar point in this context.
+      - competing_japanese:
+          - もう 彼 に 連絡 し {ない で}
+        english: Don't contact him anymore.
+        hint: 「連絡しないで」 is an informal negative te-form. While conveying a prohibition, it doesn't carry
+          the same blunt, authoritative command as the grammar point in this context. We're looking for
+          a direct, serious prohibition.
+      - competing_japanese:
+          - もう 彼 と 関わる の は {よせ}。
+        english: Stop getting involved with him.
+        hint: 「よせ」 is a strong, informal command to stop something, but it's often slightly less blunt
+          and more about telling someone to "cut it out" than 「な」's direct prohibition. We're looking
+          for a direct, serious prohibition.
+    scene: A man tells his male friend to stop meddling in a dispute.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The speaker is an older male giving a direct command to a male friend. The bluntness of 「連絡
+      する な」 conveys the speaker's strong conviction and the seriousness of the situation, often seen in
+      casual male-to-male interactions when expressing disapproval or firm advice.
+  - english: Don't bother me!
+    japanese:
+      - 私 の 邪魔 を する {な}！
+      - 邪魔 する {な} よ！
+      - 邪魔 を する {な}！
+      - 俺 の 邪魔 を する {な}！
+      - 私 の 邪魔 する {な}！
+      - 邪魔 する {な}！
+      - 俺 を 邪魔 する {な}！
+      - 邪魔 すん {な}！
+      - 放っ とい て くれ！邪魔 する {な}！
+      - もう 声 を かける {な}！
+      - 集中 し たい から 邪魔 する {な}！
+      - これ 以上、邪魔 する {な}！
+      - 話しかける {な}！
+    english_literally: My bothering do not!
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 邪魔 を し {ない で ください}。
+        english: Please don't bother me.
+        hint: The speaker is expressing strong frustration and anger. 「邪魔 を しないでください」, while a polite
+          negative request, lacks the forceful, immediate, and confrontational tone of 「邪魔 を する な！」 which
+          conveys a sudden outburst of irritation.
+      - competing_japanese:
+          - 私 の 邪魔 を し {て は いけ ない}
+        english: You must not bother me.
+        hint: 「邪魔 を して は いけない」 implies a general prohibition or a rule. The scene requires a direct, personal
+          rejection of an action, expressing the speaker's immediate state of mind rather than a general
+          statement of what is forbidden.
+      - competing_japanese:
+          - 私 を 邪魔 し {ない で くれ}！
+        english: Please don't bother me!
+        hint: 「～て くれ」 is a request, even a direct one. The original expresses pure prohibition born of
+          frustration, without any request element.
+      - competing_japanese:
+          - 私 を 邪魔 する {ん じゃ ない}！
+        english: You're not to bother me!
+        hint: 「～んじゃない」 is a common way to express prohibition in casual speech, but 「～な」 carries a more
+          primitive, raw force for immediate, angry commands.
+      - competing_japanese:
+          - 邪魔 し {ない で}
+        english: Don't bother me.
+        hint: 「邪魔しないで」 is a gentler prohibition than the grammar point, which is used for a sudden, angry
+          outburst. We're looking for a forceful, direct command reflecting frustration.
+      - competing_japanese:
+          - 邪魔 する {べき で は ない}
+        english: You shouldn't bother me.
+        hint: 「邪魔するべきではない」 suggests that bothering someone is generally inadvisable or inappropriate.
+          The scene calls for a direct, personal command reflecting immediate anger, not a general statement
+          of propriety. We're looking for a forceful, direct command reflecting frustration.
+      - competing_japanese:
+          - 構わ {ない で くれ}！
+        english: Please don't interfere!
+        hint: 「構わないでくれ」 is a request not to interfere, which is slightly less forceful and more pleading
+          than the direct, angry command of 「邪魔 を する な！」. We're looking for a direct prohibition born
+          of frustration.
+    scene: A frustrated person yells at someone interrupting their work.
+    register: casual
+    setting: serious
+    nuance: This example shows 「な」 used by a female speaker in a moment of anger. While 「な」 is often gender-associated,
+      intense emotions like frustration allow speakers of any gender to use this strong, direct prohibitive
+      form. The sharpness of 「邪魔 を する な！」 emphasizes the speaker's irritation and demand for space.
+  - english: Don't be trapped by the past. Look only to the future.
+    japanese:
+      - 過去 に 囚われる {な}。未来 だけ を 見ろ。
+      - 過去 に 囚われる {な}。未来 だけ を 見つめろ。
+      - 過去 に 囚われる {な}。前 だけ を 見ろ。
+      - 過去 に 囚われる {な}。前 を 見 て 進め。
+      - 過去 に とらわれる {な}。前向き に 生きろ。
+      - 過去 に 囚われる {な}。未来 を 信じろ。
+      - 過去 に 囚われる {な}。新しい 道 を 進め。
+      - 過去 に 縛ら れる {な}。
+      - 後悔 する {な}。
+      - 立ち止まる {な}！
+      - 諦める {な}！
+      - 過去 に 執着 する {な}。
+    english_literally: Past to be trapped do not. Future only look.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 に 囚われ {ない で ください}
+        english: Please don't be trapped by the past.
+        hint: This would be too mild and polite for a motivational speech intended to inspire decisive
+          action. 「囚われる な」 is more impactful and direct, conveying the speaker's conviction and urging
+          a powerful shift in mindset.
+      - competing_japanese:
+          - 過去 に 囚われる {べき で は ない}
+        english: You shouldn't be trapped by the past.
+        hint: This implies a moral or logical imperative, which is less about direct inspiration and more
+          about a general truth. The scene calls for a direct, empowering injunction to the audience.
+      - competing_japanese:
+          - 過去 に 囚われる の は {やめ なさい}。
+        english: Stop being trapped by the past.
+        hint: 「～なさい」 is a command to *do* something (or stop doing something). This example is a direct
+          prohibition, an order *not to* be trapped, rather than an an instruction to cease an action.
+      - competing_japanese:
+          - 過去 に 囚われる の は {やめろ}。
+        english: Stop being trapped by the past.
+        hint: Similar to 「～なさい」, this is a command to stop an action. The original sentence directly prohibits
+          a state of being, carrying a more declarative force in this motivational context.
+      - competing_japanese:
+          - 過去 に 囚われ {ちゃ いけ ない}。
+        english: You must not be trapped by the past.
+        hint: 「～ちゃ いけない」 expresses a general prohibition, but in this motivational speech, the grammar
+          point delivers a direct, forceful injunction, empowering the audience to break free.
+      - competing_japanese:
+          - 過去 に 囚われ {ない で}
+        english: Don't be trapped by the past.
+        hint: 「囚われないで」 is the negative te-form, suggesting a gentler prohibition or request. In a motivational
+          speech, the grammar point provides a much stronger, more impactful direct injunction. We're
+          looking for a powerful, direct call to action.
+      - competing_japanese:
+          - 過去 に {引きずら れる な}。
+        english: Don't be dragged down by the past.
+        hint: While similar in meaning, 「引きずられる」 implies being pulled back by the past, a slightly different
+          nuance than being "trapped" or "bound." The grammar point directly prohibits the state of being
+          trapped.
+    scene: A motivational speaker addresses their audience, urging them to embrace change.
+    register: casual
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    nuance: Even in an inspirational setting, the directness of 「な」 and 「見ろ」 creates a powerful, authoritative
+      tone. The speaker, a male, leverages this casual, strong imperative to convey conviction and urgency,
+      aligning with a persuasive and assertive communication style often used to motivate a group.
+  - english: Don't worry so much.
+    japanese:
+      - そんな に 心配 する {な} よ。
+      - そんな に 気 に する {な} よ。
+      - 気 に する {な} よ。
+      - そんな に 悩む {な} よ。
+      - あんまり 気 に する {な} よ。
+    english_literally: So much worry do not okay.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 心配 し {ない で ください}。
+        english: Please don't worry so much.
+        hint: The use of 「なよ」 softens the prohibition, turning it into reassuring advice between friends.
+          「心配しない で ください」 would be too formal and polite for this casual, comforting situation. We're looking
+          for a softer, friendly prohibition.
+      - competing_japanese:
+          - そんな に 心配 する {べき で は ない}。
+        english: You shouldn't worry so much.
+        hint: 「心配するべきではない」 expresses a logical or moral advisability. The scene calls for a personal,
+          comforting piece of advice, not a general statement about what one ought not to do. We's looking
+          for a softer, friendly prohibition.
+      - competing_japanese:
+          - 心配 し {ない 方 が いい} よ。
+        english: It's better not to worry.
+        hint: 「ない 方 が いい」 is advice, but 「なよ」 is still a direct, albeit softened, command or plea, conveying
+          stronger empathy. We're looking for a softer, friendly prohibition.
+    scene: A male friend comforting a female friend who is overthinking things.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「なよ」 softens the prohibition, turning it into reassuring advice. This is a common
+      way for male speakers to offer comfort to female friends without sounding overly harsh, maintaining
+      a friendly and supportive tone. 「そんなに」 (so much) emphasizes the excessive worrying.
+  - english: Don't touch that! It's dangerous.
+    japanese:
+      - それ に 触る {な}！危ない ぞ。
+      - 触る {な}！危ない！
+      - 触っ ちゃ {な}！危ない から！
+      - 手 を 出す {な}！危ない ぞ！
+      - 危ない から 触る {な}！
+    english_literally: That touch do not! Dangerous!
+    competing_grammar:
+      - competing_japanese:
+          - それ に 触ら {ない で ください}。
+        english: Please don't touch that.
+        hint: The speaker is a mother issuing an immediate, strong prohibition due to danger. 「触らないでください」
+          would be too polite and indirect for such an urgent situation, lacking the necessary force.
+          We're looking for a very direct, strong prohibition.
+      - competing_japanese:
+          - それ に 触る {べき で は ない}。
+        english: You shouldn't touch that.
+        hint: 「触るべきではない」 suggests a general rule or advisability. The scene requires a direct, immediate
+          command to prevent an action, not a general statement about what one shouldn't do. We're looking
+          for a very direct, strong prohibition.
+      - competing_japanese:
+          - それ に 触っ {ちゃ ダメ}！
+        english: You mustn't touch that!
+        hint: 「触っちゃ ダメ」 is a common and slightly less harsh way to prohibit an action in casual speech,
+          often used with children. While similar, the grammar point conveys a slightly more immediate
+          and direct command. We're looking for a very direct, strong prohibition.
+    scene: A mother scolding her child who is about to touch a hot stove.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    nuance: This is a direct, urgent command from a parent to a child in a moment of danger. The immediate
+      threat overrides typical gender associations of 「な」, emphasizing the need for quick, forceful prohibition.
+      The 「ぞ」 at the end further reinforces the warning, making it very direct and masculine-leaning,
+      but acceptable for a mother in urgency.
+  - english: Don't smoke here. It's prohibited.
+    japanese:
+      - ここ で タバコ を 吸う {な}。禁止 だ。
+      - ここ で 吸う {な}。禁止 です。
+      - この 場所 で タバコ を 吸う {な}。禁煙 だ。
+      - ここ で 一 服 する {な}。禁止 だ。
+      - 喫煙 は ここ で は する {な}。
+    english_literally: Here tobacco smoke do not. Prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - ここ で タバコ を 吸わ {ない で ください}。
+        english: Please don't smoke here.
+        hint: While 「吸わないでください」 is polite, an employee might use 「な」 if they are being firm, or if it's
+          a casual setting where a direct, no-nonsense approach is common. We're looking for a direct
+          and firm prohibition.
+      - competing_japanese:
+          - ここ で タバコ を 吸う {べき で は ない}。
+        english: You shouldn't smoke here.
+        hint: 「吸うべきではない」 implies a general advisability. The scene requires a direct enforcement of a
+          rule from an authority figure, not a general statement of what's appropriate. We're looking
+          for a direct and firm prohibition.
+      - competing_japanese:
+          - ここ で タバコ を 吸っ {て は いけ ませ ん}。
+        english: You must not smoke here.
+        hint: 「吸っては いけ ませ ん」 is a formal prohibition. While strong, it lacks the directness of 「な」 in
+          a casual or semi-formal context when delivering a firm command. We're looking for a direct and
+          firm prohibition.
+    scene: A store employee tells a customer not to smoke inside the store.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    listener_gender: male
+    nuance: Even in a customer service context, if the situation is casual enough (e.g., small local shop,
+      or repeated offense), a male employee might use 「な」 to enforce a rule directly. It's less polite
+      than 「吸わないでください」 but more direct and firm, emphasizing the prohibition. The directness conveys authority.
+  - english: Don't give up! You can do it.
+    japanese:
+      - 諦める {な}！君 なら できる。
+      - 諦める {な}！あなた なら できる わ。
+      - 諦める {な}！絶対 できる から！
+      - 諦める {な}！頑張れ！
+      - 諦める {な}！きっと できる！
+    english_literally: Give up do not! If it's you, you can do it.
+    competing_grammar:
+      - competing_japanese:
+          - 諦め {ない で ください}！
+        english: Please don't give up!
+        hint: This would be too polite and lacks the forceful encouragement needed from a coach. 「諦める
+          な」 is much more impactful and direct, conveying strong belief and a powerful push to persevere.
+          We're looking for a powerful, inspirational prohibition.
+      - competing_japanese:
+          - 諦める {べき で は ない}！
+        english: You shouldn't give up!
+        hint: 「諦めるべきではない」 implies a general truth or moral obligation. The scene calls for a direct, personal
+          encouragement and a command to persist. We're looking for a powerful, inspirational prohibition.
+      - competing_japanese:
+          - 諦め {て は いけ ない}！
+        english: You must not give up!
+        hint: 「諦めては いけ ない」 states a strong prohibition but lacks the direct, personal motivational tone
+          of 「な」 in this context. We're looking for a powerful, inspirational prohibition.
+    scene: A coach encouraging an athlete during a tough training session.
+    register: casual
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: female
+    nuance: This shows 「な」 used in an encouraging, inspirational context, even by a female speaker. It's
+      a direct, strong push to persevere. The directness emphasizes belief in the listener's capability
+      and a desire for them to overcome, making it a powerful call to action rather than a harsh command.
+  - english: Don't forget what I told you.
+    japanese:
+      - 俺 が 言っ た こと、忘れる {な} よ。
+      - 私 が 言っ た こと、忘れる {な} よ。
+      - 言っ た こと、忘れる {な} よ。
+      - 大事 な こと だ から 忘れる {な} よ。
+      - 約束、忘れる {な} よ。
+      - 俺 の 言葉、忘れる {な} よ。
+    english_literally: What I said, forget do not okay.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 が 言っ た こと、忘れ {ない で ください}。
+        english: Please don't forget what I told you.
+        hint: The male speaker uses 「なよ」 to give a firm reminder to a junior. 「忘れない で ください」 would be too
+          formal and polite, losing the emphasis and casual authority. We're looking for a firm, but slightly
+          softened, prohibition.
+      - competing_japanese:
+          - 俺 が 言っ た こと、忘れる {べき で は ない}。
+        english: You shouldn't forget what I told you.
+        hint: 「忘れるべきではない」 implies a general advisability. The scene calls for a direct and personal instruction,
+          conveying the importance of the information. We're looking for a firm, but slightly softened,
+          prohibition.
+      - competing_japanese:
+          - 俺 が 言っ た こと、忘れ {て は いけ ない}。
+        english: You must not forget what I told you.
+        hint: 「忘れては いけ ない」 is a strong, general prohibition. While similar, 「なよ」 is more personal and
+          carries a nuance of a firm warning or reminder. We're looking for a firm, but slightly softened,
+          prohibition.
+    scene: A senior colleague giving important instructions to a junior colleague.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker uses 「なよ」 to emphasize the importance of the instruction. While it's a casual
+      form, in a semi-formal setting between colleagues where there's a clear senior-junior dynamic, it
+      can imply a firm reminder or a warning not to make a mistake, softened slightly by 「よ」. 「俺が言ったこと」
+      (what I told you) is a casual male expression.
+  - english: Don't be silly! You're really overreacting.
+    japanese:
+      - 馬鹿 な こと 言う {な}！大げさ だ よ。
+      - 馬鹿 な こと 言う {な}！考え すぎ だ よ。
+      - そんな 馬鹿 な こと 言う {な}！
+      - ふざける {な}！
+      - 冗談 言う {な}！
+    english_literally: Stupid thing say do not! It's an overreaction.
+    competing_grammar:
+      - competing_japanese:
+          - 馬鹿 な こと を 言わ {ない で ください}。
+        english: Please don't say silly things.
+        hint: The speaker is expressing strong frustration or disbelief at the listener's words. 「言わない
+          で ください」 would be too formal for this direct, exasperated correction among friends. We're looking
+          for a direct, informal prohibition showing frustration.
+      - competing_japanese:
+          - 馬鹿 な こと を 言う {べき で は ない}。
+        english: You shouldn't say silly things.
+        hint: 「言うべきではない」 indicates general impoliteness. The scene calls for a direct, personal rebuke
+          in response to a specific statement. We're looking for a direct, informal prohibition showing
+          frustration.
+    scene: A young person tells their friend not to be ridiculous during a casual conversation.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: This example shows 「な」 used by a young female speaker to express exasperation or dismiss a
+      friend's comment as ridiculous. While direct, the casual context among friends makes it acceptable,
+      demonstrating that 「な」 is not exclusively for male or harsh commands, especially when expressing
+      strong feelings like disbelief or frustration in a familiar setting.
+  - english: Don't forget your gratitude, no matter how famous you become.
+    japanese:
+      - どんな に 有名 に なっ て も、感謝 を 忘れる {な}。
+      - どんな に 出世 し て も、感謝 を 忘れる {な}。
+      - 偉く なっ て も、感謝 を 忘れる {な}。
+      - 初心 を 忘れる {な}。
+      - いつ まで も 感謝 を 忘れる {な}。
+    english_literally: However famous become, gratitude forget do not.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 有名 に なっ て も、感謝 を 忘れ {ない で ください}。
+        english: Please don't forget your gratitude, no matter how famous you become.
+        hint: This is a profound piece of advice or life lesson being passed down. 「忘れない で ください」 would
+          be too polite and lack the gravity and weight of the advice implied by the direct 「な」. We're
+          looking for a strong, profound piece of advice.
+      - competing_japanese:
+          - どんな に 有名 に なっ て も、感謝 を 忘れる {べき で は ない}。
+        english: You shouldn't forget your gratitude, no matter how famous you become.
+        hint: 「忘れるべきではない」 frames it as a general moral imperative. The speaker is delivering a direct,
+          personal lesson or warning. We're looking for a strong, profound piece of advice.
+    scene: An older, experienced mentor gives advice to a promising young artist.
+    register: semi-formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: Here, an older male mentor uses 「な」 to impart a profound life lesson. While direct, the wisdom
+      and experience of the speaker make it sound authoritative and deeply meaningful rather than harsh.
+      It's a strong injunction, reflecting a core value the mentor wishes to instill.
+  - english: Don't fall for such an obvious trick!
+    japanese:
+      - そんな 騙し に かかる {な}！
+      - そんな 手 に 乗る {な}！
+      - そんな 罠 に はまる {な}！
+      - そんな 馬鹿 な 真似 する {な}！
+      - 安易 に 信じる {な}！
+    english_literally: Such deception fall for do not!
+    competing_grammar:
+      - competing_japanese:
+          - そんな 騙し に か から {ない で ください}。
+        english: Please don't fall for such a deception.
+        hint: The speaker is expressing strong exasperation and urgency to prevent the listener from making
+          a mistake. 「かからない で ください」 would be too polite and slow for this immediate warning. We're looking
+          for a direct, urgent warning.
+      - competing_japanese:
+          - そんな 騙し に かかる {べき で は ない}！
+        english: You shouldn't fall for such a deception!
+        hint: 「かかるべきではない」 implies a general rule of prudence. The scene requires a direct, urgent intervention
+          to stop a pending mistake. We're looking for a direct, urgent warning.
+    scene: A quick-thinking friend warns another just before they make a mistake.
+    register: casual
+    setting: cautious
+    speaker_gender: male
+    listener_gender: male
+    nuance: This illustrates 「な」 in a rapid, urgent warning between friends. The male speaker's use of
+      「な」 conveys a sense of immediate concern and exasperation, demanding quick action to avoid a foreseeable
+      pitfall. It's a direct, unvarnished warning that gets straight to the point.
+  - english: Don't interrupt my story!
+    japanese:
+      - 私 の 話 の 邪魔 を する {な}！
+      - 話 の 邪魔 を する {な}！
+      - 私 が 話し て いる 時 に 邪魔 する {な}！
+      - 口 を 挟む {な}！
+      - 黙っ て 聞け！邪魔 する {な}！
+    english_literally: My story's interruption do not!
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 話 の 邪魔 を し {ない で ください}。
+        english: Please don't interrupt my story.
+        hint: The speaker is asserting control over the conversation with some irritation. 「邪魔をしない で ください」
+          would be too polite and lack the directness needed to firmly tell someone not to interrupt.
+          We're looking for a direct, slightly irritated prohibition.
+      - competing_japanese:
+          - 私 の 話 の 邪魔 を する {べき で は ない}。
+        english: You shouldn't interrupt my story.
+        hint: 「邪魔するべきではない」 indicates general impoliteness. The scene calls for a direct, personal command
+          to cease an immediate action. We're looking for a direct, slightly irritated prohibition.
+    scene: Someone telling a story gets annoyed by an interruption and tells the interrupter to stop.
+    register: casual
+    setting: serious
+    nuance: This example highlights the use of 「な」 to express irritation and assert authority over a situation,
+      regardless of gender. The speaker is annoyed by the interruption and uses this direct command to
+      regain control, conveying a clear boundary. The tone is firm and slightly confrontational, typical
+      in moments of frustration.

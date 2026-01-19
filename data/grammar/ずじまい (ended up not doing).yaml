@@ -1,0 +1,427 @@
+grammar_point: ずじまい (ended up not doing)
+learn_before:
+  - '[Verb-dict・Nounの]あまり (so much... that)'
+  - いつの間にか (unnoticed change)
+  - せっかく (making the most of effort or opportunity)
+  - せめて (at least)
+  - ばよかった (should have)
+  - 再び (again・second time)
+meaning: Ended up not, Did not (in the end), Never did
+pronunciation:
+  katakana: ズジマイ
+  romaji: zujimai
+formation:
+  Verb (未然形 / Indeterminate form) + ずじまい: Indicates that an action or state did not materialize or was
+    left undone, often with a sense of regret or unfulfillment.
+jlpt: N1
+etymology: The grammar point 「ずじまい」 combines 「ず」 (the classical negative auxiliary verb) with the conjunctive
+  form 「じまい」 of the verb 「しまう」 (to finish, to end up). The 「ず」 negates the action of 「しまう」, indicating
+  that something ended up not being completed or done. This combination very often leads to its use in
+  the past form.
+writeup: |-
+  The grammar point 「ずじまい」 is formed by combining the classical negative auxiliary verb 「ず」 (meaning 'not') with the conjunctive form 「じまい」 of the verb 「しまう」. While 「しまう」 typically signifies 'to finish' or 'to bring to a close,' when paired with 「ず」, it creates a nuance of an action or event ultimately **not** having occurred or been completed, despite intentions or opportunities.
+
+  This pattern inherently carries a sense of **regret, unfulfillment, or a missed opportunity**. It implies that something was supposed to happen, or was desired to happen, but for various reasons, it concluded without that action taking place.
+
+  ### Formation
+  「ずじまい」 attaches to the **indeterminate form (未然形)** of verbs. For instance, for the verb 「する」 (to do), it becomes 「せずじまい」, not 「しずじまい」. This irregular conjugation for 「する」 (which forms 「せず」 in negation) is an important point to remember.
+
+  ### Usage and Nuance
+
+  *   **Unfulfilled Intentions**: The primary use is to express that an action that was intended or planned ultimately did not happen. This often leads to a feeling of disappointment for the speaker.
+  *   **Finality of Non-completion**: 「ずじまい」 is frequently used in the past tense, often followed by 「だった」 or 「でした」, to emphasize that the state of non-completion has become a finalized outcome. This underscores that a desired or expected action did not happen, leading to a sense of unfulfilled expectation or a missed opportunity.
+  *   **Contrast with Simple Negation**: Unlike a simple negative statement (e.g., 「～なかった」), 「ずじまい」 adds an emotional layer, highlighting the speaker's regret or the unfortunate outcome of something not being done. It implies that the action *could* have been done, or was *intended* to be done, but ended up not being.
+
+  Consider this phrase when you want to convey not just that something didn't happen, but that its non-occurrence is a source of disappointment or a definitive missed chance.
+false_friends:
+  - term: ～ないまま
+    meaning: without doing (something)
+    kind: similar expression
+    nuance: 「～ないまま」 describes a state of affairs where an action is not performed or completed, but it
+      does not inherently carry the nuance of regret or a sense of finality regarding an *intended* action.
+      「ずじまい」 specifically highlights that an action was intended or expected but ultimately ended up not
+      happening, often due to circumstances or one's own inaction, implying disappointment or unfulfillment.
+    grammar_point: <suggest>:Verb (without doing)
+  - term: ～なかった
+    meaning: did not do (simple past negative)
+    kind: similar expression
+    nuance: 「～なかった」 is a direct, factual statement of non-completion in the past. It is neutral regarding
+      intent or regret. 「ずじまい」 adds the layer that despite a potential desire, plan, or opportunity, the
+      action simply never materialized by the time a certain period or situation concluded, emphasizing
+      the outcome as an unfulfilled state.
+    grammar_point: <suggest>:Verb (did not do)
+  - term: ～ることができなかった
+    meaning: could not do (past potential negative)
+    kind: similar expression
+    nuance: 「～ることができなかった」 explicitly states an *inability* to perform an action. 「ずじまい」 does not necessarily
+      imply an inability, but rather that the action was left undone or never came to fruition, even if
+      it was technically possible, often due to procrastination, change of circumstances, or simply letting
+      the opportunity pass.
+    grammar_point: <suggest>:Verb (could not do)
+post_false_friends_writeup: While similar in meaning, 「ずじまい」 carries a stronger emotional tone than 「～ないまま」,
+  「～なかった」, or 「～ることができなかった」. It uniquely conveys the sense that an action was *intended* or *hoped for*
+  but ultimately *failed to materialize* by the end of a process or period, leaving behind a feeling of
+  regret or unfulfillment. Consider 「ずじまい」 when the nuance of a missed opportunity or an unfulfilled intention
+  is crucial.
+examples:
+  - english: The game I just bought, I was too busy and ended up never playing it.
+    japanese:
+      - 買っ た ばかり の ゲーム、忙しく て 結局 やら {ず じまい} だっ た。
+      - 買っ た ばかり の ゲーム、忙しく て 結局 やら {ず じまい} でし た。
+      - せっかく 買っ た ゲーム な の に、忙しく て 結局 やら {ず じまい} に 終わっ た。
+    english_literally: Bought just game, busy was and after all not-played-ended-up was.
+    competing_grammar:
+      - competing_japanese:
+          - 買っ た ばかり の ゲーム、忙しく て 結局 やら {ない まま} だっ た。
+        english: The game I just bought, I was too busy and ended up without playing it.
+        hint: 「～ない まま」 describes a state of affairs where an action is not performed, but it doesn't carry
+          the nuance of regret or an intended action. We're looking for a grammar point that expresses
+          a planned action that ultimately didn't happen, with a sense of regret.
+      - competing_japanese:
+          - 買っ た ばかり の ゲーム、忙しく て 結局 やら {なかっ た}。
+        english: The game I just bought, I was too busy and didn't play it.
+        hint: 「～なかった」 is a simple statement of not having played. We're looking for a grammar point that
+          conveys a deeper sense of regret that the game remained unplayed despite the intention to play.
+      - competing_japanese:
+          - 買っ た ばかり の ゲーム、忙しく て 結局 遊ぶ {こと が でき なかっ た}。
+        english: The game I just bought, I was too busy and couldn't play it.
+        hint: 「～ることができなかった」 explicitly states an inability to perform an action. We're looking for a grammar
+          point that implies the opportunity to play simply passed or was neglected, not necessarily an
+          inability.
+    scene: A young adult sighs, looking at a new video game console, expressing regret over not having
+      time for hobbies.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The casual tone and use of 「結局」 reinforce the common experience of young adults finding less
+      time for leisure. The phrase 「やら ずじまい」 specifically captures the disappointment of an intended leisure
+      activity not coming to fruition. The Japanese word 「結局」 (kekkyoku) emphasizes the final outcome
+      after various considerations, further highlighting the regret.
+  - english: I made plans for an overseas trip, but in the end, I never got to go.
+    japanese:
+      - 海外 旅行 の 計画 を 立て た が、結局 行か {ず じまい} に なっ て しまっ た。
+      - 海外 旅行 の 計画 を 立て た の です が、結局 行か {ず じまい} に なっ て しまい まし た。
+      - 海外 旅行 の 計画 を 立て て い た の です が、残念 ながら 行か {ず じまい} に 終わり まし た。
+    english_literally: Overseas trip's plan made, but after all not-went-ended-up became.
+    competing_grammar:
+      - competing_japanese:
+          - 海外 旅行 の 計画 を 立て た が、結局 行か {ない まま} に なっ て しまっ た。
+        english: I made plans for an overseas trip, but in the end, it ended up without going.
+        hint: 「～ない まま」 describes a state of affairs where an action is not performed or completed. We're
+          looking for a grammar point that implies a planned action did not occur, resulting in a sense
+          of regret or unfulfillment.
+      - competing_japanese:
+          - 海外 旅行 の 計画 を 立て た が、結局 行か {なかっ た}。
+        english: I made plans for an overseas trip, but in the end, I didn't go.
+        hint: 「行かなかった」 could imply a choice not to go. We're looking for a grammar point that implies
+          circumstances prevented the intended action, aligning with the regret of a missed opportunity.
+      - competing_japanese:
+          - 海外 旅行 の 計画 を 立て た が、結局 行く {こと が でき なかっ た}。
+        english: I made plans for an overseas trip, but in the end, I couldn't go.
+        hint: 「～ることができなかった」 explicitly states an inability to perform an action. We're looking for a grammar
+          point that implies the action was left undone or never came to fruition, even if it was technically
+          possible, perhaps due to factors other than pure inability.
+    scene: A colleague discusses their missed vacation opportunity due to unforeseen circumstances like
+      work or personal issues.
+    register: semi-formal
+    setting: apologetic
+    speaker_gender: female
+    nuance: The phrase 「行かずじまい に なってしまった」 conveys a sense of disappointment and resignation over a highly
+      anticipated event not happening. The 「なってしまった」 part emphasizes that this outcome was beyond the
+      speaker's control, suitable for a professional setting where plans might be disrupted.
+  - english: I wish I had decided sooner back then, but in the end, I didn't do anything.
+    japanese:
+      - あの 時、もっと 早く 決断 すれ ば よかっ た と 思う けれど、結局 何 も せ {ず じまい} だっ た。
+      - あの 時、もっと 早く 決断 すれ ば よかっ た と 思う の です が、結局 何 も せ {ず じまい} でし た。
+      - もっと 早く 決め て いれ ば と 後悔 し て いる の です が、結局 何 も せ {ず じまい} に 終わっ て しまい まし た。
+    english_literally: That time, more quickly decide if good was thought but, after all anything not-did-ended-up
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、もっと 早く 決断 すれ ば よかっ た と 思う けれど、結局 何 も {し ない まま} だっ た。
+        english: I wish I had decided sooner back then, but in the end, it ended up without doing anything.
+        hint: 「～ない まま」 simply states that an action wasn't performed. We're looking for a grammar point
+          that conveys regret over an intended action that ultimately did not occur, highlighting the
+          unfulfilled intention.
+      - competing_japanese:
+          - あの 時、もっと 早く 決断 すれ ば よかっ た と 思う けれど、結局 何 も {し なかっ た}。
+        english: I wish I had decided sooner back then, but in the end, I didn't do anything.
+        hint: 「何も しなかった」 is a neutral statement of inaction. We're looking for a grammar point that implies
+          that despite internal deliberation or a sense of urgency, the speaker ultimately failed to act,
+          leading to regret.
+      - competing_japanese:
+          - あの 時、もっと 早く 決断 すれ ば よかっ た と 思う けれど、結局 何 も {する こと が でき なかっ た}。
+        english: I wish I had decided sooner back then, but in the end, I couldn't do anything.
+        hint: 「何も する こと が できなかった」 implies an inability to act. We're looking for a grammar point that
+          implies a failure to act, perhaps due to procrastination or indecision, rather than a lack of
+          capability.
+    scene: An older person reflects on a past decision, or lack thereof, that led to a regrettable outcome.
+    register: casual
+    setting: reflective
+    speaker_age: older
+    nuance: The speaker's internal reflection on a past regret is emphasized by 「あの 時、もっと 早く 決断 すれば よかった」
+      and the subsequent 「何もせずじまい」. This expresses the frustration of inaction despite knowing what should
+      have been done. Such contemplative phrases are common in personal reflection, often articulated
+      by older individuals.
+  - english: Before moving, I intended to organize my unused books, but I ran out of time and ended up
+      not throwing them away.
+    japanese:
+      - 引っ越し 前 に、使わ ない 本 を 整理 しよう と 思っ た が、時間 が なく て 捨て {ず じまい} だっ た。
+      - 引っ越し 前 に、使わ ない 本 を 整理 しよう と 思っ た の です が、時間 が なく て 捨て {ず じまい} でし た。
+      - せめて 引っ越し 前 に 処分 し たかっ た の に、結局 捨て {ず じまい} でし た。
+    english_literally: Moving before, unused books organizeしよう thought but, time lacked and not-threw-away-ended-up
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - 引っ越し 前 に、使わ ない 本 を 整理 しよう と 思っ た が、時間 が なく て 捨て {ない まま} だっ た。
+        english: Before moving, I intended to organize my unused books, but I ran out of time and ended
+          up without throwing them away.
+        hint: 「～ない まま」 describes a state where an action is not performed. We're looking for a grammar
+          point that implies a planned action was not carried out, creating a sense of an unfinished task
+          or lingering burden.
+      - competing_japanese:
+          - 引っ越し 前 に、使わ ない 本 を 整理 しよう と 思っ た が、時間 が なく て 捨て {なかっ た}。
+        english: Before moving, I intended to organize my unused books, but I ran out of time and didn't
+          throw them away.
+        hint: 「捨てなかった」 is a simple negative statement. We're looking for a grammar point that conveys
+          that despite the intention to discard the books, the action was ultimately not carried out,
+          emphasizing the sense of an unfinished task or lingering burden.
+      - competing_japanese:
+          - 引っ越し 前 に、使わ ない 本 を 整理 しよう と 思っ た が、時間 が なく て 捨てる {こと が でき なかっ た}。
+        english: Before moving, I intended to organize my unused books, but I ran out of time and couldn't
+          throw them away.
+        hint: 「～ることができなかった」 implies an inability to throw them away. We're looking for a grammar point
+          that suggests the opportunity or time for the task simply ran out, rather than an inherent inability.
+    scene: A person sighs while unpacking boxes full of items they meant to discard, illustrating the
+      common frustration of unfinished tasks during a move.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The situation of being unable to complete tasks before a move due to lack of time is a common
+      source of frustration. 「捨てずじまい」 accurately captures the regret over the unaccomplished task, highlighting
+      the burden of carrying unwanted items to a new home. This sentiment is widely relatable.
+  - english: I intended to call him back, but in the end, I never contacted him.
+    japanese:
+      - 彼 と 電話 を かけ 直す つもり だっ た けれど、結局 連絡 せ {ず じまい} に なっ た。
+      - 彼 と 電話 を かけ 直す つもり だっ た の です が、結局 連絡 せ {ず じまい} に なっ て しまい まし た。
+      - 連絡 しよう と 思っ て い た の に、忙しく て 結局 連絡 せ {ず じまい} に 終わっ て しまい まし た。
+    english_literally: Him with phone call back intention was but, after all contact not-did-ended-up
+      became.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 と 電話 を かけ 直す つもり だっ た けれど、結局 連絡 {し ない まま} に なっ た。
+        english: I intended to call him back, but in the end, it ended up without contacting him.
+        hint: 「～ない まま」 simply indicates a state of non-action. We're looking for a grammar point that
+          implies a sense of regret or self-reproach for not following through on an intention, highlighting
+          the missed opportunity.
+      - competing_japanese:
+          - 彼 と 電話 を かけ 直す つもり だっ た けれど、結局 連絡 {し なかっ た}。
+        english: I intended to call him back, but in the end, I didn't contact him.
+        hint: 「連絡しなかった」 is a factual statement of non-contact. We're looking for a grammar point that
+          conveys that despite the intent to follow up, the action was ultimately not completed, implying
+          a sense of a missed connection or neglect.
+      - competing_japanese:
+          - 彼 と 電話 を かけ 直す つもり だっ た けれど、結局 連絡 {する こと が でき なかっ た}。
+        english: I intended to call him back, but in the end, I couldn't contact him.
+        hint: 「～ることができなかった」 suggests an inability to make contact. We're looking for a grammar point that
+          indicates the contact was simply left undone or never came to fruition, even if technically
+          possible, due to personal reasons like procrastination or other priorities.
+    scene: A man explains why he failed to follow up with a friend or acquaintance, perhaps due to being
+      overwhelmed or forgetful.
+    register: casual
+    setting: apologetic
+    speaker_gender: male
+    nuance: The phrase 「連絡せずじまい に なった」 effectively communicates a feeling of regret or mild self-reproach
+      for not following through on an intention to contact someone. This implies that the opportunity
+      passed, and the action was left undone, which is a common scenario in social interactions. The usage
+      suits a casual, apologetic setting.
+  - english: The problem that remained unresolved for many years ended up being forgotten, as no one ever
+      addressed it.
+    japanese:
+      - 長年 解決 し なかっ た 問題 は、結局 誰 も 触れ {ず じまい} で 忘れ られ た。
+      - 長年 解決 し なかっ た 問題 は、結局 誰 も 触れ {ず じまい} の まま 忘れ去ら れ た 形 です。
+      - 長年 未 解決 だっ た 問題 は、結局 誰 も 手 を 付け {ず じまい} で、いつ の 間 に か 忘れ去ら れ た。
+    english_literally: Many years not-solved problem, after all no one touched-not-ended-up and forgotten
+      became.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 解決 し なかっ た 問題 は、結局 誰 も 触れ {ない まま} で 忘れ られ た。
+        english: The problem that remained unresolved for many years ended up being forgotten, as no one
+          touched it without doing anything.
+        hint: 「～ない まま」 simply states that an action wasn't performed. We're looking for a grammar point
+          that conveys the passive neglect of a long-standing issue, where it was left unaddressed until
+          forgotten, implying a lack of initiative.
+      - competing_japanese:
+          - 長年 解決 し なかっ た 問題 は、結局 誰 も 触れ {なかっ た} の で 忘れ られ た。
+        english: The problem that remained unresolved for many years ended up being forgotten, because
+          no one touched it.
+        hint: 「触れなかった」 is a factual statement of non-action. We're looking for a grammar point that provides
+          a more active portrayal of neglect, suggesting the problem remained unaddressed despite its
+          existence, highlighting a failure to act.
+      - competing_japanese:
+          - 長年 解決 し なかっ た 問題 は、結局 誰 も 触れる {こと が でき なかっ た} の で 忘れ られ た。
+        english: The problem that remained unresolved for many years ended up being forgotten, as no one
+          could address it.
+        hint: 「～ることができなかった」 implies an inability to address it. We're looking for a grammar point that
+          emphasizes the issue was simply left unaddressed until it faded from memory, implying inaction
+          rather than impossibility.
+    scene: A historical account of a long-standing issue that was never dealt with, highlighting bureaucratic
+      inaction or societal oversight.
+    register: formal
+    setting: informative
+    nuance: In a formal context, 「誰 も 触れずじまい」 effectively conveys the passive neglect of a long-standing
+      issue, where the problem was simply left unaddressed until it was forgotten. This implies a lack
+      of initiative or collective inaction rather than active avoidance, fitting a historical or informational
+      narrative.
+  - english: Due to lack of funds, that research ended up not being completed.
+    japanese:
+      - その 研究 は、資金 不足 の ため、完成 せ {ず じまい} に 終わっ た。
+      - その 研究 は、資金 不足 の ため、完成 せ {ず じまい} に 終わっ て しまい まし た。
+      - 資金 不足 が 響き、その 研究 は 結局 完成 せ {ず じまい} で 終わり まし た。
+    english_literally: That research, funding-lack for, completed not-did-ended-up in ended.
+    competing_grammar:
+      - competing_japanese:
+          - その 研究 は、資金 不足 の ため、完成 {し ない まま} に 終わっ た。
+        english: Due to lack of funds, that research ended up without being completed.
+        hint: 「～ない まま」 describes a state of being uncompleted. We're looking for a grammar point that
+          precisely conveys that a project, despite initiation and intent, was ultimately left incomplete
+          due to external circumstances, highlighting the disappointing outcome.
+      - competing_japanese:
+          - その 研究 は、資金 不足 の ため、完成 {し なかっ た}。
+        english: Due to lack of funds, that research was not completed.
+        hint: 「完成しなかった」 is a neutral statement. We're looking for a grammar point that adds the nuance
+          that the research was *intended* to be completed, but the lack of funds led to its unfulfilled
+          state, emphasizing the regrettable conclusion.
+      - competing_japanese:
+          - その 研究 は、資金 不足 の ため、完成 {する こと が でき なかっ た}。
+        english: Due to lack of funds, that research could not be completed.
+        hint: 「～ることができなかった」 implies an inability to complete it. We're looking for a grammar point that
+          emphasizes the research was left undone or concluded without completion, fitting the context
+          of a project that was abandoned or stalled due to external factors.
+    scene: An academic discusses a project that could not be finished due to external constraints, emphasizing
+      the disappointing outcome.
+    register: formal
+    setting: serious
+    nuance: The phrase 「完成せずじまい に 終わった」 precisely conveys that a project, despite its initiation and intent,
+      was ultimately left incomplete due to external circumstances. In an academic context, this expresses
+      the unfortunate reality of unfulfilled research potential, highlighting the impact of practical
+      constraints.
+  - english: It was a dream I once gave up on, but I never got around to challenging it again, and it
+      ended up never being realized.
+    japanese:
+      - 一 度 は 諦め た 夢 だ が、再び 挑戦 する こと なく、実現 せ {ず じまい} だっ た。
+      - 一 度 は 諦め た 夢 な の です が、再び 挑戦 する こと なく、実現 せ {ず じまい} と なっ て しまい まし た。
+      - かつて 諦め た 夢 です が、結局 再び 挑む こと なく、実現 せ {ず じまい} に 終わり まし た。
+    english_literally: Once gave-up dream but, again challenge doing without, realized not-did-ended-up
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - 一 度 は 諦め た 夢 だ が、再び 挑戦 する こと なく、実現 {し ない まま} だっ た。
+        english: It was a dream I once gave up on, but I never got around to challenging it again, and
+          it ended up without being realized.
+        hint: 「～ない まま」 describes a state of being unrealized. We're looking for a grammar point that articulates
+          the melancholic regret of an unfulfilled long-term dream, emphasizing the finality of a missed
+          opportunity.
+      - competing_japanese:
+          - 一 度 は 諦め た 夢 だ が、再び 挑戦 する こと なく、実現 {し なかっ た}。
+        english: It was a dream I once gave up on, but I never got around to challenging it again, and
+          it was not realized.
+        hint: 「実現しなかった」 is a factual negative. We're looking for a grammar point that adds the emotional
+          weight that the dream remained unfulfilled despite a past attempt or potential for revival,
+          emphasizing the ultimate non-realization as a regrettable outcome.
+      - competing_japanese:
+          - 一 度 は 諦め た 夢 だ が、再び 挑戦 する こと なく、実現 {する こと が でき なかっ た}。
+        english: It was a dream I once gave up on, but I never got around to challenging it again, and
+          it couldn't be realized.
+        hint: 「～ることができなかった」 implies an inability to realize the dream. We're looking for a grammar point
+          that implies the dream was left unrealized or never came to fruition, even if it was technically
+          possible, perhaps due to a lack of renewed effort or motivation.
+    scene: A person reflects on a long-lost ambition, perhaps hinting at a deep personal regret for not
+      pursuing it further.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    nuance: This example uses 「実現せずじまい」 to articulate the melancholic regret of an unfulfilled long-term
+      dream. The context of having once given up and then not attempting to revive it further emphasizes
+      the finality of the missed opportunity. This nuance often comes with introspection about life choices.
+  - english: Even though I met the person I admired at the party, I was too nervous and ended up not talking
+      to them.
+    japanese:
+      - パーティー で 憧れ の 人 に 会え た の に、緊張 し 過ぎ て 声 を かけ {ず じまい} だっ た。
+      - パーティー で 憧れ の 人 に 会え た の に、緊張 し 過ぎ て 声 を かけ {ず じまい} でし た。
+      - 憧れ の あの 人 に 会う こと が でき た の に、緊張 の あまり 声 を かけ {ず じまい} に なっ て しまっ た。
+    english_literally: Party at admired person met even though, nervous too much became and voice called-not-ended-up
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー で 憧れ の 人 に 会え た の に、緊張 し 過ぎ て 声 を {かけ ない まま} だっ た。
+        english: Even though I met the person I admired at the party, I was too nervous and ended up without
+          talking to them.
+        hint: 「～ない まま」 simply states that an action wasn't performed. We're looking for a grammar point
+          that vividly captures the common experience of missing a social opportunity due to shyness or
+          nervousness, leading to regret.
+      - competing_japanese:
+          - パーティー で 憧れ の 人 に 会え た の に、緊張 し 過ぎ て 声 を {かけ なかっ た}。
+        english: Even though I met the person I admired at the party, I was too nervous and didn't talk
+          to them.
+        hint: 「声をかけなかった」 is a neutral statement of non-action. We're looking for a grammar point that
+          emphasizes the regret and frustration of having the opportunity but failing to act due to shyness,
+          highlighting the unfulfilled desire for interaction.
+      - competing_japanese:
+          - パーティー で 憧れ の 人 に 会え た の に、緊張 し 過ぎ て 声 を {かける こと が でき なかっ た}。
+        english: Even though I met the person I admired at the party, I was too nervous and couldn't talk
+          to them.
+        hint: 「～ることができなかった」 implies an inability to speak. We're looking for a grammar point that suggests
+          the action was simply left undone or never came to fruition, even if it was technically possible,
+          due to personal hesitation rather than an external impediment.
+    scene: A young person recounts a missed social opportunity, emphasizing the personal frustration of
+      shyness or anxiety.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The phrase 「声をかけずじまい」 vividly captures the common experience of missing a social opportunity
+      due to shyness or nervousness, leading to regret. This sentiment is particularly relatable for younger
+      individuals. The speaker's gender often uses this more expressive form when discussing such personal
+      frustrations.
+  - english: I started reading that book last year, but I ended up not finishing it.
+    japanese:
+      - 昨年、あの 本 を 読み 始め た の です が、結局 読み 終え {ず じまい} だっ た。
+      - 昨年、あの 本 を 読み 始め た の です が、結局 読み 終え {ず じまい} に なっ て しまい まし た。
+    english_literally: Last year, that book started reading was, but after all finished reading not-ended-up
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨年、あの 本 を 読み 始め た の です が、結局 読み {終わら なかっ た}。
+        english: I started reading that book last year, but in the end, I didn't finish reading it.
+        hint: 「読み終わらなかった」 is a neutral, factual statement of non-completion. We're looking for a grammar
+          point that implies a sense of regret or unfulfilled intention despite starting the action.
+      - competing_japanese:
+          - 昨年、あの 本 を 読み 始め た の です が、結局 読み {終え ない まま} だっ た。
+        english: I started reading that book last year, but in the end, I ended up without finishing reading
+          it.
+        hint: 「～ない まま」 describes a state of affairs where an action is not performed or completed, but
+          it does not inherently carry the nuance of regret over an intended action. We're looking for
+          a grammar point that expresses a planned action that ultimately didn't happen, with a sense
+          of regret.
+      - competing_japanese:
+          - 昨年、あの 本 を 読み 始め た の です が、結局 読み {終える こと が でき なかっ た}。
+        english: I started reading that book last year, but in the end, I couldn't finish reading it.
+        hint: 「～ることができなかった」 explicitly states an inability to perform an action. We're looking for a grammar
+          point that implies the action was left undone or never came to fruition, even if it was technically
+          possible, perhaps due to factors other than pure inability.
+    scene: A student talks about their reading habits or a specific book they attempted to read.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    speaker_age: younger
+    nuance: This example highlights the common regret of not completing an intended activity, specifically
+      reading a book. The use of 「読み終えずじまい」 captures the unfulfilled intention and the lingering sense
+      of incompleteness, a relatable sentiment for students with many demands on their time.
+post_example_writeup: As you can see from these examples, 「ずじまい」 effectively conveys a sense of regret
+  or unfulfillment regarding an action that was intended or expected but ultimately did not occur. It's
+  often used when reflecting on missed opportunities or unfinished tasks, adding an emotional depth beyond
+  simple negation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ずじまい

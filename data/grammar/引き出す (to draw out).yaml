@@ -1,0 +1,271 @@
+grammar_point: 引き出す (to draw out)
+learn_before:
+  - 必要がある (it is necessary to)
+meaning: to draw out, to extract, to withdraw
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 引き出す
+    rarity: common
+    meaning: to draw out
+  - conjugation-type: non-past polite (～ます)
+    form: 引き出します
+    rarity: common
+    meaning: to draw out (polite)
+  - conjugation-type: past plain (～た)
+    form: 引き出した
+    rarity: common
+    meaning: drew out
+  - conjugation-type: past polite (～ました)
+    form: 引き出しました
+    rarity: common
+    meaning: drew out (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 引き出さない
+    rarity: common
+    meaning: do not draw out
+  - conjugation-type: negative non-past polite (～ません)
+    form: 引き出しません
+    rarity: common
+    meaning: do not draw out (polite)
+  - conjugation-type: potential (～られる/～える)
+    form: 引き出せる
+    rarity: common
+    meaning: can draw out
+  - conjugation-type: passive (～られる/～かれる)
+    form: 引き出される
+    rarity: common
+    meaning: to be drawn out
+  - conjugation-type: te-form (～て)
+    form: 引き出して
+    rarity: common
+    meaning: drawing out, and then
+pronunciation:
+  katakana: ヒキダス
+  romaji: hikidasu
+formation:
+  Verb[object を] + {引き出す}: To pull out, withdraw, extract (physical objects, money, etc.)
+  Verb[potential/talent を] + {引き出す}: To draw out, bring out (potential, talent, courage)
+  Verb[information/confession を] + {引き出す}: To elicit, extract (information, confession)
+jlpt: N3
+etymology: The word 引き出す (hikidasu) is a compound verb formed from 引く (hiku), meaning 'to pull,' and 出す
+  (dasu), meaning 'to take out' or 'to put out.' This etymology clearly illustrates its core meaning of
+  pulling something out from within, or causing something to emerge or be revealed.
+writeup: |-
+  引き出す (hikidasu) is a versatile compound verb formed from 引く (hiku), meaning 'to pull,' and 出す (dasu), meaning 'to take out' or 'to put out.' This combination gives 引き出す a fundamental meaning of **drawing something out** from within, or causing something to emerge. It can be used in both concrete and abstract senses.
+
+  It has several primary uses:
+
+  1.  **To withdraw (money)**: This is a very common usage, specifically when talking about withdrawing money from a bank account or ATM.
+      *   お金を{引き出す} (okane o hikidasu - to withdraw money)
+
+  2.  **To draw out/bring out (talent, potential, courage)**: This refers to eliciting or bringing forth an inherent quality or ability. It implies that the quality was already present, but needed to be revealed, encouraged, or nurtured to become manifest.
+      *   才能を{引き出す} (sainō o hikidasu - to draw out talent)
+      *   勇気を{引き出す} (yūki o hikidasu - to draw out courage)
+
+  3.  **To elicit/extract (information, confession)**: In this context, it means to get information, a confession, or a statement from someone, often implying some effort, skill, or persistence to obtain it.
+      *   情報を{引き出す} (jōhō o hikidasu - to extract information)
+      *   自白を{引き出す} (jihaku o hikidasu - to elicit a confession)
+
+  4.  **To pull out/take out (physical objects)**: While 取り出す (toridasu) is often used for simply taking something out, 引き出す can also be used, especially when something needs to be pulled from a deeper place, or when the action explicitly involves a pulling motion, such as pulling a drawer out.
+      *   引き出しから本を{引き出す} (hikidashi kara hon o hikidasu - to pull a book out of a drawer)
+
+  Understanding the literal 'pull-out' meaning of its component parts helps grasp its versatility across these different contexts. It consistently involves bringing something from an internal or hidden state to an external or revealed state, distinguishing it from simply 'taking' or 'getting' something.
+false_friends:
+  - term: 取り出す
+    meaning: to take out, to retrieve
+    kind: similar expression
+    nuance: 取り出す is generally used for simply taking an object out of a container. It describes a more
+      neutral, direct action of retrieval without the implication of 'pulling' or 'eliciting' from a hidden
+      or latent state inherent in 引き出す.
+    grammar_point: <suggest>:取り出す (to take out)
+  - term: 導き出す
+    meaning: to derive, to deduce, to lead to a conclusion
+    kind: similar expression
+    nuance: 導き出す specifically implies guiding or leading to a conclusion, solution, or truth through reasoning,
+      analysis, or careful direction. It is about deriving something new or bringing clarity to a complex
+      situation, whereas 引き出す is about revealing something that already exists.
+    grammar_point: <suggest>:導き出す (to derive)
+  - term: 引き抜く
+    meaning: to pull out, to extract (by force), to scout
+    kind: similar expression
+    nuance: 引き抜く often implies pulling something out completely, sometimes with force or an act of selection/recruitment
+      (e.g., scouting talent from another company). It focuses on the act of extraction or separation
+      more strongly than the act of elicitation.
+    grammar_point: <suggest>:引き抜く (to pull out)
+post_false_friends_writeup: While 引き出す covers a broad range of 'drawing out' actions, it's important to
+  distinguish it from similar verbs. 取り出す refers to a straightforward act of taking something out, like
+  removing an item from a bag. 導き出す is used when you are logically deriving or leading to a conclusion
+  or answer, suggesting a process of thought or guidance. 引き抜く, on the other hand, often implies pulling
+  something out with force or entirely, and can also be used in the context of recruiting someone from
+  another organization, highlighting a more decisive or forceful extraction.
+examples:
+  - english: I need to withdraw some money from the ATM.
+    japanese:
+      - ATM で お 金 を {引き出す} 必要 が あり ます。
+      - ATM で お 金 を {引き出し ます} 必要 が あり ます。
+      - ATM で お 金 {引き出す} 必要 ある。
+      - ATM から お 金 を {引き出す} 必要 が あり ます。
+    english_literally: At the ATM, money to draw out is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - ATM で お 金 を {おろす} 必要 が あり ます。
+        english: I need to withdraw money at the ATM.
+        hint: おろす is specifically used for withdrawing money from a bank or ATM. We're looking for a more
+          general verb for "drawing out" that can apply to various contexts.
+    scene: A busy person talking to themselves or a colleague about their errands.
+    register: formal
+    setting: professional
+  - english: A good leader knows how to draw out the potential in their team members.
+    japanese:
+      - 良い リーダー は チーム メンバー の 潜在 能力 を {引き出す} 方法 を 知っ て い ます。
+      - 優れ た リーダー は チーム メンバー の 潜在 能力 を {引き出す} 方法 を 存じ て おり ます。
+      - 良い リーダー は チーム メンバー の 潜在 能力 を {引き出す} 方法 を 知っ てる。
+    english_literally: Good leaders team members' potential to draw out method know.
+    competing_grammar:
+      - competing_japanese:
+          - 良い リーダー は チーム メンバー の 潜在 能力 を {開発 する} 方法 を 知っ て い ます。
+        english: A good leader knows how to develop the potential of their team members.
+        hint: 開発する means to develop or cultivate something. We're looking for a verb that specifically
+          implies bringing out something that is already latent.
+    scene: A manager giving a presentation on leadership skills.
+    register: formal
+    setting: professional
+  - english: The detective tried to extract information from the suspect.
+    japanese:
+      - 刑事 は 容疑 者 から 情報 を {引き出す} こと を 試み まし た。
+      - 刑事 は 容疑 者 から 情報 を {引き出そう} と 試み まし た。
+      - 刑事 は 容疑 者 から 情報 を {引き出す} こと を 試み た。
+    english_literally: The detective from the suspect information to extract attempting was.
+    competing_grammar:
+      - competing_japanese:
+          - 刑事 は 容疑 者 から 情報 を {聞き出す} こと を 試み まし た。
+        english: The detective tried to pry information out of the suspect.
+        hint: 聞き出す means to pry or coax information out, often implying difficulty. We're looking for
+          a verb that describes a more general act of extracting information.
+    scene: A tense scene from a crime drama.
+    register: formal
+    setting: serious
+  - english: I'll go withdraw some cash from the convenience store.
+    japanese:
+      - コンビニ で お 金 を {引き出し て} くる よ。
+      - コンビニ で お 金 を {引き出し て} 来 ます。
+      - コンビニ で お 金 を {引き出し て} くる わ よ。
+      - コンビニ で お 金 を {引き出し て} き た よ。
+    english_literally: At the convenience store, money drawing out will come.
+    competing_grammar:
+      - competing_japanese:
+          - コンビニ で お 金 を {おろし て} くる よ。
+        english: I'll go withdraw cash from the convenience store.
+        hint: おろす is specifically for withdrawing cash from an account. We're looking for a verb that
+          can also imply taking out in a broader sense.
+    scene: A friend telling another friend they're going to the convenience store.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    nuance: The use of 「よ」at the end of the sentence adds a sense of informing or assurance, which is
+      common for male speakers in casual conversation. 「引き出してくる」is a casual construction combining the
+      te-form with くる (to come), indicating that the speaker will perform the action and then return.
+  - english: You must find a way to draw out the courage deep within you.
+    japanese:
+      - あなた は 自分 の 奥底 に ある 勇気 を {引き出す} 方法 を 見つけ なけれ ば なり ませ ん。
+      - あなた は 自分 の 奥底 に ある 勇気 を {引き出す} 方法 を 見つけ なさい。
+      - あなた は 自分 の 奥底 に ある 勇気 を {引き出す} 方法 を 見つける べき です。
+      - 自分 の 奥底 に ある 勇気 を {引き出す} 方法 を 見つけ なきゃ。
+    english_literally: You deep within yourself existing courage to draw out method must find.
+    competing_grammar:
+      - competing_japanese:
+          - あなた は 自分 の 奥底 に ある 勇気 を {湧き起こさ せる} 方法 を 見つけ なけれ ば なり ませ ん。
+        english: You must find a way to make the courage deep within you well up.
+        hint: 湧き起こさせる implies causing something to well up or arise spontaneously. We're looking for a
+          verb that implies a more deliberate act of bringing something out.
+    scene: A motivational speaker addressing a large audience.
+    register: formal
+    setting: inspirational
+    listener_gender: group
+  - english: We need to make him confess.
+    japanese:
+      - 彼 から 自白 を {引き出す} 必要 が あり ます。
+      - 彼 から 自白 を {引き出す} 必要 が ござい ます。
+      - 彼 から なん と か 自白 を {引き出す} 必要 が あり ます。
+    english_literally: From him, confession to extract is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 自白 さ せる 必要 が あり ます。
+        english: We need to make him confess.
+        hint: させる (causative) directly states causing someone to do something. 引き出す implies eliciting
+          or extracting it, perhaps with more effort or nuance.
+    scene: Police officers discussing a challenging case in an interrogation room.
+    register: formal
+    setting: serious
+  - english: This cooking method helps draw out the umami of the ingredients.
+    japanese:
+      - この 調理 法 は 材料 の 旨味 を {引き出す} の に 役立ち ます。
+      - この 調理 法 は 材料 の 旨味 を {引き出す} の に 役立つ。
+      - この 調理 法 は 材料 の 旨味 を {引き出す} 上 で 有効 です。
+    english_literally: This cooking method ingredients' umami to draw out helps.
+    competing_grammar:
+      - competing_japanese:
+          - この 調理 法 は 材料 の 旨味 を {際立た せる} の に 役立ち ます。
+        english: This cooking method helps bring out the umami of the ingredients.
+        hint: 際立たせる means to make something stand out or emphasize it. We're looking for a verb that specifically
+          implies extracting or revealing the hidden taste.
+    scene: A chef on a cooking show explaining the techniques behind a dish.
+    register: formal
+    setting: informative
+  - english: She pulled out the top drawer and took out a pen.
+    japanese:
+      - 彼女 は 一番 上 の 引き出し を {引き出し て} ペン を 取り出し まし た。
+      - 彼女 は 一番 上 の 引き出し を {引き出し て} ペン を 取り出し た。
+      - 彼女、一番 上 の 引き出し {引き出し て} ペン 取り出し た の。
+    english_literally: She top most drawer pulling out pen took out.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 一番 上 の 引き出し から ペン を {取り出し まし た}。
+        english: She took out a pen from the top drawer.
+        hint: 取り出す is generally used for simply taking something out. We're looking for a verb that implies
+          a pulling motion to extract something, like pulling a drawer.
+    scene: Someone at a desk, looking for a writing implement.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+  - english: That song really draws out nostalgic feelings.
+    japanese:
+      - あの 歌 は 本当 に 懐かしい 気持ち を {引き出す} ね。
+      - あの 歌 は 本当 に 懐かしい 気持ち を {引き出す} ぞ。
+      - あの 歌 は 本当 に 懐かしい 気持ち を {引き出す} よ ね。
+      - あの 歌 は 本当 に 懐かしい 気持ち を {引き出し ます} ね。
+    english_literally: That song truly nostalgic feelings draws out, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 歌 は 本当 に 懐かしい 気持ち に {さ せる} ね。
+        english: That song really makes me feel nostalgic, right?
+        hint: させる (causative) implies causing a feeling directly. 引き出す suggests drawing out an existing
+          feeling from within.
+    scene: Friends talking casually while listening to music.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 「ね」at the end of the sentence makes it sound softer and seeks agreement, which
+      is typical for a female speaker in casual conversation. 「懐かしい気持ちを引き出す」is a common and natural way
+      to express eliciting feelings of nostalgia.
+  - english: I need to extract the data from the old system.
+    japanese:
+      - 古い システム から データ を {引き出す} 必要 が あり ます。
+      - 古い システム から データ を {引き出す} 必要 が ござい ます。
+      - 古い システム から データ を {引き出す} 必要 が ある。
+    english_literally: Old system from data to extract is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 古い システム から データ を {取得 する} 必要 が あり ます。
+        english: I need to acquire the data from the old system.
+        hint: 取得する means to acquire or obtain. We're looking for a verb that specifically implies retrieving
+          data from a source, often where it's stored or hidden.
+    scene: An IT professional talking to a colleague about a technical task.
+    register: formal
+    setting: technical
+post_example_writeup: As these examples demonstrate, 引き出す is a versatile verb with applications ranging
+  from literal physical extraction to more abstract concepts like drawing out potential or information.
+  The underlying nuance of bringing something from an internal or hidden state to an external or revealed
+  one remains consistent across its various uses. Pay close attention to the context to determine the
+  precise meaning and whether a related verb might be more appropriate.

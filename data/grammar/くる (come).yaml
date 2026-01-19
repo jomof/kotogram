@@ -1,0 +1,351 @@
+grammar_point: くる (come)
+learn_before:
+  - と (and, connects nouns)
+meaning: to come
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: くる
+    rarity: common
+    meaning: to come
+  - conjugation-type: non-past polite (～ます)
+    form: きます
+    rarity: common
+    meaning: to come (polite)
+  - conjugation-type: negative plain (～ない)
+    form: こない
+    rarity: common
+    meaning: not to come
+  - conjugation-type: negative non-past polite (～ません)
+    form: きません
+    rarity: common
+    meaning: not to come (polite)
+  - conjugation-type: past plain (～た)
+    form: きた
+    rarity: common
+    meaning: came
+  - conjugation-type: past polite (～ました)
+    form: きました
+    rarity: common
+    meaning: came (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: こなかった
+    rarity: common
+    meaning: did not come
+  - conjugation-type: negative past polite (～ませんでした)
+    form: きませんでした
+    rarity: common
+    meaning: did not come (polite)
+  - conjugation-type: te-form (～て)
+    form: きて
+    rarity: common
+    meaning: coming (te-form)
+  - conjugation-type: volitional (～よう)
+    form: こよう
+    rarity: common
+    meaning: let's come
+  - conjugation-type: volitional polite (～ましょう)
+    form: きましょう
+    rarity: common
+    meaning: let's come (polite)
+  - conjugation-type: potential (～られる/～える)
+    form: こられる
+    rarity: common
+    meaning: can come
+  - conjugation-type: passive (～られる/～かれる)
+    form: こられる
+    rarity: common
+    meaning: to be come/arrived at
+  - conjugation-type: causative (～させる)
+    form: こさせる
+    rarity: common
+    meaning: to make/let come
+  - conjugation-type: causative-passive (～させられる)
+    form: こさせられる
+    rarity: common
+    meaning: to be made/let come
+  - conjugation-type: conditional (～ば)
+    form: くれば
+    rarity: common
+    meaning: if (someone) comes
+  - conjugation-type: conditional (～たら)
+    form: きたら
+    rarity: common
+    meaning: if/when (someone) comes
+  - conjugation-type: concessive (～ても)
+    form: きても
+    rarity: common
+    meaning: even if (someone) comes
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: こい
+    rarity: common
+    meaning: come! (plain)
+  - conjugation-type: imperative polite (～なさい)
+    form: きなさい
+    rarity: common
+    meaning: please come (polite)
+pronunciation:
+  katakana: クル
+  romaji: kuru
+formation:
+  Verb[dictionary]: Used as the main verb 'to come'.
+  Noun + に + くる: To come to a noun (location or purpose).
+  Noun + へ + くる: To come towards a noun (direction).
+  どこか + から + くる: To come from somewhere.
+jlpt: N5
+etymology: The verb くる (来る) is one of the most fundamental and frequently used verbs in Japanese, and
+  notably, it is highly irregular in its conjugations. This irregularity is a remnant of Old Japanese,
+  where verbs had more complex inflectional patterns. The root '来' (ki), meaning 'to arrive' or 'to come,'
+  is ancient. Over centuries, sound changes and linguistic evolution led to the varied forms like 『き』
+  (ki), 『こ』 (ko), and 『く』 (ku) seen in its modern conjugations (e.g., 来ます [kimasu], 来ない [konai], 来る [kuru]).
+  Its usage has extended beyond physical movement to denote a state or action that has progressed up to
+  the present point in time, especially when used as an auxiliary verb, reflecting a broad conceptualization
+  of 'coming' not just in space but also in time and state.
+writeup: |-
+  The verb 『くる』 is a foundational Japanese verb meaning "to come." It is one of the essential irregular verbs in Japanese, meaning its conjugations do not follow the standard patterns of Godan or Ichidan verbs. This irregularity must be memorized to use the verb correctly.
+
+  At its most basic, 『くる』 describes physical movement towards the speaker or a specific reference point. For example, if someone is heading towards your location, you would use 『くる』. Conversely, 『いく』 (to go) describes movement away from the speaker or reference point. Understanding this directional difference is crucial for accurate usage.
+
+  Beyond simple physical movement, 『くる』 also functions as a powerful auxiliary verb when attached to the te-form of another verb (～てくる). This auxiliary usage adds several important nuances:
+
+  1.  **Movement towards the speaker/reference point**: Similar to its primary meaning, but emphasizing the trajectory of the action. For instance, 『走って くる』 means "to come running."
+  2.  **A change or state that has progressed up to the present**: This indicates that something has been changing or has developed over time and continues to be the case now. For example, 『寒く なって くる』 means "it is getting colder (up to now)."
+  3.  **An action that started in the past and continues up to the present**: This implies an ongoing process or habit that began at some point in the past and is still happening or has implications for the present. For example, 『日本 語を 勉強 して くる』 could imply "(I) have been studying Japanese (up until now)."
+
+  While 『くる』 can be used generally by any speaker, certain auxiliary uses, particularly in set phrases, might be more common among specific demographics, but the verb itself is universally applicable across all registers and genders, with the politeness level determined by its conjugation.
+false_friends:
+  - term: いく (to go)
+    meaning: to go
+    kind: antonym
+    nuance: 『いく』 describes movement away from the speaker or reference point, while 『くる』 describes movement
+      towards it. They are directional opposites.
+    grammar_point: 行く (to go)
+  - term: 〜ていく (change away from present・movement away from speaker)
+    meaning: to go on doing; to change away from
+    kind: similar expression
+    nuance: 『〜ていく』 indicates movement away from the speaker or a change that will continue into the future.
+      This contrasts with 『〜てくる』 which signifies movement towards the speaker or a change that has occurred
+      up to the present.
+    grammar_point: 〜ていく (change toward future・movement away from speaker)
+post_false_friends_writeup: The key distinction between 『くる』 and 『いく』, both as main verbs and as auxiliary
+  verbs with the te-form, lies in the direction of movement or change. 『くる』 always implies movement *towards*
+  the speaker or a designated point in time or space, or a process that has continued *up to* the present.
+  『いく』, conversely, implies movement *away from* the speaker or a point, or a process that will continue
+  *into* the future. Pay close attention to the perspective and temporal direction implied by the sentence.
+examples:
+  - english: Please come to my house tomorrow.
+    japanese:
+      - 明日、私 の 家 に {き て} ください。
+      - 明日、私 の 家 に {来 て ください}。
+    english_literally: Tomorrow, to my house, please come.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、私 の 家 に {行っ て} ください。
+          - 明日、私 の 家 に {行っ て ください}。
+        english: Please go to my house tomorrow.
+        hint: 『行く』 means 'to go' (movement away from the speaker). We're asking someone to come to the
+          speaker's house.
+    scene: You are inviting a friend over for tomorrow.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: The use of 『きて』 combined with 『ください』 forms a polite request for someone to come. The direction
+      of movement is towards the speaker's location.
+  - english: My friend came to see me at the hospital.
+    japanese:
+      - 友人 が 病院 に 見舞い に {来 て} くれ まし た。
+      - 友人 が 病院 に 見舞い に {き まし た}。
+    english_literally: Friend, to hospital, to visit, came for me.
+    competing_grammar:
+      - competing_japanese:
+          - 友人 が 病院 に 見舞い に {行っ た}。
+        english: My friend went to see me at the hospital.
+        hint: 『行った』 implies the friend went somewhere, but it doesn't emphasize the direction being towards
+          'me'. 『来て くれました』 specifically shows the action of coming *for* the speaker.
+    scene: You are recovering in the hospital and a friend visited you.
+    register: formal
+    setting: sympathetic
+    conjugation: past polite (～ました)
+    nuance: The phrase 『来て くれました』 uses the te-form of 『くる』 with the auxiliary 『くれる』, emphasizing that
+      the action of coming was done *for* the speaker, indicating gratitude. This is a common way to express
+      someone's kindness in coming to visit.
+  - english: Where did you come from?
+    japanese:
+      - どこ から {来 まし た} か？
+      - どこ から {き まし た} か？
+    english_literally: Where from, came?
+    competing_grammar:
+      - competing_japanese:
+          - どこ に {行き まし た} か？
+        english: Where did you go?
+        hint: 『行きました』 means 'went'. We're asking about the origin of the person's arrival, not their destination.
+    scene: You are meeting someone new or someone who has just arrived.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: past polite (～ました)
+    nuance: 『どこから 来ました か』 is a standard, polite way to ask about someone's origin, directly using the
+      past tense of 『くる』 to inquire about their arrival point.
+  - english: The spring will surely come.
+    japanese:
+      - 春 は 必ず {来る}。
+      - 春 は 必ず {くる}。
+    english_literally: Spring, surely, comes.
+    competing_grammar:
+      - competing_japanese:
+          - 春 は 必ず {行く}。
+        english: Spring will surely go.
+        hint: 『行く』 means 'to go' or 'pass away'. Here, we are talking about spring's arrival.
+    scene: You are looking forward to the end of winter.
+    register: casual
+    setting: optimistic
+    conjugation: dictionary (plain non-past)
+    nuance: In this metaphorical sense, 『来る』 refers to the arrival of a season or event. It's a common
+      usage that extends beyond physical movement, implying inevitability. The plain form 『来る』 makes it
+      sound like a universal truth.
+  - english: The dog came running towards me.
+    japanese:
+      - 犬 が 私 の 方 へ 走っ て {き た}。
+      - 犬 が 私 の 方 へ 走っ て {来 た}。
+    english_literally: Dog, my direction towards, running, came.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 が 私 の 方 へ 走っ て {いっ た}。
+        english: The dog went running away from me.
+        hint: 『いった』 implies the dog moved away. Here, the dog is moving towards the speaker.
+    scene: You are at a park and your dog sees you.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: This example uses 『走って きた』, which is the te-form of 『走る』 (to run) combined with 『くる』. This
+      construction indicates that the action of running is directed towards the speaker, emphasizing the
+      trajectory of the movement. It creates a vivid image of the dog's approach.
+  - english: It's gotten pretty cold recently.
+    japanese:
+      - 最近、かなり 寒く {なっ て} き まし た。
+      - 最近、かなり 寒く {なっ て} き まし た。
+    english_literally: Recently, quite, cold, becoming, came (up to now).
+    competing_grammar:
+      - competing_japanese:
+          - 最近、かなり 寒く {なっ て} いき まし た。
+        english: It's gotten pretty cold, and will continue to do so.
+        hint: 『いきました』 would imply a change progressing *away* from the current point, into the future.
+          『きました』 expresses a change that has happened *up to* the present.
+    scene: You are commenting on the weather.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: The construction 『〜て くる』 with 『なる』 (to become) indicates a change that has occurred over time
+      and continued up to the present moment. 『寒く なって きました』 literally means "it has become cold (up to
+      now)," conveying that the temperature has been dropping and is now noticeably cold.
+  - english: I've been thinking about this problem for a long time.
+    japanese:
+      - この 問題 に つい て、ずっと 考え て {き まし た}。
+      - この 問題 に つい て、ずっと 考え て {来 まし た}。
+    english_literally: About this problem, continuously, thinking, came (up to now).
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 に つい て、ずっと 考え て {いき まし た}。
+        english: I will continue to think about this problem from now on.
+        hint: 『いきました』 focuses on an action continuing *into the future* from a past point. 『きました』 means
+          the action has continued *up to the present*.
+    scene: You are discussing a long-standing issue.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: past polite (～ました)
+    nuance: Here, 『考えて きました』 signifies an action (thinking) that began in the past and has continued uninterruptedly
+      up to the present. The 『〜て くる』 auxiliary verb emphasizes the continuity and the accumulation of
+      the action over time, affecting the current state.
+  - english: What kind of thoughts came to your mind?
+    japanese:
+      - どんな 考え が {浮かん} でき まし た か？
+      - どんな 考え が {浮かん で} き まし た か？
+    english_literally: What kind of thoughts, floated up, came?
+    competing_grammar:
+      - competing_japanese:
+          - どんな 考え が {浮かん で} い まし た か？
+        english: What kind of thoughts were floating?
+        hint: 『浮かんで いました』 describes a state of thoughts floating, without the nuance of them 'coming into
+          existence' or 'appearing' to the speaker, which 『浮かん できました』 provides.
+    scene: You are asking someone about their ideas or reflections.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: past polite (～ました)
+    nuance: The phrase 『浮かん できました』 combines 『浮かぶ』 (to float/come to mind) with 『〜て くる』. This conveys the
+      idea of thoughts or ideas 'coming forth' or 'appearing' to the speaker, emphasizing the process
+      of their emergence into consciousness. It's a natural way to ask about ideas that spontaneously
+      occurred.
+  - english: If you don't come, I'll be lonely.
+    japanese:
+      - '{来 ない と} 寂しく なり ます よ。'
+      - '{こ ない と} 寂しく なり ます よ。'
+    english_literally: If not come, lonely, will become, you know.
+    competing_grammar:
+      - competing_japanese:
+          - '{行か ない と} 寂しく なり ます よ。'
+        english: If I don't go, I'll be lonely.
+        hint: 『行かないと』 (if I don't go) shifts the subject and direction. We're talking about *their* not
+          coming, which will make the speaker lonely.
+    scene: You are trying to persuade someone to join you.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative plain (～ない)
+    nuance: 『来ないと』 uses the negative plain form of 『くる』 in a conditional sense, implying "if you don't
+      come." The final 『よ』 adds a soft emphasis or invitation, making the statement more personable.
+  - english: Please come back safely.
+    japanese:
+      - 無事 に {帰っ て き て} ください。
+      - 無事 に {帰っ て 来 て} ください。
+    english_literally: Safely, return, come, please.
+    competing_grammar:
+      - competing_japanese:
+          - 無事 に {帰っ て いっ て} ください。
+        english: Please go back safely.
+        hint: 『帰って いって ください』 means 'please go back', implying departure *from* the speaker. Here, the
+          speaker wants the person to *return* to them safely.
+    scene: You are seeing someone off, wishing them a safe return.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: te-form (～て)
+    nuance: 『帰って くる』 is a common phrasal verb meaning "to come back" or "to return." The use of 『くる』 here
+      signifies that the action of returning is directed back towards the speaker's location or the point
+      of origin. It's a warm expression of hope for their safe arrival back.
+  - english: He's coming this way.
+    japanese:
+      - 彼 が こちら へ {来 ます}。
+      - 彼 が こちら へ {き ます}。
+    english_literally: He, this way, comes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が こちら へ {行き ます}。
+        english: He's going this way (away from me).
+        hint: 『行きます』 implies movement away from the speaker. 『来ます』 explicitly states movement towards
+          the speaker.
+    scene: You are pointing out someone approaching.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: This is a direct and polite statement of movement towards the speaker's location. 『来ます』 is
+      the polite non-past form of 『くる』, suitable for general statements.
+  - english: I wonder if he will come.
+    japanese:
+      - 彼、{来る} か な？
+      - 彼、{くる} か な？
+    english_literally: He, come, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 彼、{行く} か な？
+        english: I wonder if he will go.
+        hint: 『行く』 means 'to go'. Here, you're wondering about his arrival, not his departure.
+    scene: You are waiting for someone and feeling uncertain.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 『来る かな』 combines the plain form of 『くる』 with the particle 『かな』, which expresses soft uncertainty
+      or self-reflection, often used by female speakers or in a gentle tone. This conveys a sense of wondering
+      about someone's arrival.
+post_example_writeup: As these examples demonstrate, 『くる』 is not only a verb of physical motion but also
+  a versatile auxiliary verb that enriches expressions of temporal change and continuous actions. Its
+  irregular conjugations are a key characteristic, and mastering them is essential for fluent Japanese.
+  Pay close attention to the context, especially the speaker's perspective and the direction of movement
+  or change, to use 『くる』 accurately.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E6%9D%A5%E3%82%8B-kuru-come

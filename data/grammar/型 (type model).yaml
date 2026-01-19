@@ -1,0 +1,348 @@
+grammar_point: 型 (type model)
+learn_before:
+  - ながらに (while being in a continuous state)
+meaning: Model, type, pattern, or kind of something; often implies a standard or archetypal form.
+pronunciation:
+  katakana: カタ
+  romaji: kata
+formation:
+  Noun + 型 (がた): Indicates a type, model, pattern, or design of something.
+  Noun + の + 型 (かた): Indicates a mold, template, or specific design used for creation.
+  'Compound Noun (音読み: ケイ)': Used in specific compound words where 型 is read as 'kei' to mean type, form,
+    or style, often referring to an archetypal or characteristic form.
+jlpt: N3
+etymology: The kanji 「型」 means 'mold,' 'type,' or 'model,' stemming from the concept of something being
+  formed or shaped according to a particular standard or pattern. As a suffix, it indicates belonging
+  to a certain type or following a specific pattern. The pronunciation often changes from 「かた」 to 「がた」
+  (rendaku) when directly attached to a preceding noun, but it reverts to 「かた」 when preceded by the particle
+  「の」 (e.g., 「ケーキの型」 - cake mold). In some compound words, 「型」 can also be read as its on'yomi (Chinese
+  reading) 「けい」, as seen in terms like 「典型」 (tenkei, typical form), where it refers to an archetypal or
+  characteristic kind.
+writeup: |-
+  The suffix 「型」 (かた/がた) is primarily used to indicate the type, model, pattern, or design of something. It is commonly attached directly to nouns, and its pronunciation typically changes from 「かた」 to 「がた」 due to rendaku (連濁), a sequential voicing phenomenon in Japanese. For example, 「新型」 (しんがた - new model) or 「人間型」 (にんげんがた - human type).
+
+  However, when 「型」 is preceded by the particle 「の」, it often refers to a specific mold, template, or design used for creation, and its pronunciation remains 「かた」。 For example, 「ケーキの型」 (ケーキのかた - cake mold).
+
+  Additionally, 「型」 can be read as 「けい」 (its on'yomi or Chinese reading) when it is part of certain compound words, particularly in more formal or technical contexts. This usage often refers to an archetypal or characteristic form or style, such as 「典型」 (てんけい - typical form) or 「体型」 (たいけい - body type). This is distinct from its use as a direct suffix and highlights its role in terms describing established conceptual categories.
+false_friends:
+  - term: 種類 (しゅるい)
+    meaning: kind, sort, type
+    kind: similar expression
+    nuance: 「種類」 is a broader term for 'kind' or 'sort' and refers to general categories, without the
+      nuance of a specific model, pattern, or mold that 「型」 often carries. While sometimes interchangeable
+      for 'type', 「型」 implies a more defined, structured form.
+    grammar_point: <suggest>:種類 (kind sort type)
+  - term: パターン (ぱたーん)
+    meaning: pattern
+    kind: similar expression
+    nuance: 「パターン」 is a loanword for 'pattern' and can be used for abstract or less structured patterns.
+      While 「型」 can also mean pattern, it often refers to a more established, formal, or template-like
+      pattern, or a specific design model.
+    grammar_point: <suggest>:パターン (pattern)
+  - term: タイプ (たいぷ)
+    meaning: type
+    kind: similar expression
+    nuance: 「タイプ」 is a loanword that generally means 'type' and can sometimes be used interchangeably
+      with 「型」. However, 「型」 often conveys a more specific, established 'model' or 'design' (e.g., in
+      industrial design or martial arts), whereas 「タイプ」 is more general and colloquial.
+    grammar_point: <suggest>:タイプ (type)
+  - term: 形 (かたち)
+    meaning: physical shape, form, appearance
+    kind: often confused with
+    nuance: While 「型」 refers to a standard, model, or type, 「形」 specifically denotes the physical outline,
+      contour, or appearance of an object. 「型」 is often about classification or a mold, whereas 「形」 is
+      about visual attributes.
+    grammar_point: 形 (physical shape)
+post_false_friends_writeup: To differentiate 「型」 from terms like 「種類」, 「パターン」, and 「タイプ」, consider the
+  level of specificity and concreteness. While 「種類」 and 「タイプ」 are general terms for categories, 「型」 often
+  implies a more defined, structured form, a specific model, or an archetypal pattern. 「パターン」 is a broader
+  term for recurring designs but may lack the established, mold-like nuance of 「型」. Most importantly,
+  distinguish 「型」 from 「形」. While 「型」 refers to a standard, model, or type (often for production or classification),
+  「形」 specifically denotes the physical outline, contour, or appearance of an object. 「型」 is about classification
+  or a mold, whereas 「形」 is about visual attributes. Additionally, be mindful that 「型」 can also take its
+  on'yomi 「けい」 in compound words, signifying a characteristic or typical form (e.g., 「典型」 - tenkei), which
+  is different from its direct suffix usage.
+examples:
+  - english: This new smartphone has the latest model camera.
+    japanese:
+      - この 新しい スマート フォン は 最新 {型} の カメラ が 付い て い ます。
+      - この 新しい スマホ は 最新 {型} の カメラ が 付い てる よ。
+      - この 新しい スマート フォン に は 最新 {型} の カメラ が 搭載 さ れ て い ます。
+      - この 新型 スマホ は 最新 {型} カメラ を 搭載 し てる。
+    english_literally: This new smartphone, as for, the latest model's camera is attached.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい スマート フォン は 最新 の カメラ が 付い て い ます。
+        english: This new smartphone has the latest camera.
+        hint: The nuance of 'model' or 'type' for the camera is missing here. We're looking for a specific
+          model of camera, not just the newest one.
+    scene: A tech reviewer is explaining the features of a new smartphone to an online audience.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「最新型」 (さいしんがた) specifically refers to the newest *model* or *type* of something. The formal
+      register is appropriate for a technical review delivered to a broad audience.
+    etymology: The term 「新型」 (しんがた) literally combines 「新」 (shin, new) and 「型」 (gata, model/type), denoting
+      a new model or version, commonly used in product descriptions and technological advancements. Its
+      use emphasizes the innovation and specific design of the camera, not just its newness in general
+      terms. This compound became especially prevalent in the industrial era as products began to have
+      distinct models and versions, rather than just evolving forms over time.
+  - english: I want to live in a house type with a traditional, large garden.
+    japanese:
+      - 昔 ながら の 大きな 庭 付き の 家 {型} に 住み たい。
+      - 昔 ながら の 大きな 庭 付き の 家 {型} に 住み たい です。
+      - 昔 から の 広々 と し た 庭 が ある 家 {型} に 住み たく 存じ ます。
+      - 広い 庭 が ある 昔 ながら の 家 {型} に 住む の が 夢 です。
+    english_literally: Old-fashioned, large garden attached, house type, in, want to live.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 ながら の 大きな 庭 付き の 家 に 住み たい。
+        english: This version only specifies 'a house with a large garden,' not a specific *type* or *archetype*
+          of house that the speaker desires.
+        hint: This version only specifies 'a house with a large garden,' not a specific *type* or *archetype*
+          of house that the speaker desires. We're looking for a specific type of house.
+    scene: A young woman is discussing her dream home with a friend over coffee.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「家型」 (いえがた) here refers to a specific *type* or *design* of house. The casual 「住みたい」 (sumitai)
+      expresses a personal desire in informal conversation.
+    etymology: The combination of 「家」 (ie, house) and 「型」 (gata, type/model) forms 「家型」 (ie-gata), which
+      refers to an architectural style, characteristic design, or archetype of a house. This reflects
+      how 「型」 can categorize not just manufactured goods but also broader concepts that adhere to a specific
+      structural or aesthetic standard. This term would be used when discussing residential designs or
+      housing trends that fall into recognized categories, such as 'traditional Japanese house type' or
+      'Western-style house type'.
+  - english: My father still remembers the models of old cars.
+    japanese:
+      - お 父 さん は 昔 の 車 の {型} を 未だ に 覚え て い ます。
+      - 親父 は 昔 の 車 の {型} を 未だ に 覚え てる よ。
+      - 父 は 古い 車 の {型} を まだ 覚え て いる。
+      - 父 は 昔 の 車 の モデル {型} を 今 で も 詳細 に 記憶 し て いる。
+    english_literally: Father, as for, old cars' models, still remembers.
+    competing_grammar:
+      - competing_japanese:
+          - お 父 さん は 昔 の 車 の 種類 を 未だ に 覚え て い ます。
+        english: My father still remembers the kinds of old cars.
+        hint: While '種類' (shurui) means 'kind' or 'type', '型' (kata) here specifically emphasizes individual
+          'models' or 'designs' within car manufacturing, not just general categories.
+    scene: A son is talking about his father's hobby of collecting classic car magazines to his friends.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「車の型」 (くるまのかた) indicates specific models or designs of cars. The use of 「お父さん」 (otōsan) and
+      the polite 「覚えています」 (oboeteimasu) maintains a respectful, semi-formal tone appropriate for discussing
+      a family member's passion.
+    etymology: When used for vehicles, 「型」 (kata) specifically denotes a 'model' or 'version' (e.g., '2000年型'
+      for the 2000 model year). This reflects the concept of standardized production where each new iteration
+      is a distinct 'mold' or 'type'. The choice of 「型」 over more general terms like 「種類」 (shurui, kind)
+      highlights the specificity of mechanical and industrial design, where each model is a precise variation
+      with particular specifications. The use of 「車の型」 (kuruma no kata) here is precise for distinguishing
+      specific models rather than just general categories of cars, emphasizing a collector's nuanced knowledge.
+  - english: The new product has various types of designs to meet customer needs.
+    japanese:
+      - 新 製品 は お 客 さん の 必要 に 合わせ て 色々 な {型} の デザイン が あり ます。
+      - 新 製品 は 顧客 の ニーズ に 応じ て 多様 な {型} の デザイン を 展開 し て おり ます。
+      - 新しい 製品 は お 客 様 の ニーズ に 合わせ て 様々 な {型} の デザイン を ご 用意 し て い ます。
+      - 新 製品 は 顧客 ニーズ に 適合 する 多彩 な {型} の デザイン を 有し ます。
+    english_literally: New product, as for, customers' needs to match, various types of designs exist.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 は お 客 さん の 必要 に 合わせ て 色々 な デザイン が あり ます。
+        english: This version only states 'various designs.' The original sentence specifies 'various
+          *types* of designs,' implying different categories or models of design, not just a multitude
+          of designs.
+        hint: This version only states 'various designs.' The original sentence specifies 'various *types*
+          of designs,' implying different categories or models of designs,' implying different categories
+          or models of designs, not just a multitude of designs.
+    scene: A marketing manager is presenting a new product strategy to their team during a business meeting.
+    register: bijinesu nihongo (business)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「色々な型」 (いろいろながた) indicates diverse *types* or *models* of designs, suitable for a business
+      context discussing product diversification and customer segmentation. The phrasing is polite and
+      informative.
+    etymology: In this context, 「型」 (gata) is used to denote different 'types' or 'models' of designs,
+      implying a classification or categorization based on certain standards or characteristics. This
+      is a common usage in marketing and product development, where distinct design 'types' are created
+      to appeal to different segments of customers. The underlying idea of 「型」 as a template or standard
+      extends to conceptual designs, not just physical molds. The choice of 「型」 emphasizes that these
+      are not just random variations but distinct, categorized approaches to design, reflecting careful
+      planning and market analysis typical of business contexts.
+  - english: He looks just like a typical villain.
+    japanese:
+      - 彼 は まるで 典型 {型} の 悪役 の よう に 見える。
+      - あいつ は まさに 典型 {型} の 悪役 だ ね。
+      - 彼 は 典型 {型} の 悪役 と しか 思え ませ ん。
+      - 彼 は 典型 {型} の 悪役 そっくり だ。
+    english_literally: He, as for, just like a typical type of villain appears.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は まるで 典型 的 な 悪役 の よう に 見える。
+        english: He looks just like a typical villain.
+        hint: While '典型的な' (tenkeitekina) means 'typical,' the addition of '型' emphasizes that the person
+          fits a specific *mold* or *archetype* of a villain. We're looking for someone who embodies the
+          very type of a villain.
+    scene: Two friends are casually discussing a character they saw in a newly released movie.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「典型型」 (てんけいがた) highlights that the person fits a classic *type* or *pattern* (in this case,
+      of a villain). The casual comparison 「まるで～のようだ」 (marude ~ no yō da) is common in informal conversation
+      among friends.
+    etymology: 「典型型」 (tenkeigata) combines 「典型」 (tenkei, archetype/model) and 「型」 (gata, type). This emphasizes
+      that the person or thing perfectly fits a pre-established mold or stereotype. It's often used when
+      describing characters in fiction or real people whose behavior aligns exactly with a common perception.
+      The term gained traction in discussions of character tropes and archetypes in literature and media,
+      highlighting how someone embodies a universally recognized 'type'.
+  - english: This is a special mold for making traditional Japanese sweets.
+    japanese:
+      - これ は 和 菓子 を 作る ため の 特別 な {型} です。
+      - これ、和 菓子 作る ため の 特別 な {型} だ よ。
+      - こちら は 和 菓子 作成 用 の 特殊 な {型} で ござい ます。
+      - 和 菓子 用 の 特注 {型} と なり ます。
+    english_literally: This, as for, Japanese sweets to make for, special mold is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 和 菓子 を 作る ため の 特別 な 道具 です。
+        english: This is a special tool for making traditional Japanese sweets.
+        hint: While '道具' (dōgu) means 'tool,' it doesn't specify that it's a mold used to *shape* the
+          sweets. We're looking for a specific template or mold.
+    scene: A professional chef is demonstrating how to make a traditional Japanese sweet to a group of
+      culinary students.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「和菓子の型」 (わがしのかた) specifies a concrete mold used for shaping. The use of 「です」 maintains a formal
+      and informative tone, appropriate for an instructor.
+    etymology: '「型」 (kata) in this context refers to a physical ''mold'' or ''template'' used to give
+      a specific shape to something. Its root meaning of a ''pattern'' or ''standard'' is directly applied
+      here: the mold is the standard by which the confection is shaped. This direct, tangible usage of
+      「型」 is one of its most fundamental applications, especially in crafts and manufacturing. The compound
+      「和菓子の型」 specifically refers to the specialized molds used to create the intricate and beautiful
+      shapes of traditional Japanese sweets, highlighting the precision and artistry involved in their
+      production.'
+  - english: He performs the same movements with perfect form every morning.
+    japanese:
+      - 彼 は 毎朝、同じ 動作 を 完璧 な {型} で 行う。
+      - 彼 は 毎朝、同じ 動作 を 完璧 な {型} で 行っ て い ます。
+      - 彼 は 毎朝、同じ 動作 を 完璧 な {型} で 行う 習慣 が ある。
+      - 毎朝、彼 は 決まっ た 動作 を 見事 な {型} で こなす。
+    english_literally: He, every morning, same movements, perfect form, performs.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 毎朝、同じ 動作 を 完璧 に 行う。
+        english: He performs the same movements perfectly every morning.
+        hint: While '完璧に' (kanpeki ni) means 'perfectly,' using '型' emphasizes adherence to an ideal,
+          established physical form or pattern of movements, typical in martial arts or dance. We're looking
+          for execution according to a precise form.
+    scene: A martial arts instructor is describing one of his dedicated students to a new trainee.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「完璧な型」 (kanpeki na kata) specifically refers to performing movements with precise, ideal form,
+      as in martial arts or dance. It implies adherence to a standard pattern or archetype. The formal
+      register is appropriate for an instructor.
+    etymology: In contexts like martial arts (武道 - budō), 「型」 (kata) refers to a sequence of choreographed
+      movements practiced individually or in pairs. It represents the foundational 'form' or 'pattern'
+      of a technique. The term's etymology emphasizes a 'mold' or 'template' that trainees are expected
+      to precisely replicate, making 「型」 central to the disciplined learning process and the preservation
+      of traditional techniques. This usage connects directly to the kanji's meaning of a standard or
+      archetype that is to be followed.
+  - english: His body type is suitable for a professional swimmer.
+    japanese:
+      - 彼 の 体 {型} は プロ の 水泳 選手 に 適し て いる。
+      - 彼 の 体 {型} は プロ の 水泳 選手 に 合っ てる よ。
+      - 彼 の 体 {型} は プロ の 水泳 選手 に 適し て おり ます。
+      - 彼 の 体 {型} は プロ の 水泳 選手 と し て 理想 的 だ。
+    english_literally: His body type, as for, professional swimmer to, is suited.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 体格 は プロ の 水泳 選手 に 適し て いる。
+        english: His physique is suitable for a professional swimmer.
+        hint: While '体格' (taikaku) also means 'physique' or 'build,' '体型' (taikei) with '型' emphasizes
+          the specific 'type' or 'form' of body, often used for classification or in a more objective,
+          descriptive sense.
+    scene: A sports coach is discussing a new recruit's potential with an assistant coach.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「体型」 (たいけい) refers to 'body type' or 'physique'. Here 「型」 is read as 「けい」 as part of a compound
+      noun, denoting a classification of physical build. The formal register is appropriate for a coach's
+      professional assessment.
+    etymology: 「体型」 (tai-kei) combines 「体」 (tai, body) and 「型」 (kei, type/form). This term categorizes
+      a person's physical build. This usage of 「型」 with its on'yomi 「けい」 often appears in classifications
+      of abstract or bodily forms, emphasizing a conceptual category rather than a physical mold.
+  - english: Many people prefer the traditional Japanese residential style.
+    japanese:
+      - 伝統 的 な 日本 の 住居 {型} を 好む 人 が 多い です。
+      - 昔 ながら の 日本 の 家 {型} が 好き な 人 が 多い ね。
+      - 伝統 的 な 日本 家屋 {型} を 好む 方 が 少なく ない です。
+      - 伝統 的 な 日本 の 住宅 {型} を 希望 する 人 が 増え て いる。
+    english_literally: Traditional Japanese residential type, prefer people, many are.
+    competing_grammar:
+      - competing_japanese:
+          - 伝統 的 な 日本 の 住居 スタイル を 好む 人 が 多い です。
+        english: Many people prefer the traditional Japanese residential style.
+        hint: While 'スタイル' (style) is a good alternative, '住居型' (juukyo-gata) specifically emphasizes
+          a recognized 'type' or 'pattern' of residence, hinting at a more established architectural classification.
+    scene: A realtor is explaining local housing trends to a new employee.
+    register: formal
+    setting: informative
+    nuance: 「住居型」 (じゅうきょがた) refers to a characteristic residential type or architectural style. This is
+      another instance of classifying a concept or structure. The polite 「多いです」 maintains a professional
+      tone.
+  - english: He's the kind of person who always tries to follow the standard pattern.
+    japanese:
+      - 彼 は いつ も 定番 {型} を 追いかける タイプ の 人間 だ。
+      - あいつ は いつ も ベーシック な {型} に こだわる タイプ だ よ。
+      - 彼 は 常 に 定番 {型} を 遵守 する 傾向 が ある。
+      - 彼 は 伝統 的 な {型} に 沿う こと を 好む 人 だ。
+    english_literally: He, as for, always standard type, pursues, type of person, is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 定番 を 追いかける タイプ の 人間 だ。
+        english: He's the kind of person who always tries to follow the standard.
+        hint: The nuance of '定番' (teiban) alone is 'standard' or 'regular', but adding '型' specifies that
+          it's about following a 'standard *type*' or 'pattern' of behavior, implying a more defined mold.
+    scene: Two colleagues are discussing a mutual friend's personality.
+    register: casual
+    setting: friendly
+    nuance: 「定番型」 (ていばんがた) refers to a 'standard type' or 'typical pattern' of behavior or preference.
+      This is an abstract use of 「型」. The casual tone with 「タイプの人」 is suitable for informal conversation.
+  - english: This is a special mold for casting metal parts.
+    japanese:
+      - これ は 金属 部品 を 鋳造 する ため の 特殊 な {型} です。
+      - これ、金属 部品 作る ため の 特殊 な {型} だ よ。
+      - 本 品 は 金属 部品 鋳造 用 の 特殊 {型} で ござい ます。
+      - これ は 金属 製 の 部品 を 作成 する ため の 専用 {型} と なる。
+    english_literally: This, as for, metal parts, cast to do for, special mold is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 金属 部品 を 鋳造 する ため の 特殊 な 金型 です。
+        english: This is a special metal mold for casting metal parts.
+        hint: 「金型」 (kanagata) is a more specific term for a metal mold, but '型' alone is sufficient and
+          can refer to any type of mold or template, not just metal ones. We're looking for the general
+          term for 'mold'.
+    scene: A factory manager is showing new equipment to a visiting engineer.
+    register: formal
+    setting: professional
+    nuance: 「金属部品を鋳造するための型」 (kinzoku buhin o chuuzou suru tame no kata) specifically indicates a physical
+      mold used in manufacturing. This reinforces the 'mold/template' meaning of 「型」 (read as かた). The
+      formal 「です」 is appropriate in a professional setting.
+post_example_writeup: Understanding the subtle differences in nuance and application between the various
+  readings and uses of 「型」 is crucial. It can refer to a general type or model (がた), a specific mold or
+  template (かた), or even an archetypal or characteristic form in compound words (けい). Pay attention to
+  context to select the appropriate pronunciation and meaning, ensuring you convey the precise sense of
+  'type' or 'model' intended.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/noun-型

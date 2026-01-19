@@ -1,0 +1,395 @@
+grammar_point: そうすると (and then・if so)
+learn_before:
+  - '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+  - ですから (therefore)
+meaning: Having done that, If that is done, And then, Thereupon, If so
+pronunciation:
+  katakana: ソウスルト
+  romaji: sōsuru to
+formation:
+  '[Sentence/Action A]. そうすると、[Result/Consequence B]': Used when the action in A leads to a natural, often
+    uncontrollable, result or consequence in B.
+  '[Statement A]. そうすると、[Speaker''s Conclusion/Question B]': Used when the speaker draws a logical conclusion
+    or asks a clarifying question based on the statement in A.
+jlpt: N3
+etymology: 「そうすると」 is a combination of 「そう」 (an adverb meaning "like that" or "as such"), the verb 「する」
+  (to do), and the conjunction particle 「と」. It literally means something like "If you do that."
+writeup: |-
+  「そうすると」 is a conjunctive phrase combining the adverb 「そう」 (meaning "like that" or "as such"), the verb 「する」 (to do), and the conjunction particle 「と」. It primarily expresses that once a certain action or condition (A) is met, a specific result or consequence (B) will follow. It signifies a direct, often inevitable, cause-and-effect relationship.
+
+  This phrase typically begins a new sentence, serving to highlight the outcome that arises from the circumstances mentioned in the preceding statement. It functions similarly to a conjunction, providing a clear link between a premise and its consequence.
+
+  It is important to understand that the result conveyed by 「そうすると」 falls into one of two categories:
+
+  1.  **A consequence over which the speaker has no control**: This refers to a natural or automatic outcome. For example, if you push a button, the door opens – the door opening is an automatic consequence.
+  2.  **A conclusion or determination the speaker wants to confirm**: This use is common when the speaker is drawing a logical deduction from someone else's statement and wants to verify their understanding. In such cases, the translation is closer to "So you mean to say..." or "If so, then..."
+
+  **Fun Fact**: Although 「そう」 (然う) has a kanji form, this particular word is almost always written in hiragana in modern Japanese. This tendency applies to many other expressions that use 「そう」, not just 「そうすると」.
+false_friends:
+  - term: すると
+    meaning: Then, whereupon, as a result
+    kind: similar expression
+    nuance: While both 「そうすると」 and 「すると」 indicate a sequence of events, 「そうすると」 explicitly refers back
+      to a preceding statement or action using 「そう」, emphasizing a direct logical or automatic consequence.
+      「すると」 can simply describe a temporal sequence or a more general result without the same strong causal
+      link tied to a specific prior statement.
+    grammar_point: すると (and then・as a result)
+  - term: と
+    meaning: If, when, whenever, [conditional]
+    kind: similar expression
+    nuance: The conditional particle 「と」 indicates a direct and inevitable result when a condition is
+      met. However, 「そうすると」, by including 「そう」 and 「する」, adds a layer of specific reference to 'doing
+      that' or 'that being the case', often implying a more explicit connection to a prior discourse rather
+      than just a general conditional relationship.
+    grammar_point: と (conditional, inevitable result)
+  - term: ということは
+    meaning: That means; that is to say; so you mean to say
+    kind: similar expression
+    nuance: Both 「そうすると」 and 「ということは」 draw logical conclusions from a preceding statement. However, 「そうすると」
+      emphasizes the *consequence* or *outcome* resulting from a specific action or state. 「ということは」 focuses
+      more on clarifying or rephrasing an understanding derived from previous information, often used
+      to confirm a deduction.
+    grammar_point: ということ(は) (that means)
+  - term: それで
+    meaning: Because of that, so, and then, therefore, with that
+    kind: similar expression
+    nuance: While both 「そうすると」 and 「それで」 indicate a consequence or result, 「そうすると」 often implies a direct,
+      almost mechanical, or logical inevitability stemming from a specific action or condition. 「それで」
+      more generally signifies a cause-and-effect relationship where the preceding event leads to the
+      subsequent one, often expressing a progression in a narrative or a reason for an action.
+    grammar_point: それで (so・and then)
+  - term: そうすれば
+    meaning: If you do that; if that is done
+    kind: similar expression
+    nuance: 「そうすれば」 is a general conditional meaning 'if you do that,' which can be followed by any logical
+      outcome. 「そうすると」 specifically highlights an *inevitable* or *automatic* result of the preceding
+      action, rather than just a possible one. The nuance of inevitability is stronger with 「そうすると」.
+    grammar_point: <suggest>:そうすれば (if doing so)
+  - term: たら
+    meaning: If; when; after (conditional)
+    kind: similar expression
+    nuance: 「たら」 is a versatile conditional that can imply sequence or consequence. However, 「そうすると」 focuses
+      on a direct, often automatic or logically certain, consequence of a previously stated action or
+      situation, emphasizing the 'doing of that' specifically.
+    grammar_point: たら (conditional, when・if A then B)
+post_false_friends_writeup: When differentiating between these similar expressions, remember that 「そうすると」
+  specifically implies a direct consequence stemming from a previously mentioned action or state. 「すると」
+  can denote a more general sequential relationship or a result that isn't necessarily a direct or inevitable
+  outcome of a specific preceding action. The conditional particles 「と」 and 「たら」 describe general cause-and-effect
+  or sequential relationships, whereas 「そうすると」 anchors that cause-and-effect to the immediately preceding
+  context with a stronger sense of inevitability. 「そうすれば」 also uses 「そうする」 but with the conditional 「ば」,
+  making it a general 'if you do that' rather than an 'inevitable consequence of doing that'. 「ということは」
+  and 「それで」 also express logical conclusions or consequences, but 「そうすると」 carries a stronger sense of
+  direct, often automatic, linkage to the precise action or state being referred to by 「そう」.
+examples:
+  - english: Please try pressing this button. If you do that, the door will open automatically.
+    japanese:
+      - この ボタン を 押し て み て ください。{そう する と}、ドア が 自動 的 に 開き ます。
+      - この ボタン を 押し て み て ください。{そう する と}、ドア が 自動 的 に 開き ます よ。
+      - この ボタン を 押し て み て ください。{そう する と}、ドア が 自動 的 に 開く でしょう。
+    english_literally: This button try pressing please. That doing so, door will automatically open.
+    competing_grammar:
+      - competing_japanese:
+          - この ボタン を 押し て み て ください。する と、ドア が 自動 的 に 開き ます。
+        english: Please try pressing this button. Then, the door will open automatically.
+        hint: 「すると」 simply indicates a temporal sequence, whereas 「そうすると」 specifically emphasizes that
+          the action of 'doing that' leads directly to the result. We're looking for the explicit link
+          to the prior action.
+      - competing_japanese:
+          - この ボタン を 押し たら、ドア が 自動 的 に 開き ます。
+        english: If you press this button, the door will open automatically.
+        hint: 「たら」 indicates a conditional relationship. 「そうすると」 emphasizes the *inevitable* and *direct*
+          outcome of 'doing that' particular action. We're looking for a phrase that highlights an automatic
+          result.
+    scene: A museum docent is explaining an interactive exhibit to a group of visitors.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「～てください」 and 「自動 的 に 開き ます」 conveys a polite instruction leading to an inevitable,
+      automatic outcome, over which the speaker has no personal control. The docent is simply stating
+      a fact about the exhibit.
+  - english: If you practice kanji every day, then you'll naturally be able to remember them.
+    japanese:
+      - 毎日 漢字 を 練習 すれ ば、{そう する と} 自然 に 覚え られる でしょう。
+      - 毎日 漢字 を 練習 すれ ば、{そう する と} 自然 に 覚え られる よう に なり ます。
+      - 毎日 漢字 を 練習 すれ ば、{そう する と} 自然 に 覚え られる よ。
+    english_literally: Every day kanji practice if, that doing so naturally will remember can perhaps.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 漢字 を 練習 すれ ば、自然 に 覚え られる でしょう。
+        english: If you practice kanji every day, you'll naturally be able to remember them.
+        hint: Omitting 「そうすると」 makes the connection less emphatic and direct. We're looking for a phrase
+          that stresses the natural, inevitable outcome *because* of the preceding action.
+      - competing_japanese:
+          - 毎日 漢字 を 練習 する と、自然 に 覚え られる でしょう。
+        english: If you practice kanji every day, then you'll naturally be able to remember them.
+        hint: 「～と」 expresses a general, consistent cause-and-effect. 「そうすると」 specifically links the outcome
+          to the action of 'doing that,' emphasizing the particular instance. We're looking for a phrase
+          that highlights the direct result of the specific action.
+      - competing_japanese:
+          - 毎日 漢字 を 練習 すれ ば、そう すれ ば 自然 に 覚え られる でしょう。
+        english: If you practice kanji every day, then if you do that, you'll naturally be able to remember
+          them.
+        hint: 「そうすれば」 implies a more general conditional outcome. 「そうすると」 emphasizes a direct and *inevitable*
+          consequence of the action described by 「そうする」. We're looking for a phrase indicating a natural,
+          expected result.
+    scene: A veteran Japanese teacher is giving advice to a struggling student.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「自然 に 覚え られる でしょう」 implies a natural, expected outcome of consistent effort. The
+      teacher is expressing a certainty about the positive result of the student's actions. The 「～でしょう」
+      ending softens the advice.
+  - english: You're moving to Japan next month, aren't you? So, does that mean you're quitting your current
+      job?
+    japanese:
+      - 来月 日本 へ 引っ越す ん です ね。{そう する と}、今 の お 仕事 は 辞める と いう こと です か？
+      - 来月 日本 へ 引っ越す ん です ね。{そう する と}、今 の お 仕事 は 辞める ん です か？
+      - 来月 日本 へ 引っ越す ん です ね。{そう する と}、今 の お 仕事 は 辞める の？
+    english_literally: Next month Japan to move is it. That doing so, current job quit that thing is it?
+    competing_grammar:
+      - competing_japanese:
+          - 来月 日本 へ 引っ越す ん です ね。と いう こと は、今 の お 仕事 は 辞める と いう こと です か？
+        english: You're moving to Japan next month, aren't you? So, does that mean you're quitting your
+          current job?
+        hint: 「ということは」 is also used to draw conclusions, but 「そうすると」 specifically connects the conclusion
+          to the act of 'doing that' or 'that being the case,' implying a direct consequence or logical
+          flow from the prior statement. We're looking for a phrase that explicitly links the question
+          to the previously stated fact.
+    scene: Two colleagues are having a casual conversation about future plans after work.
+    register: semi-formal
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: male
+    nuance: This example uses 「そうすると」 to draw a logical conclusion and seek confirmation based on a prior
+      statement. The speaker is making a deduction about the listener's job status given their move to
+      Japan. 「～んです ね」 softens the initial statement, and 「～という こと です か」 makes the inquiry polite.
+  - english: Try downloading this app. If you do that, you'll get a new discount coupon.
+    japanese:
+      - この アプリ を ダウンロード し て み て。{そう する と}、新しい 割引 クーポン が もらえる から。
+      - この アプリ を ダウンロード し て み て。{そう する と}、新しい 割引 クーポン が もらえ ます よ。
+      - この アプリ を ダウンロード し て み て。{そう する と}、新しい 割引 クーポン が もらえる よ。
+    english_literally: This app download try. That doing so, new discount coupon will receive because.
+    competing_grammar:
+      - competing_japanese:
+          - この アプリ を ダウンロード し て み て。そう し たら、新しい 割引 クーポン が もらえる から。
+        english: Try downloading this app. If you do that, you'll get a new discount coupon.
+        hint: 「そうしたら」 also implies 'if you do that,' but 「そうすると」 emphasizes a more direct and inevitable
+          consequence, often almost mechanical. We're looking for a phrase that highlights the automatic
+          result of the action.
+      - competing_japanese:
+          - この アプリ を ダウンロード すれ ば、新しい 割引 クーポン が もらえる から。
+        english: If you download this app, you'll get a new discount coupon.
+        hint: Using 「そうすると」 emphasizes that getting the coupon is a direct and guaranteed result of *that
+          specific action* (downloading the app), more so than a general conditional 「～ば」. We're looking
+          for a phrase that highlights the direct and certain outcome.
+    scene: A friend is eagerly showing another friend a new app on their phone, suggesting they try it.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: This casual expression uses 「～して み て」 for a light suggestion. The 「から」 at the end explains
+      the benefit, making the reason for the suggestion clear. The outcome of getting a coupon is an automatic
+      result of downloading the app.
+  - english: I'll be in charge of the new project, correct? If that's the case, does it mean overtime
+      will increase?
+    japanese:
+      - 新しい プロジェクト、私 が 担当 する ん です ね。{そう する と}、残業 が 増える と いう こと でしょう か。
+      - 新しい プロジェクト、私 が 担当 する ん です ね。{そう する と}、残業 が 増える ん です か？
+      - 新しい プロジェクト、私 が 担当 する ん です ね。{そう する と}、残業 が 増える こと に なり ます か？
+    english_literally: New project, I in charge do it correct. That doing so, overtime will increase that
+      thing is it perhaps.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト、私 が 担当 する ん です ね。と いう こと は、残業 が 増える と いう こと でしょう か。
+        english: I'll be in charge of the new project, correct? Does that mean overtime will increase?
+        hint: Similar to how 「ということは」 draws a conclusion, 「そうすると」 specifically ties that conclusion to
+          the fact of 'doing that' or 'that being the case,' implying an immediate logical consequence.
+          We're looking for a phrase that directly connects the implication to the confirmed fact.
+    scene: An employee is discussing their new responsibilities with their manager during a review.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: In this professional setting, 「そうすると」 is used to logically deduce a potential consequence
+      (increased overtime) from a confirmed responsibility. The use of 「～んです ね」 and 「～という こと でしょう か」 maintains
+      a polite yet direct tone for clarifying implications in a work context.
+  - english: If you keep drinking coffee late at night, you won't be able to sleep well.
+    japanese:
+      - 夜 遅く まで コーヒー を 飲み 続ける と、{そう する と} よく 眠れ なく なり ます よ。
+      - 夜 遅く まで コーヒー を 飲み 続ける と、{そう する と} よく 眠れ なく なる よ。
+      - 夜 遅く まで コーヒー を 飲み 続ける と、{そう する と} よく 眠れ なく なる でしょう。
+    english_literally: Night late until coffee drink continue if, that doing so well unable to sleep become
+      particle.
+    competing_grammar:
+      - competing_japanese:
+          - 夜 遅く まで コーヒー を 飲み 続ける と、よく 眠れ なく なり ます よ。
+        english: If you keep drinking coffee late at night, you'll get to sleep well.
+        hint: The simple conditional 「～と」 expresses a general cause-and-effect. 「そうすると」 specifically highlights
+          the natural, inevitable consequence stemming directly from the act of 'doing that.' We're looking
+          for an emphasis on the direct outcome of the specific action.
+      - competing_japanese:
+          - 夜 遅く まで コーヒー を 飲み 続け たら、よく 眠れ なく なり ます よ。
+        english: If you keep drinking coffee late at night, you won't be able to sleep well.
+        hint: While 「たら」 can express a consequence, 「そうすると」 places stronger emphasis on the direct and
+          unavoidable nature of the result following the action of 'doing that'. We're looking for a phrase
+          that stresses the natural progression of cause and effect.
+    scene: A concerned friend gives advice to another friend who often complains about insomnia.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「～と」 for the condition and 「～なり ます よ」 for the result gives this a polite, advisory
+      tone. 「そうすると」 stresses that the inability to sleep is a direct and natural consequence of the action
+      of continually drinking coffee late.
+  - english: The report is due tomorrow, so that means we'll have to work through the night, won't we?
+    japanese:
+      - レポート は 明日 提出 です から、{そう する と} 徹夜 に なり ます ね。
+      - レポート は 明日 提出 です から、{そう する と} 徹夜 に なる よ ね。
+      - レポート は 明日 提出 です から、{そう する と} 徹夜 に なる でしょう ね。
+    english_literally: Report is tomorrow submission so, that doing so, all night becomes doesn't it.
+    competing_grammar:
+      - competing_japanese:
+          - レポート は 明日 提出 です から、と いう こと は、徹夜 に なり ます ね。
+        english: The report is due tomorrow, so that means we'll have to work through the night, won't
+          we?
+        hint: 「ということは」 draws a common conclusion. 「そうすると」 specifically links the conclusion to the circumstance
+          'being that way,' implying a direct logical consequence of the stated situation. We're looking
+          for a phrase that ties the outcome directly to the preceding factual statement.
+    scene: Two colleagues are commiserating about a looming deadline in their office.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: This shows 「そうすると」 used to draw a logical conclusion, often with a hint of resignation. The
+      「～なり ます ね」 seeks agreement on this inevitable consequence in a work context. This is a common way
+      to express a logical outcome with a shared understanding.
+  - english: First, you put the ingredients in the pot. If you do that, it will start to boil quickly.
+    japanese:
+      - まず 具材 を 鍋 に 入れ ます。{そう する と}、すぐ に 沸騰 し 始め ます よ。
+      - まず 具材 を 鍋 に 入れ ます。{そう する と}、すぐ に 沸騰 し 始め ます。
+      - まず 具材 を 鍋 に 入れ ます。{そう する と}、すぐ に 沸騰 し 始める よ。
+    english_literally: First ingredients pot into put. That doing so, immediately boiling begin particle.
+    competing_grammar:
+      - competing_japanese:
+          - まず 具材 を 鍋 に 入れ ます。する と、すぐ に 沸騰 し 始め ます よ。
+        english: First, you put the ingredients in the pot. Then, it will start to boil quickly.
+        hint: 「すると」 simply indicates a temporal sequence. 「そうすると」 specifically emphasizes that the immediate
+          boiling is a direct result of 'doing that'—putting the ingredients in the pot. We're looking
+          for a phrase that highlights the direct, immediate consequence of the action.
+    scene: A cooking instructor is demonstrating a recipe step-by-step on a TV show.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: This instruction uses 「まず～」 to indicate the first step, followed by 「そうすると」 to explain the
+      automatic outcome. The 「～し ます よ」 adds a helpful, informative tone, common in instructional settings.
+  - english: If you forget to save the file, then all your work will be lost.
+    japanese:
+      - ファイル の 保存 を 忘れる と、{そう する と}、すべて の 作業 が 無駄 に なり ます。
+      - ファイル の 保存 を 忘れる と、{そう する と}、すべて の 作業 が 無駄 に なっ て しまい ます。
+      - ファイル の 保存 を 忘れる と、{そう する と}、すべて の 作業 が 無駄 に なる でしょう。
+    english_literally: File's saving forget if, that doing so, all of work becomes wasted.
+    competing_grammar:
+      - competing_japanese:
+          - ファイル の 保存 を 忘れる と、すべて の 作業 が 無駄 に なり ます。
+        english: If you forget to save the file, all your work will be lost.
+        hint: The simple conditional 「～と」 describes a general truth or inevitable outcome. 「そうすると」 emphasizes
+          that the loss of work is a direct, unavoidable consequence of 'doing that'—forgetting to save.
+          We're looking for a phrase that highlights the immediate and direct impact of the specific action.
+      - competing_japanese:
+          - ファイル の 保存 を 忘れ たら、すべて の 作業 が 無駄 に なり ます。
+        english: If you forget to save the file, all your work will be lost.
+        hint: 「たら」 indicates a conditional. 「そうすると」 implies a more direct and often inevitable negative
+          consequence of the action described by 「そうする」, emphasizing the logical flow from the specific
+          oversight. We're looking for a phrase that highlights an unavoidable outcome.
+    scene: A senior colleague is warning a junior employee about data loss best practices.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: This serves as a cautionary statement in a professional context. 「そうすると」 clearly links the
+      potential omission (forgetting to save) to the severe, unavoidable consequence, emphasizing the
+      direct cause-and-effect for the listener.
+  - english: So, if we increase the budget, that means we can hire more staff, right?
+    japanese:
+      - 予算 を 増やす と、{そう する と}、もっと スタッフ を 雇える と いう こと です ね？
+      - 予算 を 増やす と、{そう する と}、もっと スタッフ を 雇える ん です ね？
+      - 予算 を 増やす と、{そう する と}、もっと スタッフ を 雇える こと に なり ます ね？
+    english_literally: Budget increase if, that doing so, more staff can hire that thing is it right.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 を 増やす と、と いう こと は、もっと スタッフ を 雇える と いう こと です ね？
+        english: If we increase the budget, that means we can hire more staff, right?
+        hint: 「ということは」 draws a general conclusion. 「そうすると」 ties the conclusion directly to the action
+          of 'doing that'—increasing the budget—as a direct and often immediate logical consequence. We're
+          looking for a phrase that directly connects the implication to the proposed action.
+    scene: During a project meeting, a team leader is clarifying a proposal with their manager.
+    register: semi-formal
+    setting: negotiating
+    speaker_gender: female
+    listener_gender: male
+    nuance: This usage confirms a logical deduction from a hypothetical action. The speaker is verifying
+      their understanding of the implications of increasing the budget. The 「～という こと です ね？」 ending is
+      a polite way to seek confirmation in a business discussion.
+  - english: If you don't take your umbrella, then you'll get wet in this weather.
+    japanese:
+      - 傘 を 持っ て 行か ない と、{そう する と} この 天気 で は 濡れ ます よ。
+      - 傘 を 持っ て 行か ない と、{そう する と} この 天気 で は 濡れる よ。
+      - 傘 を 持っ て 行か ない と、{そう する と} この 天気 で は 濡れ ちゃい ます よ。
+    english_literally: Umbrella take go not if, that doing so this weather in wet become particle.
+    competing_grammar:
+      - competing_japanese:
+          - 傘 を 持っ て 行か ない と、この 天気 で は 濡れ ます よ。
+        english: If you don't take your umbrella, you'll get wet in this weather.
+        hint: The simple conditional 「～と」 expresses a general cause-and-effect. 「そうすると」 emphasizes that
+          getting wet is a direct, almost automatic consequence of 'doing that'—not taking the umbrella.
+          We're looking for a phrase that highlights the direct outcome of the specific situation.
+      - competing_japanese:
+          - 傘 を 持っ て 行か なけれ ば、この 天気 で は 濡れ ます よ。
+        english: If you don't take your umbrella, you'll get wet in this weather.
+        hint: The 「～ば」 conditional is a general 'if...then' statement. 「そうすると」 specifically points to
+          the consequence that directly follows from the action of 'doing that' (not bringing an umbrella),
+          implying a more immediate and direct link. We're looking for a phrase that stresses the direct
+          result.
+    scene: A person advises their friend who is about to leave on a rainy day.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「持っ て 行か ない と」 forms a condition, and 「そうすると」 emphasizes the unavoidable consequence
+      of getting wet. The 「～ます よ」 adds a touch of friendly warning, common between peers.
+  - english: I'll finish this task first. Then, I'll be able to go home earlier.
+    japanese:
+      - まず この 作業 を 終え ます。{そう する と}、早く 帰れる よう に なり ます。
+      - まず この 作業 を 終え ます。{そう する と}、早く 帰れる よう に なる。
+      - まず この 作業 を 終え ます。{そう する と}、早く 帰れる よう に なる でしょう。
+    english_literally: First this task finish. That doing so, early can go home able become.
+    competing_grammar:
+      - competing_japanese:
+          - まず この 作業 を 終え ます。する と、早く 帰れる よう に なり ます。
+        english: I'll finish this task first. Then, I'll be able to go home earlier.
+        hint: 「すると」 indicates a general sequence of events. 「そうすると」 emphasizes that the ability to go
+          home early is a direct and logical consequence of 'doing that'—finishing the task. We're looking
+          for a phrase that highlights the direct result of the specific action.
+    scene: A person is talking to themselves, planning their work day.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: This example shows 「そうすると」 used in internal monologue or planning. It implies a clear, positive
+      consequence that directly results from the completion of the prior action. The polite form 「～ます」
+      suggests an internal, structured thought process.
+post_example_writeup: 「そうすると」 is particularly effective in situations where there's a clear and direct
+  cause-and-effect relationship between an action or event and its subsequent outcome. It's crucial to
+  grasp that the second action or event is presented as a natural, often inevitable, consequence of the
+  first. This automaticity is a key characteristic of its usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/そうすると

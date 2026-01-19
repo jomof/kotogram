@@ -1,0 +1,301 @@
+grammar_point: 決める (to decide)
+learn_before:
+  - Question-phrase+か (embedded question)
+  - Verb[imperative] (imperative)
+  - Verb[なければ・なきゃ] (conditional negative)
+  - '[Noun]をください (please give me)'
+  - '[Verb-ない]ほうがいい (it is better not to do)'
+  - いただく (humbly receive)
+  - できれば・できたら (if possible)
+  - どなた (polite who)
+  - やめる (to stop)
+  - 以上 (more than or equal to・numerical)
+  - 任せる (to entrust or leave to)
+  - 先 (ahead・first)
+  - 必ずしも (not necessarily)
+  - 最中に (in the middle of)
+  - 直ちに (immediately)
+meaning: to decide
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 決める
+    rarity: common
+    meaning: to decide
+  - conjugation-type: non-past polite (～ます)
+    form: 決めます
+    rarity: common
+    meaning: to decide
+  - conjugation-type: negative plain (～ない)
+    form: 決めない
+    rarity: common
+    meaning: not to decide
+  - conjugation-type: negative non-past polite (～ません)
+    form: 決めません
+    rarity: common
+    meaning: not to decide
+  - conjugation-type: past plain (～た)
+    form: 決めた
+    rarity: common
+    meaning: decided
+  - conjugation-type: past polite (～ました)
+    form: 決めました
+    rarity: common
+    meaning: decided
+  - conjugation-type: negative past plain (～なかった)
+    form: 決めなかった
+    rarity: common
+    meaning: didn't decide
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 決めませんでした
+    rarity: common
+    meaning: didn't decide
+  - conjugation-type: te-form (～て)
+    form: 決めて
+    rarity: common
+    meaning: to decide and
+  - conjugation-type: potential (～られる/～える)
+    form: 決められる
+    rarity: common
+    meaning: can decide
+  - conjugation-type: volitional (～よう)
+    form: 決めよう
+    rarity: common
+    meaning: let's decide
+  - conjugation-type: volitional polite (～ましょう)
+    form: 決めましょう
+    rarity: common
+    meaning: let's decide
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 決めろ
+    rarity: common
+    meaning: decide!
+  - conjugation-type: imperative polite (～なさい)
+    form: 決めなさい
+    rarity: less common
+    meaning: please decide
+pronunciation:
+  katakana: キメル
+  romaji: kimeru
+formation:
+  '[Noun] を 決める': To decide on a specific noun or object.
+  '[Verb-dictionary] こと に 決める': To decide to do a specific action, often emphasizing a personal commitment.
+  '[Question phrase] か 決める': To decide something involving uncertainty, such as who, what, when, or whether.
+jlpt: N5
+etymology: The verb 「決める」 is the transitive counterpart of 「決まる (kimaru)」. The root comes from the concept
+  of setting a 'boundary' or 'fixed point'. While 「決まる」 indicates something becoming fixed or decided
+  (intransitive), 「決める」 means to actively fix or decide something (transitive), highlighting the action
+  of the agent in reaching a conclusion or setting a rule.
+writeup: |-
+  The verb 「決める」 means 'to decide' or 'to determine'. It is a transitive verb, which means it typically takes a direct object (marked by the particle を) that is being decided. This can be a noun, or it can be an action expressed as a nominalized verb phrase using こと.
+
+  When you use 「決める」, you are emphasizing the **action of making a choice or determination**. For example, deciding on a travel destination, a course of action, or a particular rule. It signifies that a conclusion has been reached through a conscious effort.
+
+  **Important Considerations:**
+  *   **Transitivity:** Always remember that 「決める」 is transitive. If something *is decided* or *becomes decided* on its own, you would use the intransitive counterpart, 「決まる」.
+  *   **Deciding an Action:** To express deciding *to do* something, you will often see the structure 「[Verb-dictionary] こと に 決める」. This nominalizes the verb and treats the entire action as the object of the decision.
+false_friends:
+  - term: 決まる
+    meaning: to be decided
+    kind: antonym
+    nuance: 「決める」 is a transitive verb meaning "to decide something," emphasizing the agent's action.
+      「決まる」 is an intransitive verb meaning "something is decided," emphasizing the outcome or natural
+      occurrence without a direct agent.
+    grammar_point: <suggest>:決まる (to be decided)
+  - term: '[Verb-dictionary] ことにする'
+    meaning: to decide to do (something)
+    kind: similar expression
+    nuance: While both express decision, 「決める」 can take a noun as a direct object to decide *what* to
+      do. 「Verb ことにする」 specifically expresses the decision *to perform an action*, often implying a personal
+      choice or habit that has been made.
+    grammar_point: <suggest>:Verb[dictionary]ことにする (to decide to do)
+  - term: '[Verb-dictionary] つもりだ'
+    meaning: to intend to do
+    kind: similar expression
+    nuance: 「決める」 indicates a concrete decision that has been made, implying commitment. 「つもりだ」 expresses
+      a plan or intention, which may or may not be as firm or immediately actionable as a decision made
+      with 「決める」.
+    grammar_point: <suggest>:Verb[dictionary]つもりだ (to intend to)
+  - term: 決定する
+    meaning: to decide (formal)
+    kind: synonym
+    nuance: 「決める」 is widely used for all types of decisions, from personal to professional. 「決定する」 is
+      more formal and often implies a weightier, official, or administrative decision made by a group
+      or authority.
+    grammar_point: <suggest>:決定する (to decide・formal)
+post_false_friends_writeup: "When distinguishing between 「決める」 and 「決まる」, remember that 「決める」 is about\
+  \ *you* making a decision (transitive), while 「決まる」 is about something *being decided* or *coming to\
+  \ a decision* on its own (intransitive). For instance, if you choose a movie, you 「映画を{決める}」. If the\
+  \ movie schedule is set, 「映画の時間が{決まる}」. \n\n「[Verb] ことにする」 is a specific way to say you've decided to\
+  \ *do an action*, whereas 「決める」 can decide on a noun (e.g., the destination). \n\n「[Verb] つもりだ」 expresses\
+  \ an intention, which is a step before a full-fledged decision made with 「決める」. You might 「カフェに行く{つもりだ}」\
+  \ (intend to go to a cafe), but then 「今日はカフェに行かないことに{決めた}」 (decided not to go to the cafe today). \n\
+  \nLastly, 「決定する」 carries a more formal or official tone compared to the general-purpose 「決める」. Use 「決定する」\
+  \ for significant or official determinations, such as a company's policy decision."
+examples:
+  - english: I decided on a new job.
+    japanese:
+      - 新しい 仕事 に {決め た}。
+      - 新しい 仕事 に {決め まし た}。
+      - 新しい 仕事 に {決め た} ん だ。
+    english_literally: New job, on, decided.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 仕事 が 決まっ た。
+        english: A new job was decided (for me).
+        hint: This uses the intransitive form, implying the decision happened without your direct action.
+          We're looking for your active decision.
+    scene: After a long job hunt, you finally make a choice.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: We decided to have dinner at home tonight.
+    japanese:
+      - 今夜 は 家 で 晩ごはん を 食べる こと に {決め まし た}。
+      - 今夜 は 家 で 晩ごはん を 食べる こと に {決め た}。
+      - 今夜 は 家 で 晩ごはん に {決め まし た}。
+      - 今夜 は 家 で 晩ごはん に {決め た}。
+    english_literally: Tonight, at home, dinner, to eat, decided.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 は 家 で 晩ごはん を 食べる つもり です。
+        english: Tonight, I intend to eat dinner at home.
+        hint: This expresses an intention, not a firm decision. We're looking for a completed decision.
+    scene: A family is discussing dinner plans.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+  - english: Have you decided who will go to the meeting?
+    japanese:
+      - 会議 に 誰 が 行く か {決め まし た} か？
+      - 会議 に 誰 が 行く か {決め た}？
+      - 会議 に どなた が 出席 する か {お 決め に なり まし た} か？
+    english_literally: Meeting, to, who, goes, whether, decided, question?
+    competing_grammar:
+      - competing_japanese:
+          - 会議 に 誰 が 行く の か 相談 し まし た か？
+        english: Did you consult about who will go to the meeting?
+        hint: This asks about consultation, not about making a final decision. We're looking for the act
+          of deciding.
+    scene: A manager asks their assistant about preparations for an upcoming meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: Don't decide hastily.
+    japanese:
+      - 急い で {決め ない} ほう が いい よ。
+      - 早く {決める} な。
+    english_literally: Hastily, not decide, is better, you know. / Quickly, decide, don't.
+    competing_grammar:
+      - competing_japanese:
+          - 急い で 結論 を 出さ ない ほう が いい よ。
+        english: It's better not to draw conclusions hastily.
+        hint: This uses a different verb for reaching a conclusion. We're looking for the specific act
+          of deciding.
+    scene: An older sibling advises their younger sibling who tends to rush decisions.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_age: older
+    nuance: The use of 「決めない ほうが いい よ」 is a gentle piece of advice. For a more direct command, 「決める な」
+      could be used, typically by someone in a position of authority or as a strong warning among peers.
+  - english: I will decide after hearing everyone's opinions.
+    japanese:
+      - 皆 の 意見 を 聞い て から {決める}。
+      - 皆 の 意見 を 聞い て から {決め ます}。
+      - 皆 様 の ご 意見 を 伺っ て から {決定 いたし ます}。
+    english_literally: Everyone's opinions, hearing, after, decide.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 の 意見 を 聞い て から 結論 を 出す。
+        english: I will draw a conclusion after hearing everyone's opinions.
+        hint: This uses a different verb for reaching a conclusion. We're looking for the specific act
+          of deciding.
+    scene: A team leader explains their process for making a decision.
+    register: casual
+    setting: informative
+  - english: Let's decide on the meeting time right now.
+    japanese:
+      - 会議 の 時間 を 今 すぐ {決め ましょう}。
+      - 会議 の 時間 を 今 すぐ {決めよう}。
+      - 会議 の 時間 は 直ちに {決定 いたし ましょう}。
+    english_literally: Meeting's time, now, immediately, let's decide.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 時間 を 今 すぐ 相談 し ましょう。
+        english: Let's consult about the meeting time right now.
+        hint: This suggests a discussion, not making a final decision. We're looking for the act of deciding.
+    scene: Colleagues need to set a schedule.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: volitional polite (～ましょう)
+  - english: Even if you decide, things don't always go as planned.
+    japanese:
+      - '{決め て} も、いつ も 計画 通り に は いか ない よ。'
+      - '{決め て} も、いつ も 計画 通り に は いき ませ ん よ。'
+      - '{決定 し て} も、必ず しも 計画 通り に は いか ない もの です。'
+    english_literally: Even if decide, always, plan street, does not go, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 計画 し て も、いつ も 計画 通り に は いか ない よ。
+        english: Even if you plan, things don't always go as planned.
+        hint: This refers to making a plan, not necessarily making a firm decision. We're looking for
+          the result of a decision.
+    scene: A mentor offers a piece of life wisdom to a frustrated student.
+    register: casual
+    setting: supportive
+    conjugation: concessive (～ても)
+  - english: I want to decide on a travel destination soon.
+    japanese:
+      - 早く 旅行 先 を {決め たい} です。
+      - 早く 旅行 先 を {決め たい} な。
+      - 早め に 旅行 先 を {決定 し たい} と 存じ ます。
+    english_literally: Soon, travel destination, want to decide, is.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 旅行 先 を 選び たい です。
+        english: I want to choose a travel destination soon.
+        hint: This uses a different verb for choosing. While similar, '決める' often implies a more final,
+          committed choice. We're looking for the act of deciding.
+    scene: Someone is looking forward to their next vacation.
+    register: teineigo (polite)
+    setting: excited
+    conjugation: desiderative (～たい)
+  - english: They are trying to decide where to eat dinner.
+    japanese:
+      - 彼 ら は どこ で 晩ごはん を 食べる か {決め て いる} ところ です。
+      - 彼 ら は どこ で 晩ごはん を 食べる か {決め て いる} ところ だ よ。
+      - 彼 ら は どこ で 夕食 を 取る か {決定 し て いる} 最中 です。
+    english_literally: They, where, dinner, to eat, whether, deciding, is in the process.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は どこ で 晩ごはん を 食べる か 話し合っ て いる ところ です。
+        english: They are in the process of discussing where to eat dinner.
+        hint: This describes a discussion, not the act of making a decision itself. We're looking for
+          the state of deciding.
+    scene: Observing a group of friends trying to pick a restaurant.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: progressive (～ている)
+  - english: If you don't decide soon, we'll miss the deadline.
+    japanese:
+      - 早く {決め なけれ ば}、締め切り に 間に合わ ない よ。
+      - 早く {決め なけれ ば}、締め切り に 間に合い ませ ん よ。
+      - 早く {決め ない と}、締め切り に 間に合わ ない よ。
+      - 早く {決め ない と}、締め切り に 間に合い ませ ん よ。
+    english_literally: Soon, if not decide, deadline, will not be in time, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 結論 を 出さ なけれ ば、締め切り に 間に合わ ない よ。
+        english: If you don't draw a conclusion soon, we'll miss the deadline.
+        hint: This uses a different verb for reaching a conclusion. We're looking for the specific act
+          of deciding.
+    scene: A colleague urges a procrastinating teammate.
+    register: casual
+    setting: serious
+    conjugation: conditional (～ば)
+post_example_writeup: Notice how 「決める」 is always tied to an agent making an active choice. Whether it's
+  deciding a noun, deciding an action (using こと に), or deciding an unknown (using か), the emphasis is
+  on the conscious act of determination. Pay close attention to the particles, especially を, for the direct
+  object of the decision.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/決める

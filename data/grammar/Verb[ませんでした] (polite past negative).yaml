@@ -1,0 +1,219 @@
+grammar_point: Verb[ませんでした] (polite past negative)
+learn_before:
+  - Verb[ました] (polite past)
+meaning: Expressed a polite negative action or state in the past.
+conjugations:
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ませんでした
+    rarity: common
+    meaning: did not do (polite past negative)
+pronunciation:
+  katakana: マセンデシタ
+  romaji: masendeshita
+formation:
+  Verb[ます-stem] + ませんでした: The standard formation for politeness, past tense, and negation.
+jlpt: N5
+etymology: ませんでした is a compound auxiliary form. ません is the polite negative ending for verbs in the non-past
+  tense. It derives from the archaic ませぬ which combined the polite auxiliary ます (originating from 参る meaning
+  'to come/go') and the classical negative auxiliary ぬ. The ぬ eventually contracted to ん and the せは likely
+  a phonetic change or a form related to す (another auxiliary for polite/humble verbs). でした is the polite
+  past form of the copula だ/です. Therefore, ませんでした literally means "was not (polite auxiliary verb)". This
+  combination of ません (polite negative) and でした (past polite copula) forms the polite past negative for
+  verbs, signifying that the action indicated by the verb did not take place in the past, conveyed with
+  politeness.
+writeup: |-
+  ませんでした is the polite past negative form of Japanese verbs. It is formed by taking the ます-stem of a verb and appending ませんでした. This conjugation is essential for expressing that an action or state did not occur in the past, while maintaining a polite tone suitable for most general conversations, especially with people you are not very close to, or those of higher status.
+
+  This form contrasts with the plain past negative なかった, which is used in casual conversations among friends or family, or when a less formal tone is appropriate. While ませんでした clearly indicates politeness, it is a neutral polite form (teineigo), not to be confused with more respectful (sonkeigo) or humble (kenjōgo) language.
+
+  Understanding ませんでした is foundational for constructing complete and grammatically correct sentences in polite Japanese, allowing speakers to clearly convey past negative actions in a widely acceptable social context. It is one of the first polite verb conjugations a learner encounters, alongside ます, ません, and ました.
+false_friends:
+  - term: Verb[なかった]
+    meaning: did not do (plain past negative)
+    kind: similar expression
+    nuance: Verb[なかった] conveys the same past negative meaning as Verb[ませんでした], but it is the plain, casual
+      form. It lacks the politeness and formality of ませんでした and is typically used in informal settings
+      or when speaking to close friends and family.
+    grammar_point: Verb[なかった] (past negative)
+  - term: Verb[ません]
+    meaning: do not do / will not do (polite non-past negative)
+    kind: similar expression
+    nuance: Verb[ません] expresses a polite negative, but for the non-past tense (present or future). It
+      indicates that an action is not currently happening or will not happen. Verb[ませんでした] specifically
+      refers to an action that did not happen in the past.
+    grammar_point: Verb[ません] (polite negative)
+  - term: Verb[ました]
+    meaning: did do (polite past affirmative)
+    kind: similar expression
+    nuance: Verb[ました] is the polite past affirmative form. It indicates that an action did happen in the
+      past, directly contrasting with the negative meaning of ませんでした.
+    grammar_point: Verb[ました] (polite past)
+post_false_friends_writeup: When choosing between ませんでした and なかった, remember that the key difference is
+  the level of politeness. Use ませんでした in formal situations or with strangers, and なかった with close friends
+  or family. On the other hand, ません is used for actions that are not happening now or will not happen
+  in the future, while ませんでした is strictly for past actions. Finally, ました expresses a positive past action,
+  the opposite of ませんでした. Pay attention to these distinctions to ensure you convey both the correct meaning
+  and the appropriate level of formality.
+examples:
+  - english: I didn't eat lunch.
+    japanese:
+      - 昼 ごはん を {食べ ませ ん でし た}。
+      - 私 は 昼ごはん を {食べ ませ ん でし た}。
+    english_literally: As for lunch, I did not eat.
+    competing_grammar:
+      - competing_japanese:
+          - 昼 ごはん を 食べ なかっ た。
+        english: I did not eat lunch (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+      - competing_japanese:
+          - 昼 ごはん を 食べ ませ ん。
+        english: I do not eat lunch (polite non-past).
+        hint: This uses the polite non-past negative ません. We're looking for a polite past negative.
+    scene: A person is asked if they ate lunch.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+  - english: She didn't come to the party yesterday.
+    japanese:
+      - 彼女 は 昨日 パーティー に {来 ませ ん でし た}。
+      - 昨日、彼女 は パーティー に {来 ませ ん でし た}。
+    english_literally: As for her, yesterday to the party did not come.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 昨日 パーティー に 来 なかっ た。
+        english: She didn't come to the party yesterday (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+      - competing_japanese:
+          - 彼女 は パーティー に 来 ませ ん。
+        english: She does not come to parties.
+        hint: This uses the polite non-past negative ません. We're looking for a polite past negative.
+    scene: Two friends are discussing a mutual friend who was absent from an event.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative past polite (～ませんでした)
+  - english: The train didn't arrive on time.
+    japanese:
+      - 電車 は 時間 通り に {着き ませ ん でし た}。
+      - 時間 通り に 電車 は {着き ませ ん でし た}。
+    english_literally: As for the train, on time did not arrive.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は 時間 通り に 着か なかっ た。
+        english: The train didn't arrive on time (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+    scene: A passenger informs a station attendant about a delay.
+    register: formal
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+  - english: I didn't understand the teacher's explanation.
+    japanese:
+      - 先生 の 説明 が {分かり ませ ん でし た}。
+      - 私 は 先生 の 説明 が {分かり ませ ん でし た}。
+    english_literally: Teacher's explanation, I did not understand.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 の 説明 が 分から なかっ た。
+        english: I didn't understand the teacher's explanation (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+      - competing_japanese:
+          - 先生 の 説明 が 分かり ませ ん。
+        english: I do not understand the teacher's explanation (polite non-past).
+        hint: This uses the polite non-past negative ません. We're looking for a polite past negative.
+    scene: A student tells their tutor they're struggling with a concept.
+    register: semi-formal
+    setting: academic
+    conjugation: negative past polite (～ませんでした)
+  - english: We didn't see the movie yet.
+    japanese:
+      - 私 たち は まだ その 映画 を {見 ませ ん でし た}。
+      - まだ 私 たち は その 映画 を {見 ませ ん でし た}。
+    english_literally: As for us, yet that movie did not see.
+    competing_grammar:
+      - competing_japanese:
+          - 私 達 は まだ その 映画 を 見 なかっ た。
+        english: We didn't see the movie yet (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+    scene: Friends are planning their weekend activities.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: negative past polite (～ませんでした)
+  - english: He didn't say anything about it.
+    japanese:
+      - 彼 は それ に つい て 何 も {言い ませ ん でし た}。
+      - それ に つい て 彼 は 何 も {言い ませ ん でし た}。
+    english_literally: As for him, about that nothing did not say.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は それ に つい て 何 も 言わ なかっ た。
+        english: He didn't say anything about it (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+    scene: Colleagues are discussing a meeting.
+    register: formal
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: male
+    nuance: The use of 言いませんでした is standard polite Japanese for 'did not say'. This sentence is neutrally
+      polite and can be used by anyone.
+  - english: They didn't live in Japan last year.
+    japanese:
+      - 彼 ら は 去年 日本 に {住み ませ ん でし た}。
+      - 去年、彼 ら は 日本 に {住み ませ ん でし た}。
+    english_literally: As for them, last year in Japan did not live.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 去年 日本 に 住ま なかっ た。
+        english: They didn't live in Japan last year (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+    scene: Tourists are talking about where their friends lived.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+  - english: I didn't use that dictionary.
+    japanese:
+      - 私 は その 辞書 を {使い ませ ん でし た}。
+      - その 辞書 を 私 は {使い ませ ん でし た}。
+    english_literally: As for me, that dictionary did not use.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は その 辞書 を 使わ なかっ た。
+        english: I didn't use that dictionary (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+    scene: A librarian is checking out books and asks about a specific item.
+    register: semi-formal
+    setting: academic
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: female
+    nuance: The use of 使いませんでした is a straightforward polite negative past. While both genders use this,
+      some women might prefer a slightly softer tone in casual contexts, but in a semi-formal setting
+      like a library, this is perfectly neutral and common for both genders.
+  - english: She didn't write a letter.
+    japanese:
+      - 彼女 は 手紙 を {書き ませ ん でし た}。
+      - 手紙 を 彼女 は {書き ませ ん でし た}。
+    english_literally: As for her, a letter did not write.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 手紙 を 書か なかっ た。
+        english: She didn't write a letter (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+    scene: Someone is wondering why they haven't received mail.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative past polite (～ませんでした)
+  - english: The children didn't play outside today.
+    japanese:
+      - 子供 たち は 今日 外 で {遊び ませ ん でし た}。
+      - 今日、子供 たち は 外 で {遊び ませ ん でし た}。
+    english_literally: As for the children, today outside did not play.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 今日 外 で 遊ば なかっ た。
+        english: The children didn't play outside today (plain).
+        hint: This uses the plain form なかった. We're looking for the polite past negative.
+    scene: Parents are discussing their children's activities.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: negative past polite (～ませんでした)
+    listener_gender: group
+    nuance: 遊びませんでした is a common polite negative past. The phrasing is appropriate for addressing a group
+      of parents in a polite, general manner.

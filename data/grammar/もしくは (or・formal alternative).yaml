@@ -1,0 +1,278 @@
+grammar_point: もしくは (or・formal alternative)
+learn_before:
+  - いずれも (all or none)
+meaning: or
+pronunciation:
+  katakana: モシクハ
+  romaji: moshiku wa
+formation:
+  Noun1 (か) + もしくは + Noun2: Used to connect two nouns disjunctively, offering one as an alternative to
+    the other.
+  Verb1 (dictionary form/informal non-past) (か) + もしくは + Verb2: Used to connect two verbs disjunctively,
+    offering one action as an alternative to another.
+jlpt: N2
+etymology: 「もしくは」 is derived from the classical Japanese verb 「申す」(mōsu), meaning 'to state' or 'to say'
+  (in a humble or polite manner), combined with the conjunctive particle 「く」 and the topic marker 「は」.
+  Originally, it conveyed a nuance of 'humble statement or alternative presentation,' evolving to its
+  current meaning of a formal 'or' that suggests a choice between distinct options.
+writeup: 「もしくは」 serves as a formal conjunction meaning "or." It is used to present two distinct items,
+  ideas, or actions as alternatives, suggesting a choice between them. Unlike simpler alternatives like
+  「または」 or 「あるいは」, 「もしくは」 carries a distinctly formal tone, making it suitable for official documents,
+  academic papers, legal texts, formal presentations, and polite business correspondence. It emphasizes
+  that the connected elements are mutually exclusive options or that one is a substitute for the other.
+  While 「または」 can also be formal, 「もしくは」 tends to imply a slightly stronger sense of selection or a more
+  clearly defined set of alternatives.
+false_friends:
+  - term: または
+    meaning: or, alternatively
+    kind: similar expression
+    nuance: 「または」 is a general 'or' that can be used in both formal and informal contexts. While it can
+      function formally, it lacks the specific emphasis on choice or distinct alternatives that 「もしくは」
+      often conveys. It's more versatile and less restrictive than 「もしくは」.
+    grammar_point: または (or; either... or...)
+  - term: あるいは
+    meaning: or, perhaps, possibly
+    kind: similar expression
+    nuance: 「あるいは」 falls between 「または」 and 「もしくは」 in formality. It can introduce an alternative, but it
+      sometimes carries a nuance of 'perhaps' or 'possibly,' suggesting less certainty or a broader range
+      of options compared to 「もしくは」. It's used in both written and spoken language but less frequently
+      than 「または」.
+    grammar_point: あるいは (or・alternatively)
+  - term: それとも
+    meaning: or else, alternatively (used in questions)
+    kind: similar expression
+    nuance: 「それとも」 is exclusively used to present alternatives within an interrogative sentence (a question).
+      It directly asks the listener to choose between options. 「もしくは」, in contrast, is used in declarative
+      sentences (statements) to present alternatives or possibilities.
+    grammar_point: それとも (or・or else)
+  - term: か
+    meaning: or, question particle
+    kind: similar expression
+    nuance: The simple particle 「か」 can also mean 'or' when used to connect two items (e.g., AかBか). However,
+      it is much more casual and informal than 「もしくは」 and is primarily used in direct speech or informal
+      writing. It lacks the formality and specific emphasis of 「もしくは」, which is typically reserved for
+      more formal or official contexts.
+    grammar_point: か (or)
+post_false_friends_writeup: When faced with multiple ways to express "or" in Japanese, consider the context
+  and desired nuance. 「または」 is the most widely applicable, suitable for most situations. 「あるいは」 can be
+  a good intermediate choice, and might hint at a wider range of possibilities. 「それとも」 is specific to
+  questions, prompting a choice. For formal, official, or highly structured contexts where distinct alternatives
+  are being presented, 「もしくは」 is the most appropriate choice, conveying precision and a clear selection
+  between options.
+examples:
+  - english: Please pay with cash or credit card.
+    japanese:
+      - お 支払い は 現金 か、{もしくは} クレジット カード で お 願い し ます。
+      - 現金、{もしくは} クレジット カード で お 支払い ください。
+    english_literally: Payment, as for cash or, alternatively, credit card, please.
+    competing_grammar:
+      - competing_japanese:
+          - お 支払い は 現金 か、{また は} クレジット カード で お 願い し ます。
+          - 現金、{また は} クレジット カード で お 支払い ください。
+        english: Please pay with cash or credit card.
+        hint: While 「または」 is also formal and acceptable here, 「もしくは」 emphasizes a more definitive choice
+          between specific options, which is often preferred in instructional or official contexts. We're
+          looking for the more precise 'or'.
+    scene: A cashier instructing a customer on payment options.
+    register: formal
+    setting: informative
+    nuance: This sentence uses 「もしくは」 in a formal customer service context to provide two clear payment
+      options. The use of 「お 願い し ます」 reinforces the polite, formal register. 「もしくは」 highlights the distinctness
+      of the two payment methods as alternatives.
+  - english: This form must be filled out by the person themselves, or signed by their representative.
+    japanese:
+      - この フォーム は 本人 が 記入 する か、{もしくは} 代理 人 が 署名 する こと に なっ て い ます。
+      - この フォーム は 本人 記入 か、{もしくは} 代理 人 署名 と なり ます。
+      - 本 フォーム は 本人 に よる ご 記入 か、{もしくは} 代理 人 に よる ご 署名 が 必要 です。
+    english_literally: As for this form, the principal person fills it out, or, alternatively, the representative
+      signs it.
+    competing_grammar:
+      - competing_japanese:
+          - この フォーム は 本人 が 記入 する か、{あるいは} 代理 人 が 署名 する こと に なっ て い ます。
+        english: This form must be filled out by the person themselves, or perhaps signed by their representative.
+        hint: 「あるいは」 can suggest a broader range of possibilities or even a slight uncertainty ('perhaps').
+          「もしくは」 is used here to emphasize that these are two distinct, clear, and mutually exclusive
+          options in an official instruction. We're looking for a definitive 'or' in a rule.
+    scene: Instructions for filling out an official document, emphasizing who can sign.
+    register: formal
+    setting: instructional
+    nuance: Here, 「もしくは」 connects two distinct subjects who can perform the action, emphasizing the formal
+      requirement for either the principal or an authorized agent. The use of 「こと に なっています」 indicates
+      a rule or established procedure, and 「もしくは」 fits well with the clear, unambiguous nature of rules.
+  - english: We are considering holding the meeting in the morning or postponing it until the afternoon.
+    japanese:
+      - 会議 は 午前 中 に 開催 する か、{もしくは} 午後 に 延期 する こと を 検討 し て い ます。
+      - 会議 を 午前 中 に 開催 する か、{もしくは} 午後 に 延期 する か で 検討 し て い ます。
+    english_literally: As for the meeting, holding it in the morning, or, alternatively, postponing it
+      to the afternoon, we are considering.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 午前 中 に 開催 する か、{また は} 午後 に 延期 する こと を 検討 し て い ます。
+        english: We are considering holding the meeting in the morning or postponing it until the afternoon.
+        hint: While 「または」 is also common in business discussions, 「もしくは」 often implies a more deliberate
+          presentation of distinct choices. In this context, it highlights that these are two specific,
+          well-defined options under consideration. We're looking for the more precise 'or' for decision-making.
+    scene: A project manager discusses scheduling options with their team.
+    register: semi-formal
+    setting: negotiating
+    speaker_gender: male
+    nuance: The speaker, likely a manager, uses 「もしくは」 to present two possibilities for the meeting time.
+      The phrase 「検討 して います」 ('we are considering') indicates a decision is pending, suitable for a semi-formal
+      discussion. The sentence structure is common in business settings. 「もしくは」 emphasizes that these
+      are clear, distinct alternatives being weighed.
+  - english: Please inform us by next month whether you will continue or cancel the contract.
+    japanese:
+      - 契約 を 続行 する か、{もしくは} 解約 する か、来月 まで に ご 連絡 ください。
+      - 来月 まで に、契約 続行 か {もしくは} 解約 の いずれ か を ご 連絡 ください。
+      - 契約 の 続行 {もしくは} 解約 に つき まし て は、来月 まで に お 知ら せ ください。
+    english_literally: Continuing the contract, or, alternatively, cancelling it, by next month, please
+      contact us.
+    competing_grammar:
+      - competing_japanese:
+          - 契約 を 続行 する か、{それ と も} 解約 する か、来月 まで に ご 連絡 ください。
+        english: Will you continue the contract, or will you cancel it? Please inform us by next month.
+        hint: 「それとも」 is exclusively used for questions asking for a choice. This sentence is a polite
+          request for information, not a direct question about the options themselves. 「もしくは」 is appropriate
+          for stating alternatives in a declarative or instructional sentence. We're looking for an 'or'
+          that doesn't imply a direct question.
+    scene: A business sends an important notice to a client regarding their contract status.
+    register: formal
+    setting: professional
+    nuance: 'This example showcases 「もしくは」 in a formal written context, demanding a clear decision between
+      two significant actions: continuing or terminating a contract. The phrasing 「ご 連絡 ください」 is a polite,
+      formal request for action. 「もしくは」 clearly outlines the two precise choices available to the client.'
+  - english: This law aims to protect the environment, or it is intended to revitalize the local economy.
+    japanese:
+      - この 法律 は 環境 保護 を 目的 と する か、{もしくは} 地域 経済 の 活性 化 を 狙う もの です。
+      - この 法律 は 環境 保護 を 目的 と する か、{もしくは} 地域 経済 の 活性 化 を 図る もの です。
+      - 本 法律 は 環境 保護 目的 {もしくは} 地域 経済 活性 化 を 目指し て い ます。
+    english_literally: This law, as for this law, it aims for environmental protection, or, alternatively,
+      it is something that targets local economic revitalization.
+    competing_grammar:
+      - competing_japanese:
+          - この 法律 は 環境 保護 を 目的 と する {か}、地域 経済 の 活性 化 を 狙う もの です。
+        english: This law aims to protect the environment, or revitalize the local economy.
+        hint: Using a simple 「か」 without 「もしくは」 would be too informal for this academic or legal context.
+          「もしくは」 is used to present these two distinct objectives as precise and formal alternatives within
+          a sophisticated explanation. We're looking for a formal 'or' for academic discourse.
+    scene: A legal expert explains the dual objectives of a new piece of legislation.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    nuance: This sentence uses 「もしくは」 to present two primary objectives of a law, common in academic or
+      legal discourse. The detailed phrasing like 「目的 と する」 and 「狙う もの です」 elevates the register, fitting
+      the academic setting. The use of 「もしくは」 ensures a clear and unambiguous presentation of these distinct
+      aims.
+  - english: All participants must wear a helmet, or protective eyewear.
+    japanese:
+      - 参加 者 は ヘルメット を 着用 する か、{もしくは} 保護 メガネ を 着用 し て ください。
+      - 参加 者 は ヘルメット {もしくは} 保護 メガネ を 着用 の こと。
+      - 参加 者 は ヘルメット {もしくは} 保護 メガネ を ご 着用 ください。
+    english_literally: As for participants, wearing a helmet, or, alternatively, wearing protective glasses,
+      please do.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 は ヘルメット を 着用 する か、{また は} 保護 メガネ を 着用 し て ください。
+        english: All participants must wear a helmet, or protective eyewear.
+        hint: While 「または」 is also correct, 「もしくは」 emphasizes that these are two distinct, equally valid
+          options given as a rule or instruction. 「もしくは」 conveys a stronger sense of a defined choice
+          in an official context. We're looking for a precise 'or' in an instruction.
+    scene: A public sign at a sports facility providing safety regulations.
+    register: formal
+    setting: instructional
+    nuance: In this instructional context, 「もしくは」 is used to clearly present two distinct safety requirements
+      as alternatives. The phrase 「～て ください」 makes it a polite command, suitable for a public notice. 「もしくは」
+      reinforces the clarity and precision of the presented options.
+  - english: The hypothesis suggests that the phenomenon is caused by environmental factors, or genetic
+      predisposition.
+    japanese:
+      - この 仮説 は、その 現象 が 環境 的 要因 に よっ て 引き 起こさ れる か、{もしくは} 遺伝 的 素因 に よる もの で ある と 示唆 し て いる。
+      - 本 仮説 は、その 現象 が 環境 的 要因 {もしくは} 遺伝 的 素因 に 起因 する と 示唆 し て いる。
+      - その 現象 は 環境 的 要因 {もしくは} 遺伝 的 素因 の いずれ か に よっ て 引き 起こさ れる と、この 仮説 は 示唆 する。
+    english_literally: This hypothesis, as for that phenomenon, by environmental factors, or, alternatively,
+      by genetic predisposition, is something caused, it is suggested.
+    competing_grammar:
+      - competing_japanese:
+          - この 仮説 は、その 現象 が 環境 的 要因 に よっ て 引き 起こさ れる か、{あるいは} 遺伝 的 素因 に よる もの で ある と 示唆 し て いる。
+        english: The hypothesis suggests that the phenomenon is caused by environmental factors, or perhaps
+          genetic predisposition.
+        hint: 「あるいは」 might imply a degree of uncertainty or 'perhaps.' In scientific discourse, 「もしくは」
+          is preferred when clearly distinguishing between two specific potential causes, indicating a
+          more direct alternative without implying doubt. We're looking for a precise 'or' in an academic
+          context.
+    scene: A researcher explains the possible origins of a biological phenomenon in a scientific paper
+      or presentation.
+    register: formal
+    setting: informative
+    nuance: This example demonstrates 「もしくは」 in an academic or scientific context, where precision is
+      paramount. It clearly delineates two distinct categories of causation. The phrase 「示唆 し て いる」 ('suggests')
+      is common in scholarly writing, and 「もしくは」 ensures that the two factors are presented as clear,
+      mutually exclusive possibilities.
+  - english: We can either proceed with the current plan, or implement the revised strategy.
+    japanese:
+      - 現行 の 計画 で 進める か、{もしくは} 改訂 版 の 戦略 を 実行 する か、どちら か です。
+      - 現行 の 計画 で 進める か、{もしくは} 改訂 版 の 戦略 を 実行 し ます。
+    english_literally: Proceeding with the current plan, or, alternatively, executing the revised strategy,
+      either one.
+    competing_grammar:
+      - competing_japanese:
+          - 現行 の 計画 で 進める か、{また は} 改訂 版 の 戦略 を 実行 する か、どちら か です。
+        english: We can either proceed with the current plan, or implement the revised strategy.
+        hint: While 「または」 is generally acceptable for presenting alternatives, 「もしくは」 provides a slightly
+          stronger emphasis on the distinctness of the two options, making it suitable for situations
+          where a clear choice between specific plans is being discussed. We're looking for an 'or' that
+          highlights a precise choice.
+    scene: A team leader discusses two distinct strategic options during a business meeting.
+    register: semi-formal
+    setting: negotiating
+    speaker_gender: female
+    nuance: Used by a team leader, likely in a business setting, 「もしくは」 clearly outlines two discrete
+      options for action. The phrase 「どちら か です」 further emphasizes that a choice must be made between
+      these two specific alternatives. This highlights the practical, decision-making aspect of 「もしくは」.
+  - english: The donation can be made via bank transfer, or by credit card.
+    japanese:
+      - ご 寄付 は 銀行 振込 か、{もしくは} クレジット カード にて お 受け いたし ます。
+      - ご 寄付 は 銀行 振込 {もしくは} クレジット カード の ご 利用 が 可能 です。
+      - ご 寄付 は 銀行 振込 {もしくは} クレジット カード にて 承り ます。
+    english_literally: As for your donation, bank transfer, or, alternatively, by credit card, we will
+      receive it.
+    competing_grammar:
+      - competing_japanese:
+          - ご 寄付 は 銀行 振込 {か}、クレジット カード で お 受け いたし ます。
+        english: The donation can be made via bank transfer, or by credit card.
+        hint: Using a simple 「か」 would be too casual for this polite, formal solicitation. 「もしくは」 elevates
+          the language to match the respectful tone of 「ご 寄付」 and 「お 受け いたし ます」, clearly presenting the
+          precise methods of donation. We're looking for a formal 'or' for respectful communication.
+    scene: A charity organization provides instructions for making a donation on their website or a printed
+      leaflet.
+    register: formal
+    setting: informative
+    nuance: This sentence employs 「もしくは」 in a formal, respectful appeal for donations, using polite language
+      like 「ご 寄付」 and 「お 受け いたし ます」. 「もしくは」 is crucial here for clearly presenting two distinct and official
+      methods of transaction, maintaining the professional and trustworthy image of the organization.
+  - english: Failure to comply may result in a fine, or legal action.
+    japanese:
+      - 順守 し ない 場合 は、罰金 が 科せ られる か、{もしくは} 法的 措置 が 取ら れる こと が あり ます。
+      - 不 順守 の 場合 は、罰金 賦課 {もしくは} 法的 措置 の 対象 と なる こと が あり ます。
+      - 規定 に 順守 し ない 場合 は、罰金 の 適用 {もしくは} 法的 措置 が 講じ られる 場合 が ござい ます。
+    english_literally: If not complied, a fine will be imposed, or, alternatively, legal measures may
+      be taken.
+    competing_grammar:
+      - competing_japanese:
+          - 順守 し ない 場合 は、罰金 が 科せ られる か、{それ と も} 法的 措置 が 取ら れる こと が あり ます。
+        english: If you don't comply, will a fine be imposed, or will legal action be taken?
+        hint: 「それとも」 is used for questions asking for a choice. This is a declarative statement warning
+          of consequences, not asking about them. 「もしくは」 is used here to present two distinct and serious
+          potential outcomes. We're looking for a declarative 'or' for warnings.
+    scene: A legal disclaimer on an official document or a public notice regarding regulations.
+    register: formal
+    setting: serious
+    nuance: In a legal or official warning, 「もしくは」 is used to clearly state two distinct and serious consequences
+      of non-compliance. The formal phrasing, such as 「順守 し ない 場合 は」 and 「科せ られる」, is typical of such
+      documents, and 「もしくは」 maintains this precise and unambiguous tone for outlining alternatives.
+post_example_writeup: The examples provided illustrate how 「もしくは」 is consistently used in formal contexts
+  to present distinct and clear alternatives. Notice its frequent appearance in situations requiring precision,
+  such as official instructions, legal texts, business communications, and academic explanations. This
+  contrasts with the more general or casual 'or' options in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/もしくは

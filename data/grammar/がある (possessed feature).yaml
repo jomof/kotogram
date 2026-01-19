@@ -1,0 +1,525 @@
+grammar_point: がある (possessed feature)
+learn_before:
+  - Verb[ませんでした] (polite past negative)
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - あり (possibility・with)
+  - ある (to exist, inanimate・to have)
+  - い-Adjective[かった] (past tense)
+  - で (means・method)
+  - な-Adjectives (adjectival nouns)
+  - よく (frequently・often・well)
+  - んだけど・んですが (explanatory・softening)
+  - 以内 (within)
+  - 真上 (directly above)
+  - 考えられる・考えられない (can be considered・unthinkable)
+meaning: Noun (B) that has Noun (A), Noun (B) with Noun (A)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: がある
+    rarity: common
+    meaning: Noun (B) that has Noun (A)
+  - conjugation-type: non-past polite (～ます)
+    form: があります
+    rarity: common
+    meaning: Noun (B) that has Noun (A) (polite)
+  - conjugation-type: negative plain (～ない)
+    form: がない
+    rarity: common
+    meaning: Noun (B) that doesn't have Noun (A)
+  - conjugation-type: negative non-past polite (～ません)
+    form: がありません
+    rarity: common
+    meaning: Noun (B) that doesn't have Noun (A) (polite)
+  - conjugation-type: past plain (～た)
+    form: があった
+    rarity: common
+    meaning: Noun (B) that had Noun (A)
+  - conjugation-type: past polite (～ました)
+    form: がありました
+    rarity: common
+    meaning: Noun (B) that had Noun (A) (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: がなかった
+    rarity: common
+    meaning: Noun (B) that didn't have Noun (A)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: がありませんでした
+    rarity: common
+    meaning: Noun (B) that didn't have Noun (A) (polite)
+pronunciation:
+  katakana: ガ アル
+  romaji: ga aru
+formation:
+  Noun(A) がある + Noun(B): Describes Noun(B) as possessing or being characterized by Noun(A).
+jlpt: N5
+etymology: The grammar point combines 「ある」 (aru), meaning "to exist" (for inanimate objects), with a noun.
+  The 「が」 (ga) particle marks the subject of the verb 「ある」.
+writeup: |-
+  This grammatical pattern is used to modify a noun, indicating that it possesses something or is associated with something. The structure is "(A) がある (B)", meaning "(B) has / is equipped with (A)". This is known as a relative clause, functioning similarly to an adjective to describe the noun.
+
+  Unlike English, Japanese does not require relative pronouns such as "who," "which," or "that"; the noun directly follows "がある."
+
+  **Important Considerations**
+
+  *   In a relative clause, the noun being described (B) is the main topic or subject. Therefore, 「は」 is generally not used in place of 「が」. However, 「の」 can sometimes be used instead of 「が」, as showing a relationship between (A) and (B) is one of the main functions of 「の」.
+false_friends:
+  - term: がある
+    meaning: To exist; There is (for inanimate objects)
+    kind: similar expression
+    nuance: This refers to the simple existential meaning of 'aru' as a standalone verb. Unlike 'Noun(A)
+      がある + Noun(B)', which modifies a noun to describe its possession or characteristic, the standalone
+      'がある' indicates the existence of something, without modifying another noun, and does not serve as
+      a relative clause.
+    grammar_point: ある (to exist, inanimate・to have)
+  - term: を持っている
+    meaning: To possess, to have, to hold
+    kind: similar expression
+    nuance: Unlike 「がある + Noun」 which describes a characteristic or inherent feature, 「を持っている」 implies
+      active ownership or holding, often by an animate being. While it can be used for inanimate objects,
+      it emphasizes a more active state of 'holding' rather than an inherent quality. 「がある」 often sounds
+      more natural for describing features of inanimate things.
+    grammar_point: <suggest>:持っている (to possess, to have)
+  - term: 〜付き
+    meaning: Attached with, with (as a feature or accessory)
+    kind: similar expression
+    nuance: 「〜付き」 is a suffix indicating that something comes with or has an attached feature or accessory.
+      It's often used for things that are an addition or complement, rather than an inherent quality.
+      For example, 「家具付き」 (furnished) means 'with furniture attached'. 「がある + Noun」 is broader and can
+      describe any characteristic, inherent or otherwise, as long as it's a defining feature of the noun.
+    grammar_point: 〜付き (attached with)
+post_false_friends_writeup: |-
+  While the verb 「ある」 (aru) itself means "to exist" for inanimate objects, when 「がある」 directly precedes another noun, its function shifts dramatically. It no longer simply states existence but creates a modifying clause, describing the subsequent noun. This is crucial: the grammatical role changes from a main verb expressing existence to a descriptive clause within a larger sentence structure.
+
+  Similarly, while 「を持っている」 also means "to have," it implies active possession, often by a living being, or a more direct holding. 「がある」, in this modifying context, describes a characteristic or inherent feature of the noun, making it more suitable for inanimate objects or qualities they inherently possess. Furthermore, 「〜付き」 implies an attachment or an included accessory. While it can convey a similar meaning, it's typically used for tangible additions, whereas 「がある」 is much more versatile for describing any kind of inherent characteristic or quality.
+examples:
+  - english: A house that has a spacious garden.
+    japanese:
+      - 広い 庭 が {ある} 家。
+      - 広い 庭 の {ある} 家。
+      - 広い 庭 が {ある} お 家。
+    english_literally: A spacious garden exists house.
+    competing_grammar:
+      - competing_japanese:
+          - 広い 庭 が {ある}。
+        english: There is a spacious garden.
+        hint: This sentence simply states the existence of a spacious garden. We're looking for a phrase
+          that describes a house as having a spacious garden.
+      - competing_japanese:
+          - 広い 庭 を {持っ て いる} 家。
+        english: A house that is holding a spacious garden.
+        hint: 「持っている」 implies a more active 'holding' or 'owning' of the garden by an animate entity.
+          We're looking for a description of a house's inherent characteristic.
+      - competing_japanese:
+          - 広い 庭 {付き} の 家。
+        english: A house with a spacious garden attached.
+        hint: 「〜付き」 often implies an 'add-on' or 'included feature' rather than an inherent characteristic.
+          We're looking for a description of a house's inherent characteristic.
+      - competing_japanese:
+          - 庭 が {広い} 家
+        english: A house where the garden is spacious.
+        hint: The scene aims for describing the house by what it *has*, leading to a structure emphasizing
+          possession, rather than simply focusing on the *width* of the garden using an adjective clause.
+          We're looking for a description of what the house *has*.
+    scene: A friend describing their dream house.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: This is a simple, direct description. The casual register is appropriate for friends talking.
+      「広い 庭が ある 家」 describes the house as inherently possessing a large garden, making it a defining feature.
+      The phrasing is gender-neutral.
+  - english: A vending machine that has cold water.
+    japanese:
+      - 冷たい 水 が {あり ます} 自動 販売 機。
+      - 冷たい 水 が {ある} 自動 販売 機。
+      - 冷たい お 水 が {あり ます} 自動 販売 機。
+    english_literally: A cold water exists vending machine.
+    competing_grammar:
+      - competing_japanese:
+          - 冷たい 水 が {あり ます}。
+        english: There is cold water.
+        hint: This sentence simply states the existence of cold water. We're looking for a phrase that
+          describes a vending machine as having cold water.
+      - competing_japanese:
+          - 冷たい 水 を {持っ て いる} 自動 販売 機。
+        english: A vending machine that is holding cold water.
+        hint: 「持っている」 typically refers to active possession by an animate being. While a vending machine
+          can 'hold' items, 「がある」 is more natural for describing what it simply contains or offers as
+          a feature.
+      - competing_japanese:
+          - 冷たい 水 {付き} の 自動 販売 機。
+        english: A vending machine with cold water attached.
+        hint: 「〜付き」 is often used for an accessory or an included feature, like '家具付き' (furnished). While
+          technically possible, 「がある」 is more natural for describing what the machine simply contains
+          as a general feature.
+      - competing_japanese:
+          - 冷たい 水 が {入っ て いる} 自動 販売 機
+        english: A vending machine that has cold water inside.
+        hint: The scene implies looking for a type of machine defined by its offering, guiding toward
+          the 'possesses' meaning. We're looking for a description of what the vending machine *has*.
+    scene: A tourist asking for directions to a vending machine in a polite manner.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+    nuance: The polite 「あります」 is appropriate for a tourist asking a stranger. 「冷たい 水が あります 自動 販売機」 describes
+      the vending machine by what it is equipped with, emphasizing its function. This phrasing is suitable
+      for a polite inquiry and is gender-neutral.
+  - english: A room that has no windows is a little dark.
+    japanese:
+      - 窓 が {ない} 部屋 は 少し 暗い。
+      - 窓 が {ない} 部屋 って、少し 暗い ん だ よ な。
+      - 窓 の {ない} 部屋 は 少し 暗い よ ね。
+      - 窓 が {ない} 部屋 って、どう も 暗い ん だ よ な。
+    english_literally: A window exists not room is a little dark.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 が {ない}。
+        english: There are no windows.
+        hint: This sentence simply states the absence of windows. We're looking for a phrase that describes
+          a room as having no windows.
+      - competing_japanese:
+          - 窓 を {持っ て い ない} 部屋。
+        english: A room that is not holding windows.
+        hint: 「持っていない」 implies active non-possession, which is unnatural for describing a structural feature
+          of a room. We're looking for a phrase describing the simple absence of a characteristic.
+      - competing_japanese:
+          - 窓 {無し} の 部屋。
+        english: A room without windows.
+        hint: While '窓 無し' clearly states the absence, 「がない」 (the plain negative of がある) emphasizes the
+          direct characteristic of the room lacking windows. We're looking for a direct negative statement
+          of possession.
+      - competing_japanese:
+          - '{暗い} 部屋'
+        english: A dark room.
+        hint: The scene focuses on the *reason* for the darkness, which is the explicit absence of windows,
+          guiding away from a general descriptive adjective. We're looking for a description of what the
+          room *has*.
+      - competing_japanese:
+          - 窓 が {ない} ところ
+        english: A place that has no windows.
+        hint: The scene clearly refers to a specific 'room' (部屋), not a general 'place' (ところ). We're looking
+          for a description of what the room *doesn't have*.
+    scene: A young boy complaining to his parent about his new room.
+    register: casual
+    setting: pessimistic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The casual 「ない」 fits a child's complaint. The phrase 「窓が ない 部屋」 highlights the lack of windows
+      as the defining characteristic causing the darkness. The casual male speech is indicated by the
+      sentence-ending particle 「な」 in 「暗い ん だ よ な」.
+  - english: A hotel that doesn't have a parking lot is inconvenient.
+    japanese:
+      - 駐車 場 が {あり ませ ん} ホテル は 不便 です。
+      - 駐車 場 の {あり ませ ん} ホテル は 不便 です。
+      - 駐車 場 が {ない} ホテル は 不便 です よ ね。
+    english_literally: A parking lot existed not hotel is inconvenient.
+    competing_grammar:
+      - competing_japanese:
+          - 駐車 場 が {あり ませ ん}。
+        english: There is no parking lot.
+        hint: This sentence simply states the absence of a parking lot. We're looking for a phrase that
+          describes a hotel as having no parking lot.
+      - competing_japanese:
+          - 駐車 場 を {持っ て い ない} ホテル。
+        english: A hotel that is not holding a parking lot.
+        hint: 「持っていない」 implies active non-possession, which is unnatural for describing a hotel's facilities;
+          it implies active non-possession by an animate entity. We're looking for a polite phrase describing
+          the absence of a facility.
+      - competing_japanese:
+          - 駐車 場 {無し} の ホテル。
+        english: A hotel without a parking lot.
+        hint: While 「〜無し」 is commonly used for 'without', 「がありません」 emphasizes the polite factual absence.
+          We're looking for a polite, direct statement about what the hotel *lacks*.
+      - competing_japanese:
+          - 駐車 {でき ない} ホテル
+        english: A hotel where you cannot park.
+        hint: The scene emphasizes the *feature* the hotel lacks as the source of inconvenience, not merely
+          the inability to perform an action (parking). We're looking for a polite description of what
+          the hotel *has*.
+    scene: A business traveler giving feedback to a hotel staff member.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The polite 「ありません」 is appropriate for formal feedback. 「駐車 場が ありません ホテル」 clearly states the
+      absence of a parking lot as a critical lacking feature from a business perspective. The phrase is
+      direct and objective, suitable for a male speaker in a professional setting.
+  - english: The place that used to have a large forest is now a big road.
+    japanese:
+      - 昔、大きな 林 が {あっ た} 場所 は 今、大きな 道 に なっ た。
+      - 昔、大きな 林 の {あっ た} 場所 は 今、大きな 道 に なっ た。
+      - 昔、大きな 森 が {あっ た} 場所 は 今、大きな 道 に なっ た。
+    english_literally: Long ago, a large forest existed place is now a large road became.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、大きな 林 が {あっ た}。
+        english: Long ago, there was a large forest.
+        hint: This sentence simply states the past existence of a large forest. We're looking for a phrase
+          that describes a place as having had a large forest.
+      - competing_japanese:
+          - 大きな 林 を {持っ て い た} 場所。
+        english: A place that was holding a large forest.
+        hint: 「持っていた」 implies active possession, which is not typically used for a place 'having' a forest
+          in this descriptive context. We're looking for a phrase describing what the place inherently
+          contained in the past.
+      - competing_japanese:
+          - 大きな 林 {付き} の 場所。
+        english: A place with a large forest attached.
+        hint: 「〜付き」 implies an attachment, which is unnatural for describing a natural feature like a
+          forest of a place. We're looking for a phrase describing what the place inherently contained
+          in the past.
+      - competing_japanese:
+          - 昔、林 {だっ た} 場所
+        english: The place that used to be a forest.
+        hint: The scene emphasizes the past possession of the forest as a defining characteristic of the
+          place, guiding towards a structure describing past possession, rather than merely stating what
+          the place *was*. We're looking for a description of what the place *had*.
+    scene: An elderly person explaining how their hometown has changed over time.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_age: older
+    nuance: The plain past tense 「あった」 is suitable for casual reflection. 「大きな 林が あった 場所」 describes a
+      past characteristic of the location, fitting the nostalgic tone of an older speaker reminiscing
+      about changes to their hometown. This phrasing is gender-neutral.
+  - english: I visited a park that had a beautiful lake.
+    japanese:
+      - 美しい 湖 が {あり まし た} 公園 を 訪れ まし た。
+      - 美しい 湖 の {あり まし た} 公園 に 行き まし た。
+      - 美しい 湖 が {あっ た} 公園 を 訪れ まし た。
+    english_literally: Beautiful lake existed park visited.
+    competing_grammar:
+      - competing_japanese:
+          - 美しい 湖 が {あり まし た}。
+        english: There was a beautiful lake.
+        hint: This sentence simply states the past existence of a beautiful lake. We're looking for a
+          phrase that describes a park as having had a beautiful lake.
+      - competing_japanese:
+          - 美しい 湖 を {持っ て い まし た} 公園。
+        english: A park that was holding a beautiful lake.
+        hint: 「持っていました」 implies active possession, which is unnatural for describing a park's natural
+          feature. We're looking for a polite phrase describing what the park inherently contained.
+      - competing_japanese:
+          - 美しい 湖 {付き} の 公園。
+        english: A park with a beautiful lake attached.
+        hint: 「〜付き」 implies an attachment, which is unnatural for describing a natural feature like a
+          lake of a park. We're looking for a polite phrase describing what the park inherently contained.
+      - competing_japanese:
+          - 美しい 湖 の {あっ た} 公園
+        english: A park where a beautiful lake was located.
+        hint: The scene implies a polite and direct description. We're looking for a polite description
+          of what the park *had*.
+    scene: A person describing their travel experience to a new acquaintance in a polite manner.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: The polite past 「ありました」 fits a polite, informative conversation. 「美しい 湖が ありました 公園」 describes
+      the park by a beautiful feature it once possessed, suitable for sharing a pleasant memory with a
+      new acquaintance. This phrasing is gender-neutral.
+  - english: The era that had no telephones was inconvenient.
+    japanese:
+      - 昔、電話 が {なかっ た} 時代 は 不便 だっ た。
+      - 電話 の {なかっ た} 時代 は 不便 だっ た ん だ よ ね。
+      - 電話 が {なかっ た} 頃 は 不便 だっ た。
+    english_literally: Long ago, telephone existed not era was inconvenient.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、電話 が {なかっ た}。
+        english: Long ago, there were no telephones.
+        hint: This sentence simply states the past absence of telephones. We're looking for a phrase that
+          describes an era as having no telephones.
+      - competing_japanese:
+          - 電話 を {持っ て い なかっ た} 時代。
+        english: An era that was not holding telephones.
+        hint: 「持っていなかった」 is unnatural for describing an era's lack of technology. We're looking for a
+          plain past phrase describing the absence of a feature in an era.
+      - competing_japanese:
+          - 電話 {無し} の 時代。
+        english: An era without telephones.
+        hint: 「〜無し」 describes the absence, but 「がなかった」 more directly conveys the characteristic of the
+          era not having telephones. We're looking for a plain past phrase describing the absence of a
+          feature in an era.
+      - competing_japanese:
+          - 電話 が {ない} 時代
+        english: An era where there are no telephones (present tense).
+        hint: The scene clearly refers to a past era, necessitating the past tense. We're looking for
+          a plain past description of what the era *didn't have*.
+    scene: A female history teacher explaining communication in ancient times.
+    register: formal
+    setting: academic
+    conjugation: negative past plain (～なかった)
+    speaker_gender: female
+    nuance: The plain negative past 「なかった」 is factual and appropriate for an academic explanation. 「電話が
+      なかった 時代」 explicitly states the absence of telephones as a defining characteristic of that historical
+      period, contributing to its inconvenience. The female speaker provides objective information to
+      students.
+  - english: At that time, there were many houses that still didn't have electricity.
+    japanese:
+      - その 頃 は、まだ 電気 が {あり ませ ん でし た} 家 が 多かっ た。
+      - その 頃 は、まだ 電気 の {あり ませ ん でし た} 家 が 多かっ た です。
+      - その 頃 は、まだ 電気 が {なかっ た} 家 が たくさん あっ た。
+    english_literally: At that time, still electricity existed not house many existed.
+    competing_grammar:
+      - competing_japanese:
+          - その 頃 は、まだ 電気 が {あり ませ ん でし た}。
+        english: At that time, there was still no electricity.
+        hint: This sentence simply states the past absence of electricity. We're looking for a phrase
+          that describes houses as not having had electricity.
+      - competing_japanese:
+          - 電気 が {持っ て い ませ ん でし た} 家。
+        english: Houses that were not holding electricity.
+        hint: 「持っていませんでした」 implies active non-possession, which is unnatural for describing houses lacking
+          utilities. We're looking for a polite past phrase describing the absence of a utility in houses.
+      - competing_japanese:
+          - 電気 {無し} の 家。
+        english: Houses without electricity.
+        hint: 「〜無し」 describes the absence, but 「がありませんでした」 more directly conveys the polite factual absence
+          of the utility. We're looking for a polite past phrase describing the absence of a utility in
+          houses.
+      - competing_japanese:
+          - 電気 が {通っ て い なかっ た} 家
+        english: Houses where electricity wasn't running.
+        hint: The scene emphasizes the *state* of not having electricity as a defining feature of the
+          house, not just the utility not *passing through*. We're looking for a polite past description
+          of what the house *didn't have*.
+    scene: A male journalist reporting on historical living conditions in a rural area to a group of listeners.
+    register: formal
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The polite negative past 「ありませんでした」 is suitable for a formal journalistic report. 「電気が ありませんでした
+      家」 precisely describes the past condition of houses lacking electricity, fitting a formal, informative
+      tone when addressing a group. This phrasing is direct and objective, typical for a male journalist.
+  - english: A person who has a bright personality is wonderful.
+    japanese:
+      - 明るい 性格 が {ある} 人 は 素敵 です。
+      - 明るい 性格 の {ある} 人 は 素敵 です。
+      - 明るい 性格 が {ある} 方 は 素敵 です。
+    english_literally: Bright personality exists person is wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - 性格 が {明るい} 人。
+        english: A person whose personality is bright.
+        hint: This phrase describes the person by stating their personality is bright using an adjective.
+          We're looking for a phrase that describes a person as having a bright personality.
+      - competing_japanese:
+          - 明るい 性格 を {持っ て いる} 人。
+        english: A person who is holding a bright personality.
+        hint: 「持っている」 implies actively possessing something. While technically understandable, 「がある」 is
+          more natural for describing an inherent characteristic like personality.
+    scene: Someone giving a compliment or a general observation about positive personality traits.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses the plain form 「ある」 with a polite ending 「です」 to make a general, positive
+      observation. 「明るい 性格が ある 人」 emphasizes the presence of a bright personality as an inherent quality,
+      rather than simply describing the personality itself with an adjective. This phrasing is gender-neutral.
+  - english: A restaurant that didn't have vegetarian options was difficult to find.
+    japanese:
+      - ベジタリアン メニュー が {あり ませ ん でし た} レストラン は 見つけ にくかっ た です。
+      - ベジタリアン メニュー の {あり ませ ん でし た} レストラン は 見つけ にくかっ た です。
+      - ベジタリアン メニュー が {ない} レストラン は 見つけ にくかっ た です。
+    english_literally: Vegetarian menu existed not restaurant was difficult to find.
+    competing_grammar:
+      - competing_japanese:
+          - ベジタリアン メニュー が {なかっ た} レストラン。
+        english: A restaurant where there were no vegetarian options (plain form).
+        hint: While this uses the plain past negative, the example requires a polite expression suitable
+          for a complaint or polite recounting of an experience. We're looking for a polite negative past
+          description of what the restaurant *didn't have*.
+      - competing_japanese:
+          - ベジタリアン メニュー を {持っ て い なかっ た} レストラン。
+        english: A restaurant that was not holding vegetarian options.
+        hint: 「持っていなかった」 implies active non-possession, which is less natural for describing a restaurant's
+          offerings. We're looking for a polite, factual statement about the absence of a menu item.
+      - competing_japanese:
+          - ベジタリアン メニュー {無し} の レストラン。
+        english: A restaurant without vegetarian options.
+        hint: 「〜無し」 directly states the absence but 「がありませんでした」 provides a more natural and polite way
+          to describe a facility's lacking feature in past polite tense.
+    scene: A customer recounting a past dining experience to a friend or service staff.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: negative past polite (～ませんでした)
+    nuance: The polite negative past 「ありませんでした」 is used to describe a past inconvenience in a polite context.
+      「ベジタリアン メニューが ありませんでした レストラン」 concisely explains why the restaurant was difficult to find by highlighting
+      its lack of specific options. This phrasing is gender-neutral.
+  - english: A movie that has a strong message often makes you think.
+    japanese:
+      - 強い メッセージ が {ある} 映画 は よく 考え させ ます。
+      - 強い メッセージ の {ある} 映画 は よく 考え させ ます。
+      - 強い メッセージ が {ある} 映画 って、考え させ られる よ ね。
+    english_literally: Strong message exists movie often think causes.
+    competing_grammar:
+      - competing_japanese:
+          - メッセージ が {強い} 映画。
+        english: A movie whose message is strong.
+        hint: This phrase uses an adjective to describe the strength of the message. We're looking for
+          a phrase that describes a movie as having a strong message as an inherent characteristic.
+      - competing_japanese:
+          - 強い メッセージ を {持っ て いる} 映画。
+        english: A movie that is holding a strong message.
+        hint: 「持っている」 is typically for active possession of tangible items. For an abstract concept like
+          a 'message,' 「がある」 is more appropriate to indicate its presence or existence as a characteristic.
+    scene: A film critic or student discussing the impact of certain films.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses the plain form 「ある」 in a general statement about movies. 「強い メッセージが ある 映画」
+      emphasizes that the movie possesses or contains a strong message as a defining feature, which then
+      leads to deeper thought. This phrasing is gender-neutral.
+  - english: A project that has great potential.
+    japanese:
+      - 素晴らしい 可能 性 が {ある} プロジェクト。
+      - 素晴らしい 可能 性 の {ある} プロジェクト。
+    english_literally: Great potential exists project.
+    competing_grammar:
+      - competing_japanese:
+          - 可能 性 が {素晴らしい} プロジェクト。
+        english: A project whose potential is great.
+        hint: This phrase uses an adjective to describe the potential. We're looking for a phrase that
+          describes a project as *having* great potential.
+      - competing_japanese:
+          - 素晴らしい 可能 性 を {持っ て いる} プロジェクト。
+        english: A project that holds great potential.
+        hint: 「持っている」 implies an active holding, which is less natural when discussing an abstract quality
+          like potential. We're looking for a description of an inherent characteristic.
+    scene: A manager discussing a new business venture with their team.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses 「がある」 with an abstract noun like 「可能性」 (potential) to describe an inherent
+      quality of the 「プロジェクト」 (project). The phrase 「素晴らしい 可能 性が ある プロジェクト」 concisely conveys that the
+      project possesses this significant attribute. This is suitable for a professional and informative
+      setting, and the phrasing is gender-neutral.
+  - english: A person who has a strong sense of justice is often admired.
+    japanese:
+      - 強い 正義 感 が {ある} 人 は よく 尊敬 さ れ ます。
+      - 強い 正義 感 の {ある} 人 は よく 尊敬 さ れ ます。
+    english_literally: Strong sense of justice exists person often admired is.
+    competing_grammar:
+      - competing_japanese:
+          - 正義 感 が {強い} 人。
+        english: A person whose sense of justice is strong.
+        hint: This phrase describes the person by stating their sense of justice is strong using an adjective.
+          We're looking for a phrase that describes a person as *having* a strong sense of justice.
+      - competing_japanese:
+          - 強い 正義 感 を {持っ て いる} 人。
+        english: A person who holds a strong sense of justice.
+        hint: 「持っている」 implies active possession. While technically understandable, 「がある」 is more natural
+          for describing an inherent characteristic like a sense of justice.
+    scene: A discussion among friends about admirable qualities in people.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses 「がある」 to describe an abstract, inherent quality of a person. The polite
+      「尊敬 され ます」 makes it suitable for a general, positive observation or discussion among friends. This
+      phrasing is gender-neutral.
+post_example_writeup: This pattern functions as an adjective clause, describing the preceding noun. The
+  noun that comes before がある specifies what the following noun possesses or is characterized by. This
+  flexibility allows for precise and descriptive language when discussing characteristics.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がある-noun

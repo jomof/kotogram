@@ -1,0 +1,281 @@
+grammar_point: 万が一 (in the unlikely event)
+learn_before:
+  - Verb[ておく・とく] (preparation・advance action)
+  - ばあいは (in the event of)
+  - 際に (at the time of・when・on the occasion of)
+meaning: Just in case, In the unlikely event, By any chance
+meaning_warning: Can have a negative connotation
+pronunciation:
+  katakana: マンガイチ
+  romaji: mangaichi
+formation:
+  万が一 + [Situation]: Used to express a low probability event or an action taken as a precaution.
+jlpt: N2
+etymology: The term 「万が一」 literally means "one in ten thousand." It comes from the idea of something being
+  highly improbable, like winning the lottery or encountering a rare event. It emphasizes the low likelihood
+  of something happening but still warrants preparation or consideration.
+writeup: 「万が一」, sometimes shortened to 「万一」, literally means "one in ten thousand." It is used similarly
+  to phrases like "in the unlikely event of (A)" or "just in case (A)" in English. It highlights a precaution
+  against (A) or the consequence of (A). 「万が一」 is primarily used adverbially, often appearing at the beginning
+  of sentences. Note that 「万が一」 is considered slightly stronger than 「万一」, although 「万が一」 is more common
+  due to its ease of pronunciation. It's often used when discussing preparations for potential negative
+  outcomes, even if highly improbable, or when expressing a low probability of a positive outcome, such
+  as winning a lottery.
+false_friends:
+  - term: ばあいは
+    meaning: In the event of, In the case of
+    kind: similar expression
+    nuance: Unlike 「万が一」, 「場合 は」 focuses on a specific situation that might occur, without necessarily
+      implying it's unlikely. It is a neutral term for a conditional scenario, merely setting a premise.
+    grammar_point: ばあいは (in the event of)
+  - term: 一応
+    meaning: Just in case, Just to be sure
+    kind: similar expression
+    nuance: Unlike 「万が一」, 「一応」 implies a more routine or standard precaution or confirmation, not necessarily
+      for a rare or catastrophic event. It suggests doing something as a formality or preliminary step,
+      often when the outcome is somewhat expected.
+    grammar_point: 一応 (tentatively・for the time being)
+  - term: もしも
+    meaning: If, Supposing
+    kind: similar expression
+    nuance: While 「万が一」 emphasizes an extremely low probability event, 「もしも」 is a general hypothetical
+      'if' or 'in case' that does not necessarily carry the same connotation of unlikelihood or severity.
+    grammar_point: もし・もしも (if, emphasis)
+  - term: そうもない
+    meaning: Very unlikely to, Showing no signs of
+    kind: similar expression
+    nuance: 「万が一」 focuses on preparing for a highly unlikely event that might still occur. 「そうもない」 expresses
+      a strong subjective judgment that something is very unlikely to happen, reflecting a speaker's assessment
+      rather than a proactive preparation for a rare contingency.
+    grammar_point: そうにない・そうもない (unlikely to)
+  - term: かもしれない
+    meaning: Might, maybe, probably
+    kind: similar expression
+    nuance: 「万が一」 addresses an extremely rare but potentially significant occurrence, demanding consideration
+      or preventative action. 「かもしれない」 simply expresses a possibility or uncertainty, without conveying
+      the same degree of low probability or the need for specific preparation for a critical, unlikely
+      scenario.
+    grammar_point: かもしれない (might・maybe)
+post_false_friends_writeup: 「万が一」は、極めて低い確率の事態を想定し、それに備える際に用いられます。これに対し、「場合 は」は起こる可能性の度合いを問わず、単に何らかの状況を仮定する際に使われます。「一応」は念のためや確認のために行う、より日常的な行動や軽い予防策を指し、そこまで事態の重大性を強調しません。また、「もしも」は一般的な仮定を示す「もし」を強調したもので、「万が一」のような極端な低確率や重大な影響を必ずしも意味しません。「そうもない」は「〜しそうにない」のように、ある事態が起こる可能性が非常に低いと話者が判断している状況を表しますが、具体的な備えを促す「万が一」とは目的が異なります。最後に、「かもしれない」は単に可能性や不確実性を示す表現であり、「万が一」が持つ「めったに起こらないが、もしもの場合は重大」という切迫感や重要性はありません。これらの違いを理解することは、日本語の状況に応じた適切な表現選択において極めて重要です。
+examples:
+  - english: Let's buy rain gear just in case.
+    japanese:
+      - '{万が一} の 時 の ため に 雨具 を 買っ て おき ましょう。'
+      - '{万が一} に 備え て 雨具 を 買っ て おき ましょう。'
+      - '{万が一} の こと も ある から、雨具 を 買っ て おこう。'
+    english_literally: For the time of 'one in ten thousand' (unlikely event), let's buy rain gear and
+      keep it ready.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} 念 の ため 雨具 を 買っ て おき ましょう。'
+        english: Let's buy rain gear as a precaution.
+        hint: 「念 の ため」 implies a routine precaution. We're looking for an expression for an unlikely,
+          more significant event.
+      - competing_japanese:
+          - '{万が一} もし も の 時 の ため に 雨具 を 買っ て おき ましょう。'
+        english: Let's buy rain gear in case something happens.
+        hint: 「もしも」 is a general 'if' or 'in case'. We need to emphasize a truly low-probability event.
+    scene: Preparing for an outdoor event, acknowledging the slim chance of unexpected rain.
+    register: teineigo (polite)
+    setting: cautious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「～ましょう」 indicates a collective action or suggestion, commonly used in general discussions
+      or recommendations. The overall tone is practical and prepared for an unlikely contingency.
+  - english: In the unlikely event that you are unable to come, please contact us.
+    japanese:
+      - '{万が一} 来 れ なく なっ た 場合 は、連絡 を ください。'
+      - '{万が一}、ご 都合 が 悪く なり まし たら、ご 連絡 ください。'
+      - '{万が一} の 際 は、ご 一報 ください。'
+    english_literally: In the 'one in ten thousand' (unlikely) event that you become unable to come, please
+      contact us.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} もし 来 られ なく なっ た 場合 は、連絡 を ください。'
+        english: If you cannot come, please contact us.
+        hint: 「もし」 is a neutral conditional. We're looking for a phrase that stresses the unlikelihood
+          of the situation.
+    scene: A formal request from a company regarding an event attendance.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「～ください」 is a polite request, and the formal context of a company notification often
+      uses this precise and cautious phrasing with 「万が一」 to address rare but important possibilities,
+      ensuring clear communication.
+  - english: Could I possibly have your email address too, just in case?
+    japanese:
+      - '{万が一} の 時 の ため に メール アドレス も 教え て いただい て も よろしい でしょう か。'
+      - '{万が一} の 際 の ため に、メール アドレス を お 伺い し て も よろしい でしょ う か。'
+      - '{万が一} 何 か あっ た 時 の ため に、メール アドレス を いただける と 助かり ます。'
+    english_literally: For the time of 'one in ten thousand' (unlikely event), would it be alright if
+      you taught me your email address too?
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} 念 の ため メール アドレス も 教え て いただい て も よろしい でしょう か。'
+        english: Could I possibly have your email address too, just to be sure?
+        hint: 「念 の ため」 suggests a general precaution or confirmation. We need to express a situation that
+          is very unlikely to occur.
+    scene: Asking for contact information in a business setting after an initial exchange, implying the
+      contact is for rare circumstances.
+    register: bijinesu nihongo (business)
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The highly polite and indirect 「～いただい て も よろしい でしょう か」 is characteristic of business Japanese,
+      indicating deference to the listener and a careful approach to requesting personal information,
+      even for a low-probability scenario.
+  - english: If, by chance, there is something you don't understand, please ask me anything.
+    japanese:
+      - '{万が一} 分 から ない こと が あれ ば、何 で も 私 に 聞い て ください。'
+      - '{万一} 分 から ない こと が あれ ば、何 で も 私 に 聞い て ください。'
+      - '{万一} ご 不明 な 点 が ござい まし たら、何 なり と お 尋ね ください。'
+      - '{万が一} 分かん ない こと が あっ たら、なん で も 聞い て ね。'
+    english_literally: If, by 'one in ten thousand' (unlikely) chance, there is something you don't understand,
+      please ask me anything.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} もし 分 から ない こと が あれ ば、何 で も 私 に 聞い て ください。'
+        english: If you don't understand anything, please ask me anything.
+        hint: 「もし」 is a standard 'if'. We need a term that implies the speaker expects understanding but
+          offers help for the improbable case of confusion.
+    scene: A teacher encouraging a student during a lesson, hoping they understand but offering full support.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The polite 「～ください」 and the direct address 「私 に」 indicate a supportive and approachable demeanor
+      from the teacher. 「万一」 here conveys a slight emphasis on the hope that such a situation won't arise,
+      yet preparedness for it.
+  - english: If an unlikely event happens, it has been decided that the children will be entrusted to
+      grandmother.
+    japanese:
+      - '{万が一} の こと が あっ たら、祖母 の 家 に 子ども を 預ける こと に なっ て いる。'
+      - '{万が一} の 事態 に 備え て、子ども は 祖母 の 家 に 預ける こと に なっ て いる。'
+      - '{万一} の 時 は、お ばあ ちゃん の 家 に 子供 を 預ける こと に なっ てる よ。'
+    english_literally: If a matter of 'one in ten thousand' (unlikely event) should happen, it has been
+      decided that the children will be entrusted to grandmother's house.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} もし も の こと が あっ たら、祖母 の 家 に 子ども を 預ける こと に なっ て いる。'
+        english: If something happens, it has been decided that the children will be entrusted to grandmother.
+        hint: 「もしも」 refers to a general event. We are focusing on an 'unlikely' event that warrants serious
+          pre-planning.
+    scene: A parent discussing pre-arranged emergency childcare plans with their spouse.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「～こと に なって いる」 indicates a pre-established arrangement or rule, highlighting a serious, planned
+      approach to an unlikely but important event. The casual register is appropriate for family discussion
+      of such matters.
+  - english: By any chance, if I win the lottery, I think I'll go on a round-the-world trip.
+    japanese:
+      - '{万が一}、宝くじ が 当たっ たら、世界 一 周 旅行 を する と 思う。'
+      - '{万が一} 宝くじ に 当選 し たら、世界 一 周 旅行 に 行き たい と 思い ます。'
+      - '{万が一} 当たっ たら、世界 一 周 旅行 行こ うっ と！'
+    english_literally: By 'one in ten thousand' (unlikely) chance, if I win the lottery, I think I will
+      do a round-the-world trip.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} もし 宝くじ が 当たっ たら、世界 一 周 旅行 を する と 思う。'
+        english: If I win the lottery, I think I'll go on a round-the-world trip.
+        hint: 「もし」 indicates a simple 'if'. We want to convey the extreme unlikelihood of winning the
+          lottery.
+    scene: A person daydreaming aloud about a highly improbable but desirable event, full of optimistic
+      speculation.
+    register: casual
+    setting: optimistic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The casual 「～と 思う」 expresses a personal thought or speculation, typical for informal dreaming.
+      The use of 「万が一」 perfectly captures the extremely low probability of winning the lottery, yet allows
+      for imaginative planning and expresses an optimistic outlook.
+  - english: I decided to prepare medicine, just in case.
+    japanese:
+      - '{万が一} の ため に、薬 を 準備 する こと に し た。'
+      - '{万が一} に 備え て、薬 を 用意 する こと に し た。'
+      - '{万が一} の こと も ある し、薬 用意 し とこ う か な と 思っ た ん だ。'
+    english_literally: For the sake of 'one in ten thousand' (unlikely event), I decided to prepare medicine.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} 念 の ため に、薬 を 準備 する こと に し た。'
+        english: I decided to prepare medicine, just in case.
+        hint: 「念 の ため に」 is for a routine precaution. We're talking about preparing for something unforeseen
+          and improbable.
+    scene: A person explaining a recent decision to take a minor health precaution, anticipating an unlikely
+      need.
+    register: teineigo (polite)
+    setting: cautious
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「～こと に した」 indicates a personal decision has been made. 「万が一 の ため に」 specifically highlights
+      that this preparation is for a low-probability, yet possible, negative circumstance, like falling
+      ill unexpectedly or facing an unforeseen minor injury.
+  - english: Just in case you think of something, please tell me your idea.
+    japanese:
+      - '{万が一} 思いつい たら、アイデア を 教え て ください。'
+      - '{万が一} アイデア が 浮かび まし たら、ご 教示 ください。'
+      - '{万が一} なんか いい アイデア が あっ たら、教え て ね。'
+    english_literally: If, by 'one in ten thousand' (unlikely) chance, you come up with something, please
+      tell me your idea.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} もし 思いつい たら、アイデア を 教え て ください。'
+        english: If you think of something, please tell me your idea.
+        hint: 「もし」 is a general conditional. We are implying that coming up with an idea might be difficult
+          or unlikely in the immediate moment.
+    scene: A team leader asking for potential new ideas from a colleague, acknowledging it might be difficult
+      to come up with one right away.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The polite 「～ください」 softens the request, and 「万が一」 implies that the speaker doesn't expect
+      an immediate idea but wants to be prepared for the unlikely event that inspiration strikes, indicating
+      a flexible and considerate approach.
+  - english: Just in case you should find bear tracks, please let me know.
+    japanese:
+      - '{万が一} 熊 の 足跡 を 見つけ た 場合 は、連絡 し て ください。'
+      - '{万が一} 熊 の 足跡 を 発見 さ れ た 際 に は、すぐさま ご 連絡 ください。'
+      - '{万が一} 熊 の 足跡 を 見つけ たら、教え て ください ね。'
+    english_literally: In the 'one in ten thousand' (unlikely) event that you find bear tracks, please
+      contact me.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} もし 熊 の 足跡 を 見つけ た 場合 は、連絡 し て ください。'
+        english: If you find bear tracks, please let me know.
+        hint: 「もし」 is a general 'if'. The situation (finding bear tracks) is rare and significant, requiring
+          an expression of low probability.
+    scene: A park ranger giving safety instructions to hikers entering a wilderness area, emphasizing
+      rare but critical dangers.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The instruction is delivered politely with 「～ください」. The phrasing highlights a specific, dangerous,
+      yet unlikely scenario in a natural environment, where strict adherence to precautions is vital for
+      safety.
+  - english: You should always have a backup, just in case something goes wrong.
+    japanese:
+      - '{万が一} の こと が あっ て も いい よう に、必ず バックアップ を 取っ て おく べき です。'
+      - '{万が一} に 備え て、常 に バックアップ を 取っ て おい た 方 が いい です よ。'
+    english_literally: So that it's okay even if an 'one in ten thousand' (unlikely) event happens, you
+      should definitely make a backup.
+    competing_grammar:
+      - competing_japanese:
+          - '{万が一} 何 か あっ て も いい よう に、必ず バックアップ を 取っ て おく べき です。'
+        english: So that it's okay if something happens, you should definitely make a backup.
+        hint: 「何 か あっ て も」 is a general 'if something happens'. We want to emphasize the low probability
+          of the 'something'.
+    scene: A colleague advising another on data safety.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「～て も いい よう に」 expresses preparation to ensure that things are fine even if the
+      unlikely event occurs. This example highlights the proactive nature of 「万が一」, especially in a professional
+      context where precautions for rare failures are crucial. The use of 「必ず ～べき です」 adds a strong recommendation
+      or obligation.
+post_example_writeup: 「万が一」は、文字通り「万に一つ」の確率、つまり非常に起こる可能性の低い事態を想定して、その準備や対処を促す際に用いられます。例文では、その起こり得ないような事態を前提とした行動や、その後の展開が示されています。文頭に来ることが多く、後ろに続く節で「～た場合
+  (は)」「～たら」「～の時 (は)」「～のこと (が起きたら)」などの仮定表現を伴うことが一般的。

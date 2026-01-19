@@ -1,0 +1,291 @@
+grammar_point: い-Adjective[そう] (appearance)
+learn_before:
+  - そう (like that)
+meaning: Looks like, seems like (based on visual appearance)
+pronunciation:
+  katakana: ソウ
+  romaji: sou
+formation:
+  い-Adjective (drop い) + そうだ: Used to describe something's appearance based on direct observation. The
+    い is dropped from the adjective stem before adding そうだ.
+  いい → よさそうだ: The adjective いい (good) is an exception; it becomes よさそうだ when expressing appearance.
+jlpt: N4
+etymology: The origin of そう (like, seems) is believed to derive from the classical Japanese auxiliary
+  verb そう (so), which attached to the imperfective form of verbs or adjectives to indicate an appearance
+  or state. This particular 'そう' carries the nuance of 'looking that way' or 'appearing to be in that
+  state,' strongly tied to direct visual perception. Its development from a more general indicator of
+  state to one specifically for visual appearance highlights the Japanese language's capacity to refine
+  meanings for specific sensory inputs.
+writeup: |-
+  The grammar point 「い-Adjective[そう]」 is used to describe an appearance or impression based on direct visual observation. It means 'looks like' or 'seems like'. To form it, you drop the final い from an い-adjective and attach 「そうだ」. For example, 寒い (cold) becomes 寒そうだ (looks cold), and 難しい (difficult) becomes 難しそうだ (looks difficult).
+
+  There is a crucial exception: the adjective いい (good) does not become いそうだ. Instead, it transforms to よさそうだ (looks good). This irregular change is important to remember.
+
+  While 「そう」 can also mean 'I heard that' or 'it is said that', the formation is different. When 「そう」 refers to hearsay, it attaches to the full dictionary form of verbs and adjectives (e.g., 食べる そうだ, 寒い そうだ). For い-adjectives, this distinction is particularly important: 寒そうだ (looks cold, appearance) vs. 寒い そうだ (I heard it's cold, hearsay).
+
+  When 「い-Adjective[そう]」 modifies a noun, it functions like a な-adjective, taking 「な」 after 「そう」 (e.g., 寒そうな 日 - a day that looks cold; 楽しそうな 人 - a person who looks happy).
+false_friends:
+  - term: 動詞[ます-stem] + そうだ / い-形容詞 + そうだ / な-形容詞 + そうだ
+    meaning: I hear that, it is said that
+    kind: similar expression
+    nuance: This 'そうだ' conveys information heard from someone else, not a visual impression. For い-adjectives,
+      the hearsay form keeps the final い (e.g., 寒い そうだ - I heard it's cold), unlike the appearance form
+      which drops it (e.g., 寒そうだ - looks cold).
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: ようだ / みたいだ
+    meaning: It seems, it looks like, it's like
+    kind: similar expression
+    nuance: 「ようだ」 and 「みたいだ」 express a general impression or resemblance based on various types of evidence
+      (visual, auditory, contextual), not solely visual appearance. They can also be used for analogies
+      or comparisons, whereas appearance-そうは strictly visual.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: らしい
+    meaning: It seems, I hear, typical of
+    kind: similar expression
+    nuance: 「らしい」 is used when making an inference based on indirect evidence, rumors, or what is characteristic
+      or typical of something. It is less about direct visual observation and more about what is 'likely'
+      or 'seems to be the case' given the circumstances.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: とみえる
+    meaning: It seems, it appears (from logical deduction)
+    kind: similar expression
+    nuance: 「とみえる」 implies a logical deduction or conclusion drawn from observable facts or clues, rather
+      than a simple direct visual impression. It's often used when piecing together information to deduce
+      a hidden truth or reason.
+    grammar_point: とみえる (seems from observation)
+post_false_friends_writeup: When distinguishing 「い-Adjective[そう] (appearance)」 from other 'seems like'
+  expressions, remember that this 「そう」 is uniquely tied to direct visual perception. If you can see it
+  and make a judgment, use this form. For information you've heard, use the hearsay 「そうだ」. For broader
+  inferences or comparisons, 「ようだ」 or 「みたいだ」 are more appropriate. If you're inferring based on indirect
+  evidence or typical characteristics, 「らしい」 is the best choice. Finally, 「とみえる」 suggests a logical deduction
+  based on visual cues, going beyond a simple 'looks like' to an 'it appears to be the case because...'
+examples:
+  - english: That cake looks delicious.
+    japanese:
+      - その ケーキ、おいし そう だ ね。
+      - その ケーキ、おいし そう です ね。
+      - その ケーキ、おいし そう だ ぜ。
+      - その ケーキ、おいし そう よ。
+    english_literally: That cake, looks delicious, right.
+    competing_grammar:
+      - competing_japanese:
+          - その ケーキ、おいしい そう だ ね。
+        english: That cake, I heard it's delicious, right.
+        hint: The original sentence describes a visual appearance, not something you've heard. 「おいしい そうだ」
+          implies hearsay. We're looking for an observation of how the cake looks.
+      - competing_japanese:
+          - その ケーキ、おいしい みたい だ ね。
+        english: That cake, it seems delicious, right.
+        hint: 「みたいだ」 can be used, but 「おいしそうだ」 is more direct for a visual assessment of appearance. We're
+          looking for a direct visual impression.
+    scene: You and a friend are looking at a cake in a display case.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「おいしそうだ」 directly conveys a visual judgment about the cake. The particle 「ね」 at
+      the end seeks agreement from the listener, indicating shared observation.
+  - english: It looks cold outside, so you should wear a jacket.
+    japanese:
+      - 外 は 寒 そう だ から、ジャケット を 着 た ほう が いい よ。
+      - 外 は 寒 そう です から、ジャケット を 着 た ほう が いい です よ。
+      - 外 寒 そう だ から、ジャケット 着 た ほう が いい ぞ。
+    english_literally: Outside looks cold, so jacket wear better, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 外 は 寒い そう だ から、ジャケット を 着 た ほう が いい よ。
+        english: Outside is said to be cold, so you should wear a jacket.
+        hint: The original sentence is based on what you see (e.g., frost, gray skies), not what you've
+          heard. 「寒い そうだ」 indicates hearsay. We're looking for a visual assessment.
+    scene: A parent is advising their child before they leave the house.
+    register: casual
+    setting: instructional
+    nuance: 「寒そう だから」 explicitly links the visual appearance of coldness to the recommendation. The 「よ」
+      at the end adds a sense of assertion or advice.
+  - english: The test looks difficult.
+    japanese:
+      - この 試験 は 難し そう だ。
+      - この 試験 は 難し そう です。
+      - この 試験 難し そう だ な。
+    english_literally: This test looks difficult.
+    competing_grammar:
+      - competing_japanese:
+          - この 試験 は 難しい そう だ。
+        english: This test, I heard it's difficult.
+        hint: The original implies a visual judgment based on the test's appearance (e.g., length, types
+          of questions), not information heard from others. 「難しい そうだ」 implies hearsay.
+    scene: A student is looking at a test paper they just received.
+    register: casual
+    setting: academic
+    nuance: 「難しそうだ」 implies that the difficulty is apparent from the visual layout or content of the test,
+      rather than a personal struggle or an external report.
+  - english: The soup looks very hot, so be careful.
+    japanese:
+      - その スープ は とても 熱 そう です から、気 を 付け て ください。
+      - その スープ とても 熱 そう だ から、気 を 付け て ね。
+      - その スープ、随分 熱 そう です から、お 気 を 付け ください。
+    english_literally: That soup very looks hot, so please be careful.
+    competing_grammar:
+      - competing_japanese:
+          - その スープ は とても 熱い そう です から、気 を 付け て ください。
+        english: That soup, I heard it's very hot, so please be careful.
+        hint: The warning is based on a visual observation (e.g., steam), not hearsay. 「熱い そうだ」 is for
+          hearsay. We're looking for a visual assessment.
+    scene: A waiter is serving a customer a steaming bowl of soup.
+    register: formal
+    setting: professional
+    nuance: 「熱そう ですから」 uses the polite form and implies that the speaker is visually assessing the temperature,
+      perhaps from seeing steam or the color of the soup, and is giving a polite warning.
+  - english: This bag doesn't look very strong.
+    japanese:
+      - この カバン は 丈夫 そう じゃ ない です ね。
+      - この カバン、丈夫 そう じゃ ない ね。
+      - この カバン、あんまり 丈夫 そう じゃ ない よ。
+    english_literally: This bag not looks strong, right.
+    competing_grammar:
+      - competing_japanese:
+          - この カバン は 丈夫 じゃ ない そう です ね。
+        english: This bag, I heard it's not strong, right.
+        hint: The original is a visual judgment, not reported information. 「丈夫じゃない そうです」 is for hearsay.
+          We're looking for a visual assessment.
+    scene: A person is examining a bag in a store.
+    register: casual
+    setting: informative
+    nuance: 「丈夫そう じゃない」 expresses a negative visual impression regarding the bag's durability. The final
+      「ですね」 seeks confirmation from the listener.
+  - english: When I was little, that monster looked scary.
+    japanese:
+      - 小さい 時、あの モンスター は 恐ろし そう でし た ね。
+      - 小さい 時、あの モンスター、恐ろし そう だっ た ね。
+      - 小さい 時、あの モンスター、すっごく 恐ろし そう だっ た な。
+    english_literally: Small time, that monster looked scary, right.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい 時、あの モンスター は 恐ろしい そう でし た ね。
+        english: When I was little, I heard that monster was scary, right.
+        hint: The original sentence refers to a past visual experience, not something heard. 「恐ろしい そうでした」
+          implies hearsay. We're looking for a past visual impression.
+      - competing_japanese:
+          - 小さい 時、あの モンスター は 恐ろしい よう でし た ね。
+        english: When I was little, that monster seemed scary, right.
+        hint: 「ようでした」 is a general impression. We're looking for a direct visual impression from childhood.
+    scene: Two adults reminiscing about a movie they saw as children.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「恐ろしそうでした」 conveys a past visual impression from the speaker's childhood. The use
+      of 「ね」 invites the listener to share in the recollection or acknowledge the shared feeling.
+  - english: His face looked terribly pale.
+    japanese:
+      - 彼 の 顔 は ひどく 青白 そう だっ た。
+      - 彼 の 顔 は ひどく 青白 そう でし た。
+      - 彼 の 顔、ひどく 青白 そう だっ た よ。
+    english_literally: His face terribly looked pale.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 顔 は ひどく 青白い そう だっ た。
+        english: His face, I heard it was terribly pale.
+        hint: The sentence describes a direct visual observation, not something heard. 「青白い そうだった」 implies
+          hearsay. We're looking for a past visual assessment.
+    scene: A doctor recalling a patient's condition upon arrival.
+    register: casual
+    setting: serious
+    nuance: 「青白そうだった」 directly describes the visual state of the person's face. 「ひどく」 emphasizes the extreme
+      degree of paleness observed.
+  - english: This old car doesn't look like it can run anymore.
+    japanese:
+      - この 古い 車 は もう 走れ なさ そう だ。
+      - この 古い 車 は もう 走れ なさ そう です。
+      - この 古い 車、もう 走れ なさ そう だ な。
+    english_literally: This old car already not looks like it can run.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 車 は もう 走れ ない そう だ。
+        english: This old car, I heard it can't run anymore.
+        hint: The sentence is a visual judgment based on the car's condition, not reported information.
+          「走れない そうだ」 is for hearsay. We're looking for a visual assessment.
+    scene: Someone observing a very rusty and dilapidated car.
+    register: casual
+    setting: informative
+    nuance: 「走れなさそうだ」 is the negative form of potential + そうだ. It indicates that, based on visual inspection,
+      the car appears incapable of running. Note the potential form of the verb, which is then made into
+      an い-adjective equivalent for そうだ attachment.
+  - english: She bought a stylish-looking dress.
+    japanese:
+      - 彼女 は お しゃれ そう な ドレス を 買っ た。
+      - 彼女 は お しゃれ そう な ドレス を 買い まし た。
+    english_literally: She a stylish-looking dress bought.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は おしゃれ な そう ドレス を 買っ た。
+        english: She bought a dress that is said to be stylish.
+        hint: The original describes a visual style, not something heard. 「おしゃれな そう」 is incorrect as そう
+          doesn't attach directly to な-adjectives in their dictionary form for appearance. We're looking
+          for a visual assessment that modifies a noun.
+      - competing_japanese:
+          - 彼女 は お しゃれ そう だ ドレス を 買っ た。
+        english: She bought a dress that looks stylish.
+        hint: When modifying a noun, 「そうだ」 needs 「な」 after it, like a な-adjective. 「おしゃれそうだ ドレス」 is grammatically
+          incomplete. We're looking for a visual assessment that modifies a noun.
+    scene: Two friends discussing recent purchases.
+    register: casual
+    setting: friendly
+    nuance: 「おしゃれそうな」 uses the な-adjective form of 「そう」 to modify the noun 「ドレス」, indicating that the
+      dress *visually* appears stylish.
+  - english: The weather doesn't look like it will be good tomorrow.
+    japanese:
+      - 明日、天気 は よく なさ そう だ。
+      - 明日、天気 は よく なさ そう です。
+      - 明日、天気 よく なさ そう だ な。
+    english_literally: Tomorrow, weather looks not good.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、天気 は いい そう だ。
+        english: Tomorrow, the weather is said to be good.
+        hint: The original is a negative visual prediction based on current weather, not positive hearsay.
+          「いい そうだ」 is hearsay and positive. We're looking for a negative visual prediction.
+      - competing_japanese:
+          - 明日、天気 は よく ない そう だ。
+        english: Tomorrow, I heard the weather won't be good.
+        hint: The sentence is a visual judgment based on the current weather (e.g., clouds), not reported
+          information. 「良くない そうだ」 implies hearsay. We're looking for a negative visual assessment.
+    scene: Someone looking out the window at the sky.
+    register: casual
+    setting: informative
+    nuance: 「よくなさそうだ」 is the negative form of よさそうだ (looks good). It expresses a visual prediction based
+      on current observations that the weather will not be good. The exception for いい -> よさそう applies
+      here.
+  - english: He looks busy, so maybe it's better not to bother him now.
+    japanese:
+      - 彼 は 忙し そう だ から、今 は 声 を かけ ない ほう が いい か も しれ ない。
+      - 彼 は 忙し そう です から、今 は 声 を かけ ない ほう が いい か も しれ ませ ん。
+      - 彼、忙し そう だ から、今 は 声 を かけ ない ほう が いい だろう な。
+    english_literally: He looks busy, so now voice not call better maybe.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 忙しい そう だ から、今 は 声 を かけ ない ほう が いい か も しれ ない。
+        english: He is said to be busy, so maybe it's better not to bother him now.
+        hint: The judgment is based on his visual appearance (e.g., focused expression, pile of work),
+          not hearsay. 「忙しい そうだ」 implies hearsay. We're looking for a visual assessment.
+    scene: Two colleagues observing a third colleague deeply engrossed in work.
+    register: casual
+    setting: cautious
+    nuance: 「忙しそう だから」 indicates that the visual cues (e.g., focused expression, rapid typing) lead to
+      the conclusion that he is busy. This directly influences the decision not to interrupt.
+  - english: The soup didn't look very delicious yesterday.
+    japanese:
+      - 昨日、その スープ は あまり おいし そう じゃ なかっ た。
+      - 昨日、その スープ は あまり おいし そう で は あり ませ ん でし た。
+      - 昨日 その スープ、全然 おいし そう じゃ なかっ た よ。
+    english_literally: Yesterday, that soup not very looked delicious.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、その スープ は あまり おいしく なかっ た そう だ。
+        english: Yesterday, I heard that soup wasn't very delicious.
+        hint: The sentence refers to a past visual impression, not something heard. 「おいしくなかった そうだ」 implies
+          hearsay. We're looking for a negative past visual assessment.
+    scene: Two roommates discussing dinner from the previous night.
+    register: casual
+    setting: informative
+    nuance: 「おいしそう じゃなかった」 describes a past negative visual impression of the soup. It directly conveys
+      that, based on how it looked, it didn't seem appetizing.
+post_example_writeup: Remember that the appearance-based 「そう」 is specific to visual observations. Always
+  consider if your judgment is based on what you see, or on what you've heard, or a more general inference,
+  as this will determine which 'seems like' expression is appropriate.

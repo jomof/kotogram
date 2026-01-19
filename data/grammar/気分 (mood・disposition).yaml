@@ -1,0 +1,305 @@
+grammar_point: 気分 (mood・disposition)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[たら] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - い-Adjective[み] (abstract quality)
+  - いつも (always・usually)
+  - ちょっと (adverb)
+  - とき (when)
+  - ともなく (unintended action or unknown source)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - な-Adjective (predicate form)
+  - にする (to decide or make)
+  - は〜だ (topic & copula)
+  - より (comparative)
+  - 側 (side or flank)
+  - 屋 (shop or occupation suffix)
+  - 悪い (bad)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: mood・disposition
+pronunciation:
+  katakana: キブン
+  romaji: kibun
+formation:
+  気分: A noun referring to one's mood or the atmosphere.
+  Noun + が 気分 が いい/悪い: Expressing good or bad mood.
+  気分転換: Used in compounds to indicate a change of mood or pace.
+jlpt: N5
+etymology: 気分 combines 気 (ki), meaning 'spirit, mind, air', and 分 (bun), meaning 'part, share, portion'.
+  Historically, 気 (ki) in this context referred to vital energy or temperament, and 分 (bun) denoted a
+  division or aspect. Thus, 気分 literally conveys a 'portion' or 'aspect' of one's 'spirit' or 'energy',
+  leading to its meaning of mood, feeling, or disposition. This explains why it can apply to both internal
+  feelings and the 'feeling' or atmosphere of a place.
+writeup: 気分 (きぶん) is a versatile Japanese noun that primarily refers to a **mood, feeling, or disposition**.
+  It can describe both your **internal emotional or physical state** and the **external atmosphere or
+  ambiance** of a place or situation. When referring to a person's state, 気分 often indicates a temporary
+  feeling or disposition. For instance, if you are feeling unwell, you might say 気分が悪い (きぶんがわるい). If you
+  are feeling pleasant and light-hearted, you might say 気分がいい (きぶんがいい). It's important to distinguish
+  this from more specific emotions or physical sensations, as 気分 is quite general. 気分 can also be used
+  to describe the **atmosphere or general "feel"** of a place, event, or situation. For example, you might
+  talk about the 楽しい気分 (たのしいきぶん - pleasant atmosphere) of a party, even if it's literally describing the
+  feeling *at* the party rather than the party itself having a "mood." This word is widely used in various
+  contexts, from casual conversations among friends to more formal discussions. Its meaning is generally
+  understood from the context and the accompanying verbs or adjectives. Common collocations include 気分転換
+  (きぶんてんかん - a change of pace, literally "mood change") and 気分屋 (きぶんや - a moody person).
+false_friends:
+  - term: 気持ち
+    meaning: feeling, sensation, emotion
+    kind: similar expression
+    nuance: While both 気分 and 気持ち relate to internal states, 気持ち often implies a more direct, often physical,
+      sensation or a deeper, more specific emotion. For example, 気持ちがいい can mean "feels good" physically
+      (e.g., a warm bath), or emotionally (e.g., feeling touched by kindness). 気分がいい is more about a general
+      state of well-being or good humor.
+    grammar_point: <suggest>:気持ち (feeling・sensation)
+  - term: 機嫌
+    meaning: temper, humor, mood (especially in relation to others)
+    kind: similar expression
+    nuance: 機嫌 specifically refers to one's mood or temper, often implying how that mood affects interactions
+      with others or is perceived by others. For example, 機嫌がいい means "in a good temper" or "in a good
+      humor," implying readiness for pleasant interaction. 機嫌を損ねる means "to offend someone." It has a
+      stronger connotation of one's disposition influencing others.
+    grammar_point: <suggest>:機嫌 (temper・humor)
+  - term: 雰囲気
+    meaning: atmosphere, ambiance, mood (of a place/situation)
+    kind: similar expression
+    nuance: 雰囲気 is almost exclusively used for the atmosphere or ambiance of a place, situation, or group,
+      rather than an individual's internal mood. While 気分 can refer to an atmosphere, 雰囲気 is the primary
+      and more natural choice for describing the external feeling or aura.
+    grammar_point: <suggest>:雰囲気 (atmosphere・ambiance)
+post_false_friends_writeup: While 気分, 気持ち, 機嫌, and 雰囲気 all relate to feelings or "mood," their usage differs
+  subtly. 気分 is a general term for one's overall disposition or a general atmosphere. 気持ち often delves
+  into more specific feelings or physical sensations. 機嫌 focuses on one's temper, particularly how it
+  influences interactions. 雰囲気 is specifically about the external atmosphere or ambiance of a place or
+  situation. Understanding these distinctions will help you choose the most appropriate word for each
+  context.
+examples:
+  - english: I feel great today.
+    japanese:
+      - 今日 は 気分 が いい です。
+      - 今日 は 気分 が いい。
+      - 本日 は 気分 が よろしい です。
+    english_literally: Today, mood is good.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 気持ち が いい です。
+        english: Today, I feel good (physically/emotionally).
+        hint: 気持ちがいい often implies a physical sensation or a deeper emotional feeling, not just a general
+          disposition. We're looking for a general state of well-being.
+      - competing_japanese:
+          - 今日 は ご 機嫌 です。
+        english: Today, I'm in a good mood/temper.
+        hint: ご機嫌です suggests being in a good temper or humor, often implying readiness for pleasant interaction.
+          We're looking for a general feeling of well-being.
+    scene: A person waking up feeling refreshed.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: This sentence expresses a general sense of well-being or good spirits.
+  - english: I'm not feeling well.
+    japanese:
+      - 気分 が 悪い です。
+      - 気分 が 悪い。
+      - 体調 が 優れ ませ ん。
+    english_literally: Mood is bad.
+    competing_grammar:
+      - competing_japanese:
+          - 気持ち が 悪い です。
+        english: I feel bad (can be physically sick or unpleasant emotionally).
+        hint: 気持ちが悪い can also mean nauseous, but it's broader than just a general 'not feeling well' in
+          terms of disposition. We're looking for a general sense of unwellness.
+      - competing_japanese:
+          - 体調 が 悪い です。
+        english: My physical condition is bad.
+        hint: 体調が悪い specifically refers to one's physical health condition. We're looking for a more general
+          sense of not feeling well, which can include both physical and mental aspects.
+    scene: Someone calling in sick to work.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 気分が悪いです specifically means "feeling unwell" or "nauseous." It's a common way to express physical
+      discomfort.
+  - english: The mood at the party was really lively.
+    japanese:
+      - パーティー の 気分 は とても 賑やか でし た。
+      - パーティー の 気分 は とても 賑やか だっ た。
+      - 会合 の 気分 は 非常 に 賑やか で ござい まし た。
+    english_literally: The party's mood was very lively.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー の 雰囲気 は とても 賑やか でし た。
+        english: The atmosphere of the party was very lively.
+        hint: While both can describe a party, 雰囲気 (ふんいき) is generally preferred for the external ambiance
+          of a place or event. We're looking for a word that can also describe an internal state.
+      - competing_japanese:
+          - パーティー は とても 盛り上がり まし た。
+        english: The party was very exciting/got very lively.
+        hint: 盛り上がる (もりあがる) focuses on the excitement or liveliness of an event itself, rather than the
+          abstract "mood." We're looking for the mood of the party.
+    scene: Describing a successful party to a friend.
+    register: casual
+    setting: friendly
+    nuance: Here, 気分 refers to the general feeling or vibe of the party, as experienced by those present.
+  - english: After a walk, I feel refreshed.
+    japanese:
+      - 散歩 し たら、気分 が すっきり し まし た。
+      - 散歩 し たら、気分 が すっきり し た。
+    english_literally: If walked, mood became refreshed.
+    competing_grammar:
+      - competing_japanese:
+          - 散歩 し たら、気持ち が すっきり し まし た。
+        english: After a walk, my feelings/senses became refreshed.
+        hint: 気持ち (きもち) can also feel refreshed, but it often emphasizes mental clarity or sensory pleasantness
+          more than a general disposition. We're looking for a refreshed overall disposition.
+      - competing_japanese:
+          - 散歩 し たら、心 が 晴れやか に なり まし た。
+        english: After a walk, my heart became clear/bright.
+        hint: 心が晴れやかになる (こころがはれやかになる) is a more poetic expression meaning one's spirits lifted or worries
+          cleared. We're looking for a more common and direct way to say 'feel refreshed'.
+    scene: A person reflecting on how a walk improved their state.
+    register: casual
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: すっきり (sukkiri) implies a refreshed, clear feeling, often after something unpleasant has passed.
+  - english: His behavior spoiled the mood.
+    japanese:
+      - 彼 の 行動 で 気分 が 台無し に なっ た。
+      - 彼 の 行動 で 気分 が 台無し に なり まし た。
+    english_literally: By his action, the mood became ruined.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 行動 で 雰囲気 が 悪く なっ た。
+        english: His behavior made the atmosphere bad.
+        hint: 雰囲気が悪くなった (ふんいきがわるくなった) refers to the atmosphere of a place or group becoming unpleasant.
+          We're looking for the 'mood' being spoiled, which can apply to individuals or a collective.
+      - competing_japanese:
+          - 彼 の せい で 場 が 白け た。
+        english: Because of him, the atmosphere/place became awkward/dull.
+        hint: 場が白ける (ばがしらける) means the mood or atmosphere of a place became awkward or dull, often due
+          to an inappropriate comment or action. We're looking for a direct reference to 'mood' being
+          spoiled.
+    scene: A friend complaining about someone's rude behavior at an event.
+    register: casual
+    setting: humorous
+    nuance: 台無しになった (dainashi ni natta) means "to be ruined" or "to be spoiled." This shows 気分 being negatively
+      affected by external factors.
+  - english: Let's go for a drive to clear our heads.
+    japanese:
+      - 気分 転換 に ドライブ に 行こう。
+      - 気分 転換 に ドライブ に 行き ましょう。
+    english_literally: For mood change, let's go for a drive.
+    competing_grammar:
+      - competing_japanese:
+          - 気分 を 変え に ドライブ に 行こう。
+        english: Let's go for a drive to change our mood.
+        hint: 気分を変える (きぶんをかえる) literally means 'to change one's mood', but 気分転換 is the more common and
+          idiomatic phrase for 'a change of pace' or 'to refresh oneself'. We're looking for the standard
+          idiomatic expression.
+      - competing_japanese:
+          - リフレッシュ し に ドライブ に 行こう。
+        english: Let's go for a drive to refresh ourselves.
+        hint: リフレッシュ (refresh) is a direct loanword and implies refreshment, but 気分転換 specifically addresses
+          changing one's 'mood'. We're looking for the phrase that uses the target grammar point.
+    scene: A coworker suggesting a short break after a stressful meeting.
+    register: casual
+    setting: friendly
+    nuance: 気分転換 is a common fixed expression meaning "a change of pace" or "refreshment," literally "mood
+      change."
+  - english: He's quite a moody person, so you never know what he'll do.
+    japanese:
+      - 彼 は かなり の 気分 屋 だ から、何 を する か 分から ない よ。
+      - 彼 は かなり の 気分 屋 です から、何 を なさる か 分かり ませ ん よ。
+    english_literally: He is quite a mood-person, so what he does is not known.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 気まぐれ だ から、何 を する か 分から ない よ。
+        english: He's fickle/whimsical, so you never know what he'll do.
+        hint: 気まぐれ (きまぐれ) means whimsical or fickle, referring to unpredictable changes in behavior or
+          desire, rather than a consistent pattern of mood swings. We're looking for a person defined
+          by their changeable mood.
+      - competing_japanese:
+          - 彼 は 機嫌 が 変わり やすい から、何 を する か 分から ない よ。
+        english: He changes his temper easily, so you never know what he'll do.
+        hint: 機嫌が変わりやすい (きげんがかわいやすい) means one's temper changes easily. While similar, 気分屋 emphasizes
+          the *type of person* rather than just the tendency. We're looking for a noun describing a moody
+          person.
+    scene: Two friends discussing a mutual acquaintance's unpredictable personality.
+    register: casual
+    setting: friendly
+    nuance: 気分屋 (きぶんや) refers to someone whose mood changes frequently and unpredictably. 〜だから (dakara)
+      gives the reason for the unpredictability.
+  - english: I don't feel like eating anything right now.
+    japanese:
+      - 今 は 何 も 食べる 気分 じゃ ない。
+      - 今 は 何 も 食べる 気分 で は あり ませ ん。
+      - 今 は 何 も 食べる 気 じゃ ない。
+    english_literally: Now, it is not the mood to eat anything.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は 何 も 食べ たく ない。
+        english: Right now, I don't want to eat anything.
+        hint: 食べたくない (tabetakunai) directly expresses a lack of desire to eat without specifying it's
+          due to one's 'mood'. We're looking for an expression that ties the lack of desire to one's mood.
+      - competing_japanese:
+          - 今 は 食欲 が ない。
+        english: Right now, I have no appetite.
+        hint: 食欲がない (しょくよくがない) refers specifically to a lack of appetite, a physical condition. We're
+          looking for a more general statement about not being in the mood to eat.
+    scene: A person declining food offer due to lack of appetite or desire.
+    register: casual
+    setting: casual slang
+    nuance: 〜気分じゃない (kibun janai) means "not in the mood for ~" or "don't feel like ~."
+  - english: When I'm playing games, I always feel great.
+    japanese:
+      - ゲーム を し て いる とき は、いつ も 気分 が 最高 だ。
+      - ゲーム を し て いる とき は、いつ も 気分 が 最高 です。
+    english_literally: When doing games, always mood is the best.
+    competing_grammar:
+      - competing_japanese:
+          - ゲーム を し て いる とき は、いつ も 気持ち が 最高 だ。
+        english: When playing games, my feelings are always the best.
+        hint: 気持ち (きもち) can describe a feeling or sensation, but 気分 (きぶん) specifically refers to one's
+          general disposition or state of mind. We're looking for the overall feeling of well-being.
+      - competing_japanese:
+          - ゲーム を し て いる とき は、いつ も 楽しく て しょう が ない。
+        english: When playing games, it's always so fun I can't help myself.
+        hint: 楽しくてしょうがない (たのしくてしょうがない) describes an intense feeling of fun, but it doesn't directly state
+          one's 'mood' as being great. We're looking for a direct statement about the excellent mood.
+    scene: A teenager expressing their passion for gaming.
+    register: casual
+    setting: excited
+    nuance: 最高 (saikō) means "the best" or "supreme." This example shows 気分と with a superlative to express
+      extreme positive feelings.
+  - english: Her kind words lifted my spirits.
+    japanese:
+      - 彼女 の 優しい 言葉 が、私 の 気分 を 明るく し た。
+      - 彼女 の 優しい 言葉 が、私 の 気分 を 明るく し まし た。
+    english_literally: Her kind words, my mood, made bright.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 優しい 言葉 が、私 の 気持ち を 明るく し た。
+        english: Her kind words brightened my feelings/heart.
+        hint: 気持ち (きもち) can also be 'brightened', referring to one's feelings or spirit. 気分 (きぶん) here
+          emphasizes the general disposition or state of mind. We're looking for how her words affected
+          the overall mood.
+      - competing_japanese:
+          - 彼女 の 優しい 言葉 が、私 を 元気 に し て くれ た。
+        english: Her kind words cheered me up/made me energetic.
+        hint: 元気にする (げんきにする) means to make someone energetic or cheerful. While it implies a lifted spirit,
+          it's more about energy/liveliness than a change in 'mood'. We're looking for the direct impact
+          on one's mood.
+    scene: A person sharing how a friend's compassion helped them.
+    register: casual
+    setting: supportive
+    conjugation: past plain (～た)
+    nuance: 明るくした (akaruku shita) means "made bright," implying it cheered up the person's mood. This
+      is an active way of describing how 気分 can be influenced.
+post_example_writeup: As illustrated in the examples, 気分 is a fundamental noun for expressing states of
+  mind and atmosphere. Pay attention to the particles and verbs used with it, as they often clarify the
+  precise nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/気分

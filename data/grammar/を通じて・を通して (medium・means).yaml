@@ -1,0 +1,235 @@
+grammar_point: を通じて・を通して (medium・means)
+learn_before:
+  - と伝える (to convey or report)
+meaning: through; via; throughout
+pronunciation:
+  katakana: ヲツウジテ・ヲトオシテ
+  romaji: o wo tsuujite・o wo tooshite
+formation:
+  Noun + を通じて: Used to indicate a medium, channel, or duration.
+  Noun + を通して: Used to indicate a medium, channel, or duration, often emphasizing continuous passage.
+jlpt: N2
+etymology: The expressions 「を通じて」 and 「を通して」 both originate from the transitive verb 「通す (tōsu)」 and the
+  intransitive verb 「通じる (tsūjiru)」, which share the fundamental concept of "passing through" or "making
+  a path." 「通す」 means to pass something through, to let something go through, or to carry out an action
+  continuously. 「通じる」 means to get through, to be understood, or to lead to. The particle 「を」 marks the
+  noun as the object or medium that is traversed or used. Over time, these forms evolved to express both
+  the **means or channel** through which something is done (e.g., communicating *through* a language)
+  and the **continuous duration or scope** over which something extends (e.g., studying *throughout* the
+  year). The nuances between them developed as 「通じる」 emphasizes connection and transmission, while 「通す」
+  emphasizes the act of passing or persistence.
+writeup: |-
+  「を通じて」 and 「を通して」 are versatile grammatical expressions in Japanese, both indicating a path, a means, or a duration. While often interchangeable, they carry subtle differences in nuance and common usage.
+
+  **Usage 1: Indicating a Medium or Means (～を通して/～を通じて)**
+  This is the most common use, signifying that something is done *through* or *via* a particular medium, channel, or person.
+  *   **「を通じて」** often suggests a more formal, indirect, or established channel. It can imply a broader scope or a collective action. For instance, receiving information "through media" (メディアを通じて) or learning "through education" (教育を通じて). It also appears in expressions like "throughout history" (歴史を通じて).
+  *   **「を通して」** can also indicate a medium, but it often implies a more direct passage or a specific experience gained *through* something. For example, communicating "through an interpreter" (通訳を通して) or understanding something "through experience" (経験を通して). It can emphasize the *process* of passing through.
+
+  **Usage 2: Indicating Continuous Duration or Scope (～を通して)**
+  In this usage, **「を通して」** (and less commonly 「を通じて」) signifies "throughout" or "all through" a certain period or range. It emphasizes continuity from beginning to end.
+  *   Example: "working all through the night" (一晩を通して働く) or "remaining popular throughout the year" (一年を通して人気がある).
+  This usage highlights that an action or state persists continuously over the specified time or area.
+
+  **Important Considerations:**
+  *   **Formality**: Both forms are generally formal or semi-formal. In casual conversation, other expressions like 「で」 or simpler phrasing might be used.
+  *   **Interchangeability**: In many contexts, 「を通じて」 and 「を通して」 are interchangeable, especially when referring to a medium or channel. However, 「を通して」 is more commonly used for continuous duration.
+  *   **Historical Context**: Both derive from verbs meaning "to pass through," which helps in understanding their core meaning of traversing a medium or time.
+false_friends:
+  - term: によって (means・method)
+    meaning: by means of; due to
+    kind: similar expression
+    nuance: 「によって」 emphasizes the **agent** or **cause** behind an action or method. It's often used when
+      an action is performed *by* someone/something, or *due to* a particular reason. In contrast, 「を通じて・を通して」
+      emphasize the **channel** or **medium** through which an action or state extends. Think of 「によって」
+      as focusing on *who* or *what* initiates, and 「を通じて・を通して」 on *how* it gets there or *over what span*.
+    grammar_point: <suggest>:によって (means・method)
+  - term: を介して・介した (through an intermediary)
+    meaning: through an intermediary; via
+    kind: similar expression
+    nuance: 「を介して」 specifically implies using a **person** or a **specific mediating entity** as an intermediary.
+      It's more restrictive than 「を通じて・を通して」, which can refer to broader concepts like "media," "education,"
+      or "experience" as channels, not just specific intermediaries.
+    grammar_point: を介して・介した (through an intermediary)
+  - term: あいだ (between・among・while・during)
+    meaning: between; among; while; during
+    kind: often confused with
+    nuance: While both can relate to duration, 「を通して」 emphasizes a continuous state *throughout* the entire
+      period. 「あいだ」 indicates a period *within* which something happens, or a duration *between* two points.
+      It doesn't necessarily imply continuous presence or action for the whole duration.
+    grammar_point: あいだ (between・among・while・during)
+post_false_friends_writeup: 'To summarize the distinctions: when considering the means or channel, 「によって」
+  highlights the actor or reason, 「を介して」 specifies a distinct intermediary, while 「を通じて・を通して」 point to
+  a general medium or channel. For duration, 「を通して」 signifies continuity across the entire period, whereas
+  「あいだ」 refers to a span within which events occur, or a period between things. Choosing the right expression
+  depends on whether you want to emphasize the agent, the specific intermediary, the general channel,
+  or the continuous nature of a duration.'
+examples:
+  - english: We learn about foreign cultures through books.
+    japanese:
+      - 私 たち は 本 {を 通じ て} 外国 の 文化 を 学び ます。
+      - 私 たち は 本 {を 通し て} 外国 の 文化 を 学び ます。
+    english_literally: As for us, through books, foreign culture we learn.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 本 で 外国 の 文化 を 学び ます。
+        english: We learn about foreign cultures by means of books.
+        hint: 「で」 indicates a general means or instrument, but 「を通じて」 emphasizes the book as a specific
+          channel or medium for broader understanding. We're looking for a grammar point that suggests
+          a formal channel.
+    scene: A student is discussing how they gain knowledge.
+    register: formal
+    setting: academic
+  - english: I heard the news through my friend.
+    japanese:
+      - 友達 {を 通し て} その ニュース を 聞き まし た。
+      - 友達 {を 通じ て} その ニュース を 聞き まし た。
+    english_literally: Through friend, that news heard.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 から その ニュース を 聞き まし た。
+        english: I heard that news from my friend.
+        hint: 「から」 indicates a source. 「を通して」 emphasizes the friend as the channel or conduit for the
+          information. We're looking for a grammar point that suggests the person acted as a medium.
+    scene: Someone is explaining how they received information.
+    register: semi-formal
+    setting: friendly
+  - english: This plant blooms all through the year.
+    japanese:
+      - この 植物 は 一 年 {を 通し て} 花 を 咲か せ ます。
+      - この 植物 は 一 年 {を 通じ て} 花 を 咲か せ ます。
+    english_literally: This plant, one year through, flowers makes bloom.
+    competing_grammar:
+      - competing_japanese:
+          - この 植物 は 一 年 の あいだ 花 を 咲か せ ます。
+        english: This plant blooms during the period of one year.
+        hint: 「あいだ」 indicates a period within which something occurs, but 「を通して」 emphasizes continuous
+          blooming *throughout* the entire year. We're looking for a grammar point that suggests continuity
+          from beginning to end.
+    scene: A botanist is describing a specific plant's characteristics.
+    register: formal
+    setting: informative
+  - english: He conveyed his feelings through a letter.
+    japanese:
+      - 彼 は 手紙 {を 通じ て} 気持ち を 伝え まし た。
+      - 彼 は 手紙 {を 通し て} 気持ち を 伝え まし た。
+    english_literally: As for him, through a letter, feelings conveyed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 手紙 で 気持ち を 伝え まし た。
+        english: He conveyed his feelings by letter.
+        hint: 「で」 is a general means, but 「を通じて」 highlights the letter as the specific channel through
+          which the feelings were *transmitted*. We're looking for a grammar point that implies a formal
+          conduit.
+    scene: Someone is talking about how a person expressed themselves.
+    register: formal
+    setting: storytelling
+    speaker_gender: male
+    nuance: This sentence shows a formal way for a male speaker to express emotion via a written medium.
+      Using 「を通じて」 emphasizes the letter as the official channel of communication.
+  - english: We deepened our friendship through travel.
+    japanese:
+      - 旅行 {を 通し て} 私 たち は 友情 を 深め まし た。
+      - 旅行 {を 通じ て} 私 たち は 友情 を 深め まし た。
+    english_literally: Through travel, as for us, friendship deepened.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 で 私 たち は 友情 を 深め まし た。
+        english: We deepened our friendship by means of travel.
+        hint: While 「で」 can imply means, 「を通して」 emphasizes the *experience* of traveling as the channel
+          through which the friendship developed. We're looking for a grammar point that focuses on the
+          experience as the medium.
+    scene: Friends reminiscing about their experiences.
+    register: casual
+    setting: friendly
+  - english: Throughout his life, he continued to paint.
+    japanese:
+      - 彼 は 生涯 {を 通じ て} 絵 を 描き 続け まし た。
+      - 彼 は 生涯 {を 通し て} 絵 を 描き 続け まし た。
+    english_literally: As for him, life through, painting continued to draw.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 生涯 の あいだ 絵 を 描き 続け まし た。
+        english: He continued to paint during his lifetime.
+        hint: 「あいだ」 indicates a period, but 「を通じて」 highlights the painting as a continuous activity *throughout*
+          his entire life, without interruption. We're looking for a grammar point that emphasizes an
+          activity's continuous presence throughout a period.
+    scene: Describing an artist's long career.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    nuance: 「生涯を通じて」 is a common, formal phrase used to describe a continuous activity over a person's
+      entire life. The use of 「を通じて」 here emphasizes the continuous flow *through* time.
+  - english: This message was sent through the internet.
+    japanese:
+      - この メッセージ は インターネット {を 通し て} 送ら れ まし た。
+      - この メッセージ は インターネット {を 通じ て} 送ら れ まし た。
+    english_literally: This message, via internet, was sent.
+    competing_grammar:
+      - competing_japanese:
+          - この メッセージ は インターネット で 送ら れ まし た。
+        english: This message was sent by internet.
+        hint: 「で」 is a general means. 「を通して」 more specifically emphasizes the internet as the *channel*
+          or *network* through which the message passed. We're looking for a grammar point that suggests
+          a specific communication channel.
+    scene: Explaining how digital information was transmitted.
+    register: formal
+    setting: technical
+  - english: We solved the problem through discussion.
+    japanese:
+      - 議論 {を 通じ て} 問題 を 解決 し まし た。
+      - 議論 {を 通し て} 問題 を 解決 し まし た。
+    english_literally: Through discussion, problem solved.
+    competing_grammar:
+      - competing_japanese:
+          - 議論 に よっ て 問題 を 解決 し まし た。
+        english: The problem was solved by means of discussion.
+        hint: While 「によって」 can indicate means, 「を通じて」 emphasizes discussion as the *process* or *channel*
+          that led to the solution. We're looking for a grammar point that highlights the discussion as
+          the medium.
+    scene: A team reporting on a successful resolution.
+    register: formal
+    setting: professional
+  - english: Her talent shone through her performance.
+    japanese:
+      - 彼女 の 才能 は パフォーマンス {を 通し て} 輝き まし た。
+      - 彼女 の 才能 は パフォーマンス {を 通じ て} 輝き まし た。
+    english_literally: Her talent, performance through, shone.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 才能 は パフォーマンス で 輝き まし た。
+        english: Her talent shone in her performance.
+        hint: 「で」 indicates location or means. 「を通して」 emphasizes the performance as the *channel* through
+          which her talent was demonstrated *throughout* its duration. We're looking for a grammar point
+          that implies the talent was revealed during the entire performance.
+    scene: An audience member commenting on a show.
+    register: semi-formal
+    setting: creative
+    listener_gender: group
+    nuance: 「を通して」 here implies that her talent was evident *by means of* or *within* her performance,
+      shining throughout the entire act. It emphasizes the performance as the medium that revealed her
+      talent.
+  - english: We will convey the decision through our representative.
+    japanese:
+      - 決定 は 代表 者 {を 通じ て} お 伝え し ます。
+      - 決定 は 代表 者 {を 通し て} お 伝え し ます。
+    english_literally: Decision, through representative, will convey.
+    competing_grammar:
+      - competing_japanese:
+          - 決定 は 代表 者 に お 伝え し ます。
+        english: We will convey the decision to our representative.
+        hint: 「に」 indicates the recipient. 「を通じて」 specifies that the representative is the *channel* or
+          *conduit* for the message, not the ultimate receiver. We're looking for a grammar point that
+          implies communication *via* someone.
+    scene: A company executive addressing a group.
+    register: formal
+    setting: professional
+    speaker_age: older
+    nuance: The use of 「を通じて」 combined with the formal 「お伝えします」 (humble way to say "will convey") reinforces
+      the professional and structured nature of communication through an official representative. The
+      speaker's age indicates a position where formal communication is expected.
+post_example_writeup: These examples demonstrate how 「を通じて」 and 「を通して」 are used to express concepts of
+  mediation and duration. Pay close attention to the specific context to choose the most appropriate form
+  and nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を通じて・を通して

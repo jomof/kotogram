@@ -1,0 +1,376 @@
+grammar_point: およそ・おおよそ (approximate・generally・not at all)
+learn_before:
+  - '[Number]は (at least)'
+  - の (noun modifier)
+  - まで (limit extent)
+  - までに (by the time)
+  - よう (method or way)
+  - をよそに (ignoring・disregarding)
+  - 決める (to decide)
+meaning: Approximately; Roughly; About; For the most part; Not at all (with negation)
+pronunciation:
+  katakana: オヨソ・オオヨソ
+  romaji: oyoso / ooyoso
+formation:
+  およそ + Noun + は: Indicates 'all' or 'in general' for the noun (e.g. およそ 優れた 研究者は - excellent researchers
+    in general).
+  およそ + い-Adjective / な-Adjective: Used for emphasis, meaning 'quite' or 'almost entirely' (e.g. およそ 完璧だ
+    - quite perfect, およそ 不可能だ - totally impossible).
+  およそ + Negative Verb / い-Adjective (-く)ない / な-Adjective (-で)ない: Expresses strong negation, meaning 'not
+    at all' (e.g. およそ 向いていない - not at all suited, およそ 面白くない - not at all interesting).
+  およそ + Verb / い-Adjective / な-Adjective / Noun + だ: Indicates 'almost' or 'for the most part' (e.g. およそ
+    分かる - understands almost everything, およそ 正しい - about right, およそ 完成だ - almost complete).
+  およそ + の + Noun: Forms an adjectival phrase meaning 'general' or 'rough' (e.g. およそ の 考え - a general idea,
+    およそ の 見積もり - a rough estimate).
+  およそ + Number (+ Counter): Indicates 'approximately' or 'about' a quantity (e.g. およそ 十万人 - approximately
+    100.000 people).
+jlpt: N2
+etymology: In the kanji 「凡そ」, the character 「凡」 (bon) signifies 'commonplace' or 'ordinary', hinting at
+  its meaning of 'generally' or 'as a rule'. In 「大凡」, the character 「大」 (dai) implies 'large' or 'great',
+  extending to 'roughly' or 'approximately'. Both expressions convey a sense of 'generally' or 'for the
+  most part' from their respective etymological roots.
+writeup: 「およそ」 or 「おおよそ」, alternatively written as 凡そ or 大凡, is a versatile adverb. It can mean **approximately**,
+  **roughly**, **generally**, **mostly**, and when combined with negation, **not at all**. It is frequently
+  encountered in slightly more formal contexts, such that as official announcements, but also appears
+  in casual conversation, especially for approximations. Both forms are largely interchangeable, though
+  there are subtle differences in nuance.When used for numerical estimations, 「およそ」 and 「おおよそ」 function
+  similarly to 'about' or 'approximately' in English, applying to quantities, time, or distance. For example,
+  one might say 「およそ ３時間」 (approximately 3 hours) or 「おおよそ １０キロ」 (roughly 10 kilometers).Beyond numbers,
+  「およそ」 (often written as 凡そ for this meaning) can convey a sense of generality or 'for the most part'.
+  This usage suggests that something broadly applies, though it may not be true 100% of the time. It implies
+  a common rule or general truth.A key distinction lies in its use with negative expressions. When paired
+  with a negative verb or adjective, 「およそ」 takes on a strong emphatic meaning, translating to **not at
+  all** or **completely unsuited**. This particular nuance is more commonly associated with 「およそ」 than
+  「おおよそ」, which tends to be restricted more strictly to approximation. For instance, 「およそ 理解 できない」 means
+  'cannot understand at all' or 'it is completely incomprehensible'.
+false_friends:
+  - term: だいたい (generally・mostly・roughly)
+    meaning: generally, mostly, roughly
+    kind: similar expression
+    nuance: While both indicate approximation, 「だいたい」 is more informal and common in everyday conversation
+      compared to 「およそ・おおよそ」.
+    grammar_point: だいたい (approximation)
+  - term: 約 (approximately)
+    meaning: approximately
+    kind: similar expression
+    nuance: 「約」 is usually placed directly before the number it modifies and is more commonly used in
+      formal writing or for precise numerical statements, in contrast to the broader applicability of
+      「およそ・おおよそ」.
+    grammar_point: <suggest>:約 (approximately)
+  - term: 一般に (generally・in general)
+    meaning: generally, in general
+    kind: similar expression
+    nuance: 「一般に」 emphasizes commonality or typicality, stating what is widely accepted or usually true.
+      While 「およそ」 can also convey generality (especially as 凡そ), it often implies a more profound or comprehensive
+      general truth, or 'for the most part', rather than just 'commonly'.
+    grammar_point: <suggest>:一般に (generally・in general)
+  - term: 全く (completely・absolutely (or not at all with negation))
+    meaning: completely, absolutely (or not at all with negation)
+    kind: often confused with
+    nuance: When used with negation, 「全く」 also means 'not at all'. However, 「およそ」 with negation can imply
+      a more categorical or considered dismissal, often used in more formal or reflective contexts, while
+      「全く」 is a more direct and common negative intensifier.
+    grammar_point: 全く〜ない (not at all)
+post_false_friends_writeup: When choosing between these expressions, consider the level of formality and
+  the specific aspect of approximation or generality you wish to convey. Use 「だいたい」 for casual, everyday
+  estimates. Opt for 「約」 when precision is desired, especially in written contexts. 「一般に」 is best for
+  stating common truths or typical scenarios. For a more emphatic 'not at all' or a broader, more considered
+  'for the most part', 「およそ」 is often the more suitable choice.
+examples:
+  - english: It takes approximately 20 minutes to the meeting place.
+    japanese:
+      - 約束 の 場所 まで {およそ} 20 分 かかり ます。
+      - 約束 の 場所 まで {およそ} 20 分 かかる。
+      - 約束 の 場所 まで {おおよそ} 20 分 かかり ます。
+      - 約束 の 場所 まで {おおよそ} 20 分 かかる。
+    english_literally: To the meeting place, approximately 20 minutes it takes.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 の 場所 まで {だいたい} 20 分 かかり ます。
+        english: It takes about 20 minutes to the meeting place.
+        hint: The scene implies a solid estimate rather than a vague guess, making 「およそ」 a more fitting
+          choice than the highly casual 「だいたい」 for providing directions to a friend. We're looking for
+          a slightly more considered estimate.
+      - competing_japanese:
+          - 約束 の 場所 まで {約} 20 分 かかり ます。
+        english: It takes approximately 20 minutes to the meeting place.
+        hint: While 「約」 is also approximate, it's typically used in more formal, written contexts or for
+          very precise numerical statements. The conversational setting of a phone call makes 「およそ」 more
+          natural. We're looking for a natural spoken approximation.
+    scene: A man is giving directions to his friend over the phone.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「およそ20分」 is used here for a numerical approximation. It's a common and natural way to convey
+      an estimate in casual conversation, offering a slightly more considered feel than 「だいたい」 without
+      being overly formal.
+  - english: I was able to roughly understand his story.
+    japanese:
+      - 彼 の 話 は {おおよそ} 理解 でき た。
+      - 彼 の 話 は {おおよそ} 理解 でき まし た。
+      - 彼 の 話 は {およそ} 理解 でき た。
+      - 彼 の 話 は {およそ} 理解 でき まし た。
+    english_literally: His story, roughly I was able to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 は {だいたい} 理解 でき た。
+        english: I was able to mostly understand his story.
+        hint: While 「だいたい」 could also be used, 「おおよそ」 here implies a more substantial, general understanding
+          of the main points, which is more specific than the broader 'about' feeling of 「だいたい」. We're
+          looking for a general comprehension of the main points.
+      - competing_japanese:
+          - 彼 の 話 は {ほとんど} 理解 でき た。
+        english: I was able to almost completely understand his story.
+        hint: 「ほとんど」 implies a very high percentage of understanding, potentially more complete than what
+          was actually achieved. 「おおよそ」 suggests a general grasp, leaving room for some missed details.
+          We're looking for a general understanding, not near-perfect comprehension.
+    scene: A student explaining a lecture to a classmate who missed it.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「おおよそ理解できた」 indicates a general comprehension of the main points, not necessarily every detail.
+      This use of 「おおよそ」 for qualitative approximation is common in casual discourse, reflecting a subjective
+      assessment.
+  - english: Generally, there's no one who cannot understand the beauty of nature.
+    japanese:
+      - '{凡そ} 自然 の 美し さ を 理解 でき ない 人 は い ない だろう。'
+      - '{凡そ} 自然 の 美し さ を 理解 でき ない 人 は い ない でしょう。'
+      - '{およそ} 自然 の 美し さ を 理解 でき ない 人 は い ない だろう。'
+      - '{およそ} 自然 の 美し さ を 理解 でき ない 人 は い ない でしょう。'
+    english_literally: Generally, nature's beauty cannot understand person there is not likely.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は {一般 に} 習慣 を 変える こと が 難しい。
+        english: In general, it's difficult for people to change their habits.
+        hint: The philosophical and academic setting suits 「凡そ」 as it introduces a universal truth or
+          profound general principle. While 「一般に」 (generally) also works, 「凡そ」, especially when written
+          with 凡, lends a slightly more formal, almost literary tone appropriate for a scholarly discourse.
+          We're looking for a broad, fundamental truth.
+      - competing_japanese:
+          - 自然 の 美し さ を {たいてい} 理解 でき ない 人 は い ない だろう。
+        english: Humans mostly find it difficult to change their habits.
+        hint: 「たいてい」 suggests 'mostly' or 'usually' and is more common in everyday, less formal speech.
+          「凡そ」 is preferred in this context for expressing a comprehensive, widely accepted truth. We're
+          looking for a more comprehensive general truth.
+    scene: A renowned philosopher begins a public lecture on human perception and aesthetics.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「凡そ」 in this context signals a broad, fundamental truth or a general rule, often
+      with an emphatic or slightly literary feel. The formal 「だろう」 reinforces the academic setting, indicating
+      a reasoned conclusion.
+  - english: Please show us the rough direction of the project.
+    japanese:
+      - プロジェクト の {おおよそ} の 方向 性 を 示し て ください。
+      - プロジェクト の {およそ} の 方向 性 を 示し て ください。
+    english_literally: Project's rough direction please show us.
+    competing_grammar:
+      - competing_japanese:
+          - '{だいたい} の 予算 を 組ん で から、詳細 を 決め ましょう。'
+        english: Let's decide the details after setting up a general budget.
+        hint: In a business context, 「およそ」 is more appropriate for a preliminary, yet somewhat structured,
+          'rough budget' than the more informal 「だいたい」. It implies a conscious effort to establish a reasonable
+          estimate. We're looking for a preliminary budget with some structure.
+      - competing_japanese:
+          - プロジェクト の {概要} を 示し て ください。
+        english: Please show us the overview of the project.
+        hint: 「概要」 (overview) implies a more structured and comprehensive summary. 「おおよそ」 is used when
+          a 'rough direction' or a general idea is sufficient, indicating that full details are not yet
+          required or available. We're looking for a preliminary, not fully detailed, direction.
+    scene: A team leader asks a junior designer to present an initial concept for a new project.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「おおよその方向性」 implies a general, preliminary concept rather than a fully detailed plan. The request
+      is polite and professional, typical in a team setting where initial ideas are being solicited.
+  - english: There were approximately 50 participants at the meeting.
+    japanese:
+      - 会議 の 参加 者 は {およそ} 50 名 だっ た。
+      - 会議 の 参加 者 は {およそ} 50 名 でし た。
+      - 会議 の 参加 者 は {おおよそ} 50 名 だっ た。
+      - 会議 の 参加 者 は {おおよそ} 50 名 でし た。
+    english_literally: Meeting's participants were approximately 50 people.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 参加 者 は {約} 50 名 だっ た。
+        english: There were approximately 50 participants at the meeting.
+        hint: While 「約」 (approximately) is often used for numerical figures, 「およそ」 here provides a slightly
+          less precise, more conversational estimation suitable for a spoken report where exact numbers
+          might not be immediately available or necessary. We're looking for a slightly more conversational
+          estimate in a report.
+      - competing_japanese:
+          - 会議 の 参加 者 は {だいたい} 50 名 だっ た。
+        english: There were about 50 participants at the meeting.
+        hint: The professional context of reporting to a superior makes 「およそ」 a more fitting choice than
+          the highly casual 「だいたい」 for conveying an approximate number. We're looking for a number approximation
+          suitable for a professional setting.
+    scene: An event organizer is reporting on the attendance of a corporate meeting to their superior.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: 「およそ50名」 provides a numerical approximation. The formal tone and direct statement are appropriate
+      for reporting factual information in a professional setting, indicating a well-informed estimate.
+  - english: It can be said that this theory is almost perfectly complete.
+    japanese:
+      - この 理論 は {およそ} 完璧 だ と 言える。
+      - この 理論 は {およそ} 完璧 だ と 言え ます。
+      - この 理論 は {おおよそ} 完璧 だ と 言える。
+      - この 理論 は {おおよそ} 完璧 だ と 言え ます。
+    english_literally: This theory is almost perfect, it can be said.
+    competing_grammar:
+      - competing_japanese:
+          - この 理論 は {ほとんど} 完璧 だ と 言える。
+        english: It can be said that this theory is mostly perfect.
+        hint: 「およそ」 in this context implies a comprehensive, qualitative assessment that the theory is
+          'almost entirely' or 'quite' perfect, suggesting a high degree of completeness after thorough
+          evaluation. 「ほとんど」 (mostly) might imply a slightly lower degree of completeness. We're looking
+          for a very high degree of completeness.
+      - competing_japanese:
+          - この 理論 は {完全 に} 完璧 だ と 言える。
+        english: It can be said that this theory is completely perfect.
+        hint: 「完全に完璧」 is redundant and absolute, which may not be appropriate for a scientific theory
+          that could still be refined. 「およそ」 allows for a strong affirmation of near-perfection while
+          acknowledging potential minor areas for improvement. We're looking for something that is almost
+          perfect, not absolutely perfect.
+    scene: A leading scientist is presenting a groundbreaking theory to a panel of expert colleagues.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「およそ完璧だ」 emphasizes that the theory is complete to a very high degree, nearly without flaws.
+      This strong qualitative assessment is common in academic presentations where a high level of rigor
+      is expected.
+  - english: In this situation, his opinion is not at all useful.
+    japanese:
+      - この 状況 で は、彼 の 意見 は {およそ} 役 に 立た ない。
+      - この 状況 で は、彼 の 意見 は {およそ} 役 に 立ち ませ ん。
+    english_literally: In this situation, his opinion is not at all useful.
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 で は、彼 の 意見 は {全然} 役 に 立た ない。
+        english: In this situation, his opinion is not useful at all.
+        hint: While 「全然」 also means 'not at all', 「およそ」 here emphasizes a strong, categorical judgment
+          of lack of interest, often implying a deeper reason or comprehensive assessment, making it more
+          fitting for a firm negative opinion. We're looking for a strong, categorical negation.
+      - competing_japanese:
+          - この 状況 で は、彼 の 意見 は {全く} 役 に 立た ない。
+        english: In this situation, his opinion is not useful at all.
+        hint: While 「全く」 also means 'not at all', 「およそ」 in this context can imply a more comprehensive
+          and definitive judgment of uselessness, as if surveyed and found to be entirely without merit.
+          It carries a slightly more deliberative tone. We're looking for a more deliberative and comprehensive
+          dismissal.
+    scene: A project manager is expressing frustration to a trusted colleague about a particularly impractical
+      suggestion from a team member.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「およそ役に立たない」 expresses a strong, categorical negation. The manager's frustration is conveyed
+      through this emphatic dismissal, implying that the opinion has no utility whatsoever in the given
+      circumstances.
+  - english: Let's decide the details after setting up a rough budget.
+    japanese:
+      - '{およそ} の 予算 を 組ん で から、詳細 を 決め ましょう。'
+      - '{およそ} の 予算 を 組ん で から、詳細 を 決め よう。'
+      - '{おおよそ} の 予算 を 組ん で から、詳細 を 決め ましょう。'
+      - '{おおよそ} の 予算 を 組ん で から、詳細 を 決め よう。'
+    english_literally: Rough budget having formed, let's decide the details.
+    competing_grammar:
+      - competing_japanese:
+          - '{だいたい} の 予算 を 組ん で から、詳細 を 決め ましょう。'
+        english: Let's decide the details after setting up a general budget.
+        hint: In a business context, 「およそ」 is more appropriate for a preliminary, yet somewhat structured,
+          'rough budget' than the more informal 「だいたい」. It implies a conscious effort to establish a reasonable
+          estimate. We're looking for a preliminary budget with some structure.
+      - competing_japanese:
+          - '{概算} を 組ん で から、詳細 を 決め ましょう。'
+        english: Let's decide the details after forming a rough calculation.
+        hint: 「概算」 refers specifically to a rough *financial calculation*. 「およそ」 is more general and can
+          refer to any preliminary estimate, making it suitable when the focus is on getting a general
+          idea rather than a formal accounting estimate. We're looking for a general preliminary estimate,
+          not a formal calculation.
+    scene: Two colleagues are discussing the financial planning for a new company project.
+    register: semi-formal
+    setting: negotiating
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「およその予算」 refers to a preliminary, general budget estimate. The phrase is common in professional
+      planning, indicating that a broad financial framework needs to be established before diving into
+      specific expenditures. The volitional 「決めましょう」 suggests a collaborative decision.
+  - english: This novel is not at all interesting.
+    japanese:
+      - この 小説 は {およそ} 面白く ない。
+      - この 小説 は {およそ} 面白く あり ませ ん。
+    english_literally: This novel, not at all interesting is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 小説 は {全然} 面白く ない。
+        english: This novel is not interesting at all.
+        hint: While 「全然」 also means 'not at all', 「およそ」 here emphasizes a strong, categorical judgment
+          of lack of interest, often implying a deeper reason or comprehensive assessment, making it more
+          fitting for a firm negative opinion. We're looking for a firm, categorical judgment.
+      - competing_japanese:
+          - この 小説 は {あまり} 面白く ない。
+        english: This novel is not very interesting.
+        hint: 「あまり」 means 'not very' and implies a weaker negation than 「およそ」. The speaker's strong negative
+          opinion requires the more emphatic 'not at all'. We're looking for a strong, decisive negative
+          statement.
+    scene: A young woman is telling her friend about a book she just finished reading and thoroughly disliked.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「およそ面白くない」 expresses a strong, emphatic negation. It's a categorical statement, often used
+      when one wants to convey a complete lack of a certain quality, here, 'interestingness'. The casual
+      register makes the strong opinion feel very direct.
+  - english: Generally, it's difficult for people to change their habits.
+    japanese:
+      - 人間 は {およそ} 習慣 を 変える こと が 難しい。
+      - 人間 は {およそ} 習慣 を 変える こと が 難しい です。
+      - 人間 は {凡そ} 習慣 を 変える こと が 難しい。
+      - 人間 は {凡そ} 習慣 を 変える こと が 難しい です。
+    english_literally: Humans, generally, habits change thing is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は {一般 に} 習慣 を 変える こと が 難しい。
+        english: In general, it's difficult for people to change their habits.
+        hint: While 「一般に」 also means 'in general', 「およそ」 (especially with the kanji 凡そ) in this context
+          introduces a more fundamental or universal truth, suggesting a deeper, almost philosophical
+          observation about human nature rather than just a common occurrence. We're looking for a universal
+          truth about human nature.
+      - competing_japanese:
+          - 人間 は {たいてい} 習慣 を 変える こと が 難しい。
+        english: Humans mostly find it difficult to change their habits.
+        hint: 「たいてい」 means 'mostly' or 'usually' and is more common in everyday, less formal speech. In
+          an academic setting, 「およそ」 is preferred for discussing broad, general principles or inherent
+          difficulties. We're looking for a general principle, not just a common tendency.
+    scene: A psychology professor is delivering a lecture on human behavior and habit formation to a university
+      class.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「およそ習慣を変えることが難しい」 presents a general, widely accepted truth about human behavior. This usage
+      of 「およそ」 lends an authoritative and comprehensive tone, suitable for academic discourse, implying
+      a fundamental characteristic of people.
+post_example_writeup: The examples illustrate the various uses of 「およそ」 and 「おおよそ」, from numerical approximation
+  to expressing general truths and strong negation. Pay close attention to the context, as the meaning
+  can shift significantly, especially when used with negative expressions. The kanji 凡そ often emphasizes
+  a broader, more profound generality, whereas 大凡 tends to focus more on approximation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/およそ・おおよそ (approximate; generally; not at all)

@@ -1,0 +1,279 @@
+grammar_point: と共に (together with)
+matcher: |-
+  ⌈ˢとᵖprt:case_particleᵇとʳト⌉
+  ⌈ˢ共ᵖn:common_nounᵇ共ʳトモ⌉
+  ⌈ˢにᵖprt:case_particleᵇにʳニ⌉
+learn_before:
+  - と (with)
+  - な-Adjective (predicate form)
+  - はさておき・はさておいて (setting aside)
+meaning: Together with, at the same time as, as well as
+pronunciation:
+  katakana: トトモニ
+  romaji: to tomoni
+formation:
+  Noun + と共に: Expresses doing something together with someone or something.
+  Verb (dictionary form) + と共に: Expresses that something happens at the same time as something else.
+  い-adjective + と共に: Expresses that something has two properties simultaneously.
+  な-adjective + である + と共に: Similar to い-adjective, but used with な-adjectives.
+jlpt: N3
+etymology: The grammar point 「と共に」 is derived from the noun 「共 (tomo)」 meaning "together," combined with
+  the particle 「と (to)」 indicating accompaniment or simultaneity, and the case-marking particle 「に (ni)」.
+  The combination creates an adverbial phrase that indicates a shared state, action, or quality.
+writeup: '**と共に (to tomoni)** expresses the idea of things happening simultaneously, or of sharing a common
+  property. It can be translated as "together with," "at the same time as," or "as well as." It''s often
+  used in more formal writing and speech. You''ll see it after nouns, verbs in dictionary form, い-adjectives,
+  and な-adjectives (often with "である"). It indicates that two things exist or occur in conjunction with
+  each other. Pay attention to the context to understand the specific nuance.'
+false_friends:
+  - term: に伴って・に伴い
+    meaning: As, due to, along with
+    kind: similar expression
+    nuance: Unlike 「と共に」, 「に伴って」 often indicates a cause-and-effect relationship, where one event directly
+      leads to another.
+    grammar_point: に伴って・に伴い (along with・as a result of)
+  - term: と並んで
+    meaning: Alongside, comparable with
+    kind: similar expression
+    nuance: Unlike 「と共に」, 「と並んで」 focuses on being side-by-side or comparable in terms of status, position,
+      or quality.
+    grammar_point: と並んで (comparable with)
+  - term: 合う
+    meaning: To suit; to fit; to match; to be correct; to be in harmony; to be mutual
+    kind: similar expression
+    nuance: Unlike 「と共に」, 「合う」 emphasizes a relationship of matching or suiting one another, or mutual
+      action where two parties cooperate.
+    grammar_point: 合う (mutual action)
+  - term: と (and)
+    meaning: And
+    kind: similar expression
+    nuance: Unlike 「と共に」, 「と」 simply connects two things or clauses without implying simultaneity or shared
+      properties beyond simple enumeration.
+    grammar_point: と (and, connects nouns)
+  - term: につれて
+    meaning: As...then, in proportion to
+    kind: similar expression
+    nuance: Unlike 「と共に」, 「につれて」 emphasizes a proportional change over time, where one thing changes gradually
+      as another does.
+    grammar_point: につれて (as・in proportion to)
+  - term: と同時に
+    meaning: At the same time as
+    kind: similar expression
+    nuance: While similar, 「と同時に」 emphasizes the exact, instantaneous moment of simultaneity more precisely
+      than 「と共に」, which can imply a more general accompaniment or parallel development.
+    grammar_point: と同時に (at the same time as)
+post_false_friends_writeup: 「と共に」, 「に伴って」, 「と並んで」, 「合う」, 「と」, 「につれて」, and 「と同時に」 all share some overlap
+  in meaning, but it's important to consider the specific nuance you want to convey. 「と共に」 implies a shared
+  state or simultaneity, indicating two things exist or occur in conjunction. 「に伴って」 suggests a cause-and-effect
+  relationship where one event is a consequence of another. 「と並んで」 highlights being alongside or comparable
+  in status. 「合う」 emphasizes a relationship of matching or suiting. 「と」 simply connects items. 「につれて」
+  indicates proportional change over time, and 「と同時に」 stresses an exact moment of simultaneity. Choose
+  the expression that best fits the specific context and the precise relationship you wish to describe
+  between the elements.
+examples:
+  - english: As time flows, we grow.
+    japanese:
+      - 時 の 流れ と {共 に}、私 たち は 成長 する。
+      - 時 の 流れ と {共 に}、人 は 成長 する。
+    english_literally: With the flow of time, we grow.
+    competing_grammar:
+      - competing_japanese:
+          - 時 が 経つ {に つれ て}、私 たち は 成長 する。
+        english: As time passes, we grow.
+        hint: 「につれて」 emphasizes a gradual, proportional change over time. 「と共に」 highlights growth happening
+          in parallel with the flow of time, not strictly *because* of it.
+    scene: A person reflecting on the passage of time and its effects.
+    register: formal
+    setting: reflective
+    nuance: This sentence expresses a universal truth about life. The use of 「時 の 流れ と共に」 highlights the
+      natural correlation between the passage of time and personal development. The formal tone makes
+      it suitable for general observations.
+    etymology: The use of 「流れ」 (flow) for time is a common metaphor in Japanese, similar to English, depicting
+      time as a continuous, moving entity.
+  - english: This library is quiet, and its facilities are also excellent.
+    japanese:
+      - この 図書 館 は 静か で ある と {共 に}、設備 も 充実 し て いる。
+      - この 図書 館 は 静か で ある と {共 に}、その 設備 も 充実 し て いる。
+    english_literally: This library is quiet, together with its facilities also being excellent.
+    competing_grammar:
+      - competing_japanese:
+          - この 図書 館 は 静か {で}、設備 も 充実 し て いる。
+        english: This library is quiet, and its facilities are also excellent.
+        hint: Simple conjunctions like the て-form or 「その上」 can connect clauses. However, 「と共に」 adds a
+          more formal and emphatic nuance of two qualities co-existing simultaneously.
+      - competing_japanese:
+          - この 図書 館 は 静か で、{その 上} 設備 も 充実 し て いる。
+        english: This library is quiet, and moreover, its facilities are excellent.
+        hint: Simple conjunctions like the て-form or 「その上」 can connect clauses. However, 「と共に」 adds a
+          more formal and emphatic nuance of two qualities co-existing simultaneously.
+    scene: An architect describing the features of a new library.
+    register: formal
+    setting: academic
+    nuance: The structure 「であると共に」 is used to state that something possesses two qualities simultaneously,
+      often used in descriptive or explanatory contexts. This formal phrasing is appropriate for an informative
+      setting like an academic discussion about a building's features.
+    etymology: 「充実」 refers to something being full or substantial, often used for facilities or content
+      being complete and satisfactory.
+  - english: As dawn broke, the birds began to sing.
+    japanese:
+      - 夜 が 明ける と {共 に}、鳥 たち が 歌い 始め た。
+      - 夜明け と {共 に}、鳥 たち が 歌い 始め た。
+    english_literally: With the night dawning, the birds began to sing.
+    competing_grammar:
+      - competing_japanese:
+          - 夜 が 明け {たら}、鳥 たち が 歌い 始め た。
+        english: When dawn broke, the birds began to sing.
+        hint: 「たら」 indicates that an action happens *after* a condition is met. 「と共に」 implies strict simultaneity,
+          meaning the actions happened exactly at the same time.
+    scene: A nature documentary narrator describing the start of a new day.
+    register: formal
+    setting: storytelling
+    nuance: This sentence uses 「と共に」 to describe two actions happening precisely at the same time, giving
+      a literary and observational feel. It evokes a sense of natural progression and synchronicity, suitable
+      for descriptive narrative.
+    etymology: 「夜明け」 is a compound word combining 「夜」 (night) and 「明け」 (break/dawn), directly translating
+      to 'night break' or 'daybreak'.
+  - english: He is excellent, and also very humble.
+    japanese:
+      - 彼 は 優秀 で ある と {共 に}、とても 謙虚 だ。
+      - 彼 は 優秀 で ある と {共 に}、非常 に 謙虚 な 人 だ。
+    english_literally: He is excellent, together with being very humble.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 優秀 で、{その 上} とても 謙虚 だ。
+        english: He is excellent, and moreover, very humble.
+        hint: 「その上」 simply adds another quality to a description. 「と共に」 highlights that these two qualities
+          **coexist** and are inherently linked as aspects of the person.
+    scene: A manager giving a performance review for an employee.
+    register: formal
+    setting: informative
+    nuance: This formal construction highlights that an individual possesses two distinct qualities simultaneously.
+      The use of 「であると共に」 is common in written and formal spoken Japanese when describing multiple characteristics
+      of a person or object in an objective manner.
+    etymology: 「謙虚」 (kenkyo) combines 「謙」 (humility, self-effacement) and 「虚」 (emptiness, void), suggesting
+      a lack of self-importance or pride.
+  - english: This problem is difficult, and also extremely important.
+    japanese:
+      - この 問題 は 難しい と {共 に}、非常 に 重要 だ。
+      - この 問題 は 難しい と {共 に}、極めて 重要 だ。
+    english_literally: This problem is difficult, together with being extremely important.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 難しい {だけ で なく}、非常 に 重要 だ。
+        english: This problem is not only difficult, but also extremely important.
+        hint: 「だけ で なく」 emphasizes that something is *in addition to* another quality. 「と共に」 focuses on
+          the concurrent nature of these two qualities existing together.
+    scene: A university professor explaining a complex research topic to students.
+    register: formal
+    setting: academic
+    nuance: Similar to the previous example, this highlights multiple co-existing attributes of a topic.
+      The phrase is well-suited for academic or professional settings where objective, comprehensive descriptions
+      are valued. It conveys both qualities equally.
+    etymology: 「重要」 (jūyō) combines 「重」 (heavy, important) and 「要」 (essence, core, necessity), emphasizing
+      its fundamental importance.
+  - english: I want to walk a new path in life with her.
+    japanese:
+      - 彼女 と {共 に}、新しい 人生 を 歩ん で いき たい。
+      - 彼女 と {共 に}、新た な 人生 を 歩み たい。
+    english_literally: With her, I want to walk a new life.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 {と 一緒 に}、新しい 人生 を 歩ん で いき たい。
+        english: I want to walk a new path in life together with her.
+        hint: 「と 一緒 に」 is a common, casual way to express 'together with'. 「と共に」 is more formal and poetic,
+          often used for significant life events or abstract concepts like a shared life journey.
+    scene: A man proposing to his girlfriend.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: male
+    nuance: The phrase 「と共に」 used in a romantic context like a marriage proposal conveys a deep desire
+      for shared experiences and a future built together. 「歩んでいきたい」 is a poetic way to express walking
+      through life together, emphasizing the commitment. It suggests a bond beyond simple accompaniment.
+    etymology: 「歩む」 (ayumu) is a verb meaning 'to walk' or 'to proceed,' often used metaphorically for
+      life's journey or progress. Its classical nuance makes it suitable for formal or poetic contexts.
+  - english: As I get older, my memory has declined.
+    japanese:
+      - 年 を 取る と {共 に}、記憶 力 が 衰え て き た。
+      - 歳 を 取る と {共 に}、記憶 力 が 衰え て き た。
+    english_literally: With taking age, memory power has declined.
+    competing_grammar:
+      - competing_japanese:
+          - 年 を 取る {に つれ て}、記憶 力 が 衰え て き た。
+        english: As I get older, my memory has declined.
+        hint: 「につれて」 suggests a gradual change over time, often emphasizing a cause-effect relationship.
+          「と共に」 emphasizes the **parallelism** of two occurrences or developments.
+    scene: An elderly person musing about the changes brought by aging.
+    register: semi-formal
+    setting: reflective
+    nuance: This sentence reflects on a common experience of aging. The phrase 「年 を 取る と共に」 highlights
+      how a physical or mental change happens concurrently with getting older. It's a natural way to express
+      gradual, simultaneous developments.
+    etymology: 「衰える」 (otoroe ru) means 'to decline' or 'to wane,' often used for physical or mental faculties
+      losing strength over time.
+  - english: With the development of technology, society is also changing greatly.
+    japanese:
+      - テクノロジー の 発展 と {共 に}、社会 も 大きく 変化 し て いる。
+      - 技術 の 進歩 と {共 に}、社会 も 大きく 変化 し て いる。
+    english_literally: With the development of technology, society is also greatly changing.
+    competing_grammar:
+      - competing_japanese:
+          - テクノロジー が 発展 する {に つれ て}、社会 も 大きく 変化 し て いる。
+        english: As technology develops, society is also changing greatly.
+        hint: 「につれて」 can imply a stronger correlation or causality where one change leads to another.
+          「と共に」 emphasizes the simultaneous progress or accompaniment of two phenomena.
+    scene: A sociologist discussing global trends in a lecture.
+    register: formal
+    setting: informative
+    nuance: This expresses a parallel development between two major trends. 「と共に」 is used to indicate
+      that societal changes are happening in conjunction with technological advancements, emphasizing
+      a strong correlation without necessarily implying direct causality. It's common in academic and
+      formal discussions.
+    etymology: 「発展」 (hatten) combines 「発」 (to send out, to start) and 「展」 (to expand, to develop), denoting
+      progress and growth.
+  - english: With hope, difficulties can also be overcome.
+    japanese:
+      - 希望 と {共 に}、困難 も 乗り越え られ ます。
+      - 希望 と {共 に}、どんな 困難 も 乗り越え られ ます。
+    english_literally: With hope, difficulties can also be overcome.
+    competing_grammar:
+      - competing_japanese:
+          - 希望 {が あれ ば}、困難 も 乗り越え られ ます。
+        english: If there is hope, difficulties can also be overcome.
+        hint: 「が あれ ば」 expresses a conditional relationship (if X exists, then Y is possible). 「と共に」 suggests
+          that hope is an **accompanying force** or integral element *during* the overcoming of difficulties,
+          rather than just a precondition.
+    scene: A motivational speaker addressing a group of aspiring entrepreneurs.
+    register: formal
+    setting: inspirational
+    nuance: This phrase is used to convey a sense of strength and perseverance. 「希望 と共に」 portrays hope
+      not just as a tool, but as an integral companion that helps one face and overcome challenges. This
+      makes it effective in inspirational or encouraging contexts.
+    etymology: 「乗り越える」 (norikoe ru) literally means 'to climb over' or 'to get over,' and is frequently
+      used metaphorically for overcoming difficulties or challenges.
+  - english: This plan is feasible, and also highly cost-effective.
+    japanese:
+      - この 計画 は 実現 可能 で ある と {共 に}、費用 対 効果 も 高い。
+      - この 計画 は 実現 可能 で ある と {共 に}、コスト パフォーマンス も 高い。
+    english_literally: This plan is feasible, together with cost-effectiveness also being high.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 実現 可能 で、{さらに} 費用 対 効果 も 高い。
+        english: This plan is feasible, and furthermore, highly cost-effective.
+        hint: 「さらに」 simply adds another point or piece of information. 「と共に」 emphasizes that these two
+          qualities are **inherent and co-existing** aspects of the plan, rather than just an additional
+          fact.
+    scene: A business consultant presenting a new project proposal to a client.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: In a business setting, 「であると共に」 is often used to present multiple favorable aspects of a proposal
+      or situation. It suggests that different positive qualities exist simultaneously, making the argument
+      for the plan's adoption more compelling and comprehensive. It's a standard expression in professional
+      discourse.
+    etymology: 「費用 対 効果」 (hiyō tai kōka) is a direct translation of 'cost-benefit' or 'cost-effectiveness,'
+      literally 'expense versus effect/result'.
+post_example_writeup: The examples illustrate how 「と共に」 connects nouns, verbs, and adjectives to express
+  simultaneity, accompaniment, or the co-existence of qualities. The variations in example sentences demonstrate
+  its versatility across different registers and contexts, from formal academic settings to personal expressions
+  of shared journeys.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と共に

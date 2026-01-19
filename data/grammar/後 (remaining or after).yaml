@@ -1,0 +1,276 @@
+grammar_point: 後 (remaining or after)
+learn_before:
+  - 後を継ぐ (to succeed or take over)
+meaning: Remaining N, The rest of N, N left (until...)
+pronunciation:
+  katakana: アト
+  romaji: ato
+formation:
+  後(の) + Noun: Refers to what is left, remaining, or other items in a sequence after a specific one (e.g.,
+    後の部分).
+  後 + Number: Indicates a remaining quantity or time (e.g., 後3日).
+  後 + Quantity/Adverb: Used adverbially to mean 'a little more' or 'after this' (e.g., 後ちょっと, 後少し).
+  後: Used nominally to refer to 'the rest' or 'what comes next' (e.g., 後は).
+jlpt: N2
+etymology: 「後(あと)」 literally means "behind" or "after". It is used to indicate what comes after a certain
+  point in a sequence or what is left over. The の particle connects 後 to the noun it modifies, indicating
+  possession or association. This sense of 'what follows' or 'what is left' is fundamental to its various
+  applications.
+writeup: One of the common uses for the noun 「後(あと)」, meaning "behind" or "after", is to express a remainder,
+  or everything after a certain point. This can be translated as 'what's left of (A)', 'the rest of (A)',
+  'what's remaining of (A)', or even 'other than (A)'. When specifying a noun, 「後」 will be grouped with
+  the case-marking particle 「の」 (e.g., 『後の本』, "the rest of the books"). It can also come directly before
+  numbers (e.g., 『後3日』, "3 more days left"), or be used adverbially with quantities (e.g., 『後少し』, "a little
+  bit more"). When used alone as a nominal, 「後」 can refer to 'the rest' or 'what comes next' (e.g., 『後は』).
+  Despite having many different translations, the base meaning of 「後」 will always be to identify a sequence
+  of things and what comes 'after' or 'behind' a specific point in that sequence.
+false_friends:
+  - term: 残り (のこり)
+    meaning: remainder, rest
+    kind: synonym
+    nuance: 『残り』 specifically refers to what is *left over* from a quantity, often implying a quantifiable
+      amount. 『後(の)+Noun』 emphasizes what comes *after* or *behind* a point, which can include leftovers
+      but also sequences or other items in a series. 『残り』 has a stronger sense of a part being separated
+      from a whole.
+    grammar_point: <suggest>:残り (remainder・rest)
+  - term: 残る (のこる)
+    meaning: to remain, to be left
+    kind: similar expression
+    nuance: This is a verb indicating the action or state of something being left. 『後』 (ato) is a noun
+      phrase used to identify the remaining entity itself, rather than the action of it remaining.
+    grammar_point: <suggest>:残る (to remain・to be left)
+  - term: あとで
+    meaning: after, later
+    kind: similar expression
+    nuance: While 『後』 (ato) in this grammar point refers to a remaining quantity or an item in a sequence,
+      『後で』 specifically indicates a future temporal point or an action that will be done later. 『後で』 is
+      purely temporal.
+    grammar_point: あとで (after・later)
+  - term: だけ
+    meaning: only, just
+    kind: similar expression
+    nuance: 『だけ』 emphasizes 'only' or 'no more than' for a quantity, but it does not carry the connotation
+      of 'what comes after' or 'remaining in a sequence' that is inherent in 『後』 when referring to a portion.
+      『後』 can imply a sequence, while 『だけ』 is a strict limitation.
+    grammar_point: だけ (only・just)
+post_false_friends_writeup: While 『後』 (ato) can often be translated similarly to 『残り』 (nokori) or the
+  verb 『残る』 (nokoru), its core nuance emphasizes what comes *after* a certain point in a sequence or what
+  is *behind* something already specified. 『残り』 tends to focus more on a quantifiable portion that is
+  literally 'left over' from a whole. The verb 『残る』 describes the action or state of something being left
+  or remaining. On the other hand, 『後で』 (atode) is exclusively a temporal expression meaning 'later' or
+  'afterward', lacking the sense of a 'remaining portion' that 『後』 (ato) carries. Lastly, 『だけ』 (dake)
+  is a limiting particle meaning 'only' or 'just', often indicating a strict quantity or extent without
+  the implication of sequence or what is 'left behind' in the way 『後』 (ato) does.
+examples:
+  - english: I've read half of the books I borrowed from the library, but the rest of the books are still
+      waiting.
+    japanese:
+      - 図書 館 から 借り た 本 の 半分 は 読み まし た が、{後 の} 本 は まだ です。
+      - 図書 館 から 借り た 本 の 半分 は 読ん だ けど、{後 の} 本 は まだ だ。
+    english_literally: I've read half of the books I borrowed from the library, but the books that come
+      after are still not done.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 から 借り た 本 の 半分 は 読み まし た が、{残り} の 本 は まだ です。
+        english: I've read half of the books I borrowed from the library, but the remaining books are
+          still waiting.
+        hint: 『残り』 emphasizes what is quantifiably left over from a whole. 『後』 emphasizes what comes next
+          in a sequence or series, or simply 'the other' part. We're looking for what comes 'after' a
+          certain portion.
+      - competing_japanese:
+          - 図書 館 から 借り た 本 の 半分 は 読み まし た が、まだ {残っ て いる} 本 が あり ます。
+        english: I've read half of the books I borrowed from the library, but there are still books remaining.
+        hint: 『残る』 is a verb meaning 'to remain' or 'to be left'. We're looking for a noun phrase to refer
+          to 'the rest of the books'.
+    scene: A student tells a friend about their progress with their reading assignments.
+    register: casual
+    setting: informative
+  - english: There are only two hours left until the deadline! I have to hurry!
+    japanese:
+      - 締め切り まで {後} 2 時間 しか ない！急が ない と！
+      - 締め切り まで {後} 2 時間 しか ござい ませ ん！急が なけれ ば なり ませ ん！
+    english_literally: Until the deadline, there are only 2 hours after this! Must hurry!
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り まで {残り} 2 時間 しか ない！急が ない と！
+        english: There are only a remaining 2 hours until the deadline! I have to hurry!
+        hint: Both 『後』 and 『残り』 can indicate a remaining quantity. 『後』 here simply indicates 'after this
+          point', referring to the time left.
+      - competing_japanese:
+          - 締め切り まで 2 時間 しか {残っ て い ない}！急が ない と！
+        english: Only 2 hours haven't passed until the deadline! I have to do my best!
+        hint: 『残る』 is a verb. We're looking for a way to state the amount of time that is left.
+    scene: A busy professional realizes they are running out of time to complete a task.
+    register: casual
+    setting: serious
+  - english: It's just a little bit more until the goal! Let's do our best!
+    japanese:
+      - ゴール まで {後} 少し だ よ！頑張ろう！
+      - ゴール まで {後} 少し です よ！頑張り ましょう！
+    english_literally: Until the goal, it's just a little bit after this! Let's do our best!
+    competing_grammar:
+      - competing_japanese:
+          - ゴール まで {残り} 少し だ よ！頑張ろう！
+        english: It's just a little bit of the remaining distance until the goal! Let's do our best!
+        hint: Both 『後』 and 『残り』 can express a small remaining amount. 『後』 here indicates 'what comes after
+          this point', referring to the distance left.
+      - competing_japanese:
+          - ゴール まで 少し しか {残っ て い ない} よ！頑張ろう！
+        english: Only a little bit haven't passed until the goal! I have to do my best!
+        hint: 『残る』 is a verb. We're looking for a way to state the amount that is left.
+    scene: A coach encourages an athlete during the final stretch of a race.
+    register: casual
+    setting: inspirational
+  - english: This cake is strawberry, and the other two are chocolate.
+    japanese:
+      - この ケーキ は いちご で、{後 の} 二 つ は チョコレート です。
+      - この ケーキ は いちご で、{後 の} 二 つ は チョコレート だ。
+    english_literally: This cake is strawberry, and the two that come after are chocolate.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は いちご で、{残り} の 二 つ は チョコレート です。
+        english: This cake is strawberry, and the remaining two are chocolate.
+        hint: 『残り』 specifically refers to a quantifiable portion left over. 『後』 indicates 'the other'
+          items in a sequence after one has been identified. We're looking for 'the remaining items' in
+          a set.
+      - competing_japanese:
+          - この ケーキ は いちご で、{残っ て いる} 二 つ は チョコレート です。
+        english: This cake is strawberry, and the two that are left are chocolate.
+        hint: 『残る』 is a verb. We're looking for a noun phrase to refer to 'the other two' cakes.
+    scene: A person points out dessert options to their friends at a cafe.
+    register: casual
+    setting: friendly
+  - english: I'll do the cleaning, and I'll leave the rest up to you.
+    japanese:
+      - 私 は 掃除 を する から、{後} は あなた に 任せる ね。
+      - 私 は 掃除 を し ます から、{後} は あなた に お 任せ し ます。
+    english_literally: I will do the cleaning, so the rest, I will leave to you.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 掃除 を する から、{残り} は あなた に 任せる ね。
+        english: I'll do the cleaning, and I'll leave the remainder up to you.
+        hint: 『残り』 emphasizes what is left from a specific set of tasks. 『後』 here implies 'everything
+          that comes after what I've done'.
+      - competing_japanese:
+          - 私 は 掃除 を する から、{残っ た} こと は あなた に 任せる ね。
+        english: I'll do the cleaning, and I'll leave the things that remained up to you.
+        hint: 『残る』 is a verb meaning 'to be left'. We're looking for a noun or noun phrase to refer to
+          'the rest' of the responsibilities.
+      - competing_japanese:
+          - 私 は 掃除 を する から、{その 後} は あなた に 任せる ね。
+        english: I'll do the cleaning, and after that, I'll leave it up to you.
+        hint: 『その 後』 refers to 'after that' in a temporal sense. We're looking for 'the rest' of the tasks
+          or duties.
+    scene: A couple splitting household chores, dividing responsibilities.
+    register: casual
+    setting: friendly
+  - english: I can't believe there are only 5 days left until the exam!
+    japanese:
+      - 試験 まで {後} 5 日 しか ない なんて、信じ られ ない！
+      - 試験 まで {後} 5 日 しか ござい ませ ん なんて、信じ られ ませ ん！
+    english_literally: Until the exam, there are only 5 days after this, can't believe it!
+    competing_grammar:
+      - competing_japanese:
+          - 試験 まで {残り} 5 日 しか ない なんて、信じ られ ない！
+        english: I can't believe there are only a remaining 5 days until the exam!
+        hint: Both 『後』 and 『残り』 can indicate a remaining quantity. 『後』 here simply indicates 'after this
+          point', referring to the time left.
+      - competing_japanese:
+          - 試験 まで 5 日 しか {残っ て い ない} なんて、信じ られ ない！
+        english: Only 5 days haven't passed until the deadline! I can't believe it!
+        hint: 『残る』 is a verb. We're looking for a way to state the amount of time that is left.
+    scene: A student realizes with dismay that an important exam is much closer than they thought.
+    register: casual
+    setting: serious
+  - english: The first half of the meeting is over, so let's move on to the remaining agenda items.
+    japanese:
+      - 前半 の 会議 は 終わっ た の で、{後 の} 議題 に 移り ましょう。
+      - 前半 の 会議 は 終わっ た から、{後 の} 議題 に 移ろう。
+    english_literally: The first half of the meeting is over, so let's move to the agenda items that come
+      after.
+    competing_grammar:
+      - competing_japanese:
+          - 前半 の 会議 は 終わっ た の で、{残り} の 議題 に 移り ましょう。
+        english: The first half of the meeting is over, so let's move on to the remaining agenda items.
+        hint: 『残り』 specifies a quantifiable portion. 『後』 emphasizes what comes 'after' a specified point
+          in a sequence. We're looking for the agenda items that follow.
+      - competing_japanese:
+          - 前半 の 会議 は 終わっ た の で、{残っ て いる} 議題 に 移り ましょう。
+        english: The first half of the meeting is over, so let's move on to the agenda items that are
+          left.
+        hint: 『残る』 is a verb. We're looking for a noun phrase to refer to 'the remaining agenda items'.
+    scene: A meeting facilitator transitions to the next part of the discussion.
+    register: formal
+    setting: professional
+  - english: There's only one roll of toilet paper left, don't you think I should buy some?
+    japanese:
+      - トイレット ペーパー が {後} 1 ロール しか ない わ ね。買っ て おい た 方 が いい かしら？
+      - トイレット ペーパー が {後} 1 ロール しか あり ませ ん わ ね。買っ て おい た 方 が よろしい かしら？
+    english_literally: As for toilet paper, there is only 1 roll after this, isn't there. Maybe I should
+      buy some?
+    competing_grammar:
+      - competing_japanese:
+          - トイレット ペーパー が {残り} 1 ロール しか ない わ ね。買っ て おい た 方 が いい かしら？
+        english: There's only a remaining 1 roll of toilet paper, don't you think I should buy some?
+        hint: Both 『後』 and 『残り』 can indicate a remaining quantity. 『後』 here simply means 'what comes after
+          this point', referring to the quantity left.
+      - competing_japanese:
+          - トイレット ペーパー が 1 ロール しか {残っ て い ない} わ ね。買っ て おい た 方 が いい かしら？
+        english: Only 1 roll of toilet paper hasn't been used, don't you think I should buy some?
+        hint: 『残る』 is a verb. We're looking for a way to state the amount of toilet paper that is left.
+    scene: A woman notifies her family member about a dwindling household supply, seeking a subtle agreement.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: The use of the feminine sentence-ending particle 『わね』 and the soft interrogative 『かしら』 at
+      the end of the sentence indicates a female speaker making a gentle observation and suggestion.
+  - english: We have only 10 minutes left until departure. Hurry up and get ready.
+    japanese:
+      - 出発 まで {後} 10 分 だ ぞ。早く 準備 しろ よ。
+      - 出発 まで {後} 10 分 です よ。早く 準備 し て ください。
+    english_literally: Until the departure, there are only 10 minutes after this! Hurry up and get ready!
+    competing_grammar:
+      - competing_japanese:
+          - 出発 まで {残り} 10 分 だ ぞ。早く 準備 しろ よ。
+        english: We have only a remaining 10 minutes until departure. Hurry up and get ready.
+        hint: Both 『後』 and 『残り』 can indicate a remaining quantity. 『後』 here refers to the time left after
+          this moment.
+      - competing_japanese:
+          - 出発 まで 10 分 しか {残っ て い ない} ぞ。早く 準備 しろ よ。
+        english: Only 10 minutes haven't passed until departure. I have to do my best!
+        hint: 『残る』 is a verb. We're looking for a way to state the amount of time that is left.
+    scene: A man urges his companion to hasten preparations before leaving for a trip.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    nuance: The phrase 『だ ぞ』 (masculine sentence-ending particle for emphasis) and the direct imperative
+      『しろ よ』 are characteristic of male speech, indicating a more assertive and direct tone.
+  - english: Once the presentation is over, all that's left is the after-party!
+    japanese:
+      - プレゼン が 終われ ば、{後} は 打ち上げ だけ だ！
+      - プレゼン が 終われ ば、{後} は 打ち上げ だけ です！
+    english_literally: If the presentation ends, what's left is just the after-party!
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン が 終われ ば、{残り} は 打ち上げ だけ だ！
+        english: Once the presentation is over, the remainder is just the after-party!
+        hint: 『残り』 emphasizes what is left from a specific set of activities. 『後』 implies 'everything
+          that comes after this point in the sequence'.
+      - competing_japanese:
+          - プレゼン が 終われ ば、{残っ て いる の は} 打ち上げ だけ だ！
+        english: Once the presentation is over, what remains is just the after-party!
+        hint: 『残る』 is a verb. We're looking for a noun or noun phrase to refer to 'all that's left' or
+          'the next item'.
+      - competing_japanese:
+          - プレゼン が 終われ ば、{その 後} は 打ち上げ だけ だ！
+        english: Once the presentation is over, after that, it's just the after-party!
+        hint: 『その 後』 refers to 'after that' in a temporal sense. We're looking for 'all that's left' in
+          terms of activities.
+    scene: A tired but excited colleague anticipates the end of a long work day, looking forward to relaxation.
+    register: casual
+    setting: optimistic
+post_example_writeup: As you can see from the examples, 『後』 is quite versatile, indicating either a quantity
+  remaining, the next item in a sequence, or simply 'the rest' of something. The key is to remember its
+  core meaning of 'what comes after' or 'what is behind' a specified point or quantity.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/後-のnoun

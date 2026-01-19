@@ -1,0 +1,358 @@
+grammar_point: ぐらいなら (rather than・would rather)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Clause]こと (the act of・the fact that)'
+  - い-Adjective[み] (abstract quality)
+  - くらい (to the extent)
+  - そもそも (in the first place)
+  - だけましだ (at least・it's better)
+  - ないことはない (not impossible)
+  - 何とか (somehow manage)
+  - 単位で (in units of)
+  - 抜く (do completely)
+  - 自ら (on one's own initiative)
+meaning: Rather than...; Would rather... than; Better off...
+pronunciation:
+  katakana: グライナラ
+  romaji: gurai nara
+formation:
+  Verb - dictionary form + ぐらいなら: Expresses a preference for one option over another, implying the first
+    option is undesirable to the point where the second is preferable.
+  Verb - dictionary form + くらいなら: An alternate spelling of the same grammar point subjected to the same
+    grammar rules and nuance as ぐらいなら.
+jlpt: N1
+etymology: The grammar point 「ぐらいなら」 combines 「くらい」, indicating a degree or extent, with 「なら」, which expresses
+  a conditional or hypothetical situation. Together, they create a structure that highlights the undesirability
+  of the condition described by 「くらい」, making the alternative more appealing. The core meaning of 「くらい」
+  as "degree" or "extent" emphasizes how undesirable the first option is, leading to the strong preference
+  for the alternative.
+writeup: The grammar point **ぐらいなら** (or its alternate spelling **くらいなら**) is used to express a strong
+  preference for an alternative action (B) over a first action or state (A), indicating that (A) is highly
+  undesirable or reaches an extreme point of unpleasantness. It is frequently translated into English
+  as "rather than...", "would rather... than...", or "better off...". This structure is formed by attaching
+  **ぐらいなら** to a verb in its dictionary form. The meaning conveyed is that if the situation were to reach
+  the extent or degree of (A), then (B) would be a preferable or even necessary course of action. The
+  choice of (B) often comes with a sense of resignation or a realization that (A) is simply unacceptable.
+  The second part of the sentence (B) frequently includes expressions that suggest a solution, a strong
+  recommendation, or a comparative judgment. Common phrases include 「～方がいい」 (it would be better to...),
+  「～方がましだ」 (it would be less bad/better...), or even imperative forms like 「～なさい」 (do!). While **ぐらいなら**
+  always follows a verb in the dictionary form, the context can sometimes imply that action (A) has already
+  occurred, and the speaker is expressing regret or a hypothetical alternative based on hindsight. In
+  such scenarios, it can be understood as "If I had known it would come to (A), then I would have done
+  (B)." This nuance adds depth, allowing the speaker to convey regret for a past decision by contrasting
+  it with a preferable, albeit unchosen, alternative.
+false_friends:
+  - term: ～より～方がいい
+    meaning: B is better than A (simple comparison)
+    kind: similar expression
+    nuance: Unlike 「より～方がいい」 which simply states a preference between two acceptable options, 「ぐらいなら」
+      specifically implies that the first option is so undesirable or has reached such an extreme degree
+      of unpleasantness that the second option, though perhaps not ideal, becomes a preferable or necessary
+      escape.
+    grammar_point: '[Y]より[X]のほうが (comparison, X is more than Y)'
+  - term: ～なら
+    meaning: If (A), then (B) (simple conditional)
+    kind: similar expression
+    nuance: While 「なら」 functions as a general, neutral conditional ('if A, then B'), 「ぐらいなら」 specifically
+      implies that the condition (A) is so extremely undesirable or unacceptable that one would rather
+      choose an alternative (B), often viewed as a 'lesser of two evils' or a desperate but necessary
+      choice.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: ～ないまでも
+    meaning: Even if not X, at least Y.
+    kind: similar expression
+    nuance: While `ぐらいなら` expresses a strong aversion to A, leading to a preference for B (often a "lesser
+      evil"), `～ないまでも` suggests that even if a highly desirable outcome (A) cannot be fully achieved,
+      a lesser, acceptable outcome (B) can still be attained. It doesn't imply the extreme undesirability
+      of A.
+    grammar_point: ないまでも (even if not... at least)
+  - term: ～よりほかない
+    meaning: Have no choice but to do X.
+    kind: similar expression
+    nuance: 「よりほかない」 implies that there is *only one* course of action available, often due to circumstances,
+      and there's no better alternative. In contrast, `ぐらいなら` presents a *choice* between two options,
+      where one is so bad that the other becomes preferable, even if that preferred option is itself difficult
+      or undesirable. The key difference is the *existence of a choice* and the *reason for the preference*.
+    grammar_point: よりほかない・よりしかたがない (no choice but)
+post_false_friends_writeup: 'While 「より～方がいい」 and 「なら」 can express preferences or conditions, 「ぐらいなら」 adds
+  a distinct nuance: it conveys that the first option is so undesirable or reaches such an extreme point
+  that the alternative, even if not perfect, is considerably more appealing. 「～ないまでも」, on the other hand,
+  indicates accepting a lesser outcome when the ideal is unattainable, without necessarily implying aversion
+  to the ideal. Lastly, 「～よりほかない」 signifies a lack of choice, a situation where only one path is available,
+  contrasting with 「ぐらいなら」''s emphasis on choosing a less bad option over a truly dreadful one. Use 「ぐらいなら」
+  when you want to emphasize the profound aversion towards the first choice.'
+examples:
+  - english: Rather than studying all night, I'd rather just fail the credit.
+    japanese:
+      - 徹夜 で 勉強 する {ぐらい なら}、単位 を 落とす 方 が マシ だ。
+      - 徹夜 で 勉強 する {くらい なら}、単位 落とし た 方 が マシ だ。
+      - 徹夜 で 勉強 する {ぐらい なら}、もう 単位 なんか 落とし て も いい や。
+      - 徹夜 で 勉強 する {くらい なら}、単位 は 諦めよう。
+    english_literally: If it is to the extent of studying all night, it is still better to fail the credit.
+    competing_grammar:
+      - competing_japanese:
+          - 徹夜 で 勉強 する {より}、単位 を 落とす {方 が} マシ だ。
+        english: It is still better to fail the credit than to study all night.
+        hint: This structure emphasizes that the original option (studying all night) is so undesirable
+          that another option (failing) becomes preferable. 「より」 makes a simple comparison, but we're
+          looking for a phrase that highlights the extreme negative extent of the first option.
+      - competing_japanese:
+          - 徹夜 で 勉強 する {なら}、単位 を 落とす 方 が マシ だ。
+        english: If I study all night, it is still better to fail the credit.
+        hint: This structure highlights that if the situation were to reach an extreme, undesirable point,
+          the alternative is preferable. 「なら」 is a general conditional, but we're looking for a phrase
+          that specifically conveys that the condition (studying all night) is extremely undesirable.
+    scene: A student is utterly exhausted after a long day and dreads the thought of pulling an all-nighter
+      for an exam they feel unprepared for.
+    register: casual
+    setting: reflective
+  - english: If I had known I'd break that promise, I'd rather not have made it from the start.
+    japanese:
+      - あんな 約束 を 破る {ぐらい なら}、最初 から し なけれ ば よかっ た。
+      - あんな 約束 を 破る {くらい なら}、最初 から し なけりゃ よかっ た。
+      - あんな 約束 を 破る {ぐらい なら}、そもそも し ない 方 が よかっ た な。
+      - あんな 約束 を 破る {くらい なら}、始め から し なきゃ よかっ た。
+    english_literally: If it is to the extent of breaking such a promise, it would have been better if
+      I had not made it from the beginning.
+    competing_grammar:
+      - competing_japanese:
+          - あんな 約束 を 破る {より}、最初 から し なけれ ば よかっ た。
+        english: It would have been better not to make such a promise from the beginning than to break
+          it.
+        hint: This structure expresses profound regret, implying the act of breaking the promise reached
+          an undesirable degree where never making it was better. 「より」 makes a simple comparison, but
+          we're looking for a phrase that conveys the severe, extreme outcome of the first action.
+      - competing_japanese:
+          - あんな 約束 を 破る {なら}、最初 から し なけれ ば よかっ た。
+        english: If I were to break such a promise, it would have been better not to make it from the
+          beginning.
+        hint: This structure implies that the past action resulted in an extremely negative outcome, making
+          the alternative (not making the promise) ideal. 「なら」 is a neutral conditional, but we're looking
+          for a phrase that conveys a stronger sense of 'to that extent of regret'.
+    scene: Someone is reflecting on a past commitment that they failed to uphold, feeling deep regret
+      about the consequences.
+    register: formal
+    setting: melancholic
+  - english: Rather than enduring such unfair treatment, I think it's better to quit the job.
+    japanese:
+      - その よう な 不当 な 扱い を 我慢 する {くらい なら}、仕事 を 辞める 方 が よい と 思う わ。
+      - そんな 不当 な 扱い を 我慢 する {くらい なら}、仕事 辞め た 方 が マシ よ。
+      - あの 不当 な 扱い を 我慢 する {ぐらい なら}、会社 辞め たら どう かしら。
+      - これ 以上 の 不当 な 扱い に 耐える {くらい なら}、転職 し た 方 が いい わ よ。
+    english_literally: If it is to the extent of enduring such unfair treatment, I think it is better
+      to quit the job.
+    competing_grammar:
+      - competing_japanese:
+          - その よう な 不当 な 扱い を 我慢 する {より}、仕事 を 辞める {方 が} よい と 思う わ。
+        english: I think it is better to quit the job than to endure such unfair treatment.
+        hint: This structure conveys empathy for unfair treatment, implying its severity makes quitting
+          more desirable. 「より」 is a simple comparison, but we're looking for a phrase that emphasizes
+          the extreme degree of suffering from the unfairness.
+      - competing_japanese:
+          - その よう な 不当 な 扱い を 我慢 する {なら}、仕事 を 辞める 方 が よい と 思う わ。
+        english: If I endure such unfair treatment, I think it is better to quit the job.
+        hint: This structure provides strong, necessary advice due to the unbearable nature of the unfair
+          treatment. 「なら」 is a general conditional, but we're looking for a phrase that emphasizes the
+          condition has reached an unbearable degree.
+    scene: A woman is giving advice to a friend who is experiencing difficult and unfair conditions at
+      her workplace.
+    register: semi-formal
+    setting: supportive
+    speaker_gender: female
+    nuance: The use of 「～わ」 at the end of the sentence adds a soft, feminine touch, often used by women
+      to express a gentle but firm opinion or emotional sentiment. This ending is common when speaking
+      to close friends or family in a supportive context, conveying a sense of shared understanding and
+      care for the listener's well-being.
+  - english: Rather than compromising my principles, I'd rather die.
+    japanese:
+      - 自分 の 信念 を 曲げる {ぐらい なら}、死ん だ 方 が マシ だ と 思う。
+      - 自分 の 信念 を 曲げる {くらい なら}、死ん だ 方 が マシ だ。
+      - 信念 を 曲げる {ぐらい なら}、死 を 選ぶ。
+      - 己 の 信念 を 曲げる {くらい なら}、命 を 投げ出す。
+    english_literally: If it is to the extent of compromising my principles, I think it is better to die.
+    competing_grammar:
+      - competing_japanese:
+          - 自分 の 信念 を 曲げる {より}、死ん だ {方 が} マシ だ と 思う。
+        english: I think it's better to die than to compromise my principles.
+        hint: This structure expresses an unwavering commitment, implying that compromising principles
+          is an utterly abhorrent extreme. 「より」 makes a simple comparison, but we're looking for a phrase
+          that captures this profound aversion, emphasizing the intolerable extent of the first action.
+      - competing_japanese:
+          - 自分 の 信念 を 曲げる {なら}、死ん だ 方 が マシ だ と 思う。
+        english: If I compromise my principles, I think it's better to die.
+        hint: This structure conveys an unyielding stance, implying that compromising beliefs is an unbearable
+          extreme. 「なら」 is a neutral conditional, but we're looking for a phrase that expresses strong
+          conviction and the extreme nature of the situation.
+    scene: A man of strong conviction is vehemently stating his unwillingness to betray his values, even
+      when faced with extreme pressure.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    nuance: The phrase 「死んだ方がマシだ」 (it's better to die) is a hyperbolic expression often used by male speakers
+      to convey an extreme, absolute refusal or disdain for a situation, emphasizing an unyielding stance
+      on one's principles. While dramatic, it's a common idiom to express strong conviction, particularly
+      in serious or philosophical discussions among men, highlighting an absolute non-negotiable position.
+  - english: Rather than attending another long meeting, I'd still prefer to clean the bathroom.
+    japanese:
+      - また 長い 会議 に 出席 する {くらい なら}、トイレ 掃除 を する 方 が まだ いい。
+      - また 長い 会議 に 出る {ぐらい なら}、トイレ 掃除 の 方 が よっぽど マシ だ よ。
+      - 長い 会議 に 参加 する {くらい なら}、掃除 を し た 方 が まだ いい や。
+      - 会議 に 出席 する {ぐらい なら}、トイレ を 磨い て いる 方 が マシ だ。
+    english_literally: If it is to the extent of attending another long meeting, it is still better to
+      do toilet cleaning.
+    competing_grammar:
+      - competing_japanese:
+          - また 長い 会議 に 出席 する {より}、トイレ 掃除 を する {方 が} まだ いい。
+        english: It is still better to clean the bathroom than to attend another long meeting.
+        hint: This humorous phrase implies the meeting's unpleasantness is so extreme that even an absurdly
+          unpleasant chore is preferable. 「より」 is a simple comparison, but we're looking for a phrase
+          that highlights the extreme degree of unpleasantness and the speaker's frustration.
+      - competing_japanese:
+          - また 長い 会議 に 出席 する {なら}、トイレ 掃除 を する 方 が まだ いい。
+        english: If I attend another long meeting, it is still better to clean the bathroom.
+        hint: This hyperbolic phrase expresses intense frustration, implying the situation has reached
+          such an undesirable extent that a typically avoided task is now preferred. 「なら」 is a neutral
+          conditional, but we're looking for a phrase that vividly conveys profound weariness.
+    scene: A person, visibly exasperated by the prospect of another tedious meeting, jokingly suggests
+      an absurdly unpleasant alternative to convey their immense boredom and frustration.
+    register: casual
+    setting: humorous
+  - english: Rather than going to that boring party, I'd rather stay home and read.
+    japanese:
+      - あんな つまら ない パーティー に 行く {ぐらい なら}、家 で 本 を 読ん で いる 方 が マシ だ。
+      - あんな つまら ない パーティー に 行く {くらい なら}、家 で 本 を 読ん で いる 方 が ずっと マシ だ。
+      - あの 退屈 な パーティー に 行く {ぐらい なら}、家 に 居 て 本 で も 読も う。
+    english_literally: If it is to the extent of going to such a boring party, it is still better to be
+      reading a book at home.
+    competing_grammar:
+      - competing_japanese:
+          - あんな つまら ない パーティー に 行く {より}、家 で 本 を 読ん で いる {方 が} マシ だ。
+        english: It is still better to be reading a book at home than to go to such a boring party.
+        hint: This structure emphasizes that the party is so undesirable that even a quiet evening at
+          home is much preferable. 「より」 makes a simple comparison, but we're looking for a phrase that
+          highlights the extreme negative extent of the first option.
+      - competing_japanese:
+          - あんな つまら ない パーティー に 行く {なら}、家 で 本 を 読ん で いる 方 が マシ だ。
+        english: If I go to such a boring party, it is still better to be reading a book at home.
+        hint: This structure highlights that if the situation were to reach an extreme, undesirable point,
+          the alternative is preferable. 「なら」 is a general conditional, but we're looking for a phrase
+          that specifically conveys that the condition (going to a boring party) is extremely undesirable.
+    scene: A friend complains about a mandatory social gathering that they find utterly dull.
+    register: casual
+    setting: reflective
+  - english: Rather than relying on others for everything, I'd rather do it myself, even if it's difficult.
+    japanese:
+      - 何 で も 人 に 頼る {ぐらい なら}、たとえ 困難 で も 自分 で やる 方 が 良い。
+      - 何 で も 人 に 頼る {くらい なら}、困難 で も 自分 で やっ た 方 が マシ だ。
+      - 他人 に 全て を 委ねる {ぐらい なら}、自ら 行う 道 を 選ぶ。
+    english_literally: If it is to the extent of relying on others for everything, it is better to do
+      it myself, even if difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 何 で も 人 に 頼る {より}、たとえ 困難 で も 自分 で やる {方 が} 良い。
+        english: It is better to do it myself, even if difficult, than to rely on others for everything.
+        hint: This structure expresses a strong commitment to self-reliance, implying that relying on
+          others is an undesirable extreme. 「より」 makes a simple comparison, but we're looking for a phrase
+          that highlights the profound consideration for others.
+      - competing_japanese:
+          - 何 で も 人 に 頼る {なら}、たとえ 困難 で も 自分 で やる 方 が 良い。
+        english: If I rely on others for everything, it is better to do it myself, even if difficult.
+        hint: This structure conveys an unyielding stance on independence, implying that relying on others
+          has reached an unbearable degree. 「なら」 is a neutral conditional, but we're looking for a phrase
+          that expresses strong conviction and the extreme nature of the situation.
+    scene: A project manager explains his philosophy to his team, emphasizing the importance of independence
+      and taking initiative.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    nuance: The phrase 「自分 で やる 方 が 良い」 emphasizes self-reliance and independence, a value often expressed
+      with a firm and determined tone, particularly by male speakers in a professional or leadership context.
+      This conveys a sense of responsibility and capability, highlighting a preference for taking direct
+      action over dependence.
+  - english: Rather than eating something I don't like, I'd rather skip the meal entirely.
+    japanese:
+      - 嫌い な 物 を 食べる {ぐらい なら}、何 も 食べ ない 方 が マシ だ。
+      - 嫌い な 物 を 食べる {くらい なら}、食事 を 抜い た 方 が マシ だ。
+      - 苦手 な 物 を 口 に する {ぐらい なら}、いっそ 食べ ない 方 が いい。
+    english_literally: If it is to the extent of eating something I dislike, it is still better to eat
+      nothing.
+    competing_grammar:
+      - competing_japanese:
+          - 嫌い な 物 を 食べる {より}、何 も 食べ ない {方 が} マシ だ。
+        english: It is still better to eat nothing than to eat something I don't like.
+        hint: This structure expresses a strong aversion to disliked food, implying that eating it is
+          an extreme unpleasantness. 「より」 makes a simple comparison, but we're looking for a phrase that
+          highlights the profound distaste.
+      - competing_japanese:
+          - 嫌い な 物 を 食べる {なら}、何 も 食べ ない 方 が マシ だ。
+        english: If I eat something I don't like, it is still better to eat nothing.
+        hint: This structure conveys that the act of eating disliked food has reached an unbearable degree.
+          「なら」 is a neutral conditional, but we're looking for a phrase that emphasizes the extreme negative
+          experience.
+    scene: A picky eater at a restaurant contemplating their limited options, finding none of them appealing.
+    register: casual
+    setting: humorous
+    nuance: The use of 「～マシだ」 conveys a sense of choosing the "lesser of two evils," a common expression
+      of frustration or mild complaint, often used in casual settings when faced with undesirable choices
+      or to add a lighthearted, almost whiny, tone to a complaint about food preferences. It implies a
+      reluctant acceptance of a less bad alternative.
+  - english: Rather than living a life without challenge, I'd rather face difficulties and fail.
+    japanese:
+      - 挑戦 の ない 人生 を 送る {ぐらい なら}、困難 に 立ち向かい 失敗 する 方 が いい。
+      - 挑戦 の ない 人生 を 送る {くらい なら}、失敗 し て も いい から 困難 に 立ち向かう。
+      - 何 も し ない 人生 を 歩む {ぐらい なら}、たとえ 挫折 し て も 挑戦 し たい。
+    english_literally: If it is to the extent of living a life without challenge, it is better to face
+      difficulties and fail.
+    competing_grammar:
+      - competing_japanese:
+          - 挑戦 の ない 人生 を 送る {より}、困難 に 立ち向かい 失敗 する {方 が} いい。
+        english: It is better to face difficulties and fail than to live a life without challenge.
+        hint: This structure expresses a strong desire for personal growth, implying that a life without
+          challenge is an undesirable extreme. 「より」 makes a simple comparison, but we're looking for a
+          phrase that highlights the profound importance of striving.
+      - competing_japanese:
+          - 挑戦 の ない 人生 を 送る {なら}、困難 に 立ち向かい 失敗 する 方 が いい。
+        english: If I live a life without challenge, it is better to face difficulties and fail.
+        hint: This structure conveys that a lack of challenge has reached an unbearable degree. 「なら」 is
+          a neutral conditional, but we're looking for a phrase that emphasizes the extreme philosophical
+          stance on life.
+    scene: A motivational speaker addressing a group of young entrepreneurs, encouraging them to pursue
+      ambitious goals despite potential setbacks.
+    register: formal
+    setting: inspirational
+  - english: Rather than bothering you with my trivial problems, I'd rather try to solve them myself.
+    japanese:
+      - 些細 な 問題 で ご 迷惑 を お かけ する {くらい なら}、自分 で 解決 策 を 探す 方 が いい です。
+      - 些細 な 問題 で ご 迷惑 を お かけ する {ぐらい なら}、自分 で 何 と か し ます。
+      - 大した こと ない こと で 手 を 煩わ せる {ぐらい なら}、私 が 一人 で やり ます。
+    english_literally: If it is to the extent of causing you trouble with trivial problems, it is better
+      to look for a solution myself.
+    competing_grammar:
+      - competing_japanese:
+          - 些細 な 問題 で ご 迷惑 を お かけ する {より}、自分 で 解決 策 を 探す {方 が} いい です。
+        english: It is better to look for a solution myself than to bother you with my trivial problems.
+        hint: This structure expresses a strong desire to avoid imposing on others, implying that bothering
+          them is an undesirable extreme. 「より」 makes a simple comparison, but we're looking for a phrase
+          that highlights the profound consideration for others.
+      - competing_japanese:
+          - 些細 な 問題 で ご 迷惑 を お かけ する {なら}、自分 で 解決 策 を 探す 方 が いい です。
+        english: If I bother you with my trivial problems, it is better to look for a solution myself.
+        hint: This structure conveys that the act of bothering someone has reached an unbearable degree.
+          「なら」 is a neutral conditional, but we're looking for a phrase that emphasizes the extreme politeness
+          and consideration.
+    scene: An intern speaking to their supervisor, trying to be considerate and not add to their workload.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    nuance: The polite phrasing 「ご迷惑 を おかけ する」 (to cause trouble) and the humble tone conveyed by 「～方
+      が いい です」 or 「～し ます」 are characteristic of women's speech in a professional setting when expressing
+      consideration and avoiding imposition. This demonstrates thoughtfulness and respect for the listener's
+      time and effort.
+post_example_writeup: As these examples demonstrate, 「ぐらいなら」 (or 「くらいなら」) is a versatile expression used
+  to convey a strong preference for an alternative, emphasizing the high degree of undesirability of the
+  first option. The second clause often suggests a 'lesser of two evils' or a more ideal alternative,
+  making it a powerful tool for expressing firm opinions, resignation, or even humorous exasperation.
+  Pay attention to the context and the speaker's tone, as this phrase often carries a significant emotional
+  weight, whether it's deep regret, strong conviction, or simple annoyance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ぐらいなら

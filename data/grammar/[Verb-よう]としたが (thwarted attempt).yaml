@@ -1,0 +1,233 @@
+grammar_point: '[Verb-よう]としたが (thwarted attempt)'
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - くる (come)
+  - すっかり (completely)
+  - で (cause・reason)
+  - と (with)
+  - にかかっている (to depend on)
+  - へ (directional particle)
+  - 切る (do completely or thoroughly)
+  - 気 (feeling・inclination・atmosphere)
+meaning: was about to do, but (thwarted attempt)
+pronunciation:
+  katakana: ようとしたが
+  romaji: you to shita ga
+formation:
+  Verb[volitional] + とした + が: Indicates an attempt was made or an action was on the verge of occurring,
+    but it was thwarted or did not proceed as intended.
+jlpt: N3
+etymology: The 「ようとする」 part comes from the volitional form of a verb (～よう) combined with 「と」 (quotation
+  particle, indicating intention or result) and 「する」 (to do/try). The 「が」 is a common conjunction meaning
+  "but" or "however." The combination literally means "tried to do [verb], but..." highlighting the intended
+  action and its subsequent prevention.
+writeup: The grammatical pattern 「～ようとしたが」 is used to express that someone was about to do something,
+  or tried to do something, but their action was interrupted, prevented, or ultimately unsuccessful due
+  to an unforeseen circumstance. It conveys a sense of a "thwarted attempt" or an "almost-happened" situation.
+  This pattern is formed by taking the volitional form of a verb (～よう) and attaching 「としたが」. The 「とする」
+  part indicates an intention or an action on the verge of being performed. The 「が」 particle serves as
+  a conjunction meaning "but" or "however," introducing the unexpected element that prevented the action
+  from being completed. It's crucial to understand that 「～ようとしたが」 implies that the initial intention or
+  attempt did not fully materialize into the intended action. It differs from simply trying and failing;
+  it emphasizes the interruption or prevention of the action itself. For instance, if you say 「電車に乗ろうとしたが、間に合わなかった」
+  (I tried to get on the train, but I didn't make it), it suggests you were at the station, ready to board,
+  but something (like the train leaving) stopped you. This expression is commonly used in narratives or
+  when recounting events, highlighting moments where plans changed or actions were interrupted. It often
+  carries a nuance of regret, disappointment, or simply an explanation of why something did not happen
+  as expected. While 「～ようとしたが」 itself is a standard expression, the formality depends on the surrounding
+  sentence structure and politeness levels. The phrase itself leans towards a conversational or narrative
+  tone.
+false_friends:
+  - term: Verb[た]ところだった
+    meaning: was just about to do (but didn't, or almost did)
+    kind: similar expression
+    nuance: 「〜たところだった」 emphasizes that an action was on the verge of happening, and often implies it almost
+      did, or a narrow escape from it. It can express relief that something didn't happen. 「〜ようとしたが」 focuses
+      more on the attempt or intention that was thwarted.
+    grammar_point: '[Verb-dictionary]ところだった (was just about to)'
+  - term: Verb[よう]とする
+    meaning: to try to do; to be about to do
+    kind: similar expression
+    nuance: 「〜ようとする」 expresses the intention or attempt to do something, or being on the verge of doing
+      it, without necessarily implying a thwarted outcome. It's the base form of our grammar point before
+      adding the 「が」. 「〜ようとしたが」 specifically adds the "but" or "however," indicating the failure or prevention.
+    grammar_point: '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - term: Verb[よう]としたのに
+    meaning: tried to do, but (unexpectedly)
+    kind: similar expression
+    nuance: While similar in meaning, 「〜ようとしたのに」 often carries a stronger sense of disappointment, frustration,
+      or a grievance about an unexpected negative outcome. The speaker feels that despite their efforts
+      or intention, something unfavorable happened. 「〜ようとしたが」 is more neutral in simply stating the thwarted
+      attempt.
+    grammar_point: のに (unexpected result)
+post_false_friends_writeup: The patterns 「～ようとしたが」, 「～たところだった」, and 「～ようとしたのに」 all relate to actions that
+  were attempted or almost happened, but they convey slightly different nuances. 「～ようとしたが」 simply states
+  that an attempt was made but didn't succeed due to an interruption. 「～たところだった」 emphasizes that the action
+  was on the very brink of occurring, often implying a close call or a near miss. In contrast, 「～ようとしたのに」
+  adds a sense of frustration or complaint, indicating that despite one's efforts, the outcome was unfavorable.
+  Understanding these subtle distinctions is key to using them accurately in Japanese.
+examples:
+  - english: I was about to get on the train, but it left.
+    japanese:
+      - 電車 に {乗ろう と し た が}、発車 し て しまっ た。
+      - 電車 に {乗ろう と し た が}、発車 し て しまい まし た。
+      - 電車 に {乗ろう と し た けれど}、発車 し て しまっ た。
+    english_literally: I was about to ride the train, but it departed.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 に {乗ろう と し た}。
+        english: I was about to get on the train.
+        hint: This only states the intention. We're looking for a phrase that implies the action was prevented.
+      - competing_japanese:
+          - 電車 に {乗る ところ だっ た が}、発車 し て しまっ た。
+        english: I was just about to get on the train, but it left.
+        hint: 「〜ところだった」 emphasizes being on the verge of doing something. We're looking for a thwarted
+          attempt.
+    scene: You are at the train station, just as your train is about to leave.
+    register: casual
+    setting: serious
+  - english: She tried to open the door, but it was locked.
+    japanese:
+      - 彼女 は ドア を {開けよう と し た が}、鍵 が かかっ て い た。
+      - 彼女 は ドア を {開けよう と し た が}、鍵 が かかっ て い まし た。
+      - 彼女 は ドア を {開けよう と し た けれど}、鍵 が かかっ て い た。
+    english_literally: She tried to open the door, but a lock was on it.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ドア を {開け たい と 思っ た が}、鍵 が かかっ て い た。
+        english: She thought she wanted to open the door, but it was locked.
+        hint: 「〜たいと思った」 expresses a desire, not an immediate attempt. We're looking for a phrase indicating
+          an immediate action was thwarted.
+    scene: Someone is attempting to enter a room.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: 「開けようとした」 clearly indicates her intention and effort to open the door, which was then blocked
+      by 「鍵がかかっていた」.
+  - english: I tried to call you, but my phone battery died.
+    japanese:
+      - 電話 を {かけよう と し た が}、携帯 の 電池 が 切れ た。
+      - 電話 を {かけよう と し た が}、携帯 の 電池 が 切れ まし た。
+      - 電話 を {かけよう と し た けれど}、携帯 の 電池 が 切れ た。
+    english_literally: I tried to make a call, but my mobile's battery died.
+    competing_grammar:
+      - competing_japanese:
+          - 電話 を {かける つもり だっ た が}、携帯 の 電池 が 切れ た。
+        english: I intended to call, but my phone battery died.
+        hint: 「〜つもりだった」 expresses a past intention or plan. We're looking for a phrase indicating an immediate
+          attempt was thwarted.
+    scene: Explaining why you didn't reach someone.
+    register: casual
+    setting: apologetic
+  - english: I was about to go out, but it started raining heavily.
+    japanese:
+      - 外出 {しよう と し た が}、大雨 が 降り 出し た。
+      - 外出 {しよう と し た が}、大雨 が 降り 出し まし た。
+      - 外出 {しよう と し た けれど}、大雨 が 降り 出し た。
+    english_literally: I was about to go out, but heavy rain started falling.
+    competing_grammar:
+      - competing_japanese:
+          - 外出 {する 予定 だっ た が}、大雨 が 降り 出し た。
+        english: I was planning to go out, but it started raining heavily.
+        hint: 「〜予定だった」 indicates a prior plan. We're looking for an action that was in the process of
+          being initiated.
+    scene: Looking out the window and changing plans.
+    register: casual
+    setting: reflective
+  - english: He tried to cook dinner, but he realized there was no rice.
+    japanese:
+      - 彼 は 晩ご飯 を {作ろう と し た が}、ご飯 が ない こと に 気 が つい た。
+      - 彼 は 晩ご飯 を {作ろう と し た が}、ご飯 が ない こと に 気 が つき まし た。
+      - 彼 は 晩ご飯 を {作ろう と し た けれど}、ご飯 が ない こと に 気 が つい た。
+    english_literally: He tried to make dinner, but noticed that there was no rice.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 晩ご飯 を {作る つもり だっ た が}、ご飯 が ない こと に 気 が つい た。
+        english: He intended to make dinner, but noticed there was no rice.
+        hint: 「〜つもりだった」 expresses an intention or plan. We're looking for a phrase indicating an immediate
+          attempt was thwarted.
+    scene: Someone planning to cook but encountering an unexpected obstacle.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: 「作ろうとした」 shows his initial intent. The discovery of 「ご飯がない」 is the unexpected factor that
+      thwarts his attempt.
+  - english: I tried to speak, but I was interrupted by the sudden noise.
+    japanese:
+      - 話 {そう と し た が}、突然 の 物音 に 邪魔 さ れ た。
+      - 話 {そう と し た が}、突然 の 物音 に 邪魔 さ れ まし た。
+      - 話 {そう と し た けれど}、突然 の 物音 に 邪魔 さ れ た。
+    english_literally: I tried to speak, but was disturbed by a sudden sound.
+    competing_grammar:
+      - competing_japanese:
+          - 話 {そう と 思っ た が}、突然 の 物音 に 邪魔 さ れ た。
+        english: I thought I would speak, but I was interrupted by a sudden noise.
+        hint: 「〜と思った」 expresses a thought or decision. We're looking for an action that was on the verge
+          of happening.
+    scene: A quiet moment, broken by an unexpected sound.
+    register: casual
+    setting: serious
+  - english: I was about to ask her, but I completely forgot.
+    japanese:
+      - 彼女 に {聞こう と し た が}、すっかり 忘れ て しまっ た。
+      - 彼女 に {聞こう と し た が}、すっかり 忘れ て しまい まし た。
+      - 彼女 に {聞こう と し た けれど}、すっかり 忘れ て しまっ た。
+    english_literally: I was about to ask her, but I completely forgot.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 に {聞き たかっ た が}、すっかり 忘れ て しまっ た。
+        english: I wanted to ask her, but I completely forgot.
+        hint: 「〜たかった」 expresses a past desire. We're looking for a phrase indicating an immediate attempt
+          that was thwarted.
+    scene: Recounting a missed opportunity.
+    register: casual
+    setting: melancholic
+    speaker_age: younger
+    nuance: 「聞こうとした」 shows the speaker's intent, and 「すっかり忘れてしまった」 highlights the self-thwarting nature
+      of the attempt due to forgetfulness.
+  - english: I tried to go to sleep, but I just couldn't.
+    japanese:
+      - '{寝よう と し た が}、なかなか 眠れ なかっ た。'
+      - '{寝よう と し た が}、なかなか 眠れ ませ ん でし た。'
+      - '{寝よう と し た けれど}、なかなか 眠れ なかっ た。'
+    english_literally: I tried to sleep, but I couldn't sleep easily.
+    competing_grammar:
+      - competing_japanese:
+          - '{寝よう と 努力 し た が}、なかなか 眠れ なかっ た。'
+        english: I made an effort to sleep, but I couldn't sleep easily.
+        hint: 「〜努力したが」 emphasizes the effort. We're looking for a more general 'was about to/tried to'
+          before being prevented.
+    scene: Struggling with insomnia.
+    register: casual
+    setting: reflective
+  - english: I tried to find the book, but it wasn't on the shelf.
+    japanese:
+      - その 本 を {探そう と し た が}、棚 に なかっ た。
+      - その 本 を {探そう と し た が}、棚 に あり ませ ん でし た。
+      - その 本 を {探そう と し た けれど}、棚 に なかっ た。
+    english_literally: I tried to search for that book, but it was not on the shelf.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 を {見つけよう と し た が}、棚 に なかっ た。
+        english: I tried to find the book, but it wasn't on the shelf.
+        hint: 「見つけようとした」 implies trying to discover it. We're looking for the act of 'searching' that
+          was thwarted.
+    scene: Searching for an item.
+    register: casual
+    setting: informative
+  - english: I was about to leave the house when a friend came to visit.
+    japanese:
+      - 家 を {出よう と し た が}、友達 が 訪ね て き た。
+      - 家 を {出よう と し た が}、友達 が 訪ね て き まし た。
+      - 家 を {出よう と し た けれど}、友達 が 訪ね て き た。
+    english_literally: I was about to leave the house, but a friend came to visit.
+    competing_grammar:
+      - competing_japanese:
+          - 家 を {出かける ところ だっ た が}、友達 が 訪ね て き た。
+        english: I was just about to leave the house, but a friend came to visit.
+        hint: 「〜ところだった」 focuses on the very moment before an action. We're looking for an initiated attempt
+          that was then interrupted.
+    scene: An unexpected visit just as you're heading out.
+    register: casual
+    setting: friendly

@@ -1,0 +1,344 @@
+grammar_point: ある (to exist, inanimate・to have)
+learn_before:
+  - もし・もしも (if, emphasis)
+meaning: To exist (for inanimate objects and abstract concepts); to have
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ある
+    rarity: common
+    meaning: To exist, There is
+  - conjugation-type: non-past polite (～ます)
+    form: あります
+    rarity: common
+    meaning: To exist, There is (polite)
+  - conjugation-type: negative plain (～ない)
+    form: ない
+    rarity: common
+    meaning: To not exist, There is not
+  - conjugation-type: negative non-past polite (～ません)
+    form: ありません
+    rarity: common
+    meaning: To not exist, There is not (polite)
+  - conjugation-type: past plain (～た)
+    form: あった
+    rarity: common
+    meaning: Existed, There was
+  - conjugation-type: past polite (～ました)
+    form: ありました
+    rarity: common
+    meaning: Existed, There was (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: なかった
+    rarity: common
+    meaning: Did not exist, There was not
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ありませんでした
+    rarity: common
+    meaning: Did not exist, There was not (polite)
+  - conjugation-type: te-form (～て)
+    form: あって
+    rarity: common
+    meaning: Existing, There being (used to connect clauses)
+  - conjugation-type: conditional (～ば)
+    form: あれば
+    rarity: common
+    meaning: If there is, If there be
+  - conjugation-type: conditional (～たら)
+    form: あったら
+    rarity: common
+    meaning: If there existed, If there were
+  - conjugation-type: volitional (～よう)
+    form: あろう
+    rarity: very rare
+    meaning: It is likely there is/will be
+  - conjugation-type: volitional polite (～ましょう)
+    form: ありましょう
+    rarity: very rare
+    meaning: It is likely there is/will be (polite)
+  - conjugation-type: potential (～られる/～える)
+    form: ありえる
+    rarity: rare
+    meaning: Can be, There can be
+  - conjugation-type: concessive (～ても)
+    form: あっても
+    rarity: common
+    meaning: Even if there is
+pronunciation:
+  katakana: アル
+  romaji: aru
+formation:
+  '[Noun] + が + ある': Indicates the existence of an inanimate object or abstract concept. Equivalent to
+    "there is/are" or "to have."
+  '[Place に/には] + [Object が] + ある/あります': Indicates the location of an inanimate object.
+  '[Person に/には] + [Object が] + ある/あります': Indicates possession of an inanimate object or abstract concept.
+    For example, 「私 に は 時間 が ある」 (I have time).
+jlpt: N5
+etymology: The origins of 「ある」 are ancient, tracing back to the early stages of the Japanese language.
+  It evolved from a concept of physical presence or location, solidifying over time into its current meaning
+  as a verb indicating existence. The kanji 有る is commonly seen.
+writeup: |-
+  The verb **ある** is a fundamental grammatical structure in Japanese, indicating the existence of inanimate objects or abstract concepts. It combines with the particle 「が」, which marks the subject, to form 「が ある」, meaning "to exist" or "there is". This construction can also imply possession of inanimate things or abstract concepts.
+
+  The polite form of 「ある」 is **あります**. Conversely, **ない** or **ありません** signifies non-existence or lack of possession.
+
+  It is crucial to distinguish **ある** from **いる**, which is reserved for the existence of animate beings (people and animals). When indicating location, **ある** is typically used with the particle 「に」 or 「には」 to specify where the inanimate object exists. For possession, **ある** is often used with 「が」, where the possessor is marked by 「に」 or 「には」.
+
+  While **ある** can denote possession, especially of abstract concepts or things that are generally "had" rather than physically "held" (e.g., 「時間がある」 - "I have time"), the verb **持っている** (motteiru) is more frequently used for the physical possession or ownership of tangible items. Note that **ある** is a Godan verb, but its plain negative form is irregular: **ない**, not **あらない**.
+false_friends:
+  - term: いる (to exist, animate)
+    meaning: To be, There is, To remain (in a state)
+    kind: often confused with
+    nuance: Unlike 「ある」, 「いる」 is used to describe the existence of living things (people, animals).
+    grammar_point: いる (to exist, animate)
+  - term: だ (casual copula)
+    meaning: To be, Is
+    kind: often confused with
+    nuance: Unlike 「ある」, 「だ」 is a copula that links a noun or adjective to the subject. It doesn't indicate
+      existence, but rather identity or state.
+    grammar_point: だ (casual copula)
+  - term: です (polite copula)
+    meaning: To be, Is
+    kind: often confused with
+    nuance: Unlike 「ある」, 「です」 is the polite form of the copula 「だ」 and serves the same function of linking
+      nouns or adjectives, not indicating existence.
+    grammar_point: です (polite copula)
+  - term: である (formal copula)
+    meaning: To be (formal/literary)
+    kind: often confused with
+    nuance: Unlike 「ある」, 「である」 is a more formal or literary version of 「だ」, primarily used in writing
+      or formal speeches to assert identity or definition, not existence.
+    grammar_point: である (formal copula)
+  - term: ございます (polite 'to be or exist')
+    meaning: To be, to exist (polite)
+    kind: often confused with
+    nuance: Unlike 「ある」, 「ございます」 is a highly polite form of 「ある」. While it also indicates existence, it
+      is typically used in specific formal or business contexts, or as a polite auxiliary verb, and generally
+      carries a higher level of respect than 「あります」.
+    grammar_point: でございます (polite copula, formal)
+  - term: 持っている (to have, to hold)
+    meaning: To have, to hold
+    kind: similar expression
+    nuance: While both 「ある」 and 「持っている」 can indicate possession, 「持っている」 emphasizes physical holding or
+      ownership in a more concrete sense. 「ある」 is a more general statement of existence or having something,
+      which can be tangible or intangible.
+    grammar_point: 持っている (to be holding・to possess)
+post_false_friends_writeup: The key distinction between 「ある」 and these similar expressions lies in their
+  core function. 「ある」 specifically indicates the existence of inanimate objects or abstract concepts.
+  「いる」 is used for living things. 「だ」 and 「です」 are copulas that state identity or definition. 「である」 is
+  a formal copula for written or authoritative contexts. 「ございます」 is a very polite variant for existence
+  or as an auxiliary. 「持っている」 emphasizes tangible possession. To choose correctly, consider whether you
+  are stating existence, identifying something, or describing a living entity or tangible possession.
+examples:
+  - english: There is a book on the desk.
+    japanese:
+      - 机 の 上 に 本 が {ある}。
+      - 机 の 上 に 本 が {ある} よ。
+      - 机 の 上 に は 本 が {ある}。
+      - 机 の 上 に 本 が {ござい ます}。
+      - 机 に 本 が {ある}。
+      - 本 が 机 の 上 に {ある}。
+      - 机 の 上 に 本 が {ある} ね。
+      - 机 の 上 本 {ある}。
+    english_literally: On the desk, a book exists.
+    competing_grammar:
+      - competing_japanese:
+          - 机 の 上 は 本 {です}。
+        english: The top of the desk is a book.
+        hint: The scene describes the *presence* of an object in a location, steering the learner towards
+          an existential verb rather than a copula, which identifies what something *is*. We're looking
+          for an expression that indicates 'there is' a book.
+    scene: A teacher is giving instructions for cleaning up a classroom.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: My house has a garden.
+    japanese:
+      - 私 の 家 に は 庭 が {あり ます}。
+      - 私 の 家 に 庭 が {あり ます}。
+      - うち に 庭 が {あり ます}。
+      - 庭 が うち に {あり ます}。
+      - 私 の 家 に 庭 が {ある}。
+      - 私 の 家 に は 庭 が {ござい ます}。
+      - 私 の 家 に 庭 が {ある} ん です。
+      - 私 の 家 に は 庭 が {ある} ん です よ。
+    english_literally: As for my house, a garden exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家 は 庭 {です}。
+        english: My house is a garden.
+        hint: The scenario focuses on the *existence* of a feature (a garden) belonging to the house,
+          which requires an existential verb, not an identifying copula. We're looking for an expression
+          that indicates possession or existence of a feature.
+    scene: A new acquaintance is describing their home to a friend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: I don't have homework today.
+    japanese:
+      - 今日 は 宿題 が {ない}。
+      - 今日 は 宿題 が {ない} よ。
+      - 今日 は 宿題 が {ない} ぞ。
+      - 今日 宿題 が {ない}。
+      - 宿題 が 今日 は {ない}。
+      - 今日 は 宿題 が {あり ませ ん}。
+      - 今日 は 宿題 が {ない} ん です。
+    english_literally: Today, homework does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 宿題 を {持っ て い ない}。
+        english: Today, I'm not physically holding homework.
+        hint: The scene highlights the *absence* of an abstract concept (homework) rather than the physical
+          act of not possessing it. Consider which verb naturally conveys this lack.
+    scene: A student joyfully declares their lack of assignments to a classmate.
+    register: casual
+    setting: excited
+    conjugation: negative plain (～ない)
+  - english: Last week, I didn't have money.
+    japanese:
+      - 先週 は お 金 が {あり ませ ん でし た}。
+      - 先週 お 金 が {あり ませ ん でし た}。
+      - お 金 が 先週 は {あり ませ ん でし た}。
+      - 先週 は お 金 が {なかっ た}。
+      - 先週 お 金 が {ござい ませ ん でし た}。
+      - 先週 は お 金 が {なかっ た} ん です。
+      - 先週 は お 金 が {なかっ た} の で。
+    english_literally: Last week, money did not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 先週 は お 金 を {持っ て い ませ ん でし た}。
+        english: Last week, I didn't physically hold money.
+        hint: The scene describes a past state of *lacking* something (money), emphasizing the non-existence
+          of funds rather than the act of not physically holding money. Consider which verb form best
+          conveys this state.
+    scene: A woman explains to her friend why she couldn't join an outing last week.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: negative past polite (～ませんでした)
+  - english: Long ago, there was a big tree in the park.
+    japanese:
+      - 昔、公園 に 大きな 木 が {あっ た}。
+      - 昔、公園 に 大きな 木 が {あり まし た}。
+      - 昔、公園 に は 大きな 木 が {あっ た}。
+      - 公園 に 大きな 木 が {あっ た}。
+    english_literally: Long ago, in the park, a big tree existed.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、公園 は 大きな 木 {でし た}。
+        english: Long ago, the park was a big tree.
+        hint: The scene involves reminiscing about something that *existed* in the past at a specific
+          location, guiding the user to an existential form rather than an identifying copula.
+    scene: An elderly person reminisces about their childhood, pointing to an empty spot in a park while
+      talking to their grandchild.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: If there is a problem, please tell me immediately.
+    japanese:
+      - 問題 が {あれ ば}、すぐ に 教え て ください。
+      - 問題 が {あり まし たら}、すぐ に 教え て ください。
+      - もし 問題 が {あれ ば}、すぐ に 教え て ください。
+      - 何 か 問題 が {あれ ば}、すぐ に 教え て ください。
+      - 問題 が {あっ たら}、すぐ に 教え て ください。
+      - もし 問題 が {あっ たら}、すぐ に 教え て ください。
+      - 問題 が {あっ たら}、すぐ に ご 連絡 ください。
+      - 問題 が {あっ たら}、すぐ に ご 連絡 いただけ ます か。
+    english_literally: If a problem exists, please tell immediately.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 が {ある と}、すぐ に 教え て ください。
+        english: When a problem exists, please tell immediately.
+        hint: The conditional form 「～ば」 is used here to indicate a general condition or a standing instruction
+          for any potential future problem. Consider which conditional form best suits this context.
+    scene: A manager instructs their team to report any issues promptly.
+    register: formal
+    setting: instructional
+    conjugation: conditional (～ば)
+  - english: He has courage.
+    japanese:
+      - 彼 に は 勇気 が {ある}。
+      - 彼 に は 勇気 が {ある} よ。
+      - 彼 に 勇気 が {ある}。
+      - 勇気 が 彼 に は {ある}。
+      - 彼 に は 勇気 が {あり ます}。
+      - 彼 に は 勇気 が {ござい ます}。
+      - 彼 に は 勇気 が {ある} ん です ね。
+      - 彼 に は 勇気 が {ある} なあ。
+    english_literally: To him, courage exists.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 勇気 を {持っ て いる}。
+        english: He physically holds courage.
+        hint: The scene describes the *existence* of an abstract quality (courage) within a person. While
+          「持っている」 can sometimes be used for abstract concepts, consider which phrasing emphasizes the
+          inherent presence of the trait.
+    scene: A mentor praises a student's character.
+    register: semi-formal
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: Using 「がある」 for abstract qualities like 「勇気」 (courage) indicates the inherent presence of
+      that quality in a person. The speaker, a female mentor, uses 「彼には勇気がある」 to commend a student's inner
+      strength, reflecting a supportive and appreciative tone. Note that while 「持っている」 can describe abstract
+      qualities, 「ある」 emphasizes the inherent existence of the trait, not its active possession or holding.
+      The feminine use of 「ですね」 and 「なあ」 also adds a gentle, reflective tone to the praise.
+  - english: Is there enough time to finish this?
+    japanese:
+      - これ を 終わら せる 時間 は {あり ます} か。
+      - これ を 終わら せる 時間 が {あり ます} か。
+      - これ を 終わら せる 時間 は {ある} の か な。
+      - これ を 終わら せる 時間 が {ある} か どう か。
+      - これ を 終わら せる 時間 は {ござい ます} か。
+    english_literally: To finish this, is time existing?
+    competing_grammar:
+      - competing_japanese:
+          - これ を 終わら せる 時間 が {かかり ます} か。
+        english: Does it take time to finish this?
+        hint: The question is about the *availability* of time, not how much time an action *consumes*.
+          We are looking for a phrasing that asks about the presence or existence of time.
+    scene: A project manager asks their team about their progress and scheduling.
+    register: formal
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+  - english: I found a five-yen coin under the vending machine!
+    japanese:
+      - 自動 販売 機 の 下 に 五 円 玉 が {あっ た}！
+      - 自動 販売 機 の 下 に 五 円 玉 が {あり まし た}！
+      - 自動 販売 機 の 下 に 五 円 玉 {あっ た} ぞ！
+      - 五 円 玉 が 自動 販売 機 の 下 に {あっ た} よ！
+    english_literally: Under the vending machine, a five-yen coin existed!
+    competing_grammar:
+      - competing_japanese:
+          - 自動 販売 機 の 下 に 五 円 玉 を {見つけ た}！
+        english: I discovered/found a five-yen coin under the vending machine!
+        hint: While both indicate discovery, the focus here is on the unexpected *presence* of the coin,
+          rather than the action of *finding* it. We're looking for a natural expression of an object's
+          existence in a place.
+    scene: A person is checking under a vending machine and makes an unexpected discovery.
+    register: casual
+    setting: excited
+    conjugation: past plain (～た)
+  - english: If there is water, plants will grow.
+    japanese:
+      - 水 が {あれ ば}、植物 は 育ち ます。
+      - 水 が {ある なら}、植物 は 育ち ます。
+      - もし 水 が {あれ ば}、植物 は 育ち ます。
+      - 水 が {あっ たら}、植物 は 育ち ます。
+    english_literally: If water exists, plants will grow.
+    competing_grammar:
+      - competing_japanese:
+          - 水 が {ある と}、植物 は 育ち ます。
+        english: When there is water, plants grow.
+        hint: While both are conditional, 「〜ば」 often describes a general condition or a prerequisite for
+          something to happen, emphasizing its necessity. 「〜と」 implies a more direct and inevitable consequence.
+          We are looking for a general principle.
+    scene: A science teacher explains basic biological principles to a class.
+    register: formal
+    setting: informative
+    conjugation: conditional (～ば)
+post_example_writeup: As you can see from the examples, 「ある」 is highly versatile. It's used for stating
+  simple existence, expressing possession of inanimate things or abstract concepts, and forming various
+  tenses and conditional statements. Pay close attention to context to choose the most natural and appropriate
+  Japanese phrasing, especially when considering alternative structures that might seem similar but carry
+  different nuances.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がある

@@ -1,0 +1,205 @@
+grammar_point: '[Verb-(ら)れる]ままに (as one is told)'
+learn_before:
+  - ままに (as desired)
+meaning: As one is told or instructed; passively following orders or influence
+pronunciation:
+  katakana: ママニ
+  romaji: mamani
+formation:
+  Verb[passive form] + ままに: Indicates performing an action exactly as instructed or influenced, without
+    personal will.
+jlpt: N1
+etymology: The construction combines the passive form of a verb (～られる) with まま and the particle に. ～られる
+  (passive) indicates that the subject receives an action. まま (as is, unchanged) suggests doing something
+  exactly in the state or manner given. に is a particle indicating manner or state. Therefore, it literally
+  means "to be in the state of being acted upon and then doing as that state dictates." This emphasizes
+  the lack of independent will and simply following what is received.
+writeup: Verb[passive form] + ままに is a grammatical pattern used to describe an action that is performed
+  exactly as one is told, instructed, or influenced, without much personal will or initiative. It highlights
+  the passive nature of the subject's action, indicating that they are merely following external directives.
+  This expression often carries a nuance of obedience, resignation, or sometimes a lack of critical thought
+  in executing an action. It is more formal and literary than simpler expressions like 言われた通りに (iwareru
+  toori ni – as told). It implies a complete and unhesitating adherence to the received instruction or
+  influence, almost as if the person is an instrument.
+false_friends:
+  - term: 〜通りに (toori ni)
+    meaning: as; according to; exactly as
+    kind: similar expression
+    nuance: 〜通りに is a more general expression for following something exactly as it is, whether it is
+      instructions, a pattern, or a plan. It does not inherently carry the passive implication of being
+      "told" as strongly as [Verb-(ら)れる]ままに. It is neutral regarding the subject's will.
+    grammar_point: とおり (exactly as)
+  - term: 〜に従って (ni shitagatte)
+    meaning: following; in accordance with; obeying
+    kind: similar expression
+    nuance: 〜に従って implies adherence to rules, orders, or a process, often with a sense of formality or
+      compliance. While it involves following instructions, it suggests a more active decision to comply,
+      rather than the complete lack of personal will implied by [Verb-(ら)れる]ままに. It focuses on conformity
+      to a standard or system.
+    grammar_point: したがって (therefore)
+  - term: 〜ように (youni)
+    meaning: as; in such a way that
+    kind: similar expression
+    nuance: When used to mean "as" (e.g., 「私が言ったようにしてください」 "Please do as I said"), 〜ように is a general way
+      to express doing something in a certain manner or according to a suggestion. It lacks the strong
+      emphasis on being passively acted upon that [Verb-(ら)れる]ままに conveys. It is more about conformity
+      to a method or advice.
+    grammar_point: ように (purpose or desired state)
+post_false_friends_writeup: While [Verb-(ら)れる]ままに, 〜通りに, 〜に従って, and 〜ように can all describe actions performed
+  based on external factors, their nuances differ significantly. [Verb-(ら)れる]ままに emphasizes the passive
+  reception of an instruction and the subsequent action, almost suggesting a lack of independent thought
+  or a resigned obedience. In contrast, 〜通りに is a neutral expression for simply doing something exactly
+  as specified. 〜に従って implies active compliance with rules or guidelines, often in a formal context. 〜ように,
+  when used similarly, generally indicates following advice or performing an action in a specified manner,
+  without the strong implication of being coerced or completely yielding one's will.
+examples:
+  - english: He wrote the kanji just as he was taught.
+    japanese:
+      - 彼 は 教え られる {まま に} 漢字 を 書い た。
+      - 彼 は 教え られ ます {まま に} 漢字 を 書き まし た。
+    english_literally: He, taught-passive as, kanji wrote.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 教わっ た 通り に 漢字 を 書い た。
+        english: He wrote the kanji exactly as he learned it.
+        hint: 「〜通りに」 indicates doing something exactly as it is, which is more neutral. We are looking
+          for an expression that emphasizes passively receiving instruction.
+    scene: A student recalling how they learned to write characters.
+    register: casual
+    setting: academic
+  - english: The soldiers moved as they were ordered.
+    japanese:
+      - 兵士 たち は 命じ られる {まま に} 動い た。
+      - 兵士 たち は 命じ られ ます {まま に} 動き まし た。
+    english_literally: Soldiers, ordered-passive as, moved.
+    competing_grammar:
+      - competing_japanese:
+          - 兵士 たち は 命令 に 従っ て 動い た。
+        english: The soldiers moved in accordance with the orders.
+        hint: 「〜に従って」 implies active compliance with rules or orders. We are looking for an expression
+          that suggests a complete lack of personal will.
+    scene: Describing military discipline.
+    register: formal
+    setting: serious
+    speaker_gender: male
+  - english: She laughed heartily, as if possessed by joy.
+    japanese:
+      - 彼女 は 喜び に 駆ら れる {まま に}、豪快 に 笑っ た。
+      - 彼女 は 喜び に 駆ら れ ます {まま に}、豪快 に 笑い まし た。
+    english_literally: She, joy by driven-passive as, heartily laughed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 喜び で 大声 で 笑っ た。
+        english: She laughed loudly out of joy.
+        hint: 「喜びで」 indicates a cause for action but not the same passive compulsion. We are looking for
+          an expression that suggests an overwhelming emotional influence dictating the action.
+    scene: Observing someone's unrestrained laughter.
+    register: casual
+    setting: creative
+  - english: He ended up signing the contract just as he was persuaded.
+    japanese:
+      - 彼 は 説得 さ れる {まま に}、契約 書 に サイン し て しまっ た。
+      - 彼 は 説得 さ れ ます {まま に}、契約 書 に サイン し て しまい まし た。
+    english_literally: He, persuaded-passive as, contract signed-ended up.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 説得 さ れ て 契約 書 に サイン し た。
+        english: He was persuaded and signed the contract.
+        hint: 「〜されて」 simply states a passive action without the nuance of blindly following. We are looking
+          for an expression that implies succumbing to external pressure without conviction.
+    scene: Describing a regrettable decision made under influence.
+    register: casual
+    setting: melancholic
+  - english: The boat drifted as it was carried by the current.
+    japanese:
+      - 船 は 流れ に 運ば れる {まま に}、漂っ た。
+      - 船 は 流れ に 運ば れ ます {まま に}、漂い まし た。
+    english_literally: Boat, current by carried-passive as, drifted.
+    competing_grammar:
+      - competing_japanese:
+          - 船 は 流れ に 乗っ て 漂っ た。
+        english: The boat drifted riding on the current.
+        hint: 「〜に乗って」 implies being on something, not necessarily being passively controlled by it. We
+          are looking for an expression that describes passive movement, completely at the mercy of the
+          current.
+    scene: Observing a boat floating downstream.
+    register: formal
+    setting: reflective
+  - english: She lived her life as she was led by fate.
+    japanese:
+      - 彼女 は 運命 に 導か れる {まま に}、人生 を 送っ た。
+      - 彼女 は 運命 に 導か れ ます {まま に}、人生 を 送り まし た。
+    english_literally: She, fate by led-passive as, life spent.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 運命 に 従っ て 人生 を 送っ た。
+        english: She lived her life in accordance with fate.
+        hint: 「〜に従って」 suggests active compliance. We are looking for an expression that conveys surrendering
+          to destiny, implying a life lived without resisting external forces.
+    scene: A narrative describing a character's life journey.
+    register: bungo (literary)
+    setting: reflective
+    speaker_gender: female
+  - english: He yelled as he was overcome by anger.
+    japanese:
+      - 彼 は 怒り に 突き動かさ れる {まま に}、叫ん だ。
+      - 彼 は 怒り に 突き動かさ れ ます {まま に}、叫び まし た。
+    english_literally: He, anger by pushed-into-action-passive as, yelled.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 怒り で 叫ん だ。
+        english: He yelled out of anger.
+        hint: 「怒りで」 indicates a reason but not the same strong sense of being uncontrollably compelled.
+          We are looking for an expression where the emotion completely dictates the action.
+    scene: Describing an outburst of emotion.
+    register: casual
+    setting: serious
+  - english: The machine operates exactly as it is programmed.
+    japanese:
+      - その 機械 は プログラム さ れる {まま に}、作動 する。
+      - その 機械 は プログラム さ れ ます {まま に}、作動 し ます。
+    english_literally: That machine, programmed-passive as, operates.
+    competing_grammar:
+      - competing_japanese:
+          - その 機械 は プログラム 通り に 作動 する。
+        english: The machine operates according to the program.
+        hint: 「〜通りに」 is appropriate for exact adherence but lacks the 'being passively acted upon' nuance
+          present here for a machine. We are looking for an expression that signifies strict, automatic
+          adherence to a pre-set instruction.
+    scene: Explaining how a piece of machinery works.
+    register: bijinesu nihongo (business)
+    setting: technical
+  - english: The apprentice worked diligently as he was taught by his master.
+    japanese:
+      - 弟子 は 師匠 に 教え込ま れる {まま に}、熱心 に 働い た。
+      - 弟子 は 師匠 に 教え込ま れ ます {まま に}、熱心 に 働き まし た。
+    english_literally: Apprentice, master by taught-thoroughly-passive as, diligently worked.
+    competing_grammar:
+      - competing_japanese:
+          - 弟子 は 師匠 に 教わっ た 通り に 熱心 に 働い た。
+        english: The apprentice worked diligently exactly as he learned from his master.
+        hint: 「〜通りに」 is fine for following instructions, but the passive form and 「ままに」 emphasize the
+          complete absorption and obedience to the master's thorough teaching. We are looking for an expression
+          that highlights thorough instruction and complete absorption of teachings.
+    scene: A story about traditional craftsmanship.
+    register: formal
+    setting: storytelling
+  - english: The child sat down obediently as he was told.
+    japanese:
+      - 子供 は 言わ れる {まま に}、おとなしく 座っ た。
+      - 子供 は 言わ れ ます {まま に}、おとなしく 座り まし た。
+    english_literally: Child, told-passive as, obediently sat.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 言う こと を 聞い て おとなしく 座っ た。
+        english: The child listened to what he was told and sat down obediently.
+        hint: 「言うことを聞いて」 implies listening and obeying, but 「ままに」 more strongly emphasizes the direct
+          and unthinking adherence to the instruction, which is often characteristic of a young child.
+          We are looking for an expression that highlights simple, direct obedience from a child.
+    scene: A parent instructing a child.
+    register: casual
+    setting: friendly
+post_example_writeup: As illustrated by the examples, Verb[passive form] + ままに is versatile, applying
+  to various contexts from simple obedience to philosophical surrender to fate. Its core meaning consistently
+  revolves around acting in a completely receptive manner, allowing external forces or instructions to
+  dictate one's actions.

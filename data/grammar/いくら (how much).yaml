@@ -1,0 +1,287 @@
+grammar_point: いくら (how much)
+learn_before:
+  - いくら〜でも (no matter how much)
+meaning: How much; how
+pronunciation:
+  katakana: イクラ
+  romaji: ikura
+formation:
+  いくら: Used to inquire about quantity or price, meaning "how much?" or "how many?"
+  いくら + Vても / A(い)くて / A(な)でも: Expresses "no matter how much/how", indicating an unchanging outcome despite
+    extent.
+  いくらでも + V / A(い) / A(な): Indicates "any amount is fine" or "as much as one likes", emphasizing unlimited
+    quantity or permissibility.
+  いくらも + Negative verb: Used with a negative verb to mean "not much" or "barely any", indicating a very
+    small quantity.
+jlpt: N2
+etymology: The etymology of 「いくら」 is somewhat debated, but it is commonly believed to be derived from
+  the verb 「如何 (いかが)」, meaning "how" or "in what way." Over time, 「いかが」 evolved to focus on the quantitative
+  aspect, leading to the modern meaning of 「いくら」.
+writeup: |-
+  「いくら」 is a versatile Japanese word with multiple functions, primarily serving as an interrogative adverb meaning "how much" or "how." Its precise nuance changes depending on the particle it is paired with. Understanding these different usages is crucial for mastering its application.
+
+  **1. As an Interrogative Adverb (いくら):**
+  In its most straightforward use, 「いくら」 asks about the quantity, amount, or price of something. It can stand alone or precede a noun or verb to specify what quantity is being inquired about.
+
+  **2. Expressing 'No Matter How Much/How' (いくら～ても / ～くて / ～でも):**
+  When combined with the 「～ても」 (te-form + も) particle, 「いくら」 conveys the meaning of "no matter how much" or "no matter how." This construction indicates that despite the extent or degree of the action or state described, the outcome remains unchanged or a certain result persists. It often highlights a sense of futility or an unyielding situation.
+
+  **3. Indicating 'Any Amount is Fine' or 'As Much as One Likes' (いくらでも):**
+  Adding 「でも」 to 「いくら」 transforms its meaning to "any amount is fine," "as much as one likes," or "without limit." This form is commonly used to express generosity, unlimited availability, or a complete lack of restriction regarding quantity or degree.
+
+  **4. Expressing 'Not Much' or 'Barely Any' (いくらも～ない):**
+  When followed by the particle 「も」 and a negative verb, 「いくらも」 signifies "not much" or "barely any." This usage emphasizes a very small quantity or a scarcity of something. It is always used in conjunction with a negative expression.
+false_friends:
+  - term: どれくらい
+    meaning: How much; how long
+    kind: similar expression
+    nuance: 「どのくらい」 is used to ask about quantity, duration, or degree. Unlike 「いくら」, it does not express
+      'no matter how' or directly inquire about price.
+    grammar_point: <suggest>:どれくらい (how much.how long)
+  - term: どれほど
+    meaning: How much; to what extent
+    kind: similar expression
+    nuance: 「どれほど」 is similar to 「いくら」 in asking about the degree or amount, often with a slightly more
+      formal or emotional tone, but it doesn't cover the sense of 'any amount is fine' like 「いくらでも」.
+    grammar_point: <suggest>:どれほど (how much.to what extent)
+  - term: どんなに
+    meaning: How ~!; no matter how
+    kind: similar expression
+    nuance: While both 「いくら～ても」 and 「どんなに～ても」 express 'no matter how', 「どんなに」 strictly emphasizes the
+      degree or extent, often with an exclamatory or emphatic nuance, whereas 「いくら」 can also refer to
+      numerical quantity or price.
+    grammar_point: こんなに (this much)
+post_false_friends_writeup: 「いくら」, 「どのくらい」, 「どれほど」, and 「どんなに」 all deal with quantity, degree, or extent.
+  However, 「いくら」 is unique in its ability to ask about price directly and to express 'any amount is fine'
+  with 「いくらでも」. While 「どのくらい」 and 「どれほど」 are general interrogatives for quantity and extent, 「どんなに」 primarily
+  emphasizes degree or extent, often in an exclamatory context, and doesn't share the price-inquiry or
+  'any amount' nuances of 「いくら」.
+examples:
+  - english: How much is that gemstone ring?
+    japanese:
+      - あの 宝石 の 指輪 は {いくら} です か。
+      - あの 宝石 の 指輪、{いくら}？
+      - あの 宝石 の 指輪 は {いくら} で ござい ましょう か。
+      - あの 宝石 の 指輪 は お {いくら} です か。
+    english_literally: That gemstone ring, how much is it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 宝石 の 指輪 は {どの くらい} です か。
+          - あの 宝石 の 指輪、{どの くらい}？
+        english: How much is that gemstone ring?
+        hint: While 「どのくらい」 can also ask about amount, 「いくら」 is specifically used when inquiring about
+          the price of an item.
+    scene: A customer at a jewelry store, admiring an expensive item.
+    register: teineigo (polite)
+    setting: professional
+    nuance: This is a direct and polite inquiry about the price of an item. 「いくら」 is precisely used for
+      asking 'how much' something costs, and 「です か」 maintains the polite register suitable for a customer-salesperson
+      interaction.
+  - english: How many documents are needed for today's meeting?
+    japanese:
+      - 今日 の 会議 に は {いくら} の 資料 が 必要 です か。
+      - 今日 の 会議、資料 {いくら} いる？
+      - 今日 の 会議 に は {いくら} 資料 が 要り ます か。
+      - 今日 の 会議 に 必要 な 資料 は {いくら} です か。
+    english_literally: Today's meeting for, how many documents are necessary?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議 に は {どれ くらい} の 資料 が 必要 です か。
+          - 今日 の 会議 に は {何 枚} 資料 が 必要 です か。
+        english: How many documents are needed for today's meeting?
+        hint: 「いくら」 can be used for general quantity, but for countable items, using specific counters
+          like 「何枚」 (for flat objects) or a more general 「どれくらい」 might be more common.
+    scene: A busy assistant asking their manager about preparations for an upcoming meeting.
+    register: semi-formal
+    setting: professional
+    nuance: 「いくら」 is used here to ask for a specific quantity of items. The phrase 「必要 です か」 is a semi-formal
+      way to ask about necessity in a professional setting. The directness of 「いくら」 is suitable for asking
+      for a precise count.
+  - english: No matter how much he studies, his scores don't really improve.
+    japanese:
+      - 彼 は {いくら} 勉強 し て も、なかなか 点数 が 上がり ませ ん。
+      - 彼 は {いくら} 勉強 しよう と も、なかなか 点数 が 上がり ませ ん。
+      - あいつ {いくら} 勉強 し て も、全然 点数 上がら ねえ ん だ よ な。
+      - 彼 は {いくら} 勉強 さ れ まし て も、なかなか 点数 が 上がり ませ ん ね。
+    english_literally: He, no matter how much studies, hardly scores do not go up.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {たとえ} 勉強 し {て も}、なかなか 点数 が 上がり ませ ん。
+          - 彼 は {たとえ} 勉強 しよう {と も}、なかなか 点数 が 上がり ませ ん。
+        english: Even if he studies, his scores don't really improve.
+        hint: 「いくら～ても」 emphasizes the degree or quantity of the action, whereas 「たとえ～ても」 focuses on a
+          hypothetical or conditional situation.
+    scene: A parent expressing concern about their child's academic struggles despite their efforts.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「いくら～ても」 highlights that despite the quantity of effort (studying), the result
+      (scores improving) remains unchanged. The use of 「なかなか～ません」 emphasizes the difficulty in achieving
+      improvement. This sentence is gender-neutral, allowing for various speakers.
+  - english: No matter how difficult this game is, it's worth the challenge.
+    japanese:
+      - この ゲーム は {いくら} 難しく て も、挑戦 する 価値 が あり ます。
+      - この ゲーム は {いくら} 難しく とも、挑戦 の 価値 が あり ます。
+      - この ゲーム、{いくら} 難しく て も、やる 価値 ある わ。
+      - この ゲーム、{いくら} 難しかろう と、挑戦 する 価値 は ある ね。
+    english_literally: This game, no matter how difficult, challenge worth is.
+    competing_grammar:
+      - competing_japanese:
+          - この ゲーム は {どんな に} 難しく {て も}、挑戦 する 価値 が あり ます。
+          - この ゲーム は {どんな に} 難しかろう {と}、挑戦 する 価値 は ある ね。
+        english: No matter how difficult this game is, it's worth the challenge.
+        hint: Both 「いくら～ても」 and 「どんなに～ても」 can express 'no matter how difficult', but 「いくら」 can sometimes
+          imply a range of difficulty, while 「どんなに」 strictly refers to the degree or extent.
+    scene: A gamer enthusiastically recommending a challenging but rewarding video game to a friend.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    nuance: 「いくら 難しく て も」 emphasizes that even with a high degree of difficulty, the game retains its
+      value. The casual tone of the speaker is reflected in the use of 「わ」, typically used by female speakers.
+      The phrase 「価値 が あります」 means 'it has value' or 'it's worth it'.
+  - english: No matter how beautiful she is, her personality is what truly matters.
+    japanese:
+      - 彼女 は {いくら} 綺麗 で も、性格 が 本当 に 大切 だ。
+      - 彼女、{いくら} 綺麗 で も、中身 が 大事 だ よ ね。
+      - 彼女 は {いくら} お 美しく とも、御 人柄 こそ が 肝要 で ござい ます。
+      - 彼女 は {いくら} 綺麗 で も、人間 性 が とても 大切 です。
+    english_literally: She, no matter how beautiful, personality truly important is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {どんな に} 綺麗 {で も}、性格 が 本当 に 大切 だ。
+          - 彼女 は {たとえ} 綺麗 {で も}、性格 が 本当 に 大切 だ。
+        english: No matter how beautiful she is, her personality is what truly matters.
+        hint: 「いくら～ても」 with a な-adjective (like 綺麗) directly states the concession. 「どんなに」 can also be
+          used here, and 「たとえ」 introduces a hypothetical. We're looking for a direct concession about
+          the extent of beauty.
+    scene: Two friends discussing a mutual acquaintance.
+    register: casual
+    setting: friendly
+    nuance: This example uses 「いくら」 with a な-adjective followed by 「でも」, emphasizing that despite the
+      high degree of beauty, the internal quality (personality) is deemed more important. The casual tone
+      suits a conversation between friends.
+  - english: We will accept any number of questions, so please don't hesitate.
+    japanese:
+      - 質問 は {いくら で も} 受け付け ます の で、ご 遠慮 なく。
+      - 質問 は {いくら で も} 受け付ける ん で、気兼ね なく どうぞ。
+      - 質問 は {いくら で も} お 受け し ます の で、ご 遠慮 なく。
+      - ご 質問 は {いくら で も} 承り ます の で、何 なり と お 申し付け ください。
+    english_literally: Questions, any amount will accept, so please no hesitation.
+    competing_grammar:
+      - competing_japanese:
+          - 質問 は {何 で も} 受け付け ます の で、ご 遠慮 なく。
+          - 質問 は {何 で も} 受け付ける ん で、気兼ね なく どうぞ。
+        english: We will accept any questions, so please don't hesitate.
+        hint: 「いくらでも」 specifically refers to 'any quantity or amount', while 「何でも」 means 'anything' or
+          'whatever', which is more general.
+    scene: A presenter inviting questions from the audience at the end of a seminar.
+    register: formal
+    setting: instructional
+    nuance: 「いくらでも」 signifies that any number of questions are welcome, emphasizing unlimited acceptance.
+      The phrase 「ご 遠慮なく」 politely encourages the audience to ask without hesitation. The formal register
+      is achieved through the use of 「受け付けます」 and 「ご 遠慮なく」.
+  - english: If you have any trouble, please rely on me as much as you need.
+    japanese:
+      - 困っ た こと が あれ ば、{いくら で も} 私 を 頼っ て ください。
+      - 困っ たら、{いくら で も} 俺 を 頼れ よ。
+      - 困っ た こと が あり まし たら、{いくら で も} 私 に ご 相談 ください。
+      - 困っ たら、{いくら で も} 頼っ て いい から ね。
+    english_literally: Troubled thing if there is, any amount me rely please.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ た こと が あれ ば、{好き な だけ} 私 を 頼っ て ください。
+          - 困っ たら、{好き な だけ} 俺 を 頼れ よ。
+        english: If you have any trouble, please rely on me as much as you like.
+        hint: 「いくらでも」 suggests an unlimited capacity or availability from the speaker's side, while 「好きなだけ」
+          emphasizes the listener's preference or desire.
+    scene: A mentor reassuring a new team member that they are there to provide full support.
+    register: semi-formal
+    setting: supportive
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「いくらでも」 conveys unlimited support and willingness to be relied upon to any extent.
+      The male speaker uses the masculine pronoun 「俺 (おれ)」 and the casual sentence-final particle 「よ」
+      in some variations, suitable for a supportive, semi-formal relationship, demonstrating how the speaker's
+      gender can subtly influence pronoun choice even in generally gender-neutral contexts.
+  - english: I hear he's been so busy lately that he's barely sleeping.
+    japanese:
+      - 彼 は 最近、忙しく て {いくら も} 寝 て い ない そう です。
+      - 最近、あいつ 忙し すぎ て {いくら も} 寝 て ない らしい よ。
+      - 彼 は 最近、ご 多忙 で {いくら も} 睡眠 を 取っ て いらっしゃら ない よう です。
+      - 彼 は 最近、忙しく て {いくら も} 寝 て い ない そう な ん です。
+    english_literally: He recently, busy so, not much sleeping not, so it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 最近、忙しく て {あまり} 寝 て い {ない} そう です。
+          - 最近、あいつ 忙し すぎ て {あまり} 寝 て {ない} らしい よ。
+        english: I hear he's been so busy lately that he hasn't been sleeping much.
+        hint: 「いくらも～ない」 implies an extremely small amount, almost none, emphasizing scarcity more strongly
+          than the more general 「あまり～ない」.
+    scene: Colleagues discussing a stressed coworker's demanding schedule.
+    register: casual
+    setting: informative
+    nuance: 「いくらも～ない」 emphasizes a very small, almost negligible amount, in this case, of sleep. It conveys
+      a stronger sense of scarcity than 「あまり～ない」. The phrase 「そう です」 indicates that the information is
+      hearsay. This example reflects a common observation among colleagues about a busy coworker.
+  - english: There aren't many young people left in this region.
+    japanese:
+      - この 地方 に は 若者 が {いくら も} 残っ て い ませ ん。
+      - この 地方、若者 {いくら も} 残っ て ない な。
+      - この 地域 に は、若年 層 が {いくら も} 残存 し て おり ませ ん。
+      - この 地方 に は 若者 が {いくら も} 残っ て い ない の です。
+    english_literally: This region in young people not much left.
+    competing_grammar:
+      - competing_japanese:
+          - この 地方 に は 若者 が {少し も} 残っ て い {ませ ん}。
+          - この 地方、若者 {少し も} 残っ て {ない} な。
+        english: There aren't any young people left in this region.
+        hint: Both 「いくらも～ない」 and 「少しも～ない」 express a lack, but 「いくらも～ない」 emphasizes a quantitative scarcity
+          (barely any), while 「少しも～ない」 stresses 'not even a tiny bit'.
+    scene: A local community leader lamenting the rural depopulation to a visiting reporter.
+    register: semi-formal
+    setting: reflective
+    nuance: The combination of 「いくらも」 with a negative verb 「残って いません」 expresses a strong sense of scarcity,
+      implying that 'barely any' young people remain. This is suitable for a serious topic like rural
+      depopulation. The use of 「この 地方 には」 specifies the location of the issue.
+  - english: No matter how many times I apologized, she still wouldn't forgive me.
+    japanese:
+      - 彼女 は {いくら} 謝っ て も、許し て くれ ませ ん でし た。
+      - あいつ {いくら} 謝っ て も、許し て くれ なかっ た よ。
+      - 彼女 は {いくら} 謝罪 し まし て も、ご 許容 いただけ ませ ん でし た。
+    english_literally: She, no matter how much apologized, did not forgive me.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {たとえ} 謝っ た {と し て も}、許し て くれ ませ ん でし た。
+        english: Even if I had apologized, she wouldn't have forgiven me.
+        hint: 「いくら～ても」 emphasizes the degree of repetition or effort, while 「たとえ～としても」 is more about a
+          hypothetical or conditional situation. We're looking for an expression that emphasizes the extent
+          of the apology.
+    scene: A person confiding in a friend about a strained relationship, expressing their frustration.
+    register: casual
+    setting: melancholic
+    nuance: The phrase 「いくら 謝っても」 highlights the repeated or extensive effort of apologizing, yet the
+      outcome remained negative, showing a sense of futility. The casual tone is indicated by 「許して くれませんでした」,
+      which is polite but common in casual conversation when reflecting on a past event.
+  - english: You can ask me anything you like, I'll answer.
+    japanese:
+      - '{いくら で も} 質問 し て ください、お 答え し ます。'
+      - '{いくら で も} 質問 し て いい よ、何 で も 教える から。'
+      - ご 質問 は {いくら で も} 承り ます、何 なり と お 尋ね ください。
+    english_literally: Any amount questions do please, I will answer.
+    competing_grammar:
+      - competing_japanese:
+          - '{何 で も} 質問 し て ください、お 答え し ます。'
+        english: Please ask anything, I'll answer.
+        hint: While 「何でも」 means "anything," 「いくらでも」 specifically emphasizes the quantity or number, implying
+          "as many questions as you like." We're looking for an expression that conveys unlimited quantity.
+    scene: A teacher encouraging students during a Q&A session after a lecture, inviting them to ask freely.
+    register: semi-formal
+    setting: informative
+    nuance: 「いくらでも」 in this context conveys a strong willingness to accept an unlimited number of questions,
+      emphasizing the speaker's generosity and openness. The phrase 「お答えします」 maintains a polite and encouraging
+      tone from the teacher, suitable for an educational setting.
+post_example_writeup: As you can see, 「いくら」 is remarkably versatile. Its meaning shifts significantly
+  depending on the particle it is combined with, allowing it to function as a direct question about quantity
+  or price, an expression of concession ('no matter how much'), or to convey a sense of unlimitedness
+  or scarcity.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/いくら

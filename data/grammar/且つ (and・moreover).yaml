@@ -1,0 +1,368 @@
+grammar_point: 且つ (and・moreover)
+learn_before:
+  - おきに (at intervals of)
+  - でもある (to also be)
+  - とされている (is considered)
+meaning: And; moreover; furthermore
+pronunciation:
+  katakana: カツ
+  romaji: katsu
+formation:
+  Vmasu/Vte + 且つ: Connects verbs in their ます-stem (連用形) or て-form, indicating two actions or states occurring
+    simultaneously or successively.
+  Vnegative ず + 且つ: Connects negative verb forms (ず-form), emphasizing a state of not doing something,
+    followed by another action or state.
+  Adjectiveい stem く(て) + 且つ: Connects い-adjectives in their adverbial (く) or て-form (くて), linking two
+    descriptive qualities.
+  Adjectiveな stem {で/であり/であって} + 且つ: Connects な-adjectives, often with connecting particles like で, であり,
+    or であって, to link two descriptive qualities. It can also appear as な-adj stem + かつ directly.
+  Noun で{あり/あって} + 且つ: Connects nouns using であり or であって, indicating that something possesses two different
+    identities or characteristics.
+  '{い-Adjective (く-form)/な-Adjective (stem)} + 且つ + {い-Adjective (く-form)/な-Adjective (stem)}': Connects
+    two adjectival components (in their adverbial forms or stems for な-adjectives) to describe a single
+    action or quality, often followed by a particle like に or を.
+  '{Sentence/Phrase}1 こと + 且つ + {Sentence/Phrase}2 こと': Connects two clauses ending in こと, used to list
+    conditions, requirements, or facts formally.
+jlpt: N1
+etymology: The word 「且つ」 originates from classical Chinese, where it also functioned as a conjunction
+  meaning "and." It retains a formal tone in modern Japanese, reflecting its historical usage in written
+  and official contexts.
+writeup: |-
+  「且つ」 (katsu) is a conjunction used to connect words, phrases, clauses, or even entire sentences, conveying the meaning of "and," "moreover," or "furthermore." Its defining characteristic is its high level of formality, making it almost exclusively found in formal written Japanese and highly formal spoken contexts, such as academic papers, legal documents, business reports, and official speeches. It is rarely used in casual conversation.
+
+  Unlike simpler conjunctions such as 「と」 or 「そして」, 「且つ」 often carries a nuance of emphasizing that the two connected elements are both true, present, or required, frequently complementing each other to form a complete picture. This emphasis implies a stronger, more integrated connection between the elements than a simple additive conjunction. It suggests that the two conditions or qualities are simultaneously relevant or required.
+
+  「且つ」 is highly versatile in its ability to connect various grammatical forms, including:
+
+  *   **Verbs**: It can connect verb ます-stems (連用形) or て-forms, showing two actions or states occurring together or successively.
+  *   **Negative Verb Forms**: When used with the ず-form of verbs, it links a negative state with another condition or action.
+  *   **Adjectives**: It connects both い-adjectives (in their く-form or くて-form) and な-adjectives (often with で, であり, or であって), linking two descriptive qualities.
+  *   **Nouns**: Used with であり or であって, it connects nouns, indicating that something possesses dual identities or characteristics.
+  *   **Adverbial Forms**: A common usage is to connect two adverbial forms of adjectives (e.g., 早く且つ正確に), highlighting two simultaneous manners of action or qualities.
+  *   **Clauses with 「こと」**: It can formally connect two clauses ending in 「こと」, typically for listing conditions, requirements, or facts in official contexts.
+
+  In summary, 「且つ」 is employed when a precise, formal, and emphatic connection is required, stressing the simultaneous validity or combined importance of the elements it joins.
+false_friends:
+  - term: そして
+    meaning: and; and then; thus; and now
+    kind: similar expression
+    nuance: Unlike 「且つ」, 「そして」 can indicate sequential events or actions, and is much more common in casual
+      conversation. It does not carry the same formal or emphatic tone as 「且つ」.
+    grammar_point: そして (and・and then)
+  - term: と
+    meaning: and
+    kind: similar expression
+    nuance: 「と」 simply lists items or simultaneously occurring actions/states. It is very versatile and
+      can be used in casual speech, but it lacks the formal, connective emphasis of 「且つ」.
+    grammar_point: と (and, connects nouns)
+  - term: また
+    meaning: also; again; moreover
+    kind: similar expression
+    nuance: 「また」 primarily adds another piece of information or indicates repetition. It does not necessarily
+      connect elements as closely or formally as 「且つ」 does, especially when describing inherent qualities
+      or simultaneous conditions.
+    grammar_point: また (again; also; or)
+post_false_friends_writeup: While 「そして」、「と」、and 「また」 can all translate to "and" or introduce additional
+  information, 「且つ」 specifically connects elements of equal importance in a formal manner. Use 「且つ」 when
+  you want to add information with emphasis in formal writing or speech, and reserve the other conjunctions
+  for more general or casual contexts.
+examples:
+  - english: This system allows for real-time monitoring and also remote control.
+    japanese:
+      - この システム は、リアル タイム で 監視 でき、{且つ} 遠隔 操作 も 可能 だ。
+      - この システム は、リアル タイム で 監視 でき、{かつ} 遠隔 操作 も 可能 だ。
+      - この システム は、リアル タイム で の 監視 が 可能 で あり、{且つ} 遠隔 操作 も 可能 だ。
+      - この システム は、リアル タイム で の 監視 が 可能 で あり、{かつ} 遠隔 操作 も 可能 だ.
+    english_literally: This system, real-time monitoring is possible, and also remote control is possible.
+    competing_grammar:
+      - competing_japanese:
+          - この システム は、リアル タイム で 監視 できる、{そして} 遠隔 操作 も 可能 だ。
+        english: This system allows for real-time monitoring, and also remote control.
+        hint: In a professional context, "そして" can sound less refined and more casual than a more formal
+          conjunction.
+      - competing_japanese:
+          - この システム は、リアル タイム で 監視 できる。{また}、遠隔 操作 も 可能 だ。
+        english: This system allows for real-time monitoring. Also, remote control is possible.
+        hint: '"また" primarily adds another piece of information, but it doesn''t always imply the same
+          tight, formal connection between two equally important attributes.'
+      - competing_japanese:
+          - この システム は、リアル タイム で 監視 でき ます。{その 上}、遠隔 操作 も 可能 です。
+        english: This system allows for real-time monitoring. Furthermore, remote control is also possible.
+        hint: '"その上" emphasizes adding more information on top of what''s already stated. While formal,
+          it lacks the precise, simultaneous linking quality which connects two intrinsic features of
+          the system.'
+      - competing_japanese:
+          - この システム は、リアル タイム で の 監視 {と} 遠隔 操作 も 可能 だ。
+        english: This system allows for real-time monitoring and remote control.
+        hint: 「と」 is a simple enumerator, less formal and emphatic than 「且つ」, and does not convey the
+          same strong, simultaneous connection. We're looking for a formal conjunction.
+    scene: A software engineer is presenting a new enterprise system to potential clients.
+    register: bijinesu nihongo (business)
+    setting: informative
+  - english: He responded immediately without hesitation, and also very calmly.
+    japanese:
+      - 彼 は 躊躇 せ ず、{且つ} 冷静 に 即座 に 対応 し た。
+      - 彼 は 躊躇 せ ず、{かつ} 冷静 に 即座 に 対応 し た。
+      - 彼 は 躊躇 する こと なく、{且つ} 冷静 に 即座 に 対応 し た。
+      - 彼 は 躊躇 する こと なく、{かつ} 冷静 に 即座 に 対応 し た。
+    english_literally: He, without hesitation, and also calmly, immediately responded.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 躊躇 し ない で、{そして} 冷静 に 即座 に 対応 し た。
+        english: He responded immediately without hesitating, and also calmly.
+        hint: While "しないで、そして" expresses two actions, this usage provides a more concise and formal connection,
+          especially when linking simultaneous states or actions in formal reporting.
+      - competing_japanese:
+          - 彼 は 躊躇 せ ず、{その 上} 冷静 に 即座 に 対応 し た。
+        english: He responded immediately without hesitating. Furthermore, he did so calmly.
+        hint: '"その上" implies adding a further point. This grammar, however, combines the two negative
+          states and qualities more seamlessly.'
+      - competing_japanese:
+          - 彼 は 躊躇 する こと なく、{そして} 冷静 に 即座 に 対応 し た。
+        english: He responded immediately without hesitating, and also calmly.
+        hint: Though "こと無く" is formal, adding "そして" makes the connection less integrated. This grammar
+          combines the two negative states and qualities more seamlessly.
+      - competing_japanese:
+          - 彼 は 躊躇 せ ず、{また} 冷静 に 即座 に 対応 し た。
+        english: He responded immediately without hesitation, and also calmly.
+        hint: 「また」 adds information primarily. This grammar emphasizes two qualities being simultaneously
+          true about his response. We're looking for a conjunction that highlights this combined characteristic.
+    scene: A journalist is reporting on how a public figure handled a sudden crisis.
+    register: formal
+    setting: informative
+  - english: This painting is beautiful and also contains a deep message.
+    japanese:
+      - この 絵 は、美し く、{且つ} 深い メッセージ が 込め られ て いる。
+      - この 絵 は、美し く、{かつ} 深い メッセージ が 込め られ て いる。
+      - この 絵 は、美し さ が あり、{且つ} 深い メッセージ が 込め られ て いる。
+      - この 絵 は、美し さ が あり、{かつ} 深い メッセージ が 込め られ て いる。
+    english_literally: This painting, beautifully, and also deep message is contained.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵 は、美しく て、{そして} 深い メッセージ が 込め られ て いる。
+        english: This painting is beautiful, and also contains a deep message.
+        hint: In formal or academic discourse like art criticism, the more casual "美しくて、そして" can sound
+          less integrated and elegant than this grammar, which conveys a more precise connection.
+      - competing_japanese:
+          - この 絵 は、美しい {上}、深い メッセージ が 込め られ て いる。
+        english: This painting is beautiful, and moreover, contains a deep message.
+        hint: '"美しい上" emphasizes adding more information after the initial point. This grammar focuses
+          on the simultaneous presence of both qualities, often inherent to the subject.'
+      - competing_japanese:
+          - この 絵 は、美しく、{また} 深い メッセージ が 込め られ て いる。
+        english: This painting is beautiful, and also contains a deep message.
+        hint: 「また」 adds information sequentially. This grammar emphasizes the simultaneous presence of
+          both qualities in the painting. We're looking for a conjunction that highlights these combined
+          attributes.
+    scene: An art critic is discussing a notable artwork in a museum guide.
+    register: formal
+    setting: informative
+  - english: This project requires a flexible and also a realistic approach.
+    japanese:
+      - この プロジェクト は、柔軟 {かつ} 現実 的 な アプローチ を 要する。
+      - この プロジェクト は、柔軟 {且つ} 現実 的 な アプローチ を 要する。
+      - この プロジェクト は、柔軟 で あり、{且つ} 現実 的 な アプローチ を 要する。
+      - この プロジェクト は、柔軟 で あり、{かつ} 現実 的 な アプローチ を 要する。
+      - この プロジェクト は、柔軟 で あっ て、{且つ} 現実 的 な アプローチ を 要する。
+      - この プロジェクト は、柔軟 で あっ て、{かつ} 現実 的 な アプローチ を 要する。
+    english_literally: This project, flexible and also realistic approach requires.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は、柔軟 で、{そして} 現実 的 な アプローチ を 要する。
+        english: This project requires a flexible, and also a realistic approach.
+        hint: In a business context, "柔軟で、そして" sounds less professional and concise than this grammar,
+          which effectively conveys two combined qualities.
+      - competing_japanese:
+          - この プロジェクト は、柔軟 で、{また} 現実 的 な アプローチ を 要する。
+        english: This project requires a flexible, and also a realistic approach.
+        hint: '"また" adds another point, but when describing two intrinsic qualities of a single item,
+          this grammar offers a more unified and impactful connection.'
+      - competing_japanese:
+          - この プロジェクト は、柔軟 性 {と} 現実 性 を 要する。
+        english: This project requires flexibility and realism.
+        hint: 「と」 simply lists items. This grammar emphasizes two qualities simultaneously defining one
+          approach. We're looking for a way to formally combine these two characteristics.
+    scene: During a corporate strategy meeting, a director is outlining the necessary qualities for a
+      new initiative.
+    register: bijinesu nihongo (business)
+    setting: persuasive
+  - english: He is a talented artist and also an inspiring teacher.
+    japanese:
+      - 彼 は 才能 溢れる アーティスト で あり、{且つ} 素晴らしい 教師 で も ある。
+      - 彼 は 才能 溢れる アーティスト で あり、{かつ} 素晴らしい 教師 で も ある。
+      - 彼 は 才能 溢れる アーティスト で あっ て、{且つ} 素晴らしい 教師 で も ある。
+      - 彼 は 才能 溢れる アーティスト で あっ て、{かつ} 素晴らしい 教師 で も ある。
+    english_literally: He, talent overflowing artist is, and also wonderful teacher also is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 才能 溢れる アーティスト で、{そして} 素晴らしい 教師 で も ある。
+        english: He is a talented artist, and also a wonderful teacher.
+        hint: For a formal introduction emphasizing dual excellence, "で、そして" is too casual and lacks the
+          dignity and precision conveyed by this grammar.
+      - competing_japanese:
+          - 彼 は 才能 溢れる アーティスト で、{その 上} 素晴らしい 教師 で も ある。
+        english: He is a talented artist. Furthermore, he is also a wonderful teacher.
+        hint: While "その上" is formal, it simply adds information. This grammar more strongly connects two
+          intrinsic identities or roles of the same person.
+      - competing_japanese:
+          - 彼 は 才能 溢れる アーティスト で あり、{また} 素晴らしい 教師 で も ある。
+        english: He is a talented artist, and also a wonderful teacher.
+        hint: 「また」 adds information. This grammar emphasizes two intrinsic and equally important identities
+          of the same person. We're looking for a conjunction that highlights these combined roles.
+      - competing_japanese:
+          - 彼 は 才能 溢れる アーティスト {と} 素晴らしい 教師 で も ある。
+        english: He is a talented artist and a wonderful teacher.
+        hint: 「と」 is a simple enumerator. This grammar connects two equally significant identities of
+          the same person with formal emphasis. We're looking for a formal conjunction to emphasize his
+          dual excellence.
+    scene: At a university awards ceremony, the dean is introducing a distinguished faculty member.
+    register: formal
+    setting: supportive
+  - english: The new policy is not unpopular, and also has generated positive feedback.
+    japanese:
+      - 新しい 政策 は、不評 で なく、{且つ} 肯定 的 な 反応 を 得 て いる。
+      - 新しい 政策 は、不評 で なく、{かつ} 肯定 的 な 反応 を 得 て いる。
+      - 新しい 政策 は、不評 で は なく、{且つ} 肯定 的 な 反応 を 得 て いる。
+      - 新しい 政策 は、不評 で は なく、{かつ} 肯定 的 な 反応 を 得 て いる.
+    english_literally: New policy, unpopular not, and also positive reactions has obtained.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 政策 は、不評 で は ない し、{そして} 肯定 的 な 反応 を 得 て いる。
+        english: The new policy is not unpopular, and also has generated positive feedback.
+        hint: In a formal public statement, the structure "ではないし、そして" sounds more informal and less precise
+          than this grammar, which concisely presents two related points.
+      - competing_japanese:
+          - 新しい 政策 は、不評 で は ない {だけ で なく}、肯定 的 な 反応 も 得 て いる。
+        english: The new policy is not unpopular, but also has generated positive feedback.
+        hint: '"だけでなく" implies "not only... but also," which is similar. However, this grammar presents
+          the two conditions as simultaneously true and equally weighted, often used to assert a stronger,
+          combined reality.'
+      - competing_japanese:
+          - 新しい 政策 は、不評 で なく、{また} 肯定 的 な 反応 を 得 て いる。
+        english: The new policy is not unpopular, and also has generated positive feedback.
+        hint: 「また」 adds an additional point. This grammar emphasizes two conditions being simultaneously
+          true and weighted equally, often for a stronger assertion. We're looking for a formal conjunction
+          to highlight both facts.
+    scene: A government spokesperson is giving an update on public opinion regarding a recently implemented
+      policy.
+    register: semi-formal
+    setting: informative
+  - english: The operation was performed quickly and precisely.
+    japanese:
+      - その 手術 は、迅速 {かつ} 的確 に 行わ れ た。
+      - その 手術 は、迅速 {且つ} 的確 に 行わ れ た。
+      - その 手術 は、的確 {かつ} 迅速 に 行わ れ た。
+      - その 手術 は、的確 {且つ} 迅速 に 行わ れ た。
+    english_literally: That operation, quickly and also precisely was performed.
+    competing_grammar:
+      - competing_japanese:
+          - その 手術 は、迅速 で、{そして} 的確 に 行わ れ た。
+        english: The operation was performed quickly, and also precisely.
+        hint: In a precise medical context, "迅速で、そして" is less concise and professional than this grammar,
+          which links two qualities more seamlessly into a single manner of action.
+      - competing_japanese:
+          - その 手術 は、迅速 に、{また} 的確 に 行わ れ た。
+        english: The operation was performed quickly. Also, precisely.
+        hint: '"また" adds information but doesn''t create the integrated, single expression of simultaneous
+          qualities that this grammar achieves for adverbial forms.'
+    scene: A chief surgeon is reviewing a complex procedure with the medical team.
+    register: formal
+    setting: informative
+  - english: Eligibility requires being over 20 years old and also having a valid driver's license.
+    japanese:
+      - 応募 資格 は、20 歳 以上 で ある こと、{且つ} 有効 な 運転 免許 を 所持 し て いる こと だ。
+      - 応募 資格 は、20 歳 以上 で ある こと、{かつ} 有効 な 運転 免許 を 所持 し て いる こと だ。
+    english_literally: Application qualifications, 20 years old or more being (the thing), and also valid
+      driver's license possessing (the thing) is.
+    competing_grammar:
+      - competing_japanese:
+          - 応募 資格 は、20 歳 以上 で ある こと、{そして} 有効 な 運転 免許 を 所持 し て いる こと だ。
+        english: Eligibility requires being over 20 years old, and also having a valid driver's license.
+        hint: In official and formal contexts, "そして" can lessen the sense of equal mandatory conditions
+          compared to the precise and formal enumeration provided by this grammar.
+      - competing_japanese:
+          - 応募 資格 は、20 歳 以上 で ある こと、{それ に} 有効 な 運転 免許 を 所持 し て いる こと だ。
+        english: Eligibility requires being over 20 years old. In addition, having a valid driver's license.
+        hint: '"それに" adds a point but doesn''t convey the strong, formal requirement for both conditions
+          to be met simultaneously, which this grammar emphasizes in legalistic contexts.'
+      - competing_japanese:
+          - 応募 資格 は、20 歳 以上 で ある こと、{また} 有効 な 運転 免許 を 所持 し て いる こと だ。
+        english: Eligibility requires being over 20 years old, and also having a valid driver's license.
+        hint: 「また」 adds a separate condition. This grammar formally links two conditions as equally essential
+          and simultaneously required. We're looking for a formal conjunction to list mandatory conditions.
+      - competing_japanese:
+          - 応募 資格 は、20 歳 以上 で ある こと {と}、有効 な 運転 免許 を 所持 し て いる こと だ。
+        english: Eligibility requires being over 20 years old and having a valid driver's license.
+        hint: 「と」 is a simple enumerator. This grammar emphasizes two distinct actions that are simultaneously
+          required. We're looking for a formal conjunction to specify strict requirements.
+    scene: An administrative staff member is explaining the requirements for a government license application
+      to an applicant.
+    register: formal
+    setting: instructional
+  - english: This contract must be signed by the representative and also stamped with the company seal.
+    japanese:
+      - この 契約 は、代表 者 に よっ て 署名 さ れ、{且つ} 社印 が 押印 さ れる 必要 が ある。
+      - この 契約 は、代表 者 に よっ て 署名 さ れ、{かつ} 社印 が 押印 さ れる 必要 が ある。
+      - この 契約 は、代表 者 に よっ て 署名 さ れ て おり、{且つ} 社印 が 押印 さ れる 必要 が ある。
+      - この 契約 は、代表 者 に よっ て 署名 さ れ て おり、{かつ} 社印 が 押印 さ れる 必要 が ある。
+    english_literally: This contract, by the representative signed, and also company seal stamped being
+      necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 契約 は、代表 者 に よっ て 署名 さ れ、{そして} 社印 が 押印 さ れる 必要 が ある。
+        english: This contract must be signed by the representative, and then the company seal must be
+          stamped.
+        hint: In a legal context, "そして" can suggest sequential actions rather than simultaneous or strictly
+          required conditions. We're looking for a conjunction that emphasizes two conditions that must
+          both be met.
+      - competing_japanese:
+          - この 契約 は、代表 者 に よっ て 署名 さ れ、{また} 社印 が 押印 さ れる 必要 が ある。
+        english: This contract must be signed by the representative. Also, the company seal must be stamped.
+        hint: 「また」 adds an additional point, but it doesn't convey the same tight, formal link between
+          two essential requirements that need to be fulfilled in tandem. We're looking for a formal conjunction
+          to state strict requirements.
+      - competing_japanese:
+          - この 契約 は、代表 者 に よっ て 署名 {と} 社印 の 押印 が 必要 だ。
+        english: This contract requires the signature of the representative and the stamping of the company
+          seal.
+        hint: 「と」 is a simple enumerator. This grammar emphasizes two distinct actions that are simultaneously
+          required. We're looking for a formal conjunction that highlights these combined requirements.
+    scene: A lawyer is explaining contract requirements to a client, emphasizing crucial steps.
+    register: formal
+    setting: instructional
+  - english: The design is simple yet sophisticated.
+    japanese:
+      - その デザイン は、単純 で あり、{且つ} 洗練 さ れ て いる。
+      - その デザイン は、単純 で あり、{かつ} 洗練 さ れ て いる。
+      - その デザイン は、単純 で あっ て、{且つ} 洗練 さ れ て いる。
+      - その デザイン は、単純 で あっ て、{かつ} 洗練 さ れ て いる。
+      - その デザイン は、単純 {且つ} 洗練 さ れ て いる。
+      - その デザイン は、単純 {かつ} 洗練 さ れ て いる。
+    english_literally: That design, simple is, and also sophisticated is.
+    competing_grammar:
+      - competing_japanese:
+          - その デザイン は、単純 で、{そして} 洗練 さ れ て いる。
+        english: The design is simple, and then it is sophisticated.
+        hint: While "そして" can link descriptive phrases, it lacks the formal nuance of two qualities being
+          inherently and simultaneously present, as conveyed by this grammar.
+      - competing_japanese:
+          - その デザイン は、単純 で、{また} 洗練 さ れ て いる。
+        english: The design is simple. Also, it is sophisticated.
+        hint: 「また」 primarily adds another piece of information. This grammar emphasizes that both simplicity
+          and sophistication are concurrent, intrinsic qualities of the design. We're looking for a conjunction
+          that highlights these combined attributes.
+      - competing_japanese:
+          - その デザイン は、単純 {だ が}、洗練 さ れ て いる。
+        english: The design is simple, but sophisticated.
+        hint: 「だが」 implies a contrast or opposition. This grammar, however, presents simplicity and sophistication
+          as complementary and simultaneously true characteristics of the design. We're looking for a
+          conjunction that connects two co-existing traits.
+    scene: A product designer is presenting a new product to management, describing its key aesthetic
+      features.
+    register: bijinesu nihongo (business)
+    setting: informative
+post_example_writeup: 「且つ」 consistently connects elements of equal importance or weight in a sentence.
+  While it translates similarly to "and," its usage conveys a more formal and often emphatic tone, particularly
+  in written or official communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/且つ

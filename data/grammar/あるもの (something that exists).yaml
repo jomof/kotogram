@@ -1,0 +1,227 @@
+grammar_point: あるもの (something that exists)
+learn_before:
+  - でできる (made of)
+  - で構成される (to be composed of)
+  - に際して (on the occasion of・at the time of
+  - 抜く (do completely)
+meaning: something that exists; a thing that is; a matter that is
+pronunciation:
+  katakana: アルモノ
+  romaji: arumono
+formation:
+  Verb[dictionary form] + もの: Describes something that exists or is true according to the verb's action.
+jlpt: N4
+etymology: The phrase combines `ある` (to exist, to be, from Old Japanese `あり`) and `もの` (物), which literally
+  means 'thing,' 'object,' or 'matter.' Together, `あるもの` refers to an 'existing thing' or 'that which
+  is present.' Historically, `もの` has been used to nominalize concepts or refer to general categories
+  of entities, and its combination with `ある` reinforces the notion of actual existence or an undeniable
+  state.
+writeup: |-
+  The phrase `あるもの` is formed by combining the dictionary form of the verb `ある` (to exist, to be, for inanimate objects and concepts) with the noun `もの` (物), meaning 'thing' or 'matter.' This construction specifically refers to 'something that exists,' 'a thing that is,' or 'a matter that is true or present.' It highlights the existence or reality of an entity, a concept, or a state of being.
+
+  Unlike simply using `ある` as a verb, adding `もの` nominalizes the concept of existence, allowing it to function as a noun phrase in a sentence. This makes it possible to talk about 'things that exist' as a collective or specific entity.
+
+  While `こと` also nominalizes, `あるもの` typically points to a more tangible or inherent 'thing' or 'state,' whereas `あること` often refers to a particular event or an abstract fact or circumstance. `あるもの` can be used broadly, from referring to physical objects that exist in a place to abstract concepts that are inherent to a situation.
+false_friends:
+  - term: あること
+    meaning: a certain matter; a certain thing; the fact that something exists
+    kind: similar expression
+    nuance: While `あるもの` refers to an existing 'thing' or 'entity,' `あること` typically refers to an existing
+      'matter,' 'fact,' or 'circumstance.' `こと` often nominalizes an event or a general statement, focusing
+      on the factual aspect. For example, 「彼がそこにいることは事実だ。」 (The fact that he is there is true) uses `こと`
+      to refer to the factual circumstance.
+    grammar_point: <suggest>:あること (a certain matter・thing)
+  - term: ものだ
+    meaning: it is (a general truth); it should be; strong assertion; expresses nostalgia
+    kind: often confused with
+    nuance: '`ものだ` is a grammatical pattern where `もの` acts as a grammatical particle to express general
+      truths, common tendencies, strong assertions, or nostalgia. It is not the literal noun ''thing.''
+      For example, 「人生は短いものだ。」 (Life is short, isn''t it?) uses `ものだ` to state a general truth, whereas
+      `あるもの` identifies an existing entity. The `もの` in `あるもの` retains its meaning as ''thing'' or ''matter''.'
+    grammar_point: ものだ (general truth expectation)
+  - term: あるはずだ
+    meaning: it should exist; it is expected to exist
+    kind: similar expression
+    nuance: '`あるはずだ` expresses an expectation or strong assumption about something''s existence. It implies
+      certainty or high probability that something exists or will exist. In contrast, `あるもの` simply states
+      the fact of existence without adding a layer of expectation or certainty. For example, 「鍵はここにあるはずだ。」
+      (The key should be here) vs. 「ここにあるものを見つけた。」 (I found something that exists here).'
+    grammar_point: <suggest>:あるはずだ (is expected to be・cannot be)
+post_false_friends_writeup: Understanding the subtle distinctions between `あるもの` and similar expressions
+  like `あること`, `ものだ`, and `あるはずだ` is key to using them correctly. `あるもの` focuses on the existence of a
+  'thing' or a 'state.' `あること` often emphasizes a 'fact' or 'circumstance.' `ものだ` uses `もの` as a grammatical
+  particle to convey general truths or strong assertions. `あるはずだ` introduces an element of expectation
+  or logical deduction about existence. Pay close attention to whether you are referring to a concrete
+  or abstract 'thing,' a 'fact/event,' a 'general truth,' or an 'expectation of existence' when choosing
+  between these forms.
+examples:
+  - english: Everything that exists in this world is impermanent.
+    japanese:
+      - この 世 に {ある もの} は 全て 儚い。
+      - この 世 に {ある もの} は 全て 儚い です。
+      - この 世 に {ある もの} の 全て は 儚い。
+    english_literally: In this world, things that exist are all fleeting.
+    competing_grammar:
+      - competing_japanese:
+          - この 世 に {ある こと} は 全て 儚い。
+        english: All matters that exist in this world are fleeting.
+        hint: Using `こと` here would emphasize 'matters' or 'facts' rather than general 'things' or 'entities'
+          which `もの` implies, making it less natural for a broad statement about all existing things.
+    scene: A philosopher musing on the nature of reality.
+    register: formal
+    setting: reflective
+    nuance: The use of `あるもの` here refers to all tangible and intangible entities that have being in the
+      world, emphasizing their inherent impermanence. The phrase 「この世に」sets a broad, philosophical context.
+  - english: I want to protect everything that exists on this planet.
+    japanese:
+      - この 地球 に {ある もの} を 全て 守り たい。
+      - この 地球 に {ある もの} を 全て 守り たい です。
+      - この 地球 に {ある もの} を 全て 守り 抜き たい。
+    english_literally: Everything that exists on this planet, I want to protect.
+    competing_grammar:
+      - competing_japanese:
+          - この 地球 に {ある こと} を 全て 守り たい。
+        english: I want to protect all matters that exist on this planet.
+        hint: While `あること` can mean 'matters,' it sounds less natural when referring to all 'things' or
+          'life' on a planet. `あるもの` more naturally encompasses the totality of existent entities.
+    scene: An environmentalist speaking passionately about conservation.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: The most beautiful thing that exists is a child's smile.
+    japanese:
+      - 最も 美しい {ある もの} は 子供 の 笑顔 だ。
+      - 最も 美しい {ある もの} は 子供 の 笑顔 です。
+      - 最も 美しい {ある もの} と 言え ば 子供 の 笑顔 だ。
+    english_literally: The most beautiful existing thing is a child's smile.
+    competing_grammar:
+      - competing_japanese:
+          - 最も 美しい {こと} は 子供 の 笑顔 だ。
+        english: The most beautiful thing/fact is a child's smile.
+        hint: While `こと` can be used to refer to 'things' generally, `あるもの` here specifically highlights
+          something that 'exists' and is tangible/observable, making it slightly more fitting for a concrete
+          noun like 'smile' being the most beautiful 'thing'.
+    scene: A parent expressing their deep affection.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+  - english: He seems to know everything that exists in this city.
+    japanese:
+      - 彼 は この 街 に {ある もの} 全て を 知っ て いる よう だ。
+      - 彼 は この 街 に {ある もの} 全て を 知っ て いる よう です。
+      - 彼 は この 街 に {ある もの} 全て を 知っ て いる。
+    english_literally: He knows everything that exists in this city, it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は この 街 に {ある はず} の もの 全て を 知っ て いる よう だ。
+        english: He seems to know everything that should exist in this city.
+        hint: Adding `はず` implies an expectation of what *should* be there, not necessarily what *is*
+          there. We're looking for what actually exists.
+    scene: Talking about a very knowledgeable local.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Are there still ancient ruins that exist in this area?
+    japanese:
+      - この 地域 に は まだ 古代 の 遺跡 が {ある もの} な の か？
+      - この 地域 に は まだ 古代 の 遺跡 が {ある もの} な の でしょう か？
+      - この 地域 に まだ 古代 の 遺跡 と か {ある もの} な の？
+    english_literally: In this region, are there still ancient ruins, things that exist?
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 に は まだ 古代 の 遺跡 が {ある} の か？
+        english: Are there still ancient ruins in this area?
+        hint: While simply `ある` is grammatically correct, adding `もの` here emphasizes the physical existence
+          of the ruins as tangible 'things', slightly strengthening the query about their presence.
+    scene: A historian asking a local about historical sites.
+    register: semi-formal
+    setting: interrogative
+    conjugation: dictionary (plain non-past)
+  - english: Everything that exists in the universe is made of atoms.
+    japanese:
+      - 宇宙 に {ある もの} は 全て 原子 で でき て いる。
+      - 宇宙 に {ある もの} は 全て 原子 で でき て い ます。
+      - 宇宙 に {ある もの} は 全て 原子 で 構成 さ れ て いる。
+    english_literally: Everything that exists in the universe is made of atoms.
+    competing_grammar:
+      - competing_japanese:
+          - 宇宙 に {ある こと} は 全て 原子 で でき て いる。
+        english: All matters that exist in the universe are made of atoms.
+        hint: '`あること` focuses on facts or situations, but the sentence is describing the composition of
+          physical entities. `あるもの` is more appropriate for referring to all ''things'' that make up the
+          universe.'
+    scene: A scientist explaining basic physics.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: She wants to discover unknown things that exist deep in the forest.
+    japanese:
+      - 彼女 は 森 の 奥深く に {ある もの} の 未知 の もの を 発見 し たい と 思っ て いる。
+      - 彼女 は 森 の 奥深く に {ある もの} の 未知 の もの を 発見 し たい と 思っ て い ます。
+      - 彼女 は 森 の 奥深く に {ある} 未知 の {もの} を 発見 し たい と 思っ て いる。
+    english_literally: She thinks she wants to discover unknown things that exist deep in the forest.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 森 の 奥深く に {隠さ れ て いる} 未知 の もの を 発見 し たい と 思っ て いる。
+        english: She wants to discover unknown things that are hidden deep in the forest.
+        hint: While 'hidden' is a possibility, `あるもの` focuses specifically on the 'existence' of things,
+          whether hidden or not. We're looking for the simple fact of their being there.
+    scene: An adventurer talking about her quest.
+    register: casual
+    setting: storytelling
+    conjugation: dictionary (plain non-past)
+  - english: What is the most important thing that exists in life?
+    japanese:
+      - 人生 で 最も 大切 な {ある もの} は 何 です か？
+      - 人生 で 最も 大切 な {ある もの} は 何 でしょう？
+      - 人生 で 最も 大切 な {ある もの} って 何？
+    english_literally: In life, the most important existing thing is what?
+    competing_grammar:
+      - competing_japanese:
+          - 人生 で 最も 大切 な {こと} は 何 です か？
+        english: What is the most important matter/thing in life?
+        hint: While `こと` is very common for 'things' or 'matters' in life, `あるもの` can add a nuance of
+          a foundational, existing entity or concept that is considered most vital.
+    scene: A philosophical discussion among friends.
+    register: semi-formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: This painting captures the transient beauty of everything that exists.
+    japanese:
+      - この 絵 は {ある もの} 全て の 移ろい ゆく 美し さ を 捉え て いる。
+      - この 絵 は {ある もの} 全て の 移ろい ゆく 美し さ を 捉え て い ます。
+      - この 絵 は {ある もの} 全て の 移ろい ゆく 美 を 捉え て いる。
+    english_literally: This painting captures the transient beauty of all existing things.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵 は {存在 する もの} 全て の 移ろい ゆく 美し さ を 捉え て いる。
+        english: This painting captures the transient beauty of all things that exist.
+        hint: '`存在するもの` is more formal and academic. `あるもの` is a more natural and common phrasing in everyday
+          conversation when referring to general existing things.'
+    scene: An art critic describing a painting.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: Please consider everything that exists when making your decision.
+    japanese:
+      - 決断 する 際 は、{ある もの} 全て を 考慮 し て ください。
+      - 決断 に 際し て は、{ある もの} 全て を 考慮 願い ます。
+    english_literally: When making a decision, please consider everything that exists.
+    competing_grammar:
+      - competing_japanese:
+          - 決断 する 際 は、{考慮 す べき こと} 全て を 考え て ください。
+        english: When making a decision, please think about all matters that should be considered.
+        hint: This uses 'matters to consider' rather than emphasizing all 'things' or 'factors' that are
+          present and must be taken into account, which is the nuance of `あるもの` here.
+    scene: A mentor advising a mentee.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+post_example_writeup: As seen in the examples, `あるもの` is versatile and can refer to a wide range of 'things'
+  or 'entities,' from the philosophical 'everything that exists in the world' to more specific 'ruins'
+  or 'unknown things.' It always carries the fundamental meaning of 'that which exists,' allowing for
+  a direct and concise way to refer to existing elements or facts within a broader context. Its plain
+  form means it can be used across various registers, adapting to the politeness level of the surrounding
+  sentence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/1234

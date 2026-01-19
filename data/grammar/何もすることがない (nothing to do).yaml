@@ -1,0 +1,275 @@
+grammar_point: 何もすることがない (nothing to do)
+learn_before:
+  - '[Verb-dictionary]ことはない (no need to・not necessary to)'
+meaning: nothing to do; there is nothing to do
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 何もすることがない
+    rarity: common
+    meaning: nothing to do
+  - conjugation-type: negative past plain (～なかった)
+    form: 何もすることがなかった
+    rarity: common
+    meaning: had nothing to do
+  - conjugation-type: negative non-past polite (～ません)
+    form: 何もすることがありません
+    rarity: common
+    meaning: do not have anything to do
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 何もすることがありませんでした
+    rarity: common
+    meaning: did not have anything to do
+pronunciation:
+  katakana: ナニモ スル コト ガ ナイ
+  romaji: nanimo suru koto ga nai
+formation:
+  何も + Verb[dictionary form] + こと + が + ない: Indicates a complete lack of actions to perform with a specific
+    verb.
+  何も + Noun + が + ない: Indicates a complete lack of a specific noun. (e.g., 何もお金がない - I have no money at
+    all)
+jlpt: N4
+etymology: 'This phrase is a direct combination of several fundamental Japanese elements: 「何も (nanimo)」
+  which means ''nothing at all'' (「何」 for ''what'' combined with the emphatic particle 「も」 for ''even/also''),
+  a verb in its dictionary form (such as 「する (suru)」 meaning ''to do''), 「こと (koto)」 which is a nominalizer
+  turning the preceding verb into a noun clause (e.g., ''the act of doing''), and 「がない (ga nai)」 which
+  indicates the non-existence or lack of something (「が」 as a subject marker and 「ない」 as the plain negative
+  form of ''to exist/to have''). Thus, the phrase literally translates to ''there is no thing to do.''
+  This straightforward construction reflects its common and natural usage in expressing a state of idleness
+  or having no tasks.'
+writeup: |-
+  The expression 「何もすることがない」 literally means "there is nothing to do." It is a very common and straightforward way to convey a state of idleness, boredom, or a lack of tasks or activities. This phrase can be used in various daily contexts when one finds themselves with no obligations, errands, or even recreational options.
+
+  While 「何もすることがない」 often implies boredom, it can also simply state a fact: that there are no tasks remaining to be done. It is not inherently negative, but depending on the context and tone, it can certainly express a sense of ennui or frustration.
+
+  This structure is flexible and can be used with other verbs besides 「する (to do)」. For example, 「何も食べることがない (nanimo taberu koto ga nai)」 means "there is nothing to eat," and 「何も読むことがない (nanimo yomu koto ga nai)」 means "there is nothing to read." The core structure remains 「何も + Verb[dictionary form] + こと + が + ない」.
+false_friends:
+  - term: 暇
+    meaning: free time, boredom
+    kind: similar expression
+    nuance: 「暇 (hima)」 refers to the state of having free time or being bored. While often a *result*
+      of having nothing to do, 「暇」 describes the *state* itself, whereas 「何もすることがない」 describes the *situation*
+      (the lack of things to do) that leads to that state. You can be 暇 without literally having nothing
+      to do, if you're just not motivated.
+    grammar_point: <suggest>:暇 (free time)
+  - term: 退屈
+    meaning: boredom, tediousness
+    kind: similar expression
+    nuance: 「退屈 (taikutsu)」 directly expresses the *feeling* of boredom or tediousness. It's an adjective
+      describing a subjective experience. 「何もすることがない」 is a more objective statement about the lack of
+      activities, which can *cause* one to feel 退屈.
+    grammar_point: <suggest>:退屈 (boredom)
+  - term: 用事がない
+    meaning: no errands, no business
+    kind: similar expression
+    nuance: 「用事がない (youji ga nai)」 specifically refers to a lack of *specific, scheduled tasks or appointments*
+      (用事). 「何もすることがない」 is much broader, encompassing a general lack of any activities or ways to occupy
+      oneself, not just formal commitments.
+    grammar_point: <suggest>:用事 (errands)
+  - term: やることがない
+    meaning: nothing to do
+    kind: synonym
+    nuance: 「やることがない (yaru koto ga nai)」 is a direct synonym that carries almost the same meaning. It
+      is often perceived as slightly more casual or colloquial than 「何もすることがない」, but they are largely
+      interchangeable in many contexts. 「する」 and 「やる」 both mean 'to do', but 「やる」 can be slightly less
+      formal.
+    grammar_point: <suggest>:やることがない (nothing to do)
+post_false_friends_writeup: While 「何もすることがない」 expresses a general lack of activities, expressions like
+  「暇」 and 「退屈」 focus on the subjective experience of boredom or free time. 「用事がない」 is more specific, referring
+  only to scheduled commitments. When choosing between these, consider whether you want to state the objective
+  situation (lack of activities) or describe the feeling or state resulting from it.
+examples:
+  - english: I have nothing to do today.
+    japanese:
+      - 今日 は {何 も する こと が ない}。
+      - 今日 は {何 も する こと が あり ませ ん}。
+    english_literally: Today, there is nothing to do.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 暇 だ。
+        english: Today, I'm free/bored.
+        hint: 「暇だ」describes a state of having free time or being bored. We're looking for an expression
+          that states the *absence* of activities to fill that time.
+    scene: A student looking forward to summer break, but then realizing they haven't planned anything.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: There was nothing to do at the office.
+    japanese:
+      - オフィス で は {何 も する こと が あり ませ ん でし た}。
+      - オフィス で は {何 も する こと が なかっ た}。
+    english_literally: At the office, there was nothing to do.
+    competing_grammar:
+      - competing_japanese:
+          - オフィス は 退屈 だっ た。
+        english: The office was boring.
+        hint: 「退屈だった」describes the *feeling* of boredom. We're looking for a statement about the *lack
+          of activities* at the office.
+    scene: A new employee describing their first day, which was unexpectedly slow.
+    register: formal
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+  - english: There's nothing to eat!
+    japanese:
+      - '{何 も 食べる こと が ない}！'
+      - '{何 も 食べる こと が あり ませ ん}！'
+    english_literally: There is nothing to eat!
+    competing_grammar:
+      - competing_japanese:
+          - 食べる もの が ない！
+        english: There is nothing to eat! (general item)
+        hint: While similar, 「食べるものがない」 refers to the lack of *items* to eat. We're looking for the more
+          general construction of 'nothing to perform the action of eating'.
+    scene: A child opening the refrigerator and finding it empty.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+  - english: Yesterday, there was nothing to read, so I just watched TV.
+    japanese:
+      - 昨日、{何 も 読む こと が なかっ た} から、テレビ ばかり 見 て い た よ。
+      - 昨日、{何 も 読む こと が あり ませ ん でし た} から、テレビ ばかり 見 て い まし た よ。
+    english_literally: Yesterday, because there was nothing to read, I was only watching TV.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、読む もの が なかっ た から、テレビ ばかり 見 て い た よ。
+        english: Yesterday, there was no reading material, so I just watched TV.
+        hint: 「読むものがなかった」emphasizes the lack of *materials* to read. We're focusing on the general action
+          of 'nothing to read'.
+    scene: Two male friends chatting about their lazy Sunday.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+    nuance: The casual sentence-ending particle 「よ」 is often used by male speakers to add emphasis or
+      convey a personal feeling. 「ばかり見ていた」 emphasizes that watching TV was the *only* thing done.
+  - english: If there is nothing to do, I will help.
+    japanese:
+      - '{何 も する こと が あり ませ ん} なら、手伝い ます。'
+      - '{何 も する こと が ない} なら、手伝う よ。'
+    english_literally: If there is nothing to do, I will help.
+    competing_grammar:
+      - competing_japanese:
+          - もし 暇 でし たら、手伝い ます。
+        english: If you are free, I will help.
+        hint: 「暇でしたら」is polite for 'if you are free'. We're looking for a formal expression meaning 'if
+          there are no tasks'.
+    scene: A junior colleague offering help to a senior who seems to have finished their tasks.
+    register: semi-formal
+    setting: supportive
+    conjugation: negative non-past polite (～ません)
+  - english: Is there really nothing to do?
+    japanese:
+      - 本当 に {何 も する こと が ない} の？
+      - 本当 に {何 も する こと が あり ませ ん} か？
+    english_literally: Truly, is there nothing to do?
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に 暇 な の？
+        english: Are you really free/bored?
+        hint: 「暇なの？」asks if one is feeling bored or has free time. We're looking for an inquiry about
+          the *absence of activities*.
+    scene: A parent asking their bored child, who is complaining about having nothing to do.
+    register: casual
+    setting: interrogative
+    conjugation: dictionary (plain non-past)
+  - english: She had nothing to say.
+    japanese:
+      - 彼女 は {何 も 言う こと が なかっ た}。
+      - 彼女 は {何 も 言う こと が あり ませ ん でし た}。
+    english_literally: As for her, there was nothing to say.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 何 も 言わ なかっ た。
+        english: She didn't say anything.
+        hint: 「何も言わなかった」means she simply didn't speak. We're looking for the nuance that she *had no words*
+          or *nothing available to say*.
+    scene: Describing someone who was speechless or at a loss for words after a shocking revelation.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+  - english: Even though there was nothing special to do, the day passed quickly.
+    japanese:
+      - 特に {何 も する こと が ない} の に、一 日 が 早く 過ぎ た。
+      - 特に {何 も する こと が あり ませ ん} の に、一 日 が 早く 過ぎ まし た。
+    english_literally: Even though there was especially nothing to do, the day passed quickly.
+    competing_grammar:
+      - competing_japanese:
+          - 特に 退屈 な 日 だっ た の に、一 日 が 早く 過ぎ た。
+        english: Even though it was an especially boring day, the day passed quickly.
+        hint: 「退屈な日」describes a boring day. We're looking for the phrase that states the *lack of activities*
+          leading to the day passing quickly.
+    scene: Someone reflecting on a quiet day where they didn't do much but still felt time fly by.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: Lately, I really have nothing to do.
+    japanese:
+      - 最近、本当 に {何 も する こと が ない} ん だ。
+      - 最近、本当 に {何 も する こと が あり ませ ん}。
+    english_literally: Recently, truly, there is nothing to do.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、本当 に 暇 な ん だ。
+        english: Lately, I'm really bored/free.
+        hint: 「暇なんだ」expresses feeling bored or having free time. We're looking for the reason for that
+          feeling, which is the lack of activities.
+    scene: A person expressing their current state of boredom and idleness to a friend.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+  - english: It's Saturday, but there's nothing to watch, huh?
+    japanese:
+      - 土曜 日 だ けど、{何 も 見る こと が ない} ね。
+      - 土曜 日 だ けど、{何 も 見る こと が あり ませ ん} ね。
+    english_literally: It's Saturday, but there is nothing to watch, isn't there?
+    competing_grammar:
+      - competing_japanese:
+          - 土曜 日 だ けど、見る もの が ない ね。
+        english: It's Saturday, but there's nothing to watch (no shows/movies to watch), huh?
+        hint: 「見るものがない」suggests a lack of *specific items* to watch. We're looking for the more general
+          expression of 'nothing to perform the action of watching'.
+    scene: Friends deciding what to do on a Saturday night, but finding nothing interesting on TV or streaming
+      services.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: The sentence-final particle 「ね」 is used here to seek agreement or confirm a shared sentiment
+      with the listener(s), highlighting a common predicament.
+  - english: Because there was nothing to research, the project was halted.
+    japanese:
+      - '{何 も 調査 する こと が なかっ た} ため、プロジェクト は 停止 し た。'
+      - '{何 も 調査 する こと が あり ませ ん でし た} ため、プロジェクト は 停止 し まし た。'
+    english_literally: Because there was nothing to research, the project stopped.
+    competing_grammar:
+      - competing_japanese:
+          - 調査 する もの が なかっ た ため、プロジェクト は 停止 し た。
+        english: Because there were no research materials/topics, the project was halted.
+        hint: 「調査するものがなかった」focuses on the lack of *items or topics* for research. We're looking for the
+          broader idea of 'nothing that could be researched'.
+    scene: A project manager explaining a delay in a formal meeting, citing a lack of further investigation
+      points.
+    register: formal
+    setting: informative
+    conjugation: negative past plain (～なかった)
+  - english: If a person has nothing to do, they often start thinking too much.
+    japanese:
+      - 人 は {何 も する こと が ない} と、色々 考え すぎ て しまう もの だ。
+      - 人 は {何 も する こと が あり ませ ん} と、色々 考え すぎ て しまう もの です。
+    english_literally: When a person has nothing to do, it is the nature of things to end up thinking
+      too much.
+    competing_grammar:
+      - competing_japanese:
+          - 人 は 暇 だ と、色々 考え すぎ て しまう もの だ。
+        english: When a person is bored/free, they often start thinking too much.
+        hint: 「暇だと」describes the state of being bored or having free time. We're looking for the phrase
+          that describes the *cause* of that state – the absence of activities.
+    scene: A philosophical discussion or observation about human nature.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+post_example_writeup: As shown in the examples, this grammar point can be used with various verbs other
+  than 「する」, emphasizing the absence of the possibility to perform that specific action (e.g., 「何も食べることがない」,
+  「何も見ることがない」, 「何も読むことがない」). The choice between plain and polite forms, as well as past and non-past tenses,
+  depends on the desired level of formality and the temporal context of the situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/何もすることがない

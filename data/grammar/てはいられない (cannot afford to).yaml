@@ -1,0 +1,316 @@
+grammar_point: てはいられない (cannot afford to)
+learn_before:
+  - '[Clause]から (because・so)'
+meaning: Can't afford to, Unable to
+meaning_warning: 'Casual: Verb[て] + ちゃいられない / じゃいられない'
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: てはいられない
+    rarity: common
+    meaning: Can't afford to; Unable to
+  - conjugation-type: non-past polite (～ます)
+    form: てはいられません
+    rarity: common
+    meaning: Can't afford to; Unable to
+  - conjugation-type: negative past plain (～なかった)
+    form: てはいられなかった
+    rarity: less common
+    meaning: Couldn't afford to; Was unable to
+  - conjugation-type: negative past polite (～ませんでした)
+    form: てはいられませんでした
+    rarity: less common
+    meaning: Couldn't afford to; Was unable to
+pronunciation:
+  katakana: テハイラレナイ
+  romaji: te ha irarenai
+formation:
+  Verb (て-form) + はいられない: Used to express an inability to continue an action or state due to various reasons
+    (e.g., time, circumstances).
+  い-Adjective (く-form) + てはいられない: Used to express that one cannot maintain a certain state described by
+    the adjective.
+  な-Adjective (stem) + ではいられない: Used to express that one cannot maintain a certain state described by
+    the adjective.
+  Noun + ではいられない: Used to express that one cannot continue to be in a certain role or state.
+  'Casual: Verb (て-form) + ちゃいられない': A more casual equivalent for verbs.
+  'Casual: な-Adjective (stem) / Noun + じゃいられない': A more casual equivalent for na-adjectives and nouns.
+jlpt: N2
+etymology: The grammar point 「てはいられない」 is constructed from 「ては」 (a conditional particle indicating a hypothetical
+  situation) and 「いられない」 (the potential negative form of 「いる」, meaning 'to be'). Thus, the literal sense
+  is akin to 'if one were to continue doing something, it cannot be'.
+writeup: 「てはいられない」 expresses the idea that one cannot afford to do something, or is unable to continue
+  a certain state or action. It implies a sense of urgency or necessity to change the current situation.
+  It conveys a sense that a certain verb's action cannot continue due to some external factor such as
+  time constraints or a feeling of being limited. This structure is almost exclusively seen with verbs,
+  but may occasionally be seen with い-adjectives, な-adjectives, or nouns as well. When appearing with
+  い-adjectives, な-adjectives, or nouns, the nuance changes slightly; it simply reflects the meaning of
+  いられない itself in conveying that (A) 'cannot be', or is 'impossible' in some way. In these cases, 「ては」
+  will be replaced by 「では」 for nouns and な-adjectives. It often has the nuance of '(A) cannot continue
+  due to (B)', with the reason of (B) being mentioned in another part of the sentence. Common translations
+  include "can't afford to" or "unable to."
+false_friends:
+  - term: ないではいられない
+    meaning: Cannot help doing something, Cannot resist doing something
+    kind: similar expression
+    nuance: Unlike 「てはいられない」, which denotes an inability to *continue* a state or action due to circumstances,
+      「ないではいられない」 expresses an irresistible urge or compulsion to *do* something.
+    grammar_point: '[Verb-ない form]ずにはいられない・ないではいられない (cannot help but do)'
+  - term: わけにはいかない
+    meaning: Cannot afford to, No way, Impossible to do
+    kind: similar expression
+    nuance: While both convey a sense of impossibility, 「わけにはいかない」 focuses more on moral or social obligations,
+      or external rules that prevent an action. 「てはいられない」 is often due to time, feelings, or other limiting
+      circumstances that make continuing a state untenable.
+    grammar_point: '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - term: ようがない・ようもない
+    meaning: There's no way to, It's impossible to (due to lack of means/method)
+    kind: similar expression
+    nuance: 「てはいられない」 expresses an inability to *continue* a state or action due to pressure or urgency,
+      implying a need to stop. In contrast, 「ようがない・ようもない」 indicates that there is *no possible method
+      or means* to perform an action or resolve a situation.
+    grammar_point: ようがない・ようもない (no way to)
+  - term: ～することはできない
+    meaning: Cannot do (general inability)
+    kind: similar expression
+    nuance: 「てはいられない」 expresses an inability to *sustain* an action or state due to internal or external
+      pressure, highlighting a sense of urgency and often implying a forced cessation. 「～することはできない」 simply
+      states a general lack of ability or possibility to perform an action, without the specific nuance
+      of being unable to *continue* or *tolerate*.
+    grammar_point: することができる (can・be able to)
+  - term: べきではない
+    meaning: Should not; ought not to
+    kind: often confused with
+    nuance: 「てはいられない」 indicates an inability to *continue* a state or action due to circumstances or internal
+      feeling, often with a sense of urgency. 「～べきではない」, on the other hand, expresses a strong moral or
+      social recommendation *not* to do something, or that something is improper.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+post_false_friends_writeup: To avoid confusing 「てはいられない」 with similar expressions, remember that 「てはいられない」
+  emphasizes the inability to continue due to circumstances or urgency. 「ないではいられない」 indicates an irresistible
+  urge. 「わけにはいかない」 highlights a moral or social obligation. 「ようがない・ようもない」 points to a complete lack of
+  means or method. Lastly, 「～することはできない」 is a general statement of inability, and 「～べきではない」 signifies that
+  something is improper or should not be done.
+examples:
+  - english: The exam is near, so I can't afford to play around.
+    japanese:
+      - 試験 が 近い から、遊ん で {て は い られ ない}。
+      - 試験 が 近い から、遊ん {で ちゃ い られ ない}。
+      - 試験 が 近い から、遊ん で {て は い られ ませ ん}。
+    english_literally: Because the exam is near, I cannot afford to be playing.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 が 近い から、遊ぶ こと が {でき ない}。
+        english: The exam is near, so I cannot play.
+        hint: 「～ことができない」 simply states an inability, but 「てはいられない」 conveys a stronger sense of being unable
+          to continue due to internal necessity or circumstances. We're looking for a situation where
+          one cannot afford to continue a state.
+      - competing_japanese:
+          - 試験 が 近い から、遊ん で は {いけ ない}。
+        english: The exam is near, so I must not play.
+        hint: 「～てはいけない」 expresses prohibition or a strong 'should not', while 「てはいられない」 implies a personal
+          impossibility or an untenable situation. We're looking for a situation where one cannot afford
+          to continue a state.
+    scene: A student talking about their upcoming exam, feeling the pressure to study.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: The deadline is approaching, so I can't afford to take it easy.
+    japanese:
+      - 締め切り が 迫っ て いる の で、のんびり し て は {い られ ませ ん}。
+      - 締め切り が 迫っ て いる の で、のんびり し て は {い られ ない}。
+      - 締め切り が 迫っ て いる の で、のんびり し {ちゃ い られ ない}。
+    english_literally: Because the deadline is approaching, I cannot afford to be relaxed.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り が 迫っ て いる の で、のんびり する {わけ に は いか ない}。
+        english: The deadline is approaching, so I cannot take it easy (due to obligation).
+        hint: 「てはいられません」 emphasizes external circumstances making it impossible to relax, implying a personal
+          inability or lack of luxury, whereas 「わけにはいかない」 suggests a strong social or moral obligation.
+          We're looking for a situation where one cannot afford to continue a state due to circumstance.
+    scene: An employee talking to a colleague about an urgent task they are both working on.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: This project's progress is too slow, we can't afford to keep it this slow. Let's speed up.
+    japanese:
+      - この 計画 の 進捗 が 遅く て は {い られ ない}。もっと スピード を 上げよう。
+      - この 計画 の 進捗 が 遅く て は {い られ ませ ん}。もっと スピード を 上げ ましょう。
+      - この 計画 の 進捗 が 遅く {ちゃ い られ ない}。もっと スピード を 上げよう。
+    english_literally: If this project's progress is slow, it cannot be. Let's speed up more.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 進捗 が 遅い {まま で は いけ ない}。
+        english: It's wrong for this project's progress to remain slow.
+        hint: 「てはいられない」 expresses the impossibility or untenability of maintaining a slow state due to
+          desired outcomes, whereas 「～てはいけない」 is a general admonishment or prohibition. We're looking
+          for a situation where one cannot afford to continue a state.
+    scene: A project manager addressing their team during a status meeting, urging them to pick up the
+      pace.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: I can't remain a child forever. I must take care of myself.
+    japanese:
+      - もう 子供 で は {い られ ない}。自分 の こと は 自分 で し なけれ ば。
+      - もう 子供 で は {い られ ませ ん}。自分 の こと は 自分 で し なけれ ば なり ませ ん。
+      - もう 子供 {じゃ い られ ない}。自分 の こと は 自分 で し なけれ ば。
+    english_literally: Cannot be a child anymore. I must take care of myself.
+    competing_grammar:
+      - competing_japanese:
+          - もう 子供 の {まま で は いけ ない}。
+        english: It's wrong to remain a child.
+        hint: 「ではいられない」 emphasizes the inherent impossibility or inappropriateness of continuing in that
+          state due to a stage of life, suggesting a natural progression, whereas 「～ではいけない」 is a general
+          'shouldn't'. We're looking for a situation where one cannot afford to continue a state.
+    scene: A young adult contemplating their newfound responsibilities and the need for independence.
+    register: casual
+    setting: reflective
+  - english: In this situation, I can't remain just an onlooker.
+    japanese:
+      - この 状況 で は、ただ の 傍観 者 {で は い られ ない}。
+      - この 状況 で は、ただ の 傍観 者 {で は い られ ませ ん}。
+      - この 状況 で は、ただ の 傍観 者 {じゃ い られ ない}。
+    english_literally: In this situation, cannot be just a bystander.
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 で は、ただ の 傍観 者 に とどまる {わけ に は いか ない}。
+        english: In this situation, I cannot remain just an onlooker (due to obligation).
+        hint: 「てはいられない」 conveys an internal feeling that the state is unbearable or impossible to continue
+          due to the situation's gravity, leading to personal necessity. 「わけにはいかない」 implies a more external,
+          moral, or social obligation. We're looking for a situation where one cannot afford to continue
+          a state.
+    scene: Someone deciding to get involved in a difficult social or political situation, feeling a strong
+      personal urge to act.
+    register: casual
+    setting: serious
+  - english: In this situation, I can't afford to laugh!
+    japanese:
+      - こんな 状況 で、笑っ {ちゃ い られ ない} よ！
+      - こんな 状況 で、笑っ て は {い られ ない} よ！
+      - こんな 状況 で、笑っ て は {い られ ませ ん} よ！
+    english_literally: In such a situation, cannot be laughing, you know!
+    competing_grammar:
+      - competing_japanese:
+          - こんな 状況 で、笑う {わけ に は いか ない}。
+        english: In such a situation, I cannot laugh (due to obligation).
+        hint: 「ちゃいられない」 is an informal, emphatic contraction highlighting a personal, immediate feeling
+          of impossibility or inappropriateness due to circumstances, distinct from a general obligation.
+          We're looking for a situation where one cannot afford to continue a state.
+    scene: A young woman expressing her exasperation and distress during a difficult time, emphasizing
+      the seriousness of the situation.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The use of the sentence-final particle 「よ」 adds emphasis and a slightly informal touch to
+      the exclamation, common in female speech when expressing strong feelings. The contraction 「ちゃ」 from
+      「ては」 makes it more casual.
+  - english: You're an adult now, so you can't remain a spoiled child, can you?
+    japanese:
+      - もう 大人 な ん だ から、甘えん坊 {じゃ い られ ない} だろう。
+      - もう 大人 な ん だ から、甘えん坊 {で は い られ ない} だろう。
+      - もう 大人 な ん だ から、甘えん坊 {で は い られ ませ ん}。
+    english_literally: Since you are an adult now, you cannot remain a spoiled child, right?
+    competing_grammar:
+      - competing_japanese:
+          - もう 大人 な ん だ から、甘えん坊 {で は いけ ない}。
+        english: Since you're an adult now, you shouldn't be a spoiled child.
+        hint: 「じゃいられない」 is an informal, direct expression of inability or unsuitability, implying natural
+          growth or change, rather than a mere prohibition. We're looking for a situation where one cannot
+          afford to continue a state.
+    scene: An older brother gently admonishing his younger sister about taking on more responsibility,
+      using a familiar tone.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The combination of 「なんだから」 (implying a reason/justification) and the sentence-final 「だろう」
+      (seeking agreement or making a soft assertion) creates a tone common in advice from an older male
+      to a younger female, suggesting a natural expectation. The contraction 「じゃ」 from 「では」 makes it more
+      casual.
+  - english: It's too cold to just stand here doing nothing. Let's move!
+    japanese:
+      - こんな に 寒く て は {い られ ない} よ。動き ましょう！
+      - こんな に 寒く て は {い られ ませ ん} よ。動き ましょう！
+      - こんな に 寒く {ちゃ い られ ない} よ。動き ましょう！
+    english_literally: Being this cold, cannot stay. Let's move!
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 寒い から、じっと し て いる こと は {でき ない}。
+        english: Because it's this cold, I can't just stand still.
+        hint: 「～ことができない」 simply states an inability, but 「てはいられない」 conveys a stronger sense of being unable
+          to tolerate or continue a state due to the circumstances. We're looking for a situation where
+          one cannot afford to continue a state.
+    scene: Two friends are waiting outside in freezing weather. One friend expresses their inability to
+      bear the cold anymore.
+    register: casual
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The particle 「よ」 at the end of 「いられないよ」 adds a strong assertion and a slightly masculine tone
+      to the speaker's urgency and impatience. The use of 「寒くては」 implies that the state of being cold
+      is the direct cause of the inability to remain still.
+  - english: With the current economic situation, we can't remain optimistic.
+    japanese:
+      - この 経済 状況 で は、楽観 的 {で は い られ ませ ん}。
+      - この 経済 状況 で は、楽観 的 {で は い られ ない}。
+      - この 経済 状況 で は、楽観 的 {じゃ い られ ない}。
+    english_literally: In this economic situation, cannot be optimistic.
+    competing_grammar:
+      - competing_japanese:
+          - この 経済 状況 で は、楽観 的 で いる {べき で は ない}。
+        english: In this economic situation, we should not be optimistic.
+        hint: 「～べきではない」 expresses a strong recommendation or obligation not to do something. 「てはいられない」
+          indicates that it is simply not possible or tenable to maintain a certain state due to circumstances.
+          We're looking for a situation where one cannot afford to continue a state.
+      - competing_japanese:
+          - この 経済 状況 で は、楽観 的 に {なる こと は でき ない}。
+        english: In this economic situation, I cannot become optimistic.
+        hint: 「～にはなれない」 expresses a personal inability to change into a state. 「てはいられません」 expresses an
+          inability to _remain_ in a state given the circumstances. We're looking for a situation where
+          one cannot afford to continue a state.
+    scene: A business leader is addressing their team about difficult financial prospects and the need
+      for a realistic outlook.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    nuance: The formal 「ではいられません」 is appropriate for a professional setting, especially from a leader
+      addressing their team. There are no explicitly gendered linguistic markers, making it suitable for
+      a female speaker in a formal context.
+  - english: Given the circumstances, I can't keep silent.
+    japanese:
+      - この 状況 で は、黙っ て {い られ ない}。
+      - この 状況 で は、黙っ て {い られ ませ ん}。
+      - この 状況 で は、黙っ {ちゃ い られ ない}。
+    english_literally: In this situation, cannot remain silent.
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 で は、黙っ て いる こと が {でき ない}。
+        english: In this situation, it is not possible for me to be silent.
+        hint: 「～ことができない」 expresses a general inability, whereas 「てはいられない」 conveys a sense of personal
+          urgency or an untenable situation where remaining silent is no longer an option. We're looking
+          for a situation where one cannot afford to continue a state.
+      - competing_japanese:
+          - この 状況 で は、黙っ て いる {わけ に は いか ない}。
+        english: While similar in meaning, 「わけにはいかない」 implies an external, often moral or social, obligation.
+          「てはいられない」 focuses more on the speaker's internal feeling that the current state cannot be maintained
+          due to the circumstances. We're looking for a situation where one cannot afford to continue
+          a state.
+        hint: While similar in meaning, 「わけにはいかない」 implies an external, often moral or social, obligation.
+          「てはいられない」 focuses more on the speaker's internal feeling that the current state cannot be maintained
+          due to the circumstances. We're looking for a situation where one cannot afford to continue
+          a state.
+    scene: An individual feels compelled to speak out against an injustice, no longer able to ignore the
+      situation.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: This sentence expresses a strong internal compulsion to act, characteristic of someone who
+      can no longer tolerate a passive stance. While grammatically neutral regarding gender, this type
+      of firm declaration is common across genders when expressing conviction. The lack of a sentence-final
+      particle makes it sound direct and resolved.
+post_example_writeup: It's important to note that 「てはいられない」 often carries a sense of urgency or necessity.
+  The reason why one cannot afford to do something is frequently implied or stated elsewhere in the sentence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/てはいられない

@@ -1,0 +1,195 @@
+grammar_point: であろう (probably・likely)
+learn_before:
+  - 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+meaning: will probably; likely; it is probable that
+pronunciation:
+  katakana: デアロウ
+  romaji: dearou
+formation:
+  Verb[dictionary form] + であろう: Used to express conjecture about a verb's action.
+  い-Adjective[dictionary form] + であろう: Used to express conjecture about an い-adjective's state.
+  な-Adjective + であろう: Used to express conjecture about a な-adjective's state (the 'だ' often omitted).
+  Noun + であろう: Used to express conjecture about a noun's identity or state.
+jlpt: N1
+etymology: The expression であろう is the formal or literary counterpart to だろう. It combines で (the conjunctive
+  form of the copula だ) with あろう, which is the volitional form of the verb ある (to be, to exist). This
+  structure literally conveys 'it will probably be' or 'it exists probably,' indicating a state of being
+  or action that is likely to occur or be true. The evolution from the existence of 'ある' to expressing
+  probability reflects a logical progression from confirming presence to inferring future or uncertain
+  states.
+writeup: であろう is a highly formal and literary expression primarily used to state a conjecture or probability.
+  It carries a nuance of objective or detached assessment, making it suitable for academic papers, official
+  reports, news broadcasts, and formal speeches. While だろう and でしょう serve similar functions in casual
+  and polite speech respectively, であろう elevates the register significantly, giving statements a more authoritative
+  or weighty feel. It implies that the speaker has considered the facts and arrived at a reasoned conclusion,
+  rather than simply expressing a personal guess. It can attach to dictionary forms of verbs and い-adjectives,
+  and to nouns or な-adjectives (often without the だ). It is less commonly heard in everyday conversation,
+  even in formal settings, and its usage in spoken Japanese might sound stiff or overly academic. It is
+  more prevalent in written communication.
+false_friends:
+  - term: だろう・でしょう
+    meaning: probably, right? (conjecture or seeking agreement)
+    kind: similar expression
+    nuance: だろう is the casual equivalent, でしょう is the polite equivalent. Both are less formal and can
+      carry a nuance of seeking agreement (especially でしょう), whereas であろう is purely conjectural and formal.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: かもしれない
+    meaning: might, maybe, perhaps
+    kind: similar expression
+    nuance: かもしれない expresses a weaker possibility or uncertainty compared to であろう. であろう suggests a higher
+      degree of probability based on evidence or reasoning.
+    grammar_point: かもしれない (might・maybe)
+  - term: に違いない
+    meaning: must be, no doubt, certain to be
+    kind: antonym
+    nuance: に違いない expresses a very strong conviction or near-certainty, stronger than であろう. であろう still
+      implies a degree of probability, not absolute certainty.
+    grammar_point: に違いない (no doubt)
+post_false_friends_writeup: While であろう, だろう/でしょう, and かもしれない all express conjecture, they differ in formality
+  and the degree of certainty implied. だろう/でしょう are the informal and polite forms for everyday use. であろう
+  is a formal, often written, way to express a strong likelihood. In contrast, かもしれない suggests a weaker
+  possibility, indicating "might" or "perhaps." For expressing near-certainty, に違いない is used, signifying
+  "must be" or "no doubt," which is much stronger than であろう's "will probably." Choosing between these
+  expressions depends on the desired level of formality and the speaker's confidence in their conjecture.
+examples:
+  - english: The problem will probably be solved within this year.
+    japanese:
+      - その 問題 は 今年 中 に {解決 さ れる で あろう}。
+      - この 問題 は 年内 に {解決 さ れる で あろう}。
+    english_literally: That problem, within this year, will probably be solved.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は 今年 中 に {解決 さ れる だろう}。
+        english: That problem will probably be solved within this year.
+        hint: だろう is the casual or polite equivalent, lacking the formal, authoritative tone of であろう.
+          We're looking for a formal, objective conjecture.
+    scene: A formal report on project progress is being presented to stakeholders.
+    register: formal
+    setting: professional
+  - english: The impact on the environment will probably be minimal.
+    japanese:
+      - 環境 へ の 影響 は {少ない で あろう}。
+      - 環境 に 対する 影響 は {軽微 で あろう}。
+    english_literally: To the environment's influence, will probably be little.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 へ の 影響 は {少ない だろう}。
+        english: The impact on the environment will probably be minimal.
+        hint: While だろう is correct here, であろう provides a more formal and objective tone, often used in
+          written reports or academic discourse. We're looking for formal conjecture.
+    scene: A scientist is presenting research findings during an academic conference.
+    register: formal
+    setting: informative
+  - english: He will probably be the next leader.
+    japanese:
+      - 彼 が 次 の リーダー {で あろう}。
+      - 彼 が 次期 リーダー と {なる で あろう}。
+    english_literally: He, the next leader, will probably be.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 次 の リーダー {でしょう}。
+        english: He will probably be the next leader.
+        hint: でしょう is the polite form, but であろう conveys a more authoritative and less personal conjecture,
+          typical of analytical discourse. We're looking for a formal, objective conjecture.
+    scene: A political analyst is discussing potential candidates for an upcoming election on a news program.
+    register: formal
+    setting: informative
+  - english: The proposal will probably not be accepted.
+    japanese:
+      - その 提案 は {承認 さ れ ない で あろう}。
+      - 当該 提案 は {採択 さ れ ない で あろう}。
+    english_literally: That proposal, will probably not be approved.
+    competing_grammar:
+      - competing_japanese:
+          - その 提案 は {承認 さ れ ない だろう}。
+        english: The proposal will probably not be accepted.
+        hint: だろう is more casual. であろう is used for more formal, objective predictions, especially in written
+          form. We're looking for a formal negative conjecture.
+    scene: A committee member is discussing the likelihood of a rejected proposal in a formal meeting.
+    register: formal
+    setting: professional
+  - english: It will probably be difficult to achieve.
+    japanese:
+      - それ は {困難 で あろう}。
+      - その 達成 は {困難 で あろう}。
+    english_literally: That, will probably be difficult.
+    competing_grammar:
+      - competing_japanese:
+          - それ は {困難 だろう}。
+        english: It will probably be difficult to achieve.
+        hint: だろう is commonly used in speech. であろう imparts a greater sense of objective analysis and formality,
+          suitable for technical assessments. We're looking for a formal conjecture with a な-Adjective.
+    scene: An engineer is assessing the feasibility of a complex new project and presenting their findings.
+    register: formal
+    setting: technical
+  - english: At that time, it was probably still too early.
+    japanese:
+      - その 時点 で は、まだ {早 すぎ た で あろう}。
+      - 当該 時点 に おい て は、まだ {時期 尚早 で あろう}。
+    english_literally: At that point, probably was still too early.
+    competing_grammar:
+      - competing_japanese:
+          - その 時点 で は、まだ {早 すぎ た だろう}。
+        english: At that time, it was probably still too early.
+        hint: While だろう works for past conjecture, であろう provides a more formal and scholarly tone for
+          historical analysis. We're looking for a formal past conjecture.
+    scene: A historian is reflecting on a pivotal moment in history, offering a reasoned opinion on why
+      certain events unfolded as they did.
+    register: formal
+    setting: reflective
+  - english: His decision will probably be the best course of action.
+    japanese:
+      - 彼 の 決断 が 最善 の 策 {で あろう}。
+      - 彼 の 判断 が 最も 適切 な 手段 {で あろう}。
+    english_literally: His decision, the best strategy, will probably be.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 決断 が 最善 の 策 {だ と 思い ます}。
+        english: I think his decision will be the best course of action.
+        hint: と思います expresses personal opinion. であろう presents the conjecture as an objective deduction,
+          common in formal analysis. We're looking for a formal, objective conjecture.
+    scene: A journalist is analyzing a political leader's strategic move in an editorial.
+    register: formal
+    setting: informative
+  - english: Human nature will probably not change easily.
+    japanese:
+      - 人 の 本質 は そう 簡単 に は {変わら ない で あろう}。
+      - 人間 の 本性 は そう 容易 に は {変化 し ない で あろう}。
+    english_literally: Human nature, so easily, will probably not change.
+    competing_grammar:
+      - competing_japanese:
+          - 人 の 本質 は そう 簡単 に は {変わら ない か も しれ ませ ん}。
+        english: Human nature might not change so easily.
+        hint: かもしれない implies a weaker possibility. であろう suggests a more definitive, reasoned conclusion
+          about a general truth. We're looking for a strong, formal conjecture about a general principle.
+    scene: A philosopher is presenting a lecture on enduring aspects of human behavior.
+    register: casual
+    setting: reflective
+  - english: The new policy will likely have a significant impact on the economy.
+    japanese:
+      - 新しい 政策 は 経済 に 大きな 影響 を {与える で あろう}。
+      - 新 政策 は 経済 に 多大 な 影響 を {及ぼす で あろう}。
+    english_literally: New policy, to economy, big influence will probably give.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 政策 は 経済 に 大きな 影響 を {与える でしょう}。
+        english: The new policy will likely have a significant impact on the economy.
+        hint: でしょう is common in polite speech. であろう is preferred for formal, authoritative predictions
+          in professional discourse. We're looking for a formal, objective prediction.
+    scene: An economist is presenting a financial forecast to a group of investors.
+    register: formal
+    setting: professional
+  - english: The current situation will probably not be desirable for anyone.
+    japanese:
+      - 現在 の 状況 は 誰 に とっ て も {好ましく ない で あろう}。
+      - 現状 は 何 人 に とっ て も {好ましく ない で あろう}。
+    english_literally: Current situation, for anyone, will probably not be desirable.
+    competing_grammar:
+      - competing_japanese:
+          - 現在 の 状況 は 誰 に とっ て も {好ましく ない と 思い ます}。
+        english: I think the current situation is not desirable for anyone.
+        hint: と思います expresses personal opinion. であろう conveys an objective, formal assessment of the situation's
+          likely undesirability. We're looking for a formal, objective assessment.
+    scene: A news anchor is delivering a serious report on a difficult national situation.
+    register: formal
+    setting: serious

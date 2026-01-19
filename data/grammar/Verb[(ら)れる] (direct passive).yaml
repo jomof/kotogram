@@ -1,0 +1,260 @@
+grammar_point: Verb[(ら)れる] (direct passive)
+learn_before:
+  - に (agent・source)
+  - を通じて・を通して (medium・means)
+meaning: is/was [verb]ed (by someone)
+pronunciation:
+  katakana: ラレル・レル
+  romaji: rareru・reru
+formation:
+  Godan Verbs (u-verbs): Drop final う sound + れる (e.g., 書く -> 書かれる)
+  Ichidan Verbs (ru-verbs): Drop る + られる (e.g., 食べる -> 食べられる)
+  Irregular Verbs: する -> される, 来る -> 来られる
+jlpt: N4
+etymology: The Japanese passive voice originates from classical Japanese auxiliary verbs 「る」 (ru) for
+  Godan verbs and 「らる」 (raru) for Ichidan verbs. These classical forms conveyed meanings of spontaneity,
+  potential, and passive voice. Over time, the passive meaning became the predominant use for the modern
+  「れる」 and 「られる」 forms. This evolution shows a shift from a broader sense of 'being in a state' or 'happening
+  to' to the specific notion of 'being acted upon'.
+writeup: |-
+  The direct passive voice in Japanese, formed with the auxiliary verbs 「れる」 or 「られる」, indicates that the grammatical subject of the sentence is the recipient of an action. This is in contrast to the active voice, where the subject performs the action. While it can be used neutrally, such as in scientific descriptions or formal announcements, it very frequently carries a nuance of the subject experiencing an unwanted, inconvenient, or unfortunate event.
+
+  For example, if you say 「犬が私を噛みました」 (The dog bit me), it's active. If you use the passive, 「私は犬に噛まれました」 (I was bitten by the dog), the focus shifts to 'I' who experienced the biting. This often implies a sense of misfortune, though not always. The agent (the dog) is often marked with the particle 「に」.
+
+  Understanding the passive voice is crucial for expressing a wider range of situations where the focus is on what happens *to* someone or something, rather than what someone or something *does*.
+false_friends:
+  - term: Verb[(ら)れる] (potential)
+    meaning: can do; is able to do
+    kind: often confused with
+    nuance: For Ichidan verbs, the passive form 「られる」 is identical to the potential form. For example,
+      「食べられる」 can mean 'can eat' (potential) or 'is eaten' (passive). Context is crucial for distinguishing
+      these. Godan verbs are usually distinct (e.g., 書く -> 書ける for potential, 書かれる for passive).
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: Verb[させられる] (causative-passive)
+    meaning: is made to do; is forced to do
+    kind: similar expression
+    nuance: While both involve the subject being acted upon, the causative-passive specifically means
+      the subject is *forced* or *made* to do something, often against their will, leading to a strong
+      sense of burden or suffering. The direct passive simply means the subject *receives* an action.
+    grammar_point: Verb[させられる] (causative-passive)
+  - term: Verb[(ら)れる] (adversative passive)
+    meaning: someone (or something) related to the subject is negatively affected by an action
+    kind: similar expression
+    nuance: The adversative passive is a specific type of passive construction where the action, while
+      done to someone or something else, negatively affects the *subject* of the sentence. The direct
+      passive can also imply negative impact on the subject, but the adversative passive specifically
+      highlights this indirect suffering. The grammatical structure is often the same as the direct passive,
+      making context vital.
+    grammar_point: Verb[(ら)れる] (adversative passive)
+post_false_friends_writeup: 'Distinguishing the passive from the potential form is a common hurdle, especially
+  with Ichidan verbs. Always consider the context: is the sentence about capability or about being acted
+  upon? The causative-passive adds the layer of being forced, and the adversative passive implies indirect
+  suffering. Paying close attention to the particles (e.g., who is 「に」, who is 「が」) and the overall meaning
+  of the verb can help clarify.'
+examples:
+  - english: He was praised by his teacher.
+    japanese:
+      - 彼 は 先生 に {褒め られ まし た}。
+      - 彼 は 先生 に {褒め られ た}。
+    english_literally: He, by teacher, was praised.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 先生 を 褒め まし た。
+        english: He praised the teacher.
+        hint: This sentence is in the active voice, meaning 'He praised the teacher'. We're looking for
+          the passive voice, where 'he' is the one receiving the praise.
+      - competing_japanese:
+          - 彼 は 先生 を 褒める こと が でき まし た。
+        english: He was able to praise the teacher.
+        hint: This uses the potential form with a nominalizer, meaning 'He was able to praise'. We're
+          looking for the passive, where 'he' is the recipient of the action.
+    scene: A student recounting an event at school.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: My wallet was stolen on the train.
+    japanese:
+      - 電車 で 財布 を {盗ま れ まし た}。
+      - 電車 で 財布 を {盗ま れ た}。
+    english_literally: On train, wallet was stolen.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 で 財布 を 盗み まし た。
+        english: I stole a wallet on the train.
+        hint: This means 'I stole a wallet'. We're looking for the passive voice, indicating that the
+          wallet was stolen by someone else.
+      - competing_japanese:
+          - 電車 で 財布 を 盗む こと が でき ます。
+        english: You can steal a wallet on the train.
+        hint: This is a potential form, meaning 'you can steal'. We need the passive voice, where the
+          wallet is the object of the stealing.
+    scene: Someone reporting a misfortune to a friend.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: past polite (～ました)
+  - english: These vegetables are grown without pesticides.
+    japanese:
+      - この 野菜 は 農薬 を 使わ ず に {育て られ て い ます}。
+      - この 野菜 は 農薬 を 使わ ず に {育て られ て いる}。
+    english_literally: These vegetables, without pesticides using, are grown.
+    competing_grammar:
+      - competing_japanese:
+          - この 農家 は 農薬 を 使わ ず に 野菜 を 育て て い ます。
+        english: This farmer grows vegetables without pesticides.
+        hint: This is an active sentence focusing on the farmer. We need to focus on the vegetables as
+          the recipient of the action.
+    scene: A person explaining the quality of organic produce at a market.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: The use of 「育てられています」 is a neutral passive, common in descriptions of processes or conditions,
+      highlighting the state of the vegetables themselves without implying a negative impact. The progressive
+      form 「〜ている」 indicates an ongoing state or result.
+  - english: I was asked by the teacher to clean the classroom.
+    japanese:
+      - 先生 に 教室 を 掃除 する よう に {頼ま れ まし た}。
+      - 先生 に 教室 を 掃除 する よう に {頼ま れ た}。
+    english_literally: By teacher, classroom to clean, was asked.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 教室 を 掃除 する よう に 私 に 頼み まし た。
+        english: The teacher asked me to clean the classroom.
+        hint: This is an active sentence focusing on the teacher. We're looking for the passive voice,
+          where 'I' am the one who received the request.
+    scene: A student explaining why they stayed late after school.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: My sister was praised by everyone.
+    japanese:
+      - 姉 は みんな に {褒め られ た}。
+      - 姉 は みんな に {褒め られ まし た}。
+    english_literally: Older sister, by everyone, was praised.
+    competing_grammar:
+      - competing_japanese:
+          - みんな が 姉 を 褒め た。
+        english: Everyone praised my older sister.
+        hint: This is an active sentence, meaning 'Everyone praised my sister'. We need the passive form,
+          where the sister is the one being praised.
+    scene: Someone proudly talking about their sister's achievement.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「褒められた」 in plain past form makes the sentence casual, typical when speaking to
+      a close friend or family member. This is a neutral passive, indicating a positive experience for
+      the subject.
+  - english: I was laughed at by everyone.
+    japanese:
+      - みんな に {笑わ れ まし た}。
+      - みんな に {笑わ れ た}。
+    english_literally: By everyone, was laughed at.
+    competing_grammar:
+      - competing_japanese:
+          - みんな は 私 を 笑い まし た。
+        english: Everyone laughed at me.
+        hint: This is an active sentence focusing on 'everyone' as the subject. We want the passive voice
+          where 'I' am the one being laughed at.
+    scene: Someone feeling embarrassed after a public mishap.
+    register: teineigo (polite)
+    setting: melancholic
+    conjugation: past polite (～ました)
+    nuance: The verb 「笑う」 is intransitive, but it can be used passively with 「に」 to express being laughed
+      *at*. This often implies an unwanted action or feeling of embarrassment. The polite form 「笑われました」
+      softens the negative feeling slightly compared to a casual plain form.
+  - english: This book was written by a famous author.
+    japanese:
+      - この 本 は 有名 な 作家 に よっ て {書か れ まし た}。
+      - この 本 は 有名 な 作家 に よっ て {書か れ た}。
+    english_literally: This book, by famous author, was written.
+    competing_grammar:
+      - competing_japanese:
+          - 有名 な 作家 が この 本 を 書き まし た。
+        english: A famous author wrote this book.
+        hint: This is an active sentence focusing on the author. We need the passive voice, where the
+          book is the subject of the writing.
+    scene: A librarian describing a new acquisition.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: When the agent of the passive action is inanimate or a large group, 「によって」 is often used instead
+      of 「に」 to emphasize the means or cause. This is a neutral passive construction, commonly used in
+      formal or informative contexts like book descriptions.
+  - english: I was bitten by a mosquito.
+    japanese:
+      - 蚊 に {刺さ れ まし た}。
+      - 蚊 に {刺さ れ た}。
+    english_literally: By mosquito, was bitten.
+    competing_grammar:
+      - competing_japanese:
+          - 蚊 が 私 を 刺し まし た。
+        english: A mosquito bit me.
+        hint: This is an active sentence where the mosquito is the subject. We want the passive voice,
+          where 'I' am the one who was bitten.
+    scene: Someone complaining about insect bites.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: past polite (～ました)
+    nuance: This example highlights the common use of the passive to express an unwanted or involuntary
+      experience. Even with an inanimate or non-human agent like a mosquito, the passive emphasizes the
+      recipient of the action and the inconvenience they suffered. The verb 刺す (sasu) means 'to sting/bite'
+      (for insects).
+  - english: I was often scolded by my parents.
+    japanese:
+      - よく 親 に {叱ら れ た} もの です。
+      - よく 親 に {叱ら れ まし た} もの です。
+    english_literally: Often, by parents, was scolded, it's a thing (of the past).
+    competing_grammar:
+      - competing_japanese:
+          - 親 は よく 私 を 叱っ た。
+        english: My parents often scolded me.
+        hint: This is an active sentence focusing on the parents. We need the passive voice, where 'I'
+          am the one who was scolded.
+    scene: An adult reflecting on their childhood.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: The passive form 「叱られた」 expresses a past negative experience. The addition of 「ものです」 (mono
+      desu) adds a nuance of nostalgic recollection or habit in the past, often used when sharing common
+      experiences or memories. This construction emphasizes the repeated nature of being scolded.
+  - english: The decision was made at the meeting yesterday.
+    japanese:
+      - 昨日 の 会議 で その 決定 は {さ れ まし た}。
+      - 昨日 の 会議 で その 決定 は {さ れ た}。
+    english_literally: Yesterday's meeting at, that decision, was done.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 会議 で 決定 を し まし た。
+        english: We made the decision at yesterday's meeting.
+        hint: This sentence is active, implying a collective 'we' made the decision. We want the passive
+          voice, where the decision itself is the subject, emphasizing that it was made.
+    scene: A team member informing a colleague about a company decision.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: Here, 「される」 (passive of する) is used impersonally to state a fact, where the agent of the action
+      is unknown or irrelevant. This is very common in formal or business contexts, avoiding direct attribution
+      of responsibility and focusing on the event itself.
+  - english: I was invited to a party by a friend.
+    japanese:
+      - 友達 に パーティー に {誘わ れ まし た}。
+      - 友達 に パーティー に {誘わ れ た}。
+    english_literally: By friend, to party, was invited.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 私 を パーティー に 誘い まし た。
+        english: A friend invited me to a party.
+        hint: This is an active sentence. We need the passive form, where 'I' am the one who was invited.
+    scene: Someone excitedly telling their family about weekend plans.
+    register: teineigo (polite)
+    setting: excited
+    conjugation: past polite (～ました)
+    nuance: This is a neutral use of the passive voice, indicating a positive event where the subject
+      is the recipient of the invitation.
+post_example_writeup: The passive voice allows for flexibility in expressing actions, particularly when
+  the agent is unknown, irrelevant, or when emphasizing the recipient of the action. Pay close attention
+  to the nuance; while not always negative, it frequently implies an involuntary or undesirable experience
+  for the subject. Mastering the passive is key to comprehending a wide array of Japanese expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/125

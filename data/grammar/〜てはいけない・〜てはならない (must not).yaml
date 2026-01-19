@@ -1,0 +1,451 @@
+grammar_point: 〜てはいけない・〜てはならない (must not)
+learn_before:
+  - ては (inevitable negative outcome)
+  - 中 (duration・entirety)
+  - 以外 (except)
+meaning: Must not; may not; should not.
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: Verb[て]+はいけない
+    rarity: common
+    meaning: must not; may not; cannot
+  - conjugation-type: negative non-past polite (～ません)
+    form: Verb[て]+はいけません
+    rarity: common
+    meaning: must not; may not; cannot
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb[て]+はいけなかった
+    rarity: common
+    meaning: was not allowed to; must not have
+  - conjugation-type: negative past polite (～ませんでした)
+    form: Verb[て]+はいけませんでした
+    rarity: common
+    meaning: was not allowed to; must not have
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[て]+はならない
+    rarity: common
+    meaning: must not; cannot; should not
+  - conjugation-type: non-past polite (～ます)
+    form: Verb[て]+はなりません
+    rarity: common
+    meaning: must not; cannot; should not
+  - conjugation-type: past plain (～た)
+    form: Verb[て]+はならなかった
+    rarity: less common
+    meaning: should not have; could not have
+  - conjugation-type: past polite (～ました)
+    form: Verb[て]+はなりませんでした
+    rarity: less common
+    meaning: should not have; could not have
+pronunciation:
+  katakana: テハイケナイ
+  romaji: te wa ikenai
+  pronunciation_warning: 「てはならない」 is pronounced 'te ha naranai'.
+formation:
+  Verb[て] + は + いけない: Expresses strong prohibition or a rule that forbids the action; 'must not', 'may
+    not', 'cannot'. More commonly used in spoken language.
+  Verb[て] + は + ならない: Indicates strong prohibition or necessity not to do something. More commonly used
+    in formal contexts, written regulations, or for strong moral/societal prohibitions.
+jlpt: N5
+etymology: 「〜てはいけない」 originates from the て-form of a verb combined with the particle 「は」 and the negative
+  potential form of 「行く」 (iku), meaning 'to go'. Literally, it means 'it is not allowed to go' or 'it
+  is not acceptable'. Over time, its meaning evolved from a literal inability to 'go through' with an
+  action to a general prohibition. 「〜てはならない」 is derived from the te-form of a verb, followed by the particle
+  「は」 and the negative form of 「なる」 (to become). Literally, it means 'it does not become that [you do
+  something],' implying that a certain action is unacceptable or prohibited. The historical progression
+  of 「なる」 and its negative form to convey possibility and impossibility, or permissibility and impermissibility,
+  underlies this construction.
+writeup: "The grammar point 「〜てはいけない・〜てはならない」 expresses a strong prohibition, indicating that an action\
+  \ **must not**, **may not**, or **should not** be performed. While both forms convey this meaning, their\
+  \ nuances and common usage contexts differ significantly. \n\n**〜てはいけない** is generally more common in\
+  \ everyday spoken and written Japanese for general prohibitions, rules, or warnings. It has a slightly\
+  \ softer, more direct feel, often used when addressing individuals or in more casual settings. The particle\
+  \ 「は」 is typically retained in this structure to prevent misinterpretation of 「いけない」 as a sequential\
+  \ action. In casual conversation, 「ては」 often contracts to 「ちゃ」 (or 「では」 to 「じゃ」), making the phrase\
+  \ more natural in informal speech. It is common for the second-person subject to be omitted when using\
+  \ this phrase.\n\n**〜てはならない** carries a stronger, more authoritative, and often more formal tone. It\
+  \ is frequently encountered in official documents, written regulations, laws, public announcements,\
+  \ and when conveying deeply held moral or legal restrictions. It implies that a certain action is unacceptable,\
+  \ impermissible, or contrary to a fundamental rule or principle. While it can be used in some casual\
+  \ settings to express strong personal disapproval, its overall register is higher than 「〜てはいけない」.\n\n\
+  In essence, both forms prohibit an action, but 「〜てはならない」 emphasizes a more universal, unyielding principle,\
+  \ whereas 「〜てはいけない」 is more akin to a direct warning or a common rule. Despite their shared prohibition,\
+  \ understanding these subtle differences is key to using them appropriately in various contexts."
+false_friends:
+  - term: なくてはいけない
+    meaning: Must do, have to do
+    kind: antonym
+    nuance: Unlike 「〜てはいけない・〜てはならない」, which prohibits an action, 「なくてはいけない」 (and its variants like 「なければならない」)
+      expresses a necessity or obligation to perform an action.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: ことだ
+    meaning: Should, ought
+    kind: similar expression
+    nuance: While 「ことだ」 suggests advice or a strong recommendation on what 'should' be done, this grammar
+      point expresses a much stronger, imperative prohibition on what 'must not' be done.
+    grammar_point: ことだ (should・ought to)
+  - term: べきではない
+    meaning: Should not, must not, ought not to
+    kind: synonym
+    nuance: 「べきではない」 expresses a moral or ethical prohibition, similar to 「〜てはいけない・〜てはならない」, but with
+      a stronger emphasis on what one *should* or *should not* do based on propriety or duty.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: べからず
+    meaning: Do not, must not, should not, cannot
+    kind: synonym
+    nuance: 「べからず」 is an archaic and very formal expression of prohibition, often found in written rules
+      or maxims. It carries a similar strong prohibitive force as the 「てはならない」 form but is rarely used
+      in modern conversation.
+    grammar_point: べからず (must not)
+  - term: ないでください
+    meaning: Please don't do...
+    kind: similar expression
+    nuance: 「Verb[ないでください]」 is a polite request to refrain from an action, whereas this grammar point
+      is a stronger prohibition or rule indicating something must not be done.
+    grammar_point: ないでください・ないで (please don't)
+  - term: ないほうがいい
+    meaning: It's better not to do...
+    kind: similar expression
+    nuance: 「Verb[ない] + 方がいい」 offers advice or a suggestion to avoid an action, implying it's a better
+      course of action. In contrast, this grammar point states a firm prohibition, often a rule or an
+      unacceptability.
+    grammar_point: '[Verb-ない]ほうがいい (it is better not to do)'
+  - term: Verb[て]はだめ
+    meaning: Must not; cannot (casual)
+    kind: synonym
+    nuance: 「Verb[て]+はだめ」 is a casual synonym for this grammar point, conveying the same meaning of prohibition
+      but in a more informal register, often used colloquially.
+    grammar_point: <suggest>:Verb[て]はだめ (must not・cannot)
+  - term: なくてもいい
+    meaning: Don't have to
+    kind: antonym
+    nuance: 「なくてもいい」 conveys that an action is not necessary or permitted not to be done, which is the
+      direct opposite of the strong prohibition conveyed by this grammar point.
+    grammar_point: なくてもいい (no need to)
+post_false_friends_writeup: 'To avoid confusion among similar expressions, remember that 「〜てはいけない・〜てはならない」
+  specifically conveys a strong prohibition, indicating something is forbidden. In contrast, expressions
+  like 「なければならない」 are used for obligations, stating what must be done. 「ことだ」 offers advice or a recommendation,
+  while 「なくてもいい」 indicates something is not required. The key distinction within this grammar point lies
+  in the nuance: 「〜てはいけない」 is more common and general, while 「〜てはならない」 is more formal and emphasizes strong
+  principles or rules. Lastly, 「べからず」 is a very formal and older way to express a strong prohibition,
+  similar to 「〜てはならない」.'
+examples:
+  - english: You must not touch this painting.
+    japanese:
+      - この 絵 に 触っ て は {いけ ませ ん}。
+      - この 絵 に 触っ て は {なり ませ ん}。
+      - この 絵 に 触っ て は {いけ ない}。
+      - この 絵 に 触っ て は {なら ない}。
+      - この 絵 に 触っ ちゃ {いけ ない}。
+      - この 絵 に 触っ ちゃ {いけ ませ ん}。
+    english_literally: This painting, touching is not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵 に 触ら {ない で ください}。
+        english: Please don't touch this painting.
+        hint: 「Verb[ないでください]」 is a polite request to refrain from an action. We're looking for a stronger
+          prohibition or rule.
+    scene: A museum guard informing a visitor near a valuable exhibit.
+    register: formal
+    setting: instructional
+    conjugation: negative non-past polite (～ません)
+    nuance: The use of 「いけません」 or 「なりません」 is a direct and formal prohibition, suitable for expressing
+      a rule in a public, regulated environment like a museum. The plain forms 「いけない」 and 「ならない」 and contracted
+      forms like 「触っちゃいけない」 are also grammatically correct but would be less common in a strictly formal
+      setting like a museum announcement, offering a slightly softer or more direct warning rather than
+      an official rule. 「なりません」 carries a stronger, more official tone than 「いけません」.
+  - english: You must not tell this story to anyone else, okay?
+    japanese:
+      - この 話 は 他 の 人 に 教え て は {いけ ない} よ。
+      - この 話 は 他 の 人 に 教え て は {なら ない} よ。
+      - この 話 は 他 の 人 に 教え ちゃ {いけ ない} よ。
+    english_literally: This story, telling to other people is not allowed, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 話 は 他 の 人 に 教え {ない 方 が いい} よ。
+        english: It's better not to tell this story to anyone else, okay?
+        hint: 「Verb[ない] 方がいい」 suggests it's advisable not to do something. We're looking for a strong
+          personal warning about the unacceptability of an action.
+    scene: A close friend sharing a secret with you, emphasizing confidentiality.
+    register: casual
+    setting: intimate
+    conjugation: negative plain (～ない)
+    nuance: The informal 「いけない」 or 「ならない」 combined with the softening particle 「よ」 expresses a strong,
+      yet friendly, warning. The nuance is one of trust and a personal boundary. The contracted form 「教えちゃいけない」
+      is very common in casual conversation, making the warning feel more immediate and familiar. Using
+      「ならない」 adds a slightly more serious undertone even in this casual context, indicating a deeper personal
+      boundary.
+  - english: You must not smoke here.
+    japanese:
+      - ここ で タバコ を 吸っ て は {いけ ませ ん}。
+      - ここ で タバコ を 吸っ て は {なり ませ ん}。
+      - ここ で タバコ を 吸っ て は {いけ ない}。
+      - ここ で タバコ を 吸っ て は {なら ない}。
+      - ここ で タバコ を 吸っ ちゃ {いけ ない}。
+      - ここ で タバコ を 吸っ ちゃ {いけ ませ ん}。
+    english_literally: Here, smoking is not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - ここ で タバコ を 吸っ {て は だめ です}。
+        english: You mustn't smoke here (casual).
+        hint: 「Verb[て]+はだめです」 is a more casual way to express prohibition. We're looking for a polite,
+          formal prohibition, often used for public rules.
+    scene: A non-smoking sign in a public area, or a staff member reminding a customer of the rules.
+    register: formal
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+    nuance: This is a standard, polite form of prohibition, commonly used for rules and regulations in
+      public spaces. It's direct but respectful. Including all forms demonstrates the flexibility of this
+      grammar point across politeness levels. 「なりません」 is generally more suited for official signs or announcements
+      due to its more authoritative tone compared to 「いけません」.
+  - english: When I was a child, we weren't allowed to eat candy during class.
+    japanese:
+      - 子供 の 時、授業 中 に お 菓子 を 食べ て は {いけ なかっ た}。
+      - 子供 の 時、授業 中 に お 菓子 を 食べ て は {なら なかっ た}。
+      - 子供 の 時、授業 中 に お 菓子 を 食べ ちゃ {いけ なかっ た}。
+    english_literally: Child's time, during class, candy eating was not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 時、授業 中 に お 菓子 を {食べ させ て もらえ なかっ た}。
+        english: When I was a child, I wasn't allowed to eat candy during class (passive/received permission).
+        hint: 「Verb[させて もらえなかった]」 indicates that permission to do something was not received. We're looking
+          for a direct statement about a past rule or prohibition.
+    scene: An adult reminiscing about strict rules from their school days.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    nuance: The plain past form 「いけなかった」 or 「ならなかった」 describes a past rule or prohibition. The casual
+      tone is appropriate for personal recollection. The contracted form 「食べちゃいけない」 emphasizes the casual
+      and personal nature of the memory. 「ならなかった」 might imply a rule that was more strictly enforced or
+      deeply ingrained.
+  - english: At that time, was it forbidden to speak during the ceremony?
+    japanese:
+      - あの 時、式中 に 話し て は {いけ ませ ん でし た} か？
+      - あの 時、式中 に 話し て は {なり ませ ん でし た} か？
+      - あの 時、式中 に 話し て は {いけ なかっ た} か？
+      - あの 時、式中 に 話し て は {なら なかっ た} か？
+      - あの 時、式中 に 話し ちゃ {いけ なかっ た} か？
+    english_literally: That time, during ceremony, speaking was not allowed?
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、式中 に 話す こと は {許さ れ て い ませ ん でし た} か？
+        english: Was it that speaking was not permitted during the ceremony?
+        hint: 「Verb[ることは許されていませんでした]」 asks if permission was not granted. We're looking for an inquiry
+          about a rule or something broadly forbidden.
+    scene: A student asking a professor about the etiquette or rules of a past historical event or cultural
+      ceremony.
+    register: formal
+    setting: academic
+    conjugation: negative past polite (～ませんでした)
+    nuance: The polite past interrogative form 「いけませんでしたか」 or 「なりませんでしたか」 is used to inquire about past
+      rules or prohibitions in a formal, academic context. It shows respect to the listener. The inclusion
+      of the plain forms and contracted forms allows for slightly more casual variations, which might
+      be used if the student is very comfortable with the professor or in a less formal academic discussion.
+      「なりませんでしたか」 emphasizes the strictness of the rule more.
+  - english: You really shouldn't stay up so late!
+    japanese:
+      - そんな に 夜更かし し て は {いけ ない} よ！
+      - そんな に 夜更かし し て は {なら ない} よ！
+      - そんな に 夜更かし し ちゃ {いけ ない} よ！
+    english_literally: That much staying up late, it is not allowed, you know!
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 夜更かし し {ない 方 が いい} よ！
+        english: It's better not to stay up so late!
+        hint: 「Verb[ない] 方がいい」 offers advice or a suggestion. We're looking for a stronger, more direct
+          warning or admonishment.
+    scene: An older sibling or concerned friend warning a younger one about their health.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+    speaker_age: older
+    nuance: The forceful yet caring tone implies a concern for the listener's well-being. The 「よ」 particle
+      adds emphasis to the warning. The combination of 「そんなに」 and 「いけない」 or 「ならない」 expresses strong disapproval
+      of the extent of the action. The use of 「いけない」 from an older speaker to a younger one, particularly
+      with the contracted 「しちゃ」, conveys a sense of familiar admonishment rather than a strict rule. 「ならない」
+      here adds a subtle hint of a deeper principle, such as 'it's not good for your health and well-being'.
+  - english: You mustn't look at anyone but me, okay?
+    japanese:
+      - 私 以外 の 人 を 見 て は {いけ ない} わ よ。
+      - 私 以外 の 人 を 見 て は {なら ない} わ よ。
+      - 私 以外 の 人 を 見 ちゃ {いけ ない} わ よ。
+    english_literally: Besides me, looking at other people is not allowed, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 私 以外 の 人 を 見 {たら だめ} よ。
+        english: If you look at anyone but me, it's bad, okay?
+        hint: 「Verb[たら だめ]」 implies 'if you do this, it's bad.' We're looking for a more direct, albeit
+          playful, 'rule' or prohibition.
+    scene: A girlfriend playfully telling her boyfriend not to look at other women.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「わよ」 at the end is a common female sentence-ending particle that adds a strong,
+      assertive, yet sometimes playful or intimate tone. In this context, it emphasizes a playful possessiveness.
+      The contracted form 「見ちゃいけない」 enhances the intimate and casual feel of the interaction, characteristic
+      of the 「shitashii kuchō」 register. Using 「ならない」 in this intimate context makes the 'rule' feel like
+      a deeper, personal boundary established between the couple.
+  - english: Kids, you mustn't go near that river!
+    japanese:
+      - みんな、あの 川 に 近付い て は {いけ ない} よ！
+      - みんな、あの 川 に 近付い て は {なら ない} よ！
+      - みんな、あの 川 に 近付い ちゃ {いけ ない} よ！
+    english_literally: Everyone, approaching that river is not allowed, you know!
+    competing_grammar:
+      - competing_japanese:
+          - あの 川 に 近付か {ない 方 が いい} よ！
+        english: It's better not to go near that river!
+        hint: 「Verb[ない] 方がいい」 is advice, not a strict prohibition or command. We're looking for a direct
+          prohibition.
+    scene: A parent warning children playing outdoors.
+    register: casual
+    setting: commanding
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「いけない」 or 「ならない」 here is a direct command from a parent. The particle 「よ」 softens
+      the command slightly, making it a caring warning. The contracted form 「近付いちゃ」 is very common in
+      casual speech, making the warning feel more immediate and natural, especially when an older speaker
+      is addressing a group of younger listeners like children. 「ならない」 emphasizes the inherent danger
+      and the importance of adhering to the rule for safety.
+  - english: Using cell phones during the performance is strictly prohibited.
+    japanese:
+      - 公演 中 の 携帯 電話 の 使用 は 固く 禁じ られ て おり、ご 使用 なさっ て は {いけ ませ ん}。
+      - 公演 中 の 携帯 電話 の 使用 は 固く 禁じ られ て おり、ご 使用 なさっ て は {なり ませ ん}。
+      - 公演 中 の 携帯 電話 の 使用 は 固く 禁じ られ て おり、ご 使用 なさっ て は {いけ ない}。
+      - 公演 中 の 携帯 電話 の 使用 は 固く 禁じ られ て おり、ご 使用 なさっ て は {なら ない}。
+    english_literally: During performance, cell phone use is strictly forbidden, and using them is not
+      allowed.
+    competing_grammar:
+      - competing_japanese:
+          - 公演 中 の 携帯 電話 の 使用 は {ご 遠慮 ください}。
+        english: Please refrain from using cell phones during the performance.
+        hint: This is a polite request, not a strict prohibition. We are looking for a clear rule.
+      - competing_japanese:
+          - 公演 中 の 携帯 電話 の 使用 は {禁じ られ て い ます}。
+        english: Using cell phones during the performance is forbidden.
+        hint: This states that an action is forbidden, but this grammar point directly prohibits the *act*
+          itself, often as a direct instruction to the audience.
+    scene: An announcement at a theater or concert hall.
+    register: formal
+    setting: instructional
+    conjugation: negative non-past polite (～ません)
+    nuance: This phrase with 「いけません」 or 「なりません」 is frequently used in public announcements or rules. The
+      inclusion of 「固く禁じられており」 (strictly prohibited) emphasizes the severity of the rule. The use of the
+      honorific 「ご使用なさって」 (respectful use) maintains formality in the instruction, typical for public
+      notices addressing an audience. 「なりません」 provides a more authoritative and less negotiable tone for
+      a public rule.
+  - english: I shouldn't have said such a thing to her.
+    japanese:
+      - 彼女 に あんな こと を 言っ て は {いけ なかっ た}。
+      - 彼女 に あんな こと を 言っ て は {なら なかっ た}。
+      - 彼女 に あんな こと を 言っ ちゃ {いけ なかっ た}。
+    english_literally: To her, such a thing, saying was not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 に あんな こと を 言う {べき で は なかっ た}。
+        english: I shouldn't have said such a thing to her (moral).
+        hint: 「べきではなかった」 implies a moral failing or what 'should' have been done. We're looking for a
+          simpler expression of regret for having done something wrong.
+      - competing_japanese:
+          - 彼女 に あんな こと を 言わ な {けれ ば よかっ た}。
+        english: I wish I hadn't said such a thing to her.
+        hint: This is an expression of regret using 'ba yokatta' (if only... it would have been good).
+          We're looking for a statement about an action that was forbidden or wrong to do.
+    scene: Someone reflecting on a past mistake during a conversation with a close friend.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    speaker_gender: female
+    listener_gender: male
+    nuance: This usage of 「いけなかった」 or 「ならなかった」 expresses regret or a realization that a past action was
+      wrong or inappropriate. The plain past form is natural for personal reflection. The contraction
+      「言っちゃいけなかった」 adds to the casual, self-reproaching tone, fitting a private conversation. 「ならなかった」
+      conveys a stronger sense of a boundary that should not have been crossed, emphasizing the emotional
+      impact and deeper sense of wrongness.
+  - english: You must absolutely not drive under the influence of alcohol.
+    japanese:
+      - 飲酒 運転 は 絶対 に し て は {なら ない}。
+      - 飲酒 運転 は 絶対 に し て は {なり ませ ん}。
+      - 飲酒 運転 は 絶対 に し て は {いけ ない}。
+      - 飲酒 運転 は 絶対 に し て は {いけ ませ ん}。
+    english_literally: Drunk driving, absolutely, you must not do.
+    competing_grammar:
+      - competing_japanese:
+          - 飲酒 運転 は 絶対 に し {ない 方 が いい}。
+        english: It's absolutely better not to drive under the influence of alcohol.
+        hint: This is advice. We're looking for a strong prohibition with legal implications.
+    scene: A government public service announcement regarding road safety.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: This example emphasizes a legal and critical public safety message. 「ならない」 conveys the gravity
+      and legal force of this prohibition, making it stronger than 「いけない」 for such a context. The use
+      of 「絶対 に」 further intensifies the prohibition.
+  - english: You must not take prescription medication without a doctor's permission.
+    japanese:
+      - 医師 の 許可 なく 処方 薬 を 飲ん で は {なら ない}。
+      - 医師 の 許可 なく 処方 薬 を 飲ん で は {なり ませ ん}。
+      - 医師 の 許可 なく 処方 薬 を 飲ん で は {いけ ない}。
+      - 医師 の 許可 なく 処方 薬 を 飲ん で は {いけ ませ ん}。
+    english_literally: Without a doctor's permission, prescription medicine you must not take.
+    competing_grammar:
+      - competing_japanese:
+          - 医師 の 許可 なく 処方 薬 を 飲ま {ない 方 が いい}。
+        english: It's better not to take prescription medication without a doctor's permission.
+        hint: This is a suggestion. We're looking for a strict medical directive.
+    scene: A doctor giving a patient strict instructions regarding their medication.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: This example is a strict medical directive. 「ならない」 conveys a strict, non-negotiable prohibition
+      for health reasons, emphasizing the critical importance of following orders, whereas 「いけない」 would
+      be a more general warning. The seriousness of the context naturally elevates the nuance.
+  - english: You must not use disrespectful language towards customers.
+    japanese:
+      - お 客 様 に 対し て 失礼 な 言葉 を 使っ て は {なり ませ ん}。
+      - お 客 様 に 対し て 失礼 な 言葉 を 使っ て は {いけ ませ ん}。
+      - お 客 様 に 対し て 失礼 な 言葉 を 使っ て は {なら ない}。
+      - お 客 様 に 対し て 失礼 な 言葉 を 使っ て は {いけ ない}。
+    english_literally: Towards customers, disrespectful words you must not use.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 に 対し て 失礼 な 言葉 を 使わ {ない 方 が いい}。
+        english: It's better not to use disrespectful language towards customers.
+        hint: This is advice. We're looking for a formal workplace rule.
+    scene: A manager instructing a group of new employees during their orientation.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: This example describes a formal workplace rule. The polite form 「なりません」 combined with the
+      softening 「よ」 conveys advice that is firm yet gentle, often used in professional settings to maintain
+      decorum. 「なりません」 is more common in such formal guidelines than 「いけません」, which is slightly less authoritative.
+  - english: You must not enter prohibited areas.
+    japanese:
+      - 立ち入り 禁止 の 場所 に 入っ て は {なら ない}。
+      - 立ち入り 禁止 の 場所 に 入っ て は {なり ませ ん}。
+      - 立ち入り 禁止 の 場所 に 入っ て は {いけ ない}。
+      - 立ち入り 禁止 の 場所 に 入っ て は {いけ ませ ん}。
+    english_literally: Into prohibited areas, you must not enter.
+    competing_grammar:
+      - competing_japanese:
+          - 立ち入り 禁止 の 場所 に 入ら {ない で ください}。
+        english: Please do not enter prohibited areas.
+        hint: This is a polite request. We're looking for an official prohibition with legal implications.
+    scene: A large warning sign at the entrance of a dangerous or restricted construction site.
+    register: formal
+    setting: commanding
+    conjugation: dictionary (plain non-past)
+    nuance: This example implies an official prohibition, often with legal implications. 「ならない」 is typically
+      used for strong, legally binding prohibitions, whereas 「いけない」 is a more general warning. 「なりません」
+      further solidifies the authoritative nature of the prohibition.
+post_example_writeup: These examples demonstrate how 「〜てはいけない・〜てはならない」 can be used across various situations,
+  from formal rules to intimate warnings, by simply changing the verb and adjusting the politeness level
+  and form. Notice how the contracted forms with 「ちゃ」 and 「じゃ」 are frequently used in casual settings,
+  adding to the naturalness of the spoken Japanese. The choice between 「いけない」 and 「ならない」 forms often hinges
+  on the desired level of formality and authority in the prohibition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/てはいけない

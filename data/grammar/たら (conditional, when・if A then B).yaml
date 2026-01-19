@@ -1,0 +1,412 @@
+grammar_point: たら (conditional, when・if A then B)
+learn_before:
+  - Verb[たら] (conditional)
+meaning: If; When; After
+pronunciation:
+  katakana: タラ
+  romaji: tara
+formation:
+  Verb in past tense + ら: Expresses a conditional or a temporal relationship, similar to 'if' or 'when'.
+  い-Adjective in past tense + ら: Similar to verbs, forms a conditional statement.
+  な-Adjective + だった + ら: Used with な-adjectives to form a conditional.
+  Noun + だった + ら: Used with nouns to form a conditional.
+  Auxiliary Verb + ら: Used with auxiliary verbs to form a conditional, such as with potential or passive
+    forms.
+jlpt: N4
+etymology: The origin of 「たら」 is complex, but it's generally believed to have evolved from the classical
+  Japanese perfective aspect marker 「つ」, combined with the particle 「ら」, which indicates condition or
+  hypotheticality. Over time, 「つら」 contracted to 「たら」. The particle 「ら」 itself has roots in earlier forms
+  of the language indicating a sequential or conditional relationship. Thus, 「たら」 carries a blend of completed
+  action and conditional nuance.
+writeup: '「たら」 is a versatile conjunction particle in Japanese, functioning as a middle ground between
+  "if" and "when." It conveys the sense that once action A is completed, action B occurs as a result.
+  This relationship can be hypothetical (future) or a one-time result from the past. Caution: It''s crucial
+  to remember that while 「たら」 connects to the past form of verbs, adjectives, and nouns (via 「だった」), 「たら」
+  itself **doesn''t inherently indicate past tense**. The sentence context determines the time frame.
+  Fun Fact: Unlike other "if" structures like 「ば」 and 「なら」, 「たら」 emphasizes the **completion** or **materialization**
+  of the condition. It specifically highlights the following situations: **Completion (完了):** The action
+  (A) is finished. **Materialization (成立):** The condition (A) comes to fruition.'
+false_friends:
+  - term: あとで
+    meaning: After, Later
+    kind: synonym
+    nuance: Unlike 「たら」, 「あとで」 only indicates a sequence in time and does not convey a conditional relationship.
+    grammar_point: あとで (after・later)
+  - term: ば
+    meaning: If… then, (Conditional)
+    kind: synonym
+    nuance: 「ば」 is a more general conditional, while 「たら」 implies that the first action has been completed
+      or realized.
+    grammar_point: ば (conditional, if A then B)
+  - term: てから
+    meaning: Once...is done, Once...happens, After doing
+    kind: synonym
+    nuance: 「てから」 emphasizes the completion of an action before another, while 「たら」 focuses more on the
+      relationship between the two events.
+    grammar_point: てから (after and since)
+  - term: と
+    meaning: If, When, Whenever, And, [Conditional]
+    kind: synonym
+    nuance: 「と」 indicates a natural consequence or habitual action, while 「たら」 is more specific about
+      a one-time or conditional result.
+    grammar_point: と (conditional, inevitable result)
+  - term: なら
+    meaning: Were it, If, If it's the case, As for (Conditional)
+    kind: synonym
+    nuance: 「なら」 focuses on the topic at hand and introduces a condition related to it, whereas 「たら」 is
+      more general and can express a broader range of conditional or temporal relationships.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: もし
+    meaning: If (For emphasis)
+    kind: synonym
+    nuance: 「もし」 simply adds emphasis to a conditional statement, but 「たら」 itself already implies a conditional
+      or temporal connection.
+    grammar_point: もし・もしも (if, emphasis)
+  - term: 上で
+    meaning: After, Upon
+    kind: synonym
+    nuance: 「上で」 means "upon" or "after" doing something, emphasizing the action preceding the main clause.
+      「たら」, on the other hand, often implies a stronger cause-and-effect relationship or consequence.
+    grammar_point: 上で (after doing)
+  - term: ても
+    meaning: Even if, Even though
+    kind: similar expression
+    nuance: 「ても」 expresses concession, meaning something will happen *regardless* of the condition. In
+      contrast, 「たら」 expresses a consequence that occurs *if* the condition is met.
+    grammar_point: ても (even if・even though)
+  - term: ものなら
+    meaning: If one were to do (undesirable consequences)
+    kind: similar expression
+    nuance: 「ものなら」 is used for hypothetical or unlikely conditions, often implying a negative or problematic
+      consequence if the condition is met. 「たら」 is neutral and can apply to any outcome.
+    grammar_point: '[Verb-volitional]ものなら (if one were to)'
+  - term: たとたんに
+    meaning: The instant, the moment, as soon as
+    kind: similar expression
+    nuance: 「たとたんに」 expresses an immediate, often surprising, consequence right after an action. While
+      「たら」 can imply sequence, 「たとたんに」 is more emphatic about the instantaneity.
+    grammar_point: '[Verb-た]とたん(に) (as soon as・the moment)'
+  - term: なり
+    meaning: As soon as
+    kind: similar expression
+    nuance: 「なり」 highlights that one action happens immediately upon the completion of another. It often
+      implies a quick or decisive follow-up. 「たら」 is less focused on instantaneity.
+    grammar_point: '[Verb-た]とたん(に) (as soon as・the moment)'
+post_false_friends_writeup: To avoid confusion, remember that 「たら」 highlights the completion of an action
+  and its result, whether hypothetical or past. 「ば」 is a more general "if," while 「てから」 focuses on the
+  sequence of events. 「と」 indicates a natural consequence. 「なら」 relates a condition to the current topic.
+  「ても」 expresses concession. 「ものなら」 implies unlikely or negative outcomes. 「たとたんに」 and 「なり」 emphasize
+  immediate occurrence. Consider the context to choose the most accurate expression.
+examples:
+  - english: If you're late again, the contract will be terminated.
+    japanese:
+      - 次 に {遅刻 し たら}、契約 は 解除 さ れ ます。
+      - 次 に {遅刻 いたし まし たら}、契約 は 解除 さ れ ます。
+      - 次 に {遅刻 し たら}、契約 は 解除 さ れる ぞ。
+      - 次 に {遅刻 し たら}、契約 は 解除 さ れ ちゃう よ。
+      - 次 に {遅刻 し たら}、契約 は 解除 さ れ る から ね。
+    english_literally: Next time if you are late, the contract will be terminated.
+    competing_grammar:
+      - competing_japanese:
+          - 次 に 遅刻 {すれ ば}、契約 は 解除 さ れ ます。
+        english: If you are late next time, the contract will be terminated.
+        hint: 「ば」 creates a general conditional statement, but 「たら」 emphasizes a specific, definite consequence
+          upon the completion of the condition.
+    scene: A strict manager delivering a final warning to an employee.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The formal 「契約は 解除されます」 (the contract will be terminated) emphasizes the severity. The use
+      of 「たら」 highlights the direct, inevitable consequence after the condition of being late is met.
+    etymology: The phrase 「解除される」 (kaijo sareru) literally means "to be released" or "to be cancelled,"
+      conveying a formal and serious tone often used in legal or contractual contexts. The passive form
+      emphasizes the contract itself as the object being terminated, rather than who is terminating it
+      directly, which is common in formal situations where the action is more important than the actor.
+  - english: If the room is cold, please turn on the heater.
+    japanese:
+      - 部屋 が {寒かっ たら}、暖房 を つけ て ください。
+      - 部屋 が {寒かっ たら}、暖房 つけ て ね。
+      - 部屋 が {寒かっ たら}、暖房 つけ て いい よ。
+    english_literally: If the room is cold, please turn on the heater.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が 寒い {なら}、暖房 を つけ て ください。
+        english: If the room is cold, (in that case,) please turn on the heater.
+        hint: 「なら」 often follows a statement or premise, giving advice or an action based on it. 「たら」
+          directly links the realized state (coldness) to the action that should follow.
+    scene: A homeowner telling a guest to make themselves comfortable.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The polite 「つけてください」 softens the instruction. 「寒かったら」 here implies that *if* the state of
+      being cold is realized, then the action should be taken.
+    etymology: 「暖房」 (danbou) combines 「暖」 (dan, meaning warm) and 「房」 (bou, meaning room or chamber),
+      literally signifying "warming a room." This term specifically refers to heating systems, reflecting
+      its function directly.
+  - english: If you really like him, you should tell him how you feel.
+    japanese:
+      - もし 彼 が 大好き {だっ たら}、その 気持ち を 伝え た 方 が いい よ。
+      - もし 彼 が 大好き {でし たら}、その 気持ち を 伝え た 方 が いい です よ。
+      - 彼 が 大好き {だっ たら}、気持ち 伝え た 方 が いい って。
+    english_literally: If you really like him, you'd better convey those feelings.
+    competing_grammar:
+      - competing_japanese:
+          - もし 彼 が 大好き {なら}、その 気持ち を 伝え た 方 が いい よ。
+        english: If you really like him, (in that case,) you should tell him how you feel.
+        hint: 「なら」 is used for advice or a judgment based on a stated premise. 「たら」 emphasizes the completion
+          or realization of the feeling as the condition leading to the advice.
+    scene: A close friend giving heartfelt advice to another friend about their crush.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual 「〜た 方 が いいよ」 (you should) is common among close friends. 「大好きだったら」 emphasizes the
+      strength of the feeling as the condition.
+    etymology: The idiom 「気持ちを伝える」 (kimochi o tsutaeru) literally means "to convey feelings." It's a common
+      and direct way to express one's emotions or thoughts to another person, emphasizing sincerity.
+  - english: If it's tomorrow, we can meet at the park.
+    japanese:
+      - 明日 {だっ たら}、公園 で 会える よ。
+      - 明日 {でし たら}、公園 で 会え ます よ。
+      - 明日 {だっ たら}、公園 で 会える ね。
+    english_literally: If it is tomorrow, we can meet at the park.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 {なら}、公園 で 会える よ。
+        english: As for tomorrow, we can meet at the park.
+        hint: 「なら」 often presents a condition based on a current situation or proposal, while 「たら」 sets
+          a condition that, if met, leads to a result.
+    scene: Two friends planning to meet, and one offers a specific time when they are free.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「会えるよ」 is a casual way to state availability. 「明日だったら」 specifies the condition (being tomorrow)
+      under which the meeting is possible.
+    etymology: 「会える」 (aeru) is the potential form of 「会う」 (au, to meet). The suffix 「〜える」 indicates capability
+      or possibility, making it a very natural way to express "can meet." The final particle 「よ」 adds
+      a sense of confirmation or informing the listener.
+  - english: If it's next weekend, I might be able to go on a trip.
+    japanese:
+      - 次 の 週末 {だっ たら}、旅行 に 行ける か も。
+      - 次 の 週末 {でし たら}、旅行 に 行ける か も しれ ませ ん。
+      - 次 の 週末 {だっ たら}、旅行 行ける か も ね。
+    english_literally: If it's next weekend, maybe I can go on a trip.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 週末 {なら}、旅行 に 行ける か も。
+        english: If it's next weekend, (in that case,) I might be able to go on a trip.
+        hint: 「なら」 emphasizes the current premise or topic of discussion, while 「たら」 focuses on the actual
+          realization of the condition (next weekend) before the possibility.
+    scene: Someone discussing potential travel plans with a friend, showing a conditional possibility.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「行けるかも」 (might be able to go) suggests a tentative possibility. 「次の 週末だったら」 sets the specific
+      temporal condition for this possibility.
+    etymology: 「旅行」 (ryokō) is composed of 「旅」 (ryo, journey) and 「行」 (kō, going), literally meaning "journeying."
+      It's a direct term for travel and often implies leisure.
+  - english: If it had been last week, I could have gone to the concert.
+    japanese:
+      - もし 先週 {だっ たら}、コンサート に 行け た の に。
+      - もし 先週 {でし たら}、コンサート に 行け た の に。
+      - 先週 {だっ たら}、コンサート 行け た の に。
+    english_literally: If it had been last week, I could have gone to the concert, though.
+    competing_grammar:
+      - competing_japanese:
+          - もし 先週 {で あれ ば}、コンサート に 行け た の に。
+        english: If it had been last week, I could have gone to the concert.
+        hint: 「ば」 can express a hypothetical condition, but 「たら」 with the past tense and 「のに」 strongly
+          conveys regret about an unfulfilled condition in the past.
+    scene: A person expressing regret to a friend about missing an event due to a past scheduling conflict.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The particle 「のに」 expresses regret or disappointment about an unfulfilled past condition.
+      「もし 先週だったら」 emphasizes the hypothetical past condition.
+    etymology: The sentence-final particle 「のに」 often expresses regret or disappointment, functioning
+      like "even though" or "despite." Its historical usage points to a sense of contradiction or opposition,
+      which in this context extends to a contrast between what could have been and what is.
+  - english: If you go to the library, could you borrow this book for me?
+    japanese:
+      - 図書 館 に {行っ たら}、この 本 を 借り て き て くれる？
+      - 図書 館 に {行か れ まし たら}、この 本 を 借り て き て いただけ ます か？
+      - 図書 館 に {行か れ まし たら}、この 本 を 借り て き て ください ます か？
+      - 図書 館 に {行っ たら}、この 本 借り て き て くれる？
+    english_literally: If you go to the library, will you borrow this book and come (back) for me?
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 に 行く {なら}、この 本 を 借り て き て くれる？
+        english: If you're going to the library, (in that case,) could you borrow this book for me?
+        hint: 「なら」 often means "if (it's the case that you're doing X)" and sets a premise. 「たら」 emphasizes
+          the completion of the action (going to the library) as the condition for the request.
+    scene: A student asking a friend for a favor, assuming they will visit the library.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「〜て くれる？」 is a casual way to ask for a favor. 「図書館に 行ったら」 implies the favor is contingent
+      on the listener's trip to the library.
+    etymology: 'The verb 「借りてきてくれる」 (karite kite kureru) is a compound verb: 「借りる」 (kariru, to borrow)
+      + 「てくる」 (tekuru, to come after doing something/go and do something) + 「くれる」 (kureru, to do a favor
+      for the speaker). This construction indicates that the listener performs an action (borrowing) and
+      brings the result (the book) back to the speaker, for the speaker''s benefit. This compound nature
+      is common in Japanese to express combined actions and their beneficiaries.'
+  - english: If you don't read this report, you'll miss important details.
+    japanese:
+      - もし この 報告 書 を {読ま なかっ たら}、重要 な 詳細 を 見逃し ます よ。
+      - もし この 報告 書 を {読ま なかっ たら}、重要 な 詳細 を 見逃す ぞ。
+      - もし この 報告 書 を {お 読み に なり ませ ん でし たら}、重要 な 詳細 を 見逃さ れ ます よ。
+      - この 報告 書 を {読ま なかっ たら}、重要 な 詳細 を 見逃す こと に なる ぞ。
+    english_literally: If you do not read this report, you will miss important details.
+    competing_grammar:
+      - competing_japanese:
+          - もし この 報告 書 を {読ま なけ れ ば}、重要 な 詳細 を 見逃し ます よ。
+        english: If you don't read this report, you will miss important details.
+        hint: While both express a negative conditional, 「たら」 emphasizes the consequence that *will* occur
+          if the condition (not reading) is fulfilled. 「ば」 is a more general 'if not'.
+    scene: A colleague advising another on the necessity of reading a document.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The negative conditional 「読まなかったら」 indicates a consequence for not completing the action.
+      The polite 「〜ますよ」 adds a gentle warning.
+    etymology: 「見逃す」 (minogasu) combines 「見る」 (miru, to see) and 「逃す」 (nogasu, to let slip, to miss).
+      This literally means "to see and let slip," effectively conveying the sense of missing something
+      that was there to be seen, often due to oversight.
+  - english: If you practice every day, you'll become good at the piano.
+    japanese:
+      - 毎日 練習 {し たら}、ピアノ が 上手 に なり ます よ。
+      - 毎日 練習 {し たら}、ピアノ 上手く なる よ。
+      - 毎日 練習 {なさい まし たら}、ピアノ が お 上手 に なり ます よ。
+      - 毎日 練習 {し たら}、絶対 ピアノ 上手く なる から ね！
+    english_literally: If you practice every day, you will become good at the piano.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 練習 {すれ ば}、ピアノ が 上手 に なり ます よ。
+        english: If you practice every day, you will become good at the piano.
+        hint: 「ば」 can express a general, logical consequence. 「たら」 emphasizes that once the condition
+          (daily practice) is completed, the positive outcome will follow.
+    scene: A piano teacher encouraging a student.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「上手 に なりますよ」 indicates a positive outcome. 「練習したら」 conveys that the *completion* of regular
+      practice leads to improvement.
+    etymology: 「上手 に なる」 (jōzu ni naru) means "to become good at something." 「上手」 (jōzu) combines 「上」
+      (jō, above, skilled) and 「手」 (te, hand), originally referring to someone having a superior hand
+      in a skill. The particle 「に」 (ni) indicates the result or state that is achieved.
+  - english: If the coffee is too hot, you can put ice in it.
+    japanese:
+      - コーヒー が {熱かっ たら}、氷 を 入れ て も いい です よ。
+      - コーヒー が {熱かっ たら}、氷 入れ て も いい よ。
+      - コーヒー が {熱かっ たら}、氷 お 入れ し ます か？
+    english_literally: If the coffee is hot, you can put ice in it.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー が {熱 け れ ば}、氷 を 入れ て も いい です よ。
+        english: If the coffee is hot, you can put ice in it.
+        hint: 「ければ」 is a common conditional form for い-adjectives, but 「たら」 often feels more direct when
+          offering permission or a suggestion based on a realized state.
+    scene: A barista offering a customer a way to adjust their drink.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「入れても いいですよ」 is a polite permission. 「熱かったら」 states the condition (being too hot) under which
+      the permission applies.
+    etymology: The construction 「〜てもいい」 (temo ii) is a common way to express permission or that something
+      is acceptable. It derives from the te-form of a verb/adjective followed by 「も」 (mo, even) and 「いい」
+      (ii, good), literally meaning "even if you do X, it is good" or "it is good even with X."
+  - english: If you're sleepy, take a break anytime.
+    japanese:
+      - 眠かっ {たら}、いつ で も 休憩 し て ね。
+      - 眠く {なら れ まし たら}、いつ で も 休憩 なさっ て ください ね。
+      - 眠く {なり まし たら}、いつ で も 休憩 し て ください ね。
+      - 眠かっ {たら}、いつ で も 休憩 し な よ。
+    english_literally: If you are sleepy, take a break anytime, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 眠い {なら}、いつ で も 休憩 し て ね。
+        english: If you are sleepy, (in that case,) take a break anytime, okay?
+        hint: 「なら」 is often used for advice or a suggestion based on an observed condition or statement.
+          「たら」 specifies that once the condition (being sleepy) is realized, the action should be taken.
+    scene: A supervisor offering flexible working conditions to their team.
+    register: semi-formal
+    setting: supportive
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「いつでも 休憩 してね」 is a kind, semi-formal instruction. 「眠かったら」 highlights the condition (being
+      sleepy) that warrants a break.
+    etymology: 「いつでも」 (itsudemo) combines 「いつ」 (itsu, when) and 「でも」 (demo, even/any), forming "anytime."
+      This versatile suffix 「でも」 adds a sense of inclusiveness or indefiniteness to interrogative words.
+  - english: If it's next Tuesday, I can attend the meeting.
+    japanese:
+      - 来週 の 火曜 日 {だっ たら}、会議 に 参加 でき ます。
+      - 来週 の 火曜 日 {でし たら}、会議 に 参加 でき ます。
+      - 来週 の 火曜 日 {だっ たら}、会議 出 られる よ。
+    english_literally: If it is next Tuesday, I can attend the meeting.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の 火曜 日 {なら}、会議 に 参加 でき ます。
+        english: As for next Tuesday, I can attend the meeting.
+        hint: 「なら」 often presents a condition based on a current situation or proposal. 「たら」 sets a condition
+          that, if met, leads to a future action.
+    scene: An executive confirming their availability for a business meeting.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal 「参加 できます」 shows professional availability. 「来週の 火曜日だったら」 precisely specifies the
+      condition for attendance.
+    etymology: 「参加」 (sanka) combines 「参」 (san, to participate, to visit) and 「加」 (ka, to add, to join).
+      It literally means "to join and add oneself," perfectly conveying the act of participating in an
+      event or group.
+  - english: If the pain is severe, please contact a doctor immediately.
+    japanese:
+      - 痛み が {ひどかっ たら}、すぐ に 医者 に 連絡 し て ください。
+      - 痛み が {ひどう ござい まし たら}、すぐ に 医者 に ご 連絡 ください。
+      - 痛み が {ひどく なり まし たら}、すぐ に 医者 に 連絡 し て ください。
+      - 痛み が {ひどかっ たら}、すぐ 医者 連絡 し な。
+    english_literally: If the pain is severe, please contact a doctor immediately.
+    competing_grammar:
+      - competing_japanese:
+          - 痛み が {ひ どけ れ ば}、すぐ に 医者 に 連絡 し て ください。
+        english: If the pain is severe, please contact a doctor immediately.
+        hint: 「ければ」 is a direct conditional for い-adjectives, but 「たら」 emphasizes that *once* the condition
+          (severe pain) is realized, the immediate action should be taken.
+    scene: A doctor giving post-operation instructions to a patient.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The polite 「連絡 して ください」 is a clear instruction. 「ひどかったら」 establishes the condition (severe
+      pain) requiring immediate action.
+    etymology: 「連絡」 (renraku) combines 「連」 (ren, to link, consecutive) and 「絡」 (raku, to entangle, to
+      connect). It implies linking communications or getting in touch, reflecting its role in establishing
+      communication.
+post_example_writeup: '「たら」 is a highly versatile grammar point. In casual conversation it is commonly
+  used to make statements with a tone of warning. For example: 「勉強しなかったら、ゲームはだめ。」 ("If you do not study,
+  you can''t play video games.") The use of 「たら」 is also common when asking someone for advice. For example:
+  「どうしたら いいですか」 ("What should I do?")'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たら

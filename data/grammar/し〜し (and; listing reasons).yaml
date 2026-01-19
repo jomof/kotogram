@@ -1,0 +1,322 @@
+grammar_point: し〜し (and; listing reasons)
+learn_before:
+  - たい (want to do)
+meaning: And, Giving reasons
+meaning_warning: The last し in a sentence can be replaced with から or ので
+pronunciation:
+  katakana: シ シ
+  romaji: shi shi
+formation:
+  Verb (plain form) + し: Used to list reasons or conditions, indicating 'and' or 'because'.
+  い-adjective + し: Used to list reasons or conditions, indicating 'and' or 'because'.
+  な-adjective (stem) + だ + し: Used to list reasons or conditions, indicating 'and' or 'because'.
+  Noun + だ + し: Used to list reasons or conditions, indicating 'and' or 'because'.
+jlpt: N4
+etymology: The particle 「し」 is thought to originate from the verb 「する」 (to do). It evolved to connect
+  related ideas or reasons, emphasizing that they coexist without contradiction. This origin points to
+  its function of 'doing' or 'listing' multiple elements that hold similar weight.
+writeup: 'The 「し〜し」 structure is a conjunction particle used to list multiple reasons or conditions that
+  contribute to a situation or conclusion. It''s often translated as "and" or "because" when connecting
+  clauses. Each reason listed with 「し」 carries equal weight and importance, indicating that the ideas
+  coexist without contradicting each other. This is a key nuance: all listed items are presented as equally
+  valid or significant factors. 「し」 can be attached to the plain form of verbs and い-adjectives. For nouns
+  and な-adjectives, 「だ」 must precede 「し」. While 「し」 can be repeated to list several reasons, the final
+  「し」 in a sentence can often be replaced with 「から」 or 「ので」 to explicitly introduce a result or conclusion
+  stemming from the listed reasons.'
+false_friends:
+  - term: とか〜とか
+    meaning: Among other things, for example, such as
+    kind: similar expression
+    nuance: Unlike 「し〜し」, 「とか〜とか」 implies that the listed items are examples and not necessarily exhaustive.
+      It suggests a non-specific or incomplete list, often used for giving examples rather than comprehensive
+      reasons.
+    grammar_point: とか〜とか (listing examples)
+  - term: 上に
+    meaning: As well, besides, in addition to
+    kind: often confused with
+    nuance: Unlike 「し〜し」, 「上に」 often introduces a more significant or surprising reason, or something
+      added 'on top of' what was already stated, implying a hierarchical or additive relationship rather
+      than equal weighting.
+    grammar_point: 上に (in addition to)
+  - term: から (because)
+    meaning: Because, since
+    kind: synonym
+    nuance: Unlike 「し〜し」, 「から」 typically introduces a single, direct reason for a subsequent action or
+      state. While it can follow a list of items, it doesn't carry the same nuance of 'listing equally
+      important reasons' as 「し〜し」.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ので
+    meaning: Because, so, since, the reason being
+    kind: synonym
+    nuance: Unlike 「し〜し」, 「ので」 provides a reason with a softer, more indirect, or objective tone. It states
+      a cause but doesn't necessarily emphasize a list of equally weighted factors in the same way 「し〜し」
+      does.
+    grammar_point: '[Clause]から (because・so)'
+  - term: Verb[て] (non-sequential events)
+    meaning: And, and so, due to, because of, since, conjunctive
+    kind: similar expression
+    nuance: Unlike 「し〜し」, 「te-form」 primarily connects actions sequentially or lists states without necessarily
+      implying a causal relationship or a list of reasons. It focuses on the flow of events or conditions
+      rather than emphasizing multiple co-existing reasons.
+    grammar_point: Verb[て] (non-sequential events)
+  - term: '[i-Adj-stem]くて (and・because)'
+    meaning: Connecting adjectives or clauses (and/because)
+    kind: similar expression
+    nuance: Unlike 「し〜し」, 「Adjective[te]」 connects qualities without necessarily implying a causal relationship
+      or a list of reasons. It simply describes multiple attributes, whereas 「し〜し」 explicitly links these
+      attributes as co-existing reasons for a conclusion.
+    grammar_point: <suggest>:[i-Adj-stem]くて (and)
+post_false_friends_writeup: While 「とか」, 「上に」, 「から」, 「ので」, and the 「て」 form can express similar ideas to
+  「し〜し」, it's important to understand their nuances. 「し〜し」 emphasizes the equal weight of multiple reasons,
+  indicating that all listed factors contribute equally to a situation. The other expressions may imply
+  different relationships, such as exemplification, addition, direct causation, or sequential actions/states.
+  Use 「し〜し」 when you want to convey that multiple, equally important factors are at play.
+examples:
+  - english: She can cook, and she can sing; I truly think she's a perfect person.
+    japanese:
+      - 彼女 は 料理 も {できる し}、歌 も {歌える し}、本当 に 完璧 な 人 だ と 思う。
+      - 彼女 は 料理 も {できる し}、歌 も {歌える し}、本当 に 完璧 な 人 だ と 思い ます。
+      - 彼女 は 料理 も {できる し}、歌 も {歌える し}、本当 に 完璧 な 人 だ と 思う わ。
+    english_literally: She can cook, also she can sing, really perfect person I think.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 料理 も {でき て}、歌 も {歌え て}、本当 に 完璧 な 人 だ と 思う。
+        english: She can cook, and can also sing, and I truly think she's a perfect person.
+        hint: The 'te-form' connects actions sequentially or lists states, but doesn't emphasize multiple
+          equally important reasons as 'し〜し' does. We're looking for reasons for her being a perfect person.
+      - competing_japanese:
+          - 彼女 は 料理 も できる {上 に} 歌 も 歌える から、本当 に 完璧 な 人 だ と 思う。
+        english: She can cook, and furthermore can sing, and I truly think she's a perfect person.
+        hint: 「上に」 adds something 'on top of' what was stated, implying an additional, often more significant
+          reason. We're looking for equally weighted reasons.
+    scene: A female friend is listing the admirable qualities of another woman, expressing admiration.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    nuance: The speaker is using 「料理もできるし、歌も歌えるし」 to list two equally impressive skills that contribute
+      to her conclusion that the woman is 「完璧な人」 (a perfect person). The use of 「も」 (also) further emphasizes
+      the additive nature of these skills, both contributing equally to the positive assessment. The ending
+      「わ」 is a common feminine sentence-final particle.
+  - english: That restaurant is expensive, and the service is bad; I never want to go there again.
+    japanese:
+      - あの レストラン は 値段 が {高い し}、サービス も {悪い し}、二 度 と 行き たく ない。
+      - あの レストラン は 値段 が {高い し}、サービス も {悪い し}、二 度 と 行き たく あり ませ ん。
+      - あの レストラン は 値段 が {高い し}、サービス も {悪い し}、二 度 と 行き たく ない な。
+    english_literally: That restaurant price is high, service also bad, never again want to go.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 値段 が {高く て}、サービス も {悪い から}、二 度 と 行き たく ない。
+        english: That restaurant is expensive, and the service is bad, so I never want to go there again.
+        hint: While similar, 'し〜し' specifically lists multiple equally frustrating reasons for a negative
+          experience, which is more emphatic than a basic 'te-form' with 'から'.
+      - competing_japanese:
+          - あの レストラン は 値段 が 高く て、サービス も 悪い {の で}、二 度 と 行き たく ない。
+        english: That restaurant is expensive, and since the service is bad, I never want to go there
+          again.
+        hint: 「ので」 provides a reason with a softer, more objective tone. For a strong complaint based
+          on multiple factors, 'し〜し' is more direct and emphasizes each reason.
+    scene: A person is recounting a terrible dining experience to a friend.
+    register: casual
+    setting: serious
+    nuance: The repetition of 「値段が高いし、サービスも悪いし」 emphasizes two equally significant negative points about
+      the restaurant, leading to the strong negative conclusion 「二度と行きたくない」 (I never want to go again).
+      This highlights the cumulative effect of the bad experiences.
+  - english: He is diligent, and he's reliable; he's truly a good boss.
+    japanese:
+      - 彼 は {真面目 だ し}、{頼り に なる し}、本当 に いい 上司 だ。
+      - 彼 は {真面目 だ し}、{頼り に なる し}、本当 に いい 上司 だ と 思い ます。
+      - 彼 は {真面目 だ し}、{頼り に なる し}、本当 に いい 上司 です ね。
+    english_literally: He is diligent, reliable, truly good boss.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {真面目 で}、{頼り に なる から}、本当 に いい 上司 だ。
+        english: He is diligent, and reliable, and truly a good boss.
+        hint: Using 'de' for 'na-adjectives' connects qualities, but 'し〜し' provides a stronger emphasis
+          on each quality as an equally important reason for the assessment.
+      - competing_japanese:
+          - 彼 は 真面目 な {の で}、頼り に なる {の で}、本当 に いい 上司 だ。
+        english: He is diligent, and since he is reliable, he is truly a good boss.
+        hint: Using two 「ので」 implies separate causal links rather than equally presented co-existing reasons
+          for a single conclusion.
+    scene: A subordinate is praising their boss to a colleague.
+    register: semi-formal
+    setting: professional
+    nuance: 「真面目だし、頼りになるし」 lists two equally important positive traits that make him a good boss. The
+      use of 「だ」 before 「し」 for 「真面目」 (a な-adjective) is a critical formation point for this grammar pattern.
+      Adding 「と 思います」 or 「です ね」 changes the level of politeness and adds a softer, more confirmatory nuance
+      to the statement.
+  - english: Today is a holiday, and the weather is good; why don't we go out somewhere?
+    japanese:
+      - 今日 は {休日 だ し}、天気 も {いい し}、どこ か 出かけ ませ ん か。
+      - 今日 は {休日 だ し}、天気 も {いい し}、どこ か 出かけ ない？
+      - 今日 は {休日 だ し}、天気 も {いい し}、どこ か 出かけ よう か。
+    english_literally: Today is holiday, weather also good, somewhere go out won't you?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {休日 で}、天気 も {いい から}、どこ か 出かけ ませ ん か。
+        english: Today is a holiday, and the weather is good, so why don't we go out somewhere?
+        hint: While similar, 'し〜し' emphasizes multiple co-occurring favorable conditions as equally weighted
+          reasons for an activity, which is more emphatic than a simple 'te-form' with 'から'.
+      - competing_japanese:
+          - 今日 は 休日 な {の で}、天気 も いい {の で}、どこ か 出かけ ませ ん か。
+        english: Because today is a holiday, and since the weather is good, why don't we go out somewhere?
+        hint: 「ので」 provides a reason with a softer, more objective tone. 'し〜し' is more direct when presenting
+          clear, equally important conditions for a suggestion.
+    scene: A person suggests an outing to a friend or partner on a pleasant day.
+    register: casual
+    setting: friendly
+    nuance: 「休日だし、天気もいいし」 presents two favorable, equally weighted reasons for suggesting an outing. The
+      final 「〜ませんか」 is a common polite invitation used in casual conversation, indicating a suggestion.
+      「出かけない？」 and 「出かけようか」 offer more casual and volitional suggestions, common among friends or partners.
+  - english: He is kind, and he's funny; it's fun to be with him.
+    japanese:
+      - 彼 は 優しい {し}、{面白い し}、一緒 に いる と 楽しい。
+      - 彼 は 優しい {し}、{面白い し}、一緒 に いる と 楽しい です。
+      - 彼 は 優しい {し}、{面白い し}、一緒 に いる と 楽しい もん ね。
+    english_literally: He is kind, funny, together being fun.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {優しく て}、{面白い から}、一緒 に いる と 楽しい。
+        english: He is kind, and because he's funny, it's fun to be with him.
+        hint: This construction implies the fun stems primarily from him being funny. 'し〜し' describes
+          co-existing qualities that equally contribute to a feeling.
+      - competing_japanese:
+          - 彼 は 優しい {の で}、面白い {の で}、一緒 に いる と 楽しい。
+        english: He is kind, and since he's funny, it's fun to be with him.
+        hint: 「ので」 provides a reason with a softer tone. 'し〜し' offers a more direct listing of equally
+          valued attributes that lead to the enjoyable experience.
+    scene: A woman is talking about her partner to a close friend.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: 「優しいし、面白いし」 lists two equally valued qualities of a partner, explaining why the speaker enjoys
+      their company. This use is common when expressing multiple positive attributes of someone you care
+      about. The addition of 「もんね」 at the end emphasizes agreement and shared understanding, often used
+      in intimate conversation, typically by female speakers.
+  - english: This camera is light, and its operation is simple; it's perfect for travel.
+    japanese:
+      - この カメラ は {軽い し}、操作 も {簡単 だ し}、旅行 に ぴったり だ。
+      - この カメラ は {軽い し}、操作 も {簡単 だ し}、旅行 に ぴったり です。
+      - この カメラ は {軽い し}、操作 も {簡単 だ し}、旅行 に ぴったり だ よ。
+    english_literally: This camera is light, operation also simple, travel for perfect.
+    competing_grammar:
+      - competing_japanese:
+          - この カメラ は {軽く て}、操作 も {簡単 だ から}、旅行 に ぴったり だ。
+        english: This camera is light, and because its operation is simple, it's perfect for travel.
+        hint: Using 'te-form' with 'から' suggests the simplicity is the primary reason. 'し〜し' is better
+          for emphasizing two distinct, equally beneficial features in a sales pitch.
+      - competing_japanese:
+          - この カメラ は 軽い {上 に} 操作 も 簡単 だ から、旅行 に ぴったり だ。
+        english: This camera is light, and furthermore its operation is simple, so it's perfect for travel.
+        hint: 「上に」 implies an additional, often more significant point. 'し〜し' is used when both reasons
+          are equally weighted, not one being superior or 'on top of' the other.
+    scene: A salesperson is recommending a camera to a customer.
+    register: semi-formal
+    setting: professional
+    nuance: 「軽いし、操作も簡単だし」 lists two key advantages of the camera that make it suitable for travel. The
+      necessary 「だ」 before 「し」 for the な-adjective 「簡単」 (simple) is a critical formation point for this
+      grammar pattern. The ending 「だよ」 adds a sense of assertion, often used when explaining something
+      confidently.
+  - english: That shop is cheap, and the food is delicious; it's always crowded.
+    japanese:
+      - その 店 は {安い し}、料理 も {美味しい し}、いつ も 混ん で いる。
+      - その 店 は {安い し}、料理 も {美味しい し}、いつ も 混ん で い ます。
+      - その 店 は {安い し}、料理 も {美味しい し}、いつ も 混ん で いる よ。
+    english_literally: That shop is cheap, food also delicious, always crowded.
+    competing_grammar:
+      - competing_japanese:
+          - その 店 は {安く て}、料理 も {美味しい から}、いつ も 混ん で いる。
+        english: That shop is cheap, and because the food is delicious, it's always crowded.
+        hint: This implies the delicious food is the main cause. 'し〜し' emphasizes both being equally strong
+          reasons for the restaurant's popularity, highlighting them as co-existing factors.
+      - competing_japanese:
+          - その 店 は 安い {の で}、料理 も 美味しい {の で}、いつ も 混ん で いる。
+        english: That shop is cheap, and since the food is delicious, it's always crowded.
+        hint: 「ので」 provides a reason with a softer, more objective tone. 'し〜し' is more direct when stating
+          multiple clear, equally weighted reasons for an observed consequence.
+    scene: Two friends are discussing a popular local restaurant.
+    register: casual
+    setting: informative
+    nuance: 「安いし、料理も美味しいし」 lists two primary reasons for the restaurant's popularity—affordability and
+      taste—both contributing equally to it being crowded. This structure effectively conveys the cumulative
+      effect of these attractive features. Adding 「よ」 at the end emphasizes the information being conveyed.
+  - english: This apartment building is close to the station, and the rent is reasonable; I want to move
+      in.
+    japanese:
+      - この マンション は 駅 に {近い し}、家賃 も {手頃 だ し}、引っ越し たい な。
+      - この マンション は 駅 に {近い し}、家賃 も {手頃 だ し}、引っ越し たい です。
+      - この マンション は 駅 に {近い し}、家賃 も {手頃 だ し}、引っ越し たい ん だ。
+    english_literally: This apartment building station to close, rent also reasonable, want to move.
+    competing_grammar:
+      - competing_japanese:
+          - この マンション は 駅 に {近く て}、家賃 も {手頃 だ から}、引っ越し たい な。
+        english: This apartment building is close to the station, and because the rent is reasonable,
+          I want to move in.
+        hint: This implies the rent being reasonable is the main reason. 'し〜し' is better for emphasizing
+          multiple equally appealing features as co-existing reasons for wanting to move.
+      - competing_japanese:
+          - この マンション は 駅 に 近い {上 に} 家賃 も 手頃 だ から、引っ越し たい な。
+        english: This apartment building is close to the station, and furthermore the rent is reasonable,
+          so I want to move in.
+        hint: 「上に」 implies an additional, often more significant point. 'し〜し' is used when both reasons
+          are equally weighted, not one being superior or 'on top of' the other.
+    scene: A person is looking at apartments and expresses their positive impression to a friend.
+    register: casual
+    setting: reflective
+    nuance: 「駅に近いし、家賃も手頃だし」 provides two equally weighted reasons for wanting to move into the apartment.
+      The addition of 「だ」 before 「し」 for the な-adjective 「手頃な」 (reasonable) is a crucial part of its formation.
+      The ending 「な」 adds a reflective or contemplative nuance, while 「ん だ」 adds a nuance of explanation
+      or a personal desire based on the stated reasons.
+  - english: I'm not feeling well today, and I'm sleepy; I want to go home early.
+    japanese:
+      - 今日 は {体調 が 悪い し}、{眠い し}、早く 家 に 帰り たい。
+      - 今日 は {体調 が 悪い し}、{眠い し}、早く 家 に 帰り たい です。
+      - 今日 は {体調 が 悪い し}、{眠い し}、早く 家 に 帰り たい ん だ。
+    english_literally: Today body condition bad, sleepy, early home to want to return.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {体調 が 悪く て}、{眠い から}、早く 家 に 帰り たい。
+        english: Today I'm not feeling well, and because I'm sleepy, I want to go home early.
+        hint: This implies sleepiness is the main cause. 'し〜し' describes multiple, co-existing discomforts
+          as equally contributing reasons for leaving.
+      - competing_japanese:
+          - 今日 は 体調 が 悪い {の で}、眠い {の で}、早く 家 に 帰り たい。
+        english: Today I'm not feeling well, and since I'm sleepy, I want to go home early.
+        hint: 「ので」 provides a reason with a softer, more objective tone. 'し〜し' is more direct when stating
+          clear, equally pressing reasons for a desire.
+    scene: A person is feeling unwell and wants to leave work or school early.
+    register: casual
+    setting: melancholic
+    nuance: 「体調が悪いし、眠いし」 lists two equally pressing reasons for wanting to go home early. The use of 「し」
+      here highlights that both factors independently contribute to the speaker's desire. Adding 「です」
+      makes the request polite, while 「ん だ」 makes it sound more like a personal, somewhat regrettable,
+      explanation.
+  - english: This job has good pay, and there's little overtime; I'm glad I changed jobs.
+    japanese:
+      - この 仕事 は {給料 も いい し}、{残業 も 少ない し}、転職 し て よかっ た。
+      - この 仕事 は {給料 も いい し}、{残業 も 少ない し}、転職 し て よかっ た です。
+      - この 仕事 は {給料 も いい し}、{残業 も 少ない し}、転職 し て よかっ た ね。
+    english_literally: This job salary also good, overtime also few, changed jobs was good.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 給料 も {良く て}、残業 も {少ない から}、転職 し て よかっ た。
+        english: This job has good pay, and because there's little overtime, I'm glad I changed jobs.
+        hint: This suggests the lack of overtime is the primary cause for satisfaction. 'し〜し' is better
+          for emphasizing two distinct, equally valued benefits of a new job.
+      - competing_japanese:
+          - この 仕事 は 給料 も いい {の で}、残業 も 少ない {の で}、転職 し て よかっ た。
+        english: This job has good pay, and since there's little overtime, I'm glad I changed jobs.
+        hint: 「ので」 provides a reason with a softer, more objective tone. 'し〜し' is more direct when stating
+          clear, equally weighted reasons for satisfaction.
+    scene: An adult is discussing their new job with a family member or close friend.
+    register: casual
+    setting: optimistic
+    speaker_age: older
+    nuance: 「給料もいいし、残業も少ないし」 provides two equally important benefits of the new job, justifying the decision
+      to change jobs. The phrase 「転職してよかった」 (I'm glad I changed jobs) expresses a sense of satisfaction
+      and relief, common when reflecting on a positive career change. Adding 「です」 makes it polite, while
+      「ね」 invites agreement from the listener, often used when sharing a positive experience.
+post_example_writeup: Be careful when using 「し」 to list reasons. Make sure the reasons you list are actually
+  of equivalent weight and importance. Otherwise the sentence will sound unnatural.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/し-し

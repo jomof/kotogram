@@ -1,0 +1,264 @@
+grammar_point: よね (seeking strong agreement)
+learn_before:
+  - って (speaking of)
+meaning: particle indicating seeking strong agreement or confirmation, implying shared understanding
+pronunciation:
+  katakana: ヨネ
+  romaji: yone
+formation:
+  Verb[plain form] + よね: Attaches to the plain form of verbs to seek agreement.
+  い-Adjective[plain form] + よね: Attaches to the plain form of い-adjectives for confirmation.
+  な-Adjective[plain form] + だ + よね: Attaches to な-adjectives, usually with だ, to seek agreement.
+  Noun + だ + よね: Attaches to nouns, usually with だ, for confirmation of identity or state.
+  Verb[polite form] + よね: Attaches to the polite form of verbs to seek polite agreement.
+  Noun/な-Adjective + です + よね: Attaches to nouns or な-adjectives with です for polite confirmation.
+jlpt: N4
+etymology: The particle 「よね」 is a combination of the sentence-final particles 「よ」 (yo), which asserts
+  information or emphasizes a point, and 「ね」 (ne), which seeks agreement or softens a statement. Historically,
+  both 「よ」 and 「ね」 have long histories in Japanese as sentence-final particles. Their combination emerged
+  as a natural way to express this specific nuance of presenting information with a sense of shared understanding
+  and inviting confirmation, merging assertion with agreement-seeking.
+writeup: |-
+  The particle 「よね」 is a widely used sentence-final particle in Japanese that serves to seek agreement, confirm information, or share common understanding with the listener. It is a fusion of two distinct particles, 「よ」 (yo), which asserts information or emphasizes a point, and 「ね」 (ne), which seeks agreement or softens a statement. When combined as 「よね」, it carries a nuanced meaning that implies the speaker assumes the listener shares the same understanding or knowledge and is inviting them to confirm it.
+
+  This particle is highly versatile and can attach to various parts of speech in their plain forms. For verbs and い-adjectives, it directly follows the plain form (e.g., 食べる よね, おいしい よね). For な-adjectives and nouns, it typically attaches after 「だ」 (e.g., きれい だ よね, 学生 だ よね), though in more polite contexts, 「です」 or 「ます」 forms can precede it (e.g., きれい です よね, 食べます よね).
+
+  「よね」 is often used when the speaker is fairly certain of something and is inviting the listener to affirm it. For instance, if you and a friend are looking at a beautiful sunset, saying 「きれい だ よね！」 (It's beautiful, isn't it!) doesn't just state that it's beautiful; it implicitly asks for your friend's concurrence. It can also be used to confirm something the speaker believes they already know, like 「明日、テストがある よね？」 (There's a test tomorrow, right?).
+
+  While 「よね」 is commonly used in casual and semi-formal conversations, its politeness level largely depends on the preceding verb or adjective form. When used with plain forms, it's casual. When used with ます/です forms, it maintains a degree of politeness appropriate for many everyday interactions.
+false_friends:
+  - term: よ (emphasis・information sharing)
+    meaning: Particle asserting information, emphasizing a point, or providing new information to the
+      listener.
+    kind: similar expression
+    nuance: 「よ」 emphatically states something or provides new information, implying the speaker knows
+      something the listener might not. It does not primarily seek agreement. 「よね」, in contrast, implies
+      shared understanding and seeks confirmation.
+    grammar_point: よ (emphasis・information sharing)
+  - term: ね (seeking agreement)
+    meaning: Particle seeking gentle agreement or confirmation, softening a statement, or indicating shared
+      sentiment.
+    kind: similar expression
+    nuance: 「ね」 is a softer particle that invites agreement or confirms shared sentiment without strong
+      assertion. 「よね」 is more direct in seeking confirmation of a shared assumption.
+    grammar_point: ね (seeking agreement)
+  - term: だろう・でしょう (probably・right?)
+    meaning: Expresses probability, conjecture, or seeks confirmation in a more formal/rhetorical manner.
+    kind: similar expression
+    nuance: 「でしょう」 (or casual 「だろ」) is used for conjecture or to seek confirmation, often when the speaker
+      is quite sure but still allows for disagreement. 「よね」 is more about confirming *shared* understanding
+      or common knowledge. 「でしょう」 can sometimes sound more assertive or rhetorical than 「よね」.
+    grammar_point: だろう・でしょう (probably・right?)
+post_false_friends_writeup: While 「よ」, 「ね」, and 「でしょう」 might appear similar to 「よね」, their nuances differ.
+  「よ」 emphasizes the speaker's statement, indicating new information or assertion. 「ね」 gently seeks agreement
+  or acknowledges shared sentiment. 「でしょう」 expresses conjecture or asks for confirmation, sometimes with
+  a rhetorical tone. 「よね」 uniquely combines the assertion of 「よ」 with the agreement-seeking of 「ね」, creating
+  a specific nuance of confirming a shared understanding or assumption. Remember, 「よね」 implies, "You know
+  this, right? We're on the same page."
+examples:
+  - english: This movie is really interesting, isn't it?
+    japanese:
+      - この 映画、すごく 面白い {よ ね}。
+      - この 映画、すごく 面白い です {よ ね}。
+    english_literally: This movie, very interesting, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 映画、すごく 面白い {ね}。
+        english: This movie is really interesting, huh?
+        hint: 「ね」 is a softer particle that gently seeks agreement. 「よね」 implies a stronger assumption
+          of shared understanding and seeks clearer confirmation. We're looking for a particle that implies
+          you're fairly sure the listener agrees.
+      - competing_japanese:
+          - この 映画、すごく 面白い {よ}。
+        english: This movie is really interesting!
+        hint: 「よ」 asserts information strongly, often conveying new information or emphasizing a point
+          to the listener. We're looking for a particle that seeks agreement, not just asserts.
+    scene: Two friends are watching a captivating movie together on a cozy evening.
+    register: casual
+    setting: friendly
+  - english: The meeting starts at 10 AM, right?
+    japanese:
+      - 会議 は 10 時 から です {よ ね}。
+      - 会議 は 10 時 から だ {よ ね}。
+    english_literally: The meeting, from 10 o'clock, is, right?
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 10 時 から {でしょう} か。
+        english: The meeting is from 10 AM, I presume?
+        hint: 「でしょう」 is used for conjecture or polite confirmation, but doesn't carry the same nuance
+          of shared knowledge. We're looking for a phrase to confirm something you think you already know.
+    scene: A new employee, slightly unsure, is confirming the schedule with a colleague.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: You went to the party yesterday, didn't you?
+    japanese:
+      - 昨日、パーティー に 行っ た {よ ね}。
+      - 昨日、パーティー に 行き まし た {よ ね}。
+    english_literally: Yesterday, to the party, went, right?
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、パーティー に 行っ た {の}？
+        english: Did you go to the party yesterday?
+        hint: 「の？」 is a direct, casual question. 「よね」 implies you're quite sure and just seeking confirmation.
+    scene: One friend is asking another about their whereabouts, assuming they attended the party.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: You haven't finished your homework yet, have you?
+    japanese:
+      - まだ 宿題、終わっ て ない {よ ね}。
+      - まだ 宿題、終わっ て い ませ ん {よ ね}。
+    english_literally: Still homework, not finished, right?
+    competing_grammar:
+      - competing_japanese:
+          - まだ 宿題、終わっ て い ない {の}？
+        english: You haven't finished your homework yet?
+        hint: Using 「の？」 for a direct question doesn't convey the same expectation of agreement or slight
+          disappointment as 「よね」. We're looking for a particle that confirms a negative state, with an
+          implied expectation of agreement.
+    scene: A parent is checking on their child's progress, suspecting they haven't completed their tasks.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: That restaurant's food is delicious, isn't it?
+    japanese:
+      - あの レストラン の 料理、美味しい {よ ね}。
+      - あの レストラン の 料理、美味しい です {よ ね}。
+    english_literally: That restaurant's food, delicious, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン の 料理、美味しい {です ね}。
+        english: That restaurant's food is delicious, isn't it? (polite)
+        hint: 「美味しい ですね」 is polite but a softer agreement. We're looking for a particle that implies a
+          stronger shared opinion, commonly used in casual conversation.
+    scene: Two people are reminiscing about a recent meal, expressing a shared positive opinion about
+      the food.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: He's a teacher, isn't he?
+    japanese:
+      - 彼、先生 です {よ ね}。
+      - 彼、先生 だ {よ ね}。
+    english_literally: He, a teacher, is, right?
+    competing_grammar:
+      - competing_japanese:
+          - 彼、先生 {でしょう か}。
+        english: He is a teacher, I wonder?
+        hint: 「でしょうか」 indicates more genuine uncertainty and less expectation of shared knowledge. We're
+          looking for a polite way to confirm an assumption you believe to be true.
+    scene: Two acquaintances are talking about a mutual friend, trying to recall or clarify his profession.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: It's hard to understand, isn't it?
+    japanese:
+      - なかなか 理解 する の、難しい {よ ね}。
+      - なかなか 理解 する の、難しい です {よ ね}。
+    english_literally: Quite difficult to understand, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - なかなか 理解 する の、難しい {だろう}。
+        english: It's probably hard to understand.
+        hint: 「だろう」 expresses conjecture without necessarily inviting direct agreement or implying shared
+          experience. We're looking for a particle that expresses a shared struggle, inviting sympathetic
+          agreement.
+    scene: Students are commiserating with each other about a particularly challenging academic concept.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: That must have been tough, wasn't it?
+    japanese:
+      - 大変 だっ た {よ ね}。
+      - 大変 でし た {よ ね}。
+    english_literally: It was tough, right?
+    competing_grammar:
+      - competing_japanese:
+          - 大変 だっ た {ね}。
+        english: That must have been tough, huh?
+        hint: 「ね」 can express sympathy but is softer and less direct in inviting confirmation of the shared
+          feeling. We're looking for a particle that more strongly acknowledges the difficulty and seeks
+          empathetic agreement.
+    scene: One friend is comforting another after a difficult experience, acknowledging their struggle.
+    register: casual
+    setting: supportive
+    conjugation: past plain (～た)
+  - english: So, you're coming tomorrow, right?
+    japanese:
+      - じゃあ、明日 来る {よ ね}？
+      - じゃあ、明日 来 ます {よ ね}？
+    english_literally: Well then, tomorrow come, right?
+    competing_grammar:
+      - competing_japanese:
+          - じゃあ、明日 来る {の}？
+        english: So, are you coming tomorrow?
+        hint: 「の？」 is a neutral question. 「よね？」 implies you expect an affirmative answer, confirming a
+          plan you thought was already set.
+    scene: Confirming a casual appointment over the phone, with a slight hint of expectation.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: I think it's better this way, don't you?
+    japanese:
+      - こう し た 方 が いい と 思う {よ ね}。
+      - こう し た 方 が いい と 思い ます {よ ね}。
+    english_literally: This way is better, I think, right?
+    competing_grammar:
+      - competing_japanese:
+          - こう し た 方 が いい と 思う {ん です が}。
+        english: I think it's better this way...
+        hint: 「んですが」 softens the statement, inviting input, but doesn't directly seek agreement on a shared
+          opinion like 「よね」. We're looking for a particle to validate one's opinion with the expectation
+          of mutual thought.
+    scene: Two colleagues are discussing the best approach to a task, and one seeks validation for their
+      suggestion.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: It's really cold today, isn't it?
+    japanese:
+      - 今日、すごく 寒い {よ ね}。
+      - 今日、すごく 寒い です {よ ね}。
+    english_literally: Today, very cold, right?
+    competing_grammar:
+      - competing_japanese:
+          - 今日、すごく 寒い {ね}。
+        english: It's really cold today, huh?
+        hint: While 「ね」 can seek agreement, 「よね」 expresses a stronger shared feeling, assuming the listener
+          also feels the cold. We're looking for a particle that implies a shared experience.
+    scene: Two women meet outdoors on a chilly day, remarking on the weather.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: Although 「よね」 is largely gender-neutral, in a casual setting between female friends, it helps
+      establish rapport and communal feeling, such as in 「寒い よね」. The speaker implicitly invites the listener
+      to confirm their shared experience of the cold.
+  - english: That was a tough game, wasn't it?
+    japanese:
+      - きつい 試合 だっ た {よ ね}。
+      - きつい 試合 だっ た {よ な}。
+    english_literally: Tough game, it was, right?
+    competing_grammar:
+      - competing_japanese:
+          - きつい 試合 だっ た {だろ}。
+        english: That was probably a tough game, wasn't it?
+        hint: 「だろ」 expresses conjecture but doesn't necessarily seek the same level of empathetic agreement
+          on a shared experience as 「よね」 or 「よな」. We're looking for a particle that implies shared understanding
+          of a recent event.
+    scene: Two male friends are discussing a sports game they just finished or watched, acknowledging
+      its difficulty.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: While 「よね」 is used by both genders, in very casual male speech, it can sometimes be pronounced
+      or replaced with 「よな」 (as in 「きつい 試合 だった よな」). This variant conveys a similar sense of shared understanding
+      and confirmation, often used among close male friends.
+post_example_writeup: As seen in the examples, 「よね」 can be adapted to various politeness levels and contexts.
+  It's a fundamental particle for engaging in conversations where you expect or seek a common ground with
+  your listener. Pay attention to the form preceding 「よね」 (plain vs. polite) to match the appropriate
+  level of formality for your interaction.

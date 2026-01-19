@@ -1,0 +1,242 @@
+grammar_point: '[Verb-た]きり (since・no change)'
+learn_before:
+  - '[Verb-stem]っぱなし (leaving something in a state)'
+  - ずっと (continuous state or action)
+  - ばかり (only・just, often with nuance of excess)
+  - 以来 (since・ever since)
+meaning: since (an action), nothing has changed or nothing else has happened
+pronunciation:
+  katakana: タキリ
+  romaji: takiri
+formation:
+  Verb[た] + きり: Indicates that since an action was performed, a certain state has continued unchanged,
+    or nothing else has happened.
+jlpt: N3
+etymology: The word 「きり」 (kiri) is believed to derive from 「切り」, meaning 'cut' or 'end'. When combined
+  with the past tense of a verb, it signifies that an action was 'cut off' or 'ended' at that point, leading
+  to the meaning of 'since then' with no further development. This emphasizes the finality of the action
+  at that specific past moment, and the unchanging state that follows.
+writeup: |-
+  The grammar pattern 「Verb[た]きり」 is used to describe a situation where an action was performed in the past, and ever since that moment, a specific condition has continued without change, or nothing further has occurred. It strongly emphasizes the lack of subsequent action or development after the initial event.
+
+  This pattern often implies a sense of stagnation, an unexpected lack of follow-up, or even regret that things did not progress. It can also be used neutrally to simply state that a state has remained constant since a certain past action.
+
+  It is important to note that the state or lack of action described by 「きり」 must be ongoing up to the present moment or the time of the statement. If the state has changed, this pattern would not be appropriate.
+false_friends:
+  - term: 〜きり (only・just)
+    meaning: only; just
+    kind: similar expression
+    nuance: While 「[Verb-た]きり」 focuses on a continuing state since a past action, 「〜きり」 (used with nouns
+      or quantities) typically means 'only' or 'just' a limited amount, emphasizing the scarcity or restriction.
+      For example, 「一人きり」 means 'only one person'. We're looking for a state that has continued unchanged
+      since a past action.
+    grammar_point: 〜きり (only・just)
+  - term: 〜たまま (as is・unchanged)
+    meaning: as is; without change; in the state of
+    kind: similar expression
+    nuance: 「〜たまま」 indicates that an action was completed, and a certain state resulting from that action
+      continues without change. It describes the state something is 'left in'. Unlike 「[Verb-た]きり」, it
+      doesn't necessarily imply a lack of subsequent action or development, but simply describes the persistent
+      state. We're looking for a continuing state or lack of change *since* an action.
+    grammar_point: 〜まま(に) (as is・unchanged)
+  - term: '[Verb-た]っきり'
+    meaning: since (an action), (nothing has changed) - colloquial
+    kind: synonym
+    nuance: 「[Verb-た]っきり」 is a more colloquial and emphatic variant of 「[Verb-た]きり」. It carries the exact
+      same meaning of 'since that time, nothing has changed' but is often used in more casual speech.
+      We're looking for the standard form of this expression.
+    grammar_point: <strongly-suggest>:[Verb-た]っきり (since・no change, colloquial)
+post_false_friends_writeup: When distinguishing between 「[Verb-た]きり」 and 「〜きり」, remember that the former
+  emphasizes the persistence of a state or lack of event *since* a past action, while the latter generally
+  indicates 'only' a certain quantity or limited scope. For instance, 「彼は一度行ったきりだ」 (He went once and that's
+  it; he hasn't gone again) uses 「[Verb-た]きり」 to imply a lack of subsequent visits, whereas 「彼は一人きりだ」
+  (He's all alone) uses 「〜きり」 to state a singular condition. 「〜たまま」, on the other hand, describes a state
+  that was maintained from the completion of an action, focusing on how something was left rather than
+  the non-occurrence of further events.
+examples:
+  - english: My grandfather went to the hospital last year and hasn't come back since.
+    japanese:
+      - 祖父 は 去年 病院 へ {行っ た きり}、戻っ て き ませ ん。
+      - 祖父 は 去年 病院 へ {行っ た きり}、戻っ て こ ない。
+      - 祖父 は 去年 病院 へ {行っ た きり} で、戻っ て き て おり ませ ん。
+    english_literally: My grandfather last year hospital to went since, hasn't come back.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 去年 病院 へ {行っ た まま}、戻っ て き ませ ん。
+        english: My grandfather went to the hospital last year and remains in the state of having gone,
+          not having come back.
+        hint: 「〜たまま」 emphasizes the state of being 'left as is' after an action. Here, we want to emphasize
+          the lack of change *since* the action. We're looking for a state that has continued unchanged
+          since a past action.
+      - competing_japanese:
+          - 祖父 は 去年 病院 へ {行っ て から}、戻っ て き ませ ん。
+        english: My grandfather went to the hospital last year, and after that, hasn't come back.
+        hint: 「〜てから」 simply states a sequence of events. While it shows the temporal order, it doesn't
+          carry the strong nuance of 'nothing has changed since' that 「〜きり」 does. We're looking for a
+          state that has continued unchanged since a past action.
+    scene: A family member is discussing their grandfather's health.
+    register: teineigo (polite)
+    setting: serious
+  - english: My younger brother bought a game last week and has been playing it ever since.
+    japanese:
+      - 弟 は 先週 ゲーム を {買っ た きり}、ずっと やっ て い ます。
+      - 弟 は 先週 ゲーム を {買っ た きり} で、それ ばっかり やっ てる。
+      - 弟 は 先週 ゲーム を {買っ た きり}、他 は 何 も し て い ませ ん。
+    english_literally: My younger brother last week game bought since, always playing.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は 先週 ゲーム を {買っ て から}、ずっと やっ て い ます。
+        english: My younger brother bought a game last week, and since then, has been playing it.
+        hint: While 「〜てから」 conveys the start and continuation, 「〜きり」 emphasizes that the only thing that
+          has happened since buying the game is playing it, implying an unchanging routine. We're looking
+          for a state that has continued unchanged since a past action.
+    scene: A sibling is complaining about their brother's habits.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「買ったきり、ずっとやっています」 highlights that the only significant activity the younger brother
+      has engaged in since buying the game is playing it, implying a single-minded focus without other
+      developments. The speaker, being male, might use a slightly more direct tone in casual conversation.
+  - english: She said she'd be right back for a moment and hasn't returned since.
+    japanese:
+      - 彼女 は ちょっと {出 た きり}、戻っ て こ ない。
+      - 彼女 は ちょっと {出 た きり}、戻っ て き て おり ませ ん。
+      - 彼女 は ちょっと {出 た きり} で、全く 帰っ て こ ない。
+    english_literally: She a little went out since, hasn't returned.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ちょっと {出 て から}、戻っ て こ ない。
+        english: She went out for a moment, and after that, hasn't returned.
+        hint: While 「〜てから」 indicates a simple chronological sequence, 「〜たきり」 conveys the added nuance
+          that her not returning is unexpected or a continued state since she left. We're looking for
+          a state that has continued unchanged since a past action.
+    scene: Two friends are waiting for someone who left briefly.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「出たきり」 suggests an ongoing absence that is perhaps longer than expected or implies
+      that she left and has done nothing else since then (like contacting them). A female speaker might
+      use this to express a mild sense of frustration or concern to another female friend, as it's common
+      for women to share such observations.
+  - english: My dog started barking this morning and hasn't stopped since.
+    japanese:
+      - うち の 犬 は 今朝 {吠え た きり}、ずっと 吠え っぱなし だ。
+      - うち の 犬 は 今朝 {吠え た きり}、ずっと 吠え っぱなし です。
+      - うち の 犬 は 今朝 {吠え た きり} で、いまだ に 鳴き止ま ない。
+    english_literally: My dog this morning barked since, keeps barking.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 犬 は 今朝 {吠え 始め て から}、ずっと 吠え っぱなし だ。
+        english: My dog started barking this morning, and since then, has kept barking.
+        hint: While 「〜始めてから」 conveys the start and continuation, 「〜たきり」 emphasizes that *only* barking
+          has been happening since that moment, implying a singular, unwavering action. We're looking
+          for a state that has continued unchanged since a past action.
+    scene: A dog owner is exasperated by their pet's behavior.
+    register: casual
+    setting: humorous
+  - english: That politician promised to lower taxes during the election, but has done nothing since he
+      was elected.
+    japanese:
+      - あの 政治 家 は 選挙 中 に 減税 を {約束 し た きり}、何 も し ない。
+      - あの 政治 家 は 選挙 中 に 減税 を {約束 し た きり}、何 も し て い ませ ん。
+      - あの 政治 家 は 選挙 中 に 減税 を {約束 し た きり}、何 一 つ 実行 し て い ませ ん ね。
+    english_literally: That politician election during tax reduction promised since, does nothing.
+    competing_grammar:
+      - competing_japanese:
+          - あの 政治 家 は 選挙 中 に 減税 を {約束 し た が}、何 も し ない。
+        english: That politician promised tax reduction during the election, but does nothing.
+        hint: 「〜だが」 provides a contrast but lacks the temporal implication of an unchanging state *since*
+          the promise. 「〜たきり」 highlights the continued inaction following the initial promise. We're looking
+          for a state that has continued unchanged since a past action.
+    scene: Two citizens are discussing political issues.
+    register: formal
+    setting: serious
+  - english: After graduating from university, she got a job and hasn't visited her hometown since.
+    japanese:
+      - 大学 を {卒業 し た きり}、彼女 は 一 度 も 実家 に 帰っ て い ない。
+      - 大学 を {卒業 し た きり}、彼女 は 一 度 も 実家 に 帰っ て い ませ ん。
+      - 大学 を {卒業 し た きり}、一 度 も 実家 に 顔 を 見せ て い ない らしい。
+    english_literally: University graduated since, she never hometown returned not.
+    competing_grammar:
+      - competing_japanese:
+          - 大学 を {卒業 し て から}、彼女 は 一 度 も 実家 に 帰っ て い ない。
+        english: After graduating from university, she has never returned to her hometown.
+        hint: 「〜てから」 sets a starting point but doesn't emphasize the lack of subsequent action quite as
+          strongly as 「〜たきり」, which implies a direct continuation of the 'not returning' state since graduation.
+          We're looking for a state that has continued unchanged since a past action.
+    scene: Friends are catching up on an old acquaintance.
+    register: casual
+    setting: friendly
+  - english: The cat jumped onto the roof and hasn't come down since.
+    japanese:
+      - 猫 は 屋根 に {上がっ た きり}、降り て こ ない。
+      - 猫 は 屋根 に {上がっ た きり}、降り て き ませ ん。
+      - 猫 は 屋根 に {上がっ た きり}、今 も そこ に いる。
+    english_literally: Cat roof to went up since, doesn't come down.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は 屋根 に {上がっ た まま だ}、降り て こ ない。
+        english: The cat is in the state of having gone up to the roof, not coming down.
+        hint: 「〜たまま」 describes the resulting state. While similar, 「〜たきり」 specifically highlights that
+          since the action of going up, *nothing else* (like coming down) has happened. We're looking
+          for a state that has continued unchanged since a past action.
+    scene: Someone observes a cat stuck on a roof.
+    register: casual
+    setting: informative
+  - english: He borrowed that book a month ago and hasn't returned it since.
+    japanese:
+      - 彼 は その 本 を １ ヶ月 前 に {借り た きり}、まだ 返し て くれ ない。
+      - 彼 は その 本 を １ ヶ月 前 に {借り た きり}、まだ 返し て くれ て い ませ ん。
+      - 彼 は その 本 を １ ヶ月 前 に {借り た きり}、返そう と も し ない。
+    english_literally: He that book one month ago borrowed since, still hasn't returned it.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は その 本 を １ ヶ月 前 に {借り た の に}、まだ 返し て くれ ない。
+        english: He borrowed that book a month ago, but he still hasn't returned it.
+        hint: 「〜のに」 expresses a contrast or unexpected outcome, but not necessarily a continuous state
+          since an action. 「〜たきり」 emphasizes that the only thing that happened since borrowing was a continued
+          failure to return. We're looking for a state that has continued unchanged since a past action.
+    scene: A person is complaining about a borrowed item.
+    register: casual
+    setting: friendly
+  - english: I saw him at the station last week and haven't seen him since.
+    japanese:
+      - 先週、駅 で 彼 を {見かけ た きり}、それ 以来 会っ て い ませ ん。
+      - 先週、駅 で 彼 を {見かけ た きり}、それ 以来 会っ て ない。
+      - 先週、駅 で 彼 を {見かけ た きり}、全く 会え て い ない。
+    english_literally: Last week, station at him saw since, since then haven't met.
+    competing_grammar:
+      - competing_japanese:
+          - 先週、駅 で 彼 を {見かけ て から}、それ 以来 会っ て い ませ ん。
+        english: Last week, after seeing him at the station, I haven't met him since.
+        hint: 「〜てから」 denotes a starting point. 「〜たきり」 adds the nuance that the lack of further encounters
+          is a continuous, unchanging state since that one sighting. We're looking for a state that has
+          continued unchanged since a past action.
+    scene: Two people are talking about someone they both know.
+    register: teineigo (polite)
+    setting: informative
+  - english: The child woke up this morning and has been crying ever since.
+    japanese:
+      - その 子 は 今朝 {起き た きり}、ずっと 泣き 続け て いる。
+      - その 子 は 今朝 {起き た きり}、ずっと 泣き 続け て い ます。
+      - その 子 は 今朝 {起き た きり}、まったく 泣き止ま ない。
+    english_literally: That child this morning woke up since, continuously crying.
+    competing_grammar:
+      - competing_japanese:
+          - その 子 は 今朝 {起き て から}、ずっと 泣き 続け て いる。
+        english: That child woke up this morning, and since then, has continued crying.
+        hint: 「〜てから」 sets a chronological sequence. 「〜たきり」 implies that the only significant action since
+          waking up has been continuous crying, emphasizing the unchanging nature of the child's distress.
+          We're looking for a state that has continued unchanged since a past action.
+    scene: A parent or caretaker is exhausted by a crying child.
+    register: casual
+    setting: melancholic
+post_example_writeup: As illustrated in the examples, 「[Verb-た]きり」 is highly effective for conveying that
+  a specific state has persisted without alteration since a particular past action. It often implies that
+  no other significant events or changes have occurred in relation to that initial action. This makes
+  it particularly useful for expressing situations of continuity, stagnation, or even a sense of being
+  'stuck' in a certain condition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/842

@@ -1,0 +1,306 @@
+grammar_point: 傾向がある (neutral tendency)
+learn_before:
+  - '[Verb-dictionary]のが苦手だ (to be bad at doing)'
+  - つい (unintentionally or just now)
+meaning: To have a tendency to; to show a trend; to be inclined (used for objective observations).
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 傾向がある
+    rarity: common
+    meaning: to have a tendency to
+  - conjugation-type: non-past polite (～ます)
+    form: 傾向があります
+    rarity: common
+    meaning: to have a tendency to (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 傾向がない
+    rarity: common
+    meaning: not to have a tendency to
+  - conjugation-type: negative non-past polite (～ません)
+    form: 傾向がありません
+    rarity: common
+    meaning: not to have a tendency to (polite)
+  - conjugation-type: past plain (～た)
+    form: 傾向があった
+    rarity: common
+    meaning: had a tendency to
+  - conjugation-type: past polite (～ました)
+    form: 傾向がありました
+    rarity: common
+    meaning: had a tendency to (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 傾向がなかった
+    rarity: common
+    meaning: did not have a tendency to
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 傾向がありませんでした
+    rarity: common
+    meaning: did not have a tendency to (polite)
+pronunciation:
+  katakana: ケイコウガアル
+  romaji: keikou ga aru
+formation:
+  '[Verb (dictionary form)] + 傾向がある': Expresses a tendency or trend associated with the verb.
+  '[Noun + の] + 傾向がある': Expresses a tendency or trend associated with the noun.
+  '[い-adjective] + 傾向がある': Expresses a tendency or trend associated with the adjective.
+  '[な-adjective + な] + 傾向がある': Expresses a tendency or trend associated with the adjective.
+jlpt: N2
+etymology: The grammar point 「傾向がある」 is formed from the noun 「傾向 (keikou)」, meaning "tendency" or "trend,"
+  and the verb 「ある (aru)」, meaning "to exist" or "to have." Thus, literally, it means "a tendency exists."
+writeup: '「傾向がある」 is a slightly formal grammar pattern indicating a "trend" or "tendency." It combines
+  the noun 「傾向」 ("inclination") and 「がある」 ("to have"), closely mirroring its English equivalent. As 「傾向」
+  is a noun, this structure follows verbs, い-adjectives, な-adjectives (with な), and nouns (with の). While
+  「がある」 is common, alternatives like 「が見られる」 ("the trend of (A) can be observed") also exist. It can describe
+  both positive and negative trends. Be aware: 「傾向がある」 often describes stable behaviors or characteristics,
+  while 「傾向にある」 focuses on ongoing changes.'
+false_friends:
+  - term: きらいがある
+    meaning: To have a tendency to, Tend to, Be slightly~
+    kind: similar expression
+    nuance: Unlike 「傾向がある」, which is a neutral statement of a tendency, 「きらいがある」 carries a negative connotation,
+      indicating an undesirable or problematic inclination.
+    grammar_point: きらいがある (undesirable tendency)
+  - term: 傾向が見られる
+    meaning: A tendency can be observed; there is a noticeable trend
+    kind: similar expression
+    nuance: While 「傾向がある」 simply states the existence of a tendency, 「傾向が見られる」 emphasizes that this tendency
+      is observable or discernible, often from data or evidence.
+    grammar_point: <suggest>:傾向が見られる (observable tendency)
+  - term: 傾向にある
+    meaning: To be in a tendency; to be trending towards
+    kind: similar expression
+    nuance: 「傾向がある」 describes a stable, existing tendency or characteristic. In contrast, 「傾向にある」 indicates
+      that a process is currently underway or that something is currently moving towards a particular
+      state or outcome.
+    grammar_point: <suggest>:傾向にある (current trend)
+post_false_friends_writeup: Understanding the subtle differences between expressions of tendency is crucial.
+  While 「傾向がある」 neutrally states the existence of a trend or characteristic, 「きらいがある」 is used specifically
+  for undesirable tendencies, often implying a negative judgment. When you want to emphasize that a trend
+  is observable or evident, perhaps from data or findings, use 「傾向が見られる」. Lastly, if the focus is on an
+  ongoing process or something that is currently moving towards a certain state, 「傾向にある」 is the appropriate
+  choice. Choosing the correct expression allows for more precise and nuanced communication of an observed
+  or developing situation.
+examples:
+  - english: He tends to drink too much coffee when he gets busy.
+    japanese:
+      - 彼 は 忙しく なる と、つい コーヒー を 飲み すぎる {傾向 が ある}。
+      - 彼 は 忙しく なる と、つい コーヒー を 飲み すぎる {傾向 が あり ます}。
+    english_literally: When he gets busy, he has a tendency to drink too much coffee.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 忙しく なる と、コーヒー を 飲み {すぎ がち だ}。
+        english: He tends to drink too much coffee when busy.
+        hint: 「～がちだ」 implies a tendency or habit, often with a negative nuance. We're looking for a more
+          neutral expression of a general inclination.
+    scene: A friend discussing their mutual friend's habits.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「つい」 (unintentionally, inadvertently) alongside 「傾向がある」 adds a casual, observational
+      tone, which is typical for a male speaker discussing a friend's relatable habit with a female acquaintance.
+  - english: It's not that the younger generation doesn't tend to read physical books, but the use of
+      e-books is increasing.
+    japanese:
+      - 若い 世代 で は、紙 の 本 を 読ま ない {傾向 が ない} わけ で は ない が、電子 書籍 の 利用 が 増え て いる。
+      - 若い 世代 で は、紙 の 本 を 読ま ない {傾向 が あり ませ ん} わけ で は ない が、電子 書籍 の 利用 が 増え て い ます。
+    english_literally: In the younger generation, it's not that the tendency to not read paper books doesn't
+      exist, but the use of e-books is increasing.
+    competing_grammar:
+      - competing_japanese:
+          - 若い 世代 は、紙 の 本 を 読む 人 が {少ない}。
+        english: Few people in the younger generation read paper books.
+        hint: This describes a quantitative observation, not the existence of an inherent trend or characteristic.
+          We're looking for a grammar point that describes a general inclination or observed trend.
+    scene: A librarian discussing reading habits among young people during a seminar.
+    register: formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「傾向がないわけではない」 (it's not that there isn't a tendency) adds a complex, analytical
+      nuance, fitting for an older female speaker in a formal, informative setting, presenting observations
+      to a group.
+  - english: Old games tended to be too difficult, but recently they've become easier to play.
+    japanese:
+      - 昔 の ゲーム は、難易 度 が 高 すぎる {傾向 が あっ た} が、最近 は 遊び やすい。
+      - 昔 の ゲーム は、難易 度 が 高 すぎる {傾向 が あり まし た} が、最近 は 遊び やすい です。
+    english_literally: Old games had a tendency for difficulty to be too high, but recently they are easy
+      to play.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の ゲーム は、難易 度 が {高 すぎ た}。
+        english: Old games were too difficult.
+        hint: This states a past fact, not a general characteristic or common pattern observed over time.
+          We're looking for a grammar point that describes a historical tendency.
+    scene: A gamer reflecting on the evolution of video games while talking to himself.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This statement reflects a common observation among gamers, where 「難易度が高すぎる傾向があった」 describes
+      a consistent past characteristic of games. The casual tone suggests a male speaker musing to himself.
+  - english: Recent weather tends to be hit by sudden rain, so I can't let go of my umbrella.
+    japanese:
+      - 最近 の 天気 は、急 な 雨 に 見舞わ れる {傾向 が ある} の で、傘 が 手放せ ない。
+      - 最近 の 天気 は、急 な 雨 に 見舞わ れる {傾向 が あり ます} の で、傘 が 手放せ ませ ん。
+    english_literally: Recent weather has a tendency of being hit by sudden rain, so a hand-held umbrella
+      cannot be let go of.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 の 天気 は、急 な 雨 が {多い}。
+        english: Recent weather has a lot of sudden rain.
+        hint: This describes a high frequency, not an inherent characteristic or predictable pattern.
+          We're looking for a grammar point that expresses a recurring tendency.
+    scene: A person complaining about the unpredictable weather to a friend.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「傘が手放せない」 conveys a sense of inconvenience and complaint, which, when combined
+      with 「傾向がある」, paints a picture of a persistent, annoying weather pattern. This is a common, casual
+      complaint that a female speaker might share with a male friend.
+  - english: Economists reported that during recessions, savings tended to increase.
+    japanese:
+      - 経済 学 の 専門 家 は、不況 時 に は 貯蓄 が 増える {傾向 が あり まし た} と 報告 し まし た。
+      - 経済 学 の 専門 家 は、不況 時 に は 貯蓄 が 増える {傾向 が あっ た} と 報告 し た。
+    english_literally: Economic experts reported that during recessions, there was a tendency of savings
+      increasing.
+    competing_grammar:
+      - competing_japanese:
+          - 経済 学 の 専門 家 は、不況 時 に は 貯蓄 が {増え た} と 報告 し まし た。
+        english: Economists reported that savings increased during recessions.
+        hint: This states a direct outcome, not an observed pattern or inclination. We're looking for
+          a grammar point that describes a general trend or characteristic during certain conditions.
+    scene: A news anchor reporting on an economic study's findings.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of the polite past form 「傾向がありました」 coupled with formal vocabulary like 「経済学の専門家」 and
+      「報告しました」 is characteristic of a male news anchor, older in age, delivering objective information
+      to a broad audience.
+  - english: Children tend to get bored easily with new toys, so they quickly want the next one.
+    japanese:
+      - 子供 は、新しい おもちゃ に 飽き やすい {傾向 が ある} から、すぐ に 次 の が 欲しく なる ん だ よ。
+      - 子供 は、新しい おもちゃ に 飽き やすい {傾向 が あり ます} から、すぐ に 次 の が 欲しく なる ん です よ。
+    english_literally: Children have a tendency to be easily bored by new toys, so they quickly want the
+      next one.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は、新しい おもちゃ に すぐ {飽きる}。
+        english: Children quickly get bored with new toys.
+        hint: This is a general observation about behavior, not emphasizing a consistent, inherent characteristic
+          or inclination. We're looking for a grammar point that describes a general tendency.
+    scene: A parent explaining typical child behavior to another parent.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「～んだよ」 adds a gentle, explanatory tone, typical of an older female speaker sharing
+      insights or observations with another parent. This is a common, relatable observation about child
+      behavior.
+  - english: He has a tendency to be unable to concentrate, so he's not good at completing many tasks
+      in a short time.
+    japanese:
+      - 彼 は 集中 でき ない {傾向 が ある} の で、短 時間 で 多く の 作業 を こなす の が 苦手 だ。
+      - 彼 は 集中 でき ない {傾向 が あり ます} の で、短 時間 で 多く の 作業 を こなす の が 苦手 です。
+    english_literally: He has a tendency to be unable to concentrate, so he is bad at completing many
+      tasks in a short time.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {集中 力 が なく て}、短 時間 で 多く の 作業 が でき ない。
+        english: He lacks concentration, so he can't do many tasks in a short time.
+        hint: This states a direct inability, not a pattern of behavior or characteristic inclination.
+          We're looking for a grammar point that describes a consistent tendency or pattern.
+    scene: A manager discussing an employee's work habits with a colleague from HR.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: This objective assessment of a colleague's work habit, using 「集中できない傾向がある」, is fitting for
+      a semi-formal, professional conversation between an older male manager and a female HR colleague,
+      reflecting a consistent pattern rather than a one-time incident.
+  - english: There is a tendency for global temperatures to rise.
+    japanese:
+      - 世界 的 な 気温 上昇 の {傾向 が ある}。
+      - 世界 的 な 気温 上昇 の {傾向 が あり ます}。
+    english_literally: There is a tendency of global temperature rise.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 的 に 気温 が {上昇 し て いる}。
+        english: Global temperatures are rising.
+        hint: This states a direct observation of change, not an overarching pattern or inclination over
+          time. We're looking for a grammar point that describes a general trend.
+    scene: A climate scientist presenting research findings at a conference.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「世界的な気温上昇の傾向がある」 is precise and formal, characteristic of academic presentations.
+      The older male speaker presenting to a group of colleagues reinforces the authoritative and informative
+      tone.
+  - english: She tends to forget things when she's stressed.
+    japanese:
+      - 彼女 は ストレス が たまる と、物事 を 忘れ やすい {傾向 が ある}。
+      - 彼女 は ストレス が たまる と、物事 を 忘れ やすい {傾向 が あり ます}。
+    english_literally: When stress accumulates, she has a tendency to easily forget things.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ストレス が たまる と 物 を {忘れ がち だ}。
+        english: She tends to forget things when she's stressed.
+        hint: 「～がちだ」 often implies a negative or undesirable habit that happens frequently, slightly more
+          informal. We're looking for a more neutral observation of a characteristic.
+    scene: Two female friends discussing a mutual acquaintance's habits.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「忘れやすい傾向がある」 describes a personality trait, and the casual register between younger
+      female friends makes this a natural conversation.
+  - english: This product tends to be unstable when used in high temperatures.
+    japanese:
+      - この 製品 は 高温 下 で は 不 安定 な {傾向 が ある}。
+      - この 製品 は 高温 下 で は 不 安定 な {傾向 が あり ます}。
+    english_literally: This product, under high temperatures, has an unstable tendency.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は 高温 下 で {不 安定 に なる}。
+        english: This product becomes unstable in high temperatures.
+        hint: This states a direct outcome under specific conditions, not a general characteristic or
+          common behavior observed over time. We're looking for a grammar point that describes a consistent
+          tendency or pattern.
+    scene: Engineers discussing product performance issues during a meeting.
+    register: formal
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The objective and technical description 「不安定な傾向がある」 fits a professional engineering discussion.
+      The older male speaker addressing a group of colleagues indicates an expert assessing a product's
+      behavior.
+post_example_writeup: 「傾向がある」 is used to express general tendencies or characteristics based on objective
+  facts and observations. In contrast, 「傾向にある」 is suitable for describing a state in the process of change
+  or a trend that is currently progressing in a certain direction. 「傾向が見られる」 is used when stating that
+  a certain tendency exists and can be observed, for example, in situations deciphered from data or statistics.
+  Furthermore, 「傾向が強い」 is used to emphasize that a tendency is significant or pronounced.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/傾向がある

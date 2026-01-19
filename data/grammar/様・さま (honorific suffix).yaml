@@ -1,0 +1,235 @@
+grammar_point: 様・さま (honorific suffix)
+learn_before:
+  - お〜ください (polite request)
+meaning: honorific suffix
+pronunciation:
+  katakana: サマ
+  romaji: sama
+formation:
+  '[Person''s Name/Title] + 様': Used as a highly respectful suffix for addressing or referring to individuals,
+    groups, or deities.
+  '[Noun] + 様': Attached to certain nouns to denote respect or formality, often seen in business contexts
+    (e.g., お客様 meaning 'customer').
+jlpt: N3
+etymology: The character 様 (sama) historically denoted 'appearance' or 'manner.' Its use as an honorific
+  suffix evolved from referring to someone's esteemed 'appearance' or 'state' to directly addressing them
+  with great respect. This etymology highlights its connection to formality and elevated status.
+writeup: |-
+  The suffix 〜様 (さま) is a highly versatile and respectful honorific in Japanese, conveying a greater degree of deference than the commonly used 〜さん (san). It is primarily used to show extreme respect, particularly towards individuals of high status, customers, or deities.
+
+  In formal settings, such as business correspondence, customer service, or public announcements, 〜様 is frequently employed. For example, お客様 (おきゃくさま - customer) is the standard respectful term used in service industries. Similarly, when addressing a deity in religious contexts, like 神様 (かみさま - God), 〜様 is appended.
+
+  Beyond direct address, 〜様 can also be affixed to titles or group names to show collective respect, such as 先生方様 (せんせいがたさま - esteemed teachers, plural) or ご家族様 (ごかぞくさま - esteemed family). Its usage emphasizes the speaker's humility and the listener's elevated position.
+
+  While typically formal, 〜様 can also be used ironically or sarcastically in informal speech among close friends to mock exaggerated politeness or to playfully tease. However, this usage requires careful consideration of context and relationship to avoid causing offense.
+false_friends:
+  - term: 〜さん (san)
+    meaning: general honorific suffix
+    kind: similar expression
+    nuance: 〜さん is the most common and versatile honorific, used for general politeness towards anyone
+      regardless of gender, age, or status, typically not as formal or distant as 〜様.
+    grammar_point: <suggest>:〜さん (honorific suffix)
+  - term: 〜ちゃん (chan)
+    meaning: affectionate diminutive suffix
+    kind: similar expression
+    nuance: 〜ちゃん is an informal and affectionate suffix, primarily used for children, close female friends,
+      pets, or lovers. It expresses endearment and closeness, contrasting sharply with the formality of
+      〜様.
+    grammar_point: <suggest>:〜ちゃん (honorific suffix)
+  - term: 〜くん (kun)
+    meaning: suffix for males or juniors
+    kind: similar expression
+    nuance: 〜くん is generally used for boys or younger males, or by superiors to address their subordinates
+      (male or female). While respectful, it implies a hierarchical relationship or familiarity, unlike
+      the more formal and universal respect conveyed by 〜様.
+    grammar_point: 君・くん (honorific suffix)
+  - term: 〜殿 (dono)
+    meaning: lord, master, formal suffix
+    kind: similar expression
+    nuance: 〜殿 is a highly formal and somewhat archaic honorific, often used in official documents, legal
+      correspondence, or traditional martial arts. It conveys a strong sense of respect, often implying
+      a higher rank, but is less common in modern daily speech compared to 〜様.
+    grammar_point: <suggest>:〜殿 (honorific suffix)
+  - term: 〜氏 (shi)
+    meaning: Mr./Ms., formal, often in written language
+    kind: similar expression
+    nuance: 〜氏 is a formal suffix used to refer to a person (Mr., Ms.) especially in written language,
+      news reports, or when referring to someone previously mentioned. It is less personal than 〜様 and
+      carries a more neutral, objective tone, indicating that the person is known but not necessarily
+      a close acquaintance.
+    grammar_point: <suggest>:〜氏 (honorific suffix)
+post_false_friends_writeup: When distinguishing between 〜様 and other honorifics, consider the level of
+  formality and the relationship between the speaker and the addressed person. 〜様 denotes the highest
+  general level of respect and formality, suitable for distant or revered individuals. 〜さん is for general
+  politeness. 〜ちゃん and 〜くん indicate closeness or specific hierarchical relationships. 〜殿 and 〜氏 are more
+  specialized and often seen in written or highly official contexts, carrying nuances of respect or objective
+  reference respectively.
+examples:
+  - english: Dear Mr. Tanaka, thank you for your continued support.
+    japanese:
+      - 田中 様、いつ も お 世話 に なっ て おり ます。
+      - 田中 様、平素 は 大変 お 世話 に なっ て おり ます。
+    english_literally: Tanaka-sama, always we are indebted.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん、いつ も お 世話 に なっ て おり ます。
+        english: Mr. Tanaka, thank you for your continued support.
+        hint: Using 〜さん is generally polite but might not convey the highest level of formality expected
+          in business correspondence, where 〜様 is often preferred for clients or important figures. We're
+          looking for a more respectful form.
+    scene: A business professional writing a formal email to an important client.
+    register: formal
+    setting: professional
+  - english: All customers are kindly requested to refrain from smoking.
+    japanese:
+      - お 客 様 各位、喫煙 は ご 遠慮 ください ませ。
+      - お 客 様、喫煙 は ご 遠慮 ください ます よう お 願い 申し上げ ます。
+    english_literally: Customers respectfully, smoking please refrain.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 さん 方、タバコ は 吸わ ない で ください。
+        english: Folks, please don't smoke.
+        hint: 「お客さん」is less formal and 「吸わないでください」 is a direct, less polite request. We're looking for
+          a formal announcement to a group of customers.
+    scene: An announcement made in a public facility.
+    register: formal
+    setting: informative
+  - english: Oh, my god!
+    japanese:
+      - ああ、神 様！
+      - 神 様！
+    english_literally: Oh, God-sama!
+    competing_grammar:
+      - competing_japanese:
+          - ああ、神 さん！
+        english: Oh, god!
+        hint: While 「神さん」 is technically comprehensible, it is highly informal and rarely used. 「神様」 is
+          the standard and respectful way to refer to deities. We're looking for the common and appropriate
+          term for 'God'.
+    scene: Someone expressing surprise or desperation.
+    register: casual
+    setting: excited
+    nuance: While the overall register is casual due to the exclamation, the use of 「神様」 (kami-sama) is
+      the standard and respectful way to refer to God, even in exclamatory phrases. This highlights how
+      〜様 is intrinsically linked to revered entities.
+  - english: Master, please tell us your profound teachings.
+    japanese:
+      - 先生 様、奥深い 教え を ぜひ お 聞か せ ください。
+      - 先生 様、奥深い 教え を どうぞ お 聞か せ ください。
+    english_literally: Teacher-sama, profound teachings by all means please let us hear.
+    competing_grammar:
+      - competing_japanese:
+          - 先生、奥深い 教え を ぜひ お 聞か せ ください。
+        english: Sensei, please tell us your profound teachings.
+        hint: Adding 〜様 to 「先生」 (sensei) elevates the respect to an almost reverential level, beyond the
+          usual respect for a teacher. We're looking for a very high degree of respect.
+    scene: A student addressing their revered martial arts master or spiritual guide.
+    register: formal
+    setting: academic
+    nuance: The addition of 〜様 to 「先生」 (sensei) is not common in everyday usage and indicates an extremely
+      high degree of reverence, almost bordering on veneration for the teacher's profound knowledge or
+      wisdom. This is typically reserved for highly esteemed masters in traditional arts or spiritual
+      disciplines.
+  - english: My dearest wife, please forgive me.
+    japanese:
+      - 妻 様、どう か お 許し ください。
+      - 妻 様、どう か お 許し を。
+    english_literally: Wife-sama, please forgive me.
+    competing_grammar:
+      - competing_japanese:
+          - 妻、許し て くれ。
+        english: Wife, forgive me.
+        hint: 「妻」 (tsuma) is a direct, plain reference, and 「許してくれ」 is a casual request. We're looking
+          for a highly deferential and perhaps overly dramatic plea for forgiveness from a husband to
+          his wife, using an honorific that implies elevated status.
+    scene: A husband, perhaps jokingly or dramatically, pleading with his wife after a minor transgression.
+    register: semi-formal
+    setting: humorous
+    speaker_gender: male
+    listener_gender: female
+    nuance: In this context, the use of 「妻様」 (tsuma-sama) is highly unusual and implies a strong sense
+      of deference or even an ironic exaggeration of politeness, often used by a husband in a self-deprecating
+      or humorous manner to appease his wife after a mistake. It highlights the speaker's attempt to elevate
+      the listener's status dramatically.
+  - english: Is Mr. Suzuki there?
+    japanese:
+      - 鈴木 様 は いらっしゃい ます か？
+      - 鈴木 様 は、いらっしゃい ます でしょう か？
+    english_literally: Suzuki-sama, is he present?
+    competing_grammar:
+      - competing_japanese:
+          - 鈴木 さん い ます か？
+        english: Is Suzuki there?
+        hint: This is a casual way to ask. 「鈴木様はいらっしゃいますか？」 uses a higher honorific and the respectful
+          verb for 'to be'. We're looking for a polite and formal inquiry in a business setting.
+    scene: A caller inquiring about a person at a company's reception desk.
+    register: formal
+    setting: professional
+  - english: The gods of the mountain, please protect our village.
+    japanese:
+      - 山の神 様、どう か 我 ら の 村 を お 守り ください。
+      - 山の神 様、我 ら の 村 を お 守り ください ます よう、伏し て お 願い 申し上げ ます。
+    english_literally: Mountain God-sama, please protect our village.
+    competing_grammar:
+      - competing_japanese:
+          - 山の神、どう か 我 ら の 村 を 守っ て ください。
+        english: Mountain god, please protect our village.
+        hint: Omitting 〜様 makes the address less reverent towards the deity. We're looking for a formal
+          and devout plea.
+    scene: Villagers praying at a shrine before planting season.
+    register: formal
+    setting: religious
+  - english: All attendees, please proceed to the main hall.
+    japanese:
+      - ご 参加 の 皆 様、メイン ホール へ お 進み ください。
+      - ご 参加 の 皆 様 方、メイン ホール へ お 進み 願い ます。
+    english_literally: Attendees-all-of-you-sama, please proceed to the main hall.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 全員、メイン ホール に 行っ て ください。
+        english: All participants, please go to the main hall.
+        hint: This is a direct and less polite command. 「ご参加の皆様」 uses a collective honorific to respectfully
+          address the entire group. We're looking for a formal announcement to an audience.
+    scene: An announcement at a conference or event.
+    register: formal
+    setting: informative
+  - english: Please fill out the form, Mr./Ms. Applicant.
+    japanese:
+      - 応募 者 様、この 用紙 に ご 記入 ください。
+      - 応募 者 様、こちら の 用紙 に ご 記入 願い ます。
+    english_literally: Applicant-sama, please fill out this form.
+    competing_grammar:
+      - competing_japanese:
+          - 応募 者、この 用紙 に 書い て ください。
+        english: Applicant, please write on this form.
+        hint: Omitting 〜様 and using a less formal verb makes the tone less respectful. In a formal application
+          process, high respect is usually shown to applicants. We're looking for a respectful instruction
+          to a job applicant.
+    scene: An interviewer giving instructions to a job applicant.
+    register: formal
+    setting: professional
+  - english: My parents, please enjoy your trip to Hawaii.
+    japanese:
+      - ご 両親 様、ハワイ 旅行 を お 楽しみ ください。
+      - ご 両親 様、ハワイ ご 旅行 を お 楽しみ ください ませ。
+    english_literally: Respected parents-sama, please enjoy your Hawaii trip.
+    competing_grammar:
+      - competing_japanese:
+          - お 父 さん と お 母 さん、ハワイ 旅行 楽しん で ね。
+        english: Dad and Mom, have fun on your Hawaii trip.
+        hint: This is a casual and direct address. 「ご両親様」 uses a more formal and respectful term for parents,
+          indicating a higher level of deference. We're looking for a respectful and formal wish for parents,
+          perhaps in a written message.
+    scene: A child sending a postcard to their parents who are traveling.
+    register: formal
+    setting: friendly
+    nuance: While usually intimate, the use of 「ご両親様」 (goryōshin-sama) here elevates the respect given
+      to parents beyond typical familiar terms like 「お父さん」 (otōsan) and 「お母さん」 (okāsan). This might be
+      used in a written context or to convey particularly deep reverence, even within a family.
+post_example_writeup: The examples provided illustrate the breadth of 〜様's application, from formal business
+  communications and public announcements to expressions of deep reverence towards deities and even instances
+  of ironic use among intimates. Its primary function remains to elevate the status of the person or entity
+  being addressed, thus emphasizing the speaker's respect. Understanding the context—who is speaking to
+  whom, and in what setting—is key to correctly employing this important honorific.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E6%A7%98%E3%83%BB%E3%81%95%E3%81%BE

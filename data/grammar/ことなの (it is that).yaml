@@ -1,0 +1,351 @@
+grammar_point: ことなの (it is that)
+learn_before:
+  - つまり・要するに (in short・to sum up)
+  - というのは (definition or reason)
+  - のではないだろうか (indirect suggestion)
+meaning: (A) is (Description of A), (A) means that (Description of A)
+meaning_warning: 'Can be rephrased to: という意味だ, ということを意味する'
+pronunciation:
+  katakana: コトナノ
+  romaji: koto nano
+formation:
+  '[Noun] + というのは + [Noun] + ことなの': Clarifies the meaning of the first noun using the second noun.
+  '[Attributive form (Verb/Adjective) or Noun + の] + ことなの': Emphasizes and explains the meaning or nature
+    of the preceding phrase.
+jlpt: N3
+etymology: The grammar point derives from the combination of 「こと」 (koto, 'thing' or 'matter') and 「なの」
+  (nano), which is a contraction of 「なのだ」 (nanoda). 「こと」 nominalizes the preceding phrase, turning it
+  into a 'thing' or concept. 「なの」 then provides an explanatory or emphatic tone, similar to saying 'it
+  is that...' or 'the fact is...'.
+writeup: The grammatical pattern 「ことなの」 is used to explain or clarify the meaning of something, often
+  emphasizing the point being made. It functions similarly to 「～なのです」, transforming a simple statement
+  like "it is (A)" into "it is that it is (A)", thereby adding an explanatory or emphatic nuance. This
+  expression is frequently used in conjunction with 「というのは」 (or its casual forms 「って」 or 「とは」). In such
+  constructions, 「というのは」 introduces the topic, and 「ことなの」 then provides the speaker's conclusion or explanation
+  about that topic. For instance, 「XというのはYということなの」 clarifies that 'X is, by definition, Y'. 「ことなの」 can
+  follow any word in its attributive form, nouns (followed by 「の」), or な-adjectives (followed by 「な」).
+  While 「という」 can directly precede 「ことなの」, this is less common if 「という」 was already used earlier in the
+  same sentence to introduce the topic. It is also common to use 「ことなの」 when asking questions. This typically
+  occurs when the speaker has drawn a conclusion about something that was said and wishes to confirm their
+  understanding. For example, 「～ということなの？」 seeks confirmation of an interpretation. Note that the form
+  「なのか」 is widely encountered in various media such as dramas, novels, and manga. However, using 「なのか」
+  in daily conversation might be perceived as somewhat blunt or rude, depending on the context and relationship
+  between speakers.
+false_friends:
+  - term: ということだ
+    meaning: I heard that, Rumor has it that, It is said that, It means that
+    kind: synonym
+    nuance: 「ということだ」 is used more to convey information heard from someone else or to state a general
+      conclusion based on evidence. 「ことなの」 emphasizes the speaker's own understanding or explanation.
+    grammar_point: ということだ (it means that)
+  - term: ということは
+    meaning: That means, That is to say
+    kind: synonym
+    nuance: 「ということは」 is used when drawing a logical conclusion or inference. 「ことなの」 is used more to explain
+      or emphasize the meaning of something.
+    grammar_point: ということ(は) (that means)
+  - term: である (formal copula)
+    meaning: to be (formal/literary)
+    kind: similar expression
+    nuance: 「ことなの」 emphasizes the explanation or inherent nature of something, often following a broader
+      concept. 「である」 is a formal copula directly stating identity or characteristic without the added
+      explanatory nuance of 'it is that...'.
+    grammar_point: である (formal copula)
+post_false_friends_writeup: To avoid mixing up 「ことなの」 with similar expressions, remember that 「ことなの」 is
+  best used when you want to explain the core meaning or nature of something, often after already introducing
+  the topic with 「というのは」. It provides emphasis and clarification from the speaker's perspective. Other
+  expressions, like 「ということだ」, are better for conveying information or drawing conclusions based on external
+  sources, and 「である」 is a formal copula for direct identity statements.
+examples:
+  - english: A manga artist is someone who draws manga.
+    japanese:
+      - 漫画 家 と いう の は 漫画 を 描く 人 の {こと な の} だ。
+      - 漫画 家 と いう の は 漫画 を 描く 人 の {こと な の} です。
+      - 漫画 家 と いう の は 漫画 を 描く 人 の {こと な の} で ある。
+    english_literally: A manga artist, that is, a person who draws manga's matter.
+    competing_grammar:
+      - competing_japanese:
+          - 漫画 家 は 漫画 を 描く 人 だ。
+        english: A manga artist is a person who draws manga.
+        hint: The phrase 「というのは」 sets up a formal definition, guiding the listener to expect an explanation
+          rather than a simple statement. The scene indicates an educational context where precise definitions
+          are preferred. We're looking for a formal explanation of what something *is*.
+      - competing_japanese:
+          - 漫画 家 は 漫画 を 描く と {いう 意味 だ}。
+        english: A manga artist means a person who draws manga.
+        hint: While similar, 「という意味だ」 focuses on 'meaning' rather than the inherent nature. The scene
+          of teaching suggests conveying what something *is* at its core. We're looking for a definition
+          of what something *is*.
+    scene: A teacher is explaining professions to young students in a classroom setting.
+    register: formal
+    setting: informative
+    etymology: 「漫画家」 (mangaka) combines 「漫画」 (manga) and 「家」 (ka, 'expert' or 'professional').
+  - english: Accessories are things that come with the main item.
+    japanese:
+      - 付属 品 と いう の は メイン の 物 に 付属 し て いる 物 の {こと な の} だ。
+      - 付属 品 と いう の は メイン の 物 に 付属 し て いる 物 の {こと な の} です。
+      - 付属 品 と いう の は メイン の 物 に 付属 し て いる 物 の {こと な の} で ある。
+    english_literally: Accessories, that is, things attached to the main item's matter.
+    competing_grammar:
+      - competing_japanese:
+          - 付属 品 は メイン の 物 に 付属 し て いる 物 だ。
+        english: Accessories are things that come with the main item.
+        hint: This is a simple statement of fact. The combination of 「というのは」 and 「ことなのだ」 is used for precise,
+          explanatory definitions, especially in an informative context. We're looking for a clear explanation
+          of what something *is*.
+      - competing_japanese:
+          - 付属 品 は メイン の 物 に 付属 し て いる {意味}。
+        english: Accessories mean things that come with the main item.
+        hint: While conveying meaning, this phrasing is less natural for defining what something *is*
+          at its core. The scene implies a need for a direct classification. We're looking for a fundamental
+          definition.
+    scene: A customer service representative explains what 'accessories' mean in the context of a product
+      purchase.
+    register: formal
+    setting: informative
+    etymology: 「付属品」 (fuzokuhin) literally means 'attached articles'. The term combines 付 (fu, 'attach'),
+      属 (zoku, 'belong'), and 品 (hin, 'goods' or 'items').
+  - english: Ame ga agaru means that the rain stops.
+    japanese:
+      - 雨 が 上がる と いう の は 雨 が 止む {こと な の} です。
+      - 雨 が 上がる と いう の は 雨 が 止む {こと な の} だ。
+      - 雨 が 上がる と いう の は 雨 が 止む {こと な の} で ある。
+    english_literally: Rain rising, that is, rain stopping's matter.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 上がる は 雨 が 止む と {いう 意味 です}。
+        english: Ame ga agaru means that rain stops.
+        hint: When defining an expression, 「というのは」 sets up the phrase to be explained, and 「ことなのです」 emphasizes
+          that the following is the true nature or meaning of that phrase, rather than just a simple synonym,
+          which is key for language learning. We're looking for an explanation of the true nature of an
+          idiom.
+      - competing_japanese:
+          - 雨 が 上がる {こと です}。
+        english: It is the thing of rain stopping.
+        hint: This simpler form lacks the explanatory nuance of 「というのは」 and the emphatic clarification
+          of 「ことなのです」, which is important when teaching linguistic nuances. We're looking for an emphasized
+          explanation of a phrase's meaning.
+    scene: A Japanese language teacher explains the nuance of a common idiom to their students.
+    register: teineigo (polite)
+    setting: informative
+    etymology: 「上がる」 (agaru) literally means 'to rise' or 'to go up,' but in this context, it refers to
+      the rain stopping. This specific usage highlights the nuanced meaning of a common verb within an
+      idiomatic expression.
+  - english: Do you mean that person is a top-notch singer?
+    japanese:
+      - あの 人 は 超 一流 歌手 と いう {こと な の}?
+      - あの 人 は 超 一流 歌手 と いう {こと な の} か？
+      - あの 人 は 超 一流 歌手 と いう {こと な の} です か？
+    english_literally: That person top-class singer, that is a thing?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は 超 一流 歌手 です か？
+        english: Is that person a top-notch singer?
+        hint: This is a simple factual question. The structure 「ということなの？」 specifically seeks confirmation
+          about the implied meaning or understanding the speaker has drawn from prior information. We're
+          looking to confirm an implied understanding.
+      - competing_japanese:
+          - あの 人 は 超 一流 歌手 と 言い まし た か？
+        english: Did you say that person is a top-notch singer?
+        hint: This asks if someone *said* something. The scene focuses on confirming an *understanding*
+          or *implication*, not just whether a statement was made. We're looking to confirm an implication.
+    scene: During a casual conversation at a concert, one friend tries to confirm information they've
+      just heard about a performer.
+    register: casual
+    setting: interrogative
+    etymology: 「超一流」 (chōichiryū) means 'super first-class' or 'top-notch'. 「超」 (chō) is a prefix meaning
+      'super' or 'ultra', intensifying the following word. 「一流」 (ichiryū) literally means 'first-class'.
+  - english: Yusou means to send packages.
+    japanese:
+      - 輸送 と は 荷物 を 送る {こと な の}。
+      - 輸送 と は 荷物 を 送る {こと な の} だ。
+      - 輸送 と は 荷物 を 送る {こと な の} です。
+      - 輸送 と は 荷物 を 送る {こと な の} で ある。
+    english_literally: Transportation, that is, sending packages' matter.
+    competing_grammar:
+      - competing_japanese:
+          - 輸送 は 荷物 を 送る。
+        english: Transportation sends packages.
+        hint: This is too direct and sounds incomplete for a definition. The scene requires a clear, concise
+          explanation of what the term 'transportation' entails. We're looking for a formal definition.
+      - competing_japanese:
+          - 輸送 は 荷物 を 送る {意味}。
+        english: Transportation is the meaning of sending packages.
+        hint: While conveying meaning, this phrasing is less natural for defining what something *is*
+          at its core. The 「ことなの」 provides a more natural, explanatory definition. We're looking for a
+          natural explanation of what something *is*.
+    scene: A logistics expert casually explains the basic definition of 'transportation' to a new intern.
+    register: casual
+    setting: informative
+    etymology: 「輸送」 (yusō) means 'transportation' or 'shipping'. It combines 輸 (yu, 'transport') and 送
+      (sō, 'send').
+  - english: So, you mean it's dangerous to go there alone?
+    japanese:
+      - つまり そこ に 一人 で 行く と 危ない と いう {こと な の} か。
+      - つまり そこ に 一人 で 行く と 危ない と いう {こと な の}？
+      - つまり そこ に 一人 で 行く と 危ない と いう {こと な の} です か。
+    english_literally: In short, there alone if go dangerous, that is a thing?
+    competing_grammar:
+      - competing_japanese:
+          - つまり そこ に 一人 で 行く と 危ない です か？
+        english: So, is it dangerous to go there alone?
+        hint: This is a simple direct question. The 「ということなのか」 specifically indicates the speaker is drawing
+          a conclusion from the conversation and seeking confirmation of that understanding. We're looking
+          to confirm a conclusion drawn from context.
+      - competing_japanese:
+          - つまり そこ に 一人 で 行く と 危ない と {いう こと です か}。
+        english: So, does it mean that it's dangerous to go there alone?
+        hint: This is more formal. The casual 「なのか」 matches the conversational setting and implies a personal
+          inference being confirmed. We're looking for a casual confirmation of a personal inference.
+    scene: Two hikers are discussing a difficult trail, and one is confirming the implied danger with
+      the other.
+    register: casual
+    setting: cautious
+    etymology: 「つまり」 (tsumari) is an adverb meaning 'in short' or 'in other words', used to summarize
+      or draw a conclusion. Its origin implies a sense of 'being stuck' or 'at an impasse', leading to
+      a concise summary.
+  - english: A ghost ship is a ship with no living crew members.
+    japanese:
+      - 幽霊 船 と いう の は 生き た 乗組 員 の い ない 船舶 の {こと な の} で ある。
+      - 幽霊 船 と いう の は 生き た 乗組 員 の い ない 船舶 の {こと な の} だ。
+      - 幽霊 船 と いう の は 生き た 乗組 員 の い ない 船舶 の {こと な の} です。
+    english_literally: Ghost ship, that is, living crew members not existing vessel's matter.
+    competing_grammar:
+      - competing_japanese:
+          - 幽霊 船 は 生き た 乗組 員 の い ない 船舶 だ。
+        english: A ghost ship is a vessel with no living crew members.
+        hint: This is a simple declarative statement. The combination of 「というのは」 and 「ことなのである」 is specifically
+          used for formal, definitive explanations, much like writing a dictionary entry, emphasizing
+          the fundamental nature of the defined term. We're looking for a formal, definitive explanation.
+      - competing_japanese:
+          - 幽霊 船 は 生き た 乗組 員 の い ない 船舶 と {いう 意味 だ}。
+        english: A ghost ship means a vessel with no living crew members.
+        hint: This phrasing focuses on 'meaning' rather than providing a formal, essential definition.
+          The documentary setting demands a more authoritative and precise explanation. We're looking
+          for an authoritative definition of what something *is*.
+    scene: A documentary narrator provides a precise definition of a 'ghost ship'.
+    register: formal
+    setting: informative
+    etymology: 「幽霊船」 (yūreisen) directly translates to 'ghost ship'. 「幽霊」 (yūrei) means 'ghost' or 'spirit',
+      and 「船」 (fune/sen) means 'ship'. 「船舶」 (senpaku) is a more formal term for 'vessel' or 'ship', often
+      used in technical or legal contexts. It combines 船 (sen, 'ship') and 舶 (haku, a more formal term
+      for 'large ship').
+  - english: Happiness is a state of being truly fulfilled from the heart.
+    japanese:
+      - 幸せ と は、心 から 満たさ れ て いる 状態 の {こと な の} だ。
+      - 幸せ と は、心 から 満たさ れ て いる 状態 の {こと な の} です。
+      - 幸せ と は、心 から 満たさ れ て いる 状態 の {こと な の} で ある。
+    english_literally: Happiness, that is, from heart being fulfilled state's matter.
+    competing_grammar:
+      - competing_japanese:
+          - 幸せ は 心 から 満たさ れ て いる 状態 だ。
+        english: Happiness is a state of being truly fulfilled from the heart.
+        hint: While grammatically correct, this is a simpler statement of fact. The 「とは」 and 「ことなのだ」 combine
+          to present a formal definition or philosophical statement, suitable for an academic setting.
+          We're looking for a formal or philosophical definition.
+      - competing_japanese:
+          - 幸せ は 心 から 満たさ れ て いる 状態 と {いう 意味 だ}。
+        english: Happiness means a state of being truly fulfilled from the heart.
+        hint: This focuses on the 'meaning' of happiness. The 「ことなのだ」 in this context defines what happiness
+          *is* as a concept, providing a more direct and essential explanation. We're looking for an essential
+          explanation of a concept.
+    scene: A philosopher is explaining their definition of happiness in a public lecture.
+    register: formal
+    setting: informative
+    nuance: Using 「～とは」 to define a concept, followed by 「ことなのだ」, is a common pattern in academic or explanatory
+      contexts. The plain form 「だ」 keeps it concise and authoritative, fitting for a philosophical lecture.
+    etymology: 「満たされている」 (mitasarete iru) means 'being filled' or 'being satisfied'. The verb 満たす (mitasu)
+      implies 'to fill' or 'to satisfy'.
+  - english: Perhaps the purpose of life is to live true to oneself.
+    japanese:
+      - 人生 の 目的 と は、自分 らしく 生きる {こと な の} で は ない でしょう か。
+      - 人生 の 目的 と は、自分 らしく 生きる {こと な の} で は ない か。
+    english_literally: Life's purpose, that is, oneself-like to live is it not the thing?
+    competing_grammar:
+      - competing_japanese:
+          - 人生 の 目的 は、自分 らしく 生きる {こと で は ない です か}。
+        english: Isn't the purpose of life to live true to oneself?
+        hint: This is a slightly more direct question. The 「～のではないでしょうか」 softens the assertion and invites
+          shared reflection, fitting for a reflective conversation. We're looking for a softened assertion
+          that invites reflection.
+      - competing_japanese:
+          - 人生 の 目的 は、自分 らしく 生きる と {いう 意味 で は ない です か}。
+        english: Doesn't the purpose of life mean to live true to oneself?
+        hint: Again, this focuses on 'meaning' rather than defining the core essence of life's purpose
+          as a concept, which 「ことなの」 expresses. We're looking for the core essence of a concept.
+    scene: During a deep conversation among friends, one person reflects on their personal philosophy
+      of life.
+    register: formal
+    setting: reflective
+    nuance: The phrase 「ではないでしょうか」 is a polite and somewhat softer way to present a conclusion or opinion,
+      inviting agreement or reflection from the listener. It is often used when discussing abstract concepts
+      like life's purpose in a thoughtful manner.
+    etymology: 「自分らしく」 (jibun rashiku) means 'in one's own way' or 'like oneself'. It combines 自分 (jibun,
+      'self') and らしい (rashii, 'like' or 'typical of'), creating an adverbial form.
+  - english: If it means that I like you, what would you do?
+    japanese:
+      - もし 私 が あなた を 好き だ と いう {こと な の} なら、あなた は どう する？
+      - もし 私 が あなた を 好き だ と いう {こと な の} だ と し たら、あなた は どう する？
+      - もし 私 が あなた を 好き だ と いう {こと な の} でし たら、あなた は どう なさい ます か？
+    english_literally: If I you like is the thing, then what would you do?
+    competing_grammar:
+      - competing_japanese:
+          - もし 私 が あなた を 好き なら、あなた は どう する？
+        english: If I like you, what would you do?
+        hint: This is a more direct conditional statement. The insertion of 「ことなの」 adds an explanatory
+          or emphatic nuance, as if she is saying 'if my liking you is the *fact* or *truth*,' making
+          the statement more weighty and suggestive in a flirty context. We're looking for a statement
+          that emphasizes the *fact* or *truth* of the situation.
+      - competing_japanese:
+          - もし 私 が あなた を 好き だ と {いう 意味 なら}、あなた は どう する？
+        english: If it means that I like you, what would you do?
+        hint: This implies 'if it means that I like you' as a literal translation of a statement. Here,
+          「ことなの」 is about the *state* of her feelings, not just the spoken meaning, adding a layer of
+          depth to her implied confession. We're looking for a statement about the *state* of feelings.
+    scene: A woman is subtly flirting with a man, hinting at her feelings and wondering his reaction.
+    register: casual
+    setting: flirty
+    speaker_gender: female
+    listener_gender: male
+    nuance: This sentence implies a romantic interest of 「私」 (watashi) toward 「あなた」 (anata) and is often
+      something a woman would say to a man she likes, subtly pressing for his response to her implied
+      feelings. The structure with 「ことなのなら」 adds a layer of indirectness and contemplation to the hypothetical
+      situation.
+    etymology: The 「～なら」 used at the end of the clause means 'if', introducing a conditional scenario.
+  - english: Does it mean that you're telling me you like me on our first meeting?
+    japanese:
+      - 初めて 会っ た 日 に 好き だ と 言う {こと な の}？
+      - 初めて 会っ た 日 に 好き だ と 言う {こと な の} か？
+      - 初めて 会っ た 日 に 好き だ と 言う {こと な の} です か？
+    english_literally: First time met day on like is saying thing?
+    competing_grammar:
+      - competing_japanese:
+          - 初めて 会っ た 日 に 好き だ と 言う {の です か}？
+        english: Are you telling me you like me on the first day we met?
+        hint: This is more formal. The casual 「ことなの？」 implies a mixture of surprise and a desire to confirm
+          the implication of such a bold statement in a relaxed setting. We're looking for a casual confirmation
+          of a bold implication.
+      - competing_japanese:
+          - 初めて 会っ た 日 に 好き だ と 言う {の？}
+        english: Are you saying you like me on the first day we met?
+        hint: This is a simple interrogative for 'are you saying?' The 「ことなの？」 adds a nuance of 'is *that*
+          what it means/is the *fact* of the situation that you are saying this?', highlighting the significance
+          or unexpectedness of the statement. We're looking for a statement that highlights the significance
+          or unexpectedness.
+    scene: A man on a first date is surprised by the woman's forwardness and seeks clarification of her
+      bold statement.
+    register: casual
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+    nuance: This sentence expresses surprise and seeks confirmation regarding the listener's bold statement
+      on a first date. The male speaker uses a direct yet questioning tone, typical in casual conversation
+      when taken aback by an unexpected declaration.
+    etymology: 「初めて 会った 日に」 (hajimete atta hi ni) means 'on the day we first met'. 初めて (hajimete) means
+      'for the first time', 会った (atta) is the past tense of 会う (au, 'to meet'), and 日に (hi ni) means 'on
+      the day'.
+post_example_writeup: The examples illustrate how 「ことなの」 functions to explain or confirm a core meaning
+  or understanding in various contexts, from formal definitions to casual personal reflections. Pay close
+  attention to the sentence endings to adjust the formality and nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことなの

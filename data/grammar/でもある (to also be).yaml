@@ -1,0 +1,230 @@
+grammar_point: でもある (to also be)
+learn_before:
+  - な-Adjective[である] (formal present)
+meaning: to also be; it is also; also is
+pronunciation:
+  katakana: デモアル
+  romaji: demo aru
+formation:
+  Noun + でもある: Indicates that the noun also possesses a certain attribute or is a certain thing.
+  な-Adjective + でもある: Indicates that the な-adjective also applies to the subject.
+jlpt: N3
+etymology: The expression 「でもある」 is a compound formed from the conjunctive form 「で」 of the plain copula
+  「だ」 (or its more formal variant 「である」), the additive particle 「も」 (meaning "also" or "even"), and the
+  verb 「ある」 (to exist), which here functions as a copula. Literally, it conveys the idea of "being [something],
+  and also existing as [something else]." This structure evolved to allow for the assertion of multiple,
+  additional attributes or states for a single subject, emphasizing that the subject possesses this characteristic
+  in addition to others already known or implied.
+writeup: |-
+  The grammar point 「でもある」 is used to state that something is *also* a particular quality, state, or thing. It is formed by attaching 「でもある」 to a noun or the stem of a な-adjective.
+
+  This structure emphasizes the additional attribute, suggesting that the subject not only possesses other characteristics but *also* this one. It's often used when presenting multiple facets of a person, object, or situation. While 「も」 simply adds 'also' to a noun or clause, 「でもある」 specifically applies the 'also' to the copular sense, meaning 'is also' or 'can also be considered.'
+
+  **Usage with Nouns:**
+  Noun + でもある
+  When used with nouns, it indicates that the subject can also be categorized as or possesses the quality of that noun.
+
+  **Usage with な-Adjectives:**
+  な-Adjective stem + でもある
+  For な-adjectives, the 「な」 is dropped, and 「でもある」 is attached to the stem. It signifies that the subject also exhibits the characteristic described by the な-adjective.
+
+  It often appears in contexts where you are elaborating on something or someone's various roles, qualities, or truths.
+false_friends:
+  - term: も
+    meaning: also, too, even
+    kind: similar expression
+    nuance: 「も」 is a particle that simply adds the meaning of "also" or "too" to a noun or a phrase. It
+      does not carry the copular meaning "to be" itself. In contrast, 「でもある」 explicitly functions as a
+      copula, stating that something *is* also something else, thereby affirming an additional identity
+      or attribute.
+    grammar_point: も (addition or emphasis particle)
+  - term: 〜である
+    meaning: to be (formal)
+    kind: similar expression
+    nuance: 「〜である」 is a formal copula meaning "to be." 「でもある」 builds upon this by adding the particle
+      「も」, introducing the nuance of "also" or "even." So, while 「〜である」 states "it is X," 「でもある」 states
+      "it *is also* X."
+    grammar_point: <suggest>:である (formal present)
+  - term: 〜だけでなく
+    meaning: not only... but also
+    kind: similar expression
+    nuance: 「〜だけでなく」 connects two clauses or items, emphasizing that both are true or apply. 「でもある」 typically
+      focuses on adding an additional characteristic or role *to the subject itself*, within a single
+      statement, rather than linking two separate facts or actions. It's about asserting an additional
+      identity or attribute of the subject.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+post_false_friends_writeup: While 「も」, 「〜である」, and 「〜だけでなく」 share common ground in expressing addition
+  or existence, their precise roles differ. 「も」 simply adds another item or implies "also" without explicitly
+  acting as a copula. 「〜である」 is the formal copula, forming the base upon which 「でもある」 builds by adding
+  the nuance of "also." Lastly, 「〜だけでなく」 is used for connecting broader additive statements, often across
+  clauses, whereas 「でもある」 typically describes an additional attribute or role of the subject within a
+  single cohesive idea.
+examples:
+  - english: That person is also a teacher.
+    japanese:
+      - あの 人 は 先生 {で も ある}。
+      - あの 方 は 先生 {で も あり ます}。
+    english_literally: As for that person, (they) also are a teacher.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 も 先生 だ。
+        english: That person is also a teacher.
+        hint: While 「も」 here also means 'also', it doesn't emphasize that being a teacher is *another
+          role* of the person in the same way 「でもある」 does. We're looking for a phrase that explicitly
+          connects 'being' to 'also'.
+    scene: Talking about someone who has multiple roles.
+    register: casual
+    setting: informative
+    nuance: Used to add an additional role or status to a person who might have other known roles (e.g.,
+      student, parent). The structure 「先生でもある」 indicates that being a teacher is *one of* the roles they
+      hold.
+  - english: This design is also very practical.
+    japanese:
+      - この デザイン は とても 実用 的 {で も ある}。
+      - この デザイン は とても 実用 的 {で も あり ます}。
+    english_literally: As for this design, (it) is also very practical.
+    competing_grammar:
+      - competing_japanese:
+          - この デザイン は とても 実用 的 で、それ に 美しい。
+        english: This design is very practical, and moreover beautiful.
+        hint: The example uses 「でもある」 to add an *additional* attribute to the design, focusing on its
+          inherent practicality beyond other qualities. We're looking for a phrase that states 'it is
+          also practical'.
+    scene: Discussing the qualities of a product.
+    register: formal
+    setting: professional
+    nuance: The design might be beautiful or unique, but the speaker wants to emphasize that it's *also*
+      practical. The phrase 「実用的な」 loses its 「な」 before 「でもある」.
+  - english: He is a father, and is also a busy businessman.
+    japanese:
+      - 彼 は 父親 で あり、忙しい ビジネス マン {で も ある}。
+      - 彼 は 父親 で あり、忙しい ビジネス マン {で も あり ます}。
+    english_literally: As for him, (he) is a father, and also a busy businessman.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 父親 で、忙しい ビジネス マン だ。
+        english: He is a father and a busy businessman.
+        hint: This sentence simply lists two attributes without the explicit 'also' emphasis on the second
+          one. We're looking for a construction that stresses the 'additional' nature of being a busy
+          businessman.
+    scene: Describing a friend's busy life.
+    register: casual
+    setting: friendly
+    nuance: 「でもある」 is used here to add a second significant attribute after already stating one. 「父親であり」
+      uses the te-form of the copula for connection, setting up the second attribute.
+  - english: Silence can also be a form of communication.
+    japanese:
+      - 沈黙 は コミュニケーション の 一 つ の 形 {で も ある}。
+      - 沈黙 は コミュニケーション の 一 つ の 形 {で も あり ます}。
+    english_literally: As for silence, (it) is also one form of communication.
+    competing_grammar:
+      - competing_japanese:
+          - 沈黙 も コミュニケーション の 一 つ の 形 だ。
+        english: Silence is also a form of communication.
+        hint: This version uses 「も」 with a direct copula, which is close but doesn't quite capture the
+          nuanced assertion of 'being *also* this thing' as strongly as 「でもある」 in a broader context of
+          its nature. We're looking for a construction that states silence can *also* function as communication.
+    scene: A philosophical discussion.
+    register: formal
+    setting: reflective
+    nuance: Expresses an unexpected or less obvious truth. It suggests that while communication is typically
+      thought of as verbal, silence *also* serves that purpose.
+  - english: He is a doctor, but is also a talented musician.
+    japanese:
+      - 彼 は 医者 だ が、才能 ある 音楽 家 {で も ある}。
+      - 彼 は 医者 だ が、才能 ある 音楽 家 {で も あり ます}。
+    english_literally: As for him, (he) is a doctor, but also a talented musician.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 医者 だ が、才能 ある 音楽 家 で も ある。
+        english: He is a doctor, but he is also a talented musician.
+        hint: This is almost identical, but uses the more explicit particle for 'but'. We're looking for
+          a phrase that expresses an additional, possibly surprising, talent.
+    scene: Introducing someone with unexpected talents.
+    register: semi-formal
+    setting: informative
+    nuance: The 「だが」 (but) implies a slight contrast or surprise that someone could be both. 「でもある」 reinforces
+      that the musician aspect is an additional, perhaps surprising, identity.
+  - english: This cafe is a quiet place to study, and is also a good place to relax.
+    japanese:
+      - この カフェ は 静か な 勉強 場所 で あり、いい 休憩 場所 {で も ある}。
+      - この カフェ は 静か な 勉強 場所 で、いい 休憩 場所 {で も ある}。
+      - この カフェ は 静か な 勉強 場所 で あり、いい 休憩 場所 {で も あり ます}。
+    english_literally: As for this cafe, (it) is a quiet study place, and also a good relaxation place.
+    competing_grammar:
+      - competing_japanese:
+          - この カフェ は 静か な 勉強 場所 だ し、いい 休憩 場所 だ。
+        english: This cafe is a quiet study place, and it's a good place to relax.
+        hint: This uses 「〜だし」 to list reasons, but doesn't carry the same nuance of 'being *also* this
+          other thing' as 「でもある」 does for highlighting multiple facets. We're looking for a structure
+          that emphasizes multiple uses of the cafe.
+    scene: Recommending a cafe to a friend.
+    register: casual
+    setting: friendly
+    nuance: Used to highlight multiple positive aspects of a single location, making it appealing for
+      different purposes.
+  - english: For some people, work is also a hobby.
+    japanese:
+      - ある 人々 に とっ て は、仕事 は 趣味 {で も ある}。
+      - ある 人々 に とっ て は、仕事 は 趣味 {で も あり ます}。
+    english_literally: As for certain people, work is also a hobby.
+    competing_grammar:
+      - competing_japanese:
+          - ある 人々 に とっ て は、仕事 も 趣味 だ。
+        english: For some people, work is also a hobby.
+        hint: This version is grammatically correct and similar, but 「でもある」 adds a slightly stronger nuance
+          of 'it exists as this also', emphasizing a dual nature or function, rather than just a simple
+          addition. We're looking for a construction that states work can *also* be a hobby.
+    scene: Discussing attitudes towards work.
+    register: formal
+    setting: informative
+    nuance: States a general observation where work serves a dual purpose for some individuals.
+  - english: That decision was also quite reckless.
+    japanese:
+      - その 決定 は かなり 無謀 {で も ある}。
+      - その 決定 は かなり 無謀 {で も あり ます}。
+    english_literally: As for that decision, (it) was also quite reckless.
+    competing_grammar:
+      - competing_japanese:
+          - その 決定 は かなり 無謀 だっ た。
+        english: That decision was quite reckless.
+        hint: This simply states the decision was reckless. We're looking for a phrase that implies it
+          was reckless *in addition* to other possible qualities. The original example uses the present
+          tense 'is', not 'was'.
+    scene: Criticizing a past decision.
+    register: formal
+    setting: serious
+    nuance: Implies the decision might have had other negative aspects, but the speaker is highlighting
+      its recklessness as an additional critical point.
+  - english: The tea ceremony is also a form of traditional art.
+    japanese:
+      - 茶道 は 伝統 的 な 芸術 の 一 つ {で も ある}。
+      - 茶道 は 伝統 的 な 芸術 の 一 つ {で も あり ます}。
+    english_literally: As for Sado (tea ceremony), (it) is also one form of traditional art.
+    competing_grammar:
+      - competing_japanese:
+          - 茶道 は 伝統 的 な 芸術 だ。
+        english: The tea ceremony is a traditional art.
+        hint: This merely states it is an art. We want to express that it *also* holds this identity among
+          its various aspects. We're looking for a construction that suggests the tea ceremony is *one
+          of* the traditional arts.
+    scene: Explaining Japanese culture to a foreigner.
+    register: formal
+    setting: academic
+    nuance: Explains a cultural practice by adding another interpretive layer, beyond just "making tea."
+  - english: His kindness is also sometimes a weakness.
+    japanese:
+      - 彼 の 優し さ は 時々 弱み {で も ある}。
+      - 彼 の 優し さ は 時々 弱み {で も あり ます}。
+    english_literally: As for his kindness, (it) is sometimes also a weakness.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 優し さ は 時々 弱み に なる。
+        english: His kindness sometimes becomes a weakness.
+        hint: This implies a transformation or consequence. We're looking for a direct assertion that
+          kindness *is* inherently, in some instances, *also* a weakness, highlighting a dual nature.
+          The original implies 'it exists as a weakness also'.
+    scene: Analyzing a character's personality.
+    register: formal
+    setting: reflective
+    nuance: Points out a duality where a seemingly positive trait can simultaneously have a negative aspect.

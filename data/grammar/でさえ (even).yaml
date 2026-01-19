@@ -1,0 +1,237 @@
+grammar_point: でさえ (even)
+learn_before:
+  - てくれない・てもらえない (indirect request)
+  - てはいられない (cannot afford to)
+  - 大きな・小さな (big・small)
+  - 誰も (no one・nobody)
+meaning: even; even if; even though
+pronunciation:
+  katakana: デサエ
+  romaji: desae
+formation:
+  Noun + でさえ: Used to emphasize an extreme or surprising example.
+  Verb[て] + でさえ: Emphasizes the state or means; less common, implies 'even by doing X' or 'even in the
+    state of X'.
+  Verb[ば] + でさえ: Emphasizes a conditional situation; less common, implies 'even if one does X'.
+jlpt: N2
+etymology: The particle 「で」indicates means, cause, or location. 「さえ」comes from 「添える (そえる)」, meaning 'to
+  add to' or 'to accompany'. Thus, 「でさえ」literally signifies 'even with (that means/state/location), in
+  addition to'. This combination highlights an extreme or surprising example, reinforcing the idea of
+  'at least' or 'minimum' by adding emphasis to the condition or means.
+writeup: |-
+  「でさえ」is a particle combination that serves to emphasize an extreme or surprising example, implying that something is true for all less extreme cases as well. It translates to "even", "even if", or "even though". It is often used to highlight a minimum threshold or an unexpected case. For instance, if even the most difficult task can be done, then easier tasks can certainly be done.
+
+  While similar to 「さえ」, the addition of 「で」can sometimes add a nuance of "even by means of" or "even in this state/condition". It reinforces the idea of "at least" or "minimum". It can also carry a nuance of exasperation or surprise, indicating that something applies to a case where one might least expect it. It can attach to nouns directly, or to the て-form of verbs, or conditional ば-form of verbs, though these are less common.
+false_friends:
+  - term: さえ
+    meaning: even, moreover
+    kind: similar expression
+    nuance: 「さえ」alone can be broader, often emphasizing a minimum requirement or simply an additional
+      item. 「でさえ」specifically emphasizes the condition or means (indicated by 「で」) that something applies
+      to, often highlighting an extreme or unexpected case *within* that condition/means.
+    grammar_point: さえ (even・if only)
+  - term: すら
+    meaning: even, let alone
+    kind: similar expression
+    nuance: 「すら」is more formal and literary than 「でさえ」, often used in negative contexts or to express
+      surprise/disappointment that something applies to an unlikely case. It can imply a strong "not even"
+      or "let alone". 「でさえ」is more common in everyday speech.
+    grammar_point: すら (even)
+  - term: まで
+    meaning: up to, until, even to the extent of
+    kind: similar expression
+    nuance: 「まで」can mean "even" but typically implies reaching a limit or extent. When it means "even",
+      it suggests reaching an extreme point. 「でさえ」is purely emphatic, not necessarily indicating an extent
+      or limit, but rather highlighting an unexpected or extreme example.
+    grammar_point: まで (even to the extent)
+  - term: ですら
+    meaning: even (polite)
+    kind: similar expression
+    nuance: 「ですら」is the polite equivalent of 「でさえ」. It uses the polite copula です before すら. It is typically
+      used in formal or polite contexts, maintaining the strong emphasis on an extreme or surprising case.
+    grammar_point: <suggest>:ですら (even・polite)
+post_false_friends_writeup: While 「さえ」, 「すら」, and 「まで」 can all convey the meaning of "even," they carry
+  distinct nuances. 「さえ」often highlights a minimal condition or a surprising inclusion. 「すら」is more formal
+  and often implies a negative or unexpected outcome, sometimes with a sense of regret or surprise at
+  the unlikelihood. 「まで」suggests reaching an extreme limit or extent. 「でさえ」, on the other hand, emphasizes
+  that something applies even in a specific (often extreme or surprising) condition or context, reinforcing
+  the universality of the statement. For example, 「子供でさえできる」 (Even a child can do it) suggests that if
+  even a child (an extreme case) can do it, anyone can. The polite form of 「でさえ」is usually 「ですら」 or 「でさえあります」.
+examples:
+  - english: Even a child can understand that.
+    japanese:
+      - そんな こと は {子供 で さえ} 分かる。
+      - そんな こと は {子供 で さえ} 分かり ます。
+    english_literally: Such a thing, even a child understands.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと は 子供 さえ 分かる。
+        english: Even a child can understand that.
+        hint: 「さえ」emphasizes inclusion or minimum, but 「でさえ」adds a slight nuance of 'even in the case
+          of' or 'even *by* being a child'. We're emphasizing the subject.
+      - competing_japanese:
+          - そんな こと は 子供 で も 分かる。
+        english: Even a child can understand that.
+        hint: 「でも」can also mean 'even', but it often implies 'even such a thing as X,' rather than 'even
+          X itself.' Here, we're emphasizing the subject.
+    scene: A parent explaining something very simple to an adult who is struggling to grasp it.
+    register: casual
+    setting: informative
+  - english: Even a strong person couldn't carry that.
+    japanese:
+      - それ は {大人 で さえ} 持て ない。
+      - それ は {大人 で さえ} 持て ませ ん。
+    english_literally: That, even an adult cannot hold.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 大人 で も 持て ない。
+        english: That, even an adult cannot hold.
+        hint: 「でも」can express 'even', but 「でさえ」has a stronger nuance of 'even (this extreme case)'. We're
+          looking for emphasis on the specific subject.
+    scene: Two people are struggling to lift a heavy object together.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「大人でさえ」emphasizes that this particular adult, who is typically strong, cannot lift it, implying
+      that it's extremely heavy for anyone.
+  - english: Even the teacher didn't know the answer to that question.
+    japanese:
+      - その 質問 の 答え は、{先生 で さえ} 知ら なかっ た。
+      - その 質問 の 答え は、{先生 で さえ} 知り ませ ん でし た。
+    english_literally: That question's answer, even the teacher didn't know.
+    competing_grammar:
+      - competing_japanese:
+          - その 質問 の 答え は、先生 すら 知ら なかっ た。
+        english: The answer to that question, even the teacher didn't know.
+        hint: 「すら」 is more formal and literary, often implying stronger negative surprise. We're looking
+          for a more common expression stressing the surprising lack of knowledge.
+    scene: Students are discussing a very difficult exam question after the test.
+    register: casual
+    setting: academic
+    nuance: 「先生でさえ」highlights the surprising fact that even the teacher, who is expected to know everything,
+      was unaware, emphasizing the question's difficulty.
+  - english: Even a small mistake can lead to a big problem.
+    japanese:
+      - '{小さな 間違い で さえ}、大きな 問題 に つながる こと が ある。'
+      - '{小さな 間違い で さえ}、大きな 問題 に つながる こと が あり ます。'
+    english_literally: Even a small mistake, sometimes connects to a big problem.
+    competing_grammar:
+      - competing_japanese:
+          - 小さな 間違い から で も、大きな 問題 に つながる こと が ある。
+        english: Even from a small mistake, a big problem can sometimes connect.
+        hint: 「からでも」 implies 'even starting from' or 'even from X'. We're emphasizing the mistake itself
+          as the surprising subject.
+    scene: A team leader giving a warning about the importance of meticulous work to their subordinates.
+    register: formal
+    setting: professional
+    nuance: 「小さな間違いでさえ」emphasizes that even something seemingly insignificant like a small mistake can
+      have serious consequences, reinforcing the need for caution.
+  - english: He's so busy that he doesn't even have time to sleep.
+    japanese:
+      - 彼 は 忙し すぎ て、{寝 て で さえ} い られ ない。
+      - 彼 は 忙し すぎ て、{寝 て で さえ} い られ ませ ん。
+    english_literally: He is too busy, even sleeping, cannot be.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 忙し すぎ て、寝る 時間 さえ ない。
+        english: He's so busy that he doesn't even have time to sleep.
+        hint: This is about not having time *for* sleep. We're emphasizing the act of 'sleeping' itself
+          being impossible as an extreme state.
+      - competing_japanese:
+          - 彼 は 忙し すぎ て、寝る の も 無理 だ。
+        english: He's so busy that even sleeping is impossible.
+        hint: 「〜のも無理だ」means 'it's impossible even to X'. We're specifically emphasizing the condition
+          of 'sleeping' as an extreme impossibility.
+    scene: Colleagues discussing a perpetually overworked co-worker during a break.
+    register: semi-formal
+    setting: professional
+    nuance: 「寝てでさえいられない」emphasizes that he cannot even be *in the state of* sleeping due to his busyness,
+      pushing the limit of his capacity.
+  - english: Even if I apologize, he probably won't forgive me.
+    japanese:
+      - '{謝れ ば で さえ}、彼 は 許し て くれ ない だろう。'
+      - '{謝れ ば で さえ}、彼 は 許し て くれ ない でしょう。'
+    english_literally: Even if I apologize, he probably won't forgive me.
+    competing_grammar:
+      - competing_japanese:
+          - 謝っ て も、彼 は 許し て くれ ない だろう。
+        english: Even if I apologize, he probably won't forgive me.
+        hint: 「〜ても」is a general concessive 'even if'. 「でさえ」adds stronger emphasis to the specific action
+          being done as an extreme or unlikely condition.
+    scene: Someone consulting a friend after a big argument, feeling hopeless.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「謝ればでさえ」highlights the direness of the situation, implying that even the act of apologizing
+      (which should ideally resolve things) won't suffice for forgiveness. This emphasizes the depth of
+      the other person's anger.
+  - english: Even the car broke down in that cold.
+    japanese:
+      - あの 寒 さ で は、{車 で さえ} 動か なく なっ た。
+      - あの 寒 さ で は、{車 で さえ} 動か なく なり まし た。
+    english_literally: In that coldness, even the car stopped moving.
+    competing_grammar:
+      - competing_japanese:
+          - あの 寒 さ で は、車 まで 動か なく なっ た。
+        english: In that coldness, even the car stopped moving (reaching that extent).
+        hint: 「まで」suggests reaching an extreme point or extent. 「でさえ」emphasizes the car itself as an unexpected
+          or extreme case that was affected.
+    scene: People are talking about an extreme cold snap that caused widespread issues.
+    register: casual
+    setting: casual slang
+  - english: Even with a map, it was hard to find the way.
+    japanese:
+      - '{地図 で さえ}、道 が 分から なかっ た。'
+      - '{地図 で さえ}、道 が 分かり ませ ん でし た。'
+    english_literally: Even with a map, the way was not understood.
+    competing_grammar:
+      - competing_japanese:
+          - 地図 あっ て も、道 が 分から なかっ た。
+        english: Even if there was a map, the way was not understood.
+        hint: 「あっても」means 'even if there is'. We're emphasizing 'even *by means of* a map' as an extreme
+          or surprising condition.
+    scene: A group of friends recounting a confusing trip they took to a remote area.
+    register: casual
+    setting: storytelling
+    nuance: 「地図でさえ」implies that the situation was so confusing that even with a normally reliable tool
+      like a map, finding the way was difficult, underscoring the extreme difficulty.
+  - english: Even honesty can sometimes be a disadvantage.
+    japanese:
+      - '{正直 さ で さえ}、時 に は 不利 に なる こと が ある。'
+      - '{正直 さ で さえ}、時 に は 不利 に なる こと が あり ます。'
+    english_literally: Even honesty, sometimes becomes disadvantageous.
+    competing_grammar:
+      - competing_japanese:
+          - 正直 さ で も、時 に は 不利 に なる こと が ある。
+        english: Even honesty, sometimes becomes disadvantageous.
+        hint: 「でも」is more general and can simply state 'even'. 「でさえ」emphasizes the surprising nature of
+          honesty being a disadvantage, highlighting it as an extreme case.
+    scene: A philosopher giving a lecture on ethics and the complexities of moral principles.
+    register: formal
+    setting: academic
+    nuance: 「正直さでさえ」emphasizes that even a universally praised virtue like honesty can have drawbacks
+      in certain situations, highlighting the nuanced nature of morality.
+  - english: I was so hungry, I didn't even care about the taste.
+    japanese:
+      - お腹 が 空き すぎ て、{味 で さえ} どう で も よかっ た。
+      - お腹 が 空き すぎ て、{味 で さえ} どう で も よかっ た です。
+    english_literally: Too hungry, even the taste didn't matter.
+    competing_grammar:
+      - competing_japanese:
+          - お腹 が 空き すぎ て、味 など どう で も よかっ た。
+        english: Too hungry, things like taste didn't matter.
+        hint: 「など」lists examples or can express a sense of 'things like X'. We're emphasizing the *taste
+          itself* as an extreme case of something not cared about.
+    scene: Someone describing their extreme hunger after a long day of strenuous activity.
+    register: casual
+    setting: friendly
+    nuance: 「味でさえ」highlights that the speaker's hunger was so overwhelming that even the fundamental aspect
+      of food, its taste, became irrelevant.
+post_example_writeup: As seen in the examples, 「でさえ」can apply to various nouns and even conjugated verbs
+  to emphasize a surprising or extreme case, demonstrating the broad applicability of the statement. It's
+  particularly useful when you want to convey that if something is true for the most challenging or unlikely
+  scenario, it is certainly true for everything else.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/でさえ

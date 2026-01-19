@@ -1,0 +1,264 @@
+grammar_point: Verb[たり] (representative listing)
+learn_before:
+  - それと (and; also)
+meaning: to do things like A and B; sometimes A, sometimes B
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 読んだりする
+    rarity: common
+    meaning: to do things like reading
+  - conjugation-type: non-past polite (～ます)
+    form: 読んだりします
+    rarity: common
+    meaning: to do things like reading (polite)
+  - conjugation-type: past plain (～た)
+    form: 読んだりした
+    rarity: common
+    meaning: did things like reading
+  - conjugation-type: past polite (～ました)
+    form: 読んだりしました
+    rarity: common
+    meaning: did things like reading (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 読んだりしない
+    rarity: common
+    meaning: don't do things like reading
+  - conjugation-type: negative non-past polite (～ません)
+    form: 読んだりしません
+    rarity: common
+    meaning: don't do things like reading (polite)
+pronunciation:
+  katakana: タリ
+  romaji: tari
+formation:
+  Verb[た] + り + する: Indicates that one does actions like the specified verb(s).
+  Verb[た] + り + Verb[た] + り + する: Lists two or more representative actions, implying other similar actions
+    may also occur. Can also denote alternating actions.
+  Verb[た] + り: Can be used alone at the end of a clause or sentence to imply 'and so on,' suggesting other
+    things happened.
+jlpt: N4
+etymology: The Japanese grammar point 「〜たり」 originates from classical Japanese. The particle 「たり」 itself
+  evolved from a combination of the perfective auxiliary 「つ」 and the verb 「あり」, denoting a state or result.
+  Its modern usage in 「〜たり〜たりする」 to indicate representative or alternating actions stems from this historical
+  background, emphasizing the presence or occurrence of multiple events in a descriptive manner.
+writeup: The grammar pattern 「〜たり〜たりする」 is used to describe a non-exhaustive list of actions or states.
+  It conveys that "things like A and B are done," implying that other similar actions might also occur.
+  This pattern is particularly useful when you want to give a few examples without listing every single
+  thing that happened or is done. It can also convey that actions are performed alternately or repeatedly.
+  For example, 「食べたり飲んだりする」 could mean "to eat and drink (among other things)" or "to sometimes eat and
+  sometimes drink." The context usually clarifies whether it's a representative list or an alternation.
+  While the most common and textbook usage is in the paired form 「〜たり〜たりする」, a single 「〜たり」 can occasionally
+  appear at the end of a clause or sentence, especially in more casual or abbreviated speech, to imply
+  "and so on" or "among other things."
+false_friends:
+  - term: と (and, connects nouns)
+    meaning: and (for an exhaustive list of nouns)
+    kind: often confused with
+    nuance: 「と」 is used to list nouns exhaustively, implying all items are mentioned. 「たり」 is for listing
+      actions representatively, implying other actions might also occur.
+    grammar_point: と (and, connects nouns)
+  - term: や (non-exhaustive list)
+    meaning: and, etc. (for a non-exhaustive list of nouns)
+    kind: often confused with
+    nuance: 「や」 is used for non-exhaustive lists of nouns. 「たり」 is used for non-exhaustive lists of actions.
+    grammar_point: や (non-exhaustive list)
+  - term: そして (and・and then)
+    meaning: and then; and; after that
+    kind: often confused with
+    nuance: 「そして」 connects clauses or sentences, often implying a sequential progression of events. 「たり」
+      lists actions that may or may not be sequential, or that alternate.
+    grammar_point: そして (and・and then)
+  - term: Verb[て] (and then)
+    meaning: and then; doing X and then Y
+    kind: often confused with
+    nuance: The 「て形」 often implies a direct sequence or a causal relationship between actions. 「たり」 simply
+      lists actions as examples or alternations, without necessarily implying order or cause.
+    grammar_point: Verb[て] (and then)
+  - term: 〜ながら・つつ (while doing)
+    meaning: while doing; concurrently
+    kind: similar expression
+    nuance: 「〜ながら」 and 「つつ」 indicate two actions happening simultaneously. 「たり」 lists separate, distinct
+      actions that occur at different times or as examples, not necessarily concurrently.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+post_false_friends_writeup: While particles like 「と」 and 「や」 are used for listing nouns, 「〜たり〜たりする」 is
+  specifically for listing actions, giving a sense of illustrative examples or alternating occurrences.
+  Unlike 「そして」 or the 「て形」, which often imply a strict sequence or causality, 「たり」 allows for a less structured
+  listing, focusing on examples rather than an exhaustive or ordered recounting of events.
+examples:
+  - english: On weekends, I do things like read books and watch movies.
+    japanese:
+      - 週末 は 本 を 読ん だり 映画 を 見 たり し ます。
+      - 週末 は 本 を 読ん だり 映画 を 見 たり する。
+    english_literally: As for weekend, books reading and movies watching do.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 は 本 を 読ん で、映画 を 見 ます。
+          - 週末 は 本 を 読ん で、映画 を 見る。
+        english: On weekends, I read books, and then watch movies.
+        hint: The て形 implies a sequence (first read, then watch). This sentence uses たり to suggest these
+          are just examples of what is done, not necessarily in that order or only those two things. We're
+          looking for representative actions.
+    scene: A student is explaining their typical weekend activities.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: My younger sister sings songs and dances a lot.
+    japanese:
+      - 妹 は よく 歌 を 歌っ たり 踊っ たり し て い ます。
+      - 妹 は よく 歌 を 歌っ たり 踊っ たり する。
+    english_literally: Younger sister often songs singing and dancing is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 妹 は よく 歌 を 歌い ながら 踊っ て い ます。
+          - 妹 は よく 歌 を 歌い ながら 踊っ て いる。
+        english: My younger sister is often singing while dancing.
+        hint: While both actions occur, this sentence implies they happen simultaneously. We're looking
+          for distinct actions that are examples of what she does, not necessarily at the same time. Consider
+          if she sings *and* dances at different times as well.
+    scene: Someone is describing their energetic younger sister to a friend.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+  - english: During the trip, we ate delicious food and saw beautiful scenery.
+    japanese:
+      - 旅行 中 は 美味しい 物 を 食べ たり 綺麗 な 景色 を 見 たり し まし た。
+      - 旅行 中 は 美味しい 物 を 食べ たり 綺麗 な 景色 を 見 たり し た。
+    english_literally: Trip during, delicious things eating and beautiful scenery watching did.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 中 は 美味しい 物 と 綺麗 な 景色 を 楽しみ まし た。
+          - 旅行 中 は 美味しい 物 と 綺麗 な 景色 を 楽しん だ。
+        english: During the trip, I enjoyed delicious food and beautiful scenery.
+        hint: This focuses on enjoying the food and scenery as objects. We're looking for actions performed
+          during the trip, indicating these were some of the things done.
+    scene: A traveler recounts their experiences on a recent trip.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: He sometimes laughs and sometimes cries, so his emotions are very unstable.
+    japanese:
+      - 彼 は 笑っ たり 泣い たり する から、感情 が とても 不 安定 だ。
+      - 彼 は 笑っ たり 泣い たり する から、感情 が とても 不 安定 です。
+    english_literally: He laughs and cries so, emotions are very unstable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 笑う こと も ある し、泣く こと も ある。
+          - 彼 は 笑う こと も ある し、泣く こと も ある ん です。
+        english: He sometimes laughs, and he sometimes cries.
+        hint: This directly states both actions sometimes occur. The target sentence uses たり to express
+          the *alternating* nature of his emotions more dynamically. We're looking for that sense of back-and-forth
+          action.
+    scene: Two friends are discussing a mutual acquaintance's emotional state.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: When I'm nervous, my heart beats fast and my hands shake.
+    japanese:
+      - 緊張 する と、心臓 が ドキドキ し たり 手 が 震え たり し ます。
+      - 緊張 する と、心臓 が ドキドキ し たり 手 が 震える。
+    english_literally: Nervous becoming, heart beats fast and hands shake do.
+    competing_grammar:
+      - competing_japanese:
+          - 緊張 する と、心臓 が ドキドキ し て 手 が 震え ます。
+          - 緊張 する と、心臓 が ドキドキ し て 手 が 震える。
+        english: When I'm nervous, my heart beats fast, and my hands shake.
+        hint: The て形 here implies that these actions happen in direct succession or as a consequence.
+          We're looking for a pattern that lists examples of physical reactions without implying a strict
+          order or cause-and-effect for each item.
+    scene: Someone is describing their physical symptoms of nervousness.
+    register: teineigo (polite)
+    setting: informative
+  - english: Even during exams, some students were talking and laughing.
+    japanese:
+      - 試験 中 に も 関わら ず、話し たり 笑っ たり し て いる 学生 が い た。
+      - 試験 中 に も 関わら ず、話し たり 笑っ たり し て いる 学生 が い まし た。
+    english_literally: Exam during despite, talking and laughing doing students were.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 中 な の に、話し て いる 学生 や 笑っ て いる 学生 が い た。
+          - 試験 中 な の に、話し て いる 学生 や 笑っ て いる 学生 が い まし た。
+        english: Despite being during the exam, there were students talking and students laughing.
+        hint: This phrasing lists the types of students. We're looking to describe the *actions* these
+          students were doing as examples of their inappropriate behavior. Consider the focus on the actions
+          themselves.
+    scene: A teacher is recounting inappropriate student behavior during an exam.
+    register: casual
+    setting: serious
+    conjugation: progressive (～ている)
+  - english: In order to manage stress, I listen to music and take walks.
+    japanese:
+      - ストレス 解消 の 為 に、音楽 を 聞い たり 散歩 し たり し て い ます。
+      - ストレス 解消 の 為 に、音楽 を 聞い たり 散歩 し たり する。
+    english_literally: Stress relief for, music listening and walking doing is.
+    competing_grammar:
+      - competing_japanese:
+          - ストレス 解消 の 為 に、音楽 を 聞い たり、散歩 を する。
+          - ストレス 解消 の 為 に、音楽 を 聞い たり、散歩 を し ます。
+        english: For stress relief, I listen to music, and also take walks.
+        hint: This uses 'たり' to list, but the target sentence explicitly uses 'たり...したりする' to indicate
+          these are *examples* of stress relief methods, implying there might be others. We're looking
+          for that 'doing things like' nuance.
+    scene: A busy professional shares their methods for stress relief.
+    register: teineigo (polite)
+    setting: informative
+  - english: After the meeting, we sometimes go out for drinks and sometimes eat dinner.
+    japanese:
+      - 会議 の 後 は、飲み に 行っ たり 食事 を し たり する こと が あり ます。
+      - 会議 の 後 は、飲み に 行っ たり 食事 を し たり し ます。
+    english_literally: Meeting after, drinking going and meal doing sometimes exist.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 後 は、飲み に 行く こと も ある し、食事 を する こと も ある。
+          - 会議 の 後 は、飲み に 行く こと も ある し、食事 を する こと も あり ます。
+        english: After the meeting, there are times when we go for drinks, and there are times when we
+          have dinner.
+        hint: This formulation explicitly states that both actions sometimes happen. The target sentence
+          uses たり to convey the idea of these two activities *alternating* or being examples of post-meeting
+          activities. We're looking for that sense of alternation/representative examples.
+    scene: A team leader explains the common post-meeting routines to a new employee.
+    register: semi-formal
+    setting: professional
+  - english: My grandfather spends his days reading newspapers and gardening.
+    japanese:
+      - 祖父 は 新聞 を 読ん だり 庭 仕事 を し たり し て 毎日 を 過ごし て い ます。
+      - 祖父 は 新聞 を 読ん だり 庭 仕事 を し たり し て 毎日 を 過ごし て いる。
+    english_literally: Grandfather newspaper reading and garden work doing everyday passing is.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 毎日 新聞 を 読む し、庭 仕事 も する。
+          - 祖父 は 毎日 新聞 を 読む し、庭 仕事 も し ます。
+        english: My grandfather reads newspapers every day, and he also does gardening.
+        hint: This states two facts about the grandfather's daily routine. The target sentence uses たり
+          to convey that these are representative *examples* of how he spends his days, implying other
+          quiet activities. We're looking for that illustrative nature.
+    scene: Someone describes their elderly grandfather's daily hobbies.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The use of 「毎日 を 過ごしています」 (spending his days) combined with 「読んだり 庭 仕事 を したり」 indicates these
+      are typical, habitual activities, but not necessarily the only things he does. It paints a picture
+      of his general routine.
+  - english: When I couldn't decide, I thought about it, and sometimes I would talk to my friends.
+    japanese:
+      - 悩ん だ 時 は、考え たり 友達 と 話し たり し まし た。
+      - 悩ん だ 時 は、考え たり 友達 と 話し たり し た。
+    english_literally: When worried, thinking and friends talking did.
+    competing_grammar:
+      - competing_japanese:
+          - 悩ん だ 時 は、考え た し、友達 と 話し た。
+          - 悩ん だ 時 は、考え た し、友達 と 話し まし た。
+        english: When I was worried, I thought, and I also talked to my friends.
+        hint: The particle し lists reasons or additional facts. The target sentence uses たり to show these
+          were *examples* of actions taken when worried, possibly alternating or mixed. We're looking
+          for the sense of illustrative coping mechanisms.
+    scene: A person reflecting on how they handled past dilemmas.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+post_example_writeup: As seen in the examples, 「〜たり〜たりする」 allows for flexibility in describing actions.
+  It avoids the rigidity of an exhaustive list and is particularly effective when conveying a sense of
+  variety, habit, or alternation in activities. Remember that the verb `する` at the end can be conjugated
+  to match the tense and politeness level required by the context.

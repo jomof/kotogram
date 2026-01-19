@@ -1,0 +1,367 @@
+grammar_point: とみえる (seems from observation)
+learn_before:
+  - にみえる (to look like)
+meaning: It seems that, it appears that, one can conclude that
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: とみえる
+    rarity: common
+    meaning: appears to be
+  - conjugation-type: non-past polite (～ます)
+    form: とみえます
+    rarity: common
+    meaning: appears to be (polite)
+  - conjugation-type: negative plain (～ない)
+    form: とみえない
+    rarity: common
+    meaning: does not appear to be
+  - conjugation-type: negative non-past polite (～ません)
+    form: とみえません
+    rarity: common
+    meaning: does not appear to be (polite)
+  - conjugation-type: past plain (～た)
+    form: とみえた
+    rarity: common
+    meaning: appeared to be
+  - conjugation-type: past polite (～ました)
+    form: とみえました
+    rarity: common
+    meaning: appeared to be (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: とみえなかった
+    rarity: common
+    meaning: did not appear to be
+  - conjugation-type: negative past polite (～ませんでした)
+    form: とみえませんでした
+    rarity: common
+    meaning: did not appear to be (polite)
+  - conjugation-type: te-form (～て)
+    form: とみえて
+    rarity: less common
+    meaning: appearing to be
+  - conjugation-type: conditional (～ば)
+    form: とみえれば
+    rarity: uncommon
+    meaning: if it appears to be
+  - conjugation-type: conditional (～たら)
+    form: とみえたら
+    rarity: uncommon
+    meaning: if it appeared to be
+  - conjugation-type: volitional (～よう)
+    form: とみえよう
+    rarity: very rare
+    meaning: let's suppose it appears to be
+  - conjugation-type: volitional polite (～ましょう)
+    form: とみえましょう
+    rarity: very rare
+    meaning: let's suppose it appears to be (polite)
+pronunciation:
+  katakana: トミエル
+  romaji: to mieru
+formation:
+  '[Clause] + とみえる': Expresses a deduction or conclusion based on available information; 'it seems that,'
+    'it appears that.'
+jlpt: N4
+etymology: 「とみえる」 combines the particle 「と」, indicating a conclusion or result, with the verb 「見える(みえる)」,
+  meaning "to appear" or "to be visible". Essentially, it conveys the idea that something appears to be
+  a certain way, leading to a particular conclusion.
+writeup: |-
+  「とみえる」 (typically written in hiragana) is a grammatical construction combining the particle と, which marks a conclusion or quotation, with the verb 見える (みえる), meaning 'to appear' or 'to be visible.' Literally, it conveys 'from what is visible/appears, one can conclude that...' However, it is best understood as expressing a reasoned deduction or conclusion based on observable evidence or available information. It translates to 'it seems that,' 'it appears that,' or 'one can conclude that.'
+
+  This expression is always appended directly after the clause that forms the basis of the deduction. When the preceding clause ends with a noun or a な-adjective, it requires だ before とみえる. For example, 「学生だ とみえる」(it seems to be a student) or 「静かだ とみえる」(it seems to be quiet).
+
+  While とみえる indicates conjecture, it carries a degree of confidence, implying that the speaker has specific reasons or evidence that led them to this conclusion. It is not a mere guess, but a logical inference drawn from what is perceived. It is generally applicable across registers, though the politeness level of 見える can be adjusted (e.g., とみえます for polite forms).
+
+  The particle と, in this context, functions to "sum up" the preceding clause as a direct conclusion. This is similar to how と marks a quotation (summing up what was said or thought) or accompanies things that are 'together' (summing up a group of items or people).
+false_friends:
+  - term: ようだ
+    meaning: it seems that, it appears that, it looks like
+    kind: similar expression
+    nuance: 「ようだ」 expresses a general impression or conjecture, often with less direct evidence or a lower
+      degree of certainty than 「とみえる」. It can also imply a similarity or resemblance.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: らしい
+    meaning: seems like, apparently, I heard
+    kind: similar expression
+    nuance: 「らしい」 conveys information based on hearsay, rumors, or what is generally characteristic of
+      something, implying an indirect source or common understanding, rather than a direct, evidence-based
+      deduction like 「とみえる」.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: に見える
+    meaning: to look, to seem, to appear
+    kind: similar expression
+    nuance: 「に見える」 describes how something visually appears or strikes one's eye, focusing on perception
+      or a subjective impression. In contrast, 「とみえる」 is used for a reasoned conclusion or deduction based
+      on observable facts or available information.
+    grammar_point: にみえる (to look like)
+  - term: そう
+    meaning: looks like, appears, seems
+    kind: similar expression
+    nuance: 「そう」 indicates an immediate impression or appearance based on sensory perception, often directly
+      attached to a verb or adjective stem. Unlike 「とみえる」, it doesn't necessarily imply a reasoned deduction
+      from evidence, but rather how something outwardly presents itself.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+post_false_friends_writeup: The key to differentiating 「とみえる」 from similar expressions lies in its implication
+  of a reasoned deduction. Unlike 「ようだ」 or 「らしい」, which can convey a sense of uncertainty, indirect information,
+  or characteristic behavior, 「とみえる」 suggests that the speaker has considered available information and
+  arrived at a relatively confident conclusion based on observable evidence. 「に見える」, on the other hand,
+  focuses on visual appearance, describing how something looks rather than a logical inference about its
+  state or cause. Lastly, 「そう」 expresses an an immediate sensory impression, lacking the deeper deductive
+  process of 「とみえる」.
+examples:
+  - english: She is always smiling, so it seems she has no worries.
+    japanese:
+      - 彼女 は いつ も 笑顔 だ から、悩み が ない {と みえる}。
+      - いつ も 笑顔 だ から、彼女 は 悩み なんて ない {と みえる}。
+      - 彼女 は いつ も 笑顔 だ ね。悩み は ない {と みえる}。
+    english_literally: Because she is always smiling, it appears she has no worries.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も 笑顔 だ から、悩み が ない {よう だ}。
+        english: Because she is always smiling, it seems she has no worries (general impression).
+        hint: 「ようだ」 implies a more general impression or conjecture, often with less direct evidence or
+          a lower degree of certainty than とみえる. We're looking for a reasoned conclusion based on direct
+          observation.
+    scene: Observing a friend's consistently cheerful demeanor.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The use of とみえる here implies a deduction based on the repeated observation of her always smiling,
+      leading to the conclusion that she likely has no worries. This is a reasoned inference, not a mere
+      guess.
+    etymology: The formation combines the casual observation of the friend's state (いつも笑顔だ) with とみえる
+      to form a conclusive statement about their inner state, reflecting the logical flow inherent in
+      the grammar point's structure.
+  - english: The customer seems to be in a hurry. Let's hurry so we don't keep them waiting.
+    japanese:
+      - お 客 様 は 急い で いる {と みえ ます}。お 待た せ し ない よう に、急ぎ ましょう。
+      - お 客 様 が 急い で いらっしゃる {と みえ ます}。お 待た せ し ない よう、急ぎ ましょう。
+      - 急い で いらっしゃる お 客 様 {と みえ ます}。早急 に ご 対応 し ましょう。
+    english_literally: The customer appears to be hurrying. So that we do not make them wait, let's hurry.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 は 急い で いる {よう です}。お 待た せ し ない よう に、急ぎ ましょう。
+        english: The customer seems to be in a hurry (general impression). Let's hurry so we don't keep
+          them waiting.
+        hint: 「ようです」 implies a general impression or conjecture. 「とみえます」 indicates a more direct deduction
+          based on observable behavior. We're looking for a clear deduction based on observation.
+    scene: A store clerk noticing a customer's actions and inferring their state.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: In a professional setting, the clerk uses the polite とみえます to convey a respectful observation
+      and a confident deduction about the customer's state, which then leads to a necessary course of
+      action. This shows keen observation and proactive service.
+    etymology: The polite form とみえます enhances the professional context, signifying a respectful but firm
+      deduction based on the customer's actions (急いでいる). The instruction to hurry (急ぎましょう) directly follows
+      from this observation.
+  - english: He didn't come to yesterday's party, so it seemed he was busy.
+    japanese:
+      - 昨日 の パーティー に は 来 なかっ た から、彼 は 忙しかっ た {と みえ た}。
+      - 昨日 の パーティー、彼 来 なかっ た でしょ。忙しかっ た {と みえ た} よ。
+      - 彼、昨日 の パーティー 来 なかっ た から、忙しかっ た {と みえ た} ん だ ね。
+    english_literally: Because he did not come to yesterday's party, it appeared he was busy.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の パーティー に は 来 なかっ た から、彼 は 忙しかっ た {らしい}。
+        english: Because he didn't come to yesterday's party, apparently he was busy (hearsay/characteristic).
+        hint: 「らしい」 suggests the information is based on hearsay or what is characteristic. 「とみえた」 implies
+          a deduction made from direct evidence. We're looking for a deduction based on a factual event.
+    scene: Friends discussing why someone was absent from an event.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: The past tense とみえた indicates a deduction made about a past event, specifically his absence
+      from the party. The casual tone suits a conversation among friends, and the deduction feels grounded
+      in the specific past fact.
+    etymology: The use of the past tense とみえた reflects a past deduction. The causative particle から (because)
+      connects the factual absence from the party to the logical conclusion of him being busy.
+  - english: The lights in the room are off. It seems no one has returned home yet.
+    japanese:
+      - 部屋 の 電気 が 消え て いる。まだ 誰 も 帰宅 し て い ない {と みえる}。
+      - 部屋 の 電気 が 消え てる ね。まだ 誰 も 帰っ て い ない {と みえる}。
+      - 電気 消え てる から、まだ 誰 も 家 に 帰っ て ない {と みえる}。
+    english_literally: The room's lights are off. It appears no one has returned home yet.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 の 電気 が 消え て いる。まだ 誰 も 帰宅 し て い ない {よう だ}。
+        english: The room's lights are off. It seems no one has returned home yet (general impression).
+        hint: 「ようだ」 expresses a general impression. 「とみえる」 indicates a deduction based on concrete evidence.
+          We're looking for a direct inference from an observable fact.
+    scene: Arriving home and finding the house dark.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: This casual expression indicates a straightforward deduction based on direct visual evidence
+      (the lights being off), leading to a confident conclusion about the house's occupancy.
+    etymology: The direct observation 「部屋の電気が消えている」 immediately leads to the deduction using とみえる. This
+      sentence structure demonstrates the point's function in forming conclusions from observable facts.
+  - english: That team's practice is very intense. It seems they have a strong will to win.
+    japanese:
+      - あの チーム の 練習 は とても 厳しい。勝利 へ の 強い 意志 が ある {と みえる}。
+      - あの チーム の 練習 は かなり 厳しい ね。勝利 へ の 強い 意志 が ある {と みえる}。
+      - 練習 が あんな に 厳しい なら、きっと 勝利 へ の 強い 意志 が ある {と みえる} よ。
+    english_literally: That team's practice is very intense. It appears there is a strong will toward
+      victory.
+    competing_grammar:
+      - competing_japanese:
+          - あの チーム の 練習 は とても 厳しい。勝利 へ の 強い 意志 が ある {よう だ}。
+        english: That team's practice is very intense. It seems they have a strong will to win (general
+          impression).
+        hint: 「ようだ」 gives a general impression. 「とみえる」 implies a more concrete deduction based on strong
+          evidence. We're looking for a reasoned conclusion from observation.
+    scene: A coach observing a rival team's training session.
+    register: semi-formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: Used by a coach, this semi-formal phrasing implies an informed, professional deduction based
+      on observing intense training, suggesting a deep understanding of the effort required for success.
+    etymology: The observation of rigorous practice (練習はとても厳しい) directly supports the inference of a strong
+      will to win (強い意志がある), illustrating とみえる's role in connecting evidence to logical conclusions.
+  - english: A huge shadow is visible in the sky. It appears to be a UFO.
+    japanese:
+      - 空 に 巨大 な 影 が 見える。あれ は UFO {と みえる}。
+      - 空 に 巨大 な 影 が 見える よ。あれ は UFO {と みえる} ね。
+      - ほら、空 に 巨大 な 影 が！あれ、UFO {と みえる} ぜ。
+    english_literally: A huge shadow is visible in the sky. That appears to be a UFO.
+    competing_grammar:
+      - competing_japanese:
+          - 空 に 巨大 な 影 が 見える。あれ は UFO {に 見える}。
+        english: A huge shadow is visible in the sky. That looks like a UFO (visual appearance).
+        hint: 「に見える」 describes how something visually appears or strikes one's eye. 「とみえる」 is used for
+          a reasoned conclusion or deduction based on observable facts. We're looking for a deduction
+          about what something *is*.
+      - competing_japanese:
+          - 空 に 巨大 な 影 が 見える。あれ は UFO {そう だ}。
+        english: A huge shadow is visible in the sky. That looks like a UFO (immediate impression).
+        hint: 「そう」 describes an immediate appearance based on sensory perception. 「とみえる」 implies a more
+          reasoned deduction from observable facts. We're looking for a conclusion drawn from the visual
+          evidence.
+    scene: Someone spotting an unusual object in the sky and making an immediate deduction.
+    register: casual
+    setting: excited
+    conjugation: dictionary (plain non-past)
+    nuance: The excited tone emphasizes an immediate deduction based on a striking visual, even if the
+      conclusion is speculative. It shows how とみえる can express a direct inference from perception.
+    etymology: The visual input 「巨大な影が見える」 directly triggers the deduction about the object's identity,
+      using とみえる to express this immediate logical leap based on appearance.
+  - english: She's been silent and looking down. It seems she has something to worry about, so it's hard
+      to talk to her.
+    japanese:
+      - 彼女 は ずっと 黙っ て 下 を 向い て いる。何 か 心配 事 が ある {と みえ て}、話しかけ にくい。
+      - 彼女、黙っ て 下 を 向い てる なあ。心配 事 が ある {と みえ て}、話しかけ づらい な。
+      - ずっと 下 を 向い て 黙っ てる よ。何 か 悩み が ある {と みえ て}、声 かけ づらい な。
+    english_literally: She is continuously silent and looking down. Appearing to have some worries, it
+      is difficult to talk to her.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ずっと 黙っ て 下 を 向い て いる。何 か 心配 事 が ある {よう で}、話しかけ にくい。
+        english: She's been silent and looking down. It seems she has something to worry about (general
+          impression), so it's hard to talk to her.
+        hint: The te-form of 「ようだ」 implies a general impression acting as a cause. 「とみえて」 indicates a
+          more direct deduction based on observable behavior that causes the subsequent difficulty. We're
+          looking for a causal relationship based on a clear inference.
+    scene: Observing a friend's unusual quietness and inferring their emotional state.
+    register: casual
+    setting: sympathetic
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The male speaker's observation of her silent and downtrodden posture, expressed with 「ずっと黙って下を向いている」,
+      leads to the deduction 「心配事がある とみえて」. The use of the te-form とみえて implies that this observation
+      and deduction are the cause of the subsequent difficulty in approaching her, conveying a subtle,
+      sympathetic understanding. While 「とみえて」 is gender-neutral, the overall sentence structure and implied
+      empathy are common in casual speech for an older male observing a younger female's distress.
+    etymology: The te-form of とみえる here acts as a conjunctive, indicating that the deduction (her having
+      worries) is the reason or cause for the speaker's subsequent action (finding it hard to talk to
+      her). This shows its versatility in linking cause and effect based on observation.
+  - english: He hasn't been eating much lately. It seems he's not feeling well.
+    japanese:
+      - 彼 は 最近 あまり 食べ て い ない。体調 が 良く ない {と みえる}。
+      - 最近、彼 あまり 食べ て ない ね。体調 が 良く ない {と みえる}。
+      - 彼、この頃 食欲 ない ん だ。体調 が 悪い {と みえる} なあ。
+    english_literally: He recently is not eating much. It appears his physical condition is not good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 最近 あまり 食べ て い ない。体調 が 良く ない {よう だ}。
+        english: He hasn't been eating much lately. It seems he's not feeling well (general impression).
+        hint: 「ようだ」 implies a more general impression or conjecture. 「とみえる」 indicates a more direct deduction
+          based on observable behavior. We're looking for a clear deduction from observation.
+      - competing_japanese:
+          - 彼 は 最近 あまり 食べ て い ない。体調 が 良く ない {そう だ}。
+        english: He's yawning a lot. He looks unwell (immediate visual impression).
+        hint: 「そう」 describes an immediate appearance based on sensory perception. 「とみえる」 implies a more
+          reasoned deduction from observable facts. We're looking for a conclusion drawn from the change
+          in eating habits.
+    scene: A colleague observing another colleague's change in eating habits.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker, a female, observes a colleague's lack of appetite 「最近あまり食べていない」 and makes a direct
+      inference about his health 「体調が良くないとみえる」. This reflects a common compassionate observation often
+      made in close-knit work or social environments.
+    etymology: This example showcases a common use of とみえる to infer an internal state (体調が良くない) from external,
+      observable behavior (あまり食べていない). It's a simple, direct application of the grammar point's deductive
+      function.
+  - english: The train was delayed for over an hour. It seemed there was an accident somewhere.
+    japanese:
+      - 電車 が 1 時間 以上 遅れ た。どこ か で 事故 が あっ た {と みえ た}。
+      - 電車、1 時間 以上 遅れ た よ ね。どこ か で 事故 が あっ た {と みえ た} な。
+      - 1 時間 も 電車 が 遅れ た から、どこ か で 事故 が あっ た {と みえ た} な。
+    english_literally: The train was delayed over one hour. It appeared there was an accident somewhere.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 1 時間 以上 遅れ た。どこ か で 事故 が あっ た {らしい}。
+        english: The train was delayed for over an hour. Apparently, there was an accident somewhere (based
+          on hearsay).
+        hint: 「らしい」 suggests the information is based on hearsay or common knowledge. 「とみえた」 implies a
+          direct deduction based on the observed fact of the delay itself. We're looking for a deduction
+          from an observable past event.
+    scene: Someone reflecting on a past train delay.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: This deduction, 「どこかで事故があったとみえた」, is made based on the concrete, observable fact of the train's
+      extensive delay 「電車が1時間以上遅れた」. It highlights how とみえる is used to infer a cause from an an observed
+      effect.
+    etymology: The past tense とみえた is used to express a deduction about a past event, directly linking
+      the observable effect (delay) to the inferred cause (accident). This demonstrates the logical inferential
+      power of the grammar point.
+  - english: He's yawning a lot. It seems he didn't get enough sleep last night.
+    japanese:
+      - 彼 は あくび ばかり し て いる。昨日 は あまり 眠れ なかっ た {と みえる}。
+      - 彼、あくび ばかり し てる ね。昨日 は あまり 眠れ なかっ た {と みえる}。
+      - あくび ばかり し て る よ。きっと 昨日 は 眠れ なかっ た {と みえる} な。
+    english_literally: He is only yawning. It appears he could not sleep much yesterday.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は あくび ばかり し て いる。昨日 は あまり 眠れ なかっ た {よう だ}。
+        english: He's yawning a lot. It seems he didn't get enough sleep last night (general impression).
+        hint: 「ようだ」 implies a more general impression or conjecture, often with less direct evidence or
+          a lower degree of certainty than とみえる. We're looking for a reasoned conclusion based on direct
+          observation.
+      - competing_japanese:
+          - 彼 は あくび ばかり し て いる。昨日 は あまり 眠れ なかっ た {そう だ}。
+        english: He's yawning a lot. He looks like he didn't get enough sleep last night (immediate impression).
+        hint: 「そう」 describes an immediate appearance based on sensory perception. 「とみえる」 implies a more
+          reasoned deduction from observable facts. We're looking for a conclusion drawn from his yawning.
+    scene: Two friends are observing another friend during a casual gathering.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The female speaker observes her male friend's repeated yawning 「あくびばかりしている」 and deduces that
+      he didn't sleep much, expressing a common empathetic observation in a casual setting.
+    etymology: This example highlights how とみえる is used to infer an internal state (lack of sleep) from
+      an external, observable behavior (yawning). It's a simple, direct application of the grammar point's
+      deductive function.
+post_example_writeup: As these examples demonstrate, 「とみえる」 is highly versatile. It consistently implies
+  a conclusion drawn from observable evidence, distinguishing it from expressions that convey more general
+  impressions or hearsay. Pay attention to the preceding clause, as it always provides the factual basis
+  for the deduction, whether it's a state, an action, or a past event.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とみえる

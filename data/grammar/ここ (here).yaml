@@ -1,0 +1,226 @@
+grammar_point: ここ (here)
+matcher: ⌈ˢここᵖpronᵇここᵈ此処ʳココ⌉
+matcher_enforce_examples: true
+learn_before:
+  - '[Verb-stem][Place noun] (location where action occurs)'
+meaning: here, this place
+pronunciation:
+  katakana: ココ
+  romaji: koko
+formation:
+  ここ: Indicates the location physically close to the speaker.
+jlpt: N5
+etymology: The word 「ここ」 originates from the ancient Japanese demonstrative series, where the 'ko-' prefix
+  signifies proximity to the speaker. The repetition of 'ko' further emphasizes the immediacy and specificity
+  of 'this place,' establishing a direct connection to the speaker's spatial context. This pattern is
+  consistent across many Japanese demonstratives, helping to define relative positions.
+writeup: 「ここ」 is a fundamental demonstrative pronoun in Japanese, meaning 'here' or 'this place.' It is
+  part of the 'ko-so-a-do' system of demonstratives, where 'ko-' words indicate something close to the
+  speaker. 「ここ」 is used when the speaker is referring to their current location, a specific spot they
+  are pointing to, or even a particular point within a conversation or written text. It is versatile and
+  can be used in both casual and formal settings. Understanding 「ここ」 is essential for expressing spatial
+  relationships and is a cornerstone of basic Japanese communication.
+false_friends:
+  - term: そこ
+    meaning: there (near listener)
+    kind: similar expression
+    nuance: 「そこ」 refers to a place near the listener or a place that is mutually understood by both the
+      speaker and the listener, but not necessarily near the speaker.
+    grammar_point: そこ (there)
+  - term: あそこ
+    meaning: over there (far from both)
+    kind: similar expression
+    nuance: 「あそこ」 refers to a place that is distant from both the speaker and the listener.
+    grammar_point: あそこ (over there)
+  - term: どこ
+    meaning: where?
+    kind: similar expression
+    nuance: 「どこ」 is an interrogative pronoun used to ask 'where?' It does not specify a location but rather
+      seeks information about one.
+    grammar_point: どこ (where)
+  - term: こちら
+    meaning: this way (polite)
+    kind: similar expression
+    nuance: While 「こちら」 can also mean 'here,' it is a more polite and general term. It can refer to a
+      larger area, a direction, or even a person or group, unlike 「ここ」 which strictly denotes a specific
+      physical location.
+    grammar_point: こちら (this way, formal)
+post_false_friends_writeup: While 「ここ」 specifically designates the speaker's immediate location, it is
+  important to distinguish it from other demonstratives. 「そこ」 indicates a place near the listener or a
+  commonly known location, and 「あそこ」 points to a place distant from both speaker and listener. 「どこ」 is
+  used for inquiries about location. Furthermore, 「こちら」, though often translated as 'here,' carries a
+  more polite nuance and can refer to a direction, person, or organization, unlike the precise spatial
+  reference of 「ここ」.
+examples:
+  - english: This is my house.
+    japanese:
+      - '{ここ} は 私 の 家 です。'
+      - '{ここ} は 私 の 家 だ。'
+      - '{ここ} 私 の 家。'
+    english_literally: This place, as for, my house is.
+    competing_grammar:
+      - competing_japanese:
+          - あれ は 私 の 家 です。
+        english: That over there is my house.
+        hint: We are specifically indicating a place that is 'here', close to the speaker. 「あれ」 refers
+          to something far away from both the speaker and listener.
+    scene: A student points to their new house while talking to a friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Please sit here.
+    japanese:
+      - '{ここ} に 座っ て ください。'
+      - '{ここ} に お 座り ください。'
+      - '{ここ} に 座っ て。'
+      - '{ここ} に 座れ。'
+    english_literally: Here, at, please sit.
+    competing_grammar:
+      - competing_japanese:
+          - そっち に 座っ て ください。
+        english: Please sit over there (in that direction).
+        hint: We are indicating a very specific spot right next to the speaker. 「そっち」 refers to a general
+          direction or a spot near the listener, not immediately 'here'.
+    scene: A host offers a seat to a guest entering their home.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The bus stop is right here.
+    japanese:
+      - バス 停 は ちょうど {ここ} です。
+      - バス 停 は ちょうど {ここ} だ。
+      - バス 停 は まさに {ここ} だ。
+    english_literally: Bus stop, as for, just here is.
+    competing_grammar:
+      - competing_japanese:
+          - バス 停 は その 辺 です。
+        english: The bus stop is around there.
+        hint: We are pointing to the exact spot. 「その辺」 means 'around there' and is less precise.
+    scene: Someone giving precise directions to a lost tourist on the street.
+    register: teineigo (polite)
+    setting: informative
+  - english: So, let's start from here.
+    japanese:
+      - じゃあ、{ここ} から 始め ましょう。
+      - じゃあ、{ここ} から 始めよう。
+      - で は、{ここ} から 始め ましょう。
+    english_literally: Well then, from here, let's begin.
+    competing_grammar:
+      - competing_japanese:
+          - じゃあ、これ から 始め ましょう。
+        english: Well then, let's start from now (this thing).
+        hint: We are referring to a specific point or phase in the discussion or plan. 「これから」 indicates
+          starting from the present moment or 'this matter' rather than 'this place/point'.
+    scene: A project manager addressing their team, indicating the current stage of work.
+    register: teineigo (polite)
+    setting: professional
+  - english: I work here.
+    japanese:
+      - 私 は {ここ} で 働い て い ます。
+      - 私 は {ここ} で 働い て いる。
+      - '{ここ} で 働い て いる。'
+      - 私 は {ここ} で 働い て いる ん だ。
+    english_literally: I, as for, here, at, am working.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は この 会社 で 働い て い ます。
+        english: I work at this company.
+        hint: The focus is on the direct location rather than the organization. 「この 会社」 specifies the
+          company itself.
+    scene: A person explaining where they are employed during a casual conversation.
+    register: teineigo (polite)
+    setting: informative
+  - english: Is the entrance here?
+    japanese:
+      - 入り口 は {ここ} です か。
+      - 入り口 は {ここ} か。
+      - 入り口 は {ここ} で ござい ます か。
+    english_literally: Entrance, as for, here is question?
+    competing_grammar:
+      - competing_japanese:
+          - 入り口 は どこ です か。
+        english: Where is the entrance?
+        hint: The speaker believes the entrance is nearby and is seeking confirmation, rather than asking
+          for the general location. 「どこ」 is a general 'where'.
+    scene: Someone pointing to a door and asking if it's the right one.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: This place is hot, but that place is cool.
+    japanese:
+      - '{ここ} は 暑い けど、そこ は 涼しい。'
+      - '{ここ} は 暑い、そこ は 涼しい。'
+      - '{ここ} は 暑い です が、そこ は 涼しい です。'
+    english_literally: Here, as for, hot, but, there, as for, cool.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 暑い けど、その 部屋 は 涼しい。
+        english: This room is hot, but that room is cool.
+        hint: The sentence uses general place terms, not specific nouns for rooms. 「この 部屋」 and 「その 部屋」
+          specify 'this room' and 'that room'.
+    scene: Two friends discussing the temperature difference between two rooms they are in.
+    register: casual
+    setting: friendly
+  - english: It hurts right here.
+    japanese:
+      - '{ここ} が 痛い です。'
+      - '{ここ} が 痛い。'
+      - ちょうど {ここ} が 痛い です。
+    english_literally: Here, subject, painful is.
+    competing_grammar:
+      - competing_japanese:
+          - この 辺り が 痛い です。
+        english: Around here, it hurts.
+        hint: The speaker is pinpointing the exact spot of pain. 「この 辺り」 means 'around this area' and
+          is less specific.
+    scene: A patient showing the doctor where their pain is located.
+    register: teineigo (polite)
+    setting: serious
+  - english: I'll wait right here.
+    japanese:
+      - 私 は {ここ} で 待っ て い ます。
+      - 私 は {ここ} で 待っ て いる。
+      - '{ここ} で 待っ てる。'
+      - 私 は {ここ} で 待っ てる よ。
+    english_literally: I, as for, here, at, am waiting.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は あそこ で 待っ て い ます。
+        english: I'll wait over there.
+        hint: The speaker intends to wait at their current immediate location. 「あそこ」 indicates a place
+          far from both the speaker and listener.
+    scene: A person reassuring a friend that they will not move from their current spot.
+    register: casual
+    setting: friendly
+  - english: The most important thing is what we do from here.
+    japanese:
+      - 一番 大切 な の は、{ここ} から どう する か です。
+      - 一番 大切 な の は、{ここ} から どう する か だ。
+      - 最も 大切 な 点 は、{ここ} から の 動き です。
+    english_literally: Most important thing, as for, from here, how to do, is.
+    competing_grammar:
+      - competing_japanese:
+          - 一番 大切 な の は、これ から どう する か です。
+        english: The most important thing is what we do from now on.
+        hint: The speaker is referring to the current point or stage of the situation, not merely the
+          present moment. 「これから」 is more about 'from now' or 'from this point in time'.
+    scene: A coach giving a motivational speech to their team after a setback.
+    register: formal
+    setting: inspirational
+  - english: Come here!
+    japanese:
+      - '{ここ} へ 来 て！'
+      - '{ここ} に 来 て！'
+      - '{ここ} に 来い！'
+      - '{ここ} に 来 なさい。'
+    english_literally: Here, to, come!
+    competing_grammar:
+      - competing_japanese:
+          - こっち へ 来 て！
+        english: Come this way!
+        hint: The speaker is commanding someone to come to their exact location. 「こっち」 is a more general
+          'this direction' and can be less direct.
+    scene: A parent calling their child to their side.
+    register: casual
+    setting: commanding
+    speaker_age: older
+    nuance: The use of the plain imperative 「来て」 indicates a casual or familiar relationship, often used
+      by an older person to a younger one. 「ここ へ」 specifically directs the movement to the speaker's exact
+      location.

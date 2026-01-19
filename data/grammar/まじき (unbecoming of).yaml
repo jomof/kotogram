@@ -1,0 +1,270 @@
+grammar_point: まじき (unbecoming of)
+learn_before:
+  - Verb[(ら)れる] (adversative passive)
+  - Verb[imperative] (imperative)
+  - として (as)
+meaning: Unbecoming of, Unworthy of, Not proper for, Should not, Must not, Cannot
+pronunciation:
+  katakana: マジキ
+  romaji: majiki
+formation:
+  Noun + に + ある + {まじき} + Noun: Describes an action or attribute that is unacceptable or unbecoming for
+    someone in a particular role or position.
+  Noun + と し て + ある + {まじき} + Noun: Similar to above, but emphasizes the role or capacity in which the
+    action is unbecoming.
+  Verb (dictionary form) + {まじき}: Describes something as 'unforgivable' or 'intolerable'.
+jlpt: N1
+etymology: The grammar point 「まじき」 is the attributive form of 「まじ」, an old-fashioned auxiliary verb expressing
+  prohibition or strong negation. 「まじ」 itself is rarely used in modern conversation, having been largely
+  replaced by 「まい」. 「まじき」 survives in formal expressions, often conveying the idea of something being
+  'unforgivable' or 'unacceptable'.
+writeup: The grammar point 「まじき」 is a formal expression indicating that something is unbecoming, unworthy,
+  or unacceptable for a particular person or role. It carries a strong sense of disapproval or prohibition.
+  The most common pattern is 「(A) に ある {まじき} (B)」, meaning "(B) is unbecoming of (A)". 「に」 can sometimes
+  be replaced by 「と し て」, emphasizing the role or capacity in which the action is unacceptable. Another
+  common pattern is 「許す {まじき}」, meaning "unforgivable" or "intolerable". This grammar point is generally
+  used in formal writing and speech. Its rigid structure and strong condemnatory nuance make it unsuitable
+  for casual conversation.
+false_friends:
+  - term: まい (won't・probably not)
+    meaning: will not, do not intend to, probably not, should not, must not
+    kind: similar expression
+    nuance: 「まい」 is a more common, modern equivalent for expressing negative volition or strong negative
+      inference. While it can convey "should not" or "must not" similar to 「まじき」, it's broader in usage
+      and not specifically tied to being "unbecoming of" a role like 「まじき」. It's often used in conjunction
+      with a speaker's intention (e.g., 「もう 行く まい」 - I won't go anymore) or a negative inference (e.g.,
+      「そんな こと は ある まい」 - That probably won't happen). 「まじき」 is fixed in its attributive form and specifically
+      implies a failing related to a standard or expectation for a person or role.
+    grammar_point: Verb[まい] (negative volitional)
+  - term: べきではない (should not)
+    meaning: Should not, ought not to
+    kind: similar expression
+    nuance: 「べきではない」 expresses a general moral obligation or recommendation not to do something, or that
+      something is inappropriate. It is a more common and versatile expression than 「まじき」. While both
+      convey a sense of impropriety, 「まじき」 specifically refers to actions or qualities that are unbecoming
+      or unworthy of a particular status, role, or character, carrying a stronger, often formal or literary
+      condemnation.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: てはならない (must not)
+    meaning: Must not, cannot, should not
+    kind: similar expression
+    nuance: 「てはならない」 expresses a strict prohibition or strong rule, often used in official contexts or
+      to state universal principles. It means 'it is forbidden to' or 'one must not'. While it shares
+      the prohibitive aspect with 「まじき」, 「まじき」 focuses on the inherent nature of an action being unsuitable
+      or disgraceful for a given role or position, rather than simply being a forbidden act. 「まじき」 carries
+      a stronger moral or social judgment tied to one's identity.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: に足りない (not worthy or sufficient)
+    meaning: To not be worthy, To not be sufficient, To lack
+    kind: similar expression
+    nuance: While 「に足りない」 expresses a lack of worthiness or sufficiency for a task or quality (e.g., 「信頼
+      に 足りない 人」 - a person not worthy of trust), 「まじき」 carries a stronger sense of active unsuitability
+      or disgrace, implying an action or quality that is explicitly improper or shameful for someone in
+      a specific role or context. 「まじき」 often implies a failure to live up to a standard, while 「に足りない」
+      denotes an inherent inadequacy.
+    grammar_point: に足りない (not worthy or sufficient)
+post_false_friends_writeup: 「まじき」 specifically highlights actions or qualities that are unsuitable for
+  a particular role, status, or context, often implying a strong moral or professional judgment. It carries
+  a strong sense of moral or social condemnation. In contrast, 「まい」 primarily expresses a strong negative
+  intention ("will not," "do not intend to") or a negative conjecture ("probably not," "should not").
+  While 「まい」 can sometimes overlap with 「まじき」 in meaning "should not," its primary function is broader
+  and less about the inherent suitability to a role. 「てはならない」 and 「べきではない」 are more general prohibitions
+  meaning "must not" or "should not," respectively. They indicate actions that are forbidden or not advisable,
+  but lack the specific nuance of an action being fundamentally 'unbecoming' of someone's character or
+  position that 「まじき」 conveys. 「に足りない」 indicates an insufficiency or lack of worth, whereas 「まじき」 implies
+  an active transgression against what is proper or expected. 「まじき」 is largely confined to formal or literary
+  contexts, whereas the others are used more broadly in both formal and informal speech and writing.
+examples:
+  - english: Due to negligence unbecoming of a doctor, the patient suffered severe after-effects.
+    japanese:
+      - 医師 に ある {まじき} 不 注意 で、患者 は 重い 後遺 症 を 負っ た。
+      - 医師 と し て ある {まじき} 不 注意 で、患者 は 重い 後遺 症 を 負っ た。
+    english_literally: Due to doctor's unbecoming carelessness, the patient suffered severe after-effects.
+    competing_grammar:
+      - competing_japanese:
+          - 医師 の 不 注意 で、患者 は 重い 後遺 症 を 負っ た。
+        english: Due to a doctor's carelessness, the patient suffered severe after-effects.
+        hint: This simply states a doctor's carelessness. We're looking for an expression that emphasizes
+          the action was unbecoming or improper for a doctor.
+    scene: A medical review board is discussing a doctor's error that led to severe consequences for a
+      patient.
+    register: formal
+    setting: serious
+    nuance: This example uses the formal structure 「医師 に ある まじき」 to highlight that the doctor's negligence
+      was a profound breach of professional conduct, underscoring the serious implications for the patient.
+  - english: The project was delayed due to an indecisive attitude unbecoming of a leader.
+    japanese:
+      - リーダー に ある {まじき} 優柔 不断 な 態度 で、計画 は 遅延 し た。
+      - リーダー と し て ある {まじき} 優柔 不断 な 態度 で、計画 は 遅延 し た。
+    english_literally: Due to a leader's unbecoming indecisive attitude, the plan was delayed.
+    competing_grammar:
+      - competing_japanese:
+          - リーダー の 優柔 不断 な 態度 で、計画 は 遅延 し た。
+        english: Due to the leader's indecisive attitude, the project was delayed.
+        hint: This states the leader's indecisive attitude. We need to express that the indecisiveness
+          was inappropriate for someone in a leadership role.
+    scene: A team manager is explaining why a project missed its deadline to upper management.
+    register: semi-formal
+    setting: professional
+    nuance: The phrase 「リーダー に ある まじき」 signifies that the indecisiveness is not merely a personal trait,
+      but a flaw that actively hinders the leader's ability to fulfill their responsibilities, affecting
+      the outcome of the project.
+  - english: Remarks unbecoming of a politician significantly lowered his approval rating.
+    japanese:
+      - 政治 家 と し て ある {まじき} 発言 が、彼 の 支持 率 を 大幅 に 下げ た。
+      - 政治 家 に ある {まじき} 発言 が、彼 の 支持 率 を 大幅 に 下げ た。
+    english_literally: Remarks that are unbecoming as a politician significantly lowered his approval
+      rating.
+    competing_grammar:
+      - competing_japanese:
+          - 政治 家 の 発言 が、彼 の 支持 率 を 大幅 に 下げ た。
+        english: A politician's remarks significantly lowered his approval rating.
+        hint: This is a general statement about remarks. We're looking for an expression that condemns
+          the remarks as unsuitable for a politician.
+    scene: Political analysts are discussing a politician's recent gaffe during a televised debate.
+    register: formal
+    setting: informative
+    nuance: The use of 「政治 家 と し て ある まじき」 implies that the remarks were not just inappropriate in general,
+      but specifically violated the expected conduct and ethical standards of a politician, leading to
+      a loss of public trust.
+  - english: Irresponsible actions unbecoming of a parent negatively impact children.
+    japanese:
+      - 親 と し て ある {まじき} 無 責任 な 行動 は、子供 に 悪 影響 を 与える。
+      - 親 に ある {まじき} 無 責任 な 行動 は、子供 に 悪 影響 を 与える。
+    english_literally: Irresponsible actions that are unbecoming as a parent give children bad effects.
+    competing_grammar:
+      - competing_japanese:
+          - 親 の 無 責任 な 行動 は、子供 に 悪 影響 を 与える。
+        english: A parent's irresponsible actions negatively impact children.
+        hint: This describes a parent's actions. We need to convey that these actions are specifically
+          inappropriate for someone in the role of a parent.
+    scene: A family counselor is explaining the profound impact of parental behavior on child development.
+    register: formal
+    setting: academic
+    nuance: 「親 と し て ある まじき」 conveys a strong condemnation, suggesting that the irresponsible actions
+      fundamentally contradict the duties and responsibilities inherent in being a parent, negatively
+      affecting their children's well-being.
+  - english: To trample on a friend's trust... such an act of betrayal is absolutely unforgivable!
+    japanese:
+      - 友人 の 信じる 心 を 踏みにじる なんて、そんな 裏切り 行為 は 断じ て 許す {まじき} もの だ わ。
+      - 友人 の 信じる 心 を 踏みにじる なんて、そんな 裏切り 行為 は 断じ て 許す {まじき} もの だ。
+      - 友人 の 信じる 心 を 踏みにじる なんて、そんな 裏切り 行為 は 決して 許す {まじき} もの だ わ。
+      - 友人 の 信じる 心 を 踏みにじる なんて、そんな 裏切り 行為 は 決して 許す {まじき} もの だ。
+    english_literally: To trample on a friend's believing heart... such an act of betrayal is absolutely
+      a not-to-be-forgiven thing, you know!
+    competing_grammar:
+      - competing_japanese:
+          - 友人 の 信じる 心 を 踏みにじる なんて、そんな 裏切り 行為 は 絶対 に 許せ ない もの だ わ。
+        english: To trample on a friend's trust... such an act of betrayal is absolutely unforgivable!
+        hint: This uses a common expression for 'unforgivable.' We're looking for a more formal and emphatic
+          way to say something is utterly unacceptable, often used in a condemnatory tone.
+    scene: A woman is expressing profound disappointment and indignation to another friend after discovering
+      a mutual acquaintance's severe betrayal.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「断じ て 許す まじき」 (absolutely unforgivable) is a strong, formal condemnation. While
+      「わ」 is a sentence-final particle often used by female speakers to add a softer, more emotive, or
+      assertive tone, its combination with 「まじき」 still conveys a weighty and definitive judgment on the
+      betrayal, emphasizing its unforgivable nature despite the slightly softened ending.
+  - english: Those who committed acts unbecoming of a samurai were ordered to commit seppuku.
+    japanese:
+      - 武士 に ある {まじき} 行為 に 及ん だ 者 は、切腹 を 命じ られ た。
+      - 武士 と し て ある {まじき} 行為 に 及ん だ 者 は、切腹 を 命じ られ た。
+    english_literally: Those who reached acts unbecoming of a samurai were ordered seppuku.
+    competing_grammar:
+      - competing_japanese:
+          - 武士 の 行為 に 及ん だ 者 は、切腹 を 命じ られ た。
+        english: Those who committed a samurai's actions were ordered to commit seppuku.
+        hint: This simply refers to acts done by a samurai. We need an expression that indicates the actions
+          were inappropriate or dishonorable for a samurai.
+    scene: A historian is recounting a severe punishment for violating the samurai code during the Edo
+      period.
+    register: bungo (literary)
+    setting: storytelling
+    nuance: The use of 「武士 に ある まじき」 highlights the strict code of conduct for samurai, indicating that
+      the actions were a profound violation of their expected behavior. 「切腹 を 命じ られ た」 (were ordered to
+      commit seppuku) indicates a grave consequence specific to this historical context, reflecting the
+      extreme nature of the transgression.
+  - english: Fans were shocked when a scandalous romance, unbecoming of an idol, was exposed.
+    japanese:
+      - アイドル に ある {まじき} 熱愛 が スクープ さ れ、ファン は 衝撃 を 受け た。
+      - アイドル と し て ある {まじき} 熱愛 が スクープ さ れ、ファン は 衝撃 を 受け た。
+    english_literally: An unbecoming romance for an idol was scooped, and fans received shock.
+    competing_grammar:
+      - competing_japanese:
+          - アイドル の 熱愛 が スクープ さ れ、ファン は 衝撃 を 受け た。
+        english: Fans were shocked when an idol's scandalous romance was exposed.
+        hint: This refers to an idol's romance. We need to express that the romance was inappropriate
+          or unsuitable for an idol's public image.
+    scene: News reporters are discussing a recent high-profile celebrity scandal that shocked the entertainment
+      industry.
+    register: semi-formal
+    setting: informative
+    nuance: 「アイドル に ある まじき」 emphasizes that the romance was not simply a personal matter but a behavior
+      that directly contradicted the wholesome, pure image expected of an idol, leading to public shock
+      and disappointment.
+  - english: He lost his job due to discriminatory remarks unbecoming of a teacher.
+    japanese:
+      - 教師 と し て ある {まじき} 差別 的 発言 で、彼 は 職 を 失っ た。
+      - 教師 に ある {まじき} 差別 的 発言 で、彼 は 職 を 失っ た。
+    english_literally: Due to discriminatory remarks unbecoming as a teacher, he lost his job.
+    competing_grammar:
+      - competing_japanese:
+          - 教師 の 差別 的 発言 で、彼 は 職 を 失っ た。
+        english: He lost his job due to a teacher's discriminatory remarks.
+        hint: This states a teacher's discriminatory remarks. We need to express that the remarks were
+          unacceptable or a violation of professional ethics for a teacher.
+    scene: A school board is reviewing a teacher's misconduct that led to their dismissal.
+    register: formal
+    setting: serious
+    nuance: The phrase 「教師 と し て ある まじき」 underscores that the discriminatory remarks were a severe ethical
+      and professional transgression, fundamentally inconsistent with the responsibilities and trust placed
+      in a teacher.
+  - english: Deceiving people for profit is an evil deed utterly unforgivable as a human being.
+    japanese:
+      - 利益 の ため なら 人 を 騙す など、人間 と し て 到底 許す {まじき} 悪事 だ。
+      - 利益 の ため なら 人 を 騙す など、人間 と し て 断じ て 許す {まじき} 悪事 だ。
+      - 利益 の ため なら 人 を 騙す など、人間 と し て 決して 許す {まじき} 悪事 だ。
+    english_literally: Deceiving people for profit, etc., is an evil deed utterly not-to-be-forgiven as
+      a human.
+    competing_grammar:
+      - competing_japanese:
+          - 利益 の ため なら 人 を 騙す など、人間 と し て 絶対 に 許せ ない 悪事 だ。
+        english: Deceiving people for profit is an evil deed absolutely unforgivable as a human being.
+        hint: This uses a common way to say 'absolutely unforgivable.' We're looking for a more formal
+          and strongly condemnatory expression often used for deep moral transgressions.
+    scene: A philosopher is giving a lecture on ethical principles and moral boundaries.
+    register: formal
+    setting: serious
+    nuance: The use of 「人間 と し て 到底 許す まじき」 conveys that the act of deceiving people for profit is a fundamental
+      violation of human morality, an evil that cannot be tolerated or forgiven from any perspective,
+      aligning with a philosophical discussion on ethics.
+  - english: Reprimanded for ignoble conduct unbecoming of a nobleman, he was exiled.
+    japanese:
+      - 貴族 に ある {まじき} 卑しい 振る舞い を 咎め られ、彼 は 追放 さ れ た。
+      - 貴族 と し て ある {まじき} 卑しい 振る舞い を 咎め られ、彼 は 追放 さ れ た。
+    english_literally: Reprimanded for ignoble behavior unbecoming of a nobleman, he was exiled.
+    competing_grammar:
+      - competing_japanese:
+          - 貴族 の 卑しい 振る舞い を 咎め られ、彼 は 追放 さ れ た。
+        english: Reprimanded for a nobleman's ignoble conduct, he was exiled.
+        hint: This refers to a nobleman's ignoble conduct. We need an expression that emphasizes the conduct
+          was specifically inappropriate or disgraceful for someone of noble status.
+    scene: A historical novel describes a lord's expulsion from court due to his inappropriate behavior.
+    register: bungo (literary)
+    setting: storytelling
+    nuance: The phrase 「貴族 に ある まじき 卑しい 振る舞い」 uses formal, somewhat archaic language to describe behavior
+      that violates the expected decorum of a noble. 「咎め られ」 (reprimanded) and 「追放 さ れ た」 (was exiled)
+      are strong terms that fit the historical context, highlighting the severity of the transgression
+      and the formal judgment against him.
+post_example_writeup: The examples illustrate how 「まじき」 is used to describe actions or qualities that
+  are fundamentally unsuitable for a given role, status, or expectation, often implying a strong moral
+  or professional judgment. Whether it's a doctor, a leader, a politician, a parent, or even a samurai
+  or an idol, the phrase highlights a severe deviation from expected conduct. The construction 「〜に ある
+  まじき」 and 「〜と し て ある まじき」 both emphasize this unsuitability for a specific role. When used with a verb
+  in its dictionary form like 「許す {まじき}」, it translates to "unforgivable" or "intolerable," denoting an
+  heinous act that absolutely cannot be permitted.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/まじき

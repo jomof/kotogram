@@ -1,0 +1,492 @@
+grammar_point: いい (good)
+learn_before:
+  - です (polite copula)
+meaning: い-Adjective meaning 'good'
+meaning_warning: 「よく」 can also mean 'frequently/often', and has several different potential kanji.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: いい
+    rarity: common
+    meaning: good
+  - conjugation-type: non-past polite (～ます)
+    form: いいです
+    rarity: common
+    meaning: is good
+  - conjugation-type: negative plain (～ない)
+    form: よくない
+    rarity: common
+    meaning: is not good
+  - conjugation-type: negative non-past polite (～ません)
+    form: よくありません
+    rarity: common
+    meaning: is not good (polite)
+  - conjugation-type: past plain (～た)
+    form: よかった
+    rarity: common
+    meaning: was good
+  - conjugation-type: past polite (～ました)
+    form: よかったです
+    rarity: common
+    meaning: was good (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: よくなかった
+    rarity: common
+    meaning: was not good
+  - conjugation-type: negative past polite (～ませんでした)
+    form: よくありませんでした
+    rarity: common
+    meaning: was not good (polite)
+  - conjugation-type: te-form (～て)
+    form: よくて
+    rarity: common
+    meaning: and is good / being good
+  - conjugation-type: conditional (～ば)
+    form: よければ
+    rarity: common
+    meaning: if it is good
+  - conjugation-type: conditional (～たら)
+    form: よかったら
+    rarity: common
+    meaning: if it was good / if you'd like
+  - conjugation-type: concessive (～ても)
+    form: よくても
+    rarity: common
+    meaning: even if it is good
+  - conjugation-type: volitional (～よう)
+    form: よかろう
+    rarity: very rare
+    meaning: it would be good / let's be good (archaic)
+  - conjugation-type: volitional polite (～ましょう)
+    form: いいでしょう
+    rarity: common
+    meaning: it should be good / it will be fine
+pronunciation:
+  katakana: イイ
+  romaji: ii
+formation:
+  '[Noun] は {いい} です': Used when {いい} functions as a predicate, describing the noun as good.
+  '{いい} [Noun]': Used when {いい} modifies a noun directly, meaning 'good Noun'.
+jlpt: N5
+etymology: The adjective 「いい」 originates from the older Japanese word 「良し (よし)」, which also means 'good.'
+  Over time, 「よし」 evolved into 「いい」. The kanji 「良い」 is still used, but it's often read as 「よい」, which
+  sounds more formal or old-fashioned. The modern reading 「いい」 is more common in everyday conversation.
+writeup: |-
+  「いい」 is an **i-adjective** in Japanese, primarily meaning 'good'. Its conjugation is notably irregular, deviating from the typical patterns of other i-adjectives. A key characteristic of this irregularity is the change of its initial 「い」 to 「よ」 in many conjugated forms (e.g., 「よくない」, 「よかった」). This specific phonetic shift is unique to 「いい」 and is crucial for its accurate usage.
+
+  While 「いい」 is the commonly used form in modern Japanese, it can also be written with the kanji 「良い」. When written this way, it is often read as 「よい」, which carries a more formal or antiquated nuance compared to the conversational 「いい」. There is no fundamental difference in meaning between 「いい」 and 「よい」, but the choice between them reflects a difference in register.
+
+  **Important Note on 「よく」:**
+  When 「いい」 is conjugated, its stem changes to 「よ」. However, the adverb 「よく」 (meaning 'frequently/often' or 'well') should not be confused with a direct conjugation of 「いい」. While etymologically related, 「よく」 functions independently as an adverb and does not mean 'good' in the same adjectival sense as 「いい」. This distinction is vital for understanding its varied uses.
+false_friends:
+  - term: よく
+    meaning: frequently/often; well
+    kind: often confused with
+    nuance: Unlike 「いい」, which is an adjective meaning 'good', 「よく」 is an adverb meaning 'frequently/often'
+      or 'well', despite sharing a common etymological root and phonetic similarity when 「いい」 conjugates.
+      Its usage context dictates its meaning and function as an independent adverb.
+    grammar_point: よく (frequently・often・well)
+  - term: 悪い
+    meaning: bad
+    kind: antonym
+    nuance: While 「いい」 expresses 'goodness' or 'acceptability', 「悪い」 specifically means 'bad' or 'evil'
+      and carries a stronger negative connotation. For instance, 「よくない」 means 'not good' or 'not ideal',
+      whereas 「悪い」 implies a more inherent flaw or moral deficiency.
+    grammar_point: 悪い (bad)
+post_false_friends_writeup: While 「良い」 and 「いい」 both mean 'good', 「よい」 (the common reading of 「良い」) adds
+  a touch of formality or traditional nuance. In most everyday conversations, 「いい」 is more common and
+  natural. Think of 「よい」 as something you might encounter in classic literature or very polite, formal
+  speech. Furthermore, do not confuse 「いい」 with the adverb 「よく」. Although 「よく」 is the stem used in many
+  conjugations of 「いい」 (e.g., 「よくない」), it also exists independently as an adverb meaning 'frequently/often'
+  or 'well', completely unrelated to the adjective's core meaning. Context is paramount in distinguishing
+  these uses. Lastly, 「悪い」 is the direct antonym for 'bad,' which is distinct from simply 'not good' (よくない).
+examples:
+  - english: The weather today is nice, isn't it?
+    japanese:
+      - 今日 の 天気 は {いい} わ ね。
+      - 今日 の 天気 は {よい} です ね。
+      - 今日 の 天気 は {いい} な。
+      - 今日 の 天気 は {よい} な。
+      - 今日 の 天気 は {いい} よ。
+      - 今日 の 天気 は {いい} ぞ。
+      - 今日 の 天気 は {よい} ぞ.
+    english_literally: Today's weather is good, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 天気 は {良い} です ね。
+        english: The weather today is good, isn't it?
+        hint: The conversational tone with 「ね」 makes the common 「いい」 more natural than the more formal
+          「良い」.
+      - competing_japanese:
+          - 今日 の 天気 は {素晴らしい} です ね。
+        english: The weather today is wonderful, isn't it?
+        hint: While 「素晴らしい」 expresses 'wonderful,' it carries a stronger sense of awe or admiration than
+          simply 'good' or 'nice'.
+      - competing_japanese:
+          - 今日 の 天気 は {気持ち いい} です ね。
+        english: The weather today feels good, doesn't it?
+        hint: 「気持ち いい」 describes a physical or emotional sensation of pleasantness, rather than a general
+          positive assessment.
+      - competing_japanese:
+          - 今日 の 天気 は {悪い} です ね。
+        english: The weather today is bad, isn't it?
+        hint: While 「いい」 expresses a positive sentiment, 「悪い」 expresses a negative one. We're looking
+          for a positive assessment of the weather.
+    scene: Two neighbors are chatting on a sunny day.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The speaker, an older woman, uses 「わ ね」 at the end of the sentence to convey a soft, often
+      feminine, emphasis and seek agreement from her neighbor. This construction, alongside the general
+      polite register, makes the observation sound gentle and engaging.
+  - english: That's a good book, isn't it?
+    japanese:
+      - それ は {いい} 本 ね。
+      - それ は {よい} 本 です ね。
+      - それ は {いい} 本 だ ね。
+      - それ は {よい} 本 だ ね.
+    english_literally: That is a good book, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - それ は {良い} 本 です ね。
+        english: That is a good book, isn't it?
+        hint: While 「良い」 is grammatically correct, 「いい」 is more common and natural in everyday conversation
+          when modifying a noun like 'book'.
+      - competing_japanese:
+          - それ は {素晴らしい} 本 です ね。
+        english: That is a wonderful book, isn't it?
+        hint: 「素晴らしい」 conveys a stronger sense of 'wonderful' or 'magnificent', while 「いい」 simply means
+          'good'.
+      - competing_japanese:
+          - それ は {面白い} 本 です ね。
+        english: That is an interesting book, isn't it?
+        hint: 「面白い」 specifically describes something as 'interesting' or 'amusing', which is a more specific
+          quality than general 'goodness'.
+      - competing_japanese:
+          - それ は {悪い} 本 です ね。
+        english: That is a bad book, isn
+        hint: 「いい」 describes a positive quality, while 「悪い」 describes a negative quality. We're looking
+          for a positive description of the book.
+    scene: A student points to a book their friend is reading.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: This example showcases 「いい」 directly modifying a noun, 「いい 本」 (good book). The use of the
+      sentence-final particle 「ね」 is often used by younger women to seek agreement in friendly conversation
+      between peers, softening the statement and inviting the listener to concur.
+  - english: Is this proposal acceptable?
+    japanese:
+      - この 提案 で {いい} です か。
+      - この 提案 で {よい} です か。
+      - この 提案 で {いい} か。
+      - この 提案 で {いい} です か ね。
+      - この 提案 で {いい} の か.
+    english_literally: With this proposal, is it good?
+    competing_grammar:
+      - competing_japanese:
+          - この 提案 で {良い} です か。
+        english: Is this proposal good/acceptable?
+        hint: While 「良い」 could be used for formality, 「いい」 is perfectly acceptable and often preferred
+          even in professional settings for directness when seeking simple approval.
+      - competing_japanese:
+          - この 提案 で {大丈夫} です か。
+        english: Is this proposal alright?
+        hint: 「大丈夫」 asks if something is 'okay' or 'without problem,' which is slightly different from
+          asking if it is 'good' or 'acceptable'.
+      - competing_japanese:
+          - この 提案 は {適切} です か。
+        english: Is this proposal appropriate?
+        hint: 「適切」 asks about the 'appropriateness' or 'suitability' of something, carrying a more formal
+          and evaluative tone than a simple check for acceptability.
+      - competing_japanese:
+          - この 提案 は {悪い} です か。
+        english: Is this proposal bad?
+        hint: 「いい」 here asks if something is acceptable or fine, whereas 「悪い」 asks if something is deficient
+          or poor.
+    scene: A junior employee asks their boss for approval on a project plan.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: This idea isn't good at all.
+    japanese:
+      - この アイデア は 全然 {よく ない} な。
+      - この アイデア は 全然 {よく あり ませ ん}。
+      - この アイデア は 全然 {よく ない} よ。
+      - この アイデア は 全然 {よく ない} ぞ。
+      - この アイデア は 全然 {よく あり ませ ん} ね。
+      - この アイデア は 全然 {よく なかっ た}.
+    english_literally: This idea is entirely not good.
+    competing_grammar:
+      - competing_japanese:
+          - この アイデア は 全然 {悪い} な。
+        english: This idea is completely bad.
+        hint: 「よくない」 implies something is not suitable or effective, while 「悪い」 suggests something is
+          morally bad or deeply flawed, which would be too strong for just a conceptual idea.
+      - competing_japanese:
+          - この アイデア は 全然 {ダメ} だ な。
+        english: This idea is completely useless/no good.
+        hint: 「ダメ」 indicates something is 'no good,' 'useless,' or 'forbidden,' often used more informally
+          and with a stronger sense of failure than simply 'not good'.
+      - competing_japanese:
+          - この アイデア は 全然 {駄目} です ね。
+        english: This idea is completely useless/no good, isn't it.
+        hint: 「駄目」 in polite form similarly implies 'no good' or 'useless,' but its usage is often more
+          absolute than a simple lack of 'goodness'.
+      - competing_japanese:
+          - この アイデア は {よかっ た} と 思う。
+        english: I think yesterday's presentation was good.
+        hint: The original sentence describes a lack of quality, while 「よかった」 expresses that the quality
+          was satisfactory.
+      - competing_japanese:
+          - この アイデア は 全然 {うまく いか ない} な。
+        english: This idea doesn't work well at all.
+        hint: 「うまく いかない」 describes a process not functioning effectively, while 「よくない」 gives a general
+          negative assessment of quality or suitability. We're stating a general assessment of the idea's
+          quality.
+      - competing_japanese:
+          - この アイデア は 全然 {よく} 練 られ て い ない な。
+        english: This idea is not well thought out at all.
+        hint: Here, 「よく」 acts as an adverb meaning 'well', modifying 'thought out'. In the original sentence,
+          「よくない」 is the negative conjugation of 'good'.
+    scene: A creative director talks to themselves in frustration about a failed concept.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The use of the sentence-final particle 「な」 by a female speaker in a monologue, as in 「よく ない
+      な」, can express a strong, personal negative judgment or self-reflection without being overly assertive.
+      It conveys a thoughtful or frustrated tone to herself.
+  - english: I'm glad you arrived safely.
+    japanese:
+      - 無事 に 着い て {よかっ た} わ。
+      - 無事 に 着い て {よかっ た です}。
+      - 無事 に 着い て {よかっ た} よ。
+      - 無事 に 着い て {よかっ た} ね。
+      - 無事 に 着い て {よかっ た} ぜ.
+    english_literally: Arriving safely, it was good.
+    competing_grammar:
+      - competing_japanese:
+          - 無事 に 着い て {良い} でし た よ。
+        english: I'm glad you arrived safely (polite).
+        hint: While 「良いでした」 is grammatically possible, 「よかったです」 is the standard and more natural polite
+          past form. We're looking for the common polite past of 'good'.
+      - competing_japanese:
+          - 無事 に 着い て {安心 し まし た}。
+        english: I'm relieved you arrived safely.
+        hint: 「安心 しました」 specifically expresses a feeling of 'relief' and is a more direct statement of
+          emotion than the general 'it was good'.
+      - competing_japanese:
+          - 無事 に 着い て {嬉しかっ た} です。
+        english: I'm happy you arrived safely.
+        hint: 「嬉しかった」 conveys a feeling of 'happiness,' which is a more specific emotion than the general
+          positive sentiment expressed by 'it was good'.
+      - competing_japanese:
+          - 無事 に 着か なく て {残念} でし た。
+        english: It was regrettable that you didn't arrive safely.
+        hint: 「よかった」 expresses a positive outcome or relief. 「残念でした」 would imply the outcome was bad or
+          regrettable. We're expressing gladness about a positive event.
+    scene: A mother relieved after her child calls to say they reached their destination.
+    register: casual
+    setting: intimate
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The sentence-final particle 「わ」, used by the older female speaker, adds a soft, feminine emotional
+      tone, often indicating a personal feeling or gentle assertion. Here, it emphasizes the mother's
+      heartfelt relief and concern to her son, making the expression of 'gladness' more tender.
+  - english: I'm glad I passed the exam.
+    japanese:
+      - 試験 に 合格 でき て {よかっ た です}。
+      - 試験 に 合格 でき て {よかっ た}。
+      - 試験 に 合格 でき て {よかっ た} わ。
+      - 試験 に 合格 でき て {よかっ た} よ。
+      - 試験 に 合格 でき て {よかっ た} ぜ。
+      - 試験 に 合格 でき て {よかっ た です} ね。
+      - 試験 に 合格 でき て {よかっ た} な.
+    english_literally: Being able to pass the exam, it was good.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 合格 でき て {良い} でし た。
+        english: I'm glad I passed the exam (polite).
+        hint: While 「良いでした」 is grammatically possible, 「よかったです」 is the standard and more natural polite
+          past form. We're looking for the common polite past of 'good'.
+      - competing_japanese:
+          - 試験 に 合格 でき て {嬉しい} です。
+        english: I'm happy I passed the exam.
+        hint: 「嬉しい」 directly expresses 'happiness,' whereas the main grammar point conveys a general sense
+          of 'it was good' or 'it turned out well'.
+      - competing_japanese:
+          - 試験 に 合格 でき て {ホッと し まし た}。
+        english: I'm relieved I passed the exam.
+        hint: 「ホッと しました」 indicates a feeling of 'relief' after a period of worry, which is a more specific
+          nuance than general satisfaction.
+      - competing_japanese:
+          - 試験 に 合格 でき なく て {悪かっ た} です。
+        english: It was bad that I couldn't pass the exam.
+        hint: 「よかったです」 expresses a sense of something being a good outcome. 「悪かった です」 would imply the
+          outcome was bad or regrettable. We're expressing satisfaction at passing.
+    scene: A student reports their exam results to their teacher.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past polite (～ました)
+  - english: This cooking method is not hygienic.
+    japanese:
+      - この 調理 方法 は 衛生 的 に {よく あり ませ ん}。
+      - この 調理 方法 は 衛生 的 に {よく ない}。
+      - この 調理 方法 は 衛生 的 に {よく ない} です。
+      - この 調理 方法 は 衛生 的 に {よく ない} ぞ。
+      - この 調理 方法 は 衛生 的 に {よく あり ませ ん} か。
+      - この 調理 方法 は 衛生 的 に {よく なかっ た} です ね.
+    english_literally: This idea is entirely not good.
+    competing_grammar:
+      - competing_japanese:
+          - この 調理 方法 は 衛生 的 に {悪い} です。
+        english: This cooking method is bad hygienically.
+        hint: 「よくありません」 implies it's not optimal or fails to meet a standard, which is more suitable for
+          a professional assessment than 「悪い」, which suggests a severe flaw.
+      - competing_japanese:
+          - この 調理 方法 は 衛生 的 に {問題 が あり ます}。
+        english: There is a hygienic problem with this cooking method.
+        hint: 「問題 が あります」 explicitly states that there is a 'problem' or 'issue,' providing a more direct
+          and often stronger criticism than simply saying it's 'not good'.
+      - competing_japanese:
+          - この 調理 方法 は 衛生 的 {で は あり ませ ん}。
+        english: This cooking method is not hygienic.
+        hint: 「衛生的では ありません」 directly states the lack of hygiene, using a different grammatical structure
+          (Xではない) to express the negative condition.
+      - competing_japanese:
+          - この 調理 方法 は 衛生 的 に {良い} です。
+        english: This cooking method is hygienic.
+        hint: The original sentence states a lack of hygiene. 「良い」 expresses the opposite, that it is
+          hygienic.
+      - competing_japanese:
+          - この 調理 方法 は 衛生 管理 が {よく あり ませ ん}。
+        english: The hygiene management of this cooking method is not good.
+        hint: 「衛生 管理 が よく ありません」 focuses on the *quality* of the management (adverbial 「よく」), while 「衛生的
+          に よくありません」 assesses the cooking method's *state* as unhygienic. We're stating the method itself
+          is not good hygienically.
+    scene: A health inspector advises a restaurant owner during an inspection.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+  - english: If you'd like, would you like to go for a meal this weekend?
+    japanese:
+      - もし {よかっ たら}、週末 に 食事 に 行き ませ ん か。
+      - もし {よかっ たら}、週末 に 食事 に 行こう か。
+      - もし {よかっ たら}、週末 に 食事 に 行こう よ。
+      - もし {よかっ たら}、週末 に 食事 に 行か ない？
+      - もし {よけれ ば}、週末 に 食事 に 行き ませ ん か。
+      - もし {よかっ たら}、ご 一緒 に どう です か.
+    english_literally: If it was good, weekend, to meal, won't you go?
+    competing_grammar:
+      - competing_japanese:
+          - もし {暇} なら、週末 に 食事 に 行き ませ ん か。
+        english: If you're free, would you like to go for a meal this weekend?
+        hint: 「よかったら」 conveys a polite invitation that considers the other person's willingness or convenience,
+          rather than merely their availability (「暇」).
+      - competing_japanese:
+          - もし ご 都合 が {よろしけれ ば}、週末 に 食事 に 行き ませ ん か。
+        english: If it's convenient for you, would you like to go for a meal this weekend?
+        hint: 「ご 都合 が よろしければ」 is a more formal and honorific way to inquire about someone's 'convenience'
+          or 'availability,' often used in business or highly polite contexts.
+      - competing_japanese:
+          - もし {差し支え なけれ ば}、週末 に 食事 に 行き ませ ん か。
+        english: If it's not a problem, would you like to go for a meal this weekend?
+        hint: 「差し支え なければ」 means 'if it causes no inconvenience' or 'if there is no obstacle,' offering
+          a very deferential and polite way to make a request.
+      - competing_japanese:
+          - もし {よけれ ば}、週末 に 食事 に 行き ませ ん か。
+        english: If it's good, would you like to go for a meal this weekend?
+        hint: While 「よければ」 is grammatically correct as a conditional of 「よい」, 「よかったら」 is the more common
+          and natural phrasing for extending a polite invitation in this context.
+    scene: A colleague invites another out for dinner, being considerate of their schedule.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: conditional (～たら)
+  - english: The design is good, and it's also easy to use.
+    japanese:
+      - その デザイン は {よく て}、使い やすい です。
+      - その デザイン は {よく て}、使い やすい。
+      - その デザイン は {よく て}、使い やすい よ。
+      - その デザイン は {よく て}、使い やすい な.
+    english_literally: That design is good, and easy to use.
+    competing_grammar:
+      - competing_japanese:
+          - その デザイン は {良い} です。そして、使い やすい です。
+        english: That design is good. And it is easy to use.
+        hint: Using the te-form 「よくて」 connects the two clauses smoothly, indicating that the 'goodness'
+          of the design is one reason it is easy to use, or simply listing two positive attributes. Using
+          separate sentences makes the connection less direct.
+      - competing_japanese:
+          - その デザイン は {良い} し、使い やすい です。
+        english: That design is good, and also easy to use.
+        hint: 「～し」 is also used to list reasons or attributes, but 「よくて」 implies a more direct cause-and-effect
+          or simply a sequential listing of qualities.
+    scene: A product designer explains the features of a new product to a client.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+  - english: It should be fine if we leave now.
+    japanese:
+      - 今 出発 すれ ば {いい} でしょ う。
+      - 今 出発 すれ ば {いい} だろ う。
+      - 今 出発 すれ ば {よい} でしょ う。
+      - 今 出発 すれ ば {よい} だろ う。
+      - 今 出発 すれ ば {いい} と 思う よ。
+      - 今 出発 すれ ば {いい} はず だ.
+    english_literally: If we depart now, it will be good.
+    competing_grammar:
+      - competing_japanese:
+          - 今 出発 し {ましょう}。
+        english: Let's leave now.
+        hint: While 「出発 しましょう」 is a direct suggestion to leave, 「いいでしょう」 with a conditional implies that
+          leaving now is the *optimal* or *acceptable* course of action, suggesting a prediction or soft
+          recommendation.
+      - competing_japanese:
+          - 今 出発 すれ ば {問題 あり ませ ん}。
+        english: There will be no problem if we leave now.
+        hint: 「問題 ありません」 is a more direct statement about the absence of problems, while 「いいでしょう」 provides
+          a more general positive assessment of the situation.
+    scene: Friends are getting ready to go out and one is wondering about the timing.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: volitional polite (～ましょう)
+  - english: If it's okay with you, let's start the meeting at 3 PM.
+    japanese:
+      - '{よけれ ば}、会議 は ３ 時 に 始め ましょ う か。'
+      - '{よけれ ば}、会議 は ３ 時 に 始め ましょ う。'
+      - '{よけれ ば}、会議 は ３ 時 に 始めよ う か。'
+      - '{よけれ ば}、会議 は ３ 時 に 始めよ う。'
+      - '{よけれ ば}、会議 は ３ 時 に 始め ませ ん か.'
+    english_literally: If it is good, shall we start the meeting at 3 o'clock?
+    competing_grammar:
+      - competing_japanese:
+          - もし {大丈夫} なら、会議 は ３ 時 に 始め ましょ う か。
+        english: If it's alright, shall we start the meeting at 3 PM?
+        hint: 「大丈夫 なら」 is also used to ask if something is alright, but 「よければ」 specifically asks if it's
+          'good' or 'acceptable' from the listener's perspective, emphasizing polite consideration. We're
+          looking for polite consideration regarding the time.
+      - competing_japanese:
+          - ３ 時 に 会議 を 始め て も {良い} です か。
+        english: Is it alright to start the meeting at 3 PM?
+        hint: This form directly asks for permission, whereas 「よければ」 is a conditional suggesting a preference,
+          not a direct permission request.
+    scene: A team leader proposes a meeting time, considering everyone's schedule.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: conditional (～ば)
+post_example_writeup: As seen in the examples, 「いい」 is highly versatile and its meaning of 'good' can
+  be applied to various contexts, from describing weather and objects to expressing relief or evaluating
+  proposals. Its irregular conjugations are crucial for expressing past, negative, or conditional aspects.
+  It's also important to note its use as a pre-nominal modifier, as in 「いい 本」 (good book), directly preceding
+  the noun it modifies, which is a fundamental aspect of i-adjective usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/いい

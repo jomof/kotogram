@@ -1,0 +1,439 @@
+grammar_point: に足りない (not worthy or sufficient)
+learn_before:
+  - い-Adjective[み] (abstract quality)
+meaning: To not be worthy, To not be sufficient, To lack
+meaning_warning: に足らない is an older variant.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: に足りない
+    rarity: common
+    meaning: to not be worthy; to not be sufficient
+  - conjugation-type: non-past polite (～ます)
+    form: に足りません
+    rarity: common
+    meaning: to not be worthy; to not be sufficient
+  - conjugation-type: negative past plain (～なかった)
+    form: に足りなかった
+    rarity: less common
+    meaning: was not worthy; was not sufficient
+  - conjugation-type: negative past polite (～ませんでした)
+    form: に足りませんでした
+    rarity: less common
+    meaning: was not worthy; was not sufficient
+  - conjugation-type: te-form (～て)
+    form: に足りなくて
+    rarity: uncommon
+    meaning: not being worthy/sufficient, and as a result...
+  - conjugation-type: conditional (～ば)
+    form: に足りなければ
+    rarity: uncommon
+    meaning: if not worthy/sufficient
+  - conjugation-type: conditional (～たら)
+    form: に足りなかったら
+    rarity: uncommon
+    meaning: if not worthy/sufficient
+pronunciation:
+  katakana: ニタリナイ
+  romaji: ni tarinai
+formation:
+  '[Verb in dictionary form] + に足りない': Indicates that something is 'not worthy of' or 'not sufficient
+    for' something else.
+jlpt: N1
+etymology: The grammar point 「に足りない」 comes from the particle 「に」 and the verb 「足りる」 (tariru), which means
+  "to be sufficient" or "to be enough." By negating 「足りる」, we get 「足りない」 (tarinai), meaning "not sufficient"
+  or "not enough." The addition of 「に」 before 「足りない」 creates a structure that expresses the idea of something
+  not being worthy or sufficient for a particular purpose or action. Historically, 「足る」 (taru) is an older
+  variant of 「足りる」, and its negation 「足らない」 (taranai) still exists, particularly in western Japan or more
+  literary contexts, though 「足りない」 is the more common modern standard form. The evolution from 「足る」 to
+  「足りる」 reflects a broader linguistic shift in verb conjugations, while the 「に」 particle retains its function
+  of indicating the object or basis for the judgment of sufficiency/worth.
+writeup: 「に足りない」 is a grammar expression used to indicate that something is "not worthy of" or "not sufficient
+  for" a particular action or state. It typically follows the dictionary form of a verb, signifying that
+  the action expressed by the verb is not justified or met by the subject. This construction is highly
+  formal and is predominantly encountered in written Japanese, such as academic papers, official documents,
+  or literary works. While it can be used in formal speech, its usage is less common in everyday conversation
+  due to its elevated register. The core meaning revolves around an objective assessment of inherent inadequacy
+  or lack of merit. It is not merely about a subjective inability or disinclination, but rather a judgment
+  that something truly fails to meet the necessary standard or lacks the fundamental qualities to be considered
+  worthy. **Comparison with similar expressions:** While 「に足りない」 is the negative form of 「に足る」, their
+  relationship is not merely oppositional. 「に足る」 (ni taru) means "to be worthy of" or "to be sufficient
+  for." The verb 「足る」 (taru) itself is an older form of 「足りる」 (tariru), meaning "to be enough" or "to
+  be sufficient." Consequently, 「に足る」 is often found in more classical or literary contexts. Both 「足りない」
+  and 「足らない」 (the negative form of 「足る」) can appear in the set phrase 「取るに足りない」 (toru ni tarinai), meaning
+  "worthless" or "insignificant." This idiom specifically emphasizes that something is so trivial it's
+  not even worth discussing or picking up.
+false_friends:
+  - term: に足る
+    meaning: to be worth, to be sufficient
+    kind: antonym
+    nuance: Unlike 「に足りない」, which indicates a lack of worth or sufficiency, 「に足る」 indicates that something
+      is worthy or sufficient for a particular purpose. 「足る」 is an older variant of 「足りる」.
+    grammar_point: に足る (worthy of)
+  - term: 足りる
+    meaning: to be enough, to be sufficient
+    kind: often confused with
+    nuance: While 「足りる」 is the base verb meaning "to be enough" or "to be sufficient," 「に足りない」 specifically
+      uses its negative form in conjunction with 「に」 to express that something is *not* enough or *not*
+      worthy for a particular action or purpose. 「足りる」 is a general statement of sufficiency, whereas
+      「に足りない」 is a specific judgment of worth.
+    grammar_point: <suggest>:足りる (to be enough・to be sufficient)
+  - term: に値する
+    meaning: to be worth, to deserve
+    kind: often confused with
+    nuance: Similar to 「に足る」, 「に値する」 means "to be worth" or "to deserve." However, 「に足りない」 implies a lack
+      of inherent suitability or quality for something, often leading to dismissal. 「に値する」 focuses more
+      on deserving a positive outcome, reward, or recognition, implying a positive value.
+    grammar_point: に値する (to be worth, to deserve)
+  - term: 価値 が ない
+    meaning: to have no value, to be worthless
+    kind: similar expression
+    nuance: While 「価値 が ない」 directly states that something 'has no value', 「に足りない」 conveys a more formal
+      and objective judgment that something 'is not sufficient for' or 'not worthy of' a specific action
+      or consideration. 「に足りない」 often carries a nuance of failing to meet a necessary standard for a particular
+      purpose.
+    grammar_point: 価値 が ない (to have no value, to be worthless)
+  - term: 信じられない
+    meaning: cannot be believed, unbelievable
+    kind: similar expression
+    nuance: 「信じられない」 (shinjirarenai) expresses a subjective inability or disbelief. In contrast, 「信じる
+      に足りない」 (shinjiru ni tarinai) conveys an objective assessment that something inherently lacks the
+      qualities required to be deemed trustworthy or credible.
+    grammar_point: 信じられない (cannot be believed, unbelievable)
+post_false_friends_writeup: To avoid confusion, remember that 「に足りない」 expresses a *lack* of worth or sufficiency
+  based on an objective assessment. In contrast, 「に足る」 means something *is* worthy or sufficient. 「足りる」
+  is the general verb for 'to be enough' without the specific judgmental nuance of worthiness for an action.
+  「に値する」, while meaning 'to be worth', typically implies deserving something positive. Lastly, while 「価値
+  が ない」 simply states a lack of value, 「に足りない」 is more specific about failing to meet a necessary standard
+  for a particular purpose. 「信じられない」 reflects a subjective inability to believe, whereas 「信じる に足りない」 points
+  to an objective lack of credibility.
+examples:
+  - english: That plan is not worth implementing.
+    japanese:
+      - その 計画 は 実行 する {に 足り ない}。
+      - その 計画 は 実行 する {に 足り ない} もの です。
+    english_literally: That plan is not sufficient to be implemented.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 実行 する {価値 が ない}。
+        english: That plan has no value for implementation.
+        hint: 「価値 が ない」 means 'has no value' in a general sense. We're looking for an expression that
+          signifies objective insufficiency for a specific action.
+      - competing_japanese:
+          - その 計画 は 実行 する {に 足る}。
+        english: That plan is worth implementing.
+        hint: 「に足る」 is the opposite, meaning 'worthy of' or 'sufficient for'. We're looking for an expression
+          that signifies the plan is *not* sufficient.
+    scene: A project manager presents a new proposal to the CEO, but after careful review, the CEO finds
+      it fundamentally flawed and not ready for execution.
+    register: formal
+    setting: professional
+  - english: His words are not worth believing.
+    japanese:
+      - 彼 の 言葉 は 信じる {に 足り ませ ん}。
+      - 彼 の 言葉 は 信じる {に 足り ない}。
+      - 彼 の 言葉 は 信じる {に 足ら ない}。
+    english_literally: His words are not sufficient to be believed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言葉 は {信じ られ ませ ん}。
+        english: His words cannot be believed (due to subjective inability).
+        hint: 「信じられない」 expresses a subjective inability or disbelief. We're looking for an objective assessment
+          that the words themselves lack the qualities required to be deemed credible.
+      - competing_japanese:
+          - 彼 の 言葉 は 信頼 する {に 値 し ない}。
+        english: His words are not worthy of trust.
+        hint: 「に値しない」 implies not deserving something or not meeting a value standard. 「に足りない」 means something
+          is inherently insufficient for a specific action or consideration. Here, we're talking about
+          words being insufficient for belief, not simply undeserving of trust.
+      - competing_japanese:
+          - 彼 の 言葉 は 信頼 する {価値 が ない}。
+        english: His words have no value for trust.
+        hint: 「価値 が ない」 states a general lack of value. We're looking for an expression that indicates
+          the words are inherently insufficient to meet the standard of trustworthiness.
+    scene: A young female professional is speaking with her male mentor about a senior colleague known
+      for making unreliable statements.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of the polite negative form 「に足りません」 (ni tarimasen) by a female speaker in a professional
+      setting lends a formal and objective tone. It suggests that the speaker has made a considered judgment
+      that the colleague's words inherently lack the quality or substance to be deemed credible. This
+      avoids sounding overly emotional or personal, which aligns with professional discourse.
+  - english: That evidence was not sufficient to be the deciding factor.
+    japanese:
+      - その 証拠 は 決定 打 と なる {に 足り なかっ た}。
+      - その 証拠 は 決定 打 と なる {に 足り ませ ん でし た}。
+    english_literally: That evidence was not sufficient to become the deciding factor.
+    competing_grammar:
+      - competing_japanese:
+          - その 証拠 は 決定 打 に {なら なかっ た}。
+        english: That evidence did not become the deciding factor.
+        hint: 「～にならなかった」 simply states something didn't become. We're looking for an expression indicating
+          the evidence itself lacked the intrinsic quality to serve as a deciding factor.
+      - competing_japanese:
+          - その 証拠 は 決定 打 と なる {価値 が なかっ た}。
+        english: That evidence had no value for becoming a deciding factor.
+        hint: 「価値 が なかった」 focuses on general lack of value. We're looking for an expression that objectively
+          assesses the evidence's inherent insufficiency for a specific role.
+    scene: A male lawyer is debriefing his junior associate after a court case didn't go as hoped due
+      to weak or insufficient evidence.
+    register: formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of the plain past negative form 「に足りなかった」 by a male lawyer is natural in a serious,
+      professional debriefing. It conveys an objective assessment of the evidence's inadequacy without
+      unnecessary formality, fitting the directness of a conversation between a superior and a junior.
+  - english: The information provided was not sufficient for analysis.
+    japanese:
+      - 提供 さ れ た 情報 は 分析 する {に 足り ませ ん でし た}。
+      - 提供 さ れ た 情報 は 分析 する {に 足り なかっ た}。
+    english_literally: The information provided was not sufficient to be analyzed.
+    competing_grammar:
+      - competing_japanese:
+          - 提供 さ れ た 情報 で は 分析 {でき ませ ん でし た}。
+        english: With the information provided, analysis was not possible (due to inability).
+        hint: 「～できませんでした」 indicates an an inability to perform an action. We're looking for an expression
+          that attributes the failure to the intrinsic inadequacy of the information itself.
+      - competing_japanese:
+          - 提供 さ れ た 情報 は 分析 する {価値 が なかっ た}。
+        english: The information provided had no value for analysis.
+        hint: 「価値 が ない」 means 'has no value'. We're looking for an expression that suggests the information
+          was inherently insufficient to meet the demands of analysis.
+    scene: A researcher, speaking to a review committee, explains why they couldn't complete their report
+      due to the poor quality of the data received.
+    register: formal
+    setting: academic
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: female
+    listener_gender: group
+  - english: The budget was insufficient, and the plan fell through.
+    japanese:
+      - 予算 が 少なく {に 足り なく て}、計画 は 頓挫 し た。
+      - 予算 が 少なく {に 足り ませ ん で}、計画 は 頓挫 し まし た。
+    english_literally: The budget being little and not sufficient, the plan fell through.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 が {少ない の で}、計画 は 頓挫 し た。
+        english: Because the budget was small, the plan fell through.
+        hint: 「少ないので」 simply states the budget was small and provides a reason. We're looking for an expression
+          that highlights the budget's inherent insufficiency to meet the plan's requirements.
+      - competing_japanese:
+          - 予算 が {足り なく て}、計画 は 頓挫 し た。
+        english: While 「足りなくて」 also means 'not enough', 「に足りなくて」 implies a judgment of the budget's intrinsic
+          inadequacy for a specific purpose or action, rather than just a general lack of quantity.
+        hint: While 「足りなくて」 also means 'not enough', 「に足りなくて」 implies a judgment of the budget's intrinsic
+          inadequacy for a specific purpose or action, rather than just a general lack of quantity.
+    scene: A project manager, speaking to a superior, explains why a promising project had to be canceled
+      prematurely due to lack of funds.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: If this paper is not worthy of trust, then the research is meaningless.
+    japanese:
+      - この 論文 が 信頼 する {に 足り なけれ ば}、研究 は 無 意味 だ。
+      - この 論文 が 信頼 する {に 足り ない} の で あれ ば、研究 は 無 意味 だ。
+    english_literally: If this paper is not sufficient to be trusted, then the research is meaningless.
+    competing_grammar:
+      - competing_japanese:
+          - この 論文 が {信頼 でき ない} なら、研究 は 無 意味 だ。
+        english: If this paper cannot be trusted, then the research is meaningless.
+        hint: 「信頼 でき ない」 expresses an inability to trust. We're looking for an expression that emphasizes
+          the paper's intrinsic lack of qualities that make it trustworthy.
+      - competing_japanese:
+          - この 論文 が 信頼 する {価値 が ない} なら、研究 は 無 意味 だ。
+        english: If this paper has no value for trust, then the research is meaningless.
+        hint: 「価値 が ない」 means 'has no value'. We're looking for an expression that conveys the paper's
+          inherent insufficiency to meet the standard of trustworthiness.
+    scene: An older professor is explaining to a younger student the critical importance of academic rigor,
+      using a hypothetical flawed paper as an example.
+    register: formal
+    setting: academic
+    conjugation: conditional (～ば)
+    speaker_age: older
+    nuance: The older professor's use of the conditional plain form 「に足りなければ」 conveys a firm, objective
+      assessment of the paper's inherent lack of credibility. This direct, somewhat authoritative tone
+      is fitting for an older academic instructing a younger student on a fundamental principle like academic
+      rigor.
+  - english: If his story wasn't worthy of belief, what are you going to do?
+    japanese:
+      - 彼 の 話 が 信用 する {に 足り なかっ たら}、どう する つもり か。
+      - 彼 の 話 が 信用 する {に 足り ない} の で あれ ば、どう する つもり か。
+    english_literally: If his story was not sufficient to be believed, what are you going to do?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 が {信用 でき ない} だっ たら、どう する つもり か。
+        english: If his story couldn't be trusted, what are you going to do?
+        hint: 「信用 でき ない」 indicates an inability to trust. We're looking for an expression that questions
+          what happens if the story objectively lacks the qualities needed for belief.
+      - competing_japanese:
+          - 彼 の 話 が 信用 する {価値 が なかっ たら}、どう する つもり か。
+        english: If his story had no value for trust, what are you going to do?
+        hint: 「価値 が ない」 conveys a general lack of value. We're looking for an expression that suggests
+          the story inherently failed to meet the standard for belief.
+    scene: A female detective interrogates a male suspect, casting doubt on his alibi and pressuring him
+      for his next move.
+    register: formal
+    setting: interrogative
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The female detective's use of the plain conditional 「に足りなかったら」 combined with the direct question
+      「どう する つもり か」 creates an assertive and interrogative tone. This is gender-neutral language, but
+      the directness is suitable for a professional in a position of authority like a detective, regardless
+      of gender.
+  - english: Such minor issues are not worth discussing.
+    japanese:
+      - その 程度 の 問題 は 論じる {に 足り ない}。
+      - その 程度 の 問題 は 論じる {に 足り ませ ん}。
+    english_literally: Issues of that degree are not sufficient to be discussed.
+    competing_grammar:
+      - competing_japanese:
+          - その 程度 の 問題 は 議論 する {価値 も ない}。
+        english: Issues of that degree have no value for discussion.
+        hint: 「価値 も ない」 means 'has no value' in a general sense. We're looking for an expression that
+          signifies objective insufficiency for a specific action (discussing).
+      - competing_japanese:
+          - その 程度 の 問題 は 話し合う {まで も ない}。
+        english: Issues of that degree are not even worth talking about.
+        hint: 「～までもない」 means 'not even worth doing' or 'no need to do'. We're looking for an expression
+          that indicates the issue itself lacks the inherent quality that would warrant discussion.
+    scene: A seasoned debater dismisses a trivial point raised by an opponent, signaling that it doesn't
+      meet the standard for serious consideration.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: He is not competent enough to be entrusted with such a critical task.
+    japanese:
+      - 彼 は その よう な 重大 な 任務 を 任せる {に 足り ませ ん}。
+      - 彼 は その よう な 重大 な 任務 を 任せる {に 足り ない}。
+    english_literally: He is not sufficient to be entrusted with such a critical task.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は その よう な 重大 な 任務 に {適任 で は あり ませ ん}。
+        english: He is not suitable for such a critical task.
+        hint: 「適任 で は ない」 means 'not suitable for a position'. We're looking for an expression that indicates
+          the person themselves lacks the inherent qualities to be entrusted with the task, implying a
+          more fundamental insufficiency.
+      - competing_japanese:
+          - 彼 に は その よう な 重大 な 任務 を 担当 する {能力 が あり ませ ん}。
+        english: He doesn't have the ability to be in charge of such a critical task.
+        hint: 「能力 が ない」 means 'lacks ability'. We're looking for an expression that signifies the person
+          is inherently insufficient or unworthy of *being entrusted* with the task, implying a judgment
+          of their overall caliber for the specific action.
+    scene: A manager is discussing a challenging new project with a senior colleague and decides that
+      a particular team member, though eager, lacks the necessary experience for it.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of the polite form 「に足りません」 by a male manager talking to a senior colleague maintains
+      a professional and objective tone. It signifies a calm, considered judgment that the individual
+      lacks the inherent qualities or capabilities to handle the critical task. This isn't a personal
+      attack but an assessment of suitability for the role.
+  - english: Even if it's something worthless to me, it might be important to him.
+    japanese:
+      - 私 に とっ て は {取る に 足り ない} こと で も、彼 に とっ て は 大事 な こと な の か も しれ ない。
+      - 私 に とっ て は {取る に 足り ない} 事 で も、あいつ に とっ て は 大事 な 事 な の か も な。
+    english_literally: Even if it's something not worth taking for me, it might be important to him.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に とっ て は {価値 の ない} こと で も、彼 に とっ て は 大事 な こと な の か も しれ ない。
+        english: Even if it's something without value to me, it might be important to him.
+        hint: 「価値 の ない」 generally means 'without value'. 「取るに足りない」 is a specific idiom meaning 'worthless'
+          or 'insignificant', implying something not even worth picking up or considering.
+    scene: A young man is reflecting on a disagreement he had with a friend, realizing that what he dismissed
+      as trivial might hold significant value for his friend.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: This example uses the idiomatic phrase 「取る に 足り ない」 (toru ni tarinai), meaning 'worthless'
+      or 'insignificant'. In this casual, reflective setting, the speaker uses this phrase to acknowledge
+      that something he considers objectively trivial (indicated by 「私 にとって は」, 'for me') might still
+      have profound subjective importance to another person. The phrase is a fixed expression and doesn't
+      change based on gender, but the overall sentence structure and 'かもしれない' add a gentle, understanding
+      tone.
+  - english: His arguments are not worthy of serious consideration.
+    japanese:
+      - 彼 の 議論 は 真剣 に 検討 する {に 足り ない}。
+      - 彼 の 議論 は 真剣 に 検討 する {に 足り ませ ん}。
+    english_literally: His arguments are not sufficient to be seriously considered.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 議論 は 真剣 な 検討 に {値 し ない}。
+        english: His arguments do not deserve serious consideration.
+        hint: 「に値しない」 means 'does not deserve'. We are looking for an expression that indicates the arguments
+          themselves inherently lack the quality required for serious consideration.
+      - competing_japanese:
+          - 彼 の 議論 は 検討 する {価値 が ない}。
+        english: His arguments have no value for consideration.
+        hint: 「価値 が ない」 states a general lack of value. We are looking for an expression that objectively
+          assesses the arguments' inherent insufficiency for a specific action (serious consideration).
+    scene: A judge delivers a ruling, dismissing certain arguments as lacking substance and not warranting
+      further attention.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: Her excuses were not worthy of belief, so we couldn't help her.
+    japanese:
+      - 彼女 の 言い訳 は 信じる {に 足り なかっ た} の で、私 達 は 彼女 を 助け られ なかっ た。
+      - 彼女 の 言い訳 は 信じる {に 足り ませ ん でし た} の で、私 達 は 彼女 を 助け られ ませ ん でし た。
+    english_literally: Her excuses were not sufficient to be believed, so we could not help her.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 言い訳 は {信じ られ なかっ た} の で、私 達 は 彼女 を 助け られ なかっ た。
+        english: Her excuses could not be believed, so we couldn't help her.
+        hint: 「信じられなかった」 indicates a subjective inability to believe. We are looking for an expression
+          that states the excuses inherently lacked the qualities for credibility, leading to an objective
+          judgment.
+      - competing_japanese:
+          - 彼女 の 言い訳 は 信頼 する {価値 が なかっ た} の で、私 達 は 彼女 を 助け られ なかっ た。
+        english: Her excuses had no value for trust, so we couldn't help her.
+        hint: 「価値 が ない」 expresses a general lack of value. We are looking for an expression that specifically
+          implies the excuses were intrinsically insufficient to meet the standard of trustworthiness
+          for action.
+    scene: Two colleagues are discussing why they couldn't support a third colleague who was in trouble,
+      having found her explanations unconvincing.
+    register: formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+  - english: This small error is not worthy of being reported to the executive.
+    japanese:
+      - この 小さな ミス は 役員 に 報告 する {に 足り ない}。
+      - この 小さな ミス は 役員 に 報告 する {に 足り ませ ん}。
+    english_literally: This small error is not sufficient to be reported to the executive.
+    competing_grammar:
+      - competing_japanese:
+          - この 小さな ミス は 役員 に 報告 する {ほど の こと で は ない}。
+        english: This small error is not significant enough to be reported to the executive.
+        hint: 「～ほどのことはない」 indicates something is not important or significant enough for an action. We
+          are looking for an expression that suggests the error itself lacks the inherent quality that
+          would warrant reporting it to a high-level executive.
+      - competing_japanese:
+          - この 小さな ミス は 役員 に 報告 する {価値 が ない}。
+        english: This small error has no value for reporting to the executive.
+        hint: 「価値 が ない」 means 'has no value'. We are looking for an expression that conveys the error's
+          intrinsic insufficiency to meet the standard for executive-level reporting.
+    scene: A seasoned employee advises a new hire against escalating a minor issue, indicating that it's
+      too insignificant for high-level attention.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: The older employee's use of the plain non-past form 「に足りない」 is a direct and objective assessment.
+      Coming from an older, likely more experienced, speaker, it carries a tone of authority and practicality,
+      implying that such minor issues are below the established standard for executive attention, without
+      needing overly polite or soft language.
+post_example_writeup: As you can see from the examples, 「に足りない」 is consistently used in contexts where
+  an objective assessment of inadequacy is being made. It's not about a speaker's personal feeling or
+  inability, but rather an inherent lack of quality or merit in the subject itself for a given purpose
+  or action. The polite and plain forms allow for usage across different social registers, although the
+  expression itself maintains a formal and often academic or professional tone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に足りない

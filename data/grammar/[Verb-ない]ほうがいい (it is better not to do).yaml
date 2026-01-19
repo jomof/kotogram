@@ -1,0 +1,475 @@
+grammar_point: '[Verb-ない]ほうがいい (it is better not to do)'
+learn_before:
+  - にすぎない (no more than)
+meaning: It'd be better not to, Shouldn't do
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ないほうがいい
+    rarity: common
+    meaning: It'd be better not to
+  - conjugation-type: non-past polite (～ます)
+    form: ないほうがいいです
+    rarity: common
+    meaning: It would be better not to
+pronunciation:
+  katakana: ナイホウガイイ
+  romaji: nai hō ga ii
+formation:
+  '[Verb -ない form] + ほうがいい': Suggests it is better not to do something.
+jlpt: N5
+etymology: ほう (方) means "direction" or "way," and がいい means "is good." Thus, ないほうがいい literally translates
+  to "the way of not doing is good," implying it's better not to do something.
+writeup: The grammar point 「ないほうがいい」 is used to give advice or a suggestion that it would be better **not**
+  to do something. It is the negative counterpart to 「たほうがいい」, which advises doing something. The expression
+  「ないほうがいい」 is a direct way of giving advice, and while not overly harsh, it strongly implies that undesirable
+  outcomes could follow if the advice is not heeded. As 方 can be translated closely to 'way' or 'direction',
+  this expression is suggesting that one specific choice is simply the better 'way'.
+false_friends:
+  - term: ことだ
+    meaning: Should, Ought
+    kind: antonym
+    nuance: Unlike 「ないほうがいい」, 「ことだ」 expresses a stronger sense of obligation or necessity, often used
+      for general rules or moral imperatives.
+    grammar_point: ことだ (should・ought to)
+  - term: ばいい
+    meaning: Can, Should, It'd be good if
+    kind: antonym
+    nuance: Unlike 「ないほうがいい」, 「ばいい」 suggests that a specific action will lead to a positive outcome or
+      solve a problem, indicating a recommended course of action.
+    grammar_point: ばいい (if... then it's good)
+  - term: べき
+    meaning: Must, Should, Ought to
+    kind: antonym
+    nuance: Unlike 「ないほうがいい」, 「べき」 expresses a strong moral or logical obligation or expectation, indicating
+      what one is inherently 'supposed to do'.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: たほうがいい
+    meaning: It'd be better to, Should do
+    kind: antonym
+    nuance: 「たほうがいい」 advises doing something as the better option, while 「ないほうがいい」 advises against doing
+      something as the better option.
+    grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+  - term: たらいい・といい
+    meaning: It would be nice if, It would be good if, Should, I hope
+    kind: antonym
+    nuance: Unlike 「ないほうがいい」, 「たらいい・といい」 expresses a wish or hope for a positive outcome, or a gentle
+      suggestion, rather than direct advice about avoiding an action.
+    grammar_point: たらいい・といい (hope・suggestion)
+  - term: べきではない
+    meaning: Should not, Must not, Ought not to
+    kind: synonym
+    nuance: 「べきではない」 expresses a strong moral or logical prohibition, implying an action should definitely
+      not be done. In contrast, 「ないほうがいい」 is a gentler suggestion to refrain from doing something, implying
+      it is simply the better choice.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: ～てはいけない
+    meaning: Must not, May not, Forbidden to
+    kind: often confused with
+    nuance: While both express something that should not be done, 「～てはいけない」 conveys a stronger sense of
+      prohibition or rule, often implying a penalty or severe consequence if the action is taken. 「ないほうがいい」
+      is advisory, suggesting it's simply a better choice to avoid something.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+post_false_friends_writeup: 「ないほうがいい」 gently conveys advice that it is better not to do something, meaning
+  one should avoid a specific action to prevent undesirable outcomes. This stands in contrast to 「べきではない」,
+  which signifies a stronger obligation or prohibition. Similarly, 「たほうがいい」 is its affirmative counterpart,
+  advising that doing something is better. Pay attention to the context and the strength of the recommendation
+  you wish to convey when choosing between these expressions.
+examples:
+  - english: It's hot, so you shouldn't touch it.
+    japanese:
+      - 熱い から、触ら {ない ほう が いい} よ。
+      - 熱い から、触ら {ない 方 が いい} よ。
+      - 熱い から、触ら {ない ほう が いい} です よ。
+      - 熱い から、触ら {ない 方 が いい} です よ。
+    english_literally: Because it's hot, the way of not touching is good.
+    competing_grammar:
+      - competing_japanese:
+          - 熱い から、触っ {ちゃ いけ ない} よ。
+        english: It's hot, so you must not touch it.
+        hint: 「～てはいけない」 implies a stronger prohibition or rule, often with consequences. We're looking
+          for advisory advice.
+      - competing_japanese:
+          - 熱い から、触る {な}。
+        english: It's hot, so don't touch it!
+        hint: 「～な」 is a direct and strong command. We're looking for a softer, advisory tone.
+      - competing_japanese:
+          - 熱い から、触ら {ない こと だ} よ。
+        english: It's hot, so it is a matter of not touching it.
+        hint: 「～ことだ」 expresses a general rule or strong recommendation, not a specific advisory choice.
+          We're looking for advice that implies a better alternative.
+      - competing_japanese:
+          - 熱い から、触ら {なけれ ば いい} よ。
+        english: It's hot, so it would be good if you didn't touch it.
+        hint: 「～ばいい」 suggests a condition for a good outcome or expresses a wish. We're looking for direct
+          advice against an action.
+      - competing_japanese:
+          - 熱い から、触る {べき で は ない} よ。
+        english: It's hot, so you shouldn't touch it.
+        hint: 「～べきではない」 conveys a strong sense of moral or logical obligation not to do something. We're
+          looking for a gentler suggestion or advisory.
+      - competing_japanese:
+          - 熱い から、触ら {ない と いい} よ。
+        english: It's hot, so it would be good if you didn't touch it.
+        hint: 「～たらいい・といい」 expresses a wish or hope, or a gentle suggestion. We're looking for direct advice
+          to avoid an action.
+    scene: A friend warns another about a hot object on a stove.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「よ」 adds a friendly, advising tone, appropriate for a casual warning between friends.
+      The casual nature is emphasized as this is not a strict rule but a cautionary suggestion due to
+      a simple hazard.
+  - english: For your health, it's better not to drink too much coffee.
+    japanese:
+      - 健康 の ため に、コーヒー を 飲み すぎ {ない ほう が いい} です。
+      - 健康 の ため に、コーヒー を 飲み すぎ {ない 方 が いい} です。
+      - 健康 の ため に、コーヒー を 飲み すぎ {ない ほう が よろしい} です。
+      - 健康 の ため に、コーヒー を 飲み すぎ {ない 方 が よろしい} です.
+    english_literally: For health, the way of not drinking too much coffee is good.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 の ため に、コーヒー を 飲み すぎ {て は いけ ませ ん}。
+        english: For your health, you must not drink too much coffee.
+        hint: 「～てはいけない」 signifies a strong prohibition or rule, often with consequences. We're looking
+          for advice, not a strict command.
+      - competing_japanese:
+          - 健康 の ため に、コーヒー を 飲み すぎる {べき で は あり ませ ん}。
+        english: For your health, you should not drink too much coffee.
+        hint: While similar, 「～べきではない」 implies a stronger moral or logical prohibition. We're looking
+          for a gentler advisory that suggests a better choice.
+      - competing_japanese:
+          - 健康 の ため に、コーヒー を 飲み すぎ {ない こと です}。
+        english: For your health, it is a matter of not drinking too much coffee.
+        hint: 「～ことだ」 expresses a general rule or strong recommendation, not a specific advisory choice.
+          We're looking for advice that implies a better alternative.
+      - competing_japanese:
+          - 健康 の ため に、コーヒー を 飲み すぎ {なけれ ば いい} です。
+        english: For your health, it would be good if you didn't drink too much coffee.
+        hint: 「～ばいい」 suggests a condition for a good outcome or expresses a wish. We're looking for direct
+          advice against an action.
+      - competing_japanese:
+          - 健康 の ため に、コーヒー を 飲み すぎ {ない と いい} です。
+        english: For your health, it would be good if you didn't drink too much coffee.
+        hint: 「～たらいい・といい」 expresses a wish or hope, or a gentle suggestion. We're looking for direct advice
+          to avoid an action.
+    scene: A doctor gives health advice to a patient during a check-up.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「です」 makes the advice polite and formal, suitable for a professional setting. 「健康
+      の ため に」 (for your health) sets a clear reason for the advice, emphasizing well-being. This phrasing
+      is a strong recommendation for well-being rather than a strict prohibition, appropriate for medical
+      guidance.
+  - english: You shouldn't worry too much about the test.
+    japanese:
+      - 試験 の こと を 心配 し {ない ほう が いい} よ。
+      - 試験 の こと を 心配 し {ない 方 が いい} よ。
+      - 試験 の こと は 心配 し {ない ほう が いい} よ。
+      - 試験 の こと は 心配 し {ない 方 が いい} よ。
+    english_literally: About the test, the way of not worrying is good.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の こと を 心配 し {て は いけ ない} よ。
+        english: You must not worry about the test.
+        hint: 「～てはいけない」 signifies a strong prohibition or rule, often with consequences. We're looking
+          for advice, not a strict command.
+      - competing_japanese:
+          - 試験 の こと を 心配 する {な}。
+        english: Don't worry about the test!
+        hint: This is a direct and strong command. We're looking for a softer, more empathetic suggestion.
+      - competing_japanese:
+          - 試験 の こと を 心配 し {ない こと だ} よ。
+        english: It is a matter of not worrying about the test.
+        hint: 「～ことだ」 expresses a general rule or strong recommendation, not a specific advisory choice.
+          We're looking for advice that implies a better alternative.
+      - competing_japanese:
+          - 試験 の こと を 心配 し {なけれ ば いい} よ。
+        english: It would be good if you didn't worry about the test.
+        hint: 「～ばいい」 suggests a condition for a good outcome or expresses a wish. We're looking for direct
+          advice against an action.
+      - competing_japanese:
+          - 試験 の こと を 心配 す {べき で は ない} よ。
+        english: You shouldn't worry about the test.
+        hint: 「～べきではない」 conveys a strong sense of moral or logical obligation not to do something. We're
+          looking for a gentler suggestion or advisory.
+      - competing_japanese:
+          - 試験 の こと を 心配 し {ない と いい} よ。
+        english: It would be good if you didn't worry about the test.
+        hint: 「～たらいい・といい」 expresses a wish or hope, or a gentle suggestion. We're looking for direct advice
+          to avoid an action.
+    scene: A supportive friend tries to calm down their anxious classmate before an important exam.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    nuance: The casual 「よ」 softens the advice, making it sound more like encouraging empathy from a friend.
+      The phrase 「心配 し ない」 (not worry) is a common expression of reassurance. This conveys gentle advice
+      rather than a prohibition, suitable for emotional support.
+  - english: You shouldn't tell everyone that story. It might cause problems later.
+    japanese:
+      - その 話 は みんな に 言わ {ない ほう が いい} よ。後 で 問題 に なる か も しれ ない から。
+      - その 話 は みんな に 言わ {ない 方 が いい} よ。後 で 問題 に なる か も しれ ない から。
+      - みんな に その 話 は 言わ {ない ほう が いい} よ。後 で 問題 に なる か も しれ ない から。
+      - みんな に その 話 は 言わ {ない 方 が いい} よ。後 で 問題 に なる か も しれ ない から。
+    english_literally: That story, to everyone, the way of not saying is good. Because it might become
+      a problem later.
+    competing_grammar:
+      - competing_japanese:
+          - その 話 は みんな に 言っ {て は いけ ない} よ。後 で 問題 に なる か も しれ ない から。
+        english: You must not tell everyone that story. It might cause problems later.
+        hint: 「～てはいけない」 signifies a strong prohibition or rule, often with consequences. We're looking
+          for advice based on foresight of consequences, not a strict command.
+      - competing_japanese:
+          - その 話 は みんな に 言わ {ない こと だ} よ。後 で 問題 に なる か も しれ ない から。
+        english: It is a matter of not telling everyone that story. It might cause problems later.
+        hint: 「～ことだ」 expresses a general rule or strong recommendation, not a specific advisory choice.
+          We're looking for advice that implies a better alternative.
+      - competing_japanese:
+          - その 話 は みんな に 言わ {なけれ ば いい} よ。後 で 問題 に なる か も しれ ない から。
+        english: It would be good if you didn't tell everyone that story. It might cause problems later.
+        hint: 「～ばいい」 suggests a condition for a good outcome or expresses a wish. We're looking for direct
+          advice against an action.
+      - competing_japanese:
+          - その 話 は みんな に 言う {べき で は ない} よ。後 で 問題 に なる か も しれ ない から。
+        english: You shouldn't tell everyone that story. It might cause problems later.
+        hint: 「～べきではない」 conveys a strong sense of moral or logical obligation not to do something. We're
+          looking for a gentler suggestion or advisory.
+      - competing_japanese:
+          - その 話 は みんな に 言わ {ない と いい} よ。後 で 問題 に なる か も しれ ない から。
+        english: It would be good if you didn't tell everyone that story. It might cause problems later.
+        hint: 「～たらいい・といい」 expresses a wish or hope, or a gentle suggestion. We're looking for direct advice
+          to avoid an action.
+    scene: A coworker advises a colleague not to spread sensitive information in the office to avoid future
+      complications.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The addition of 「後 で 問題 に なる か も しれ ない から」 (because it might cause problems later) explicitly
+      states the potential negative consequence, strengthening the advisory nature of 「ないほうがいい」. The 「よ」
+      maintains a casual, peer-to-peer tone. This highlights a pragmatic warning about potential negative
+      repercussions, rather than a strict rule or moral injunction.
+  - english: This road is narrow, so it's better not to speed too much.
+    japanese:
+      - この 道 は 狭い の で、あまり スピード を 出し すぎ {ない ほう が いい} です。
+      - この 道 は 狭い の で、あまり スピード を 出し すぎ {ない 方 が いい} です。
+      - この 道 は 狭い です から、あまり スピード を 出し すぎ {ない ほう が いい} です。
+      - この 道 は 狭い です から、あまり スピード を 出し すぎ {ない 方 が いい} です。
+    english_literally: This road is narrow, so, the way of not exceeding speed too much is good.
+    competing_grammar:
+      - competing_japanese:
+          - この 道 は 狭い の で、あまり スピード を 出し すぎ {て は いけ ませ ん}。
+        english: This road is narrow, so you must not speed too much.
+        hint: The setting requires polite and indirect communication when giving advice. 「～てはいけない」 offers
+          a direct prohibition, which could be perceived as rude. We're looking for a more deferential
+          suggestion.
+      - competing_japanese:
+          - この 道 は 狭い の で、あまり スピード を 出し すぎる {べき で は あり ませ ん}。
+        english: This road は narrow, so you should not speed too much.
+        hint: While similar, 「～べきではない」 implies a stronger moral or logical prohibition. We're looking
+          for a gentler advisory that suggests a better choice.
+      - competing_japanese:
+          - この 道 は 狭い の で、あまり スピード を 出し すぎ {ない こと です}。
+        english: This road is narrow, so it is a matter of not speeding too much.
+        hint: 「～ことだ」 expresses a general rule or strong recommendation, not a specific advisory choice.
+          We're looking for advice that implies a better alternative.
+      - competing_japanese:
+          - この 道 は 狭い の で、あまり スピード を 出し すぎ {なけれ ば いい} です。
+        english: This road is narrow, so it would be good if you didn't speed too much.
+        hint: 「～ばいい」 suggests a condition for a good outcome or expresses a wish. We're looking for direct
+          advice against an action.
+      - competing_japanese:
+          - この 道 は 狭い の で、あまり スピード を 出し すぎ {ない と いい} です。
+        english: This road is narrow, so it would be good if you didn't speed too much.
+        hint: 「～たらいい・といい」 expresses a wish or hope, or a gentle suggestion. We're looking for direct advice
+          to avoid an action.
+    scene: A passenger politely advises a taxi driver about the winding, narrow road conditions.
+    register: formal
+    setting: cautious
+    conjugation: non-past polite (～ます)
+    nuance: Using 「～の で」 (since/because) provides a polite reason for the advice. The 「です」 makes the suggestion
+      deferential, typical when addressing someone performing a service, making it sound more like a helpful
+      observation than a command.
+  - english: I thought it would be better not to buy unnecessary things.
+    japanese:
+      - 無駄 な もの は 買わ {ない ほう が いい} と 思っ た。
+      - 無駄 な もの は 買わ {ない 方 が いい} と 思っ た。
+      - 無駄 な もの は 買わ {ない ほう が 良い} と 思っ た。
+      - 無駄 な もの は 買わ {ない 方 が 良い} と 思っ た。
+    english_literally: Unnecessary things, the way of not buying is good, I thought.
+    competing_grammar:
+      - competing_japanese:
+          - 無駄 な もの は 買っ {て は いけ ない} と 思っ た。
+        english: I thought unnecessary things must not be bought.
+        hint: 「～てはいけない」 signifies a strong prohibition or rule, often with consequences. We're looking
+          for a personal reflection or decision, not a strict rule.
+      - competing_japanese:
+          - 無駄 な もの は 買う {べき で は ない} と 思っ た。
+        english: I thought unnecessary things should not be bought.
+        hint: While similar, 「～べきではない」 implies a stronger moral or logical prohibition. We're looking
+          for a personal decision or self-advice, which is a gentler advisory.
+      - competing_japanese:
+          - 無駄 な もの は 買わ {ない こと だ} と 思っ た。
+        english: I thought it is a matter of not buying unnecessary things.
+        hint: 「～ことだ」 expresses a general rule or strong recommendation, not a specific advisory choice.
+          We're looking for advice that implies a better alternative.
+      - competing_japanese:
+          - 無駄 な もの は 買わ {なけれ ば いい} と 思っ た。
+        english: I thought it would be good if unnecessary things weren't bought.
+        hint: 「～ばいい」 suggests a condition for a good outcome or expresses a wish. We're looking for direct
+          advice against an action.
+      - competing_japanese:
+          - 無駄 な もの は 買わ {ない と いい} と 思っ た。
+        english: I thought it would be good if unnecessary things weren't bought.
+        hint: 「～たらいい・といい」 expresses a wish or hope, or a gentle suggestion. We're looking for direct advice
+          to avoid an action.
+    scene: Someone is reflecting on their past spending habits and decides to be more frugal in the future.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「～と 思った」 (I thought) indicates this is a self-reflection or a personal resolution,
+      showing that 「ないほうがいい」 can be used for giving advice to oneself. This makes the statement introspective
+      and less direct. This indicates a personal conclusion made by oneself, not a strict rule imposed
+      by an external authority.
+  - english: You shouldn't ask about people's salaries directly.
+    japanese:
+      - 給料 の こと を 直接 聞か {ない ほう が いい} です よ。
+      - 給料 の こと を 直接 聞か {ない 方 が いい} です よ。
+    english_literally: About salary, directly, the way of not asking is good.
+    competing_grammar:
+      - competing_japanese:
+          - 給料 の こと を 直接 聞く {べき で は あり ませ ん} よ。
+        english: You should not ask about people's salaries directly.
+        hint: 「～べきではない」 conveys a strong sense of moral or social obligation. We're looking for advice
+          that is a softer suggestion about what is better to avoid, implying it's a common social faux
+          pas.
+      - competing_japanese:
+          - 給料 の こと を 直接 聞い {て は いけ ませ ん} よ。
+        english: You must not ask about people's salaries directly.
+        hint: 「～てはいけない」 implies a strict rule or prohibition. We're looking for advice about social etiquette,
+          which is more about what is preferable than what is forbidden.
+    scene: A senior colleague gives advice on professional etiquette to a new hire in the office.
+    register: semi-formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「です」 adds politeness, suitable for a senior-junior interaction in a professional
+      setting. The 「よ」 softens the advice, making it sound helpful rather than a strict command. This
+      phrase indicates that such direct questioning about salary 「給料」 is generally considered impolite
+      in Japanese business culture, thus better avoided.
+  - english: If you want to lose weight, you shouldn't eat sweets after dinner.
+    japanese:
+      - 痩せ たい なら、夕食 後 に 甘い 物 を 食べ {ない ほう が いい} よ。
+      - 痩せ たい なら、夕食 後 に 甘い 物 を 食べ {ない 方 が いい} よ。
+    english_literally: If you want to lose weight, after dinner, the way of not eating sweets is good.
+    competing_grammar:
+      - competing_japanese:
+          - 痩せ たい なら、夕食 後 に 甘い 物 を 食べる {べき で は ない} よ。
+        english: If you want to lose weight, you should not eat sweets after dinner.
+        hint: 「～べきではない」 implies a stronger sense of obligation or what is logically correct. We're looking
+          for practical, friendly advice for a specific goal.
+      - competing_japanese:
+          - 痩せ たい なら、夕食 後 に 甘い 物 を 食べ {て は いけ ない} よ。
+        english: If you want to lose weight, you must not eat sweets after dinner.
+        hint: 「～てはいけない」 conveys a prohibition. We're looking for a suggestion about what is more effective
+          for achieving a personal goal, not a strict rule.
+    scene: A friend who has successfully lost weight shares a tip with another friend who is trying to
+      do the same.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「痩せ たい なら」 (if you want to lose weight) establishes the conditional context for
+      the advice, making it practical and supportive. The casual tone with 「よ」 is fitting for advice exchanged
+      between friends on a personal matter like diet. This suggests that avoiding sweets 「甘い 物」 after
+      dinner is a pragmatic choice for the goal, not a strict dietary rule.
+  - english: It's better not to invest all your savings in one stock.
+    japanese:
+      - 貯金 の 全て を 一 つ の 株 に 投資 し {ない ほう が いい} です。
+      - 貯金 の 全て を 一 つ の 株 に 投資 し {ない 方 が いい} です。
+    english_literally: All of your savings, into one stock, the way of not investing is good.
+    competing_grammar:
+      - competing_japanese:
+          - 貯金 の 全て を 一 つ の 株 に 投資 する {べき で は あり ませ ん}。
+        english: You should not invest all your savings in one stock.
+        hint: 「～べきではない」 suggests a strong logical or moral obligation. We're looking for a cautious recommendation
+          based on financial prudence.
+      - competing_japanese:
+          - 貯金 の 全て を 一 つ の 株 に 投資 し {て は いけ ませ ん}。
+        english: You must not invest all your savings in one stock.
+        hint: 「～てはいけない」 implies a strict prohibition, like a rule or law. We're looking for professional
+          advice based on risk management.
+    scene: A financial advisor explains investment risks to a client during a consultation.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal 「です」 and vocabulary like 「貯金 の 全て」 (all savings) and 「株 に 投資 する」 (invest in stock)
+      are appropriate for a professional financial discussion. This emphasizes the pragmatic wisdom of
+      not putting all eggs in one basket, a common advisory in investment contexts, indicating a recommended
+      cautious approach.
+  - english: You shouldn't keep all your worries to yourself.
+    japanese:
+      - 全て の 悩み を 一 人 で 抱え込ま {ない ほう が いい} よ。
+      - 全て の 悩み を 一 人 で 抱え込ま {ない 方 が いい} よ。
+    english_literally: All worries, by yourself, the way of not holding onto is good.
+    competing_grammar:
+      - competing_japanese:
+          - 全て の 悩み を 一 人 で 抱え込む {べき で は ない} よ。
+        english: You should not keep all your worries to yourself.
+        hint: 「～べきではない」 implies a stronger sense of what is correct or appropriate. We're looking for
+          empathetic advice encouraging someone to open up.
+      - competing_japanese:
+          - 全て の 悩み を 一 人 で 抱え込ん {で は いけ ない} よ。
+        english: You must not keep all your worries to yourself.
+        hint: 「～てはいけない」 conveys a prohibition. We're looking for supportive advice to improve well-being,
+          not a strict rule.
+    scene: A school counselor talks to a student who seems to be struggling with personal issues.
+    register: semi-formal
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「よ」 softens the advice, making it gentle and encouraging, suitable for a counselor.
+      The verb 「抱え込む」 (to hold onto/keep to oneself) is often used for emotional burdens, highlighting
+      the empathetic nature of the advice. This phrase encourages sharing one's worries 「悩み」 for their
+      own benefit, suggesting that it is not good to bear them alone.
+  - english: You shouldn't blindly trust everything on the internet.
+    japanese:
+      - インターネット の 全て を 信じ {ない ほう が いい} よ。
+      - インターネット の 全て を 信じ {ない 方 が いい} よ。
+    english_literally: Internet's everything, the way of not believing is good.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット の 全て を 信じ {て は いけ ない} よ。
+        english: You must not blindly trust everything on the internet.
+        hint: 「～てはいけない」 signifies a strong prohibition or rule. We're looking for advice on critical thinking,
+          which is a suggestion rather than a strict command.
+      - competing_japanese:
+          - インターネット の 全て を 信じる {べき で は ない} よ。
+        english: You should not blindly trust everything on the internet.
+        hint: 「～べきではない」 conveys a strong sense of what is logically correct or appropriate. We're looking
+          for a gentler suggestion about prudent behavior online.
+      - competing_japanese:
+          - インターネット の 全て を 信じ {ない こと だ} よ。
+        english: It is a matter of not blindly trusting everything on the internet.
+        hint: 「～ことだ」 expresses a general rule or strong recommendation. We're looking for advice that
+          implies a better alternative for personal discretion.
+    scene: A college student advises a younger sibling about critical thinking regarding online information.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「インターネット の 全て を 信じ ない」 emphasizes a cautionary approach to online information.
+      The casual 「よ」 makes it feel like peer-to-peer advice rather than a command, fitting for a sibling
+      relationship.
+post_example_writeup: As seen in the examples, 「ないほうがいい」 is versatile for conveying advice to avoid certain
+  actions. The choice between its plain form (～ないほうがいい) and polite form (～ないほうがいいです) depends on the formality
+  of the situation and your relationship with the listener. Furthermore, context clues such as sentence-final
+  particles like 「よ」 can soften the advice, making it more empathetic or encouraging, while phrases like
+  「～から」 can provide the reasoning for the advice.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ないほうがいい

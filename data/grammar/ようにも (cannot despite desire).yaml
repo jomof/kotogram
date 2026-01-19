@@ -1,0 +1,731 @@
+grammar_point: ようにも (cannot despite desire)
+learn_before:
+  - '[Verb-よう]に〜ない (cannot despite desire)'
+meaning: Even though I want to (verb), I can't.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ようにも〜ない
+    rarity: common
+    meaning: even though I want to (verb), I can't
+  - conjugation-type: past plain (～た)
+    form: ようにも〜なかった
+    rarity: common
+    meaning: even though I wanted to (verb), I couldn't
+pronunciation:
+  katakana: ヨウニモナイ
+  romaji: yō ni mo nai
+formation:
+  Verb (Volitional Form) + にも + (〜ない): Expresses that one cannot do something even if one wants to.
+jlpt: N2
+etymology: 「よう」 is the volitional form of a verb, indicating intention or desire. 「にも」 adds the nuance
+  of "even though" or "despite." 「ない」 negates the possibility of the action. Together, they create the
+  meaning of "even though I want to, I cannot."
+writeup: The grammar point 「ようにも(〜ない)」 expresses that even if someone wants to do something, they are
+  unable to because of external circumstances or internal limitations. It combines a verb in the volitional
+  form (expressing intent) with 「にも」 (even though) and a negative ending 「ない」 (cannot). The nuance is
+  one of frustration or helplessness, where the desire to act is present but unrealizable. It's similar
+  to saying "I wish I could, but I can't" or "Even if I wanted to, I couldn't." This expression highlights
+  a gap between one's will or intention and the reality of their ability to act. It's often used when
+  expressing a personal dilemma or an external barrier. While the general tone can lean formal, particularly
+  with polite conjugations like 「〜ません」, its core structure is versatile enough to appear in casual conversations
+  as well, especially when paired with plain forms of negation.
+false_friends:
+  - term: つもり
+    meaning: intention, plan
+    kind: similar expression
+    nuance: Unlike 「ようにも〜ない」, 「つもり」 indicates intention but doesn't necessarily imply inability. It states
+      what one plans to do, not what one is prevented from doing.
+    grammar_point: '[Verb-dictionary]つもりだ (to intend to)'
+  - term: たい
+    meaning: want to do
+    kind: similar expression
+    nuance: 「たい」 expresses desire, but it doesn't convey the obstacle or inability present in 「ようにも〜ない」.
+      It simply states a wish without implying any barrier.
+    grammar_point: たい (want to do)
+  - term: ～ようとする
+    meaning: to try to; to be about to
+    kind: similar expression
+    nuance: While 「ようにも〜ない」 emphasizes an intention or desire that is ultimately thwarted by an external
+      obstacle, 「ようとする」 simply states an attempt or being on the verge of doing something, without inherently
+      implying the impossibility or inability of the action.
+    grammar_point: '[Verb-volitional]とする・としない (to try to・to not try to)'
+  - term: ～ても
+    meaning: even if; even though
+    kind: similar expression
+    nuance: 「〜ても」 can express a hypothetical condition, but it doesn't inherently include the speaker's
+      unfulfilled desire to perform the action. 「ようにも〜ない」 specifically highlights the desire that cannot
+      be realized due to external circumstances.
+    grammar_point: ても (even if・even though)
+post_false_friends_writeup: While 「つもり」 simply states an intention, 「ようにも〜ない」 indicates an attempt or
+  desire to do something that is ultimately impossible due to circumstances. Similarly, 「たい」 conveys a
+  wish, whereas 「ようにも〜ない」 adds a layer of frustration by highlighting the inability to fulfill that wish.
+  「～ようとする」 focuses purely on the act of trying, without necessarily including the outcome of inability.
+  Finally, 「〜ても」 states a conditional 'even if', but lacks the specific nuance of a deeply felt personal
+  desire that is thwarted, which is central to 「ようにも〜ない」. The key distinction for 「ようにも〜ない」 is the presence
+  of an insurmountable barrier that prevents the desired action, making the internal desire irrelevant
+  in the face of external reality.
+examples:
+  - english: I'm tired, so even if I wanted to run, I can't.
+    japanese:
+      - 疲れ て い て 走り {よう に も} 走れ ませ ん。
+      - 疲れ て い て 走り {よう に も} 走れ ない。
+      - 疲れ て いる から 走り {よう に も} 走れ ない。
+      - 疲れ すぎ て 走り {よう に も} 走れ ない。
+      - 疲れ て いる から 走り {よう に も} 走れ ませ ん。
+      - 体 が 動か なく て、走り {よう に も} 走れ ない。
+    english_literally: Being tired, even though I intended to run, I cannot run.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ て いる から、走る {つもり} は ない。
+        english: Because I'm tired, I don't intend to run.
+        hint: 「つもり」 expresses intention. We're looking for an expression that conveys a desire and the
+          inability to fulfill it.
+      - competing_japanese:
+          - 疲れ て いる けど 走り {たい}。
+        english: I'm tired, but I want to run.
+        hint: 「〜たい」 expresses desire. We're looking for a grammar point that expresses desire and the
+          inability to fulfill it due to circumstances.
+      - competing_japanese:
+          - 疲れ て いる から 走ろう {と し た が}、無理 だっ た。
+        english: Because I was tired, I tried to run, but it was impossible.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a phrase where the desire is present, but
+          the action is inherently impossible or thwarted.
+      - competing_japanese:
+          - 疲れ て いる から 走ろう と し {て も} 走れ ない。
+        english: Because I'm tired, even if I try to run, I can't.
+        hint: 「〜ても」 focuses on a conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to act that is thwarted by external circumstances.
+      - competing_japanese:
+          - 疲れ て いる から {走れ ない}。
+        english: This simply states inability. We're looking for a phrase that emphasizes wanting to do
+          something but being unable to due to circumstances.
+        hint: This simply states inability. We're looking for a phrase that emphasizes wanting to do something
+          but being unable to due to circumstances.
+    scene: A person is at the end of a long day and feeling physically exhausted.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The speaker is a younger male expressing personal frustration. The phrasing emphasizes the
+      desire to run despite physical exhaustion, conveying the feeling of one's body giving up even when
+      the mind is willing. The polite form 「走れ ませ ん」 is used even when speaking to no one, implying a
+      reflective or internal thought process.
+  - english: My mother doesn't know my contact information, so even if she wanted to call, she can't.
+    japanese:
+      - 母 は 私 の 連絡 先 を 知ら ない の で、電話 を かけ {よう に も} かけ られ ない。
+      - 母 は 私 の 連絡 先 を 知ら ない から、電話 を かけ {よう に も} かけ られ ない。
+      - 母 は 私 の 連絡 先 を 知り ませ ん の で、電話 を かけ {よう に も} かけ られ ませ ん。
+      - 母 が 私 の 連絡 先 を 知ら ない から、電話 を かけ {よう に も} かけ られ ない。
+      - 母 が 私 の 連絡 先 を 知り ませ ん から、電話 を かけ {よう に も} かけ られ ませ ん。
+    english_literally: My mother does not know my contact information, so even though she intended to
+      call, she cannot call.
+    competing_grammar:
+      - competing_japanese:
+          - 母 は 私 の 連絡 先 を 知ら ない から、電話 を かける {つもり} は ない。
+        english: My mother doesn't know my contact information, so she doesn't intend to call.
+        hint: 「つもり」 expresses intention. We're looking for a situation where desire is present, but the
+          action is prevented by an external factor.
+      - competing_japanese:
+          - 母 は 私 の 連絡 先 を 知ら ない けど、電話 を かけ {たい} と 思っ て いる だろう。
+        english: My mother doesn't know my contact information, but she probably wants to call.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that explicitly states the inability
+          to act despite that desire.
+      - competing_japanese:
+          - 母 は 私 の 連絡 先 を 知ら ない から、電話 を かけよう {と し て も} でき ない。
+        english: My mother doesn't know my contact information, so even if she tries to call, she can't.
+        hint: 「〜ようとする」 implies an attempt. We're looking for a phrase where the desire to act is present,
+          which is then thwarted.
+      - competing_japanese:
+          - 母 は 私 の 連絡 先 を 知ら ない から、電話 を かけ {て も} 繋がら ない。
+        english: My mother doesn't know my contact information, so even if she calls, it won't connect.
+        hint: 「〜ても」 indicates a general conditional. We're looking for a phrase that emphasizes the specific
+          desire to act that is impossible.
+      - competing_japanese:
+          - 母 は 私 の 連絡 先 を 知ら ない から、電話 を {かけ られ ない}。
+        english: This simply states inability. We're looking for an expression that highlights the desire
+          to act despite the inability.
+        hint: This simply states inability. We're looking for an expression that highlights the desire
+          to act despite the inability.
+    scene: A young woman is talking to her friend about why her mother hasn't been able to reach her.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The speaker is a younger female using casual Japanese. The expression 「かけられない」 (cannot call)
+      clearly indicates an inability despite the mother's probable desire. The casual tone and the lack
+      of honorifics indicate a conversation between close friends. The use of 「電話 を かけ {ようにも}」 shows her
+      understanding of her mother's desire to call.
+  - english: The problem was too complex, so even if I wanted to explain it, I couldn't.
+    japanese:
+      - その 問題 は 複雑 すぎ て、説明 し {よう に も} 説明 でき ませ ん でし た。
+      - その 問題 は 複雑 すぎ て、説明 し {よう に も} 説明 でき なかっ た。
+      - 問題 が 複雑 すぎ て、説明 し {よう に も} 説明 でき なかっ た。
+      - その 問題 は あまり に 複雑 で、説明 し {よう に も} 説明 でき なかっ た。
+      - あまり に 複雑 な 問題 で、説明 し {よう に も} 説明 でき ませ ん でし た。
+    english_literally: That problem was too complex, so even though I intended to explain it, I could
+      not explain it.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は 複雑 すぎ て、説明 する {つもり} は なかっ た。
+        english: The problem was too complex, so I didn't intend to explain it.
+        hint: 「つもり」 denotes intention. We're looking for a situation where there was a desire to explain,
+          but it was impossible.
+      - competing_japanese:
+          - その 問題 は 複雑 すぎ た けど、説明 し {たかっ た}。
+        english: The problem was too complex, but I wanted to explain it.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that includes both the desire and the
+          inability to fulfill it due to the complexity.
+      - competing_japanese:
+          - その 問題 は 複雑 すぎ て、説明 しよう {と し た が}、でき なかっ た。
+        english: The problem was too complex, so I tried to explain it, but I couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that expresses a desire
+          to act that was ultimately impossible.
+      - competing_japanese:
+          - その 問題 は 複雑 すぎ て、説明 しよう と し {て も} 説明 でき なかっ た。
+        english: The problem was too complex, so even if I tried to explain it, I couldn't.
+        hint: 「〜ても」 focuses on a hypothetical attempt. We're looking for a phrase that specifically highlights
+          the desire to explain that was thwarted by the complexity.
+      - competing_japanese:
+          - その 問題 は 複雑 すぎ て、{説明 でき なかっ た}。
+        english: This simply states inability. We're looking for a phrase that emphasizes wanting to explain
+          but being unable to due to its complexity.
+        hint: This simply states inability. We're looking for a phrase that emphasizes wanting to explain
+          but being unable to due to its complexity.
+    scene: A student is telling their professor why they couldn't clearly articulate their solution during
+      an exam.
+    register: semi-formal
+    setting: academic
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: A younger male student uses semi-formal language when speaking to his professor. The phrase
+      「説明できませんでした」 highlights the student's frustration and inability to articulate a solution, a common
+      scenario in academic settings. The use of 「説明 し {ようにも}」 emphasizes that he *wanted* to explain,
+      but the complexity was the barrier.
+  - english: The popular tickets sold out instantly, so even if I wanted to buy them, I couldn't.
+    japanese:
+      - 人気 の チケット は すぐ に 売り切れ て、買 {おう に も} 買え ませ ん でし た。
+      - 人気 の チケット は すぐ に 売り切れ て、買 {おう に も} 買え なかっ た。
+      - 人気 の チケット は あっ と いう 間 に 売り切れ て、買 {おう に も} 買え なかっ た。
+      - 人気 の チケット は すぐ に 売り切れ て しまっ た の で、買 {おう に も} 買え ませ ん でし た。
+      - チケット が あっ と いう 間 に 売り切れ て しまっ て、買 {おう に も} 買え なかっ た。
+    english_literally: The popular tickets sold out immediately, so even though I intended to buy, I could
+      not buy.
+    competing_grammar:
+      - competing_japanese:
+          - 人気 の チケット は 売り切れ て しまっ た けど、もともと 買う {つもり} は なかっ た。
+        english: The popular tickets sold out, but I didn't intend to buy them in the first place.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to buy,
+          but it was impossible due to the tickets selling out.
+      - competing_japanese:
+          - 人気 の チケット は 売り切れ て しまっ た けど、本当 は 買い {たかっ た}。
+        english: The popular tickets sold out, but I really wanted to buy them.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire and the
+          inability to obtain the tickets.
+      - competing_japanese:
+          - 人気 の チケット を 買おう {と し た が}、売り切れ て 買え なかっ た。
+        english: I tried to buy the popular tickets, but they sold out and I couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to purchase, which was then thwarted by the sale.
+      - competing_japanese:
+          - 人気 の チケット は 売り切れ て しまっ た から、買おう {と し て も} 買え なかっ た。
+        english: The popular tickets sold out, so even if I tried to buy them, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to buy that was prevented.
+      - competing_japanese:
+          - 人気 の チケット は 売り切れ て しまっ た から、{買え なかっ た}。
+        english: This simply states inability. We're looking for a phrase that emphasizes wanting to buy
+          but being unable to because they sold out.
+        hint: This simply states inability. We're looking for a phrase that emphasizes wanting to buy
+          but being unable to because they sold out.
+    scene: A fan is lamenting to their friend about missing out on concert tickets.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: A younger female speaker expresses her disappointment to a friend. The phrase 「買 {おうにも} 買えなかった」
+      conveys her strong, immediate desire to buy tickets that was directly thwarted by their sudden unavailability,
+      reflecting the urgency and frustration of missing out on a popular event. The use of 「売り切れて しまった」
+      adds a sense of regret.
+  - english: He can't understand Japanese, so even if I wanted to talk to him, I can't.
+    japanese:
+      - 彼 は 日本 語 が 理解 でき ない の で、話し {よう に も} 話せ ない。
+      - 彼 は 日本 語 が 分から ない の で、話し {よう に も} 話せ ない。
+      - 彼 は 日本 語 が 分から ない から、話し {よう に も} 話せ ない。
+      - 彼 は 日本 語 が 全く 分から ない の で、話し {よう に も} 話せ ない。
+      - 彼 が 日本 語 を 理解 でき ない から、話し {よう に も} 話せ ませ ん。
+    english_literally: He cannot understand Japanese, so even though I intended to talk, I cannot talk.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 語 が 分から ない から、話す {つもり} は ない。
+        english: He doesn't understand Japanese, so I don't intend to talk to him.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there's a desire to communicate,
+          but it's impossible due to a language barrier.
+      - competing_japanese:
+          - 彼 は 日本 語 が 分から ない けど、本当 は 話し {たかっ た}。
+        english: He doesn't understand Japanese, but I really wanted to talk to him.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that explicitly states the inability
+          to act despite that desire.
+      - competing_japanese:
+          - 彼 は 日本 語 が 分から ない から、話そう {と し た が}、無理 だっ た。
+        english: He doesn't understand Japanese, so I tried to talk to him, but it was impossible.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to talk, which is then thwarted.
+      - competing_japanese:
+          - 彼 は 日本 語 が 分から ない から、話そう {と し て も} 話せ ない。
+        english: He doesn't understand Japanese, so even if I try to talk to him, I can't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to talk that is impossible.
+      - competing_japanese:
+          - 彼 は 日本 語 が 分から ない から、{話せ ない}。
+        english: This simply states inability. We're looking for a phrase that emphasizes wanting to talk
+          but being unable to due to the language barrier.
+        hint: This simply states inability. We're looking for a phrase that emphasizes wanting to talk
+          but being unable to due to the language barrier.
+    scene: A Japanese person is explaining to a friend why communication is difficult with a new foreign
+      colleague.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    speaker_age: older
+    nuance: A male speaker, possibly older or more senior, is discussing a communication barrier with
+      a foreign colleague. The use of 「理解 でき ない」 (cannot understand) is more formal than 「分からない」 (don't
+      understand), and combined with 「話し {ようにも} 話せ ない」, it highlights the professional challenge of bridging
+      the language gap, a common issue in business settings. The use of 「話せ ない」 clearly shows the inability
+      to speak.
+  - english: There was too much luggage, so even if I tried to lift it, I couldn't.
+    japanese:
+      - 荷物 が 多 すぎ て、持ち {上げよう に も} 上げ られ なかっ た。
+      - 荷物 が 多 すぎ て、持ち {上げよう に も} 上げ られ ませ ん でし た。
+      - 荷物 が 重 すぎ て、持ち {上げよう に も} 上げ られ なかっ た。
+      - 荷物 が 重 すぎ て、持ち {上げよう に も} 上げ られ ませ ん でし た。
+      - 荷物 が 多 すぎ た の で、持ち {上げよう に も} 上げ られ なかっ た。
+    english_literally: Luggage was too much, so even though I intended to lift, I could not lift.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 が 重 すぎ た の で、持ち上げる {つもり} は なかっ た。
+        english: The luggage was too heavy, so I didn't intend to lift it.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to lift,
+          but it was impossible due to the weight/volume.
+      - competing_japanese:
+          - 荷物 が 重 すぎ た けど、本当 は 持ち 上げ {たかっ た}。
+        english: The luggage was too heavy, but I really wanted to lift it.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to lift
+          and the inability to do so.
+      - competing_japanese:
+          - 荷物 が 重 すぎ た の で、持ち上げよう {と し た が}、無理 だっ た。
+        english: The luggage was too heavy, so I tried to lift it, but it was impossible.
+        hint: 「〜ようとする」 indicates an an attempt. We're looking for a grammar point that focuses on the
+          desire to lift, which is then thwarted.
+      - competing_japanese:
+          - 荷物 が 重 すぎ た の で、持ち上げよう {と し て も} 上げ られ なかっ た。
+        english: The luggage was too heavy, so even if I tried to lift it, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to lift that was impossible.
+      - competing_japanese:
+          - 荷物 が 重 すぎ た の で、{持ち上げ られ なかっ た}。
+        english: This simply states inability. We're looking for a phrase that emphasizes wanting to lift
+          but being unable to due to the weight.
+        hint: This simply states inability. We're looking for a phrase that emphasizes wanting to lift
+          but being unable to due to the weight.
+    scene: A delivery man recounts a struggle with an exceptionally heavy package.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: An older male delivery man, speaking formally, emphasizes his physical struggle with the heavy
+      package. The phrase 「持ち {上げようにも} 上げ られなかった」 conveys his strong will to lift it, which was ultimately
+      thwarted by the overwhelming weight, highlighting the absolute impossibility of the task. The use
+      of 「上げられません でし た」 shows the respectful and formal manner of recounting the incident.
+  - english: She was so shocked that even if she wanted to stop crying, she couldn't.
+    japanese:
+      - 彼女 は ショック で 泣き {やもう に も} 泣き やま なかっ た。
+      - 彼女 は ショック で 泣き {やもう に も} 泣きやま なかっ た。
+      - 彼女 は ショック で 泣き {やもう に も} 泣き やみ ませ ん でし た。
+      - 彼女 は あまり に ショック で 泣き {やもう に も} 泣きやま なかっ た。
+      - 彼女 は ショック で、泣き {やもう に も} 泣きやめ ませ ん でし た。
+      - あまり の ショック に、泣き {やもう に も} 泣きやま なかっ た。
+    english_literally: She was in shock, so even though she intended to stop crying, she could not stop
+      crying.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ショック で 泣く {つもり} は なかっ た だろう。
+        english: She was in shock, so she probably didn't intend to cry.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to stop
+          crying, but it was impossible due to the shock.
+      - competing_japanese:
+          - 彼女 は ショック で 泣き {たく なかっ た} だろう。
+        english: She was in shock, so she probably didn't want to cry.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to stop
+          crying and the inability to do so.
+      - competing_japanese:
+          - 彼女 は ショック で 泣きやもう {と し た が}、でき なかっ た。
+        english: She was in shock, so she tried to stop crying, but she couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to stop crying, which is then thwarted.
+      - competing_japanese:
+          - 彼女 は ショック で、泣きやもう {と し て も} 泣きやま なかっ た。
+        english: She was in shock, so even if she tried to stop crying, she couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to stop crying that was impossible.
+      - competing_japanese:
+          - 彼女 は ショック で {泣き やめ なかっ た}。
+        english: This simply states inability. We're looking for a phrase that emphasizes wanting to stop
+          crying but being unable to due to the shock.
+        hint: This simply states inability. We're looking for a phrase that emphasizes wanting to stop
+          crying but being unable to due to the shock.
+    scene: A woman is recounting her friend's emotional state after receiving devastating news.
+    register: casual
+    setting: sympathetic
+    conjugation: past plain (～た)
+    listener_gender: female
+    nuance: The speaker is useing casual Japanese to describe an emotional state, likely to a close female
+      friend. The phrasing 「泣き {やもうにも} 泣き やまなかった」 (even if she wanted to stop crying, she couldn't stop
+      crying) emphasizes the uncontrollable nature of the friend's grief, a common and relatable human
+      experience. The nuance is that despite the internal desire to stop crying, the emotional state was
+      too overwhelming. The example uses 「泣きやめませんでした」 in its formal variant, indicating that the speaker
+      could also be relating this to a formal listener.
+  - english: The road was completely blocked by a fallen tree, so even if we wanted to proceed, we couldn't.
+    japanese:
+      - 道 が 倒木 で 完全 に 塞が れ て い た の で、進み {よう に も} 進め なかっ た。
+      - 道 が 倒木 で 完全 に 塞が れ て い た の で、進み {よう に も} 進め ませ ん でし た。
+      - 倒木 で 道 が 塞が れ て、進み {よう に も} 進め なかっ た。
+      - 道 が 倒木 で 塞が れ て い た から、進み {よう に も} 進め なかっ た。
+      - 倒木 で 道 が 完全 に 塞がっ て い た の で、進み {よう に も} 進め ませ ん でし た。
+    english_literally: The road was completely blocked by a fallen tree, so even though we intended to
+      proceed, we could not proceed.
+    competing_grammar:
+      - competing_japanese:
+          - 道 が 倒木 で 塞が れ て い た の で、進む {つもり} は なかっ た。
+        english: The road was blocked by a fallen tree, so we didn't intend to proceed.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to move
+          forward, but it was impossible due to an obstacle.
+      - competing_japanese:
+          - 道 が 倒木 で 塞が れ て い た けど、進み {たかっ た}。
+        english: The road was blocked by a fallen tree, but we wanted to proceed.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to move
+          and the inability to do so.
+      - competing_japanese:
+          - 道 が 倒木 で 塞が れ て い た の で、進もう {と し た が}、無理 だっ た。
+        english: The road was blocked by a fallen tree, so we tried to proceed, but it was impossible.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to proceed, which is then thwarted.
+      - competing_japanese:
+          - 道 が 倒木 で 塞が れ て い た の で、進もう {と し て も} 進め なかっ た。
+        english: The road was blocked by a fallen tree, so even if we tried to proceed, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to proceed that was impossible.
+    scene: A group of hikers encountering an impassable obstacle on their trail.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    listener_gender: group
+    nuance: This statement describes a collective experience of being unable to proceed due to an external
+      physical barrier. The use of 「進み {ようにも} 進めなかった」 highlights the frustration of a group who had the
+      intention to continue but were physically prevented. It conveys a shared sense of helplessness in
+      the face of an immovable obstacle.
+  - english: The game's rules were too strict, so even if I wanted to play more freely, I couldn't.
+    japanese:
+      - その ゲーム は ルール が 厳し すぎ て、もっと 自由 に 遊び {よう に も} 遊べ なかっ た。
+      - その ゲーム は ルール が 厳し すぎ て、もっと 自由 に 遊び {よう に も} 遊べ ませ ん でし た。
+      - ルール が 厳し すぎ て、もっと 自由 に 遊び {よう に も} 遊べ なかっ た。
+      - ゲーム の ルール が 厳し すぎ た の で、自由 に 遊び {よう に も} 遊べ なかっ た。
+    english_literally: That game, rules were too strict, so even though I intended to play more freely,
+      I could not play.
+    competing_grammar:
+      - competing_japanese:
+          - その ゲーム は ルール が 厳し すぎ た の で、自由 に 遊ぶ {つもり} は なかっ た。
+        english: The game's rules were too strict, so I didn't intend to play freely.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to play
+          freely, but it was impossible due to strict rules.
+      - competing_japanese:
+          - その ゲーム は ルール が 厳し すぎ た けど、もっと 自由 に 遊び {たかっ た}。
+        english: The game's rules were too strict, but I wanted to play more freely.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to play
+          freely and the inability to do so.
+      - competing_japanese:
+          - その ゲーム は ルール が 厳し すぎ た の で、もっと 自由 に 遊ぼう {と し た が}、でき なかっ た。
+        english: The game's rules were too strict, so I tried to play more freely, but I couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to play freely, which is then thwarted.
+      - competing_japanese:
+          - その ゲーム は ルール が 厳し すぎ た の で、もっと 自由 に 遊ぼう {と し て も} 遊べ なかっ た。
+        english: The game's rules were too strict, so even if I tried to play more freely, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to play freely that was impossible.
+    scene: A teenager complaining to a friend about a game they found restrictive.
+    register: casual
+    setting: humorous
+    conjugation: past plain (～た)
+    speaker_age: younger
+    nuance: A younger person expresses their frustration with rigid rules, common in casual conversations
+      among friends about games or hobbies. The phrasing 「遊び {ようにも} 遊べなかった」 emphasizes the speaker's desire
+      for creative freedom in the game, which was stifled by its design, leading to disappointment.
+  - english: I was so busy that even if I wanted to help my friend, I couldn't.
+    japanese:
+      - 忙し すぎ て、友達 を 手伝い {よう に も} 手伝え なかっ た。
+      - 忙し すぎ て、友達 を 手伝い {よう に も} 手伝え ませ ん でし た。
+      - 仕事 が 忙し すぎ て、友達 を 手伝い {よう に も} 手伝え なかっ た。
+      - 忙し すぎ て、友達 を 手伝い {よう に も} 手伝え なかっ た ん だ。
+    english_literally: Too busy, so even though I intended to help my friend, I could not help.
+    competing_grammar:
+      - competing_japanese:
+          - 忙し すぎ た の で、友達 を 手伝う {つもり} は なかっ た。
+        english: I was too busy, so I didn't intend to help my friend.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to help,
+          but it was impossible due to being busy.
+      - competing_japanese:
+          - 忙し すぎ た けど、友達 を 手伝い {たかっ た}。
+        english: I was too busy, but I wanted to help my friend.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to help
+          and the inability to do so.
+      - competing_japanese:
+          - 忙し すぎ た の で、友達 を 手伝おう {と し た が}、でき なかっ た。
+        english: I was too busy, so I tried to help my friend, but I couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to help, which is then thwarted.
+      - competing_japanese:
+          - 忙し すぎ た の で、友達 を 手伝おう {と し て も} 手伝え なかっ た。
+        english: I was too busy, so even if I tried to help my friend, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to help that was impossible.
+    scene: A colleague explaining to another colleague why they couldn't assist a mutual friend.
+    register: semi-formal
+    setting: apologetic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: An older female speaker, possibly a manager or senior colleague, expresses regret for not
+      being able to help due to an overwhelming workload. The phrase 「手伝い {ようにも} 手伝えなかった」 highlights a
+      conflict between her desire to assist and the external constraint of her busy schedule, conveying
+      a sense of responsibility and apology.
+  - english: There was a strict rule against talking, so even if I wanted to ask a question, I couldn't.
+    japanese:
+      - お しゃべり は 厳禁 だっ た の で、質問 し {よう に も} 質問 でき なかっ た。
+      - お しゃべり は 厳禁 だっ た の で、質問 し {よう に も} 質問 でき ませ ん でし た。
+      - 発言 は 厳しく 制限 さ れ て い た の で、質問 し {よう に も} 質問 でき なかっ た。
+      - 私語 は 厳禁 だっ た から、質問 し {よう に も} 質問 でき なかっ た。
+    english_literally: Talking was strictly forbidden, so even though I intended to ask a question, I
+      could not ask a question.
+    competing_grammar:
+      - competing_japanese:
+          - お しゃべり は 厳禁 だっ た の で、質問 する {つもり} は なかっ た。
+        english: Talking was strictly forbidden, so I didn't intend to ask a question.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to ask,
+          but it was impossible due to a strict rule.
+      - competing_japanese:
+          - お しゃべり は 厳禁 だっ た けど、質問 し {たかっ た}。
+        english: Talking was strictly forbidden, but I wanted to ask a question.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to ask
+          and the inability to do so.
+      - competing_japanese:
+          - お しゃべり は 厳禁 だっ た の で、質問 しよう {と し た が}、でき なかっ た。
+        english: Talking was strictly forbidden, so I tried to ask a question, but I couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to ask, which is then thwarted.
+      - competing_japanese:
+          - お しゃべり は 厳禁 だっ た の で、質問 しよう {と し て も} 質問 でき なかっ た。
+        english: Talking was strictly forbidden, so even if I tried to ask a question, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to ask that was impossible.
+    scene: A student recalling a very strict classroom environment.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male speaker, possibly in an academic setting or giving a presentation, describes a past
+      situation where he was prevented from asking questions due to strict rules. The phrase 「質問 し {ようにも}
+      質問できなかった」 conveys the frustration of having a question but being unable to voice it, emphasizing
+      the restrictive environment and the speaker's internal desire to engage.
+  - english: I had no money, so even if I wanted to travel abroad, I couldn't.
+    japanese:
+      - お 金 が なかっ た の で、海外 旅行 に 行き {よう に も} 行け なかっ た。
+      - お 金 が なかっ た の で、海外 旅行 に 行き {よう に も} 行け ませ ん でし た。
+      - お 金 が ない から、海外 旅行 に 行き {よう に も} 行け ない。
+      - 貯金 が なかっ た の で、海外 旅行 に 行き {よう に も} 行け なかっ た。
+    english_literally: Had no money, so even though I intended to go on an overseas trip, I could not
+      go.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が なかっ た の で、海外 旅行 に 行く {つもり} は なかっ た。
+        english: I had no money, so I didn't intend to travel abroad.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to travel,
+          but it was impossible due to lack of funds.
+      - competing_japanese:
+          - お 金 が なかっ た けど、海外 旅行 に 行き {たかっ た}。
+        english: I had no money, but I wanted to travel abroad.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to travel
+          and the inability to do so.
+      - competing_japanese:
+          - お 金 が なかっ た の で、海外 旅行 に 行こう {と し た が}、無理 だっ た。
+        english: I had no money, so I tried to travel abroad, but it was impossible.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to travel, which is then thwarted.
+      - competing_japanese:
+          - お 金 が なかっ た の で、海外 旅行 に 行こう {と し て も} 行け なかっ た。
+        english: I had no money, so even if I tried to travel abroad, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to travel that was impossible.
+    scene: A person reflecting on a past dream that they couldn't fulfill.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: An older female speaker reflects on a past unfulfilled dream due to financial limitations.
+      The phrase 「行き {ようにも} 行けなかった」 emphasizes her strong desire to travel abroad, which was unfortunately
+      unattainable. This expression captures a common human experience of longing and the practical barriers
+      that prevent dreams from becoming reality.
+  - english: The child was too shy, so even if I wanted him to speak, he couldn't.
+    japanese:
+      - その 子 は 人 見知り すぎ て、話さ せ {よう に も} 話せ なかっ た。
+      - その 子 は 人 見知り すぎ て、話さ せ {よう に も} 話せ ませ ん でし た。
+      - その 子 は 人 見知り だっ た から、話さ せ {よう に も} 話せ なかっ た。
+      - あまり に も 人 見知り だっ た の で、話さ せ {よう に も} 話せ なかっ た。
+    english_literally: That child was too shy, so even though I intended him to speak, he could not speak.
+    competing_grammar:
+      - competing_japanese:
+          - その 子 は 人 見知り だっ た の で、話さ せる {つもり} は なかっ た。
+        english: The child was shy, so I didn't intend to make him speak.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire for the
+          child to speak, but it was impossible due to shyness.
+      - competing_japanese:
+          - その 子 は 人 見知り だっ た けど、話し {て 欲しかっ た}。
+        english: The child was shy, but I wanted him to speak.
+        hint: 「〜てほしい」 expresses a desire for someone else to do something. We're looking for a phrase
+          that expresses the desire and the inability for it to happen.
+      - competing_japanese:
+          - その 子 は 人 見知り だっ た の で、話さ せよう {と し た が}、でき なかっ た。
+        english: The child was shy, so I tried to make him speak, but I couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          for an action to occur, which is then thwarted by the child's shyness.
+      - competing_japanese:
+          - その 子 は 人 見知り だっ た の で、話さ せよう {と し て も} 話せ なかっ た。
+        english: The child was shy, so even if I tried to make him speak, he couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire for the child to speak that was impossible.
+    scene: A teacher or parent explaining a child's behavior to someone else.
+    register: semi-formal
+    setting: informative
+    conjugation: past plain (～た)
+    listener_gender: female
+    nuance: The speaker is expressing a situation where they desired a child to speak, perhaps to an adult
+      or in a specific context like a school play or presentation, but the child's shyness made it impossible.
+      The use of 「話させ {ようにも} 話せなかった」 conveys a sense of understanding and empathy for the child's internal
+      struggle, indicating that while the desire for the child to speak was present, the child's inherent
+      nature prevented it.
+  - english: I was unable to retrieve my luggage, so even if I wanted to change clothes, I couldn't.
+    japanese:
+      - 荷物 が 出せ なかっ た の で、着替え {よう に も} 着替え られ なかっ た。
+      - 荷物 が 出せ なかっ た の で、着替え {よう に も} 着替え られ ませ ん でし た。
+      - 手元 に 荷物 が なかっ た から、着替え {よう に も} 着替え られ なかっ た。
+      - スーツケース が 見つから ず、着替え {よう に も} 着替え られ なかっ た。
+    english_literally: My luggage could not be retrieved, so even though I intended to change clothes,
+      I could not change clothes.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 が 出せ なかっ た の で、着替える {つもり} は なかっ た。
+        english: I couldn't retrieve my luggage, so I didn't intend to change clothes.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to change
+          clothes, but it was impossible due to the missing luggage.
+      - competing_japanese:
+          - 荷物 が 出せ なかっ た けど、本当 は 着替え {たかっ た}。
+        english: I couldn't retrieve my luggage, but I really wanted to change clothes.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to change
+          clothes and the inability to do so.
+      - competing_japanese:
+          - 荷物 が 出せ なかっ た の で、着替えよう {と し た が}、でき なかっ た。
+        english: I couldn't retrieve my luggage, so I tried to change clothes, but I couldn't.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to change, which is then thwarted.
+      - competing_japanese:
+          - 荷物 が 出せ なかっ た の で、着替えよう {と し て も} 着替え られ なかっ た。
+        english: I couldn't retrieve my luggage, so even if I tried to change clothes, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to change that was impossible.
+    scene: Someone recounting their frustration after their luggage was lost at the airport.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+  - english: I was surrounded by enemies, so even if I wanted to escape, I couldn't.
+    japanese:
+      - 敵 に 囲ま れ て い た の で、逃げ {よう に も} 逃げ られ なかっ た。
+      - 敵 に 囲ま れ て い た の で、逃げ {よう に も} 逃げ られ ませ ん でし た。
+      - 周り を 敵 に 囲ま れ て い た から、逃げ {よう に も} 逃げ られ なかっ た。
+      - 絶体 絶命 の 状況 で、逃げ {よう に も} 逃げ られ なかっ た。
+    english_literally: I was surrounded by enemies, so even though I intended to escape, I could not escape.
+    competing_grammar:
+      - competing_japanese:
+          - 敵 に 囲ま れ て い た の で、逃げる {つもり} は なかっ た。
+        english: I was surrounded by enemies, so I didn't intend to escape.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to escape,
+          but it was impossible due to being surrounded.
+      - competing_japanese:
+          - 敵 に 囲ま れ て い た けど、本当 は 逃げ {たかっ た}。
+        english: I was surrounded by enemies, but I really wanted to escape.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to escape
+          and the inability to do so.
+      - competing_japanese:
+          - 敵 に 囲ま れ て い た の で、逃げよう {と し た が}、無理 だっ た。
+        english: I was surrounded by enemies, so I tried to escape, but it was impossible.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to escape, which is then thwarted.
+      - competing_japanese:
+          - 敵 に 囲ま れ て い た の で、逃げよう {と し て も} 逃げ られ なかっ た。
+        english: I was surrounded by enemies, so even if I tried to escape, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to escape that was impossible.
+    scene: A character in a fictional story describes their desperate situation.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+  - english: I was too far away, so even if I wanted to hear what they were saying, I couldn't.
+    japanese:
+      - 遠 すぎ て、話 が 聞き {よう に も} 聞こえ なかっ た。
+      - 遠 すぎ て、話 が 聞き {よう に も} 聞こえ ませ ん でし た。
+      - 距離 が あり すぎ て、話 が 聞き {よう に も} 聞こえ なかっ た。
+      - あまり に も 遠く て、話 が 聞き {よう に も} 聞こえ なかっ た。
+    english_literally: Too far, so even though I intended to hear the story, I could not hear.
+    competing_grammar:
+      - competing_japanese:
+          - 遠 すぎ た の で、話 を 聞く {つもり} は なかっ た。
+        english: I was too far away, so I didn't intend to listen to the conversation.
+        hint: 「つもり」 expresses intention. We're looking for a situation where there was a desire to hear,
+          but it was impossible due to distance.
+      - competing_japanese:
+          - 遠 すぎ た けど、本当 は 話 が 聞き {たかっ た}。
+        english: I was too far away, but I really wanted to hear the conversation.
+        hint: 「〜たい」 expresses desire. We're looking for a phrase that expresses both the desire to hear
+          and the inability to do so.
+      - competing_japanese:
+          - 遠 すぎ た の で、話 を 聞こう {と し た が}、無理 だっ た。
+        english: I was too far away, so I tried to hear the conversation, but it was impossible.
+        hint: 「〜ようとする」 indicates an attempt. We're looking for a grammar point that focuses on the desire
+          to hear, which is then thwarted.
+      - competing_japanese:
+          - 遠 すぎ た の で、話 を 聞こう {と し て も} 聞こえ なかっ た。
+        english: I was too far away, so even if I tried to hear the conversation, I couldn't.
+        hint: 「〜ても」 indicates a general conditional impossibility. We're looking for a phrase that specifically
+          highlights the desire to hear that was impossible.
+    scene: Someone trying to eavesdrop but failing due to distance.
+    register: casual
+    setting: humorous
+    conjugation: past plain (～た)
+post_example_writeup: This expression highlights situations where an action is desired or intended, but
+  external circumstances or internal limitations render it impossible. It often conveys a sense of powerlessness
+  or frustration. Remember, the key is not just inability, but an inability despite a **desire** to perform
+  the action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ようにも

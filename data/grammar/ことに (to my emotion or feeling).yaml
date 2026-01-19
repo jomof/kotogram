@@ -1,0 +1,325 @@
+grammar_point: ことに (to my emotion or feeling)
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+meaning: Extremely, Especially, To my...
+meaning_warning: ことに only carries this meaning with words that describe 'feelings'
+pronunciation:
+  katakana: コトニ
+  romaji: koto ni
+formation:
+  i-Adjective (plain form) + ことに: Expresses a feeling or emotion about a situation, particularly 'especially'
+    or 'to my...'
+  na-Adjective + な + ことに: Expresses a feeling or emotion about a situation, particularly 'especially'
+    or 'to my...'
+  Verb (plain form) + ことに: Expresses a feeling or emotion about a situation, particularly 'especially'
+    or 'to my...'
+jlpt: N3
+etymology: The grammar point ことに is derived from the noun 事 (koto) meaning 'thing' or 'matter,' combined
+  with the particle に (ni). The combination emphasizes the degree or extent of something, typically related
+  to a feeling or emotion. In essence, it highlights the matter or thing that evokes a particular feeling.
+writeup: ことに is used to express a strong feeling or subjective judgment about a situation. It's often
+  translated as "especially," "particularly," or "to my [feeling]." It emphasizes the extent to which
+  something evokes a particular emotion.It typically follows verbs, い-adjectives, or な-adjectives. For
+  example, 嬉しい こと に (ureshii koto ni) means "I am especially happy that...". 幸い な こと に (saiwai na koto
+  ni) is a common set phrase that means "fortunately" or "luckily." This phrase itself uses the ことに structure.In
+  some cases, ことに may appear before the description it modifies, functioning similarly to 特に (tokuni)
+  to mean "particularly" or "especially".
+false_friends:
+  - term: そうにない
+    meaning: Unlikely to, Showing no signs of
+    kind: often confused with
+    nuance: Unlike ことに, そうにない expresses a lack of probability or indication, not a feeling or subjective
+      judgment.
+    grammar_point: そうにない・そうもない (unlikely to)
+  - term: てしょうがない
+    meaning: Extremely, Very, Really, It can't be helped
+    kind: synonym
+    nuance: While てしょうがない also indicates a strong feeling or degree, it implies an uncontrollable or unbearable
+      state, unlike ことに which simply expresses the emotion or judgment without necessarily implying uncontrollability.
+    grammar_point: てならない (cannot help but feel)
+  - term: てたまらない
+    meaning: Can't help but want to, Very, Extremely
+    kind: synonym
+    nuance: てたまらない expresses an overwhelming, often uncontrollable, urge or feeling, implying that one
+      'cannot bear' the intensity. ことに is a more general expression of emotion or judgment, less focused
+      on an unbearable state.
+    grammar_point: てならない (cannot help but feel)
+  - term: てならない
+    meaning: Uncontrollable feeling
+    kind: synonym
+    nuance: てならない also indicates a strong, often natural or spontaneous, feeling that one 'can't help
+      but feel'. While similar to ことに in expressing intensity, ことに focuses on the subjective judgment
+      or observation about a situation rather than an internal, uncontrollable urge.
+    grammar_point: てならない (cannot help but feel)
+  - term: 特に
+    meaning: Especially; particularly
+    kind: similar expression
+    nuance: Unlike ことに, 特に is a neutral adverb used for general emphasis without conveying a subjective
+      emotional impact or judgment about the situation itself.
+    grammar_point: <suggest>:特に (especially)
+  - term: あまりに
+    meaning: Excessively, too much
+    kind: similar expression
+    nuance: Unlike ことに, あまりには general intensifier for degree or quantity, not specifically for emotions
+      or subjective judgments.
+    grammar_point: あまりに (excessively・too much)
+post_false_friends_writeup: To avoid confusion, remember that ことに always expresses an emotion or subjective
+  judgment related to a situation. When you want to simply state a fact or describe something without
+  expressing a personal feeling or strong subjective judgment, avoid using ことに. Instead, use adverbs like
+  特に (tokuni) or 非常に (hijouni) for emphasis, or other grammar points that don't carry emotional connotations.
+  It is important to recognize that the meaning warning restricts ことに to only refer to feelings.
+examples:
+  - english: Happily, it cleared up today.
+    japanese:
+      - 嬉しい {こと に}、今日 は 晴れ まし た。
+      - 嬉しい {こと に}、今日 は 晴れ た。
+    english_literally: To my happy thing, today cleared up.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 晴れ て 嬉しい です。
+        english: I am happy that it cleared up today.
+        hint: 嬉しいです expresses your personal happiness. ことに emphasizes that the situation itself is a cause
+          for the emotion. We're looking for an expression that highlights the fortunate nature of the
+          situation.
+    scene: A person expresses relief and happiness about the weather changing for the better after a gloomy
+      period.
+    register: casual
+    setting: optimistic
+    nuance: The use of 嬉しいことに highlights that the good weather is a source of joy or relief for the speaker,
+      emphasizing the subjective emotional impact rather than merely stating a fact.
+    etymology: The phrase 嬉しいことに is formed by combining the i-adjective 嬉しい (happy) with ことに. This construction
+      effectively transforms the subjective feeling of happiness into an objective statement about the
+      situation, implying that it is fortunate or delightful that something occurred. This mechanism of
+      taking a feeling and framing it as an attribute of the circumstance is a key aspect of ことに's function,
+      allowing for a nuanced expression of emotion tied to external events rather than just internal states.
+      For example, 嬉しい (happy) is derived from 憂し (ushi), which originally meant 'sad' or 'grief'. Over
+      time, its meaning shifted to indicate the opposite, especially in connection with the feeling of
+      relief from sorrow or trouble, thus becoming 'happy' or 'pleasing'. This evolution reinforces the
+      idea of 嬉しいことに as expressing a positive turn of events.
+  - english: Regrettably, he lost the match.
+    japanese:
+      - 残念 な {こと に}、彼 は 試合 に 負け まし た。
+      - 残念 な {こと に}、彼 は 試合 に 負け た。
+      - 残念 な {こと に}、彼 は 試合 に 敗れ まし た。
+    english_literally: To the regrettable thing, he lost the match.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 試合 に 負け て 残念 です。
+        english: I am regrettable that he lost the match.
+        hint: 残念です expresses your personal feeling of regret. ことに emphasizes that the situation itself
+          is regrettable. We're looking for an expression that presents the loss as an unfortunate fact.
+    scene: A coach is discussing the outcome of a recent sports match with their team.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 残念なことに allows the speaker to express regret in a formal and somewhat detached manner,
+      conveying that the situation itself is regrettable, rather than solely focusing on their personal
+      sadness. This makes it appropriate for a coach addressing a team.
+    etymology: The use of 残念なことに originates from the word 残念 (zannen), which literally means 'regret'
+      or 'disappointment'. When combined with ことに, it shifts the focus from a personal feeling of regret
+      to the objective unfortunate nature of the event itself. This phrasing implies that the situation
+      is regrettable from a broader, perhaps shared, perspective, rather than just the speaker's personal
+      sentiment. This is why it works well in formal or objective contexts like a coach addressing a team.
+  - english: To my surprise, she suddenly quit the company.
+    japanese:
+      - 驚い た {こと に}、彼女 は 突然 会社 を 辞め まし た。
+      - 驚い た {こと に}、彼女 は 突然 会社 を 辞め た。
+      - 驚い た {こと に}、彼女 は 突然 会社 を 辞め て しまい まし た。
+    english_literally: To the surprised thing, she suddenly quit the company.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 突然 会社 を 辞め た の は 驚き です。
+        english: Her suddenly quitting the company was a surprise.
+        hint: 驚きです treats the event as a noun, a surprise. ことに focuses on the feeling of being surprised
+          by the event. We're looking for an expression that directly ties the feeling of surprise to
+          the action.
+    scene: Colleagues are discussing unexpected news about a former co-worker at a casual gathering.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: By using 驚いたことに, the speaker emphasizes their personal reaction of surprise to the news. The
+      past tense of the verb 驚く (to be surprised) clearly links the feeling to the completed action.
+    etymology: The verb 驚く (odoroku), meaning 'to be surprised' or 'to be astonished', is used here in
+      its past tense, indicating a completed state of surprise. When paired with ことに, it highlights the
+      fact that the sudden quitting was an actual event that caused surprise, making the surprise an inherent
+      quality of the situation. This construction emphasizes the impact of the event on the speaker's
+      emotional state, almost as if saying "the surprising aspect of the matter is that..."
+  - english: Sadly, my cat has fallen ill.
+    japanese:
+      - 悲しい {こと に}、猫 が 病気 に なっ て しまい まし た。
+      - 悲しい {こと に}、猫 が 病気 に なっ て しまっ た。
+      - 悲しい {こと に}、愛 猫 が 病気 に なっ て しまい まし た。
+    english_literally: To the sad thing, my cat has become ill.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が 病気 に なっ て 悲しい です。
+        english: I am sad that my cat has fallen ill.
+        hint: 悲しいです expresses your personal sadness. ことに emphasizes that the situation itself is sad.
+          We're looking for an expression that presents the illness as an unfortunate reality.
+    scene: A young girl tells her parent about her beloved pet's sudden illness.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The phrase 悲しいことに conveys a sense of unfortunate reality, making the sadness feel more objective
+      and universally regrettable. This is a common way for a younger speaker to express sorrow to an
+      older family member, seeking shared understanding rather than just personal commiseration.
+    etymology: The i-adjective 悲しい (kanashii), meaning 'sad' or 'sorrowful', combined with ことに, objectifies
+      the sadness, making it a characteristic of the situation rather than solely an internal feeling.
+      This framing is particularly effective when conveying a shared sense of unfortunate reality, as
+      seen in a child expressing sorrow about a pet. The word 悲しい itself stems from ancient Japanese,
+      often associated with concepts of lamentation and grief, reinforcing its deep emotional connotation.
+  - english: The problem is, my computer stopped working.
+    japanese:
+      - 困っ た {こと に}、パソコン が 動か なく なり まし た。
+      - 困っ た {こと に}、パソコン が 動か なく なっ た。
+      - 困っ た {こと に}、パソコン が 動か なく なっ ちゃっ た。
+    english_literally: To the troubled thing, my computer stopped working.
+    competing_grammar:
+      - competing_japanese:
+          - パソコン が 動か なく なっ て 困っ て い ます。
+        english: My computer stopped working, and I am troubled.
+        hint: 困っています expresses your current troubled state. ことに highlights that the situation itself is
+          troublesome. We're looking for an expression that states the predicament as an inherent problem.
+    scene: A student struggling with their computer the night before a major assignment is due.
+    register: casual
+    setting: serious
+    nuance: Using 困ったことに presents the malfunctioning computer as an inherent problem, creating a sense
+      of resignation or frustration with the situation itself. It conveys 'the troubling thing is that...'
+      rather than 'I am troubled because...'. The past tense of the verb 困る (to be troubled/bothered)
+      connects the feeling directly to the finished action.
+    etymology: The verb 困る (komaru), meaning 'to be troubled' or 'to be in difficulty', is used in its
+      past tense, indicating a state of being troubled that has come about. When paired with ことに, it transforms
+      the personal feeling of being troubled into an objective statement about the problematic nature
+      of the situation. This creates a nuance of 'the troublesome truth is that...' or 'it is an unfortunate
+      situation that...', emphasizing the inherent difficulty of the circumstances rather than merely
+      the speaker's reaction.
+  - english: Fortunately, my lost item was found.
+    japanese:
+      - 幸い な {こと に}、忘れ物 が 見つかり まし た。
+      - 幸い な {こと に}、忘れ物 が 見つかっ た。
+      - 幸い な {こと に}、落とし物 が 発見 さ れ まし た。
+    english_literally: To the fortunate thing, my lost item was found.
+    competing_grammar:
+      - competing_japanese:
+          - 忘れ物 が 見つかっ て 良かっ た です。
+        english: It was good that my lost item was found.
+        hint: 良かったです expresses a general positive feeling about the outcome. ことに emphasizes the fortuitous
+          nature of the situation. We're looking for an expression that conveys a sense of good luck or
+          fortune.
+    scene: A person expresses relief after recovering a forgotten item, perhaps a wallet or keys.
+    register: semi-formal
+    setting: optimistic
+    speaker_gender: male
+    nuance: The phrase 幸いなことに is a common, slightly more formal way to express good fortune, emphasizing
+      that the positive outcome was a matter of luck or good circumstance. This gives a sense of relief
+      and gratitude, commonly expressed by both genders.
+    etymology: The word 幸い (saiwai), meaning 'happiness' or 'good fortune', when used with ことに, highlights
+      that the circumstance itself is fortunate. It implies a sense of relief and appreciation for a positive
+      outcome that might have been unexpected or difficult. The etymology of 幸い is linked to concepts
+      of divine favor or good omens, further emphasizing the idea of a blessing or fortunate event.
+  - english: Worryingly, the train was delayed due to the snow.
+    japanese:
+      - 心配 な {こと に}、雪 の せい で 電車 が 遅れ まし た。
+      - 心配 な {こと に}、雪 の せい で 電車 が 遅れ た。
+      - 心配 な {こと に}、積雪 の 影響 で 電車 が 遅延 いたし まし た。
+    english_literally: To the worried thing, because of snow the train was delayed.
+    competing_grammar:
+      - competing_japanese:
+          - 雪 の せい で 電車 が 遅れ て 心配 し て い ます。
+        english: The train was delayed due to snow, and I am worried.
+        hint: 心配しています expresses your personal state of worry. ことに indicates that the situation itself
+          is cause for worry. We're looking for an expression that objectively states the worrying nature
+          of the event.
+    scene: A commuter checking the train status on a snowy morning, worried about being late for work.
+    register: formal
+    setting: cautious
+    nuance: 心配なことに frames the delay as an objectively worrying situation, emphasizing the inherent problematic
+      nature of the event rather than just the speaker's personal anxiety. This can be used in more formal
+      or informative contexts.
+    etymology: The na-adjective 心配 (shinpai), meaning 'worry' or 'concern', combined with ことに, frames
+      the train delay as an objectively worrying situation. It externalizes the worry, making it an attribute
+      of the event itself rather than solely the speaker's internal state. This is useful in formal contexts
+      to present a problem as a matter of general concern. The term 心配 itself is a Sino-Japanese word,
+      originally referring to the 'heart' (心) being 'tied up' (配), illustrating the feeling of being bound
+      by anxiety.
+  - english: Surprisingly, the usually quiet student spoke up in class.
+    japanese:
+      - 驚く {こと に}、いつ も 静か な 生徒 が クラス で 発言 し まし た。
+      - 驚く {こと に}、いつ も 静か な 生徒 が クラス で 発言 し た。
+      - 驚く {こと に}、普段 は 無口 な 生徒 が 授業 中 に 発言 し まし た。
+    english_literally: To the surprising thing, the always quiet student spoke up in class.
+    competing_grammar:
+      - competing_japanese:
+          - いつ も 静か な 生徒 が クラス で 発言 し た の は びっくり です。
+        english: It was surprising that the always quiet student spoke up in class.
+        hint: びっくりです is a more casual and direct expression of surprise. ことに emphasizes the element of
+          surprise connected to the event itself, often implying a deeper or more significant unexpectedness.
+          We're looking for an expression that highlights the unexpected nature of the student's action.
+    scene: A teacher recounts an unexpected moment in class to a colleague.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using 驚くことに implies that the speaker (the teacher) found the event truly unexpected and noteworthy,
+      highlighting the surprising aspect of the student's action rather than just a momentary shock. This
+      structure adds a slight formal tone suitable for sharing observations.
+    etymology: The verb 驚く (odoroku), meaning 'to be surprised' or 'to be astonished', when used with
+      ことに, points to the surprising nature of the event. It elevates the surprise to a more significant
+      observation about the situation. The term has roots in words related to sudden movement or sound,
+      reflecting the unexpected jolt that surprise brings.
+  - english: Embarrassingly, I forgot my wallet at home.
+    japanese:
+      - 恥ずかしい {こと に}、財布 を 家 に 忘れ て き て しまい まし た。
+      - 恥ずかしい {こと に}、財布 を 家 に 忘れ て き ちゃっ た。
+      - 恥ずかしい {こと に}、財布 を 自宅 に 置き 忘れ て しまい まし た。
+    english_literally: To the embarrassing thing, I forgot my wallet at home.
+    competing_grammar:
+      - competing_japanese:
+          - 財布 を 家 に 忘れ て き て しまっ て 恥ずかしい です。
+        english: I forgot my wallet at home, and I am embarrassed.
+        hint: 恥ずかしいです directly expresses personal embarrassment. ことに emphasizes that the situation itself
+          is embarrassing. We're looking for an expression that frames the act of forgetting as an embarrassing
+          incident.
+    scene: A person at the register realizing they left their wallet at home.
+    register: casual
+    setting: apologetic
+    nuance: By saying 恥ずかしいことに, the speaker acknowledges the inherent embarrassment of the situation (forgetting
+      the wallet) as a general truth, often used when expressing regret or making an apology. It's a mild
+      way of saying 'the embarrassing truth is...'.
+    etymology: The i-adjective 恥ずかしい (hazukashii), meaning 'embarrassing' or 'ashamed', when combined
+      with ことに, objectifies the feeling of embarrassment. This means the situation itself is framed as
+      embarrassing, rather than just the speaker feeling embarrassed. This construction is commonly used
+      when someone needs to acknowledge an awkward situation gracefully or apologetically. The root of
+      恥 (haji) relates to shame and disgrace, conveying a strong sense of social discomfort.
+  - english: To my delight, the long-awaited game was released today.
+    japanese:
+      - 嬉しい {こと に}、今日 は 待ち望ん で い た ゲーム が 発売 さ れ まし た。
+      - 嬉しい {こと に}、今日 は 待ち望ん で い た ゲーム が 発売 さ れ た。
+      - 嬉しい {こと に}、今日 は 待ち に 待っ た ゲーム が 発売 さ れ た よ！
+    english_literally: To the happy thing, today the long-awaited game was released.
+    competing_grammar:
+      - competing_japanese:
+          - 待ち望ん で い た ゲーム が 発売 さ れ て 嬉しい です。
+        english: I am happy that the long-awaited game was released.
+        hint: 嬉しいです states personal happiness directly. ことに expresses that the event itself is a cause
+          for joy. We're looking for an expression that highlights the joyful nature of the game's release.
+    scene: A gamer excitedly tells their friend about a new game release.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    listener_gender: male
+    nuance: 嬉しいことに is used here to convey the speaker's strong positive feeling about the game's release,
+      making it clear that this event is a source of joy for them. It adds a sense of personal excitement
+      and satisfaction. The use of 待ち望んでいた (long-awaited) further emphasizes the intensity of the feeling.
+    etymology: This example uses 嬉しいことに again, emphasizing the joyful aspect of the game release as an
+      objective fact. The repetition of this structure for different positive emotions (like in the first
+      example) highlights its versatility for framing a situation as inherently pleasant or fortunate.
+      The phrase 待ちに待った (machinimatta) reinforces the long anticipation, intensifying the feeling of delight.
+post_example_writeup: Remember that ことに is primarily used to express emotions or subjective judgments,
+  often implying a strong degree of that emotion. While it can translate to "especially" or "particularly,"
+  it's crucial that the context involves a feeling or subjective judgment.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことに

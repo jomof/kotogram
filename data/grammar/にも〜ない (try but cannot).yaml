@@ -1,0 +1,238 @@
+grammar_point: にも〜ない (try but cannot)
+learn_before:
+  - Verb[えば] (conditional)
+  - あまりに (excessively・too much)
+  - か〜か (whether... or)
+  - な-Adjective[すぎる] (excessive)
+  - な-Adjectives (adjectival nouns)
+  - にもほどがある (excessive beyond limits)
+  - 中 (duration・entirety)
+  - 堪らない (unbearable・irresistible)
+  - 気に入る (become fond of)
+meaning: Cannot... even if one wants or tries, Would like but cannot, Wants and tries but cannot
+meaning_warning: Generally used with にも
+pronunciation:
+  katakana: ニモナイ
+  romaji: nimo nai
+formation:
+  Verb + [volitional form] + にも + Verb + [potential negative form]: Indicates that one wants to do something,
+    but is unable to do so due to external circumstances or limitations.
+  Verb + [volitional form] + にも + Verb + [potential negative form] + (状態・状況・こと): Highlights the state
+    or circumstance that prevents the intended action, making it impossible despite the desire or effort.
+  Verb + [volitional form] + にも + Verb + [potential negative form] + のだ: Emphasizes the unavoidable nature
+    of the inability, often expressing a sense of frustration or resignation, or providing an explanation
+    for the situation.
+jlpt: N1
+etymology: The pattern 「にも〜ない」 combines 「にも」, which adds emphasis, with a verb in both its volitional
+  (intention) and potential negative forms. This pairing highlights the contrast between wanting to perform
+  an action and being unable to do so. The repetition of the verb emphasizes the futility of the attempt.
+writeup: |-
+  The grammar point 「にも〜ない」 expresses the idea that despite wanting to do something, one is unable to. It emphasizes a situation where there's a strong desire to act, but external circumstances or limitations prevent it. It often conveys a sense of frustration or helplessness.
+
+  The core structure involves repeating the same verb in two forms:
+
+  *   Volitional form (意向形): Expresses intention or will, like 「しよう」 (let's do).
+  *   Negative potential form (不可能形): Indicates inability, like 「できない」 (cannot do).
+
+  For example, 「帰ろうにも帰れない」 (kaerou ni mo kaerenai) literally translates to "Even if I try to go home, I cannot go home," conveying "I want to go home, but I can't."
+
+  **Important Considerations**
+
+  This pattern often highlights **physical reasons** or **external constraints** that prevent the action. However, this grammar pattern can also be used to express mental limitations. In such cases, the speaker doesn't want to do something, but a social situation means it is difficult to refuse.
+false_friends:
+  - term: どんなに〜ても
+    meaning: No matter how
+    kind: often confused with
+    nuance: Unlike 「にも〜ない」, 「どんなに〜ても」 does not imply an inability to perform an action, but rather a lack
+      of effect or change despite the degree of effort.
+    grammar_point: どんなに〜ても (no matter how much)
+  - term: に〜ない
+    meaning: cannot (due to constraint or lack of capacity)
+    kind: often confused with
+    nuance: Unlike 「にも〜ない」 which explicitly expresses 'even if one tries, one cannot,' 「に〜ない」 (used in
+      constructions like `〜するに〜ない`) more generally implies an inability due to a constraint or lack of
+      inherent capacity, often without the explicit 'trying' element. It does not repeat the verb in volitional
+      and potential forms.
+    grammar_point: <suggest>:に〜ない (general inability)
+post_false_friends_writeup: The key difference between 「にも〜ない」 and similar expressions lies in their nuance.
+  While 「どんなに〜ても」 emphasizes the degree of effort without necessarily implying impossibility, 「にも〜ない」
+  highlights the inability to perform an action despite the desire to do so. Meanwhile, while 「に〜ない」 also
+  means "cannot", it pairs with verbs in dictionary form and tends to refer to inability due to a constraint
+  or lack of capacity. Keep in mind that 「にも〜ない」 uses the volitional form.
+examples:
+  - english: The deadline is near, so I can't go out and play even if I wanted to.
+    japanese:
+      - 締め切り が 近い から、遊び に {行こう に も 行け ない}。
+      - 締め切り が 近い の で、遊び に {行こう に も 行け ませ ん}。
+      - 締め切り が 近い から、遊び に {行こう に も 行け ねぇ}。
+    english_literally: Because the deadline is near, even if I try to go play, I cannot go.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 遊び に 行こう と し て も}、時間 が ない。'
+        english: No matter how much I try to go play, I don't have time.
+        hint: This emphasizes that regardless of effort, the time isn't available. We're looking for an
+          expression that conveys 'want to do it, but can't' due to an external reason.
+    scene: A student declines an invitation from friends.
+    register: casual
+    setting: serious
+  - english: My head is full of worries, so I can't sleep even if I try.
+    japanese:
+      - 心配 事 で 頭 が いっぱい で、{寝よう に も 寝 られ ない}。
+      - 心配 事 で 頭 が いっぱい で、{寝よう に も 眠れ ませ ん}。
+      - 心配 事 で 頭 が いっぱい で、{寝よう に も 寝れ ねぇ}。
+    english_literally: My head is full with worries, so even if I try to sleep, I cannot sleep.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 寝よう と し て も}、眠れ ない。'
+        english: No matter how much I try to sleep, I can't.
+        hint: This stresses the intensity of trying. We're looking for an expression that describes being
+          unable to sleep despite the internal desire to do so.
+    scene: A person experiencing insomnia due to stress.
+    register: semi-formal
+    setting: melancholic
+  - english: I liked that car, but it's too expensive, so I can't buy it even if I wanted to.
+    japanese:
+      - あの 車 は 気 に 入っ た けど、高 すぎ て {買おう に も 買え ない}。
+      - あの 車 は 気 に 入り まし た が、高 すぎ て {買おう に も 買え ませ ん}。
+      - あの 車 は 気 に 入っ た けど、高 すぎ て {買おう に も 買え ねぇ}。
+    english_literally: That car, I liked it, but it is too expensive, so even if I try to buy it, I cannot
+      buy it.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 買おう と し て も}、お 金 が ない。'
+        english: No matter how much I try to buy it, I don't have money.
+        hint: This emphasizes the effort and lack of funds. We're looking for an expression that highlights
+          the desire to buy combined with the impossibility due to cost.
+    scene: A person looking at an expensive item they desire.
+    register: casual
+    setting: melancholic
+  - english: The drinking party I was invited to by my boss has an atmosphere where I can't refuse even
+      if I wanted to.
+    japanese:
+      - 上司 に 誘わ れ た 飲み会 は {断ろう に も 断れ ない} 雰囲気 だ。
+      - 上司 に 誘わ れ まし た 飲み会 は {断ろう に も 断れ ませ ん} 雰囲気 です。
+      - 上司 に 誘わ れ た 飲み会 は {断ろう に も 断れ ねぇ} 雰囲気 だ。
+    english_literally: The drinking party invited by my boss, it's an atmosphere where even if I try to
+      refuse, I cannot refuse.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 断ろう と し て も}、断れ ない 雰囲気 だ。'
+        english: No matter how much I try to refuse, it's an atmosphere where I can't refuse.
+        hint: This emphasizes the degree of effort to refuse. We're looking for an expression that captures
+          the internal desire to refuse being overpowered by the atmosphere.
+    scene: An employee feels pressured to attend a company event.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The phrase 「断ろうにも断れない雰囲気」 implies a strong social obligation often felt by younger employees
+      toward their seniors in a Japanese professional setting. It conveys that despite the speaker's personal
+      desire to decline, the social pressure makes it practically impossible. The use of 「〜ねぇ」 in the
+      casual Japanese variation is a masculine, younger-sounding contraction.
+  - english: My body is aching all over, so I can't move even if I wanted to.
+    japanese:
+      - 体 中 が 痛く て、{動こう に も 動け ない}。
+      - 体 中 が 痛く て、{動こう に も 動け ませ ん}。
+    english_literally: My whole body is painful, so even if I try to move, I cannot move.
+    competing_grammar:
+      - competing_japanese:
+          - '{どんな に 動こう と し て も}、動け ない。'
+        english: No matter how much I try to move, I can't move.
+        hint: This emphasizes the physical effort to move despite pain. We're looking for an expression
+          that conveys wanting to move but being unable to due to a physical state.
+    scene: A person is suffering from severe body aches.
+    register: casual
+    setting: melancholic
+  - english: The car broke down in the middle of nowhere, and there's no way to call for help even if
+      I wanted to.
+    japanese:
+      - 車 が ど 田舎 で 故障 し て、{助け を 呼ぼう に も 呼べ ない} 状況 だ。
+      - 車 が ど 田舎 で 故障 し て、{助け を 呼ぼう に も 呼べ ませ ん} 状況 です。
+    english_literally: The car broke down in the absolute countryside, it's a situation where even if
+      I try to call for help, I cannot call.
+    competing_grammar:
+      - competing_japanese:
+          - 助け を {呼ぶ こと が でき ない}。
+        english: I cannot call for help.
+        hint: This is a simple statement of inability. We're looking for an expression that highlights
+          the desire to call for help but being prevented by external circumstances.
+    scene: Someone's car has broken down in a remote area with no cell service.
+    register: semi-formal
+    setting: emergency/alarm
+  - english: It was so shocking that I couldn't say a word even if I wanted to.
+    japanese:
+      - あまり に 衝撃 的 で、{言葉 を 発しよう に も 発せ ない} ほど だっ た。
+      - あまり に 衝撃 的 で、{言葉 を 発しよう に も 発せ ませ ん} ほど でし た。
+    english_literally: It was so shocking that it was to the extent that even if I try to utter words,
+      I cannot utter them.
+    competing_grammar:
+      - competing_japanese:
+          - 衝撃 的 すぎ て、{言葉 が 出 なかっ た}。
+        english: It was too shocking, so words didn't come out.
+        hint: This focuses on the outcome. We're looking for an expression that emphasizes the desire
+          to speak but being unable to due to the emotional impact.
+    scene: A person witnesses a profoundly shocking event.
+    register: formal
+    setting: serious
+  - english: Due to the tight security, I couldn't even approach the stage, let alone get close to the
+      celebrity, even if I wanted to.
+    japanese:
+      - 警備 が 厳しく て、{近づこう に も 近づけ ない} 状況 だっ た。
+      - 警備 が 厳しく て、{近づこう に も 近づけ ませ ん} 状況 でし た。
+    english_literally: Security was strict, so it was a situation where even if I try to approach, I cannot
+      approach.
+    competing_grammar:
+      - competing_japanese:
+          - 警備 が 厳しく て、{近づく こと が でき なかっ た}。
+        english: Due to strict security, I could not approach.
+        hint: This is a direct statement of inability. We're looking for an expression that conveys the
+          desire to approach but being physically unable to due to external factors.
+    scene: A fan tries to get close to a celebrity at an event with high security.
+    register: semi-formal
+    setting: friendly
+  - english: The mountain trail was so steep and dangerous that I couldn't go back even if I wanted to.
+    japanese:
+      - 山道 は 険し すぎ て、{引き返そう に も 引き返せ ない} 状態 だっ た。
+      - 山道 は 険し すぎ て、{引き返そう に も 引き返せ ませ ん} 状態 でし た。
+    english_literally: The mountain path was too steep, it was a state where even if I try to turn back,
+      I cannot turn back.
+    competing_grammar:
+      - competing_japanese:
+          - 山道 は 険し すぎ て、{引き返す こと が でき なかっ た}。
+        english: The mountain path was too steep, so I couldn't turn back.
+        hint: This simply states the impossibility. We're looking for an expression that implies the desire
+          to turn back but being prevented by the dangerous condition of the path.
+    scene: A hiker finds themselves on a treacherous mountain path.
+    register: semi-formal
+    setting: serious
+  - english: I wanted to confess my feelings, but I was so nervous that I couldn't say anything even if
+      I tried.
+    japanese:
+      - 告白 し たかっ た けど、緊張 し すぎ て {言おう に も 言え ない} 状態 だっ た。
+      - 告白 し たかっ た です が、緊張 し すぎ て {言おう に も 言え ませ ん} 状態 でし た。
+    english_literally: I wanted to confess, but I was too nervous, so it was a state where even if I try
+      to say it, I cannot say it.
+    competing_grammar:
+      - competing_japanese:
+          - 緊張 し すぎ て、{言葉 が 出 なかっ た}。
+        english: I was too nervous, so words didn't come out.
+        hint: This describes the lack of speech. We're looking for an expression that emphasizes the desire
+          to speak but being unable to due to internal nervousness.
+    scene: Someone wants to confess their feelings to a crush but is overcome by nervousness.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This example highlights an internal, emotional barrier (緊張しすぎて) preventing an action despite
+      the strong desire to do so (告白したかった). The nuance of 「言おうにも言えない」 perfectly captures this internal
+      struggle, where the will is there, but the capacity is hindered by anxiety. The use of female speaker
+      is implied by the context of a confession, which is often expressed with this level of emotional
+      vulnerability.
+post_example_writeup: This grammar point is incredibly useful for expressing a sense of powerlessness
+  or frustration in situations where one's intentions are thwarted by external realities. Pay close attention
+  to the repetition of the verb, first in its volitional form and then its potential negative form, as
+  this is the defining characteristic of this construction. It paints a vivid picture of a desire met
+  with an insurmountable obstacle. While it can apply to physical inability, remember its strength in
+  describing situations where social pressure or emotional states prevent an action, as seen in the example
+  about the drinking party.

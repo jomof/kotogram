@@ -1,0 +1,271 @@
+grammar_point: とか (hearsay)
+learn_before:
+  - とか〜とか (listing examples)
+meaning: I heard that… (something like), They said ... (or something)
+pronunciation:
+  katakana: トカ
+  romaji: toka
+formation:
+  Verb (plain form) + とか: Used to report something heard but unconfirmed about an action or state.
+  い-Adjective (plain form) + とか: Used to report something heard but unconfirmed about a quality.
+  な-Adjective (stem) + とか: Used to report something heard but unconfirmed about a quality or state. (Implicit
+    だ)
+  Noun + とか: Used to report something heard but unconfirmed about a person, thing, or event.
+jlpt: N2
+etymology: The particle 「とか」 is a combination of 「と」, the quotative particle, and 「か」, which indicates
+  uncertainty. This combination creates a sense of reporting something heard but without full confidence
+  or confirmation.
+writeup: The particle 「とか」 combines 「と」 (a quotative particle) and 「か」 (a particle indicating uncertainty).
+  Thus, 「とか」 conveys that the speaker heard something but isn't entirely sure if it's true or accurate.
+  It's similar to saying "I heard something like..." or "...or something" in English. It can follow verbs,
+  い-adjectives, な-adjectives, or nouns. It is often heard in everyday conversation and leans towards a
+  fairly casual tone. It is important to note that while 「とか」 can also be used as a listing particle meaning
+  "and" or "or" (e.g., "do things like A or B"), the current grammar point focuses on its function as
+  a hearsay marker. While both usages originate from the combination of 「と」 and 「か」, their contextual
+  applications are distinct.
+false_friends:
+  - term: そうだ
+    meaning: I heard that, It is said that
+    kind: often confused with
+    nuance: 「そうだ」 is used when conveying information heard from someone else, implying a higher degree
+      of certainty and directness than 「とか」. It's often based on more reliable sources or general knowledge.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: ということだ
+    meaning: I heard that, Rumor has it that, It is said that, It means that
+    kind: often confused with
+    nuance: 「ということだ」 is a more formal and explanatory way of conveying hearsay, often used in business
+      or academic settings. It suggests the information is more official or reliable, or summarizes implications,
+      unlike the casual uncertainty of 「とか」.
+    grammar_point: ということだ (it means that)
+  - term: んだって
+    meaning: I heard that, He or She said that
+    kind: often confused with
+    nuance: 「んだって」 is a more casual and direct way of saying "I heard that" or "(Someone) said that."
+      It expresses simple hearsay without the added nuance of uncertainty or vagueness that 「とか」 carries.
+      It's often used when directly quoting or paraphrasing what someone has said.
+    grammar_point: んだって (I heard, casual)
+  - term: とか (listing particle)
+    meaning: and, or (among others)
+    kind: similar expression
+    nuance: This usage of 「とか」 functions as a listing particle, providing examples without exhausting
+      the list. It does not convey hearsay or uncertainty about a single piece of information, but rather
+      enumerates items or actions. For example, 「犬とか猫とか」 (dogs and cats, among others).
+    grammar_point: とか〜とか (listing examples)
+post_false_friends_writeup: When using these expressions, consider the level of certainty you want to
+  convey and the context of the conversation. 「そうだ」 and 「ということだ」 are more appropriate when the information
+  seems reliable or formal, while 「とか」 and 「んだって」 are suitable for casual rumors or uncertain information.
+  「とか」 specifically adds a nuance of 'or something like that' to the report. Be careful not to confuse
+  this hearsay 「とか」 with the listing particle 「とか」, which has a distinct function of providing non-exhaustive
+  examples.
+examples:
+  - english: I heard next week's meeting will be canceled.
+    japanese:
+      - 来週 の 会議 は 中止 に なる {と か}
+      - 来週 の 会議、中止 に なる {と か} って
+    english_literally: Next week's meeting becomes canceled or something, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の 会議 は 中止 に なる {そう だ}。
+        english: I heard next week's meeting will be canceled (it seems to be true).
+        hint: 「そうだ」 conveys hearsay with a higher degree of certainty or directness, often used for more
+          reliable information. We're looking for information that is unconfirmed or vague.
+      - competing_japanese:
+          - 来週 の 会議 は 中止 に なる {らしい}。
+        english: It seems next week's meeting will be canceled (based on appearances/rumors).
+        hint: 「らしい」 suggests information based on observation, appearance, or general rumor, indicating
+          a likelihood. We're looking for a vaguer, more uncertain report.
+    scene: Two colleagues casually discussing a potential change in their work schedule.
+    register: casual
+    setting: informative
+  - english: I heard he's quitting his job. I wonder if it's true?
+    japanese:
+      - 彼 は 仕事 を 辞める {と か}。本当 か な？
+      - 彼、仕事 辞める {と か} って 話 だ よ。本当 か な？
+    english_literally: He quits work or something, I heard. Is it true?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 仕事 を 辞める {そう だ}。
+        english: I heard he's quitting his job (it is said).
+        hint: 「そうだ」 reports information heard, but without the personal doubt or uncertainty emphasized
+          by 「本当 かな？」. We're looking for a report combined with personal skepticism.
+      - competing_japanese:
+          - 彼 は 仕事 を 辞める {らしい}。
+        english: It seems he's quitting his job (based on what I heard).
+        hint: 「らしい」 conveys information based on a strong impression or rumor, but the speaker's overt
+          question 「本当 かな？」 makes 「とか」 a better fit for expressing personal uncertainty.
+    scene: A person sharing unconfirmed news about a mutual friend with a curious colleague.
+    register: casual
+    setting: friendly
+  - english: I heard the cakes at this shop are too sweet.
+    japanese:
+      - この 店 の ケーキ は 甘 すぎる {と か}。
+      - この 店 の ケーキ、甘 すぎる {と か} らしい よ。
+    english_literally: This shop's cakes are too sweet or something, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 の ケーキ は 甘 すぎる {そう だ}。
+        english: I heard the cakes at this shop are too sweet (it seems so).
+        hint: 「そうだ」 implies a more objective report of what was heard. We are looking for a more casual,
+          unverified piece of information, possibly a general impression rather than a confirmed fact.
+      - competing_japanese:
+          - この 店 の ケーキ は 甘 すぎる {らしい}。
+        english: It seems the cakes at this shop are too sweet (based on what I heard).
+        hint: 「らしい」 suggests a strong impression or likelihood based on information received. 「とか」 adds
+          a nuance of vagueness, indicating it's just a rumor or casual remark without full verification.
+    scene: Friends discussing a new cafe based on prior reviews or informal feedback.
+    register: casual
+    setting: informative
+  - english: I heard she likes dogs.
+    japanese:
+      - 彼女 は 犬 が 好き {と か}。
+      - 彼女、犬 が 好き な {と か} って。
+    english_literally: She likes dogs or something, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 犬 が 好き {そう だ}。
+        english: She seems to like dogs.
+        hint: 「そうだ」 here would imply an observation or a report with more certainty. We're looking for
+          something that is more like light gossip or unconfirmed personal preference.
+      - competing_japanese:
+          - 彼女 は 犬 が 好き {らしい}。
+        english: It seems she likes dogs (based on what I heard).
+        hint: 「らしい」 conveys hearsay but often with a stronger sense of likelihood or evidence. 「とか」 is
+          used here for a simpler, less substantiated piece of information.
+    scene: Two students sharing light gossip about a classmate's preferences.
+    register: casual
+    setting: friendly
+  - english: I heard he won the lottery. No way!
+    japanese:
+      - 彼 が 宝くじ に 当たっ た {と か}。まさか！
+      - 彼、宝くじ 当たっ た {と か} って さ。まさか！
+    english_literally: He won the lottery or something, I heard. Impossible!
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 宝くじ に 当たっ た {そう だ}。
+        english: I heard he won the lottery.
+        hint: 「そうだ」 is a neutral report of hearsay. This example uses 「まさか！」 to express strong disbelief,
+          which pairs well with 「とか」 to emphasize the unconfirmed and doubtful nature of the rumor.
+      - competing_japanese:
+          - 彼 が 宝くじ に 当たっ た {ん だ って}。
+        english: He won the lottery, I heard (casual).
+        hint: While 「んだって」 is casual hearsay, 「とか」, especially with 「まさか！」, conveys that the speaker views
+          the information as highly questionable or unbelievable, beyond just reporting what was heard.
+    scene: A man expressing disbelief and humor after hearing an unbelievable rumor about an acquaintance.
+    register: casual
+    setting: humorous
+    nuance: The exclamation 「まさか！」 (No way!) paired with 「とか」 highlights the speaker's absolute disbelief
+      regarding the unconfirmed rumor, indicating a strong emotional reaction.
+  - english: I heard the department manager is going on a business trip next week.
+    japanese:
+      - 部 長 は 来週 出張 に 行か れる {と か}。
+      - 部 長 が 来週 出張 に 行か れる {と か} いう 話 です。
+    english_literally: Department manager goes on business trip next week or something, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は 来週 出張 に 行か れる {そう だ}。
+        english: I heard the department manager is going on a business trip next week (it is said).
+        hint: While polite, 「そうだ」 would imply a more formal or certain piece of information, possibly
+          from a reliable source. 「とか」 here indicates a more informal, possibly speculative, rumor among
+          colleagues.
+      - competing_japanese:
+          - 部 長 は 来週 出張 に 行か れる {と の こと だ}。
+        english: It is that the department manager is going on a business trip next week.
+        hint: 「とのことだ」 is a highly formal way of reporting hearsay, often used for official communications.
+          「とか」 maintains a polite register while clearly indicating the information is unconfirmed office
+          gossip.
+    scene: Two junior employees discreetly sharing unconfirmed information about their boss's upcoming
+      plans.
+    register: teineigo (polite)
+    setting: professional
+    nuance: Combining the honorific verb 「行かれる」 with 「とか」 allows for polite communication about unconfirmed
+      information, suitable for discussing a superior without asserting a definite fact.
+  - english: The teacher said something about a lot of homework, but I don't quite remember.
+    japanese:
+      - 先生 は 宿題 が 多い {と か} 言っ て い た けど、よく 覚え て い ない。
+      - 先生 が 宿題 多い {と か} って 言っ て た 気 が する けど、忘れ ちゃっ た。
+    english_literally: Teacher said homework is much or something, I heard. but I don't remember well.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は 宿題 が 多い と 言っ て い た {そう だ}。
+        english: I heard the teacher said there's a lot of homework.
+        hint: 「そうだ」 reports what was heard in a more straightforward manner. This example uses 「とか」 with
+          「よく 覚え て いない」 to emphasize the speaker's own hazy recollection, rather than external unreliability.
+      - competing_japanese:
+          - 先生 は 宿題 が 多い と 言っ て い た {らしい}。
+        english: It seems the teacher said there's a lot of homework.
+        hint: 「らしい」 suggests hearsay based on appearance or general impression. Here, the uncertainty
+          comes from the speaker's faulty memory, which 「とか」 effectively conveys as 'or something like
+          that'.
+    scene: A student trying to recall vague instructions from their teacher to a friend.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「よく 覚え て いない」 (I don't remember well) or 「忘れちゃった」 (I forgot) reinforces the speaker's
+      uncertainty, a common nuance of 「とか」 when used to express vague recall.
+  - english: I heard that actor secretly got married.
+    japanese:
+      - あの 俳優 は 極秘 で 結婚 し た {と か}。
+      - あの 俳優 が 極秘 結婚 し た {と か} いう 噂 だ よ。
+    english_literally: That actor secretly married or something, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - あの 俳優 は 極秘 で 結婚 し た {そう だ}。
+        english: I heard that actor secretly got married (it is said).
+        hint: 「そうだ」 would imply a more factual tone to the report, even if unconfirmed. In the context
+          of celebrity gossip, 「とか」 maintains a lighter, more unverified tone, like 'or something of the
+          sort'.
+      - competing_japanese:
+          - あの 俳優 は 極秘 で 結婚 し た {ん だ って}。
+        english: That actor secretly got married, I heard (casual).
+        hint: While 「んだって」 is casual hearsay, 「とか」 adds a layer of vagueness or 'or something' to the
+          information, which is well-suited for rumors where details might be fuzzy or unconfirmed.
+    scene: Friends sharing celebrity gossip over coffee.
+    register: casual
+    setting: storytelling
+  - english: I heard that restaurant is opening soon, but I don't know the exact date.
+    japanese:
+      - あの レストラン、もう すぐ オープン する {と か}。詳しい 日 は わから ない けど。
+      - あの レストラン、もう すぐ オープン する {と か} って 話 が ある けど、日 は 知ら ない。
+    english_literally: That restaurant, soon opens or something, I heard. Don't know the detailed date
+      though.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン、もう すぐ オープン する {そう だ}。
+        english: I heard that restaurant is opening soon (it seems true).
+        hint: 「そうだ」 conveys a more confident report based on information. We're looking for a report that
+          explicitly states the speaker's uncertainty about details.
+      - competing_japanese:
+          - あの レストラン、もう すぐ オープン する {らしい}。
+        english: It seems that restaurant is opening soon (based on general rumor).
+        hint: 「らしい」 indicates information based on general likelihood or common knowledge. Here, 「とか」
+          emphasizes the speaker's personal vagueness regarding the specifics.
+    scene: Two friends discussing a new restaurant they're looking forward to trying.
+    register: casual
+    setting: informative
+  - english: I heard there's a problem with the new system, but I'm not sure what it is.
+    japanese:
+      - 新しい システム に 問題 が ある {と か}。何 か はっきり し ない けど。
+      - 新しい システム、何 か トラブル が ある {と か} って。詳しく は 知ら ない けど。
+    english_literally: New system has a problem or something, I heard. Not clear what it is though.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム に 問題 が ある {そう だ}。
+        english: I heard there's a problem with the new system (it is said).
+        hint: 「そうだ」 presents the information as a more direct report without the added nuance of vagueness.
+          We're looking for an expression that conveys uncertainty about the specifics of the problem.
+      - competing_japanese:
+          - 新しい システム に 問題 が ある {と の こと だ}。
+        english: It is that there is a problem with the new system.
+        hint: 「とのことだ」 is a formal way to convey information. 「とか」 is much more casual and is used to express
+          an unconfirmed rumor, which is implied by the speaker's lack of details.
+    scene: Colleagues casually discussing an unconfirmed technical issue at work.
+    register: semi-formal
+    setting: professional
+    nuance: Using 「とか」 here conveys an unconfirmed rumor about a problem. The speaker openly admits their
+      lack of precise information with 「何 か はっきり しない けど」 or 「詳しく は 知ら ない けど」, reinforcing the hedging
+      function of 「とか」.
+post_example_writeup: As you can see from the examples, 「とか」 is very versatile in expressing hearsay or
+  unconfirmed information across various contexts, from casual gossip to somewhat more formal office discussions.
+  The key is the underlying nuance of uncertainty or vagueness about the information's absolute truth
+  or exact details.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とか

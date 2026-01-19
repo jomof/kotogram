@@ -1,0 +1,380 @@
+grammar_point: '[Verb-stem]なさい (polite imperative)'
+learn_before:
+  - なら〜で (if ~ then ~)
+meaning: Do (something)
+meaning_warning: When casual, can be shortened to just な.
+conjugations:
+  - conjugation-type: imperative polite (～なさい)
+    form: なさい
+    rarity: common
+    meaning: Do (something)
+pronunciation:
+  katakana: ナサイ
+  romaji: nasai
+formation:
+  Verb (ます-stem) + なさい: Polite command or instruction, primarily used by superiors to inferiors.
+jlpt: N4
+etymology: 「なさい」 is the imperative form of the honorific verb 「なさる」 (nasaru), which means "to do." 「なさる」
+  itself is derived from 「なす」 (為す - to do). The imperative form of 「なさる」 was originally 「なされ」. Over time,
+  「なされ」 evolved phonetically into 「なさい」. This evolution highlights its inherent politeness while retaining
+  its core meaning of 'do' or 'perform', making it a suitable form for those in authority to speak to
+  subordinates without being overly harsh, while still conveying a command.
+writeup: |-
+  「なさい」 is a polite imperative form derived from the honorific verb 「なさる」, meaning "to do." While it conveys politeness, it is still a command, making it unsuitable for use toward one's superiors. It is most commonly used by those in positions of authority—such as parents or teachers—to instruct those of lower status, like children or students. It can also be used among peers for a gentle suggestion. To use 「なさい」, simply attach it to the ます-stem of any verb. For example, 「食べます」 becomes 「食べなさい」 (Tabe nasai), meaning "Eat." 「読みます」 becomes 「読みなさい」 (Yomi nasai), meaning "Read."
+
+  A more casual, shortened form, 「な」, is also used, primarily among peers. This shortened 「な」 implies a gentle suggestion or mild urging rather than a direct command. It is crucial to distinguish this shortened 「な」 from the prohibitive 「な」, meaning "don't," which attaches to the dictionary form of a verb. For example, 「食べるな」 (Taberu na) means "Don't eat," while 「食べな」 (Tabe na) means "Eat (as a suggestion)."
+
+  While 「なさい」 itself is grammatically gender-neutral, its usage can often feel more natural when spoken by women, particularly mothers or female teachers, as it conveys a caring yet firm tone. However, male speakers also use it, especially in roles of authority like a father or a coach. It is generally not appropriate to use 「なさい」 when speaking to someone of equal or higher status, as it can sound condescending or rude. For interactions with peers or superiors, 「〜てください」 is the more common and appropriate polite request form.
+false_friends:
+  - term: ないで
+    meaning: Without doing, Not ~ and ~
+    kind: antonym
+    nuance: Unlike 「なさい」, which encourages action, 「ないで」 indicates the absence of an action or state.
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: ないでください
+    meaning: Please don't (Polite request)
+    kind: antonym
+    nuance: 「ないでください」 is a polite request not to do something, whereas 「なさい」 instructs someone to do something.
+    grammar_point: ないでください・ないで (please don't)
+  - term: な
+    meaning: Do not, Don't (Prohibitive)
+    kind: antonym
+    nuance: As a prohibitive, 「な」 means "do not do X," while the shortened form of 「なさい」, also 「な」, means
+      "do X." Context and the preceding verb form are key to distinguishing them.
+    grammar_point: な (prohibitive particle)
+  - term: 〜なさい (prohibitive)
+    meaning: Don't do (archaic/emphatic prohibition)
+    kind: often confused with
+    nuance: This archaic 「〜なさい」 means 'don't do' and is a negative command. It is formed from the prohibitive
+      particle 「な」 and the suffix 「さい」, and is distinct in meaning and origin from the polite imperative
+      「なさい」 meaning 'do'. The prohibitive form is rarely used in modern Japanese.
+    grammar_point: な (prohibitive particle)
+  - term: てください
+    meaning: Please do (Polite request)
+    kind: synonym
+    nuance: Both 「なさい」 and 「てください」 instruct someone to do something, but 「てください」 is typically a more polite
+      request, whereas 「なさい」 can be a more direct, albeit gentle, command.
+    grammar_point: てください (polite request)
+  - term: なさる
+    meaning: To do (Honorific)
+    kind: synonym
+    nuance: 「なさる」 is the honorific verb from which 「なさい」 is derived. 「なさる」 is the verb itself, while 「なさい」
+      is its imperative form.
+    grammar_point: お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+  - term: てごらん
+    meaning: (Please) try to, (Please) look
+    kind: synonym
+    nuance: 「てごらん」 and 「なさい」 both suggest or instruct an action, but 「てごらん」 carries more of an implication
+      of experimentation or observation, often used to encourage someone to try something out.
+    grammar_point: '[Verb-て]ごらん (gentle suggestion)'
+  - term: お〜ください
+    meaning: Please do (Honorific)
+    kind: synonym
+    nuance: 「お〜ください」 is a more formal and generally more respectful way to request someone to do something,
+      especially when addressing someone of equal or higher status. 「なさい」 is a polite command to someone
+      of lower status.
+    grammar_point: お〜ください (polite request)
+  - term: お〜願う
+    meaning: Please, Could you please
+    kind: synonym
+    nuance: 「お〜願う」 is a more humble and polite way to ask someone to do something, implying a favor or
+      request. 「なさい」 is a more direct command, even if polite.
+    grammar_point: (お〜)願う (wish・request)
+  - term: 命令形 (imperative form)
+    meaning: Command or strong request.
+    kind: similar expression
+    nuance: While 「なさい」 is a polite command, the plain imperative (e.g., 「行け」 'Go!') is much stronger,
+      direct, and often considered rude or harsh, especially when addressing superiors or peers.
+    grammar_point: 命令形 (imperative form)
+  - term: べき (should)
+    meaning: Should, ought to, must
+    kind: similar expression
+    nuance: 「べき」 implies a strong moral obligation or what is logically correct, sounding more like a
+      firm duty or expectation, whereas 「なさい」 is a direct, yet polite, instruction.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: ことだ (should・ought to)
+    meaning: Should, ought to
+    kind: similar expression
+    nuance: 「ことだ」 expresses a general recommendation or advice, suggesting what is proper or ideal, but
+      lacks the direct commanding tone of 「なさい」.
+    grammar_point: ことだ (should・ought to)
+  - term: たほうがいい (it's better to)
+    meaning: It's better to; You should
+    kind: similar expression
+    nuance: 「たほうがいい」 offers advice or a recommendation, indicating what would be preferable, but it is
+      less direct and authoritative than 「なさい」.
+    grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+post_false_friends_writeup: The alternative expressions, such as 「てください」 and 「お〜ください」, offer varying degrees
+  of politeness and directness. While 「なさい」 serves as a polite command, particularly from a superior to
+  a subordinate, 「てください」 is a more generally polite request, and 「お〜ください」 (or 「お〜願う」) is a highly respectful
+  request. It's also crucial to distinguish between the positive command 「なさい」 (do politely) and the rare
+  archaic prohibitive 「〜なさい」 (don't do); despite sounding similar, their origins and meanings are entirely
+  different, with the prohibitive form rarely used today. The distinction between the shortened 「な」 form
+  of 「なさい」 and the prohibitive 「な」 (attached to dictionary form) is likewise crucial for correct usage.
+  Understanding these nuances helps in choosing the appropriate expression for different social contexts.
+  Furthermore, other forms like the plain imperative, 「べき」, 「ことだ」, and 「たほうがいい」, convey varying degrees
+  of obligation, recommendation, or suggestion, but lack the specific nuance of a polite, guiding instruction
+  inherent in 「なさい」.
+examples:
+  - english: Do your homework!
+    japanese:
+      - 宿題 を し {なさい}！
+      - 宿題 し {なさい}！
+      - 宿題 し {な}！
+    english_literally: Homework do!
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 を し {ろ}！
+        english: Do your homework! (Strong, plain imperative)
+        hint: The plain imperative 「しろ」 is much stronger and less polite than 「なさい」, often implying a
+          command with less nuance of guidance. We're looking for a softer, instructional command.
+    scene: A mother is urging her child to complete their tasks after school.
+    register: semi-formal
+    setting: commanding
+    conjugation: imperative polite (～なさい)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The use of 「なさい」 conveys a direct but gentle command from an older female figure, like a mother.
+      The tone is encouraging but firm, as homework is a necessary task. 「宿題 を しなさい」 is a common phrase
+      heard in Japanese households.
+    etymology: The word 「宿題」 (shukudai) combines 「宿」 (shuku) meaning 'lodging' or 'temporary stay' and
+      「題」 (dai) meaning 'topic' or 'problem'. Historically, it referred to tasks given for students to
+      do outside their regular studies, often at home, hence 'homework'. The verb 「する」 (suru) meaning
+      'to do' is commonly paired with 「宿題」.
+  - english: You should read more books.
+    japanese:
+      - もっと 本 を 読み {なさい}。
+      - もっと 本 読み {なさい}。
+      - もっと 本 読み {な}。
+    english_literally: More books read!
+    competing_grammar:
+      - competing_japanese:
+          - もっと 本 を 読む {べき} だ。
+        english: You should read more books. (Strong obligation)
+        hint: 「べき だ」 indicates a strong sense of obligation or what one ought to do, which is more prescriptive
+          than the gentle instruction implied by 「なさい」. We're looking for an encouraging instruction rather
+          than a strong obligation.
+    scene: A high school teacher is advising their student to broaden their knowledge through reading.
+    register: semi-formal
+    setting: instructional
+    conjugation: imperative polite (～なさい)
+    speaker_gender: male
+    speaker_age: older
+    nuance: A male teacher uses 「なさい」 to firmly yet appropriately instruct the student. The phrase 「もっと」
+      (motto) emphasizes the encouragement to increase reading habits. The instruction 「本 を 読みなさい」 serves
+      as general academic advice.
+    etymology: 「本」 (hon) has a rich history, originally referring to the root or origin of something,
+      and later expanding to mean books, due to books being the 'root' of knowledge or information. The
+      verb 「読む」 (yomu) means 'to read', and its ます-stem 「読み」 (yomi) is used before 「なさい」。 The adverb 「もっと」
+      (motto) means 'more' or 'further'.
+  - english: If you're tired, take a little break.
+    japanese:
+      - 疲れ たら、少し 休憩 し {な}。
+      - 疲れ たら、少し 休憩 し {なさい}。
+    english_literally: If tired, a little break do!
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ たら、少し 休憩 し {た ほう が いい}。
+        english: If you're tired, it's better to take a little break.
+        hint: 「たほうがいい」 is a general suggestion or recommendation. 「な」 (shortened なさい) offers a gentle,
+          slightly more direct nudge. We're looking for a casual, supportive suggestion.
+    scene: A friend is noticing their peer looking exhausted and suggests they rest.
+    register: casual
+    setting: supportive
+    conjugation: imperative polite (～なさい)
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The shortened 「な」 form softens the suggestion, making it a gentle invitation for a friend
+      to try an action. The phrase 「休憩 しな」 (kyuukei shi na) expresses a gentle recommendation, typical
+      when a female speaker shows concern for a friend.
+    etymology: 「休憩」 (kyūkei) means 'rest' or 'break', combining 「休」 (kyū) 'rest' and 「憩」 (kei) 'rest'
+      or 'repose'. It's a compound word emphasizing the act of resting. 「少し」 (sukoshi) means 'a little',
+      indicating a small amount of time for the break.
+  - english: Take this medicine every morning.
+    japanese:
+      - 毎朝、この 薬 を 飲み {なさい}。
+      - 毎朝、この 薬 飲み {なさい}。
+    english_literally: Every morning, this medicine drink!
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝、この 薬 を 飲ん で {ください}。
+        english: Please take this medicine every morning. (Polite request)
+        hint: While polite, 「〜て ください」 is a general request. 「なさい」 is often used by someone in a professional
+          or authoritative role (like a doctor) to give a clear instruction. We're looking for a firm
+          instruction from an authority figure.
+    scene: A doctor is giving instructions to a patient about their prescription.
+    register: formal
+    setting: instructional
+    conjugation: imperative polite (～なさい)
+    speaker_gender: male
+    speaker_age: older
+    nuance: A male doctor uses 「なさい」 to convey a clear and necessary instruction to the patient. The phrase
+      「飲みなさい」 emphasizes that this is a mandatory action for the patient's health. The context of a medical
+      professional giving advice makes the tone authoritative yet polite.
+    etymology: 「薬」 (kusuri) is a common word for 'medicine'. The phrase 「毎朝」 (maiasa) literally means
+      'every morning', combining 「毎」 (mai) 'every' and 「朝」 (asa) 'morning'. The verb 「飲む」 (nomu) 'to drink'
+      is used for taking medicine.
+  - english: Look, the cat is sleeping. Try touching it.
+    japanese:
+      - 見 て ご ら ん、猫 が 寝 て いる よ。触っ て み {な}。
+      - 見 て ご ら ん、猫 が 寝 て いる よ。触っ て み {なさい}。
+    english_literally: Look, cat is sleeping. Touch try!
+    competing_grammar:
+      - competing_japanese:
+          - 見 て ご ら ん、猫 が 寝 て いる よ。触っ て {み} て。
+        english: Look, the cat is sleeping. Try touching it.
+        hint: 「〜てみる」 is a neutral way to suggest trying something. 「な」 (shortened なさい) adds a slight encouragement
+          or gentle instruction to try. We're looking for a gentle, casual invitation to try something,
+          with a more direct nuance.
+    scene: A child asks their friend to gently pet a sleeping cat.
+    register: casual
+    setting: friendly
+    conjugation: imperative polite (～なさい)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The shortened 「な」 form softens the suggestion, making it a gentle invitation for a friend
+      to try an action. The phrase 「触って みな」 (sawatte mina) is a common, friendly way to encourage someone
+      to try something out, especially from a younger male speaker.
+    etymology: The verb 「触る」 (sawaru) means 'to touch'. The phrase 「見てごらん」 (mite goran) is a polite suggestion
+      to 'look' or 'try looking', a common phrase when showing something to someone. The sentence-final
+      particle 「よ」 adds emphasis or confirmation.
+  - english: Eat your vegetables properly.
+    japanese:
+      - 野菜 も ちゃんと 食べ {なさい}。
+      - 野菜 ちゃん と 食べ {なさい}。
+      - 野菜 も ちゃんと 食べ {な}。
+      - 野菜 ちゃん と 食べ {な}。
+    english_literally: Vegetables also properly eat!
+    competing_grammar:
+      - competing_japanese:
+          - 野菜 も ちゃんと {食べろ}！
+        english: Eat your vegetables properly! (Very strong, plain imperative)
+        hint: The plain imperative 「食べろ」 is a very direct and strong command, often sounding harsh. 「なさい」
+          is more about gentle guidance from a parent. We're looking for a more softened, paternal instruction.
+      - competing_japanese:
+          - 野菜 も ちゃんと 食べ て {ください}。
+        english: Please eat your vegetables properly.
+        hint: 「〜て ください」 is a polite request but less direct and authoritative than 「なさい」, which conveys
+          a firm instruction from a parent. We're looking for a clear, albeit gentle, parental instruction.
+    scene: A father tells his young daughter to finish her vegetables during dinner.
+    register: casual
+    setting: commanding
+    conjugation: imperative polite (～なさい)
+    speaker_gender: male
+    speaker_age: older
+    nuance: A father using 「食べなさい」 implies an instruction given with authority, but also with care for
+      his child's well-being. The use of 「ちゃんと」 (chanto) meaning 'properly' or 'diligently' adds to the
+      instructive tone. This is a common way for parents to encourage good habits in children.
+  - english: Everyone, please be quiet!
+    japanese:
+      - 皆 さん、静か に し {なさい}！
+      - 皆 様、静か に し {なさい}！
+    english_literally: Everyone, quiet do!
+    competing_grammar:
+      - competing_japanese:
+          - 皆 さん、静か に し て {ください}。
+        english: Everyone, please be quiet. (Standard polite request)
+        hint: While polite, 「〜て ください」 is a general request. 「なさい」 functions as a more direct command,
+          suitable for a figure of authority addressing a group. We're looking for a polite but firm instruction.
+      - competing_japanese:
+          - 皆 さん、静か に {しろ}！
+        english: Everyone, be quiet! (Rough, plain imperative)
+        hint: The plain imperative 「しろ」 is very strong and impolite, often used in angry or very urgent
+          situations. 「なさい」 maintains politeness while still conveying a command. We're looking for a
+          polite, authoritative command.
+    scene: A librarian addresses noisy patrons in the reading area.
+    register: formal
+    setting: commanding
+    conjugation: imperative polite (～なさい)
+    speaker_gender: female
+    speaker_age: older
+    nuance: A female librarian using 「静か に しなさい」 conveys a polite but firm command appropriate for maintaining
+      order in a public space. Addressing the group with 「皆さん」 (minasan) maintains a respectful distance
+      while giving a clear instruction. This usage balances authority with politeness.
+  - english: If you want to win, practice more!
+    japanese:
+      - 勝ち たい なら、もっと 練習 し {な}！
+      - 勝ち たい なら、もっと 練習 し {なさい}。
+    english_literally: Win want if, more practice do!
+    competing_grammar:
+      - competing_japanese:
+          - 勝ち たい なら、もっと 練習 {しろ}！
+        english: If you want to win, practice more! (Very strong, plain imperative)
+        hint: 「しろ」 is a very forceful and potentially aggressive command. The shortened 「な」 offers a less
+          confrontational, more encouraging tone from a coach. We're looking for a motivating, but not
+          harsh, instruction.
+      - competing_japanese:
+          - 勝ち たい なら、もっと 練習 {し て}。
+        english: If you want to win, please practice more.
+        hint: Using 「〜て」 makes it a gentler request. A coach often uses a more direct, but still encouraging,
+          tone like the shortened 「な」. We're looking for a direct instruction with a motivating nuance.
+    scene: A football coach motivates his players during a difficult practice session.
+    register: casual
+    setting: inspirational
+    conjugation: imperative polite (～なさい)
+    speaker_gender: male
+    speaker_age: older
+    nuance: A male coach using the shortened 「な」 form for 「練習 しな」 implies a direct, no-nonsense instruction
+      that is common in sports settings. It's firm but also carries a sense of strong encouragement for
+      improvement, typical of a coach-athlete relationship.
+  - english: Let's hurry up and go, okay?
+    japanese:
+      - 早く 行き {な}。
+      - 早く 行き {な よ}。
+      - 早く 行き {なさい}。
+      - 早く 行き {なさい よ}。
+    english_literally: Quickly go!
+    competing_grammar:
+      - competing_japanese:
+          - 早く {行こう}。
+        english: Let's go quickly.
+        hint: 「行こう」 is a volitional form, meaning "let's go together." The shortened 「行きな」 is a gentle
+          push for the other person to go, implying urgency. We're looking for a suggestion for the listener
+          to act, not a joint action.
+      - competing_japanese:
+          - 早く {行け}。
+        english: Go quickly! (Harsh, plain imperative)
+        hint: 「行け」 is a blunt and potentially rude imperative. 「行きな」 is much softer and more suited for
+          friendly urging. We're looking for a gentle, casual suggestion to hurry up.
+    scene: A young female friend gently urges another friend to leave as they are running late.
+    register: casual
+    setting: friendly
+    conjugation: imperative polite (～なさい)
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The use of the shortened 「な」 in 「早く 行きな」 creates a soft, almost persuasive tone. This is common
+      among young female friends to gently urge action without sounding demanding. It implies a shared
+      understanding of the need for speed.
+  - english: Please confirm the documents once more.
+    japanese:
+      - 書類 を もう 一 度 確認 し {なさい}。
+      - 書類 もう 一 度 確認 し {なさい}。
+    english_literally: Documents once more confirm do!
+    competing_grammar:
+      - competing_japanese:
+          - 書類 を もう 一 度 確認 し て {ください}。
+        english: Please confirm the documents once more. (Standard polite request)
+        hint: While polite, 「〜て ください」 is a general request. 「なさい」 here conveys a clear instruction from
+          a senior to a junior, implying a necessary task. We're looking for a polite but direct instruction
+          within a professional hierarchy.
+      - competing_japanese:
+          - 書類 を もう 一 度 確認 {しろ}。
+        english: Confirm the documents once more! (Rough, plain imperative)
+        hint: 「しろ」 is a very impolite and unsuitable command in a professional setting. 「なさい」 allows a
+          senior to instruct a junior politely. We're looking for a polite, professional command.
+    scene: A senior male employee instructs a junior female colleague on a task in an office setting.
+    register: semi-formal
+    setting: instructional
+    conjugation: imperative polite (～なさい)
+    speaker_gender: male
+    speaker_age: older
+    nuance: A male senior staff using 「確認 しなさい」 to a junior colleague conveys a clear, direct instruction
+      within a professional hierarchy. It maintains a polite demeanor suitable for the workplace, indicating
+      an expectation for the task to be completed. The phrase 「もう 一 度」 (mou ichido) means 'once more',
+      emphasizing the need for re-confirmation.
+post_example_writeup: The examples illustrate how 「なさい」 is used to convey commands or instructions, often
+  from a position of authority, but in a polite manner. The distinction between the full 「なさい」 and the
+  shortened 「な」 is also important; while both are imperative, 「な」 tends to be more casual and serves as
+  a gentle suggestion among peers or when addressing someone younger in a more intimate setting.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なさい

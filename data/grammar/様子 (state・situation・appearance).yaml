@@ -1,0 +1,322 @@
+grammar_point: 様子 (state・situation・appearance)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - 〜ようだ・〜みたいだ (seems・like)
+  - い-Adjective[そう] (appearance)
+  - か (question)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - な-Adjective (modifying nouns)
+  - のを (direct object nominalizer)
+  - もう (already・anymore)
+  - 側 (side or flank)
+meaning: state, situation, appearance, aspect, circumstances
+pronunciation:
+  katakana: ヨウス
+  romaji: yōsu
+formation:
+  Noun + の + 様子: Refers to the state or appearance of a noun.
+  Verb[plain] + 様子だ: Indicates that it seems or looks like the verb's action is happening or will happen.
+  い-Adjective[plain] + 様子だ: Indicates that it seems or looks like something possesses the quality of the
+    i-adjective.
+  な-Adjective[な] + 様子だ: Indicates that it seems or looks like something possesses the quality of the na-adjective.
+  Noun + の + 様子だ: Indicates that it seems or looks like something is in the state of the noun.
+jlpt: N3
+etymology: The word 様子 (yōsu) is a compound of 様 (yō), meaning 'manner' or 'appearance,' and 子 (su), which
+  here refers to a 'state' or 'condition.' Together, they convey the idea of the observable state, look,
+  or general condition of something. This dual nature of 'manner' and 'state' underpins its versatile
+  usage in describing both how things look and how situations are unfolding.
+writeup: |-
+  様子 (ようす) is a versatile noun in Japanese that primarily refers to the 'state,' 'situation,' 'appearance,' or 'circumstances' of something or someone. It is used when you are describing what you observe and infer from that observation, rather than stating a known fact. It's about how things 'look' or 'seem' to be.
+
+  While 様子 itself is a noun, it frequently appears as part of a larger grammatical structure, most notably when expressing conjecture based on observation. When combined with a plain form verb or adjective followed by だ, it functions similarly to 'it seems that...' or 'it looks like...'. This construction indicates that the speaker is making a judgment or inference based on observable cues.
+
+  For example, if you see someone yawning repeatedly, you might say 眠い 様子だ (nemui yōsu da - 'they seem sleepy'). You are not stating a definite fact, but rather an observation-based conclusion about their state. Similarly, if the sky is dark and cloudy, you might say 雨が降る 様子だ (ame ga furu yōsu da - 'it looks like rain').
+
+  It can also be used directly as a noun, such as 彼の 様子 が おかしい (kare no yōsu ga okashii - 'his appearance/state is strange'), where it refers to an observable trait without necessarily implying conjecture.
+false_friends:
+  - term: らしい
+    meaning: it seems, based on evidence, I hear
+    kind: similar expression
+    nuance: While both 様子だ and らしい express conjecture, らしい often implies that the inference is based on
+      indirect information or hearsay, or that something is typical of a certain type. 様子だ, however, primarily
+      implies direct visual or auditory observation as the basis for the inference. For example, 彼は病気らしい
+      (kare wa byōki rashii - 'He seems to be sick [based on what I heard/it's typical of him]') vs. 彼は病気の様子だ
+      (kare wa byōki no yōsu da - 'He seems to be sick [based on his appearance]').
+    grammar_point: らしい (it seems, based on evidence・I hear)
+  - term: そうだ
+    meaning: appearance, hearsay
+    kind: similar expression
+    nuance: The 'appearance' usage of そうだ (e.g., おいしそうだ - looks delicious) is similar to 様子だ in conveying
+      observable appearance. However, そうだ generally attaches directly to the stem of adjectives or verbs
+      (e.g., 食べそう - looks like it will eat), creating a more direct 'looks like' expression, often focusing
+      on immediate visual cues. 様子だ is a noun construction that describes the state from which an appearance
+      is inferred, and it can attach to plain forms of full clauses.
+    grammar_point: い-Adjective[そう] (appearance)
+  - term: ようだ・みたいだ
+    meaning: seems・like
+    kind: similar expression
+    nuance: ようだ and みたいだ are direct expressions of conjecture or comparison, meaning 'it seems like' or
+      'it's like'. They can be used when making a more general assumption or a comparison. 様子 is a noun
+      referring to the 'appearance' or 'state' itself, and when combined with だ, it means 'it looks like'
+      based specifically on that observable 'appearance' or 'state'. You might say 彼は疲れているようだ (kare wa
+      tsukarete iru yō da - 'He seems tired [general impression]') or 彼は疲れている様子だ (kare wa tsukarete iru
+      yōsu da - 'He seems tired [based on his appearance, e.g., yawning, heavy eyes]').
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+post_false_friends_writeup: When distinguishing between 様子 and other expressions like らしい, そうだ, and ようだ/みたいだ,
+  consider the source of your inference. 様子 typically implies that your conclusion is drawn from direct
+  observation of someone's or something's external state or appearance. In contrast, らしい often suggests
+  indirect information or typical characteristics. そうだ (appearance) focuses on the immediate visual impression
+  of a verb or adjective. ようだ/みたいだ are broader terms for conjecture or comparison, often reflecting a
+  more general impression or analogy, not solely reliant on observable 'state' as 様子 implies.
+examples:
+  - english: His appearance is strange.
+    japanese:
+      - 彼 の {様子} が おかしい。
+      - 彼 の {様子} が おかしい です。
+      - あいつ の {様子} が おかしい ぜ。
+      - 彼 の {様子} が 変 だ。
+    english_literally: His state/appearance is strange.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は おかしい。
+          - 彼 は おかしい です。
+        english: He is strange.
+        hint: While 「彼はおかしい」 means he is strange, the grammar point 「様子」 specifies that it is his 'appearance'
+          or 'state' that is strange, providing more detail. We're looking for how his state looks strange.
+      - competing_japanese:
+          - 彼 の 見 た 目 が おかしい。
+          - 彼 の 見 た 目 が おかしい です。
+        english: His outward appearance is strange.
+        hint: 「見た目」 specifically refers to physical appearance. 「様子」 is broader, encompassing one's general
+          state, not just how they look physically. We're looking for the broader 'state' or 'situation'.
+    scene: You notice your friend behaving unusually, perhaps looking pale or distracted.
+    register: casual
+    setting: friendly
+  - english: It looks like the meeting is already over.
+    japanese:
+      - 会議 は もう 終わっ た {様子} だ。
+      - 会議 は もう 終わっ た {様子} です。
+      - 会議 は もう 終わっ た {様子} ね。
+      - 会議 は もう 終わっ た {様子} みたい だ。
+    english_literally: The meeting is already finished appearance is.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は もう 終わっ た らしい。
+          - 会議 は もう 終わっ た よう だ。
+        english: It seems the meeting has already ended (based on indirect information).
+        hint: 「らしい」 and 「ようだ」 can also express conjecture, but 「様子だ」 implies your inference is based on
+          direct observation of the 'state' of things, like people leaving. We're looking for a judgment
+          based on an observed state.
+      - competing_japanese:
+          - 会議 は もう 終わっ た と 思わ れる。
+          - 会議 は もう 終わっ た と 思わ れ ます。
+        english: It is thought that the meeting has already ended.
+        hint: 「と思われる」 suggests a general perception or common belief, which might not be based on immediate
+          personal observation. We're looking for an inference based on direct observation of the situation.
+    scene: You arrive at the meeting room and see people leaving with their bags.
+    register: semi-formal
+    setting: professional
+  - english: The child seemed to be sleepy.
+    japanese:
+      - 子供 は 眠い {様子} だっ た。
+      - 子供 は 眠い {様子} でし た。
+      - 子供 は 眠 そう な {様子} だっ た。
+    english_literally: The child sleepy appearance was.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 眠 そう だっ た。
+          - 子供 は 眠 そう でし た。
+        english: The child looked sleepy.
+        hint: 「眠そう」 is a direct visual appearance, like 'looking sleepy'. While similar, 「眠い様子だった」 emphasizes
+          that their general 'state' or 'condition' suggested sleepiness, not just their facial expression.
+          We're looking for an inference about their overall state.
+      - competing_japanese:
+          - 子供 は 眠っ て いる らしい。
+          - 子供 は 眠っ て いる よう だ。
+        english: The child seems to be sleeping.
+        hint: 「らしい」 and 「ようだ」 convey conjecture but without the specific nuance of observing the 'state'
+          or 'appearance' (様子) of sleepiness. We're looking for an observation of their current condition.
+    scene: You see a child yawning and rubbing their eyes.
+    register: casual
+    setting: friendly
+  - english: It seems like he has no intention of coming.
+    japanese:
+      - 彼 は 来る {様子} が ない。
+      - 彼 は 来る {様子} が あり ませ ん。
+      - 彼、来る {様子} ない ね。
+    english_literally: He coming appearance does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 来る 気 が ない。
+          - 彼 は 来る 気 が あり ませ ん。
+        english: He has no intention of coming.
+        hint: 「来る気がない」 refers to a lack of motivation or willingness. 「来る様子がない」 implies that based on
+          observations (e.g., no communication, no movement), it doesn't appear as though he's coming.
+          We're looking for an observation of his current state or lack thereof.
+      - competing_japanese:
+          - 彼 は 来 ない らしい。
+          - 彼 は 来 ない よう だ。
+        english: It seems he won't come.
+        hint: While similar in meaning, 「らしい」 and 「ようだ」 are general conjecture. 「様子がない」 specifies that
+          the conclusion is drawn from the *absence* of any observable indication. We're looking for a
+          judgment based on what is *not* observed.
+    scene: You've been waiting for someone for a long time, and they haven't responded to your messages.
+    register: casual
+    setting: friendly
+  - english: She was quietly reading a book.
+    japanese:
+      - 彼女 は 静か な {様子} で 本 を 読ん で い た。
+      - 彼女 は 静か な {様子} で 本 を 読ん で い まし た。
+      - 彼女 は 静か な {様子} で 本 を 読ん で おら れ まし た。
+    english_literally: She quiet appearance with book was reading.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 静か に 本 を 読ん で い た。
+          - 彼女 は 静か に 本 を 読ん で い まし た。
+        english: She was quietly reading a book.
+        hint: 「静かに」 is an adverb describing the manner of reading directly. 「静かな様子で」 describes her overall
+          quiet 'state' or 'demeanor' while reading. We're looking for a description of her whole observed
+          presence.
+      - competing_japanese:
+          - 彼女 は 静か だっ た。
+          - 彼女 は 静か でし た。
+        english: She was quiet.
+        hint: This simply states she was quiet, without connecting it to her action of reading. We're
+          looking for how her quiet state relates to her activity.
+    scene: You walk into a library and see a woman absorbed in her book.
+    register: teineigo (polite)
+    setting: academic
+  - english: It looks like it will rain outside.
+    japanese:
+      - 外 は 雨 の {様子} だ。
+      - 外 は 雨 の {様子} です。
+      - 外、雨 の {様子} だ よ。
+    english_literally: Outside rain's appearance is.
+    competing_grammar:
+      - competing_japanese:
+          - 外 は 雨 が 降り そう だ。
+          - 外 は 雨 が 降り そう です。
+        english: It looks like it will rain outside.
+        hint: 「降りそうだ」 directly expresses a visual prediction based on the verb 'to fall'. 「雨の様子だ」 focuses
+          on the general 'state' of the weather suggesting rain, which is a broader observation. We're
+          looking for a description of the general state of the weather.
+      - competing_japanese:
+          - 外 は 雨 が 降る らしい。
+          - 外 は 雨 が 降る よう だ。
+        english: It seems it will rain outside.
+        hint: 「らしい」 and 「ようだ」 are general conjectures. 「雨の様子だ」 specifically refers to the observable 'appearance'
+          or 'condition' of the sky/atmosphere. We're looking for an inference based on visible cues.
+    scene: You look out the window and see dark clouds gathering.
+    register: casual
+    setting: melancholic
+  - english: We could tell from his expression that he was very pleased.
+    japanese:
+      - 彼 の {様子} から 大変 喜ん で いる こと が 伺え た。
+      - 彼 の {様子} から 大変 喜ん で いる こと が 伺え まし た。
+      - 彼 の {様子} から 大変 喜ん で いる こと が 分かり まし た。
+    english_literally: From his appearance, very pleased thing was inferred.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 表情 から 大変 喜ん で いる こと が 伺え た。
+          - 彼 の 表情 から 大変 喜ん で いる こと が 伺え まし た。
+        english: We could tell from his facial expression that he was very pleased.
+        hint: 「表情」 specifically refers to facial expression. 「様子」 is broader, referring to his overall
+          state or demeanor, which includes more than just his face. We're looking for an inference from
+          his general 'state'.
+      - competing_japanese:
+          - 彼 が 大変 喜ん で いる らしい。
+          - 彼 が 大変 喜ん で いる よう だ。
+        english: It seems he is very pleased.
+        hint: These are general conjectures. 「様子から...伺えた」 specifically details that the inference was
+          drawn *from his observable state*, highlighting the observational basis. We're looking for an
+          inference clearly linked to an observation of his state.
+    scene: Someone receives good news and their face lights up.
+    register: formal
+    setting: professional
+    nuance: The phrase 「伺えた」 (ukagaeta) is a humble/polite way of saying 'could tell' or 'could infer,'
+      suggesting the speaker's deference while observing someone's state. It indicates a polite observation
+      of the other person's '様子'.
+  - english: After the earthquake, the town's situation was severe.
+    japanese:
+      - 地震 の 後、町 の {様子} は 厳しかっ た。
+      - 地震 の 後、町 の {様子} は 厳しかっ た です。
+      - 地震 の 後、町 の {様子} は ひどかっ た。
+    english_literally: After earthquake, town's situation was severe.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 の 後、町 の 状況 は 厳しかっ た。
+          - 地震 の 後、町 の 状況 は 厳しかっ た です。
+        english: After the earthquake, the town's situation was severe.
+        hint: 「状況」 is a direct synonym for 'situation'. While usable, 「様子」 implies a situation that is
+          observable and from which one can draw inferences. We're looking for the observable 'state'
+          or 'appearance' of the town.
+      - competing_japanese:
+          - 地震 の 後、町 は 深刻 だっ た。
+          - 地震 の 後、町 は 深刻 でし た。
+        english: After the earthquake, the town was serious/grave.
+        hint: This refers to the town itself being serious, not specifically its condition or appearance
+          after the event. We're looking for a description of the town's state.
+    scene: A reporter describes the aftermath of a natural disaster.
+    register: formal
+    setting: informative
+  - english: His tone of voice suggested he was angry.
+    japanese:
+      - 彼 の 口調 から 怒っ て いる {様子} が 窺える。
+      - 彼 の 口調 から 怒っ て いる {様子} が 窺え ます。
+      - 彼 の 口調 から 怒っ て いる {様子} が 分かる。
+    english_literally: From his tone, angry appearance is inferred.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 口調 から 怒り が 伝わる。
+          - 彼 の 口調 から 怒り が 伝わり ます。
+        english: Anger is conveyed through his tone of voice.
+        hint: 「怒りが伝わる」 means anger is conveyed. 「怒っている様子が窺える」 means you can infer his angry *state* from
+          his tone, emphasizing the observation aspect. We're looking for an inference about his state.
+      - competing_japanese:
+          - 彼 は 怒っ て いる らしい。
+          - 彼 は 怒っ て いる よう だ。
+        english: He seems to be angry.
+        hint: These are general conjectures. 「怒っている様子が窺える」 is more specific, indicating that the inference
+          of his angry state is drawn *from his tone of voice*. We're looking for an inference explicitly
+          based on observation.
+    scene: You hear a heated conversation from the next room and try to figure out what's happening.
+    register: casual
+    setting: serious
+    nuance: 「窺える」 (ukagaeru) means 'can be inferred' or 'can be gathered from' and is often used when
+      making an inference from subtle cues like '口調' (kuchou - tone of voice). It emphasizes that the
+      '様子' (state) of being angry is something you can deduce from his speech.
+  - english: Seeing the manager's state, I decided not to speak.
+    japanese:
+      - 部 長 の {様子} を 見 て、話しかける の を やめ た。
+      - 部 長 の {様子} を 見 て、話しかける の を やめ まし た。
+      - 部 長 の {様子} を 拝見 し、話しかける の を 控え まし た。
+    english_literally: Manager's state seeing, speaking stopped.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 の 顔色 を 見 て、話しかける の を やめ た。
+          - 部 長 の 顔色 を 見 て、話しかける の を やめ まし た。
+        english: Seeing the manager's complexion/facial expression, I decided not to speak.
+        hint: 「顔色」 specifically refers to one's complexion or facial expression. 「様子」 is broader, encompassing
+          the manager's overall demeanor or situation. We're looking for the broader 'state' or 'circumstances'.
+      - competing_japanese:
+          - 部 長 が 大変 そう だっ た の で、話しかける の を やめ た。
+          - 部 長 が 大変 そう だっ た の で、話しかける の を やめ まし た。
+        english: Since the manager seemed to be having a hard time, I decided not to speak.
+        hint: 「大変そう」 describes his apparent difficulty. While similar, 「様子を見て」 emphasizes *observing his
+          state* before making a decision. We're looking for the act of observing his state leading to
+          a decision.
+    scene: You walk into your boss's office and they look stressed or upset.
+    register: semi-formal
+    setting: professional
+post_example_writeup: The examples illustrate how 様子 can be used with various parts of speech to describe
+  an observed state or appearance. Whether it's the simple noun usage like 彼の様子がおかしい or forming a conjectural
+  phrase like 雨の様子だ, it consistently points to an inference based on what is outwardly visible or perceptible.
+  Pay attention to the particle that connects 様子 to the preceding clause or noun (の, な, or plain form)
+  as this indicates the type of observation being made.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/様子

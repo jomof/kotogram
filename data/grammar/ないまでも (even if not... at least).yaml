@@ -1,0 +1,419 @@
+grammar_point: ないまでも (even if not... at least)
+learn_before:
+  - な-Adjective (predicate form)
+meaning: May not … but (at least), Even though not, Even if not
+pronunciation:
+  katakana: ナイマデモ
+  romaji: nai made mo
+formation:
+  Verb -ない + までも: Indicates that even if a certain high level of action is not performed, a lesser, undeniable
+    action or state is still true or desirable.
+  Adjective -い → -く + ないまでも: Used when an i-adjective describes a state that is not at its highest degree,
+    but still possesses a desirable, lower quality.
+  Noun/な Adjective + ではない/じゃ + ないまでも: Applies when a noun or na-adjective's ideal state is not met, but
+    a less intense or significant state is still valid or acceptable.
+jlpt: N1
+etymology: The grammar point 「ないまでも」 is a compound expression derived from the negative auxiliary verb
+  「ない」 (nai, 'not'), the particle 「まで」 (made, 'until' or 'to the extent of'), and the particle 「も」 (mo,
+  'even' or 'also'). Literally, it means "even if it does not reach (a certain point or extent)." This
+  combination allows it to convey a sense of concession, implying that while an ideal or expected level
+  is not attained, some lesser but still significant aspect is true or desirable. Historically, 「まで」 marks
+  an endpoint or limit, and 「も」 adds emphasis, suggesting that even at that limited point, something holds
+  true.
+writeup: |-
+  「ないまでも」 is a versatile grammar pattern used to express a concession, indicating that while a certain ideal or high degree is not reached, something of a lesser but still significant degree is true or desirable. It combines the negative form of a verb or adjective with 「まで」 (until/to the extent of) and 「も」 (even/also).
+
+  This pattern inherently presents a scale or gradient: an extreme or ideal state (A) is acknowledged as not being achieved, but a lower, undeniable extent or state (B) is confirmed. The literal interpretation can be understood as "even if not reaching (A), (B)."
+
+  For verbs, it attaches to the negative plain form: Verb -ない + までも.
+  For い-adjectives, it attaches to the く-form of the negative: い-Adjective stem + くない + までも.
+  For nouns and な-adjectives, it attaches to the negative copula: Noun/な-Adjective + ではない/じゃ + ないまでも.
+
+  Often, the B phrase will convey a wish, demand, or a statement of what is still true, frequently utilizing structures like 「たい」 (want to), 「てほしい」 (want someone to do), 「てください」 (please do), 「たらどう」 (how about), 「つもり」 (intend to), or 「といい」 (it would be good if).
+false_friends:
+  - term: ～なくても
+    meaning: even if not, even without
+    kind: similar expression
+    nuance: 「～なくても」 expresses a condition where something might not happen or exist, but it does not inherently
+      imply a scale or a lower degree that *is* achieved. It focuses on the conditional aspect rather
+      than the gradient. For example, 「雨が降らなくても、傘を持っていく」 (Even if it doesn't rain, I'll take an umbrella).
+    grammar_point: ても (even if・even though)
+  - term: ～とは言えないが
+    meaning: I can't say that... but
+    kind: similar expression
+    nuance: While similar in conveying a less-than-ideal situation, 「～とは言えないが」 specifically refers to
+      the speaker's inability to label or state something directly. 「ないまでも」, on the other hand, focuses
+      on a degree or extent not being reached, implying that a lesser, certain degree is still true. For
+      example, 「天才とは言えないが、努力家だ」 (I can't say he's a genius, but he's a hard worker).
+    grammar_point: <strongly-suggest>:～とは言えないが (cannot say that)
+  - term: たとえ〜ても
+    meaning: even if, even though
+    kind: similar expression
+    nuance: 「たとえ〜ても」 is used for hypothetical or unlikely situations, emphasizing that the result holds
+      true despite the condition. Unlike 「ないまでも」, it does not necessarily imply a 'lesser but still true'
+      outcome, but rather 'even under this (unlikely) circumstance'. For example, 「たとえ失敗しても、また挑戦する」 (Even
+      if I fail, I'll try again).
+    grammar_point: たとえ〜ても (even if)
+post_false_friends_writeup: While 「ないまでも」 conveys a sense of concession on a scale, meaning 'even if the
+  ideal isn't met, at least a lower level is true,' expressions like 「～なくても」, 「～とは言えないが」, and 「たとえ〜ても」
+  serve different purposes. 「～なくても」 is a conditional meaning 'even without' or 'even if not,' without
+  the inherent implication of a gradient or a minimum achieved. 「～とは言えないが」 is about the speaker's direct
+  statement, suggesting that a certain label or description cannot be precisely applied, but something
+  else is true. 「たとえ〜ても」 emphasizes a hypothetical or unlikely situation. These differences are subtle
+  but crucial for natural Japanese expression, ensuring you choose the right nuance to convey the exact
+  relationship between the ideal and the reality.
+examples:
+  - english: Even if he doesn't study every day, he definitely works hard before exams.
+    japanese:
+      - 彼 は 毎日 勉強 し ない {まで も}、試験 前 に は 必ず 頑張る。
+      - 彼 は 毎日 勉強 し ない {まで も}、試験 前 は 絶対 に 頑張り ます。
+    english_literally: As for him, even if he doesn't study every day, before exams he definitely works
+      hard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 毎日 勉強 し {なく て も}、試験 前 に は 必ず 頑張る。
+        english: Even if he doesn't study every day, he definitely works hard before exams.
+        hint: 「～なくても」 states a condition where something might not happen or exist, but it does not inherently
+          imply a scale or a lower degree that *is* achieved. We're looking for a grammar point that suggests
+          a certain level isn't reached, but a lesser, still significant, effort is made.
+      - competing_japanese:
+          - 彼 は 毎日 勉強 し て いる {と は 言え ない が}、試験 前 に は 必ず 頑張る。
+        english: I can't say he studies every day, but he definitely works hard before exams.
+        hint: 「～とは言えないが」 indicates the speaker cannot make a definitive statement. We're looking for a
+          phrase that means 'even if not reaching that level'.
+      - competing_japanese:
+          - 彼 は 毎日 勉強 し {ない が}、試験 前 に は 必ず 頑張る。
+        english: He doesn't study every day, but he definitely works hard before exams.
+        hint: 「～ないが」 simply connects two contrasting ideas. We're looking for a pattern that emphasizes
+          that a higher standard isn't met, but a lower one still is.
+    scene: A teacher is discussing a student's study habits with a colleague, emphasizing that while the
+      student isn't always diligent, they are reliably so when it counts.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker, a male teacher, uses 「しないまでも」 to concede that the student's daily study habits
+      aren't ideal, but highlights the compensatory effort made before exams. The use of 「必ず頑張る」 reinforces
+      this minimum effort. The tone is semi-formal, appropriate for a discussion between colleagues.
+  - english: Even if she isn't a professional singer, she has a voice that captivates listeners.
+    japanese:
+      - 彼女 は プロ の 歌手 で は ない {まで も}、聞く 人 を 魅了 する 歌声 を 持っ て いる。
+      - 彼女 は プロ の 歌手 で ない {まで も}、人 を 魅了 する 歌声 を 持っ て い ます。
+    english_literally: As for her, even if she is not a professional singer, she possesses a singing voice
+      that captivates listeners.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は プロ の 歌手 で {なく て も}、聞く 人 を 魅了 する 歌声 を 持っ て いる。
+        english: Even if she isn't a professional singer, she has a voice that captivates listeners.
+        hint: 「～なくても」 focuses on the condition 'without being'. We're looking for a pattern that concedes
+          an ideal level isn't met but a significant lesser quality exists.
+      - competing_japanese:
+          - 彼女 は プロ の 歌手 だ {と は 言え ない が}、聞く 人 を 魅了 する 歌声 を 持っ て いる。
+        english: I can't say she's a professional singer, but she has a voice that captivates listeners.
+        hint: 「～とは言えないが」 indicates the speaker cannot make a definitive statement. We're looking for a
+          phrase that means 'even if not reaching that status'.
+      - competing_japanese:
+          - 彼女 は プロ の 歌手 で は {ない けれど}、聞く 人 を 魅了 する 歌声 を 持っ て いる。
+        english: She isn't a professional singer, but she has a voice that captivates listeners.
+        hint: 「～ではないけれど」 is a simple conjunction. We need a pattern that specifically states that a higher
+          standard is not met, yet a lower one still holds true.
+    scene: A music critic is reviewing a local artist's performance, acknowledging her lack of professional
+      status but praising her natural talent.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    nuance: The speaker, a female critic, employs 「ではないまでも」 to draw a distinction between a professional
+      standard and a natural ability. Despite not meeting the 'professional' benchmark, her voice 「魅了する歌声」
+      is still highly praised. The formal register is appropriate for an academic or critical review.
+  - english: Even if this room isn't spacious, it's comfortable enough to spend time in.
+    japanese:
+      - この 部屋 は 広く ない {まで も}、十分 快適 に 過ごせる。
+      - この 部屋 は 広く ない {まで も}、快適 に 過ごせる よ。
+    english_literally: As for this room, even if it is not spacious, one can sufficiently comfortably
+      spend time in it.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 広く {なく て も}、十分 快適 に 過ごせる。
+        english: Even if this room isn't spacious, it's comfortable enough to spend time in.
+        hint: 「～なくても」 presents a general 'even if not' scenario. We need a phrase that suggests a higher
+          standard isn't met, but a lower, acceptable one is.
+      - competing_japanese:
+          - この 部屋 は 広い {と は 言え ない が}、十分 快適 に 過ごせる。
+        english: I can't say this room is spacious, but it's comfortable enough to spend time in.
+        hint: 「～とは言えないが」 is about judging an existing state or inability to categorize. We're looking
+          for a phrase that implies 'even if it doesn't reach the level of spaciousness'.
+      - competing_japanese:
+          - この 部屋 は 広く {ない けれど}、十分 快適 に 過ごせる。
+        english: This room isn't spacious, but it's comfortable enough to spend time in.
+        hint: 「～ないけれど」 is a simpler, more direct conjunction. We're seeking a pattern that specifically
+          states that a higher ideal isn't achieved, but a practical lower standard is met.
+    scene: A traveler is showing a friend photos of their budget hotel room, pointing out its practicality
+      despite its small size.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker, a man, uses 「広くないまでも」 to admit the room's lack of spaciousness, but immediately
+      counteracts it with its sufficient comfort 「十分快適に過ごせる」. This highlights accepting a trade-off without
+      dissatisfaction. The casual register with the use of 「過ごせる」 is fitting for a friendly conversation.
+  - english: Even if I can't become the best in the world, I want to be the best in my country.
+    japanese:
+      - 世界 一 に は なれ ない {まで も}、国内 で 一番 に なり たい。
+      - 世界 一 に は なれ ない {まで も}、国内 で 一番 に なり たい です。
+    english_literally: As for becoming the world's best, even if I cannot, I want to become the best in
+      my country.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 一 に は なれ {なく て も}、国内 で 一番 に なり たい。
+        english: Even if I can't become the best in the world, I want to be the best in my country.
+        hint: 「～なくても」 is a general conditional. We're expressing that an ultimate goal isn't achievable,
+          but a lesser, still ambitious one is, implying a scale of achievement.
+      - competing_japanese:
+          - 世界 一 だ {と は 言え ない が}、国内 で 一番 に なり たい。
+        english: I can't say I'll be the best in the world, but I want to be the best in my country.
+        hint: 「～とは言えないが」 is for judging an existing state or inability to categorize. We are talking about
+          a future, desired outcome where the highest level is not reached, but a significant step is
+          still pursued.
+      - competing_japanese:
+          - 世界 一 に は なれ {ない が}、国内 で 一番 に なり たい。
+        english: I can't become the best in the world, but I want to be the best in my country.
+        hint: '「～ないが」 simply connects two clauses. We''re looking for a pattern that emphasizes the concession:
+          ''even if not reaching that highest point, then at least this lower point''.'
+    scene: A young athlete is speaking to a coach, outlining their realistic but still ambitious goals.
+    register: semi-formal
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male athlete articulates a tiered ambition. 「なれないまでも」 sets the global 'best' as an unreached
+      ideal, but establishes the national 'best' 「一番になりたい」 as a concrete, attainable goal, showing a focused
+      drive. The semi-formal register is appropriate for a serious discussion with a coach.
+  - english: Even if I couldn't understand it completely, I grasped the general meaning.
+    japanese:
+      - 完全 に 理解 でき ない {まで も}、大体 の 意味 は 把握 でき た。
+      - 完全 に 理解 でき ない {まで も}、大体 の 意味 は 把握 でき まし た。
+    english_literally: Even if I couldn't understand it completely, the general meaning was grasped.
+    competing_grammar:
+      - competing_japanese:
+          - 完全 に 理解 でき {なく て も}、大体 の 意味 は 把握 でき た。
+        english: Even if I couldn't understand it completely, I grasped the general meaning.
+        hint: 「～なくても」 describes a situation where something might not happen, or even if it doesn't. We're
+          emphasizing that a full understanding wasn't achieved, but a partial one was, indicating a degree
+          of success.
+      - competing_japanese:
+          - 完全 に 理解 でき た {と は 言え ない が}、大体 の 意味 は 把握 でき た。
+        english: I can't say I understood it completely, but I grasped the general meaning.
+        hint: 「～とは言えないが」 conveys an inability to make a full statement or judgment. We're using `ないまでも`
+          to show that the understanding didn't reach the highest level, but a lower, sufficient level
+          was attained.
+      - competing_japanese:
+          - 完全 に 理解 でき {なかっ た けれど}、大体 の 意味 は 把握 でき た。
+        english: I couldn't understand it completely, but I grasped the general meaning.
+        hint: 「～なかったけれど」 is a simple past tense conjunction. We're looking for a pattern that emphasizes
+          that an ideal level wasn't reached, yet a significant lower level was.
+    scene: A student is reporting to their professor after a challenging lecture, acknowledging partial
+      comprehension.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The female student uses 「できないまでも」 to admit that complete understanding 「完全に理解」 was not achieved.
+      However, the subsequent phrase 「大体の意味は把握できた」 indicates that a sufficient level of understanding
+      was attained, demonstrating diligence despite difficulty. The formal register is suitable for addressing
+      a professor.
+  - english: Even if I can't go on a trip every week, I want to go out a few times a year.
+    japanese:
+      - 毎週 旅行 に 行け ない {まで も}、年 に 数 回 は 出かけ たい。
+      - 毎週 旅行 に 行け ない {まで も}、年 に 数 回 は 出かけ たい です。
+    english_literally: Even if I cannot go on a trip every week, I want to go out a few times a year.
+    competing_grammar:
+      - competing_japanese:
+          - 毎週 旅行 に 行け {なく て も}、年 に 数 回 は 出かけ たい。
+        english: Even if I can't go on a trip every week, I want to go out a few times a year.
+        hint: 「～なくても」 states a condition without the explicit sense of 'even if not reaching that extent'.
+          We're conveying that an ideal frequency isn't possible, but a minimum acceptable frequency is
+          still desired.
+      - competing_japanese:
+          - 毎週 旅行 に 行ける {と は 言え ない が}、年 に 数 回 は 出かけ たい。
+        english: I can't say I can go on a trip every week, but I want to go out a few times a year.
+        hint: 「～とは言えないが」 is about the speaker's ability to state something. We're using `ないまでも` to express
+          a concession regarding the frequency of trips.
+      - competing_japanese:
+          - 毎週 旅行 に 行け {ない が}、年 に 数 回 は 出かけ たい。
+        english: I can't go on a trip every week, but I want to go out a few times a year.
+        hint: 「～ないが」 simply connects two ideas. We're looking for a phrase that implies 'even if not reaching
+          the ideal frequency, at least this much'.
+    scene: A busy professional is sharing their travel aspirations with a friend, acknowledging time constraints.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    nuance: The female speaker uses 「行けないまでも」 to express the unlikelihood of frequent travel. However,
+      「年に数回は出かけたい」 sets a more realistic and desirable minimum, highlighting a longing for occasional
+      getaways. The casual tone is appropriate for a conversation between friends.
+  - english: Even if they aren't friends, I exchange greetings with acquaintances.
+    japanese:
+      - 友達 で は ない {まで も}、顔 見知り の 人 と は 挨拶 を 交わす。
+      - 友達 で は ない {まで も}、顔 見知り の 人 と は 挨拶 を 交わし ます。
+    english_literally: Even if they are not friends, I exchange greetings with acquaintances.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 で {なく て も}、顔 見知り の 人 と は 挨拶 を 交わす。
+        english: Even if they aren't friends, I exchange greetings with acquaintances.
+        hint: 「～でなくても」 states a general conditional. We're expressing that a relationship doesn't reach
+          the level of friendship, but a lesser, still significant social interaction occurs.
+      - competing_japanese:
+          - 友達 だ {と は 言え ない が}、顔 見知り の 人 と は 挨拶 を 交わす。
+        english: I can't say they are friends, but I exchange greetings with acquaintances.
+        hint: 「～とは言えないが」 implies an inability to make a definitive statement. We're using `ないまでも` to convey
+          that the relationship doesn't reach the 'friend' level, but a lesser connection exists.
+      - competing_japanese:
+          - 友達 で は {ない が}、顔 見知り の 人 と は 挨拶 を 交わす。
+        english: They are not friends, but I exchange greetings with acquaintances.
+        hint: 「～ではないが」 is a simple connective. We're looking for a pattern that emphasizes the concession,
+          implying 'even if not reaching true friendship, at least acquaintance-level interaction is present'.
+    scene: An elder is advising a younger person on basic social etiquette within their community.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker uses 「ではないまでも」 to distinguish between casual friendships and mere acquaintances.
+      He emphasizes that even without a close bond, basic social interaction like exchanging greetings
+      「挨拶を交わす」 is a necessary and expected courtesy. The semi-formal register is fitting for giving advice
+      or instruction.
+  - english: Even if it's not luxurious, I want a clean and comfortable room.
+    japanese:
+      - 豪華 じゃ ない {まで も}、清潔 で 快適 な 部屋 が いい。
+      - 豪華 じゃ ない {まで も}、清潔 で 快適 な 部屋 が いい です。
+    english_literally: Even if it is not luxurious, a clean and comfortable room is good.
+    competing_grammar:
+      - competing_japanese:
+          - 豪華 じゃ {なく て も}、清潔 で 快適 な 部屋 が いい。
+        english: Even if it's not luxurious, I want a clean and comfortable room.
+        hint: 「～じゃなくても」 is a general conditional. We're expressing that luxury isn't a requirement, but
+          a minimum standard of cleanliness and comfort is desired, indicating a scale of quality.
+      - competing_japanese:
+          - 豪華 だ {と は 言え ない が}、清潔 で 快適 な 部屋 が いい。
+        english: I can't say it's luxurious, but I want a clean and comfortable room.
+        hint: 「～とは言えないが」 is about stating a judgment. We're using `ないまでも` to show that the ideal level
+          of luxury isn't met, but a lesser, still desirable, quality is sought.
+      - competing_japanese:
+          - 豪華 じゃ {ない けれど}、清潔 で 快適 な 部屋 が いい。
+        english: It's not luxurious, but I want a clean and comfortable room.
+        hint: 「～じゃないけれど」 is a simple conjunction. We're looking for a pattern that implies 'even if not
+          reaching luxury, at least comfort and cleanliness are essential'.
+    scene: A tourist is discussing their hotel preferences with a travel agent, prioritizing comfort over
+      extravagance.
+    register: semi-formal
+    setting: negotiating
+    speaker_gender: female
+    listener_gender: male
+    nuance: 'The female speaker uses 「じゃないまでも」 to explicitly state that luxury 「豪華」 is not a requirement.
+      Instead, she highlights the essential qualities she desires: cleanliness and comfort 「清潔で快適な部屋」,
+      indicating a pragmatic approach. The semi-formal register is suitable for discussing preferences
+      in a business context like with a travel agent.'
+  - english: Even if you don't succeed perfectly, you should do your best.
+    japanese:
+      - 完璧 に 成功 し ない {まで も}、ベスト を 尽くす べき だ。
+      - 完璧 に 成功 し ない {まで も}、ベスト を 尽くす べき です。
+    english_literally: Even if you don't succeed perfectly, you should do your best.
+    competing_grammar:
+      - competing_japanese:
+          - 完璧 に 成功 し {なく て も}、ベスト を 尽くす べき だ。
+        english: Even if you don't succeed perfectly, you should do your best.
+        hint: 「～なくても」 states a condition without the explicit sense of 'even if not reaching that extent'.
+          We're emphasizing that achieving perfection isn't guaranteed, but giving maximum effort is still
+          crucial.
+      - competing_japanese:
+          - 完璧 に 成功 する {と は 言え ない が}、ベスト を 尽くす べき だ。
+        english: I can't say you'll succeed perfectly, but you should do your best.
+        hint: 「～とは言えないが」 is about an inability to assert a outcome. We're using `ないまでも` to convey that
+          while perfect success may not be reached, the obligation to try remains.
+      - competing_japanese:
+          - 完璧 に 成功 し {ない が}、ベスト を 尽くす べき だ。
+        english: You don't succeed perfectly, but you should do your best.
+        hint: 「～ないが」 simply connects two ideas. We're looking for a phrase that implies 'even if not reaching
+          perfect success, at least striving for one's best is necessary'.
+    scene: A motivational speaker is addressing an audience, encouraging perseverance and effort regardless
+      of the outcome.
+    register: formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    nuance: The male speaker employs 「しないまでも」 to acknowledge that perfect success 「完璧に成功」 might not always
+      be achievable. Yet, he strongly advocates for giving one's utmost effort 「ベストを尽くす」, reinforcing
+      a message of diligence and integrity. The formal register and inspiring tone are suitable for a
+      motivational speech to a group.
+  - english: Even if that painting isn't artistically high-level, it has value to me.
+    japanese:
+      - あの 絵 は 芸術 的 に 高く ない {まで も}、私 に とっ て は 価値 が ある。
+      - あの 絵 は 芸術 的 に 高く ない {まで も}、私 に とっ て は 価値 が あり ます。
+    english_literally: As for that painting, even if it is not artistically high-level, for me it has
+      value.
+    competing_grammar:
+      - competing_japanese:
+          - あの 絵 は 芸術 的 に 高く {なく て も}、私 に とっ て は 価値 が ある。
+        english: Even if that painting isn't artistically high-level, it has value to me.
+        hint: 「～なくても」 states a general conditional. We're indicating that while the painting may not meet
+          high artistic standards, it holds personal value, showing a scale of appreciation.
+      - competing_japanese:
+          - あの 絵 は 芸術 的 に 高い {と は 言え ない が}、私 に とっ て は 価値 が ある。
+        english: I can't say that painting is artistically high-level, but it has value to me.
+        hint: 「～とは言えないが」 is about an inability to make a definitive judgment. We're using `ないまでも` to express
+          that while it doesn't reach artistic excellence, it still possesses personal worth.
+      - competing_japanese:
+          - あの 絵 は 芸術 的 に 高く {ない けれど}、私 に とっ て は 価値 が ある。
+        english: That painting isn't artistically high-level, but it has value to me.
+        hint: '「～ないけれど」 is a simple conjunction. We''re looking for a pattern that emphasizes the concession:
+          ''even if it doesn''t reach a high artistic level, it still has personal value''.'
+    scene: A person is showing a sentimental painting to a friend, explaining its personal importance
+      despite its potential lack of critical acclaim.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The female speaker uses 「高くないまでも」 to express that the painting may not meet high artistic
+      standards. However, she counters this with its personal value 「私にとっては価値がある」, emphasizing the emotional
+      connection over objective assessment. The implied tenderness in her voice makes this an intimate
+      sentiment between close friends.
+  - english: Even if you can't speak perfectly, you should try to convey your intentions.
+    japanese:
+      - 完璧 に 話せ ない {まで も}、伝え たい こと は 努力 する べき だ。
+      - 完璧 に 話せ ない {まで も}、伝え たい こと は 努力 する べき です。
+    english_literally: Even if one cannot speak perfectly, things one wants to convey, one should make
+      an effort for them.
+    competing_grammar:
+      - competing_japanese:
+          - 完璧 に 話せ {なく て も}、伝え たい こと は 努力 する べき だ。
+        english: Even if you can't speak perfectly, you should try to convey your intentions.
+        hint: 「～なくても」 is a general conditional, without the emphasis on a gradient of achievement that
+          `ないまでも` provides. We're looking for a grammar point that suggests a higher standard isn't met,
+          but a lower, achievable one is still important.
+      - competing_japanese:
+          - 完璧 に 話せる {と は 言え ない が}、伝え たい こと は 努力 する べき だ。
+        english: I can't say you can speak perfectly, but you should try to convey your intentions.
+        hint: 「～とは言えないが」 expresses an inability to assert something definitively. We're looking for a
+          phrase that implies 'even if not reaching full proficiency'.
+      - competing_japanese:
+          - 完璧 に 話せ {ない が}、伝え たい こと は 努力 する べき だ。
+        english: You can't speak perfectly, but you should try to convey your intentions.
+        hint: 「～ないが」 simply connects two contrasting ideas. We're looking for a pattern that emphasizes
+          that a higher standard isn't met, but a lower one still is.
+    scene: A Japanese language teacher is encouraging their student, emphasizing that communication is
+      possible even without perfect fluency.
+    register: formal
+    setting: supportive
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male teacher encourages the female student by saying 「話せないまでも」 (even if you can't speak
+      perfectly), implying that native-level fluency is not the immediate goal. Instead, the focus is
+      on the effort to convey meaning 「伝えたいことは努力するべきだ」. This is a common and practical piece of advice
+      for language learners, emphasizing effort over perfection.
+post_example_writeup: When using 「ないまでも」, the emphasis is on establishing a baseline or minimum standard
+  that is met, despite not achieving the ideal or highest possible level. It's a pragmatic expression
+  that concedes an unreached ideal while highlighting a significant, albeit lesser, achievement. Pay close
+  attention to the second clause, as it almost always expresses something positive, desirable, or an undeniable
+  fact that holds true even if the first clause's ideal is not fulfilled. This structure makes 「ないまでも」
+  particularly useful for conveying a sense of reasonable expectation or accepting a compromise.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ないまでも

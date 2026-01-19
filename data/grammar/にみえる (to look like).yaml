@@ -1,0 +1,438 @@
+grammar_point: にみえる (to look like)
+learn_before:
+  - とみえる (seems from observation)
+meaning: To look, to seem, to appear
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: にみえる
+    rarity: common
+    meaning: to look like, to seem like (non-past plain)
+  - conjugation-type: non-past polite (～ます)
+    form: にみえます
+    rarity: common
+    meaning: to look like, to seem like (non-past polite)
+  - conjugation-type: negative plain (～ない)
+    form: にみえない
+    rarity: common
+    meaning: not to look like, not to seem like (non-past plain negative)
+  - conjugation-type: negative non-past polite (～ません)
+    form: にみえません
+    rarity: common
+    meaning: not to look like, not to seem like (non-past polite negative)
+  - conjugation-type: past plain (～た)
+    form: にみえた
+    rarity: common
+    meaning: looked like, seemed like (past plain)
+  - conjugation-type: past polite (～ました)
+    form: にみえました
+    rarity: common
+    meaning: looked like, seemed like (past polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: にみえなかった
+    rarity: common
+    meaning: didn't look like, didn't seem like (past plain negative)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: にみえませんでした
+    rarity: common
+    meaning: didn't look like, didn't seem like (past polite negative)
+  - conjugation-type: te-form (～て)
+    form: にみえて
+    rarity: less common
+    meaning: looking like, seeming like (te-form)
+  - conjugation-type: conditional (～ば)
+    form: にみえれば
+    rarity: uncommon
+    meaning: if it looks like, if it seems like (conditional)
+  - conjugation-type: conditional (～たら)
+    form: にみえたら
+    rarity: uncommon
+    meaning: if it looked like, if it seemed like (conditional)
+pronunciation:
+  katakana: ニミエル
+  romaji: ni mieru
+formation:
+  Noun + に + 見える: Indicates that something looks or appears to be a certain noun.
+  い-Adjective (stem) / な-Adjective (stem) + そう + に + 見える: Indicates something looks like it has a certain
+    adjective quality.
+  Verb (plain form) + よう + に + 見える: Indicates something looks as if it's doing an action or is in a certain
+    verb-related state.
+  Noun/Adjective/Verb + みたい + に + 見える: Indicates something looks like it resembles a certain noun, adjective,
+    or verb (more casual and stronger resemblance).
+  Sentence + よう + に + 見える: Indicates a situation or condition looks a certain way, often based on observed
+    circumstances.
+jlpt: N4
+etymology: The grammar point 「にみえる」 combines the particle 「に」, indicating direction or purpose, with the
+  verb 「見える(みえる)」, meaning 'to be visible' or 'to appear'. This combination creates the nuance of something
+  appearing *as* or *like* something else. Historically, 「見える」 itself developed from 「目得る」 (me eru), meaning
+  'to gain sight' or 'to enter the eye', evolving into its current stative sense of 'being visible'. When
+  combined with 「に」, it emphasizes the resulting appearance or the way something is perceived.
+writeup: |-
+  「にみえる」 combines the particle 「に」 with the verb 「見える(みえる)」. It's used to express that something looks or appears a certain way. Think of it as conveying the impression something gives off to the observer. It is typically written in hiragana.
+
+  While it primarily connects to nouns, showing something 'appears to be (A)', it can also pair with auxiliary verbs like 「ようだ」 or 「そうだ」(in their adverbial forms 「ように」 and 「そうに」) to add a layer of uncertainty, making it sound like 'to seem to be (A)'. 「みたい」 can replace 「ようだ」, resulting in 「みたいにみえる」, reinforcing the speaker's guess that something *could be* (A).
+
+  **Important Consideration: Kanji Usage**
+  For grammatical structures like this, kanji is very rarely used. Using kanji for 「見える」 when it is part of a set grammatical construction such as 「にみえる」 can subtly alter a native speaker's perception of the meaning. Many grammar structures are written purely in hiragana precisely to signify they are a fixed grammatical pattern. Employing kanji might lead the reader to interpret the meaning literally based on the kanji itself, rather than the intended grammatical function.
+false_friends:
+  - term: がする
+    meaning: To give off, smell, sound, taste, sensation
+    kind: antonym
+    nuance: While 「にみえる」 focuses on visual appearance, 「がする」 indicates a sensation received through other
+      senses. For example, 「においがする」 (to smell) vs. 「花にみえる」 (to look like a flower).
+    grammar_point: がする (sense perception)
+  - term: みたい
+    meaning: Like, similar to, resembling
+    kind: synonym
+    nuance: 「みたい」 is a less formal way to express similarity. While 「にみえる」 describes an appearance, 「みたい」
+      simply states a resemblance. For instance, 「子供みたい」 (like a child) vs. 「子供にみえる」 (looks like a child).
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: そうに・そうな
+    meaning: Seem, look like, sound
+    kind: synonym
+    nuance: 「そうに」 and 「そうな」 describe a likely state based on immediate observation. For example, 「熱そうにみえる」
+      (looks like they have a fever) describes an appearance that suggests a condition, whereas 「熱がある」
+      (they have a fever) is a statement of fact.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: のように・のような
+    meaning: Like (Noun), Similar to (Noun)
+    kind: synonym
+    nuance: 「のように」 and 「のような」 are used to make direct comparisons using nouns. 「鳥のように」 (like a bird) specifies
+      a resemblance, while 「にみえる」 suggests an appearance or impression.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: ように・ような
+    meaning: As・like, just like
+    kind: synonym
+    nuance: 「ように」 and 「ような」 describe a manner or way of doing something. 「説明するように」 (as if explaining)
+      indicates a manner of action, not a visual appearance.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: ようだ
+    meaning: It seems that, it appears that, it looks like
+    kind: synonym
+    nuance: 「ようだ」 indicates a guess or judgment based on available information. For example, 「雨のようだ」 (it
+      seems like it will rain) implies a judgment, not necessarily a direct visual observation.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: らしい
+    meaning: Seems like; I heard that; apparently
+    kind: synonym
+    nuance: 「らしい」 indicates information received from an external source or general knowledge. 「彼は病気らしい」
+      (I heard he's sick) is based on hearsay or general impression, not direct visual appearance.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: とみえる
+    meaning: It seems that, it can be deduced, one can conclude that
+    kind: synonym
+    nuance: 「とみえる」 is a more formal expression used to deduce a conclusion from circumstances. 「状況からすると、成功したとみえる」
+      (judging from the situation, it seems they succeeded) is based on deduction, not direct visual observation.
+    grammar_point: とみえる (seems from observation)
+  - term: あの 山 は 富士山 の よう だ。
+    meaning: That mountain is like Mt. Fuji.
+    kind: similar expression
+    nuance: 「のよう だ」 emphasizes a visual *appearance* or *impression*, whereas 「のよう だ」 makes a more general
+      comparison or statement of similarity.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: 彼 は とても 疲れて いる よう だ。
+    meaning: He seems very tired.
+    kind: similar expression
+    nuance: 「よう だ」 makes a general inference. We are looking for a phrase that specifically emphasizes
+      the impression based on observation.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: 彼 は とても 疲れて い ます。
+    meaning: He is very tired.
+    kind: similar expression
+    nuance: 「～ています」 states a fact. We are looking for a phrase that expresses an observation or impression,
+      not a definitive statement.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - term: この プレゼント は 子供 には 少し 高価 そう です ね。
+    meaning: This gift seems a bit expensive for a child, doesn't it?
+    kind: similar expression
+    nuance: 「そう です」 indicates a general inference. We are looking for a phrase that expresses a visual
+      assessment of its perceived value.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: あの 政治家 は いつも 堂々 と し て い ます。
+    meaning: That politician is always dignified.
+    kind: similar expression
+    nuance: 「～ています」 states a fact. We are looking for a phrase that conveys a public perception or impression,
+      not a definitive internal state.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - term: 彼女 は まだ 学生 みたい だ から 、 年齢 を 聞く の は 失礼 だ 。
+    meaning: She still looks like a student, so it's rude to ask her age.
+    kind: similar expression
+    nuance: 「みたい だ」 makes a casual, general comparison. We are looking for a phrase that emphasizes the
+      visual appearance leading to the impression.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: この 古い 写真 は 幽霊 みたい だ から 、 夜 は 見たくない。
+    meaning: This old photo is like a ghost, so I don't want to see it at night.
+    kind: similar expression
+    nuance: 「みたい だ」 makes a general comparison. We are looking for a phrase that describes a direct visual
+      impression or resemblance.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: その 顔色 だ と 、 とても 具合 が 悪い よう です けど 、 大丈夫 です か？
+    meaning: Given your complexion, you seem very unwell, are you okay?
+    kind: similar expression
+    nuance: 「よう です」 is a general inference. We are looking for a phrase that specifically indicates the
+      impression is based on visual observation.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: この 問題 は 簡単 そう だっ た けど 、 実際 は とても 難しかった 。
+    meaning: This problem seemed easy, but it was actually very difficult.
+    kind: similar expression
+    nuance: 「そう だっ た」 indicates a past inference. We are looking for a phrase that expresses an initial
+      visual impression of simplicity.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: 彼女 は 昨日 、 いつも より 少し 寂し そう でし た。
+    meaning: Yesterday, she seemed a little sadder than usual.
+    kind: similar expression
+    nuance: 「そう でし た」 indicates a past inference. We are looking for a phrase that highlights that this
+      impression was formed through visual cues.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: あの時 の 彼 は 、 まったく 焦っ て い ない よう だっ た。
+    meaning: At that time, he didn't seem flustered at all.
+    kind: similar expression
+    nuance: 「よう だっ た」 indicates a past inference. We are looking for a phrase that describes the absence
+      of visible signs of fluster.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: この 新しい プロジェクト は 、 最初 は 難し そう で は ありません でし た 。
+    meaning: This new project didn't seem difficult at first.
+    kind: similar expression
+    nuance: 「そう で は ありません でし た」 indicates a past inference. We are looking for a phrase that describes
+      the initial visual impression of difficulty.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: 彼 が 楽しい よう だっ たら 、 私 も 嬉しい です。
+    meaning: If he seems happy, I'll be happy too.
+    kind: similar expression
+    nuance: 「よう だっ たら」 is a conditional based on general inference. We are looking for a phrase where
+      the condition is based on a visual appearance.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: 今日の彼はなんだか心配そうだったので、話しかけられなかった。
+    meaning: Today he seemed worried, so I couldn't bring myself to talk to him.
+    kind: similar expression
+    nuance: 「そうだったので」 is a general reason. We are looking for a phrase that explicitly links the visual
+      appearance to the reason for hesitation.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+post_false_friends_writeup: Distinguishing 「にみえる」 from similar expressions involves recognizing the nuances
+  of visual appearance versus sensory input, personal judgment, or received information. 「にみえる」 focuses
+  on what something looks *like*, while other expressions describe smells, sounds, or inferred states.
+  Pay attention to whether the context specifically describes a visual impression.
+examples:
+  - english: That mountain looks like Mt. Fuji.
+    japanese:
+      - あの 山 は 富士 山 {に みえる}。
+      - あの 山 は 富士 山 {に みえ ます}。
+      - あの 山、まるで 富士 山 {に みえる} な。
+      - あの 山 は 富士 山 か と 思う ほど {に みえる}。
+    english_literally: That mountain to Fuji appears.
+    competing_grammar:
+      - competing_japanese:
+          - あの 山 は 富士 山 の {よう だ}。
+        english: That mountain is like Mt. Fuji.
+        hint: While 「のよう だ」 makes a general comparison, we are looking for a phrase that specifically
+          conveys a visual impression.
+    scene: Two friends are looking at a mountain in the distance, and one points out its resemblance to
+      a famous peak.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: He looks very tired.
+    japanese:
+      - 彼 は とても 疲れ て いる よう {に みえる}。
+      - 彼 は とても 疲れ て いる よう {に みえ ます}。
+      - 彼、随分 疲れ て いる よう {に みえる} な。
+      - 彼 は かなり お 疲れ の よう {に みえ ます}。
+    english_literally: He very tired is as if appears.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 疲れ て いる {よう だ}。
+        english: He seems very tired.
+        hint: 「よう だ」 makes a general inference. We are looking for a phrase that specifically emphasizes
+          the impression based on observation.
+      - competing_japanese:
+          - 彼 は とても 疲れ {て い ます}。
+        english: He is very tired.
+        hint: 「～ています」 states a fact. We are looking for a phrase that expresses an observation or impression,
+          not a definitive statement.
+    scene: A colleague observes another co-worker who seems to be struggling.
+    register: casual
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+  - english: This gift looks a bit expensive for a child, doesn't it?
+    japanese:
+      - この プレゼント は 子供 に は 少し 高価 そう {に みえ ます} ね。
+      - この プレゼント、子供 に は ちょっと 高価 そう {に みえる} ね。
+      - これ、子供 に は ちょっと 高価 そう {に みえ ます} よ ね。
+      - この プレゼント は、お 子 さん に は 少し 高価 そう {に みえ ます} か ね。
+    english_literally: This gift for child a little expensive seems to appear, doesn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この プレゼント は 子供 に は 少し 高価 {そう です} ね。
+        english: This gift seems a bit expensive for a child, doesn't it?
+        hint: 「そう です」 indicates a general inference. We are looking for a phrase that expresses a visual
+          assessment of its perceived value.
+    scene: A parent asks their spouse for their opinion on a gift they are considering for their child.
+    register: semi-formal
+    setting: cautious
+    conjugation: non-past polite (～ます)
+  - english: That politician always appears dignified.
+    japanese:
+      - あの 政治 家 は いつ も 堂々 と し て いる よう {に みえ ます}。
+      - あの 政治 家 は いつ も 堂々 と し て いる よう {に みえる}。
+      - あの 政治 家 は 常 に 堂々 と し て いる か の よう {に みえ ます}。
+    english_literally: That politician always dignified does as if appears.
+    competing_grammar:
+      - competing_japanese:
+          - あの 政治 家 は いつ も 堂々 と し {て い ます}。
+        english: That politician is always dignified.
+        hint: 「～ています」 states a fact. We are looking for a phrase that conveys a public perception or impression,
+          not a definitive internal state.
+    scene: Discussing the public persona of a well-known politician.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: She still looks like a student, so it's rude to ask her age.
+    japanese:
+      - 彼女 は まだ 学生 みたい {に みえる} から、年齢 を 聞く の は 失礼 だ。
+      - 彼女 は まだ 学生 みたい {に みえ ます} から、年齢 を お 聞き する の は 失礼 です。
+      - 彼女 は どう 見 て も 学生 みたい {に みえる} から、歳 を 聞く の は 失礼 だ。
+    english_literally: She still student like appears, so age asking is rude.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は まだ 学生 {みたい だ} から、年齢 を 聞く の は 失礼 だ。
+        english: She is still like a student, so it's rude to ask her age.
+        hint: 「みたい だ」 makes a casual, general comparison. We are looking for a phrase that emphasizes
+          the visual appearance leading to the impression.
+    scene: Two colleagues discuss a new coworker's youthful appearance and appropriate etiquette.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: This old photo looks like a ghost, so I don't want to see it at night.
+    japanese:
+      - この 古い 写真 は 幽霊 {に みえる} から、夜 は 見 たく ない。
+      - この 古い 写真 は 幽霊 {に みえ ます} から、夜 は 見 たく ない です。
+      - この 古い 写真、幽霊 {に みえる} みたい だ から、夜 は 見 たく ない な。
+    english_literally: This old photo ghost appears, so night don't want to see.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 写真 は 幽霊 {みたい だ} から、夜 は 見 たく ない。
+        english: This old photo is like a ghost, so I don't want to see it at night.
+        hint: 「みたい だ」 makes a general comparison. We are looking for a phrase that describes a direct
+          visual impression or resemblance.
+    scene: Someone describing a creepy photo to a friend.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+  - english: Given your complexion, you look very unwell, are you okay?
+    japanese:
+      - その 顔色 だ と、とても 具合 が 悪い よう {に みえる} けど、大丈夫 です か？
+      - その 顔色 です と、大変 具合 が 悪い よう {に みえ ます} が、大丈夫 です か？
+      - その 顔色 だ と、ずいぶん 具合 が 悪い よう {に みえる} けど、大丈夫 か？
+    english_literally: That complexion as, very condition bad as if appears, but okay is it?
+    competing_grammar:
+      - competing_japanese:
+          - その 顔色 だ と、とても 具合 が 悪い {よう です} けど、大丈夫 です か？
+        english: Given your complexion, you seem very unwell, are you okay?
+        hint: 「よう です」 is a general inference. We are looking for a phrase that specifically indicates
+          the impression is based on visual observation.
+    scene: A concerned friend asking another about their health.
+    register: semi-formal
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+  - english: This problem looked easy, but it was actually very difficult.
+    japanese:
+      - この 問題 は 簡単 そう {に みえ た} けど、実際 は とても 難しかっ た。
+      - この 問題 は 簡単 そう {に みえ まし た} けど、実際 は とても 難しかっ た です。
+      - この 問題 は 簡単 そう {に みえ た} けれど、本当 は すごく 難しかっ た。
+    english_literally: This problem easy seemed, but actually very difficult was.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 簡単 {そう だっ た} けど、実際 は とても 難しかっ た。
+        english: This problem seemed easy, but it was actually very difficult.
+        hint: 「そう だっ た」 indicates a past inference. We are looking for a phrase that expresses an initial
+          visual impression of simplicity.
+    scene: A student reflecting on a challenging test question they initially underestimated.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: Yesterday, she seemed a little sadder than usual.
+    japanese:
+      - 彼女 は 昨日、いつ も より 少し 寂し そう {に みえ まし た}。
+      - 彼女 は 昨日、いつ も より 少し 寂し そう {に みえ た}。
+      - 彼女、昨日 は いつ も より ちょっと 寂し そう {に みえ まし た}。
+    english_literally: She yesterday, always than little sad seemed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 昨日、いつ も より 少し 寂し {そう でし た}。
+        english: Yesterday, she seemed a little sadder than usual.
+        hint: 「そう でし た」 indicates a past inference. We are looking for a phrase that highlights that this
+          impression was formed through visual cues.
+    scene: A concerned friend discussing a mutual acquaintance's demeanor with another friend.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: At that time, he didn't look flustered at all.
+    japanese:
+      - あの 時 の 彼 は、まったく 焦っ て いる よう {に みえ なかっ た}。
+      - あの 時 の 彼 は、まったく 焦っ て いる よう {に みえ ませ ん でし た}。
+      - あの 時 の 彼 は、全然 焦っ て いる よう {に みえ なかっ た} な。
+    english_literally: That time's him, completely flustered is as if didn't appear.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 の 彼 は、まったく 焦っ て い ない {よう だっ た}。
+        english: At that time, he didn't seem flustered at all.
+        hint: 「よう だっ た」 indicates a past inference. We are looking for a phrase that describes the absence
+          of visible signs of fluster.
+    scene: Recalling a past high-pressure situation where someone remained calm.
+    register: casual
+    setting: storytelling
+    conjugation: negative past plain (～なかった)
+  - english: This new project didn't look difficult at first.
+    japanese:
+      - この 新しい プロジェクト は、最初 は 難し そう {に みえ ませ ん でし た}。
+      - この 新しい プロジェクト は、最初 は 難し そう {に みえ なかっ た}。
+      - この 新しい プロジェクト、初め は そんな に 難し そう {に みえ ませ ん でし た}。
+    english_literally: This new project, at first difficult seemed not.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい プロジェクト は、最初 は 難し {そう で は あり ませ ん でし た}。
+        english: This new project didn't seem difficult at first.
+        hint: 「そう で は ありません でし た」 indicates a past inference. We are looking for a phrase that describes
+          the initial visual impression of difficulty.
+    scene: A team leader explaining the initial perception of a project that turned out to be complex.
+    register: formal
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+  - english: If he looks happy, I'll be happy too.
+    japanese:
+      - 彼 が 楽し そう {に みえ たら}、私 も 嬉しい です。
+      - 彼 が 楽し そう {に みえ たら}、私 も 嬉しい。
+      - 彼 が 楽し そう {に みえ たら}、俺 も 嬉しい な。
+      - 彼 が 楽し そう {に みえ た と し たら}、私 も 嬉しい です。
+    english_literally: He happy appears if, I too happy am.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 楽しい {よう だっ たら}、私 も 嬉しい です。
+        english: If he seems happy, I'll be happy too.
+        hint: 「よう だっ たら」 is a conditional based on general inference. We are looking for a phrase where
+          the condition is based on a visual appearance.
+    scene: A close friend expressing their feelings about a mutual acquaintance's well-being.
+    register: casual
+    setting: sympathetic
+    conjugation: conditional (～たら)
+  - english: Today he looked worried, so I couldn't bring myself to talk to him.
+    japanese:
+      - 今日 の 彼 は なん だ か 心配 そう {に みえ て}、話しかけ られ なかっ た。
+      - 今日 の 彼 は なん だ か 心配 そう {に みえ て}、話しかけ られ ませ ん でし た。
+      - 今日 の 彼 は どう も 心配 そう {に みえ て}、声 を かけ られ なかっ た。
+    english_literally: Today's him somehow worried appears and, couldn't talk to.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 彼 は なん だ か 心配 {そう だっ た の で}、話しかけ られ なかっ た。
+        english: Today he seemed worried, so I couldn't bring myself to talk to him.
+        hint: 「そうだったので」 is a general reason. We are looking for a phrase that explicitly links the visual
+          appearance to the reason for hesitation.
+    scene: Someone saw a friend looking troubled but hesitated to approach them.
+    register: casual
+    setting: reflective
+    conjugation: te-form (～て)
+post_example_writeup: Understanding 「にみえる」 is about perceiving the world around you and expressing those
+  perceptions. It's a nuanced way to share your observations without stating them as absolute facts, allowing
+  for a degree of subjectivity. Pay attention to the different conjugations to accurately convey tense
+  and politeness, and remember that its core lies in conveying a visual impression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/にみえる

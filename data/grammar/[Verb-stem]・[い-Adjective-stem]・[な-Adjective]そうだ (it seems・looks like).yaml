@@ -1,0 +1,270 @@
+grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+learn_before:
+  - い-Adjective[そう] (appearance)
+meaning: It seems or looks like (based on direct observation); indicates an apparent state or imminent
+  action.
+pronunciation:
+  katakana: ソウダ
+  romaji: sou da
+formation:
+  Verb[stem] + そうだ: Indicates an action is about to happen or looks like it will happen.
+  い-Adjective[stem] + そうだ: Indicates something looks like or appears to be that adjective. (e.g., 楽しい
+    -> 楽しそうだ). The final い is dropped.
+  いい -> よさそうだ: The irregular form for いい.
+  な-Adjective + そうだ: Indicates something looks like or appears to be that adjective. (e.g., 静か -> 静かそうだ).
+    The な is dropped.
+jlpt: N4
+etymology: 'The grammatical suffix 「そう」 originates from the noun 「様」(さま), meaning ''appearance'' or ''state''.
+  This historical connection highlights its primary function: describing how something appears to the
+  observer, based on direct sensory information.'
+writeup: |-
+  The grammatical pattern 「そうだ」 is primarily used to express that something *seems* or *looks like* a certain way, based on the speaker's direct sensory perception, most commonly visual observation. It conveys an immediate impression or an imminent action.
+
+  When attached to **verb stems**, 「そうだ」 indicates that an action appears to be about to happen or is likely to occur. For instance, 「雨が降りそうだ」 means "It looks like it's going to rain," implying a direct observation of the sky or weather conditions.
+
+  When attached to the **stems of い-adjectives**, 「そうだ」 describes how something *looks* or *appears* to possess that quality. For example, 「楽しそうだ」 (looks fun) suggests that you observe someone's demeanor or an event, and it gives you the impression of being fun. A key exception is the adjective 「いい」 (good), which irregularly becomes 「よさそうだ」 (looks good).
+
+  Similarly, when used with **な-adjectives**, 「そうだ」 conveys appearance. The 「な」 is dropped before 「そうだ」, as in 「元気そうだ」 (looks healthy) from 「元気な」. This usage also relies on direct observation.
+
+  It is crucial to distinguish this 「そうだ」 (observation) from the other 「そうだ」 (hearsay), which reports information heard from others. While they share the same phonetic form, their usage and meaning are distinct. The observational 「そうだ」 relies on immediate, empirical evidence, while the hearsay 「そうだ」 relies on reported information.
+false_friends:
+  - term: '[Sentence]そうだ (i heard・it is said)'
+    meaning: I hear that..., it is said that...
+    kind: often confused with
+    nuance: This form of 「そうだ」 reports information heard from others, not direct observation. It connects
+      to the plain form of verbs, adjectives, and nouns. For example, 「雨が降るそうだ」 (I hear it will rain)
+      is based on a report, while 「雨が降りそうだ」 (It looks like it will rain) is based on visual cues.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: 〜ようだ・〜みたいだ (seems・like)
+    meaning: It seems that..., it looks like... (based on conjecture, impression, or similarity)
+    kind: similar expression
+    nuance: Unlike 「そうだ」 (which is based on direct observation), 「ようだ」 and 「みたいだ」 express a judgment based
+      on vague information, a personal impression, or a comparison. They imply a less direct, more inferential
+      conclusion, often like "it seems *as if*...".
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: 〜らしい
+    meaning: It seems that..., apparently..., typical of... (based on indirect evidence or what one has
+      heard)
+    kind: similar expression
+    nuance: 「らしい」 indicates a conclusion drawn from indirect evidence, common knowledge, or what one has
+      heard, often with a nuance of "it's characteristic of X." It is less about direct visual appearance
+      than 「そうだ」.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: とみえる
+    meaning: It appears that..., it seems that... (based on observable facts, leading to a logical conclusion)
+    kind: similar expression
+    nuance: While 「そうだ」 describes an immediate, superficial appearance, 「とみえる」 implies a reasoned deduction
+      based on visual or factual evidence. It suggests a stronger sense of certainty or a logical conclusion
+      drawn from observed facts.
+    grammar_point: とみえる (seems from observation)
+  - term: 〜げ
+    meaning: Seeming..., appearing to be... (often used for emotions or inner states)
+    kind: similar expression
+    nuance: 「〜げ」 is similar to 「そうだ」 in expressing appearance, but it often conveys a *slight* or *subtle*
+      appearance, particularly for internal feelings that manifest outwardly. It is commonly used with
+      adjectives describing emotions. For example, 「悲しげ」 (looks slightly sad) vs. 「悲しそうだ」 (looks overtly
+      sad).
+    grammar_point: げ (seeming・appearance)
+  - term: そうにない・そうもない
+    meaning: unlikely to
+    kind: similar expression
+    nuance: This is the negative form related to 「そうだ」, indicating that something does not look like it
+      will happen or is unlikely to happen, based on observation.
+    grammar_point: そうにない・そうもない (unlikely to)
+post_false_friends_writeup: To avoid confusing 「そうだ」 with similar expressions, remember that this 「そうだ」
+  is about immediate, direct observation. If you see dark clouds, you use 「雨が降りそうだ」. If you hear a weather
+  report, you use the hearsay 「雨が降るそうだ」. If you are making a less certain conjecture or a comparison,
+  「ようだ」 or 「みたいだ」 are more appropriate. 「らしい」 suggests a conclusion based on indirect evidence or what
+  is characteristic. 「とみえる」 implies a more logical deduction from observed facts, while 「〜げ」 indicates
+  a subtle appearance, often of an internal state.
+examples:
+  - english: It looks like it's going to rain soon, so you should bring an umbrella.
+    japanese:
+      - もう すぐ 雨 が {降り そう だ} から、傘 を 持っ て 行っ た ほう が いい よ。
+      - もう すぐ 雨 が {降り そう です} から、傘 を 持っ て 行っ た ほう が いい です よ。
+    english_literally: Soon rain seems like it will fall, so umbrella should bring.
+    competing_grammar:
+      - competing_japanese:
+          - もう すぐ 雨 が {降る そう だ} から、傘 を 持っ て 行っ た ほう が いい よ。
+        english: I heard it's going to rain soon, so you should bring an umbrella.
+        hint: This uses 「〜そうだ」 for hearsay, reporting information. We're looking for an expression that
+          indicates a judgment based on direct observation, like seeing dark clouds.
+      - competing_japanese:
+          - もう すぐ 雨 が {降る よう だ} から、傘 を 持っ て 行っ た ほう が いい よ。
+        english: It seems like it's going to rain soon, so you should bring an umbrella.
+        hint: 「ようだ」 expresses a conjecture based on indirect or vague information, or a comparison. We're
+          looking for an expression of immediate observation.
+    scene: You are looking outside and notice the sky changing.
+    register: casual
+    setting: friendly
+  - english: Your younger brother looks very happy today.
+    japanese:
+      - 弟 は 今日 とても {楽し そう だ} ね。
+      - 弟 は 今日 とても {楽し そう です} ね。
+    english_literally: My younger brother today very looks fun, right?
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は 今日 とても {楽しん で いる よう だ} ね。
+        english: My younger brother seems to be enjoying himself today.
+        hint: 「ようだ」 here indicates a conjecture or impression. We're looking for an expression based on
+          direct visual appearance.
+    scene: You see your younger brother excitedly playing with his toys.
+    register: casual
+    setting: friendly
+  - english: That cake looks delicious, doesn't it?
+    japanese:
+      - あの ケーキ、{おいし そう だ} ね。
+      - あの ケーキ、{おいし そう です} ね。
+    english_literally: That cake, looks delicious, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの ケーキ、{おいしい と 聞い た} ね。
+        english: I heard that cake is delicious, right?
+        hint: This refers to hearsay. We're talking about how the cake looks right now.
+      - competing_japanese:
+          - あの ケーキ、{おいしい みたい だ} ね。
+        english: That cake seems delicious, right?
+        hint: 「みたいだ」 can be used for impressions, but 「そうだ」 is more direct for visual appearance.
+    scene: You are at a bakery, looking at a beautifully decorated cake.
+    register: casual
+    setting: friendly
+  - english: This bag looks sturdy, so it seems like it will last a long time.
+    japanese:
+      - この 鞄 は 丈夫 {そう だ} から、長く 使え そう だ よ。
+      - この 鞄 は 丈夫 {そう です} から、長く 使え そう です よ。
+    english_literally: This bag is sturdy-looks like, so long time can use-looks like.
+    competing_grammar:
+      - competing_japanese:
+          - この 鞄 は 丈夫 {だ と 聞い て いる} から、長く 使え そう だ よ。
+        english: I heard this bag is sturdy, so it seems like it will last a long time.
+        hint: This implies information heard from others, not a direct observation of the bag's appearance.
+    scene: You are examining a new bag in a store, feeling its material.
+    register: casual
+    setting: informative
+  - english: He looks busy, so maybe we shouldn't disturb him.
+    japanese:
+      - 彼 は 今 {忙し そう だ} から、邪魔 し ない ほう が いい か も ね。
+      - 彼 は 今 {忙し そう です} から、邪魔 し ない ほう が いい か も しれ ませ ん ね。
+    english_literally: He now looks busy, so disturb-not-better maybe.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 今 {忙しい らしい} から、邪魔 し ない ほう が いい か も ね。
+        english: He's apparently busy, so maybe we shouldn't disturb him.
+        hint: 「らしい」 suggests a conclusion based on indirect evidence or what's generally known. We're
+          looking for a judgment based on his current, visible state.
+      - competing_japanese:
+          - 彼 は 今 {忙しい よう だ} から、邪魔 し ない ほう が いい か も ね。
+        english: He seems busy now, so maybe we shouldn't disturb him.
+        hint: 「ようだ」 implies a less direct, more inferential conclusion. We're looking for a direct observation.
+    scene: You see your colleague hunched over their desk, typing furiously.
+    register: casual
+    setting: cautious
+  - english: The child looks sad. What happened?
+    japanese:
+      - その 子 は {悲し そう だ}。どう し た ん だろう？
+      - その 子 は {悲し そう です}。どう し た の でしょう か？
+    english_literally: That child looks sad. What happened, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - その 子 は {悲し げ だ}。どう し た ん だろう？
+        english: That child looks a little sad. What happened, I wonder?
+        hint: 「〜げ」 suggests a subtle appearance of emotion. We're looking for a more direct and obvious
+          appearance of sadness.
+    scene: You observe a child with tears in their eyes.
+    register: casual
+    setting: sympathetic
+  - english: The parcel looks heavy. Can I help you carry it?
+    japanese:
+      - その 荷物、{重そう だ} ね。手伝おう か？
+      - その 荷物、{重そう です} ね。手伝い ましょう か？
+    english_literally: That parcel, looks heavy, right? Shall I help?
+    competing_grammar:
+      - competing_japanese:
+          - その 荷物、{重 そう に みえる} ね。手伝おう か？
+        english: That parcel appears heavy, right? Shall I help?
+        hint: 「とみえる」 often implies a more reasoned deduction based on evidence. Here, the heaviness is
+          an immediate visual impression.
+    scene: You see someone struggling to lift a large box.
+    register: casual
+    setting: friendly
+  - english: This new game looks interesting. I want to play it soon.
+    japanese:
+      - この 新しい ゲーム、{面白 そう だ} ね。早く やっ て み たい。
+      - この 新しい ゲーム、{面白 そう です} ね。早く やっ て み たい です。
+    english_literally: This new game, looks interesting, right? Quickly want to try.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい ゲーム、{面白い らしい} ね。早く やっ て み たい。
+        english: Apparently, this new game is interesting. I want to play it soon.
+        hint: 「らしい」 suggests hearsay or reputation. We're looking for an immediate impression from looking
+          at the game.
+    scene: You are looking at the cover art and screenshots of a recently released video game.
+    register: casual
+    setting: excited
+  - english: It looks like it will break if you push it too hard.
+    japanese:
+      - 強く 押す と {壊れ そう だ} よ。
+      - 強く 押す と {壊れ そう です} よ。
+    english_literally: If strongly push, looks like it will break.
+    competing_grammar:
+      - competing_japanese:
+          - 強く 押す と {壊れる 可能 性 が ある} よ。
+        english: If you push it strongly, there's a possibility it will break.
+        hint: This expresses a possibility. 「そうだ」 indicates an immediate appearance or imminent action
+          based on observation.
+    scene: You are cautioning someone who is applying too much pressure to a fragile object.
+    register: casual
+    setting: cautious
+  - english: The baby looks sleepy. Maybe it's time for a nap.
+    japanese:
+      - 赤ちゃん が {眠 そう だ} ね。お 昼寝 の 時間 か な。
+      - 赤ちゃん が {眠 そう です} ね。お 昼寝 の 時間 でしょう か。
+    english_literally: Baby looks sleepy, right? Nap time, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん が {眠い みたい だ} ね。お 昼寝 の 時間 か な。
+        english: The baby seems sleepy. Maybe it's nap time.
+        hint: 「みたいだ」 suggests an impression or comparison. We're looking for a direct observation of the
+          baby's appearance.
+    scene: You observe a baby rubbing its eyes and yawning.
+    register: casual
+    setting: intimate
+  - english: The new manager looks very competent.
+    japanese:
+      - 新しい 部長 は とても {でき そう だ}。
+      - 新しい 部長 は とても {でき そう です}。
+    english_literally: New manager looks very capable.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 部長 は とても {有能 な よう だ}。
+        english: The new manager seems very capable.
+        hint: 「ようだ」 implies a more general impression or inference. We're looking for a judgment based
+          on their visible demeanor or actions.
+      - competing_japanese:
+          - 新しい 部長 は とても {できる らしい}。
+        english: Apparently, the new manager is very capable.
+        hint: 「らしい」 indicates a reputation or indirect evidence. We're looking for a direct observation
+          of their apparent capability.
+    scene: You've just met the new manager and are forming an initial impression based on their presentation
+      and confidence.
+    register: formal
+    setting: professional
+  - english: It looks like the project will be finished by the deadline.
+    japanese:
+      - この プロジェクト は 締め切り まで に {終わり そう だ}。
+      - この プロジェクト は 締め切り まで に {終わり そう です}。
+    english_literally: This project deadline by seems like it will finish.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 締め切り まで に {終わる と 聞い て いる}。
+        english: I heard this project will finish by the deadline.
+        hint: This refers to hearsay. We're looking for an observation-based prediction about the project's
+          progress.
+    scene: You are reviewing the progress of a project and it seems to be on track.
+    register: formal
+    setting: professional
+post_example_writeup: As illustrated in the examples, 「そうだ」 emphasizes a judgment made on the spot, based
+  on what one perceives directly. It's concise and commonly used in daily conversation to describe appearances
+  or predict immediate outcomes.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/そうだ-observation

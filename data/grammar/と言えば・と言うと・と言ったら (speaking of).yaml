@@ -1,0 +1,237 @@
+grammar_point: と言えば・と言うと・と言ったら (speaking of)
+learn_before:
+  - と言うか (or rather)
+  - と言って (having said that)
+meaning: speaking of
+pronunciation:
+  katakana: トイエバ・トイウト・トイッタラ
+  romaji: to ieba・to iu to・to ittara
+formation:
+  '[Noun] + と言えば': Introduces a topic related to the preceding noun, often a spontaneous thought or a
+    gentle transition.
+  '[Phrase] + と言うと': Refers to something previously mentioned or introduces a common association with
+    a word/phrase, often for clarification or elaboration.
+  '[Phrase] + と言ったら': Stronger emphasis, often used to express surprise, astonishment, or a strong emotional
+    reaction (positive or negative) when a topic is brought up.
+jlpt: N3
+etymology: These phrases literally translate to 'if one says X,' 'when one says X,' and 'if one said X,'
+  highlighting their origin as conditional or temporal clauses that have evolved into discourse markers.
+  This linguistic development underscores their role in linking current thoughts or statements to related
+  ideas, much like a mental or verbal 'if' or 'when' a topic is brought up. The shift from a literal conditional/temporal
+  meaning to a conversational connector reflects how language adapts to facilitate natural communication,
+  allowing for seamless topic transitions based on association rather than strict logical sequence.
+writeup: |-
+  This grammar point, consisting of と言えば, と言うと, and と言ったら, serves to introduce a related topic in conversation. While all three share the core function of 'speaking of' or 'when it comes to,' they carry distinct nuances and are used in slightly different contexts.
+
+  **と言えば (to ieba)** is typically used to casually bring up a related topic that comes to mind from the current conversation. It acts as a smooth transition, allowing the speaker to elaborate on something or share an anecdote. It can also be used to confirm something or to ask for more information about a topic just mentioned.
+
+  **と言うと (to iu to)** is similar to と言えば but often implies that the speaker is making a connection to something specific that was just said, or a common association with a particular word or phrase. It can be used when clarifying or elaborating on a point.
+
+  **と言ったら (to ittara)** carries a stronger, more emphatic nuance. It is often used to express surprise, astonishment, or a strong emotional reaction (positive or negative) when a topic is brought up. It can highlight an extreme example or an unexpected situation related to the topic. While it can also introduce a topic, it does so with a sense of impactful revelation or strong feeling.
+
+  These expressions are crucial for natural conversational flow in Japanese, allowing speakers to navigate from one subject to another organically, rather than abruptly changing the topic. They are used in various settings, from casual chats among friends to more formal discussions, with the choice of expression depending on the desired nuance and emotional weight.
+false_friends:
+  - term: にしても
+    meaning: Even if, Even though, No matter what, Also
+    kind: similar expression
+    nuance: Unlike と言えば・と言うと・と言ったら which introduce a related topic, にしても introduces a concessive condition,
+      meaning 'even if X is true, Y still happens'.
+    grammar_point: にしても (even if)
+  - term: について
+    meaning: Concerning, about, regarding
+    kind: similar expression
+    nuance: 「について」is more formal and directly states the topic, whereas 「と言えば・と言うと・と言ったら」are conversational
+      markers that naturally branch off from a previous statement or thought.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: にかけては
+    meaning: When it comes to, regarding, concerning
+    kind: similar expression
+    nuance: This phrase specifically highlights someone's skill, expertise, or strong point in a particular
+      area. It is not a general topic shift like と言えば・と言うと・と言ったら, but rather focuses on a specific aspect
+      of ability or strength.
+    grammar_point: にかけては (when it comes to)
+post_false_friends_writeup: The key difference between と言えば・と言うと・と言ったら and similar phrases lies in their
+  role as conversational bridges that arise naturally from the flow of discussion. While phrases like
+  「について」 and 「に関して」 directly state the topic in a more formal manner, and 「にしても」 introduces a concession,
+  these three expressions act as subtle cues for a speaker to pivot to a related thought or anecdote.
+  They are less about formal declaration and more about the organic, associative nature of human conversation.
+  Understanding this nuance will help you use them for smooth and natural transitions.
+examples:
+  - english: Speaking of movies, have you seen the new Spider-Man one?
+    japanese:
+      - 映画 {と 言え ば}、新しい スパイダー マン、もう 見 た？
+      - 映画 {と 言う と}、新しい スパイダー マン は もう ご覧 に なり まし た か？
+    english_literally: Speaking of movies, new Spider-Man, already seen?
+    competing_grammar:
+      - competing_japanese:
+          - 映画 に つい て、新しい スパイダー マン、もう 見 た？
+        english: Regarding movies, have you seen the new Spider-Man one?
+        hint: 「について」is more formal and directly states the topic, while 「と言えば」is a more natural, spontaneous
+          conversational segue.
+    scene: Two friends are chatting casually about their weekend plans, and one spontaneously remembers
+      something about movies.
+    register: casual
+    setting: friendly
+  - english: When you say Kurosawa, do you mean the director, Akira Kurosawa?
+    japanese:
+      - 『黒沢』{と 言う と}、映画 監督 の 黒沢 明 の こと です か？
+      - 『黒沢』{と 言え ば}、映画 監督 の 黒沢 明 の こと です か？
+    english_literally: '"Kurosawa" if one says, movie director Akira Kurosawa''s matter is it?'
+    competing_grammar:
+      - competing_japanese:
+          - 『黒沢』に つい て、映画 監督 の 黒沢 明 の こと です か？
+        english: Regarding "Kurosawa", is it about the movie director Akira Kurosawa?
+        hint: 「について」focuses on the topic itself, while 「と言うと」is specifically asking for clarification
+          or association of the given word.
+    scene: A junior colleague hears a name mentioned and wants to confirm who is being referred to.
+    register: formal
+    setting: professional
+  - english: Speaking of this ramen, the taste was unbelievably good!
+    japanese:
+      - この ラーメン {と 言っ たら}、もう 味 が 最高 だっ た よ！
+      - この ラーメン {と 言っ たら}、本当 に 絶品 でし た よ！
+    english_literally: This ramen if one says, taste was already the best!
+    competing_grammar:
+      - competing_japanese:
+          - この ラーメン は、もう 味 が 最高 だっ た よ！
+        english: This ramen, the taste was already the best!
+        hint: Using 「は」simply states a fact about the ramen. 「と言ったら」adds a strong emotional impact to
+          the statement, conveying a sense of amazement.
+    scene: A person enthusiastically tells their friend about a delicious ramen they recently ate.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「と言ったら」emphasizes the speaker's strong, almost overwhelming positive feeling about
+      the ramen's taste, highlighted by 「最高だったよ」. This expression conveys that the taste was so good it
+      almost defies description.
+  - english: You mentioned that meeting. That's at 3 PM, right?
+    japanese:
+      - あの 会議 {と 言え ば}、午後 3 時 でし た よ ね？
+      - あの 会議 {と 言う と}、午後 3 時 でし た っけ？
+    english_literally: That meeting if one says, was 3 PM, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 会議 の 時間 は 午後 3 時 でし た よ ね？
+        english: That meeting's time was 3 PM, right?
+        hint: 「の 時間 は」is a simple factual inquiry. 「と言えば」subtly signals that the speaker is recalling
+          something related to the previous mention and seeking confirmation.
+    scene: A student double-checks the time of a meeting with their professor.
+    register: semi-formal
+    setting: academic
+  - english: If you say summer festival, I immediately think of fireworks.
+    japanese:
+      - 『夏祭り』{と 言う と}、やっぱり 花火 を 思い出す ね。
+      - 『夏祭り』{と 言え ば}、やっぱり 花火 が 浮かぶ よ ね。
+    english_literally: '"Summer festival" if one says, as expected fireworks I remember, right.'
+    competing_grammar:
+      - competing_japanese:
+          - 夏祭り と 言え ば、やっぱり 花火 を 思い出す ね。
+        english: Speaking of summer festivals, I immediately think of fireworks.
+        hint: Both work, but 「と言うと」is often used to describe what comes to mind when a specific term is
+          mentioned, implying a direct association rather than a general topic shift.
+    scene: Two friends are discussing events, and one brings up their immediate association.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「やっぱり花火を思い出すね」indicates a natural, perhaps almost involuntary, association the
+      speaker has, which is perfectly introduced by 「と言うと」.
+  - english: Speaking of that terrible test, the questions were just impossibly difficult!
+    japanese:
+      - あの ひどい 試験 {と 言っ たら}、問題 が 難し すぎ て もう！
+      - あの ひどい 試験 {と 言っ たら}、問題 が 難し すぎ て 本当 に 困り まし た。
+    english_literally: That terrible test if one says, questions were too difficult already!
+    competing_grammar:
+      - competing_japanese:
+          - あの ひどい 試験 は、問題 が 難し すぎ て もう！
+        english: As for that terrible test, the questions were too difficult!
+        hint: Using 「は」is a neutral statement. 「と言ったら」adds a strong, exasperated emotional tone to the
+          complaint, showing intense frustration.
+    scene: A student complains to a friend about a recent difficult exam.
+    register: casual
+    setting: academic
+    speaker_gender: female
+    nuance: 「と言ったら」conveys extreme frustration or exasperation about the difficulty of the test, amplified
+      by 「難しすぎてもう！」. It signals an emotional outburst or strong complaint.
+  - english: Oh, speaking of travel, I'm thinking of going to Hokkaido next month.
+    japanese:
+      - ああ、旅行 {と 言え ば}、来月 北海道 に 行こう と 思っ てる ん だ。
+      - ああ、旅行 {と 言う と}、来月 北海道 に 行く 予定 が ある ん だ。
+    english_literally: Ah, travel if one says, next month Hokkaido to go I'm thinking.
+    competing_grammar:
+      - competing_japanese:
+          - ああ、旅行 は、来月 北海道 に 行こう と 思っ てる ん だ。
+        english: Ah, as for travel, I'm thinking of going to Hokkaido next month.
+        hint: 「は」would simply make "travel" the topic. 「と言えば」acts as a more natural conversational bridge,
+          indicating that the new topic came to mind because of the previous mention of travel.
+    scene: A conversation about various topics, and one friend spontaneously brings up their travel plans
+      after someone mentions travel briefly.
+    register: casual
+    setting: friendly
+  - english: When you talk about Japanese cuisine, sushi and tempura come to mind first, don't they?
+    japanese:
+      - 日本 料理 {と 言う と}、真っ先 に 寿司 や 天ぷら が 思い浮かぶ でしょう？
+      - 日本 料理 {と 言え ば}、やっぱり 寿司 や 天ぷら が 定番 だ よ ね。
+    english_literally: Japanese cuisine if one says, first sushi and tempura come to mind, right?
+    competing_grammar:
+      - competing_japanese:
+          - 日本 料理 と 言え ば、真っ先 に 寿司 や 天ぷら が 思い浮かぶ でしょう？
+        english: Speaking of Japanese cuisine, sushi and tempura come to mind first, don't they?
+        hint: Both work, but 「と言うと」is often used to describe what comes to mind when a specific term is
+          mentioned, implying a direct association rather than a general topic shift.
+    scene: A chef explains to a foreign guest what typical Japanese dishes are.
+    register: semi-formal
+    setting: professional
+    nuance: Here, 「と言うと」is used to describe a common, almost stereotypical, association when the topic
+      of "Japanese cuisine" is brought up. It asks for agreement with this common perception using 「でしょう？」.
+  - english: Speaking of this job, the amount of concentration it requires is incredible!
+    japanese:
+      - この 仕事 {と 言っ たら}、集中 力 の 要り よう が 半端 ない ん だ よ！
+      - この 仕事 {と 言っ たら}、要求 さ れる 集中 力 が 驚く ほど です よ。
+    english_literally: This job if one says, required concentration is half-finished not.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は、集中 力 の 要り よう が 半端 ない ん だ よ！
+        english: As for this job, the required concentration is incredible!
+        hint: 「は」makes a neutral statement about the job. 「と言ったら」adds emphasis, suggesting the difficulty
+          is so profound it's almost beyond words.
+    scene: A veteran explains the demands of their highly specialized job to a new recruit.
+    register: formal
+    setting: professional
+    nuance: 「と言ったら」is used here to emphasize the exceptional and almost unbelievable level of concentration
+      required for the job, making the statement more impactful and conveying the speaker's awe or difficulty.
+      「半端ない」is used here to emphasize the extreme nature of the concentration required.
+  - english: Speaking of your hometown, what kind of place is it?
+    japanese:
+      - 故郷 {と 言え ば}、どんな 所 な ん です か？
+      - 故郷 {と 言う と}、どんな 場所 を 想像 すれ ば いい です か？
+    english_literally: Hometown if one says, what kind of place is it?
+    competing_grammar:
+      - competing_japanese:
+          - 故郷 に つい て、どんな 所 な ん です か？
+        english: About your hometown, what kind of place is it?
+        hint: 「について」is a direct question about the topic. 「と言えば」feels more like a conversational opening,
+          indicating the speaker just thought of the question.
+    scene: Two people are getting to know each other, and one asks about the other's hometown after a
+      general mention of homes.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: When you mention that restaurant, the delicious steak I ate there comes to mind.
+    japanese:
+      - あの 店 {と 言う と}、前 に 食べ た 美味しい ステーキ が 忘れ られ ない ね。
+      - あの 店 {と 言え ば}、あの ステーキ は 本当 に 絶品 だっ た なあ。
+    english_literally: That restaurant if one says, before eaten delicious steak I can't forget, right.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 に つい て、前 に 食べ た 美味しい ステーキ が 忘れ られ ない ね。
+        english: About that restaurant, I can't forget the delicious steak I ate before.
+        hint: 「について」is simply "about". 「と言うと」specifically prompts the memory or association triggered
+          by the mention of the restaurant.
+    scene: Friends reminiscing about past experiences.
+    register: casual
+    setting: friendly
+    nuance: 「と言うと」is used to trigger a specific memory (the delicious steak) associated with the mentioned
+      restaurant, implying that this particular detail is what stands out.
+post_example_writeup: Understanding the subtle differences between と言えば, と言うと, and と言ったら will greatly
+  enhance your ability to navigate Japanese conversations naturally. While と言えば and と言うと are excellent
+  for smooth topic transitions and clarifying associations, と言ったら should be reserved for moments when
+  you want to convey a strong emotional impact or emphasize an extreme. Practice using each in different
+  contexts to master their nuances.

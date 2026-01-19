@@ -1,0 +1,196 @@
+grammar_point: '[Noun]には及ばない (no match for)'
+learn_before:
+  - には及ばない (cannot compare・no need to)
+meaning: is no match for
+pronunciation:
+  katakana: ノウン ニワ オヨバナイ
+  romaji: Noun ni wa oyobanai
+formation:
+  '[Noun] には 及ばない': Indicates that something or someone cannot reach the level of, or compete with, the
+    specified noun.
+jlpt: N1
+etymology: The verb 「及ぶ」 (oyobu) means "to reach," "to extend," or "to amount to." Its negative form 「及ばない」
+  (oyobanai) therefore literally means "does not reach." When combined with 「には」, it forms a construction
+  meaning "does not reach (a certain level, standard, or person)," thus conveying "is no match for" or
+  "cannot compare to." This etymology directly explains the core meaning of failing to meet a standard
+  or match another's capability.
+writeup: |-
+  The grammar point 「[Noun]には及ばない」 is used to express that something or someone **is no match for** or **cannot compare to** a specific noun. It highlights a clear inferiority or inability to reach the level of something else. This expression carries a nuance of definitive judgment or resignation regarding the disparity.
+
+  It is often used when comparing skills, achievements, qualities, or even quantities. For example, if you want to say that your cooking is no match for your mother's, you would use this phrase.
+
+  While 「には及ばない」 literally means "does not reach," its idiomatic usage is much stronger, implying a significant gap in ability or quality. It is not simply a statement of difference, but a declaration of one entity being definitively superior to the other.
+false_friends:
+  - term: ほど〜ない
+    meaning: not as... as
+    kind: similar expression
+    nuance: While 「[Noun]には及ばない」 explicitly states inferiority, often with a sense of being outmatched
+      or unable to compete, 「ほど〜ない」 simply indicates that something does not reach the *degree* or *extent*
+      of something else, without necessarily implying defeat or inability to cope. For example, 「昨日ほど寒くない」
+      (It's not as cold as yesterday) simply compares temperature without suggesting one is "no match"
+      for the other. We are looking for a clear statement of inadequacy or inferiority.
+    grammar_point: ほど〜ない (not as... as)
+  - term: と比べものにならない
+    meaning: incomparable
+    kind: similar expression
+    nuance: 「[Noun]には及ばない」 indicates that one thing is inferior to another and cannot reach its level.
+      「と比べものにならない」 is a stronger expression, meaning the difference is so vast that a comparison itself
+      is meaningless or absurd. It suggests an almost absolute disparity, often implying one is vastly
+      superior or inferior, to the point of being in a completely different league. We are looking for
+      a specific judgment of inferiority, not just a general lack of comparability.
+    grammar_point: とは比べものにならない (incomparable)
+post_false_friends_writeup: When deciding between 「[Noun]には及ばない」, 「ほど〜ない」, and 「と比べものにならない」, consider
+  the strength and nuance of the comparison. Use 「[Noun]には及ばない」 when you want to clearly state that something
+  is definitively inferior or cannot measure up to a standard set by another. Use 「ほど〜ない」 for more neutral
+  comparisons of degree. Use 「と比べものにならない」 when the difference is so extreme that comparison feels absurd
+  or pointless.
+examples:
+  - english: My Japanese is no match for hers.
+    japanese:
+      - 私 の 日本 語 は 彼女 {に は 及ば ない}。
+      - 私 の 日本 語 は 彼女 {に は 及び ませ ん}。
+    english_literally: As for my Japanese, to her, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 日本 語 は 彼女 ほど 上手 で は ない。
+        english: My Japanese is not as good as hers.
+        hint: 「ほど〜ない」 indicates a lesser degree or standard, but 「には及ばない」 emphasizes a more significant
+          inability to compete or measure up. We are looking for a phrase that expresses a clear inferiority,
+          not just a simple comparison.
+    scene: A student feeling humble about their language skills.
+    register: casual
+    setting: reflective
+    nuance: This sentence expresses a humble recognition of one's own shortcomings compared to another's
+      superior skill. The use of 「には及ばない」 clearly states that the speaker's Japanese does not reach the
+      level of the other person's.
+  - english: The quality of this product is no match for that of the genuine article.
+    japanese:
+      - この 製品 の 品質 は 本物 {に は 及ば ない}。
+      - この 製品 の 品質 は 本物 {に は 及び ませ ん}。
+    english_literally: As for this product's quality, to the genuine article, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 の 品質 は 本物 と 比べる と、劣る。
+        english: When compared to the genuine article, this product's quality is inferior.
+        hint: 「劣る」 means to be inferior, which is a direct comparison. We are looking for an idiom that
+          states something is definitively "no match" for another.
+    scene: A customer examining a counterfeit product.
+    register: formal
+    setting: informative
+  - english: My strength is no match for his.
+    japanese:
+      - 私 の 力 は 彼 {に は 及ば ない}。
+      - 私 の 力 は 彼 {に は 及び ませ ん}。
+    english_literally: As for my strength, to him, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 力 は 彼 と 比べ て 弱い。
+        english: My strength is weak compared to his.
+        hint: 「比べて 弱い」 is a direct comparison of strength. We are looking for a phrase that implies a
+          lack of ability to compete.
+    scene: Two friends discussing a sports match.
+    register: casual
+    setting: friendly
+  - english: My authority is no match for the CEO's.
+    japanese:
+      - 私 の 権限 は 社長 {に は 及ば ない}。
+      - 私 の 権限 は 社長 {に は 及び ませ ん}。
+    english_literally: As for my authority, to the president, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 権限 は 社長 に 匹敵 し ない。
+        english: My authority does not rival the CEO's.
+        hint: 「匹敵 しない」 means "does not rival" or "is not comparable." We are looking for a phrase that
+          states a clear inferiority, not just a lack of equality.
+    scene: An employee explaining a decision limitation to a colleague.
+    register: casual
+    setting: informative
+  - english: Many tried, but their achievements were no match for that great leader.
+    japanese:
+      - 多く の 人々 が 挑戦 し た が、彼 ら の 功績 は その 偉大 な 指導 者 {に は 及ば なかっ た}。
+      - 多く の 人々 が 挑戦 し まし た が、彼 ら の 功績 は その 偉大 な 指導 者 {に は 及び ませ ん でし た}。
+    english_literally: Many people challenged, but their achievements, to that great leader, did not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら の 功績 は その 偉大 な 指導 者 に は 遠い。
+        english: Their achievements are far from that great leader's.
+        hint: 「遠い」 means "far," implying a large gap. We are looking for a phrase that explicitly states
+          their inability to measure up.
+    scene: A historian giving a lecture.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+  - english: The comfort of a hot spring is no match for a regular bath.
+    japanese:
+      - 温泉 の 快適 さ は 普通 の お 風呂 {に は 及ば ない}。
+      - 温泉 の 快適 さ は 普通 の お 風呂 {に は 及び ませ ん}。
+    english_literally: As for hot spring's comfort, to a normal bath, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 温泉 の 快適 さ は 普通 の お 風呂 より はるか に 上 だ。
+        english: The comfort of a hot spring is far superior to a regular bath.
+        hint: This is an inverse comparison. The original emphasizes the hot spring's superiority by stating
+          the bath's inferiority. The competing grammar expresses the superiority directly. We are looking
+          for a phrase that states the inferiority of one thing compared to another.
+    scene: Someone relaxing after a trip to a hot spring.
+    register: casual
+    setting: reflective
+  - english: This old car's speed is no match for the latest models.
+    japanese:
+      - この 古い 車 の 速 さ は 最新 モデル {に は 及ば ない}。
+      - この 古い 車 の 速 さ は 最新 モデル {に は 及び ませ ん}。
+    english_literally: As for this old car's speed, to the latest models, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 車 の 速 さ は 最新 モデル に は 敵わ ない。
+        english: This old car's speed cannot compete with the latest models.
+        hint: 「敵わない」 means "cannot contend with" or "cannot match." While similar, 「には及ばない」 focuses more
+          on failing to reach a standard or level.
+    scene: A car enthusiast comparing vehicles.
+    register: casual
+    setting: informative
+  - english: My knowledge of classical literature is no match for that professor's.
+    japanese:
+      - 私 の 古典 文学 の 知識 は あの 教授 {に は 及ば ない}。
+      - 私 の 古典 文学 の 知識 は あの 教授 {に は 及び ませ ん}。
+    english_literally: As for my classical literature knowledge, to that professor, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 古典 文学 の 知識 は あの 教授 の 足元 に も 及ば ない。
+        english: My knowledge of classical literature cannot even reach that professor's feet (is far
+          inferior).
+        hint: 「足元にも及ばない」 is an idiomatic way to say "cannot hold a candle to." While it conveys strong
+          inferiority, 「には及ばない」 is a more direct, less hyperbolic statement about not reaching a certain
+          standard.
+    scene: A student discussing their academic strengths.
+    register: formal
+    setting: academic
+  - english: The scale of the local festival is no match for the national one.
+    japanese:
+      - 地域 の 祭り の 規模 は 全国 的 な もの {に は 及ば ない}。
+      - 地域 の 祭り の 規模 は 全国 的 な もの {に は 及び ませ ん}。
+    english_literally: As for the local festival's scale, to the national one, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 地域 の 祭り の 規模 は 全国 的 な もの と 比べ て 小さい。
+        english: The scale of the local festival is small compared to the national one.
+        hint: 「比べて 小さい」 is a direct statement of relative size. We are looking for a phrase that indicates
+          one thing fails to measure up to another.
+    scene: People discussing cultural events.
+    register: casual
+    setting: informative
+  - english: The impact of his speech was no match for the previous speaker's.
+    japanese:
+      - 彼 の スピーチ の 影響 力 は 前 の 発表 者 {に は 及ば なかっ た}。
+      - 彼 の スピーチ の 影響 力 は 前 の 発表 者 {に は 及び ませ ん でし た}。
+    english_literally: As for his speech's impact, to the previous presenter, it did not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の スピーチ の 影響 力 は 前 の 発表 者 ほど で は なかっ た。
+        english: The impact of his speech was not as great as the previous speaker's.
+        hint: 「ほどではなかった」 is a comparison of degree. We are looking for a phrase that states a clear inadequacy
+          or inferiority.
+    scene: Colleagues debriefing after a conference.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)

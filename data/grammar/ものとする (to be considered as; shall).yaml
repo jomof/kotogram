@@ -1,0 +1,337 @@
+grammar_point: ものとする (to be considered as; shall)
+learn_before:
+  - および (and・as well as)
+  - ものとして (on the assumption that)
+meaning: Shall, to assume, to suppose, to consider.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ものとする
+    rarity: common
+    meaning: shall; to assume; to consider
+  - conjugation-type: negative plain (～ない)
+    form: ものとしない
+    rarity: less common
+    meaning: shall not; to not assume; to not consider
+  - conjugation-type: past plain (～た)
+    form: ものとした
+    rarity: less common
+    meaning: was assumed; was considered; was taken as a rule
+pronunciation:
+  katakana: モノトスル
+  romaji: mono to suru
+formation:
+  Verb Plain Form + ものとする: To establish or state a rule, a decision, or an assumption, often in formal
+    or legal contexts.
+  Noun + である + ものとする: To establish a rule or assumption regarding a noun's state or identity in formal
+    contexts.
+  Na-adjective + なである + ものとする: To establish a rule or assumption regarding a na-adjective's state in formal
+    contexts.
+  I-adjective + ものとする: To establish a rule or assumption regarding an i-adjective's state in formal contexts.
+  Verb Negative Plain Form + ものとしない: To state a formal prohibition or negative rule.
+jlpt: N1
+etymology: The expression 「ものとする」 combines 「もの」 (thing, matter) with 「と」 (as) and 「する」 (to do, to make).
+  Literally, it means "to make something as..." and implies a strong determination or assumption.
+writeup: The grammar expression 「ものとする」 is used to state a rule, a decision, or an assumption, particularly
+  in highly formal or legalistic contexts. It conveys a strong directive or a definitive declaration of
+  how something is to be handled or regarded. This often translates to "shall" or "is to be considered"
+  in English. Like many grammar expressions that use 「もの」, this phrase implies that the word or phrase
+  preceding it is a strong determination or a matter of fact. When 「とする」 ("as (A)", or "in the capacity
+  of (A)") is added, it solidifies a situation where the speaker or authority is establishing that (A)
+  is true or required for the sake of discussion or enforcement. This is frequently seen in laws, contracts,
+  official guidelines, and terms of service. While it is often used after verbs in their plain form, it
+  differs from expressions like 「ものとして」. 「ものとして」 (literally, "taking it as a thing") implies an action
+  or situation is being treated or considered in a certain way "for the purpose of an ongoing action or
+  discussion", often acting as an adverbial phrase. In contrast, 「ものとする」 almost invariably appears at
+  the end of a sentence, serving as a declarative statement that establishes something as a fact, a rule,
+  or an obligation.
+false_friends:
+  - term: こととする
+    meaning: To decide to do; to make it a rule (personal/group decision)
+    kind: similar expression
+    nuance: Unlike 「ものとする」, 「こととする」 is used to express a personal or group decision or arrangement, often
+      implying a less rigid, more internal resolution rather than a universal rule or obligation.
+    grammar_point: '[Verb-dictionary]ことにする (to decide to do)'
+  - term: ことになっている
+    meaning: It has been decided that; it is a rule that; it is supposed to be
+    kind: similar expression
+    nuance: While both convey rules, 「ことになっている」 describes an an existing rule or custom that has been
+      established, often by an external authority, but without the strong, active declarative force of
+      「ものとする」 which states a new rule or reinforces one directly.
+    grammar_point: ことになっている (expected to; scheduled to)
+  - term: べきだ
+    meaning: Should, ought to, must (strong recommendation or moral obligation)
+    kind: similar expression
+    nuance: Unlike 「ものとする」 which states a definitive rule or assumption, 「べきだ」 expresses a strong recommendation,
+      moral obligation, or what is generally considered proper. It advises or suggests, rather than dictates.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: 〜しなければならない
+    meaning: Must do, have to do (necessity or obligation)
+    kind: similar expression
+    nuance: While both imply something must happen, 「ものとする」 is used to formally establish a rule, agreement,
+      or assumption. 「〜しなければならない」 states a direct necessity or obligation for an action to occur, often
+      a consequence of an existing rule or situation.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+post_false_friends_writeup: To distinguish between these similar expressions, remember that 「ものとする」 actively
+  states or imposes a rule or assumption, often in legal or formal directives. 「こととする」 signifies a decision
+  made by an individual or group. 「ことになっている」, on the other hand, describes an existing rule or expectation,
+  often implying that the rule has already been decided or is a customary practice, rather than being
+  actively established in the present statement. Furthermore, while 「べきだ」 suggests what ought to be done
+  or a strong recommendation, and 「〜しなければならない」 expresses a direct necessity or obligation, 「ものとする」 serves
+  to formally establish the rule itself rather than merely describing an obligation under it.
+examples:
+  - english: These terms and conditions shall apply between the contractor and our company.
+    japanese:
+      - 本 規約 は、契約 者 と 当社 と の 間 に 適用 さ れる {もの と する}。
+      - 本 規約 は、契約 者 と 当社 の 間 に 適用 さ れる {もの と する}。
+      - 本 規約 は、契約 者 および 当社 の 間 に 適用 さ れる {もの と する}。
+    english_literally: These terms and conditions, between the contractor and our company, shall be applied.
+    competing_grammar:
+      - competing_japanese:
+          - 本 規約 は、契約 者 と 当社 と の 間 に 適用 さ れる {こと と する}。
+        english: These terms and conditions will apply between the contractor and our company (as a decision).
+        hint: While 'こととする' suggests a decision made, 'ものとする' is used for formal, legally binding declarations
+          of terms, especially in regulations or contracts. We're looking for a formal rule-setting expression
+          for the company, not a decision by the company itself for a less formal context or internal
+          agreement.
+      - competing_japanese:
+          - 本 規約 は、契約 者 と 当社 と の 間 に 適用 さ れる {こと に なっ て いる}。
+        english: It has been decided that these terms and conditions apply between the contractor and
+          our company.
+        hint: '''ことになっている'' describes an existing, established rule. We are looking for an expression
+          that actively states or imposes a new rule in this legal document, not just describing an existing
+          state.'
+    scene: A company lawyer is drafting a new set of user agreements for a service.
+    register: formal
+    setting: legal
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence exemplifies the use of 「ものとする」 in official legal documents. It asserts a definitive
+      application of terms, creating a non-negotiable rule rather than a suggestion or personal decision.
+      The use of 「本 規約」 (these terms and conditions) and 「適用 さ れる」 (shall apply) reinforces the formal
+      register. Speaker or listener gender/age do not affect the phrasing, as it's a written legal document.
+  - english: Employees shall report to work by 9:00 AM every day.
+    japanese:
+      - 従業 員 は、毎日 午前 九 時 まで に 出勤 する {もの と する}。
+      - 全 従業 員 は、毎日 午前 九 時 まで に 出勤 する {もの と する}。
+      - 従業 員 は、午前 九 時 まで に 毎日 出勤 する {もの と する}。
+    english_literally: Employees, daily by 9 AM, shall report to work.
+    competing_grammar:
+      - competing_japanese:
+          - 従業 員 は、毎日 午前 九 時 まで に 出勤 する {こと と する}。
+        english: Employees will decide to report to work by 9:00 AM every day.
+        hint: '''こととする'' implies a personal or group decision. We''re looking for an expression that states
+          a company rule or obligation, rather than a decision that can be rescinded.'
+    scene: A manager is reviewing the employee handbook with new hires.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence specifies a company rule using 「ものとする」, making it a clear, non-negotiable directive.
+      「従業 員」 (employees) and 「出勤 する」 (to report to work) contribute to the formal, instructional register.
+      The rule applies universally to employees, so speaker or listener gender/age are not specific to
+      the language used.
+  - english: Without permission, external personnel shall not be allowed on the premises.
+    japanese:
+      - 許可 なく 外部 の 人間 を 敷地 内 に 入れる {もの と し ない}。
+      - 許可 なく 外部 の 者 を 敷地 内 に 入れる {もの と し ない}。
+      - 許可 なく 外部 の 人間 を 敷地 内 へ 入れる {もの と し ない}。
+    english_literally: Permission without, external humans into premises shall not put.
+    competing_grammar:
+      - competing_japanese:
+          - 許可 なく 外部 の 人間 を 敷地 内 に 入れる {こと と し ない}。
+        english: We will decide not to allow external personnel on the premises without permission.
+        hint: '''こととしない'' expresses a decision not to do something. We''re looking for a clear, formal
+          prohibition or rule against an action that is universally binding, not just a decision.'
+    scene: Security regulations are posted at the entrance of a restricted facility.
+    register: formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+    nuance: The negative form 「ものとしない」 is used here to state a prohibition or a negative obligation, typical
+      in security protocols or strict guidelines. 「許可 なく」 (without permission) and 「敷地 内 に 入れる」 (to allow
+      onto the premises) maintain the formal tone appropriate for this grammar point. This is a general
+      rule, so speaker or listener gender/age are not specific to the language used.
+  - english: In the previous contract, that cost was to be borne by our company.
+    japanese:
+      - 以前 の 契約 で は、その 費用 は 当社 が 負担 する {もの と し た}。
+      - 以前 の 契約 にて、その 費用 は 当社 が 負担 する {もの と し た}。
+      - 旧 契約 にて、当該 費用 は 当社 が 負担 する {もの と し た}。
+    english_literally: Previous contract in, that cost our company shall bear, assumed.
+    competing_grammar:
+      - competing_japanese:
+          - 以前 の 契約 で は、その 費用 は 当社 が 負担 する {こと と し た}。
+        english: In the previous contract, we decided that our company would bear that cost.
+        hint: '''こととした'' indicates a past personal or group decision. We''re looking for a statement about
+          a formally established past rule or agreement within a contract, not just a decision.'
+    scene: During a business negotiation, a representative refers to a clause from an expired agreement.
+    register: formal
+    setting: negotiating
+    conjugation: past plain (～た)
+    nuance: The past tense form 「ものとした」 indicates a rule or assumption that was established in the past
+      within a formal agreement. 「以前 の 契約 で は」 (in the previous contract) and 「負担 する」 (to bear the cost)
+      clearly set the formal, business negotiation context. The language itself is impersonal and gender/age-neutral.
+  - english: If there are deficiencies in the submitted documents, they shall not be accepted.
+    japanese:
+      - 提出 さ れ た 書類 に 不備 が ある 場合 は、受理 し ない {もの と する}。
+      - 提出 さ れ た 書類 に 不備 が あれ ば、受理 し ない {もの と する}。
+      - 提出 書類 に 不備 が ある 場合 は、受理 し ない {もの と する}。
+    english_literally: Submitted documents in deficiencies exist case, not accepted shall be.
+    competing_grammar:
+      - competing_japanese:
+          - 提出 さ れ た 書類 に 不備 が ある 場合 は、受理 し ない {こと と する}。
+        english: If there are deficiencies in the submitted documents, we will decide not to accept them.
+        hint: '''こととしない'' expresses a decision not to do something. We''re looking for a formal policy
+          or rule that dictates non-acceptance, which is a stronger declaration than a mere decision.'
+    scene: An admissions officer explains the strict requirements for application materials.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This example shows the use of 「ものとする」 in a conditional statement, common in official instructions.
+      The phrases 「提出 さ れ た 書類 に 不備 が ある 場合 は」 (if there are deficiencies in submitted documents) and
+      「受理 し ない」 (not accepted) maintain the formal, informative register. This is a rule for general application,
+      so specific gender/age doesn't influence the expression.
+  - english: Payment shall be made by the end of the month.
+    japanese:
+      - 支払い は 月末 まで に 行う {もの と する}。
+      - 代金 の 支払い は 月末 まで に 行う {もの と する}。
+      - お 支払い は 月末 まで と する {もの と する}。
+    english_literally: Payment, by month end, shall be made.
+    competing_grammar:
+      - competing_japanese:
+          - 支払い は 月末 まで に 行う {こと と する}。
+        english: We have decided that payment will be made by the end of the month.
+        hint: '''こととする'' implies a decision by a party. We''re looking for a statement of a formal obligation
+          or rule, which carries more weight than a decision.'
+    scene: A financial contract or terms of service agreement is being presented.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses 「ものとする」 to establish a clear payment term, reflecting the definitive and
+      binding nature required in professional and financial contexts. The use of 「支払い」 (payment) and 「行う」
+      (to make/conduct) aligns with formal business language. The expression is impersonal, suitable for
+      any party involved.
+  - english: For the purpose of this evaluation, the current market value shall be considered the reference
+      point.
+    japanese:
+      - 本 評価 に おい て は、現在 の 市場 価格 を 基準 点 と する {もの と する}。
+      - この 評価 で は、現在 の 市場 価格 を 基準 と する {もの と する}。
+      - 当該 評価 にて、現行 市場 価格 を 基準 と する {もの と する}。
+    english_literally: This evaluation regarding, current market price shall be considered the reference
+      point.
+    competing_grammar:
+      - competing_japanese:
+          - 本 評価 に おい て は、現在 の 市場 価格 を 基準 点 と する {こと と する}。
+        english: For this evaluation, we will decide to consider the current market value as the reference
+          point.
+        hint: '''こととする'' implies a choice or decision. We''re looking for a formal declaration of an established
+          rule or assumption within the framework of an evaluation, not a decision that can be changed.'
+    scene: An analyst is outlining the methodology for a valuation report.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「ものとする」 establishes a specific condition or rule for conducting an evaluation. Phrases
+      like 「本 評価 に おいて は」 (for this evaluation) and 「基準 点 と する」 (to be considered the reference point)
+      are characteristic of academic or professional reports, where precise and definitive statements
+      are crucial. It signifies a non-negotiable premise for the analysis.
+  - english: Unauthorized personnel shall not enter the server room.
+    japanese:
+      - 許可 の ない 者 の サーバー ルーム へ の 入室 は 認め ない {もの と する}。
+      - 許可 なき 者 は サーバー ルーム に 入ら ない {もの と する}。
+      - 部外 者 の サーバー ルーム へ の 入室 は 認め ない {もの と する}。
+    english_literally: Permission without persons, server room entry not admitted shall be.
+    competing_grammar:
+      - competing_japanese:
+          - 許可 の ない 者 の サーバー ルーム へ の 入室 は 認め ない {こと と する}。
+        english: We will decide not to admit unauthorized personnel to the server room.
+        hint: '''こととしない'' expresses a decision not to do something. We''re looking for a formal prohibition
+          or policy, suitable for security regulations, which is a definitive rule, not a temporary decision.'
+    scene: A sign posted at the entrance of a secure data center.
+    register: formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+    nuance: This example utilizes the negative form 「ものとしない」 to state a strict prohibition, typical for
+      security protocols. 「許可 の ない 者」 (unauthorized personnel) and 「入室 は 認め ない」 (entry is not permitted)
+      reinforce the formal and commanding tone. The statement is universally applicable, thus gender or
+      age are not relevant to the language used.
+  - english: The previous law stipulated that all citizens aged 18 and above were considered adults.
+    japanese:
+      - 旧法 で は、十 八 歳 以上 の すべて の 市民 を 成人 と する {もの と し た}。
+      - 以前 の 法律 で は、十 八 歳 以上 の 者 を 成人 と する {もの と し た}。
+      - 旧法 で は、十 八 歳 以上 の 市民 を 成人 と 見なす {もの と し た}。
+    english_literally: Previous law in, 18 years old and above all citizens, adults shall be considered,
+      assumed.
+    competing_grammar:
+      - competing_japanese:
+          - 旧法 で は、十 八 歳 以上 の すべて の 市民 を 成人 と する {こと と し た}。
+        english: The previous law decided to consider all citizens aged 18 and above as adults.
+        hint: '''こととした'' implies a past decision. We''re looking for a statement about a formal stipulation
+          or rule established by law, emphasizing the legal establishment, not just a decision by someone.'
+    scene: A legal scholar discussing historical changes in civil law.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: Using 「ものとした」 in the past tense, this example describes a formal stipulation from a past law.
+      「旧法 で は」 (in the previous law) and 「成人 と する」 (to consider as an adult) are typical of academic or
+      legal discourse, where precise terminology for historical legal facts is crucial. The nuance here
+      is that the law actively established this status.
+  - english: The contractor shall manage the construction site and ensure safety.
+    japanese:
+      - 請負 人 は、工事 現場 を 管理 し、安全 を 確保 する {もの と する}。
+      - 契約 者 は、工事 現場 を 管理 し、安全 を 確保 する {もの と する}。
+      - 請負 人 は、工事 現場 の 管理 および 安全 の 確保 を 行う {もの と する}。
+    english_literally: Contractor, construction site manage, safety ensure shall do.
+    competing_grammar:
+      - competing_japanese:
+          - 請負 人 は、工事 現場 を 管理 し、安全 を 確保 する {こと と する}。
+        english: The contractor will decide to manage the construction site and ensure safety.
+        hint: '''こととする'' implies a personal or group decision. We''re looking for a formal obligation
+          stated in a contract, which is a binding rule.'
+    scene: A construction contract outlining responsibilities is being reviewed.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This example specifies a contractual obligation for the contractor using 「ものとする」. 「請負人」 (contractor)
+      and 「安全 を 確保 する」 (ensure safety) are terms frequently found in official documents, reinforcing the
+      formal register. It clearly states a required action rather than a suggestion or personal choice.
+  - english: Personal use of company vehicles is not allowed.
+    japanese:
+      - 会社 の 車 の 私的 利用 は 認め ない {もの と する}。
+      - 社用 車 の 私的 利用 は 許可 し ない {もの と する}。
+      - 公用 車 の 私的 利用 は 認め ない {もの と する}。
+    english_literally: Company's car private use not permitted shall be.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 車 の 私的 利用 は 認め ない {こと と する}。
+        english: We will decide not to allow personal use of company vehicles.
+        hint: '''こととしない'' implies a decision not to do something. We''re looking for a formal policy or
+          rule that is definitively stated, not just a decision that could be changed.'
+    scene: A new employee is reading the company's internal regulations.
+    register: formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: This sentence expresses a company policy prohibiting personal use of company vehicles. The
+      negative form 「認め ない もの と する」 clearly establishes a rule, common in employee handbooks or internal
+      guidelines. 「私的 利用」 (personal use) and 「会社 の 車」 (company vehicle) contribute to the formal, instructional
+      tone.
+  - english: The results of the preliminary investigation were considered confidential.
+    japanese:
+      - 予備 調査 の 結果 は 秘密 と する {もの と し た}。
+      - 予備 調査 の 結果 は 秘密 で ある {もの と し た}。
+      - 事前 調査 の 結果 は 秘密 扱い と する {もの と し た}。
+    english_literally: Preliminary investigation's results, confidential shall be, assumed.
+    competing_grammar:
+      - competing_japanese:
+          - 予備 調査 の 結果 は 秘密 と する {こと と し た}。
+        english: We decided that the results of the preliminary investigation would be confidential.
+        hint: '''こととした'' indicates a past decision made by a party. We''re looking for a formal declaration
+          or established condition regarding confidentiality, not just a decision.'
+    scene: A project manager is reviewing past project documentation and protocols.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: Using 「ものとした」 in the past tense, this example indicates that a confidentiality rule was formally
+      established for the investigation results. 「予備 調査」 (preliminary investigation) and 「秘密 と する」 (to
+      be confidential) are appropriate for professional settings where classifications and rules are formally
+      set. It shows a past authoritative declaration of status.
+post_example_writeup: 「ものとする」 is characterized by its use in highly formal and prescriptive language,
+  where it serves to clarify obligations, responsibilities, or established facts. It sets a definitive
+  tone, leaving little room for ambiguity.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ものとする

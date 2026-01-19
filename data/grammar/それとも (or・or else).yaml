@@ -1,0 +1,229 @@
+grammar_point: それとも (or・or else)
+learn_before:
+  - い-adjective (sentence-ending)
+  - それ (that)
+meaning: Or, or else, rather
+meaning_warning: Used in questions where the choice is limited to the two mentioned options.
+pronunciation:
+  katakana: ソレトモ
+  romaji: soretomo
+formation:
+  A + それとも + B: Indicates a choice between two options, A or B, often implying a question or a need to
+    clarify which option is being chosen or considered. It sets up a clear binary choice, focusing the
+    listener's attention on these two alternatives rather than an open-ended list. This can be used in
+    both formal and casual contexts depending on the surrounding sentence structure and politeness level.
+jlpt: N2
+etymology: 「それとも」 is derived from 「それ」 (that), 「と」 (and), and 「も」 (also). The combination suggests 'that
+  or also,' highlighting an alternative choice. Historically, 「と」 functioned as a general connective particle,
+  and 「も」 added an 'even' or 'also' nuance. Together, 「それとも」 evolved to explicitly mean 'or else' or 'alternatively,'
+  particularly when presenting a clear choice between two options, drawing attention to the 'other' possibility
+  beyond what was first mentioned.
+writeup: 「それとも」 is a conjunction in Japanese that translates to "or" or "otherwise." It highlights alternative
+  options or choices between A and B. This structure is used when the options are limited to either A
+  or B, primarily in contexts where a clear choice or distinction is being made. 「それとも」 typically appears
+  after a comma or at the beginning of a new sentence. While often, A and B are opposites, this isn't
+  a strict requirement. It is particularly useful when you want to present two specific possibilities
+  and ask for a definitive selection between them, making it a common phrase in both daily conversation
+  and more structured discussions. It has a slightly more formal and direct feel than a simple listing
+  with 「か」, pushing for a clear resolution or preference.
+false_friends:
+  - term: か
+    meaning: Or
+    kind: often confused with
+    nuance: 「か」 can connect items in a list of options (e.g., AかBかC), while 「それとも」 specifically presents
+      a choice between two distinct, often contrasting, alternatives (AかそれともBか).
+    grammar_point: か (or)
+  - term: むしろ
+    meaning: Rather, instead, over
+    kind: often confused with
+    nuance: Unlike 「それとも」, which offers a direct alternative or choice, 「むしろ」 suggests a preference or
+      emphasizes one option over another that has already been considered or implied.
+    grammar_point: むしろ (rather・instead)
+  - term: または
+    meaning: Or; either...or...
+    kind: similar expression
+    nuance: 「または」 is a more formal and general conjunction for listing alternatives or possibilities,
+      often in statements or directives. In contrast, 「それとも」 is primarily used in questions to ask for
+      a choice between two specific options.
+    grammar_point: または (or; either... or...)
+  - term: あるいは
+    meaning: Or; possibly; maybe; perhaps; or alternatively.
+    kind: similar expression
+    nuance: 「あるいは」 is a broader conjunction, meaning 'or' or 'possibly,' and can introduce alternatives
+      or conjectures. 「それとも」 is narrower, specifically used to ask for a choice between two distinct options,
+      typically in a question.
+    grammar_point: あるいは (or・alternatively)
+post_false_friends_writeup: While 「か」 and 「むしろ」 can sometimes be translated with 'or' or 'rather,' and
+  「または」 or 「あるいは」 also mean 'or,' it's essential to understand their nuances. 「か」 is generally used in
+  a series of options or for a simple yes/no question. 「それとも」, on the other hand, presents a clear A or
+  B choice, often in a question format. 「むしろ」 expresses a preference or emphasizes one option as being
+  more suitable or accurate than another. 「または」 is formal and lists options in statements or directives,
+  while 「あるいは」 is a broader conjunction introducing alternatives or possibilities, sometimes implying
+  conjecture. Understanding these distinctions will help you choose the most appropriate conjunction for
+  your specific context.
+examples:
+  - english: Will you take a break? Or will you continue working?
+    japanese:
+      - 休憩 し ます か。{それ と も} 働き 続け ます か。
+      - 休憩 し ます か、{それ と も} 働き 続け ます か。
+      - 休憩 を 取り ます か。{それ と も} 働き 続け ます か。
+    english_literally: Take a break do? Or continue working do?
+    competing_grammar:
+      - competing_japanese:
+          - 休む か、働き 続ける か。
+        english: Will you take a break, or continue working?
+        hint: Using 「か」 multiple times here just lists options. We're looking for a clear choice between
+          two specific actions.
+    scene: You are asking a colleague during a long work session.
+    register: teineigo (polite)
+    setting: professional
+  - english: Is this cake sweet? Or is it moderately sweet?
+    japanese:
+      - この ケーキ は 甘い の です か。{それ と も} 甘 さ 控えめ です か。
+      - この ケーキ は 甘い です か。{それ と も} 甘 さ 控えめ です か。
+      - この ケーキ は 甘い ん です か。{それ と も} 甘 さ 控えめ な ん です か。
+    english_literally: This cake is sweet no is it? Or sweetness reserved is it?
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は 甘い です か、甘 さ 控えめ です か。
+        english: Is this cake sweet, is it moderately sweet?
+        hint: Repeating 「ですか」 sounds like two separate questions. We're looking for a single question
+          offering a direct choice.
+    scene: A customer at a cafe asks about a dessert's sweetness.
+    register: teineigo (polite)
+    setting: informative
+  - english: Will you go to the movies this weekend? Or will you just relax at home?
+    japanese:
+      - 今週 末 は 映画 に 行く か。{それ と も} 家 で のんびり する か。
+      - 今週 末 は 映画 に 行く？{それ と も} 家 で のんびり する？
+      - 今週 末 は 映画 に 行く ん？{それ と も} 家 で のんびり する ん？
+    english_literally: This weekend movies to go or? Or home at relax do or?
+    competing_grammar:
+      - competing_japanese:
+          - 今週 末 は 映画 に 行く の か、家 で のんびり する の か。
+        english: Will you go to the movies this weekend, or will you just relax at home?
+        hint: Using 「のか」 for both parts can sound a bit clunky for a casual binary choice. We're looking
+          for a more succinct way to present two options.
+    scene: A student planning their weekend, talking to a friend.
+    register: casual
+    setting: friendly
+  - english: Should I continue chasing my dreams? Or should I accept reality?
+    japanese:
+      - 夢 を 追い 続ける べき か。{それ と も} 現実 を 受け入れる べき か。
+      - 夢 を 追い 続ける べき な の か。{それ と も} 現実 を 受け入れる べき な の か。
+      - 夢 を 追い 続ける べき？{それ と も} 現実 を 受け入れる べき？
+    english_literally: Dreams pursue continue should I? Or reality accept should I?
+    competing_grammar:
+      - competing_japanese:
+          - 夢 を 追い 続ける か、現実 を 受け入れる か。
+        english: Should I continue chasing my dreams, or accept reality?
+        hint: Simply listing options with 「か」 might not convey the deeper deliberation. We're looking
+          for a structured way to present two significant alternatives.
+    scene: Someone is pondering a major life decision.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+  - english: Do the children want to go to the park? Or do they want to go to the library?
+    japanese:
+      - 子ども たち は 公園 に 行き たい の か。{それ と も} 図書 館 に 行き たい の か。
+      - 子ども たち は 公園 に 行き たい です か。{それ と も} 図書 館 に 行き たい です か。
+      - 子ども たち は 公園 に 行き たい ん です か。{それ と も} 図書 館 に 行き たい ん です か。
+    english_literally: Children park to want to go or? Or library to want to go or?
+    competing_grammar:
+      - competing_japanese:
+          - 子ども たち は 公園 に 行く か、図書 館 に 行く か。
+        english: Do the children want to go to the park, or go to the library?
+        hint: Using 「か」 twice might sound like two separate considerations. We're looking for a clear
+          choice between two distinct activities.
+    scene: A parent asks another parent about their kids' preferences.
+    register: semi-formal
+    setting: friendly
+  - english: Hey, for dinner tonight, curry? Or hamburger steak?
+    japanese:
+      - ねえ、今日 の 夕飯、カレー に する？{それ と も} ハンバーグ？
+      - ねえ、今日 の 夕飯 は カレー に する？{それ と も} ハンバーグ に する？
+      - ねえ、今日 の 晩御飯、カレー に する？{それ と も} ハンバーグ？
+    english_literally: Hey, today's dinner, curry to do? Or hamburger steak?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 夕飯、カレー か ハンバーグ？
+        english: Hey, for dinner tonight, curry or hamburger steak?
+        hint: While simple 「か」 works, 「それとも」 emphasizes the direct choice between two options, which is
+          more natural here. We're looking for a clear binary choice.
+    scene: A high school girl asking her best friend what they should cook.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「ねえ」 is a common casual address used among close female friends. The omitted verbs for the
+      dinner options, like 「にする？」 (will we make?), are indicative of very casual speech and strong familiarity
+      between the speakers. 「ハンバーグ？」 also omits the verb implicitly using it as a question.
+  - english: Should we proceed with this plan? Or should we reconsider it?
+    japanese:
+      - この 計画 は 進める べき です か。{それ と も} 再度 検討 す べき です か。
+      - この 計画 を 進める べき です か。{それ と も} 再度 検討 す べき です か。
+      - この 計画 は 推進 す べき です か。{それ と も} 再度 検討 す べき です か。
+    english_literally: This plan proceed should or? Or again consider should or?
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 進める べき か、再度 検討 す べき か。
+        english: Should we proceed with this plan, or reconsider it?
+        hint: Repeating 「べきか」 might not sound as formal or structured as presenting a clear choice. We're
+          looking for a structured way to present two distinct options in a formal setting.
+    scene: A business team discussing a project during a meeting.
+    register: formal
+    setting: negotiating
+  - english: Is giving up the right answer? Or should I strive until the very end?
+    japanese:
+      - 諦め て しまう の が 正解 な の か。{それ と も} 最後 まで 努力 す べき な の か。
+      - 諦める の が 正解 な の か。{それ と も} 最後 まで 努力 す べき な の か。
+      - 諦め て しまう の が 正解 な の か。{それ と も} 最後 まで 頑張る べき な の か。
+    english_literally: Give up doing is right answer is it? Or until end effort should do is it?
+    competing_grammar:
+      - competing_japanese:
+          - 諦める の が 正解 か、最後 まで 努力 する べき か。
+        english: Is giving up the right answer, or should I strive until the very end?
+        hint: Simply using 「か」 here might not fully convey the internal struggle and the binary nature
+          of the difficult choice. We're looking for an expression that emphasizes this clear, difficult
+          choice.
+    scene: Someone is internally debating whether to quit a difficult task.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+  - english: Are we meeting at the station? Or at the coffee shop?
+    japanese:
+      - 駅 で 待ち合わせ ます か。{それ と も} 喫茶 店 で 待ち合わせ ます か。
+      - 駅 で 待ち合わせ ます か、{それ と も} 喫茶 店 で 待ち合わせ ます か。
+      - 駅 で 待ち合わせ ます か。{それ と も} 喫茶 店 です か。
+    english_literally: Station at meet do? Or coffee shop at meet do?
+    competing_grammar:
+      - competing_japanese:
+          - 駅 で 待ち合わせ ます か、喫茶 店 で 待ち合わせ ます か。
+        english: Are we meeting at the station, or at the coffee shop?
+        hint: Repeating the question ending can make it sound like two separate questions. We're looking
+          for a single question offering a direct choice.
+    scene: You are trying to confirm a meeting location with a friend or colleague.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Do you want to try something new today? Or stick to the usual?
+    japanese:
+      - 今日 は 新しい こと に 挑戦 する？{それ と も} いつ も 通り に する？
+      - 今日 は 新しい こと に 挑戦 する の？{それ と も} いつ も 通り に する の？
+      - 今日 は 新しい こと に 挑戦 し たい？{それ と も} いつ も 通り が いい？
+    english_literally: Today new thing to challenge do? Or usual way to do do?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 新しい こと に 挑戦 し ます か、いつ も 通り に し ます か。
+        english: Do you want to try something new today, or stick to the usual?
+        hint: Simply listing options with 「か」 might not convey the sense of offering a clear choice as
+          effectively as 「それとも」. We're looking for a more structured way to present two distinct alternatives.
+    scene: A friend asks you how you want to spend your day.
+    register: casual
+    setting: friendly
+post_example_writeup: As you can see, 「それとも」 provides a clear and direct way to present two distinct options,
+  especially in questions. It emphasizes that the listener or speaker must choose between the two given
+  alternatives. Pay attention to the context and the level of formality, as 「それとも」 can be used across
+  various registers. Its structure facilitates a focused choice, which is crucial in communication where
+  clarity is paramount.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/それとも

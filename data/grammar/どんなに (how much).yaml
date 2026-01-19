@@ -1,0 +1,219 @@
+grammar_point: どんなに (how much)
+learn_before:
+  - どんなに〜ても (no matter how much)
+meaning: no matter how much・however
+pronunciation:
+  katakana: ドンナニ
+  romaji: donnani
+formation:
+  '[どんなに] + [Verb] + [ても/でも]': Indicates a high degree of something, emphasizing that an action or state
+    remains unchanged regardless of the extent.
+  '[どんなに] + [い-Adjective] + [くても]': Emphasizes the high degree of an adjective, showing that a situation
+    persists despite it.
+  '[どんなに] + [な-Adjective] + [でも]': Emphasizes the high degree of a na-adjective, indicating an unchanging
+    outcome.
+  '[どんなに] + [Noun] + [でも]': Used less commonly with nouns, but can emphasize an extreme state or condition
+    related to the noun.
+jlpt: N3
+etymology: 「どんなに」 is formed from 「どんな」 (what kind of) and the particle 「に」, which here functions adverbially
+  to indicate degree or extent. Historically, 「どんな」 is a combination of 「如何なる (ikanaru)」 (what kind of)
+  and 「に」, evolving to signify 'what kind of' or 'what extent'. Its use with the concessive 「ても/でも」 solidified
+  its meaning of 'no matter how much/what kind', emphasizing that a condition remains true regardless
+  of the intensity of the preceding clause. This reflects a linguistic trend in Japanese to use adverbs
+  derived from interrogatives (like 'what') to express emphasis or extremity when combined with concessive
+  forms.
+writeup: 「どんなに」 is an adverb used to express a high degree or extent of something, often followed by a
+  conditional form like 「ても」 or 「でも」. It emphasizes that no matter the condition or degree, the outcome
+  remains the same or a particular state persists. It implies an extreme or exceptional quantity, quality,
+  or manner. It conveys a strong sense of 'however much', 'no matter how', or 'to what extent'. This grammar
+  point is versatile and can be used with verbs, い-adjectives, な-adjectives, and sometimes nouns, always
+  highlighting the intensity of the preceding action or state. It is primarily used in conversational
+  contexts but can also appear in more formal writing to add emphasis.
+false_friends:
+  - term: いくら (how much)
+    meaning: no matter how much
+    kind: synonym
+    nuance: While 「いくら」 can also express 'no matter how much,' 「どんなに」 often implies a more emotional or
+      emphatic tone, or a situation that is conceptually vast. 「いくら」 can also refer to a specific quantity
+      or price.
+    grammar_point: いくら (how much)
+  - term: どんな (what kind of)
+    meaning: what kind of
+    kind: similar expression
+    nuance: 「どんな」 is a pre-noun adjectival that directly modifies a noun, asking about its type or nature,
+      whereas 「どんなに」 is an adverb that modifies verbs or adjectives, expressing degree. 「どんな」 does not
+      typically take 「ても/でも」.
+    grammar_point: どんな (what kind of)
+  - term: どれほど (to what extent)
+    meaning: to what extent
+    kind: synonym
+    nuance: 「どれほど」 is very similar to 「どんなに」 and often interchangeable. 「どれほど」 might be slightly more
+      formal or used when quantifying a measurable extent, whereas 「どんなに」 can also carry a more subjective
+      or emotional nuance.
+    grammar_point: <suggest>:どれほど (to what extent)
+post_false_friends_writeup: While 「いくら」 and 「どんなに」 both convey 'no matter how much,' 「どんなに」 often carries
+  a stronger emotional nuance or emphasizes an unchangeable situation despite extreme conditions. 「どんな」
+  is a descriptive term asking about a type or kind, not a degree. 「どれほど」 is very close to 「どんなに」 in meaning
+  and usage, often interchangeable, though 「どれほど」 can sometimes imply a more quantifiable or measurable
+  extent.
+examples:
+  - english: No matter how hard I try, I can't do it.
+    japanese:
+      - '{どんな に} 頑張っ て も、でき ませ ん。'
+      - '{どんな に} 頑張っ て も、でき ない。'
+    english_literally: No matter how much I try hard, I cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 頑張っ て も、でき ませ ん。
+          - 頑張っ て も、でき ない。
+        english: Even if I try hard, I can't do it.
+        hint: This sounds like you are saying 'even if I try hard', not emphasizing the 'how hard'. We're
+          looking for emphasis on the *degree* of effort.
+    scene: A student is struggling with a difficult math problem, feeling overwhelmed.
+    register: casual
+    setting: academic
+  - english: No matter how much I like it, if I eat too much, I'll get sick.
+    japanese:
+      - '{どんな に} 好き で も、食べ 過ぎる と 気持ち 悪く なる よ。'
+      - '{どんな に} 好き で も、食べ 過ぎる と 気持ち 悪く なり ます よ。'
+    english_literally: No matter how much I like, if I eat too much, I will feel sick.
+    competing_grammar:
+      - competing_japanese:
+          - 好き で も、食べ 過ぎる と 気持ち 悪く なる よ。
+          - 好き で も、食べ 過ぎる と 気持ち 悪く なり ます よ。
+        english: Even if I like it, if I eat too much, I'll get sick.
+        hint: This phrase sounds like 'even if I like it'. We are trying to convey 'no matter how *much*
+          I like it', emphasizing the intensity of the liking.
+    scene: A parent is advising their child about moderation in eating sweets.
+    register: casual
+    setting: instructional
+  - english: No matter how much money you have, you can't buy health.
+    japanese:
+      - '{どんな に} お 金持ち で も、健康 は 買え ない。'
+      - '{どんな に} お 金持ち で も、健康 は 買え ませ ん。'
+    english_literally: No matter how rich, health cannot be bought.
+    competing_grammar:
+      - competing_japanese:
+          - いくら お 金持ち で も、健康 は 買え ない。
+          - いくら お 金持ち で も、健康 は 買え ませ ん。
+        english: No matter how much money you have, you can't buy health.
+        hint: While similar, 「いくら」 can sometimes imply a more general quantity. We're looking for emphasis
+          on the extreme degree of wealth, where 「どんなに」 gives a slightly stronger, almost philosophical
+          emphasis.
+      - competing_japanese:
+          - お 金持ち で も、健康 は 買え ない。
+          - お 金持ち で も、健康 は 買え ませ ん。
+        english: Even if you are rich, you can't buy health.
+        hint: This simply means 'even if you are rich'. We want to emphasize the *extent* of wealth, implying
+          that even immense wealth is insufficient.
+    scene: A wise elder shares a life lesson with a younger person, reflecting on what truly matters.
+    register: formal
+    setting: reflective
+  - english: No matter how hot it gets, I still enjoy walking.
+    japanese:
+      - '{どんな に} 暑く て も、散歩 は 楽しい です。'
+      - '{どんな に} 暑く て も、散歩 は 楽しい。'
+    english_literally: No matter how hot it is, walking is enjoyable.
+    competing_grammar:
+      - competing_japanese:
+          - 暑く て も、散歩 は 楽しい です。
+          - 暑く て も、散歩 は 楽しい。
+        english: Even if it's hot, walking is enjoyable.
+        hint: This conveys 'even if it's hot'. We're emphasizing 'how hot' it can get, yet the enjoyment
+          persists.
+    scene: Someone is enjoying a summer day walk despite the temperature, expressing their enduring enthusiasm.
+    register: teineigo (polite)
+    setting: optimistic
+  - english: No matter how busy you are, it's important to get enough sleep.
+    japanese:
+      - '{どんな に} 忙しく て も、十分 な 睡眠 を 取る こと が 大切 です。'
+      - '{どんな に} 忙しく て も、十分 な 睡眠 を 取る こと が 大切 だ。'
+    english_literally: No matter how busy, taking sufficient sleep is important.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しく て も、十分 な 睡眠 を 取る こと が 大切 です。
+          - 忙しく て も、十分 な 睡眠 を 取る こと が 大切 だ。
+        english: Even if you are busy, it's important to get enough sleep.
+        hint: This means 'even if you are busy'. We are emphasizing the *degree* of 'busyness', implying
+          that no matter how overwhelming your schedule, sleep remains crucial.
+    scene: A doctor advises a patient about healthy habits, stressing the importance of rest.
+    register: formal
+    setting: professional
+  - english: No matter how much I practice, I still can't play the guitar well.
+    japanese:
+      - '{どんな に} 練習 し て も、ギター が 上手 に なり ませ ん。'
+      - '{どんな に} 練習 し て も、ギター が 上手 に なら ない。'
+    english_literally: No matter how much I practice, guitar does not become good.
+    competing_grammar:
+      - competing_japanese:
+          - 練習 し て も、ギター が 上手 に なり ませ ん。
+          - 練習 し て も、ギター が 上手 に なら ない。
+        english: Even if I practice, I still can't play the guitar well.
+        hint: This means 'even if I practice'. We want to emphasize 'how much' practice has been done,
+          highlighting the persistent difficulty despite great effort.
+    scene: A frustrated musician talks to a friend, lamenting their lack of progress despite dedicated
+      practice.
+    register: casual
+    setting: melancholic
+  - english: No matter how many times I tell him, he doesn't listen.
+    japanese:
+      - '{どんな に} 何 度 言っ て も、彼 は 聞い て くれ ない。'
+      - '{どんな に} 何 度 言っ て も、彼 は 聞い て くれ ませ ん。'
+    english_literally: No matter how many times I say, he does not listen to me.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 言っ て も、彼 は 聞い て くれ ない。
+          - 何 度 言っ て も、彼 は 聞い て くれ ませ ん。
+        english: Even if I tell him many times, he doesn't listen.
+        hint: This implies 'even if I say it many times'. We are emphasizing 'how many times' it takes
+          for him to still not listen, stressing the extreme patience required.
+    scene: A supervisor complains about a stubborn employee's lack of responsiveness.
+    register: casual
+    setting: serious
+    speaker_gender: female
+  - english: No matter how much I regret it now, I can't go back in time.
+    japanese:
+      - '{どんな に} 今 後悔 し て も、時間 は 戻せ ない。'
+      - '{どんな に} 今 後悔 し て も、時間 は 戻せ ませ ん。'
+    english_literally: No matter how much I regret now, time cannot be returned.
+    competing_grammar:
+      - competing_japanese:
+          - 今 後悔 し て も、時間 は 戻せ ない。
+          - 今 後悔 し て も、時間 は 戻せ ませ ん。
+        english: Even if I regret it now, I can't go back in time.
+        hint: This suggests 'even if I regret it now'. We are emphasizing 'how much' regret is felt, highlighting
+          the immutability of the past despite profound sorrow.
+    scene: A person reflecting on past mistakes, acknowledging the irreversible nature of time.
+    register: casual
+    setting: reflective
+  - english: No matter how far apart we are, our bond will never break.
+    japanese:
+      - '{どんな に} 離れ て い て も、私 たち の 絆 は 切れ ない。'
+      - '{どんな に} 離れ て い て も、私 たち の 絆 は 切れ ませ ん。'
+    english_literally: No matter how far apart we are, our bond will not break.
+    competing_grammar:
+      - competing_japanese:
+          - 離れ て い て も、私 たち の 絆 は 切れ ない。
+          - 離れ て い て も、私 たち の 絆 は 切れ ませ ん。
+        english: Even if we are separated, our bond will never break.
+        hint: This means 'even if we are separated'. We are emphasizing 'how far apart' that separation
+          might be, stressing the strength of the bond against any distance.
+    scene: Two close friends or lovers talking about their long-distance relationship, expressing their
+      unwavering connection.
+    register: casual
+    setting: intimate
+  - english: No matter how much time passes, some memories never fade.
+    japanese:
+      - '{どんな に} 時 が 流れ て も、色褪せ ない 思い出 が ある。'
+      - '{どんな に} 時 が 流れ て も、色褪せ ない 思い出 が あり ます。'
+    english_literally: No matter how much time flows, there are memories that do not fade.
+    competing_grammar:
+      - competing_japanese:
+          - 時 が 流れ て も、色褪せ ない 思い出 が ある。
+          - 時 が 流れ て も、色褪せ ない 思い出 が あり ます。
+        english: Even if time passes, some memories never fade.
+        hint: This means 'even if time passes'. We are emphasizing 'how much' time can pass, highlighting
+          the enduring nature of certain memories.
+    scene: An old friend reminisces about their youth, acknowledging the lasting impact of shared experiences.
+    register: casual
+    setting: storytelling

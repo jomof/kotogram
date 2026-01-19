@@ -1,0 +1,279 @@
+grammar_point: ったら・といったら (extreme degree)
+learn_before:
+  - Verb[なかった] (past negative)
+  - '[Clause]から (because・so)'
+  - あり (possibility・with)
+  - かた (way of doing)
+  - がたい (hard to do)
+  - せっかく (making the most of effort or opportunity)
+  - ってば・ったら (insistence or exasperation)
+  - とばかりに (as if to say)
+  - ほど (extent・approximation)
+meaning: Words cannot express, Extremely...; Cannot tell, describe, say, express or find words for how...
+meaning_warning: 「と言ったらありはしない」 is a written, rarely used variant.
+pronunciation:
+  katakana: ッタラ・トイッタラ
+  romaji: ttara / toittara
+formation:
+  Noun + ったら: Expresses strong emotion or criticism regarding a situation.
+  Adjective + ったら: Expresses a very high degree of the quality described by the adjective.
+  Situation + といったら: Used to emphasize the extreme nature of a situation or feeling, often with strong
+    connotations.
+jlpt: N1
+etymology: The grammar point 「ったら」 is derived from the conditional form 「～たら」, implying a hypothetical
+  situation that evokes a strong emotional response. 「といったら」 is a variation of 「ったら」, adding 「と言う」 (to
+  say) for emphasis, further highlighting the speaker's inability to articulate the intensity of the situation.
+writeup: 「ったら」 and 「といったら」 are set expressions used to emphasize an extreme degree of something, often
+  to the point where it is difficult to articulate in words. This construction can convey profound astonishment,
+  disappointment, frustration, or even overwhelming positive emotions. While 「といったら」 is frequently used
+  in negative contexts (e.g., with terms like 図々しい 'shameless', ばかばかしい 'absurd', 恥ずかしい 'embarrassing',
+  みっともない 'unseemly', 情けない 'pathetic'), it can also be used for intensely positive experiences to convey
+  the depth of feeling. The expression 「と言ったらありはしない」 is a less common, more literary variant of this construction,
+  and thus rarely encountered in spoken or modern written Japanese.
+false_friends:
+  - term: ったら
+    meaning: If it's about...
+    kind: similar expression
+    nuance: When 「ったら」 is used without emphasizing an extreme degree, it can mean "speaking of..." or
+      "if it's about...". This is different from the grammar point's meaning of extreme degree.
+    grammar_point: って (speaking of)
+  - term: といったら
+    meaning: Speaking of... / If one says...
+    kind: similar expression
+    nuance: Unlike the emphatic 「といったら」, this usage serves as a topic marker to introduce something related
+      to the preceding noun, similar to 「と言えば」, without conveying an extreme emotional degree.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+post_false_friends_writeup: While 「ったら」 can also function as a casual conditional particle, meaning "if
+  it's about..." or "speaking of...", and 「といったら」 can introduce a related topic, the expressions 「ったら・といったら」
+  as discussed here specifically convey an extreme degree of emotion or quality. The key to distinguishing
+  them lies in the context and whether the phrase is followed by an expression emphasizing the inability
+  to describe the intensity, such as 「ありゃしない」 or similar sentiments.
+examples:
+  - english: That kid, always messing up their room!
+    japanese:
+      - あの 子 {ったら}、また 部屋 を 散らかし て！
+      - あの 子 {ったら}、いつ も 部屋 を 散らかし て ばかり いる ん だ から！
+      - あの 子 {ったら}、もう、部屋 の 片付け も し ない ん だ から！
+    english_literally: That kid, again room made messy!
+    competing_grammar:
+      - competing_japanese:
+          - あの 子 {が} また 部屋 を 散らかし て！
+        english: That kid is messing up their room again!
+        hint: 「が」 simply marks the subject. We're looking for a way to express exasperation or strong
+          emotion about the kid.
+    scene: A parent expressing exasperation over their child's constant mess.
+    register: casual
+    setting: serious
+    nuance: The use of 「あの 子ったら」 implies a familiar, often exasperated, tone, typically used by a parent
+      or guardian towards a child. The informal 「散らかして」 further reinforces the casual register and direct
+      expression of annoyance. The added variations emphasize the continuous nature of the action and
+      the speaker's frustration, typical for this usage of 「ったら」.
+    etymology: The particle 「ったら」 here is an informal contraction of 「と言ったら」, implying a strong reaction
+      to the topic at hand. It adds an emotional emphasis to the statement, often of frustration or astonishment.
+  - english: Today's test was incredibly difficult.
+    japanese:
+      - 今日 の テスト は 難しい {ったら} ありゃ し なかっ た。
+      - 今日 の テスト は 難しい {と いっ たら} あり は し なかっ た。
+      - 今日 の テスト は 難しい {と いっ たら} 言葉 に なら なかっ た。
+    english_literally: Today's test difficult-extremely was not.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の テスト は {とても} 難しかっ た。
+        english: Today's test was very difficult.
+        hint: 「とても」 simply means 'very'. We're looking for an expression that conveys the difficulty was
+          beyond words.
+    scene: A student complaining to a friend after a challenging exam.
+    register: casual
+    setting: serious
+    nuance: The colloquial 「ありゃしなかった」 (a contracted form of `ありはしなかった`) intensifies the meaning, indicating
+      that the test's difficulty was beyond what could be easily described, emphasizing the speaker's
+      profound frustration. Using 「といったら」 with 「言葉 に ならなかった」 similarly expresses the inexpressible nature
+      of the difficulty.
+    etymology: The expression 「言葉 に ならない」 (to be speechless, unable to put into words) is a common phrase
+      to describe situations of overwhelming emotion, whether positive or negative. Its combination with
+      「といったら」 reinforces the idea that the intensity of the experience defies verbal description.
+  - english: The morning rush hour train is just a nightmare; words cannot express it.
+    japanese:
+      - 朝 の 満員 電車 {と いっ たら}、もう 悪夢 の よう だ。
+      - 朝 の 満員 電車 {と いっ たら}、ひどい もの だ。
+      - 朝 の 満員 電車 {と いっ たら}、もう 地獄 だ よ。
+    english_literally: Morning's full train, speaking of that, already nightmare's like.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 の 満員 電車 {は} 悪夢 の よう だ。
+        english: The morning rush hour train is like a nightmare.
+        hint: 「は」 marks the topic. We're looking for a phrase that emphasizes the extreme nature of the
+          train's condition.
+    scene: A commuter describing their daily ordeal to a colleague.
+    register: semi-formal
+    setting: melancholic
+    nuance: The phrase 「もう 悪夢 の よう だ」 combined with 「といったら」 expresses not just that the train is bad,
+      but that its unpleasantness reaches the level of a nightmare, implying that a simple description
+      is insufficient to convey the full misery. The variants using 「ひどい もの だ」 and 「地獄 だ よ」 similarly
+      express the extreme negative experience.
+    etymology: 「満員 電車」 refers to a train filled to capacity, a common and often frustrating experience
+      in Japan's major cities. The comparison to 「悪夢」 (nightmare) or 「地獄」 (hell) emphasizes the extreme
+      discomfort, indicating the severity of the situation that words struggle to capture.
+  - english: His irresponsible actions are truly astounding; words cannot express it.
+    japanese:
+      - 彼 の 無 責任 な 行動 {と いっ たら}、本当 に 呆れる ばかり だ。
+      - 彼 の 無 責任 な 行動 {と いっ たら}、開い た 口 が 塞がら ない。
+      - 彼 の 無 責任 な 行動 {と いっ たら}、言語 道断 だ。
+    english_literally: His irresponsible actions, speaking of that, truly astounding only.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 無 責任 な 行動 {は} 本当 に 呆れる ばかり だ。
+        english: His irresponsible actions are truly astounding.
+        hint: 「は」 marks the topic. We're looking for a phrase that conveys the actions are so irresponsible
+          they are beyond description.
+    scene: A manager discussing a problematic employee with another manager.
+    register: formal
+    setting: serious
+    nuance: The use of 「呆れる ばかり だ」 (truly astounding/dumbfounding) combined with 「といったら」 emphasizes the
+      speaker's intense disbelief and disappointment at the extent of the irresponsibility, common in
+      a professional, critical context. 「開い た 口 が 塞がらない」 and 「言語道断 だ」 further express a profound level
+      of astonishment or outrage.
+    etymology: The idiom 「開いた 口 が 塞がらない」 literally means "my open mouth won't close," conveying utter
+      astonishment or disbelief. 「言語道断」 (gengodoudan) is a formal expression meaning "outrageous" or "inexcusable,"
+      originally from Buddhism, signifying something so terrible it should not even be spoken of. Both
+      phrases amplify the sense of inexpressible shock when used with 「といったら」.
+  - english: That child, always leaving food! Honestly!
+    japanese:
+      - あの 子 {ったら}、また ご飯 を 残し て！全く もう！
+      - あの 子 {ったら}、いつ も ご飯 を 残す ん だ から！
+      - あの 子 {ったら}、せっかく 作っ た ご飯 な の に、残し て ばかり で！
+    english_literally: That child, again rice left! Really already!
+    competing_grammar:
+      - competing_japanese:
+          - あの 子 {が} また ご飯 を 残し て！全く もう！
+        english: That kid is leaving food again! Honestly!
+        hint: 「が」 simply marks the subject. We're looking for a way to express strong frustration about
+          the child's recurring habit.
+    scene: A parent expressing exasperation over their child's picky eating.
+    register: casual
+    setting: serious
+    nuance: The combination of 「あの 子ったら」 with the informal 「全く もう！」 (Honestly!/Good grief!) is characteristic
+      of a frustrated parent venting about a recurring issue with a child. The particle 「もう」 adds to the
+      sense of exasperation. The added variations emphasize the 'always' aspect and deeper frustration
+      regarding the child's eating habits.
+    etymology: 「全く もう！」 is an exclamation of exasperation, derived from 「全く」 (utterly, entirely) and 「もう」
+      (already, now), expressing that something has reached an unbearable point. It's a common phrase
+      in informal Japanese to convey strong annoyance or frustration, especially with recurring problems.
+  - english: The excitement of that moment was truly the greatest in my life; words cannot express it.
+    japanese:
+      - あの 瞬間 の 興奮 {と いっ たら}、人生 で 最高 の もの でし た。
+      - あの 瞬間 の 興奮 {と いっ たら}、筆舌 に 尽くし がたい もの でし た。
+      - あの 瞬間 の 興奮 {と いっ たら}、言葉 に でき ない ほど でし た。
+    english_literally: That moment's excitement, speaking of that, life in greatest thing was.
+    competing_grammar:
+      - competing_japanese:
+          - あの 瞬間 の 興奮 {は} 人生 で 最高 の もの でし た。
+        english: The excitement of that moment was the greatest in my life.
+        hint: 「は」 marks the topic. We're looking for a phrase that conveys the excitement was so profound
+          it defies words.
+    scene: An elderly person reminiscing about a peak experience in their life.
+    register: formal
+    setting: reflective
+    speaker_age: older
+    nuance: While 「といったら」 often carries negative connotations, it can also be used for intensely positive
+      experiences to convey the depth of feeling. The formal register and reflective setting, along with
+      the speaker being older, suggests a thoughtful recounting of a profound emotion that transcends
+      simple description. 「筆舌 に 尽くし がたい」 and 「言葉 に でき ない ほど」 explicitly state the inexpressible nature
+      of the excitement.
+    etymology: 「筆舌 に 尽くし がたい」 is a literary expression meaning "beyond description by pen and tongue,"
+      indicating something is so profound or complex that words cannot do it justice. It's often used
+      for intensely beautiful, shocking, or emotional experiences. Similarly, 「言葉 に できない」 means "cannot
+      be put into words." Both phrases amplify the sense of inexpressible shock when used with 「といったら」.
+  - english: That guy's way of doing things is truly infuriating!
+    japanese:
+      - あいつ の やり 方 {ったら}、本当 に 腹 が 立つ な！
+      - あいつ の やり 方 {ったら}、頭 に くる な！
+    english_literally: That guy's way of doing things, speaking of that, truly stomach is standing up!
+    competing_grammar:
+      - competing_japanese:
+          - あいつ の やり 方 {は} 本当 に 腹 が 立つ な！
+        english: That guy's way of doing things is truly infuriating!
+        hint: 「は」 marks the topic. We're looking for an expression that emphasizes the extreme level of
+          infuriation caused by his actions.
+    scene: Two male friends commiserating about an annoying person.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: 「あいつ」 is an informal, sometimes slightly contemptuous, way for a male speaker to refer to
+      another male. 「腹 が 立つ な！」 (infuriating, makes my stomach stand up) and 「頭 に くる な！」 (makes my head
+      come, meaning 'makes me mad') are common, slightly rough, male expressions of anger, making 「やり方ったら」
+      a natural fit for expressing extreme frustration beyond simple words.
+    etymology: 「腹 が 立つ」 (hara ga tatsu) literally means "stomach stands up," an idiom for getting angry.
+      「頭 に くる」 (atama ni kuru) literally means "it comes to my head," also an idiom for becoming angry
+      or exasperated. Both are common, somewhat visceral expressions of frustration or anger, often used
+      in casual male speech. Their use with 「ったら」 emphasizes the extreme degree of the speaker's irritation.
+  - english: The beauty of the scenery at that moment was simply indescribable.
+    japanese:
+      - あの 瞬間 の 景色 の 美し さ {と いっ たら}、言葉 に なり ませ ん でし た。
+      - あの 瞬間 の 景色 の 美し さ {と いっ たら}、筆舌 に 尽くし がたい もの でし た。
+    english_literally: That moment's scenery's beauty, speaking of that, became speechless.
+    competing_grammar:
+      - competing_japanese:
+          - あの 瞬間 の 景色 は {とても} 美しかっ た。
+        english: The scenery at that moment was very beautiful.
+        hint: 「とても」 simply intensifies an adjective. We're looking for an phrase that conveys the beauty
+          was so profound it defies words.
+    scene: Someone recalling a breathtaking view experienced during a trip.
+    register: formal
+    setting: reflective
+    nuance: The phrase 「言葉 に なり ませ ん でし た」 or 「筆舌 に 尽くし がたい」 explicitly states the inability to articulate
+      the profound beauty, which is reinforced by the emphatic 「といったら」. This usage is common in academic
+      or formal settings when describing an overwhelming quality.
+    etymology: 「言葉 に ならない」 (to be speechless, unable to put into words) is a common phrase to describe
+      situations of overwhelming emotion, whether positive or negative. Its combination with 「といったら」 reinforces
+      the idea that the intensity of the experience defies verbal description. 「筆舌 に 尽くし がたい」 is a more
+      literary expression, meaning "beyond description by pen and tongue."
+  - english: My daughter's tantrum yesterday, it was just terrible!
+    japanese:
+      - 昨日 の 娘 {ったら}、かんしゃく が ひどく て 大変 だっ た。
+      - 昨日 の 娘 {ったら}、もう 手 に 負え なく て！
+    english_literally: Yesterday's daughter, tantrum was terrible and difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、娘 {の} かんしゃく が ひどく て 大変 だっ た。
+        english: Yesterday, my daughter's tantrum was terrible and difficult.
+        hint: Using 「の」 simply indicates possession. We're looking for a way to express strong frustration
+          or exasperation about the daughter's behavior.
+    scene: A mother confiding in a friend about her child's difficult behavior.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    nuance: The informal 「娘ったら」 is typical of a parent speaking about their child, conveying a mix of
+      affection and exasperation. Phrases like 「かんしゃく が ひどく て 大変 だっ た」 and 「もう 手 に 負えなく て」 express the
+      overwhelming difficulty of managing the situation, making the use of 「ったら」 natural for a female
+      speaker discussing a domestic frustration.
+    etymology: 「かんしゃく」 refers to a fit of temper or tantrum, often associated with children. 「手 に 負えない」
+      (te ni oenai) literally means "cannot be handled by hand," signifying that something is uncontrollable
+      or unmanageable. Its use here emphasizes the extreme difficulty the mother faced.
+  - english: The sheer difficulty of the exam question was astonishing.
+    japanese:
+      - その 試験 問題 の 難し さ {と いっ たら}、驚く ばかり だっ た。
+      - その 試験 問題 の 難し さ {と いっ たら}、言葉 を 失う ほど だっ た。
+    english_literally: That exam question's difficulty, speaking of that, was only surprising.
+    competing_grammar:
+      - competing_japanese:
+          - その 試験 問題 は とても 難しかっ た {の で} 驚い た。
+        english: That exam question was very difficult, so I was surprised.
+        hint: This simply states cause and effect. We're looking for a phrase that emphasizes the difficulty
+          itself was beyond words or expectation.
+    scene: Students discussing a particularly hard exam question after a test.
+    register: semi-formal
+    setting: academic
+    nuance: The phrase 「驚く ばかり だっ た」 (was just astonishing) or 「言葉 を 失う ほど だっ た」 (to the extent of losing
+      words) indicates the extreme degree of difficulty, aligning perfectly with the emphatic nuance of
+      「といったら」. This usage is common in academic or formal settings when describing an overwhelming quality.
+    etymology: 「言葉 を 失う」 (kotoba o ushinau) means "to lose one's words," a common idiom for being speechless
+      due to shock, surprise, or intense emotion. When combined with 「といったら」, it strongly conveys that
+      the difficulty was so extreme that it rendered one incapable of articulating it properly.
+post_example_writeup: The examples provided demonstrate how 「ったら」 and 「といったら」 can be used across various
+  registers and emotional contexts. While 「ったら」 often conveys a more casual, sometimes exasperated, tone,
+  「といったら」 tends to be slightly more formal and can be used for both negative and overwhelmingly positive
+  sentiments, emphasizing the profound impact of the described situation. The accompanying phrases often
+  highlight the inexpressible nature of the feeling.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ったら-といったら

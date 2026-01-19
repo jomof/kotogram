@@ -1,0 +1,269 @@
+grammar_point: 得る (to be able to・to be possible)
+learn_before:
+  - '[Verb-dictionary]こと (formal imperative・rule)'
+  - ことなの (it is that)
+  - そういう (that kind of)
+  - 変わる (to change)
+meaning: to be able to; can; to be possible (auxiliary verb)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 得る (うる)
+    rarity: common
+    meaning: to be possible; can (used with V-masu-stem)
+  - conjugation-type: negative plain (～ない)
+    form: 得ない (えない)
+    rarity: common
+    meaning: cannot; impossible (used with V-masu-stem)
+pronunciation:
+  katakana: エル
+  romaji: eru
+  pronunciation_warning: When used as an auxiliary verb (following the ます-stem of another verb), its dictionary
+    form is commonly read 「うる」 (uru), while other forms are typically read 「える」 (eru), for example, 「得ない」(enai)
+    or 「得た」(eta).
+formation:
+  Verb[ます-stem] + 得る: Indicates that something is possible or can happen, often expressing a logical or
+    inherent possibility.
+jlpt: N1
+etymology: The auxiliary verb 「得る」(eru/uru) derives from the main verb 「得る」(える), meaning "to get" or "to
+  obtain." Over time, its auxiliary use evolved to signify the "ability to obtain" or "possibility of
+  achieving" a state or action when appended to the ます-stem of another verb. This semantic shift from
+  physical acquisition to abstract potential reflects a common linguistic phenomenon where verbs of gaining
+  or reaching can also express capability. The two common readings, 「える」 and 「うる」, often differentiate
+  its use as a main verb (える) versus an auxiliary verb (うる, especially in dictionary form) or other forms
+  (える).
+writeup: |-
+  The auxiliary verb 「得る」 (える/うる) is attached to the ます-stem of another verb to express that something is possible or can happen. It indicates a logical, inherent, or theoretical possibility, rather than a personal or learned ability. This makes it distinct from 「〜することができる」, which is a more general expression for ability or possibility.
+
+  「得る」 is often used in more formal or objective contexts, such as academic papers, news reports, or legal documents. It implies that a situation, event, or action is conceivable, feasible, or within the realm of possibility based on objective factors or logic.
+
+  When using 「得る」, pay attention to its two common readings: the dictionary form as an auxiliary verb is typically read 「うる」 (e.g., ありうる, しうる), while other conjugated forms are read 「える」 (e.g., 得ない (えない), 得た (えた)).
+
+  The negative form, 「〜得ない」 (〜えない), means "cannot" or "is impossible." Like its positive counterpart, it conveys a sense of logical impossibility or inconceivability, a strong assertion that something simply cannot or will not happen.
+false_friends:
+  - term: 〜することができる
+    meaning: to be able to; can
+    kind: similar expression
+    nuance: 「〜することができる」 expresses general ability or possibility, often related to personal skills or
+      situational allowance. 「〜し得る」 is more formal and indicates inherent, logical, or theoretical possibility,
+      often used for things that *can* or *cannot* happen generally, or a *potential* outcome in a broader
+      sense.
+    grammar_point: <suggest>:するすることができる (can・be able to)
+  - term: 〜かねる
+    meaning: cannot; find it difficult to; hesitate to
+    kind: antonym
+    nuance: While 「〜し得る」 indicates possibility or ability, 「〜かねる」 denotes the difficulty or impossibility
+      of performing an action, often due to social constraints, reluctance, or inherent difficulty. It
+      expresses an inability or unwillingness to do something.
+    grammar_point: <suggest>:Verb[stem]かねる (unable to・hesitant to)
+  - term: 〜やすい・〜にくい
+    meaning: easy to do / difficult to do
+    kind: similar expression
+    nuance: 「〜やすい・〜にくい」 describes the *ease* or *difficulty* of an action from a general perspective or
+      inherent characteristic of the object/situation. 「〜し得る」 focuses purely on the *possibility* or *capability*
+      of an action, without necessarily implying ease or difficulty.
+    grammar_point: '[Verb-stem]にくい (difficult to do)'
+post_false_friends_writeup: 'When considering 「得る」, it is crucial to distinguish it from other expressions
+  of possibility or difficulty. While 「〜することができる」 conveys a general ability or situational possibility,
+  「得る」 often speaks to a more fundamental or logical possibility, particularly in formal or written contexts.
+  For instance, 「この問題は解決し得る」 (This problem can be resolved) suggests that resolution is inherently possible,
+  whereas 「この問題を解決することができる」 (One can resolve this problem) might imply someone possesses the skill to
+  do so. Furthermore, do not confuse 「得る」 with 「〜かねる」. Though both are auxiliary verbs attached to a verb''s
+  ます-stem, 「〜かねる」 conveys the opposite: a difficulty or unwillingness to perform an action (e.g., 「承知しかねます」
+  - I cannot agree). Lastly, 「〜やすい・〜にくい」 describes the inherent ease or difficulty of an action (e.g.,
+  「食べやすい」 - easy to eat), which is a different dimension from the sheer possibility conveyed by 「得る」.'
+examples:
+  - english: Such a situation can certainly happen.
+    japanese:
+      - そう いう 事態 は {あり 得る}。
+      - そう いう 事態 は {あり 得 ます}。
+    english_literally: Such a situation, as for, can exist/be.
+    competing_grammar:
+      - competing_japanese:
+          - そう いう 事態 は 起こる こと が できる。
+        english: Such a situation can happen (general possibility).
+        hint: 「〜することができる」 expresses a general ability or possibility, but 「あり得る」 specifically means "it's
+          conceivable" or "it's possible" in a more inherent, objective sense, and is more formal. We're
+          looking for a formal, objective statement of possibility.
+    scene: A professor explaining complex systems to students.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「あり得る」 is a very common phrase meaning "it's possible" or "it can happen." It implies a logical
+      or inherent possibility rather than a personal ability. This phrasing lends a sense of authoritative
+      explanation, fitting for an academic setting.
+  - english: It is something that cannot possibly be.
+    japanese:
+      - それ は {あり 得 ない} こと だ。
+      - それ は {あり 得 ませ ん}。
+    english_literally: That, as for, cannot exist/be, thing is.
+    competing_grammar:
+      - competing_japanese:
+          - それ は でき ない こと だ。
+        english: That is something that cannot be done (general inability).
+        hint: 「できない」 is a general negative capability, often implying a lack of skill or means. 「あり得ない」
+          expresses a stronger, fundamental impossibility or inconceivability. We're looking for a statement
+          of absolute impossibility.
+    scene: A detective dismissing a far-fetched theory.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    nuance: 「あり得ない」 emphasizes logical impossibility or inconceivability, making it a strong denial of
+      possibility. This strong, declarative statement is appropriate for someone like a detective asserting
+      a fact.
+  - english: Human beings can coexist with nature.
+    japanese:
+      - 人間 は 自然 と 共存 {し 得る}。
+      - 人間 は 自然 と 共存 {し 得 ます}。
+    english_literally: Humans, as for, nature with coexistence can do.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は 自然 と 共存 する こと が できる。
+        english: Human beings are able to coexist with nature (general capacity).
+        hint: 「〜することができる」 is more about general capacity. 「〜し得る」 emphasizes the inherent potential or
+          logical possibility. We're looking for a formal statement about inherent potential.
+    scene: A keynote speaker at an environmental conference.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「し得る」 indicates the inherent capability or potential for humans to perform the action of coexistence,
+      emphasizing it as a realistic possibility. This formal expression fits the informative tone of a
+      keynote address.
+  - english: I cannot understand his actions.
+    japanese:
+      - 私 に は 彼 の 行動 が 理解 {し 得 ない}。
+      - 私 に は 彼 の 行動 が 理解 {し 得 ませ ん}。
+    english_literally: To me, his actions, cannot understand.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に は 彼 の 行動 が 理解 でき ない。
+        english: I cannot understand his actions (general inability).
+        hint: 「理解できない」 can mean you lack the personal capacity to understand. 「理解し得ない」 implies a deeper,
+          inherent impossibility of understanding, perhaps because the actions are beyond rational comprehension.
+          We're looking for a statement about inherent impossibility of understanding.
+    scene: A psychologist discussing a complex case with a colleague.
+    register: formal
+    setting: academic
+    conjugation: negative plain (～ない)
+    nuance: 「理解し得ない」 implies a fundamental impossibility or extreme difficulty in comprehending, suggesting
+      it's beyond one's capacity or logical framework. This level of nuance is appropriate in a professional,
+      analytical discussion.
+  - english: There is a possibility that this policy could lead to social unrest.
+    japanese:
+      - この 政策 は 社会 不安 を 招き {得る} 可能 性 が ある。
+      - この 政策 は 社会 不安 を 招き {得 ます} 可能 性 が あり ます。
+    english_literally: This policy, as for, social unrest, invite, can, possibility there is.
+    competing_grammar:
+      - competing_japanese:
+          - この 政策 は 社会 不安 を 招く こと が できる 可能 性 が ある。
+        english: There is a possibility that this policy can lead to social unrest (general capability).
+        hint: 「〜することができる」 implies a general capacity. 「招き得る」 emphasizes the potential or logical possibility
+          of the policy resulting in social unrest, fitting a predictive or analytical context. We're
+          looking for a formal statement about a potential, foreseeable outcome.
+    scene: A political analyst giving an interview about a new government policy.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: 「招き得る」 suggests a potential, albeit undesirable, outcome that is logically within the realm
+      of possibility for the policy. This objective, analytical tone is characteristic of a professional
+      analysis.
+  - english: Is it truly something that can be done?
+    japanese:
+      - それ は 本当 に {し 得る} こと な の か？
+      - それ は 本当 に {し 得 ます} こと な の です か？
+    english_literally: That, as for, truly, can do, thing, is it?
+    competing_grammar:
+      - competing_japanese:
+          - それ は 本当 に できる こと な の か？
+        english: Is that truly something that can be done (general ability)?
+        hint: 「できる」 questions general feasibility or personal ability. 「し得る」 challenges the inherent feasibility
+          or logical possibility of the action. We're looking for a question about fundamental possibility.
+    scene: A skeptical committee member questioning the feasibility of a new proposal.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This question challenges the inherent feasibility or logical possibility of the action, reflecting
+      skepticism in a formal discussion. The use of 「し得る」 makes the question sound more weighty and analytical.
+  - english: She was able to achieve great success in her field.
+    japanese:
+      - 彼女 は その 分野 で 大きな 成功 を {収め 得 た}。
+      - 彼女 は その 分野 で 大きな 成功 を {収め 得 まし た}。
+    english_literally: She, as for, that field in great success, could achieve.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は その 分野 で 大きな 成功 を 収める こと が でき た。
+        english: She was able to achieve great success in her field (general ability).
+        hint: 「〜ることができた」 emphasizes the personal ability to perform an action. 「収め得た」 highlights that
+          achieving such success was a possibility that became reality, emphasizing the inherent capability
+          or potential of the situation. We're looking for a statement emphasizing the inherent possibility
+          that was realized.
+    scene: A biographer narrating a historical figure's accomplishments.
+    register: formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: 「収め得た」 indicates that achieving such success was a possibility that became reality, emphasizing
+      the inherent capability and making the statement sound more profound and analytical, fitting a biographical
+      narration.
+  - english: One must always consider all possible scenarios.
+    japanese:
+      - あらゆる 可能 性 を 常 に 考慮 {し 得る} べき だ。
+      - あらゆる 可能 性 を 常 に 考慮 {し 得 ます} べき です。
+    english_literally: All possibilities, always, consider, can do, should.
+    competing_grammar:
+      - competing_japanese:
+          - あらゆる 可能 性 を 常 に 考慮 する こと が できる べき だ。
+        english: One should always be able to consider all possibilities (general capacity).
+        hint: 「〜することができる」 focuses on the ability to perform the action. 「考慮し得る」 here means "capable of
+          being considered" or "possible to consider," suggesting a comprehensive and exhaustive approach
+          to thought, fitting a philosophical instruction. We're looking for a formal statement about
+          what is fundamentally possible to consider.
+    scene: A philosopher giving a lecture on critical thinking.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「考慮し得る」 here means "capable of being considered" or "possible to consider," suggesting a comprehensive
+      and exhaustive approach to thought. This formal and somewhat abstract usage aligns well with a philosophical
+      context.
+  - english: I cannot accept such a proposal.
+    japanese:
+      - その よう な 提案 は {受け入れ 得 ない}。
+      - その よう な 提案 は {受け入れ 得 ませ ん}。
+    english_literally: Such proposal, as for, cannot accept.
+    competing_grammar:
+      - competing_japanese:
+          - その よう な 提案 は 受け入れ られ ない。
+        english: I cannot accept such a proposal (general inability or refusal).
+        hint: 「受け入れられない」 can be a simple statement of inability or refusal. 「受け入れ得ない」 conveys a strong,
+          fundamental impossibility of acceptance, often implying it goes against principles or is logically
+          unfeasible. We're looking for a statement of absolute impossibility of acceptance.
+    scene: A CEO firmly rejecting a business offer that goes against company values.
+    register: formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: 「受け入れ得ない」 conveys a strong, firm impossibility of acceptance, often implying it goes against
+      principles or is logically unfeasible. The use of this formal and definitive phrase, especially
+      from a male CEO, reinforces a position of authority and conviction.
+  - english: In rare cases, such an error can occur.
+    japanese:
+      - 稀 に その よう な エラー が {起こり 得る}。
+      - 稀 に その よう な エラー が {起こり 得 ます}。
+    english_literally: Rarely, such error, can occur.
+    competing_grammar:
+      - competing_japanese:
+          - 稀 に その よう な エラー が 起こる こと が できる。
+        english: In rare cases, such an error can occur (general possibility).
+        hint: 「〜することができる」 implies a general capacity. 「起こり得る」 signifies that while uncommon, the error
+          is within the realm of logical possibility or conceivability, fitting a technical explanation.
+          We're looking for a formal description of a potential, albeit rare, occurrence.
+    scene: A software engineer explaining a rare bug to a client.
+    register: formal
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    nuance: 「起こり得る」 signifies that while uncommon, the error is within the realm of possibility or conceivability.
+      This objective and technical phrasing is appropriate for explaining a system's behavior to a client.
+post_example_writeup: As demonstrated by the examples, 「得る」 is primarily used in formal or objective contexts
+  to discuss inherent or logical possibilities. Its negative form, 「〜得ない」, provides a strong assertion
+  of impossibility. While 「〜することができる」 is a versatile phrase for general ability, 「得る」 offers a more specific
+  nuance of objective possibility, often seen in written or analytical Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/得る

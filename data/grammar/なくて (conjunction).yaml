@@ -1,0 +1,359 @@
+grammar_point: なくて (conjunction)
+learn_before:
+  - Verb[させられる] (causative-passive)
+  - ちょっと (adverb)
+  - な-Adjective[で] (te-form)
+  - な-Adjectives (adjectival nouns)
+  - なくて (negative te-form)
+  - なくなる (to cease to be)
+  - 途中に・途中で (in the middle of)
+meaning: To not ~ and ~; Not ~ and ~; Because (something is) not ~
+pronunciation:
+  katakana: ナクテ
+  romaji: nakute
+formation:
+  Verb in plain negative form (～ない) + て: Connects clauses where the first clause is a negative action
+    or state, indicating a reason or simply linking.
+  い-adjective in plain negative form (～くない) + て: Connects clauses where the first clause is a negative
+    い-adjective, indicating a reason or simply linking.
+  な-adjective + で/じゃ + なくて: Connects clauses where the first clause is a negative な-adjective, indicating
+    a reason or simply linking.
+  Noun + で/じゃ + なくて: Connects clauses where the first clause is a negative noun, indicating a reason or
+    simply linking.
+jlpt: N4
+etymology: The grammar point 「なくて」 is formed by combining the negative form of a verb or adjective (ない)
+  with the 「て」 form, which is commonly used to connect clauses or express a sequence of actions. Specifically,
+  it's derived from the 「ない」 ending changing to 「なく」 before being joined with 「て」. Thus, 「なくて」 literally
+  means "not" + "and", conveying a negative conjunction. It evolved from the adverbial form of the classical
+  negative auxiliary ぬ (modern ない), which was に or く, combining with て.
+writeup: |-
+  The 「なくて」 conjunction in Japanese combines 「ない」 (not) with the 「て」 form to express 'not (A), and...'. It's used to connect clauses, indicating a reason, cause, or sequence of events in the negative. There are two forms of 「ない」: an auxiliary verb used with verbs, and an い-adjective used with other い-adjectives, な-adjectives, and nouns.
+
+  For verbs, the negative form ends in 「ない」, and this 「ない」 then changes to 「なくて」. For example, 「行かない」 (will not go) becomes 「行かなくて」 (will not go, and/or because will not go).
+
+  For い-adjectives, the negative form ends in 「くない」, which changes to 「くなくて」. For example, 「高くない」 (not expensive) becomes 「高くなくて」 (not expensive, and/or because not expensive).
+
+  For な-adjectives and nouns, 「ではない」 or 「じゃない」 is used to form the negative. These then change to 「でなくて」 or 「じゃなくて」 respectively. For example, 「静かではない」 (not quiet) becomes 「静かでなくて」, and 「学生ではない」 (not a student) becomes 「学生でなくて」.
+
+  It's **important** to distinguish 「なくて」 from 「ないで」. While both express negation, 「ないで」 typically means "without doing," emphasizing the absence of an action. In contrast, 「なくて」 often indicates reasons or causes stemming from a negative condition or lack of something. It can also simply link two negative statements without a strong causal relationship.
+false_friends:
+  - term: ないで
+    meaning: Without doing
+    kind: often confused with
+    nuance: Unlike 「なくて」, 「ないで」 emphasizes the absence of an action rather than a reason or cause. For
+      example, 「朝ご飯 を 食べない で 学校 へ 行った」 (I went to school without eating breakfast).
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: ではない・じゃなくて
+    meaning: Not A but B
+    kind: similar expression
+    nuance: While 「なくて」 connects clauses, 「ではないくて」 / 「じゃなくて」 can also be used to specify that something
+      is not A but rather B. For example, 「これ は りんご では {なくて} みかん です」 (This is not an apple but a mandarin
+      orange). In this case, the focus shifts to clarification rather than simply listing or indicating
+      a cause.
+    grammar_point: ではない・じゃなくて (not A but B)
+  - term: Verb[て] (non-sequential events)
+    meaning: Connecting non-sequential events or states
+    kind: similar expression
+    nuance: While the regular 「て」 form can connect clauses, 「なくて」 specifically introduces a negative connotation
+      to that connection. 「なくて」 is more about indicating a reason or cause originating from a negative
+      condition or simply linking negative states, whereas the regular 「て」 form links positive or neutral
+      actions/states.
+    grammar_point: Verb[て] (non-sequential events)
+  - term: から
+    meaning: Because; since (reason/cause)
+    kind: similar expression
+    nuance: 「から」 explicitly states a reason or cause, often with a more direct or emphatic tone. While
+      「なくて」 can imply a reason, its primary function is often simply to connect a negative clause, acting
+      more like 'and (not)' or 'not (A), so (B)' without the strong emphasis on 'because'.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ので
+    meaning: Because; since (reason/cause, often softer)
+    kind: similar expression
+    nuance: Similar to 「から」, 「ので」 also states a reason or cause, but typically in a softer, more explanatory
+      tone. 「なくて」, while also able to imply a cause, focuses more on the negative state itself as part
+      of a connected idea, without as strong an explicit causal declaration.
+    grammar_point: '[Clause]から (because・so)'
+  - term: し〜し
+    meaning: And; listing reasons
+    kind: similar expression
+    nuance: 「し〜し」 is used to list multiple reasons or characteristics, implying there might be other unstated
+      ones. 「なくて」 focuses on a single negative condition connecting to the next clause, often implying
+      a direct consequence, rather than just listing multiple points.
+    grammar_point: し〜し (and; listing reasons)
+post_false_friends_writeup: To avoid confusion, remember that 「ないで」 focuses on doing something *without*
+  doing something else, while 「なくて」 is used to explain a reason or state based on a negative condition.
+  「でなくて」 or 「じゃなくて」 can also be used to correct or clarify what something *is not* in favor of what it
+  actually *is*. The basic 「て」 form generally connects actions sequentially, but 「なくて」 introduces a negative
+  element to that sequence or connection.
+examples:
+  - english: Because I didn't do my homework yesterday, I got scolded by the teacher today.
+    japanese:
+      - 昨日 宿題 を し {なく て}、今日 先生 に 怒ら れ た。
+      - 昨日 宿題 を し {なく て}、今日 先生 に 怒ら れ まし た。
+    english_literally: Yesterday homework not doing, today teacher by scolded was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 宿題 を し なかっ た {から}、今日 先生 に 怒ら れ た。
+        english: Because I didn't do my homework yesterday, I got scolded by the teacher today.
+        hint: 「から」 explicitly states the reason or cause. We are looking for a more subtle connection
+          of facts without explicitly stating 'because'.
+      - competing_japanese:
+          - 昨日 宿題 を し なかっ た {の で}、今日 先生 に 怒ら れ た。
+        english: Because I didn't do my homework yesterday, I got scolded by the teacher today.
+        hint: 「ので」 also explicitly states the reason or cause, often with a slightly softer tone than
+          「から」. We are looking for a straightforward connection of a negative state leading to an M.
+    scene: A student explaining to a friend why they are upset.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「しなくて」 clearly indicates the reason for being scolded. The casual tone, including
+      the omission of particles in natural speech like `宿題をしなくて`, is typical of young male friends. The
+      passive form `怒られた` highlights the speaker as the recipient of the action.
+  - english: This soup isn't hot, and it's a bit cold.
+    japanese:
+      - この スープ は 熱く {なく て}、少し 冷たい です。
+      - この スープ は 熱く {なく て}、少し 冷たい。
+      - この スープ、熱く {なく て}、ちょっと 冷たい。
+    english_literally: This soup hot not, a little cold is.
+    competing_grammar:
+      - competing_japanese:
+          - この スープ は 熱く ない {し}、少し 冷たい です。
+        english: This soup isn't hot, and it's a bit cold.
+        hint: 「し」 is used to list reasons or attributes. We are looking for a more direct connection between
+          the two characteristics of the soup.
+      - competing_japanese:
+          - この スープ は 熱く ない です。少し 冷たい です。
+        english: Using two separate sentences states two facts. We are looking for a way to connect these
+          facts smoothly in one statement.
+        hint: Using two separate sentences states two facts. We are looking for a way to connect these
+          facts smoothly in one statement.
+    scene: A customer subtly informing a waiter about the temperature of their soup.
+    register: formal
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「熱くなくて」 connects two attributes of the soup. The polite `です` and the subtle phrasing `少し 冷たい
+      です` reflect an indirect communication style, which, combined with the `apologetic` setting, is often
+      associated with older female speakers in formal service interactions. The overall indirectness aims
+      to maintain harmony.
+  - english: He's not a student; he's already working, you know.
+    japanese:
+      - 彼 は 学生 じゃ {なく て}、もう 働い て いる よ。
+      - 彼 は 学生 じゃ {なく て}、もう 働い て い ます よ。
+      - 彼 は 学生 で は {なく て}、もう 働い て い る よ。
+      - 彼 は 学生 で は {なく て}、もう 働い て い ます よ。
+    english_literally: He student not, already working is you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 学生 で は ない、もう 働い て いる よ。
+        english: He's not a student; he's already working, you know.
+        hint: 「ではない」 is the more formal negative form for nouns/な-adjectives. We are looking for a more
+          casual correction in this context.
+      - competing_japanese:
+          - 彼 は 学生 で は ない です {が}、もう 働い て いる よ。
+        english: He's not a student, but he's already working, you know.
+        hint: Adding 「ですが」 emphasizes a contrast or concession. We are looking for a direct clarification
+          without an explicit 'but'.
+    scene: Someone correcting a misunderstanding about a mutual acquaintance's status.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「学生じゃなくて」 clarifies his current status. The casual tone, exemplified by the use of `じゃなくて`
+      over `ではなくて` and the assertive `よ` at the end, is typical of younger male speakers conveying information
+      directly to peers in a casual setting.
+  - english: This room isn't quiet, so I can't concentrate.
+    japanese:
+      - この 部屋 は 静か じゃ {なく て}、集中 でき ない です。
+      - この 部屋 は 静か じゃ {なく て}、集中 でき ない。
+      - この 部屋 は 静か で は {なく て}、集中 でき ない です。
+      - この 部屋 静か じゃ {なく て}、集中 でき ない。
+    english_literally: This room quiet not, concentrate cannot.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 静か で は ない {の で}、集中 でき ない です。
+        english: Because this room isn't quiet, I can't concentrate.
+        hint: 「ので」 explicitly states the reason. We are looking for a slightly more direct way to connect
+          the lack of quietness to the inability to concentrate.
+      - competing_japanese:
+          - この 部屋 は 静か で は ない {から}、集中 でき ない です。
+        english: Because this room isn't quiet, I can't concentrate.
+        hint: 「から」 also explicitly states the reason, often with a stronger emphasis than 「ので」. We are
+          looking for a more natural flow in a casual complaint.
+    scene: Someone explaining why they need to find another place to study.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「静かじゃなくて」 uses the negative form of a な-adjective (`静か`) and links it as the cause for the
+      inability to concentrate. The straightforward tone and casual phrasing like `集中できない` are typical
+      of younger female speakers making an honest statement to a close friend.
+  - english: It's not very cold today; it's an easy day to spend, isn't it?
+    japanese:
+      - 今日 は あまり 寒く {なく て}、過ごし やすい 日 です ね。
+      - 今日 は あまり 寒く {なく て}、過ごし やすい 日 だ ね。
+      - 今日 は あまり 寒く {なく て}、過ごし やすい ね。
+    english_literally: Today not very cold, easy to spend day is, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は あまり 寒く ない {の で}、過ごし やすい 日 です ね。
+        english: Because it's not very cold today, it's an easy day to spend, isn't it?
+        hint: 「ので」 is used to state a reason or cause. We are looking for a simple, soft connection of
+          two facts about the weather.
+      - competing_japanese:
+          - 今日 は あまり 寒く ない です {し}、過ごし やすい 日 です ね。
+        english: It's not very cold today, and it's an easy day to spend, isn't it?
+        hint: 「し」 is used to list reasons or attributes. We are looking for a direct link where one characteristic
+          leads to the other.
+    scene: Two neighbors casually remarking on the pleasant weather.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「寒くなくて」 is the negative te-form of the い-adjective `寒い`. It connects the lack of coldness
+      to the pleasantness of the day. The phrase `過ごしやすい日ですね` (an easy day to spend, isn't it?) with the
+      concluding `ね` is common in friendly, casual conversation, especially among older female speakers
+      seeking gentle agreement or sharing a pleasant observation.
+  - english: This movie wasn't interesting, so I fell asleep halfway through.
+    japanese:
+      - この 映画 は 面白く {なく て}、途中 で 寝 て しまっ た。
+      - この 映画 は 面白く {なく て}、途中 で 寝 て しまい まし た。
+    english_literally: This movie interesting not, midway fell asleep.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は 面白く なかっ た {から}、途中 で 寝 て しまっ た。
+        english: Because this movie wasn't interesting, I fell asleep halfway through.
+        hint: 「から」 explicitly states the reason. We are looking for a more natural, flowing connection
+          where the lack of interest directly resulted in falling asleep.
+      - competing_japanese:
+          - この 映画 は 面白く なかっ た {の で}、途中 で 寝 て しまっ た。
+        english: Because this movie wasn't interesting, I fell asleep halfway through.
+        hint: 「ので」 also states a reason. We are looking for a slightly more direct connection of cause
+          and effect in a casual narrative.
+    scene: A friend describing a disappointing movie experience.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「面白くなくて」 is the negative te-form of `面白い`, indicating the reason for falling asleep. The direct
+      and somewhat blunt expression of a negative experience, like `寝てしまった`, is typical in casual conversation
+      among younger male speakers when sharing such an experience.
+  - english: She's not kind; she's a bit of a cold person.
+    japanese:
+      - 彼女 は 親切 じゃ {なく て}、少し 冷たい 人 だ。
+      - 彼女 は 親切 じゃ {なく て}、少し 冷たい 人 です。
+      - 彼女 は 親切 で は {なく て}、少し 冷たい 人 だ。
+      - 彼女 は 親切 で は {なく て}、少し 冷たい 人 です。
+    english_literally: She kind not, a little cold person is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 親切 で は ない {し}、少し 冷たい 人 だ。
+        english: She's not kind, and she's a bit of a cold person.
+        hint: 「し」 is used to list reasons or attributes. We are looking for a more direct connection between
+          her lack of kindness and her being a cold person.
+      - competing_japanese:
+          - 彼女 は 親切 で は ない です。少し 冷たい 人 だ。
+        english: She's not kind. She's a bit of a cold person.
+        hint: Using two separate sentences states two facts. We are looking for a way to smoothly combine
+          these into a single descriptive statement.
+    scene: Someone giving their honest, albeit critical, opinion about a colleague's personality.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「親切じゃなくて」 uses the negative form of the な-adjective `親切` (kind), connecting it directly to
+      the description of being a `少し 冷たい 人` (a bit of a cold person). This straightforward and critical
+      observation, softened slightly by `少し`, is common in serious discussions about character, reflecting
+      a pragmatic communication style often found among older female speakers.
+  - english: I didn't have much time, so I couldn't finish the report.
+    japanese:
+      - 時間 が あまり {なく て}、レポート を 終わら せ られ なかっ た。
+      - 時間 が あまり {なく て}、レポート を 終わら せ られ ませ ん でし た。
+    english_literally: Time not much not having, report finish could not.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 が あまり ない {の で}、レポート を 終わら せ られ なかっ た。
+        english: Because there wasn't much time, I couldn't finish the report.
+        hint: 「ので」 explicitly states the reason. We are looking for a more direct connection of facts.
+      - competing_japanese:
+          - 時間 が あまり なかっ た {から}、レポート を 終わら せ られ なかっ た。
+        english: Because there wasn't much time, I couldn't finish the report.
+        hint: 「から」 emphasizes the reason more strongly. We are looking for a more fluid connection between
+          the lack of time and the inability to finish.
+    scene: A busy professional explaining why they missed a deadline to their boss.
+    register: formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase `時間がなくて` (not having time) directly serves as the reason for failing to complete
+      the report. The use of `～させられませんでした` (passive causative negative in polite form) emphasizes the
+      speaker's inability to complete it. The formal register and polite language used by the older male
+      speaker suggest a responsible tone in a professional context.
+  - english: Since I wasn't feeling well, I went home early.
+    japanese:
+      - 気分 が よく {なく て}、早く 家 に 帰っ た。
+      - 気分 が よく {なく て}、早く 家 に 帰り まし た。
+    english_literally: Feeling not good, early home to returned.
+    competing_grammar:
+      - competing_japanese:
+          - 気分 が {よかっ た}。
+        english: I felt good.
+        hint: This is the opposite meaning. We are looking for an expression indicating a negative physical
+          state.
+      - competing_japanese:
+          - 気分 が 悪い {の で}、早く 家 に 帰っ た。
+        english: Because I felt bad, I went home early.
+        hint: 「ので」 explicitly states the reason. We are looking for a more natural progression of facts
+          leading to an action.
+    scene: A friend explaining to another friend why they left a gathering early.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「気分がよくなくて」 (not feeling well) uses the negative te-form of the い-adjective `良い` (good) to
+      explain the reason for going home. This natural phrasing for expressing a minor ailment or discomfort,
+      along with the casual register (`帰った`), is common among younger female friends.
+  - english: It's not a misunderstanding; it's the truth.
+    japanese:
+      - 誤解 じゃ {なく て}、事実 です。
+      - 誤解 じゃ {なく て}、事実 だ。
+      - 誤解 で は {なく て}、事実 です。
+      - 誤解 で は {なく て}、事実 だ。
+    english_literally: Misunderstanding not, truth is.
+    competing_grammar:
+      - competing_japanese:
+          - 誤解 {で は なく}、事実 です。
+        english: It is not a misunderstanding, but rather the truth.
+        hint: 「ではなく」 is a more formal and common way to express 'not A, but B'. We are focusing on the
+          versatility of the 'te-form' of negation.
+      - competing_japanese:
+          - 誤解 で は ない です。事実 です。
+        english: It is not a misunderstanding. It is the truth.
+        hint: Using two separate sentences states two facts. We are looking for a way to smoothly connect
+          these as a clarification.
+    scene: A person clarifying a situation to someone who is confused.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「誤解じゃなくて」 uses the negative te-form of a noun (`誤解`) followed by `じゃなくて`, clearly stating
+      what something is *not* before stating what it *is*. This direct and definitive way to correct a
+      misconception, common in serious discussions where precision is important, aligns with the authoritative
+      tone often found in older male speech, especially in a semi-formal register.
+post_example_writeup: When using 「なくて」, pay attention to whether you're connecting verbs, い-adjectives,
+  or nouns/な-adjectives. This will determine whether you're using the plain 「なくて」 (for verbs and い-adjectives)
+  or 「でなくて」/「じゃなくて」 (for nouns and な-adjectives). The nuance often leans towards the negative state or
+  action being a reason or cause for the subsequent clause, but it can also simply link two negative facts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なくて-conjunction

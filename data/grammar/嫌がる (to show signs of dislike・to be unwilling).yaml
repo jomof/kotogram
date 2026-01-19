@@ -1,0 +1,309 @@
+grammar_point: 嫌がる (to show signs of dislike・to be unwilling)
+learn_before:
+  - 嫌 (unpleasant・disagreeable)
+meaning: to show signs of dislike・to be unwilling
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 嫌がる
+    rarity: common
+    meaning: to show signs of dislike
+  - conjugation-type: non-past polite (～ます)
+    form: 嫌がります
+    rarity: common
+    meaning: to show signs of dislike (polite)
+  - conjugation-type: past plain (～た)
+    form: 嫌がった
+    rarity: common
+    meaning: showed signs of dislike
+  - conjugation-type: past polite (～ました)
+    form: 嫌がりました
+    rarity: common
+    meaning: showed signs of dislike (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 嫌がらない
+    rarity: common
+    meaning: not show signs of dislike
+  - conjugation-type: negative non-past polite (～ません)
+    form: 嫌がりません
+    rarity: common
+    meaning: not show signs of dislike (polite)
+  - conjugation-type: te-form (～て)
+    form: 嫌がって
+    rarity: common
+    meaning: showing signs of dislike
+  - conjugation-type: concessive (～ても)
+    form: 嫌がっても
+    rarity: less common
+    meaning: even if showing signs of dislike
+  - conjugation-type: causative (～させる)
+    form: 嫌がらせる
+    rarity: less common
+    meaning: to make someone show signs of dislike
+  - conjugation-type: passive (～られる/～かれる)
+    form: 嫌がられる
+    rarity: less common
+    meaning: to be disliked or avoided (by someone)
+pronunciation:
+  katakana: いやがる
+  romaji: iyagaru
+formation:
+  な-Adjective[stem] + がる: Attaches to the stem of certain な-adjectives (e.g., 嫌い) to form a verb indicating
+    that someone exhibits signs of that feeling.
+  Noun を 嫌がる: To show dislike for a noun, or to be unwilling to do something involving a noun.
+  Verb[plain] の を 嫌がる: To show unwillingness to perform a verb action.
+jlpt: N3
+etymology: The がる suffix is added to the stems of adjectives to form verbs that describe the outward manifestation
+  of an emotion or state typically associated with that adjective. For 嫌がる, it comes from the な-adjective
+  嫌い (kirai), meaning "disliked" or "hateful." By attaching がる to the stem 嫌い (which often reduces to
+  嫌が), it creates the verb 嫌がる, literally meaning "to show signs of disliking" or "to act as if one dislikes."
+  This structure applies to other emotional adjectives like 悲しい (sad) becoming 悲しがる (to act sad) or 欲しがる
+  (to want).
+writeup: |-
+  嫌がる is a verb that describes a third person's **observable behavior** that indicates dislike, unwillingness, or aversion towards something or doing something. It is formed by attaching the suffix がる to the stem of the な-adjective 嫌い (kirai), meaning "disliked" or "hateful."
+
+  The key nuance of 嫌がる lies in its focus on **external manifestation**. You use 嫌がる when you observe someone's actions and infer that they dislike something or are unwilling to do it. It implies that the subject is **showing signs** of aversion, perhaps through facial expressions, body language, or verbal protests, rather than directly stating their internal feeling.
+
+  For example, if a child pushes away a plate of vegetables, you might say 子供が野菜を**嫌がっています** (Kodomo ga yasai o iyagatte imasu - The child is showing signs of disliking the vegetables). You are describing their actions, not necessarily their innermost thoughts.
+
+  **Important Considerations:**
+  *   **Third-person perspective only**: 嫌がる cannot be used to describe your *own* feelings of dislike. For your own feelings, you would use 嫌い or 嫌だ.
+      *   Incorrect: 私は納豆を嫌がります。(I show signs of disliking natto.)
+      *   Correct: 私は納豆が嫌いです。(I dislike natto.)
+  *   嫌がる implies a **slight resistance or aversion**, often a subtle one. If the dislike is very strong or explicit, 嫌い might be more direct.
+  *   While 嫌い describes a static state of dislike, 嫌がる describes an **action or ongoing behavior** of showing dislike or unwillingness.
+false_friends:
+  - term: 嫌い
+    meaning: disliked
+    kind: similar expression
+    nuance: 嫌い states a direct internal dislike. 嫌がる describes an *observable behavior* indicating dislike.
+      You use 嫌い for your own feelings, and it can also describe others' feelings when you are confident
+      about them, or if you are stating a general truth.
+    grammar_point: な-Adjectives (adjectival nouns)
+  - term: 嫌だ
+    meaning: I don't want to・no!
+    kind: similar expression
+    nuance: 嫌だ is a more direct, sometimes emphatic, expression of not wanting something, often used in
+      speech to express one's own immediate refusal or objection. 嫌がる is for observing *someone else's*
+      behavior of unwillingness.
+    grammar_point: な-Adjective[だ] (plain present)
+  - term: いやいや
+    meaning: unwillingly・reluctantly
+    kind: similar expression
+    nuance: いやいや describes *how* an action is done (with reluctance). 嫌がる describes the *act of showing
+      dislike/unwillingness* itself.
+    grammar_point: <suggest>:いやいや (unwillingly)
+  - term: 〜たくない
+    meaning: do not want to do
+    kind: similar expression
+    nuance: 〜たくない is used for one's own desires. 嫌がる is for *observing someone else's* unwillingness.
+    grammar_point: Verb[たい] (desiderative)
+post_false_friends_writeup: While 嫌がる focuses on observable outward signs of aversion, 嫌い and 嫌だ directly
+  state an internal feeling of dislike. 嫌い is generally used for one's own feelings or for stating a general
+  characteristic, whereas 嫌だ is a more immediate, often vocal, expression of refusal or dislike. いやいや
+  describes the *manner* of an action, indicating that it was done reluctantly, rather than the act of
+  showing dislike itself. Finally, 〜たくない is about one's *own* lack of desire to do something, contrasting
+  with 嫌がる which is about *someone else's* exhibited unwillingness. Remember, 嫌がる implies you are *seeing*
+  the dislike, not just knowing it.
+examples:
+  - english: The child shows signs of disliking vegetables, so he doesn't eat them.
+    japanese:
+      - 子供 は 野菜 を {嫌 がっ て} 食べ ませ ん。
+      - 子供 は 野菜 を {嫌 がっ て} 食べ ない。
+    english_literally: The child, showing signs of disliking vegetables, does not eat them.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 野菜 が 嫌い だ から、食べ ませ ん。
+        english: The child dislikes vegetables, so he doesn't eat them.
+        hint: 「嫌い」states the child *is disliked* or *dislikes* something. We're looking for the child
+          *showing signs of dislike*.
+      - competing_japanese:
+          - 子供 は 野菜 を 食べ たく ない から、食べ ませ ん。
+        english: The child doesn't want to eat vegetables, so he doesn't eat them.
+        hint: This describes the child's *internal feeling* of not wanting to eat. We're looking for the
+          child's *outward manifestation* of dislike.
+    scene: A parent is observing their child at dinner, who is making faces at the vegetables.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: 「嫌がって」describes the child's observable behavior (e.g., pushing the plate away, making a face)
+      indicating dislike. This is a common situation for this grammar point.
+  - english: He shows signs of being unwilling to do overtime work.
+    japanese:
+      - 彼 は 残業 を {嫌 がっ て} い ます。
+      - 彼 は 残業 を {嫌 がっ て} いる。
+    english_literally: As for him, he is showing signs of disliking overtime work.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 残業 が 嫌い です。
+        english: He dislikes overtime work.
+        hint: This simply states his dislike. We need to describe his *observable reluctance* to do overtime.
+    scene: Colleagues are discussing a coworker's attitude towards extra work.
+    register: semi-formal
+    setting: professional
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    nuance: 「嫌がっています」refers to visible signs like sighing, complaining, or slow movements when faced with
+      overtime, not a direct statement of dislike. This is typical in a professional context where direct
+      confrontation might be avoided.
+  - english: My cat showed signs of disliking the new food and didn't eat it at all yesterday.
+    japanese:
+      - 昨日、うち の 猫 は 新しい 餌 を {嫌 がっ て} 全然 食べ ませ ん でし た。
+      - 昨日、うち の 猫 は 新しい 餌 を {嫌 がっ て} 全然 食べ なかっ た。
+    english_literally: Yesterday, my cat, showing signs of disliking the new food, did not eat at all.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、うち の 猫 は 新しい 餌 が 嫌い だっ た の で、全然 食べ ませ ん でし た。
+        english: Yesterday, my cat disliked the new food, so it didn't eat at all.
+        hint: This states the cat's dislike directly. We're looking for the *behavior* that indicates
+          dislike.
+    scene: Someone is talking about their pet's picky eating habits.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: 「嫌がって」describes the cat's behavior (e.g., sniffing and walking away) rather than explicitly
+      stating the cat's internal emotion, as one cannot directly know an animal's thoughts.
+  - english: Even if the child shows signs of being unwilling, please make them eat.
+    japanese:
+      - 子供 が {嫌 がっ て} も、食べ させ て ください。
+      - 子供 が {嫌 がっ て} も、食べ させ て よ。
+    english_literally: Even if the child shows signs of disliking it, please make them eat.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 嫌い で も、食べ させ て ください。
+        english: Even if the child is disliked, please make them eat.
+        hint: This implies the child *is* disliked. We need to describe the child *showing reluctance
+          to eat*.
+    scene: A parent is giving instructions to a babysitter about ensuring their child eats all their food.
+    register: formal
+    setting: instructional
+    conjugation: concessive (～ても)
+    nuance: 「嫌がっても」implies that despite the child's observable reluctance (e.g., fussing, crying, turning
+      away), the action still needs to be taken. This phrasing is common in instructional contexts.
+  - english: If a dog shows signs of being unwilling to walk, it might be tired.
+    japanese:
+      - 犬 が 散歩 を {嫌 がる} なら、疲れ て いる か も しれ ない。
+      - 犬 が 散歩 を {嫌 がり ます} なら、疲れ て いる か も しれ ませ ん。
+    english_literally: If a dog shows signs of disliking walks, it might be tired.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 が 散歩 が 嫌い なら、疲れ て いる か も しれ ない。
+        english: If a dog dislikes walks, it might be tired.
+        hint: This states the dog's dislike for walks. We are observing the dog's *unwillingness* to walk.
+    scene: A vet is giving advice to a pet owner who is concerned about their dog's behavior.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「嫌がるなら」uses the plain form to suggest a general condition for a hypothetical observation,
+      typical in explanations or advice. It focuses on the observable behavior of the dog.
+  - english: She's the kind of person who shows signs of disliking anything difficult.
+    japanese:
+      - 彼女 は 何 で も 難しい こと を {嫌 がる} タイプ です。
+      - 彼女 は 何 で も 難しい こと を {嫌 がる} タイプ だ。
+    english_literally: As for her, she is the type that shows signs of disliking anything difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 何 で も 難しい こと が 嫌い な タイプ です。
+        english: She is the type who dislikes anything difficult.
+        hint: This describes her general dislike. We're talking about her *tendency to exhibit aversion*
+          to difficult things.
+    scene: Friends are discussing a mutual acquaintance's character and tendencies.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: 「嫌がる」here indicates a habitual tendency or character trait observed in the third person, describing
+      a general behavioral pattern rather than a one-time event.
+  - english: My boss shows signs of being unwilling to take responsibility for the failure.
+    japanese:
+      - 私 の 上司 は 失敗 の 責任 を {嫌 がっ て} い ます。
+      - 私 の 上司 は 失敗 の 責任 を {嫌 がっ て} いる。
+    english_literally: As for my boss, he is showing signs of disliking responsibility for the failure.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 上司 は 失敗 の 責任 が 嫌い です。
+        english: My boss dislikes responsibility for failure.
+        hint: This states his dislike for responsibility. We need to describe his *observable actions*
+          of avoiding responsibility.
+    scene: An employee is complaining to a colleague about their boss's reaction to a project failure.
+    register: semi-formal
+    setting: professional
+    conjugation: progressive (～ている)
+    nuance: 「嫌がっています」describes the boss's actions (e.g., deflecting blame, avoiding discussions, assigning
+      tasks to others) that suggest an unwillingness to take responsibility, as observed by the employee.
+  - english: Children often show signs of disliking injections.
+    japanese:
+      - 子供 は 注射 を {嫌 がり} ます。
+      - 子供 は 注射 を {嫌 がる}。
+    english_literally: As for children, they show signs of disliking injections.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 注射 が 嫌い です。
+        english: Children dislike injections.
+        hint: This states children's general dislike for injections. We're describing their *typical behavior*
+          when getting injections.
+    scene: A nurse is talking about common reactions of pediatric patients to medical procedures.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: 「嫌がります」describes a general, observable tendency of children, typical in professional contexts
+      where one might generalize patient behavior based on experience.
+  - english: Because she showed signs of being unwilling to join, we decided not to force her.
+    japanese:
+      - 彼女 が 参加 を {嫌 がっ た} の で、無理 強い し ない こと に し まし た。
+      - 彼女 が 参加 を {嫌 がっ た} の で、無理 強い し ない こと に し た。
+    english_literally: Because she showed signs of disliking participation, we decided not to force her.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 参加 し たく なかっ た の で、無理 強い し ない こと に し まし た。
+        english: She didn't want to participate, so we decided not to force her.
+        hint: This focuses on her internal desire. We're talking about the *outward signs* of her unwillingness.
+    scene: Friends are organizing an event and discussing a person who seemed reluctant to participate.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: 「嫌がったので」indicates that her observable reluctance (e.g., quietness, hesitation, making excuses)
+      was the reason for the decision, highlighting that the decision was based on her apparent reaction.
+  - english: He shows signs of being unwilling to be photographed.
+    japanese:
+      - 彼 は 写真 に 撮ら れる の を {嫌 がっ て} い ます。
+      - 彼 は 写真 に 撮ら れる の を {嫌 がっ て} いる。
+    english_literally: As for him, he is showing signs of disliking being photographed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 写真 に 撮ら れる の が 嫌い です。
+        english: He dislikes being photographed.
+        hint: This states his dislike. We need to describe his *observable actions* when someone tries
+          to photograph him.
+    scene: A photographer is observing a subject who is trying to avoid having their picture taken.
+    register: casual
+    setting: professional
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    nuance: 「嫌がっています」describes visible actions like turning away, covering their face, or retreating from
+      the camera, which are interpreted as a dislike for being photographed.
+  - english: Even if he doesn't show signs of disliking it, you shouldn't assume he likes it.
+    japanese:
+      - 彼 が {嫌 がら ない} から と 言っ て、好き だ と 決めつける べき で は ない。
+      - 彼 が {嫌 がら ない} から と 言っ て、好き だ と 決めつける べき じゃ ない。
+    english_literally: Just because he doesn't show signs of disliking it, you shouldn't conclude that
+      he likes it.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 嫌い じゃ ない から と 言っ て、好き だ と 決めつける べき で は ない。
+        english: Just because he doesn't dislike it, you shouldn't conclude that he likes it.
+        hint: This implies he doesn't dislike it directly. We're observing the *absence of outward signs*
+          of dislike.
+    scene: Someone is giving advice about understanding people's feelings, cautioning against making assumptions.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: 「嫌がらない」refers to the *absence* of observable signs of dislike. This sentence emphasizes that
+      lack of outward aversion does not automatically equate to liking something, highlighting the subtlety
+      of expressing feelings.
+post_example_writeup: As seen in the examples, 嫌がる is versatile and can be used in various tenses and
+  sentence structures, always maintaining its core meaning of describing an *observed* unwillingness or
+  dislike in a third party. Pay close attention to context to understand the specific nuance, as it relies
+  on visible cues and actions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/嫌がる

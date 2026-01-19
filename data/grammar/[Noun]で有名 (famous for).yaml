@@ -1,0 +1,227 @@
+grammar_point: '[Noun]で有名 (famous for)'
+learn_before:
+  - Verb[て] (and then)
+  - あの (interjection)
+  - ずいぶん (quite・considerably)
+  - です (polite copula)
+  - とくれば (if it comes to)
+  - な-Adjective[だ] (plain present)
+  - びる (to seem like)
+  - も〜ば〜も (sometimes this・sometimes that)
+  - 又〜も (additionally)
+  - 毎・まい (every・per)
+meaning: famous for
+pronunciation:
+  katakana: デユウメイ
+  romaji: de yūmei
+formation:
+  Noun + で + 有名: Indicates that someone or something is famous for a particular characteristic, skill,
+    or reason (Noun).
+jlpt: N4
+etymology: The particle 「で」 in this construction originally signifies 'by means of' or 'because of', indicating
+  the cause or reason for something. When combined with 「有名」(yūmei, meaning 'famous'), it naturally evolved
+  to express 'famous for' that specific thing or reason. This usage aligns with other instances of 「で」
+  indicating a defining characteristic or method.
+writeup: |-
+  The grammar pattern 「〜で有名」(〜 de yūmei) is used to express that someone or something is famous **for** a particular attribute, skill, product, or characteristic. The noun placed before 「で」 is the specific reason for which the subject is known. This pattern explicitly links the fame to a concrete element or quality, highlighting what makes the person or thing stand out. For example, a city might be famous for its food, a person for their art, or a company for its innovative technology. This phrase is generally neutral in register and can be used in both formal and informal contexts to state a widely recognized fact.
+
+  It's important to understand that the 「で」 here isn't indicating a location, but rather the 'means' or 'cause' of the fame. Think of it as 'famous _by means of_ X' or 'famous _because of_ X'.
+false_friends:
+  - term: で知られる (known for)
+    meaning: To be known for; to be famous for (more emphasis on general recognition)
+    kind: similar expression
+    nuance: 「〜で知られる」 is very similar to 「〜で有名」 but carries a slightly broader nuance of being 'known for'
+      something, implying general recognition rather than necessarily widespread fame. It can be used
+      for less universally famous things or people.
+    grammar_point: <suggest>:で知られる (known for)
+  - term: に関して有名 (famous regarding)
+    meaning: Famous regarding; famous in connection with (implies a broader area of fame)
+    kind: similar expression
+    nuance: While 「〜で有名」 highlights the direct cause of fame, 「〜に関して有名」 suggests fame in a broader area
+      or topic. For example, a professor might be famous for 'their research' (その研究で有名) or famous 'regarding
+      space science' (宇宙科学に関して有名).
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: の名を持つ (to have the name)
+    meaning: To have the name of; to be called (emphasizes the name itself)
+    kind: similar expression
+    nuance: 「〜の名を持つ」 emphasizes possessing a specific name or title, not necessarily being famous for
+      something. It focuses on the designation rather than the reason for recognition.
+    grammar_point: <suggest>:名 を 持つ (to have the name)
+post_false_friends_writeup: While 「〜で知られる」 is often interchangeable with 「〜で有名」, it can be used for things
+  that are known but not necessarily 'famous' in a grand sense. 「〜に関して有名」 is broader, indicating fame
+  within a certain field or topic rather than for a specific attribute. 「〜の名を持つ」 is entirely different,
+  simply stating that something possesses a certain name, without implying fame at all.
+examples:
+  - english: Kyoto is famous for its beautiful temples.
+    japanese:
+      - 京都 は 美しい お 寺 {で 有名} です。
+      - 京都 は 美しい お 寺 {で 有名} だ。
+    english_literally: Kyoto, as for, beautiful temples by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - 京都 は 美しい お 寺 の 名 を 持ち ます。
+        english: Kyoto has the name of beautiful temples.
+        hint: We're looking for what Kyoto is famous for, not just what name it holds. 「の名を持つ」 describes
+          the name something has, not the reason for its fame.
+    scene: Talking about famous places in Japan.
+    register: formal
+    setting: informative
+  - english: He is famous for his unique artistic style.
+    japanese:
+      - 彼 は 独特 な 芸術 スタイル {で 有名} です。
+      - 彼 は 独特 な 芸術 スタイル {で 有名} だ。
+    english_literally: He, as for, unique artistic style by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 独特 な 芸術 スタイル {に 関し} て 有名 です。
+        english: He is famous regarding his unique artistic style.
+        hint: While similar, 「に関して有名」 is about fame 'regarding' a broader area. We want to emphasize the
+          direct cause of his fame, his 'style itself'.
+    scene: Discussing a well-known artist.
+    register: formal
+    setting: academic
+  - english: That restaurant is famous for its delicious ramen.
+    japanese:
+      - あの レストラン は おいしい ラーメン {で 有名} だ。
+      - あの レストラン は おいしい ラーメン {で 有名} です。
+    english_literally: That restaurant, as for, delicious ramen by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は おいしい ラーメン の こと {で 知ら} れる。
+        english: That restaurant is known for its delicious ramen.
+        hint: Both are correct, but 「で有名」 implies a higher degree of fame, whereas 「で知られる」 can just mean
+          'known'.
+    scene: Casual conversation between friends about local eateries.
+    register: casual
+    setting: friendly
+  - english: This company is famous for its cutting-edge technology.
+    japanese:
+      - この 会社 は 最 先端 の テクノロジー {で 有名} です。
+      - この 会社 は 最 先端 の テクノロジー {で 有名} だ。
+    english_literally: This company, as for, cutting-edge technology by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 は 最 先端 の テクノロジー {を 持っ} て い ます。
+        english: This company has cutting-edge technology.
+        hint: We're discussing why the company is famous, not just what it possesses. 「を持っている」 only states
+          possession, not fame.
+    scene: A business presentation.
+    register: formal
+    setting: professional
+  - english: The town became famous for its annual cherry blossom festival.
+    japanese:
+      - その 町 は 毎年 の 桜 祭り {で 有名} に なり まし た。
+      - その 町 は 毎年 の 桜 祭り {で 有名} に なっ た。
+    english_literally: That town, as for, every year's cherry blossom festival by means of, became famous.
+    competing_grammar:
+      - competing_japanese:
+          - その 町 は 毎年 の 桜 祭り を {催し} ます。
+        english: That town holds an annual cherry blossom festival.
+        hint: We're talking about the town's fame, not just that it hosts the festival. 「を催します」 only states
+          the event.
+    scene: A local news report on tourism.
+    register: formal
+    setting: informative
+  - english: That actor is famous for his versatile acting.
+    japanese:
+      - あの 俳優 は 演技 の 幅広 さ {で 有名} です。
+      - あの 俳優 は 演技 の 幅広 さ {で 有名} だ。
+    english_literally: That actor, as for, acting's versatility by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - あの 俳優 は 演技 が {上手い} です。
+        english: That actor is good at acting.
+        hint: Being 'good at acting' is a general quality. We want to express that he's 'famous' for his
+          acting versatility. 「上手い」 is an adjective describing skill, not fame.
+    scene: Film critics discussing an actor.
+    register: formal
+    setting: academic
+  - english: This region is famous for its hot springs.
+    japanese:
+      - この 地域 は 温泉 {で 有名} です。
+      - この 地域 は 温泉 {で 有名} だ。
+    english_literally: This region, as for, hot springs by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 に は 温泉 が {あり} ます。
+        english: This region has hot springs.
+        hint: While true, merely having hot springs doesn't mean it's famous for them. We need a phrase
+          that explicitly links the hot springs to its fame. 「があります」 states existence.
+    scene: A travel guide description.
+    register: formal
+    setting: informative
+  - english: She is famous for always being late.
+    japanese:
+      - 彼女 は いつ も 遅刻 する こと {で 有名} だ。
+      - 彼女 は いつ も 遅刻 する こと {で 有名} です。
+    english_literally: She, as for, always being late thing by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は いつ も 遅刻 {し} ます。
+        english: She is always late.
+        hint: We're talking about the 'fact' that she is famous for being late, not just that she is late.
+          「します」 states a habit, not the fame associated with it.
+    scene: Casual gossip among friends.
+    register: casual
+    setting: friendly
+  - english: The band is famous for its unique fusion of traditional and modern music.
+    japanese:
+      - その バンド は 伝統 と 現代 音楽 の 独特 な 融合 {で 有名} です。
+      - その バンド は 伝統 と 現代 音楽 の 独特 な 融合 {で 有名} だ。
+    english_literally: That band, as for, tradition and modern music's unique fusion by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - その バンド は 伝統 と 現代 音楽 を {融合} さ せ ます。
+        english: That band fuses traditional and modern music.
+        hint: We are specifically talking about their 'fame' for this fusion, not just that they perform
+          it. 「融合させます」 describes their action, not their reputation.
+    scene: A music review.
+    register: formal
+    setting: academic
+  - english: The museum is famous for its collection of ancient artifacts.
+    japanese:
+      - その 博物 館 は 古代 の 遺物 の コレクション {で 有名} です。
+      - その 博物 館 は 古代 の 遺物 の コレクション {で 有名} だ。
+    english_literally: That museum, as for, ancient artifacts' collection by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - その 博物 館 は 古代 の 遺物 を {集め} て い ます。
+        english: That museum collects ancient artifacts.
+        hint: We want to state the reason for the museum's 'fame', not just that it has a collection.
+          「集めている」 describes what they do, not their public image.
+    scene: A documentary about historical preservation.
+    register: formal
+    setting: informative
+  - english: This painter is famous for his use of bold colors.
+    japanese:
+      - この 画家 は 鮮やか な 色使い {で 有名} です。
+      - この 画家 は 鮮やか な 色使い {で 有名} だ。
+    english_literally: This painter, as for, vibrant color usage by means of, is famous.
+    competing_grammar:
+      - competing_japanese:
+          - この 画家 は 鮮やか な 色 を {使い} ます。
+        english: This painter uses vibrant colors.
+        hint: We are emphasizing the reason for his 'fame', not just his technique. 「使います」 states a technique,
+          not a reputation.
+    scene: An art exhibition opening.
+    register: formal
+    setting: academic
+  - english: The region became famous for its wine production.
+    japanese:
+      - その 地域 は ワイン 生産 {で 有名} に なっ た。
+      - その 地域 は ワイン 生産 {で 有名} に なり まし た。
+    english_literally: That region, as for, wine production by means of, became famous.
+    competing_grammar:
+      - competing_japanese:
+          - その 地域 で は ワイン が {作ら} れ ます。
+        english: Wine is made in that region.
+        hint: While wine is made there, the sentence specifies that the region became 'famous' for it.
+          「作られます」 only describes production.
+    scene: A casual conversation about local industries.
+    register: casual
+    setting: friendly
+post_example_writeup: 'The usage of 「〜で有名」 is straightforward: you simply place the noun (or a noun phrase)
+  that describes the reason for the fame before 「で」. This structure allows for clear and concise communication
+  of why something or someone is renowned.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/275

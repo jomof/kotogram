@@ -1,0 +1,231 @@
+grammar_point: いっぱい (full・a lot)
+learn_before:
+  - で (for)
+meaning: full; to the brim; a lot; with all one's might; covered in
+pronunciation:
+  katakana: イッパイ
+  romaji: ippai
+formation:
+  '[Noun] + いっぱい': Expresses that the noun is full, filled with, or surrounded by something; or performing
+    an action with all of that noun's capacity/effort.
+  いっぱい + [Verb]: Modifies a verb to express a large quantity, completeness, or to the fullest extent of
+    the action.
+jlpt: N4
+etymology: The word いっぱい (一杯) originates from the combination of 一 (ichi - one) and 杯 (hai/pai - a counter
+  for cups, or a cupful). Initially, it literally referred to 'one cupful' or 'a cup full.' Over time,
+  its meaning broadened significantly to encompass general 'fullness,' 'a large quantity,' or 'to the
+  maximum extent,' as seen in expressions like '力 いっぱい' (with all one's strength). This expansion from
+  a concrete measurement to a more abstract concept of completeness or abundance is a natural linguistic
+  evolution.
+writeup: いっぱい is a highly versatile Japanese word with a core meaning centered around 'fullness' or 'completeness.'
+  However, its applications extend to expressing 'a large quantity,' 'to the utmost extent,' or even being
+  'covered in' something. It functions primarily as a noun that can also be used adverbially.
+false_friends:
+  - term: たくさん
+    meaning: many; a lot
+    kind: similar expression
+    nuance: Both 「たくさん」 and 「いっぱい」 express large quantity. However, 「いっぱい」 specifically denotes 'fullness'
+      or 'capacity,' and can also convey 'with all one's effort.' 「たくさん」 does not carry these additional
+      meanings of capacity or effort.
+    grammar_point: たくさん (many・a lot)
+  - term: 全部
+    meaning: all
+    kind: similar expression
+    nuance: 「全部」 refers to the entirety of something. 「いっぱい」 can mean 'completely' or 'to capacity,' but
+      unlike 「全部」, it doesn't necessarily imply 'all of the components.' For instance, 「お腹 が いっぱい」 means
+      'full stomach,' not 'all of stomach.'
+    grammar_point: <suggest>:全部 (all)
+  - term: 十分
+    meaning: enough; sufficient
+    kind: often confused with
+    nuance: 「十分」 means 'sufficient' or 'ample.' While something 'full' (いっぱい) might also be 'sufficient'
+      (十分), the primary meaning of 「いっぱい」 is 'filled to capacity' or 'a large quantity,' rather than just
+      'adequate.'
+    grammar_point: <suggest>:十分 (enough・suficient)
+  - term: いっぱいです
+    meaning: full (polite)
+    kind: similar expression
+    nuance: 「いっぱいです」 is simply the polite form of expressing the state of being 'full' or 'a lot.' The
+      base word 「いっぱい」 itself carries the core meaning and can be used in various grammatical structures
+      beyond just being a predicate.
+    grammar_point: です (polite copula)
+post_false_friends_writeup: While 「いっぱい」 can often be translated as 'a lot' or 'many,' similar to 「たくさん」,
+  it carries additional nuances. 「いっぱい」 often implies reaching a maximum capacity or being completely
+  filled, whether literally (e.g., a full cup) or figuratively (e.g., a full schedule, or doing something
+  with maximum effort). In contrast, 「たくさん」 simply denotes a large quantity without the implication of
+  capacity or effort. 「全部」 focuses on the entirety of items or a collection, meaning 'all' or 'whole.'
+  While 「いっぱい」 can describe something being 'completely' filled, it refers more to the state of being
+  filled rather than the sum of its parts. 「十分」 means 'enough' or 'sufficient.' While a 'full' (いっぱい)
+  state might also be 'sufficient' (十分), the primary focus of 「いっぱい」 is the state of being filled to capacity,
+  not merely meeting a requirement or standard. Therefore, when choosing between these words, consider
+  whether you want to emphasize quantity, completeness of a collection, or the state of being filled to
+  capacity or maximum effort.
+examples:
+  - english: The glass is full.
+    japanese:
+      - グラス が {いっぱい} だ。
+      - グラス が {いっぱい} です。
+    english_literally: The glass is full.
+    competing_grammar:
+      - competing_japanese:
+          - グラス が 十分 だ。
+        english: The glass is sufficient.
+        hint: 「十分」 means 'sufficient' or 'ample,' while 「いっぱい」 means 'full' or 'to the brim.' We're looking
+          for the word that means filled to capacity.
+    scene: Someone has just poured a drink into a glass.
+    register: casual
+    setting: friendly
+  - english: I'm full.
+    japanese:
+      - お腹 が {いっぱい} だ。
+      - お腹 が {いっぱい} です。
+    english_literally: My stomach is full.
+    competing_grammar:
+      - competing_japanese:
+          - お腹 が 十分 だ。
+        english: My stomach is sufficient.
+        hint: 「十分」 means 'sufficient' or 'ample,' while 「いっぱい」 means 'full' or 'to the brim.' We're looking
+          for the expression that means 'full' after eating.
+    scene: After a satisfying meal, someone expresses their contentment.
+    register: casual
+    setting: friendly
+  - english: There are a lot of people in the park.
+    japanese:
+      - 公園 に 人 が {いっぱい} いる。
+      - 公園 に 人 が {いっぱい} い ます。
+      - 公園 は 人 で {いっぱい} だ。
+      - 公園 は 人 で {いっぱい} です。
+    english_literally: In the park, people are a lot.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 に 人 が たくさん いる。
+        english: There are many people in the park.
+        hint: Both 「たくさん」 and 「いっぱい」 can mean 'many' or 'a lot.' However, 「いっぱい」 also implies 'fullness'
+          or 'to capacity.' Here, it suggests the park is quite full with people. We're looking for the
+          word that can also suggest the park is *full* of people.
+    scene: A student describes a lively public park on a sunny day to their friend.
+    register: casual
+    setting: informative
+  - english: I'll do my best to help.
+    japanese:
+      - 力 {いっぱい} 手伝い ます。
+      - 力 {いっぱい} 手伝う よ。
+      - 力 {いっぱい} 手伝う わ。
+      - 力 {いっぱい} 手伝う。
+    english_literally: With strength full, I will help.
+    competing_grammar:
+      - competing_japanese:
+          - できる だけ 手伝い ます。
+        english: I will help as much as I can.
+        hint: While 'as much as I can' is similar, '力 いっぱい' specifically emphasizes using all of one's
+          physical or mental strength. We're looking for the expression that emphasizes giving one's absolute
+          maximum effort.
+    scene: A colleague offers assistance to a stressed team member before a deadline.
+    register: teineigo (polite)
+    setting: supportive
+  - english: My clothes are covered in mud.
+    japanese:
+      - 服 が 泥 {いっぱい} だ。
+      - 服 が 泥 {いっぱい} です。
+    english_literally: Clothes are mud full.
+    competing_grammar:
+      - competing_japanese:
+          - 服 が 泥 だらけ だ。
+        english: My clothes are covered in mud (messily).
+        hint: Both imply being covered, but 「だらけ」 often carries a nuance of being messy or undesirable.
+          「いっぱい」 can be more neutral, simply stating 'full of' or 'covered in.' We're looking for the
+          phrase that just means 'covered in' without necessarily implying messiness.
+    scene: Someone has just fallen in a muddy puddle after a sudden rain shower.
+    register: casual
+    setting: humorous
+  - english: My schedule is full this week.
+    japanese:
+      - 今週 は 予定 が {いっぱい} だ。
+      - 今週 は 予定 が {いっぱい} です。
+    english_literally: This week, schedule is full.
+    competing_grammar:
+      - competing_japanese:
+          - 今週 は 予定 が たくさん ある。
+        english: This week, there are many plans.
+        hint: While 'many plans' is true, '予定 が いっぱい' specifically means the schedule is 'filled to capacity'
+          and implies no more room. We're looking for the phrase that means the schedule is completely
+          booked.
+    scene: A busy professional declines a dinner invitation from a friend.
+    register: casual
+    setting: apologetic
+  - english: There are a lot of flowers blooming.
+    japanese:
+      - 花 が {いっぱい} 咲い て いる。
+      - 花 が {いっぱい} 咲い て い ます。
+    english_literally: Flowers are blooming a lot.
+    competing_grammar:
+      - competing_japanese:
+          - 花 が たくさん 咲い て いる。
+        english: There are many flowers blooming.
+        hint: Both can be used here. However, 'いっぱい' can suggest the area is 'full of' blooming flowers,
+          emphasizing density, while 'たくさん' just means 'many.' We're looking for the word that conveys
+          a sense of the space being filled with flowers.
+    scene: Two people are walking through a beautiful botanical garden in spring.
+    register: teineigo (polite)
+    setting: reflective
+  - english: My heart is full of gratitude.
+    japanese:
+      - 感謝 の 気持ち で 胸 が {いっぱい} だ。
+      - 感謝 の 気持ち で 胸 が {いっぱい} です。
+    english_literally: With feelings of gratitude, my chest is full.
+    competing_grammar:
+      - competing_japanese:
+          - 感謝 の 気持ち が たくさん ある。
+        english: There are many feelings of gratitude.
+        hint: While 'many feelings' is grammatically correct, '胸 が いっぱい' is a set expression meaning 'heart
+          is overwhelmed/full' with emotion. We're looking for the idiom that conveys emotional fullness.
+    scene: A person gives a heartfelt speech after receiving an award.
+    register: formal
+    setting: inspirational
+  - english: He poured the water until the bottle was full.
+    japanese:
+      - 瓶 が {いっぱい} に なる まで 水 を 注い だ。
+      - 瓶 が {いっぱい} に なる まで 水 を 注ぎ まし た。
+    english_literally: Until the bottle becomes full, he poured water.
+    competing_grammar:
+      - competing_japanese:
+          - 瓶 が 満タン に なる まで 水 を 注い だ。
+        english: He poured the water until the bottle was completely full (colloquial).
+        hint: 「満タン」 is a more colloquial term, often used for fuel tanks or similar containers, and implies
+          'completely full.' 「いっぱい」 is more general for any container. We're looking for the standard
+          way to express a container being filled to capacity.
+    scene: A researcher describes an experimental procedure in a lab report.
+    register: formal
+    setting: informative
+  - english: This box has a lot of toys.
+    japanese:
+      - この 箱 は おもちゃ が {いっぱい} 入っ て いる。
+      - この 箱 は おもちゃ が {いっぱい} 入っ て い ます。
+      - この 箱 は おもちゃ で {いっぱい} だ。
+      - この 箱 は おもちゃ で {いっぱい} です。
+    english_literally: This box, toys are a lot entered.
+    competing_grammar:
+      - competing_japanese:
+          - この 箱 は おもちゃ が たくさん 入っ て いる。
+        english: This box has many toys.
+        hint: Both are acceptable. However, 'いっぱい' here strongly suggests the box is 'full' or 'packed'
+          with toys, emphasizing density and capacity, whereas 'たくさん' just means 'many.' We're looking
+          for the word that implies the box is crammed with toys.
+    scene: A parent looks into a toy box that is overflowing with toys.
+    register: casual
+    setting: friendly
+  - english: I studied a lot for the exam.
+    japanese:
+      - 試験 の ため に {いっぱい} 勉強 し た。
+      - 試験 の ため に {いっぱい} 勉強 し まし た。
+    english_literally: For the exam, I studied a lot.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の ため に たくさん 勉強 し た。
+        english: I studied many things for the exam.
+        hint: Both are acceptable. 'いっぱい' emphasizes the large amount of time or intensity of studying,
+          suggesting being 'full' of study. 'たくさん' focuses on the quantity of material. We're looking
+          for the word that conveys the intensity or volume of the studying effort itself.
+    scene: A student discusses their intense study efforts with a classmate after a difficult exam.
+    register: casual
+    setting: serious

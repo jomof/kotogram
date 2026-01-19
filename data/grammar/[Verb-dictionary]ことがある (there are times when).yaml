@@ -1,0 +1,277 @@
+grammar_point: '[Verb-dictionary]ことがある (there are times when)'
+learn_before:
+  - '[Verb-た]ことがある (experience of having done)'
+meaning: There are times when; sometimes; occasionally
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ある
+    rarity: common
+    meaning: there are times when (V)
+  - conjugation-type: non-past polite (～ます)
+    form: あります
+    rarity: common
+    meaning: there are times when (V)
+  - conjugation-type: negative plain (～ない)
+    form: ない
+    rarity: common
+    meaning: there are times when (V) not
+  - conjugation-type: negative non-past polite (～ません)
+    form: ありません
+    rarity: common
+    meaning: there are times when (V) not
+  - conjugation-type: past plain (～た)
+    form: あった
+    rarity: common
+    meaning: there were times when (V)
+  - conjugation-type: past polite (～ました)
+    form: ありました
+    rarity: common
+    meaning: there were times when (V)
+  - conjugation-type: negative past plain (～なかった)
+    form: なかった
+    rarity: common
+    meaning: there were times when (V) not
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ありませんでした
+    rarity: common
+    meaning: there were times when (V) not
+pronunciation:
+  katakana: コトガアル
+  romaji: koto ga aru
+formation:
+  Verb (dictionary form) + ことがある: Used to express that an action or event sometimes happens.
+  Verb (negative plain form) + ことがある: Used to express that an action or event sometimes does not happen.
+jlpt: N4
+etymology: The construction Verb-dictionary + ことがある literally translates to 'there is the matter/fact
+  of [verb-ing]'. The こと (koto) nominalizes the preceding verb, allowing ある (aru) (to exist) to express
+  the occasional existence or occurrence of that action or state. This grammatical pattern evolved to
+  describe events that happen 'sometimes' or 'occasionally', signifying that the instance of the action
+  exists.
+writeup: |-
+  The grammar pattern Verb (dictionary form) + ことがある is used to describe actions or states that occur occasionally or sometimes. It literally means 'there is the event/instance of [verb-ing]'. The こと (koto) acts as a nominalizer, transforming the preceding verb into a noun phrase, which is then followed by ある (aru) (to exist), indicating the occasional existence of that event.
+
+  This pattern is distinct from Verb (た-form) + ことがある, which refers to past experiences ('have done something before'). While V-taことがある focuses on whether an experience has occurred at least once, V-dictionary + ことがある indicates that an event happens intermittently or from time to time. It is also different from ～ている for habitual actions, as ことがある suggests a less consistent or regular occurrence.
+
+  It can be used for observations about general tendencies or possibilities. For example, if you say 「日本語 の 勉強 は 難しい ことがある」 (Nihongo no benkyou wa muzukashii koto ga aru), it means 'Japanese study is sometimes difficult', acknowledging that difficulty is an occasional aspect.
+
+  You can also use this pattern with the negative form of a verb to express that something sometimes does not happen. For instance, 「彼 は 時々 学校 に 来ない ことがある」 (Kare wa tokidoki gakkou ni konai koto ga aru) means 'Sometimes he doesn't come to school'.
+false_friends:
+  - term: '[Verb-た]ことがある'
+    meaning: To have the experience of doing something
+    kind: similar expression
+    nuance: While V-dictionary + ことがある indicates occasional occurrences, V-た + ことがある describes having
+      a past experience.
+    grammar_point: '[Verb-た]ことがある (experience of having done)'
+  - term: '[Adj-stem]・[V-stem]そうだ'
+    meaning: Looks like; seems like
+    kind: often confused with
+    nuance: 「～そうだ」 expresses a visual or sensory appearance, implying immediate observation. 「～ことがある」
+      expresses occasional occurrences based on general observation or pattern.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: かもしれない
+    meaning: Might, maybe, probably
+    kind: similar expression
+    nuance: 「～かもしれない」 expresses a specific possibility or likelihood for a single event or state, often
+      with uncertainty. 「～ことがある」 describes a general, intermittent pattern of occurrence.
+    grammar_point: かもしれない (might・maybe)
+  - term: 傾向がある
+    meaning: To have a tendency to; to show a trend
+    kind: similar expression
+    nuance: 「～傾向がある」 implies a stronger, more consistent trend or inclination. 「～ことがある」 is for less regular,
+      occasional events, not necessarily a trend.
+    grammar_point: 傾向がある (neutral tendency)
+  - term: たまに
+    meaning: Occasionally, rarely
+    kind: similar expression
+    nuance: 「たまに」 is an adverb describing frequency. 「～ことがある」 is a grammatical pattern indicating that
+      something happens sometimes; they are often used together but serve different grammatical functions.
+    grammar_point: <suggest>:たまに (occasionally)
+post_false_friends_writeup: While V-dictionary + ことがある signals that an event happens from time to time,
+  it is crucial to differentiate it from V-た + ことがある, which exclusively denotes past experience. Remember,
+  the former speaks to what can happen occasionally, while the latter confirms what has happened at least
+  once. Similarly, かもしれない expresses a single, uncertain possibility, whereas ことがある describes a recurring,
+  albeit infrequent, phenomenon. Lastly, while 傾向がある indicates a consistent trend, ことがある points to less
+  predictable, sporadic occurrences.
+examples:
+  - english: Sometimes, my dog barks at nothing.
+    japanese:
+      - 私 の 犬 は 時々 何 も ない の に {吠える こと が ある}。
+      - 私 の 犬 は 時々 何 も ない の に {吠える こと が あり ます}。
+    english_literally: My dog sometimes even though there is nothing, there exists the matter of barking.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 犬 は 時々 何 も ない の に 吠え た こと が ある。
+        english: My dog has had the experience of barking at nothing sometimes.
+        hint: 「たことがある」 is for past experiences. We're looking for something that happens occasionally.
+      - competing_japanese:
+          - 私 の 犬 は 時々 何 も ない の に 吠える そう だ。
+        english: It seems my dog sometimes barks at nothing.
+        hint: 「～そうだ」 implies an visual appearance or hearsay. We're talking about an occasional occurrence.
+    scene: A dog owner talking about their pet's quirks.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: There are times when even my younger brother doesn't eat vegetables.
+    japanese:
+      - 弟 で さえ 野菜 を {食べ ない こと が ある}。
+      - 弟 で さえ 野菜 を {食べ ない こと が あり ます}。
+    english_literally: Even my younger brother, there are times when he does not eat vegetables.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 で さえ 野菜 を 食べ ない。
+        english: Even my younger brother doesn't eat vegetables (implies consistently).
+        hint: This simply states a fact without the nuance of 'sometimes'. We're looking for an occasional
+          occurrence.
+      - competing_japanese:
+          - 弟 は 野菜 を 絶対 食べ ない。
+        english: My younger brother absolutely never eats vegetables.
+        hint: This emphasizes 'never', which is stronger than 'sometimes does not'.
+    scene: A mother discussing her children's eating habits.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: The use of 「～ないことがある」 here highlights that even for someone who usually eats vegetables (implied
+      by 弟でさえ "even my younger brother"), there are exceptions.
+  - english: Sometimes, there are sudden system errors.
+    japanese:
+      - 時々、システム エラー が 急 に {起きる こと が あり ます}。
+      - 時々、システム エラー が 急 に {起きる こと が ある}。
+    english_literally: Sometimes, system error suddenly exists the matter of happening.
+    competing_grammar:
+      - competing_japanese:
+          - システム エラー が 急 に 起きる。
+        english: System errors suddenly happen.
+        hint: This states a general fact, not specifically that it happens *sometimes*. We're looking
+          for occasional occurrence.
+      - competing_japanese:
+          - システム エラー が 急 に 起こる でしょう。
+        english: System errors will probably happen suddenly.
+        hint: 「でしょう」 expresses conjecture about a future event, not a pattern of occasional occurrences.
+    scene: An IT professional explaining system behavior.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: In the past, there were times when I studied all night.
+    japanese:
+      - 昔、徹夜 で 勉強 {し た こと が あっ た}。
+      - 昔、徹夜 で 勉強 {し た こと が あり まし た}。
+    english_literally: Long ago, there existed the matter of studying all night.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、徹夜 で 勉強 し た。
+        english: Long ago, I studied all night.
+        hint: 「した」 simply states a past action. We're looking for something that happened occasionally
+          in the past.
+    scene: A college student reminiscing about their past study habits.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: Sometimes, I can't express what I want to say well.
+    japanese:
+      - 言い たい こと が うまく {言え ない こと が ある}。
+      - 言い たい こと が うまく {言え ない こと が あり ます}。
+    english_literally: What I want to say, sometimes there exists the matter of not being able to say
+      well.
+    competing_grammar:
+      - competing_japanese:
+          - 言い たい こと が うまく 言え ない。
+        english: I can't express what I want to say well (implies a consistent inability).
+        hint: This states a general inability rather than something that occurs occasionally. We're looking
+          for intermittent occurrences.
+    scene: Someone struggling with communication.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: The use of the potential form 「言えない」 with 「ことがある」 emphasizes the occasional inability to do
+      something, rather than just the non-occurrence.
+  - english: When I'm very busy, I sometimes forget to eat lunch.
+    japanese:
+      - とても 忙しい 時 は、お 昼 を {食べ 忘れる こと が ある}。
+      - とても 忙しい 時 は、お 昼 を {食べ 忘れる こと が あり ます}。
+    english_literally: When very busy, there exists the matter of forgetting to eat lunch.
+    competing_grammar:
+      - competing_japanese:
+          - お 昼 を 忘れ がち だ。
+        english: I tend to forget lunch.
+        hint: 「がちだ」 indicates a tendency or habit, which is more frequent than 'sometimes'.
+      - competing_japanese:
+          - お 昼 を 食べ 忘れる。
+        english: I forget to eat lunch.
+        hint: This simply states the fact of forgetting, not the occasional nature of it.
+    scene: A busy professional talking about their daily routine.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Even a strong person sometimes makes mistakes.
+    japanese:
+      - どんな 強い 人 で も、失敗 {する こと が ある}。
+      - どんな 強い 人 で も、失敗 {する こと が あり ます}。
+    english_literally: Even any strong person, there exists the matter of failing.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 強い 人 で も、失敗 する か も しれ ない。
+        english: Even a strong person might make mistakes.
+        hint: 「かもしれない」 suggests a specific future possibility. We're talking about an occasional occurrence
+          observed over time.
+    scene: A motivational speaker.
+    register: formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+  - english: This game is fun, but sometimes it crashes.
+    japanese:
+      - この ゲーム 面白い けど、たまに フリーズ {する こと が ある} な。
+      - この ゲーム 面白い です けど、たまに フリーズ {する こと が あり ます} ね。
+    english_literally: This game is interesting, but sometimes there exists the matter of freezing, huh.
+    competing_grammar:
+      - competing_japanese:
+          - この ゲーム は たまに フリーズ する。
+        english: This game occasionally freezes.
+        hint: This uses an adverb to express occasional occurrence but doesn't use the 'ことがある' pattern.
+      - competing_japanese:
+          - この ゲーム は フリーズ し やすい。
+        english: This game is prone to freezing.
+        hint: 「やすい」 implies a tendency or ease of something happening, which is a stronger likelihood
+          than 'sometimes'.
+    scene: Friends discussing a video game.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The sentence-final particle 「な」 is used by the male speaker to express agreement or a light
+      assertion with his friend about the game's tendency to crash.
+  - english: It's cold sometimes, so be careful not to catch a cold.
+    japanese:
+      - 寒い 日 も {ある から}、風邪 ひか ない よう に 気 を つけ て ね。
+      - 寒い 日 も {ある から}、風邪 ひか ない よう に 気 を つけ て ください ね。
+    english_literally: Because there are cold days, be careful so you don't catch a cold.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い 日 だ から、風邪 ひか ない よう に 気 を つけ て ね。
+        english: Because it's a cold day, be careful not to catch a cold.
+        hint: This simply states it's a cold day, not that there are *sometimes* cold days.
+    scene: A friend giving advice.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The 「ね」 at the end softens the advice and seeks agreement or acknowledgment from the listener,
+      typical of female speech in this context.
+  - english: Even recently, there have been times when I haven't been able to sleep well.
+    japanese:
+      - 最近 で も、よく {眠れ なかっ た こと が あり ます}。
+      - 最近 で も、よく {眠れ なかっ た こと が ある}。
+    english_literally: Even recently, there exists the matter of not being able to sleep well.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 よく 眠れ ませ ん でし た。
+        english: I haven't been able to sleep well recently.
+        hint: This describes a consistent or general state of not sleeping well, not an occasional occurrence.
+    scene: Someone talking about their sleep issues.
+    register: formal
+    setting: serious
+    conjugation: negative past polite (～ませんでした)
+    nuance: The use of ～なかったことがあります emphasizes that despite being recent, it's an intermittent problem,
+      not a constant one.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/204

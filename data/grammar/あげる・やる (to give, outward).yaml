@@ -1,0 +1,842 @@
+grammar_point: あげる・やる (to give, outward)
+learn_before:
+  - '[Verb-て]あげる (to do for someone, outward)'
+meaning: To give (outwardly, often to someone of equal or lower status); to do, perform an action; to
+  send; to express strong resolve.
+meaning_warning: For both あげる and くれる, に marks the recipient.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: あげる
+    rarity: common
+    meaning: to give (away), to present, to provide
+  - conjugation-type: non-past polite (～ます)
+    form: あげます
+    rarity: common
+    meaning: to give (away), to present, to provide
+  - conjugation-type: negative plain (～ない)
+    form: あげない
+    rarity: common
+    meaning: not to give (away), not to present, not to provide
+  - conjugation-type: negative non-past polite (～ません)
+    form: あげません
+    rarity: common
+    meaning: not to give (away), not to present, not to provide
+  - conjugation-type: past plain (～た)
+    form: あげた
+    rarity: common
+    meaning: gave (away), presented, provided
+  - conjugation-type: past polite (～ました)
+    form: あげました
+    rarity: common
+    meaning: gave (away), presented, provided
+  - conjugation-type: negative past plain (～なかった)
+    form: あげなかった
+    rarity: common
+    meaning: did not give (away), did not present, did not provide
+  - conjugation-type: negative past polite (～ませんでした)
+    form: あげませんでした
+    rarity: common
+    meaning: did not give (away), did not present, did not provide
+  - conjugation-type: te-form (～て)
+    form: あげて
+    rarity: common
+    meaning: giving, and...
+  - conjugation-type: conditional (～ば)
+    form: あげれば
+    rarity: less common
+    meaning: if one gives (away)
+  - conjugation-type: conditional (～たら)
+    form: あげたら
+    rarity: less common
+    meaning: if one gives (away)
+  - conjugation-type: volitional (～よう)
+    form: あげよう
+    rarity: less common
+    meaning: let's give (away)
+  - conjugation-type: volitional polite (～ましょう)
+    form: あげましょう
+    rarity: common
+    meaning: let's give (away)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: あげろ
+    rarity: rare
+    meaning: give (away)! (command)
+  - conjugation-type: imperative polite (～なさい)
+    form: あげなさい
+    rarity: less common
+    meaning: please give (away) (instruction)
+  - conjugation-type: potential (～られる/～える)
+    form: あげられる
+    rarity: less common
+    meaning: can give (away)
+  - conjugation-type: passive (～られる/～かれる)
+    form: あげられる
+    rarity: uncommon
+    meaning: be given (away)
+  - conjugation-type: causative (～させる)
+    form: あげさせる
+    rarity: uncommon
+    meaning: make someone give (away)
+  - conjugation-type: dictionary (plain non-past)
+    form: やる
+    rarity: common
+    meaning: to do, to give (to inferiors), to send
+  - conjugation-type: non-past polite (～ます)
+    form: やります
+    rarity: common
+    meaning: do, give (to inferiors), send
+  - conjugation-type: negative plain (～ない)
+    form: やらない
+    rarity: common
+    meaning: not do, not give (to inferiors), not send
+  - conjugation-type: negative non-past polite (～ません)
+    form: やりません
+    rarity: common
+    meaning: not do, not give (to inferiors), not send
+  - conjugation-type: past plain (～た)
+    form: やった
+    rarity: common
+    meaning: did, gave (to inferiors), sent
+  - conjugation-type: past polite (～ました)
+    form: やりました
+    rarity: common
+    meaning: did, gave (to inferiors), sent
+  - conjugation-type: negative past plain (～なかった)
+    form: やらなかった
+    rarity: common
+    meaning: didn't do, didn't give (to inferiors), didn't send
+  - conjugation-type: negative past polite (～ませんでした)
+    form: やりませんでした
+    rarity: common
+    meaning: didn't do, didn't give (to inferiors), didn't send
+  - conjugation-type: te-form (～て)
+    form: やって
+    rarity: common
+    meaning: doing, giving (to inferiors), sending (te-form)
+  - conjugation-type: conditional (～ば)
+    form: やれば
+    rarity: common
+    meaning: if do, if give (to inferiors), if send
+  - conjugation-type: conditional (～たら)
+    form: やったら
+    rarity: common
+    meaning: if do, if give (to inferiors), if send
+  - conjugation-type: volitional (～よう)
+    form: やろう
+    rarity: common
+    meaning: let's do, let's give (to inferiors), let's send
+  - conjugation-type: volitional polite (～ましょう)
+    form: やりましょう
+    rarity: common
+    meaning: let's do, let's give (to inferiors), let's send
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: やれ
+    rarity: uncommon
+    meaning: do!, give! (to inferiors), send!
+  - conjugation-type: imperative polite (～なさい)
+    form: やってください
+    rarity: uncommon
+    meaning: please do, please give (to inferiors), please send
+  - conjugation-type: potential (～られる/～える)
+    form: やれる
+    rarity: common
+    meaning: can do, can give (to inferiors), can send
+  - conjugation-type: passive (～られる/～かれる)
+    form: やられる
+    rarity: common
+    meaning: be done, be given (to inferiors), be sent
+  - conjugation-type: causative (～させる)
+    form: やらせる
+    rarity: common
+    meaning: make do, make give (to inferiors), make send
+pronunciation:
+  katakana: アゲル・ヤル
+  romaji: ageru・yaru
+formation:
+  For あげる (to give) Subject が/は + Recipient に + Object を + あげる: The subject gives the object to the recipient
+    (recipient is typically of equal/lower status or outside the speaker's in-group).
+  For やる (to do/give/send) Subject が + Object を + やる: The subject performs or handles the object (e.g.,
+    tasks, games).
+  For やる (to do/give/send) Subject が + Recipient に + Object を + やる: The subject gives the object to the
+    recipient (recipient is typically animals, plants, or people of lower status).
+  For やる (to do/give/send) Subject が + Object を + Place に + やる: The subject sends the object to a place.
+  For やる (to do/give/send) Verb (て-form) + やる: The subject does something with strong resolve, determination,
+    or in a condescending manner.
+jlpt: N1
+etymology: The verb 「あげる」 originally meant "to raise" or "to lift up", reflected in the kanji 「上げる」. Its
+  'giving' meaning derives from 'offering up' something away from the giver. The verb 「やる」 originally
+  meant "to do", and over time acquired the nuance of giving or doing something for someone considered
+  lower in status (pets, children, subordinates), and can also convey demonstrating ability or resolve.
+writeup: |-
+  「あげる」 and 「やる」 are two fundamental verbs in Japanese that can both mean "to give", but they carry distinct nuances and are used in different contexts. Additionally, 「やる」 has broader meanings extending beyond simply "to give".
+
+  **あげる (to give, outward)**
+  「あげる」 is primarily used for the act of giving something away from oneself to someone else. It implies that the item or information is being transferred from the giver's perspective, directed outwards. It is generally appropriate when giving to someone of equal or lower status, or to animals. It is crucial *not* to use 「あげる」 when something is given *to* the speaker or someone within their close in-group, as 「くれる」 would be used in such cases. The polite form 「あげます」 is very common in daily interactions.
+  Historically, 「あげる」 originated from the meaning "to raise" or "to lift up", reflected in the kanji 「上げる」. The sense of 'giving' evolved from the idea of 'offering up' something to another.
+
+  **やる (to do, give, send, show resolve)**
+  「やる」 is a versatile verb with several core meanings:
+  1.  **To do or perform**: This is its most fundamental meaning, similar to 「する」, and applies to actions, tasks, or activities.
+  2.  **To give**: As a casual and often less polite equivalent of 「あげる」, 「やる」 is used when giving something to someone of lower status, such as pets, plants, or younger children. Using it for adults or superiors can sound condescending or rude.
+  3.  **To send**: It can imply sending someone or something to a destination.
+
+  When 「やる」 is attached to the て-form of another verb (Ｖて + やる), it functions as a subsidiary verb, adding specific nuances related to the speaker's action and attitude. In this form, it indicates one of two primary interpretations:
+  *   **Performing an action for someone of lower status**: This usage suggests the speaker is doing something for someone they perceive as inferior or unable to do it themselves, often carrying a patronizing or forceful tone.
+  *   **Expressing strong resolve or intent**: Here, 「Ｖて + やる」 conveys the speaker's unwavering determination to accomplish something, often against odds or to prove a point. It’s akin to saying "I will definitely do X" or "Just wait and see, I'll do X," implying a forceful intent to demonstrate ability or achieve a goal.
+
+  In both subsidiary usages of 「Ｖて + やる」, there is an underlying sense of the speaker being in a position of power, superiority, or strong will over the outcome of the action. Historically, 「やる」 also meant "to do," and its current nuanced usages for giving and showing resolve developed over time.
+
+  **Key Distinctions:**
+  The primary distinction lies in perspective and social hierarchy. 「あげる」 focuses on the outward direction of giving from the giver's viewpoint to a non-in-group recipient. 「やる」 is more versatile; when used for giving, it highlights a clear status difference (giver superior to receiver). Its "to do" meanings range from general action to strong personal resolve, often carrying a more assertive or even aggressive tone than the neutral 「する」.
+false_friends:
+  - term: もらう
+    meaning: To receive, to get, to obtain
+    kind: antonym
+    nuance: Unlike 「あげる」, which focuses on the giver's action of giving away, 「もらう」 focuses on the recipient's
+      perspective and describes the act of receiving something.
+    grammar_point: もらう (to receive)
+  - term: くれる
+    meaning: To give (to me or my in-group)
+    kind: often confused with
+    nuance: 「くれる」 is used when someone gives something to the speaker or to someone within the speaker's
+      close in-group (e.g., family). 「あげる」 is used when the giver gives something away from their perspective,
+      typically to someone outside their in-group, or when the speaker is the giver. 「やる」 is also outward-focused,
+      but typically for lower-status recipients.
+    grammar_point: くれる (to give, inward to me・in-group)
+  - term: てあげる
+    meaning: To do something for someone, as a favor for
+    kind: similar expression
+    nuance: 「てあげる」 indicates performing an action for someone as a favor, often implying that the action
+      benefits the recipient. In contrast, 「あげる」 specifically refers to the act of giving an object or
+      information, and 「Vてやる」 carries stronger nuances of condescension or personal resolve.
+    grammar_point: '[Verb-て]あげる (to do for someone, outward)'
+  - term: する
+    meaning: To do, to make, to play (a game or sport)
+    kind: synonym
+    nuance: 「する」 is a general verb for "to do" without the specific nuances of status, giving to inferiors,
+      sending, or strong resolve/condescension that 「やる」 can carry. 「やる」 often implies a more active,
+      forceful, or deliberate engagement in the action, or a distinct power dynamic, whereas 「する」 is neutral
+      in this regard.
+    grammar_point: する (to do・make)
+  - term: 差し上げる
+    meaning: To give (humble form)
+    kind: similar expression
+    nuance: 「差し上げる」 is the humble form of 「あげる」, used to show respect to the recipient. It implies an
+      action done for a superior or honored person. 「あげる」 is a more general or neutral verb used for equals
+      or inferiors, and 「やる」 is for distinctly lower status.
+    grammar_point: 差し上げる (humbly give)
+  - term: 行かせる
+    meaning: To make someone go
+    kind: similar expression
+    nuance: While 「やる」 can mean 'to send', 「行かせる」 (causative) specifically means 'to make someone go',
+      emphasizing the causative aspect, possibly implying coercion. 「やる」 implies 'dispatching' or 'assigning'
+      someone to go, emphasizing the sender's initiative rather than forcing the recipient.
+    grammar_point: Verb[させる] (causative)
+  - term: てみせる
+    meaning: To show that one can do; to do something to prove a point
+    kind: similar expression
+    nuance: Both 「Vてやる」 and 「Vてみせる」 express strong intent. However, 「Vてやる」 often carries an aggressive,
+      condescending, or defiant tone (especially when proving someone wrong from a position of superiority),
+      while 「Verb[て]+みせる (to show one's determination)」 is more about demonstrating one's ability or determination
+      to an audience, without the same negative power dynamic or confrontational nuance.
+    grammar_point: '[Verb-て]みせる (to show one''s determination)'
+  - term: やる
+    meaning: To do something (knowing that it will cause someone trouble or difficulty)
+    kind: similar expression
+    nuance: While using the same verb 「やる」, this specific usage focuses on performing an action with the
+      explicit awareness or intention that it will cause difficulty or trouble for someone else. In contrast,
+      the current grammar point's direct uses of 「やる」 focus on giving to lower status, sending, or expressing
+      the speaker's strong determination, not necessarily with a malicious or troublesome intent towards
+      others.
+    grammar_point: やる (to cause trouble)
+  - term: てしまう
+    meaning: To do something completely; to do by accident; to do regrettably/unfortunately
+    kind: often confused with
+    nuance: While 「Vてやる」 expresses strong personal resolve or a condescending favor, 「Vてしまう」 indicates
+      completion, accidental action, or regret. It focuses on the outcome or manner of an action rather
+      than the doer's intent or power dynamic.
+    grammar_point: Verb[てしまう・ちゃう・じゃう] (completion・regret)
+post_false_friends_writeup: When differentiating between these expressions, particularly with 「あげる」, 「くれる」,
+  「てあげる」, and the various nuances of 「やる」, it is crucial to consider the relationship and relative status
+  between the giver/doer and the receiver. 「あげる」 is generally outward-focused for equals or inferiors
+  (excluding the speaker's in-group). 「やる」, whether as a standalone verb for giving or in the 「Vてやる」 construction,
+  consistently implies a power dynamic, whether it's a superior giving to an inferior, or a speaker asserting
+  their strong will. In contrast, 「くれる」 is inward-focused (towards the speaker or their in-group), and
+  「する」 is a purely neutral verb for performing an action. The phrase 「てみせる」 shares the 'strong intent'
+  aspect of 「Vてやる」 but lacks the condescending or aggressive undertones, focusing more on demonstrating
+  capability. Lastly, 「てしまう」 focuses on the outcome or manner of an action, such as completion, accident,
+  or regret, which is distinct from the intentionality or power dynamics conveyed by 「Vてやる」.
+examples:
+  - english: I'll give my friend some sweets.
+    japanese:
+      - 友達 に お 菓子 を {あげる}
+      - 友達 に お 菓子 を {あげ ます}
+      - 友達 に お 菓子 {あげる} ね
+      - 友達 に お 菓子 を {あげよ う} と 思っ て いる
+      - 友達 に お 菓子 を {あげ ちゃ う}
+      - 友達 に お 菓子 {あげよ}
+    english_literally: To friend, sweets, I will give.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が お 菓子 を {くれる}
+        english: My friend gives me sweets.
+        hint: 「くれる」 implies the sweets are given *to* the speaker or their in-group. We're looking for
+          the speaker *giving* sweets.
+      - competing_japanese:
+          - 友達 に お 菓子 を {やる}
+        english: I'll give my friend some sweets (more casual, potentially less polite for adults).
+        hint: 「やる」 is a more casual or informal equivalent of あげる, but can sound less polite, especially
+          when giving to people. We're looking for a general, friendly 'give'.
+    scene: You are preparing a snack and decide to share it with a friend who is sitting nearby.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The use of the plain form 「あげる」 is common in casual conversation among friends. Adding 「ね」,
+      as in 「あげるね」, softens the statement and seeks implicit agreement, a nuance often used by female
+      speakers. The polite form 「あげます」 is also natural here for a slightly more formal but still friendly
+      tone.
+  - english: I will ask the teacher a question.
+    japanese:
+      - 先生 に 質問 を {あげ ます}
+      - 先生 に 質問 を {あげる}
+      - 先生 に 質問 を {差し上げ ます}
+      - 先生 に 質問 {あげよ う} か な
+      - 先生 に 質問 を {あげ ませ ん} か
+      - 先生 に 質問 {あげよ}
+    english_literally: To teacher, question, I will give.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 質問 を {くれ ます}
+        english: The teacher gives me a question.
+        hint: 「くれます」 implies the teacher is giving something *to* the speaker. We're looking for the speaker
+          *giving* a question to the teacher.
+      - competing_japanese:
+          - 先生 に {質問 し ます}
+        english: I will ask the teacher a question.
+        hint: 「質問します」 is the direct and common way to say 'ask a question'. While あげる is also correct
+          here, it implies 'offering' a question.
+    scene: A student is speaking to another student about their plan to ask a question to their teacher
+      after class.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    nuance: Using 「あげます」 for 'giving a question' is a polite way of saying 'asking a question', especially
+      when speaking to a teacher. The polite form 「あげます」 reflects respect for the teacher's status. The
+      humble form 「差し上げます」 is even more respectful and common in formal settings, while the plain form
+      「あげる」 could be used when speaking casually to a peer about the teacher.
+  - english: I gave my younger sister a new game.
+    japanese:
+      - 妹 に 新しい ゲーム を {あげ た}
+      - 妹 に 新しい ゲーム を {あげ まし た}
+      - 妹 に 新しい ゲーム を {やっ て} あげ た
+      - 妹 に 新しい ゲーム を {あげ た} よ
+      - 妹 に 新しい ゲーム を {あげ ちゃっ た}
+      - 妹 に 新しい ゲーム {あげ} て き た
+    english_literally: To younger sister, new game, I gave.
+    competing_grammar:
+      - competing_japanese:
+          - 妹 が 新しい ゲーム を {くれ た}
+        english: My younger sister gave me a new game.
+        hint: 「くれた」 implies the sister is giving *to* the speaker. We're looking for the speaker *giving*
+          to the sister.
+      - competing_japanese:
+          - 妹 に 新しい ゲーム を {やっ た}
+        english: I gave my younger sister a new game (more casual/less polite).
+        hint: 「やる」 is a more casual verb for giving, often used for animals or people of lower status.
+          While technically possible, あげる is generally more neutral and widely accepted even in casual
+          contexts.
+    scene: A young man is talking to his older brother about a present he gave to their younger sister
+      for her birthday.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The plain past form 「あげた」 is typical for casual conversations among family members or close
+      friends. A younger male speaker might use this with an older brother. The polite form 「あげました」 could
+      also be used to show a subtle degree of formality or carefulness. While 「やってあげた」 is also casual,
+      it can carry a nuance of condescension or doing a favor, which might not always be intended.
+  - english: I won't give her any more presents.
+    japanese:
+      - 彼女 に は もう プレゼント を {あげ ない}
+      - 彼女 に は もう プレゼント を {あげ ませ ん}
+      - 彼女 に は もう プレゼント を {あげ ねぇ}
+      - 彼女 に は もう プレゼント を {あげ たく ない}
+      - 彼女 に は もう プレゼント を {あげ られ ない}
+      - もう 彼女 に プレゼント は {あげ ない}
+    english_literally: To her, as for now, present, I will not give.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 に は もう プレゼント を {もらわ ない}
+        english: I won't receive any more presents from her.
+        hint: 「もらわない」 means 'will not receive'. We're looking for 'will not give'.
+      - competing_japanese:
+          - 彼女 に は もう プレゼント を {くれ ない}
+        english: She won't give me any more presents.
+        hint: 「くれない」 means 'someone won't give to me'. We're looking for the speaker's refusal to give.
+      - competing_japanese:
+          - もう プレゼント を {渡さ ない}
+        english: I won't hand over presents anymore.
+        hint: 「渡す」 is a neutral verb meaning "to hand over" or "to pass," without the directionality implied
+          by あげる. We're looking for the act of *giving* away.
+    scene: A man is expressing his frustration to a friend about a recent breakup, stating his decision
+      not to give his ex-girlfriend any more gifts.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: The direct negative 「あげない」 conveys a firm decision, common in casual, yet serious, discussions
+      about personal matters. The use of 「彼女 に は」 highlights the recipient of the refusal. The polite
+      form 「あげません」 can be used for a slightly less blunt refusal. For male speakers, 「あげねぇ」 is a highly
+      casual, somewhat rough, and emphatic masculine negative form.
+  - english: Let's give money to people in need.
+    japanese:
+      - 困っ て いる 人 に お 金 を {あげ ましょう}
+      - 困っ て いる 人 に お 金 を {あげよう}
+      - 困っ て いる 人 に お 金 を {あげ たい} です
+      - 困っ て いる 人 に お 金 を {あげ られ ない} の か な
+      - 困っ て いる 人 に お 金 を {あげ て} みよう
+    english_literally: To troubled people, money, let's give.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ て いる 人 に お 金 を {もらい ましょう}
+        english: Let's receive money from people in need.
+        hint: 「もらいましょう」 means 'let's receive'. We're looking for 'let's give'.
+    scene: A group of volunteers is discussing fundraising ideas, and one proposes direct financial aid.
+    register: teineigo (polite)
+    setting: persuasive
+    conjugation: volitional polite (～ましょう)
+    listener_gender: group
+    nuance: The 「〜ましょう」 ending adds a polite suggestion for collective action. This phrasing is suitable
+      for addressing a group, encouraging them to perform an act of charity. The plain volitional 「あげよう」
+      would be used in a more casual setting among close peers, conveying a similar 'let's do this' sentiment
+      but with less formality.
+  - english: When I finish reading this book, you can have it.
+    japanese:
+      - この 本 を 読み 終わっ たら、あなた に {あげ て} も いい です よ
+      - この 本 を 読み 終わっ たら、あなた に {あげ て} も いい よ
+      - この 本 を 読み 終わっ たら、あなた に {あげよ う} か
+      - この 本 を 読み 終わっ たら、あなた に {あげ ます}
+      - この 本 読み 終わっ たら、君 に {あげよ う}
+    english_literally: This book, read finish, if, to you, giving, is good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 を 読み 終わっ たら、あなた が {もらっ て} も いい です よ
+        english: When I finish reading this book, you can receive it.
+        hint: The phrase 「あげて も いい です よ」 focuses on the speaker's permission to give the book away, not
+          the listener's action of receiving.
+      - competing_japanese:
+          - この 本 を 読み 終わっ たら、あなた が 持っ {て 行っ て} も いい です よ
+        english: When I finish reading this book, you can take it.
+        hint: This suggests taking rather than having something given to you. We're looking for an example
+          that specifically uses あげる.
+    scene: You're discussing a book with a colleague and offer to give it to them once you've finished
+      reading it.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: The combination of the te-form with 「～もいいです」 indicates permission. The use of 「あなた に」 and
+      the polite 「です よ」 makes the offer friendly and clear, emphasizing the speaker's act of giving. The
+      more casual 「～もいい よ」 can be used with close friends or colleagues where a slightly less formal tone
+      is acceptable, while still conveying the same permission.
+  - english: If you have anything you don't need, how about giving it to someone?
+    japanese:
+      - もし 不要 な もの が あれ ば、誰 か に {あげ たら} どう です か
+      - もし 不要 な もの が あれ ば、誰 か に {あげ たら} いかが です か
+      - もし 不要 な もの が あれ ば、誰 か に {あげ たら} どう？
+      - 不要 な もの が あれ ば、誰 か に {あげ たら} いい ん じゃ ない？
+      - 不要 な もの は 誰 か に {あげ て} も いい と 思う よ
+      - 不要 な もの が あれ ば、誰 か に {あげ なさい}
+    english_literally: If unnecessary things exist, then, to someone, if you give, how is it?
+    competing_grammar:
+      - competing_japanese:
+          - もし 不要 な もの が あれ ば、誰 か が {くれ たら} どう です か
+        english: If you have unnecessary things, how about someone giving it to you?
+        hint: The suggestion is for the child to initiate the giving action, not for someone to give something
+          to the child.
+      - competing_japanese:
+          - もし 不要 な もの が あれ ば、誰 か に {売っ たら} どう です か
+        english: If you have anything you don't need, how about selling it to someone?
+        hint: This suggests selling rather than giving. We're looking for an example that specifically
+          asks about giving.
+    scene: A mother is advising her child to declutter their room and suggests donating unused items.
+    register: casual
+    setting: instructional
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The conditional 「あげたら どう です か」 is a common way to offer a suggestion. The casual tone and
+      direct addressing of the child are typical of a mother's advice. 「あげたら いかが です か」 offers a more formal
+      and polite phrasing of the same suggestion, suitable for a more distant relationship or formal context.
+      「あげたら どう？」 is an even more casual variant, common among close family or friends.
+  - english: I intend to give her a wristwatch.
+    japanese:
+      - 私 は 彼女 に 腕 時計 を {あげる} つもり だ
+      - 私 は 彼女 に 腕 時計 を {あげる} つもり です
+      - 彼女 に 腕 時計 を {あげる} つもり だ
+      - 彼女 に 腕 時計 を {あげよ う} と 思っ て いる
+      - 彼女 に 腕 時計 を {あげ たく て}
+      - 絶対 彼女 に 腕 時計 {あげる}
+    english_literally: I, to her, wristwatch, intend to give.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 彼女 に 腕 時計 を {くれる} つもり だ
+        english: I intend for her to give me a wristwatch.
+        hint: 「くれる」 implies she is giving something *to* the speaker. We're looking for the speaker giving
+          something *to* her.
+      - competing_japanese:
+          - 私 は 彼女 に 腕 時計 を {もらう} つもり だ
+        english: I intend to receive a wristwatch from her.
+        hint: 「もらう」 implies receiving. We're looking for an intention to give.
+    scene: A man is secretly planning a surprise gift for his girlfriend and confiding in a close friend.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The use of 「～つもり だ」 expresses intention. The casual 「あげる」 paired with this is appropriate
+      for a man speaking candidly to a close friend about a personal plan. The polite form 「～つもり です」 maintains
+      the intention but with increased formality. Omitting 「私 は」 is very common in natural Japanese when
+      the subject is clear from context, making 「彼女 に 腕時計 を あげる つもり だ」 also a natural choice in a casual
+      setting.
+  - english: I will give a presentation on the new marketing strategy to the department head.
+    japanese:
+      - 部 長 に 新しい マーケティング 戦略 の 発表 を {あげ ます}
+      - 部 長 に 新しい マーケティング 戦略 の 発表 を {あげる}
+      - 部 長 に 新しい マーケティング 戦略 の 発表 を {あげよ う} と 思い ます
+      - 新しい マーケティング 戦略 の 発表 を 部 長 に {あげ ます}
+    english_literally: To department head, new marketing strategy's presentation, I will give.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 に 新しい マーケティング 戦略 を {説明 し ます}
+        english: I will explain the new marketing strategy to the department head.
+        hint: 「説明します」 is a more general verb for 'explaining', lacking the specific nuance of 'offering'
+          or 'submitting' implied by あげる for intangible things like presentations.
+      - competing_japanese:
+          - 部 長 が 新しい マーケティング 戦略 の 発表 を {くれ ます}
+        english: The department head gives a presentation on the new marketing strategy to me.
+        hint: 「くれます」 implies the department head is giving something *to* the speaker. We're looking for
+          the speaker *giving* the presentation to the department head.
+    scene: A junior employee informing a colleague about their task for the upcoming meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    nuance: The use of 「あげます」 here, particularly for a presentation (発表) to a superior (部長), conveys the
+      act of offering or submitting. It implies a sense of delivering something to a higher authority,
+      which is a common usage of 「あげる」 in formal or business contexts, unlike simply 「説明します」 (explain)
+      which lacks this directional nuance of offering.
+  - english: The mother gives special care to her sick child.
+    japanese:
+      - 母親 は 病気 の 子供 に 特別 な 配慮 を {あげ て いる}
+      - 母親 は 病気 の 子供 に 特別 な 配慮 を {あげ て い ます}
+      - 母親 は 病気 の 子供 に 特別 な 配慮 を {あげる}
+      - 母親 は 病気 の 子供 に 特別 な 配慮 を {あげ ます}
+      - 病気 の 子供 に、母親 は 特別 な 配慮 を {あげ て いる}
+    english_literally: Mother, to sick child, special consideration, is giving.
+    competing_grammar:
+      - competing_japanese:
+          - 母親 は 病気 の 子供 に 特別 な 配慮 を {し て いる}
+        english: The mother is giving special consideration to her sick child.
+        hint: 「している」 is a more general verb for 'doing' or 'giving', lacking the specific nuance of 'providing'
+          or 'offering' implied by あげる for intangible things like care.
+      - competing_japanese:
+          - 病気 の 子供 は 母親 から 特別 な 配慮 を {もらっ て いる}
+        english: The sick child is receiving special consideration from the mother.
+        hint: 「もらっている」 means 'is receiving'. We are looking for the mother's action of *giving*.
+    scene: Describing a mother's dedication to her child's well-being.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    nuance: 「あげる」 can be used for abstract "gifts" like 「配慮」 (考慮) or 「愛情」 (愛情). The progressive form 「あげている」
+      emphasizes the ongoing nature of the mother's care. This usage highlights the broad applicability
+      of 「あげる」 beyond physical objects, extending to intangible contributions.
+  - english: I can give you a ride to the station.
+    japanese:
+      - 駅 まで 送っ て {あげ られ ます} よ
+      - 駅 まで 送っ て {あげ られ ます}
+      - 駅 まで 送っ て {あげ られる} よ
+      - 駅 まで 送っ て {あげ られ ない} か な
+      - 駅 まで 送っ て {あげ られよ う}
+    english_literally: To station, sending, can give.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 まで 送っ て {もらい ます} よ
+        english: I will get a ride to the station.
+        hint: 「もらいます」 means receiving a favor. We are looking for offering a favor.
+      - competing_japanese:
+          - 駅 まで {送り ます} よ
+        english: I will send you to the station.
+        hint: 「送ります」 is a neutral verb meaning 'to send' or 'to escort'. Adding 「あげられます」 implies doing
+          it as a favor or benefit to the other person, which is the nuance we're aiming for.
+    scene: A colleague offers to drive another colleague to the station after work.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: potential (～られる/～える)
+    speaker_gender: male
+    nuance: The potential form 「あげられます」 (can give/do for) is used here to politely offer a service or
+      favor. The phrase 「送ってあげる」 (to send [someone] as a favor) combined with the potential means 'can
+      offer to send'. This shows thoughtfulness and willingness to assist.
+  - english: Please give me your honest opinion.
+    japanese:
+      - 率直 な 意見 を {あげ て} ください
+      - 率直 な 意見 を {あげ て} いただけ ます か
+      - 率直 な 意見 を {あげ なさい}
+      - 率直 な 意見 を {あげよ}
+      - 率直 な 意見 を {あげ て} もらえ ませ ん か
+      - 率直 な 意見 を {あげ て} もらお う か な
+    english_literally: Honest opinion, please give.
+    competing_grammar:
+      - competing_japanese:
+          - 率直 な 意見 を {言っ て} ください
+        english: Please say your honest opinion.
+        hint: 「言ってください」 is a common way to ask someone to state their opinion. However, 「あげて」 in this
+          context implies 'offering' or 'providing' the opinion, suggesting a valuable contribution rather
+          than simply stating it.
+      - competing_japanese:
+          - 率直 な 意見 を {聞か せ て} ください
+        english: Please let me hear your honest opinion.
+        hint: 「聞かせてください」 means 'please let me hear'. We are looking for a direct request for them to 'give'
+          their opinion.
+    scene: A project leader is asking team members for their feedback during a brainstorming session.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: te-form (～て)
+    listener_gender: group
+    nuance: Using 「あげて ください」 for 'giving an opinion' is a more indirect and polite way than simply 「言って
+      ください」 (please say). It frames the opinion as something valuable being offered or provided, which
+      is appropriate in a professional setting when seeking input. The use of 「ください」 makes it a direct,
+      polite request.
+  - english: I need to do my homework today.
+    japanese:
+      - 今日 は 宿題 を {やる} 必要 が ある。
+      - 今日 は 宿題 を {やら ない} と いけ ない。
+      - 今日 の 宿題、早く {やら ない} と！
+    english_literally: Today, homework object-marker do necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 宿題 を {する} 必要 が ある。
+        english: I need to do my homework today.
+        hint: While 「する」 is a general verb for 'to do,' 「やる」 in this context emphasizes the act of getting
+          something done, sometimes with a slight nuance of effort or commitment. We're looking for the
+          more direct action.
+    scene: A student talking to themselves about their daily tasks.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: It's time to feed the cat.
+    japanese:
+      - 猫 に ご飯 を {やる} 時間 だ よ。
+      - 猫 に ご飯 を {やり ます} 時間 です よ。
+      - 猫 に ご飯 を {やろう} か。
+    english_literally: Cat to food object-marker give time is particle.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 に ご飯 を {あげる} 時間 だ よ。
+        english: It's time to give food to the cat.
+        hint: 「あげる」 is typically used for giving to people or respected entities. For plants or animals,
+          「やる」 is the standard verb. We're looking for the verb used when giving something to an animal.
+    scene: A mother reminding her child to feed their pet.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「やる」 for feeding a pet is natural and common, indicating the giver's higher status
+      or responsibility over the animal. The casual 「だ よ」 further reinforces the familiar context.
+  - english: We decided to send our son to a university in America.
+    japanese:
+      - 息子 を アメリカ の 大学 に {やる} こと に し た。
+      - 息子 を アメリカ の 大学 に {やり ます} こと に し まし た。
+    english_literally: Son object-marker America's university to send thing decided.
+    competing_grammar:
+      - competing_japanese:
+          - 息子 を アメリカ の 大学 に {行か せる} こと に し た。
+        english: We decided to make our son go to a university in America.
+        hint: 「行かせる」 (from 「使役 (causative)」) means 'to make someone go' and can imply coercion or forcing.
+          We're looking for a verb that signifies sending someone for a purpose with the sender's initiative.
+    scene: Parents discussing their child's future education.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「やる」 is used here in its sense of 'sending' someone, often to a distant place for a purpose.
+      It implies the parents' decision and authority over their son's future. This usage is gender-neutral
+      but often found in formal discussions among parents.
+  - english: I'll definitely get a perfect score on the next exam, just you wait.
+    japanese:
+      - 次 の 試験 は 絶対 に 満点 を 取っ て {やる}。
+      - 次 の 試験 は 絶対 に 満点 を 取っ て {やり ます}。
+      - 次 の 試験 は 絶対 に 満点 を 取っ て {やろう}！
+    english_literally: Next exam topic-marker absolutely perfect score object-marker take and do-with-resolve.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 試験 は 絶対 に 満点 を {取る} ぞ。
+        english: I'll definitely get a perfect score on the next exam!
+        hint: While 「〜ぞ」 (from 「ぞ (strong emphasis)」) expresses strong assertion, 「〜てやる」 conveys an even
+          more intense personal commitment, often with a sense of defiance or overcoming odds. We're looking
+          for that strong resolve enchanted with a defying nature. This is a common way to express your
+          strong resolve when showing someone your determination to overcome obstacles.
+      - competing_japanese:
+          - 次 の 試験 は 絶対 に 満点 を {取っ て みせる}。
+        english: I'll definitely get a perfect score on the next exam and show you!
+        hint: 「〜てみせる」 (from 「Verb[て]+みせる (to show one's determination)」) means 'to show that one can do
+          something' or 'to prove a point.' While similar, 「〜てやる」 often adds a stronger, more defiant
+          tone, suggesting overcoming obstacles or proving critics wrong. We're looking for that sense
+          of forceful determination.
+    scene: A determined student after a poor test result, vowing to improve.
+    register: casual
+    setting: serious
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The combination of 「絶対」 and 「〜てやる」 highlights an extremely strong personal resolve to achieve
+      a goal. This is commonly used by people of any gender when expressing powerful determination, especially
+      when proving something to themselves or others. The phrase implies the speaker's powerful will and
+      defiance.
+  - english: Fine, I'll do your work for you too, so don't worry.
+    japanese:
+      - いい よ、お前 の 仕事 も 俺 が {やっ て やる} から、心配 する な。
+      - いい よ、お前 の 仕事 も 俺 が {やっ て やろう} から、心配 する な。
+      - いい よ、お前 の 仕事 も 俺 が {やっ て やん} よ。心配 する な。
+    english_literally: Good particle, your work too I subject-marker do-from-superior-position because,
+      worry do not.
+    competing_grammar:
+      - competing_japanese:
+          - いい よ、お前 の 仕事 も 俺 が {やっ て あげる} から、心配 する な。
+        english: Okay, I'll do your work for you too, so don't worry.
+        hint: While 「〜てあげる」 indicates doing a favor, 「〜てやる」, especially with terms like 「お前」, conveys
+          a more condescending or superior attitude. We're looking for the phrasing that implies a hierarchical
+          relationship and a less polite tone.
+    scene: A senior colleague speaking to a junior colleague who is struggling and causing issues.
+    register: casual
+    setting: condescending
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「お前」 and 「やってやる」 by an older male speaker to a subordinate male listener clearly
+      conveys a patronizing or condescending tone, as if they are doing them a great favor. 「やってやる」 here
+      signifies doing a favor from a position of superiority. This casual register and direct address
+      imply a familiar, yet hierarchical, relationship, typical of male-leaning speech in such contexts.
+      The 「心配するな」 also adds to the commanding tone.
+  - english: Let's play baseball this weekend.
+    japanese:
+      - 今週 末、野球 を {やろう}。
+      - 今週 末、野球 を {やり ましょう}。
+    english_literally: This weekend, baseball object-marker let's-do.
+    competing_grammar:
+      - competing_japanese:
+          - 今週 末、野球 を {し} よう。
+        english: This weekend, let's play baseball (neutral).
+        hint: 「する」 is a general verb for 'to do,' but 「やる」 is often used more colloquially for playing
+          sports or games, suggesting a more active, energetic engagement. We're looking for that more
+          engaged tone.
+    scene: Friends making plans for their free time.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+  - english: Don't forget to water the plants tomorrow.
+    japanese:
+      - 明日、植物 に 水 を {やる} の を 忘れ ない で。
+      - 明日、植物 に 水 を {やる} の を 忘れ ない で ください。
+    english_literally: Tomorrow, plants to water object-marker give noun-marker object-marker not-forget
+      please.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、植物 に 水 を {あげる} の を 忘れ ない で。
+        english: Tomorrow, don't forget to give water to the plants (general).
+        hint: 「あげる」 is typically used for giving to people or respected entities. For plants or animals,
+          「やる」 is the standard verb. We're looking for the natural verb choice for watering plants.
+    scene: A roommate reminding another about household chores.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: I'll never give up on my dream, no matter what they say!
+    japanese:
+      - 何 と 言わ れよう と、私 は 夢 を 諦め て {やら ない}。
+      - 何 と 言わ れよう と、私 は 夢 を 諦め て {やん ない}。
+    english_literally: What (ever) said become, I topic-marker dream object-marker give up and not-do
+      (with resolve).
+    competing_grammar:
+      - competing_japanese:
+          - 何 と 言わ れよう と、私 は 夢 を {諦め ない}！
+        english: No matter what they say, I won't give up on my dream!
+        hint: 「諦めない」 simply means 'I won't give up.' Adding 「てやらない」 intensifies the refusal, expressing
+          a defiant determination often aimed at overcoming external pressure or proving someone wrong.
+          We need that strong, defiant nuance.
+    scene: A determined artist speaking to herself after receiving criticism.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    listener_gender: no one
+    nuance: The use of 「諦めてやらない」 here conveys a powerful, defiant refusal to give up, suggesting a strong
+      resolve against external opinions or difficulties. The phrase implies a deep conviction and determination.
+  - english: Alright, I'll teach you how to do it, so pay attention.
+    japanese:
+      - よし、教え て {やる} から、よく 聞け。
+      - よし、教え て {やっ から}、よく 聞け。
+    english_literally: Alright, teach and do-for-you-from-superior-position because, well listen-imperative.
+    competing_grammar:
+      - competing_japanese:
+          - よし、教え て {あげる} から、よく 聞き なさい。
+        english: Alright, I'll teach you, so please listen well.
+        hint: 「教え て あげる」 is a general way to say 'I'll teach you.' 「教え て やる」 is more direct and can sound
+          condescending or imply the speaker is doing a favor from a position of authority. We're looking
+          for the more assertive and potentially less polite tone.
+    scene: An older manager instructing a younger, perhaps underperforming, subordinate.
+    register: casual
+    setting: commanding
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「教え て やる」 combined with the direct imperative 「聞け」 creates a condescending or commanding
+      tone, characteristic of an older male in a position of authority addressing a subordinate. It implies
+      doing a favor from a superior stance.
+  - english: I'll manage the rest of the work.
+    japanese:
+      - 残り の 仕事 は 私 が {やる}。
+      - 残り の 仕事 は 私 が {やり ます}。
+    english_literally: Remaining work topic-marker I subject-marker do/handle.
+    competing_grammar:
+      - competing_japanese:
+          - 残り の 仕事 は 私 が {する}。
+        english: I will do the rest of the work (neutral).
+        hint: 「する」 is a neutral verb for 'to do.' 「やる」 often implies a more active taking on of the task,
+          showing initiative or capability. We're looking for the one that suggests taking charge.
+    scene: A team leader reassuring a tired colleague during a busy period.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: I've gotta finish this report by tonight, no matter what!
+    japanese:
+      - 今日 中 に この レポート を 仕上げ て {やる}。
+      - 今日 中 に この レポート を 仕上げ て {やろう}！
+    english_literally: By today, this report object-marker finish and do-with-resolve!
+    competing_grammar:
+      - competing_japanese:
+          - 今日 中 に この レポート を {仕上げる}！
+        english: I have to finish this report by tonight!
+        hint: 「仕上げる」 is simply 'to finish.' Adding 「てやる」 to 「仕上げる」 conveys a strong, personal determination
+          to complete the task, often implying a struggle or high effort. We need that sense of strong
+          resolve.
+    scene: A person working late, mentally pushing themselves to complete a task before a deadline.
+    register: casual
+    setting: serious
+    conjugation: te-form (～て)
+    listener_gender: no one
+    nuance: The use of 「仕上げ て やる」 indicates a powerful internal monologue expressing extreme determination
+      to accomplish a task, especially under pressure or when facing a challenge. It's a self-motivating
+      phrase implying a strong will.
+post_example_writeup: The examples illustrate the varied applications of 「あげる」 and 「やる」. 「あげる」 is seen
+  in its primary role of outward giving, often with consideration for social status, while 「やる」 showcases
+  its versatility from basic actions, giving to inferiors, sending, to expressing strong resolve or condescension.
+  Observing the context and choice of accompanying vocabulary significantly impacts the perceived nuance
+  of each verb. Understanding the subtle differences in perspective and social implications is key to
+  using these verbs naturally in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/あげる

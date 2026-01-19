@@ -1,0 +1,258 @@
+grammar_point: ありがとう (general thanks)
+learn_before:
+  - てくれてありがとう (thank you for doing for me)
+meaning: Thank you (general expression of gratitude)
+pronunciation:
+  katakana: アリガトウ
+  romaji: arigatō
+formation:
+  Fixed Expression: A set phrase used to express thanks.
+jlpt: N5
+etymology: The word "ありがとう" comes from the classical Japanese adjective "有り難し (arigatashi)". This adjective
+  is a compound of "有り (ari)", meaning "to exist" or "to be", and "難し (katashi)", meaning "difficult".
+  Therefore, "有り難し" originally meant "difficult to exist" or "rare and precious". Over time, this evolved
+  to express the feeling of gratitude for something that is rare or valuable, leading to its current meaning
+  of "thank you". The transition from "arigatashi" to "arigatō" reflects a shift from an adjectival form
+  to an adverbial form (ありがたく > ありがとう) used to modify the implied "ございます" (gozaimasu) or "ございまする" (gozaimasuru),
+  meaning "it is". So, "ありがとう ございます" literally means "it is a rare and precious thing."
+writeup: |-
+  "ありがとう" is the most common and versatile way to express gratitude in Japanese. It is a fundamental expression you will hear and use constantly. While often translated simply as "thank you," its historical roots give it a deeper nuance.
+
+  As explained in its etymology, "ありがとう" stems from the classical adjective "有り難し (arigatashi)," which literally meant "difficult to exist" or "rare and precious." This means that when you say "ありがとう," you are fundamentally acknowledging that the kindness, help, or gift you received is something valuable and not to be taken for granted; it is something rare or precious.
+
+  "ありがとう" can be used in a wide range of situations, from casual interactions with friends and family to slightly more formal settings. However, it is generally considered less formal than "ありがとうございます" and other polite forms. It is suitable for everyday use among peers, in casual service encounters, or when expressing quick thanks.
+
+  It's important to remember that while "ありがとう" is versatile, selecting the appropriate level of politeness is crucial in Japanese communication. For situations requiring higher respect or formality, you should opt for "ありがとうございます" or other keigo expressions.
+false_friends:
+  - term: ありがとうございます
+    meaning: polite thank you
+    kind: similar expression
+    nuance: Used in more formal or polite situations, adds a sense of formality and sustained gratitude.
+    grammar_point: <strongly-suggest>:ありがとうございます (polite thank you)
+  - term: どうも
+    meaning: general thanks/hello/sorry
+    kind: similar expression
+    nuance: Very casual and versatile; can express thanks, an apology, or a greeting. Less specific than
+      ありがとう.
+    grammar_point: どうも (thanks・sorry・hello)
+  - term: すみません
+    meaning: excuse me/sorry/thank you (for a small favor)
+    kind: often confused with
+    nuance: While primarily an apology or an "excuse me," it can be used to express gratitude, especially
+      for small inconveniences or favors, implying "I'm sorry to have troubled you."
+    grammar_point: <strongly-suggest>:すみません (excuse me・sorry・thank you)
+  - term: 感謝する
+    meaning: to thank
+    kind: similar expression
+    nuance: A verb indicating the action of expressing gratitude, more formal and less of an interjection
+      than ありがとう. Often used in written contexts or more formal speeches.
+    grammar_point: <strongly-suggest>:感謝する (to thank)
+post_false_friends_writeup: |-
+  While "ありがとう" is a general expression of thanks, Japanese offers various ways to convey gratitude, each with its own nuance and level of formality.
+
+  **"どうも (dōmo)"** is highly versatile and can mean "thanks," "hello," or "sorry," depending on context. It's more casual and less specific than "ありがとう," often used for brief acknowledgments or when a subtle expression of gratitude is sufficient. For instance, a simple nod and "どうも" might suffice when a shop assistant hands you a bag.
+
+  **"すみません (sumimasen)"** is commonly used as "excuse me" or "I'm sorry," but it can also convey gratitude. When used for thanks, it often implies "I'm sorry to have troubled you" or "I feel obliged for your effort." It's suitable for small favors, like someone holding a door for you, where "ありがとう" might feel a little too direct or strong.
+
+  **"ありがとうございます (arigatō gozaimasu)"** is the polite form of "ありがとう." The addition of "ございます (gozaimasu)," a polite form of the verb "to be," elevates the expression to a more formal and respectful level. It's generally safer to use "ありがとうございます" in most public or professional settings, with strangers, or when you wish to convey genuine respect and deeper gratitude.
+
+  Understanding these distinctions allows for more natural and appropriate communication in Japanese.
+examples:
+  - english: Thank you.
+    japanese:
+      - '{ありがとう}。'
+      - '{ありがとう} ね。'
+    english_literally: Thank you.
+    competing_grammar:
+      - competing_japanese:
+          - ありがとう ござい ます。
+        english: Thank you very much (polite).
+        hint: 「ありがとうございます」 is a more polite and formal way to express gratitude, suitable for general
+          situations. We're looking for a simple, direct thanks between close friends.
+    scene: A friend helps another friend pick up dropped items.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: Simple, direct gratitude between close friends. The single 「ありがとう」 is a very common and natural
+      way for a female speaker to express thanks in a casual setting. Adding 「ね」 can soften the expression
+      or seek light agreement.
+  - english: Thank you for your hard work!
+    japanese:
+      - お 疲れ 様、{ありがとう}！
+      - お 疲れ 様、本当 に {ありがとう}！
+    english_literally: Good work, thank you!
+    competing_grammar:
+      - competing_japanese:
+          - お 疲れ 様 でし た、ありがとう ござい ます！
+        english: Thank you for your hard work (polite)!
+        hint: Adding 「でした」 to 「お疲れ様」 and using 「ありがとうございます」 makes the expression more formal and respectful.
+          We're looking for a casual exchange between colleagues.
+    scene: Colleagues finishing a project late at night.
+    register: casual
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「お疲れ様 (otsukaresama)」 is commonly used in workplaces, followed by 「ありがとう」 to express gratitude
+      for shared effort. The combination is common between colleagues of similar standing. Adding 「本当に」
+      emphasizes the sincerity.
+  - english: Thank you very much!
+    japanese:
+      - 本当 に {ありがとう}！
+      - 本当 に {ありがとう} ね！
+    english_literally: Really thank you!
+    competing_grammar:
+      - competing_japanese:
+          - 誠 に ありがとう ござい ます！
+        english: Truly, thank you very much (very formal)!
+        hint: 「誠にありがとうございます」 is a highly formal and humble expression of gratitude, often used in business
+          or very respectful situations. We're looking for a child's excited, casual thanks.
+    scene: A child receiving a desired toy from their parent.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「本当に (hontou ni)」 adds emphasis, reflecting the child's genuine excitement and gratitude.
+      This casual form is perfectly natural within a family. Adding 「ね」 can slightly soften the excitement
+      while maintaining the strong thanks.
+  - english: Thank you for the meal!
+    japanese:
+      - ご 馳走 様、{ありがとう}！
+      - ご 馳走 様、{ありがとう} ね！
+    english_literally: It was a feast, thank you!
+    competing_grammar:
+      - competing_japanese:
+          - 大 変 美味しゅう ござい まし た。
+        english: It was truly delicious (very polite/humble).
+        hint: 「大変美味しゅうございました」 is a very humble and somewhat old-fashioned way to compliment a meal. We're
+          looking for a common, friendly thanks.
+    scene: A guest is leaving a host's house after dinner.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「ご馳走様 (gochisōsama)」 is the standard phrase after a meal. Adding 「ありがとう」 makes it slightly
+      more personal and heartfelt, common when thanking a friend or family member who hosted. Adding 「ね」
+      further emphasizes the friendly, intimate tone.
+  - english: Thanks, I appreciate it!
+    japanese:
+      - '{ありがとう}、助かる よ！'
+      - '{ありがとう} ね、助かる よ！'
+    english_literally: Thank you, it helps!
+    competing_grammar:
+      - competing_japanese:
+          - 恐れ入り ます。
+        english: I am sorry to trouble you / I am much obliged (formal).
+        hint: 「恐れ入ります」 is a very formal expression of gratitude often paired with an apology for a favor
+          received. We're looking for a more direct and casual expression of relief.
+    scene: Someone is given directions by a stranger.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「助かるよ (tasukaru yo)」 means "that helps a lot" or "you're a lifesaver," making the gratitude
+      more specific and emphasizing the benefit received. The 「よ」 particle adds a light, reassuring tone.
+      Adding 「ね」 to 「ありがとう」 provides a softer, more engaging expression.
+  - english: Thank you for waiting!
+    japanese:
+      - 待っ て て くれ て {ありがとう}。
+      - 待っ て て くれ て、本当 に {ありがとう}。
+    english_literally: Thank you for waiting for me.
+    competing_grammar:
+      - competing_japanese:
+          - お 待た せ いたし まし た。
+        english: I apologize for making you wait (humble).
+        hint: 「お待たせいたしました」 is an apology for causing someone to wait, typically used by someone of a lower
+          status or in a service context. We're looking for an expression of thanks for the act of waiting.
+    scene: A person arrives late to meet a friend.
+    register: casual
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The 「てくれて (te kurete)」 form expresses thanks for an action done *for* the speaker, emphasizing
+      the kindness of the other person. This is very common for expressing gratitude for favors. Adding
+      「本当に」 conveys deeper sincerity.
+  - english: Thank you for teaching me.
+    japanese:
+      - 教え て くれ て {ありがとう}。
+      - 教え て くれ て、本当 に {ありがとう}。
+    english_literally: Thank you for teaching me.
+    competing_grammar:
+      - competing_japanese:
+          - 御 指導 いただき、誠 に ありがとう ござい ます。
+        english: Thank you very much for your guidance (very formal/humble).
+        hint: 「御指導いただき、誠にありがとうございます」 is an extremely polite and humble way to thank someone for instruction
+          or guidance, often used for superiors. We're looking for a casual thanks between classmates.
+    scene: A student thanks a classmate for explaining a difficult concept.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    listener_gender: female
+    nuance: Similar to the previous example, 「てくれて」 explicitly thanks for the act of "teaching" (教えて -
+      oshiete). It highlights the specific favor received. Adding 「本当に」 reinforces the genuine nature
+      of the thanks.
+  - english: Thank you, I'll use it carefully.
+    japanese:
+      - '{ありがとう}、大事 に 使う ね。'
+      - 本当 に {ありがとう}、大事 に 使う ね。
+    english_literally: Thank you, I'll use it carefully, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 拝借 いたし ます。
+        english: I will humbly borrow it (very formal).
+        hint: 「拝借いたします」 is a humble phrase used when borrowing something, focusing on the act of borrowing
+          rather than expressing thanks for the act of lending. We're looking for a casual thanks with
+          a promise to be careful.
+    scene: Someone receives a borrowed item (e.g., a book or tool).
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「大事に使うね (daiji ni tsukau ne)」 shows respect for the item and reassures the lender. The 「ね」
+      particle seeks agreement or confirmation, making the statement softer and more engaging. Starting
+      with 「本当にありがとう」 adds a stronger sense of appreciation for the loan.
+  - english: Thanks a bunch!
+    japanese:
+      - '{ありがとう} ね、本当 に！'
+      - 本当 に {ありがとう} ね！
+    english_literally: Thank you, really!
+    competing_grammar:
+      - competing_japanese:
+          - 心 より 御 礼 申し上げ ます。
+        english: I express my sincere gratitude (extremely formal/written).
+        hint: 「心より御礼申し上げます」 is a very formal and profound expression of thanks, often found in written
+          correspondence or formal speeches. We're looking for a casual, heartfelt thank you between siblings.
+    scene: A younger sibling thanks an older sibling for a big favor.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The double emphasis with 「ありがとうね」 and 「本当に」 conveys deep, heartfelt gratitude in a casual
+      family context. The 「ね」 adds a touch of closeness. Reversing the order of 「本当に」 and 「ありがとうね」 offers
+      a slightly different rhythm while retaining the same strong, intimate gratitude.
+  - english: Thank you, I'm glad I came.
+    japanese:
+      - '{ありがとう}、来 て よかっ た よ。'
+      - 本当 に {ありがとう}、来 て よかっ た よ。
+    english_literally: Thank you, I'm glad I came.
+    competing_grammar:
+      - competing_japanese:
+          - 本日 は 誠 に ありがとう ござい まし た。
+        english: Thank you very much for today (formal).
+        hint: 「本日は誠にありがとうございました」 is a standard, polite closing phrase at formal events. We're looking
+          for a more personal and reflective expression of gratitude.
+    scene: A person attending an event thanks the organizer at the end.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「来てよかったよ (kite yokatta yo)」 expresses personal satisfaction and appreciation for
+      the event, which implicitly extends gratitude to the organizer. The casual 「よ」 makes it feel genuine.
+      Adding 「本当に」 before 「ありがとう」 strengthens the expression of gratitude for the opportunity to attend.
+post_example_writeup: Understanding the core meaning of "ありがとう" as something precious and rare helps to
+  appreciate its usage. While simple, it forms the basis for more complex expressions of gratitude in
+  Japanese, emphasizing the value of the received kindness.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ありがとう

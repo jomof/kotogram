@@ -1,0 +1,267 @@
+grammar_point: '[Noun・Adjective]のつもりだ (believe that one is・acting as if)'
+learn_before:
+  - '[Verb-dictionary]つもりだ (to intend to)'
+meaning: To believe one is something; to act as if one is something, often implying a discrepancy between
+  belief and reality.
+pronunciation:
+  katakana: ツモリダ
+  romaji: tsumorida
+formation:
+  Noun + の + つもりだ: Expresses that one believes they are a noun, or is acting as if they are.
+  い-Adjective + つもりだ: Expresses that one believes they possess an い-adjective quality, or is acting as
+    if they do.
+  な-Adjective + な + つもりだ: Expresses that one believes they possess a な-adjective quality, or is acting
+    as if they do.
+jlpt: N2
+etymology: The term 「つもり」 (tsumori) originates from the verb 「積もる」 (tsumoru), meaning 'to pile up' or
+  'to accumulate'. This concept evolved to signify 'estimation', 'intention', or 'forethought' (like building
+  up a plan). In the context of 「～のつもりだ」, it describes a 'piled-up' or 'accumulated' internal belief or
+  self-perception. The construction emphasizes a subjective state that one has 'built up' for oneself,
+  even if it contradicts external facts.
+writeup: |-
+  The grammar pattern 「～のつもりだ」 is used to describe someone's self-perception or their acting as if they are in a certain state, possess a certain quality, or hold a particular identity. It indicates an internal belief or pretense that may or may not align with objective reality.
+
+  This pattern often carries a nuance of discrepancy. The speaker uses 「～のつもりだ」 when they want to convey that someone *thinks* they are X, or *acts* like X, but in reality, they are not, or their actions are not perceived as such by others. It can imply self-deception, overconfidence, or a mistaken belief.
+
+  For nouns, the structure is 「名詞＋の＋つもりだ」. For example, 「私は子供のつもりだ」 (I believe I'm a child/I'm acting like a child). For い-adjectives, it's 「い形容詞＋つもりだ」, such as 「若いつもりだ」 (I think I'm young/I act like I'm young). For な-adjectives, the structure is 「な形容詞＋な＋つもりだ」, like 「真面目なつもりだ」 (I think I'm serious/I act like I'm serious).
+
+  While it often implies a negative or humorous discrepancy, it can also be used neutrally to describe someone's genuine self-identification or how they understand their own role, even if others might have a different perspective. However, the core implication remains the subjective nature of the belief versus an objective truth.
+false_friends:
+  - term: つもりだ (intention or conviction)
+    meaning: to intend to; to plan to; to expect to
+    kind: similar expression
+    nuance: While 「[Noun・Adjective]のつもりだ」 expresses a belief about one's current state or identity, 「つもりだ」
+      alone expresses a future intention or expectation.
+    grammar_point: '[Verb-dictionary]つもりだ (to intend to)'
+  - term: みたい (similar to)
+    meaning: looks like; seems like; appears to be
+    kind: similar expression
+    nuance: While 「[Noun・Adjective]のつもりだ」 indicates an internal belief or self-perception, 「みたい」 describes
+      an external appearance or resemblance observed by others.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: はずだ (expected to be)
+    meaning: should be; must be; is expected to be
+    kind: often confused with
+    nuance: Unlike 「[Noun・Adjective]のつもりだ」 which conveys a subjective belief, 「はずだ」 indicates a strong
+      logical probability or certainty based on objective information.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+post_false_friends_writeup: To differentiate these expressions, remember that 「～のつもりだ」 focuses on a subjective
+  self-perception or pretense, often with a subtle hint that this perception might not be accurate. 「つもりだ」
+  on its own is about future intentions. 「みたい」 describes how something appears externally. 「はずだ」 conveys
+  a logical expectation based on factual reasoning.
+examples:
+  - english: I'm a student, so I'll do my best.
+    japanese:
+      - 私 は 学生 の {つもり だ} から、頑張り ます。
+      - 私 は 学生 の {つもり です の で}、頑張り ます。
+      - 俺 は 学生 の {つもり だ から}、頑張る ぜ。
+      - 僕 は 学生 の {つもり だ から}、頑張る。
+    english_literally: As for me, because I believe I am a student, I will do my best.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 学生 な の で、頑張り ます。
+        english: Because I'm a student, I'll do my best.
+        hint: The original sentence emphasizes the speaker's internal belief of being a student. This
+          competing sentence simply states a factual reason.
+    scene: A young person talking about their academic dedication.
+    register: formal
+    setting: academic
+    nuance: Here, 「学生のつもりだ」 is a statement of genuine self-identification and a commitment to the role.
+      It emphasizes the speaker's internal conviction about their status.
+  - english: He acts like a pro, but he's actually an amateur.
+    japanese:
+      - 彼 は プロ の {つもり だ} けど、実 は 素人 だ よ。
+      - 彼 は プロ の {つもり です が}、実 は 素人 です よ。
+      - あいつ、プロ の {つもり だ けど}、まじ 素人。
+      - 彼、プロ の {つもり で いる} けど、実 は 素人 だ よ。
+    english_literally: As for him, he believes he is a pro, but actually he is an amateur.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は プロ みたい だ けど、実 は 素人 だ よ。
+        english: He looks like a pro, but he's actually an amateur.
+        hint: The original sentence implies he *thinks* he's a pro. This competing sentence describes
+          his outward appearance.
+    scene: Friends discussing a mutual acquaintance's skills.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「プロのつもりだ」 here carries a nuance of pretense or an inaccurate self-assessment. The 「けど」 (but)
+      highlights the contrast between his belief and the reality.
+  - english: She thinks she's young, but she's almost 40.
+    japanese:
+      - 彼女 は 若い {つもり だ} けど、もう すぐ ４０ だ よ。
+      - 彼女 は 若い {つもり です が}、もう すぐ ４０ です よ。
+      - 彼女 は 若い {つもり で いる} けど、もう すぐ ４０ だ よ。
+    english_literally: As for her, she believes she is young, but already she is almost 40.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 若い みたい だ けど、もう すぐ ４０ だ よ。
+        english: She looks young, but she's almost 40.
+        hint: The original sentence indicates her internal belief of being young. This competing sentence
+          describes her outward appearance.
+    scene: Two colleagues gossiping.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「若いつもりだ」 implies that her belief of being young is at odds with her actual age, suggesting
+      a slightly deluded self-image.
+  - english: He acted serious, but he was actually just joking around.
+    japanese:
+      - 彼 は 真面目 な {つもり だっ た} けど、本当 は ふざけ て い た だけ だっ た。
+      - 彼 は 真面目 な {つもり でし た が}、本当 は ふざけ て い た だけ でし た。
+      - 彼、真面目 な {つもり だっ た けど}、ホント は ふざけ て た だけ。
+    english_literally: As for him, he believed he was serious, but in truth he was merely fooling around.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 真面目 そう だっ た けど、本当 は ふざけ て い た だけ だっ た。
+        english: He looked serious, but he was actually just joking around.
+        hint: The original emphasizes his *intent* to be serious. This competing sentence describes his
+          outward appearance.
+    scene: Describing someone's behavior after a meeting.
+    register: casual
+    setting: reflective
+    nuance: 「真面目なつもりだった」 shows that the person intended to appear serious, but their actions (ふざけていただけだった)
+      revealed otherwise. It highlights a failed attempt at pretense.
+  - english: She's been studying Japanese for only a month, but she thinks she's fluent.
+    japanese:
+      - 日本 語 を １ ヶ月 しか 勉強 し て い ない の に、ペラペラ な {つもり だ}。
+      - 日本 語 を １ ヶ月 しか 勉強 し て い ない の に、ペラペラ な {つもり で い ます}。
+      - 日本 語 を １ ヶ月 しか 勉強 し て い ない の に、ペラペラ な {つもり な ん だ}。
+    english_literally: Even though she has only studied Japanese for one month, she believes she is fluent.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を １ ヶ月 しか 勉強 し て い ない の に、ペラペラ に なれる と 信じ て いる。
+        english: Even though she's only studied Japanese for a month, she believes she can become fluent.
+        hint: The original describes her current (possibly mistaken) self-perception. This competing sentence
+          describes a belief about a future state.
+    scene: A Japanese teacher talking about a student.
+    register: casual
+    setting: informative
+    nuance: 「ペラペラなつもりだ」 conveys a strong sense of a mistaken self-assessment, almost like self-deception,
+      given the short study period.
+  - english: I thought I was being quiet, but I woke everyone up.
+    japanese:
+      - 静か に し て いる {つもり だっ た} の に、みんな を 起こし て しまっ た。
+      - 静か に し て いる {つもり でし た が}、みんな を 起こし て しまい まし た。
+      - 静か に し てる {つもり だっ た の に}、皆 を 起こし ちゃっ た。
+    english_literally: Even though I believed I was being quiet, I ended up waking everyone up.
+    competing_grammar:
+      - competing_japanese:
+          - 静か に し たかっ た の に、みんな を 起こし て しまっ た。
+        english: I wanted to be quiet, but I woke everyone up.
+        hint: The original emphasizes the speaker's belief that they *were* being quiet. This competing
+          sentence expresses a desire to be quiet.
+    scene: Someone recalling an embarrassing moment.
+    register: casual
+    setting: apologetic
+    nuance: 「静かにしているつもりだった」 indicates the speaker's intention and belief that they were quiet, despite
+      the unintended negative outcome. It highlights the gap between perception and reality.
+  - english: As a parent, I intend to protect my child.
+    japanese:
+      - 親 の {つもり で}、子供 を 守る つもり だ。
+      - 親 の {つもり で}、子供 を 守ろう と 思う。
+      - 親 の {つもり で}、子供 を 守り ます。
+    english_literally: As one who believes they are a parent, I intend to protect my child.
+    competing_grammar:
+      - competing_japanese:
+          - 親 と し て、子供 を 守る つもり だ。
+        english: As a parent, I intend to protect my child.
+        hint: The original emphasizes the speaker's *mindset* of being a parent. This competing sentence
+          uses 'as a' in a more direct, factual sense.
+    scene: A parent discussing their responsibilities.
+    register: formal
+    setting: serious
+    nuance: Here, 「親のつもりで」 emphasizes acting _as if_ one is a parent, taking on the responsibilities and
+      mindset of a parent. It's a statement of commitment based on self-identification.
+  - english: He always tries to act cool, but it's obvious he's nervous.
+    japanese:
+      - 彼 は いつ も クール な {つもり で いる} けど、緊張 し て いる の が バレバレ だ。
+      - 彼 は いつ も クール な {つもり で い ます が}、緊張 し て いる の が バレバレ です。
+      - あいつ、いつ も クール な {つもり で いる けど}、緊張 し てる の バレバレ。
+    english_literally: As for him, he is always acting as if he is cool, but it is obvious he is nervous.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も クール に 見せ て いる けど、緊張 し て いる の が バレバレ だ。
+        english: He always tries to look cool, but it's obvious he's nervous.
+        hint: The original describes his internal belief and ongoing pretense. This competing sentence
+          focuses on his external attempt to appear cool.
+    scene: Observing someone trying to impress.
+    register: casual
+    setting: reflective
+    nuance: 「クールなつもりでいる」 describes a continuous state of trying to project a certain image, but failing
+      to conceal the true feelings. 「でいる」 emphasizes the ongoing nature of the pretense.
+  - english: That's not a cat, it's a dog, but it thinks it's a cat.
+    japanese:
+      - あれ は 猫 じゃ ない、犬 だ よ。で も、本人 は 猫 の {つもり らしい}。
+      - あれ は 猫 で は ない、犬 です。しかし、本人 は 猫 の {つもり らしい です}。
+      - あれ は 猫 じゃ ない、犬 だ よ。で も、本人 は 猫 の {つもり で いる らしい}。
+    english_literally: That is not a cat, it's a dog. But the individual itself seems to believe it is
+      a cat.
+    competing_grammar:
+      - competing_japanese:
+          - あれ は 猫 じゃ ない、犬 だ よ。で も、本人 は 猫 みたい だ。
+        english: That's not a cat, it's a dog. But it looks like a cat.
+        hint: The original implies the dog *believes* it's a cat. This competing sentence describes the
+          dog's external appearance as cat-like.
+    scene: Someone pointing out a peculiar pet.
+    register: casual
+    setting: humorous
+    nuance: 「猫のつもりらしい」 illustrates a humorous situation where an animal genuinely believes itself to be
+      something it's not, using 「らしい」 to convey apparent truth based on observation.
+  - english: He thought he was smart, but he failed the exam.
+    japanese:
+      - 賢い {つもり だっ た} の に、試験 に 落ち て しまっ た。
+      - 賢い {つもり でし た が}、試験 に 落ち て しまい まし た。
+      - 賢い {つもり だっ た けど}、試験 落ち ちゃっ た。
+    english_literally: Even though he believed he was smart, he ended up failing the exam.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 賢い はず だっ た の に、試験 に 落ち て しまっ た。
+        english: He should have been smart, but he failed the exam.
+        hint: The original expresses his subjective belief about his intelligence. This competing sentence
+          expresses a logical expectation that he *should* have been smart.
+    scene: Friends discussing exam results.
+    register: casual
+    setting: serious
+    nuance: 「賢いつもりだった」 indicates a subjective overestimation of one's intelligence, which was disproven
+      by the objective result (failing the exam).
+  - english: I'm acting as a responsible adult, so I won't run away from this problem.
+    japanese:
+      - 大人 と し て の {つもり で}、この 問題 から 逃げ ない。
+      - 大人 と し て の {つもり で}、この 問題 から 逃げ ませ ん。
+      - 大人 と し て の {つもり だ から}、この 問題 から 逃げ ない。
+    english_literally: As one who believes they are an adult, I will not run away from this problem.
+    competing_grammar:
+      - competing_japanese:
+          - 大人 と し て、この 問題 から 逃げ ない。
+        english: As an adult, I won't run away from this problem.
+        hint: The original emphasizes the speaker's conscious decision to act *as if* a responsible adult.
+          This competing sentence states it as a straightforward role.
+    scene: A person taking responsibility.
+    register: formal
+    setting: serious
+    nuance: 「大人としてのつもりで」 emphasizes the speaker's decision to act according to their self-perceived role
+      as a responsible adult, highlighting the intentional adoption of that mindset for action.
+  - english: I thought I was being kind, but it seemed to offend her.
+    japanese:
+      - 親切 な {つもり だっ た} ん だ けど、彼女 を 怒ら せ て しまっ た よう だ。
+      - 親切 な {つもり だっ た の です が}、彼女 を 怒ら せ て しまっ た よう です。
+      - 親切 な {つもり だっ た ん だ けど}、彼女 怒ら せ ちゃっ た みたい。
+    english_literally: I believed I was being kind, but it seems I angered her.
+    competing_grammar:
+      - competing_japanese:
+          - 親切 に し たかっ た ん だ けど、彼女 を 怒ら せ て しまっ た よう だ。
+        english: I wanted to be kind, but it seems I angered her.
+        hint: The original states the speaker's belief that their actions *were* kind. This competing
+          sentence states that they *wanted* to be kind.
+    scene: Reflecting on a past interaction.
+    register: casual
+    setting: reflective
+    nuance: 「親切なつもりだった」 highlights the speaker's good intentions and self-perception of being kind, contrasting
+      with the negative, unintended outcome.
+post_example_writeup: The examples demonstrate how 「～のつもりだ」 is used to convey a subjective belief or pretense,
+  often with an underlying implication that reality may differ. Pay close attention to the nuance created
+  by the context, particularly when it suggests a disconnect between internal perception and external
+  reality.

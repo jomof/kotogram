@@ -1,0 +1,247 @@
+grammar_point: わけもなく (without any particular reason)
+learn_before:
+  - Verb[たい] (desiderative)
+  - 〜如し・〜ごとし (like・as if)
+meaning: without any particular reason
+pronunciation:
+  katakana: ワケモナク
+  romaji: wakemonaku
+formation:
+  わけもなく + Verb/Phrase: Describes an action or state that occurs without any discernible or logical reason.
+jlpt: N3
+etymology: The phrase combines わけ (wake), meaning "reason" or "circumstance", and もなく (monaku), which
+  is derived from も (mo, "even, also") and なく (naku), the negative adverbial form of ある (aru, "to exist,
+  to be"). Thus, わけもなく literally translates to "even without a reason" or "without even a reason". This
+  etymology clearly highlights its core meaning of an action or state lacking any discernible cause or
+  justification.
+writeup: |-
+  The phrase **わけもなく** is used to describe an action or state that occurs **without any clear, specific, or logical reason**. It implies that the speaker or observer cannot find a rational explanation for something happening. It often conveys a sense of bewilderment or the arbitrary nature of an event.
+
+  Unlike phrases that suggest a vague or unclear reason (like なんとなく), **わけもなく** emphasizes the *absence* of a reason. It's not that the reason is hidden or hard to identify; it's that there genuinely doesn't seem to be one.
+
+  It is commonly used to describe spontaneous actions, feelings that arise without an apparent trigger, or events that simply 'just happened' without a discernible cause. While it can be used in both formal and casual contexts, the term わけ itself gives it a slightly more considered or descriptive feel compared to simpler expressions.
+false_friends:
+  - term: なんとなく
+    meaning: somehow, vaguely, for some reason
+    kind: similar expression
+    nuance: While both express a lack of clear reason, なんとなく suggests there might be a reason, but it's
+      vague, indefinable, or based on intuition/feeling. わけもなく implies a complete absence of reason or
+      purpose.
+    grammar_point: <suggest>:なんとなく (somehow・vaguely)
+  - term: 特に理由もなく
+    meaning: without any special reason
+    kind: similar expression
+    nuance: 特によもなく is a more literal and explanatory phrase. わけもなく is more idiomatic and often conveys
+      a stronger sense of inexplicability or arbitrariness.
+    grammar_point: <suggest>:特に理由もなく (without any special reason)
+  - term: 理由なしに
+    meaning: without reason
+    kind: similar expression
+    nuance: 理由なしに is a direct and factual statement that something occurred without a reason. わけもなく carries
+      a slightly more emotive or descriptive nuance, highlighting the unexpected or bewildering nature
+      of the lack of reason.
+    grammar_point: <suggest>:理由なしに (without reason)
+  - term: 偶然に
+    meaning: by chance, accidentally
+    kind: often confused with
+    nuance: 偶然に emphasizes an accidental or coincidental occurrence. わけもなく describes an action performed
+      without a reason, not necessarily by accident. An action done わけもなく is often intentional, but unmotivated.
+    grammar_point: <suggest>:偶然に (by chance)
+  - term: むやみに
+    meaning: thoughtlessly, recklessly, without good reason
+    kind: often confused with
+    nuance: むやみに implies an action taken without proper consideration or discretion, often with negative
+      consequences, suggesting a bad or insufficient reason. わけもなく implies no reason at all, good or bad.
+    grammar_point: <suggest>:むやみに (thoughtlessly)
+post_false_friends_writeup: To differentiate between these expressions, consider the degree and nature
+  of the 'lack of reason'. **なんとなく** is for a vague, intuitive, or unclear reason. **特によもなく** and **理由なしに**
+  are more direct, factual statements of absence of reason. **わけもなく** is more idiomatic, conveying a sense
+  of genuine inexplicability or a feeling that arises without a trigger. **偶然に** focuses on happenstance,
+  while **むやみに** implies acting rashly or without due thought, still suggesting a kind of 'reason' (a
+  bad one).
+examples:
+  - english: She burst into tears for no reason.
+    japanese:
+      - 彼女 は {わけ も なく} 涙 を 流し た。
+      - 彼女 は {わけ も なく} 涙 を 流し まし た。
+    english_literally: She, for no reason, shed tears.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {なん と なく} 涙 を 流し た。
+        english: She vaguely shed tears.
+        hint: 「なんとなく」 suggests a vague or unidentifiable reason, rather than a complete absence of reason.
+          We're looking for an action with no discernible cause.
+    scene: A young woman is sitting alone and suddenly starts crying, confusing those around her.
+    register: casual
+    setting: melancholic
+  - english: He smiled at me for no particular reason.
+    japanese:
+      - 彼 は {わけ も なく} 私 に 微笑ん だ。
+      - 彼 は {わけ も なく} 私 に 微笑み まし た。
+    english_literally: He, for no reason, smiled at me.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {なん と なく} 私 に 微笑ん だ。
+        english: He vaguely smiled at me.
+        hint: 「なんとなく」 implies a vague feeling or intuition. We're looking for an action with no apparent
+          reason at all.
+    scene: You are walking down the street and someone you don't know makes eye contact and smiles at
+      you.
+    register: casual
+    setting: friendly
+  - english: I felt like skipping school for no reason today.
+    japanese:
+      - 今日 は {わけ も なく} 学校 を サボり たかっ た。
+      - 今日 は {わけ も なく} 学校 を サボり たかっ た です。
+    english_literally: Today, for no reason, I wanted to skip school.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {なん と なく} 学校 を サボり たかっ た。
+        english: Today, I vaguely felt like skipping school.
+        hint: 「なんとなく」 implies a vague feeling or intuition, not a complete lack of reason for the desire.
+          We want to express that there was absolutely no specific reason.
+    scene: A high school student confides in their friend about their sudden, unmotivated desire to skip
+      class.
+    register: casual
+    setting: reflective
+  - english: The cat suddenly jumped for no reason.
+    japanese:
+      - 猫 が {わけ も なく} 突然 飛び跳ね た。
+      - 猫 が {わけ も なく} 突然 飛び跳ね まし た。
+    english_literally: The cat, for no reason, suddenly jumped.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が {なん と なく} 突然 飛び跳ね た。
+        english: The cat vaguely jumped.
+        hint: 「なんとなく」 implies a vague or unclear reason, while we are focusing on the complete absence
+          of any reason.
+    scene: A cat is calmly sitting, then suddenly leaps into the air, startling its owner.
+    register: casual
+    setting: humorous
+    nuance: This highlights the unpredictable and often illogical behavior of animals. {わけもなく} describes
+      an action that appears entirely random to an observer.
+  - english: The old tree shed its leaves for no reason in spring.
+    japanese:
+      - その 古い 木 は 春 に {わけ も なく} 葉 を 落とし た。
+      - その 古い 木 は 春 に {わけ も なく} 葉 を 落とし まし た。
+    english_literally: That old tree, in spring, for no reason, shed leaves.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 木 は 春 に {偶然 に} 葉 を 落とし た。
+        english: That old tree accidentally shed its leaves in spring.
+        hint: 「偶然に」 implies an accidental occurrence. Here, the tree's action is not accidental, but inexplicable.
+          We're looking for an absence of reason, not an accident.
+    scene: A gardener observes an unusual phenomenon with an old tree.
+    register: formal
+    setting: informative
+    nuance: This example uses {わけもなく} to describe an inexplicable natural phenomenon, indicating that
+      it goes against normal seasonal patterns or expectations.
+  - english: He started humming a song for no reason.
+    japanese:
+      - 彼 は {わけ も なく} 歌 を 口ずさみ 始め た。
+      - 彼 は {わけ も なく} 歌 を 口ずさみ 始め まし た。
+    english_literally: He, for no reason, began humming a song.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {なん と なく} 歌 を 口ずさみ 始め た。
+        english: He vaguely started humming a song.
+        hint: 「なんとなく」 implies a vague feeling. We are looking for an action that has no apparent trigger
+          or reason.
+    scene: A person is working quietly and then, out of the blue, starts humming.
+    register: casual
+    setting: friendly
+    nuance: This portrays a spontaneous, unprompted action, common in everyday life, where there's no
+      specific trigger for the humming.
+  - english: Sometimes I feel sad for no reason.
+    japanese:
+      - 時々、私 は {わけ も なく} 悲しく なる。
+      - 時々、私 は {わけ も なく} 悲しく なり ます。
+    english_literally: Sometimes, I, for no reason, become sad.
+    competing_grammar:
+      - competing_japanese:
+          - 時々、私 は {なん と なく} 悲しく なる。
+        english: Sometimes, I vaguely feel sad.
+        hint: 「なんとなく」 suggests an unclear or intuitive reason for sadness. We're looking for a feeling
+          that arises with no detectable reason at all.
+    scene: A student expresses their occasional inexplicable mood shifts.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: This sentence captures a common human experience of unexplained emotions. The use of {わけもなく}
+      conveys a sense of melancholy that arises without any obvious external cause. The speaker being
+      female doesn't change the Japanese here, but it's a common sentiment expressed by anyone.
+  - english: The child suddenly laughed for no reason.
+    japanese:
+      - 子供 は {わけ も なく} 突然 笑い 出し た。
+      - 子供 は {わけ も なく} 突然 笑い 出し まし た。
+    english_literally: The child, for no reason, suddenly started laughing.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は {なん と なく} 突然 笑い 出し た。
+        english: The child vaguely started laughing.
+        hint: 「なんとなく」 implies a vague or unclear reason, while we are focusing on the complete absence
+          of any reason for the laughter.
+    scene: A parent watches their young child play, and the child suddenly bursts into laughter for no
+      apparent reason.
+    register: casual
+    setting: optimistic
+    nuance: This emphasizes the innocence and spontaneity of a child's joy, highlighting that happiness
+      doesn't always require a direct stimulus.
+  - english: The old man just stared into space for no reason.
+    japanese:
+      - 老人 は {わけ も なく} ぼんやり と 空 を 見つめ て い た。
+      - 老人 は {わけ も なく} ぼんやり と 空 を 見つめ て い まし た。
+    english_literally: The old man, for no reason, vaguely gazed at the sky.
+    competing_grammar:
+      - competing_japanese:
+          - 老人 は {むやみ に} ぼんやり と 空 を 見つめ て い た。
+        english: The old man thoughtlessly stared into space.
+        hint: 「むやみに」 means thoughtlessly or recklessly. Here, the action is not thoughtless, but simply
+          without a specific purpose or reason. We're looking for an absence of reason, not a lack of
+          thought.
+    scene: Observing an elderly person lost in thought, with no apparent external focus.
+    register: casual
+    setting: reflective
+    speaker_age: older
+    nuance: This describes a contemplative or unoccupied state without a clear purpose. It highlights
+      an action (or inaction) that is not driven by any specific external or internal motivation, often
+      associated with introspection or simply 'being'. While not gender specific in Japanese, it portrays
+      a quiet moment.
+  - english: The computer rebooted for no reason during an important presentation.
+    japanese:
+      - 重要 な プレゼンテーション 中 に パソコン が {わけ も なく} 再 起動 し た。
+      - 重要 な プレゼンテーション 中 に パソコン が {わけ も なく} 再 起動 し まし た。
+    english_literally: During an important presentation, the personal computer, for no reason, rebooted.
+    competing_grammar:
+      - competing_japanese:
+          - 重要 な プレゼンテーション 中 に パソコン が {偶然 に} 再 起動 し た。
+        english: During an important presentation, the personal computer accidentally rebooted.
+        hint: 「偶然に」 implies an accident. While the reboot was unintended, 'わけもなく' emphasizes the lack
+          of an *identifiable cause* for the malfunction, not just that it was an accident.
+    scene: A business professional experiences a technical glitch during a critical presentation.
+    register: formal
+    setting: serious
+    nuance: This highlights an unexpected and problematic event without a clear technical cause, implying
+      a frustrating and inexplicable malfunction during a professional moment.
+  - english: They started arguing for no reason at all.
+    japanese:
+      - 彼 ら は {わけ も なく} 口論 を 始め た。
+      - 彼 ら は {わけ も なく} 口論 を 始め まし た。
+    english_literally: They, for no reason, started arguing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は {なん と なく} 口論 を 始め た。
+        english: They vaguely started arguing.
+        hint: 「なんとなく」 implies a vague or unclear reason for the argument. We're focusing on the complete
+          absence of any reason or trigger.
+    scene: Two people suddenly get into a heated argument without any apparent trigger.
+    register: casual
+    setting: serious
+    listener_gender: group
+    nuance: This expresses the bewildering start of a conflict, emphasizing that there was no logical
+      provocation. It suggests an underlying tension or simply a sudden, unprompted outburst.
+post_example_writeup: The examples illustrate how **わけもなく** can be applied to spontaneous actions, inexplicable
+  feelings, or events that occur without any clear, logical precursor. It is a nuanced way to convey a
+  lack of discernible reason, making it distinct from mere vagueness or accidental occurrences.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%8F%E3%81%91%E3%82%82%E3%81%AA%E3%81%8F

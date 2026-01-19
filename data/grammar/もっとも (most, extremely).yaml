@@ -1,0 +1,242 @@
+grammar_point: もっとも (most, extremely)
+learn_before:
+  - Verb[(ら)れる] (direct passive)
+  - '[Clause]こと (the act of・the fact that)'
+  - 〜如し・〜ごとし (like・as if)
+  - がいい (strong suggestion)
+  - 中・外 (spatial and temporal reference)
+  - 時代 (era・period)
+  - 込み (including)
+meaning: most; extremely; indeed; truly
+pronunciation:
+  katakana: モットモ
+  romaji: mottomo
+formation:
+  もっとも + い-Adjective: Used to express the highest degree of an い-adjective.
+  もっとも + な-Adjective: Used to express the highest degree of a な-adjective.
+  もっとも + Adverb: Used to express the highest degree of an adverb, or to emphasize the truth of an action.
+  もっともだ: A fixed expression meaning 'that's most reasonable' or 'that's quite true'.
+jlpt: N1
+etymology: The word もっとも is believed to derive from 真 (まこと - truth, reality) or 最 (もっと - most) coupled
+  with 端 (も - edge, end). Originally, it meant 'the utmost truth' or 'the ultimate reality,' signifying
+  something that is indeed true or most fitting. Over time, its meaning expanded to encompass 'most,'
+  'extremely,' or 'indeed,' emphasizing the highest degree or the indisputable truth of a statement. This
+  dual origin helps explain its use both as a superlative and as a term that asserts the correctness or
+  logical outcome of something.
+writeup: |-
+  The adverb もっとも is employed to express the highest degree of a quality, state, or manner, or to assert the truth or logicality of a statement. It translates broadly to 'most,' 'extremely,' 'indeed,' or 'truly.'
+
+  Compared to `一番` (ichiban), which is the most common and versatile superlative, もっとも carries a more formal, literary, or intellectual nuance. While `一番` is frequently used for objective rankings (e.g., 'the tallest building,' 'the fastest car'), もっとも is often reserved for situations where a definitive statement is being made, or when emphasizing a subjective yet profound truth or quality. It often precedes adjectives (both い-adjectives and な-adjectives) and adverbs.
+
+  When used with a verb or as the fixed expression `もっともだ`, it functions to affirm the truth, reasonableness, or justness of a statement, conveying a sense of 'that is indeed true' or 'that is perfectly understandable.' This usage reflects its etymological roots related to 'truth' and 'reality.'
+
+  Due to its formal nature, もっとも is more commonly encountered in written Japanese, academic discussions, news reports, or speeches rather than casual conversation.
+false_friends:
+  - term: もっとも (qualification・however)
+    meaning: however; although; naturally; indeed
+    kind: often confused with
+    nuance: This もっとも functions as a conjunctive adverb, introducing a qualification or a counter-statement,
+      similar to しかし. It typically stands at the beginning of a clause. The もっとも meaning 'most/extremely'
+      is an adverb modifying an adjective, adverb, or verb to denote the highest degree or truth, and
+      usually precedes the word it modifies.
+    grammar_point: もっとも (qualification・however)
+  - term: 一番 (superlative)
+    meaning: most; best; number one
+    kind: similar expression
+    nuance: '`一番` is the general and most common way to form superlatives, applicable in a wide range
+      of situations for objective rankings. `もっとも` is more formal and literary, often used for abstract
+      qualities or in definitive statements, carrying a nuance of ''indeed'' or ''truly the most,'' and
+      may imply a subjective or reasoned conclusion.'
+    grammar_point: 一番 (superlative)
+  - term: とても (very)
+    meaning: very; awfully; exceedingly
+    kind: similar expression
+    nuance: '`とても` is a common intensifier for adjectives and adverbs, indicating a high degree. `もっとも`
+      expresses the *highest* degree, making it a superlative, whereas `とても` simply indicates a significant
+      but not necessarily maximal degree.'
+    grammar_point: <suggest>:とても (very)
+post_false_friends_writeup: Distinguishing between the two meanings of `もっとも` and similar intensifiers
+  is crucial. The 'most/extremely' `もっとも` typically precedes an adjective, adverb, or verb, intensifying
+  its meaning or asserting its truth. The 'however' `もっとも` acts as a conjunctive adverb, usually appearing
+  at the start of a clause to introduce a condition or an exception. Pay close attention to the grammatical
+  role and position of `もっとも` in the sentence. While `一番` and `とても` also express high degrees, `もっとも`
+  often conveys a sense of formal or reasoned judgment.
+examples:
+  - english: This is the most beautiful scenery in the world.
+    japanese:
+      - これ は 世界 で {もっとも} 美しい 景色 だ。
+      - これ は 世界 で {もっとも} 美しい 景色 で ござい ます。
+    english_literally: This, in the world, is the most beautiful scenery.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 世界 で 一番 美しい 景色 だ。
+        english: This is the number one most beautiful scenery in the world.
+        hint: 「一番」is a more common and direct superlative, implying a straightforward ranking. We're looking
+          for a more formal or reflective expression of 'most beautiful'.
+    scene: A landscape photographer showing their best work to an art critic.
+    register: formal
+    setting: professional
+  - english: It is most important to understand the basics.
+    japanese:
+      - 基本 を 理解 する こと が {もっとも} 重要 だ。
+      - 基本 を 理解 する こと が {もっとも} 重要 で ござい ます。
+    english_literally: The act of understanding basics is most important.
+    competing_grammar:
+      - competing_japanese:
+          - 基本 を 理解 する こと が とても 重要 だ。
+        english: It is very important to understand the basics.
+        hint: 「とても」just means 'very' or 'extremely.' We're looking for an expression that highlights something
+          as the *utmost* in importance.
+    scene: A university professor giving advice to new students during an orientation.
+    register: formal
+    setting: academic
+  - english: He spoke most eloquently at the conference.
+    japanese:
+      - 彼 は 会議 で {もっとも} 雄弁 に 語っ た。
+      - 彼 は 会議 で {もっとも} 雄弁 に 語ら れ まし た。
+    english_literally: He, at the conference, most eloquently spoke.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 会議 で 一番 雄弁 に 語っ た。
+        english: He spoke the most eloquently at the conference (compared to others).
+        hint: While 「一番雄弁に」is correct, 「もっとも雄弁に」implies a higher, perhaps more refined, degree of eloquence
+          rather than just being 'number one' in a ranking. We're looking for a more formal emphasis.
+    scene: A colleague discussing a presentation given by a peer in a business meeting.
+    register: formal
+    setting: professional
+  - english: What you say is indeed true.
+    japanese:
+      - あなた の 言う こと は {もっとも} だ。
+      - あなた の おっしゃる こと は {もっとも} で ござい ます。
+    english_literally: As for what you say, it is most reasonable/true.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 言う こと は 正しい。
+        english: What you say is correct.
+        hint: 「正しい」means simply 'correct' or 'right,' while 「もっともだ」implies a deeper level of logical soundness
+          and undeniable truth, suggesting it is profoundly reasonable or justified. We're looking for
+          an expression that conveys strong agreement based on rationality.
+    scene: Two philosophers discussing a complex ethical dilemma, and one concedes a point made by the
+      other.
+    register: formal
+    setting: academic
+    nuance: The usage 「もっともだ」is a fixed expression, implying that a statement or argument is entirely
+      reasonable, logical, or justified, to the point of being undeniable. It signifies a strong agreement
+      based on rationality, often used when conceding a valid point in a discussion or confirming the
+      validity of an argument.
+  - english: Among all hypotheses, this one is most persuasive.
+    japanese:
+      - すべて の 仮説 の 中 で、これ が {もっとも} 説得 力 が ある。
+      - すべて の 仮説 の 中 で、これ が {もっとも} 説得 力 が ござい ます。
+    english_literally: Among all hypotheses, this one has the most persuasive power.
+    competing_grammar:
+      - competing_japanese:
+          - すべて の 仮説 の 中 で、これ が 一番 説得 力 が ある。
+        english: Among all hypotheses, this one has the number one persuasive power.
+        hint: While 「一番」is grammatically correct, `もっとも` here conveys a more considered, perhaps scientific
+          or intellectual, judgment of persuasiveness, rather than just a simple ranking.
+    scene: Researchers presenting their findings and concluding which theory is strongest.
+    register: formal
+    setting: academic
+  - english: He is most honest among his friends.
+    japanese:
+      - 彼 は 友人 の 中 で {もっとも} 誠実 だ。
+      - 彼 は 友人 の 中 で {もっとも} 誠実 で ござい ます。
+    english_literally: He, among his friends, is most sincere.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 友人 の 中 で 一番 誠実 だ。
+        english: He is the most honest among his friends.
+        hint: 「一番」is fine for general comparison. `もっとも` adds a more formal or almost definitive tone
+          to the statement about his character, emphasizing 'truly the most sincere'.
+    scene: A parent talking about their child's good qualities to another parent.
+    register: formal
+    setting: friendly
+  - english: For a politician, integrity is most essential.
+    japanese:
+      - 政治 家 に とっ て、清廉 さ は {もっとも} 不可欠 で ある。
+      - 政治 家 に とっ て、清廉 さ は {もっとも} 不可欠 で ござい ます。
+    english_literally: For a politician, integrity is most indispensable.
+    competing_grammar:
+      - competing_japanese:
+          - 政治 家 に とっ て、清廉 さ は とても 不可欠 で ある。
+        english: For a politician, integrity is very indispensable.
+        hint: 「とても」simply states a high degree of necessity. `もっとも` elevates it to the highest, most absolute
+          level of indispensability for that role. We're looking for an absolute statement.
+    scene: A political analyst giving a speech on the qualities of an ideal leader.
+    register: formal
+    setting: academic
+  - english: This method is most suitable for beginners.
+    japanese:
+      - この 方法 は 初心 者 に {もっとも} 適し て いる。
+      - この 方法 は 初心 者 に {もっとも} 適し て い ます。
+    english_literally: This method is most suitable for beginners.
+    competing_grammar:
+      - competing_japanese:
+          - この 方法 は 初心 者 に 一番 適し て いる。
+        english: This method is the number one most suitable for beginners.
+        hint: 「一番」might imply it's merely the top choice from a list. `もっとも` here conveys that it is truly,
+          fundamentally, or inherently the optimal choice for beginners, making it a stronger endorsement.
+    scene: An instructor recommending a learning approach to a new class.
+    register: formal
+    setting: instructional
+  - english: That era was most turbulent.
+    japanese:
+      - その 時代 は {もっとも} 激動 の 時代 だっ た。
+      - その 時代 は {もっとも} 激動 の 時代 で ござい まし た。
+    english_literally: That era was the most turbulent era.
+    competing_grammar:
+      - competing_japanese:
+          - その 時代 は とても 激動 の 時代 だっ た。
+        english: That era was a very turbulent era.
+        hint: 「とても」simply describes a high level of turbulence. `もっとも` intensifies this to the highest
+          possible degree, suggesting it was uniquely or supremely turbulent. We're looking for a strong,
+          definitive historical statement.
+    scene: A historian describing a specific period in history during a lecture.
+    register: formal
+    setting: academic
+  - english: Humility is most difficult.
+    japanese:
+      - 謙虚 で ある こと が {もっとも} 難しい。
+      - 謙虚 で ある こと が {もっとも} 難しい で ござい ます。
+    english_literally: The act of being humble is most difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 謙虚 で ある こと が 一番 難しい。
+        english: The act of being humble is the number one most difficult.
+        hint: 「一番」might imply difficulty in comparison to a list of other things. `もっとも` here is used
+          to express a profound, almost philosophical truth about the inherent difficulty of humility
+          itself, not just in comparison to others.
+    scene: A wise elder sharing life wisdom with a younger person.
+    register: formal
+    setting: reflective
+  - english: This path is most dangerous.
+    japanese:
+      - この 道 は {もっとも} 危険 だ。
+      - この 道 は {もっとも} 危険 で ござい ます。
+    english_literally: This path is most dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - この 道 は とても 危険 だ。
+        english: This path is very dangerous.
+        hint: 「とても」simply warns of high danger. `もっとも` conveys that this path is singularly, supremely
+          dangerous, emphasizing its extreme peril. We're looking for a strong warning implying it's the
+          most dangerous of all.
+    scene: A park ranger warning hikers about a treacherous trail.
+    register: formal
+    setting: instructional
+  - english: Trust is the most valuable thing.
+    japanese:
+      - 信頼 が {もっとも} 尊い もの だ。
+      - 信頼 が {もっとも} 尊い もの で ござい ます。
+    english_literally: Trust is the most noble/valuable thing.
+    competing_grammar:
+      - competing_japanese:
+          - 信頼 が 一番 尊い もの だ。
+        english: Trust is the number one most valuable thing.
+        hint: While 「一番」is acceptable, `もっとも` emphasizes 'trust' as inherently and truly the most valuable,
+          often used in more philosophical or definitive statements about abstract concepts. We're looking
+          for a profound assertion.
+    scene: A speaker giving a motivational address on life values.
+    register: formal
+    setting: inspirational

@@ -1,0 +1,279 @@
+grammar_point: なり~なり (either... or...)
+learn_before:
+  - なり〜なり (either... or)
+meaning: either... or... (for example); like... or...
+pronunciation:
+  katakana: ナリナリ
+  romaji: nari ~ nari
+formation:
+  Noun なり Noun なり: Used to present two or more nouns as representative choices or examples.
+  Noun なり Noun なり + Particle (e.g., に, で, から): Used when the entire 'Noun なり Noun なり' phrase functions
+    with a specific particle.
+  Verb (plain form) なり Verb (plain form) なり: Used to list two or more actions, suggesting either is an
+    acceptable or representative option.
+jlpt: N2
+etymology: 「なり」 is derived from the verb 「なる」 (naru, to become). In this construction, it's used to present
+  options or possibilities, suggesting that either one is sufficient or representative. The repeated form
+  「なり〜なり」 emphasizes that the choices are examples, and any suitable option will suffice, similar to how
+  「〜たり〜たり」 lists examples of actions. This usage evolved from a nominalizing particle that marked something
+  as 'being' or 'becoming' something, extending to 'such as' or 'in the manner of'.
+writeup: |-
+  The grammar point 「なり~なり」 is used to present two or more options as examples, suggesting that choosing any of them is acceptable and sufficient. It conveys the idea of "either... or..." or "something like..." This structure is versatile and can be used with nouns or verbs.
+
+  *   When used with nouns, it presents alternative choices. For example, 「電話なりメールなり」 means "either by phone or by email." The options are not exhaustive, but representative.
+  *   When used with verbs, it suggests alternative actions. For example, 「食べるなり、寝るなり」 means "either eat or sleep." Again, these are given as sufficient examples among other possibilities.
+
+  **Important Considerations:**
+
+  *   The options presented are not exhaustive; there may be other possibilities, but these are representative of the kind of options that would be acceptable.
+  *   The nuance is often that the speaker doesn't necessarily care which option is chosen, as long as one of them is suitable and fulfills the purpose.
+  *   It's often used to suggest a course of action when someone is unsure what to do, or to convey flexibility in a situation.
+false_friends:
+  - term: とか〜とか
+    meaning: and so on; among other things
+    kind: similar expression
+    nuance: 「とか〜とか」 lists examples, but it often implies there are many other similar items, and is generally
+      more informal. 「なり〜なり」 usually presents just a couple of representative options and carries a slightly
+      more purposeful nuance of 'this or that, as suitable'.
+    grammar_point: とか〜とか (listing examples)
+  - term: か〜か
+    meaning: whether... or...
+    kind: similar expression
+    nuance: 「か〜か」 indicates a choice between two possibilities, often in a question, a statement of uncertainty,
+      or an exclusive choice. 「なり〜なり」 suggests either option is acceptable or representative, not necessarily
+      an exclusive choice, and implies a broader range of suitability.
+    grammar_point: か〜か (whether... or)
+  - term: たり〜たりする
+    meaning: doing such things as... and...
+    kind: similar expression
+    nuance: 「たり〜たり」 lists actions in a non-exhaustive manner, often emphasizing the variety or repetition
+      of actions performed over time. 「なり〜なり」 suggests either action is a sufficient example for a given
+      instance or situation, focusing on the adequacy of the choice rather than the variety of activity.
+    grammar_point: Verb[たり] (representative listing)
+  - term: でも〜でも
+    meaning: Whether ~ or, Neither ~ nor
+    kind: similar expression
+    nuance: 「でも〜でも」 emphasizes that either option is acceptable, often with a sense of 'no matter which.'
+      「なり〜なり」 typically presents representative examples of suitable choices without necessarily implying
+      that all other options are excluded, and can sometimes carry a tone of resignation or convenience.
+    grammar_point: でも〜でも (whether x or y)
+  - term: にしろ〜にしろ
+    meaning: Whether... or... (it doesn't matter)
+    kind: similar expression
+    nuance: 「にしろ〜にしろ」 implies that the outcome remains the same regardless of which choice is made, often
+      used in more formal or objective contexts. 「なり〜なり」 focuses on providing sufficient or representative
+      examples of acceptable options, with a less emphatic 'no matter what' nuance regarding the outcome.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+post_false_friends_writeup: While 「なり~なり」, 「とか〜とか」, 「か〜か」, 「たり〜たり」, 「でも〜でも」, and 「にしろ〜にしろ」 all involve
+  presenting options or examples, they differ in nuance. 「なり~なり」 suggests that any of the given options
+  is acceptable or representative of what should be done. 「とか〜とか」 implies an incomplete list of similar
+  items. 「か〜か」 indicates a choice between two possibilities where one must be selected or the uncertainty
+  between them. 「たり〜たり」 lists actions in a non-exhaustive manner, emphasizing variety or repetition of
+  those actions. 「でも〜でも」 emphasizes the irrelevance of the choice, meaning either option is fine. 「にしろ〜にしろ」
+  (and its variant 「にせよ〜にせよ」) implies that the conclusion or outcome remains unchanged regardless of which
+  of the listed possibilities is true. Understanding these subtleties is key to choosing the most natural
+  expression.
+examples:
+  - english: If you get lost, please ask a police officer or anyone else.
+    japanese:
+      - 道 に 迷っ たら、警察 官 {なり} 誰 {なり} に 聞い て ください。
+      - 道 に 迷っ た 際 は、警察 官 {なり} 誰 {なり} に お 尋ね ください。
+      - 道 に 迷っ たら、警察 官 {なり} 誰 {なり} か に 聞い て もらっ て ください。
+    english_literally: If lost on road, police officer or anyone, please ask.
+    competing_grammar:
+      - competing_japanese:
+          - 道 に 迷っ たら、警察 官 {か} 誰 か に 聞い て ください。
+        english: If you get lost, please ask a police officer or anyone.
+        hint: This implies a choice between a police officer or someone else, often used for a specific,
+          exclusive choice or uncertainty. We're looking for examples of people who are suitable to ask.
+    scene: Giving directions to a tourist.
+    register: formal
+    setting: informative
+    nuance: The sentence is a general suggestion, where 「聞いてください」 is a polite request. The usage of 「{なり}~{なり}」
+      here emphasizes that either a police officer or any other suitable person is an acceptable and sufficient
+      source of help, without implying an exclusive choice. It's a broad, helpful suggestion.
+  - english: I spend my weekends at home either watching movies or reading books.
+    japanese:
+      - 週末 は 家 で 映画 を 見る {なり}、本 を 読む {なり} し て 過ごし ます。
+      - 週末 は 家 で 映画 見る {なり}、本 読む {なり} し て 過ごす よ。
+      - 週末 は 家 で 映画 を 見る {なり}、本 を 読む {なり} する こと が 多い です。
+    english_literally: Weekends, at home, movie watching or book reading, do and spend.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 は 家 で 映画 を 見 {たり}、本 を 読ん {だり} し て 過ごし ます。
+        english: On weekends, I do things like watch movies and read books at home.
+        hint: This lists various activities that are done, often implying a sequence or variety of actions.
+          We're looking for representative examples of how one might spend their time, where either is
+          acceptable.
+    scene: Describing one's weekend routine.
+    register: casual
+    setting: informative
+    nuance: 「週末は」 establishes the context of regular weekend activities. The phrase 「～して過ごします」 is a common
+      way to describe how one spends their time. The choice of actions, 「映画を見る{なり}、本を読む{なり}」, implies
+      that both are equally valid and representative ways to relax or pass the time on weekends.
+  - english: If you have any problems, you should consult with your teacher or a senior.
+    japanese:
+      - 困っ た こと が あれ ば、先生 {なり} 先輩 {なり} に 相談 する と いい です よ。
+      - 困っ た こと が あっ たら、先生 {なり} 先輩 {なり} に 相談 する と いい よ。
+      - 困っ た こと が 御座い まし たら、先生 {なり} 先輩 {なり} に 御 相談 ください。
+    english_literally: If troublesome things exist, teacher or senior, consult if do, it is good.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ た こと が あれ ば、先生 {か} 先輩 に 相談 する と いい です よ。
+        english: If you have any problems, you should consult with your teacher or a senior.
+        hint: This implies a choice between one or the other, suggesting exclusivity. We're looking for
+          representative examples of people you could consult, implying that either is a suitable option.
+    scene: Advising a student.
+    register: semi-formal
+    setting: supportive
+    nuance: 「相談するといいですよ」 is a common and gentle way to give advice, with 「よ」 adding a soft assertion.
+      The use of 「{なり}～{なり}」 emphasizes that seeking advice from either a teacher or a senior is a suitable
+      and beneficial course of action, without limiting the options to only those two.
+  - english: When I'm busy, I either buy a bento at the convenience store or eat out.
+    japanese:
+      - 忙しい とき は、コンビニ で お 弁当 を 買う {なり}、外食 する {なり} し ます。
+      - 忙しい とき は、コンビニ で 弁当 買う {なり}、外食 する {なり} だ な。
+      - 忙しい とき は、コンビニ で お 弁当 を 買う {なり}、外食 する {なり} の どちら か に し ます。
+    english_literally: When busy, at convenience store bento buy or eat out, do.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい とき は、コンビニ で お 弁当 を 買っ {たり}、外食 し {たり} し ます。
+        english: When I'm busy, I do things like buy bento at the convenience store or eat out.
+        hint: This lists general actions that are done when busy, suggesting a range of activities. We're
+          looking for specific, representative solutions for eating when time is short.
+    scene: Explaining how you handle busy days.
+    register: casual
+    setting: informative
+    nuance: 「忙しいときは」 sets the condition. 「コンビニでお弁当を買う{なり}、外食する{なり}」 shows two convenient and common solutions
+      to eating when time is short. The 「～します」 indicates this is a habitual or typical action when faced
+      with the condition.
+  - english: When I'm tired, I relax by either taking a bath or getting a massage.
+    japanese:
+      - 疲れ た とき は、お 風呂 に 入る {なり}、マッサージ を 受ける {なり} し て リラックス し ます。
+      - 疲れ たら、風呂 入る {なり}、マッサージ 受ける {なり} し て リラックス する よ。
+      - 疲れ た とき は、お 風呂 に 入る {なり}、マッサージ を 受ける {なり} する の が 一番 です。
+    english_literally: When tired, bath enter or massage receive, do and relax.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ た とき は、お 風呂 に 入っ {たり}、マッサージ を 受け {たり} し て リラックス し ます。
+        english: When I'm tired, I do things like take a bath or get a massage to relax.
+        hint: This implies a variety of ways to relax, rather than highlighting two specific representative
+          methods. We're looking for key examples of relaxation methods, either of which works well.
+    scene: Sharing relaxation methods.
+    register: casual
+    setting: reflective
+    nuance: Similar to the previous example, 「疲れたときは」 sets the condition. 「お風呂に入る{なり}、マッサージを受ける{なり}」 lists
+      two common ways to relieve fatigue. 「リラックスします」 explicitly states the goal of these actions, emphasizing
+      that these two methods are sufficient examples for relaxation.
+  - english: You know, you can rely more on me, or alcohol, or whatever.
+    japanese:
+      - もっと 僕 {なり}、お 酒 {なり}、頼っ て くれ て も 良い ん だ よ。
+      - もっと 私 {なり}、お 酒 {なり}、頼っ て くれ て も 良い ん だ よ。
+      - もっと 僕 {なり}、お 酒 {なり}、頼っ て くれ て も 全然 良い ん だ よ。
+    english_literally: More me or alcohol, rely on for me even good.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 僕 {か} お 酒 に 頼っ て くれ て も 良い ん だ よ。
+        english: You know, you can rely on me or alcohol.
+        hint: This suggests a direct choice between relying on me or alcohol, as if those are the only
+          two options. We're looking for examples of things to rely on, implying other suitable options
+          might exist.
+    scene: Man comforting woman after she gets dumped.
+    register: shitashii kuchō (intimate)
+    setting: sympathetic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「～ても良いんだよ」 (using the plain form 「良いんだよ」) is a casual expression of gentle permission
+      or suggestion. The final particle 「んだよ」 adds emphasis and an explanatory tone, often used by male
+      speakers in casual conversation, suggesting a sense of shared understanding or advice given with
+      a slightly strong, but not aggressive, nuance. The use of 「僕{なり}、お酒{なり}」 implies that either he
+      himself or alcohol are suitable coping mechanisms, among potentially others.
+  - english: If you take me anywhere, I'll go with you.
+    japanese:
+      - どこ {なり}、連れ て 行っ て くれる なら、あなた に つい て 行く わ。
+      - どこ {なり}、連れ て 行っ て くれる なら、君 に つい て 行く よ。
+      - どこ {なり} と、連れ て 行っ て くださる なら、お 付い て 行き ます わ。
+    english_literally: Wherever, if you take me, I will follow you.
+    competing_grammar:
+      - competing_japanese:
+          - どこ {で も} 連れ て 行っ て くれる なら、あなた に つい て 行く わ。
+        english: If you take me anywhere, I'll go with you.
+        hint: 「どこでも」 means 'anywhere at all' without any specific suitable examples. We're looking for
+          a sense of 'any suitable place'.
+    scene: Woman playfully agreeing to go anywhere with someone.
+    register: casual
+    setting: flirty
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「どこ{なり}」 means "wherever suitable" or "any suitable place." The conditional 「～なら」
+      sets the premise. The sentence-final particle 「～わ」 is characteristic of female speech, adding a
+      soft, somewhat assertive, or emotional nuance. This example conveys a lighthearted, acquiescent
+      tone, implying any destination they choose is acceptable.
+  - english: Either the teacher or a parent will come to pick them up.
+    japanese:
+      - 先生 {なり} 親 {なり} {が} 迎え に 来 ます。
+      - 先生 {なり} 親 {なり} {が} 迎え に 来る よ。
+      - 先生 {なり} 親 御 さん {なり} {が} お 迎え に 参り ます。
+    english_literally: Teacher or parent, will come to pick up.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 {か} 親 が 迎え に 来 ます。
+        english: The teacher or a parent will come to pick them up.
+        hint: This implies a choice between one or the other, suggesting exclusivity. We're looking for
+          examples of people who are suitable to pick up the child, implying other suitable options might
+          also exist.
+    scene: School staff discussing arrangements for a child's pick-up.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「～が迎えに来ます」 is a standard, polite way to state an upcoming action. 「先生{なり}親{なり}が」
+      indicates that either figure is an acceptable and expected person to pick up the child, without
+      specifying which one, and implicitly allowing for other guardians as well. It presents them as representative
+      and suitable options.
+  - english: You can commute by car or by train, whichever works for you.
+    japanese:
+      - 車 {なり} 電車 {なり} {で} 通勤 し て も 構い ませ ん よ。
+      - 車 {なり} 電車 {なり} {で} 通勤 し て いただい て も 結構 です よ。
+      - 車 {なり} 電車 {なり} {で} 通勤 し て も いい よ。
+    english_literally: Car or train, by, commuting 해도 is fine.
+    competing_grammar:
+      - competing_japanese:
+          - 車 {で も} 電車 {で も} 通勤 し て も 構い ませ ん よ。
+        english: You can commute by car or by train (no matter which).
+        hint: 「～でも～でも」 emphasizes that 'no matter which' option is chosen, it's fine. We're looking for
+          an expression that suggests these are examples of suitable methods, not necessarily an exhaustive
+          list.
+    scene: A manager explaining commuting options to a new employee.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The phrase 「～ても構いませんよ」 is a polite way to give permission or state that something is acceptable.
+      The particle 「よ」 adds a gentle assurance. 「車{なり}電車{なり}で」 presents two common, equally valid methods
+      of commuting, allowing the employee to choose based on their convenience. It suggests these are
+      suitable options among perhaps others.
+  - english: If you're unsure about the future, it's good to either study abroad or find a job and gain
+      experience.
+    japanese:
+      - 将来 に 迷っ て いる なら、留学 する {なり}、就職 する {なり} し て 経験 を 積む と いい です よ。
+      - 将来 に 迷っ てる なら、留学 する {なり}、就職 する {なり} し て 経験 積む と いい よ。
+      - 将来 に 迷っ て いる なら、留学 する {なり}、就職 する {なり} し て 経験 を 積む べき です よ。
+    english_literally: Future regarding lost if, study abroad do or employment do, and experience accumulate
+      good is.
+    competing_grammar:
+      - competing_japanese:
+          - 将来 に 迷っ て いる なら、留学 し {たり}、就職 し {たり} し て 経験 を 積む と いい です よ。
+        english: If you're unsure about the future, it's good to do things like study abroad or find a
+          job and gain experience.
+        hint: 「～たり～たり」 emphasizes listing a variety of actions that are done, often implying a sequence
+          or variety. We're looking for an expression that suggests these are two highly suitable and
+          representative paths to gain experience when uncertain about the future.
+    scene: An older mentor advising a younger person about career paths.
+    register: semi-formal
+    setting: supportive
+    nuance: 「将来に迷っているなら」 sets a common scenario for seeking advice. 「経験を積むといいですよ」 is a soft recommendation.
+      The 「{なり}～{なり}」 here suggests these two paths are highly suitable and constructive ways to gain
+      experience when one is uncertain about their future. It implies that either choice will lead to
+      personal growth, presenting them as key examples of what one could do.
+post_example_writeup: It is important to remember that the options presented with 「なり~なり」 are suggestions
+  or representative examples. The speaker is not necessarily limiting the choices to only those mentioned,
+  but rather providing a flexible range of suitable options.

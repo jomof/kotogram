@@ -1,0 +1,205 @@
+grammar_point: 以上だ・以上です (that is all)
+learn_before:
+  - '[Noun]以上 (more than or equal to)'
+  - 以上 (more than or equal to・numerical)
+meaning: that is all
+pronunciation:
+  katakana: イジョウ ダ・イジョウ デス
+  romaji: ijō da・ijō desu
+formation:
+  '[Sentence/Clause] + 以上だ/以上です': Indicates that what has been stated or presented is complete and there
+    is nothing further to add.
+  '[Noun] + 以上だ/以上です': States that something is only that particular noun, with no additional meaning
+    or value.
+jlpt: N3
+etymology: The term 「以上」 (いじょう) literally combines 「以」 (i), meaning 'by means of' or 'from,' and 「上」 (jō),
+  meaning 'above' or 'more.' In this context, it has evolved from meaning 'what is above/beyond this point'
+  to 'what has been presented up to this point and no more,' thus concluding a statement. The copulas
+  だ and です are attached to denote casual and polite registers respectively.
+writeup: The phrase 「以上だ」 or 「以上です」 is a straightforward and common way to conclude a statement, presentation,
+  or list in Japanese. It directly translates to 'that is all' or 'that is the end.' This expression is
+  versatile and can be attached to various forms, including plain sentences, clauses, or nouns, to indicate
+  completeness and finality. It effectively signals to the listener or reader that the speaker or writer
+  has finished conveying the intended information and there will be no further points on that specific
+  topic. The choice between 「以上だ」 and 「以上です」 depends on the level of politeness required for the situation.
+  「以上です」 is polite and suitable for formal settings such as business meetings, academic presentations,
+  or official announcements. 「以上だ」 is the casual equivalent, often used among friends, family, or in informal
+  written contexts. It is important to note that while 「以上だ・以上です」 indicates completion, it does not necessarily
+  convey a sense of 'nothing more is needed' or 'nothing more can be done' which other expressions might
+  imply. It is simply a factual declaration of finality for the current discourse.
+false_friends:
+  - term: それだけだ・それだけです
+    meaning: That's all; only that
+    kind: similar expression
+    nuance: 「それだけだ・それだけです」 emphasizes the limited quantity or scope of something, implying there isn't
+      anything *more* of a particular item or category. In contrast, 「以上だ・以上です」 marks the completion of
+      a statement, presentation, or list, signifying that no further information will be provided *on
+      that topic*.
+    grammar_point: だけ (only・just)
+  - term: 終わりだ・終わりです
+    meaning: It's the end; finished
+    kind: similar expression
+    nuance: 「終わりだ・終わりです」 typically refers to the literal or conceptual end of an event, task, or period.
+      For example, a meeting ending or a game finishing. 「以上だ・以上です」, while also signifying an end, specifically
+      applies to the completion of verbal or written discourse, indicating that there are no more points
+      to be made.
+    grammar_point: <suggest>:終わりだ (it's the end)
+  - term: これで終わりだ・これで終わりです
+    meaning: This is the end; It finishes with this
+    kind: similar expression
+    nuance: Similar to 「終わりだ・終わりです」, but with an explicit reference to 'this' as the final point or action.
+      It often carries a stronger sense of finality or termination for a specific sequence of events or
+      actions. 「以上だ・以上です」 is more about the speaker's statement being complete.
+    grammar_point: <suggest>:これで終わりだ (this is the end)
+post_false_friends_writeup: While 「以上だ・以上です」, 「それだけだ・それだけです」, and 「終わりだ・終わりです」 all convey a sense of conclusion,
+  their specific applications differ. 「以上だ・以上です」 is formal and often used to signal the end of a formal
+  discourse, such as a presentation or a list of items. It tells the audience, 'I have presented all the
+  information I intended to.' 「それだけだ・それだけです」 is used to emphasize that *only* a specific thing or amount
+  exists, implying a limitation. For instance, 'I only have this much money, and that's it.' 「終わりだ・終わりです」
+  directly states that an event, task, or period has concluded, such as 'The movie is over.' Understanding
+  these nuances helps in choosing the most appropriate expression for your context.
+examples:
+  - english: My presentation is all.
+    japanese:
+      - 私 の 発表 は {以上 です}。
+      - 私 の 発表 は {以上 だ}。
+    english_literally: My presentation is above/more.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 発表 は {終わり です}。
+        english: My presentation is finished.
+        hint: 「終わりです」 indicates the end of the presentation event itself. We're looking for an expression
+          that concludes the content of the statement, implying no further information.
+    scene: A student concludes their academic presentation.
+    register: formal
+    setting: academic
+  - english: My story is all.
+    japanese:
+      - 僕 の 話 は {以上 だ}。
+      - 僕 の 話 は {以上 です}。
+    english_literally: My story is above/more.
+    competing_grammar:
+      - competing_japanese:
+          - 僕 の 話 は {それ だけ だ}。
+        english: My story is just that (limited to that).
+        hint: 「それだけだ」 emphasizes that the story contains only the shared information. We're looking for
+          an expression that signals the completion of the act of telling the story.
+    scene: A friend finishes telling a long story.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+  - english: The items to buy are bread, milk, and eggs. That is all.
+    japanese:
+      - 買う もの は パン と 牛乳 と 卵 です。{以上 です}。
+      - 買う もの は パン と 牛乳 と 卵 だ。{以上 だ}。
+    english_literally: Things to buy are bread, milk, and eggs. Above/more is.
+    competing_grammar:
+      - competing_japanese:
+          - 買う もの は パン と 牛乳 と 卵 です。{これ で 終わり です}。
+        english: The items to buy are bread, milk, and eggs. This is the end (of the list).
+        hint: 「これで終わりです」 signifies a definitive end to the list. We're looking for an expression that
+          states the information presented is complete, rather than the list itself being physically concluded.
+    scene: A person is reading out a shopping list to someone else.
+    register: teineigo (polite)
+    setting: informative
+  - english: I have explained the new system. That is all for now.
+    japanese:
+      - 新しい システム に つい て 説明 し まし た。ひとまず {以上 です}。
+      - 新しい システム に つい て 説明 し た。ひとまず {以上 だ}。
+    english_literally: Regarding the new system, I explained. For now, above/more is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム に つい て 説明 し まし た。{これ で ひと 段落 です}。
+        english: I have explained the new system. This is a good stopping point for now.
+        hint: 「これでひと段落です」 means 'this is a good stopping point for now.' We're looking for a simple declarative
+          statement of information completeness.
+    scene: A manager finishes explaining a new company system to their employees.
+    register: formal
+    setting: professional
+  - english: This concludes my interim report. That is all.
+    japanese:
+      - 中間 報告 は これ で {以上 です}。
+      - 中間 報告 は これ で {以上 だ}。
+    english_literally: The interim report, with this, is above/more.
+    competing_grammar:
+      - competing_japanese:
+          - 中間 報告 は {完了 です}。
+        english: The interim report is complete.
+        hint: 「完了です」 states that the report's completion status. We're looking for an expression that
+          signifies the speaker has finished presenting the report's contents.
+    scene: A business professional concludes a progress report during a meeting.
+    register: formal
+    setting: professional
+  - english: Do you have any questions? What I wanted to say is all.
+    japanese:
+      - 何 か 質問 は あり ます か？私 が 言い たかっ た こと は {以上 です}。
+      - 何 か 質問 は あり ます か？私 が 言い たかっ た こと は {以上 だ}。
+    english_literally: Are there any questions? What I wanted to say is above/more.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か 質問 は あり ます か？私 が 言い たかっ た こと は {もう 言い まし た}。
+        english: Do you have any questions? What I wanted to say, I've already said.
+        hint: 「もう言いました」 states that the speaker has already finished speaking. We're looking for an expression
+          that concludes the content of the message, not the act of speaking.
+    scene: A speaker finishes their talk and opens the floor for questions.
+    register: formal
+    setting: informative
+  - english: The details of the event are as follows. That is all.
+    japanese:
+      - イベント の 詳細 は 以下 の 通り です。{以上 です}。
+      - イベント の 詳細 は 以下 の 通り だ。{以上 だ}。
+    english_literally: Event's details are as follows. Above/more is.
+    competing_grammar:
+      - competing_japanese:
+          - イベント の 詳細 は 以下 の 通り です。{これ にて 終了 し ます}。
+        english: The event's details are as follows. We will conclude with this.
+        hint: 「これにて終了します」 is more about the formal termination of the announcement itself. We're looking
+          for an expression that states the provided details are complete.
+    scene: An announcement is made over a loudspeaker at an event venue.
+    register: formal
+    setting: informative
+  - english: That's everything I know about the incident. That is all.
+    japanese:
+      - その 事件 に つい て 知っ てる こと は {以上 だ}。
+      - その 事件 に つい て 知っ てる こと は {以上 です}。
+    english_literally: About that incident, what I know is above/more.
+    competing_grammar:
+      - competing_japanese:
+          - その 事件 に つい て 知っ てる こと は {それ しか ない}。
+        english: About that incident, that's all I know (nothing else exists).
+        hint: 「それしかない」 implies a lack of additional information. We're looking for an expression that
+          concludes the speaker's statement of what they know, rather than limiting the extent of their
+          knowledge.
+    scene: Two friends are discussing a recent event, and one is sharing what they know.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+  - english: I've finished checking the documents. That is all.
+    japanese:
+      - 書類 の 確認 は {以上 だ}。
+      - 書類 の 確認 は {以上 です}。
+    english_literally: Document confirmation is above/more.
+    competing_grammar:
+      - competing_japanese:
+          - 書類 の 確認 は {終わっ た}。
+        english: Checking the documents is finished.
+        hint: 「終わった」 states the action of checking is complete. We're looking for an expression that declares
+          the content of the check is finished.
+    scene: A colleague tells their close team member that they've completed a task.
+    register: casual
+    setting: professional
+    speaker_gender: male
+  - english: Considering all the factors, my recommendation is all.
+    japanese:
+      - すべて の 要因 を 考慮 する と、私 の 推奨 事項 は {以上 です}。
+      - すべて の 要因 を 考慮 する と、私 の 推奨 事項 は {以上 だ}。
+    english_literally: All factors considering, my recommendation is above/more.
+    competing_grammar:
+      - competing_japanese:
+          - すべて の 要因 を 考慮 する と、私 の 推奨 事項 は {この 通り です}。
+        english: Considering all the factors, my recommendation is as stated.
+        hint: 「この通りです」 confirms the recommendation is as presented. We're looking for an expression that
+          signals the completion of the recommendation itself.
+    scene: A consultant delivers their final recommendation to a client.
+    register: formal
+    setting: professional

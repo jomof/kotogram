@@ -1,0 +1,283 @@
+grammar_point: な-Adjective[すぎる] (excessive)
+learn_before:
+  - い-Adjective[すぎる] (excessive)
+meaning: to be excessive; too much
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 〜すぎる
+    rarity: common
+    meaning: to be too [な-adjective]
+  - conjugation-type: negative plain (～ない)
+    form: 〜すぎない
+    rarity: common
+    meaning: not too [な-adjective]
+  - conjugation-type: past plain (～た)
+    form: 〜すぎた
+    rarity: common
+    meaning: was too [な-adjective]
+  - conjugation-type: negative past plain (～なかった)
+    form: 〜すぎなかった
+    rarity: common
+    meaning: was not too [な-adjective]
+  - conjugation-type: non-past polite (～ます)
+    form: 〜すぎます
+    rarity: common
+    meaning: is too [な-adjective] (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 〜すぎません
+    rarity: common
+    meaning: is not too [な-adjective] (polite)
+  - conjugation-type: past polite (～ました)
+    form: 〜すぎました
+    rarity: common
+    meaning: was too [な-adjective] (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 〜すぎませんでした
+    rarity: common
+    meaning: was not too [な-adjective] (polite)
+  - conjugation-type: te-form (～て)
+    form: 〜すぎて
+    rarity: common
+    meaning: being too [な-adjective] (connecting form)
+  - conjugation-type: conditional (～たら)
+    form: 〜すぎたら
+    rarity: common
+    meaning: if it is too [な-adjective]
+  - conjugation-type: concessive (～ても)
+    form: 〜すぎても
+    rarity: common
+    meaning: even if it is too [な-adjective]
+pronunciation:
+  katakana: スギル
+  romaji: sugiru
+formation:
+  な-adjective + すぎる: Indicates that the state described by the な-adjective is excessive or goes beyond
+    an appropriate limit.
+jlpt: N4
+etymology: The verb 「過ぎる」(sugiru) fundamentally means "to pass," "to go beyond," or "to exceed." When
+  attached to the stem of adjectives or verbs, it retains this core meaning of exceeding a limit or boundary,
+  thus conveying "too much" or "excessive." This concept of "passing" a normal point leads to the nuance
+  of an undesirable or out-of-bounds state.
+writeup: |-
+  The grammar point 「〜すぎる」 is attached to the stem of な-adjectives to indicate that a quality or state is present to an excessive, undesirable degree. This construction conveys a sense of "too much" or "overly" whatever the adjective describes, often implying a negative judgment or consequence. It's not simply stating a high degree, but rather that the degree is beyond what is considered appropriate or good.
+
+  For example, if something is 「静かすぎる」(shizuka sugiru), it means it is "too quiet," implying perhaps that it's uncomfortably quiet, or eerily silent. It differs from simply 「とても静か」(totemo shizuka - very quiet), which is a neutral statement of degree. The nuance of 「〜すぎる」 often carries a subtle complaint, a sense of regret, or a warning about the negative implications of the excess.
+
+  It can be used with a wide range of な-adjectives, and the resulting phrase functions like an い-adjective, meaning it can be conjugated for tense and politeness. For example, 「忙しすぎた」(isogashisugita) means "was too busy." Understanding the negative connotation is key to using 「〜すぎる」 correctly.
+false_friends:
+  - term: とても
+    meaning: very
+    kind: similar expression
+    nuance: 「とても」 simply emphasizes a high degree of something without implying any negative consequence
+      or judgment. 「〜すぎる」, however, specifically means "too much" and almost always carries a negative
+      connotation of being beyond an acceptable or desirable limit.
+    grammar_point: <suggest>:とても (very)
+  - term: 非常に
+    meaning: extremely
+    kind: similar expression
+    nuance: Similar to 「とても」, 「非常に」 expresses a very high degree but is more formal and lacks the negative
+      nuance of 「〜すぎる」.
+    grammar_point: <suggest>:非常に (extremely)
+  - term: すぎる
+    meaning: too much; excessive
+    kind: similar expression
+    nuance: This grammar point specifies な-adjective usage. The general 「すぎる」 applies the same "excessive"
+      meaning to verbs and い-adjectives as well, but the conjugation rules differ.
+    grammar_point: すぎる (too much・excessive)
+  - term: い-Adjective[すぎる]
+    meaning: excessive
+    kind: similar expression
+    nuance: This has the same meaning of "excessive" but is used with い-adjectives, requiring a different
+      conjugation rule (dropping the final い and adding すぎる). The current grammar point is specific to
+      な-adjectives.
+    grammar_point: い-Adjective[すぎる] (excessive)
+post_false_friends_writeup: When choosing between 「〜すぎる」 and simple intensifiers like 「とても」 or 「非常に」,
+  consider the underlying nuance you wish to convey. If you simply want to express a high degree of a
+  quality, use 「とても」 or 「非常に」. However, if the high degree is problematic, undesirable, or exceeds an
+  appropriate limit, then 「〜すぎる」 is the correct choice. For example, 「この部屋はとても静かです」 (This room is very
+  quiet) is a neutral observation. But 「この部屋は静かすぎる」 (This room is too quiet) suggests an uncomfortable
+  or eerie silence. Remember that 「〜すぎる」 itself is a general concept, and its application varies depending
+  on the part of speech it modifies, such as with verbs or い-adjectives, which have different formation
+  rules.
+examples:
+  - english: This problem is too simple.
+    japanese:
+      - この 問題 は {簡単 すぎる}。
+      - この 問題 は {簡単 すぎ ます}。
+    english_literally: This problem is too simple.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は とても 簡単 だ。
+        english: This problem is very simple.
+        hint: 「とても」 simply states a high degree without negative nuance. We're looking for an expression
+          that implies the simplicity is problematic.
+    scene: A student complaining about homework.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「簡単すぎる」 expresses dissatisfaction with the simplicity, implying it's not challenging enough.
+  - english: That explanation was too complicated.
+    japanese:
+      - その 説明 は {複雑 すぎ まし た}。
+      - その 説明 は {複雑 すぎ た}。
+    english_literally: That explanation was too complicated (polite past).
+    competing_grammar:
+      - competing_japanese:
+          - その 説明 は とても 複雑 でし た。
+        english: That explanation was very complicated.
+        hint: 「とても」 simply states a high degree without negative nuance. We're looking for an expression
+          that implies the complexity was a problem.
+    scene: A subordinate talking to a colleague after a presentation.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    nuance: 「複雑すぎました」 uses the polite past tense of すぎる to express that the explanation was overly complex
+      and therefore difficult to understand.
+  - english: Don't go there; it's too dangerous.
+    japanese:
+      - あそこ へ 行か ない で。{危険 すぎる}。
+      - あそこ へ 行か ない で ください。{危険 すぎ ます}。
+    english_literally: Don't go there. It is too dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - あそこ へ 行か ない で。とても 危険 だ。
+        english: Don't go there. It is very dangerous.
+        hint: 「とても」 just states a high degree. We're looking for an expression that warns of excessive,
+          undesirable danger.
+    scene: A friend warning another friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: 「危険すぎる」 acts as a strong warning, highlighting the excessive danger of the place, implying
+      it's beyond a safe limit.
+  - english: The party last night was too noisy, so I couldn't sleep.
+    japanese:
+      - 昨夜 の パーティー は {賑やか すぎ て}、眠れ なかっ た。
+      - 昨夜 の パーティー は {賑やか すぎ まし た} の で、眠れ ませ ん でし た。
+    english_literally: Last night's party was too noisy, and I could not sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜 の パーティー は とても 賑やか で、眠れ なかっ た。
+        english: Last night's party was very noisy, and I couldn't sleep.
+        hint: This example implies the noise level was the direct cause of not being able to sleep, suggesting
+          the noise was 'too much' rather than just 'very noisy'.
+    scene: Someone complaining about a noisy neighbor.
+    register: casual
+    setting: reflective
+    conjugation: te-form (～て)
+    nuance: 「賑やかすぎて」 uses the te-form of すぎる to indicate the excessive noisiness was the cause of not
+      being able to sleep, expressing a negative consequence.
+  - english: The new office is too quiet. I can't concentrate.
+    japanese:
+      - 新しい オフィス は {静か すぎ ます}。集中 でき ませ ん。
+      - 新しい オフィス は {静か すぎる}。集中 でき ない。
+    english_literally: The new office is too quiet (polite). I cannot concentrate.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい オフィス は とても 静か です。集中 でき ませ ん。
+        english: The new office is very quiet. I can't concentrate.
+        hint: The nuance here is that the quietness is problematic, not just a high degree. We're looking
+          for 'too quiet' as an issue.
+    scene: An employee discussing work environment with a coworker.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: 「静かすぎます」 implies that the quietness is a problem, not a positive feature, as it hinders concentration,
+      using the polite form.
+  - english: You're taking this too seriously. Relax a little!
+    japanese:
+      - 君 は {真面目 すぎる} よ。少し は リラックス し な よ！
+      - あなた は {真面目 すぎ ます} よ。少し は リラックス し て ください ね！
+      - 君 は {真面目 すぎる} わ。少し は リラックス し なさい よ！
+    english_literally: You are too serious. Relax a little!
+    competing_grammar:
+      - competing_japanese:
+          - 君 は とても 真面目 だ よ。少し は リラックス し な よ！
+        english: You are very serious. Relax a little!
+        hint: This sentence advises relaxation because the seriousness is excessive, not just 'very serious'.
+          The particle 「よ」 adds a friendly, assertive tone.
+    scene: A friend advising another to lighten up.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: 「真面目すぎる」 is used to describe a personality trait as being excessively serious, with the male-coded
+      sentence-final particle 「よ」 adding a friendly but firm tone. The imperative 「しなよ」 is also casual
+      and often used by male speakers.
+  - english: The new system is not too inconvenient.
+    japanese:
+      - 新しい システム は {不便 すぎ ませ ん}。
+      - 新しい システム は {不便 すぎ ない}。
+    english_literally: The new system is not too inconvenient (polite negative).
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム は 不便 で は あり ませ ん。
+        english: The new system is not inconvenient.
+        hint: This expression implies that while there might be some inconvenience, it's not 'excessively'
+          so, distinguishing it from a simple negation. We're looking for 'not too inconvenient'.
+    scene: A manager reporting on a new system's implementation to a superior.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    nuance: 「不便すぎません」 is the polite negative of 不便すぎる, meaning it's "not excessively inconvenient," implying
+      it's acceptable, perhaps even good, despite some minor issues.
+  - english: The preparation for the event wasn't too extensive.
+    japanese:
+      - イベント の 準備 は {大袈裟 すぎ なかっ た}。
+      - イベント の 準備 は {大袈裟 すぎ ませ ん でし た}。
+    english_literally: The event's preparation was not too exaggerated/over-the-top.
+    competing_grammar:
+      - competing_japanese:
+          - イベント の 準備 は 大袈裟 で は なかっ た。
+        english: The event's preparation was not exaggerated.
+        hint: This implies the preparation avoided being excessively grand or over-the-top, meaning it
+          was just right. We're looking for a statement about *not being too* something.
+    scene: Friends discussing how an event was organized.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    nuance: 「大袈裟すぎなかった」 shows the negative past conjugation with a な-adjective, meaning the preparation
+      was not excessively grand or exaggerated, indicating a balanced approach.
+  - english: Is it too sudden?
+    japanese:
+      - それ は {急 すぎる} か い？
+      - それ は {急 すぎ ます} か？
+      - それ は {急 すぎる} の？
+    english_literally: Is that too sudden?
+    competing_grammar:
+      - competing_japanese:
+          - それ は 急 です か？
+        english: Is that sudden?
+        hint: This phrasing specifically asks if something is *excessively* sudden, suggesting a problematic
+          level of suddenness, rather than just if it is sudden. The particle 「かい」 is often used by male
+          speakers.
+    scene: A person asking a friend if their proposal is too abrupt.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: 「急すぎるかい？」 uses the casual question particle 「かい」, often used by male speakers, to ask if something
+      is excessively sudden or abrupt, implying a concern about its appropriateness.
+  - english: Even if the task is too complicated, we must do it.
+    japanese:
+      - た と え 仕事 が {複雑 すぎ て も}、やら なけれ ば なり ませ ん。
+      - た と え 仕事 が {複雑 すぎ て も}、やら ない と いけ ない。
+      - た と え 仕事 が {複雑 すぎ て も}、やる しか ない。
+    english_literally: Even if the task is too complicated, we must do it (polite).
+    competing_grammar:
+      - competing_japanese:
+          - た と え 仕事 が 複雑 で も、やら なけれ ば なり ませ ん。
+        english: Even if the task is complicated, we must do it.
+        hint: This example emphasizes that despite the task being *excessively* complicated, it's still
+          mandatory. The nuance is about overcoming an undesirable level of difficulty.
+    scene: A team leader addressing their team during a challenging project.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: concessive (～ても)
+    nuance: 「複雑すぎても」 uses the concessive 「〜ても」 form, acknowledging that even if the task is excessively
+      complicated, it must still be done, conveying a sense of obligation despite the difficulty.
+post_example_writeup: As you can see, 「〜すぎる」 is a versatile expression used to convey an excessive, often
+  undesirable, degree of a な-adjective's quality. Pay close attention to the nuance of negativity or problematic
+  excess that it carries, as this is its primary distinction from neutral intensifiers.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AA-Adjective%5B%E3%81%99%E3%81%8E%E3%82%8B%5D-%28excessive%29

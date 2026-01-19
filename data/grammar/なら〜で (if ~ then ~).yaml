@@ -1,0 +1,377 @@
+grammar_point: なら〜で (if ~ then ~)
+learn_before:
+  - '[Verb-stem]なさい (polite imperative)'
+meaning: If ~ should, Before ~ should
+pronunciation:
+  katakana: ナラ〜デ
+  romaji: nara ~ de
+formation:
+  Word + なら + Word + で: Expresses the speaker's opinion that if something is going to be done, it should
+    be done properly or a certain way; or expresses dissatisfaction that something wasn't done sooner.
+jlpt: N1
+etymology: This pattern combines 「なら」 (if) with 「で」, which acts as a conjunction, emphasizing the condition
+  and expectation of the repeated action. The repetition of the word serves to intensify the conditional
+  aspect, suggesting that if the action or state is truly the case, then a certain consequence or expectation
+  follows.
+writeup: The 「なら〜で」 pattern is a structure where the same word is repeated twice, followed by some sort
+  of opinion regarding that action or state. It can be translated as "if (A), you should (B)", or "before
+  (A), you should (B)". In many cases, it is used to express the speaker's dissatisfaction about something.
+  This pattern can follow verbs in their plain forms, い-adjectives, な-adjectives, or nouns. Both 「なら」
+  and 「で」 function as conjunction particles in this grammar pattern. It is important to note that this
+  nuance differs from other conditional structures like ば〜で, たら〜たで, and even another specific application
+  of なら〜で itself. These other patterns are used when conveying that something either is or is not an issue
+  in relation to the conditional (A). For instance, the latter なら〜で (without word repetition) typically
+  appears following な-adjectives. The repetition in 「なら〜で」 emphasizes a strong expectation or mild exasperation,
+  indicating that if the initial condition is true, then a certain action or outcome is expected or demanded.
+false_friends:
+  - term: ば〜で
+    meaning: If ~ (then accepted), Even if ~
+    kind: often confused with
+    nuance: Unlike 「なら〜で」 which often implies dissatisfaction or strong opinion, 「ば〜で」 is used to state
+      that if something is the case, it is accepted or there is no problem with it. For example, 「雨 なら
+      雨 で 家 で ゲーム を すれば いい」 (If it rains, then we can just play games at home – no problem).
+    grammar_point: <suggest>:ば〜ばで (if... then it's accepted)
+  - term: たら〜たで
+    meaning: If ~ (then accepted), Even if ~
+    kind: often confused with
+    nuance: Similar to 「ば〜で」, 「たら〜たで」 also indicates that even if a certain situation occurs, it is either
+      accepted or not problematic, sometimes implying a mild resignation or a "can't be helped" attitude.
+      For example, 「忙しかったら 忙しかった で、それ は それで 仕方がない」 (If you were busy, then being busy is just how it is
+      – can't be helped).
+    grammar_point: <suggest>:たら〜たらで (if... then it's accepted)
+  - term: なら
+    meaning: If, provided that
+    kind: often confused with
+    nuance: Unlike 「なら〜で」 which often implies dissatisfaction or strong opinion, 「なら」 simply states a
+      condition without the added emphasis or emotional tone. For example, 「明日 雨 なら 家 に いよう」 (If it rains
+      tomorrow, let's stay home) is a neutral conditional.
+    grammar_point: なら (conditional, if it's the case that A)
+post_false_friends_writeup: This grammar point is often confused with other conditional forms like 「ば〜で」
+  and 「たら〜たで」. While those patterns also convey a conditional sense, they often imply that the outcome
+  of the condition is not a problem, or is accepted as it is. In contrast, 「なら〜で」 with its repeated word
+  emphasizes the speaker's strong opinion or dissatisfaction regarding the condition, urging that if something
+  is to be done, it must be done properly, or expressing regret about how it was handled.
+examples:
+  - english: If you're going to study, then study seriously!
+    japanese:
+      - 勉強 する {なら する で} ちゃん と しろ！
+      - 勉強 する {なら する で} ちゃん と し て ください！
+      - 勉強 する {なら する で} しっかり やり なさい！
+    english_literally: If study, then study, properly do!
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 {すれ ば 勉強 すれ ば で}、それ は それ で いい よ。
+        english: If you study, then if you study, that's fine (in its own way).
+        hint: 「ば〜で」 implies acceptance of the situation, even if not ideal. We're looking for a phrase
+          that demands proper action if the condition is met.
+      - competing_japanese:
+          - 勉強 {し たら 勉強 し たら で}、それ は それ で いい よ。
+        english: If you study, then if you study, that's fine (in its own way).
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for a phrase that demands proper
+          action if the condition is met.
+      - competing_japanese:
+          - 勉強 する {なら} ちゃん と しろ！
+        english: If you're going to study, then study seriously!
+        hint: While 「なら」 also means 'if', the repetition with 「なら〜で」 adds a stronger emphasis on the expectation
+          or a hint of dissatisfaction. We're looking for that stronger, more demanding nuance.
+    scene: A teacher instructs a student who is not focusing during a study session.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「ちゃんと しろ」 conveys a direct, firm command, typical of an authority figure like a
+      teacher. The repetition of 「勉強 する なら する で」 emphasizes that if the action of studying is to be performed,
+      it must be done with proper effort.
+  - english: If you wanted to go, you should have told me earlier!
+    japanese:
+      - 行き たい {なら 行き たい で} もっと 早く 言っ て くれれ ば よかっ た の に！
+      - 行き たい {なら 行き たい で} もっと 早く 教え て いただけ たら よかっ た の に！
+      - 行き たい {なら 行き たい で}、早く 言っ て ほしかっ た なあ。
+    english_literally: If want to go, then want to go, earlier tell me if only it had been good!
+    competing_grammar:
+      - competing_japanese:
+          - 行き {たけれ ば 行き たけれ ば で}、それ は それ で 仕方ない ね。
+        english: If you wanted to go, then if you wanted to go, there's nothing that could be done about
+          it.
+        hint: 「ば〜で」 suggests resignation or acceptance of a situation. We're looking for an expression
+          of frustration or regret that something wasn't done sooner.
+      - competing_japanese:
+          - 行き {たかっ たら 行き たかっ た で}、それ は それ で 仕方ない ね。
+        english: If you didn't want to go, then if you wanted to go, there's nothing that could be done
+          about it.
+        hint: 「たら〜たで」 suggests resignation or acceptance of a situation. We're looking for an expression
+          of frustration or regret that something wasn't done sooner.
+      - competing_japanese:
+          - 行き たい {なら} もっと 早く 言っ て くれれ ば よかっ た の に！
+        english: If you wanted to go, you should have told me earlier!
+        hint: The repetition with 「なら〜で」 adds a stronger sense of exasperation, implying 'if you *truly*
+          felt that way, then...'. 「なら」 alone is a more neutral conditional.
+    scene: A friend expresses frustration to another friend who only revealed their desire to go to an
+      event after it was too late.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The ending 「〜て くれれば よかったのに！」 expresses regret and frustration over a missed opportunity, common
+      in casual conversations. The repetition of 「行きたい なら 行きたい で」 emphasizes the speaker's exasperation
+      that the desire was not communicated sooner.
+  - english: If you don't want to do it, then don't do it. There's no point in forcing yourself.
+    japanese:
+      - やり たく ない {なら やり たく ない で} やめれ ば いい よ。無理 し て い て も 意味 ない よ。
+      - やり たく ない {なら やり たく ない で}、もう やめ ちゃっ て いい よ。無理 し て 続ける 必要 ない から ね。
+    english_literally: If don't want to do, then don't want to do, quit if good. Even forcing yourself
+      no meaning.
+    competing_grammar:
+      - competing_japanese:
+          - やり たく {なけれ ば やり たく なけれ ば で}、それ は それ で いい よ。
+        english: If you don't want to do it, then if you don't want to do it, that's fine (in its own
+          way).
+        hint: 「ば〜で」 conveys acceptance of the situation. We're looking for an expression of empathetic
+          advice that validates the listener's strong feeling.
+      - competing_japanese:
+          - やり たく {なかっ たら やり たく なかっ た で}、それ は それ で いい よ。
+        english: If you didn't want to do it, then if you wanted to do it, there's nothing that could
+          be done about it.
+        hint: 「たら〜たで」 conveys acceptance or resignation. We're looking for an expression of empathetic
+          advice that validates the listener's strong feeling.
+      - competing_japanese:
+          - やり たく ない {なら} やめれ ば いい よ。無理 し て い て も 意味 ない よ。
+        english: If you don't want to do it, then don't do it. There's no point in forcing yourself.
+        hint: While 「なら」 works here, the repetition with 「なら〜で」 emphasizes the depth of the unwillingness,
+          making the advice more empathetic and validating that feeling.
+    scene: A woman advises her younger sister who is struggling with a commitment she clearly dislikes.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「やめれば いい よ」 offers straightforward advice, common between close individuals. The
+      repetition of 「やりたくない なら やりたくない で」 highlights the sincerity of the advise, acknowledging the depth
+      of the feeling of unwillingness. The final 「意味 ない よ」 reinforces the point that forcing oneself is
+      unproductive.
+  - english: If you're going to rest, please rest properly. You can leave the housework to us.
+    japanese:
+      - 休む {なら 休む で} ちゃん と 休ん で ください。家事 は 私 たち に 任せ て もらっ て 大丈夫 です。
+      - 休む {なら 休む で}、しっかり 休ん で ください ね。家事 は 私 たち に 任せ て おい て 大丈夫 です から。
+      - お 休み に なる {なら お 休み に なる で}、しっかり お 休み ください。家事 は 私 たち に お 任せ いただけ ます の で。
+    english_literally: If rest, then rest, properly please rest. Housework is us entrust for you, it is
+      fine.
+    competing_grammar:
+      - competing_japanese:
+          - 休め {ば 休め ば で}、それ は それ で いい よ。
+        english: If you rest, then if you rest, that's fine (in its own way).
+        hint: 「ば〜で」 implies acceptance of the situation, even if not ideal. We're looking for a phrase
+          that encourages proper, complete action if the condition is met.
+      - competing_japanese:
+          - 休ん {だら 休ん だ で}、それ は それ で いい よ。
+        english: If you rest, then if you rest, that's fine (in its own way).
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for a phrase that encourages proper,
+          complete action if the condition is met.
+      - competing_japanese:
+          - 休む {なら} ちゃん と 休ん で ください。家事 は 私 たち に 任せ て もらっ て 大丈夫 です。
+        english: If you're going to rest, please rest properly. You can leave the housework to us.
+        hint: The repetition with 「なら〜で」 adds a stronger emphasis, encouraging a complete and proper rest
+          rather than a partial one. 「なら」 is a more neutral conditional.
+    scene: A mother-in-law encourages her tired daughter-in-law to take a proper break, assuring her that
+      others will handle the chores.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「休んで ください」 and 「大丈夫 です」 creates a kind and encouraging tone, typical in a supportive
+      family relationship. The repetition of 「休む なら 休む で」 emphasizes the speaker's desire for the listener
+      to take a complete and proper rest, rather than just a partial one.
+  - english: If you're going to write, then write neatly.
+    japanese:
+      - 書く {なら 書く で} もっと 丁寧 に 書き なさい。
+      - お 書き に なる {なら お 書き に なる で}、もっと 丁寧 に お 書き なさい。
+      - 書く {なら 書く で} 心 から 謝っ て くれる？
+    english_literally: If write, then write, more politely/carefully write.
+    competing_grammar:
+      - competing_japanese:
+          - 書け {ば 書け ば で}、それ は それ で いい よ。
+        english: If you write, then if you write, that's fine (in its own way).
+        hint: 「ば〜で」 implies acceptance or resignation. We're looking for an instructional phrase demanding
+          proper quality in the action.
+      - competing_japanese:
+          - 書い {たら 書い たら で}、それ は それ で いい よ。
+        english: If you write, then if you write, that's fine (in its own way).
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for an instructional phrase demanding
+          proper quality in the action.
+      - competing_japanese:
+          - 書く {なら} もっと 丁寧 に 書き なさい。
+        english: If you're going to write, then write neatly.
+        hint: The repetition with 「なら〜で」 reinforces the expectation that if writing is undertaken, it
+          should be done with care and precision, adding more weight to the instruction. 「なら」 is a more
+          neutral conditional.
+    scene: A calligraphy teacher instructs a student to improve their penmanship.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The imperative 「書き なさい」 is a firm but not overly harsh command, often used by teachers or
+      mentors. The repetition of 「書く なら 書く で」 reinforces the expectation that if writing is undertaken,
+      it should be done with care and precision.
+  - english: If you needed it, you should have said so earlier. The stores are already closed!
+    japanese:
+      - 必要 {なら 必要 で} もっと 早く 言う べき だっ た でしょ。もう お 店 が 閉まっ て しまっ た よ。
+      - 必要 {なら 必要 で} 早く 言う べき だっ た じゃ ない。もう 店 閉まっ ちゃっ た よ。
+      - 必要 {なら 必要 で}、なん で もっと 早く 言わ なかっ た の？もう お 店 閉まっ てる でしょ。
+    english_literally: If necessary, then necessary, more early say should have, right? Already shops
+      have closed.
+    competing_grammar:
+      - competing_japanese:
+          - 必要 {で あれ ば 必要 で あれ ば で}、それ は それ で 仕方ない わ。
+        english: If it's necessary, then if it's necessary, there's nothing that can be done about it.
+        hint: 「ば〜で」 implies acceptance or resignation. We're looking for an expression of frustration
+          or reproach for not acting sooner.
+      - competing_japanese:
+          - 必要 {だっ たら 必要 だっ たら で}、それ は それ で 仕方ない わ。
+        english: If it was necessary, then if it was necessary, there's nothing that can be done about
+          it.
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for an expression of frustration
+          or reproach for not acting sooner.
+      - competing_japanese:
+          - 必要 {なら} もっと 早く 言う べき だっ た でしょ。もう お 店 が 閉まっ て しまっ た よ。
+        english: If you needed it, you should have said so earlier. The stores are already closed!
+        hint: The repetition with 「なら〜で」 adds a stronger sense of reproach and exasperation, implying
+          'if it was *truly* necessary, then you should have acted sooner.' 「なら」 is a more neutral conditional.
+    scene: It's 8 PM. A daughter tells her mom she needs a new uniform for school tomorrow. Her mom expresses
+      frustration.
+    register: teineigo (polite)
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「〜べき だっ た でしょ」 conveys a polite but clear tone of reproach, indicating that the
+      mother feels the daughter should have acted earlier. The repetition of 「必要 なら 必要 で」 emphasizes the
+      mother's frustration that the need was not communicated promptly.
+  - english: If you were already waiting, you should have called me sooner.
+    japanese:
+      - もう 待っ て いる {なら 待っ て いる で} もっと 早く 電話 し て くれれ ば よかっ た の に！
+      - もう 待っ て いる {なら 待っ て いる で}、なん で 連絡 し なかっ た ん だ？
+      - もう 待っ て いる {なら 待っ て いる で}、連絡 くらい し て ほしかっ た な。
+    english_literally: If already waiting, then waiting, more early call me if only it had been good.
+    competing_grammar:
+      - competing_japanese:
+          - 待っ て {いれ ば 待っ て いれ ば で}、それ は それ で いい だろう。
+        english: If you were waiting, then if you were waiting, that's fine (in its own way).
+        hint: 「ば〜で」 implies acceptance or resignation. We're looking for a gentle complaint or disappointment
+          that communication wasn't made sooner.
+      - competing_japanese:
+          - 待っ て {い たら 待っ て い たら で}、それ は それ で いい だろう。
+        english: If you were waiting, then if you were waiting, that's fine (in its own way).
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for a gentle complaint or disappointment
+          that communication wasn't made sooner.
+      - competing_japanese:
+          - もう 待っ て いる {なら} もっと 早く 電話 し て くれれ ば よかっ た の に。
+        english: If you were already waiting, you should have called me sooner.
+        hint: The repetition with 「なら〜で」 emphasizes the situation, implying 'if you *already* had the
+          time and were waiting, then why didn't you call?'. 「なら」 is a more neutral conditional.
+    scene: A son informs his father he has been waiting at the station for a long time. His father expresses
+      mild disappointment.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The ending 「〜て くれれば よかったのに」 expresses regret and a sense of "it would have been better if...",
+      characteristic of a parent's gentle complaint. The repetition of 「待っている なら 待っている で」 emphasizes the
+      condition of waiting, highlighting the father's disappointment that a call wasn't made despite the
+      situation.
+  - english: If your head hurts, then lie down in bed. I'll handle dinner.
+    japanese:
+      - 頭 が 痛い {なら 痛い で}、ベッド で 横 に なっ た 方 が いい よ。夕食 は 俺 に 任せ て。
+      - 頭 が 痛い {なら 痛い で}、無理 し ない で ベッド で 横 に なっ た 方 が いい よ。夕食 は 僕 が 作る から。
+    english_literally: If head hurts, then hurts, in bed lie down better. Dinner, me entrust.
+    competing_grammar:
+      - competing_japanese:
+          - 頭 が {痛けれ ば 頭 が 痛けれ ば で}、それ は それ で 仕方ない よ。
+        english: If your head hurts, then if your head hurts, there's nothing that can be done about it.
+        hint: 「ば〜で」 implies acceptance or resignation. We're looking for empathetic advice and an offer
+          of help, acknowledging the condition.
+      - competing_japanese:
+          - 頭 が {痛かっ たら 頭 が 痛かっ た で}、それ は それ で 仕方ない よ。
+        english: If your head hurt, then if your head hurt, there's nothing that can be done about it.
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for empathetic advice and an offer
+          of help, acknowledging the condition.
+      - competing_japanese:
+          - 頭 が 痛い {なら}、ベッド で 横 に なっ た 方 が いい よ。夕食 は 俺 に 任せ て。
+        english: If your head hurts, then lie down in bed. I'll handle dinner.
+        hint: The repetition with 「なら〜で」 subtly acknowledges the pain more deeply while urging the appropriate
+          action. 「なら」 is a more neutral conditional.
+    scene: A wife mentions her head hurts a bit. Her husband responds with comfort and an offer of help.
+    register: shitashii kuchō (intimate)
+    setting: sympathetic
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「俺」 indicates a male speaker and a close relationship. The phrases 「横 になった 方 が
+      いい よ」 and 「俺 に 任せて」 show a desire to care for the listener, conveying intimacy and partnership.
+      The repeated 「痛い なら 痛い で」 subtly acknowledges the pain while urging the appropriate action.
+  - english: If you're going to eat, eat properly!
+    japanese:
+      - 食べる {なら 食べる で}、ちゃんと 食べ なさい。
+      - 食べる {なら 食べる で}、しっかり 食べろ！
+      - 食べる {なら 食べる で}、きちんと 食べ なさい。
+    english_literally: If eat, then eat, properly eat.
+    competing_grammar:
+      - competing_japanese:
+          - 食べれ {ば 食べれ ば で}、それ は それ で いい よ。
+        english: If you eat, then if you eat, that's fine (in its own way).
+        hint: 「ば〜で」 implies acceptance or resignation. We're looking for a parental command that demands
+          proper action if the condition is met.
+      - competing_japanese:
+          - 食べ {たら 食べ たら で}、それ は それ で いい よ。
+        english: If you eat, then if you eat, that's fine (in its own way).
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for a parental command that demands
+          proper action if the condition is met.
+      - competing_japanese:
+          - 食べる {なら}、ちゃんと 食べ なさい。
+        english: If you're going to eat, then eat properly!
+        hint: The repetition with 「なら〜で」 adds a stronger sense of exasperation and emphasizes the demand
+          for proper engagement with the act of eating. 「なら」 is a more neutral conditional.
+    scene: A mother scolds her young son who is playing with his food and not eating seriously.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「食べ なさい」 is a common parental command, firm but not overly harsh. The repetition
+      of 「食べる なら 食べる で」 expresses the mother's exasperation and demand that the child properly engage
+      with the act of eating, rather than just playing.
+  - english: If you're going to apologize, then apologize sincerely!
+    japanese:
+      - 謝る {なら 謝る で} ちゃん と 謝り なさい！
+      - 謝る {なら 謝る で} ちゃん と 謝っ て ほしい ん だ けど。
+      - 謝る {なら 謝る で} 心 から 謝っ て くれる？
+    english_literally: If apologize, then apologize, properly apologize!
+    competing_grammar:
+      - competing_japanese:
+          - 謝れ {ば 謝れ ば で}、それ は それ で いい よ。
+        english: If you apologize, then if you apologize, that's fine (in its own way).
+        hint: 「ば〜で」 implies acceptance, even if the apology is not ideal. We're looking for a phrase that
+          demands a sincere apology if one is offered.
+      - competing_japanese:
+          - 謝っ {たら 謝っ たら で}、それ は それ で いい よ。
+        english: If you apologized, then if you apologized, that's fine (in its own way).
+        hint: 「たら〜たで」 implies acceptance or resignation. We're looking for a phrase that demands a sincere
+          apology if one is offered.
+      - competing_japanese:
+          - 謝る {なら} ちゃん と 謝り なさい！
+        english: If you're going to apologize, then apologize sincerely!
+        hint: The repetition with 「なら〜で」 adds a stronger emphasis and conveys a clear expectation that
+          if an apology is given, it should be genuine. 「なら」 alone is a more neutral conditional.
+    scene: A manager speaking to an employee who gave a half-hearted apology after making a mistake.
+    register: semi-formal
+    setting: commanding
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「謝り なさい」 is a direct instruction, suitable for a superior addressing a subordinate.
+      The repetition of 「謝る なら 謝る で」 conveys the manager's strong expectation that if an apology is offered,
+      it should be genuine and complete, not perfunctory.
+post_example_writeup: The examples illustrate how 「なら〜で」 is used to convey a strong sense of expectation
+  or mild dissatisfaction. It emphasizes that if a certain action or state is to occur, it should be done
+  thoroughly and genuinely, otherwise, there's a missed opportunity or a sense of frustration.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なら-で

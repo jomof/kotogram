@@ -1,0 +1,269 @@
+grammar_point: ばかり (only・just, often with nuance of excess)
+matcher: |-
+  ⌈ˢばっかりᵖprt:adverbial_particleᵇばっかりᵈばかりʳバッカリ⌉|
+  ⌈ˢばかりᵖprt:adverbial_particleᵇばかりʳバカリ⌉|
+  ⌈ˢばっかᵖprt:adverbial_particleᵇばっかᵈばかりʳバッカ⌉
+learn_before:
+  - とばかりに (as if to say)
+meaning: only; just; nothing but; full of; always doing; just completed; almost
+pronunciation:
+  katakana: バカリ
+  romaji: bakari
+formation:
+  Noun + ばかり: Indicates limitation to the noun, often with a nuance of excess or exclusivity.
+  Verb[て] + ばかり: Expresses that the action of the verb is done excessively or constantly.
+  Verb[た] + ばかり: Signifies that the action has just been completed, implying recency.
+  Quantity + ばかり: Means 'just about that quantity' or 'only that quantity'.
+  Verb[dictionary] + ばかり: Indicates that something only does the verb, or is just about to do the verb.
+jlpt: N3
+etymology: The particle ばかり is thought to derive from the classical Japanese noun はかり (hakari), meaning
+  'scale' or 'measurement,' and the verb はかる (hakaru), 'to measure' or 'to estimate.' This origin explains
+  its core meaning of 'only' or 'just'—indicating a precise measurement or limit. Over time, its usage
+  expanded to denote recent completion ('just finished'), exclusive action ('always doing nothing but'),
+  and even 'full of' or 'almost,' all stemming from the fundamental idea of delimiting or quantifying.
+writeup: |-
+  ばかり is a versatile particle that functions primarily as a limiter, emphasizing exclusivity, or denoting a recent action. It can attach to nouns, various verb forms, and quantities, acquiring different shades of meaning depending on the context.
+
+  One common use is to mean "only" or "just," similar to だけ. However, ばかり often carries an additional nuance of "nothing but" or "too much," implying that the speaker feels there is an excessive amount or an undesirable focus on that one thing. For example, テレビばかり見ている (always watching TV) implies that someone watches too much TV, often to the exclusion of other activities.
+
+  It can also indicate that an action has just been completed, especially when paired with the past tense of a verb (たばかり). This usage conveys a sense of immediacy or freshness of the action, similar to English "just."
+
+  Furthermore, ばかり can suggest that something is "full of" or "consists entirely of" a particular item or quality. When used with a dictionary form verb (Vるばかり), it can mean "only (doing X)" or "just about to (do X)," often highlighting a continuous, singular action.
+false_friends:
+  - term: だけ (only・just)
+    meaning: only; merely
+    kind: similar expression
+    nuance: だけ is a neutral limiter, simply stating a boundary. ばかり can imply either "only that (to the
+      exclusion of others)" or "too much of that." When ばかり is used with a noun or verb to mean "only,"
+      it often carries a nuance of exclusiveness or something being excessive, whereas だけ simply states
+      "only."
+    grammar_point: だけ (only・just)
+  - term: しか〜ない (only, nothing but)
+    meaning: only; nothing but
+    kind: similar expression
+    nuance: しか〜ない always requires a negative verb and emphasizes scarcity or a restrictive limit, often
+      with a somewhat negative feeling. ばかり can be used with positive verbs and highlights exclusivity
+      or excess without necessarily implying scarcity.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: 〜きり (only・just)
+    meaning: only; just; since (doing, and nothing else happened)
+    kind: similar expression
+    nuance: きり suggests an absolute limit or an action/state that has continued unchanged since a specific
+      point. For example, 一人きり means "only one person, and no one else." ばかり can mean "only" (like だけ),
+      "just finished," or "always doing."
+    grammar_point: 〜きり (only・just)
+  - term: のみ (only・just)
+    meaning: only; solely
+    kind: similar expression
+    nuance: のみ is a more formal and literary equivalent of だけ or ばかり, often used in written language or
+      very formal speech. ばかり is more common in everyday conversation and carries a wider range of nuances.
+    grammar_point: のみ (only・just)
+  - term: たばかり (just did)
+    meaning: just did something
+    kind: similar expression
+    nuance: While たばかり is a specific common usage of ばかり, this phrase strictly emphasizes that an action
+      was completed very recently, implying freshness or newness. ばかり in other contexts can mean "only"
+      or "always doing."
+    grammar_point: たばかり (just did)
+post_false_friends_writeup: While ばかり, だけ, しか〜ない, きり, and のみ all convey a sense of limitation or exclusivity,
+  their nuances and grammatical structures differ significantly. だけ is a neutral 'only,' merely stating
+  a limit. しか〜ない explicitly implies 'nothing but' and must be followed by a negative form, emphasizing
+  scarcity. きり denotes an unchangeable state or an isolated 'only.' のみ is a formal variant of 'only.'
+  Finally, たばかり is a specific phrase meaning 'just completed,' whereas ばかり generally denotes 'only' or
+  'always doing' (with a potential nuance of excess).
+examples:
+  - english: He eats nothing but junk food.
+    japanese:
+      - 彼 は ジャンク フード {ばかり} 食べ て いる。
+      - 彼 は ジャンク フード {ばかり} 食べ て い ます。
+      - アイツ は ジャンク フード {ばっかり} 食っ てる ぜ。
+      - アイツ、ジャンク フード {ばっか} 食っ てん な。
+    english_literally: As for him, junk food only is eating.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ジャンク フード だけ 食べ て いる。
+        english: He only eats junk food.
+        hint: While だけ also means 'only,' ばかり emphasizes that he eats *nothing but* junk food, implying
+          an excessive or undesirable focus. We're looking for the sense of 'nothing but' with a nuance
+          of excess.
+      - competing_japanese:
+          - 彼 は ジャンク フード しか 食べ て い ない。
+        english: He eats nothing but junk food.
+        hint: しか requires a negative verb and often implies scarcity or a restrictive limit. ばかり can be
+          used with a positive verb to imply excess without necessarily meaning scarcity. We're looking
+          for a usage that expresses 'nothing but' with a focus on the excessive nature.
+    scene: A friend is complaining about someone's unhealthy eating habits.
+    register: casual
+    setting: friendly
+    nuance: The use of ばかり emphasizes that he 「ジャンクフードばかり食べている」, implying that this is excessive or unhealthy.
+      This fits the 'nuance of excess' part of ばかり.
+  - english: My little brother is always playing video games.
+    japanese:
+      - 弟 は ゲーム を し て {ばかり} いる。
+      - 弟 は ゲーム を し て {ばかり} い ます。
+      - 弟 は ゲーム し て {ばっかり} いる。
+      - 弟 は ゲーム {ばっか} やっ てる よ な。
+    english_literally: My younger brother, games doing only is.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は ゲーム を し て いる だけ だ。
+        english: My little brother is only playing video games.
+        hint: だけ would imply just playing games. ばかり emphasizes the repetitive and excessive nature of
+          the action. We're looking for an expression that highlights constant and perhaps excessive engagement.
+    scene: A sibling is talking about their younger brother's habits.
+    register: casual
+    setting: friendly
+    nuance: ばかり here highlights the repetitive and excessive nature of the action 「ゲームをしてばかりいる」. The speaker
+      might feel it's too much, implying a negative judgment.
+  - english: I just arrived home.
+    japanese:
+      - 私 は 家 に 帰っ て 来 た {ばかり} だ。
+      - 私 は 家 に 帰っ て 来 た {ばかり} です。
+      - 家 帰っ て 来 た {ばっか} だ。
+      - 家 に 帰っ て 来 た {ばっかり} よ。
+    english_literally: As for me, home returned just.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 家 に 帰っ て 来 た とこ だ。
+        english: I just arrived home.
+        hint: ところだ also indicates a recent action, but たばかり specifically emphasizes the freshness and
+          newness of the completed action. We're looking for an expression that signifies very recent
+          completion.
+    scene: Someone answers the phone right after entering their house.
+    register: casual
+    setting: informative
+    nuance: ばかり signifies that the action of returning home 「家に帰って来た」 happened very recently, highlighting
+      the immediate past.
+  - english: Only two people came to the party.
+    japanese:
+      - パーティー に は 二人 {ばかり} 来 た。
+      - パーティー に は 二人 {ばかり} 来 まし た。
+      - パーティー に たっ た 二人 {ばかり} 来 た。
+    english_literally: To the party, two people only came.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー に は 二人 だけ 来 た。
+        english: Only two people came to the party.
+        hint: だけ is a neutral 'only'. ばかり can imply 'just about two' or that two is a small, perhaps disappointing,
+          number, fitting the nuance of the grammar point. We're looking for an expression that suggests
+          a small, specific quantity.
+    scene: A host is reporting the attendance at a small gathering.
+    register: casual
+    setting: informative
+    nuance: ばかり here specifies 'just about two people' 「二人ばかり来た」, implying a small quantity. It can be
+      like だけ but sometimes suggests it's a bit less than expected or a round number.
+  - english: The room was full of dust.
+    japanese:
+      - 部屋 は 埃 {ばかり} だっ た。
+      - 部屋 は 埃 {ばかり} でし た。
+      - 部屋、埃 {ばっかり} だっ た。
+    english_literally: The room, dust only was.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 は 埃 だらけ だっ た。
+        english: The room was full of dust.
+        hint: だらけ strongly emphasizes being 'covered in' or 'full of' something undesirable, typically
+          with a negative nuance. ばかり means 'nothing but,' indicating the room consisted entirely of dust.
+          We're looking for a general sense of 'nothing but' a certain substance.
+    scene: Describing a very messy room after a long time.
+    register: casual
+    setting: reflective
+    nuance: ばかり here means 'nothing but dust' 「埃ばかりだった」, indicating the room was entirely covered or filled
+      with it, emphasizing the singular presence of dust.
+  - english: All he does is complain.
+    japanese:
+      - 彼 は 文句 を 言う {ばかり} だ。
+      - 彼 は 文句 を 言う {ばかり} です。
+      - アイツ は 文句 言っ て {ばっか} だ な。
+    english_literally: As for him, complaints to say only is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 文句 を 言う だけ だ。
+        english: He just complains.
+        hint: だけ would imply simple limitation. ばかり emphasizes that complaining is the *only* thing he
+          does, implying a negative judgment about his behavior, fitting the 'nuance of excess'. We're
+          looking for an expression that implies constant and exclusive action.
+    scene: A colleague is expressing frustration about someone's constant complaining.
+    register: casual
+    setting: serious
+    nuance: ばかり emphasizes that complaining 「文句を言う」 is the *only* thing he does, implying a negative judgment
+      about his behavior. This fits the 'nuance of excess' part of the grammar point's name, suggesting
+      he complains excessively.
+  - english: I bought only this one book.
+    japanese:
+      - この 本 {ばかり} 買っ た。
+      - この 本 {ばかり} 買い まし た。
+      - この 本 {ばっかり} 買っ ちゃっ た。
+    english_literally: This book only bought.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 だけ 買っ た。
+        english: I bought only this book.
+        hint: だけ is a very neutral 'only'. ばかり can also act as a simple limiter, but depending on context,
+          might subtly imply 'just this one and no more' or a slightly exclusive feeling. We're looking
+          for an expression that simply limits the purchase to one item.
+    scene: Someone is showing a single purchase they made.
+    register: casual
+    setting: informative
+    nuance: Here, ばかり acts as a simple limiter, similar to だけ, emphasizing that only this specific item
+      「この本ばかり買った」 was bought, without necessarily implying excess.
+  - english: It's only been a week since I started learning Japanese.
+    japanese:
+      - 日本 語 を 習い 始め て 一 週間 {ばかり} だ。
+      - 日本 語 を 習い 始め て 一 週間 {ばかり} です。
+      - 日本 語 習い 始め て 一 週間 {ばっか} だ よ。
+    english_literally: Japanese learning starting one week only is.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 習い 始め て 一 週間 だ。
+        english: It's been a week since I started learning Japanese.
+        hint: Adding ばかり emphasizes the short duration, implying 'just about a week' or 'only a week'.
+          We're looking for a way to highlight the brevity of the period.
+    scene: A new Japanese learner is talking about their progress.
+    register: casual
+    setting: informative
+    nuance: ばかり emphasizes the short duration 「一週間ばかりだ」, implying 'just about a week,' which can suggest
+      either the recency or the smallness of the period, sometimes with a nuance of 'only this little
+      time'.
+  - english: He has nothing but problems.
+    japanese:
+      - 彼 は 問題 が 起き て {ばかり} いる。
+      - 彼 は 問題 が 起き て {ばかり} い ます。
+      - アイツ は 問題 {ばっか} 起き てる な。
+    english_literally: As for him, problems arising only is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 問題 が 起き て いる だけ だ。
+        english: He just has problems.
+        hint: While だけ states a simple fact, ばかり emphasizes that problems are constantly occurring or
+          are his sole preoccupation, often with a nuance of concern or exasperation. We're looking for
+          the feeling of continuous, excessive occurrence.
+    scene: Someone is lamenting a friend's constant misfortunes.
+    register: casual
+    setting: serious
+    nuance: ばかり emphasizes the continuous and excessive nature of problems arising 「問題が起きてばかりいる」, suggesting
+      that he is constantly plagued by them.
+  - english: The baby is just about to cry.
+    japanese:
+      - 赤ちゃん は 泣く {ばかり} だ。
+      - 赤ちゃん は 泣く {ばかり} です。
+      - 赤ちゃん、泣く {ばっかり} だ よ。
+    english_literally: The baby, cry only is.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん は 泣き そう だ。
+        english: The baby looks like it's going to cry.
+        hint: 〜そうだ indicates something 'looks like' it will happen based on appearance. 泣くばかりだ implies
+          the baby is 'on the verge of' crying, as if that's the only thing left to do. We're looking
+          for an expression that means 'almost exclusively doing' or 'on the verge of'.
+    scene: A parent or guardian observing a baby showing signs of distress.
+    register: casual
+    setting: informative
+    nuance: ばかり here implies that the baby is 'on the verge of' crying 「泣くばかりだ」, almost exclusively focused
+      on that action, suggesting that crying is the imminent and dominant state.
+post_example_writeup: As seen in the examples, ばかり's meaning shifts depending on what it attaches to.
+  With nouns or the て-form of verbs, it often implies 'only' or 'always doing' with a nuance of excess.
+  When used with the past tense (た), it clearly signifies a very recent action. Its flexibility makes
+  it a nuanced particle for expressing limitation, completion, or focus.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/365

@@ -1,0 +1,313 @@
+grammar_point: より (more of a degree)
+learn_before:
+  - Verb[ます] (polite present)
+  - '[Verb-dictionary]べき・べきではない (should・should not)'
+  - 〜ていく (change toward future・movement away from speaker)
+  - にする (to decide or make)
+  - 以上です (that's all・conclusion)
+  - 以前 (before)
+  - 以前 (fundamental prerequisite)
+  - 少ない (few・little)
+  - 必要がある (it is necessary to)
+  - 必要とする (to consider necessary・to require)
+  - 真(っ) (completely)
+  - 背面 (back surface spatial)
+meaning: More (degree)
+pronunciation:
+  katakana: ヨリ
+  romaji: yori
+formation:
+  より + [Adjective]: Indicates a higher degree or greater extent of an adjective.
+  より + [Adverb]: Indicates a higher degree or greater extent of an adverb.
+jlpt: N3
+etymology: The particle 「より」 originally comes from the verb 「寄る (yoru)」, meaning "to approach" or "to
+  draw near." Over time, it evolved to indicate a point of origin or comparison, eventually taking on
+  the meaning of "from," "than," or "more than."
+writeup: |-
+  「より」 is an adverbial particle that indicates a higher degree or greater extent. It functions similarly to "more" in English, but it's important to understand its nuances, especially when distinguishing it from 「もっと」. 「より」 is typically placed directly before the adjective or adverb it modifies. This grammar point is often used in contexts where a clear comparison is being made, even if the baseline for that comparison is only implied. For example, when you say 「より速く」 (more quickly) and it implies 'more quickly than before,' 'more quickly than standard,' or 'more quickly than someone else.'
+
+  **Usage Contexts:**
+  *   **Formal/Technical:** 「より」 is common in business, academic, and technical writing or speech. It lends a sense of objectivity and precision to comparisons.
+  *   **Implied Comparison:** While it can be used for explicit comparisons (e.g., AよりB), its most characteristic use is when the comparison point is implicit (e.g., 'more than *before*', 'more than *expected*', 'more than *the average*').
+  *   **Emphasis on Improvement:** It is frequently used to express improvement or advancement, as in 「より良いサービス」 (better service) or 「より効率的」 (more efficient).
+
+  **Distinction from もっと:**
+  「より」 tends to be more formal and precise in its comparative function, often implying a comparison against a concrete or understood standard. In contrast, 「もっと」 is more casual and often expresses a general desire for an increase in quantity or degree, without necessarily referencing a specific comparison point. For example, 「もっと食べたい」 (I want to eat more) implies a general desire for additional food, whereas 「より少ない量で十分だ」 (A smaller amount is sufficient) makes a more objective statement about quantity relative to a need.
+false_friends:
+  - term: もっと (more)
+    meaning: More
+    kind: similar expression
+    nuance: While 「より」 is used to make direct and often formal comparisons against a baseline or standard,
+      「もっと」 is generally more casual and implies a general desire for an general increase in quantity
+      or degree, without necessarily referencing a specific comparison point. For example, 「もっと食べたい」 (I
+      want to eat more) vs. 「より少ない量で十分だ」 (A smaller amount is sufficient).
+    grammar_point: <strongly-suggest>:もっと (degree)
+  - term: 更に (even more)
+    meaning: Even more, furthermore, again, in addition
+    kind: similar expression
+    nuance: 「更に」 often implies an additional increase, building upon something already present or stated.
+      It's often used to show a progression or accumulation of degree. 「より」 establishes a new baseline
+      of 'more', while 「更に」 adds 'even more' to an already 'more' state.
+    grammar_point: 更に (even more)
+post_false_friends_writeup: Understanding the distinctions between 「より」, 「もっと」, and 「更に」 is crucial. 「より」
+  provides a precise comparative nuance, often implying an improvement or a departure from a norm, and
+  is frequently used in written or formal contexts. 「もっと」, on the other hand, is versatile for general
+  increases or desires and is more common in everyday spoken Japanese. 「更に」 suggests an additional increment
+  or continuation of increase, building upon an existing state or a previous increase.
+examples:
+  - english: This new product is lighter than the previous model.
+    japanese:
+      - この 新 製 品 は、以前 の モデル {より} 軽量 です。
+      - この 新 製 品 は、以前 の モデル {より} 軽い です。
+      - この 新 製 品 は、以前 の モデル {より} もっと 軽い です。
+      - この 新 製 品 は、以前 の モデル {より} もっと 軽量 だ。
+    english_literally: This new product, previous model than, light-weight is.
+    competing_grammar:
+      - competing_japanese:
+          - この 新 製 品 は、以前 の モデル より {もっと} 軽量 です。
+          - この 新 製 品 は、以前 の モデル より {ずっと} 軽量 です。
+        english: This new product is even more lightweight than the previous model (using もっと/ずっと for
+          emphasis).
+        hint: While 「もっと」 or 「ずっと」 can emphasize degree, 「より」 directly signifies a comparison against
+          a previous standard, implying a targeted improvement. We're looking for a direct comparison
+          here.
+    scene: A product developer explains the improvements in their latest device.
+    register: formal
+    setting: informative
+    nuance: In this professional and informative context, 「より」 provides a precise and objective comparison,
+      emphasizing the product's improved characteristic (lightness) over the previous model. The formality
+      of 「より」 suits the business discussion. The word 「軽量」 (keiryō) combines 「軽」 (kei) meaning light and
+      「量」 (ryō) meaning amount or quantity, precisely expressing 'light in weight'.
+  - english: You need to run more quickly to win the race.
+    japanese:
+      - レース に 勝つ ため に は、{より} 速く 走る 必要 が あり ます。
+      - レース に 勝つ ため に は、{より} 速く 走る 必要 が ある。
+      - レース で 勝つ に は、{より} 速く 走ら なけれ ば なり ませ ん。
+      - レース に 勝つ ため に は、{より} 素早く 走る こと が 肝要 です。
+    english_literally: Race to win for, more quickly run need exists.
+    competing_grammar:
+      - competing_japanese:
+          - レース に 勝つ ため に は、{もっと} 速く 走る 必要 が あり ます。
+        english: You need to run more quickly to win the race (general increase in speed).
+        hint: 「もっと」 indicates a general increase in speed. 「より」 implies an increase in speed relative
+          to a baseline performance, aiming for a higher standard required for victory. We're looking
+          for an improvement in speed compared to current performance.
+    scene: A coach giving advice to an athlete.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The coach uses 「より」 to emphasize the need for a qualitatively better performance, implying
+      'more quickly than you are currently running' or 'more quickly than your competitors.' This phrase
+      「より 速く」 is quite common and direct. The particle 「に」 in 「レース に 勝つ」 specifies the goal to be achieved.
+  - english: To increase customer satisfaction, a quicker response is necessary.
+    japanese:
+      - 顧客 満足 度 を 高める ため に、{より} 迅速 な 対応 が 必要 です。
+      - 顧客 満足 度 を 高める ため に、{より} 迅速 な 対応 が 必要 だ。
+      - 顧客 満足 度 を 上げる ため に、{より} 迅速 な 対応 が 求め られ ます。
+      - 顧客 満足 度 を 向上 さ せる ため に、{より} 迅速 な 対応 が 必要 と さ れ ます。
+    english_literally: Customer satisfaction degree to raise for, more rapid response is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 満足 度 を 高める ため に、{もっと} 迅速 な 対応 が 必要 です。
+        english: To increase customer satisfaction, a more rapid response is necessary (general increase).
+        hint: 「もっと」 expresses a general desire for 'more' or 'further,' without necessarily implying a
+          comparison against an existing standard. 「より」 implies a specific improvement or advancement
+          from a baseline. We're looking for an improvement relative to what is currently happening.
+    scene: A business manager addresses their team about improving customer service.
+    register: formal
+    setting: professional
+    nuance: In a business setting, 「より」 emphasizes a targeted improvement ('quicker response') from the
+      current state to a more desirable one. This formal tone is appropriate for a manager addressing
+      their team about a goal-oriented improvement. 「迅速」 (jinsoku) means quick or rapid, often used in
+      formal or urgent contexts.
+  - english: To consider the environment, let's explore more sustainable energy sources.
+    japanese:
+      - 環境 に 配慮 する ため に、{より} 持続 可能 な エネルギー 源 を 検討 し ましょう。
+      - 環境 に 配慮 する ため に、{より} 持続 可能 な エネルギー 源 を 検討 し よう。
+      - 環境 に 配慮 し て、{より} 持続 可能 な エネルギー 源 を 探り ましょう。
+      - 環境 へ の 配慮 から、{より} 持続 可能 な エネルギー 源 の 開発 が 求め られ ます。
+    english_literally: Environment to consider for, more sustainable energy sources let's examine.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 に 配慮 する ため に、{もっと} 持続 可能 な エネルギー 源 を 検討 し ましょう。
+        english: To consider the environment, let's explore more sustainable energy sources (general increase).
+        hint: While 「もっと」 conveys a general increase, 「より」 suggests moving towards a higher standard or
+          a better state of sustainability compared to current practices. We're seeking a comparative
+          improvement here.
+    scene: Environmental researchers discuss future energy solutions.
+    register: semi-formal
+    setting: informative
+    nuance: Here, 「より」 indicates a progression towards a higher standard of sustainability, fitting the
+      academic and forward-looking discussion among researchers. The use of 「～ましょう」 makes the suggestion
+      collaborative and polite. 「持続 可能」 (jizoku kanō) directly translates to 'sustainable'. 「持続」 (jizoku)
+      means 'continuation' or 'persistence', combining 「持」 (ji) to hold and 「続」 (zoku) to continue. 「可能」
+      (kanō) means 'possible'. Together, 'possible to continue', hence 'sustainable'.
+  - english: To concentrate, I need a quieter place.
+    japanese:
+      - 集中 する ため に、{より} 静か な 場所 が 必要 だ。
+      - 集中 する ため に、{より} 静か な 場所 が 必要 です。
+      - 集中 する に は、{より} 静か な 場所 が ほしい。
+      - 集中 を する なら、{より} 静か な 場所 が 良い だろう。
+    english_literally: To concentrate, a more quiet place is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 集中 する ため に、{もっと} 静か な 場所 が 必要 だ。
+          - 集中 する ため に、{もっと} 静か な 場所 が ほしい。
+        english: To concentrate, I need a quieter place (general desire).
+        hint: 「もっと」 expresses a general desire for an increased degree of quietness. 「より」 specifically
+          implies 'quieter than the current noisy environment,' setting a clear comparison for improvement.
+          We're looking for a comparison to the current situation.
+    scene: A student struggling to focus in a noisy environment.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    speaker_age: younger
+    nuance: Even in casual speech, 「より」 can be used when a qualitative improvement from the current situation
+      is clearly implied. The young female student needs a place that is 'more quiet' than her current
+      noisy environment. The plain form 「だ」 is appropriate for casual speech. 「集中」 (shūchū) means 'concentration'
+      or 'focus', combining 「集」 (shū) meaning to gather and 「中」 (chū) meaning inside/middle, implying
+      'gathering one's thoughts'.
+  - english: This machine operates with even less power than the previous model.
+    japanese:
+      - この 機械 は、以前 の モデル {より} も {より} 少ない 電力 で 動く。
+      - この 機械 は、以前 の モデル {より} も {より} 少ない 電力 で 動き ます。
+      - この 機械 は、以前 の モデル {より} も 少ない 電力 で 稼働 し ます。
+      - この 機械 は、以前 の モデル {より} も 格段 に 少ない 電力 で 動か せ ます。
+    english_literally: This machine, previous model than also more less power with moves.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は、以前 の モデル より {もっと} 少ない 電力 で 動く。
+        english: This machine operates with even less power than the previous model (general emphasis).
+        hint: The double 「より」, enhanced by 「も」, strongly emphasizes a precise, objective comparison and
+          improvement. While 「もっと」 could also emphasize, it lacks the technical precision conveyed by
+          「より」 in this context. We're looking for a precise, objective comparison.
+    scene: An engineer explains the efficiency improvements of a new device.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The repeated use of 「より」 and the inclusion of 「も」 (emphasis particle) highlight a significant,
+      precise improvement in efficiency compared to the previous model, making this technical, objective
+      comparison characteristic of 「より」 in formal contexts. 「電力」 (denryoku) means electric power, combining
+      「電」 (den) meaning electricity and 「力」 (ryoku) meaning power or force. 「機械」 (kikai) means machine,
+      often implying complex mechanical devices.
+  - english: For your health, you should eat more vegetables.
+    japanese:
+      - 健康 の ため に、{より} 多く の 野菜 を 食べる べき です。
+      - 健康 の ため に、{より} 多く の 野菜 を 食べる べき だ。
+      - 健康 に は、{より} 多く の 野菜 を 取る べき です。
+      - 健康 を 考える なら、{より} 多く の 野菜 を 摂取 する 方 が 良い です。
+    english_literally: Health's sake for, more many vegetables to eat should.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 の ため に、{もっと} 多く の 野菜 を 食べる べき です。
+        english: For your health, you should eat more vegetables (general quantity increase).
+        hint: 「もっと」 suggests a general increase in quantity. 「より」 implies a recommendation to reach a
+          healthier, improved standard of vegetable intake. We're looking for a specific improvement towards
+          a healthy standard.
+    scene: A doctor advises a patient on dietary changes.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: A male doctor, typically an older and authoritative figure, uses 「より」 to give advice that
+      implies an objective standard for health. It suggests 'an increased quantity of vegetables' relative
+      to the patient's current diet, which is a formal and prescriptive nuance suitable for medical advice.
+      「べき です」 adds a strong recommendation. 「健康」 (kenkō) means health, combining 「健」 (ken) meaning healthy
+      and 「康」 (kō) meaning peace/comfort, implying a state of well-being. 「野菜」 (yasai) means vegetables,
+      from 「野」 (ya) field and 「菜」 (sai) greens.
+  - english: There must be a better way to solve this problem.
+    japanese:
+      - この 問題 を 解決 する ため に、{より} 良い 方法 が ある はず です。
+      - この 問題 を 解決 する ため に、{より} 良い 方法 が ある はず だ。
+      - この 問題 の 解決 に は、{より} 良い 方法 が きっと ある でしょう。
+      - この 問題 を 解く に は、{より} 良い 手段 が ある はず です。
+    english_literally: This problem to solve for, more good method exists should.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 を 解決 する ため に、{もっと} 良い 方法 が ある はず です。
+        english: There must be a better way to solve this problem (general improvement).
+        hint: 「もっと」 suggests a general improvement. 「より」 implies finding a method that is 'better' than
+          existing or proposed solutions, indicating a qualitative step up. We're looking for a qualitatively
+          better solution.
+    scene: A team brainstorming solutions to a complex issue.
+    register: semi-formal
+    setting: persuasive
+    nuance: In a brainstorming session, 「より」 is used to suggest an objectively 'better' solution, implying
+      an improvement over existing ideas or approaches. The phrase 「ある はず です」 expresses a strong likelihood
+      or expectation, suitable for a persuasive context. 「解決」 (kaiketsu) means 'solution' or 'settlement'.
+      「解決」 (kaiketsu) combines 「解」 (kai) meaning to unravel/solve and 「決」 (ketsu) meaning to decide/determine,
+      together meaning 'to unravel and decide', hence 'to solve'.
+  - english: His presentation was even more persuasive than before.
+    japanese:
+      - 彼 の プレゼンテーション は、以前 {より} も {より} 説得 力 が あり まし た。
+      - 彼 の プレゼンテーション は、以前 {より} も {より} 説得 力 が あっ た。
+      - 彼 の プレゼンテーション は、以前 {より} も 格段 に 説得 力 が あり まし た。
+      - 彼 の プレゼンテーション は、以前 {より} もっと 説得 力 を 持っ て い まし た。
+    english_literally: His presentation, before than also more persuasive power was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の プレゼンテーション は、以前 より {もっと} 説得 力 が あり まし た。
+        english: His presentation was even more persuasive than before (general emphasis).
+        hint: The double use of 「より」 with 「も」 highlights a distinct, precise improvement in persuasiveness
+          from a previous state. While 「もっと」 could provide general emphasis, it lacks the specific comparative
+          nuance of 「より」. We're looking for a strong, precise comparison.
+    scene: Colleagues discussing a recent business presentation.
+    register: formal
+    setting: professional
+    nuance: The use of 「より」 twice, alongside 「も」, emphasizes the significant increase in persuasiveness
+      compared to a previous instance, making the comparison very direct and precise. This level of formality
+      is appropriate for a professional discussion among colleagues. 「説得 力」 (settoku ryoku) means 'persuasive
+      power'. 「説得」 (settoku) means 'persuasion', combining 「説」 (setsu) meaning to explain/preach and 「得」
+      (toku) meaning to gain/obtain. 「力」 (ryoku) means 'power'. So, 'power to persuade'.
+  - english: To achieve even more accurate results, we must refine our experimental methods.
+    japanese:
+      - '{より} 精密 な 結果 を 得る ため に は、実験 方法 を 見直す 必要 が あり ます。'
+      - '{より} 精密 な 結果 を 得る ため に は、実験 方法 を 見直す 必要 が ある。'
+      - '{より} 精密 な 結果 を 得る に は、実験 方法 を 改善 し なけれ ば なり ませ ん。'
+      - 実験 方法 を 改良 する こと で、{より} 精密 な 結果 が 期待 でき ます。
+    english_literally: More precise results to obtain for, experimental methods to review need exists.
+    competing_grammar:
+      - competing_japanese:
+          - '{もっと} 精密 な 結果 を 得る ため に は、実験 方法 を 見直す 必要 が あり ます。'
+        english: To achieve more accurate results (general increase), we must refine our experimental
+          methods.
+        hint: While 「もっと」 can indicate a general increase in accuracy, 「より」 emphasizes a progression towards
+          a higher standard of precision, which is crucial in scientific research. We are looking for
+          a refinement based on a precise comparison.
+    scene: A research team discussing how to improve their ongoing experiment.
+    register: formal
+    setting: academic
+    nuance: In a scientific or academic context, 「より」 is used to stress the pursuit of an objectively
+      higher degree of precision or accuracy. This formal tone is suitable for discussing methodological
+      improvements in research. 「精密」 (seimitsu) means 'precise' or 'accurate', often used in technical
+      and scientific contexts.
+  - english: I want to live a more fulfilling life from now on.
+    japanese:
+      - これ から は、{より} 充実 し た 人生 を 送り たい と 思い ます。
+      - これ から は、{より} 充実 し た 人生 を 送り たい と 思う。
+      - これ から は、{より} 充実 し た 人生 を 目指し たい です。
+      - これ から は、{より} 充実 し た 日々 を 送っ て いき たい と 考え ます。
+    english_literally: From now on, more fulfilling life to live want to think.
+    competing_grammar:
+      - competing_japanese:
+          - これ から は、{もっと} 充実 し た 人生 を 送り たい と 思い ます。
+        english: From now on, I want to live a more fulfilling life (general desire).
+        hint: 「もっと」 expresses a general desire for 'more' fulfillment. 「より」 implies a comparison with
+          the speaker's past life or a perceived standard, indicating a specific aspiration for a life
+          that is 'more' fulfilling than before. We're looking for an improvement from a current or past
+          state.
+    scene: Someone reflecting on their future goals during a quiet moment.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    nuance: Here, 「より」 is used in a reflective context to express a desire for personal growth or improvement.
+      It implies aiming for a life that is 'more' fulfilling compared to one's previous experiences or
+      a general standard. The use of 「～たい と 思い ます」 indicates a personal thought or aspiration. The speaker
+      being female does not change the core grammar but adds a personal touch to the reflection. 「充実」
+      (jūjitsu) means 'fullness' or 'enrichment', often used to describe a satisfying life.
+post_example_writeup: 'As these examples demonstrate, 「より」 is incredibly versatile, suitable for various
+  contexts from casual observation to formal business and technical discussions. Its core function remains
+  consistent: to indicate a higher degree or extent, often with an implied or explicit comparison to a
+  baseline. Pay close attention to the nuance that 「より」 brings, emphasizing an improvement or a departure
+  from a standard, which distinguishes it from the more general 「もっと」.'

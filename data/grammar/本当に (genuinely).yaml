@@ -1,0 +1,269 @@
+grammar_point: 本当に (genuinely)
+learn_before:
+  - か (question)
+meaning: genuinely
+pronunciation:
+  katakana: ホントウニ
+  romaji: hontō ni
+formation:
+  本当に + Verb: Modifies a verb, emphasizing the truth or reality of the action.
+  本当に + い-Adjective: Modifies an い-adjective, emphasizing the genuine degree or truth of the quality.
+  本当に + な-Adjective: Modifies a な-adjective, emphasizing the genuine degree or truth of the quality (often
+    followed by だ/です).
+  本当の + Noun: When 本当 is used as a noun with の, it indicates something is the 'true' or 'real' version
+    of the noun.
+jlpt: N4
+etymology: The word 「本当 (ほんとう)」 combines 「本 (ほん - origin, main)」 and 「当 (とう - hit, appropriate)」, signifying
+  something that 'hits the main point' or is 'appropriate to the origin.' This evolved to mean 'truth'
+  or 'reality.' The particle 「に」 transforms this noun into an adverb, giving it the meaning of 'truly,'
+  'really,' or 'genuinely,' emphasizing the veracity or intensity of what is being expressed.
+writeup: |-
+  「本当に」 is a versatile adverb in Japanese used to convey a sense of truth, genuineness, or a high degree of something. It translates to 'really,' 'truly,' or 'genuinely' in English and can modify verbs, adjectives (both い-adjectives and な-adjectives), and occasionally other adverbs.
+
+  When used with a verb or adjective, 「本当に」 emphasizes the sincerity or intensity of the action or state. For example, 「本当に疲れた」 means 'I am *really* tired,' highlighting the depth of one's fatigue. Similarly, 「本当にありがとう」 expresses a 'truly heartfelt thank you.'
+
+  While 「本当に」 is generally used to affirm truth, it can also be employed in questions to seek genuine confirmation, as in 「本当にそう思いますか？」 ('Do you *really* think so?'), often implying a hint of disbelief or surprise on the speaker's part.
+
+  Furthermore, in certain contexts, 「本当に」 can be used ironically or sarcastically. The nuance depends heavily on intonation and surrounding conversational elements, making it a flexible tool for expressing a wide range of speaker attitudes.
+
+  Unlike some intensifiers that solely focus on degree (e.g., 「とても」 'very'), 「本当に」 carries a stronger implication of veracity or a deep, sincere feeling, making it suitable for situations where one wants to convey conviction.
+false_friends:
+  - term: まさか
+    meaning: no way・you must be joking
+    kind: antonym
+    nuance: 「まさか」 expresses strong disbelief or impossibility, often used when something is highly unexpected
+      or unbelievable, standing in direct contrast to the strong affirmation of truth that 「本当に」 conveys.
+      It challenges the reality of a situation rather than confirming it.
+    grammar_point: まさか (no way)
+  - term: 確かに
+    meaning: certainly・indeed
+    kind: similar expression
+    nuance: While 「確かに」 also conveys certainty, it often implies agreement with a previous statement or
+      observation, or acknowledges something as a fact. 「本当に」, on the other hand, emphasizes the absolute
+      truth, genuineness, or high degree of something, often from the speaker's personal conviction. 「確かに」
+      can function as a discourse marker, acknowledging a point made by someone else, which 「本当に」 cannot.
+    grammar_point: 確かに (certainly・indeed)
+  - term: 実に
+    meaning: truly・indeed
+    kind: similar expression
+    nuance: 「実に」 is a more formal or literary adverb compared to 「本当に」. It is often used to express strong
+      admiration or to emphasize a profound or absolute truth, appearing less frequently in everyday conversation.
+      While both mean 'truly,' 「実に」 often carries a more declarative, sometimes even exclamatory, tone,
+      whereas 「本当に」 is more common for general emphasis of truth or sincerity.
+    grammar_point: <suggest>:実に (truly・indeed)
+post_false_friends_writeup: When distinguishing 「本当に」 from similar expressions, remember that 「本当に」 primarily
+  affirms truth, sincerity, or intensity. In contrast, 「まさか」 negates belief, expressing disbelief or surprise.
+  「確かに」 confirms something, often agreeing with a previous statement or acknowledging a fact, and can
+  be used as a simple affirmative. 「実に」, while also meaning 'truly,' leans towards more formal or literary
+  contexts, often conveying a strong, almost profound sense of truth or admiration.
+examples:
+  - english: This cake is really delicious!
+    japanese:
+      - この ケーキ は {本当 に} おいしい！
+      - この ケーキ は {本当 に} おいしい です。
+      - この ケーキ、{本当 に} おいしい ね！
+      - これ、{ほんと} おいしい！
+    english_literally: This cake, as for, truly delicious!
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は とても おいしい！
+        english: This cake is very delicious!
+        hint: 「とても」 means "very," expressing a high degree. We're looking for emphasis on the *truth*
+          or *genuineness* of the deliciousness.
+      - competing_japanese:
+          - この ケーキ は 確か に おいしい！
+        english: This cake is certainly delicious!
+        hint: 「確かに」 confirms something. We're looking for an adverb that emphasizes the *genuineness*
+          of the deliciousness, implying a strong, personal conviction.
+    scene: A friend takes a bite of homemade cake you offered.
+    register: casual
+    setting: friendly
+  - english: Do you really think so?
+    japanese:
+      - '{本当 に} そう 思い ます か？'
+      - '{本当 に} そう 思う？'
+      - '{本当 に} そう お 思い です か？'
+    english_literally: Truly so think question?
+    competing_grammar:
+      - competing_japanese:
+          - そう 思い ます か？
+        english: Do you think so?
+        hint: This is a simple question. We're looking for a way to ask if someone *genuinely* thinks
+          so, implying skepticism or surprise.
+      - competing_japanese:
+          - まさか そう 思い ます か？
+        english: No way, do you think so?
+        hint: 「まさか」 expresses strong disbelief and surprise. We're looking for a more neutral way to ask
+          for genuine confirmation, not necessarily strong disbelief.
+    scene: A colleague has just stated a controversial opinion in a team meeting.
+    register: semi-formal
+    setting: professional
+  - english: I'm really surprised.
+    japanese:
+      - '{本当 に} びっくり し た。'
+      - '{本当 に} びっくり し まし た。'
+      - '{本当 に} 驚き まし た。'
+    english_literally: Truly surprised.
+    competing_grammar:
+      - competing_japanese:
+          - とても びっくり し た。
+        english: I was very surprised.
+        hint: 「とても」 emphasizes the degree, meaning 'very.' We're looking for an emphasis on the *genuineness*
+          of the surprise, suggesting it's not a light surprise.
+      - competing_japanese:
+          - 正直 びっくり し た。
+        english: Honestly, I was surprised.
+        hint: 「正直」 implies being honest about one's feelings. We're looking for an adverb that emphasizes
+          the *intensity* or *genuineness* of the surprise itself, rather than the honesty of the statement.
+    scene: Someone hears unexpected news that genuinely shocks them.
+    register: casual
+    setting: serious
+  - english: It's really not good.
+    japanese:
+      - '{本当 に} よく ない。'
+      - '{本当 に} よく あり ませ ん。'
+      - '{本当 に} 良く ない です。'
+    english_literally: Truly not good.
+    competing_grammar:
+      - competing_japanese:
+          - 全然 よく ない。
+        english: It's not good at all.
+        hint: 「全然」 emphasizes the negative, meaning 'not at all.' We're looking for an adverb that emphasizes
+          the *truth* that it's not good, from a genuine assessment.
+      - competing_japanese:
+          - あんまり よく ない。
+        english: It's not very good.
+        hint: 「あんまり」 means 'not very,' indicating a lesser degree. We're looking for a stronger emphasis
+          on the *genuineness* of its poor quality.
+    scene: A student evaluates a poorly executed project they're reviewing.
+    register: casual
+    setting: academic
+  - english: I truly apologize.
+    japanese:
+      - '{本当 に} 申し訳 あり ませ ん。'
+      - '{本当 に} 申し訳 ござい ませ ん。'
+      - '{本当 に} ごめん なさい。'
+    english_literally: Truly inexcusable.
+    competing_grammar:
+      - competing_japanese:
+          - 心 から 申し訳 あり ませ ん。
+        english: I sincerely apologize.
+        hint: 「心から」 means 'from the bottom of my heart,' implying a deep, internal sincerity. We're looking
+          for a more general emphasis on the *truthfulness* or *genuineness* of the apology, suitable
+          for various formal situations.
+      - competing_japanese:
+          - 大変 申し訳 あり ませ ん。
+        english: I am extremely sorry.
+        hint: 「大変」 emphasizes degree, meaning 'extremely.' We're looking for an emphasis on the *truthfulness*
+          of the apology itself, confirming its genuineness.
+    scene: An employee has made a significant mistake and is apologizing to a high-profile customer.
+    register: formal
+    setting: professional
+  - english: He really worked hard.
+    japanese:
+      - 彼 は {本当 に} よく 頑張っ た。
+      - 彼 は {本当 に} よく 頑張り まし た。
+      - 彼 は {本当 に} ご 尽力 さ れ まし た。
+    english_literally: He, as for, truly well worked hard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても よく 頑張っ た。
+        english: He worked very hard.
+        hint: 「とても」 emphasizes degree. We're looking for an emphasis on the *genuineness* of his effort,
+          confirming the truth of his hard work.
+      - competing_japanese:
+          - 彼 は 確か に よく 頑張っ た。
+        english: He certainly worked hard.
+        hint: 「確かに」 confirms an observation. We're looking for an emphasis on the *genuineness* of his
+          hard work, conveying the speaker's sincere belief.
+    scene: A project manager is giving feedback on a team member's performance.
+    register: semi-formal
+    setting: professional
+  - english: I really couldn't hear anything.
+    japanese:
+      - '{本当 に} 何 も 聞こえ なかっ た。'
+      - '{本当 に} 何 も 聞こえ ませ ん でし た。'
+    english_literally: Truly nothing couldn't hear.
+    competing_grammar:
+      - competing_japanese:
+          - 全く 何 も 聞こえ なかっ た。
+        english: I couldn't hear anything at all.
+        hint: 「全く」 emphasizes the totality of the negative, meaning 'not at all.' We're looking for an
+          emphasis on the *truth* that nothing was heard, as a genuine statement of fact.
+      - competing_japanese:
+          - 全然 何 も 聞こえ なかっ た。
+        english: I couldn't hear anything at all.
+        hint: Similar to 「全く」, 「全然」 emphasizes the complete absence. We're looking for an adverb stressing
+          the *genuineness* of the inability to hear, confirming the truth of the experience.
+    scene: Someone is recounting a time when they were in a very noisy environment and couldn't make out
+      any sounds.
+    register: casual
+    setting: storytelling
+  - english: Oh, that's really great.
+    japanese:
+      - ああ、それ は {本当 に} よかっ た ね。
+      - ああ、それ は {本当 に} 良かっ た です ね。
+    english_literally: Ah, that, as for, truly good, right?
+    competing_grammar:
+      - competing_japanese:
+          - ああ、それ は とても よかっ た ね。
+        english: Oh, that was very good, huh?
+        hint: While 「とても」 expresses a high degree, it doesn't inherently carry the sarcastic nuance that
+          「本当に」 can convey through context and intonation. We're looking for a phrase that can imply sarcasm
+          or irony.
+      - competing_japanese:
+          - ああ、それ は さぞ よかっ た ね。
+        english: Oh, that must have been good, huh?
+        hint: 「さぞ」 expresses conjecture about something that is certainly true from the speaker's perspective,
+          but typically without sarcasm. We're looking for an adverb that expresses truth or genuine feeling
+          but can be used ironically.
+    scene: Someone hears about an inconvenient or troublesome situation and responds with feigned enthusiasm.
+    register: casual
+    setting: sarcastic
+  - english: I'm really happy!
+    japanese:
+      - '{本当 に} うれしい わ！'
+      - '{本当 に} うれしい！'
+      - '{本当 に} うれしい です。'
+    english_literally: Truly happy, is it!
+    competing_grammar:
+      - competing_japanese:
+          - とても うれしい わ！
+        english: I'm very happy!
+        hint: 「とても」 means 'very.' We're looking for an emphasis on the *genuineness* or *sincerity* of
+          the happiness, indicating a deeper feeling than just 'very'.
+      - competing_japanese:
+          - すごく うれしい わ！
+        english: I'm super happy!
+        hint: 「すごく」 is a casual intensifier, similar to 'super' or 'extremely.' We're looking for a word
+          emphasizing the *truth* or *sincerity* of the feeling, rather than just its high degree.
+    scene: A young woman receives good news, like a job offer or a gift.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    nuance: The sentence-final particle 「わ」 adds a soft, feminine emotional emphasis, common for women
+      to express strong feelings like happiness or relief. It indicates the speaker's personal feeling
+      to the listener.
+  - english: That was really tough.
+    japanese:
+      - あれ は {本当 に} 大変 だっ た ぜ。
+      - あれ は {本当 に} 大変 だっ た。
+      - あれ は {本当 に} 大変 でし た。
+    english_literally: That, as for, truly tough, man.
+    competing_grammar:
+      - competing_japanese:
+          - あれ は めちゃくちゃ 大変 だっ た ぜ。
+        english: That was incredibly tough, man.
+        hint: 「めちゃくちゃ」 is a very casual and strong intensifier. We're looking for an adverb that emphasizes
+          the *truth* or *genuineness* of how tough it was, confirming the severity of the experience.
+      - competing_japanese:
+          - あれ は 確か に 大変 だっ た ぜ。
+        english: That was certainly tough, man.
+        hint: 「確かに」 confirms an observation. We're looking for an adverb emphasizing the *genuineness*
+          of the difficulty, conveying sincere agreement or confirmation.
+    scene: Two male friends are catching up after a particularly challenging week.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The sentence-final particle 「ぜ」 adds a masculine, assertive, and slightly rough tone, common
+      among male friends in casual conversation to emphasize a statement or share a strong feeling.

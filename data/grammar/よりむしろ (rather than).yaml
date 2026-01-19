@@ -1,0 +1,243 @@
+grammar_point: よりむしろ (rather than)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - 〜について・〜に関して (about・regarding)
+  - い-Adjective[み] (abstract quality)
+  - ではない・じゃなくて (not A but B)
+  - むしろ (rather・instead)
+meaning: rather than; more accurately
+pronunciation:
+  katakana: ヨリむしろ
+  romaji: yori mushiro
+formation:
+  Noun A よりむしろ Noun B: Indicates that B is a more accurate or preferred choice/description than A.
+  Verb (plain) A よりむしろ Verb (plain) B: Indicates that doing B is more accurate or preferred than doing
+    A.
+  い-Adjective (plain) A よりむしろ い-Adjective (plain) B: Indicates that B is a more accurate or preferred
+    quality than A.
+  な-Adjective (plain) A よりむしろ な-Adjective (plain) B: Indicates that B is a more accurate or preferred
+    quality than A.
+jlpt: N2
+etymology: The phrase combines the particle 「より」 (yori), meaning "than" or "from," and the adverb 「むしろ」
+  (mushiro), meaning "rather" or "instead." Historically, 「むしろ」 carried the sense of turning something
+  around or making a contrary choice. When combined with 「より」, which establishes a point of comparison,
+  the phrase literally conveys "rather than (what was implied), more so (this)." This highlights its function
+  in refining or correcting an initial statement by presenting a more accurate or preferred alternative.
+writeup: |-
+  「よりむしろ」 is a versatile expression used to indicate that the second element mentioned is more appropriate, accurate, or preferable than the first. It's often employed when you want to correct a potential misunderstanding or to refine a statement. Unlike a simple comparison that might just state a preference, 「よりむしろ」 suggests that the initial idea or statement, while perhaps not entirely wrong, is less precise or less desirable than the alternative being proposed.
+
+  Think of it as saying, "It's not so much A; it's more like B." It's commonly used in situations where there's a nuance that needs to be clarified, or when one option is clearly a better fit than another in a given context.
+
+  While it can be used in casual conversation, its somewhat formal structure gives it a slightly more deliberate and refined tone. It can connect nouns, verbs, or adjectives, allowing for a wide range of applications.
+false_friends:
+  - term: むしろ (rather)
+    meaning: rather; instead; better
+    kind: similar expression
+    nuance: While 「むしろ」 can be used on its own to express a preference or a counter-idea, 「よりむしろ」 explicitly
+      introduces a comparison, clarifying that the second item is preferred or more accurate *in comparison*
+      to a preceding idea or statement. 「むしろ」 alone can simply introduce a new, preferred idea without
+      a direct comparative element.
+    grammar_point: <suggest>:むしろ (rather・better)
+  - term: ~というより (rather than saying)
+    meaning: rather than saying; more like
+    kind: similar expression
+    nuance: 「〜というより」 is often used to rephrase or clarify a description, particularly when the initial
+      statement is a verb phrase or a more complex idea. It suggests that the latter description is a
+      more fitting or accurate way to express something. 「よりむしろ」 tends to be used for comparing and choosing
+      between two concrete nouns, adjectives, or simple actions, asserting one as superior or more accurate
+      than the other, often correcting a previous perception. It can also apply more broadly to phrases.
+    grammar_point: <suggest>:〜というより (rather than)
+  - term: ~より (than)
+    meaning: than; from
+    kind: similar expression
+    nuance: 「〜より」 is a simple comparative particle meaning "than." It states that one thing is greater
+      or lesser than another in some quality (e.g., AはBより大きい - A is bigger than B). 「よりむしろ」 adds the nuance
+      of correction or refinement, implying that the second item is a more *accurate* or *preferable*
+      description, rather than just a quantitative comparison.
+    grammar_point: より (comparative)
+  - term: 〜のほうがいい (it is better)
+    meaning: it is better; it is preferable
+    kind: similar expression
+    nuance: 「〜のほうがいい」 expresses a straightforward preference for one option over another (e.g., りんごよりバナナのほうがいい
+      - Bananas are better than apples). While 「よりむしろ」 also indicates preference, it carries a stronger
+      implication of *correcting* or *refining* a previous idea or assumption, suggesting that the first
+      option is not quite right or is less suitable.
+    grammar_point: <suggest>:Verb[た]ほうがいい (it is better to do)
+post_false_friends_writeup: 'While these expressions all deal with comparison or preference, 「よりむしろ」 stands
+  out for its specific nuance of correcting or refining a prior statement. It''s not merely a simple preference
+  but an assertion that the second option is the more precise or appropriate truth. Pay attention to the
+  context: if you''re clarifying a previous statement or choosing a more accurate description, 「よりむしろ」
+  is often the best fit.'
+examples:
+  - english: It's not anger; rather it's sadness.
+    japanese:
+      - 怒り {より むしろ} 悲しみ だ。
+      - 怒り {より むしろ} 悲しみ です。
+      - 怒り {より むしろ} 悲しみ に 近い。
+      - それ は 怒り {より むしろ} 悲しみ で ある。
+    english_literally: Anger rather sadness.
+    competing_grammar:
+      - competing_japanese:
+          - 怒り じゃ なく て 悲しみ だ。
+        english: It's not anger; it's sadness.
+        hint: 「〜じゃなくて」 directly negates the first item. 「よりむしろ」 implies the first item isn't entirely
+          wrong but less accurate, and clarifies with the second.
+      - competing_japanese:
+          - 怒り と いう より 悲しみ だ。
+        english: It's more sadness than anger (or rather, it's sadness).
+        hint: 「〜というより」 rephrases a description to be more accurate, often for abstract concepts. 「よりむしろ」
+          is broader, can directly compare nouns, and emphasizes a chosen alternative.
+    scene: A friend is trying to understand someone's emotional state.
+    register: casual
+    setting: friendly
+  - english: He's not a genius; rather he's a hard worker.
+    japanese:
+      - 彼 は 天才 {より むしろ} 努力 家 だ。
+      - 彼 は 天才 {より むしろ} 努力 家 です。
+      - 彼 が 天才 と いう {より むしろ} 努力 家 だ。
+      - 彼 に 関し て は 天才 {より むしろ} 努力 家 でしょう。
+    english_literally: He genius rather hard worker is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 天才 と いう より 努力 家 だ。
+        english: He's more a hard worker than a genius.
+        hint: 「〜というより」 is a good alternative when clarifying a description. 「よりむしろ」 has a slightly stronger
+          sense of correcting a potential misperception.
+    scene: Two colleagues are discussing a successful peer.
+    register: formal
+    setting: professional
+  - english: It wasn't a mistake; rather it was a calculated risk.
+    japanese:
+      - それ は 間違い {より むしろ} 計算 さ れ た リスク だっ た。
+      - それ は 間違い {より むしろ} 計算 さ れ た リスク でし た。
+      - 間違い と いう {より むしろ} 計算 さ れ た リスク だっ た。
+      - 今回 の 件 は 間違い {より むしろ} 計算 さ れ た リスク でしょう。
+    english_literally: That mistake rather calculated risk was.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 間違い で は なく て 計算 さ れ た リスク だっ た。
+        english: That wasn't a mistake; it was a calculated risk.
+        hint: 「〜ではなくて」 is a direct negation, implying the first item is entirely false. 「よりむしろ」 allows
+          for the first item to be partially true but less precise.
+    scene: A manager is explaining a decision to their team after a project outcome.
+    register: semi-formal
+    setting: informative
+  - english: I don't dislike it; rather I just don't have much interest.
+    japanese:
+      - 嫌い で は ない。{より むしろ} 興味 が ない だけ だ。
+      - 嫌い で は ない。{より むしろ} 興味 が ない だけ です。
+      - 嫌い と いう {より むしろ} 興味 が ない だけ。
+      - 嫌い な の で は なく て、{より むしろ} 興味 が ない だけ だ。
+    english_literally: Dislike not. Rather interest no just is.
+    competing_grammar:
+      - competing_japanese:
+          - 嫌い で は ない。むしろ 興味 が ない だけ だ。
+        english: I don't dislike it. Rather, I just don't have much interest.
+        hint: 「むしろ」 alone is also possible here, but 「よりむしろ」 emphasizes the clarification and subtly corrects
+          any implied dislike.
+    scene: A person is giving a nuanced opinion about a hobby or topic.
+    register: casual
+    setting: reflective
+  - english: It's not about winning; rather it's about giving your best.
+    japanese:
+      - 勝つ こと {より むしろ} 全力 を 尽くす こと だ。
+      - 勝つ こと {より むしろ} 全力 を 尽くす こと です。
+      - 勝利 と いう {より むしろ} 全力 を 尽くす こと に 価値 が ある。
+      - 重要 な の は 勝つ こと {より むしろ} 全力 を 尽くす こと で ある。
+    english_literally: Winning rather all effort put out is.
+    competing_grammar:
+      - competing_japanese:
+          - 勝つ こと で は なく て 全力 を 尽くす こと だ。
+        english: It's not about winning; it's about giving your best.
+        hint: 「〜ではなくて」 provides a clear opposition. 「よりむしろ」 offers a correction or re-prioritization,
+          suggesting the former point is less central.
+    scene: A coach is motivating their team before a game.
+    register: formal
+    setting: inspirational
+  - english: This isn't cheap; rather it's a good investment.
+    japanese:
+      - これ は 安い {より むしろ} 良い 投資 だ。
+      - これ は 安い {より むしろ} 良い 投資 です。
+      - これ は 安い と いう {より むしろ} 良い 投資 だ と 言える。
+      - 安価 な もの と いう {より むしろ} 良い 投資 と 見る べき です。
+    english_literally: This cheap rather good investment is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 安い と いう より 良い 投資 だ。
+        english: This is more of a good investment than cheap.
+        hint: 「〜というより」 is very similar and often interchangeable when refining a description. 「よりむしろ」
+          sometimes implies a stronger corrective intent.
+    scene: A salesperson is explaining the value of a product to a customer.
+    register: semi-formal
+    setting: persuasive
+  - english: She didn't run away; rather she fled to a safer place.
+    japanese:
+      - 彼女 は 逃げ た と いう {より むしろ} より 安全 な 場所 に 避難 し た の だ。
+      - 彼女 は 逃げ た と いう {より むしろ} より 安全 な 場所 に 避難 し まし た。
+      - 逃げ た と いう {より むしろ}、避難 し た と いう 表現 が 適切 だ。
+      - 彼女 が 逃げ た と いう 表現 は 適切 で は なく、{より むしろ} 安全 な 場所 へ 避難 し た の だ。
+    english_literally: She ran away said rather safer place to fled is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 逃げ た の で は なく、より 安全 な 場所 に 避難 し た の だ。
+        english: She didn't run away, but rather, she fled to a safer place.
+        hint: 「〜のではなく」 directly refutes the first statement. 「よりむしろ」 softens the refutation, implying
+          a more accurate portrayal rather than a complete falsehood.
+    scene: A reporter is clarifying a situation during a news broadcast.
+    register: formal
+    setting: informative
+  - english: It wasn't a choice; rather it was a necessity.
+    japanese:
+      - それ は 選択 {より むしろ} 必要 だっ た。
+      - それ は 選択 {より むしろ} 必要 でし た。
+      - 選択 と いう {より むしろ} 必然 だっ た。
+      - あの 状況 は 選択 {より むしろ} 必要 不可欠 だっ た と 言える でしょう。
+    english_literally: That choice rather necessity was.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 選択 で は なく 必要 だっ た。
+        english: That was not a choice; it was a necessity.
+        hint: 「〜ではなく」 explicitly states the first item is not true. 「よりむしろ」 redefines the situation as
+          being more accurately described by the second item.
+    scene: Someone is explaining a difficult decision they had to make.
+    register: casual
+    setting: serious
+  - english: His words weren't a critique; rather they were a form of encouragement.
+    japanese:
+      - 彼 の 言葉 は 批判 {より むしろ} 励まし だっ た。
+      - 彼 の 言葉 は 批判 {より むしろ} 励まし でし た。
+      - それ は 批判 と いう {より むしろ} 励まし の 言葉 だっ た。
+      - 彼 の 言葉 を 批判 と 捉える {より むしろ}、励まし と 受け止める べき だ。
+    english_literally: His words criticism rather encouragement was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言葉 は 批判 で は なく、励まし だっ た。
+        english: His words were not a critique, but encouragement.
+        hint: 「〜ではなく」 is a straightforward denial. 「よりむしろ」 nuances it as the latter being a more fitting
+          description, even if the former was a possible interpretation.
+    scene: Two friends are discussing feedback received from a mutual acquaintance.
+    register: semi-formal
+    setting: friendly
+  - english: This isn't a problem; rather it's an opportunity.
+    japanese:
+      - これ は 問題 {より むしろ} 機会 だ。
+      - これ は 問題 {より むしろ} 機会 です。
+      - これ は 問題 と いう {より むしろ} 好機 だ。
+      - これ を 問題 と 捉える {より むしろ}、新た な 機会 と す べき です。
+    english_literally: This problem rather opportunity is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 問題 と いう より 機会 だ。
+        english: This is more an opportunity than a problem.
+        hint: Both are suitable. 「よりむしろ」 can highlight the shift in perspective more emphatically, correcting
+          an initial negative view.
+    scene: A business leader is addressing challenges to their team.
+    register: formal
+    setting: optimistic
+post_example_writeup: As seen in the examples, 「よりむしろ」 allows for a nuanced correction or refinement.
+  It's particularly useful when the initial statement isn't entirely false but paints an incomplete or
+  less accurate picture. By using this phrase, you guide the listener towards a more precise understanding,
+  asserting the second option as the truer or more appropriate one. It can be used across various registers,
+  adjusting its formality based on the surrounding sentence structure and vocabulary.

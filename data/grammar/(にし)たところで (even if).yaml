@@ -1,0 +1,242 @@
+grammar_point: (にし)たところで (even if)
+learn_before:
+  - ところ (upon discovering)
+  - ところが (unexpected contrast)
+meaning: Even if; even when (implying futility or lack of effect)
+pronunciation:
+  katakana: タトコロデ
+  romaji: tokorode
+formation:
+  Verb[た form] + ところで: Indicates that even if the action is performed, the expected outcome will not be
+    achieved, or the action will be futile.
+jlpt: N1
+etymology: The expression `〜たところで` is formed from the past tense of a verb (〜た) followed by the noun `ところ`
+  (place, situation, point in time) and the particle `で` (at, in, by means of). Literally, it means something
+  like "even at the point where [action] was done." This construction highlights a specific juncture or
+  state (ところ) and then uses `で` to introduce a condition or context. The nuance of futility arises from
+  the context where, despite reaching that 'point' or 'situation' (ところ), the anticipated positive outcome
+  does not materialize, implying that the effort was in vain. It evolved from describing a specific state
+  of affairs to expressing a general conditional where the action performed is deemed insufficient or
+  ineffective.
+writeup: "The grammatical pattern `〜たところで` is used to express that 'even if' a certain action is taken\
+  \ or a certain situation occurs, the result will be negligible, futile, or contrary to what might be\
+  \ expected. It strongly conveys the speaker's resignation, disappointment, or skepticism regarding the\
+  \ effectiveness of the action or the possibility of a different outcome. \n\nThis expression is typically\
+  \ used when the speaker believes that a particular effort or action will not lead to a desired result.\
+  \ It's often found in sentences where the consequence is negative or indicates a lack of change. It's\
+  \ a more emphatic and often pessimistic version of other 'even if' conditionals like `〜ても` or `〜としても`.\n\
+  \nWhile `〜ても` can express a simple 'even if' without a strong negative connotation (e.g., 「雨が降っても行きます」\
+  \ - \"Even if it rains, I'll go.\"), `〜たところで` explicitly implies that the action is not worth doing\
+  \ because it won't make a difference. For example, 「今から走ったところで、間に合わないだろう」 (\"Even if I run now, I probably\
+  \ won't make it in time.\") clearly states the futility of running.\n\nIt can be used with various types\
+  \ of verbs, always in their past plain (`た`) form."
+false_friends:
+  - term: 〜ても
+    meaning: Even if; even though
+    kind: similar expression
+    nuance: While both `〜たところで` and `〜ても` mean 'even if', `〜たところで` carries a strong nuance of futility
+      or resignation, implying that the action is pointless. `〜ても` is a more general conditional and does
+      not necessarily imply futility; it can simply state a fact or possibility.
+    grammar_point: ても (even if・even though)
+  - term: 〜としても
+    meaning: Even if; supposing that; granted that
+    kind: similar expression
+    nuance: '`〜としても` is used to present a hypothetical situation and then comment on it, often with a
+      more neutral or objective tone. `〜たところで` is more subjective and explicitly conveys the speaker''s
+      belief that the hypothetical action will be ineffective or useless.'
+    grammar_point: としても (even if assumed)
+  - term: 〜たからといって
+    meaning: Just because; even if it's true that
+    kind: similar expression
+    nuance: '`〜たからといって` means ''just because X, doesn''t mean Y'', often used to deny a logical consequence.
+      `〜たところで` means ''even if X, it won''t lead to Y'', focusing on the futility of X itself, not disputing
+      the logical connection.'
+    grammar_point: からと言って・だからと言って (just because・even so)
+post_false_friends_writeup: When choosing between these expressions, consider the degree of futility or
+  resignation you wish to convey. If you simply want to state a general conditional or a concession without
+  a strong negative implication, `〜ても` or `〜としても` are better choices. If you want to emphasize that an
+  action is pointless or will not lead to the desired outcome, `〜たところで` is the appropriate option.
+examples:
+  - english: Even if you complain now, it's too late.
+    japanese:
+      - 今更 文句 を {言っ た ところ で}、もう 遅い。
+      - 今更 文句 を {言っ た ところ で}、もう 遅い です。
+    english_literally: Even if complain now, already late.
+    competing_grammar:
+      - competing_japanese:
+          - 今更 文句 を 言っ て も、もう 遅い。
+        english: Even if you complain now, it's already too late.
+        hint: The nuance of `〜ても` is a general 'even if', without strongly implying futility or resignation.
+          We're looking for an expression that suggests complaining now is utterly pointless.
+    scene: A student missed a deadline and is trying to argue with the teacher.
+    register: formal
+    setting: serious
+  - english: Even if you study this much, it won't make a difference to the results.
+    japanese:
+      - これ だけ 勉強 {し た ところ で}、結果 は 変わら ない だろう。
+      - これ だけ 勉強 {し た ところ で}、結果 は 変わら ない でしょう。
+    english_literally: Even if this much study do, results will not change probably.
+    competing_grammar:
+      - competing_japanese:
+          - これ だけ 勉強 し た と し て も、結果 は 変わら ない だろう。
+        english: Even if you study this much, supposing that, the results probably won't change.
+        hint: While `〜としても` expresses a hypothetical, it lacks the strong implication of inherent futility
+          that `〜たところで` conveys. We need to emphasize the pointlessness of the action.
+    scene: A disheartened student is studying for a very difficult exam.
+    register: semi-formal
+    setting: pessimistic
+    nuance: The speaker is expressing a sense of resignation that, despite the effort of studying (「勉強した」),
+      the outcome is predetermined and unfavorable. The use of 「だろう」 reinforces the speaker's low expectation
+      for a positive change.
+  - english: Even if I apologize now, it won't resolve anything.
+    japanese:
+      - 今 謝っ た ところ で、何 も 解決 し ない だろう。
+      - 今 謝っ た ところ で、何 も 解決 し ない でしょう。
+    english_literally: Now apologize, nothing will solve probably.
+    competing_grammar:
+      - competing_japanese:
+          - 今 謝っ て も、何 も 解決 し ない だろう。
+        english: Even if I apologize now, nothing will be resolved.
+        hint: This form (〜ても) simply states a conditional. We want to convey that apologizing is a futile
+          act in this specific situation, emphasizing its pointlessness.
+    scene: A person reflects on a past mistake that caused irreparable damage.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of `〜たところで` here, coupled with the casual male speech ending `だろう`, signifies a personal,
+      somewhat melancholic realization that the act of apologizing (「謝った」) would be utterly ineffective
+      and not lead to any resolution. The speaker's internal monologue expresses a deep sense of futility.
+      Male speakers often use plain forms like `だろう` in casual self-reflection.
+  - english: Even if you tell the truth now, nobody will believe it.
+    japanese:
+      - 今 更 真実 を {言っ た ところ で}、誰 も 信じ ない だろう。
+      - 今 更 真実 を {言っ た ところ で}、誰 も 信じ ない でしょう。
+    english_literally: Now truth tell, nobody will believe probably.
+    competing_grammar:
+      - competing_japanese:
+          - 今 更 真実 を 言っ たって、誰 も 信じ ない だろう。
+        english: Even if you say the truth now, nobody will believe it.
+        hint: The casual `〜たって` is similar to `〜ても` but still doesn't carry the strong sense of futility
+          that `〜たところで` does. We need to imply the absolute pointlessness of telling the truth at this
+          stage.
+    scene: Someone has lied for a long time and is considering confessing.
+    register: casual
+    setting: pessimistic
+  - english: Even if you gather all your strength, you won't be able to lift this rock.
+    japanese:
+      - 全力 を {出し た ところ で}、この 岩 は 持ち上がら ない だろう。
+      - 全力 を {出し た ところ で}、この 岩 は 持ち上がら ない でしょう。
+    english_literally: All strength put out, this rock will not lift probably.
+    competing_grammar:
+      - competing_japanese:
+          - 全力 を 出し たって、この 岩 は 持ち上がら ない だろう。
+        english: Even if you give your all, this rock won't lift.
+        hint: The casual `〜たって` is too general. We need to express that even max effort (「全力」) will be
+          insufficient and futile in lifting the rock.
+    scene: Two friends are trying to move a massive rock.
+    register: casual
+    setting: pessimistic
+  - english: Even if you try to explain it now, it's already useless.
+    japanese:
+      - 今 から 説明 {し た ところ で}、もう 無駄 だ。
+      - 今 から 説明 {し た ところ で}、もう 無駄 です。
+    english_literally: From now explanation do, already useless.
+    competing_grammar:
+      - competing_japanese:
+          - 今 から 説明 し た ところ で、もう 意味 が ない。
+        english: Even if you explain it now, it's meaningless.
+        hint: The original phrasing uses `無駄だ` (useless), which `意味がない` (meaningless) is very close to.
+          However, we want to ensure the specific nuance of 'futile' is captured rather than just 'meaningless'.
+    scene: A project has already been canceled due to a misunderstanding.
+    register: semi-formal
+    setting: serious
+  - english: Even if you chase after it, you won't catch up.
+    japanese:
+      - 追いかけ た ところ で、追いつか ない よ。
+      - 追いかけ た ところ で、追いつき ませ ん よ。
+    english_literally: Even if chase, won't catch up.
+    competing_grammar:
+      - competing_japanese:
+          - 追いかけ て も、追いつか ない よ。
+        english: Even if you chase, you won't catch up.
+        hint: '`〜ても` is a weaker conditional. We''re looking for a phrase that specifically conveys the
+          futility of getting angry, implying it''s a useless reaction.'
+    scene: Someone is lamenting missing a bus or train.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: group
+    nuance: The feminine sentence-ending particle 「よ」 adds a gentle, somewhat resigned tone to the statement
+      of futility. While `〜たところで` itself conveys the futility of chasing (「追いかけた」), the 「よ」 softens the
+      delivery, making it sound more like an empathetic observation rather than a harsh judgment. Female
+      speakers often use `よ` to add emphasis or a sense of knowing to their statements in casual conversation.
+  - english: Even if you put it off until tomorrow, the work won't decrease.
+    japanese:
+      - 明日 に {し た ところ で}、仕事 は 減ら ない よ。
+      - 明日 に {し た ところ で}、仕事 は 減り ませ ん よ。
+    english_literally: Even if put off until tomorrow, work won't decrease.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 に し て も、仕事 は 減ら ない よ。
+        english: Even if it's tomorrow, the work won't decrease.
+        hint: '`〜にしても` here means ''even if it''s X'', referring to a time. While similar, it doesn''t
+          carry the strong futility of ''even if you *do* something until tomorrow''. We need to express
+          that delaying the action is pointless.'
+    scene: A busy person considers procrastinating.
+    register: casual
+    setting: reflective
+  - english: Even if you try to make excuses, it's no use.
+    japanese:
+      - どんな に 言い訳 を {し た ところ で}、無駄 だろう。
+      - どんな に 言い訳 を {し た ところ で}、無駄 でしょう。
+    english_literally: No matter how much excuses make, useless probably.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 言い訳 を し て も、無駄 だろう。
+        english: No matter how many excuses you make, it will be useless.
+        hint: This competing option (`〜ても`) means 'even if' or 'no matter how much'. While grammatically
+          correct, it doesn't convey the same strong sense of complete futility and resignation as `〜たところで`
+          when discussing the act of making excuses.
+    scene: A boss talks to an employee who is trying to justify poor performance.
+    register: formal
+    setting: serious
+    speaker_age: older
+    nuance: The combination of `どんなに...したところで` emphasizes that regardless of the extent of excuses made
+      (「言い訳をした」), the effort is pointless. An older speaker in a formal setting might use this to convey
+      authority and finality, implying that further attempts at justification are futile and will not
+      change the outcome. The `だろう` softens the directness slightly but maintains the firm stance.
+  - english: Even if you retry, the result will probably be the same.
+    japanese:
+      - もう 一 度 やり直し た ところ で、結果 は 同じ だろう。
+      - もう 一 度 やり直し た ところ で、結果 は 同じ でしょう。
+    english_literally: One more time retry, result same probably.
+    competing_grammar:
+      - competing_japanese:
+          - もう 一 度 やり直し たって、結果 は 同じ だろう。
+        english: Even if you retry, the result will be the same.
+        hint: This casual `〜たって` does not carry the same strong nuance of inescapable futility as `〜たところで`.
+          We want to emphasize that retrying is definitively pointless.
+    scene: A team failed a task and is debating whether to attempt it again.
+    register: semi-formal
+    setting: serious
+  - english: Even if I get angry, nothing will change.
+    japanese:
+      - 怒っ た ところ で、何 も 変わら ない。
+      - 怒っ た ところ で、何 も 変わり ませ ん。
+    english_literally: Even if get angry, nothing changes.
+    competing_grammar:
+      - competing_japanese:
+          - 怒っ て も、何 も 変わら ない。
+        english: Even if I get angry, nothing will change.
+        hint: '`〜ても` is a general conditional. We''re looking for a phrase that specifically conveys the
+          futility of getting angry, implying it''s a useless reaction.'
+    scene: A person feeling frustrated but resigned.
+    register: casual
+    setting: reflective
+post_example_writeup: As illustrated by the examples, `〜たところで` is a versatile expression to convey futility
+  across various contexts, from daily frustrations to more serious reflections. It's particularly effective
+  when you want to strongly emphasize that an action will not yield the desired effect, serving as a powerful
+  tool to express resignation or skepticism.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/1059

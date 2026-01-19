@@ -1,0 +1,316 @@
+grammar_point: '[Verb-て] (means・method)'
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+meaning: Indicates the means or method by which an action is performed, or the cause/reason for an action
+  or state.
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: Verb-て
+    rarity: common
+    meaning: by means of doing; because of doing
+  - conjugation-type: te-form (～て)
+    form: い-Adjective stem + くて
+    rarity: common
+    meaning: because it is (i-adjective)
+  - conjugation-type: te-form (～て)
+    form: な-Adjective stem + で
+    rarity: common
+    meaning: because it is (na-adjective)
+pronunciation:
+  katakana: テ・デ
+  romaji: te / de
+formation:
+  Verb[て形] + [Sentence]: Expresses the cause or reason for an action or state (e.g., 寒く{て} 震える - tremble
+    {because it is} cold), or the means by which an action is performed (e.g., 箸を{使って}食べる - eat {using}
+    chopsticks).
+  い-Adjective[て形] + [Sentence]: Expresses the cause or reason for an action or state (e.g., 忙しく{て} 行けない
+    - cannot go {because I am} busy).
+  な-Adjective[て形] + [Sentence]: Expresses the cause or reason for an action or state (e.g., 静か{で} 話さない
+    - do not speak {because it is} quiet).
+  Noun[で] + [Sentence]: Indicates the means, method, instrument, or cause for an action or state (e.g.,
+    ペン{で} 書く - write {with} a pen; 電車{で} 通勤する - commute {by} train).
+jlpt: N4
+etymology: The 「て」 form, or 連用形 (ren'yōkei - continuative form), has deep roots in classical Japanese,
+  originating from ancient nominalized forms of verbs. Its function as a connective particle expressing
+  sequence, means, or cause evolved from its role in linking verbs. The particle 「て」 itself developed
+  from 「とて」 which combined the quotative particle 「と」 and the particle 「て」, gradually losing the initial
+  「と」. The particle 「で」 is a case-marking particle indicating location or means, derived from its earlier
+  use marking the point or instrument of an action. When combined as in Verb[て]・Noun[で], they collectively
+  specify the method or means by which an action is performed, evolving from their distinct historical
+  functions to serve this broader instrumental role. This historical development underscores its versatility
+  in connecting actions and states, allowing it to convey both how something is done and why it is done.
+writeup: |-
+  The 「て」 form of verbs and the particle 「で」 with nouns are fundamental in Japanese for expressing the **means**, **method**, **instrument**, or **cause/reason** by which an action is carried out or a state exists. This concept extends beyond physical tools to include circumstances, preceding actions, or even states.
+
+  When a verb is used in its **て-form (Verb[て])**, it primarily functions as a conjunctive, indicating that the action of the first verb is the *means* or *cause* for the subsequent action. The emphasis is often on how the first action leads to or facilitates the second. For example, 「走って行く」 (go by running) implies that running is the means of going. If it expresses a cause, as in 「寒くて震える」 (tremble because it is cold), it often carries a nuance of an unavoidable or natural consequence, and is common with states that lead to negative outcomes.
+
+  Conversely, when the particle **で** is attached to a **noun (Noun[で])**, it directly specifies the *instrument*, *tool*, *material*, or *mode* used for an action. For instance, 「鉛筆で書く」 (write with a pencil) clearly states the instrument, while 「電車で通勤する」 (commute by train) indicates the mode of transport.
+
+  It is crucial to consider the entire sentence and the context of the main clause to correctly interpret the nuance. The 「て」 form itself does not carry tense; the tense of the entire sentence is determined by the final verb or predicate. Whether it's a simple sequence, a direct tool usage, a contributing factor, or a reason, the meaning conveyed always centers on clarifying *how* or *why* an action is accomplished or a state exists.
+false_friends:
+  - term: ので
+    meaning: Because; so; since
+    kind: similar expression
+    nuance: 「ので」 is generally more formal and provides a more direct, often objective, reason. 「て」 can
+      be more casual and sometimes implies a more immediate or natural cause-and-effect, and can be used
+      for less objective reasons like personal feelings.
+    grammar_point: '[Clause]から (because・so)'
+  - term: から
+    meaning: Because; since
+    kind: similar expression
+    nuance: 「から」 is also used for cause/reason, but it emphasizes the starting point or origin of the
+      reason, and can often stand alone to assert a reason more strongly. 「て」 connects clauses more smoothly
+      without emphasizing the 'starting point'.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ながら
+    meaning: While doing (something); during (simultaneous actions or ongoing state)
+    kind: often confused with
+    nuance: While both connect verbs, 「ながら」 specifically indicates two actions happening simultaneously,
+      with one being the main action and the other a secondary action. 「て」 indicates a means/method or
+      a cause/reason, not necessarily simultaneous actions.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+  - term: てしまう
+    meaning: To do something completely; to do something by accident; to do something regrettably/unfortunately
+    kind: similar expression
+    nuance: 「てしまう」 is the te-form followed by the auxiliary verb 「しまう」. It indicates completion, or an
+      action done unintentionally or with regret. The basic 「て」 form does not carry these additional meanings.
+    grammar_point: <suggest>:てしまう・ちゃう・じゃう (completion・regret)
+  - term: で (location)
+    meaning: at; in; on (location)
+    kind: often confused with
+    nuance: While both use the particle 「で」, this grammar point specifically highlights the **means or
+      method** used to perform an action, whereas 「で (location)」 indicates the place where an action occurs.
+      For example, 「図書館で本を読む」 (read a book *at* the library) vs. 「ペンで書く」 (write *with* a pen).
+    grammar_point: で (location of action)
+  - term: Verb[て] (and then)
+    meaning: And, then (linking events)
+    kind: similar expression
+    nuance: While this grammar point emphasizes the *means* or *method* or *cause*, 「Verb[て] (and then)」
+      solely focuses on a simple sequence of events. For instance, 「起きて、歯を磨いた」 (I woke up, then brushed
+      my teeth) is a sequence, not 'brushing teeth by waking up'.
+    grammar_point: Verb[て] (and then)
+  - term: Verb[て] (non-sequential events)
+    meaning: Indicates non-sequential events, contrast, or parallel actions/states (and, but, while).
+    kind: similar expression
+    nuance: This form of 「Verb[て]」 connects events that are not necessarily sequential or causal, sometimes
+      even expressing contrast. Our grammar point focuses on the means/method or direct cause. For example,
+      「雨が降って、傘をさした」 (It rained, and I opened my umbrella) is a direct consequence, fitting our grammar
+      point, but 「彼は背が高くて、スポーツが得意だ」 (He is tall, and good at sports) uses the 「te-form」 for a non-sequential,
+      descriptive connection.
+    grammar_point: Verb[て] (non-sequential events)
+post_false_friends_writeup: When encountering the particle 「で」 or the て-form of a verb, it is essential
+  to distinguish between their various functions. If the context specifies *where* an action takes place,
+  「で」 is locative. If it denotes *how* or *by what* an action is performed, it signifies the means. Similarly,
+  while て-form can sometimes imply a cause, its primary role in expressing means, method, or cause should
+  be differentiated from explicit causal structures like 「〜から」 or simultaneous actions with 「〜ながら」. Context
+  is key to accurate interpretation. It is also important to differentiate from other uses of the て-form
+  that merely link events sequentially or non-sequentially, without implying the means, method, or a direct
+  cause.
+examples:
+  - english: I go to school by bus.
+    japanese:
+      - バス {に 乗っ て} 学校 へ 行き ます。
+      - バス {に 乗っ て} 学校 に 行き ます。
+      - バス {に 乗っ て} 学校 へ 行く。
+    english_literally: By riding bus, go to school.
+    competing_grammar:
+      - competing_japanese:
+          - バス で 学校 へ 行き ます。
+        english: I go to school by bus.
+        hint: Both 「で」 and 「て」 can indicate means, but 「乗って」 specifies the action of riding, adding detail
+          to the means, whereas 「で」 simply states the vehicle. We're looking for the te-form.
+    scene: A student is explaining their daily commute.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+  - english: I'm tired because I worked all night.
+    japanese:
+      - 一 晩 中 働い {て} 疲れ まし た。
+      - 一 晩 中 働い {て} 疲れ た。
+    english_literally: All night worked, became tired.
+    competing_grammar:
+      - competing_japanese:
+          - 一 晩 中 働い た の で 疲れ まし た。
+          - 一 晩 中 働い た から 疲れ まし た。
+        english: I'm tired because I worked all night.
+        hint: While 「ので」 and 「から」 also indicate cause, 「て」 directly links the action to the consequence
+          in a continuous flow, often implying a more natural or direct cause-effect. We're looking for
+          the te-form.
+    scene: Someone explains their fatigue to a colleague the morning after.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: te-form (～て)
+  - english: Please write your name using this pen.
+    japanese:
+      - この ペン {を 使っ て} 名前 を 書い て ください。
+      - この ペン {使っ て} 名前 を 書い て ください。
+    english_literally: This pen using, name please write.
+    competing_grammar:
+      - competing_japanese:
+          - この ペン で 名前 を 書い て ください。
+        english: Please write your name with this pen.
+        hint: 「で」 can also indicate the tool, but 「使って」 emphasizes the action of 'using' the pen as the
+          method. We're looking for the te-form.
+    scene: A teacher is instructing students to sign their names on a document.
+    register: formal
+    setting: instructional
+    conjugation: te-form (～て)
+  - english: The cake was delicious, so I ate it all.
+    japanese:
+      - ケーキ が おいしく {て}、全部 食べ まし た。
+      - ケーキ が おいしく {て}、全部 食べ た。
+    english_literally: Cake delicious, all ate.
+    competing_grammar:
+      - competing_japanese:
+          - ケーキ が おいしかっ た の で、全部 食べ まし た。
+          - ケーキ が おいしかっ た から、全部 食べ まし た。
+        english: The cake was delicious, so I ate it all.
+        hint: 「おいしくて」 links the adjective to the consequence. While 「ので」 and 「から」 also express cause,
+          「て」 seamlessly connects the state to the action. We're looking for the te-form.
+    scene: A person is enthusiastically describing a cake they just finished.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: te-form (～て)
+  - english: He's quiet, so he doesn't talk much.
+    japanese:
+      - 彼 は 静か {で}、あまり 話し ませ ん。
+      - 彼 は 静か {で}、あまり 話さ ない。
+    english_literally: He quiet, not much talk.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 静か な の で、あまり 話し ませ ん。
+          - 彼 は 静か だ から、あまり 話し ませ ん。
+        english: He's quiet, so he doesn't talk much.
+        hint: For な-adjectives, 「で」 connects the characteristic to the subsequent action as a reason.
+          This form is more common for describing inherent qualities as causes. We're looking for the
+          te-form.
+    scene: Two colleagues are discussing a new, reserved team member.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+  - english: You can learn Japanese by reading many books.
+    japanese:
+      - たくさん の 本 を 読ん {で} 日本 語 を 学べ ます。
+      - たくさん の 本 を 読ん {で} 日本 語 を 学べる よ。
+    english_literally: Many books reading, Japanese can learn.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん の 本 を 読む こと で 日本 語 を 学べ ます。
+          - たくさん の 本 を 読む こと に よっ て 日本 語 を 学べ ます。
+        english: You can learn Japanese through reading many books.
+        hint: 「て」 expresses the method directly. While 「こと で」 or 「こと によって」 also express means, 「て」 provides
+          a more concise and common way to link the action that serves as the means. We're looking for
+          the te-form.
+    scene: A language tutor is giving advice to a student struggling with vocabulary.
+    register: semi-formal
+    setting: academic
+    conjugation: te-form (～て)
+  - english: I was so happy to receive the present.
+    japanese:
+      - プレゼント を もらっ {て} とても 嬉しかっ た です。
+      - プレゼント を もらっ {て} とても 嬉しかっ た。
+    english_literally: Present received, very happy was.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼント を もらっ た の で とても 嬉しかっ た です。
+          - プレゼント を もらっ た から とても 嬉しかっ た です。
+        english: I was so happy because I received the present.
+        hint: 「て」 connects the action directly to the feeling of happiness, often used when the cause
+          is a natural preceding event. We're looking for the te-form.
+    scene: A friend is expressing heartfelt gratitude for a thoughtful gift.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: te-form (～て)
+  - english: The box broke when I dropped it.
+    japanese:
+      - 箱 を 落とし {て} 壊し て しまい まし た。
+      - 箱 を 落とし {て} 壊し ちゃっ た。
+      - 箱 を 落とし {て} 壊れ た。
+    english_literally: Box dropped, broke.
+    competing_grammar:
+      - competing_japanese:
+          - 箱 を 落とし た 時 に 壊し て しまい まし た。
+          - 箱 を 落とし た せい で 壊し て しまい まし た。
+        english: The box broke at the time I dropped it.
+        hint: The te-form expresses a direct causal link, suggesting the dropping *caused* the breaking.
+          「時 に」 emphasizes timing, and 「せい で」 implies blame. We're looking for the te-form.
+    scene: A child explains an unfortunate accident to a parent after breaking something.
+    register: casual
+    setting: apologetic
+    conjugation: te-form (～て)
+  - english: I'm really fed up with work, so I want to quit.
+    japanese:
+      - 仕事 が 嫌い {で}、もう 辞め たい ん だ。
+      - 仕事 が 嫌い {で}、もう 辞め たい ん です。
+    english_literally: Work hated, already want to quit.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 が 嫌い だ から、もう 辞め たい ん だ。
+          - 仕事 が 嫌い な の で、もう 辞め たい ん だ。
+        english: Because I hate work, I want to quit already.
+        hint: 「嫌いで」 for な-adjectives is a common causal connection in casual speech. While 「から」 and 「ので」
+          work, 「て」 feels more like a seamless flow of thought. We're looking for the te-form.
+    scene: A man is complaining to his close friend after a long day at work.
+    register: casual
+    setting: pessimistic
+    conjugation: te-form (～て)
+    speaker_gender: male
+    nuance: The phrase 「嫌いで」 indicates the reason. The sentence-ending particle 「〜んだ」 is frequently used
+      by male speakers in casual conversation to provide an explanation or reason.
+  - english: My head hurts, so I'm going to go home.
+    japanese:
+      - 頭 が 痛く {て}、帰り ます。
+      - 頭 が 痛く {て}、帰る。
+    english_literally: Head painful, going home.
+    competing_grammar:
+      - competing_japanese:
+          - 頭 が 痛い から、帰り ます。
+          - 頭 が 痛い の で、帰り ます。
+        english: Because my head hurts, I'm going home.
+        hint: 「痛くて」 directly connects the state of having a headache to the action of going home. It's
+          a very natural way to express a immediate cause. We're looking for the te-form.
+    scene: A woman is politely informing her colleagues that she needs to leave work early due to a headache.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: te-form (～て)
+    speaker_gender: female
+    nuance: 「痛くて」 for い-adjectives directly links the physical state to the action. This is a common and
+      natural way for female speakers to express a reason politely.
+  - english: He earned a lot of money by inventing a new technology.
+    japanese:
+      - 新しい 技術 を 発明 し {て}、たくさん お 金 を 稼ぎ まし た。
+      - 新しい 技術 を 発明 し {て}、多額 の お 金 を 得 まし た。
+    english_literally: New technology invented, much money earned.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 技術 を 発明 する こと で、たくさん お 金 を 稼ぎ まし た。
+        english: He earned a lot of money by means of inventing a new technology.
+        hint: 「て」 expresses the method directly. While 「こと で」 conveys means, 「て」 provides a more concise
+          and common way to link the action that serves as the means. We're looking for the te-form.
+    scene: A historical documentary explains how a scientist became wealthy.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+  - english: The sudden rain made everyone wet.
+    japanese:
+      - 急 に 雨 が 降っ {て}、みんな 濡れ まし た。
+      - 急 に 雨 が 降っ {て}、みんな 濡れ た。
+    english_literally: Suddenly rain fell, everyone got wet.
+    competing_grammar:
+      - competing_japanese:
+          - 急 に 雨 が 降っ た の で、みんな 濡れ まし た。
+          - 急 に 雨 が 降っ た から、みんな 濡れ まし た。
+        english: Because it suddenly rained, everyone got wet.
+        hint: The te-form is used here for a natural, often unavoidable, cause leading to a result. It
+          connects the two events smoothly as cause and effect. We're looking for the te-form.
+    scene: People are talking about a sudden downpour that caught them unprepared.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+post_example_writeup: As you can see, the choice between Verb[て] and Noun[で] or other similar expressions
+  depends on the nuance you wish to convey. While some alternatives might be grammatically correct, they
+  may shift the emphasis from the 'means' or 'method' to other aspects like 'reason' or 'simultaneous
+  action'. Pay close attention to the context and what precisely you intend to communicate about *how*
+  an action is performed.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verb-%E3%81%A6-noun-%E3%81%A7-b

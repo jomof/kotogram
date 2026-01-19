@@ -1,0 +1,471 @@
+grammar_point: よ (emphasis・information sharing)
+learn_before:
+  - だい (informal question or request emphasis)
+  - は (topic and contrast)
+meaning: Emphasis; Information Sharing (Sentence-ending particle)
+pronunciation:
+  katakana: ヨ
+  romaji: yo
+formation:
+  '[Sentence] + よ': Adds emphasis or conveys new information.
+jlpt: N5
+etymology: 'The origins of よ are not definitively known, but it''s believed to have evolved from older
+  forms of Japanese sentence-ending particles. Its function has remained consistent over time: to add
+  emphasis or assert information. It''s a very fundamental particle, reflecting its long history in the
+  language.'
+writeup: よ is a sentence-ending particle in Japanese, primarily used to convey new information to the
+  listener or to add emphasis. It is typically affixed to the end of a sentence. While its primary function
+  is to inform, よ is frequently combined with ね to seek agreement or confirmation, such as in 「〜ですよね」,
+  which conveys a sense of "I think (A), and I expect you agree (A)." It is crucial to remember that the
+  copula だ precedes よ when attached to nouns or な-adjectives in plain form, a rule consistent with general
+  Japanese conjugation, not unique to よ. Furthermore, ですよ can be used with all parts of speech to maintain
+  politeness. It is particularly effective when indicating the speaker's certainty about a particular
+  fact or situation, or the recognition that the information is new to the listener. Its use can deepen
+  the interaction between the speaker and the listener, as it serves not just to transmit information,
+  but also to invite engagement or agreement.
+false_friends:
+  - term: ね
+    meaning: Confirmation seeking (sentence-ending particle)
+    kind: often confused with
+    nuance: Unlike よ, ね is used to seek confirmation or agreement, or to soften a statement, rather than
+      to primarily introduce new information or assert one's opinion.
+    grammar_point: ね (seeking agreement)
+  - term: ぞ
+    meaning: Strong emphasis (primarily used by men)
+    kind: similar expression
+    nuance: Unlike よ, ぞ conveys a very strong, often forceful, emphasis or assertion, almost like a warning
+      or a strong command, and is predominantly used by men. It carries a more confrontational or determined
+      tone.
+    grammar_point: ぞ (strong emphasis)
+  - term: さ
+    meaning: Casual emphasis
+    kind: similar expression
+    nuance: While よ informs or emphasizes new information, さ is used for lighter, more general emphasis,
+      often to draw the listener's attention in a casual way, or sometimes as a filler. It lacks the strong
+      informative or assertive quality of よ.
+    grammar_point: さ (casual emphasis)
+  - term: ぜ
+    meaning: Male emphatic particle
+    kind: similar expression
+    nuance: ぜ is an even stronger and more masculine emphatic particle than ぞ or よ. It often implies a
+      confident, sometimes challenging, or very assertive declaration, mostly used among close male friends
+      or in very casual, direct speech.
+    grammar_point: ぜ (male emphatic particle)
+post_false_friends_writeup: While よ, ね, ぞ, さ, and ぜ are all sentence-ending particles, their nuances differ
+  significantly. よ is primarily for conveying new information or assertive emphasis. ね seeks confirmation
+  or softens a statement. ぞ and ぜ are used for strong, masculine emphasis, with ぜ being more assertive
+  than ぞ. さ offers a lighter, more general emphasis or acts as a casual filler.
+examples:
+  - english: It's raining outside.
+    japanese:
+      - 外 は 雨 だ {よ}
+      - 外 は 雨 です {よ}
+      - 雨 だ {よ}
+      - 雨 です {よ}
+      - 外 は 雨 な ん です {よ}
+      - 雨 な ん です {よ}
+      - 雨 が 降っ て いる {よ}
+      - 雨 が 降っ て い ます {よ}
+      - 雨 な ん だ {よ}
+      - 外、雨 だ {よ}
+    english_literally: Outside, as for rain, it is.
+    competing_grammar:
+      - competing_japanese:
+          - 外 は 雨 {だ}。
+        english: It is raining outside.
+        hint: This is a neutral statement of fact. We are looking for a declaration of new information
+          to the listener.
+      - competing_japanese:
+          - 外 は 雨 です {ね}。
+        english: It's raining outside, isn't it?
+        hint: This seeks agreement on the rain. We are looking for a statement that informs the listener
+          directly.
+      - competing_japanese:
+          - 雨 が 降っ て {いる}。
+        english: It's raining.
+        hint: This is a simple, neutral statement about the current weather. We are looking for a statement
+          that informs the listener with emphasis.
+      - competing_japanese:
+          - 外 は 雨 な ん {です}。
+        english: It is that it's raining outside.
+        hint: This provides an explanation or background information. We are looking for a direct declaration
+          of new information.
+      - competing_japanese:
+          - 外 は 雨 {です}。
+        english: It's raining outside.
+        hint: This is a polite, neutral statement. We are looking for an emphasized declaration.
+    scene: You are indoors with a friend, and you look out the window to see that it has started raining,
+      which your friend was unaware of.
+    register: casual
+    setting: informative
+  - english: That car is big.
+    japanese:
+      - あの 車 は 大きい {よ}
+      - あの 車 は 大きい です {よ}
+      - あの 車 でかい {よ}
+      - あの 車 は 大きい ん です {よ}
+      - あの 車、大きい {よ}
+      - あの 車、でかい {よ}
+      - あの 車、大きい ん だ {よ}
+      - あの 車、大きい です {よ}
+      - あの 車、でかい です {よ}
+      - あの 車 は 大きい ん だ {よ}
+      - あの 車 でかい ん だ {よ}
+      - あの 車 は でかい ん です {よ}
+    english_literally: That car, as for it, is big.
+    competing_grammar:
+      - competing_japanese:
+          - あの 車 は {大きい}。
+        english: That car is big.
+        hint: This is a simple observation. We are looking for an emphasized observation to draw attention.
+      - competing_japanese:
+          - あの 車、大きい {ね}。
+        english: That car is big, isn't it?
+        hint: This seeks agreement or shared sentiment. We are looking for a statement that draws attention
+          by informing.
+      - competing_japanese:
+          - あの 車、{でかい}。
+        english: This is a casual, neutral statement without emphasis. We are looking for an emphasized
+          statement to inform.
+        hint: This is a casual, neutral statement. We are looking for an emphasized statement to inform.
+      - competing_japanese:
+          - あの 車 は 大きい {です}。
+        english: That car is big.
+        hint: This is a polite, neutral statement. We are looking for an emphasized observation to draw
+          attention.
+    scene: You and a friend are walking past a car dealership, and you point out a particularly large
+      car that catches your eye, expecting your friend to notice it too.
+    register: casual
+    setting: informative
+  - english: This book is fun.
+    japanese:
+      - この 本 は 楽しい {よ}
+      - この 本 は 楽しい です {よ}
+      - この 本 楽しい {よ}
+      - この 本 は 楽しい ん です {よ}
+      - この 本 楽しい ん だ {よ}
+      - この 本 は 面白い {よ}
+      - この 本 は 面白い です {よ}
+      - この 本 面白い {よ}
+      - この 本 面白い ん だ {よ}
+      - この 本、楽しい です {よ}
+      - この 本 は 面白い ん です {よ}
+      - この 本、面白い です {よ}
+    english_literally: This book, as for it, is fun.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は {楽しい}。
+        english: This would be a neutral statement of opinion. We are looking for a strong recommendation.
+        hint: This would be a neutral statement of opinion. We are looking for a strong recommendation.
+      - competing_japanese:
+          - この 本、楽しい {ね}。
+        english: This book is fun, isn't it?
+        hint: This seeks agreement on the book's fun quality. We are looking for a firm assertion of enjoyment.
+      - competing_japanese:
+          - この 本、{面白い}。
+        english: This book is interesting.
+        hint: This is a neutral observation. We are looking for an emphasized assertion or recommendation.
+      - competing_japanese:
+          - この 本 は 楽しい {です}。
+        english: This book is fun.
+        hint: This is a polite, neutral statement. We are looking for a strong recommendation.
+    scene: A friend asks you for a book recommendation, and you enthusiastically suggest one you've enjoyed.
+    register: casual
+    setting: friendly
+  - english: This is my cat.
+    japanese:
+      - これ は 私 の 猫 だ {よ}
+      - これ は 私 の 猫 です {よ}
+      - これ 私 の 猫 だ {よ}
+      - これ は 私 の 猫 な ん です {よ}
+      - これ 私 の 猫 です {よ}
+      - これ は 私 の 猫 な ん だ {よ}
+      - これ 私 の 猫 な ん だ {よ}
+      - これ 私 の 猫 な ん です {よ}
+    english_literally: This, as for it, is my cat.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 私 の 猫 {です}。
+        english: This is my cat.
+        hint: This is a polite, neutral identification. We are looking for a clear, emphasized identification
+          of something new.
+      - competing_japanese:
+          - これ、私 の {猫}。
+        english: This, my cat.
+        hint: This is an even more casual way to state possession, without emphasis. We are looking for
+          a direct and clear identification.
+      - competing_japanese:
+          - これ は 私 の 猫 です {ね}。
+        english: This is my cat, isn't it?
+        hint: This seeks confirmation or agreement. We are looking for a clear, emphasized identification.
+      - competing_japanese:
+          - うち の 猫 だ {よ}。
+        english: This is our cat (informal).
+        hint: While 「うち の 猫」 is common, we are looking for a more direct statement of personal ownership.
+          The emphasis is on 'my' cat.
+    scene: You're introducing your new pet to a guest who hasn't met it before.
+    register: casual
+    setting: informative
+  - english: I'm going home now.
+    japanese:
+      - もう 帰る {よ}
+      - もう 帰り ます {よ}
+      - もう 帰る ん です {よ}
+      - もう 帰る ん だ {よ}
+      - そろそろ 帰る {よ}
+      - そろそろ 帰り ます {よ}
+      - そろそろ 帰る ん です {よ}
+      - そろそろ 帰る ん だ {よ}
+    english_literally: Already, I'm going home.
+    competing_grammar:
+      - competing_japanese:
+          - もう {帰る}。
+        english: I'm going home now.
+        hint: This is a simple statement of intent. We are looking for a clear announcement of your departure.
+      - competing_japanese:
+          - もう 帰っ て も いい です {か}。
+        english: Is it okay if I go home now?
+        hint: This asks for permission to leave. We are looking for a declaration of intent to leave.
+      - competing_japanese:
+          - もう 帰る {ね}。
+        english: I'm a softer statement, often seeking implicit agreement or merely informing without
+          emphasis. We are looking for a clear announcement of your departure with an assertive tone.
+        hint: This is a softer statement, often seeking implicit agreement or merely informing without
+          emphasis. We are looking for a clear announcement of your departure with an assertive tone.
+      - competing_japanese:
+          - そろそろ {帰る}。
+        english: It's about time I went home.
+        hint: This implies it's time to leave, but we are looking for a direct announcement of one's departure.
+      - competing_japanese:
+          - もう 帰り {ます}。
+        english: I'm going home now.
+        hint: This is a polite, neutral statement of intent. We are looking for a clear announcement of
+          your departure.
+    scene: You're at a friend's house late in the evening and decide it's time to announce your departure.
+    register: casual
+    setting: informative
+  - english: That's fine.
+    japanese:
+      - それ は いい {よ}
+      - それ は いい です {よ}
+      - それ いい {よ}
+      - それ は いい ん です {よ}
+      - それ は いい ん だ {よ}
+      - それ いい ん だ {よ}
+      - 大丈夫 {よ}
+      - 大丈夫 です {よ}
+      - それ いい ん です {よ}
+      - 大丈夫 な ん です {よ}
+      - 大丈夫 な ん だ {よ}
+    english_literally: That, as for it, is good.
+    competing_grammar:
+      - competing_japanese:
+          - それ は {いい}。
+        english: That's fine.
+        hint: This is a neutral confirmation. We are looking for an emphatic reassurance or clear approval.
+      - competing_japanese:
+          - それ で いい です {か}。
+        english: Is it okay if I go home now?
+        hint: This asks for confirmation. We are looking for a statement of approval.
+      - competing_japanese:
+          - それ は いい です {ね}。
+        english: That's fine, isn't it?
+        hint: This seeks agreement or shared sentiment. We are looking for an emphatic reassurance or
+          clear approval.
+      - competing_japanese:
+          - '{大丈夫}。'
+        english: It's okay.
+        hint: This is a neutral statement of reassurance. We are looking for an emphasized affirmation.
+      - competing_japanese:
+          - それ は いい {です}。
+        english: That's fine.
+        hint: This is a polite, neutral statement. We are looking for an emphatic reassurance or clear
+          approval.
+    scene: A friend asks for permission to borrow something, and you grant it with clear approval and
+      reassurance.
+    register: casual
+    setting: supportive
+  - english: I'm off to work.
+    japanese:
+      - 仕事 に 行く {よ}
+      - 仕事 に 行き ます {よ}
+      - 仕事 行く {よ}
+      - 仕事 に 行く ん です {よ}
+      - 仕事 に 行く ん だ {よ}
+      - 仕事 行く ん だ {よ}
+      - 会社 に 行く {よ}
+      - 会社 に 行き ます {よ}
+      - 仕事 に 行く ん だ {よ}
+      - 仕事 行く ん です {よ}
+      - 会社 に 行く ん です {よ}
+      - 会社 に 行く ん だ {よ}
+    english_literally: To work, I go.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 に {行く}。
+        english: I am going to work.
+        hint: This is a simple statement of fact. We are looking for a firm declaration of action to inform
+          others.
+      - competing_japanese:
+          - 仕事 {だ}。
+        english: It's work.
+        hint: This is a very casual statement of fact without conveying an immediate action. We are looking
+          for a declaration of intent to leave for work.
+      - competing_japanese:
+          - 仕事 に 行く {ね}。
+        english: I'm off to work, okay?
+        hint: This seeks implicit agreement or softens the statement. We are looking for a firm declaration
+          of action to inform others.
+      - competing_japanese:
+          - 行っ て {き ます}。
+        english: I'm leaving (and will be back).
+        hint: This is a common polite phrase for departing, but it lacks the direct informative emphasis
+          of よ.
+      - competing_japanese:
+          - 仕事 に 行き {ます}。
+        english: I am going to work.
+        hint: This is a polite, neutral statement of intent. We are looking for a firm declaration of
+          action to inform others.
+    scene: A man is leaving his house in the morning, announcing his departure to his family.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The male speaker uses the plain form 「行くよ」 for a direct announcement to his family, which
+      is common in casual family settings. The particle 「よ」 indicates he is informing them of his immediate
+      action.
+  - english: I'm going shopping now.
+    japanese:
+      - これ から 買い物 に 行く {よ}
+      - これ から 買い物 に 行き ます {よ}
+      - これ から 買い物 行く {よ}
+      - これ から 買い物 に 行く ん です {よ}
+      - これ から 買い物 に 行く ん だ {よ}
+      - これ から 買い物 行く ん だ {よ}
+      - 買い物 に 行く {よ}
+      - 買い物 に 行き ます {よ}
+      - これ から 買い物 行く ん です {よ}
+      - 買い物 に 行く ん です {よ}
+      - 買い物 に 行く ん だ {よ}
+    english_literally: From now, to shopping, I go.
+    competing_grammar:
+      - competing_japanese:
+          - これ から 買い物 に {行く}。
+        english: I am going shopping now.
+        hint: This is a neutral statement of intent. We are looking for a direct and clear announcement
+          of your immediate activity.
+      - competing_japanese:
+          - 買い物 に 行く {ね}。
+        english: I'm going shopping, okay?
+        hint: This seeks agreement or soft confirmation. We are looking for a clear announcement of plans.
+      - competing_japanese:
+          - 買い物 行っ て {くる}。
+        english: I'm going shopping (and will be back).
+        hint: This is a common phrase implying departure for a short errand, but we are looking for a
+          more direct statement of intent using よ.
+      - competing_japanese:
+          - これ から 買い物 に 行き {ます}。
+        english: I am going shopping now.
+        hint: This is a polite, neutral statement of intent. We are looking for a direct and clear announcement
+          of your immediate activity.
+    scene: A woman announces her plans to her family before heading out the door.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The female speaker uses the plain form 「行くよ」 to inform her family, which is natural in a casual
+      family context. 「よ」 adds the nuance of informing them of her immediate plan, ensuring they are aware.
+  - english: The weather is nice.
+    japanese:
+      - いい 天気 です {よ}
+      - いい 天気 な ん です {よ}
+      - いい 天気 だ {よ}
+      - いい 天気 な ん だ {よ}
+    english_literally: Good weather, it is.
+    competing_grammar:
+      - competing_japanese:
+          - いい 天気 {です}。
+        english: The weather is nice.
+        hint: This is a polite, neutral observation. We are looking for an emphasized observation to share
+          new information.
+      - competing_japanese:
+          - いい 天気 です {ね}。
+        english: The weather is nice, isn't it?
+        hint: This seeks agreement or shared sentiment on the weather. We are looking for a statement
+          that informs or emphasizes a point.
+      - competing_japanese:
+          - 天気 が {いい}。
+        english: The weather is good.
+        hint: This is a general statement. We are looking for an assertion with emphasis.
+    scene: You're opening the curtains in the morning, observing the bright weather, and telling someone
+      else in the room who might not have looked outside yet.
+    register: teineigo (polite)
+    setting: informative
+  - english: This book is good, isn't it?
+    japanese:
+      - この 本、いい {よ} ね。
+      - この 本、いい です {よ} ね。
+      - この 本 いい {よ} ね。
+      - この 本 いい ん です {よ} ね。
+      - この 本 いい ん だ {よ} ね.
+      - この 本、面白い {よ} ね。
+      - この 本、面白い です {よ} ね。
+      - この 本、面白い ん です {よ} ね.
+      - この 本、面白い ん だ {よ} ね.
+    english_literally: This book, good, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 本、いい {ね}。
+        english: This book is good, isn't it?
+        hint: This seeks agreement directly. We are looking for a statement that asserts an opinion first,
+          then seeks confirmation.
+      - competing_japanese:
+          - この 本、いい です {ね}。
+        english: This book is good, isn'
+        hint: This is a polite way to seek agreement. We are looking for a phrase that first asserts the
+          speaker's positive evaluation, then seeks confirmation.
+      - competing_japanese:
+          - この 本、良く {ない}？
+        english: Isn't this book good?
+        hint: This is a direct question seeking confirmation. We are looking for a statement that combines
+          assertion with agreement-seeking.
+    scene: You've just finished reading a book you enjoyed and recommend it to a friend, wanting to share
+      your positive opinion and also seek their agreement.
+    register: casual
+    setting: friendly
+  - english: You should definitely try this ramen.
+    japanese:
+      - これ、絶対 食べ て みる べき だ {よ}。
+      - これ、絶対 食べ て みる べき です {よ}。
+      - この ラーメン、絶対 食べ て みる べき だ {よ}。
+      - この ラーメン、絶対 食べ て みる べき です {よ}。
+    english_literally: This, definitely, should try eating.
+    competing_grammar:
+      - competing_japanese:
+          - これ、絶対 食べ て みる べき {だ}。
+        english: You should definitely try this.
+        hint: This is neutral advice without emphasis. We are looking for advice delivered with a strong,
+          informative assertion.
+      - competing_japanese:
+          - これ、絶対 食べ て みる べき です {ね}。
+        english: You should definitely try this, don't you think?
+        hint: This seeks agreement on the advice. We are looking for a statement that asserts the advice
+          as new information or a strong opinion.
+      - competing_japanese:
+          - これ、美味しい から 食べ て み なさい {よ}。
+        english: This is delicious, so try eating it!
+        hint: This uses a direct command with よ, but we are looking for a strong recommendation using
+          「べき」 with よ.
+    scene: A friend is recommending a highly praised ramen dish to another friend who is hesitant about
+      trying new foods.
+    register: casual
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker uses the plain form 「べき だ よ」 to strongly recommend the ramen, conveying his
+      conviction that it's a must-try. The 「よ」 adds a sense of informing or asserting his strong opinion
+      to the listener, emphasizing that this is something they really ought to know and do.
+post_example_writeup: The examples illustrate how 'よ' can be appended to various sentence structures (plain
+  forms, polite forms, sentences ending in だ/です, and combinations with ん/の) to convey new information,
+  assert an opinion, or give a strong suggestion. Its placement at the end of the sentence consistently
+  highlights the speaker's emphasis on the preceding statement, inviting the listener's attention or acknowledgment.

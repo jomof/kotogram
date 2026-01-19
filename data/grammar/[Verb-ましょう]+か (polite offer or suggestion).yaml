@@ -1,0 +1,253 @@
+grammar_point: '[Verb-ましょう]+か (polite offer or suggestion)'
+learn_before:
+  - ましょう (polite volitional or suggestion)
+meaning: Shall I/we...? (polite offer or suggestion)
+pronunciation:
+  katakana: 〜ましょうか
+  romaji: ~mashou ka
+formation:
+  Verb[ます-stem] + ましょうか: Used to politely offer to do something or to make a suggestion.
+jlpt: N5
+etymology: The 〜ましょう ending is the polite volitional form, evolving from the classical volitional む (which
+  became う). The ます part provides politeness. Adding か turns it into a question, transforming a volitional
+  statement (let's do X) into a polite offer or suggestion (shall we do X?).
+writeup: 〜ましょうか is a polite and common way to offer help, suggest an activity, or ask for permission to
+  do something. It combines the polite volitional ending 〜ましょう with the question particle か. The core
+  meaning shifts from a simple "let's do X" (volitional) to "shall I/we do X?" or "may I/we do X?". This
+  form is widely used in daily conversations, particularly when interacting with people who are not close
+  friends or family, or when showing deference. It implies a degree of politeness and consideration for
+  the listener's opinion or willingness. While 〜ましょう alone can be a suggestion ("Let's go."), adding か
+  makes it an inquiry, softening the directness and inviting a response or confirmation. It's often used
+  when the speaker is proposing an action for themselves or for themselves and the listener.
+false_friends:
+  - term: ましょう (polite volitional or suggestion)
+    meaning: Let's do...; I intend to do...
+    kind: similar expression
+    nuance: 〜ましょうか is an offer or suggestion seeking input, while 〜ましょう is a direct suggestion or statement
+      of intent. 〜ましょう is more assertive.
+    grammar_point: ましょう (polite volitional or suggestion)
+  - term: ませんか (invitation or suggestion)
+    meaning: Won't you...?; Shall we...?
+    kind: similar expression
+    nuance: 〜ましょうか is primarily an offer from the speaker (or speaker + listener). 〜ませんか is often more
+      directly an invitation for the listener to join or do something. While both can be translated as
+      "Shall we?", 〜ましょうか emphasizes the speaker's willingness to perform or initiate the action, whereas
+      〜ませんか often implies a gentle push for the listener's participation.
+    grammar_point: ませんか (invitation or suggestion)
+  - term: Verb[て]+もいい (permission)
+    meaning: Is it okay to...?; May I...?
+    kind: similar expression
+    nuance: 〜ましょうか is an offer to do something or a suggestion. 〜てもいい explicitly asks for permission.
+      For example, "手伝いましょうか" (Shall I help?) vs. "手伝ってもいいですか" (Is it okay if I help?). The former offers,
+      the latter seeks approval.
+    grammar_point: <suggest>:Verb[て]もいい (it's okay to)
+  - term: Verb[ます] + か
+    meaning: Polite question about an action
+    kind: similar expression
+    nuance: 〜ましょうか suggests or offers an action. Verb[ます] + か merely asks a factual question about an
+      action without necessarily offering to perform it. For example, "行きますか" (Are you going?) vs. "行きましょうか"
+      (Shall we go?).
+    grammar_point: か (question)
+post_false_friends_writeup: When choosing between 〜ましょうか, 〜ませんか, and 〜ましょう, consider the nuance of your
+  intention. 〜ましょうか is best for offering your help or gently suggesting a joint action where you are initiating.
+  〜ませんか is more direct as an invitation for the listener to participate. 〜ましょう without か is a stronger,
+  more definite suggestion or statement of intent for "let's do X" or "I will do X." For example, if you
+  see someone struggling with bags, "持ちましょうか" (Shall I carry them for you?) is a direct offer. If you
+  want to invite someone to dinner, "一緒に夕食を食べませんか" (Won't you eat dinner with me?) is more suitable. If
+  you decide to go somewhere, "行きましょう" (Let's go!) is a clear statement.
+examples:
+  - english: Shall I open the window?
+    japanese:
+      - 窓 を {開け ましょう か}？
+      - 私 が 窓 を {開け ましょう か}？
+    english_literally: Window [object marker] shall open?
+    competing_grammar:
+      - competing_japanese:
+          - 窓 を 開け ませ ん か？
+        english: Won't you open the window?
+        hint: This phrasing is an invitation or suggestion for the listener to open the window, not an
+          offer from the speaker to do it. We're looking for an offer from the speaker.
+    scene: You notice the room is getting stuffy.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: The speaker, a female, uses the polite form 「〜ましょうか」 to offer an action, which is a common
+      and gentle way to suggest something in Japanese.
+  - english: Shall we go to the cafe?
+    japanese:
+      - カフェ に {行き ましょう か}？
+      - 私 たち は カフェ に {行き ましょう か}？
+    english_literally: Cafe [directional particle] shall go?
+    competing_grammar:
+      - competing_japanese:
+          - カフェ に 行き ませ ん か？
+        english: Won't you go to the cafe with me?
+        hint: This is more of an invitation for the listener, rather than a shared suggestion. We're looking
+          for a suggestion for a group action.
+    scene: You and your friends have finished studying and are looking for something to do.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male speaker uses 「行きましょうか」 to propose an activity to a group. This is a common and polite
+      way to initiate a plan together.
+  - english: Shall I bring the documents?
+    japanese:
+      - 資料 を {お 持ち し ましょう か}？
+      - 私 が 資料 を {お 持ち し ましょう か}？
+    english_literally: Documents [object marker] shall bring (humble)?
+    competing_grammar:
+      - competing_japanese:
+          - 資料 を 持っ て 行き ます か？
+        english: Are you going to bring the documents?
+        hint: This is a simple question about whether the listener will bring the documents, not an offer
+          from the speaker to do so. We're looking for an offer of assistance.
+    scene: In an office, your colleague seems busy with many documents.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses `お持ちしましょうか`, which incorporates the humble prefix `お` and `する` to make the
+      offer extremely polite, appropriate for a professional setting. This shows respect for the colleague.
+  - english: Shall I call you a taxi?
+    japanese:
+      - タクシー を {呼び ましょう か}？
+      - 私 が タクシー を {呼び ましょう か}？
+    english_literally: Taxi [object marker] shall call?
+    competing_grammar:
+      - competing_japanese:
+          - タクシー を 呼ん で も いい です か？
+        english: Is it okay if I call a taxi?
+        hint: This asks for permission rather than offering the action. We're looking for a direct offer.
+    scene: Your guest is leaving, and it's raining.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_gender: female
+    listener_gender: male
+    nuance: This is a considerate offer made by the female speaker, common in hospitality or care-giving
+      situations.
+  - english: Shall we try again?
+    japanese:
+      - もう 一 度 {やっ て み ましょう か}？
+      - 私 たち は もう 一 度 {やっ て み ましょう か}？
+    english_literally: One more time shall try?
+    competing_grammar:
+      - competing_japanese:
+          - もう 一 度 やっ て み ませ ん か？
+        english: Won't we try again?
+        hint: This is more of a straightforward invitation. We're looking for a proposal that emphasizes
+          trying the action.
+    scene: After failing a task, you want to motivate your team.
+    register: semi-formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase `やってみましょうか` suggests a renewed effort. The use of `〜てみる` emphasizes "trying" the
+      action, making the suggestion less about achieving success immediately and more about the process.
+  - english: Shall we take a break soon?
+    japanese:
+      - そろそろ {休憩 し ましょう か}？
+      - 私 たち は そろそろ {休憩 し ましょう か}？
+    english_literally: Soon shall take a break?
+    competing_grammar:
+      - competing_japanese:
+          - そろそろ 休憩 し ましょう。
+        english: Let's take a break soon.
+        hint: This is a direct suggestion without seeking the listener's input or agreement. We're looking
+          for a softer suggestion.
+    scene: You and your study partner have been working for a long time.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: This is a gentle and considerate suggestion, using `そろそろ` (soon/it's about time) to introduce
+      the idea of taking a break.
+  - english: Shall I explain it to you again?
+    japanese:
+      - もう 一 度 {説明 し ましょう か}？
+      - 私 が もう 一 度 {説明 し ましょう か}？
+    english_literally: One more time shall explain?
+    competing_grammar:
+      - competing_japanese:
+          - もう 一 度 説明 し ます か？
+        english: Will you explain it again?
+        hint: This is a factual question about whether an explanation will occur, not an offer from the
+          speaker to explain. We're looking for an offer of clarification.
+    scene: A student looks confused after your explanation.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker, in a teaching role, uses 「説明しましょうか」 to offer further assistance, indicating
+      willingness to clarify.
+  - english: Shall we choose this one?
+    japanese:
+      - これ に {し ましょう か}？
+      - 私 たち は これ に {し ましょう か}？
+    english_literally: This [target particle] shall do/decide?
+    competing_grammar:
+      - competing_japanese:
+          - これ に し ませ ん か？
+        english: Won't you choose this one?
+        hint: This is an invitation for the listener to make the choice, not a joint decision-making suggestion
+          from the speaker. We're looking for a suggestion about making a decision together.
+    scene: You are shopping with a friend and need to make a decision.
+    register: casual
+    setting: negotiating
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「これにしましょうか」 implies making a decision or choosing something. It's a way to propose a final
+      choice while still seeking agreement.
+  - english: Shall I drive you home?
+    japanese:
+      - お 家 まで {送り ましょう か}？
+      - 私 が お 家 まで {送り ましょう か}？
+    english_literally: Home until shall send/drive?
+    competing_grammar:
+      - competing_japanese:
+          - お 家 まで お 送り し ましょう か？
+        english: Shall I send you home? (Humble)
+        hint: This uses humble language which might be overly formal depending on the relationship. We're
+          looking for a polite but less formal offer to drive someone home.
+    scene: Your friend doesn't have a car and it's late.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker offers a ride, which is a kind gesture. The `お家` is a polite way to refer
+      to "home".
+  - english: Shall I close the door?
+    japanese:
+      - ドア を {閉め ましょう か}？
+      - 私 が ドア を {閉め ましょう か}？
+    english_literally: Door [object marker] shall close?
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 閉め て も いい です か？
+        english: Is it okay if I close the door?
+        hint: This asks for permission to close the door, rather than directly offering to do it. We're
+          looking for a direct offer to perform the action.
+    scene: Someone accidentally left the door open and it's cold.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: A direct and polite offer to rectify a situation.
+  - english: Shall I prepare the materials?
+    japanese:
+      - 資料 を {用意 し ましょう か}？
+      - 私 が 資料 を {用意 し ましょう か}？
+    english_literally: Materials [object marker] shall prepare?
+    competing_grammar:
+      - competing_japanese:
+          - 資料 を 用意 し ます か？
+        english: Will you prepare the materials?
+        hint: This is a question about whether the listener will prepare materials, not an offer from
+          the speaker to do it. We're looking for an offer of assistance.
+    scene: Preparing for a meeting.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: A professional and proactive offer to assist with preparation.

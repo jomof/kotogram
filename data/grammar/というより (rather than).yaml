@@ -1,0 +1,312 @@
+grammar_point: というより (rather than)
+learn_before:
+  - じゃないか (isn't it?)
+  - な-Adjectives (adjectival nouns)
+  - よりむしろ (rather than)
+  - 単なる (mere・simple)
+  - 向こう (beyond)
+meaning: more of a... than a..., rather than saying that...
+pronunciation:
+  katakana: トイウヨリ
+  romaji: to iu yori
+formation:
+  Verb (plain form) + というより (は): Used to present a more accurate description of an action than a previous
+    verb.
+  I-adjective (plain form) + というより (は): Used to present a more accurate description of a quality than
+    a previous i-adjective.
+  Na-adjective (stem) + だというより (は): Used to present a more accurate description of a quality than a previous
+    na-adjective. (だ may be omitted in casual speech)
+  Noun + だというより (は): Used to present a more accurate description of a noun than a previous noun. (だ may
+    be omitted in casual speech)
+jlpt: N3
+etymology: This grammar point is derived from 「と」 (a quotation particle), 「言う」 (iu, to say), and 「より」
+  (yori, than). The combination creates a structure that compares two statements, suggesting the latter
+  is more accurate or suitable.
+writeup: |-
+  「というより」 is a grammatical construction used to clarify or correct a previous statement by offering a more accurate or fitting description. It translates roughly to "rather than saying (A), it's more like (B)" or "(B) is more of a... than (A)". The nuance conveyed is that while the first statement (A) might be plausible, the second statement (B) provides a superior or more insightful characterization. It functions as a way to refine perception or articulate a more precise truth.
+
+  This expression is formed by combining the quotation particle 「と」, the verb 「言う」 (iu, "to say"), and the comparative particle 「より」 ("than"). The phrase literally means "than saying...", which naturally leads to the meaning of choosing a better description over a less accurate one.
+
+  「というより」 can follow various parts of speech:
+  *   **Verbs (dictionary form):** Verb + 「というより」
+  *   **I-adjectives (plain form):** I-adjective + 「というより」
+  *   **Na-adjectives (stem form):** Na-adjective stem + 「だというより」 (The 「だ」 is often omitted in casual speech).
+  *   **Nouns:** Noun + 「だというより」 (The 「だ」 is often omitted in casual speech).
+
+  It is important to remember that the particle 「より」, in all its uses, emphasizes what is 'less' or inferior. Therefore, the statement introduced by 「というより」 (the 'B' part) will always describe something that is considered 'more accurate', 'closer to the truth', 'more intense', or 'more appropriate' than the preceding statement (the 'A' part). While grammatically 「は」 can follow 「より」 (e.g., 「というよりは」), it typically functions to add emphasis to the contrast, making the distinction more pronounced. In daily conversation, 「というより」 without 「は」 is common.
+false_friends:
+  - term: より
+    meaning: More than, From
+    kind: often confused with
+    nuance: 「より」 is a particle used for direct comparison (e.g., "A is bigger than B") or to indicate
+      origin (e.g., "from X"). Unlike 「というより」, it does not function to refine or correct a preceding statement
+      by presenting a more accurate alternative. Its usage is more direct and less about re-evaluating
+      a description.
+    grammar_point: より (comparative)
+  - term: むしろ
+    meaning: Rather, Instead
+    kind: synonym
+    nuance: 「むしろ」 is an adverb that introduces a preferred alternative or a stronger rephrasing, and it
+      can stand alone. While similar in meaning, 「というより」 specifically implies that the subsequent statement
+      is a more accurate or suitable description of the *same* thing or situation, often implying the
+      first description was merely imprecise rather than entirely wrong. 「むしろ」 often suggests a choice
+      between two distinct options, or a stronger emphasis on the latter, whereas 「というより」 refines a single
+      subject's description.
+    grammar_point: むしろ (rather・instead)
+  - term: ではない・じゃなくて
+    meaning: Not A but B
+    kind: similar expression
+    nuance: 「ではない・じゃなくて」 is used to explicitly negate the preceding statement and present a different,
+      correct one. It implies the initial statement is entirely false. In contrast, 「というより」 suggests the
+      initial statement might have some partial truth or plausibility, but the subsequent statement offers
+      a more precise, suitable, or insightful characterization.
+    grammar_point: ではない・じゃなくて (not A but B)
+  - term: と言うか
+    meaning: Or rather; or I should say; more accurately
+    kind: synonym
+    nuance: 「と言うか」 is very similar to 「というより」 in meaning, both used to offer a more accurate or appropriate
+      rephrasing. However, 「と言うか」 often implies a slight hesitation or self-correction, as if the speaker
+      is thinking aloud to find the best way to express something. It can also be used to list multiple
+      possible interpretations, whereas 「というより」 typically narrows down to *one* more accurate description.
+    grammar_point: と言うか (or rather)
+post_false_friends_writeup: While 「より」, 「むしろ」, 「ではない・じゃなくて」, and 「と言うか」 share some overlap in meaning
+  with 「というより」, it's important to remember that 「というより」 specifically presents a refined or corrected statement
+  about the same subject. 「より」 is more general for comparisons. 「むしろ」 often suggests a choice between
+  distinct options or a stronger preference. 「ではない・じゃなくて」 is for outright negation. 「と言うか」, though very
+  similar, often carries a nuance of self-correction or offering multiple potential interpretations.
+examples:
+  - english: Rather than cooking, he's experimenting.
+    japanese:
+      - 彼 は 料理 を し て いる {と いう より}、実験 を し て いる。
+      - 彼 は 料理 を し て いる {と いう より は}、実験 を し て いる。
+      - 彼 は 料理 を し て いる {と いう より}、実験 し て る。
+      - 彼、料理 って いう {より は}、実験 だ ね。
+    english_literally: He is cooking, or rather, he is experimenting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 料理 を する の {で は なく}、実験 を し て いる。
+        english: He is not cooking, but experimenting.
+        hint: 「～ではなく」 states a direct negation, implying the first action is completely false. 「というより」
+          suggests the first action is plausible but the second is a more accurate description.
+      - competing_japanese:
+          - 彼 は 料理 を し て いる。{むしろ}、実験 を し て いる。
+        english: He is cooking. Rather, he is experimenting.
+        hint: 「むしろ」 can introduce a stronger alternative or correction to a previous statement, but 「というより」
+          emphasizes that the second statement is a more accurate description of the *same* action or
+          situation.
+    scene: A friend is in the kitchen making a very unusual dish.
+    register: casual
+    setting: humorous
+  - english: Today's weather is chilly rather than cool.
+    japanese:
+      - 今日 の 天気 は 涼しい {と いう より}、肌寒い。
+      - 今日 の 天気 は 涼しい {と いう より は}、肌寒い。
+      - 今日 の 天気、涼しい {と いう より}、肌寒い ね。
+      - 今日 の 天気 は 涼しい {と いう より は}、肌寒い 感じ か な。
+    english_literally: Today's weather is cool, or rather, skin-cold.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 天気 は 涼しい {と は 言わ ず}、肌寒い。
+        english: Today's weather is not cool, but chilly.
+        hint: 「～とは言わず」 means 'without saying X', which is a bit too strong. 「というより」 is for refining a
+          description, not necessarily denying it entirely.
+      - competing_japanese:
+          - 今日 の 天気 は 涼しい。{むしろ}、肌寒い。
+        english: Today's weather is cool. Rather, it's chilly.
+        hint: 「むしろ」 introduces an alternative, but 「というより」 is specifically used when correcting or refining
+          a preceding statement for greater accuracy.
+    scene: Two people are discussing the weather on an autumn morning.
+    register: casual
+    setting: informative
+  - english: His way of speaking is a bit rude rather than kind.
+    japanese:
+      - 彼 の 話し 方 は 親切 {と いう より}、少し 図々しい。
+      - 彼 の 話し 方 は 親切 {と いう より は}、少し 図々しい です。
+      - 彼 の 話し 方、親切 {と いう より} は 少し 図々しい です ね。
+      - 彼 の 話し 方、親切 {と いう より は}、図々しい 面 も ある よ ね。
+    english_literally: His way of speaking is kind, or rather, a little bold/brazen.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話し 方 は 親切 {で は なく}、少し 図々しい。
+        english: His way of speaking is not kind, but a bit rude.
+        hint: 「～ではなく」 states a direct contradiction. 「というより」 means the first description is imperfect,
+          not necessarily wrong, and the second is more precise.
+      - competing_japanese:
+          - 彼 の 話し 方 は 親切 だ。{むしろ}、少し 図々しい。
+        english: His way of speaking is kind. Rather, it's a bit rude.
+        hint: 「むしろ」 offers a stronger alternative. 「というより」 suggests that the original description is less
+          accurate, and the new description is a better fit.
+    scene: Two colleagues are discreetly discussing a new team member.
+    register: semi-formal
+    setting: serious
+  - english: This room is a storage room rather than a study room.
+    japanese:
+      - この 部屋 は 勉強 部屋 {と いう より}、物置 だ。
+      - この 部屋 は 勉強 部屋 {と いう より は}、物置 だ。
+      - この 部屋、勉強 部屋 {と いう より} 物置 じゃん。
+      - この 部屋 は 勉強 部屋 {と いう より は}、完全 に 物置 と 化し て いる ね。
+    english_literally: This room is a study room, or rather, a storage room.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 勉強 部屋 {で は なく}、物置 だ。
+        english: This room is not a study room, but a storage room.
+        hint: 「～ではなく」 completely denies the first statement. 「というより」 presents the second statement as
+          a *more fitting* description, even if the first statement has some truth.
+      - competing_japanese:
+          - この 部屋 は 勉強 部屋 だ。{むしろ}、物置 だ。
+        english: This room is a study room. Rather, it's a storage room.
+        hint: 「むしろ」 introduces an alternative. 「というより」 indicates the second description is a more accurate
+          characterization of the existing situation.
+    scene: A student is showing a messy room to a visitor.
+    register: casual
+    setting: humorous
+  - english: His actions are merely reckless rather than courageous.
+    japanese:
+      - 彼 の 行動 は 勇気 が ある {と いう より}、向こう 見 ず な だけ だ。
+      - 彼 の 行動 は 勇気 が ある {と いう より は}、向こう 見 ず な だけ です。
+      - 彼 の 行動 は 勇気 が ある {と いう より}、向こう 見 ず な だけ で ござい ます。
+      - 彼 の 行動 は 勇気 が ある {と いう より は}、単なる 向こう 見 ず と 申せ ましょう。
+    english_literally: His actions are courageous, or rather, merely reckless.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 行動 は 勇気 が ある の {で は なく}、向こう 見 ず な だけ だ。
+        english: His actions are not courageous, but merely reckless.
+        hint: 「～ではなく」 provides a strong contrast, denying the first term. 「というより」 suggests the first description
+          is insufficient, and the second is more accurate.
+      - competing_japanese:
+          - 彼 の 行動 は 勇気 が ある。{むしろ}、向こう 見 ず な だけ だ。
+        english: His actions are courageous. Rather, they are merely reckless.
+        hint: 「むしろ」 tends to offer an alternative, while 「というより」 functions to re-evaluate and present
+          a more precise description of the original subject.
+    scene: A team leader is giving feedback to a subordinate about a recent risky project.
+    register: formal
+    setting: serious
+  - english: She is charming rather than beautiful.
+    japanese:
+      - 彼女 は 美しい {と いう より} は、魅力 が ある。
+      - 彼女 は 美しい {と いう より}、魅力 が ある 方 です。
+      - 彼女、美しい {と いう より}、人間 的 な 魅力 が ある 方 だ よ ね。
+      - 彼女 は 美しい {と いう より は}、愛嬌 が ある タイプ です ね。
+    english_literally: She is beautiful, or rather, has charm.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 美しい の {で は なく}、魅力 が ある。
+        english: She is not beautiful, but charming.
+        hint: 「～ではなく」 denies the first statement entirely. 「というより」 allows for the first statement to have
+          some truth, but emphasizes the second as more apt.
+      - competing_japanese:
+          - 彼女 は 美しい。{むしろ}、魅力 が ある。
+        english: She is beautiful. Rather, she has charm.
+        hint: 「むしろ」 often indicates a stronger preference or a different choice. 「というより」 focuses on presenting
+          a more accurate or refined description of the same person/thing.
+    scene: Two friends are discussing a mutual acquaintance's qualities.
+    register: casual
+    setting: friendly
+  - english: This movie is thought-provoking rather than entertaining.
+    japanese:
+      - この 映画 は 面白い {と いう より}、考え させ られる 作品 だ。
+      - この 映画 は 面白い {と いう より は}、考え させ られる 作品 です。
+      - この 映画 は 面白い {と いう より}、深く 考え させ られる 作品 だ と 思い ます。
+      - この 映画、面白い {と いう より は}、メッセージ 性 が 強い よ ね。
+    english_literally: This movie is interesting, or rather, a work that makes one think.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は 面白い の {で は なく}、考え させ られる 作品 だ。
+        english: This movie is not entertaining, but a thought-provoking work.
+        hint: 「～ではなく」 means the first statement is incorrect. 「というより」 implies the first description isn't
+          quite right, and the second is a better fit.
+      - competing_japanese:
+          - この 映画 は 面白い。{むしろ}、考え させ られる 作品 だ。
+        english: This movie is entertaining. Rather, it's a thought-provoking work.
+        hint: 「むしろ」 can introduce a stronger alternative. 「というより」 is used to provide a more accurate or
+          nuanced description of the film's nature.
+    scene: Movie critics are discussing an arthouse film.
+    register: formal
+    setting: informative
+  - english: His attitude is not just positive; it's almost reckless.
+    japanese:
+      - 彼 の 姿勢 は ポジティブ {と いう より}、無謀 だ。
+      - 彼 の 姿勢 は ポジティブ {と いう より は}、無謀 です ね。
+      - 彼 の 姿勢 って、ポジティブ {と いう より}、無謀 じゃ ない？
+      - 彼 の 姿勢 は ポジティブ {と いう より}、むしろ 無謀 と 言える か も しれ ませ ん。
+    english_literally: His attitude is positive, or rather, reckless.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 姿勢 は ポジティブ {で は なく}、無謀 だ。
+        english: His attitude is not positive, but reckless.
+        hint: 「～ではない」 directly negates the first statement. 「というより」 suggests the first statement is partially
+          true but less accurate than the second.
+      - competing_japanese:
+          - 彼 の 姿勢 は ポジティブ だ。{むしろ}、無謀 だ。
+        english: His attitude is positive. Rather, it is reckless.
+        hint: 「むしろ」 emphasizes a different preferred alternative. 「というより」 refines the description of the
+          *same* attitude.
+    scene: Two senior colleagues are discussing a very enthusiastic but perhaps overly bold new team member
+      during a performance review.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「ポジティブ と いう より 無謀」 highlights a re-evaluation of the initial impression. The speaker
+      uses 「というより」 to correct a potentially misleading positive interpretation, clarifying that the characteristic
+      is closer to "reckless" than "positive," particularly in a professional context. This careful phrasing
+      helps avoid direct accusation while still conveying concern.
+  - english: This flavor isn't just spicy; it's painfully hot.
+    japanese:
+      - この 味 は 辛い {と いう より}、痛い ほど だ。
+      - この 味 は 辛い {と いう より は}、痛い ほど だ ね。
+      - この 味、辛い {と いう より}、痛い ん だ けど！
+      - この 味 は 辛い {と いう より は}、もう 食べ られ ない くらい 痛い です。
+    english_literally: This taste is spicy, or rather, to the extent of being painful.
+    competing_grammar:
+      - competing_japanese:
+          - この 味 は 辛い {で は なく}、痛い ほど だ。
+        english: This taste is not spicy, but painfully hot.
+        hint: 「～ではなく」 implies the taste is not spicy at all. 「というより」 indicates the taste *is* spicy, but
+          a more accurate description is "painfully hot."
+      - competing_japanese:
+          - この 味 は 辛い。{むしろ}、痛い ほど だ。
+        english: This taste is spicy. Rather, it is painfully hot.
+        hint: 「むしろ」 introduces an alternative which might replace the initial idea. 「というより」 refines the
+          description of the *same* taste.
+    scene: Friends are at a new ethnic restaurant, and one of them just took a bite of a particularly
+      fiery dish.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「辛い と いう より、痛い ほど だ」 captures a common exaggeration used in casual conversation
+      when something is extremely spicy. The inclusion of 「ほど」 further emphasizes the degree, making it
+      "so spicy it's painful." This is a lighthearted way to express a strong reaction, often met with
+      shared amusement among friends.
+  - english: It wasn't a choice; it was more like an unavoidable fate.
+    japanese:
+      - それ は 選択 {と いう より}、避け られ ない 運命 だっ た。
+      - それ は 選択 {と いう より は}、避け られ ない 運命 だっ た の だ。
+      - それ は 選択 {と いう より}、もう 運命 だっ た よ ね。
+      - それ は 選択 {と いう より は}、もはや 必然 と 言う べき でしょ う。
+    english_literally: That was a choice, or rather, an unavoidable fate.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 選択 {で は なく}、避け られ ない 運命 だっ た。
+        english: That was not a choice, but an unavoidable fate.
+        hint: 「～ではない」 completely denies the possibility of it being a choice. 「というより」 suggests that while
+          it might have seemed like a choice, it was ultimately determined by fate.
+      - competing_japanese:
+          - それ は 選択 だっ た。{むしろ}、避け られ ない 運命 だっ た。
+        english: That was a choice. Rather, it was an unavoidable fate.
+        hint: 「むしろ」 might suggest a different course of action should have been taken. 「というより」 redefines
+          the nature of the event itself.
+    scene: An older person is sharing a life story, reflecting on a significant turning point where they
+      felt they had no real option.
+    register: semi-formal
+    setting: reflective
+    speaker_age: older
+    nuance: The contrast between 「選択」 (choice) and 「避け られ ない 運命」 (unavoidable fate) is central here. The
+      use of 「というより」 implies a deep contemplation, suggesting that what appeared to be a decision at the
+      time was, in retrospect, something predetermined. This phrasing often carries a sense of resignation
+      or philosophical acceptance.
+post_example_writeup: Remember that 「というより」 always implies that the statement after it is the more accurate
+  or suitable description.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/というより

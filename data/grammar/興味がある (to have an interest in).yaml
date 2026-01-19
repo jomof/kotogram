@@ -1,0 +1,268 @@
+grammar_point: 興味がある (to have an interest in)
+learn_before:
+  - Verb[てある] (result of purposeful action)
+  - Verb[ません] (polite negative)
+  - '[Verb-dict・Nounの]あまり (so much... that)'
+  - 〜ようだ・〜みたいだ (seems・like)
+  - かしら (soft uncertainty・female)
+  - かな (I wonder)
+  - たびたび (frequently)
+  - って (casual quotation・reason・topic)
+  - どんな (what kind of)
+  - に (static location・time)
+  - ね (seeking agreement)
+  - のだろうか (I wonder)
+  - も (addition or emphasis particle)
+  - 真上 (directly above)
+  - ～口 (exit・entrance)
+meaning: to have an interest in
+pronunciation:
+  katakana: キョウミ ガ アル
+  romaji: kyoumi ga aru
+formation:
+  '[Noun] + に + 興味 + が + ある/あります': To express interest in a specific noun.
+  '[Verb-dictionary] + こと + に + 興味 + が + ある/あります': To express interest in performing an action or the
+    act of doing something.
+jlpt: N4
+etymology: The term 興味 (kyoumi) is a compound noun formed from 興 (kyō), meaning "excitement" or "to rise,"
+  and 味 (mi), meaning "taste" or "flavor." Thus, 興味 literally means "a taste of excitement" or "a flavor
+  that arises curiosity." When combined with がある (ga aru), meaning "there is/exists," the phrase collectively
+  conveys the idea that a "taste for excitement exists" within oneself towards a particular subject, hence
+  "to have an interest in."
+writeup: |-
+  「興味がある」is a fundamental phrase used to express that one has an interest or curiosity in something. The structure typically follows **[Noun] に 興味 が ある** or **[Verb-dictionary] こと に 興味 が ある**. The particle 「に」marks the object of interest, indicating *towards* what the interest is directed.
+
+  While "interest" in English can sometimes imply a general liking, 「興味がある」in Japanese often carries a stronger nuance of **curiosity** or a **desire to learn more** about a topic. It's not necessarily about whether you 'like' something in the sense of enjoyment, but whether it captures your attention and makes you want to investigate further. For instance, you might say you have an interest in physics (物理に興味がある) because it fascinates you, even if you don't necessarily 'enjoy' every aspect of studying it in the same way you enjoy a hobby.
+
+  The phrase is versatile and can be used in both formal and casual contexts, with 「あります」for polite speech and 「ある」for casual. In casual speech, the particle 「が」can often be omitted.
+false_friends:
+  - term: 好きだ
+    meaning: to like
+    kind: similar expression
+    nuance: 「好きだ」expresses general liking, fondness, or preference for something or someone. It implies
+      enjoyment or affection. In contrast, 「興味がある」focuses on curiosity and a desire for knowledge. While
+      you might 'like' a book (本が好き), you'd use 「興味がある」if you're curious about a specific genre or author
+      (例えば、SF小説に興味がある - I'm interested in sci-fi novels). You can like something without being particularly
+      curious about it, and you can be curious about something you don't necessarily 'like' in the sense
+      of enjoying it.
+    grammar_point: <suggest>:好きだ (to like)
+  - term: 関心がある
+    meaning: to have an interest in
+    kind: synonym
+    nuance: While often interchangeable, 「関心がある」tends to be more formal and suggests a broader, more public,
+      or academic interest, often in social issues, politics, or general affairs. 「興味がある」is more personal
+      and can apply to anything from hobbies to deep academic subjects, carrying a stronger sense of personal
+      curiosity. For example, a politician might say 「国民の生活に関心がある」(I have concern/interest in the people's
+      lives), which sounds more appropriate than 興味がある in that context.
+    grammar_point: <suggest>:関心がある (to have an interest in)
+  - term: 面白い
+    meaning: interesting
+    kind: similar expression
+    nuance: 「面白い」is an adjective that describes the *object* or *topic* as having the quality of being
+      interesting. It refers to the inherent characteristic of the thing itself that evokes interest.
+      「興味がある」, however, describes the *subject's* state of having an interest. So, a book can be 「面白い」
+      (the book is interesting), and *you* can have 「本に興味がある」 (you have an interest in the book).
+    grammar_point: <suggest>:面白い (interesting)
+post_false_friends_writeup: To differentiate, remember that 「興味がある」is about your personal curiosity, 「好きだ」is
+  about your personal liking or enjoyment, and 「面白い」describes what makes something interesting to others.
+  「関心がある」is closest to 「興味がある」but carries a more formal or broader tone.
+examples:
+  - english: I'm interested in Japanese history.
+    japanese:
+      - 私 は 日本 の 歴史 {に 興味 が あり ます}。
+      - 私 は 日本 の 歴史 {に 興味 が ある}。
+    english_literally: As for me, regarding Japan's history, interest exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 日本 の 歴史 が 好き です。
+        english: I like Japanese history.
+        hint: This sentence expresses general liking. We're looking for a phrase that implies a sense
+          of curiosity or a desire to learn more about the topic.
+      - competing_japanese:
+          - 日本 の 歴史 は 面白い です。
+        english: Japanese history is interesting.
+        hint: This sentence describes Japanese history itself as interesting. We're looking for a phrase
+          that states the speaker's personal interest.
+    scene: A student is discussing their academic pursuits with a new acquaintance.
+    register: formal
+    setting: academic
+  - english: Are you interested in video games?
+    japanese:
+      - テレビ ゲーム {に 興味 あり ます か}？
+      - テレビ ゲーム {に 興味 が あり ます か}？
+      - テレビ ゲーム {に 興味 ある}？
+      - テレビ ゲーム {に 興味 が ある}？
+    english_literally: Regarding video games, interest exists?
+    competing_grammar:
+      - competing_japanese:
+          - テレビ ゲーム 好き?
+        english: Do you like video games?
+        hint: This asks about general liking/enjoyment. We're looking for a question about curiosity or
+          a desire to explore the topic.
+    scene: Two friends are casually chatting after school.
+    register: casual
+    setting: friendly
+  - english: My father has no interest in cooking.
+    japanese:
+      - 私 の 父 は 料理 する {こと に 興味 が あり ませ ん}。
+      - 私 の 父 は 料理 する {こと に 興味 が ない}。
+    english_literally: As for my father, regarding the act of cooking, interest does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 父 は 料理 が 嫌い です。
+        english: My father dislikes cooking.
+        hint: This expresses strong dislike. We're looking for a phrase that states a lack of curiosity
+          or engagement with the activity.
+    scene: Someone is talking about their family's hobbies and preferences.
+    register: formal
+    setting: informative
+  - english: I'm not really interested in politics.
+    japanese:
+      - 私 は 政治 {に あまり 興味 が あり ませ ん}。
+      - 私 は 政治 {に あまり 興味 が ない}。
+    english_literally: As for me, regarding politics, not much interest exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 政治 に 関心 が あり ませ ん。
+        english: I have no concern/interest in politics.
+        hint: This phrase is more formal and implies a lack of broader concern. We're looking for a personal
+          lack of curiosity.
+    scene: A person is expressing their personal preferences during a casual conversation about current
+      events.
+    register: formal
+    setting: informative
+  - english: What kind of things are you interested in?
+    japanese:
+      - どんな こと {に 興味 が あり ます か}？
+      - どんな こと {に 興味 が ある}？
+    english_literally: Regarding what kind of things, interest exists?
+    competing_grammar:
+      - competing_japanese:
+          - 何 が 好き です か?
+        english: What do you like?
+        hint: This is a broader question about general preferences. We're looking for a question that
+          specifically asks about areas of curiosity or things one wants to learn more about.
+    scene: Two people are meeting for the first time and getting to know each other.
+    register: formal
+    setting: interrogative
+  - english: I've always had absolutely no interest in sports.
+    japanese:
+      - 私 は スポーツ {に 全く 興味 が あり ませ ん でし た}。
+      - 私 は スポーツ {に 全く 興味 が なかっ た}。
+    english_literally: As for me, regarding sports, absolutely no interest existed.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は スポーツ が 大嫌い でし た。
+        english: I strongly disliked sports.
+        hint: This implies active dislike. We're looking for a phrase that expresses a complete absence
+          of curiosity or engagement.
+    scene: A person is reflecting on their lifelong preferences during a discussion about hobbies.
+    register: formal
+    setting: reflective
+  - english: He's probably interested in that new anime.
+    japanese:
+      - 彼 は あの 新しい アニメ {に 興味 ある だろう な}。
+      - 彼 は あの 新しい アニメ {に 興味 が ある でしょう}。
+      - 彼 は あの 新しい アニメ {に 興味 が ある だろう}。
+    english_literally: He, regarding that new anime, probably has interest, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は あの 新しい アニメ が 好き だろう な。
+        english: He probably likes that new anime.
+        hint: This suggests a general liking or enjoyment. We're looking for a phrase that implies curiosity
+          about the anime.
+    scene: Two male friends are discussing a mutual friend's potential interests.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「だろう な」is a casual, slightly speculative expression often used by male speakers.
+      The omission of 「が」in 「興味 ある」is also common in casual speech.
+  - english: I wonder if she's interested in fashion?
+    japanese:
+      - 彼女 は ファッション {に 興味 ある か な}？
+      - 彼女 は ファッション {に 興味 が ある かしら}？
+      - 彼女 は ファッション {に 興味 が ある の か な}？
+    english_literally: She, regarding fashion, has interest, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ファッション 好き か な?
+        english: I wonder if she likes fashion?
+        hint: This asks about a general liking. We're looking for a question about her curiosity or whether
+          she's drawn to the topic.
+    scene: Two female friends are talking about a mutual acquaintance and her possible interests.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「かな」is a soft, often used by female speakers, way to express wonder or slight uncertainty.
+      The omission of 「が」in 「興味 ある」is typical in casual speech.
+  - english: Are you interested in local traditional crafts?
+    japanese:
+      - 地元 の 伝統 工芸 {に 興味 が お あり です か}？
+      - 地元 の 伝統 工芸 {に 興味 は ござい ます か}？
+    english_literally: Regarding local traditional crafts, is interest respectfully existing?
+    competing_grammar:
+      - competing_japanese:
+          - 地元 の 伝統 工芸 に ご 関心 が あり ます か?
+        english: Do you have concern/interest in local traditional crafts?
+        hint: This uses a formal synonym for 'interest'. We're looking for a polite way to ask about personal
+          curiosity using the main grammar point.
+    scene: A tourist is politely asking a local guide about the region's cultural attractions.
+    register: formal
+    setting: informative
+    nuance: 「おあり です か」is a highly polite and respectful way of asking if someone 'has' something, including
+      an "interest". This elevated phrasing is suitable for formal or respectful interactions, such as
+      addressing a customer or a person of higher status.
+  - english: Recently, I've become interested in classical music.
+    japanese:
+      - 最近 私 は クラシック 音楽 {に 興味 が 出 て き まし た}。
+      - 最近 私 は クラシック 音楽 {に 興味 が 出 て き た}。
+    english_literally: Recently, as for me, regarding classical music, interest has come out.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 私 は クラシック 音楽 を 好き に なり まし た。
+        english: Recently, I've come to like classical music.
+        hint: This indicates a development of a general liking. We're looking for a phrase that describes
+          a new development of curiosity or fascination.
+    scene: Someone is sharing a personal development or new hobby with a friend.
+    register: formal
+    setting: informative
+  - english: It seems he's interested in cars.
+    japanese:
+      - 彼 は 車 {に 興味 が ある よう です}。
+      - 彼 は 車 {に 興味 が ある みたい です}。
+      - 彼 は 車 {に 興味 が ある よう だ}。
+      - 彼 は 車 {に 興味 が ある みたい だ}。
+    english_literally: He, regarding cars, seems to have interest.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 車 が 好き な よう です。
+        english: It seems he likes cars.
+        hint: This implies a general fondness. We're looking for an observation about his curiosity or
+          fascination with cars.
+    scene: Observing someone's behavior and drawing conclusions about their interests.
+    register: formal
+    setting: informative
+  - english: We don't have many common interests.
+    japanese:
+      - 私 たち は 共通 の {興味 が あまり あり ませ ん}。
+      - 私 たち は 共通 の {興味 が あまり ない}。
+    english_literally: As for us, common interests don't exist much.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 共通 の 趣味 が あまり あり ませ ん。
+        english: We don't have many common hobbies.
+        hint: This specifically refers to shared hobbies. We're looking for a phrase that describes a
+          lack of shared curiosity or intellectual engagement areas.
+    scene: Someone is describing the dynamics of a relationship or friendship.
+    register: formal
+    setting: reflective
+post_example_writeup: Notice how 「興味がある」can be used with different levels of politeness and in various
+  conversational contexts. The examples demonstrate its application to both general topics and specific
+  actions (using the nominalizer 「こと」). The phrasing remains consistent, focusing on the existence of
+  curiosity towards a subject.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/興味がある

@@ -1,0 +1,289 @@
+grammar_point: どころではない (not the time or place for)
+learn_before:
+  - '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - ぜ (male emphatic particle)
+  - ね (seeking agreement)
+  - わ (feminine sentence-ending particle)
+meaning: This is not the time for..., Far from, Out of the question
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: どころではない
+    rarity: common
+    meaning: This is not the time for..., Far from, Out of the question (standard)
+  - conjugation-type: negative plain (～ない)
+    form: どころじゃない
+    rarity: common
+    meaning: This is not the time for..., Far from, Out of the question (casual)
+pronunciation:
+  katakana: ドコロデハナイ
+  romaji: dokoro de wa nai
+formation:
+  Verb (dictionary form) + どころではない: Indicates that something is impossible or out of the question due
+    to the circumstances.
+  Noun + どころではない: Indicates that doing or dealing with the noun is impossible due to the circumstances.
+  い-adjective (dictionary form) + どころではない: Indicates something is far from the adjective's description.
+  な-adjective (stem) + どころではない: Indicates something is far from the adjective's description.
+jlpt: N2
+etymology: The grammar point 「どころではない」 is derived from 「所 (tokoro)」, which originally refers to 'place'
+  but also commonly signifies 'situation' or 'circumstance'. When combined with 「ではない (de wa nai)」, the
+  negative form of the copula 「だ」, it creates a nuanced expression. The literal interpretation might be
+  'it is not the place for (something),' which has evolved to mean that the current circumstances are
+  so severe or demanding that a certain action or state is entirely inappropriate, impossible, or an extreme
+  understatement.
+writeup: |-
+  The phrase 「どころではない」 expresses that something is 'far from' a certain state or that a certain action is 'out of the question.' It highlights a situation where something is impossible or inappropriate due to the current circumstances. This grammar point conveys two primary nuances:
+
+  1.  **Far from / Out of the question**: This usage indicates that the actual situation is far more serious or extreme than the phrase it is attached to. For example, if someone says 「悲しいどころではない」, it implies the situation is beyond mere sadness, perhaps devastating.
+  2.  **Not the time for**: This usage implies that a particular action or consideration is entirely unsuitable or impossible due to more pressing or critical matters. It often reflects the speaker's strong personal opinion or judgment that something is not permissible given the current priorities.
+
+  「どころではない」 is typically used at the end of a phrase. In more casual settings, 「ではない」 can be replaced with 「じゃない」. It's a versatile expression to emphasize the severity of a situation or the inappropriateness of an action.
+false_friends:
+  - term: ものか
+    meaning: Definitely not, Absolutely not, Impossible, Do you really think~?
+    kind: similar expression
+    nuance: Unlike 「どころではない」, 「ものか」 often carries a stronger sense of defiance, disbelief, or strong negative
+      assertion, often used in exclamatory sentences.
+    grammar_point: ものか・もんか (strong negation・absolutely not)
+  - term: どころか
+    meaning: Far from, Anything but
+    kind: similar expression
+    nuance: Unlike 「どころではない」, 「どころか」 implies a greater difference or escalation. It is used to present
+      a situation that is the opposite or far more extreme than what might be expected.
+    grammar_point: どころか (far from)
+post_false_friends_writeup: While 「ものか」 and 「どころか」 share some semantic overlap with 「どころではない」, they convey
+  distinct nuances. 「ものか」 is for strong, often defiant, negative assertions. 「どころか」 is used to express
+  that something is not just not the case, but quite the opposite or even more extreme. 「どころではない」, on
+  the other hand, emphasizes that an action or state is unsuitable or impossible due to overwhelming circumstances
+  or a more pressing matter.
+examples:
+  - english: The deadline is fast approaching, so eating is out of the question.
+    japanese:
+      - 締め切り が 迫っ て いる の で、食事 を {する どころ で は ない}。
+      - 締め切り が 迫っ て いる から、食事 なんて {する どころ じゃ ない}。
+      - 締め切り が 差し迫っ て いる から、食事 {どころ じゃ ない} よ。
+    english_literally: The deadline is approaching, so it is not the time for eating.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り が 迫っ て いる の で、食事 を する {時間 が ない}。
+        english: The deadline is fast approaching, so I don't have time to eat.
+        hint: 「時間 が ない」 expresses a lack of time. Here, we're looking for an expression that conveys something
+          is inappropriate or impossible due to pressing circumstances, not just a lack of time.
+    scene: A student is buried in work, with an urgent assignment due very soon.
+    register: semi-formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「なんて」 in the casual forms emphasizes the speaker's strong feeling that eating is
+      utterly inappropriate given the pressing deadline. The slight variations in phrasing reflect common
+      ways to express this sentiment in Japanese.
+    etymology: The expression '差し迫る' (sashisemaru) for 'fast approaching' or 'imminent' literally means
+      'to approach closely and pressingly,' conveying a strong sense of urgency.
+  - english: Before an important exam, playing around is out of the question.
+    japanese:
+      - 大事 な 試験 の 前 に、遊び {どころ で は ない}。
+      - 大事 な 試験 の 前 だ から、遊び {どころ じゃ ない}。
+      - 試験 直前 だ から、遊ん で いる {どころ じゃ ない} よ。
+    english_literally: Before an important exam, it is not the place for playing.
+    competing_grammar:
+      - competing_japanese:
+          - 大事 な 試験 の 前 に、遊ぶ {暇 が ない}。
+        english: Before an important exam, I don't have free time to play.
+        hint: 「暇 が ない」 means 'I don't have free time'. We're looking for an expression that indicates
+          playing is not appropriate or possible due to the seriousness of the upcoming exam.
+    scene: A diligent high school student explains to their friends why they cannot join them for fun.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「試験 直前」 (shiken chokuzen) highlights the immediate proximity to the exam, intensifying
+      the sense of inappropriateness for playing. The inclusion of 「よ」 at the end adds a soft but firm
+      assertion, typical in casual explanations.
+    etymology: 「直前」 (chokuzen) means 'immediately before,' formed from 「直」 (choku, direct/straight) and
+      「前」 (zen, before), emphasizing the direct preceding moment.
+  - english: Having lost everything in the disaster, I'm far from just sad.
+    japanese:
+      - 災害 で 全て を 失い、悲しい {どころ で は ない}。
+      - 災害 で 全て を 失っ た から、悲しい {どころ じゃ ない}。
+      - 災害 で 全て を 失っ て、悲しい なんて {言葉 で は 言え ない}。
+    english_literally: Having lost everything in the disaster, it is not the place for being sad.
+    competing_grammar:
+      - competing_japanese:
+          - 災害 で 全て を 失い、悲しむ {こと さえ でき ない}。
+        english: Having lost everything in the disaster, I can't even feel sad.
+        hint: 「悲しむ こと さえ でき ない」 expresses an inability to feel sad due to overwhelming circumstances.
+          We're looking for an expression that conveys the feeling is *more* than just sadness, that 'sad'
+          is an understatement.
+    scene: Someone reflecting on profound loss after a natural disaster.
+    register: semi-formal
+    setting: melancholic
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Using 「悲しい なんて 言葉 では 言えない」 implies that the feeling is so profound that 'sadness' is an inadequate
+      word to describe it, highlighting the extremity of the emotion beyond simple sadness.
+    etymology: The auxiliary verb 「失う」 (ushinau, to lose) has roots in classical Japanese, indicating
+      a state of being deprived of something, often with a sense of regret or misfortune.
+  - english: This paper is far from just hard to read; I don't understand its meaning at all.
+    japanese:
+      - この 論文 は 読み にくい {どころ で は ない}。意味 が 全く わから ない。
+      - この レポート は 読み にくい {どころ じゃ ない} よ。全然 意味 が わから ない。
+    english_literally: This paper is not the place for being hard to read. Its meaning is completely unintelligible.
+    competing_grammar:
+      - competing_japanese:
+          - この 論文 は {理解 する の が 難しい}。
+        english: This paper is difficult to understand.
+        hint: 「理解 する の が 難しい」 is a straightforward way to say something is hard to understand. Here, we
+          need a phrase that emphasizes the paper is *not just* hard to read, but fundamentally incomprehensible,
+          implying a much worse situation.
+    scene: A university student struggling to comprehend a poorly written academic paper.
+    register: formal
+    setting: academic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「全く わからない」 (mattaku wakaranai) or 「全然 わからない」 (zenzen wakaranai) strongly emphasizes
+      complete incomprehension, reinforcing that 'hard to read' is a severe understatement. The choice
+      between 「論文」 and 「レポート」 also reflects the formality level.
+    etymology: 「全く」 (mattaku) and 「全然」 (zenzen) are adverbs that intensify negation. 「全く」 historically
+      conveyed 'wholly' or 'entirely,' evolving to emphasize 'not at all' when used with negatives. 「全然」
+      likewise means 'entirely' and is almost exclusively used with negative verbs in modern Japanese
+      to mean 'not at all'.
+  - english: Right now, with the infectious disease spreading, this is no time for travel.
+    japanese:
+      - 今 は 感染 症 の 拡大 中 で、旅行 {どころ じゃ ない} よ。
+      - 感染 症 が 拡大 し て いる の で、旅行 {どころ で は ない} です。
+      - こんな 時間 に 旅行 {なんて できる はず が ない}。
+    english_literally: Now is during the spread of infectious disease, so it is not the place for travel.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は 感染 症 の 拡大 中 で、旅行 に {行く 気 が し ない}。
+        english: Right now, with the infectious disease spreading, I don't feel like traveling.
+        hint: 「旅行 に 行く 気 が し ない」 expresses a personal lack of desire to travel. We're looking for an expression
+          that conveys traveling is inappropriate or out of the question due to the current serious circumstances.
+    scene: A concerned citizen advising a friend against non-essential travel during a pandemic.
+    register: casual
+    setting: cautious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of the sentence-final particle 「よ」 makes the statement more emphatic and confirms
+      the speaker's strong opinion. 「こんな時」 (konna toki, 'at a time like this') also adds to the sense
+      of immediate, critical circumstances. The phrasing 「できる はずがない」 indicates a strong conviction that
+      something is impossible or out of the question.
+    etymology: 「はず」 (hazu) originally meant 'bowstring' and metaphorically came to mean 'what is expected'
+      or 'what should be,' implying a strong logical probability or certainty.
+  - english: With my hometown devastated by the disaster, I don't feel like working at all right now.
+    japanese:
+      - 災害 で 故郷 が 壊滅 し た 今、仕事 を {する どころ で は ない} 気持ち です。
+      - 故郷 が 壊滅 し て しまっ た から、今 は 仕事 {どころ じゃ ない} ん だ。
+    english_literally: With my hometown devastated by the disaster, it is not the time for working.
+    competing_grammar:
+      - competing_japanese:
+          - 災害 で 故郷 が 壊滅 し た 今、仕事 が {手 に つか ない}。
+        english: With my hometown devastated by the disaster, I can't concentrate on work right now.
+        hint: 「手 に つか ない」 means one cannot concentrate on work due to being preoccupied or disturbed.
+          Here, we're looking for a phrase that expresses that working is out of the question given the
+          severity of the situation and emotional state.
+    scene: A person grappling with the aftermath of a natural disaster, expressing their profound emotional
+      state.
+    register: semi-formal
+    setting: melancholic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The phrase 「気持ち です」 softens the impact, making it sound more reflective. This kind of reflective
+      and somewhat resigned tone is common for older male speakers when discussing serious personal matters.
+      The casual version adds 「んだ」 which emphasizes the speaker's personal feeling and reason, making
+      it more intimate.
+    etymology: 「壊滅」 (kaimetsu, devastation) is a compound of 「壊」 (kai, destroy) and 「滅」 (metsu, perish),
+      vividly describing complete destruction.
+  - english: After undergoing major surgery, I'm far from healthy.
+    japanese:
+      - 大 手術 の 後 で、元気 {どころ で は ない}。
+      - 大 手術 の 後 だ から、元気 {どころ じゃ ない} よ。
+    english_literally: After a major surgery, it is not the place for being healthy.
+    competing_grammar:
+      - competing_japanese:
+          - 大 手術 の 後 で、まだ {体調 が 悪い}。
+        english: After major surgery, I'm still not feeling well.
+        hint: 「体調 が 悪い」 simply states one is not feeling well. Here, we need to emphasize that the state
+          is *far from* being healthy, implying a more severe or complete lack of health.
+    scene: A patient recovering in the hospital speaks to a visitor who asks about their well-being.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The usage of 「元気 どころでは ない」 emphasizes that the patient's condition is far from 'healthy' or
+      'energetic' due to the serious nature of the surgery, conveying that 'healthy' is an understatement
+      or completely inapplicable. The casual version with 「よ」 makes it a more personal and direct statement
+      to the visitor.
+  - english: It's already past midnight; this is no time to be making noise.
+    japanese:
+      - もう 夜中 だ よ、騒ぐ {どころ じゃ ない}。
+      - こんな 時間 に 騒ぐ {どころ で は ない}。
+    english_literally: It's already midnight, so it is not the place for making noise.
+    competing_grammar:
+      - competing_japanese:
+          - もう 夜中 だ よ、騒ぐ の は {やめろ}。
+        english: It's already past midnight, stop making noise.
+        hint: 「やめろ」 is a direct command to stop. We're looking for an expression that indicates the action
+          is inappropriate or out of the question due to the current time, not just a command.
+    scene: A frustrated resident addresses noisy neighbors late at night.
+    register: casual
+    setting: commanding
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The opening 「もう 夜中 だ よ」 reinforces the urgency and inappropriateness of the noise. The casual
+      「騒ぐ どころ じゃ ない」 directly conveys the speaker's strong opinion that making noise is unacceptable at
+      this late hour. The second Japanese option is more formal and less direct.
+  - english: With a major project coming up, discussing bonuses is out of the question.
+    japanese:
+      - 大 プロジェクト を 控え て いる の で、ボーナス の 話 {どころ で は ない}。
+      - 大 プロジェクト を 抱え て いる から、ボーナス の 話 {どころ じゃ ない} よ。
+    english_literally: As a major project is approaching, it is not the place for bonus discussions.
+    competing_grammar:
+      - competing_japanese:
+          - 大 プロジェクト を 控え て いる の で、ボーナス の 話 は {後回し に し ましょう}。
+        english: With a major project coming up, let's postpone discussing bonuses.
+        hint: 「後回し に しましょう」 suggests postponing the discussion. Here, we're looking for an expression
+          that conveys discussing bonuses is completely inappropriate or impossible given the pressing
+          project.
+    scene: A team leader addresses their team during a critical period, emphasizing priorities.
+    register: semi-formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「大 プロジェクト を 控えて いる」 (hisaete iru) indicates the project is imminent and demands full attention,
+      making bonus discussions out of place. The formal 「どころ で は ない」 reinforces the serious and professional
+      tone, while the casual version with 「抱え て いる から」 (kakaete iru kara) and 「よ」 conveys a more personal,
+      albeit firm, rejection.
+  - english: With so much homework, there's no way I can watch TV.
+    japanese:
+      - 宿題 が 山 ほど ある ん だ から、テレビ を {見る どころ じゃ ない} よ。
+      - 宿題 が 多い の で、テレビ を {見る どころ で は ない} です。
+    english_literally: Since there is a mountain of homework, it is not the place for watching TV.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 が 山 ほど ある ん だ から、テレビ を 見る {時間 が ない} よ。
+        english: With so much homework, I don't have time to watch TV.
+        hint: 「時間 が ない」 means 'I don't have time'. We're looking for a phrase that implies watching TV
+          is completely inappropriate or impossible due to the overwhelming amount of homework.
+    scene: A student explains to a friend why they cannot relax and watch TV.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「山 ほど ある」 (yama hodo aru, literally 'there's a mountain of') is a common hyperbolic expression
+      emphasizing the large quantity of homework, clearly indicating that watching TV is out of the question.
+      The casual 「よ」 adds a personal touch, making it sound like a friendly complaint. The formal version
+      emphasizes the objective reality of the situation.
+post_example_writeup: The examples illustrate how 「どころではない」 is used to emphasize the impossibility or
+  inappropriateness of a certain action or situation. The speaker's viewpoint is crucial, as they are
+  expressing their opinion on what is not feasible or suitable given the circumstances, often highlighting
+  an extreme or overwhelming situation.

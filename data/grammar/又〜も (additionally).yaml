@@ -1,0 +1,269 @@
+grammar_point: 又〜も (additionally)
+learn_before:
+  - または (or; either... or...)
+meaning: Moreover, additionally
+meaning_warning: また+ても・でも adds more emphasis
+pronunciation:
+  katakana: マタ モ
+  romaji: mata mo
+formation:
+  '[Phrase A] + 又 + [Noun] + も': Indicates addition of new information (B) after stating (A).
+jlpt: N3
+etymology: 「又」 (mata) originally meant 'again' or 'also.' The addition of 「も」 emphasizes that the information
+  being added is in addition to something previously mentioned. Historically, 「又」 derives from the pictographic
+  representation of a hand, suggesting repetition or an additional action. The particle 「も」 reinforces
+  the inclusive or additive meaning, extending the scope to 'also' or 'even.'
+writeup: '「又〜も」 combines the adverb 「又」, a noun, and the adverbial particle 「も」. It translates to "moreover,"
+  "additionally," or "furthermore." Since 「も」 is used, the (B) phrase usually presents new information
+  following a statement in the (A) phrase. To use 「又〜も」, an (A) phrase is stated first, followed by 「又」
+  to introduce the (B) phrase, which then includes a noun + 「も」. For extra emphasis, 「でも」 or 「ても」 can
+  replace 「も」. Fun fact: The kanji 「又」 and 「叉」 share an interesting relationship. 「又」 refers to things
+  that reach a point of separation but then fold back on themselves (translated as "again" or "in addition").
+  「叉」, on the other hand, refers to things that reach a point of separation and then split (translated
+  as "a fork in the road" or "crotch").'
+false_friends:
+  - term: しかも
+    meaning: Moreover, Furthermore
+    kind: often confused with
+    nuance: Unlike 「又〜も」, 「しかも」 often introduces a more surprising or unexpected piece of information
+      that adds to or even surpasses the previous statement.
+    grammar_point: それに (in addition・moreover)
+  - term: その上
+    meaning: In addition, Furthermore, On top of that
+    kind: similar expression
+    nuance: While 「その上」 is similar in meaning, it often implies an added element that builds upon the
+      preceding information, sometimes suggesting a progression or a 'cherry on top' effect. 「又〜も」 is
+      more neutral, simply adding another item or fact.
+    grammar_point: それに (in addition・moreover)
+  - term: それに
+    meaning: In addition, Besides, Moreover
+    kind: similar expression
+    nuance: 「それに」 is a more general additive conjunction, often used to simply list additional points
+      or facts. 「又〜も」 specifically adds a new item or feature to a stated point, emphasizing 'also' or
+      'even this'.
+    grammar_point: それに (in addition・moreover)
+  - term: ばかりでなく
+    meaning: Not only… but also, As well as
+    kind: similar expression
+    nuance: 「ばかりでなく」 focuses on the idea of 'not just X, but also Y,' implying a broader scope or additional
+      benefit/detriment beyond the initial point. 「又〜も」 is more about adding an additional item, often
+      a single one, to what has already been mentioned.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: 加えて
+    meaning: In addition to; not only... but also; moreover
+    kind: similar expression
+    nuance: 「加えて」 is a more formal and often stronger way to add information, usually indicating that
+      the new information builds upon or complements the previous statement. 「又〜も」 is less formal and
+      can simply introduce another item without necessarily building a stronger argument.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: While 「又〜も」, 「しかも」, 「その上」, 「それに」, 「ばかりでなく」, and 「加えて」 can all mean "moreover"
+  or "in addition," their nuances differ. 「又〜も」 is a general way to add information or another item to
+  a list without strong emphasis or surprise. 「しかも」 often introduces an element of surprise or an unexpected
+  additional point. 「その上」 implies an additional item or factor that builds upon or adds to the previously
+  stated information. 「それに」 is a straightforward additive conjunction for simply listing facts. 「ばかりでなく」
+  highlights that something is true beyond an initial point, implying a broader range. 「加えて」 is a more
+  formal way to add information that often complements or strengthens the preceding statement. Choose
+  the one that best fits the specific nuance you wish to convey.
+examples:
+  - english: This camera can take photos. Also, it can record videos.
+    japanese:
+      - この カメラ は 写真 が 撮れる。{また、ビデオ も} 撮れる。
+      - この カメラ は 写真 が 撮れ ます。{また、ビデオ も} 撮れ ます。
+      - この カメラ は 写真 が 撮れる。{また、ビデオ で も} 撮れる。
+    english_literally: This camera can take photos. Moreover, video also can be recorded.
+    competing_grammar:
+      - competing_japanese:
+          - この カメラ は 写真 が 撮れる。{そして}、ビデオ も 撮れる。
+        english: This camera can take photos. And then, it can also record videos.
+        hint: 「そして」 connects actions or statements sequentially. 「又〜も」 emphasizes adding another similar
+          item or feature to a list, like an additional capability. We're looking for an additional feature.
+    scene: A salesperson is demonstrating the features of a new camera to a customer, highlighting its
+      versatility.
+    register: semi-formal
+    setting: informative
+  - english: He is a professional chef. Additionally, he is also a painter.
+    japanese:
+      - 彼 は プロ の 料理 人 です。{また、画家 で も} あり ます。
+      - 彼 は プロ の 料理 人 だ。{また、画家 で も} ある。
+      - 彼 は プロ の 料理 人 です。{また、画家 と も} 言え ます。
+    english_literally: He is a professional chef. Additionally, a painter also he is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は プロ の 料理 人 です。{そして}、画家 で も あり ます。
+        english: He is a professional chef. And then, he is also a painter.
+        hint: 「そして」 connects two facts or actions sequentially. When you want to specifically highlight
+          an additional role or characteristic, 「又〜も」 is more appropriate to emphasize the extra quality.
+          We're looking for an additional characteristic.
+    scene: Two friends are discussing an acquaintance who possesses many impressive talents.
+    register: casual
+    setting: friendly
+  - english: This software can be used for free. Moreover, it's sufficient even if it has fewer features.
+    japanese:
+      - この ソフトウェア は 無料 で 使える。{また、機能 が 少なく て も} 十分 です。
+      - この ソフトウェア は 無料 で 使える。{また、機能 が 少なく て も} 十分 だ。
+      - この ソフトウェア は 無料 で 使え ます。{また、機能 が 少なく て も} 十分 です。
+    english_literally: This software is free to use. Moreover, even if functions are few, it is sufficient.
+    competing_grammar:
+      - competing_japanese:
+          - この ソフトウェア は 無料 で 使える。{しかも}、機能 が 少なく て も 十分 です。
+        english: This software can be used for free. Furthermore, (and surprisingly) it's sufficient even
+          if it has fewer features.
+        hint: 「しかも」 often implies a surprising or unexpected additional point. 「又〜も」 is used for a more
+          neutral addition, simply stating another fact or condition. We're looking for a neutral additional
+          point.
+    scene: A tech reviewer is evaluating a new software, acknowledging a potential drawback but emphasizing
+      its overall value.
+    register: formal
+    setting: informative
+  - english: She is the president of the company. In addition, she is also a community leader.
+    japanese:
+      - 彼女 は 会社 の 社長 です。{また、地域 の リーダー で も} あり ます。
+      - 彼女 は 会社 の 社長 だ。{また、地域 の リーダー で も} ある。
+      - 彼女 は 会社 の 社長 です。{また、地域 の リーダー と し て も} 活躍 し て い ます。
+    english_literally: She is the company's president. In addition, a community leader also she is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 会社 の 社長 です。{その 上}、地域 の リーダー で も あり ます。
+        english: She is the president of the company. On top of that, she is also a community leader.
+        hint: 「その上」 suggests an added element that builds upon or is superior to the previous information.
+          「又〜も」 simply adds another significant role or attribute. We're looking for a simple additional
+          attribute.
+    scene: At a local awards ceremony, a presenter is introducing a distinguished woman, describing her
+      various significant roles.
+    register: formal
+    setting: informative
+  - english: Japanese summers are hot. Furthermore, the wind also became strong.
+    japanese:
+      - 日本 の 夏 は 暑い。{また、湿度 も} 高い。
+      - 日本 の 夏 は 暑い です。{また、湿度 も} 高い です。
+      - 日本 の 夏 は 暑い。{また、湿度 も} かなり 高い。
+    english_literally: Japan's summer is hot. Furthermore, humidity also is high.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 夏 は 暑い。{そして}、湿度 も 高い。
+        english: Japanese summers are hot. And then, the humidity is also high.
+        hint: 「そして」 connects sequential statements. When listing multiple related characteristics or conditions,
+          「又〜も」 clearly presents the second item as an additional attribute. We're looking for an additional
+          characteristic of summer.
+    scene: Someone who has recently moved to Japan is complaining to a friend about the summer weather.
+    register: casual
+    setting: friendly
+  - english: I want adults to take this medicine. Also, it's safe for children too.
+    japanese:
+      - この 薬 は 大人 に 飲ん で ほしい。{また、子供 に も} 安全 です。
+      - この 薬 は 大人 に 飲ん で ほしい です。{また、子供 に も} 安全 です。
+      - この 薬 は 大人 に 飲ん で ほしい。{また、子供 で も} 安全 に 使え ます。
+    english_literally: This medicine, I want adults to take. Also, for children too, it is safe.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 は 大人 に 飲ん で ほしい。{それ に}、子供 に も 安全 です。
+        english: I want adults to take this medicine. In addition, it's safe for children too.
+        hint: 「それに」 simply adds a fact. 「又〜も」 emphasizes that the new information is also true for another
+          group or context, highlighting inclusiveness. We're looking for safety for an additional group.
+    scene: A doctor is explaining the proper use and safety guidelines for a new medicine to a patient.
+    register: formal
+    setting: instructional
+  - english: The food at this restaurant is delicious. Moreover, the atmosphere is also wonderful.
+    japanese:
+      - この レストラン は 食事 が 美味しい。{また、雰囲気 も} 素晴らしい。
+      - この レストラン は 食事 が 美味しい です。{また、雰囲気 も} 素晴らしい です。
+      - この レストラン は 食事 が 美味しい。{また、店 の 雰囲気 も} 素晴らしい。
+    english_literally: This restaurant's food is delicious. Moreover, the atmosphere also is wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は 食事 が 美味しい。{そして}、雰囲気 も 素晴らしい。
+        english: The food at this restaurant is delicious. And then, the atmosphere is also wonderful.
+        hint: 「そして」 simply connects statements. To highlight an additional positive aspect that contributes
+          to the overall appeal, 「又〜も」 is used to emphasize the additive nature of the compliment. We're
+          looking for an additional positive aspect.
+    scene: A food blogger is writing a review of a restaurant, praising multiple aspects of their dining
+      experience.
+    register: semi-formal
+    setting: informative
+  - english: I have to finish my homework. Additionally, I also need to prepare for tomorrow's presentation.
+    japanese:
+      - 宿題 を 終わら せ なけれ ば なら ない。{また、明日 の プレゼン の 準備 も} 必要 だ。
+      - 宿題 を 終わら せ なけれ ば なり ませ ん。{また、明日 の プレゼン の 準備 も} 必要 です。
+      - 宿題 を 終わら せ なきゃ。{また、明日 の プレゼン の 準備 も} し なく ちゃ。
+    english_literally: Homework must be finished. Moreover, tomorrow's presentation preparation also is
+      necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 を 終わら せ なけれ ば なら ない。{それ に}、明日 の プレゼン の 準備 も 必要 だ。
+        english: I have to finish my homework. In addition, I also need to prepare for tomorrow's presentation.
+        hint: 「それに」 simply lists another task. 「又〜も」 highlights that the second task is an additional
+          requirement or burden, emphasizing the additive nature of the responsibilities. We're looking
+          for an additional task.
+    scene: A busy student talking to themselves about their heavy workload.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「しなく ちゃ」 in the casual variant indicates a personal obligation, often associated
+      with a slightly softer, more self-reflective tone that might be heard from a female speaker.
+  - english: It started raining suddenly. Furthermore, the wind also became strong.
+    japanese:
+      - 急 に 雨 が 降り 出し た。{また、風 も} 強く なっ て き た。
+      - 急 に 雨 が 降り 出し まし た。{また、風 も} 強く なっ て き まし た。
+      - 急 に 雨 が 降り 出し て、{また、風 も} 強く なっ て き た。
+    english_literally: Suddenly, rain started falling. Moreover, wind also became strong.
+    competing_grammar:
+      - competing_japanese:
+          - 急 に 雨 が 降り 出し た。{そして}、風 も 強く なっ て き た。
+        english: It started raining suddenly. And then, the wind also became strong.
+        hint: 「そして」 serves as a neutral connector between two events. 「又〜も」 highlights the second event
+          as an additional factor contributing to the situation, often implying a worsening condition.
+          We're looking for an additional worsening factor.
+    scene: Someone is caught in unexpected bad weather and is describing it to a friend over the phone.
+    register: casual
+    setting: cautious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The direct plain form 「強く なっ て き た」 is a straightforward statement, commonly used by male
+      speakers in casual conversation when describing an objective observation of events.
+  - english: This restaurant offers delicious Italian food. They also have excellent Japanese sake.
+    japanese:
+      - この レストラン は 美味しい イタリア 料理 が ある。{また、日本 酒 も} 充実 し て いる。
+      - この レストラン は 美味しい イタリア 料理 が あり ます。{また、日本 酒 も} 充実 し て い ます。
+      - この レストラン は 美味しい イタリア 料理 が ある よ。{また、日本 酒 も} いい 感じ だ し。
+    english_literally: This restaurant has delicious Italian food. Moreover, Japanese sake also is abundant.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は 美味しい イタリア 料理 が ある。{その 上}、日本 酒 も 充実 し て いる。
+        english: This restaurant offers delicious Italian food. On top of that, they also have excellent
+          Japanese sake.
+        hint: 「その上」 suggests the added element is even better or a surprising bonus. 「又〜も」 is a more neutral
+          way to list another good feature. We're looking for an additional feature without strong emphasis.
+    scene: Two friends are casually discussing good places to eat and drink.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual ending 「〜だ し」 and the use of 「いい 感じ」 are common in relaxed, friendly conversation,
+      and are frequently used by female speakers to express a mild opinion or suggestion.
+  - english: He can play the piano. Also, he's skilled at singing.
+    japanese:
+      - 彼 は ピアノ を 弾ける。{また、歌 も} 上手 だ。
+      - 彼 は ピアノ を 弾け ます。{また、歌 も} 上手 です。
+      - 彼 は ピアノ を 弾ける し、{また、歌 も} 上手 だ よ。
+    english_literally: He can play piano. Moreover, singing also he is skilled at.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ピアノ を 弾ける。{それ に}、歌 も 上手 だ。
+        english: He can play the piano. In addition, he's skilled at singing.
+        hint: 「それに」 functions as a simple additive connector. 「又〜も」 more directly emphasizes the additional
+          talent or characteristic possessed by the same person. We're looking for an additional talent.
+    scene: Two colleagues are praising a new hire's various abilities.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: The plain form 「上手 だ」 and the optional 「〜だ よ」 at the end convey a casual, direct tone often
+      used by male speakers when stating facts or sharing observations with peers.
+post_example_writeup: As seen in these examples, 「又〜も」 is quite versatile, allowing you to add information
+  in various contexts, from casual conversations to more formal discussions. Pay attention to whether
+  you are simply adding an item or feature, or if there is an added emphasis or nuance required, which
+  might then suggest using 「〜でも」 or 「〜ても」 as alternatives to a simple 「〜も」. The choice of plain or polite
+  forms also depends entirely on the context and your relationship with the listener.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/又-も

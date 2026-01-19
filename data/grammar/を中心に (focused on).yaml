@@ -1,0 +1,258 @@
+grammar_point: を中心に (focused on)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - ほとんど (almost all or hardly any)
+  - 主に (mainly)
+  - 化する (to make become ~ize)
+meaning: Focused on, centered on or around, mainly, most notably
+pronunciation:
+  katakana: ヲ チュウシンニ
+  romaji: o chuushin ni
+formation:
+  Noun + を中心に: Indicates that something is focused on, centered around, or mainly about the Noun.
+  Noun + を中心とする: Attributive form, describes something that has the Noun as its center or focus.
+  Noun + を中心とした: Past attributive form, describes something that was centered around the Noun.
+  Noun + を中心として: Adverbial form, describes an action performed with the Noun as the core or basis.
+jlpt: N2
+etymology: 「を中心に」 comes from the noun 「中心 (chuushin)」, meaning "center" or "focus", combined with the
+  particle 「を (o)」, indicating the object of focus, and 「に (ni)」, indicating direction or location. So,
+  literally, it means "with the center at". The combination signifies a central pivot point or the primary
+  element around which something operates or from which something extends.
+writeup: 'The expression 「を中心に」 indicates that a particular noun serves as the primary focus, central
+  point, or main subject of an action, group, or situation. The literal translation of 「中心 (chuushin)」
+  is "center" or "core". Combined with the direct object particle 「を (o)」 and the directional particle
+  「に (ni)」, it literally means "with (Noun) as the center." This conveys a sense of something revolving
+  around, being concentrated on, or being primarily defined by the preceding noun. This grammar point
+  can be used in various contexts: *   **Physical or Geographical Center:** Describing a location from
+  which activities spread or are concentrated (e.g., 「東京を中心に」 - mainly in Tokyo). *   **Main Subject or
+  Topic:** Indicating the primary theme of a discussion, study, or project (e.g., 「環境問題を中心に」 - focused
+  on environmental issues). *   **Key Figure or Group:** Highlight the most important person or group
+  within an organization or movement (e.g., 「リーダーを中心に」 - with the leader at the helm). *   **Main Component
+  or Element:** Specifying the main ingredient or core principle of something (e.g., 「野菜を中心に」 - mainly
+  vegetables). Variations of 「を中心に」 include 「を中心とする」 and 「「を中心とした」, which function as attributive phrases
+  to modify a subsequent noun, meaning "(something) centered around (Noun)" or "(something) with (Noun)
+  as its focus". For example, 「環境問題を中心とするプロジェクト」 means "a project centered around environmental issues".
+  The form 「を中心として」 acts adverbially, meaning "with (Noun) as the core" or "taking (Noun) as the basis"
+  for an action. While 「を中心に」 generally uses the particle に, you might occasionally encounter 「とを中心に」.
+  The use of 「と」 can sometimes emphasize a more conclusive or decisive focus, whereas 「に」 often implies
+  a progressive or ongoing centering. However, in many contexts, their meanings are quite similar and
+  interchangeable.'
+false_friends:
+  - term: 主に (omo ni)
+    meaning: Mainly, primarily
+    kind: similar expression
+    nuance: While 「主に」 also means "mainly" or "primarily", it functions as an adverb and is more general.
+      「を中心に」, on the other hand, explicitly implies a 'center' or 'core' around which something revolves
+      or is focused. It highlights the central element itself, rather than just indicating the largest
+      proportion or most frequent occurrence.
+    grammar_point: <strongly-suggest>:主に (mainly)
+  - term: をめぐって (concerning revolving around)
+    meaning: Concerning, revolving around, over (an issue)
+    kind: often confused with
+    nuance: 「を中心に」 denotes something being the core or primary focus, implying that other elements radiate
+      from or are organized around it. In contrast, 「をめぐって」 describes things circulating or revolving
+      around a topic, often suggesting discussion, debate, or various actions surrounding that topic,
+      but not necessarily that the topic is the central, organizing principle.
+    grammar_point: '[Noun]をめぐって (concerning・revolving around)'
+post_false_friends_writeup: When distinguishing 「を中心に」 from similar expressions, remember that 「を中心に」
+  emphasizes a central or core element, suggesting a foundational or organizing principle. This contrasts
+  with 「主に」, which simply denotes a primary or significant part without implying a 'center' from which
+  things radiate. Furthermore, while 「を中心に」 focuses on the core, 「をめぐって」 describes actions or discussions
+  that surround a topic, often implying controversy or widespread activity, rather than a singular focal
+  point.
+examples:
+  - english: The research at this university is progressing, mainly focusing on artificial intelligence.
+    japanese:
+      - この 大学 の 研究 は、人工 知能 {を 中心 に} 進め られ て い ます。
+      - この 大学 の 研究 は、人工 知能 {を 中心 に} 進め られ て いる。
+    english_literally: This university's research, artificial intelligence centered, is progressing.
+    competing_grammar:
+      - competing_japanese:
+          - 人工 知能 に つい て {主に} 進め られ て い ます
+        english: The research is progressing mainly about artificial intelligence.
+        hint: 「を中心に」 implies a core focus or a central element around which something revolves, not just
+          a general topic. We're looking for research that is centered on AI.
+    scene: A university brochure describing their research strengths.
+    register: formal
+    setting: academic
+  - english: In the next meeting, I'd like to have a discussion focused on next month's sales targets.
+    japanese:
+      - 次 の 会議 で は、来月 の 売上 目標 {を 中心 と する} 議論 を し たい と 思い ます。
+      - 次 の 会議 で は、来月 の 売上 目標 {を 中心 と する} 議論 を し たい です。
+      - 次 の 会議 で は、来月 の 売上 目標 {を 中心 と する} 議論 を し たい と 思う。
+    english_literally: Next meeting, next month's sales targets as a center making discussion I want to
+      do.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 の 売上 目標 {に つい て} 議論 を し たい と 思い ます
+        english: I want to have a discussion about next month's sales targets.
+        hint: 「を中心とする」 emphasizes that the sales targets are the central theme of the discussion, not
+          just something discussed. We're looking for a discussion that revolves around sales targets.
+    scene: A team leader setting the agenda for an upcoming business meeting.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: Our lives mostly revolve around our children.
+    japanese:
+      - 私 たち の 生活 は、ほとんど 子供 たち {を 中心 に} 回っ て い ます。
+      - 私 たち の 生活 は、ほとんど 子供 たち {を 中心 に} 回っ て いる。
+    english_literally: Our lives, mostly children as a center, are revolving.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の 生活 は、ほとんど 子供 たち {に つい て} 回っ て い ます
+        english: Our lives mostly revolve about our children.
+        hint: 「を中心に」 highlights children as the central point of their existence, not just a topic. We're
+          looking for lives that center around children.
+    scene: A parent reflecting on their family life to a friend.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The speaker, a mother, uses 「私たち」 to refer to her family, and 「子供たちを中心に回っています」 naturally describes
+      the life of parents whose daily activities and decisions are driven by their children's needs and
+      schedules.
+  - english: The new product's design became one that prioritized user-friendliness.
+    japanese:
+      - 新 製品 の デザイン は、ユーザー の 使い やす さ {を 中心 と し た} もの に なり まし た。
+      - 新 製品 の デザイン は、ユーザー の 使い やす さ {を 中心 と し た} もの に なっ た。
+    english_literally: New product's design, user's ease of use as a center made thing became.
+    competing_grammar:
+      - competing_japanese:
+          - ユーザー の 使い やす さ {に 基づい た} デザイン に なり まし た
+        english: The new product's design became one based on user-friendliness.
+        hint: 「を中心とした」 implies user-friendliness was the core principle, whereas 「に基づいた」 means it was
+          based on it. We're looking for a design that is centered on user-friendliness.
+    scene: A product developer explaining the philosophy behind a new gadget's design.
+    register: semi-formal
+    setting: informative
+  - english: This painting is depicted with old Japanese landscapes as its central theme.
+    japanese:
+      - この 絵画 は、昔 の 日本 の 風景 {を 中心 と し て} 描か れ て い ます。
+      - この 絵画 は、昔 の 日本 の 風景 {を 中心 と し て} 描か れ て いる。
+    english_literally: This painting, old Japan's scenery as a center making, is depicted.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の 日本 の 風景 {に つい て} 描か れ て い ます
+        english: This painting is depicted about old Japanese landscapes.
+        hint: 「を中心として」 indicates old Japanese landscapes are the dominant and foundational element, not
+          just a subject. We're looking for a painting that has old Japanese landscapes as its central
+          theme.
+    scene: A museum guide describing a significant artwork.
+    register: formal
+    setting: academic
+  - english: Concerts are held in this hall mainly on weekends.
+    japanese:
+      - この ホール で は、週末 {を 中心 に} コンサート が 開か れ て い ます。
+      - この ホール で は、週末 {を 中心 に} コンサート が 開か れ て いる。
+    english_literally: This hall in, weekends as a center, concerts are being held.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 に {よく} コンサート が 開か れ て い ます
+        english: Concerts are often held on weekends.
+        hint: 「を中心に」 emphasizes weekends as the primary period for concerts, not just a frequent occurrence.
+          We're looking for concerts that are centered on weekends.
+    scene: A venue manager explaining their concert schedule.
+    register: semi-formal
+    setting: informative
+  - english: He collects old manga, mainly focusing on them as a hobby.
+    japanese:
+      - 彼 は 趣味 で、古い 漫画 {を 中心 に} 集め て い ます。
+      - 彼 は 趣味 で、古い 漫画 {を 中心 に} 集め て いる。
+      - 彼 は 趣味 で、古い 漫画 {を 中心 に} 集め とる。
+    english_literally: He, hobby for, old manga as a center, is collecting.
+    competing_grammar:
+      - competing_japanese:
+          - 古い 漫画 を {主に} 集め て い ます
+        english: He mainly collects old manga.
+        hint: 「を中心に」 implies old manga are the core of his collection, not just the majority. We're looking
+          for someone whose collection is centered on old manga.
+    scene: Talking about a friend's collecting habits.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: A male speaker might use 「彼 は 趣味 で」 to informally discuss a male friend's passion. The construction
+      「を中心に集めています」 highlights a serious, focused collecting habit, implying old manga aren't just 'mostly'
+      what he collects, but the core around which his entire collection is built.
+  - english: Disaster relief efforts were carried out, primarily focusing on the children in the affected
+      areas.
+    japanese:
+      - 災害 支援 活動 は、被災 地 の 子供 たち {を 中心 に} 行わ れ まし た。
+      - 災害 支援 活動 は、被災 地 の 子供 たち {を 中心 に} 行わ れ た。
+    english_literally: Disaster support activities, affected area's children as a center, were conducted.
+    competing_grammar:
+      - competing_japanese:
+          - 被災 地 の 子供 たち {へ の} 支援 活動 が 行わ れ まし た
+        english: Support activities for the children in the affected areas were carried out.
+        hint: 「を中心に」 indicates children were the primary beneficiaries and focus of efforts, not just
+          one group helped. We're looking for relief efforts that are centered on children.
+    scene: A news report on humanitarian aid after a disaster.
+    register: formal
+    setting: informative
+  - english: For her health, she usually tries to eat a diet mainly composed of vegetables.
+    japanese:
+      - 彼女 は 普段、健康 の ため に 野菜 {を 中心 と} する 食事 を 心がけ て い ます。
+      - 彼女 は 普段、健康 の ため に 野菜 {を 中心 と} する 食事 を 心がけ て いる。
+    english_literally: She, usually, health for, vegetables as a center making meal, is trying to do.
+    competing_grammar:
+      - competing_japanese:
+          - 野菜 を {よく} 食べる 食事 を 心がけ て い ます
+        english: She tries to eat a meal where she eats a lot of vegetables.
+        hint: 「を中心とする」 means vegetables form the core of her diet, not just that she eats them frequently.
+          We're looking for a diet that is centered on vegetables.
+    scene: Someone describing a friend's dietary habits.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    nuance: The speaker, a female, might use 「彼女 は 普段」 to describe another female's routine. The phrase
+      「野菜を中心とする食事」 highlights a dietary choice where vegetables are not just present, but are the main
+      component of her meals, indicating a health-conscious lifestyle often associated with women's health
+      trends.
+  - english: This restaurant provides seasonal dishes, using local ingredients as its core.
+    japanese:
+      - この レストラン は 地元 の 食材 {を 中心 と し て}、季節 の 料理 を 提供 し て い ます。
+      - この レストラン は 地元 の 食材 {を 中心 と し て}、季節 の 料理 を 提供 し て いる。
+    english_literally: This restaurant, local ingredients as a center making, seasonal dishes is providing.
+    competing_grammar:
+      - competing_japanese:
+          - 地元 の 食材 {を 使っ て} 季節 の 料理 を 提供 し て い ます
+        english: This restaurant provides seasonal dishes using local ingredients.
+        hint: 「を中心として」 implies local ingredients are the defining philosophy and primary source, not just
+          ingredients used. We're looking for a restaurant that centers its dishes on local ingredients.
+    scene: A food critic reviewing a farm-to-table restaurant.
+    register: formal
+    setting: informative
+  - english: Recent young people obtain information mainly through smartphones.
+    japanese:
+      - 最近 の 若者 は、スマート フォン {を 中心 に} 情報 を 得 て い ます。
+      - 最近 の 若者 は、スマート フォン {を 中心 に} 情報 を 得 て いる。
+    english_literally: Recent young people, smartphones as a center, information are obtaining.
+    competing_grammar:
+      - competing_japanese:
+          - スマート フォン {で} 情報 を 得 て い ます
+        english: They obtain information with smartphones.
+        hint: 「を中心に」 highlights smartphones as the central tool for information acquisition, not just
+          one method. We're looking for young people who center their information gathering around smartphones.
+    scene: A sociologist discussing modern information consumption habits.
+    register: formal
+    setting: informative
+    speaker_age: older
+    nuance: An older speaker might use 「最近の若者は」 to generalize about younger generations. The use of 「スマートフォンを中心に」
+      highlights how smartphones have become the central tool for information acquisition for this demographic,
+      reflecting a generational shift.
+  - english: This event was planned with the revitalization of the local community as its main focus.
+    japanese:
+      - この イベント は、地域 の 活性 化 {を 中心 に} 計画 さ れ まし た。
+      - この イベント は、地域 の 活性 化 {を 中心 に} 計画 さ れ た。
+    english_literally: This event, region's revitalization as a center, was planned.
+    competing_grammar:
+      - competing_japanese:
+          - 地域 の 活性 化 {の ため に} 計画 さ れ まし た
+        english: This event was planned for the revitalization of the local community.
+        hint: 「を中心に」 explicitly states community revitalization was the core purpose, not just a goal.
+          We're looking for an event planned with community revitalization as its main focus.
+    scene: A community organizer explaining the purpose of a local festival.
+    register: semi-formal
+    setting: informative
+post_example_writeup: The usage of 「を中心に」 demonstrates a flexible approach to highlighting the central
+  element of various situations. Whether referring to a physical location, a key subject, or a dominant
+  group, it consistently conveys the idea of something being paramount or serving as the core. The slight
+  variations like 「を中心とする/した/として」 allow for grammatical adaptation depending on whether the phrase modifies
+  a noun or functions adverbially, always reinforcing the central theme.

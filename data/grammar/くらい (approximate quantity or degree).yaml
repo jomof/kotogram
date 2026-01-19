@@ -1,0 +1,460 @@
+grammar_point: くらい (approximate quantity or degree)
+learn_before:
+  - い-Adjective[み] (abstract quality)
+meaning: About, approximately
+meaning_warning: くらい and ぐらい may be used 100% interchangeably, but ぐらい is far more common in speech.
+pronunciation:
+  katakana: クライ
+  romaji: kurai
+formation:
+  '[Number] + くらい': Indicates an approximate quantity or degree.
+  '[Counter] + くらい': Indicates an approximate amount of something.
+  '[Question Word] + くらい': Used to ask about the extent or degree of something.
+jlpt: N5
+etymology: くらい comes from the kanji 「位」 (i.e., い), which means 'rank' or 'grade'. This suggests that くらい
+  originally indicated an estimated position on a scale.
+writeup: |-
+  The particle 「くらい」, often interchangeable with 「ぐらい」 (which is more common in spoken language), primarily means "about" or "approximately." Its origin lies in the kanji 「位」, signifying "rank" or "grade."
+
+  「くらい」 is typically used after numbers or counters to indicate an approximate quantity or amount. It can also follow question words like 「どの」 to inquire about the extent or degree of something. For instance, 「何時 {ぐらい} に 来ますか」 means, "About what time will you come?"
+
+  **Important Considerations**:
+
+  *   While 「くらい」 and 「ころ」 can be interchangeable when referring to a specific time (e.g., 5時くらい vs 5時ごろ), 「ころ」 is generally preferred when referring to broader periods or vague points in time (e.g., 昔のころ 'in olden times'), whereas 「くらい」 implies an extent or degree, making it more suitable for specific, quantifiable approximations.
+  Therefore, they are not always interchangeable.
+  *   「くらい」 and 「ぐらい」 are virtually interchangeable, but 「ぐらい」 is more commonly used in speech.
+false_friends:
+  - term: くらい (to the extent)
+    meaning: To the extent that, so...that, about the only thing that...
+    kind: similar expression
+    nuance: While both express degree, 「くらい」 (about) indicates approximation, while 「くらい」 (to the extent
+      that) indicates a limit or boundary.
+    grammar_point: くらい (to the extent)
+  - term: ほど
+    meaning: The more, about, to the extent that, so much... that
+    kind: similar expression
+    nuance: 「ほど」 can also mean "about" but often implies a comparison or degree that 「ほど」 doesn't always
+      carry. 「ほど」 can also express "the more...the more", unlike 「くらい」.
+    grammar_point: ほど (extent・approximation)
+  - term: ごろ
+    meaning: Around, about
+    kind: similar expression
+    nuance: 「ごろ」 is primarily used for approximate times, while 「くらい」 is more versatile and can be used
+      for quantities, amounts, or time.
+    grammar_point: ごろ (approximate time)
+  - term: は〜くらいです
+    meaning: About the only, to the extent that
+    kind: similar expression
+    nuance: This construction emphasizes that something is minimal or limited to a certain extent, whereas
+      「くらい」 on its own simply indicates approximation.
+    grammar_point: は〜くらいです (about the only; to the extent)
+  - term: 約 (yaku)
+    meaning: Approximately, about
+    kind: similar expression
+    nuance: 「約」 is an adverb that directly precedes the number or quantity, whereas 「くらい」 is a particle
+      that follows the quantity or number.
+    grammar_point: <strongly-suggest>:約 (yaku)
+  - term: およそ (oyoso)
+    meaning: Roughly, approximately
+    kind: similar expression
+    nuance: Similar to 「約」, 「およそ」 is an adverb. It tends to be used for slightly larger, less precise
+      approximations than 「約」, and always precedes the quantity, unlike the particle 「くらい」.
+    grammar_point: およそ・おおよそ (approximate・generally・not at all)
+post_false_friends_writeup: To avoid confusion, remember that 「ごろ」 is best for approximate *times*, while
+  「くらい」 is more broadly applicable for amounts, quantities, and even time. When you want to express a
+  limit or minimal extent, consider using the 「は〜くらいです」 construction instead of just 「くらい」 alone. Additionally,
+  「ほど」 is a more versatile particle that includes some of the uses of 「くらい」 while also adding comparative
+  or extent-based nuances.
+examples:
+  - english: This bag is about 5,000 yen.
+    japanese:
+      - この カバン は 五千 円 {くらい} です。
+      - この カバン は 五千 円 {ぐらい} です。
+      - この カバン、五千 円 {くらい} だ よ。
+      - この カバン、五千 円 {ぐらい} だ よ。
+      - この カバン は 五千 円 {くらい} だ と 思う。
+      - この カバン は 五千 円 {ぐらい} か な。
+    english_literally: This bag, about 5,000 yen, is.
+    competing_grammar:
+      - competing_japanese:
+          - この カバン は 五千 円 です。
+        english: This indicates an exact price. We are looking for a sentence that suggests an approximation.
+        hint: This indicates an exact price. We are looking for a sentence that suggests an approximation.
+      - competing_japanese:
+          - この カバン は {約} 五千 円 です。
+        english: This bag is approximately 5,000 yen.
+        hint: 「約」 is an adverb meaning 'approximately'. We are looking for a particle that follows quantities
+          or amounts.
+      - competing_japanese:
+          - この カバン は {およそ} 五千 円 です。
+        english: This bag is roughly 5,000 yen.
+        hint: 「およそ」 is an adverb meaning 'roughly'. We are looking for a particle that follows quantities
+          or amounts.
+      - competing_japanese:
+          - この カバン は 五千 円 {ほど} です。
+        english: This bag is about 5,000 yen (comparatively).
+        hint: While 「ほど」 can also mean 'about', it often implies a comparative sense or a degree that
+          might not be present with a simple approximation. We are looking for a straightforward approximation.
+      - competing_japanese:
+          - この カバン は 五千 円 {は くらい} する でしょう。
+        english: This bag probably costs at least about 5,00_0 yen.
+        hint: Adding 「は」 before 「くらい」 here implies a minimum amount or 'at least' value, suggesting the
+          price is high or unexpectedly low. We are looking for a general approximation of the price.
+    scene: A customer is browsing in a store and asks a sales associate about the general price range
+      of a bag, not needing the exact amount down to the last yen.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「くらい」 or 「ぐらい」 after 「五千 円」 indicates that the price is an approximation, not a
+      precise figure. This is common when discussing prices where slight variations are expected or exact
+      figures are not strictly necessary. The polite 「です」 maintains a standard and respectful tone. The
+      casual variations omit 「です」 and 「は」, making the speech more direct and informal, common among friends
+      or close acquaintances. Phrases like 「だ と 思う」 or 「か な」 add a sense of uncertainty or personal opinion.
+  - english: I watch TV for about two hours every day.
+    japanese:
+      - 毎日、二 時間 {くらい} テレビ を 見 ます。
+      - 毎日、二 時間 {ぐらい} テレビ を 見 ます。
+      - 毎日、二 時間 {くらい} テレビ 見 てる よ。
+      - 毎日、二 時間 {ぐらい} テレビ 見 てる わ。
+      - 毎日、二 時間 {くらい} テレビ を 見る ん だ。
+      - 毎日、二 時間 {ぐらい} テレビ を 見る ん だ。
+    english_literally: Every day, about two hours, TV I watch.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、二 時間 テレビ を 見 ます。
+        english: This states a precise duration. We are looking for a sentence that indicates an approximate
+          duration.
+        hint: This states a precise duration. We are looking for a sentence that indicates an approximate
+          duration.
+      - competing_japanese:
+          - 毎日、二 時間 {ごろ} テレビ を 見 ます。
+        english: Every day, around two o'clock, I watch TV.
+        hint: 「ごろ」 is specifically for approximating points in time, not durations or lengths of time.
+          We are looking for a particle that approximates the length of time.
+      - competing_japanese:
+          - 毎日、{約} 二 時間 テレビ を 見 ます。
+        english: Every day, I watch TV for approximately two hours.
+        hint: 「約」 is an adverb meaning 'approximately'. We are looking for a particle that follows the
+          quantity or amount.
+      - competing_japanese:
+          - 毎日、{およそ} 二 時間 テレビ を 見 ます。
+        english: Every day, I watch TV for roughly two hours.
+        hint: 「およそ」 is an adverb meaning 'roughly'. We are looking for a particle that follows the quantity
+          or amount.
+      - competing_japanese:
+          - 毎日、二 時間 {ほど} テレビ を 見 ます。
+        english: Every day, I watch TV for about two hours (to that extent).
+        hint: 「ほど」 can indicate 'to that extent' or 'about', often implying a comparison or specific degree.
+          We are looking for a simple approximation of duration.
+    scene: A man is casually discussing his daily routine with a friend, providing an estimate for how
+      much time he spends on a hobby.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: Using 「くらい」 or 「ぐらい」 after 「二 時間」 suggests that the time spent watching TV is an approximate
+      duration, not a precisely timed activity. This relaxed tone is common when discussing daily habits
+      among friends. The polite 「見ます」 keeps the language appropriate for a casual conversation. The casual
+      versions 「見てる よ」 or 「見てる わ」 use the progressive form to imply an ongoing habit, with 「よ」 adding
+      emphasis for the speaker and 「わ」 often used by female speakers for a softer assertion. 「見る ん だ」
+      conveys an explanatory tone.
+  - english: About how many books do you read per week?
+    japanese:
+      - 一 週間 に どれ {くらい} 本 を 読み ます か。
+      - 一 週間 に どれ {ぐらい} 本 を 読み ます か。
+      - 一 週間 に どれ {くらい} 本 読む の？
+      - 一 週間 に どれ {ぐらい} 本 読む の？
+      - 一 週間 に どれ {くらい} 本 読む ん だ？
+      - 一 週間 に どれ {ぐらい} 本 読む ん だ？
+    english_literally: One week, how much, books, read?
+    competing_grammar:
+      - competing_japanese:
+          - 一 週間 に 何 冊 本 を 読み ます か。
+        english: How many books do you read per week?
+        hint: This asks for an exact number of books. We are looking for a sentence that asks about a
+          general sense of quantity or extent.
+      - competing_japanese:
+          - 一 週間 に {どれ ほど} 本 を 読み ます か。
+        english: To what extent/how many books do you read per week?
+        hint: 「どれほど」 often asks about the degree or extent, sometimes implying a comparison. We are looking
+          for a particle that asks for a general approximation of quantity.
+    scene: A student asks a classmate about their reading habits, wanting a general idea rather than an
+      exact count for a casual conversation.
+    register: casual
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The question word 「どれくらい」 or 「どれぐらい」 combined with 「くらい」 asks for an approximate quantity
+      or extent, rather than a precise number. This is a common way to inquire about habits or general
+      amounts in a casual setting. The use of 「読む の？」 (often associated with female speakers) or 「読む ん
+      だ？」 (common for male speakers) at the end of the informal sentence softens the inquiry and indicates
+      a conversational tone appropriate between classmates.
+  - english: My younger brother is about eight years old.
+    japanese:
+      - 私 の 弟 は 八 歳 {くらい} です。
+      - 私 の 弟 は 八 歳 {ぐらい} です。
+      - うち の 弟、八 歳 {くらい} だ よ。
+      - うち の 弟、八 歳 {ぐらい} だ よ。
+      - うち の 弟 は 八 歳 {くらい} か な。
+      - うち の 弟 は 八 歳 {ぐらい} だ と 思う よ。
+    english_literally: My younger brother, about eight years old, is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 弟 は 八 歳 です。
+        english: This states a precise age. We are looking for a sentence that suggests an estimated age.
+        hint: This states a precise age. We are looking for a sentence that suggests an estimated age.
+      - competing_japanese:
+          - 私 の 弟 は {約} 八 歳 です。
+        english: My younger brother is approximately eight years old.
+        hint: 「約」 is an adverb that precedes the number or quantity. We are looking for a particle that
+          follows the quantity or number.
+      - competing_japanese:
+          - 私 の 弟 は {およそ} 八 歳 です。
+        english: My younger brother is roughly eight years old.
+        hint: 「およそ」 is an adverb meaning 'roughly'. We are looking for a particle that follows the quantity
+          or amount.
+      - competing_japanese:
+          - 私 の 弟 は 八 歳 {ほど} です。
+        english: My younger brother is about eight years old (to that extent).
+        hint: 「ほど」 can indicate 'to that extent' or 'about', but can imply a comparison or specific degree.
+          We are looking for a simple approximation.
+    scene: A person is introducing their younger sibling to someone new and estimates their age because
+      they don't know the exact birthday or want to give a general idea.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「くらい」 or 「ぐらい」 after 「八 歳」 indicates that the age is an estimation. This is useful
+      when the exact age is not known or when conveying a general idea. The polite 「です」 makes this suitable
+      for a standard introduction. The casual forms using 「うち の 弟」 and 「だ よ」 are more intimate and common
+      in family discussions, where the male speaker is sharing information in a friendly, informal manner.
+      Adding 「か な」 expresses uncertainty, while 「だ と 思う よ」 presents it as a personal thought.
+  - english: I go on a trip about once a year.
+    japanese:
+      - 一 年 に 一 回 {くらい} 旅行 に 行き ます。
+      - 一 年 に 一 回 {ぐらい} 旅行 に 行き ます。
+      - 一 年 に 一 回 {くらい} 旅行 行く よ。
+      - 一 年 に 一 回 {ぐらい} 旅行 行く よ。
+      - 一 年 に 一 回 {くらい} 旅行 に 行く ん だ よ ね。
+      - 一 年 に 一 回 {ぐらい} 旅行 に 行く ん だ よ ね。
+    english_literally: One year, one time, about, trip to go.
+    competing_grammar:
+      - competing_japanese:
+          - 一 年 に 一 回 旅行 に 行き ます。
+        english: I go on a trip once a year.
+        hint: This states a precise frequency. We are looking for a sentence that expresses an approximate
+          frequency.
+      - competing_japanese:
+          - 一 年 に {約} 一 回 旅行 に 行き ます。
+        english: I go on a trip approximately once a year.
+        hint: 「約」 is an adverb that precedes the quantity or frequency. We are looking for a particle
+          that follows the quantity or frequency.
+      - competing_japanese:
+          - 一 年 に {およそ} 一 回 旅行 に 行き ます。
+        english: I go on a trip roughly once a year.
+        hint: 「およそ」 is an adverb meaning 'roughly'. We are looking for a particle that follows the quantity
+          or amount.
+      - competing_japanese:
+          - 一 年 に 一 回 {ほど} 旅行 に 行き ます。
+        english: I go on a trip about once a year (to that extent).
+        hint: 「ほど」 can indicate 'to that extent' or 'about', sometimes implying a comparison or specific
+          degree. We are looking for a simple approximation of frequency.
+    scene: A woman is discussing her hobbies with a new acquaintance, explaining her travel frequency,
+      but understanding that it's not always precisely once a year.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「一 回 くらい」 or 「一 回 ぐらい」 indicates that the frequency of trips is an approximation, not a rigid
+      schedule. This phrasing is common when describing habits that might have slight variations. The
+      polite 「行きます」 maintains a respectful tone suitable for conversation with an acquaintance. The casual
+      versions like 「旅行 行く よ」 use the plain form with 「よ」 for a direct, affirmative statement. 「行く ん だ
+      よ ね」 adds an explanatory nuance and seeks gentle agreement or confirmation, common in informal conversation.
+  - english: This room is about ten tatami mats in size.
+    japanese:
+      - この 部屋 は 十 畳 {くらい} あり ます。
+      - この 部屋 は 十 畳 {ぐらい} あり ます。
+      - この 部屋、十 畳 {くらい} だ よ。
+      - この 部屋、十 畳 {ぐらい} だ よ。
+      - この 部屋 は 十 畳 {くらい} だ と 思う ん だ。
+      - この 部屋 は 十 畳 {ぐらい} か な。
+    english_literally: This room, ten tatami mats, about, exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 十 畳 あり ます。
+        english: This room is ten tatami mats in size.
+        hint: This states a precise size. We are looking for a sentence that indicates an approximate
+          size.
+      - competing_japanese:
+          - この 部屋 は {約} 十 畳 あり ます。
+        english: This room is approximately ten tatami mats in size.
+        hint: 「約」 is an adverb that precedes the number or quantity. We are looking for a particle that
+          follows the quantity or number.
+      - competing_japanese:
+          - この 部屋 は {およそ} 十 畳 あり ます。
+        english: This room is roughly ten tatami mats in size.
+        hint: 「およそ」 is an adverb meaning 'roughly'. We are looking for a particle that follows the quantity
+          or amount.
+      - competing_japanese:
+          - この 部屋 は 十 畳 {ほど} あり ます。
+        english: This room is about ten tatami mats in size (to that extent).
+        hint: 「ほど」 can indicate 'to that extent' or 'about', but can imply a comparison or specific degree.
+          We are looking for a simple approximation.
+    scene: A real estate agent is showing an apartment to a client, describing the room size in general
+      terms without needing an exact measurement.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: Using 「くらい」 or 「ぐらい」 with 「十 畳」 (ten tatami mats) provides an approximate size, which is common
+      in real estate or casual descriptions of space when an exact measurement isn't critical or easily
+      known. The polite 「あり ます」 maintains a professional yet informative tone. The casual forms 「十 畳 くらい
+      だ よ」 are more direct and informal, suitable for a male speaker explaining something casually. Expressions
+      like 「だ と 思う ん だ」 or 「か な」 add a layer of personal estimation or slight uncertainty.
+  - english: How far is it from here to the station?
+    japanese:
+      - ここ から 駅 まで どれ {くらい} です か。
+      - ここ から 駅 まで どれ {ぐらい} です か。
+      - ここ から 駅 まで どれ {くらい} な の？
+      - ここ から 駅 まで どれ {ぐらい} な の？
+    english_literally: From here to station, how much, is it?
+    competing_grammar:
+      - competing_japanese:
+          - ここ から 駅 まで 何 キロ です か。
+        english: How many kilometers is it from here to the station?
+        hint: This asks for a precise number of kilometers. We are looking for a sentence that asks about
+          an approximate distance or general extent.
+      - competing_japanese:
+          - ここ から 駅 まで {どれ ほど} です か。
+        english: To what extent/how far is it from here to the station?
+        hint: 「どれほど」 often asks about the degree or extent, sometimes implying a comparison. We are looking
+          for a particle that asks for a general approximation of distance.
+    scene: Someone is asking for directions and wants to know the general distance to the station.
+    register: teineigo (polite)
+    setting: interrogative
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「どれくらい」 or 「どれぐらい」 followed by 「ですか」 is a common polite way to ask about an approximate quantity
+      or distance, allowing for a general answer rather than a precise measurement. The male speaker's
+      polite tone is appropriate when asking for information.
+  - english: About 100 people participated in the event.
+    japanese:
+      - イベント に 百 人 {くらい} 参加 し まし た。
+      - イベント に 百 人 {ぐらい} 参加 し まし た。
+      - イベント に 百 人 {くらい} 来 た よ。
+      - イベント に 百 人 {ぐらい} 来 た よ。
+    english_literally: To event, about 100 people, participated.
+    competing_grammar:
+      - competing_japanese:
+          - イベント に 百 人 参加 し まし た。
+        english: 100 people participated in the event.
+        hint: This states a precise number. We are looking for a sentence that indicates an approximate
+          number of participants.
+      - competing_japanese:
+          - イベント に {約} 百 人 参加 し まし た。
+        english: Approximately 100 people participated in the event.
+        hint: 「約」 is an adverb that precedes the number. We are looking for a particle that follows the
+          number or quantity.
+    scene: A reporter is giving a general attendance update for a public event, emphasizing the approximate
+      number rather than an exact count.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「くらい」 or 「ぐらい」 after 「百 人」 indicates that the number of participants is an estimation,
+      not an exact figure. This is often used in public announcements or reports where precise figures
+      are either unknown or unnecessary. The polite 「参加 し まし た」 maintains a formal and informative tone
+      suitable for a female speaker addressing a group. Casual variants like 「来 た よ」 are for informal
+      conversation, common when relaying information to friends.
+  - english: It takes about 30 minutes to get there.
+    japanese:
+      - そこ まで 三十 分 {くらい} かかり ます。
+      - そこ まで 三十 分 {ぐらい} かかり ます。
+      - そこ まで 三十 分 {くらい} で 着く よ。
+      - そこ まで 三十 分 {ぐらい} で 着く よ。
+      - そこ まで 三十 分 {くらい} かかる ん だ。
+      - そこ まで 三十 分 {ぐらい} かかる ん だ。
+    english_literally: To there, about 30 minutes, takes.
+    competing_grammar:
+      - competing_japanese:
+          - そこ まで 三十 分 かかり ます。
+        english: It takes 30 minutes to get there.
+        hint: This states a precise duration. We are looking for a sentence that indicates an approximate
+          duration.
+      - competing_japanese:
+          - そこ まで {約} 三十 分 かかり ます。
+        english: It takes approximately 30 minutes to get there.
+        hint: 「約」 is an adverb that precedes the number or quantity. We are looking for a particle that
+          follows the quantity or number.
+    scene: Giving someone directions, providing an estimated travel time rather than an exact calculation.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using 「くらい」 or 「ぐらい」 with 「三十 分」 conveys that the travel time is an approximation, which is
+      natural when giving directions as exact times can vary. The polite 「かかり ます」 is appropriate for instructional
+      contexts. The casual alternatives using 「で 着く よ」 or 「かかる ん だ」 are suitable for friendly advice,
+      with 「よ」 adding emphasis and 「ん だ」 providing an explanatory tone.
+  - english: It's probably about 1,000 yen.
+    japanese:
+      - 千 円 {くらい} です。
+      - 千 円 {ぐらい} です。
+      - 千 円 {くらい} だ と 思う よ。
+      - 千 円 {ぐらい} だ と 思う よ。
+      - 千 円 {くらい} だろ。
+      - 千 円 {ぐらい} だろ。
+    english_literally: About 1,000 yen, is.
+    competing_grammar:
+      - competing_japanese:
+          - 千 円 です。
+        english: It is 1,000 yen.
+        hint: This states a precise amount. We are looking for a sentence that indicates an approximate
+          cost.
+      - competing_japanese:
+          - '{約} 千 円 です。'
+        english: It is approximately 1,000 yen.
+        hint: 「約」 is an adverb that precedes the number. We are looking for a particle that follows the
+          number or quantity.
+    scene: A friend asks about the cost of a small item, and the speaker gives an estimate based on their
+      general knowledge.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The usage of 「くらい」 or 「ぐらい」 here indicates a casual estimation of cost, often used when one
+      isn't entirely sure or doesn't need to be precise. 「だ と 思う よ」 adds a personal opinion, and 「だろ」
+      is a very casual, masculine way of expressing certainty or making a guess, often seeking agreement
+      or stating a strong opinion.
+  - english: About how much time is left until the deadline?
+    japanese:
+      - 締め切り まで どれ {くらい} 時間 が 残っ て い ます か。
+      - 締め切り まで どれ {ぐらい} 時間 が 残っ て い ます か。
+      - 締め切り まで どれ {くらい} 時間 残っ てる の？
+      - 締め切り まで どれ {ぐらい} 時間 残っ てる の？
+    english_literally: Deadline until, how much, time is remaining?
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り まで {どれ だけ} 時間 が 残っ て い ます か。
+        english: How much time is left until the deadline?
+        hint: While 「どれだけ」 asks about quantity, 「どれくらい」 specifically asks for an approximation. We are
+          looking for an approximate quantity of time.
+      - competing_japanese:
+          - 締め切り まで あと 何 時間 残っ て い ます か。
+        english: How many more hours are left until the deadline?
+        hint: This asks for a specific number of hours. We are looking for a general estimate of remaining
+          time.
+    scene: A project manager asks a team member about the remaining time for a task, expecting a general
+      estimate rather than an exact minute count.
+    register: formal
+    setting: interrogative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「どれくらい」 or 「どれぐらい」 allows for an approximate answer, suitable for a formal work
+      setting where precise timings might not always be available or necessary. The polite 「ます」 form is
+      appropriate for a project manager addressing their team.
+post_example_writeup: The versatility of 「くらい」/「ぐらい」 allows for natural expression of approximations across
+  various contexts, from prices and durations to ages and sizes. Remember that while politeness levels
+  can change the verb endings and particle usage, the core meaning of approximation conveyed by 「くらい」/「ぐらい」
+  remains consistent. The use of 「ぐらい」 is generally preferred in spoken Japanese for its slightly softer
+  sound.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/くらい1

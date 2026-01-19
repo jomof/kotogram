@@ -1,0 +1,275 @@
+grammar_point: だって (even・also)
+learn_before:
+  - だって (because・since)
+meaning: even; too; also (expressing emphasis or inclusion)
+pronunciation:
+  katakana: ダッテ
+  romaji: datte
+formation:
+  Noun + だって: Indicates that the noun is included or emphasized, meaning 'even that noun' or 'that noun
+    too'.
+  Plain Verb + だって: Indicates that the action is included or emphasized, meaning 'even doing that' or
+    'doing that too'.
+  Plain い-Adjective + だって: Indicates that the adjective is included or emphasized, meaning 'even that
+    adjective' or 'that adjective too'.
+  Plain な-Adjective + だって: 'Indicates that the adjective is included or emphasized, meaning ''even that
+    adjective'' or ''that adjective too''. (Note: The な particle is dropped when だって follows a な-adjective
+    in plain form, e.g., 暇だ + だって becomes 暇だって.)'
+jlpt: N3
+etymology: The word だって is thought to be a contraction of 「と」 (quotative particle) + 「言って」 (itte, the
+  te-form of 言う 'to say'). Originally, it might have meant 'even if one says' or 'even if it is said that'.
+  This etymological root explains its function of including or emphasizing something by bringing it into
+  focus as if it were a statement being made or considered. Over time, it developed its usage as a particle
+  signifying 'even' or 'also'.
+writeup: |-
+  The particle だって is a versatile and common expression in casual Japanese conversation, primarily used to add emphasis, inclusion, or a sense of 'even' or 'too'. It signals that the preceding word or phrase is being brought into consideration, often with an element of surprise or an unexpected twist. Think of it as saying, 'You know what? *Even* this!' or 'And *this*, too!'
+
+  When だって follows a noun, it emphasizes that noun as being part of a group or affected by a situation, similar to 'even a child' or 'even me'. For example, if you're listing things you don't like, and someone suggests something you particularly dislike, you might say, 「ビールだって嫌い！」 (I hate beer, *too*!) to show that even that item is included.
+
+  Following verbs and adjectives in their plain forms, だって adds the same emphatic or inclusive nuance. It can highlight an action or state as being 'even' possible, 'even' true, or 'also' happening. For instance, 「そんなこと、僕だって知らないよ。」 (Even *I* don't know that kind of thing.) Here, it expresses a mild protest or assertion, as if to say, 'Don't assume I know everything; even *I* am unaware.'
+
+  だ-adjectives typically drop the だ before だって, becoming, for example, 暇だって (even if I'm free). This reflects the casual, colloquial nature of だって, where some grammatical connections are simplified.
+
+  While だって always conveys a sense of emphasis or inclusion, the specific nuance can shift depending on context and intonation. It can express mild surprise, a gentle protest, a straightforward addition, or even resignation.
+false_friends:
+  - term: だって
+    meaning: because; but; I mean (for explanation or protest)
+    kind: similar expression
+    nuance: This だって introduces a reason or an explanation, often with a defensive or protesting tone.
+      It's like saying 'I mean, it's because...' or 'That's not fair, because...'. It provides justification
+      for a previous statement or action.
+    grammar_point: <suggest>:だって (because・but)
+  - term: さえ
+    meaning: even; if only; just
+    kind: similar expression
+    nuance: さえ emphasizes an extreme or minimal case, often suggesting that if even that minimal condition
+      is met, then something else will follow easily. It often has a sense of 'even just this much' or
+      'only this' and can imply a surprising or unlikely inclusion.
+    grammar_point: さえ (even・if only)
+  - term: も
+    meaning: also; too; both; either
+    kind: similar expression
+    nuance: も is a neutral particle simply indicating inclusion or addition, without the strong emphasis,
+      surprise, or mild protest that だって can carry. While だって can often replace も for added emphasis,
+      も cannot always replace だって when the nuance of 'even' or 'surprisingly' is present.
+    grammar_point: も (addition or emphasis particle)
+post_false_friends_writeup: When differentiating between the two だって forms, pay close attention to the
+  context and what follows. The 'because' だって usually comes at the beginning of a clause and provides
+  an explanation for something that was just said or implied. The 'even/also' だって follows a noun, verb,
+  or adjective, emphasizing that specific element. To distinguish だって from さえ, remember that さえ often
+  focuses on a minimum condition or an extreme case ('if even X, then Y'), while だって broadly emphasizes
+  an inclusion or unexpected addition. For も, だって is simply a more emphatic version. If you could replace
+  it with a simple 'also' or 'too' without losing much nuance, then も might be sufficient, but だって adds
+  a stronger emotional or surprising tone.
+examples:
+  - english: Even I can do something like this.
+    japanese:
+      - こんな こと、{僕 だ って} できる よ。
+      - こんな こと、{私 だ って} できる よ。
+      - こんな こと、{僕 だ って} でき ます よ。
+    english_literally: Something like this, even I can do it.
+    competing_grammar:
+      - competing_japanese:
+          - こんな こと、僕 も できる よ。
+        english: I can also do something like this.
+        hint: Using も here would indicate that 'I' am simply another person who can do it, but だって adds
+          a slight emphasis, suggesting 'even someone like me' can do it, possibly implying a sense of
+          surprise or mild assertion. We're looking for an emphasis on 'even'.
+    scene: A challenging task is presented, and someone usually not confident steps up.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「僕だって」 emphasizes the speaker's ability, despite potentially being perceived as
+      someone who wouldn't be able to do it. The speaker uses the casual and masculine pronoun 「僕」.
+  - english: Even a child understands this much.
+    japanese:
+      - こんな こと、子供 {だ って} 分かる よ。
+      - こんな こと、子供 {だ って} 分かり ます よ。
+      - こんな こと、子供 {だ って} 分かる。
+    english_literally: This much, even a child understands.
+    competing_grammar:
+      - competing_japanese:
+          - こんな こと、子供 も 分かる よ。
+        english: A child also understands this much.
+        hint: も simply adds 'a child' to the list of those who understand. だって highlights the surprising
+          fact that 'even' a child understands, emphasizing the simplicity of the matter. We're looking
+          for emphasis on 'even'.
+    scene: An adult is struggling with a simple concept.
+    register: casual
+    setting: informative
+  - english: Even if I'm busy, I can make time for that.
+    japanese:
+      - 忙しい {だ って}、それ くらい 時間 は 作れる よ。
+      - 忙しい {だ って}、それ くらい 時間 は 作れ ます よ。
+      - 忙しい {だ って}、それ くらい 時間 を 作れる よ。
+    english_literally: Even busy, about that much time can make.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しく て も、それ くらい 時間 は 作れる よ。
+        english: Even if I'm busy, I can make time for that.
+        hint: 〜ても is a common concessive form meaning 'even if'. だって here is a casual way to express a
+          similar idea, emphasizing 'even though I'm busy'. We're looking for a casual emphatic particle.
+    scene: Someone is trying to find an excuse not to meet.
+    register: casual
+    setting: friendly
+  - english: Even teachers might make mistakes, you know.
+    japanese:
+      - 先生 {だ って}、間違える こと ある ん だ から ね。
+      - 先生 {だ って}、間違える こと ある ん です から ね。
+      - 先生 {だ って}、間違える こと ある ん だ から。
+    english_literally: Even teachers, there are times they make mistakes, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 も、間違える こと ある ん だ から ね。
+        english: Teachers also make mistakes, you know.
+        hint: も states that teachers also make mistakes. だって adds a stronger, almost defensive, emphasis,
+          implying 'even' a respected figure like a teacher can err. We're looking for an emphatic particle
+          often used to soften criticism or state a general truth.
+    scene: A student is overly critical of a teacher's error.
+    register: casual
+    setting: supportive
+  - english: She said she can't, but even she secretly practiced.
+    japanese:
+      - 彼女 は でき ない って 言っ て た けど、こっそり 練習 し て た {だ って}。
+      - 彼女 は でき ない って 言っ て た けど、こっそり 練習 し て まし た って。
+      - 彼女 は でき ない って 言っ て た けど、こっそり 練習 し て た ん だ って。
+    english_literally: She said 'I can't', but secretly she was practicing, 'even'.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は でき ない って 言っ て た けど、こっそり 練習 し て た ん だ。
+        english: She said she can't, but she was secretly practicing.
+        hint: The standard だ emphasizes a fact. だって here adds surprise or mild revelation, as if to say
+          'even this unexpected fact is true'. We're looking for a particle that conveys 'even' in a surprising
+          context.
+    scene: Two friends gossiping about a third friend.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The final 「だって」 here conveys a subtle tone of 'I heard/found out that even she...' It's often
+      used in feminine speech to convey a soft, often surprising, revelation or a mild complaint.
+  - english: Even if it's hot, you still have to go outside.
+    japanese:
+      - 暑い {だ って}、外 に 出 なきゃ いけ ない ん だ から。
+      - 暑い {だ って}、外 に 出 なけれ ば いけ ない ん です から。
+      - 暑い {だ って}、外 に 出 なきゃ いけ ない ん だ。
+    english_literally: Even hot, must go outside.
+    competing_grammar:
+      - competing_japanese:
+          - 暑く て も、外 に 出 なきゃ いけ ない ん だ から。
+        english: Even if it's hot, you still have to go outside.
+        hint: 〜ても is the concessive form. だって is a more casual and slightly stronger way to express 'even
+          though it's hot'. We're looking for a casual expression of concession.
+    scene: Someone complaining about the weather but still having obligations.
+    register: casual
+    setting: reflective
+  - english: Even if it's cheap, if it breaks right away, it's useless.
+    japanese:
+      - 安い {だ って}、すぐ 壊れる ん じゃ 意味 ない よ。
+      - 安い {だ って}、すぐ 壊れる ん じゃ 意味 あり ませ ん よ。
+      - 安い {だ って}、すぐ 壊れる ん じゃ 意味 ない ん だ よ。
+    english_literally: Even cheap, if it breaks right away, there's no meaning.
+    competing_grammar:
+      - competing_japanese:
+          - 安く て も、すぐ 壊れる ん じゃ 意味 ない よ。
+        english: Even if it's cheap, if it breaks right away, it's meaningless.
+        hint: 〜ても is the standard concessive. だって here serves as a casual, slightly protesting 'even if'.
+          We're looking for a casual way to express a conditional 'even'.
+    scene: Discussing the quality of a product.
+    register: casual
+    setting: informative
+  - english: Don't act like that! Even you sometimes make mistakes, don't you?
+    japanese:
+      - そう いう こと 言う な よ！君 {だ って} 時々 間違える じゃ ない か。
+      - そう いう こと 言う な よ！あなた {だ って} 時々 間違える じゃ ない です か。
+      - そう いう こと 言う な よ！お前 {だ って} 時々 間違える じゃ ない か。
+    english_literally: Don't say such things! Even you sometimes make mistakes, don't you?
+    competing_grammar:
+      - competing_japanese:
+          - そう いう こと 言う な よ！君 も 時々 間違える じゃ ない か。
+        english: Don't say such things! You also sometimes make mistakes, don't you?
+        hint: も is a simple 'also'. だって adds a reproachful or assertive 'even you' emphasis, implying
+          'You're no exception, so don't criticize others.' We're looking for a particle that conveys
+          a strong 'even' with a challenging tone.
+    scene: One friend is criticizing another unfairly.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「君だって」 is a direct, emphatic retort, challenging the listener's authority or hypocrisy.
+      The casual 「〜なよ」 and 「じゃないか」 are typical of male casual speech.
+  - english: Even I finally understood it after explaining it many times.
+    japanese:
+      - 何 度 も 説明 し て、{僕 だ って} やっと 理解 でき た よ。
+      - 何 度 も 説明 し て、{私 だ って} やっと 理解 でき た よ。
+      - 何 度 も 説明 し て、{僕 だ って} やっと 理解 でき まし た よ。
+    english_literally: After explaining many times, even I finally understood.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 も 説明 し て、僕 も やっと 理解 でき た よ。
+        english: After explaining many times, I also finally understood.
+        hint: も indicates 'I' also understood. だって emphasizes that it took a lot of explanation for 'even
+          I' (implying 'who should have understood quickly') to grasp it. We're looking for emphasis on
+          the speaker's slow understanding.
+    scene: A mentor or teacher talking to a colleague about a particularly difficult student or concept.
+    register: casual
+    setting: professional
+    speaker_gender: male
+    nuance: The speaker using 「僕だって」 indicates a humility or self-deprecation, implying that even for
+      someone like himself, who is supposed to be proficient, it was a challenge. The casual 「〜できたよ」 adds
+      to the personal, reflective tone.
+  - english: Even if it's something I don't like, I have to eat it for my health.
+    japanese:
+      - 嫌い な 物 {だ って}、健康 の ため に は 食べ なきゃ ね。
+      - 嫌い な 物 {だ って}、健康 の ため に は 食べ なけれ ば いけ ませ ん ね。
+      - 嫌い な 物 {だ って}、健康 の ため に は 食べ なきゃ いけ ない ん だ ね。
+    english_literally: Things I dislike, even, for health's sake, must eat, right?
+    competing_grammar:
+      - competing_japanese:
+          - 嫌い な 物 で も、健康 の ため に は 食べ なきゃ ね。
+        english: Even things I don't like, I have to eat for my health.
+        hint: 〜でも is a common way to say 'even' for nouns. だって is a more casual and slightly stronger
+          version, highlighting the unpleasant necessity. We're looking for a casual emphatic particle
+          with a nuance of resignation.
+    scene: Someone reluctantly eating a healthy but unappetizing meal.
+    register: casual
+    setting: reflective
+  - english: It's so difficult, even I almost gave up.
+    japanese:
+      - あまり に 難しく て、{私 だ って} 諦め かけ た よ。
+      - あまり に 難しく て、{僕 だ って} 諦め かけ た よ。
+      - あまり に 難しく て、{私 だ って} 諦め かけ まし た よ。
+    english_literally: Too difficult, even I almost gave up.
+    competing_grammar:
+      - competing_japanese:
+          - あまり に 難しく て、私 も 諦め かけ た よ。
+        english: It's so difficult, I also almost gave up.
+        hint: も is a neutral 'also'. だって emphasizes that the difficulty was so extreme that 'even I' (who
+          am usually persistent) was affected. We're looking for a particle that conveys extreme difficulty
+          and its surprising impact.
+    scene: Someone describing a challenging experience to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The speaker using 「私だって」 highlights the personal struggle, implying that someone like herself,
+      who might be expected to handle difficulties well, was pushed to her limits. The use of 「私」 is common
+      for female speakers.
+  - english: Don't say such things! Even the boss was praising him!
+    japanese:
+      - そんな こと 言う な よ！社長 {だ って} 褒め て た ん だ から！
+      - そんな こと 言う な よ！社長 {だ って} 褒め て た ん です から！
+      - そんな こと 言う な よ！社長 {だ って} 褒め て い た ん だ から！
+    english_literally: Don't say such things! Even the boss was praising him!
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと 言う な よ！社長 も 褒め て た ん だ から！
+        english: Don't say such things! The boss was also praising him!
+        hint: も simply states the boss was also praising. だって adds a stronger, almost incredulous, emphasis,
+          highlighting the surprising fact that 'even' the boss, who is often critical, praised him. We're
+          looking for a particle that emphasizes an unexpected endorsement.
+    scene: A colleague is unfairly criticizing another, and the speaker defends them by pointing out a
+      high-ranking person's approval.
+    register: casual
+    setting: professional
+    nuance: 「社長だって」 is used to add strong emphasis, almost as a form of counter-argument or surprise,
+      that even the boss (who might be perceived as strict or hard to please) offered praise. It implies
+      'If even the boss praised him, who are you to criticize?'

@@ -1,0 +1,321 @@
+grammar_point: ならまだしも (if...then ok・but not...)
+learn_before:
+  - Number+も (emphatic quantity)
+  - いきなり (suddenly・without warning)
+  - こんなに (this much)
+  - どうしても (inevitably or absolutely)
+meaning: A is fine...but B is not; If it's ~ then it is ok...but ~ is not; It's different when...but;
+  It's not so bad when...but
+meaning_warning: しも is from classical Japanese and emphasizes まだ
+pronunciation:
+  katakana: ナラマダシモ
+  romaji: nara madashimo
+formation:
+  '[A] ならまだしも, [B]': Indicates that A is acceptable, but B is not.
+  '[Noun] ならまだしも, [B]': Shows that a certain situation might be tolerable under specific conditions (the
+    noun), but not under others (B).
+jlpt: N1
+etymology: The grammar point 「ならまだしも」 is composed of 「なら」 (if), 「まだ」 (still), and 「しも」, an adverbial particle.
+  「しも」 is derived from classical Japanese and emphasizes the word preceding it, in this case, 「まだ」. The
+  phrase conveys the nuance that while one situation might be acceptable, another is not.
+writeup: 「ならまだしも」 combines 「なら」 (if), 「まだ」 (still), and the adverbial particle 「しも」, which strengthens
+  the preceding word. It expresses that while situation A might be acceptable, situation B is not. It's
+  often translated as "(A) is fine, but not (B)" or "If it's (A), then it's okay, but not (B)." 「ならまだしも」
+  often separates the first and second halves of a sentence, marking the acceptable statement (A). 「しも」,
+  a classical particle, isn't commonly used in modern Japanese outside set phrases like 「ならまだしも」, 「今しも」
+  (right this moment), and 「だれしも」 (absolutely anybody). In all cases, it emphasizes the word before it.
+false_friends:
+  - term: ～ならいいけど
+    meaning: If it's ~ then it's fine/good (but...)
+    kind: similar expression
+    nuance: While `～ならいいけど` also expresses that a certain condition (A) is acceptable or preferable over
+      another (B), `ならまだしも` carries a stronger nuance of "barely acceptable" or "tolerable *only if* it's
+      A, but B is completely unacceptable." It implies a higher degree of dissatisfaction, indignation,
+      or outright rejection towards B, suggesting that A is the absolute minimum threshold for tolerability.
+      `ならいいけど` is more neutral and simply states A is okay, without emphasizing the 'barely acceptable'
+      aspect as much as `ならまだしも`.
+    grammar_point: <suggest>:～ならいいけど (if fine)
+post_false_friends_writeup: When distinguishing between `ならまだしも` and `ならいいけど`, consider the speaker's
+  emotional state and the degree of acceptability. `ならまだしも` is used when the first condition (A) is the
+  absolute limit of what can be tolerated, and anything beyond that is completely unacceptable. It implies
+  a strong sense of dissatisfaction or even anger towards the latter situation (B). In contrast, `ならいいけど`
+  is a more general expression, simply stating that condition A is fine, but B is not, without necessarily
+  conveying the same intensity of indignation.
+examples:
+  - english: Being late would be one thing, but skipping class without even contacting anyone is irresponsible.
+    japanese:
+      - 遅刻 する {なら まだ しも}、連絡 も なし に 授業 を 休む の は 無 責任 だ。
+      - 遅刻 する {なら まだ しも}、連絡 も なし に 授業 を 休む の は 無 責任 です。
+      - 遅刻 する {なら まだ しも}、連絡 も なし に 授業 休む なんて 無 責任 だ よ。
+    english_literally: If it were just being late, that's one thing, but skipping class without even contacting
+      is irresponsible.
+    competing_grammar:
+      - competing_japanese:
+          - 遅刻 する {なら いい けど}、連絡 も なし に 授業 を 休む の は 無 責任 だ。
+          - 遅刻 する {なら いい けど}、連絡 も なし に 授業 を 休む の は 無 責任 です。
+          - 遅刻 する {なら いい けど}、連絡 も なし に 授業 休む なんて 無 責任 だ よ。
+        english: If it's just being late, that's fine, but skipping class without even contacting is irresponsible.
+        hint: 「ならいいけど」 is a less emphatic way of saying something is acceptable. We're looking for a stronger
+          sense of 'this is barely tolerable, but that is completely unacceptable'.
+    scene: A university professor discussing student attendance policy.
+    register: teineigo (polite)
+    setting: academic
+    speaker_age: older
+    nuance: この文脈での「無責任だ」という表現は、教育者としての立場から、学生の行動に対して明確な批判を示すものです。特に「連絡もなしに」という部分が、礼儀や社会性を欠いている点を強調しており、教員が学生を指導する際の一般的な口調です。
+    etymology: 「無責任」は、「責任が無い」という意味で、現代日本語でも頻繁に使われる言葉です。この文脈では、期待される行動基準を満たさないことへの非難が含まれます。
+  - english: A little pain would be one thing, but I can't stand this intense pain.
+    japanese:
+      - 少し の 痛み {なら まだ しも}、これ ほど 強い 痛み は 我慢 でき ませ ん。
+      - 少し の 痛み {なら まだ しも}、これ ほど 強い 痛み は 我慢 でき ない よ。
+      - 少し の 痛み {なら まだ しも}、これ ほど 強い 痛み に は どう し て も 我慢 でき ませ ん。
+    english_literally: If it were a little pain, that's one thing, but I cannot endure such strong pain.
+    competing_grammar:
+      - competing_japanese:
+          - 少し の 痛み {なら 我慢 できる けど}、これ ほど 強い 痛み は 我慢 でき ませ ん。
+          - 少し の 痛み {なら 我慢 できる けど}、これ ほど 強い 痛み は 我慢 でき ない よ。
+          - 少し の 痛み {なら ば 我慢 でき ます が}、これ ほど 強い 痛み は 我慢 でき ませ ん。
+        english: If it's a little pain, I can endure it, but I cannot endure such strong pain.
+        hint: The nuance of 「ならまだしも」 is that the first situation is the absolute limit of what is tolerable.
+          We're looking for a construction that conveys 'barely acceptable, but this is impossible'.
+    scene: A patient describing their symptoms to a doctor.
+    register: teineigo (polite)
+    setting: serious
+    nuance: 「我慢 できません」という表現は、自分の限界を超えた苦痛を相手に伝える際に使われる丁寧な言い回しです。「ならまだしも」と組み合わせることで、小さな不快感は許容できても、現在の激しい痛みは耐え難いという切実な状況が強調されます。
+    etymology: 「我慢（がまん）」は仏教用語の「我慢（がまん）」に由来し、自分の能力や忍耐力を過信して他者に傲慢になることを指しましたが、現代日本語では「耐え忍ぶこと」という意味で広く使われています。
+  - english: One mistake would be one thing, but repeating the same error many times is unforgivable.
+    japanese:
+      - 一 度 の 失敗 {なら まだ しも}、何 度 も 同じ 過ち を 繰り返す の は 許せ ない。
+      - 一 度 の 失敗 {なら まだ しも}、何 度 も 同じ 過ち を 繰り返す の は 許せ ませ ん。
+      - 一 度 の 失敗 {なら まだ しも}、何 度 も 同じ 過ち 繰り返す なんて 無 責任 だ よ。
+    english_literally: If it were one mistake, that's one thing, but repeating the same error many times
+      is unforgivable.
+    competing_grammar:
+      - competing_japanese:
+          - 一 度 の 失敗 {なら 許せる けど}、何 度 も 同じ 過ち を 繰り返す の は 許せ ない。
+          - 一 度 の 失敗 {なら 許せる けど}、何 度 も 同じ 過ち を 繰り返す の は 許せ ませ ん。
+          - 一 度 の 失敗 {なら 許せる けど}、何 度 も 同じ 過ち 繰り返す なんて 許せ ない な。
+        english: If it's one mistake, I can forgive it, but repeating the same error many times is unforgivable.
+        hint: 「ならまだしも」 emphasizes that the first condition is barely acceptable, but the second is completely
+          unacceptable. We're looking for that nuanced distinction, not just a simple 'if A, then B'.
+    scene: A boss scolding an employee who made repeated errors.
+    register: formal
+    setting: professional
+    speaker_age: older
+    nuance: 「許せない」という言葉は、話者の強い不満と非難の感情を表します。特に上司が部下に対して使う場合、単なる注意ではなく、行動改善を強く求める際に用いられます。この文脈では、「一度」は許容できても、「何度も」は到底受け入れられないというプロフェッショナルな厳しさが伝わります。
+    etymology: 「過ち（あやまち）」は古くから「間違い」や「誤り」を意味する言葉で、現在でも書き言葉ややや硬い表現で使われます。一方「繰り返す（くりかえす）」は「同じことを再び行う」という意味で、ビジネスシーンでも日常的に使われる動詞です。
+  - english: A delay of a few hours would be one thing, but for the flight to be canceled for a whole
+      day is truly problematic.
+    japanese:
+      - 数 時間 の 遅延 {なら まだ しも}、フライト が 丸 一 日 運休 と は 困っ た もの だ。
+      - 数 時間 の 遅延 {なら まだ しも}、フライト が 丸 一 日 運休 と は 困っ た もの です。
+      - 数 時間 の 遅延 {なら まだ しも}、フライト が 丸 一 日 運休 だ なんて 困っ た もん だ よ。
+    english_literally: If it were a delay of a few hours, that's one thing, but for the flight to be canceled
+      for a whole day, that's truly problematic.
+    competing_grammar:
+      - competing_japanese:
+          - 数 時間 の 遅延 {なら ば 問題 ない が}、フライト が 丸 一 日 運休 と は 困っ た もの だ。
+          - 数 時間 の 遅延 {なら ば 問題 ない です が}、フライト が 丸 一 日 運休 と は 困っ た もの です。
+          - 数 時間 の 遅延 {なら 問題 ない けど}、フライト が 丸 一 日 運休 だ なんて 困っ た もん だ よ。
+        english: If it's a delay of a few hours, there's no problem, but for the flight to be canceled
+          for a whole day, that's truly problematic.
+        hint: We need an expression that indicates the first condition is 'still acceptable' in comparison
+          to the second, which is completely unacceptable. 「ならまだしも」 conveys that nuance strongly.
+    scene: A traveler complaining about a major flight disruption.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「困ったものだ」という表現は、どうしようもない状況に対する諦めや困惑を示す際に用いられます。この文では、「数時間の遅延」という比較的軽い問題は許容できても、「丸一日運休」という重大な事態は受け入れがたいという、話者の深い不満と困惑が伝わります。
+    etymology: 「運休（うんきゅう）」は、「運行を休止すること」を意味する公共交通機関で用いられる専門用語です。もともと「運」は「はこぶ」、「休」は「やすむ」で、字義通り運行を休止する意味合いです。
+  - english: A price increase of about 100 yen would be one thing, but suddenly becoming 1000 yen more
+      expensive is unacceptable.
+    japanese:
+      - 百 円 程度 の 値上げ {なら まだ しも}、突然 千 円 も 高く なる の は 納得 でき ない。
+      - 百 円 程度 の 値上げ {なら まだ しも}、突然 千 円 も 高く なる の は 納得 でき ませ ん。
+      - 百 円 程度 の 値上げ {なら まだ しも}、いきなり 千 円 も 高く なる なんて 納得 でき ない。
+    english_literally: If it were a price increase of about 100 yen, that's one thing, but suddenly becoming
+      1000 yen more expensive is unacceptable.
+    competing_grammar:
+      - competing_japanese:
+          - 百 円 程度 の 値上げ {なら 納得 できる けど}、突然 千 円 も 高く なる の は 納得 でき ない。
+          - 百 円 程度 の 値上げ {なら 納得 できる けど}、突然 千 円 も 高く なる の は 納得 でき ませ ん。
+          - 百 円 程度 の 値上げ {なら いい けど}、いきなり 千 円 も 高く なる なんて 納得 でき ない。
+        english: If it's a price increase of about 100 yen, I can accept it, but suddenly becoming 1000
+          yen more expensive is unacceptable.
+        hint: 「ならまだしも」 is used when the first condition is the absolute limit of what is acceptable, implying
+          that anything beyond it is completely out of the question. We're looking for this strong distinction.
+    scene: A customer discussing an unexpected price hike at a store.
+    register: teineigo (polite)
+    setting: negotiating
+    nuance: 「納得 できない」という表現は、話者が提示された状況や説明に対して同意できない、あるいは理解できないという強い拒否感を示します。この文脈では、「百円程度」というわずかな値上げならまだ受け入れられたが、「千円」という大幅な値上げは到底容認できないという、顧客の不満と抵抗が強調されます。
+    etymology: 「納得（なっとく）」は、「道理を理解して承知すること」を意味する漢語で、ビジネスシーンや日常会話で幅広く使われます。「納める」と「得る」という個別の意味が結びついて成り立っています。
+  - english: If I forgot, that's one thing, but for you to forget too, what's wrong with you?
+    japanese:
+      - 俺 が 忘れ た {なら まだ しも}、お前 まで 忘れる なんて どう し た ん だ よ。
+      - 俺 が 忘れ た {なら まだ しも}、お前 まで 忘れる と は、いったい どう し た ん だ よ。
+    english_literally: If I forgot, that's one thing, but for you to forget too, what's wrong with you?
+    competing_grammar:
+      - competing_japanese:
+          - 俺 が 忘れ た {なら いい けど}、お前 まで 忘れる なんて どう し た ん だ よ。
+          - 俺 が 忘れ た {なら いい けど}、お前 まで 忘れる なんて、一体 どう し た ん だ よ。
+          - 俺 が 忘れ た {なら いい けど}、お前 まで 忘れる と は どう し た ん だ よ。
+        english: If I forgot, that's fine, but for you to forget too, what's wrong with you?
+        hint: 「ならいいけど」 expresses 'if A, then it's fine' more simply. 「ならまだしも」 adds a nuance of 'A is barely
+          acceptable' or 'A is the lesser evil', which is stronger here.
+    scene: A man expressing disbelief to his male friend about a shared forgetfulness.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「俺」は男性が親しい間柄で使う一人称です。「お前」もまた、親しい男性同士で使われる二人称ですが、時には少し乱暴な響きを持つこともあります。「どうしたん だ よ」という問いかけは、相手への驚きと軽度の非難を表し、男性的なカジュアルな会話でよく使われます。
+    etymology: 「俺（おれ）」は、古くは男性だけでなく女性も使った一人称ですが、中世以降に男性のくだけた言葉として定着しました。一方、「お前（おまえ）」は、元々は尊敬の意を表す言葉でしたが、時代とともに変化し、現在では親しい相手や目下の人に対して使う言葉となっています。
+  - english: His jokes being boring is one thing, but hurting people? I can't forgive that.
+    japanese:
+      - 彼 の 冗談 が つまら ない {なら まだ しも}、人 を 傷つける の は 許せ ない わ。
+      - 彼 の 冗談 が つまら ない {なら まだ しも}、人 を 傷つける の は 許せ ませ ん。
+      - 彼 の 冗談 が つまら ない {なら まだ しも}、人 を 傷つける なんて 許せ ない よ。
+    english_literally: If his jokes are boring, that's one thing, but hurting people? I cannot forgive
+      that.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 冗談 が つまら ない {なら いい けど}、人 を 傷つける の は 許せ ない わ。
+          - 彼 の 冗談 が つまら ない {なら いい けど}、人 を 傷つける の は 許せ ませ ん。
+          - 彼 の 冗談 が つまら ない {なら いい けど}、人 を 傷つける なんて 許せ ない よ。
+        english: If his jokes are boring, that's fine, but hurting people? I can't forgive that.
+        hint: 「ならいいけど」 is a more neutral way to say 'if A, then it's okay'. 「ならまだしも」 expresses that A
+          is barely acceptable, implying a much stronger disapproval of B.
+    scene: A woman discussing someone's offensive behavior with a female friend.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「許せない わ」の「わ」は、女性が自己の感情や意見を強調する際に使われる終助詞であり、女性的な話し方です。この表現全体で、つまらない冗談は許せても、人を傷つける行為は断じて許さないという、話者の強い感情と女性らしい語気が示されます。
+    etymology: 終助詞「わ」は、平安時代には男性も女性も使っていましたが、江戸時代以降、特に女性が自分の感情を柔らかく、あるいは強調して述べる際に多く使われるようになりました。
+  - english: Not meeting the deadline would be one thing, but having no communication is a big problem.
+    japanese:
+      - 納期 に 間に合わ ない {なら まだ しも}、連絡 が ない の は 大変 問題 です。
+      - 納期 に 間に合わ ない {なら まだ しも}、連絡 が ない の は 大変 問題 だ よ。
+      - 納期 が 間に合わ ない {なら まだ しも}、無 連絡 は 大変 問題 です。
+    english_literally: If not meeting the deadline, that's one thing, but having no communication is a
+      big problem.
+    competing_grammar:
+      - competing_japanese:
+          - 納期 に 間に合わ ない の {なら 仕方ない です が}、連絡 が ない の は 大変 問題 です。
+          - 納期 に 間に合わ ない の {なら 仕方ない けど}、連絡 が ない の は 大変 問題 だ よ。
+          - 納期 が 間に合わ ない の {なら ば 仕方ない です が}、連絡 が ない の は 大変 問題 です。
+        english: If not meeting the deadline, that can't be helped, but having no communication is a big
+          problem.
+        hint: 「ならまだしも」 implies that the first situation is barely tolerable, but the second is completely
+          unacceptable. 「仕方ない」 is simply resigned acceptance. We need the strong contrast.
+    scene: A project manager addressing a team member about a missed deadline.
+    register: formal
+    setting: professional
+    nuance: 「大変 問題 です」という表現は、ビジネスの場で状況の深刻さを伝える際に用いられる丁寧かつ強い表現です。「ならまだしも」と組み合わせることで、納期遅れ自体はまだ許容の余地があるものの、無連絡という行動はプロフェッショナルとして許されないという、明確な線引きと批判が示されます。
+    etymology: 「納期（のうき）」は「納品する期日」を意味する和製漢語で、ビジネスの場で広く使われています。「連絡（れんらく）」も同じく漢語で、「繋がり知らせること」が原義であり、コミュニケーションの重要性を示す場面で多用されます。
+  - english: A little inconvenience would be one thing, but I didn't expect it to turn into such a big
+      commotion.
+    japanese:
+      - 少し の 迷惑 {なら まだ しも}、こんな に 大きな 騒ぎ に なる と は 思わ なかっ た よ。
+      - 少し の 迷惑 {なら まだ しも}、こんな に 大きな 騒ぎ に なる と は 思わ なかっ た です。
+      - 少し の 迷惑 {なら まだ しも}、こんな に 大きな 騒ぎ に なる と は 思わ なかっ た わ。
+    english_literally: If it were a little inconvenience, that's one thing, but I didn't expect it to
+      turn into such a big commotion.
+    competing_grammar:
+      - competing_japanese:
+          - 少し の 迷惑 {なら 大した こと ない けど}、こんな に 大きな 騒ぎ に なる と は 思わ なかっ た よ。
+          - 少し の 迷惑 {なら 大した こと ない です けど}、こんな に 大きな 騒ぎ に なる と は 思わ なかっ た です。
+          - 少し の 迷惑 {なら 大した こと ない が}、こんな に 大きな 騒ぎ に なる と は 思わ なかっ た わ。
+        english: If it's a little inconvenience, it's nothing major, but I didn't expect it to turn into
+          such a big commotion.
+        hint: 「ならまだしも」 implies that the first condition is barely acceptable, highlighting how much more
+          unacceptable the second condition is. 「大したことない」 implies it's minor, but doesn't set up the strong
+          contrast of non-acceptability for the second part.
+    scene: Someone reflecting on how a minor issue escalated unexpectedly.
+    register: casual
+    setting: reflective
+    nuance: 「思わなかった よ」の「よ」は、相手に自分の感情や意見を伝える際に使われる終助詞で、ややカジュアルな響きがあります。この文脈では、些細な問題が予想外に大きくなったことへの驚きと不満を、親しい相手に語りかけるような調子で表現しています。
+    etymology: 「迷惑（めいわく）」は、古くは「道に迷う」という意味でしたが、のちに「他人に不利益や不快感を与えること」という意味に転じました。「騒ぎ（さわぎ）」は「騒がしいこと」を意味し、物理的な音だけでなく、混乱した状況や問題が大きくなることを指すこともあります。
+  - english: Your room being messy would be one thing, but leaving garbage around? I won't allow that.
+    japanese:
+      - 部屋 が 散らかっ て いる {なら まだ しも}、ゴミ が その まま に なっ て いる の は 許さ ない よ。
+      - 部屋 が 散らかっ て いる {なら まだ しも}、ゴミ が その まま に なっ て いる の は 許せ ませ ん。
+      - 部屋 が 散らかっ て いる {なら まだ しも}、ゴミ を 放置 する なんて 許さ ない ぞ。
+    english_literally: If your room being messy, that's one thing, but leaving garbage as is? I won't
+      allow that.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が 散らかっ て いる {なら 目 を つぶる けど}、ゴミ が その まま に なっ て いる の は 許さ ない よ。
+          - 部屋 が 散らかっ て いる {なら 目 を つぶる けど}、ゴミ が その まま に なっ て いる の は 許せ ませ ん。
+          - 部屋 が 散らかっ て いる {なら 目 を つぶる けど}、ゴミ を 放置 する なんて 許さ ない ぞ。
+        english: If your room is messy, I can overlook it, but leaving garbage around? I won't allow that.
+        hint: 「ならまだしも」 implies that the first condition is the absolute limit of what is acceptable, whereas
+          the second is completely unacceptable. 「目をつぶる」 suggests looking past something, but lacks the
+          stronger implication of conditional acceptance or outright non-acceptance for the latter part.
+    scene: A parent scolding their child about a very messy room.
+    register: casual
+    setting: commanding
+    speaker_age: older
+    nuance: 「許さない よ」は、親が子供に対して使う際に、命令や強い注意を促す一般的な表現です。この「ならまだしも」との組み合わせは、ある程度の許容範囲を示しつつ、それ以上の逸脱に対しては明確な線を引く、親の教育的な態度を表します。
+    etymology: 「散らかって いる（ちらかって いる）」は「物が乱雑に置かれている状態」を表す「散らかる」のテ形接続で、日常会話でよく使われます。「ゴミ（ごみ）」は「不要物、廃棄物」を意味し、生活に密着した基本的な語彙です。両者とも漢字表記が一般的ですが、この文脈では読者の理解を助けるためにひらがなで表記しています。
+  - english: Just being angry would be one thing, but saying such cruel things is unforgivable.
+    japanese:
+      - 怒る {なら まだ しも}、あんな ひどい こと を 言う なんて 許せ ない。
+      - 怒る {なら まだ しも}、あんな ひどい こと を 言う なんて 許せ ませ ん。
+      - 怒る {なら まだ しも}、あんな ひどい こと を 言う なんて 許せ ない よ。
+    english_literally: If it's just being angry, that's one thing, but saying such cruel things is unforgivable.
+    competing_grammar:
+      - competing_japanese:
+          - 怒る {なら わかる けど}、あんな ひどい こと を 言う なんて 許せ ない。
+        english: If it's just being angry, I can understand, but saying such cruel things is unforgivable.
+        hint: 「わかる」 simply expresses understanding, while 「ならまだしも」 implies that anger itself is a borderline
+          acceptable emotion, but the resulting cruel words cross a line into unacceptability.
+    scene: Someone venting to a close friend about a heated argument they had with someone else.
+    register: casual
+    setting: excited
+    nuance: この文の「許せない」は、話者が個人的な感情として相手の言葉を受け入れがたいという強い怒りや不快感を表明するものです。怒り自体は人間として理解できる範疇である一方、人を傷つける言葉は到底許容できないという、個人的な価値観の線引きを示しています。
+    etymology: 「ひどい」は「程度が甚だしい」という意味で、ここでは相手の言葉が倫理的・感情的に非常に不適切であったことを指します。感情を表す形容詞としても広く使われます。
+  - english: Missing the deadline due to an unexpected issue would be one thing, but a lack of effort
+      is simply unacceptable.
+    japanese:
+      - 予期 せ ぬ 問題 で 締め切り を 守れ ない {なら まだ しも}、努力 不足 と は 言い訳 に なら ない。
+      - 予期 せ ぬ 問題 で 締め切り を 守れ ない {なら まだ しも}、努力 不足 と は 言い訳 に なり ませ ん。
+      - 予期 せ ぬ 問題 で 締め切り を 守れ ない {なら まだ しも}、努力 不足 と は 言い訳 に なら ない よ。
+    english_literally: If not being able to meet the deadline due to an unexpected problem, that's one
+      thing, but a lack of effort is no excuse.
+    competing_grammar:
+      - competing_japanese:
+          - 予期 せ ぬ 問題 で 締め切り を 守れ ない {なら 仕方ない けど}、努力 不足 と は 言い訳 に なら ない。
+        english: If not being able to meet the deadline due to an unexpected problem, that can't be helped,
+          but a lack of effort is no excuse.
+        hint: 「仕方ない」 conveys resignation, but doesn't express the strong moral or professional judgment
+          that 「ならまだしも」 does, emphasizing that a lack of effort is a completely different, unacceptable
+          category of problem.
+    scene: A team leader providing a performance review to a subordinate who consistently misses targets
+      without justifiable reasons.
+    register: formal
+    setting: professional
+    nuance: 「言い訳 に ならない」という表現は、ビジネスの場で、許されない理由や責任の回避に対して使われる強い批判的な言葉です。予期せぬ問題は考慮する余地がある一方で、個人の努力不足は到底許容できないという、プロフェッショナルな倫理観に基づく厳しさが強調されています。
+    etymology: 「努力 不足（どりょくぶそく）」は、目標達成に向けた尽力が足りない状態を指す言葉です。ビジネスや教育の場で、成果が出ない原因として用いられることがあります。「言い訳（いいわけ）」は「弁解、弁明」を意味し、ここではその弁明が全く通用しないことを示しています。
+  - english: A small bruise would be one thing, but a broken bone from falling down the stairs is serious.
+    japanese:
+      - 軽い 打撲 {なら まだ しも}、階段 から 落ち て 骨折 と は 大変 な こと だ。
+      - 軽い 打撲 {なら まだ しも}、階段 から 落ち て 骨折 と は 大変 な こと です。
+      - 軽い 打撲 {なら まだ しも}、階段 から 落ち て 骨折 と は 大変 だ よ。
+      - 軽い 打撲 {なら まだ しも}、階段 から 落ち て 骨折 と は 大変 だ わ。
+    english_literally: If it were a light bruise, that's one thing, but a bone fracture from falling from
+      stairs is a serious matter.
+    competing_grammar:
+      - competing_japanese:
+          - 軽い 打撲 {なら 大した こと ない けど}、階段 から 落ち て 骨折 と は 大変 な こと だ。
+        english: If it's a light bruise, it's not a big deal, but a bone fracture from falling from stairs
+          is a serious matter.
+        hint: 「ならまだしも」 implies that the first condition is barely acceptable, highlighting how much more
+          unacceptable the second condition is. 「大したことない」 implies it's minor, but doesn't set up the strong
+          contrast of non-acceptability for the second part.
+    scene: A friend reacting to news of an injury their mutual friend sustained.
+    register: casual
+    setting: serious
+    nuance: 「大変 な こと だ」という表現は、親しい間柄で、予期せぬ重大な事態に対する驚きと心配を示す際に使われます。軽い打撲ならまだ許容範囲だが、骨折という事態は到底受け入れられないという話者の感情が強調されています。
+    etymology: 「打撲（だぼく）」は「打ち身」を指す漢語で、医療現場や硬い文章で使われます。「骨折（こっせつ）」も同様に医療用語で、骨が折れる状態を指します。どちらも身体への損傷を表す言葉です。
+post_example_writeup: These examples illustrate how 「ならまだしも」 functions to highlight a clear contrast between
+  two situations, where the first is presented as minimally acceptable or tolerable, but the second is
+  deemed completely unacceptable. The nuance conveyed is one of strong disapproval or indignation towards
+  the latter situation, making it a powerful expression for conveying limits of patience or expectation.

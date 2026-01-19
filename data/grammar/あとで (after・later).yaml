@@ -1,0 +1,447 @@
+grammar_point: あとで (after・later)
+learn_before:
+  - Verb[よう] (volitional)
+meaning: After, Later
+pronunciation:
+  katakana: アトデ
+  romaji: ato de
+formation:
+  Verb[past tense] + あとで: Indicates that something happens after a certain action.
+  Noun + の + あとで: Indicates that something happens after a certain time or event.
+  あとで + Sentence: Indicates that (A) will happen at some point after now.
+jlpt: N4
+etymology: 「あとで」 is formed from the noun 「後 (ato)」, meaning 'behind' or 'after', and the particle 「で (de)」,
+  which indicates a state or a point in time/space. Historically, 「後」 refers to the physical 'back' or
+  'rear' of something. Its temporal meaning of 'after' likely evolved from the idea of something following
+  behind another in sequence. The particle 「で」 serves to specify the condition or time at which the action
+  in the main clause takes place, effectively meaning 'at the point of being after' or 'in the state of
+  what follows'.
+writeup: 「あとで」 means "after" or "later" and is used to connect two events or actions, indicating that
+  the second event occurs subsequent to the first. It can be attached to the plain past tense of a verb
+  (e.g., 食べたあとで - *after eating*) or a noun followed by the particle 「の」 (e.g., 仕事のあとで - *after work*).
+  A key nuance of 「あとで」 is that the second action doesn't necessarily happen immediately after the first.
+  There can be a flexible time gap between the two events. This distinguishes it from expressions like
+  「～てから」, which often implies a more immediate or direct succession. Additionally, 「あとで」 can be used adverbially
+  at the beginning of a sentence (or standing alone) to mean "later" in a general sense, referring to
+  an unspecified future time relative to the present moment. For example, 「あとで電話します」 means "I'll call
+  you later."
+false_friends:
+  - term: まえに
+    meaning: Before, In front of
+    kind: antonym
+    nuance: Unlike 「あとで」 which indicates something happens *after*, 「まえに」 indicates something happens
+      *before*.
+    grammar_point: まえに (before・in front)
+  - term: てから
+    meaning: Once...is done, Once...happens, After doing
+    kind: similar expression
+    nuance: 「てから」 often implies a more direct and immediate sequence of events than 「あとで」. While both
+      indicate sequence, 「てから」 can emphasize the completion of the prior action as a prerequisite for
+      the next.
+    grammar_point: てから (after and since)
+  - term: たら
+    meaning: When, From when, Just when, If
+    kind: similar expression
+    nuance: 「たら」 indicates a condition or a hypothetical situation and isn't as direct as 「あとで」 in denoting
+      a simple temporal sequence of events. It focuses on the result of a completed action as a trigger
+      for the next.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: 上で
+    meaning: After, Upon
+    kind: similar expression
+    nuance: 「上で」 often carries a nuance of preparation or making a decision after considering something,
+      implying a deliberate step or prerequisite, whereas 「あとで」 is a more general statement about sequence
+      without this implication.
+    grammar_point: 上で (after doing)
+  - term: 後ほど
+    meaning: Later (more formal)
+    kind: similar expression
+    nuance: 「後ほど」 is a more formal and polite way to say "later" compared to 「あとで」. While both indicate
+      a future time, 「後ほど」 is typically used in business or respectful contexts, suggesting a slightly
+      less immediate but certain follow-up.
+    grammar_point: <suggest>:後ほど (later・more formal)
+  - term: たばかり
+    meaning: Just did
+    kind: similar expression
+    nuance: 「たばかり」 emphasizes that an action has *just* been completed, implying a very short interval
+      or immediate past, whereas 「あとで」 simply denotes a temporal sequence with a potentially longer or
+      unspecified gap.
+    grammar_point: たばかり (just did)
+  - term: ているあいだに
+    meaning: While something is happening
+    kind: antonym
+    nuance: 「あとで」 specifies an action occurring *after* another, while 「ているあいだに」 describes an action occurring
+      *during* another ongoing action, emphasizing simultaneity or an event occurring within a continuous
+      period.
+    grammar_point: あいだ (between・among・while・during)
+  - term: てからというもの
+    meaning: Lasting change since
+    kind: similar expression
+    nuance: While both indicate a sequence, 「てからというもの」 specifically implies that a significant change
+      or lasting state has occurred *since* the first event and has continued, often with a strong cause-and-effect
+      feel for the subsequent situation. 「あとで」 is a simple "after" without this lasting consequence or
+      emphasis.
+    grammar_point: てからというもの (lasting change since)
+  - term: 以来
+    meaning: Since, Ever since
+    kind: similar expression
+    nuance: 「以来」 means "since then" and implies a continuous state or action that has been ongoing *from*
+      a specific point in time up to the present, unlike 「あとで」 which simply indicates a subsequent event
+      without implying continuation.
+    grammar_point: 以来 (since・ever since)
+post_false_friends_writeup: While 「あとで」, 「てから」, 「たら」, 「上で」, 「後ほど」, 「たばかり」, 「ているあいだに」, 「てからというもの」, and
+  「以来」 all relate to events happening in sequence or at a particular time, it is crucial to distinguish
+  their nuances. Use 「あとで」 for general "after" statements, indicating a subsequent event without necessarily
+  implying immediate succession. Use 「てから」 for closer sequences or to emphasize the completion of a previous
+  action as a prerequisite for the next. Use 「たら」 for hypothetical or conditional situations. Use 「上で」
+  when something is done or decided based on careful consideration or completion of a prior step. Use
+  「後ほど」 for a more formal or polite expression of "later." 「たばかり」 emphasizes the very recent completion
+  of an action. 「ているあいだに」 indicates an event happening *during* another. 「てからというもの」 implies a lasting
+  change *since* a particular event. 「以来」 denotes continuation *from* a past point in time.
+examples:
+  - english: I will watch TV after dinner.
+    japanese:
+      - 晩ご飯 の {あと で}、テレビ を 見 ます。
+      - 晩ご飯 の {あと で}、テレビ 見る。
+      - 晩ご飯 が 終わっ た {あと で}、テレビ を 見 ます。
+    english_literally: After dinner, I will watch TV.
+    competing_grammar:
+      - competing_japanese:
+          - 晩ご飯 の {まえ に}、テレビ を 見 ます。
+        english: I will watch TV before dinner.
+        hint: The sentence implies watching TV at a later time, not earlier. We're looking for an expression
+          that means 'after'.
+      - competing_japanese:
+          - 晩ご飯 を 食べ {て から}、テレビ を 見 ます。
+        english: After eating dinner, I will watch TV.
+        hint: This emphasizes immediate succession or prerequisite, whereas the original implies a general
+          'after' with potential flexibility. We're looking for a more general 'after'.
+      - competing_japanese:
+          - 晩ご飯 を 食べ {たら}、テレビ を 見 ます。
+        english: When I eat dinner, I will watch TV.
+        hint: This indicates a conditional or completed action, rather than a general temporal sequence.
+          We're looking for a simple 'after'.
+      - competing_japanese:
+          - 晩ご飯 を 食べ た {上 で}、テレビ を 見 ます。
+        english: After eating dinner (and considering something), I will watch TV.
+        hint: This implies deliberation or a decision made after the prior action, which is not the nuance
+          here. We're looking for a simple temporal connection.
+      - competing_japanese:
+          - 晩ご飯 が 終わっ て、テレビ を 見 ます。
+        english: After dinner is over, I will watch TV.
+        hint: This focuses on the completion of the prior event, whereas the original is a more general
+          temporal connection. We're looking for a broader 'after'.
+      - competing_japanese:
+          - 晩ご飯 を 食べ て すぐ に、テレビ を 見 ます。
+        english: Immediately after eating dinner, I will watch TV.
+        hint: This emphasizes immediate action, while the original suggests a more general 'after'. We're
+          looking for an expression that allows for a time gap.
+    scene: A person stating their evening plans.
+    register: casual
+    setting: informative
+  - english: After work, would you like to go for a drink?
+    japanese:
+      - 仕事 の {あと で}、飲み に 行き ませ ん か？
+      - 仕事 の {あと で}、飲み に 行か ない？
+      - 仕事 の {あと で}、飲み に 伺い ませ ん か？
+    english_literally: After work, shall we go to drink?
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 の {まえ に}、飲み に 行き ませ ん か？
+        english: Would you like to go for a drink before work?
+        hint: The question is about going out after work, not before. We're looking for an invitation
+          for 'after work'.
+      - competing_japanese:
+          - 仕事 が 終わっ {て から}、飲み に 行き ませ ん か？
+        english: After work finishes, would you like to go for a drink?
+        hint: This emphasizes the completion of work as a prerequisite, rather than a general 'after work'
+          time. We're looking for a more general 'after work' invitation.
+      - competing_japanese:
+          - 仕事 が 終わっ {たら}、飲み に 行き ませ ん か？
+        english: If/When work finishes, would you like to go for a drink?
+        hint: This implies a conditional situation, not just a general temporal sequence. We're looking
+          for a simple 'after work' invitation.
+      - competing_japanese:
+          - 仕事 が 終わっ た {上 で}、飲み に 行き ませ ん か？
+        english: After work finishes (and something is considered), would you like to go for a drink?
+        hint: This implies deliberation or a decision made after a prior action, which doesn't fit a casual
+          invitation. We're looking for a general social invitation.
+      - competing_japanese:
+          - 仕事 が 終わっ て、飲み に 行き ませ ん か？
+        english: After work is over, would you like to go for a drink?
+        hint: This highlights the completion of work, while the original is a more general 'after work'
+          invitation. We're looking for a broader 'after work' invitation.
+      - competing_japanese:
+          - 仕事 が 終わっ て すぐ に、飲み に 行き ませ ん か？
+        english: Immediately after work ends, would you like to go for a drink?
+        hint: This suggests immediate departure, whereas the original allows for a more flexible timing.
+          We're looking for an expression that allows for a time gap.
+    scene: A male colleague is inviting a female colleague out.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「～ませんか？」 is a neutral invitation. The use of 「あとで」 makes the invitation open-ended
+      for timing, rather than requiring an immediate departure. This is a common social interaction in
+      Japanese workplaces.
+  - english: After eating breakfast, I will go to school.
+    japanese:
+      - 朝ご飯 を 食べ た {あと で}、学校 に 行き ます。
+      - 朝ご飯 を 食べ た {あと で}、学校 行く。
+      - 朝食 を いただい た {あと で}、学校 に 参り ます。
+    english_literally: After having eaten breakfast, I will go to school.
+    competing_grammar:
+      - competing_japanese:
+          - 朝ご飯 を 食べる {まえ に}、学校 に 行き ます。
+        english: Before eating breakfast, I will go to school.
+        hint: The sentence describes going to school after breakfast, not before. We're looking for an
+          expression that means 'after'.
+      - competing_japanese:
+          - 朝ご飯 を 食べ {て から}、学校 に 行き ます。
+        english: After eating breakfast, I will go to school.
+        hint: This implies a more immediate succession, while the original conveys a general 'after' with
+          potential flexibility. We're looking for a more general 'after'.
+      - competing_japanese:
+          - 朝ご飯 を 食べ {たら}、学校 に 行き ます。
+        english: When I eat breakfast, I will go to school.
+        hint: This indicates a conditional or completed action, rather than a general temporal sequence.
+          We're looking for a simple 'after'.
+      - competing_japanese:
+          - 朝ご飯 を 食べ た {上 で}、学校 に 行き ます。
+        english: After eating breakfast (and considering something), I will go to school.
+        hint: This implies a deliberate decision after the prior action, which is not natural for a routine.
+          We're looking for a simple temporal connection.
+      - competing_japanese:
+          - 朝ご飯 が 終わっ て、学校 に 行き ます。
+        english: After breakfast is over, I will go to school.
+        hint: This focuses on the completion of the meal, while the original is a broader temporal connection.
+          We're looking for a broader 'after'.
+      - competing_japanese:
+          - 朝ご飯 を 食べ て すぐ に、学校 に 行き ます。
+        english: Immediately after eating breakfast, I will go to school.
+        hint: This emphasizes immediate action, while the original allows for a slight time gap. We're
+          looking for an expression that allows for a time gap.
+    scene: Describing a morning routine.
+    register: casual
+    setting: informative
+  - english: I will go home after the test.
+    japanese:
+      - 試験 の {あと で}、家 に 帰り ます。
+      - 試験 の {あと で}、家 に 帰る。
+      - 試験 の {あと で}、帰宅 いたし ます。
+    english_literally: After the test, I will return home.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の {まえ に}、家 に 帰り ます。
+        english: I will go home before the test.
+        hint: The sentence is about going home after the test, not before. We're looking for an expression
+          that means 'after'.
+      - competing_japanese:
+          - 試験 が 終わっ {て から}、家 に 帰り ます。
+        english: After the test finishes, I will go home.
+        hint: This implies a more direct succession or prerequisite, whereas the original conveys a general
+          'after' without strict immediacy. We're looking for a more general 'after'.
+      - competing_japanese:
+          - 試験 が 終わっ {たら}、家 に 帰り ます。
+        english: When the test finishes, I will go home.
+        hint: This indicates a conditional or completed action, rather than a general temporal sequence.
+          We're looking for a simple 'after'.
+      - competing_japanese:
+          - 試験 が 終わっ た {上 で}、家 に 帰り ます。
+        english: After the test finishes (and considering something), I will go home.
+        hint: This implies deliberation or a decision made after the test, which is not the nuance here.
+          We're looking for a simple temporal connection.
+      - competing_japanese:
+          - 試験 が 終わっ て、家 に 帰り ます。
+        english: After the test is over, I will go home.
+        hint: This focuses on the completion of the test, while the original is a broader temporal connection.
+          We're looking for a broader 'after'.
+      - competing_japanese:
+          - 試験 が 終わっ て すぐ に、家 に 帰り ます。
+        english: Immediately after the test ends, I will go home.
+        hint: This suggests immediate departure, whereas the original implies a more general 'after'.
+          We're looking for an expression that allows for a time gap.
+    scene: A student making plans for after an exam.
+    register: casual
+    setting: informative
+  - english: I will take a rest after eating.
+    japanese:
+      - 食べ た {あと で}、休み ます。
+      - 食べ た {あと で}、休む。
+      - 食事 を 終え た {あと で}、休憩 し ます。
+    english_literally: After having eaten, I will rest.
+    competing_grammar:
+      - competing_japanese:
+          - 食べる {まえ に}、休み ます。
+        english: I will take a rest before eating.
+        hint: The sentence is about resting after eating, not before. We're looking for an expression
+          that means 'after'.
+      - competing_japanese:
+          - 食べ {て から}、休み ます。
+        english: After eating, I will take a rest.
+        hint: This implies a more direct succession, while the original conveys a general 'after' with
+          potential flexibility. We're looking for a more general 'after'.
+      - competing_japanese:
+          - 食べ {たら}、休み ます。
+        english: When/If I eat, I will take a rest.
+        hint: This indicates a conditional situation, not a general temporal sequence. We're looking for
+          a simple 'after'.
+      - competing_japanese:
+          - 食べ た {上 で}、休み ます。
+        english: After eating (and considering something), I will take a rest.
+        hint: This implies deliberation or a decision made after eating, which is not the nuance here.
+          We're looking for a simple temporal connection.
+      - competing_japanese:
+          - 食事 が 終わっ て、休み ます。
+        english: After the meal is over, I will take a rest.
+        hint: This focuses on the completion of the meal, while the original is a broader temporal connection.
+          We're looking for a broader 'after'.
+      - competing_japanese:
+          - 食べ て すぐ に、休み ます。
+        english: Immediately after eating, I will take a rest.
+        hint: This emphasizes immediate action, while the original allows for a slight time gap. We're
+          looking for an expression that allows for a time gap.
+    scene: Describing an immediate plan after a meal.
+    register: casual
+    setting: informative
+  - english: I'll call you again later, okay?
+    japanese:
+      - また {あと で}、電話 し ます ね。
+      - また {あと で}、電話 する ね。
+      - また {あと で}、お 電話 いたし ます ね。
+    english_literally: Again later, I will call you, okay?
+    competing_grammar:
+      - competing_japanese:
+          - また {後ほど}、電話 し ます ね。
+        english: I'll call you again later (more formally), okay?
+        hint: This uses a more formal expression for 'later', which might not fit the casual tone of the
+          original sentence. We're looking for a casual way to say 'later'.
+    scene: Ending a phone call.
+    register: casual
+    setting: friendly
+  - english: I will come again later.
+    japanese:
+      - '{あと で} また 来 ます。'
+      - '{あと で} また 来る。'
+      - '{あと で} また 参り ます。'
+    english_literally: Later, I will come again.
+    competing_grammar:
+      - competing_japanese:
+          - '{後ほど} また 来 ます。'
+        english: I will come again later (more formally).
+        hint: This uses a more formal expression for 'later', which might imply a different level of politeness
+          than intended. We're looking for a standard 'later' without specific formality.
+    scene: A person promising to return.
+    register: formal
+    setting: informative
+  - english: Is it okay to play games after I study?
+    japanese:
+      - 勉強 し た {あと で}、ゲーム を し て も いい？
+      - 勉強 し た {あと で}、ゲーム し て いい？
+      - 勉強 し た {あと で}、ゲーム を し て も よろしい です か？
+    english_literally: After having studied, is it okay to play games?
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 する {まえ に}、ゲーム を し て も いい？
+        english: Is it okay to play games before I study?
+        hint: The question is about playing games after studying, not before. We're looking for an expression
+          that means 'after'.
+      - competing_japanese:
+          - 勉強 し {て から}、ゲーム を し て も いい？
+        english: After studying, is it okay to play games?
+        hint: This implies a more immediate succession or prerequisite, whereas the original implies a
+          general 'after' without strict immediacy. We're looking for a more general 'after'.
+      - competing_japanese:
+          - 勉強 し {たら}、ゲーム を し て も いい？
+        english: If/When I study, is it okay to play games?
+        hint: This indicates a conditional situation, not a general temporal sequence. We're looking for
+          a simple 'after'.
+      - competing_japanese:
+          - 勉強 し た {上 で}、ゲーム を し て も いい？
+        english: After studying (and considering something), I will play games.
+        hint: This implies deliberation or a decision made after studying, which is not the nuance here.
+          We're looking for a simple temporal connection.
+      - competing_japanese:
+          - 勉強 が 終わっ て、ゲーム を し て も いい？
+        english: After studying is over, is it okay to play games?
+        hint: This focuses on the completion of studying, while the original is a broader temporal connection.
+          We're looking for a broader 'after'.
+      - competing_japanese:
+          - 勉強 し て すぐ に、ゲーム を し て も いい？
+        english: Immediately after studying, I will play games.
+        hint: This emphasizes immediate action, while the original allows for a slight time gap. We're
+          looking for an expression that allows for a time gap.
+    scene: A child asking for permission from an adult.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+    nuance: The phrase 「～してもいい？」 is a common way for younger people to ask for permission. The use of
+      「あとで」 here connects the permission to a completed prerequisite task (studying), typical of a younger
+      speaker's negotiation with an older caregiver.
+  - english: I will go there later.
+    japanese:
+      - '{あと で}、そちら に 行き ます。'
+      - '{あと で}、そっち 行く。'
+      - '{あと で}、そちら に 参り ます。'
+    english_literally: Later, I will go there.
+    competing_grammar:
+      - competing_japanese:
+          - '{後ほど}、そちら に 行き ます。'
+        english: I will go there later (more formally).
+        hint: This uses a more formal expression for 'later', which might imply a different level of politeness
+          than intended. We're looking for a standard 'later' without specific formality.
+    scene: A person politely confirming a future visit.
+    register: teineigo (polite)
+    setting: informative
+  - english: After eating, shall we spend a little time together?
+    japanese:
+      - ご飯 を 食べ た {あと で}、少し だけ 一緒 に いよう か？
+      - ご飯 を 食べ た {あと で}、少し だけ 一緒 に い ない？
+      - 食事 を 終え た {あと で}、少し だけ 一緒 に 過ごし ませ ん か？
+    english_literally: After having eaten meal, shall we be together just a little?
+    competing_grammar:
+      - competing_japanese:
+          - ご飯 を 食べる {まえ に}、少し だけ 一緒 に いよう か？
+        english: Before eating, shall we spend a little time together?
+        hint: The invitation is for after eating, not before. We're looking for an invitation for 'after
+          eating'.
+      - competing_japanese:
+          - ご飯 を 食べ {て から}、少し だけ 一緒 に いよう か？
+        english: After eating, shall we spend a little time together?
+        hint: This implies a more immediate succession, while the original suggests a general 'after'
+          without strict immediacy. We're looking for a more general 'after'.
+      - competing_japanese:
+          - ご飯 を 食べ {たら}、少し だけ 一緒 に いよう か？
+        english: When/If we eat, shall we spend a little time together?
+        hint: This indicates a conditional situation, not a general temporal sequence. We're looking for
+          a simple 'after'.
+      - competing_japanese:
+          - ご飯 を 食べ た {上 で}、少し だけ 一緒 に いよう か？
+        english: After eating (and considering something), shall we spend a little time together?
+        hint: This implies deliberation or a decision made after eating, which is not the nuance here.
+          We're looking for a simple temporal connection.
+      - competing_japanese:
+          - ご飯 が 終わっ て、少し だけ 一緒 に いよう か？
+        english: After the meal is over, shall we spend a little time together?
+        hint: This focuses on the completion of the meal, while the original is a broader temporal connection.
+          We're looking for a broader 'after'.
+      - competing_japanese:
+          - ご飯 を 食べ て すぐ に、少し だけ 一緒 に いよう か？
+        english: Immediately after eating, shall we spend a little time together?
+        hint: This emphasizes immediate action, while the original allows for a slight time gap. We're
+          looking for an expression that allows for a time gap.
+    scene: A woman inviting her male partner to relax together after a meal.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The ending 「～ようか」 is a soft invitation, commonly used in casual and intimate settings. While
+      not exclusively female, when a woman uses it towards a male partner in an intimate context, it can
+      convey a gentle, inviting tone. The choice of 「いようか」 (let's be/stay) instead of 「いましょうか」 (polite)
+      is typical in close relationships.
+post_example_writeup: The flexibility of 「あとで」 is its key feature. It allows for a natural flow of conversation
+  when discussing subsequent events without needing to specify the exact timing or the reason for the
+  delay. This makes it very versatile in everyday Japanese. Pay close attention to context when deciding
+  between 「あとで」 and other similar expressions like 「てから」 or 「たら」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/あとで

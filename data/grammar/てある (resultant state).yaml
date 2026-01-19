@@ -1,0 +1,392 @@
+grammar_point: てある (resultant state)
+learn_before:
+  - Verb[て] (and then)
+  - Verb[てある] (result of purposeful action)
+  - かける・かけ (in process・incomplete・on the verge)
+  - すっかり (completely)
+  - ちゃんと・きちんと (properly・neatly)
+  - てから (after and since)
+  - と並んで (comparable with)
+  - に (target・destination)
+  - もう (already・anymore)
+  - 何とか (somehow manage)
+meaning: Something is done, Has been done, Remaining state
+meaning_warning: Only used with transitive verbs!
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: てある
+    rarity: common
+    meaning: something has been done (and remains in that state)
+  - conjugation-type: non-past polite (～ます)
+    form: てあります
+    rarity: common
+    meaning: something has been done (and remains in that state, polite)
+  - conjugation-type: negative plain (～ない)
+    form: てない
+    rarity: common
+    meaning: something has not been done (and is not in that state)
+  - conjugation-type: negative non-past polite (～ません)
+    form: てありません
+    rarity: common
+    meaning: something has not been done (and is not in that state, polite)
+  - conjugation-type: past plain (～た)
+    form: てあった
+    rarity: common
+    meaning: something had been done (and remained in that state)
+  - conjugation-type: past polite (～ました)
+    form: てありました
+    rarity: common
+    meaning: something had been done (and remained in that state, polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: てなかった
+    rarity: common
+    meaning: something had not been done (and was not in that state)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: てありませんでした
+    rarity: common
+    meaning: something had not been done (and was not in that state, polite)
+  - conjugation-type: te-form (～て)
+    form: てあって
+    rarity: uncommon
+    meaning: having been done (and remaining in that state)
+  - conjugation-type: conditional (～ば)
+    form: てあれば
+    rarity: uncommon
+    meaning: if something has been done (and remains in that state)
+  - conjugation-type: conditional (～たら)
+    form: てあったら
+    rarity: uncommon
+    meaning: if something had been done (and remained in that state)
+pronunciation:
+  katakana: テアル
+  romaji: te aru
+formation:
+  Transitive Verb Te-form + ある: Indicates a state resulting from a completed action, focusing on the object's
+    current condition. The action is performed by an unspecified agent, and the object's state is highlighted.
+  Object が + Transitive Verb Te-form + ある: Used when the action implies preparation or intent, emphasizing
+    the resulting state of the object, often for its current purpose or benefit.
+jlpt: N4
+etymology: The grammar point 「てある」 is a combination of the te-form of a verb and the verb 「ある」 (aru),
+  meaning "to exist" or "to be". The te-form indicates a completed action, and 「ある」 signifies the resulting
+  state of that action. This construction emphasizes the continued existence of the result of a purposeful
+  action.
+writeup: |-
+  The grammar point 「てある」 describes a **state** that is the result of a prior action. It is crucial to understand that it is used **only with transitive verbs** and places emphasis on the **object** that has been acted upon, rather than the person or entity who performed the action. The use of 「ある」 (aru) signifies the continued existence of this state, implying that the object is inanimate or cannot undo the action.
+
+  While often translated simply as "something has been done" or "something is in a state of having been done," 「てある」 frequently carries the nuance that the action was performed with a **purpose** or in **preparation** for something else.
+
+  When using 「てある」, the object of the verb becomes the grammatical subject of the resulting state, and therefore takes the particle 「が」. For example, when you say 「ドアが閉めてある」 (doa ga shimete aru, the door is closed/has been closed), you are emphasizing the state of the door as a result of someone's intentional act of closing it, often for a reason (e.g., to keep out the cold).
+
+  **Important Considerations:**
+
+  *   **Distinction from `～ている` (resultant state):** While both can describe a resultant state, 「てある」 is exclusively used with transitive verbs and implies a deliberate, purposeful action by an agent (even if unspecified) that led to the current state. 「～ている」 (resultant state) is typically used with intransitive verbs, describing a state that resulted from a natural process or a change without emphasizing an external agent's intention (e.g., 「ドアが閉まっている」 - the door is closed, implying it closed by itself or is simply in that state).
+  *   **Distinction from Passive Voice (`～れる/られる`):** The passive form focuses on the *action* being performed on the object, and can imply the agent or just the action itself. 「てある」, on the other hand, emphasizes the stable *resultant state* of the object due to a purposeful action. For instance, 「窓が閉められた」 (The window was closed) highlights the act of closing, while 「窓が閉めてある」 (The window is closed/has been closed) highlights the window's current condition as a consequence of someone's deliberate action.
+false_friends:
+  - term: ままに
+    meaning: As is, While remaining, Left in a state
+    kind: similar expression
+    nuance: While 「てある」 (te aru) indicates a state resulting from a completed action with a purpose, 「ままに」
+      (mama ni) describes something being left in its current condition without intervention or specific
+      intent.
+    grammar_point: 〜まま(に) (as is・unchanged)
+  - term: ておく
+    meaning: To do something in advance
+    kind: often confused with
+    nuance: 「ておく」 (te oku) describes doing something in preparation for a future event or for a temporary
+      purpose, emphasizing the action of preparing. In contrast, 「てある」 (te aru) focuses on the resultant
+      state of that action. One is about the process of preparing, the other is about the state of being
+      prepared.
+    grammar_point: ておく (to do in advance)
+  - term: ている (resultant state)
+    meaning: Indicates a state resulting from a change, or a continuous state.
+    kind: often confused with
+    nuance: While 「てある」 (te aru) emphasizes a state resulting from a purposeful, transitive action, 「ている」
+      (te iru) when describing a resultant state, typically describes a state resulting from an intransitive
+      action or a natural change, without implying an external agent's intent. For example, 「ドアが閉まっている」
+      (doa ga shimatte iru - The door is closed) implies it closed by itself or its current state, whereas
+      「ドアが閉めてある」 (doa ga shimete aru - The door has been closed) implies someone purposefully closed it.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - term: れる られる (passive)
+    meaning: To be done to, to be affected by (passive voice).
+    kind: often confused with
+    nuance: 「てある」 (te aru) describes a state as a result of an action, focusing on the object's current
+      condition, always implying a human agent's purpose. The passive form, however, emphasizes the action
+      being performed on the object, and can imply the agent (even if unspecified) or just the action
+      itself, rather than the stable resultant state. For instance, 「窓が閉められた」 (mado ga shimerareta - The
+      window was closed) highlights the action of closing, while 「窓が閉めてある」 (mado ga shimete aru - The
+      window is closed/has been closed) highlights its present state due to someone's deliberate action.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: 〜ずじまい (ended up not doing)
+    meaning: Ended up not, Did not (in the end), Never did
+    kind: similar expression
+    nuance: 「てある」 expresses a completed action and its resultant state. In contrast, 「〜ずじまい」 signifies
+      an action that was intended but ultimately was not carried out, focusing on the lack of completion
+      and a resultant state of omission.
+    grammar_point: <suggest>:〜ずじまい (ended up not doing)
+post_false_friends_writeup: 'To differentiate these, remember: 「てある」 focuses on a **resultant state caused
+  by a purposeful transitive action**. 「ておく」 is about performing an **action in advance** for a future
+  purpose. 「ている」 (when indicating a state) describes a state that is a result of an **intransitive action
+  or natural change**, without emphasis on an agent''s intention. The passive form, 「れる/られる」, emphasizes
+  the **action being performed** on the subject rather than the lasting state. 「〜ずじまい」 expresses an intention
+  that ultimately remained unfulfilled.'
+examples:
+  - english: The party preparations are all done, so we can start right away.
+    japanese:
+      - パーティー の 準備 が すっかり し て {ある} から、すぐ に 始め られる よ。
+      - パーティー の 準備 が すっかり し て {あり ます} から、すぐ に 始め られ ます よ。
+      - パーティー の 準備、もう し て {ある} から、すぐ 始め られる よ。
+    english_literally: Because the party preparations have been completely done, we can start right away.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー の 準備 が すっかり {でき て いる} から、すぐ に 始め られる よ。
+        english: The party preparations are completely ready, so we can start right away.
+        hint: 「できている」 focuses on the state of readiness without emphasizing the purposeful action of someone
+          having prepared it. We're looking for a state resulting from a purposeful action.
+    scene: You've just arrived at a friend's house for a party and they tell you everything is ready.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「すっかり」 (sukkari, completely) emphasizes the thoroughness of the preparations. The
+      「よ」 (yo) at the end adds a friendly, reassuring tone, characteristic of casual female speech.
+    etymology: The particle 「よ」 (yo) has roots in older Japanese, often used for assertion or calling
+      attention. In modern casual speech, it can soften the assertion to a friendly suggestion or confirmation,
+      especially in female speech patterns.
+  - english: A new painting has been displayed on the wall.
+    japanese:
+      - 壁 に 新しい 絵 が 飾っ て {あり ます}。
+      - 壁 に 新しい 絵 が 飾っ て {ある}。
+    english_literally: On the wall, a new painting has been displayed (and is in that state).
+    competing_grammar:
+      - competing_japanese:
+          - 壁 に 新しい 絵 が {飾ら れ て い ます}。
+        english: A new painting is displayed on the wall (passive).
+        hint: 「飾られています」 is the passive form, stating that the painting has been displayed, but it doesn't
+          carry the nuance of a purposeful action resulting in a specific state, which 「てあります」 does. We're
+          looking for a state resulting from a purposeful action.
+    scene: A visitor noticing a change in the living room decor.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: Using 「飾ってあります」 (kazatte arimasu) implies that someone purposefully hung it there, and it
+      remains in that state for viewing. This indicates an intentional act with a persistent result. The
+      politeness of 「あります」 (arimasu) is appropriate for informing a visitor.
+    etymology: The verb 「飾る」 (kazaru) literally means 'to decorate' or 'to display.' Its use with 「てあります」
+      (te arimasu) emphasizes the resultant state of an object being adorned or put on display, implying
+      an intentional act of arrangement.
+  - english: The window isn't open, so the air feels stale, doesn't it?
+    japanese:
+      - 窓 が 開け て {ない} から、空気 が こもっ て いる ね。
+      - 窓 が 開け て {あり ませ ん} から、空気 が こもっ て い ます ね。
+    english_literally: Because the window isn't opened (by someone), the air is stuffy, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 窓 が {開い て い ない} から、空気 が こもっ て いる ね。
+        english: Because the window isn't open, the air feels stale, doesn't it?
+        hint: 「開いていない」 (aite inai) is the negative of the intransitive verb 'to open', simply stating
+          the window's current condition. 「開けてない」 (aketenai) implies that someone didn't open it. We're
+          looking for a state resulting from a lack of purposeful action.
+    scene: Someone walking into a stuffy room and commenting on it.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「開けてない」 (aketenai) suggests that the window was not intentionally left open, or rather, was
+      left closed, leading to the stuffy air. The 「ね」 (ne) at the end seeks agreement, a common casual
+      speech pattern for both genders.
+    etymology: The word 「空気」 (kūki), meaning 'air', combines characters for 'sky' (空) and 'spirit/energy'
+      (気). When air 「こもっている」 (komotte iru), it suggests a trapped or stagnant quality, aligning with the
+      nuance of 'stale air'.
+  - english: The materials for the clients have not been prepared yet.
+    japanese:
+      - お 客 様 の ため に、資料 は まだ 用意 し て {あり ませ ん}。
+      - お 客 様 の ため に、資料 は まだ 用意 し て {ない}。
+    english_literally: For the clients, the materials have not been prepared (and are not in that state)
+      yet.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 の ため に、資料 は まだ {用意 さ れ て い ませ ん}。
+        english: The materials for the clients have not been prepared yet (passive).
+        hint: 「用意されていません」 (yōi sarete imasen) is the passive form, stating that the materials have not
+          been acted upon. 「用意してありません」 (yōi shite arimasen) implies that the intended state of being prepared
+          has not been achieved. We're looking for a state resulting from a lack of purposeful action.
+    scene: A junior employee reporting to their manager about the status of a task.
+    register: semi-formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    nuance: The polite negative 「用意してありません」 (yōi shite arimasen) indicates that the intentional action
+      of preparing the materials has not been completed, and thus they are not in a ready state. This
+      usage is common in business contexts to report task status.
+    etymology: 「用意」 (yōi) means 'preparation' or 'readiness'. It is often paired with 「する」 (suru) to form
+      a verb, and here, with 「てあります」 (te arimasu), it emphasizes the state of not being prepared as a
+      result of a lack of action.
+  - english: This book, I had already returned it to the library.
+    japanese:
+      - この 本、もう 図書 館 に 返し て {あっ た} よ。
+      - この 本、もう 図書 館 に 返し て {あり まし た} よ。
+    english_literally: This book, already to the library, I had returned it (and it was in that state).
+    competing_grammar:
+      - competing_japanese:
+          - この 本、もう 図書 館 に {返し た} よ。
+        english: This book, I already returned it to the library.
+        hint: 「返した」 (kaeshita) is a simple past action, focusing on the completion of the action itself.
+          「返してあった」 (kaeshite atta) emphasizes the resultant state of the book being returned. We're looking
+          for a state that resulted from a past purposeful action.
+    scene: A student reminding a classmate about a book that was due.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「返してあった」 (kaeshite atta) implies that the action of returning the book was completed in the
+      past and its state of being returned continued up to a certain point, reassuring the listener it's
+      no longer their responsibility. The 「よ」 (yo) adds a light emphasis, typical of female casual speech.
+    etymology: 「返す」 (kaesu) comes from an older form meaning 'to turn back' or 'to return'. When combined
+      with 「てあった」 (te atta), it emphasizes the lasting state of the returned item.
+  - english: The report had already been submitted to the teacher.
+    japanese:
+      - レポート は すでに 先生 に 提出 し て {あり まし た}。
+      - レポート は すでに 先生 に 提出 し て {あっ た}。
+    english_literally: The report had already been submitted to the teacher (and was in that state).
+    competing_grammar:
+      - competing_japanese:
+          - レポート は すでに 先生 に {提出 さ れ て い まし た}。
+        english: The report had already been submitted to the teacher (passive).
+        hint: 「提出されていました」 (teishutsu sarete imashita) is the passive form, focusing on the report being
+          acted upon. 「提出してありました」 (teishutsu shite arimashita) highlights the report's resultant state
+          of submission due to a purposeful act. We're looking for a state that resulted from a past purposeful
+          action.
+    scene: A student explaining to a friend why they aren't worried about an upcoming deadline.
+    register: formal
+    setting: academic
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The polite past form 「提出してありました」 (teishutsu shite arimashita) is used to formally state that
+      the action of submitting the report was completed, and its status as 'submitted' continued. This
+      phrasing is appropriate in an academic setting.
+    etymology: 「提出」 (teishutsu) means 'submission' and implies formally presenting something. Its use
+      with 「てありました」 (te arimashita) highlights the enduring state of the submission.
+  - english: No one had read that new rule yet.
+    japanese:
+      - まだ 誰 も その 新しい ルール を 読ん で {なかっ た}。
+      - まだ 誰 も その 新しい ルール を 読ん で {あり ませ ん でし た}。
+    english_literally: Still, no one had read that new rule (and it wasn't in that state).
+    competing_grammar:
+      - competing_japanese:
+          - まだ 誰 も その 新しい ルール を {読ん で い ませ ん でし た}。
+        english: No one was reading that new rule yet.
+        hint: '「読んでいませんでした」 (yonde imasen deshita) is the negative progressive, indicating an common example:
+          an action that wasn''t ongoing. 「読んでなかった」 (yonde nakatta) implies that the resultant state of
+          having been read was not achieved. We''re looking for a state that resulted from a lack of past
+          purposeful action.'
+    scene: A team discussing a problem caused by a lack of awareness of a new company policy.
+    register: casual
+    setting: serious
+    conjugation: negative past plain (～なかった)
+    nuance: 「読んでなかった」 (yonde nakatta) indicates that the action of reading was not completed, and thus
+      the state of 'having read' did not exist in the past. This points to a lack of awareness as the
+      cause of an issue.
+    etymology: The word 「ルール」 (rūru) is a loanword from English 'rule'. The expression 「読んでなかった」 (yonde
+      nakatta) implies that the act of reading was not performed, leading to a resultant state of unawareness.
+  - english: The tickets had not been reserved, but we managed to get in somehow.
+    japanese:
+      - チケット は 予約 し て {あり ませ ん でし た} が、何 と か 入場 でき まし た。
+      - チケット は 予約 し て {なかっ た} が、何 と か 入場 でき た。
+    english_literally: The tickets had not been reserved (and were not in that state), but somehow we
+      could enter.
+    competing_grammar:
+      - competing_japanese:
+          - チケット は {予約 さ れ て い ませ ん でし た} が、何 と か 入場 でき まし た。
+        english: The tickets had not been reserved (passive), but we managed to get in somehow.
+        hint: 「予約されていませんでした」 (yoyaku sarete imasen deshita) is the passive form. 「予約してありませんでした」 (yoyaku
+          shite arimasen deshita) emphasizes that the tickets were not in the intended state of being
+          reserved due to a lack of a purposeful action. We're looking for a state that resulted from
+          a lack of past purposeful action.
+    scene: Friends recalling a past event where they had difficulty getting into a venue.
+    register: semi-formal
+    setting: storytelling
+    conjugation: negative past polite (～ませんでした)
+    nuance: 「予約してありませんでした」 (yoyaku shite arimasen deshita) expresses that the tickets were not in the
+      reserved state due to a lack of prior action. The nuance is that the lack of preparation existed
+      and was overcome.
+    etymology: 「予約」 (yoyaku) means 'reservation' or 'booking'. Its combination with the negative form
+      of 「てある」 (te aru) emphasizes that the tickets were not in a reserved state as a result of someone's
+      action (or lack thereof).
+  - english: Breakfast has already been prepared on the dining table, and all that's left is to eat.
+    japanese:
+      - 朝食 は もう 食卓 に 用意 し て {あっ て}、後 は 食べる だけ だ。
+      - 朝食 は もう 食卓 に 用意 し て {あり まし て}、後 は 食べる だけ です。
+    english_literally: Breakfast has already been prepared on the dining table (and is in that state),
+      and afterwards, it's just eating.
+    competing_grammar:
+      - competing_japanese:
+          - 朝食 は もう 食卓 に {用意 さ れ て い て}、後 は 食べる だけ だ。
+        english: Breakfast has already been prepared on the dining table (passive), and all that's left
+          is to eat.
+        hint: 「用意されていて」 (yōi sarete ite) is passive and simply states the condition. 「用意してあって」 (yōi shite
+          atte) highlights that the breakfast was purposefully prepared and is now in that ready state.
+          We're looking for a state resulting from a purposeful action, connecting to a subsequent action.
+    scene: Someone waking up and seeing that breakfast is ready.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: The te-form 「用意してあって」 (yōi shite atte) connects the state of being prepared to the next action
+      (eating), emphasizing the readiness of the meal. This is a common way to link cause and effect or
+      sequential states.
+    etymology: 「朝食」 (chōshoku) literally means 'morning meal'. The connective te-form 「てあって」 (te atte)
+      functions to link the established state of breakfast being ready with the subsequent action of eating,
+      highlighting the flow of events.
+  - english: If the documents have been properly filed away, we can start the meeting right away.
+    japanese:
+      - もし 書類 が きちんと 整理 し て {あれ ば}、すぐ に 会議 を 始め られ ます。
+      - もし 書類 が きちんと 整理 し て {あっ たら}、すぐ に 会議 を 始め られ ます。
+      - もし 書類 が きちんと 整理 し て {ある なら}、すぐ に 会議 を 始め られ ます。
+    english_literally: If the documents have been properly filed away (and are in that state), we can
+      start the meeting right away.
+    competing_grammar:
+      - competing_japanese:
+          - もし 書類 が きちんと {整理 さ れ て いれ ば}、すぐ に 会議 を 始め られ ます。
+        english: If the documents have been properly filed away (passive), we can start the meeting right
+          away.
+        hint: 「整理されていれば」 (seiri sarete ireba) is the passive form. 「整理してあれば」 (seiri shite areba) implies
+          the documents were purposefully filed away for a reason. We're looking for a state resulting
+          from a purposeful action as a condition.
+    scene: A meeting facilitator checking the readiness before starting.
+    register: formal
+    setting: negotiating
+    conjugation: conditional (～ば)
+    nuance: The conditional 「整理してあれば」 (seiri shite areba) implies that if the action of filing away the
+      documents has been completed and they are in that state, then the meeting can commence. It sets
+      a clear prerequisite for the next step.
+    etymology: The verb 「整理する」 (seiri suru) means 'to arrange' or 'to organize'. When used with the conditional
+      「てあれば」 (te areba), it creates a condition where the existence of the prepared state is the trigger
+      for the subsequent action.
+  - english: If this machine had been properly inspected, it probably wouldn't have broken down.
+    japanese:
+      - この 機械 は ちゃんと 点検 し て {あっ たら}、故障 し なかっ た だろう。
+      - この 機械 は ちゃんと 点検 し て {あり まし たら}、故障 し なかっ た でしょ う。
+    english_literally: If this machine had been properly inspected (and was in that state), it probably
+      wouldn't have broken down.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は ちゃんと {点検 さ れ て い たら}、故障 し なかっ た だろう。
+        english: If this machine had been properly inspected (passive), it probably wouldn't have broken
+          down.
+        hint: 「点検されていたら」 (tenken sarete itara) is the passive form. 「点検してあったら」 (tenken shite attara) emphasizes
+          the hypothetical resultant state of the machine having been purposefully inspected. We're looking
+          for a hypothetical state resulting from a past purposeful action.
+    scene: Technicians troubleshooting a broken machine, lamenting a past oversight.
+    register: formal
+    setting: serious
+    conjugation: conditional (～たら)
+    nuance: The conditional past 「点検してあったら」 (tenken shite attara) indicates a hypothetical situation where
+      the action of inspecting the machine had been completed, and its state of being inspected had been
+      maintained. It suggests a cause-and-effect relationship for a past event.
+    etymology: 「点検」 (tenken) means 'inspection' or 'checking'. Its use with the conditional past 「てあったら」
+      (te attara) establishes a counterfactual condition, emphasizing what would have happened if the
+      machine had been in a state of having been properly inspected.
+post_example_writeup: Remember that 「てある」 is only used with transitive verbs, focusing on the object's
+  state rather than the actor. This nuance is key to using it correctly.

@@ -1,0 +1,229 @@
+grammar_point: ところで (by the way)
+learn_before:
+  - '[Verb-dictionary]ところだ (about to do)'
+  - ところを (while or in circumstances)
+meaning: By the way, Incidentally
+pronunciation:
+  katakana: トコロデ
+  romaji: tokorode
+formation:
+  ところで: Used at the beginning of a sentence to introduce a new topic, similar to "by the way" or "incidentally."
+jlpt: N3
+etymology: 「ところで」 is composed of 「所 (tokoro)」 meaning "place" or "point," and the particle 「で (de)」, indicating
+  location or means. The phrase literally means "at the point," but its usage evolved to signify a shift
+  in the conversation to another 'point' or topic.
+writeup: 「ところで」 is a conjunction formed from the noun 「所 (tokoro)」, meaning "place" or "point," and the
+  particle 「で (de)". Its literal translation is closer to 'and with that'. It functions similarly to "by
+  the way" or "incidentally" in English, serving to introduce a completely new topic in a conversation.
+  It signals a clear shift from the current subject to something entirely unrelated. The nuance conveyed
+  is that something from the previous topic subtly reminded the speaker of another matter, prompting the
+  introduction of a new subject. 「ところで」 is typically placed at the beginning of a sentence, followed by
+  the new statement or question. This usage is distinct from phrases that add further information within
+  the same topic or refer to closely related matters.
+false_friends:
+  - term: そういえば
+    meaning: Speaking of which, By the way, Come to think of it
+    kind: similar expression
+    nuance: 「そういえば」 is used when something in the current conversation or context reminds the speaker
+      of a related topic, often a sudden recollection. In contrast, 「ところで」 is for introducing a completely
+      new and unrelated topic.
+    grammar_point: そういえば (speaking of which)
+  - term: ～と言えば・～と言うと・～と言ったら
+    meaning: Speaking of, If it were the case that
+    kind: similar expression
+    nuance: This pattern is used to bring up something related to the current topic, often as a direct
+      response to a keyword or idea just mentioned. 「ところで」, however, signals a more abrupt and often unrelated
+      change of subject.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+  - term: ちなみに
+    meaning: Incidentally, in passing, by the way (for related info)
+    kind: similar expression
+    nuance: 「ちなみに」 is used to add supplementary or related information to the current topic. 「ところで」 is
+      used to completely change the topic to an unrelated subject.
+    grammar_point: ちなみに (by the way)
+  - term: それはそうと
+    meaning: By the way, incidentally (informal topic shift)
+    kind: similar expression
+    nuance: 「それはそうと」 is a casual conversational filler to shift topic abruptly, often implying a less
+      formal setting than 「ところで」. 「ところで」 implies a more distinct break, but still maintains a certain
+      level of politeness, especially when used in formal settings.
+    grammar_point: <strongly-suggest>:それはそうと (by the way・casual)
+post_false_friends_writeup: While 「そういえば」 and 「といえば」 introduce topics that are related to the ongoing
+  discussion or are sudden recollections, and 「ちなみに」 adds supplementary related information, 「ところで」 stands
+  apart by signaling a clear, often abrupt, shift to an entirely unrelated topic. 「それはそうと」 is also used
+  for abrupt topic shifts but carries a more casual and conversational tone than 「ところで」, which can be
+  used across various registers.
+examples:
+  - english: By the way, what happened to yesterday's plan?
+    japanese:
+      - '{ところ で}、{昨日} の {話} は どう なっ た？'
+      - '{ところ で}、{昨日} の {話} は どう なり まし た か？'
+    english_literally: By the way, regarding yesterday's talk, what happened?
+    competing_grammar:
+      - competing_japanese:
+          - そう いえ ば、昨日 の 話 は どう なっ た？
+        english: Speaking of which, what happened to yesterday's plan?
+        hint: 「そういえば」 is used when something in the current conversation reminds you of a related topic.
+          We're looking for a complete topic shift.
+    scene: A man asks his friend about a plan they discussed the day before, after a brief unrelated conversation.
+    register: casual
+    setting: interrogative
+  - english: By the way, is your husband doing well?
+    japanese:
+      - '{ところ で}、お {宅} の {旦那} さん、お {元気} に し てらっしゃる？'
+      - '{ところ で}、ご {主人} は お {元気} です か？'
+      - '{ところ で}、ご {主人} さん、{元気}？'
+    english_literally: By the way, your household's husband, is he doing well?
+    competing_grammar:
+      - competing_japanese:
+          - そう いえ ば、ご 主人 は お 元気 です か？
+        english: Speaking of which, is your husband doing well?
+        hint: 「そういえば」 introduces a topic that is somewhat related to the current discussion or a sudden
+          realization. We're looking for a grammar point that introduces an entirely new topic.
+    scene: A woman visits her neighbor and, after discussing general topics, shifts to ask about her neighbor's
+      husband.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The verb ending 「～てらっしゃる」 (te rassharu) is a highly respectful and formal form of address,
+      often favored by female speakers in Japanese to convey utmost politeness and deference, especially
+      when inquiring about another's family member. The honorific 「お」 before 「元気」 further enhances this
+      refined and considerate tone, typical of women in polite discourse.
+  - english: By the way, where are you headed?
+    japanese:
+      - '{ところ で}、どちら へ お {出かけ} です か？'
+      - '{ところ で}、どこ へ {行く} の？'
+      - '{ところ で}、どこ に {行く} ん です か？'
+    english_literally: By the way, to where are you going out?
+    competing_grammar:
+      - competing_japanese:
+          - どこ に 行く つもり です か？
+        english: Where are you planning to go?
+        hint: 「どこに行くつもりですか？」 is a more direct and less formal way to ask about someone's destination.
+          We're looking for a polite way to introduce a new, unrelated question.
+    scene: A woman encounters an acquaintance at the station and politely asks about their destination,
+      shifting from a previous casual exchange.
+    register: teineigo (polite)
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「どちらへお出かけですか？」 is a polite way to ask about someone's destination, often used by
+      women in polite conversation. The use of 「お出かけ」 (odekake), the honorific 「お」, and the polite verb
+      ending 「ですか」 (desu ka) creates a respectful and considerate tone.
+  - english: By the way, what are you going to bring to the party tomorrow?
+    japanese:
+      - '{ところ で}、{明日} の パーティー に {何} を {持っ て} {来 ます か}？'
+      - '{ところ で}、{明日} の パーティー に {何} {持っ て} {来る}？'
+    english_literally: By the way, what will you bring to tomorrow's party?
+    competing_grammar:
+      - competing_japanese:
+          - そう いえ ば、明日 の パーティー に 何 を 持っ て 来 ます か？
+        english: Speaking of which, what are you going to bring to tomorrow's party?
+        hint: 「そういえば」 is used when a topic comes to mind because of something previously mentioned. We're
+          looking for a clear shift to an unrelated subject.
+    scene: A host, after discussing party details, shifts conversation to ask a guest what they will bring.
+    register: teineigo (polite)
+    setting: friendly
+  - english: By the way, do you know how to use a computer?
+    japanese:
+      - '{ところ で}、パソコン の {使い 方} を ご {存知} です か。'
+      - '{ところ で}、パソコン の {使い 方} {わかる}？'
+    english_literally: By the way, do you know the way to use a computer?
+    competing_grammar:
+      - competing_japanese:
+          - そう いえ ば、パソコン の 使い 方 を ご 存知 です か？
+        english: Speaking of which, do you know how to use a computer?
+        hint: 「そういえば」 is suitable for topics that arise from a connection to the current discussion. We're
+          looking for a grammar point for an abrupt topic change.
+    scene: A manager is discussing project details with a new employee and then abruptly asks if they
+      are proficient with computers.
+    register: teineigo (polite)
+    setting: informative
+  - english: By the way, where is Uchimoto-san from?
+    japanese:
+      - '{ところ で} {内本} さん は どこ {出身}？'
+      - '{ところ で} {内本} さん は どちら の ご {出身} です か？'
+    english_literally: By the way, where is Uchimoto-san's origin?
+    competing_grammar:
+      - competing_japanese:
+          - 内本 さん は どこ 出身？
+        english: Where is Uchimoto-san from?
+        hint: Simply asking 「内本さんはどこ出身？」 can sound abrupt without a softening transition. We're looking
+          for a phrase to smoothly introduce an entirely new, possibly personal, inquiry.
+    scene: During a casual gathering, a friend abruptly asks another person about the hometown of a mutual
+      acquaintance, Uchimoto-san.
+    register: casual
+    setting: friendly
+  - english: By the way, has it stopped raining yet?
+    japanese:
+      - '{ところ で}、もう {雨} は やみ まし た か？'
+      - '{ところ で}、もう {雨} や ん だ？'
+    english_literally: By the way, has the rain already stopped?
+    competing_grammar:
+      - competing_japanese:
+          - そう いえ ば、もう 雨 は やみ まし た か？
+        english: Speaking of which, has it stopped raining yet?
+        hint: 「そういえば」 implies a memory triggered by the conversation. We're looking for a grammar point
+          that introduces a truly disconnected topic.
+    scene: Two colleagues are in an office discussing work, and one spontaneously asks the other about
+      the weather outside.
+    register: teineigo (polite)
+    setting: cautious
+  - english: By the way, where do you want to go on our next date? I'll take you there.
+    japanese:
+      - '{ところ で}、{今度} の {デート}、どこ {行き たい} ん だ？{俺} が {連れ てっ て} {やる} よ。'
+      - '{ところ で}、{今度} の {デート}、どこ に {行き たい}？{私} が {連れ て いく} よ。'
+      - '{ところ で}、{今度} の {デート} は どこ に {行き たい} です か？{私} が ご {案内} し ます よ。'
+    english_literally: By the way, for the next date, where do you want to go? I'll take you.
+    competing_grammar:
+      - competing_japanese:
+          - 今度 の デート、どこ 行き たい？
+        english: Where do you want to go on our next date?
+        hint: Directly asking 「今度のデート、どこ行きたい？」 might be too sudden if not linked to the previous conversation.
+          We're looking for a way to smoothly transition to a new topic, especially in a flirty context.
+    scene: A man and woman are chatting, and he suddenly changes the subject to their next date, taking
+      the initiative.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker's use of the informal 「俺」 (ore) and the masculine sentence-ending particle 「んだ」
+      (nda) adds a direct, confident, and slightly possessive tone, characteristic of a man flirting.
+      The phrase 「連れてってやるよ」 (tsurete tte yaru yo) reinforces this assertive yet caring demeanor, implying
+      he will treat her.
+  - english: By the way, did you have a good vacation last week?
+    japanese:
+      - '{ところ で}、{先週} の {休暇} は {楽しかっ た} です か？'
+      - '{ところ で}、{先週} の {休み}、{楽しかっ た}？'
+    english_literally: By the way, was last week's vacation enjoyable?
+    competing_grammar:
+      - competing_japanese:
+          - そう いえ ば、先週 の 休暇 は 楽しかっ た です か？
+        english: Speaking of which, did you have a good vacation last week?
+        hint: 「そういえば」 implies a connection to the ongoing conversation or a sudden recollection. We're
+          looking for a grammar point that signals an entirely new, unrelated topic.
+    scene: After a business meeting, a colleague shifts topics to casually ask about a recent vacation,
+      showing personal interest.
+    register: teineigo (polite)
+    setting: professional
+  - english: By the way, are you free for dinner tonight?
+    japanese:
+      - '{ところ で}、{今夜} {ご飯} {行ける}？'
+      - '{ところ で}、{今夜} ご {飯} に {行け} ます か？'
+    english_literally: By the way, tonight, can we go eat?
+    competing_grammar:
+      - competing_japanese:
+          - 今夜、ご飯 行ける？
+        english: Are you free for dinner tonight?
+        hint: Directly asking 「今夜、ご飯行ける？」 can be abrupt. We're looking for a way to smoothly transition
+          to an unexpected invitation, softening the sudden topic change.
+    scene: Two friends are chatting about their day, and one suddenly changes the subject to an invitation
+      for dinner.
+    register: casual
+    setting: friendly
+post_example_writeup: The usage of 「ところで」 effectively shifts the conversation's focus to an unrelated
+  topic. It's crucial to distinguish it from similar phrases like 「そういえば」, 「といえば」, 「ちなみに」, or 「それはそうと」,
+  which introduce related topics, sudden recollections, or a more casual/abrupt shift respectively. 「ところで」
+  is a distinct signal for a clear, often abrupt, change of subject while maintaining a relatively polite
+  tone.

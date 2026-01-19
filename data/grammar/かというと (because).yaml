@@ -1,0 +1,285 @@
+grammar_point: かというと (because)
+learn_before:
+  - かというと (if I were to say)
+  - ん (slang)
+  - 苦手 (not good at)
+meaning: Why? Well..., Why? Because..., If you ask me why..., The reason why is..., It is because...
+meaning_warning: In casual speech, の can be changed to ん and と to って
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: かというと
+    rarity: common
+    meaning: if one asks why, the reason is
+  - conjugation-type: conditional (～ば)
+    form: かと言えば
+    rarity: common
+    meaning: if one were to say why
+  - conjugation-type: conditional (～たら)
+    form: かといったら
+    rarity: common
+    meaning: if one were to say why
+  - conjugation-type: te-form (～て)
+    form: かっていうと
+    rarity: common
+    meaning: if one were to say why (casual contraction)
+pronunciation:
+  katakana: カトイウト
+  romaji: ka to iu to
+formation:
+  '[Question Word] + Verb (dictionary form/plain past) + {かというと}': Used to introduce an explanation or
+    reason following a question word.
+  '[Question Word] + Noun + なの + {かというと}': Used to introduce an explanation or reason following a question
+    word for nouns.
+  '[Question Word] + い-Adjective + の + {かというと}': Used to introduce an explanation or reason following
+    a question word for い-adjectives.
+  '[Question Word] + な-Adjective + なの + {かというと}': Used to introduce an explanation or reason following
+    a question word for な-adjectives, when linking to the explanatory のだ/んです.
+jlpt: N3
+etymology: The phrase 「かというと」 is derived from 「か」 (question marker), 「と」 (citation particle), 「言う」 (iu
+  - to say), and 「と」 (resultative particle). Literally, it means something akin to "if it were to be asked,"
+  setting up an explanation.
+writeup: |-
+  The phrase 「かというと」 serves primarily to introduce an explanation or reason, often in response to a question or an implied query. It is commonly paired with interrogative words such as **どうして** (why) or **なぜ** (why).
+
+  Literally, 「かというと」 combines the question marker **か**, the citation particle **と**, the verb **言う** (to say), and the resultative particle **と**. This construction can be understood as "if one were to say/ask why," signaling to the listener that a detailed explanation is forthcoming. For emphasis, the explanation is often concluded with **からです** or simply **から**.
+
+  **Important Considerations**:
+  *   **Variations**: While **と** is the most common particle used, **ば** (as in **かと言えば**) and, less frequently, **たら** (as in **かといったら**) can also be used to convey a similar "if" nuance. These variations maintain the core function of introducing a reason.
+  *   **Casual Speech**: In informal contexts, the **と** in **かというと** can contract to **って** (e.g., **かっていうと**), and the **の** in the preceding phrase can become **ん**. This makes the expression more colloquial.
+  *   **Register**: This grammar point is considered standard and can be used in a variety of contexts, from formal to casual, depending on the preceding verb conjugation and the specific variation used.
+false_friends:
+  - term: なぜなら〜から
+    meaning: Because, The reason is, That is because
+    kind: synonym
+    nuance: 「なぜなら〜から」 directly states the reason without the initial question setup provided by 「かというと」.
+    grammar_point: なぜなら〜から (emphasized reason)
+  - term: かというと (if I were to say)
+    meaning: If I were to say, If one were to say
+    kind: similar expression
+    nuance: While both use the same form, this grammar point is used to introduce a specific point or
+      statement, often to clarify or present a contrasting view, rather than providing the *reason* for
+      something as 「かというと (because)」 does.
+    grammar_point: かというと (if I were to say)
+  - term: ことだから (given the nature of)
+    meaning: Given the nature of (A), (B) is to be expected; Precisely because it is (A), (B).
+    kind: similar expression
+    nuance: Unlike 「かというと」 which implies an answer to a 'why' question, 「ことだから」 expresses an expected
+      outcome based on someone's known character or a specific situation's nature.
+    grammar_point: ことだから (given the nature of)
+  - term: わけだ (logical conclusion)
+    meaning: For that reason, no wonder, as you'd expect, naturally, thus, this why
+    kind: similar expression
+    nuance: 「わけだ」 states a logical conclusion or natural consequence of prior information, often translating
+      to 'no wonder' or 'that's why.' In contrast, 「かというと」 specifically sets up an explanation *as a response
+      to an explicit or implied 'why' question*.
+    grammar_point: わけだ (logical conclusion)
+post_false_friends_writeup: While both 「かというと」 and 「なぜなら〜から」 can be used to explain reasons, 「かというと」 specifically
+  sets up an explanation in response to an implicit or explicit question, while 「なぜなら〜から」 provides a direct
+  statement of the reason. It is crucial to distinguish this grammar point from 「かというと (if I were to say)」,
+  which shares the same form but presents a specific point or clarifies a statement rather than providing
+  a reason. Furthermore, 「ことだから」 explains an expected outcome based on nature, and 「わけだ」 states a logical
+  conclusion, both differing from the interrogative setup of 「かというと」.
+examples:
+  - english: If you ask why I exercise every day, it's because I want to make my body stronger.
+    japanese:
+      - なぜ 毎日 運動 する の {か と いう と}、体 を 強く し たい から だ。
+      - なぜ 毎日 運動 する の {か って いう と}、体 を 強く し たい から だ。
+      - なぜ 毎日 運動 する の {か と 言え ば}、体 を 強く し たい から です。
+      - なぜ 毎日 運動 する の {か と いっ たら}、体 を 強く し たい から だ。
+    english_literally: Why everyday exercise if one says, it's because I want to make my body stronger.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 運動 する 理由 は、体 を 強く し たい から です。
+        english: This simply states the reason. We're looking for a phrase that sets up an explanation
+          in response to an implied question.
+        hint: This simply states the reason. We're looking for a phrase that sets up an explanation in
+          response to an implied question.
+    scene: A man is explaining his daily routine to a friend who asked about his healthy lifestyle.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+  - english: If you ask why he suddenly quit the company, it seems he's starting a new business.
+    japanese:
+      - どう し て 彼 が 急 に 会社 を 辞め た の {か と いう と}、新しい ビジネス を 始める から だ そう です。
+      - どう し て 彼 が 急 に 会社 を 辞め た の {か と 言え ば}、新しい ビジネス を 始める から だ そう です。
+      - どう し て 彼 が 急 に 会社 を 辞め た の {か と いっ たら}、新しい ビジネス を 始める から だ そう です。
+      - どう し て 彼 が 急 に 会社 を 辞め た の {か って いう と}、新しい ビジネス を 始める から だ って。
+    english_literally: How he suddenly company quit if one says, new business beginning it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 急 に 会社 を 辞め た 理由 は、新しい ビジネス を 始める から だ そう です。
+        english: The reason he suddenly quit the company is because he's starting a new business.
+        hint: This states the reason directly. We're looking for a phrase that specifically addresses
+          an implied question about 'why'.
+    scene: Two colleagues are discussing a mutual friend's sudden departure from their company.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+  - english: If you ask why I cannot agree to this plan, it's because there isn't enough money.
+    japanese:
+      - なぜ この 計画 に 賛成 でき ない の {か と いう と}、お 金 が 足り ない から です。
+      - なぜ この 計画 に 賛成 でき ない の {か と 言え ば}、お 金 が 足り ない から です。
+      - なぜ この 計画 に 賛成 でき ない の {か と いっ たら}、お 金 が 足り ない から です。
+    english_literally: Why this plan agree cannot if one says, money not enough it is.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 に 賛成 でき ない 理由 は、お 金 が 足り ない から です。
+        english: The reason I cannot agree to this plan is because there isn't enough money.
+        hint: This states the reason directly. We're looking for a phrase that sets up an explanation
+          as if answering a question.
+    scene: A manager is explaining his reservations about a plan to his team during a meeting.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+  - english: If you ask why I didn't buy that dress, it's because the size didn't fit.
+    japanese:
+      - どう し て あの 服 を 買わ なかっ た の {か と いう と}、サイズ が 合わ なかっ た から です。
+      - どう し て あの 服 を 買わ なかっ た の {か と いう と}、サイズ が 合わ なかっ た から よ。
+      - どう し て あの 服 を 買わ なかっ た の {か って いう と}、サイズ が 合わ なかっ た から だ。
+      - どう し て あの 服 を 買わ なかっ た の {か と いっ たら}、サイズ が 合わ なかっ た から です。
+    english_literally: How that clothes bought not if one says, size not fit it was.
+    competing_grammar:
+      - competing_japanese:
+          - あの 服 を 買わ なかっ た 理由 は、サイズ が 合わ なかっ た から です。
+        english: The reason I didn't buy that dress is because the size didn't fit.
+        hint: This states the reason directly. We're looking for a phrase that hints at an implied question.
+    scene: A woman is telling her friend about her shopping trip and why she didn't buy a particular item.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+  - english: If you ask why our company is introducing this new system, it's to improve customer service.
+    japanese:
+      - なぜ 当社 が この 新しい システム を 導入 する の {か と 言え ば}、お 客 様 へ の サービス を 改善 する ため です。
+      - なぜ 当社 が この 新しい システム を 導入 する の {か と いう と}、お 客 様 へ の サービス を 改善 する ため です。
+      - なぜ 当社 が この 新しい システム を 導入 する の {か と 言え ば}、お 客 様 へ の サービス を 改善 する ため で ござい ます。
+    english_literally: Why our company this new system introduce if one says, customer service improve
+      for it is.
+    competing_grammar:
+      - competing_japanese:
+          - 当社 が この 新しい システム を 導入 する 目的 は、お 客 様 へ の サービス を 改善 する ため です。
+        english: The purpose of our company introducing this new system is to improve customer service.
+        hint: This states the purpose directly. We're looking for a more formal phrase that explains 'why'
+          as if responding to a query.
+    scene: A company executive is explaining a new technological investment to potential investors or
+      stakeholders.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: group
+  - english: If you ask why she was so angry, it's because I forgot our promise.
+    japanese:
+      - どう し て 彼女 が あんな に 怒っ て た の {か と いっ たら}、約束 を 忘れ た から だ って。
+      - どう し て 彼女 が あんな に 怒っ て た の {か と いう と}、約束 を 忘れ た から だ って。
+      - どう し て 彼女 が あんな に 怒っ て た の {か って いう と}、約束 を 忘れ た から だ。
+      - どう し て 彼女 が あんな に 怒っ て た の {か って いう と}、約束 を 忘れ た から な ん だ よ。
+    english_literally: How she that much angry was if one says, promise forgot that is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が あんな に 怒っ て た 理由 は、約束 を 忘れ た から だ よ。
+        english: The reason she was so angry is because I forgot our promise.
+        hint: This states the reason directly. We're looking for a casual phrase that addresses an implied
+          question of 'why'.
+    scene: A young man is confiding in a friend about a recent argument with his girlfriend.
+    register: casual
+    setting: intimate
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+  - english: If you ask why I'm here, it's because you called me, right?
+    japanese:
+      - な ん で 俺 が ここ に いる の {か って いう と}、お前 が 呼ん だ から だろ。
+      - な ん で 俺 が ここ に いる の {か と いう と}、お前 が 呼ん だ から だろ。
+      - な ん で 俺 が ここ に いる の {か と 言え ば}、お前 が 呼ん だ から だろ。
+    english_literally: Why I am here, if one were to say, it's because you called, right?
+    competing_grammar:
+      - competing_japanese:
+          - 俺 が ここ に いる 理由 は、お前 が 呼ん だ から だろ。
+        english: The reason I'm here is because you called me, right?
+        hint: This states the reason directly. We're looking for a very casual way to respond to an implied
+          'why' question.
+    scene: A young man is jokingly responding to his friend's rhetorical question about his presence.
+    register: casual
+    setting: humorous
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+  - english: It's not that this book isn't selling because its content is bad.
+    japanese:
+      - この 本 が 売れ ない の は、内容 が 悪い {か と いう と}、そう で は ない。
+      - この 本 が 売れ ない の は、内容 が 悪い {か と 言え ば}、そう で は ない。
+      - この 本 が 売れ ない の は、内容 が 悪い {か と いう と}、そう で は あり ませ ん。
+    english_literally: This book not selling, if one asks if the content is bad, it is not so.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 が 売れ ない 理由 は、内容 が 悪い から で は ない。
+        english: The reason this book isn't selling isn't because its content is bad.
+        hint: This directly states the negative reason. We're looking for a phrase that explicitly addresses
+          and refutes a common misconception or assumed reason.
+    scene: A publishing editor is explaining why a book isn't selling well, correcting a common misconception.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+  - english: If you ask why he's always late for meetings, it's because he's bad at time management.
+    japanese:
+      - なぜ 彼 は いつ も 集合 に 遅れる の {か と いう と}、時間 管理 が 苦手 だ から です。
+      - なぜ 彼 は いつ も 集合 に 遅れる の {か と いう と}、時間 管理 が 苦手 だ から よ。
+      - なぜ 彼 は いつ も 集合 に 遅れる の {か って いう と}、時間 管理 が 苦手 だ から な ん だ。
+      - なぜ 彼 は いつ も 集合 に 遅れる の {か と いっ たら}、時間 管理 が 苦手 だ から です。
+    english_literally: Why he always meeting late if one says, time management not good at it is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が いつ も 集合 に 遅れる 理由 は、時間 管理 が 苦手 だ から です。
+        english: The reason he's always late for meetings is because he's bad at time management.
+        hint: This states the reason directly. We're looking for a phrase that sets up an explanation
+          for a repeated behavior, implying an underlying question.
+    scene: Two students are gossiping about a habitually late classmate.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: In this context, a female speaker is explaining to a female friend the reason for a third
+      party's habitual behavior (「集合 に 遅れる」 - being late for meetings). It is natural for explaining observations
+      or commonly understood reasons based on personal inference. The phrasing 「苦手 だ から です」 is polite
+      and factual, suitable for sharing information with a friend. The casual contracted form 「かっていうと」
+      and plain ending 「なんだ」, as in 「時間 管理 が 苦手 だ から なんだ」, would convey a slightly more personal or direct
+      tone between close friends.
+  - english: If you ask why I started studying Japanese, it's because I was fascinated by Japanese culture.
+    japanese:
+      - なぜ 日本 語 を 勉強 し 始め た の {か と いう と}、日本 の 文化 に 魅了 さ れ た から です。
+      - なぜ 日本 語 を 勉強 し 始め た の {か と 言え ば}、日本 の 文化 に 魅了 さ れ た から です。
+      - なぜ 日本 語 を 勉強 し 始め た の {か と いっ たら}、日本 の 文化 に 魅了 さ れ た から です。
+    english_literally: Why Japanese language study began, if one says, Japanese culture by fascinated
+      was, so it is.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 勉強 し 始め た 理由 は、日本 の 文化 に 魅了 さ れ た から です。
+        english: The reason I started studying Japanese is because I was fascinated by Japanese culture.
+        hint: This directly states the reason. We're looking for a phrase that sets up an explanation
+          in response to an implied or actual question.
+    scene: A student is explaining their motivation for learning Japanese during an interview or self-introduction.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: Here, the speaker uses 「かというと」 in a formal setting to provide a clear, well-structured explanation
+      for their choice, as if addressing a potential question from an interviewer or audience. The use
+      of 「から です」 (kara desu) at the end maintains the polite and factual tone. The phrase 「魅了 さ れ た」 (miryō
+      sa reta - was fascinated) is a polite and somewhat formal way to express strong interest.
+post_example_writeup: As demonstrated in the examples, 「かというと」 and its variations are versatile for explaining
+  reasons, always carrying the underlying sense of responding to an inquiry, whether explicit or implicit.
+  Pay attention to the varying levels of formality and naturalness with the different conjugated forms
+  and sentence endings.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かというと1

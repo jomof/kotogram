@@ -1,0 +1,217 @@
+grammar_point: ああ (like that over there)
+learn_before:
+  - Rhetorical Question (emphasizing a point)
+  - Verb[dictionary] (dictionary form)
+  - こう (like this)
+  - そういう (that kind of)
+  - って (speaking of)
+  - てよかった (glad or relieved that)
+  - ね (seeking agreement)
+  - 代わりに (instead of choosing)
+  - 変わる (to change)
+  - 本当に (genuinely)
+  - 近く,遠く (proximity・distance spatial)
+meaning: like that (far from both speaker and listener); that way
+pronunciation:
+  katakana: アア
+  romaji: aa
+formation:
+  ああ + Verb: Describes an action performed in a certain manner, often one that is seen or observed from
+    a distance or is generally understood.
+  ああ + Adjective: Describes a state or quality to that extent or in that manner, often referring to something
+    distant or generally observed.
+  ああ + いう + Noun: Refers to 'that kind of Noun,' implying a type or characteristic that is distant or
+    generally understood.
+  ああ + と + 言う: Used when quoting an exclamation of 'ah' or referring to something said in a specific manner.
+jlpt: N5
+etymology: The demonstrative series こ・そ・あ・ど (ko-so-a-do) is fundamental to Japanese, originating from
+  ancient forms. ああ comes from あ (distant referent) + reduplication, or an earlier form あは. This あ root
+  signifies distance, both physical and conceptual, akin to “yonder” or “that way.”
+writeup: |-
+  ああ is a demonstrative adverb that is part of the fundamental こ・そ・あ・ど (ko-so-a-do) series. This series helps specify the location or manner of something relative to the speaker and listener. Specifically, ああ means “like that” or “that way,” referring to something that is distant from both the speaker and the listener, or a manner that is generally understood or observed from a distance.
+
+  Contrast this with:
+  - こう (kou): “like this,” referring to something near the speaker or a manner being demonstrated by the speaker.
+  - そう (sou): “like that,” referring to something near the listener, or a manner that has just been mentioned or is mutually understood between speaker and listener.
+  - どう (dou): “how?” or “in what way?”, an interrogative asking about the manner or state.
+
+  ああ can also be used as an interjection to express a strong emotional reaction, such as relief, sadness, or sudden understanding. In this use, it functions much like “Oh!” or “Ah!” in English, often conveying a sense of distance from the immediate physical context, but proximity to an emotional realization.
+false_friends:
+  - term: こう
+    meaning: like this; in this way
+    kind: similar expression
+    nuance: こう refers to something near the speaker or a manner demonstrated by the speaker. ああ refers
+      to something far from both speaker and listener, or a manner observed from a distance.
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that way・how)
+  - term: そう
+    meaning: like that; in that way
+    kind: similar expression
+    nuance: そう refers to something near the listener or a manner just mentioned or understood. ああ refers
+      to something far from both speaker and listener, or a manner observed from a distance.
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that way・how)
+  - term: どう
+    meaning: how; in what way
+    kind: similar expression
+    nuance: どう is an interrogative, asking about a manner or state. ああ describes a manner or state that
+      is observed or generally understood.
+    grammar_point: <suggest>:こう・そう・ああ・どう (like this・that way・how)
+post_false_friends_writeup: The ko-so-a-do series (こう, そう, ああ, どう) forms the basis of Japanese demonstratives.
+  While they all refer to manner or state, their crucial distinction lies in the spatial or conversational
+  distance. Mastering this spatial and contextual difference is key to using them correctly. Think of
+  こう as 'here/this way', そう as 'there/that way (near you)', and ああ as 'over there/that way (distant from
+  us both)'.
+examples:
+  - english: Oh, it was like that, huh.
+    japanese:
+      - '{ああ}、そう だっ た ん だ ね。'
+      - '{ああ}、そう でし た ね。'
+      - '{ああ}、そう だっ た ん です ね。'
+    english_literally: Ah, like that it was, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - うん、そう だっ た ん だ ね。
+        english: Yeah, it was like that, huh.
+        hint: 「うん」 is a casual agreement, but it doesn't carry the emotional or observational nuance of
+          「ああ」 when realizing something. We're looking for an exclamation of realization.
+    scene: Someone finally understands a long explanation or a complex situation after a period of confusion.
+    register: casual
+    setting: informative
+  - english: He shouted like that from far away.
+    japanese:
+      - 彼 は 遠く から {ああ} 叫ん だ。
+      - 彼 は 遠く から {ああ} 叫び まし た。
+    english_literally: He from far away like that shouted.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 遠く から こう 叫ん だ。
+        english: He shouted like this from far away.
+        hint: 「こう」 refers to something near the speaker's action or immediate demonstration. We're looking
+          for a manner observed from a distance.
+    scene: A person is describing a scene where someone was shouting from a considerable distance.
+    register: formal
+    setting: storytelling
+  - english: The old house looked that way, desolate and quiet.
+    japanese:
+      - 古い 家 は {ああ}、ひっそり と 佇ん で い た。
+      - 古い 家 は {ああ}、ひっそり と 佇ん で い まし た。
+    english_literally: Old house like that, quietly stood.
+    competing_grammar:
+      - competing_japanese:
+          - 古い 家 は 静か に 佇ん で い た。
+        english: The old house stood quietly.
+        hint: We're looking for an expression that describes the *manner* in which the house stood, implying
+          a certain state or appearance, often observed from afar.
+    scene: A writer is describing an old, abandoned house, emphasizing its forlorn appearance.
+    register: bungo (literary)
+    setting: melancholic
+  - english: I don't like that kind of attitude.
+    japanese:
+      - '{ああ いう} 態度 は 好き じゃ ない。'
+      - '{ああ いう} 態度 は 好き で は あり ませ ん。'
+    english_literally: That kind of attitude I like not.
+    competing_grammar:
+      - competing_japanese:
+          - そう いう 態度 は 好き じゃ ない。
+        english: I don't like that kind of attitude (referring to something just mentioned).
+        hint: 「そういう」 is for attitudes just discussed or pointed out. We're looking for an attitude that
+          is generally known or observed from a distance, or a type of attitude in general.
+    scene: A friend is complaining about a general type of behavior they've observed in various people.
+    register: casual
+    setting: serious
+    speaker_gender: female
+  - english: He uttered a sad 'Oh'.
+    japanese:
+      - 彼 は『{ああ}、悲しい』と 言っ た。
+      - 彼 は『{ああ}、悲しい』と 言い まし た。
+    english_literally: He "ah, sad" said.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は『残念、悲しい』と 言っ た。
+        english: He said, "Too bad, that's sad."
+        hint: We're looking for an interjection that expresses a strong, spontaneous emotional reaction,
+          rather than just stating a feeling.
+    scene: Someone hears unfortunate news and reacts with a sigh of sadness.
+    register: casual
+    setting: sympathetic
+    speaker_gender: male
+  - english: Oh, what a relief!
+    japanese:
+      - '{ああ}、よかっ た！'
+      - '{ああ}、よかっ た です！'
+    english_literally: Ah, good!
+    competing_grammar:
+      - competing_japanese:
+          - よかっ た！
+        english: What a relief!
+        hint: We're looking for an interjection that expresses a strong, heartfelt emotional response,
+          often like a sigh of relief.
+    scene: After a long period of worry, a student finally receives good news about their exam results.
+    register: casual
+    setting: excited
+    speaker_gender: female
+  - english: That's the way things often go in the world.
+    japanese:
+      - 世の中 は よく {ああ} なる。
+      - 世の中 は よく {ああ} なり ます。
+    english_literally: World is often like that become.
+    competing_grammar:
+      - competing_japanese:
+          - 世の中 は よく そう なる。
+        english: That's the way things often go in the world (as understood by listener).
+        hint: 「そう」 implies the listener also understands the situation or it's a recently discussed topic.
+          We're looking for a more general, distant observation about how things often unfold.
+    scene: An older, experienced person is reflecting on the patterns of life and how events tend to play
+      out.
+    register: formal
+    setting: reflective
+    speaker_age: older
+  - english: If you do it that way, it might break.
+    japanese:
+      - '{ああ} やる と、壊れる か も しれ ない。'
+      - '{ああ} やり ます と、壊れる か も しれ ませ ん。'
+    english_literally: Like that do if, might break.
+    competing_grammar:
+      - competing_japanese:
+          - こう やる と、壊れる か も しれ ない。
+        english: If you do it this way, it might break.
+        hint: 「こう」 is for a method demonstrated or near the speaker. We're looking for a method that is
+          observed from a distance or generally understood to be incorrect.
+    scene: An experienced craftsman warns an apprentice about a common mistake they see others make.
+    register: casual
+    setting: cautious
+    speaker_gender: male
+    speaker_age: older
+  - english: I remember it being that way back then.
+    japanese:
+      - あの 頃 は {ああ} だっ た と 記憶 し て いる。
+      - あの 頃 は {ああ} でし た と 記憶 し て い ます。
+    english_literally: That time was like that, I remember.
+    competing_grammar:
+      - competing_japanese:
+          - あの 頃 は そう だっ た と 記憶 し て いる。
+        english: I remember it being that way back then (as understood by listener).
+        hint: 「そう」 is used when referring to something previously mentioned or mutually understood. We're
+          looking for a general, perhaps more nostalgic, reference to a past state or an observation of
+          how things used to be.
+    scene: Two old friends are reminiscing about their childhood, recalling a specific atmosphere or situation.
+    register: semi-formal
+    setting: storytelling
+    speaker_gender: female
+    speaker_age: older
+  - english: He does it this way, but the teacher does it that way.
+    japanese:
+      - 彼 は こう やる が、先生 は {ああ} やる。
+      - 彼 は こう やり ます が、先生 は {ああ} やり ます。
+    english_literally: He does it this way, but teacher does it that way.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は こう やる が、先生 は そう やる。
+        english: He does it this way, but the teacher does it that way (near the listener).
+        hint: 「そう」 is for a method known to the listener or just referred to. We're looking for a method
+          observed from a distance or not immediately apparent, as if the teacher's method is distinct
+          and observed from a slight remove.
+    scene: A student is explaining the different approaches taken by two different mentors.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group

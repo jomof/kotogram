@@ -1,0 +1,374 @@
+grammar_point: というものでもない (not necessarily)
+learn_before:
+  - '[Verb-dictionary]もの (nominalization)'
+  - 支配する (to control・to dominate)
+meaning: There is no guarantee that…; Not necessarily
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: というものでもない
+    rarity: common
+    meaning: There is no guarantee that it is; Not necessarily true
+  - conjugation-type: dictionary (plain non-past)
+    form: というものではない
+    rarity: common
+    meaning: There is no guarantee that it is; Not necessarily true
+  - conjugation-type: negative non-past polite (～ません)
+    form: というものでもありません
+    rarity: uncommon
+    meaning: There is no guarantee that it is; Not necessarily true (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: というものではありません
+    rarity: uncommon
+    meaning: There is no guarantee that it is; Not necessarily true (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: というものでもなかった
+    rarity: rare
+    meaning: There was no guarantee that it was; Was not necessarily true
+  - conjugation-type: negative past plain (～なかった)
+    form: というものではなかった
+    rarity: rare
+    meaning: There was no guarantee that it was; Was not necessarily true
+pronunciation:
+  katakana: トイウモノデモナイ
+  romaji: to iu mono demo nai
+formation:
+  '[Any word in standard form] + というものでもない': Indicates that there is no guarantee that (A), or that it
+    is not necessarily (A).
+jlpt: N2
+etymology: 'This grammar point is derived from a combination of several components: 「と」 (a particle indicating
+  a quote or condition), 「言う」 (iu, the verb ''to say''), 「もの」 (mono, ''thing''), 「で」 (de, a particle indicating
+  state), and 「はない」 (wa nai, ''is not''). Literally, it can be understood as ''it''s not something that
+  one can say is...''. The use of 「も」 instead of 「は」 adds a nuance of ''even'', making the negation slightly
+  more emphatic.'
+writeup: 「というものでもない」 is an expression used to state that something is not necessarily true or that there
+  is no absolute guarantee that a certain condition holds. It conveys that while a general expectation
+  might exist, there are exceptions or limitations to that expectation. This expression combines 「と」 (quotative
+  particle), the verb 「言う」 (to say), 「もの」 (a nominalizer implying 'thing' or 'that which'), and the negative
+  particle 「もない」. The literal translation is akin to "it's not even a thing one can say that...". While
+  「というものでもない」 uses 「も」, its counterpart 「というものではない」 uses 「は」. The nuance is subtle; 「も」 adds a slight
+  emphasis to the negation, suggesting "it's not *even* the case that...", thereby implying a stronger
+  refutation of the commonly held belief. 「というものではない」, on the other hand, is a more straightforward negation.
+  This grammar pattern can follow any word or phrase in its standard form. When preceded by a noun or
+  な-adjective, the copula 「だ」 may occasionally appear before 「という」, although it is not strictly required.
+  It is frequently used in conjunction with clauses that introduce a premise or common assumption, such
+  as 「からと言って」 (just because...) or 「であれば」 (if it is...), to counter that assumption with an exception
+  or a limitation. For example, 「愛があれば何でもできるというものでもない」 (It's not necessarily true that you can do anything
+  if you have love) suggests that while love is important, it doesn't solve all problems.
+false_friends:
+  - term: ことにはならない
+    meaning: Just because… doesn't mean…
+    kind: similar expression
+    nuance: 「ことにはならない」 emphasizes a lack of direct consequence or causation, indicating that one thing
+      does not automatically lead to another. This is a stronger denial of a cause-and-effect relationship
+      compared to 「というものでもない」, which suggests exceptions rather than a complete absence of causality.
+    grammar_point: ことにはならない (doesn't mean)
+  - term: というわけではない
+    meaning: It is not that, It doesn't mean that, It is not always the case
+    kind: similar expression
+    nuance: 「というわけではない」 is very similar to 「というものでもない」 in meaning, often indicating that something is
+      not always the case or is not necessarily true. However, 「というわけではない」 can sometimes imply a stronger
+      contradiction or denial of an expectation, whereas 「というものでもない」 more softly suggests that while a
+      general tendency might exist, there are exceptions.
+    grammar_point: (という)わけではない (it's not that...)
+  - term: わけではない
+    meaning: It doesn't mean that, It is not the case, It's not like
+    kind: similar expression
+    nuance: 「わけではない」 is a more casual version of 「というわけではない」, and thus more casual than 「というものでもない」. Its
+      use depends on the desired level of formality and the specific context of the conversation.
+    grammar_point: (という)わけではない (it's not that...)
+  - term: とは限らない
+    meaning: Not necessarily so, Is not always true, There is no guarantee that
+    kind: similar expression
+    nuance: 「とは限らない」 often implies a possibility of an exception, conveying a sense of doubt or uncertainty
+      about a general rule. It is quite interchangeable with 「というものでもない」, but 「というものでもない」 can sometimes
+      feel slightly more argumentative or corrective when used to counter a common assumption.
+    grammar_point: とは限らない (not necessarily)
+  - term: 必ずしも
+    meaning: Not always, Not entirely, Not necessarily
+    kind: similar expression
+    nuance: 「必ずしも」 is an adverb that must always be used with a negative verb ending (e.g., 「必ずしも正しいわけではない」
+      - 'it is not necessarily correct'). In contrast, 「というものでもない」 is a complete grammatical pattern that
+      inherently contains a negative meaning and can stand alone as a phrase.
+    grammar_point: 必ずしも (not necessarily)
+post_false_friends_writeup: These expressions share the commonality of conveying a nuance of 'partial
+  negation' or 'limitation,' indicating that something generally believed or expected may not always be
+  true even if certain conditions are met. Understanding the subtle differences in meaning each expression
+  carries allows for more precise communication of intent. For instance, '〜というものでもない' is used to negate
+  a common view regarding a certain situation and suggest that exceptions exist. In contrast, '〜わけではない'
+  and '〜というわけではない' are used for a broader negation of facts or reasons, while '〜とは限らない' emphasizes the
+  limitation of possibility in specific situations. Finally, '必ずしも' is an adverb that, when combined with
+  a subsequent negative form, adds the nuance of 'not necessarily so.'
+examples:
+  - english: Just because you graduated from a good university doesn't necessarily mean you'll get a good
+      job.
+    japanese:
+      - 良い 大学 を 出 た から と 言っ て、必ず し も 良い 仕事 に 就ける {と いう もの で も ない}。
+      - 良い 大学 を 出 た から と 言っ て、必ず し も 良い 仕事 に 就ける {と いう もの で は ない}。
+      - 良い 大学 を 出 た から と 言っ て、必ず し も 良い 仕事 に 就ける {と いう もの で も あり ませ ん}。
+      - 良い 大学 を 出 た から と 言っ て、必ず し も 良い 仕事 に 就ける {と いう もの で は あり ませ ん}。
+    english_literally: Saying that you graduated from a good university, it is not necessarily the case
+      that you can get a good job.
+    competing_grammar:
+      - competing_japanese:
+          - 良い 大学 を 出 たら、良い 仕事 に 就ける {に 決まっ て いる}。
+        english: If you graduate from a good university, you are bound to get a good job.
+        hint: This emphasizes certainty in success. We are looking for an expression that suggests it's
+          not a guaranteed outcome.
+    scene: A career counselor is advising a high school student who assumes a top university degree guarantees
+      future success.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The speaker, an older male career counselor, uses formal language appropriate for an informative
+      setting. The phrase 「必ずしも」 (not necessarily) reinforces the meaning of 「というものでもない」, emphasizing
+      that while a good university is helpful, it's not a direct and absolute path to a good job, conveying
+      a realistic perspective.
+    etymology: The combination of 「からと言って」 (just because) and 「というものでもない」 creates a powerful rhetorical
+      structure to challenge common assumptions. 「から」 originally meaning 'from' or 'cause', combines with
+      「と言って」, literally 'even saying that', to set up the premise being questioned. This pattern is common
+      in Japanese for expressing nuanced disagreement or caution, highlighting that a direct correlation
+      is not absolute. The combination itself evolved as a way to introduce a commonly held belief or
+      statement and then immediately present a counter-argument or a more complex reality.
+  - english: Just because you try hard doesn't necessarily mean you'll succeed.
+    japanese:
+      - 努力 すれ ば 必ず 成功 する {と いう もの で も ない}。
+      - 努力 すれ ば 必ず 成功 する {と いう もの で は ない}。
+    english_literally: If you make an effort, it is not necessarily the case that you will always succeed.
+    competing_grammar:
+      - competing_japanese:
+          - 努力 すれ ば 成功 する {に 決まっ て いる}。
+        english: If you try hard, you are bound to succeed.
+        hint: This emphasizes certainty in success. We are looking for an expression that indicates it's
+          not a guaranteed outcome.
+    scene: A parent offers words of wisdom to their child after a setback.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「努力 すれば」 (if you make an effort) followed by 「というものでもない」 softens the advice, acknowledging
+      the child's effort while gently reminding them that hard work doesn't always guarantee immediate
+      success. The casual register highlights the intimate relationship between the speaker and listener.
+  - english: Just because you have a lot of money doesn't necessarily mean you'll be happy.
+    japanese:
+      - お 金 が たくさん あれ ば、幸せ に なれる {と いう もの で も ない}。
+      - お 金 が たくさん あれ ば、幸せ に なれる {と いう もの で は ない}。
+    english_literally: If there is a lot of money, it is not necessarily the case that one can become
+      happy.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が あれ ば ある {ほど}、幸せ に なれる。
+        english: The more money you have, the happier you can be.
+        hint: This phrase suggests a direct correlation between money and happiness. We're looking for
+          an expression that indicates this isn't always true.
+    scene: Friends are discussing the meaning of true happiness over coffee.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: In this casual setting, the use of 「というものでもない」 allows the speaker to express a philosophical
+      thought without sounding overly preachy. 「お金 が たくさん あれば」 (if you have a lot of money) sets up a
+      common assumption which is then nuanced by the grammar point, implying that happiness is more complex
+      than just financial wealth.
+  - english: Just because it's healthy food doesn't necessarily mean it tastes good.
+    japanese:
+      - 健康 に 良い から と 言っ て、すべて 美味しい {と いう もの で も ない}。
+      - 健康 に 良い から と 言っ て、すべて 美味しい {と いう もの で は ない}。
+    english_literally: Saying that it is good for health, it is not necessarily the case that everything
+      is delicious.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 に 良い もの は すべて 美味しい {はず だ}。
+        english: Healthy things should all taste delicious.
+        hint: This expresses a strong expectation that healthy food must be tasty. We need a phrase that
+          counters this absolute statement.
+    scene: People are browsing a health food store, eyeing some less-than-appetizing options.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「健康 に 良い から と 言っ て」 (just because it's good for your health) introduces a common
+      assumption. 「すべて 美味しい」 (everything is delicious) is then softened by 「というものでもない」, acknowledging
+      that health doesn't always equate to culinary delight. The semi-formal register fits the context
+      of general observation in a public setting.
+  - english: Just because you study hard doesn't necessarily mean you'll get good grades.
+    japanese:
+      - 一生 懸命 勉強 すれ ば、必ず いい 成績 が 取れる {と いう もの で も ない}。
+      - 一生 懸命 勉強 すれ ば、必ず いい 成績 が 取れる {と いう もの で は ない}。
+    english_literally: If you study with all your might, it is not necessarily the case that you can definitely
+      get good grades.
+    competing_grammar:
+      - competing_japanese:
+          - 一生 懸命 勉強 すれ ば、いい 成績 が 取れる {もの だ}。
+        english: If you study hard, it is natural that you will get good grades.
+        hint: This expresses a general truth or expectation. We are looking for a phrase that challenges
+          this absolute statement.
+    scene: A teacher is counseling a student who is discouraged by exam results despite diligent study.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: In an academic setting, the teacher uses a formal tone. 「一生懸命 勉強 すれば」 (if you study hard)
+      sets up the premise. The nuance conveyed by 「というものでもない」 is that while effort is crucial, other factors
+      (like testing skills, understanding the material, or even luck) also play a role in grades, preventing
+      a definitive guarantee.
+  - english: Just because one person is at fault doesn't necessarily mean everyone else is innocent.
+    japanese:
+      - 一人 だけ の せい だ から と 言っ て、他 の 人 が 無 関係 {と いう もの で も ない}。
+      - 一人 だけ の せい だ から と 言っ て、他 の 人 が 無 関係 {と いう もの で は ない}。
+    english_literally: Saying that it is only one person's fault, it is not necessarily the case that
+      other people are unrelated.
+    competing_grammar:
+      - competing_japanese:
+          - 一人 の せい {なら}、他 の 人 は 無 関係 です。
+        english: If it's one person's fault, then others are unrelated.
+        hint: 'This states a direct consequence: if one is at fault, others are clear. We need a phrase
+          that suggests shared responsibility or involvement.'
+    scene: A project manager addresses their team about a recent project failure.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal register is essential for a professional setting. 「一人 だけ の せい だ から と 言っ て」 (just
+      because it's only one person's fault) acknowledges a common tendency to blame a single individual.
+      However, 「というものでもない」 clarifies that complex issues often involve multiple parties, even if one bears
+      primary responsibility, promoting a sense of collective accountability.
+  - english: Just because it's sunny doesn't necessarily mean it's the best day for a picnic.
+    japanese:
+      - 晴れ て いる から と 言っ て、ピクニック に 最適 な 日 {と いう もの で も ない}。
+      - 晴れ て いる から と 言っ て、ピクニック に 最適 な 日 {と いう もの で は ない}。
+    english_literally: Saying that it is sunny, it is not necessarily the case that it is the best day
+      for a picnic.
+    competing_grammar:
+      - competing_japanese:
+          - 晴れ て いる {なら}、ピクニック は 最高 に 楽しめる。
+        english: If it's sunny, you can enjoy a picnic to the fullest.
+        hint: This implies that sunny weather is sufficient for an ideal picnic. We're looking for an
+          expression that suggests other factors might be important too.
+    scene: Friends are discussing picnic plans, noting it's sunny but also very windy.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual tone fits a friendly conversation. 「晴れて いる から と 言っ て」 (just because it's sunny)
+      sets up the common association of sunny weather with good picnic conditions. 「というものでもない」 introduces
+      the nuance that while sun is desirable, other factors like wind, temperature, or humidity also contribute
+      to an enjoyable picnic experience, offering a more realistic perspective.
+  - english: Just because you have talent doesn't necessarily mean you don't need to work hard.
+    japanese:
+      - 才能 が ある から と 言っ て、努力 し なく て も 良い {と いう もの で も ない}。
+      - 才能 が ある から と 言っ て、努力 し なく て も 良い {と いう もの で は ない}。
+    english_literally: Saying that you have talent, it is not necessarily the case that it is okay not
+      to make an effort.
+    competing_grammar:
+      - competing_japanese:
+          - 才能 が あれ ば、努力 は {必要 ない}。
+        english: If you have talent, effort is not necessary.
+        hint: This suggests that talent alone is enough for success. We need a phrase that emphasizes
+          the importance of effort regardless of natural ability.
+    scene: A renowned artist gives a lecture to aspiring students.
+    register: formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: In this inspirational setting, the formal register lends authority to the speaker's advice.
+      「才能 が ある から と 言っ て」 (just because you have talent) addresses a common misconception. 「というものでもない」
+      emphasizes that innate ability is only a starting point; continuous effort is indispensable for
+      true mastery and achievement, conveying a powerful message about perseverance.
+  - english: Just because you love each other doesn't necessarily mean you'll understand everything about
+      each other.
+    japanese:
+      - 愛し合っ て いる から と 言っ て、お 互い の 全て を 理解 できる {と いう もの で も ない}。
+      - 愛し合っ て いる から と 言っ て、お 互い の 全て を 理解 できる {と いう もの で は ない}。
+    english_literally: Saying that you are loving each other, it is not necessarily the case that you
+      can understand everything about each other.
+    competing_grammar:
+      - competing_japanese:
+          - 愛し合っ て いれ ば、お 互い の 全て を 理解 できる {はず だ}。
+        english: If you love each other, you should be able to understand everything about each other.
+        hint: This implies that love guarantees complete mutual understanding. We're looking for an expression
+          that suggests understanding is more complex than just love.
+    scene: An older sibling is offering advice to a younger sibling struggling with a relationship issue.
+    register: shitashii kuchō (intimate)
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The intimate register is fitting for a conversation between siblings. 「愛し合って いる から と 言っ て」
+      (just because you love each other) sets up a common romantic ideal. 「というものでもない」 introduces the realistic
+      nuance that even in loving relationships, complete understanding is challenging due to individual
+      differences and complexities, fostering empathy and patience. The choice of 「お互い の 全て を 理解 できる」
+      (to understand everything about each other) directly addresses the common belief in complete transparency
+      in love, which is then subtly refuted.
+  - english: Just because a new function is added doesn't necessarily mean it's convenient for everyone.
+    japanese:
+      - 新しい 機能 が 追加 さ れれ ば、誰 に で も 便利 {と いう もの で も ない}。
+      - 新しい 機能 が 追加 さ れれ ば、誰 に で も 便利 {と いう もの で は ない}。
+    english_literally: If a new function is added, it is not necessarily the case that it is convenient
+      for everyone.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 機能 が 追加 さ れれ ば、必ず 誰 に で も {便利 に なる}。
+        english: If a new function is added, it will definitely become convenient for everyone.
+        hint: This assumes universal benefit from new features. We need a phrase that suggests convenience
+          is subjective and not always guaranteed for all users.
+    scene: Software developers are discussing user feedback after a product update.
+    register: formal
+    setting: technical
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: In a technical and professional setting, the formal register is appropriate. 「新しい 機能 が 追加
+      されれば」 (if a new function is added) establishes a common development scenario. 「というものでもない」 highlights
+      the reality that what is convenient for some users might not be for others, or might even complicate
+      things, showing an understanding of diverse user needs and experiences. This is a common point in
+      product development discussions.
+  - english: Even if you have power, it's not necessarily the case that you can control everything.
+    japanese:
+      - 権力 を 持っ て いる から と 言っ て、何 で も 支配 できる {と いう もの で も ない}。
+      - 権力 を 持っ て いる から と 言っ て、何 で も 支配 できる {と いう もの で は ない}。
+    english_literally: Saying that you have power, it is not necessarily the case that you can control
+      anything.
+    competing_grammar:
+      - competing_japanese:
+          - 権力 が あれ ば、何 で も 支配 できる {はず だ}。
+        english: If you have power, you should be able to control anything.
+        hint: This implies absolute control with power. We need a phrase that suggests there are limitations
+          to one's influence, even with power.
+    scene: A political analyst discusses the limitations of a leader's authority.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「権力 を 持って いる から と 言っ て」 (just because one has power) sets up a common assumption
+      about authority. 「というものでもない」 serves to caution against the idea of absolute control, implying that
+      even powerful individuals face constraints from various factors (e.g., public opinion, international
+      law, unexpected events). This nuance is particularly relevant in academic or political discourse,
+      where a nuanced understanding of power dynamics is crucial.
+post_example_writeup: The expression 「というものでもない」 is used to convey the nuance that a certain matter is
+  not always applicable, or that there are exceptions. It is often used in conjunction with expressions
+  indicating a premise, such as 「からと言って」 (just because...) or 「〜ば〜ほど」 (the more... the more...). Furthermore,
+  compared to 「というものではない」 which uses 「は」, 「というものでもない」 which uses 「も」 tends to express a stronger emphasis
+  on negation or limitation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/というものでもない

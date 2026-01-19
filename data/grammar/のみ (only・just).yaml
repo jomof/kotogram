@@ -1,0 +1,308 @@
+grammar_point: のみ (only・just)
+learn_before:
+  - ただ〜のみ (nothing but)
+meaning: Only・just・nothing but
+pronunciation:
+  katakana: ノミ
+  romaji: nomi
+formation:
+  Noun + のみ: Indicates exclusivity or limitation to the preceding noun.
+  Noun + Particle + のみ: Indicates exclusivity or limitation to the preceding noun and particle combination
+    (e.g., にのみ, でのみ).
+  Verb (plain form) + のみだ: Indicates that the action is the only thing done or the only option.
+jlpt: N3
+etymology: The particle 「のみ」 stems from classical Japanese, where it functioned as a limiting particle.
+  Its origin is often associated with the combination of the genitive particle 「の」 and the suffix 「み」,
+  which conveys the sense of 'extent' or 'limitation to just that'. This classical usage evolved into
+  its modern meaning of 'only' or 'just', carrying a more formal and emphatic nuance than its contemporary
+  counterpart 「だけ」.
+writeup: The particle 「のみ」 indicates that something is limited to a single item, action, or state. It
+  is similar to 「だけ」 but is generally considered more formal and is often found in written language. It
+  emphasizes that **nothing else** is included or possible. It directly follows a noun or, when used with
+  a verb, the verb's dictionary form followed by 「だ」. For example, 「食べる{のみ}だ」 means 'I'm just going to
+  eat.'
+false_friends:
+  - term: だけ (only・just)
+    meaning: Only; just
+    kind: similar expression
+    nuance: 「だけ」 is less formal and more commonly used in everyday conversation compared to 「のみ」.
+    grammar_point: だけ (only・just)
+  - term: しか〜ない (only・nothing but)
+    meaning: Only; nothing but; no more than
+    kind: similar expression
+    nuance: 「しか～ない」 implies an exclusive limitation or insufficiency, always requiring a negative verb.
+      「のみ」 is a more neutral, formal statement of sole existence or action and can be used with positive
+      verbs.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: ばかり (just, only)
+    meaning: Just; only; nothing but
+    kind: similar expression
+    nuance: 「ばかり」 can imply something *only* happened, sometimes with a nuance of being engrossed, idleness,
+      or an undesirable abundance. 「のみ」 strictly limits to the stated item or action without these additional
+      connotations and is more formal.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: ただ〜のみ (nothing but)
+    meaning: Nothing but; only
+    kind: similar expression
+    nuance: 「ただ〜のみ」 is an emphatic and somewhat literary expression, meaning "nothing but" or "solely,"
+      emphasizing an absolute state. While 「のみ」 itself denotes "only," 「ただ〜のみ」 strengthens this exclusivity,
+      often used for a singular, unmixed state or action.
+    grammar_point: ただ〜のみ (nothing but)
+post_false_friends_writeup: While 「のみ」, 「だけ」, 「しか～ない」, and 「ばかり」 all convey aspects of limitation, they
+  each carry distinct nuances and register differences. 「のみ」 is highly formal and precise, indicating
+  absolute exclusivity. 「だけ」 is its casual counterpart. 「しか～ない」 emphasizes that there are no other options,
+  always paired with a negative verb. 「ばかり」 can imply a strong focus on one thing, sometimes with a sense
+  of excess or an undesirable outcome.
+examples:
+  - english: Participation is only for authorized individuals.
+    japanese:
+      - 参加 は 許可 さ れ た 者 {のみ} です。
+      - 参加 は 許可 さ れ た 者 {のみ} と なり ます。
+      - 参加 は 許可 さ れ た 者 {のみ}。
+    english_literally: Participation is permitted individuals only is.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 は 許可 さ れ た 者 {だけ} です。
+        english: Participation is only for authorized individuals.
+        hint: While 「だけ」 also means 'only', 「のみ」 conveys a more formal and stricter limitation. We are
+          looking for a more formal expression here.
+    scene: An event organizer posting rules for a restricted event.
+    register: formal
+    setting: informative
+    nuance: The phrase 「許可 さ れ た 者 {のみ}」 emphasizes the strict limitation on who can participate. The
+      use of 「です」 keeps the sentence polite and formal, suitable for official announcements.
+    etymology: 「許可」 means 'permission' or 'authorization', from 「許」 (permit) and 「可」 (possible).
+  - english: Only authorized personnel can enter this room.
+    japanese:
+      - この 部屋 に 入れる の は、関係 者 {のみ} です。
+      - 関係 者 {のみ} が この 部屋 に 入室 でき ます。
+      - 関係 者 {のみ} 入室 可。
+      - この 部屋 へ の 入室 は、関係 者 {のみ} です。
+    english_literally: This room to enter is, related persons only is.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 に 入れる の は、関係 者 {だけ} です。
+        english: Only authorized personnel can enter this room.
+        hint: 「だけ」 works here, but the sentence uses 「のみ」 for a more formal and official tone, emphasizing
+          the strictness of the rule.
+      - competing_japanese:
+          - この 部屋 に 関係 者 {しか} 入れ ませ ん。
+        english: Only authorized personnel can enter this room.
+        hint: 「しか～ない」 also expresses limitation, but it always requires a negative verb ending and can
+          imply 'nothing but' rather than simply 'only'. We are looking for a positive statement of limitation.
+    scene: A security guard explaining entry restrictions at a building.
+    register: formal
+    setting: instructional
+    nuance: 「関係 者 {のみ}」 makes it clear that entry is strictly limited to relevant individuals. The use
+      of 「です」 maintains a polite yet firm tone, appropriate for a security announcement.
+    etymology: 「関係」 means 'relation' or 'concern', from 「関」 (barrier, concern) and 「係」 (person in charge,
+      connection).
+  - english: Please convey that message only to him.
+    japanese:
+      - その 話 は、彼 {に のみ} 伝え て ください。
+      - その 伝言 は、彼 {に のみ} お 伝え ください。
+      - その 情報 は、彼 {に のみ} 伝える よう に。
+      - 彼 {に のみ} その 話 を 伝え て ください。
+    english_literally: That story is, him to only convey please.
+    competing_grammar:
+      - competing_japanese:
+          - その 話 は、彼 に {だけ} 伝え て ください。
+        english: Please convey that message only to him.
+        hint: 「だけ」 can be used here, but 「に のみ」 specifically emphasizes the exclusivity and formality
+          when delivering sensitive information.
+      - competing_japanese:
+          - その 話 は、彼 {以外} に は 伝え ない で ください。
+        english: Please do not convey that message to anyone other than him.
+        hint: This phrase uses a negative construction to express the same restriction, focusing on what
+          *not* to do, whereas the original focuses on what what *to* do.
+      - competing_japanese:
+          - その 話 は、彼 に {しか} 伝え られ ませ ん。
+        english: That message can only be conveyed to him.
+        hint: 「しか～ない」 implies an exclusive limitation requiring a negative verb. The original expresses
+          the singular recipient in a positive framing.
+    scene: A confidential secretary instructing a junior colleague on sharing sensitive information.
+    register: semi-formal
+    setting: professional
+    nuance: 「彼 {にのみ}」 highlights that the information must be given exclusively to "him," emphasizing
+      confidentiality. 「伝え て ください」 makes it a polite request.
+    etymology: 「伝える」 means 'to convey' or 'to transmit', from 「伝」 (transmit).
+  - english: This plan will succeed only through effort.
+    japanese:
+      - この 計画 は、努力 {で のみ} 成功 する。
+      - この 計画 は、努力 {で のみ} 成功 し ます。
+      - この 計画 の 成功 は、努力 {で のみ} 可能 だ。
+      - 努力 {で のみ}、この 計画 は 成功 する。
+    english_literally: This plan is, effort by only succeed.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は、努力 {だけ} で 成功 する。
+        english: This plan will succeed only through effort.
+        hint: 「だけ で」 is also 'only by', but 「で のみ」 is more formal and emphasizes that effort is the *sole*
+          necessary condition, rather than simply 'just effort'.
+      - competing_japanese:
+          - この 計画 は、努力 {しか} 成功 し ない。
+        english: This plan will not succeed except through effort.
+        hint: 「しか～ない」 means 'nothing but' or 'only', but it is always used with a negative verb. Here,
+          we want to express it in a positive statement.
+    scene: A motivational speaker emphasizing the sole requirement for achieving success.
+    register: formal
+    setting: inspirational
+    nuance: 「努力 {でのみ}」 emphasizes that effort is the *sole* means to achieve success, indicating no shortcuts
+      or other factors. 「成功 する」 means 'to succeed' or 'to be successful'.
+    etymology: 「成功」 means 'success', from 「成」 (become, achieve) and 「功」 (merit, achievement).
+  - english: Now, there is nothing to do but move forward.
+    japanese:
+      - 今 は、前 へ 進む {のみ} です。
+      - 今 は、前 へ 進む {のみ}。
+      - もはや、前 へ 進む {のみ} だ。
+      - 前 へ 進む {のみ} と する。
+    english_literally: Now is, front to advance only is.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は、前 へ 進む {だけ} です。
+        english: Now, we just need to move forward.
+        hint: 「だけ です」 can also convey 'only', but 「のみ です」 adds a stronger sense of it being the *sole*
+          and unavoidable option, fitting for a leader's resolute statement.
+      - competing_japanese:
+          - 今 は、前 へ 進む {しか} あり ませ ん。
+        english: Now, there's no choice but to move forward.
+        hint: 「しか～ない」 emphasizes 'no choice but' and is often used when there are no other options available.
+          While similar in meaning, 「のみ」 states the action as the *only* existing one, without the explicit
+          negative framing.
+    scene: A team leader encouraging their team after a setback, emphasizing singular focus.
+    register: formal
+    setting: serious
+    nuance: 「進む {のみ} です」 expresses that moving forward is the *only* option or course of action, conveying
+      determination and a clear purpose.
+    etymology: 「進む」 means 'to advance' or 'to proceed', from 「進」 (advance).
+  - english: He just stared.
+    japanese:
+      - 彼 は、ただ 見つめる {のみ} だっ た。
+      - 彼 は、見つめる {のみ} だっ た。
+      - 彼 は、ただ 見つめる {のみ}。
+      - ただ 見つめる {のみ} で あっ た。
+    english_literally: He is, just stare only was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は、ただ 見つめる {だけ} だっ た。
+        english: He just stared.
+        hint: While 「だけ」 is common, 「のみ」 adds a literary and more emphatic nuance, suggesting staring
+          was his *sole*, perhaps helpless, action.
+      - competing_japanese:
+          - 彼 は、ただ 見つめる {ばかり} だっ た。
+        english: He was just staring.
+        hint: 「ばかり」 can also mean 'just' or 'only', often implying that something *only* happened or that
+          someone *only* did something, sometimes with a nuance of idleness or being engrossed. 「のみ」 is
+          more about strict limitation.
+    scene: A narrator describing a character's passive reaction to a shocking event.
+    register: bungo (literary)
+    setting: storytelling
+    nuance: 「見つめる {のみ} だった」 highlights that staring was his *only* reaction, implying a sense of helplessness
+      or profound shock. The literary register is conveyed by the overall narrative style.
+    etymology: 「見つめる」 means 'to gaze at' or 'to stare', from 「見」 (see) and 「詰める」 (to pack, to jam - here
+      implying intensity).
+  - english: My only wish is your happiness.
+    japanese:
+      - 私 の 願い は、あなた の 幸せ {のみ} です。
+      - 私 の 願い は、あなた の 幸せ {のみ}。
+      - 私 の 願い は、あなた の 幸せ {のみ} と 存じ ます。
+      - あなた の 幸せ {のみ} が、私 の 唯一 の 願い です。
+    english_literally: My wish is, your happiness only is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 願い は、あなた の 幸せ {だけ} です。
+        english: My only wish is your happiness.
+        hint: 「だけ」 is a more casual way to express 'only'. The speaker is using 「のみ」 to convey a deeper,
+          more singular focus on the listener's happiness.
+      - competing_japanese:
+          - 私 の 願い は、あなた の 幸せ {しか} あり ませ ん。
+        english: I have no wish other than your happiness.
+        hint: 「しか～ない」 expresses 'nothing but' or 'only', often with a sense of exclusion of other possibilities.
+          While similar, 「のみ」 directly states the singular focus.
+    scene: A female best friend expressing her pure, selfless desire for her friend's well-being.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「あなた の 幸せ {のみ}」 emphasizes that her friend's happiness is the *sole* wish. The overall tone
+      is intimate and heartfelt, suitable for a close female friend.
+    etymology: 「幸せ」 means 'happiness' or 'good fortune', from 「幸」 (happiness, blessing).
+  - english: This medicine only suppresses symptoms; it doesn't cure them.
+    japanese:
+      - この 薬 は、症状 を 抑える {のみ} で、治す もの で は ない。
+      - この 薬 は、症状 を 抑える {のみ} と し て、治療 効果 は ない。
+      - この 薬 は、症状 の 抑制 {のみ} で あり、根本 的 な 治療 で は ない。
+      - この 薬 は、症状 を 抑える {のみ} で、完治 は し ない。
+    english_literally: This medicine is, symptoms to suppress only by, cure thing is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 は、症状 を 抑える {だけ} で、治す もの で は ない。
+        english: This medicine only suppresses symptoms; it doesn't cure them.
+        hint: 「だけ で」 is a common alternative for 'only by' or 'just by'. 「のみ で」 is often preferred in
+          formal or technical explanations, like a doctor explaining medical details.
+      - competing_japanese:
+          - この 薬 は、症状 を 抑える こと {しか} でき ず、治す もの で は ない。
+        english: This medicine can only suppress symptoms, and it doesn't cure them.
+        hint: This phrasing uses 「～しかできない」 to convey the inability to do anything beyond suppressing symptoms,
+          a slightly different emphasis on capability.
+    scene: A doctor explaining the limitations of a prescribed medication to a patient.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: 「症状 を 抑える {のみ} で」 clearly states the singular action of the medicine, emphasizing its limited
+      scope. This is a common way to explain medical information formally.
+    etymology: 「症状」 means 'symptom', from 「症」 (symptom) and 「状」 (state, condition).
+  - english: That plan ended up being only theory.
+    japanese:
+      - その 計画 は、理論 {のみ} で 終わっ て しまっ た。
+      - その 計画 は、理論 {のみ} に 終始 し た。
+      - その 計画 は、理論 {のみ} に とどまっ た。
+      - その 計画 は、理論 {のみ} に 過ぎ なかっ た。
+    english_literally: That plan is, theory only by ended up.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は、理論 {だけ} で 終わっ て しまっ た。
+        english: That plan ended up being only theory.
+        hint: 「だけ で」 is a more common and less formal way to say 'only by' or 'just by'. 「のみ で」 adds a
+          subtle emphasis on the exclusive nature of the theoretical aspect.
+      - competing_japanese:
+          - その 計画 は、理論 {ばかり} で 終わっ て しまっ た。
+        english: That plan ended up being nothing but theory.
+        hint: 「ばかり」 can mean 'nothing but' or 'full of', often implying an undesirable abundance or exclusive
+          focus on one thing at the expense of others. 「のみ」 is a more neutral, formal expression of limitation.
+    scene: A project manager lamenting the failure of a project that never moved beyond the conceptual
+      stage.
+    register: semi-formal
+    setting: reflective
+    nuance: 「理論 {のみ} で」 highlights that the plan existed *solely* in theory, implying a lack of practical
+      application. 「終わっ て しまっ た」 adds a nuance of regret or disappointment.
+    etymology: 「理論」 means 'theory', from 「理」 (reason, logic) and 「論」 (argument, discourse).
+  - english: To live is nothing but to change.
+    japanese:
+      - 生きる と は、変化 する {のみ} だ。
+      - 生きる と は、変化 する {のみ} です。
+      - 生きる と は、変化 {のみ} で ある。
+      - 人生 と は、変化 する {のみ}。
+    english_literally: To live is, change to do only is.
+    competing_grammar:
+      - competing_japanese:
+          - 生きる と は、変化 する {だけ} だ。
+        english: To live is just to change.
+        hint: 「だけ」 is a simpler and more casual way to express 'only'. 「のみ」 lends a more profound, philosophical,
+          and definitive tone to the statement.
+      - competing_japanese:
+          - 生きる と は、変化 する {こと} だ。
+        english: To live is to change.
+        hint: This is a more general statement that change is part of living, without the emphasis on
+          it being the *exclusive* or *sole* essence. We are looking for a stronger sense of 'nothing
+          but'.
+    scene: A philosopher making a profound statement about the essence of life.
+    register: formal
+    setting: academic
+    nuance: 「変化 する {のみ} だ」 conveys a strong philosophical assertion that change is the *sole* constant
+      or essence of living. This is a direct, impactful statement.
+    etymology: 「変化」 means 'change' or 'variation', from 「変」 (change) and 「化」 (change, transform).
+post_example_writeup: As demonstrated in the examples, 「のみ」 consistently emphasizes exclusivity or limitation
+  in a formal context. While 「だけ」 can often be substituted, choosing 「のみ」 adds a distinct nuance of formality
+  and sometimes a stronger sense of absoluteness to the restriction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のみ

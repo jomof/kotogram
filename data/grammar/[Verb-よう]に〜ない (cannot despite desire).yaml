@@ -1,0 +1,271 @@
+grammar_point: '[Verb-よう]に〜ない (cannot despite desire)'
+learn_before:
+  - ようにも (cannot despite desire)
+meaning: cannot (despite desire/effort); try as one might, one cannot
+pronunciation:
+  katakana: ヨウ ニ ナイ
+  romaji: yō ni nai
+formation:
+  Verb (volitional form) + に + Potential Verb (negative form): Indicates an inability to perform an action,
+    despite a strong intention or effort to do so.
+  Verb (volitional form) + に + Possible negative verb: Highlights that even with the will to act, external
+    circumstances or inherent limitations prevent the action.
+jlpt: N2
+etymology: The pattern combines the volitional form of a verb (expressing intention or desire), the particle
+  に (indicating purpose or result), and a negative verb form (like potential negative, or other negative
+  expressions indicating impossibility). It literally means 'it does not become (the state of) wanting
+  to do', evolving to convey the sense of 'cannot, even if one tries'.
+writeup: |-
+  The grammar pattern **[Verb-よう]に〜ない** is used to express that despite a strong desire, intention, or effort to do something, one is unable to do it. This inability often stems from external factors, circumstances, or inherent limitations rather than a simple lack of capability.
+
+  It conveys a sense of frustration or helplessness, highlighting the gap between one's will and the reality of the situation. While a simple negative potential form like **〜できない** (cannot do) merely states an inability, **[Verb-よう]に〜ない** specifically emphasizes that one *wants* to or *tries* to, but is nevertheless prevented.
+
+  This pattern is versatile and can be applied to various situations where a person is held back from achieving their intention. It's not commonly gender-specific, but the nuance of frustration can sometimes make it feel more expressive.
+false_friends:
+  - term: どうにも〜ない
+    meaning: no way to, cannot possibly
+    kind: similar expression
+    nuance: 「どうにも〜ない」indicates a complete impossibility or no solution, often more general and less about
+      personal desire. 「[Verb-よう]に〜ない」specifically highlights an inability despite one's desire or effort.
+    grammar_point: どうにも〜ない (no way to ~)
+  - term: べくもない
+    meaning: no way to, impossible (formal)
+    kind: similar expression
+    nuance: 「べくもない」is a formal and literary expression emphasizing the impossibility of something, similar
+      to 「どうにも〜ない」, but more abstract and less about personal will. 「[Verb-よう]に〜ない」is more about a personal,
+      frustrated inability.
+    grammar_point: べくもない (no way to)
+  - term: 〜できない
+    meaning: cannot do (simple inability)
+    kind: similar expression
+    nuance: 「〜できない」is a straightforward statement of inability without the nuance of 'trying hard but
+      failing' or 'desiring but being prevented' that 「[Verb-よう]に〜ない」conveys. It can be a simple lack
+      of skill or opportunity.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: 〜ようがない
+    meaning: there's no way to...
+    kind: similar expression
+    nuance: 「〜ようがない」means there is no method or means to do something, focusing on the absence of a way
+      or solution. While similar in expressing inability, 「[Verb-よう]に〜ない」emphasizes the thwarted desire
+      or effort, rather than just the lack of a method.
+    grammar_point: ようがない・ようもない (no way to)
+post_false_friends_writeup: While these expressions all convey a sense of inability or impossibility,
+  the key distinction for **[Verb-よう]に〜ない** lies in the presence of a *desire* or *attempt* that is ultimately
+  thwarted. It's not just that something cannot be done, but that one *wishes* to do it or *tries* to
+  do it, but fails due to circumstances.
+examples:
+  - english: I want to apologize, but I just can't bring myself to say it.
+    japanese:
+      - 謝ろう に も、どう に も 謝れ ない。
+      - 謝ろう に も、どう し て も 謝る こと が でき ませ ん。
+      - 謝ろう に も、どう に も 謝れ ねえ。
+      - 謝ろう に も、どう し て も 口 に 出せ ない。
+      - 謝ろう に も、言葉 が 出 て こ ない。
+    english_literally: Even if I try to apologize, somehow I cannot apologize.
+    competing_grammar:
+      - competing_japanese:
+          - 謝る こと が でき ない。
+        english: I cannot apologize.
+        hint: This simply states an inability without implying a strong desire or effort. We're looking
+          for an expression that conveys 'I want to, but I can't'.
+    scene: A person feels bad about something but finds it difficult to express their apology.
+    register: casual
+    setting: reflective
+    nuance: The use of 「謝ろうにも謝れない」highlights the internal conflict and the speaker's frustration at being
+      unable to vocalize an apology despite the strong desire to do so. The initial volitional form 「謝ろう」
+      (try to apologize) sets up the desired action.
+  - english: I tried to call him, but I couldn't connect because of poor reception.
+    japanese:
+      - 彼 に 電話 を かけよう に も、電波 が 悪く て つながら ない。
+      - 彼 に 電話 を かけよう に も、電波 が 悪く て つながり ませ ん でし た。
+      - 彼 に 電話 を かけよう に も、電波 が 悪く て 連絡 が 取れ ませ ん でし た。
+    english_literally: Even if I try to call him, because reception is bad, it doesn't connect.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 電話 を かける こと が でき ない。
+        english: I cannot call him.
+        hint: This is a simple statement of inability. We're looking for a phrase that implies an attempt
+          was made, but external factors prevented success.
+    scene: Someone is trying to contact a friend but is having technical difficulties.
+    register: casual
+    setting: informative
+    nuance: 「かけようにもつながらない」shows the effort made (volitional 「かけよう」) and the external reason for failure
+      (「電波が悪くて」). This emphasizes the speaker's thwarted intention, rather than just a simple failure
+      to connect.
+  - english: I wanted to help, but I couldn't do anything from a distance.
+    japanese:
+      - 手伝おう に も、遠く から で は 何 も でき なかっ た。
+      - 手伝おう に も、遠く から で は 何 も でき ませ ん でし た。
+      - 手伝おう に も、遠く から で は 全く 何 も でき なかっ た。
+    english_literally: Even if I try to help, from far away, I couldn't do anything.
+    competing_grammar:
+      - competing_japanese:
+          - 遠く から で は 何 も でき なかっ た。
+        english: I couldn't do anything from a distance.
+        hint: This states an outcome without the explicit nuance of desire or effort. We're looking for
+          an expression that includes the speaker's willingness to help.
+    scene: Observing a difficult situation from afar, feeling powerless.
+    register: casual
+    setting: melancholic
+    nuance: 「手伝おうにも何もできなかった」expresses the speaker's strong desire to help (volitional 「手伝おう」) combined
+      with the physical inability due to distance (「遠くからでは」), creating a sense of helplessness.
+  - english: I tried to sleep, but I couldn't fall asleep because of the noise.
+    japanese:
+      - 寝よう に も、うるさく て 寝 られ なかっ た。
+      - 寝よう に も、うるさく て 寝 られ ませ ん でし た。
+      - 寝よう に も、うるさく て 眠り に つけ なかっ た。
+    english_literally: Even if I try to sleep, because it was noisy, I couldn't sleep.
+    competing_grammar:
+      - competing_japanese:
+          - うるさく て 眠る こと が でき なかっ た。
+        english: I couldn't sleep because of the noise.
+        hint: This is a factual statement of inability. The target grammar implies an active attempt to
+          sleep that was foiled.
+    scene: A person struggling to sleep due to environmental disturbances.
+    register: casual
+    setting: reflective
+    nuance: 「寝ようにも寝られなかった」captures the speaker's active effort to sleep (volitional 「寝よう」) and the external
+      impediment (「うるさくて」) that made it impossible, highlighting frustration.
+  - english: I want to finish it, but there's just no time left.
+    japanese:
+      - 終わら せ よう に も、もう 時間 が ない。
+      - 終わら せ よう に も、もう 時間 が あり ませ ん。
+      - 終わら せ よう に も、もう 時間 ねえ。
+    english_literally: Even if I try to finish it, there's no more time.
+    competing_grammar:
+      - competing_japanese:
+          - もう 時間 が なく て 終わら せる こと が でき ない。
+        english: There's no time left, so I can't finish it.
+        hint: This explains the reason then the inability. The target grammar implies a desire to finish
+          despite the lack of time.
+    scene: A student working on a project nearing a deadline, running out of time.
+    register: casual
+    setting: serious
+    nuance: 「終わらせようにも時間がない」shows the intention to complete something (volitional 「終わらせよう」) being hindered
+      by a lack of time (「時間がない」), emphasizing the constraint.
+  - english: I tried to look, but I couldn't see anything in the dark.
+    japanese:
+      - 見よう に も、暗く て 何 も 見え なかっ た。
+      - 見よう に も、暗く て 何 も 見え ませ ん でし た。
+      - 見よう に も、暗く て 全く 何 も 見え なかっ た。
+    english_literally: Even if I try to look, because it was dark, I couldn't see anything.
+    competing_grammar:
+      - competing_japanese:
+          - 暗く て 何 も 見る こと が でき なかっ た。
+        english: It was dark so I couldn't see anything.
+        hint: This is a simple factual statement of inability to see. The target grammar expresses an
+          attempt to see that was unsuccessful.
+    scene: Searching for something in a dimly lit room.
+    register: casual
+    setting: informative
+    nuance: 「見ようにも何も見えなかった」expresses the active attempt to see (volitional 「見よう」) that was rendered impossible
+      by the darkness, conveying a sense of futility.
+  - english: I want to understand, but no matter how many times I read it, I just don't get it.
+    japanese:
+      - 理解 しよう に も、何 度 読ん で も 理解 でき ない。
+      - 理解 しよう に も、何 度 読ん で も 理解 でき ませ ん。
+      - 理解 しよう に も、何 度 読ん で も 全然 理解 でき ない。
+      - 理解 しよう に も、何 度 読ん で も 頭 に 入っ て こ ない。
+    english_literally: Even if I try to understand, no matter how many times I read, I cannot understand.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 読ん で も 理解 でき ない。
+        english: No matter how many times I read it, I can't understand.
+        hint: This focuses on the repeated action and its outcome. The target grammar emphasizes the initial
+          desire to understand.
+    scene: A student struggling with a difficult text.
+    register: casual
+    setting: academic
+    nuance: 「理解しようにも理解できない」shows the strong intention to understand (volitional 「理解しよう」) and the frustration
+      of repeated failure (「何度読んでも」) despite the effort. The focus is on the mental block.
+  - english: I tried to return home, but I couldn't because the trains had stopped.
+    japanese:
+      - 帰ろう に も、電車 が 止まっ て い て 帰れ なかっ た。
+      - 帰ろう に も、電車 が 止まっ て い て 帰れ ませ ん でし た。
+      - 帰ろう に も、電車 が 止まっ て い て 帰れ なかっ た ん だ。
+    english_literally: Even if I try to return home, because the trains had stopped, I couldn't return.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 止まっ て い た の で、帰る こと が でき なかっ た。
+        english: Because the trains had stopped, I couldn't go home.
+        hint: This provides the reason and the simple inability. We're looking for an expression that
+          suggests the speaker's attempt to go home was thwarted.
+    scene: Being stranded due to transportation issues.
+    register: casual
+    setting: emergency/alarm
+    nuance: 「帰ろうにも帰れなかった」demonstrates the desire to return home (volitional 「帰ろう」) being overridden by
+      an external circumstance (「電車が止まっていて」), creating a feeling of being stuck.
+  - english: I wanted to ask, but he was so busy I couldn't talk to him.
+    japanese:
+      - 聞こう に も、彼 が 忙し すぎ て 話しかけ られ なかっ た。
+      - 聞こう に も、彼 が 忙し すぎ て 話しかけ られ ませ ん でし た。
+      - 聞こう に も、彼 が 忙し すぎ て 話しかけ られ なかっ た ん だ。
+    english_literally: Even if I try to ask, because he was too busy, I couldn't speak to him.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 忙し すぎ て 話しかける こと が でき なかっ た。
+        english: He was too busy, so I couldn't talk to him.
+        hint: This is a direct statement of inability due to a reason. The target grammar highlights the
+          speaker's thwarted intention to initiate conversation.
+    scene: A subordinate trying to get a moment with their busy superior.
+    register: semi-formal
+    setting: professional
+    nuance: 「聞こうにも話しかけられなかった」shows the intention to ask (volitional 「聞こう」) and the external barrier (「彼が忙しすぎて」)
+      that prevented the conversation, indicating a polite but frustrated attempt.
+  - english: I wanted to laugh, but I couldn't because it was a serious situation.
+    japanese:
+      - 笑おう に も、真剣 な 状況 で 笑え なかっ た。
+      - 笑おう に も、真剣 な 状況 で 笑え ませ ん でし た。
+      - 笑おう に も、真剣 な 状況 で 笑う こと は でき なかっ た。
+    english_literally: Even if I try to laugh, because it was a serious situation, I couldn't laugh.
+    competing_grammar:
+      - competing_japanese:
+          - 真剣 な 状況 で 笑う こと が でき なかっ た。
+        english: I couldn't laugh in that serious situation.
+        hint: This states the inability to laugh. The target grammar implies a desire to laugh that was
+          suppressed by the situation.
+    scene: Someone trying to maintain composure in a solemn or critical moment.
+    register: casual
+    setting: serious
+    nuance: 「笑おうにも笑えなかった」illustrates the desire to laugh (volitional 「笑おう」) being suppressed by the inappropriate
+      context (「真剣な状況で」), highlighting a controlled and difficult response.
+  - english: I tried to explain it clearly, but I couldn't find the right words.
+    japanese:
+      - はっきり 説明 しよう に も、適切 な 言葉 が 見つから なかっ た。
+      - はっきり 説明 しよう に も、適切 な 言葉 が 見つかり ませ ん でし た。
+      - はっきり 説明 しよう に も、適切 な 言葉 が 出 て こ なかっ た。
+    english_literally: Even if I try to explain clearly, suitable words were not found.
+    competing_grammar:
+      - competing_japanese:
+          - はっきり 説明 でき なかっ た。
+        english: I couldn't explain it clearly.
+        hint: This is a simple statement of an unsuccessful explanation. The target grammar emphasizes
+          the speaker's effort to explain clearly despite the difficulty.
+    scene: Struggling to articulate a complex idea or sensitive topic.
+    register: casual
+    setting: informative
+    nuance: 「はっきり説明しようにも見つからなかった」shows the intention to explain clearly (volitional 「説明しよう」) being hindered
+      by the difficulty in finding the right words, conveying intellectual frustration.
+  - english: I wanted to go out, but the heavy rain made it impossible.
+    japanese:
+      - 出かけよう に も、大雨 で 出かけ られ なかっ た。
+      - 出かけよう に も、大雨 で 出かけ られ ませ ん でし た。
+      - 出かけよう に も、大雨 で 出かけ られ ねえ。
+    english_literally: Even if I try to go out, because of the heavy rain, I couldn't go out.
+    competing_grammar:
+      - competing_japanese:
+          - 大雨 だっ た の で 出かける こと が でき なかっ た。
+        english: Because it was raining heavily, I couldn't go out.
+        hint: This is a causal statement of inability. The target grammar implies a desire to go out that
+          was thwarted by the rain.
+    scene: Plans being ruined by bad weather.
+    register: casual
+    setting: pessimistic
+    nuance: 「出かけようにも出かけられなかった」expresses the desire to go out (volitional 「出かけよう」) and the external factor
+      (「大雨で」) that prevented it, conveying disappointment.
+post_example_writeup: As seen in the examples, **[Verb-よう]に〜ない** consistently highlights a situation where
+  one's will or attempt to perform an action is met with an insurmountable obstacle, leading to inability.
+  This pattern effectively communicates a deeper level of frustration or powerlessness than a simple negative
+  potential form.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%80%90Verb-%E3%82%88%E3%81%86%E3%80%91%E3%81%AB%E3%80%9C%E3%81%AA%E3%81%84

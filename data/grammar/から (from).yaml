@@ -1,0 +1,593 @@
+grammar_point: から (from)
+learn_before:
+  - からできる (made from)
+  - くる (come)
+  - 込み (including)
+meaning: From
+pronunciation:
+  katakana: カラ
+  romaji: kara
+formation:
+  Place/Time + から: Indicates the starting point in space or time.
+  Source + から: Indicates the origin or source of something, such as a person, organization, or material.
+    This covers both concrete and abstract origins, complementing the 'place/time' aspect.
+jlpt: N5
+etymology: The particle 「から」 originates from the noun 「殻」(kara), meaning 'shell' or 'husk.' This concept
+  of an outer layer or container evolved to signify 'from' or 'origin,' indicating something emerging
+  or separating from a source. Its dual use for 'from' (a starting point) and 'because' (a reason or origin)
+  can be understood through this core concept of emergence or derivation. Something comes 'from' a physical
+  point, or a consequence arises 'from' a cause, both rooted in the idea of a source.
+writeup: |-
+  「から」 is a fundamental particle in Japanese, primarily translated as 'from.' It is used to denote a starting point or origin in various contexts. This can include the beginning of a time period, the location from which movement commences, or the source from which something originates, such as a person, organization, or material. The particle is placed directly after the noun or phrase that represents the origin.
+
+  **Usage Nuances**
+  While 「から」 is highly versatile for indicating origin, it's crucial to understand its core function. It highlights the point of departure or inception. For instance, when stating 'from Tokyo,' it emphasizes Tokyo as the initial location of a journey or action. Similarly, 'from 7 AM' marks the commencement of an activity.
+
+  **Important Considerations**
+  It's important to differentiate 「から」 in its 'from' meaning from its use as 'because.' When 「から」 follows a noun or な-adjective *and* is preceded by a copula like 「だ」 (da) or 「です」 (desu), it usually functions to express a reason or cause, meaning 'because.' However, in its role indicating 'from,' the copula is typically omitted (e.g., 東京から, not 東京だ から). This distinction is key to avoiding misinterpretation.
+false_friends:
+  - term: から
+    meaning: Because, since
+    kind: often confused with
+    nuance: While this 「から」 indicates a reason or cause, the main grammar point 「から」 indicates a starting
+      point or origin. They share the same spelling but function differently based on context.
+    grammar_point: '[Clause]から (because・so)'
+  - term: てから
+    meaning: After doing
+    kind: similar expression
+    nuance: Unlike 「から」 which indicates a starting point, 「てから」 indicates a sequence of actions, meaning
+      'after doing something'.
+    grammar_point: てから (after and since)
+  - term: ので
+    meaning: Because
+    kind: often confused with
+    nuance: Unlike 「から」 which can mean 'from,' 「ので」 is used to express a reason or cause, and always creates
+      a subordinate clause, requiring a reason-result relationship between clauses.
+    grammar_point: '[Clause]から (because・so)'
+  - term: より
+    meaning: From (as a starting point for travel/comparison)
+    kind: often confused with
+    nuance: 「より」 can also indicate a starting point, particularly for routes or comparisons, but 「から」
+      is more versatile for general origins, sources, and time. 「より」 is less common for non-physical origins
+      or abstract sources.
+    grammar_point: より (from・extent・range)
+post_false_friends_writeup: It is crucial to distinguish between the various functions of 「から」. While
+  the core grammar point specifies an origin or starting point ('from'), the homophonous particle 「から」
+  can also serve to express a reason or cause ('because'). Additionally, do not confuse it with compounds
+  like 「てから」, which indicates a sequence of actions ('after doing something'), or with 「ので」, another particle
+  used to express reasons. Lastly, 「より」 can also denote a starting point but often carries nuances of
+  comparison or more specific directional routes, whereas 「から」 is more broadly used for general origins,
+  sources, and time.
+examples:
+  - english: I walk home from Tokyo.
+    japanese:
+      - 東京 {から} 歩い て 帰る。
+      - 東京 {から} 歩い て 帰り ます。
+      - 東京 {から} 歩い て 帰っ た。
+      - 東京 {から} 帰り まし た。
+      - 東京 {から} 徒歩 で 帰宅 する。
+      - 東京 {から} 徒歩 で 帰宅 し ます。
+      - 東京 {から} 徒歩 で 帰宅 し た。
+      - 東京 {から} 徒歩 で 帰宅 し まし た。
+      - 東京 {から} 家 まで 歩く。
+      - 東京 {から} 歩い て 家 まで 帰る。
+    english_literally: From Tokyo, walk and return.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 {より} 歩い て 帰る
+        english: Walk home rather than Tokyo.
+        hint: While 「より」 can indicate a starting point, it often implies a comparison or a specific route.
+          For a general origin of movement, 「から」 is more common, indicating the origin of movement, not
+          a comparison or choice. We're looking for the origin of the journey, not a comparison point
+          or route choice, so 「から」 is the more fitting particle for a simple statement of departure from
+          a location like Tokyo.
+      - competing_japanese:
+          - 東京 の {方 から} 歩い て 帰る
+        english: I walk home from the direction of Tokyo.
+        hint: 「の 方 から」 indicates a general direction or area. We're looking for a particle that specifically
+          marks the origin point, which 「から」 does directly, pinpointing Tokyo as the exact starting place
+          rather than just a general vicinity or direction. We're looking for a particle that specifically
+          marks the origin point, not just a general direction.
+      - competing_japanese:
+          - 東京 に 着い {て から} 歩い て 帰る。
+        english: After arriving in Tokyo, I walk home.
+        hint: 「てから」 indicates a sequence of actions, meaning 'after doing something.' We're looking for
+          a particle that marks the point of origin, not a temporal sequence of events.
+      - competing_japanese:
+          - 東京 {な の で}、歩い て 帰る。
+        english: Because it's Tokyo, I'll walk home.
+        hint: 「ので」 expresses a reason or cause. We're looking for a particle that indicates the source
+          of the journey, not the reason for walking.
+    scene: A man explaining his long commute on a particularly difficult day.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「歩い て 帰る」 (aruku te kaeru) indicates walking home, a common, casual phrase. The
+      sentence is a simple statement of fact often used in everyday conversation, suitable for a male
+      speaker in a casual setting. The use of 「東京」 (Tōkyō) as a starting point emphasizes a long distance,
+      common for a serious discussion about a commute.
+    etymology: 「歩く」 (aruku) means 'to walk'. 「帰る」 (kaeru) means 'to return' or 'to go home'.
+  - english: This letter is from a friend.
+    japanese:
+      - この 手紙 は 友だち {から} です。
+      - この 手紙 は 友だち {から} だ。
+      - この 手紙 は 友人 {から} です。
+      - この 手紙 は 友人 {から} だ。
+      - 友だち {から} の 手紙 だ。
+      - 友だち {から} の 手紙 です。
+      - 友人 {から} の 手紙 だ。
+      - 友人 {から} の 手紙 です。
+      - 友だち {から} もらっ た 手紙 です。
+      - 友人 {から} 届い た 手紙 だ。
+    english_literally: This letter is from friend.
+    competing_grammar:
+      - competing_japanese:
+          - この 手紙 は 友だち {の} でし た
+        english: This letter was my friend's.
+        hint: This phrase suggests ownership or possession. The situation requires expressing the origin
+          of the letter, not merely who it belongs to. We're looking for a particle that indicates the
+          source of something, not just ownership.
+      - competing_japanese:
+          - この 手紙 は 友だち {が 送っ た もの} です
+        english: This letter is what my friend sent.
+        hint: This emphasizes the action of sending. The context calls for simply stating the source or
+          origin of the letter, not the specific action. We're looking for a particle that indicates the
+          source of the item, not the action of sending.
+      - competing_japanese:
+          - この 手紙 は 友だち {に} もらっ た もの です。
+        english: This letter is something I received from a friend.
+        hint: 「に」 often marks the direct giver or agent when receiving something. We're looking for a
+          particle that generally indicates the source or origin of the item itself, regardless of the
+          act of receiving.
+      - competing_japanese:
+          - 友だち {な の で}、この 手紙 を 送り ます。
+        english: Because it's a friend, I'm sending this letter.
+        hint: 「ので」 expresses a reason or cause. We're looking for a particle that indicates the source
+          of the letter, not the reason for sending it.
+    scene: A person opening their mail, noticing the sender.
+    register: casual
+    setting: informative
+    nuance: The casual nature of 「友だち」 (tomodachi) and the simple 「です」 (desu) make this suitable for an
+      everyday informative statement, focusing on the source of the letter.
+    etymology: 「手紙」 (tegami) means 'letter'. 「友だち」 (tomodachi) means 'friend'.
+  - english: I study from seven in the morning.
+    japanese:
+      - 朝 七 時 {から} 勉強 し ます。
+      - 朝 七 時 {から} 勉強 する。
+      - 朝 七 時 {から} 勉強 を 始め ます。
+      - 朝 七 時 {から} 始める。
+      - 朝 七 時 {から} ずっと 勉強 し て い ます。
+      - 朝 七 時 {から} ずっと 勉強 し て いる。
+      - 朝 七 時 {から} やる。
+      - 朝 七 時 {から} 勉強 を 開始 する。
+    english_literally: Morning, seven o'clock from study.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 七 時 {より} 勉強 し ます
+        english: I study more than seven in the morning.
+        hint: While 「より」 can indicate a starting point in some contexts, it is primarily used for comparisons.
+          For a starting time, 「から」 is the appropriate particle, as it clearly marks the beginning point
+          from which an action continues.
+      - competing_japanese:
+          - 朝 七 時 {に なっ て から} 勉強 し ます。
+        english: After 7 AM, I study.
+        hint: 「てから」 marks a sequence of actions, meaning 'after doing something.' We're looking for a
+          particle that marks the starting point of an ongoing period, not an particular action that happens
+          after a specific time.
+      - competing_japanese:
+          - 朝 七 時 {に} 勉強 を 始め ます。
+        english: I start studying at 7 AM.
+        hint: 「に」 marks a specific point in time. We're looking for a particle that indicates the start
+          of an activity that continues from that point, implying duration rather than just an instantaneous
+          start.
+      - competing_japanese:
+          - 朝 七 時 {な の で}、勉強 を 始め ます。
+        english: Because it's 7 AM, I'll start studying.
+        hint: 「ので」 expresses a reason. We're looking for a particle that indicates the starting time of
+          an action, not the reason for starting.
+    scene: A student describing their daily routine to a classmate.
+    register: semi-formal
+    setting: informative
+    speaker_age: younger
+    nuance: 「勉強 し ます」 (benkyō shimasu) is the polite form for 'study'. This common expression of a daily
+      habit is often heard from younger students in a semi-formal context like school, indicating a regular
+      starting time for an activity.
+    etymology: 「朝」 (asa) means 'morning'. 「七時」 (shichiji) means 'seven o'clock'. 「勉強」 (benkyō) means 'study'.
+  - english: This desk is made from wood.
+    japanese:
+      - これ は 木 {から} でき た 机 です。
+      - これ は 木 {から} でき た 机 だ。
+      - この 机 は 木 {から} でき て い ます。
+      - この 机 は 木 {から} でき て いる。
+      - 木 {から} 作ら れ た 机 です。
+      - 木 {から} 作ら れ た 机 だ。
+      - この 机 は 木 {から} 作ら れ て い ます。
+      - この 机 は 木 {から} 作ら れ て いる。
+      - 木 {から} の 机 です。
+      - 木 {から} 作っ た 机 だ。
+    english_literally: This is wood from made desk.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 木 {で} 作ら れ た 机 です
+        english: This is a desk made with wood.
+        hint: This emphasizes the material used in the *process* of making. The original sentence highlights
+          the raw material's *origin* before transformation. We're looking for a particle that clearly
+          states the material from which an object originated.
+      - competing_japanese:
+          - これ は {木製} の 机 です
+        english: This is a wooden desk.
+        hint: This is a descriptive adjective. The original sentence emphasizes the source material from
+          which the desk *came*, rather than simply describing its material. We're looking for a particle
+          that indicates the origin of the object's material.
+      - competing_japanese:
+          - 木 {な の で}、丈夫 な 机 です。
+        english: Because it's a historical fact, its credibility is high.
+        hint: 「ので」 expresses a reason. We're looking for a particle that indicates the material origin
+          of the desk, not a reason about its properties.
+    scene: A craftsman proudly presenting a piece of furniture they made.
+    register: formal
+    setting: informative
+    nuance: The phrase 「木 {から} でき た」 (ki kara dekita) means 'made from wood', emphasizing the raw material.
+      This usage of 「から」 indicates the origin of an object's material, appropriate for a formal, explanatory
+      context.
+    etymology: 「木」 (ki) means 'wood'. 「机」 (tsukue) means 'desk'.
+  - english: I received a book from the teacher.
+    japanese:
+      - 先生 {から} 本 を もらっ た。
+      - 先生 {から} 本 を もらい まし た。
+      - 先生 {から} 本 を 頂い た。
+      - 先生 {から} いただき まし た。
+      - 先生 {から} 本 を 受け取っ た。
+      - 先生 {から} 本 を 受け取り まし た。
+      - 先生 {から} の 本 です。
+      - 先生 {から} の 本 だ。
+    english_literally: Teacher from book received.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 {に} 本 を もらっ た
+        english: I received a book from the teacher (agent).
+        hint: While 「に」 can indicate the giver in a receiving action, 「から」 specifically emphasizes the
+          *source* or *origin* of the item being received, rather than just the agent. We're looking for
+          a particle that specifically emphasizes the source of the item received.
+      - competing_japanese:
+          - 先生 が 本 を {くれ た}
+        english: The teacher gave me a book.
+        hint: This sentence emphasizes the teacher as the giver, from their perspective. The original
+          sentence emphasizes the book being received *from* the teacher, from the receiver's perspective,
+          focusing on the origin of the item.
+      - competing_japanese:
+          - 先生 が 来 {て から} 本 を もらっ た。
+        english: After the teacher came, I received the book.
+        hint: 「てから」 indicates a sequence of actions. We're looking for a particle that marks the source
+          of the received item, not a temporal sequence.
+      - competing_japanese:
+          - 先生 が 親切 {な の で}、本 を もらっ た。
+        english: Because the teacher is kind, I received the book.
+        hint: 「ので」 expresses a reason. We're looking for a particle that indicates the source of the received
+          item, not the reason for receiving it.
+    scene: A student excitedly telling their friend about a gift from their teacher.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The plain past form 「もらった」 (moratta) is common in casual conversation, especially among female
+      speakers when expressing receiving something. It highlights the source of the gift, implying a personal
+      interaction and gratitude.
+    etymology: 「先生」 (sensei) means 'teacher'. 「本」 (hon) means 'book'. 「もらった」 (moratta) is the plain past
+      form of 「もらう」 (morau), meaning 'to receive'.
+  - english: This document came from the head office.
+    japanese:
+      - この 書類 は 本社 {から} 届き まし た。
+      - この 書類 は 本社 {から} 届い た。
+      - この 書類 は 本社 {から} 来 まし た。
+      - この 書類 は 本社 {から} 来 た。
+      - 本社 {から} の 書類 です。
+      - 本社 {から} の 書類 だ。
+    english_literally: This document head office from arrived.
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 は 本社 {に} 送ら れ まし た。
+        english: This implies the document went *to* the head office, not *from* it. We are looking for
+          the origin of the document.
+        hint: This implies the document went *to* the head office, not *from* it. We are looking for the
+          origin of the document, which 「から」 clearly indicates as the source.
+      - competing_japanese:
+          - 本社 {の} 書類 です。
+        english: It's a document from the head office.
+        hint: This phrase suggests ownership or affiliation, not necessarily the origin of its movement
+          or creation. We're looking for a particle that specifically marks the point of origin, emphasizing
+          where it came from.
+      - competing_japanese:
+          - この 書類 は 本社 {が 送っ た もの} です。
+        english: This emphasizes the action of sending. The context calls for simply stating the source
+          or origin of the document, not the specific action.
+        hint: This emphasizes the action of sending. The context calls for simply stating the source or
+          origin of the document, not the specific action. 「から」 directly indicates the origin of the document's
+          arrival.
+    scene: A colleague informing another about the origin of an important document in an office setting.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「本社 {から} 届き まし た」 (honsha kara todokimashita) emphasizes the official source of
+      the document, appropriate for a professional, informative setting. 「届き まし た」 (todokimashita) is
+      a polite past tense form, suitable for conveying information formally.
+    etymology: 「書類」 (shorui) means 'document'. 「本社」 (honsha) means 'head office'.
+  - english: I heard that information from the news.
+    japanese:
+      - その 情報 は ニュース {から} 聞き まし た。
+      - その 情報 は ニュース {から} 聞い た。
+      - その 情報 は ニュース {から} 得 まし た。
+      - その 情報 は ニュース {から} 得 た。
+      - ニュース {から} の 情報 です。
+      - ニュース {から} の 情報 だ。
+    english_literally: That information news from heard.
+    competing_grammar:
+      - competing_japanese:
+          - その 情報 は ニュース {で} 聞き まし た。
+        english: I heard that information on the news.
+        hint: 「で」 focuses on the medium or location where the action occurred. 「から」 emphasizes the origin
+          or source of the information itself, highlighting where the information came from.
+      - competing_japanese:
+          - ニュース {に} 載っ て い まし た。
+        english: It was reported in the news.
+        hint: This focuses on the news being the place where the information existed. We're looking for
+          a particle that indicates the origin of the information from a source, rather than just its
+          location.
+      - competing_japanese:
+          - ニュース {に よっ て}、その 情報 を 知り まし た。
+        english: According to the news, I knew that information.
+        hint: This is a more formal way to express the means by which information became known. 「から」 directly
+          states the source, making it a more concise expression of origin.
+    scene: Someone sharing a piece of news they recently learned, possibly in a casual conversation.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「ニュース {から} 聞き まし た」 (nyūsu kara kikimashita) is a natural way to state the source of information,
+      common in semi-formal conversation. The use of 「まし た」 (mashita) maintains politeness.
+    etymology: 「情報」 (jōhō) means 'information'. 「ニュース」 (nyūsu) means 'news'.
+  - english: Please start from the beginning.
+    japanese:
+      - 最初 {から} 始め て ください。
+      - 最初 {から} 始め て くれ。
+      - 最初 {から} やり直し て ください。
+      - 最初 {から} やり直し て くれ。
+      - 最初 {から} お 願い し ます。
+      - 最初 {から} 頼む。
+    english_literally: Beginning from please start.
+    competing_grammar:
+      - competing_japanese:
+          - 最初 {に} 始め て ください。
+        english: Please start at the beginning.
+        hint: 「に」 marks a specific point in time or location. 「から」 emphasizes the starting *point* of
+          an ongoing process or sequence, indicating the action continues *from* that point.
+      - competing_japanese:
+          - 最初 {で} 始め て ください。
+        english: Please start by means of the beginning.
+        hint: 「で」 would imply 'at' or 'by means', and doesn't convey the sense of starting *from* an origin.
+          We're looking for the origin point of the action, which 「から」 clearly denotes.
+      - competing_japanese:
+          - 最初 {に} 戻っ て ください。
+        english: Please return to the beginning.
+        hint: This implies going back to a previous state, not necessarily starting an action *from* that
+          point. We're looking for a particle that indicates the starting point of an action.
+    scene: A teacher instructing students to restart an exercise or performance.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「最初 {から}」 (saisho kara) is a very common phrase meaning 'from the beginning'. The command
+      form 「始め て ください」 (hajimete kudasai) is polite and appropriate for an instructional setting, clearly
+      indicating the starting point of an action or task.
+    etymology: 「最初」 (saisho) means 'beginning' or 'first'.
+  - english: From next month, I will start a new job.
+    japanese:
+      - 来月 {から} 新しい 仕事 を 始め ます。
+      - 来月 {から} 新しい 仕事 を 始める。
+      - 来月 {から} 新しい 職場 に なり ます。
+      - 来月 {から} 新しい 職場 だ。
+      - 来月 {から} 転職 し ます。
+      - 来月 {から} 転職 する。
+    english_literally: Next month from new job will start.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 {に} 新しい 仕事 を 始め ます。
+        english: I will start a new job in next month.
+        hint: 「に」 typically marks a specific point in time when an event occurs. 「から」, however, implies
+          that an action or state will continue *from* that point onwards, emphasizing the duration or
+          continuation from the starting point.
+      - competing_japanese:
+          - 来月 {に なれ ば} 新しい 仕事 を 始め ます。
+        english: If it becomes next month, I will start a new job.
+        hint: This phrase uses the conditional 'if' to state a future possibility. We're looking for a
+          particle that denotes the active starting point of an action, focusing on the beginning of an
+          ongoing activity, not a conditional outcome.
+      - competing_japanese:
+          - 来月 {以降}、新しい 仕事 を 始め ます。
+        english: From next month onwards, I will start a new job.
+        hint: 「以降」 (ikō) explicitly means 'onwards' or 'after'. While similar, 「から」 more broadly covers
+          both the starting point and the continuation from it, making it a more general indicator of
+          inception.
+    scene: Someone telling a family member or close friend about an upcoming life change.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「来月 {から}」 (raigetsu kara) clearly marks the start of a future event from which a new state
+      or action begins. 「新しい 仕事 を 始め ます」 (atarashii shigoto o hajime masu) is a common, polite way to
+      express starting a new job, suitable for sharing personal news with family.
+    etymology: 「来月」 (raigetsu) means 'next month'. 「仕事」 (shigoto) means 'job' or 'work'.
+  - english: Light comes from the sun.
+    japanese:
+      - 光 は 太陽 {から} 来る。
+      - 光 は 太陽 {から} 来る もの だ。
+      - 太陽 {から} 光 が 出る。
+      - 太陽 {から} 光 が 発せ られる。
+      - 光 は 太陽 {から} 発せ られる。
+      - 光 は 太陽 {から} 生まれる。
+    english_literally: Light sun from comes.
+    competing_grammar:
+      - competing_japanese:
+          - 光 は 太陽 {に よっ て} 生じる。
+        english: Light is generated by the sun.
+        hint: This is more formal and emphasizes the mechanism of generation rather than simply the origin
+          of the light's movement. We're looking for a particle that indicates the direct source of origin.
+      - competing_japanese:
+          - 太陽 {の} 光 です。
+        english: It's the sun's light.
+        hint: This describes possession or an attribute, not the origin of the light's movement or emergence.
+          We're looking for a particle that denotes the source from which something originates, emphasizing
+          its source of emergence.
+      - competing_japanese:
+          - 太陽 {が} 光 を 出す。
+        english: The sun emits light.
+        hint: This sentence emphasizes the sun as the active agent producing light. The original sentence
+          focuses on the light's origin point, highlighting where the light comes from.
+    scene: Explaining a natural phenomenon in a casual, informative context, possibly to oneself or generally.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「太陽 {から} 来る」 (taiyō kara kuru) clearly identifies the sun as the source from which light originates.
+      As this is a general truth or observation, the plain form 「来る」 (kuru) is appropriate, making it
+      suitable for a casual, informative statement.
+    etymology: 「光」 (hikari) means 'light'. 「太陽」 (taiyō) means 'sun'.
+  - english: This story is based on facts from history.
+    japanese:
+      - この 話 は 歴史 の 事実 {から} 作ら れ た。
+      - この 話 は 歴史 の 事実 {から} 作ら れ て い ます。
+      - この 話 は 歴史 の 事実 {から} でき て いる。
+      - この 話 は 歴史 の 事実 {から} 生まれ た。
+      - 歴史 の 事実 {から} 来 た 話 です。
+      - 歴史 的 事実 {から} 脚色 さ れ た 話 だ。
+    english_literally: This story history's facts from made.
+    competing_grammar:
+      - competing_japanese:
+          - この 話 は 歴史 の 事実 {に 基づい て} いる。
+        english: This story is based on historical facts.
+        hint: 「に 基づい て」 means 'based on' or 'founded on,' implying a foundation. 「から」 emphasizes the origin
+          or source from which the story was *created*, highlighting its derivation.
+      - competing_japanese:
+          - この 話 は 歴史 の 事実 {で} 作ら れ た。
+        english: This story was made by means of historical facts.
+        hint: 「で」 can indicate the means or instrument. 「から」 specifies the source from which something
+          originated or was derived, emphasizing the raw material or source.
+      - competing_japanese:
+          - 歴史 的 事実 {な の で}、信憑 性 が 高い。
+        english: Because it's a historical fact, its credibility is high.
+        hint: 「ので」 expresses a reason or cause. We're looking for a particle that indicates the source
+          from which something was derived, not a reason for its credibility.
+    scene: A discussion about a historical drama or book, emphasizing its factual basis.
+    register: semi-formal
+    setting: academic
+    nuance: The phrase 「歴史 の 事実 {から} 作ら れ た」 (rekishi no jijitsu kara tsukurareta) highlights that the
+      story's content originated from historical facts. This usage of 「から」 indicates the source material
+      from which something abstract, like a story, is derived, common in academic or informative contexts.
+    etymology: 「歴史」 (rekishi) means 'history'. 「事実」 (jijitsu) means 'fact'.
+  - english: I learned Japanese from watching anime.
+    japanese:
+      - アニメ を 見る こと {から} 日本 語 を 学ん だ。
+      - アニメ を 見る こと {から} 日本 語 を 学び まし た。
+      - アニメ を 見る こと {から} 日本 語 を 習得 し た。
+      - アニメ を 見る こと {から} 日本 語 が 上達 し た。
+    english_literally: Anime watching from Japanese learned.
+    competing_grammar:
+      - competing_japanese:
+          - アニメ を 見る こと {で} 日本 語 を 学ん だ。
+        english: I learned Japanese by watching anime.
+        hint: 「で」 indicates the means or method. While sometimes interchangeable, 「から」 emphasizes the
+          source or origin *from which* the knowledge or skill was acquired, highlighting the point of
+          inception of the learning.
+      - competing_japanese:
+          - アニメ を 見る こと {に よっ て} 日本 語 を 学ん だ。
+        english: I learned Japanese by means of watching anime.
+        hint: This is a more formal way to express the means. 「から」 is more direct in indicating the source
+          of learning, emphasizing where the knowledge originated.
+      - competing_japanese:
+          - アニメ を 見 た {後 で}、日本 語 を 学ん だ。
+        english: After watching anime, I learned Japanese.
+        hint: This focuses on the temporal sequence. We're looking for a particle that indicates the source
+          of the learning itself, not just an action that happened before.
+    scene: A student casually discussing their learning methods with a friend or fellow learner.
+    register: casual
+    setting: informative
+    nuance: 「アニメ を 見る こと {から}」 (anime o miru koto kara) here emphasizes that watching anime served as
+      the primary origin or source of their Japanese language acquisition. This casual phrasing reflects
+      a common learning experience among enthusiasts.
+    etymology: 「アニメ」 (anime) is a loanword from 'animation'. 「日本語」 (nihongo) means 'Japanese language'.
+      「学ぶ」 (manabu) means 'to learn'.
+  - english: The signal came from underground.
+    japanese:
+      - 信号 は 地下 {から} 来 た。
+      - 信号 は 地下 {から} 来 まし た。
+      - 信号 は 地下 {から} 発せ られ た。
+      - 信号 は 地下 {から} 送ら れ た。
+      - 地下 {から} 信号 が 出 た。
+      - 地下 {から} 信号 が 送ら れ て き た。
+    english_literally: Signal underground from came.
+    competing_grammar:
+      - competing_japanese:
+          - 信号 は 地下 {で} 受信 さ れ た。
+        english: The signal was received underground.
+        hint: This emphasizes where the signal was *received* (location), not its origin. We're looking
+          for a particle that marks the source from which the signal originated, highlighting its point
+          of emission.
+      - competing_japanese:
+          - 信号 は 地下 {に} あっ た。
+        english: This describes the signal's location. We're looking for a particle that indicates the
+          origin of the signal's movement, emphasizing where it began its journey.
+        hint: This describes the signal's location. We're looking for a particle that indicates the origin
+          of the signal's movement, emphasizing where it began its journey.
+      - competing_japanese:
+          - 地下 {な の で}、信号 が 届き にくかっ た。
+        english: Because it's underground, the signal was hard to receive.
+        hint: 「ので」 expresses a reason. We're looking for a particle that indicates the origin of the signal,
+          not the reason for reception difficulty.
+    scene: Scientists or technicians discussing a strange signal detection, possibly in a suspenseful
+      or technical context.
+    register: semi-formal
+    setting: technical
+    nuance: 「地下 {から} 来 た」 (chika kara kita) clearly identifies the underground as the source of the signal.
+      This technical usage emphasizes the origin point of a transmission or phenomenon, common in scientific
+      or investigative discussions.
+    etymology: 「信号」 (shingō) means 'signal'. 「地下」 (chika) means 'underground'.
+  - english: I make jam from fruit.
+    japanese:
+      - 果物 {から} ジャム を 作り ます。
+      - 果物 {から} ジャム を 作る。
+      - 果物 {から} ジャム を 作っ て いる。
+      - 果物 {から} ジャム を 製造 し ます。
+      - 果物 {から} ジャム を 作成 する。
+      - 果物 {から} 手作り ジャム を 作る。
+    english_literally: Fruit from jam make.
+    competing_grammar:
+      - competing_japanese:
+          - 果物 {で} ジャム を 作り ます。
+        english: I make jam with fruit.
+        hint: 「で」 indicates the material used *for* something, or the means. 「から」 emphasizes the raw material
+          as the *origin* from which something is produced through transformation, highlighting the source
+          from which it is derived.
+      - competing_japanese:
+          - 果物 {を 使っ て} ジャム を 作り ます。
+        english: I make jam using fruit.
+        hint: This phrase emphasizes the action of 'using' the fruit. 「から」 focuses on the fruit as the
+          direct source material, indicating where the jam originated.
+      - competing_japanese:
+          - 果物 {の} ジャム です。
+        english: It's fruit jam.
+        hint: This describes the type of jam. We're looking for a particle that indicates the raw material
+          from which the jam is made, specifying its source.
+    scene: A person explaining their cooking process or a recipe for making jam.
+    register: casual
+    setting: informative
+    nuance: 「果物 {から} ジャム を 作り ます」 (kudamono kara jamu o tsukuri masu) clearly states that fruit is the
+      raw material from which jam is made. This use of 「から」 for raw materials transformed into a new product
+      is common in cooking or manufacturing contexts.
+    etymology: 「果物」 (kudamono) means 'fruit'. 「ジャム」 (jamu) is a loanword for 'jam'.
+post_example_writeup: The examples provided demonstrate how 「から」 functions consistently to denote origin
+  or starting point, whether for physical movement, the source of an object or information, the beginning
+  of an action in time, or the raw material from which something is made. Note the subtle differences
+  in nuance when compared to other particles like 「に」 or 「で」; 「から」 maintains a clear emphasis on the 'from'
+  aspect, highlighting the point of departure or inception.

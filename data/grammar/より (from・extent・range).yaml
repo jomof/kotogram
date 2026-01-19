@@ -1,0 +1,376 @@
+grammar_point: より (from・extent・range)
+learn_before:
+  - これ (this)
+meaning: From (a certain point); before/after (a certain time); beyond/inside (a certain place)
+meaning_warning: While 「より」 can sometimes translate to "than" in English (e.g., "earlier than X"), its
+  primary function in this grammar point is to establish a precise reference point or boundary for extent,
+  range, or relative position in time or space, rather than making a direct qualitative or quantitative
+  comparison between two distinct entities.
+pronunciation:
+  katakana: ヨリ
+  romaji: yori
+formation:
+  Noun of time/place + より + direction/position/time expression: Indicates a point of reference for extent,
+    position, or time.
+  Time + より + adverb of time: Specifies a point in time, indicating "before" or "after" that moment.
+  Place + より + direction/distance: Specifies a point in space, indicating "from" or "relative position"
+    to that location.
+jlpt: N4
+etymology: The particle 「より」 originates from the verb 「寄る」, which means "to approach" or "to draw near."
+  Over time, 「より」 evolved to signify a point of origin or a standard against which something is measured,
+  leading to its use as both a marker for starting points in space/time and for indicating a basis of
+  comparison ("than"). This specific usage focuses on the notion of establishing a point from which an
+  extent or range is defined.
+writeup: |-
+  The particle 「より」, when used to indicate extent or range, functions to establish a precise reference point in terms of space or time. This usage is distinct from its more common function as a comparative particle meaning "than."
+
+  In this context, 「より」 marks a fixed boundary or origin point, often followed by words that denote direction, position, or a relative time. For example, 「ここより先」 means "beyond this point," clearly defining a spatial boundary. Similarly, 「三時より前」 means "before three o'clock," setting a temporal limit.
+
+  This particular usage of 「より」 is typically found in more formal or written contexts, such as official announcements, instructions, maps, or historical descriptions. While 「から」 can also indicate a starting point, 「より」 in this sense often emphasizes a precise boundary or a point from which a calculation or description extends. It imparts a sense of clarity and formality, making it suitable for situations where exact parameters need to be conveyed. For instance, 「駅より徒歩五分」 is a precise way to state the distance *from* the station, emphasizing the station as the defined starting point.
+false_friends:
+  - term: から
+    meaning: from, since, because
+    kind: similar expression
+    nuance: While 「から」 also indicates an origin or starting point, it generally implies a direct source
+      or cause (e.g., 東京から来た - came *from* Tokyo). This usage of 「より」 (extent/range) emphasizes a *boundary*
+      or a *reference point* from which something extends or is measured (e.g., ここより先 - *beyond* this
+      point). 「から」 is broadly used for simple origins, whereas this 「より」 is for defining a precise extent
+      or boundary.
+    grammar_point: から (from)
+  - term: より (than)
+    meaning: than (comparative)
+    kind: often confused with
+    nuance: This is a homophonous particle with a different primary function. The comparative 「より」 is
+      used to compare two items in terms of quality or quantity (e.g., 猫は犬より好き - I like cats *more than*
+      dogs). The 「より」 discussed here defines an extent or boundary from a reference point in space or
+      time, focusing on relative position or temporal sequence rather than a direct qualitative comparison.
+    grammar_point: より (comparative)
+  - term: まで (limit extent)
+    meaning: Until, Till, To (but no further than)
+    kind: similar expression
+    nuance: While 「より」 marks the starting point or a boundary *from* which a range extends, 「まで」 indicates
+      the endpoint or limit *to which* something extends. For example, 「午前九時より」 (from 9 AM onwards) versus
+      「午後五時まで」 (until 5 PM).
+    grammar_point: まで (limit extent)
+  - term: 以降 (from X onwards)
+    meaning: From (time) onwards; after (time)
+    kind: similar expression
+    nuance: 「以降」 directly means 'from X onwards,' encompassing X itself. While 'より後' also denotes 'after
+      X,' it often highlights X as a precise boundary, not necessarily including X itself, and is typically
+      used in more formal or written contexts. 「以降」 is more common for general 'from now on' or 'from
+      that point in time' expressions for continuous states.
+    grammar_point: <suggest>:以降 (from X onwards)
+  - term: 以前 (before X)
+    meaning: Before (time); X and earlier
+    kind: similar expression
+    nuance: 「以前」 means 'before X' or 'X and earlier,' including X itself. 「より前」 more distinctly highlights
+      the specific point X as a clear temporal dividing line, often implying exclusion of X itself if
+      strictly interpreted, and is frequently used in instructions or precise boundary definitions.
+    grammar_point: <suggest>:以前 (before X)
+post_false_friends_writeup: |-
+  Both 「から」 and 「より」 can indicate a starting point, but their specific nuances differ. 「から」 typically denotes the origin or source, such as "from Tokyo" or "from now on." This use of 「より」, however, defines a boundary or a point from which an extent is measured, as in "beyond this line" or "before this time." Therefore, while 「から」 is a general marker of origin, 「より」 (in this context) is used for more precise spatial or temporal demarcation.
+
+  Furthermore, it is crucial not to confuse this 「より」 with the homophonous 「より」 used for direct comparisons, meaning "than." Although some uses of the 'extent/range' 「より」 might translate to 'than' in English (e.g., 'earlier than'), it fundamentally focuses on the precise relationship to a reference point, rather than a direct qualitative or quantitative comparison between two distinct entities.
+
+  Regarding 「まで」, while 「より」 sets the starting boundary, 「まで」 sets the ending boundary, working in tandem to define a full range. For instance, 「朝九時より夕方五時まで」 (from 9 AM to 5 PM).
+
+  Finally, expressions like 「以降」 (from X onwards) and 「以前」 (before X) share conceptual similarities with 「より後」 and 「より前」, respectively. However, 「より」 often implies a more formal and precise demarcation or calculation relative to a fixed point, especially in announcements or specific regulations, whereas 「以降」 and 「以前」 are slightly more general or encompass the reference point itself.
+examples:
+  - english: Beyond this point, it is dangerous.
+    japanese:
+      - これ {より} 先 は 危険 です。
+      - これ {より} 先 は 危険 だ。
+      - これ {より} 先 は 危険 と なっ て おり ます。
+      - これ {より} 先 は 危険 です の で、立ち入ら ない で ください。
+      - ここ {より} 先、危険。
+    english_literally: From this point forward, it is dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - これ {から} 先 は 危険 です。
+        english: From this point forward, it is dangerous (general start).
+        hint: While 「これから」 can indicate 'from now on' or 'from this point', it often implies a general
+          start. We're looking for 「より」 to convey a precise boundary, emphasizing a specific dividing
+          line.
+      - competing_japanese:
+          - この 道 は あの 道 {より} 危険 です。
+        english: This road is more dangerous than that road.
+        hint: 「より」 here is used for a direct comparison of danger between two roads. We're looking for
+          「より」 to mark a reference point or boundary in space, not to compare qualities.
+    scene: A park ranger is putting up a sign to warn hikers about a hazardous area ahead on the trail.
+    register: formal
+    setting: informative
+  - english: The meeting finished earlier than the scheduled time.
+    japanese:
+      - 会議 は 予定 時刻 {より} 早く 終了 し まし た。
+      - 会議 は 予定 時刻 {より} 早く 終わっ た。
+      - 会議 は 予定 時刻 {より} 早め に 終え まし た。
+      - 予定 時刻 {より} 早め に 会議 が 終わり まし た。
+      - 会議 が 予定 時刻 {より} 早く 済ん だ。
+    english_literally: The meeting, than scheduled time, earlier finished.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 予定 時刻 {から} 早く 終了 し まし た。
+        english: The meeting finished early from the scheduled time.
+        hint: While 「から」 can mark a starting point in time, 「より」 emphasizes that the meeting concluded
+          at a point *before* the specific scheduled time, highlighting the deviation from that precise
+          reference.
+      - competing_japanese:
+          - 会議 は 予定 時刻 {に 終わら なかっ た} です。
+        english: The meeting did not finish at the scheduled time.
+        hint: 「～に終わらなかった」 simply states that it didn't end on time without specifying if it was early
+          or late. We're focusing on the *earliness* relative to the schedule.
+      - competing_japanese:
+          - 今日 の 会議 は いつ も {より} ３０ 分 早い。
+        english: Today's meeting is 30 minutes earlier than usual.
+        hint: Here, 「より」 compares the finishing time of today's meeting to the usual time. In our example,
+          「より」 marks the scheduled time as a specific reference point that the meeting concluded *before*.
+    scene: An assistant is informing their boss that a meeting concluded ahead of schedule, highlighting
+      efficiency.
+    register: semi-formal
+    setting: professional
+  - english: That town is located north of the mountain.
+    japanese:
+      - その 町 は 山 {より} 北 に 位置 し て い ます。
+      - その 町 は 山 {より} 北 に ある。
+      - その 町 は 山 {より} 北 に 位置 する。
+      - あの 町 は 山 {より} 北側 に 位置 し て い ます。
+      - 山 {より} 北 に その 町 が あり ます。
+    english_literally: That town, mountain from/relative to, north to, is located.
+    competing_grammar:
+      - competing_japanese:
+          - その 町 は 山 {から} 北 に 位置 し て い ます。
+        english: That town is located north from the mountain.
+        hint: While 「から」 can indicate a starting point, 「より」 in this context more strongly establishes
+          the mountain as a precise geographical reference point for the town's northern position.
+      - competing_japanese:
+          - その 町 は {山 の 北側} に 位置 し て い ます。
+        english: That town is located on the northern side of the mountain.
+        hint: 「山 の 北側」 refers to the northern side *of* the mountain itself. We're describing the town's
+          position *relative to* the mountain as a general reference point.
+      - competing_japanese:
+          - その 町 は あの 町 {より} 大きい。
+        english: That town is bigger than that town.
+        hint: Here, 「より」 is used for comparing the size of two towns. We are using 「より」 to indicate a
+          spatial relationship or extent *from* a reference point.
+    scene: A geography teacher is explaining the location of a town relative to a landmark to their class.
+    register: formal
+    setting: academic
+  - english: This room is one step lower than the stairs.
+    japanese:
+      - この 部屋 は 階段 {より} 一 段 下 です。
+      - この 部屋 は 階段 {より} 一 段 下 だ。
+      - この 部屋 は 階段 {より} 一段 下がっ て いる。
+      - 階段 {より} 一 段 下 に この 部屋 が あり ます。
+      - 階段 {より} 一 段 低い 部屋 です。
+    english_literally: This room, stairs from/relative to, one step, lower is.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 階段 {から} 一 段 下 です。
+        english: This room is one step lower from the stairs.
+        hint: While 「から」 could imply 'from the stairs', 「より」 here precisely defines the stairs as the
+          reference point for the 'one step lower' spatial relationship.
+      - competing_japanese:
+          - この 部屋 は {階段 の 下 に} あり ます。
+        english: This room is underneath the stairs.
+        hint: 「階段の下にあります」 could mean 'underneath the stairs' or a more general lower position. We're describing
+          a precise, slight difference in elevation, where 「より一段下」 defines the room's level *relative
+          to* the stairs.
+      - competing_japanese:
+          - この 階段 は あの 階段 {より} 幅 が 広い。
+        english: These stairs are wider than those stairs.
+        hint: Here, 「より」 compares the width of two sets of stairs. Our example uses 「より」 to establish
+          the stairs as a precise elevation reference point for the room.
+    scene: A host is guiding a guest through a house, pointing out a change in floor level.
+    register: formal
+    setting: instructional
+  - english: Please gather 30 minutes before the departure time.
+    japanese:
+      - 出発 時刻 {より} ３０ 分 前 に お 集まり ください。
+      - 出発 時刻 {より} ３０ 分 前 に 集まっ て ください。
+      - 出発 時刻 {より} ３０ 分 前 に 集合 です。
+      - 出発 時刻 {より} ３０ 分 早く 集合 願い ます。
+      - 出発 時刻 {より} ３０ 分 前 に 集合 し て おき なさい。
+    english_literally: Departure time from/relative to, 30 minutes before, please gather.
+    competing_grammar:
+      - competing_japanese:
+          - 出発 時刻 {から} ３０ 分 前 に お 集まり ください。
+        english: Please gather 30 minutes before, starting from the departure time.
+        hint: While 「から」 can indicate a general starting point, 「より」 here emphasizes the departure time
+          as a precise boundary, calculating the 30 minutes *prior* to that fixed point.
+      - competing_japanese:
+          - 出発 時刻 {の ３０ 分 前 に} お 集まり ください。
+        english: Please gather 30 minutes before the departure time.
+        hint: 「出発時刻の30分前」 is grammatically correct and common. However, 「より」 reinforces the idea of the
+          departure time as a definitive reference point from which the 30 minutes are precisely calculated.
+      - competing_japanese:
+          - 今日 の 待ち合わせ は いつ も {より} ３０ 分 早い。
+        english: Today's meeting is 30 minutes earlier than usual.
+        hint: Here, 「より」 compares the finishing time of today's meeting to the usual time. Our example
+          uses 「より」 to establish the departure time as a fixed reference point for a precise calculation
+          of time *before* it.
+    scene: A tour guide is giving instructions to a group of tourists at a meeting point.
+    register: formal
+    setting: informative
+  - english: We will commence operations from this moment.
+    japanese:
+      - これ {より} 業務 を 開始 いたし ます。
+      - これ {より} 業務 を 開始 し ます。
+      - これ {より} 業務 を 開始 する。
+      - これ {より} 営業 を 開始 いたし ます。
+      - これ {より} 開催 いたし ます。
+    english_literally: From this, operations will commence.
+    competing_grammar:
+      - competing_japanese:
+          - これ {から} 業務 を 開始 いたし ます。
+        english: We will commence operations from now.
+        hint: 「これから」 is common for 'from now on'. However, in formal announcements, 「これより」 conveys a more
+          official, definitive declaration of a precise starting point.
+      - competing_japanese:
+          - 来月 の 業務 は 今月 {より} 大変 です。
+        english: Next month's operations will be tougher than this month's.
+        hint: This 「より」 compares the difficulty of operations between two months. Our example uses 「より」
+          to mark a precise moment in time from which an action begins.
+    scene: A CEO is addressing their employees to officially announce the start of a new project or work
+      period.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: The school is a 5-minute walk from the station.
+    japanese:
+      - 学校 は 駅 {より} 徒歩 ５ 分 の 距離 です。
+      - 学校 は 駅 {より} 徒歩 ５ 分 だ。
+      - 学校 は 駅 {より} 徒歩 ５ 分 の 位置 に あり ます。
+      - 駅 {より} 徒歩 ５ 分 で 学校 に 着き ます。
+      - 学校 は 駅 {より} 徒歩 ５ 分 の 所 に あり ます。
+    english_literally: School, station from/relative to, walk 5 minutes, distance is.
+    competing_grammar:
+      - competing_japanese:
+          - 学校 は 駅 {から} 徒歩 ５ 分 の 距離 です。
+        english: The school is a 5-minute walk from the station.
+        hint: While 「駅から」 is natural for 'from the station', 「駅より」 in formal or descriptive contexts emphasizes
+          the station as the *defined reference point* from which distance is measured.
+      - competing_japanese:
+          - この 学校 は あの 学校 {より} 新しい。
+        english: This school is newer than that school.
+        hint: This 「より」 compares the age of two schools. Our example uses 「より」 to establish the station
+          as a fixed spatial reference point for the school's distance.
+    scene: A real estate agent is describing the convenient location of a property to a potential tenant.
+    register: semi-formal
+    setting: informative
+  - english: The reception will be closed after 5 PM.
+    japanese:
+      - 受付 は 午後 ５ 時 {より} 後 は 閉まり ます。
+      - 受付 は 午後 ５ 時 {より} 後 は 閉まる。
+      - 受付 は 午後 ５ 時 {より} 後 に は 閉鎖 と なり ます。
+      - 午後 ５ 時 {より} 後 の 受付 は ご 利用 いただけ ませ ん。
+      - 午後 ５ 時 {より} 後 は 受付 業務 を 停止 し ます。
+    english_literally: Reception, PM 5 o'clock from/after, closed becomes.
+    competing_grammar:
+      - competing_japanese:
+          - 受付 は 午後 ５ 時 {から} 後 は 閉まり ます。
+        english: The reception will be closed from after 5 PM.
+        hint: 「から」 can imply a general starting point in time. 「より」 in this context more precisely marks
+          5 PM as the exact boundary after which the reception will be closed.
+      - competing_japanese:
+          - 受付 は 午後 ５ 時 {以降} は 閉まり ます。
+        english: The reception will be closed from 5 PM onwards.
+        hint: 「以降」 means 'from X onwards/after X', which is very similar. However, 「より後」 specifically
+          emphasizes the fixed point (5 PM) and the duration *after* it, often used in precise scheduling
+          or rule-setting.
+      - competing_japanese:
+          - 午後 の 業務 は 午前 {より} 大変 です。
+        english: Afternoon operations are tougher than morning operations.
+        hint: This 「より」 compares the difficulty of operations between the afternoon and morning. Our example
+          uses 「より」 to specify a precise temporal boundary.
+    scene: A sign posted at a building entrance informs visitors about the reception's operating hours.
+    register: formal
+    setting: informative
+  - english: This research includes data from before 2018.
+    japanese:
+      - 本 研究 は 平成 ３０ 年 {より} 前 の データ を 含む。
+      - 本 研究 は 平成 ３０ 年 {より} 前 の データ を 含ん で いる。
+      - 本 研究 は 平成 ３０ 年 {より} 前 の データ に 基づく。
+      - この 研究 で は 平成 ３０ 年 {より} 前 の データ を 使用 し て い ます。
+    english_literally: This research, Heisei 30 year from/before, data includes.
+    competing_grammar:
+      - competing_japanese:
+          - 本 研究 は 平成 ３０ 年 {から} 前 の データ を 含む。
+        english: This research includes data from before 2018.
+        hint: While 「から」 can indicate a starting point, 「より」 specifically establishes 2018 as a precise
+          boundary in time, indicating data *prior* to that exact point.
+      - competing_japanese:
+          - 本 研究 は 平成 ３０ 年 {以前} の データ を 含む。
+        english: This research includes data from 2018 and earlier.
+        hint: 「以前」 means 'before X' or 'X and earlier'. 「より前」 more distinctly highlights 2018 as a clear
+          temporal dividing line, excluding 2018 itself if strictly interpreted.
+      - competing_japanese:
+          - この 研究 は 以前 の 研究 {より} 優れ て いる。
+        english: This research is superior to previous research.
+        hint: This 「より」 compares the quality of the current research to previous research. Our example
+          uses 「より」 to mark a specific year as a temporal boundary for data inclusion.
+    scene: An academic paper describes the scope of its data collection, specifying a historical boundary.
+    register: formal
+    setting: informative
+  - english: Entry is prohibited inside this line.
+    japanese:
+      - この 線 {より} 内側 は 立ち入り 禁止 です。
+      - この 線 {より} 内側 は 立ち入り 禁止 だ。
+      - この 線 {より} 内側 へ の 立ち入り は ご 遠慮 ください。
+      - この 線 {より} 内側 に は 絶対 に 入ら ない で ください。
+      - 安全 の ため、この 線 {より} 内側 に は 入ら ない で ください。
+    english_literally: This line from/relative to, inside, entry is prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - この 線 {から} 内側 は 立ち入り 禁止 です。
+        english: Entry is prohibited starting from inside this line.
+        hint: While 「から」 can mark an origin, 「より」 here more explicitly defines the line as a precise boundary,
+          emphasizing the area *inside* it is off-limits. We're looking for 「より」 to convey a clear demarcation.
+      - competing_japanese:
+          - この 線 {の 中 は} 立ち入り 禁止 です。
+        english: Inside this line, entry is prohibited.
+        hint: 「～の中」 means 'inside of' in a general sense. 「より内側」 precisely defines the area *relative
+          to* the line as being on the inner side, making it a clearer boundary marker.
+      - competing_japanese:
+          - この 線 {より} 外側 は 安全 です。
+        english: This 「より」 makes a comparison (e.g., 'more X than Y') or indicates a different side. Our
+          example uses 「より」 to establish the line as a specific boundary from which the 'inside' area
+          is defined.
+        hint: This 「より」 makes a comparison (e.g., 'more X than Y') or indicates a different side. Our
+          example uses 「より」 to establish the line as a specific boundary from which the 'inside' area
+          is defined.
+    scene: A security guard warns people about a restricted area at a construction site by pointing to
+      a marked line.
+    register: formal
+    setting: informative
+  - english: The area east of the river is designated for agricultural use.
+    japanese:
+      - その 川 {より} 東 の 地域 は 農業 用 地 に 指定 さ れ て い ます。
+      - その 川 {より} 東 の 地域 は 農業 用 地 だ。
+      - その 川 {より} 東 の 地域 は 農業 用 地 と さ れ て い ます。
+      - 川 {より} 東側 の 地域 が 農業 用 地 です。
+      - その 川 {より} 東側 の 土地 は 農業 用 と なっ て おり ます。
+    english_literally: That river from/relative to, east area, agricultural land, designated is.
+    competing_grammar:
+      - competing_japanese:
+          - その 川 {から} 東 の 地域 は 農業 用 地 に 指定 さ れ て い ます。
+        english: The area starting from the river towards the east is designated for agricultural use.
+        hint: While 「から」 can indicate a starting point, 「より」 here more explicitly defines the river as
+          a precise geographical reference point for the 'east' boundary.
+      - competing_japanese:
+          - その 川 {の 東側 の} 地域 は 農業 用 地 に 指定 さ れ て い ます。
+        english: The eastern side of that river's area is designated for agricultural use.
+        hint: 「～の東側」 refers to the eastern side *of* something. We're describing the area located *to
+          the east of* the river, using the river as a clear demarcation line.
+      - competing_japanese:
+          - この 地域 は あの 地域 {より} 農業 が 盛ん です。
+        english: Agriculture is more prosperous in this area than in that area.
+        hint: Here, 「より」 is used for a direct comparison of agricultural prosperity between two areas.
+          We're looking for 「より」 to define a spatial boundary relative to a landmark.
+    scene: An urban planner or real estate developer points to a map, explaining land use regulations.
+    register: formal
+    setting: informative
+post_example_writeup: As you can see from these examples, 「より」 in this context functions as a highly precise
+  marker for boundaries, whether they are temporal (time), spatial (location), or related to measurement.
+  It is particularly prevalent in formal communication, instructions, and official statements where exact
+  demarcation is essential.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/より

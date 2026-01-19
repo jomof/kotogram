@@ -1,0 +1,249 @@
+grammar_point: 夢中になる (to be absorbed in)
+learn_before:
+  - Verb[ませんでした] (polite past negative)
+  - '[Noun]を問わず (regardless of)'
+  - '[Verb-stem]ながら・つつ (while doing)'
+  - '[Verb-stem・Adj・Noun]ながら (although・despite)'
+meaning: to be absorbed in; to be engrossed in; to be obsessed with
+pronunciation:
+  katakana: ムチュウニナル
+  romaji: muchuu ni naru
+formation:
+  Noun + に + 夢中になる: To become absorbed in a noun.
+  Verb[dictionary/ている] + の + に + 夢中になる: To become absorbed in the act of doing a verb.
+jlpt: N3
+etymology: The term 夢中 (muchuu) is formed from 夢 (yume, dream) and 中 (chuu, middle or inside). It literally
+  means 'inside a dream,' conveying the sensation of being so engrossed in something that one feels as
+  if in a dream, losing touch with reality. なる (naru) means 'to become,' so 夢中になる means 'to become like
+  one who is in a dream,' or 'to become absorbed/engrossed.'
+writeup: |-
+  The grammar point 「夢中になる」 describes a state where a person is so deeply engrossed in an activity or interest that they become oblivious to their surroundings. It's often translated as 'to be absorbed in,' 'to be engrossed in,' or 'to be obsessed with.' This expression highlights a strong mental and emotional focus, leading to a temporary detachment from external reality. While it can describe a positive state of deep concentration, especially when pursuing a hobby or passion, it can also carry a slightly negative connotation if the absorption leads to neglecting other responsibilities or becoming overly obsessive.
+
+  For example, a child playing a video game might be 「ゲームに夢中」, completely lost in the virtual world. An artist might be 「絵を描くことに夢中」, forgetting to eat or sleep while creating. The key nuance is the *loss of external awareness* due to intense internal focus.
+false_friends:
+  - term: 熱中する
+    meaning: to be enthusiastic about; to be devoted to
+    kind: similar expression
+    nuance: 「熱中する」 implies strong passion, enthusiasm, and dedication towards an activity, often with
+      a positive, active, and diligent connotation. While someone might be 熱中している (enthusiastic), they
+      may not necessarily be 夢中になっている (oblivious to surroundings). 夢中 focuses more on the state of being
+      lost in something, rather than the initial drive or passion.
+    grammar_point: <suggest>:熱中する (to be enthusiastic about)
+  - term: 没頭する
+    meaning: to be immersed; to be devoted; to be absorbed (often in study or work)
+    kind: similar expression
+    nuance: 「没頭する」 specifically suggests deep, diligent, and often intellectual immersion, typically in
+      work or study, and carries a very positive or neutral connotation of focused effort. 「夢中になる」 is
+      broader and can apply to any activity, from games to work, emphasizing the state of being lost rather
+      than the diligence of the immersion.
+    grammar_point: <suggest>:没頭する (to be immersed)
+  - term: はまる
+    meaning: to be hooked on; to be addicted to; to fall into
+    kind: similar expression
+    nuance: 「はまる」 is a more casual term and often carries a stronger connotation of being 'hooked' or
+      'addicted,' which can sometimes be negative, implying a difficulty in stopping the activity. 「夢中になる」
+      is more neutral, simply describing the state of being engrossed without necessarily implying addiction
+      or disengaging.
+    grammar_point: <suggest>:はまる (to be hooked)
+post_false_friends_writeup: While 「夢中になる」, 「熱中する」, 「没頭する」, and 「はまる」 all describe a state of deep engagement,
+  they carry distinct nuances. 「熱中する」 emphasizes passion and active dedication, 「没頭する」 suggests diligent
+  and often intellectual immersion, and 「はまる」 is more casual and can imply being 'hooked' or 'addictive.'
+  「夢中になる」 broadly describes being 'lost' or 'oblivious' due to intense focus, regardless of the type of
+  activity or the underlying motivation.
+examples:
+  - english: My son is absorbed in playing video games all day.
+    japanese:
+      - 息子 は 一 日 中 ゲーム に {夢中 に なっ て いる}。
+      - 息子 は 一 日 中 ゲーム に {夢中 に なっ てる}。
+      - 息子 は 一 日 中 ゲーム に {夢中 に なっ て い ます}。
+    english_literally: My son, all day, to games, has become absorbed.
+    competing_grammar:
+      - competing_japanese:
+          - 息子 は 一 日 中 ゲーム に 熱中 し て いる。
+        english: My son is enthusiastic about playing video games all day.
+        hint: 「熱中している」 emphasizes his enthusiasm and dedication. We're looking for an expression that
+          suggests he's so engrossed he might be ignoring other things.
+    scene: A mother is talking about her child's gaming habits.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「息子 は 一日中 ゲーム に 夢中になっている」 emphasizes that the son is so lost in gaming that he
+      might be neglecting other things, conveying a slight sense of concern from the mother.
+  - english: When I'm reading a good book, I tend to get completely engrossed and forget about time.
+    japanese:
+      - いい 本 を 読ん で いる と、時間 を 忘れ て {夢中 に なっ て しまう}。
+      - いい 本 を 読ん で いる と、時間 を 忘れ て {夢中 に なっ ちゃう}。
+      - いい 本 を 読ん で いる と、時間 を 忘れ て {夢中 に なっ て しまい ます}。
+    english_literally: Good book reading, if do, time forgetting, completely become absorbed.
+    competing_grammar:
+      - competing_japanese:
+          - いい 本 を 読ん で いる と、時間 を 忘れ て 没頭 し て しまう。
+        english: When I'm reading a good book, I tend to get completely immersed and forget about time.
+        hint: 「没頭してしまう」 implies a diligent, deep immersion, often in intellectual pursuits. We're looking
+          for a more general 'lost in thought' feeling.
+    scene: A student shares their reading habits with a friend.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「時間 を 忘れて 夢中になってしまう」 highlights the speaker's involuntary state of being completely
+      lost in the book, indicating that it's a common and sometimes unexpected outcome. The use of 「しまう」
+      adds a nuance of completion or slight regret/unintentionality.
+  - english: The children were so absorbed in their playtime that they didn't even notice us approaching.
+    japanese:
+      - 子供 たち は 遊び に {夢中 に なる} あまり、私 たち が 近づい た こと に さえ 気づか なかっ た。
+      - 子供 たち は 遊び に {夢中 に なる} あまり、私 たち が 近づい た こと に さえ 気づき ませ ん でし た。
+    english_literally: Children, playing to become absorbed too much, we approaching that fact even notice
+      not.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 遊び に はまる あまり、私 たち が 近づい た こと に さえ 気づか なかっ た。
+        english: The children were so hooked on their playtime that they didn't even notice us approaching.
+        hint: 「はまる」 can suggest being 'hooked' or 'addicted.' We need a phrase that conveys they were
+          simply deeply engrossed and unaware of their surroundings.
+    scene: Two adults observe children playing in a park.
+    register: formal
+    setting: reflective
+    nuance: The construction 「夢中になる あまり」 (too much absorbed in) emphasizes the extent of their engrossment,
+      which led to their unawareness, showcasing the core nuance of being 'lost' in the activity.
+  - english: He's completely obsessed with collecting rare stamps.
+    japanese:
+      - 彼 は 珍しい 切手 を 集める こと に すっかり {夢中 に なっ て いる}。
+      - 彼 は 珍しい 切手 を 集める こと に すっかり {夢中 に なっ てる}。
+      - 彼 は 珍しい 切手 を 集める こと に すっかり {夢中 に なっ て い ます}。
+    english_literally: He, rare stamps collecting to, completely absorbed has become.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 珍しい 切手 を 集める こと に すっかり 熱中 し て いる。
+        english: He is completely enthusiastic about collecting rare stamps.
+        hint: 「熱中している」 is about enthusiasm. We're looking for a stronger sense of preoccupation or obsession.
+    scene: Two friends discussing a mutual acquaintance's hobby.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The adverb 「すっかり」 (completely) reinforces the idea that he is entirely consumed by his hobby,
+      to the point of obsession, which is a common nuance of 「夢中になる」 when used for intense hobbies.
+  - english: Don't get too absorbed in your smartphone while walking.
+    japanese:
+      - 歩き ながら スマホ に {夢中 に なら ない} で ください。
+      - 歩き ながら スマホ に {夢中 に なる な}。
+      - 歩き ながら スマホ に {夢中 に なら ない で}。
+    english_literally: While walking, to smartphone, do not become absorbed.
+    competing_grammar:
+      - competing_japanese:
+          - 歩き ながら スマホ に 没頭 し ない で ください。
+        english: Please don't immerse yourself diligently in your smartphone while walking.
+        hint: 「没頭する」 implies diligent immersion. We are giving a warning about being distracted and unaware.
+    scene: A public service announcement.
+    register: formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+    listener_gender: group
+    nuance: The negative imperative 「夢中にならない でください」 is a direct warning against the dangers of being so
+      engrossed in a device that one becomes unaware of their surroundings, which is a core meaning of
+      「夢中になる」.
+  - english: She was so absorbed in her drawing that she didn't hear the doorbell.
+    japanese:
+      - 彼女 は 絵 を 描く こと に {夢中 に なっ て い て}、ドア ホン の 音 が 聞こえ なかっ た。
+      - 彼女 は 絵 を 描く こと に {夢中 に なっ て て}、ドア ホン の 音 が 聞こえ なかっ た。
+      - 彼女 は 絵 を 描く こと に {夢中 に なっ て い まし て}、ドア ホン の 音 が 聞こえ ませ ん でし た。
+    english_literally: She, drawing pictures to, was absorbed, doorbell's sound not audible.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 絵 を 描く こと に 熱中 し て い て、ドア ホン の 音 が 聞こえ なかっ た。
+        english: She was so enthusiastic about drawing that she didn't hear the doorbell.
+        hint: 「熱中していて」 focuses on her enthusiasm. The original implies a lack of awareness due to deep
+          focus.
+    scene: A roommate describes why their friend didn't answer the door.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 'The use of 「夢中になっていて」 highlights the direct cause-and-effect: her deep absorption led to
+      her being unaware of the doorbell, emphasizing the ''oblivious'' aspect of the grammar point.'
+  - english: The professor is absorbed in his research day and night.
+    japanese:
+      - その 教授 は、昼夜 問わ ず 研究 に {夢中 だ}。
+      - その 教授 は、昼夜 問わ ず 研究 に {夢中 です}。
+      - その 教授 は、昼夜 問わ ず 研究 に {夢中 に なっ て いる}。
+      - その 教授 は、昼夜 問わ ず 研究 に {夢中 に なっ て い ます}。
+    english_literally: That professor, day and night without asking, research to absorbed.
+    competing_grammar:
+      - competing_japanese:
+          - その 教授 は、昼夜 問わ ず 研究 に 没頭 し て いる。
+        english: That professor is immersed diligently in his research day and night.
+        hint: 「没頭している」 would also work here, emphasizing diligence. We're looking for the state of being
+          completely lost in it.
+    scene: A colleague describes a dedicated professor.
+    register: formal
+    setting: academic
+    nuance: While 「没頭している」 (immersed) would also fit a professor, using 「夢中だ」 here implies that his absorption
+      in research is so profound that he loses track of time and external factors like day and night,
+      highlighting an almost single-minded focus.
+  - english: Even as an adult, I sometimes get so absorbed in manga that I forget my age.
+    japanese:
+      - 大人 に なっ て も、時々 マンガ に {夢中 に なっ て}、年齢 を 忘れる こと が ある。
+      - 大人 に なっ て も、時々 マンガ に {夢中 に なっ て しまい}、年齢 を 忘れる こと が ある。
+      - 大人 に なっ て も、時々 マンガ に {夢中 に なり まし て}、年齢 を 忘れる こと が あり ます。
+    english_literally: Adult even become, sometimes manga to become absorbed, age forgetting things there
+      are.
+    competing_grammar:
+      - competing_japanese:
+          - 大人 に なっ て も、時々 マンガ に はまっ て、年齢 を 忘れる こと が ある。
+        english: Even as an adult, I sometimes get hooked on manga and forget my age.
+        hint: 「はまって」 might suggest 'hooked' or 'addicted.' We're describing a temporary state of deep
+          absorption.
+    scene: An adult shares a lighthearted confession.
+    register: casual
+    setting: humorous
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: This example shows the playful side of 「夢中になる」, where the speaker is so engrossed that they
+      literally 'forget their age,' emphasizing the immersive quality of the activity. 「夢中になって、年齢 を 忘れる」
+      captures this well.
+  - english: The little girl became completely absorbed in the world of the picture book.
+    japanese:
+      - 小さい 女の子 は 絵本 の 世界 に すっかり {夢中 に なっ た}。
+      - 小さい 女の子 は 絵本 の 世界 に すっかり {夢中 に なり まし た}。
+    english_literally: Small girl, picture book's world to, completely became absorbed.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい 女の子 は 絵本 の 世界 に すっかり 熱中 し た。
+        english: The little girl became completely enthusiastic about the world of the picture book.
+        hint: 「熱中した」 would mean she became enthusiastic. We want to express that she was completely lost
+          in the story.
+    scene: A librarian observes a child reading.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: The phrase 「絵本 の 世界 に すっかり 夢中になった」 perfectly captures the innocence of a child being utterly
+      captivated and losing herself in the imaginative world of a book, emphasizing the immersive power
+      of the story.
+  - english: When you're absorbed in work, it's important to take breaks regularly.
+    japanese:
+      - 仕事 に {夢中 に なっ て いる} 時 で も、定期 的 に 休憩 を 取る こと が 大切 だ。
+      - 仕事 に {夢中 に なっ て いる} 時 で も、定期 的 に 休憩 を 取る こと が 大切 です。
+      - 仕事 に {夢中 に なっ てる} 時 で も、定期 的 に 休憩 を 取る こと が 大切 だ。
+    english_literally: Work to absorbed being even when, regularly breaks taking fact is important.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 に 没頭 し て いる 時 で も、定期 的 に 休憩 を 取る こと が 大切 だ。
+        english: Even when you're diligently immersed in work, it's important to take breaks regularly.
+        hint: 「没頭している」 focuses on diligent immersion. The original highlights the risk of losing track
+          of time due to being engrossed.
+    scene: A manager gives advice to an employee.
+    register: formal
+    setting: professional
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: female
+    nuance: Here, 「夢中になっている」 implies a positive, intense focus on work but carries the implicit warning
+      that this very absorption can lead to neglecting breaks, thus emphasizing the 'losing track of surroundings'
+      aspect of the grammar point.

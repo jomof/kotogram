@@ -1,0 +1,319 @@
+grammar_point: 〜たりとも〜ない (not even a single)
+learn_before:
+  - な (prohibitive particle)
+meaning: Not even one; not a single.
+meaning_warning: This pattern is often used with "何人たりとも" followed by a negative phrase or verb in the
+  negative imperative (〜な).
+pronunciation:
+  katakana: イチ〜タリトモ〜ナイ
+  romaji: ichi ~ tari tomo ~ nai
+formation:
+  '[Number/Quantifying Noun] + たりとも + [Negative Predicate]': Emphasizes 'not even one' or 'not a single
+    instance' of the specified quantity or item.
+  何人たりとも + [Negative Predicate]: A fixed expression meaning 'no matter who' or 'no one whatsoever' can
+    do something.
+jlpt: N1
+etymology: The phrase 「たりとも」 originates from classical Japanese. The 「たり」 element derives from an old
+  auxiliary verb that indicated the listing of examples or states, similar to how modern 「～たり～たりする」 functions.
+  The 「とも」 particle conveys a sense of concession, meaning "even if," "no matter what," or "all." When
+  combined as 「～たりとも」, it fundamentally means 'even if we take such an example as X,' which, when paired
+  with a negative predicate, creates the strong emphatic meaning of 'not even X' or 'not a single X.'
+writeup: |-
+  「たりとも」 is a highly formal and emphatic grammatical pattern used primarily in negative sentences. It serves to stress the absolute lack or prohibition of even the smallest quantity, instance, or individual. The pattern typically follows a numeral or a quantifying noun, expressing the meaning of 'not even one,' 'not a single,' or 'no matter how many/much.' For instance, 「一円たりとも」 means 'not even one yen.'
+
+  Linguistically, 「たりとも」 is a fossilized construction. The 「たり」 component comes from an older auxiliary verb that marked the listing of examples or states, much like the modern 「～たり～たりする」 construction enumerates actions or conditions. The particle 「とも」, on the other hand, conveys a concessive meaning, implying 'even if,' 'no matter what,' or 'all.' Therefore, the combination 「～たりとも」 literally expresses 'even if we consider X as an example (or quantity), it is not the case.' This forms the basis for its strong, unyielding emphasis.
+
+  Due to its rigid and definitive tone, 「たりとも」 is primarily encountered in written documents, official pronouncements, legal texts, or declarations where absolute prohibition or absence is being asserted. It is very rarely used in everyday spoken conversation. A notable exception is the fixed expression 「何人たりとも」 (なんぴとたりとも), which means 'no matter who' or 'no one whatsoever,' and is slightly more common, particularly in formal warnings or rules.
+false_friends:
+  - term: 〜も〜ない
+    meaning: not even one (of X); not a single X
+    kind: similar expression
+    nuance: 「〜も〜ない」 is a more general and less formal expression for 'not even one' or 'not a single,'
+      focusing simply on the absence of a countable unit. In contrast, 「〜たりとも〜ない」 carries a stronger,
+      more absolute, and often official or declarative tone, emphasizing the utter impossibility or prohibition
+      of even the smallest instance.
+    grammar_point: Number+も (emphatic quantity)
+  - term: 少しも〜ない
+    meaning: not even a little; not at all
+    kind: often confused with
+    nuance: 「少しも〜ない」 quantifies a small amount or degree, meaning 'not even a little bit,' and can apply
+      to non-countable concepts. 「〜たりとも〜ない」, however, specifically quantifies discrete units (like a single
+      step, minute, or person) and implies an absolute zero for that unit.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: 〜でも〜ない
+    meaning: not even; not any
+    kind: similar expression
+    nuance: 「〜でも〜ない」 implies that something is not even a particular example or possibility, often used
+      in conditional contexts or to assert a universal negation. While it can sometimes overlap in meaning
+      with 「〜たりとも〜ない」, the latter is far more formal and carries a stronger, uncompromising tone, emphasizing
+      an absolute lack or prohibition.
+    grammar_point: でも (even・any・no matter)
+  - term: 誰も〜ない
+    meaning: no one
+    kind: similar expression
+    nuance: 「誰も〜ない」 is a straightforward and common way to say 'no one.' 「何人たりとも〜ない」, while also meaning
+      'no one,' is significantly more formal, emphatic, and carries a strong sense of absolute prohibition
+      or exclusion, often found in rules or official declarations.
+    grammar_point: 誰か (someone・somebody)
+post_false_friends_writeup: While several expressions can convey a sense of 'not even one' or 'not at
+  all,' 「〜たりとも〜ない」 stands out due to its high formality and the strong, absolute emphasis it conveys.
+  It is best reserved for situations requiring an unyielding and definitive declaration, contrasting with
+  the more casual or general negation offered by its similar counterparts.
+examples:
+  - english: This mission is critical, so retreating even one step is not permitted.
+    japanese:
+      - この 任務 は 重大 だ から、{一 歩 たり と も} 後ろ に 引く こと は 許さ れ ない。
+      - この 任務 は 重大 です から、{一 歩 たり と も} 後ろ に 引く こと は 許さ れ ませ ん。
+      - この 任務 は 重大 だ。{一 歩 たり と も} 後ろ に 引く わけ に は いか ない。
+    english_literally: This mission is critical, so even one step backwards, pulling is not permitted.
+    competing_grammar:
+      - competing_japanese:
+          - '{少し も} 後ろ に 引く こと は 許さ れ ない。'
+        english: Not even a little retreating is permitted.
+        hint: 「少しも〜ない」 means 'not at all' or 'not even a little,' focusing on degree or vagueness. We're
+          looking for 'not even a single unit' of something countable, like 'one step'.
+      - competing_japanese:
+          - 一 歩 {も} 後ろ に 引く こと は 許さ れ ない。
+        english: Not even one step backward is permitted.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 emphasizes a stronger, more formal, and
+          absolute prohibition, fitting the critical nature of the mission.
+      - competing_japanese:
+          - この 任務 は 重大 だ から、一 歩 {で も} 後ろ に 引く こと は 許さ れ ない。
+        english: Even if it were one step, retreating is not permitted.
+        hint: 「〜でも〜ない」 can imply 'not even X as a possibility.' We're looking for an absolute lack or
+          prohibition of X itself, making no exception for any single unit.
+    scene: A military commander addresses their troops before a critical operation, emphasizing the absolute
+      necessity of advancing.
+    register: formal
+    setting: commanding
+  - english: There's no time until the deadline, so not even one minute can be wasted.
+    japanese:
+      - 締め切り まで 時間 が ない の で、{一 分 たり と も} 無駄 に は でき ない。
+      - 締め切り まで 時間 が ない の で、{一 分 たり と も} 無駄 に は でき ませ ん。
+      - 締め切り まで 時間 が ない。{一 分 たり と も} 無駄 に でき ない ん だ。
+    english_literally: Until the deadline, there is no time, so even one minute cannot be wasted.
+    competing_grammar:
+      - competing_japanese:
+          - 一 分 {で も} 無駄 に は でき ない。
+        english: Not even one minute can be wasted.
+        hint: 「〜でも〜ない」 often implies 'not even X (among other things).' We're looking for a strong, definitive
+          statement of absolute lack.
+      - competing_japanese:
+          - 締め切り まで 時間 が ない の で、一 分 {も} 無駄 に は でき ない。
+        english: Not even one minute can be wasted.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 adds a stronger, more emphatic and absolute
+          sense, often used in declarations or warnings, fitting the urgency.
+      - competing_japanese:
+          - 締め切り まで 時間 が ない の で、{少し も} 無駄 に は でき ない。
+        english: Not at all can be wasted.
+        hint: 「少しも〜ない」 refers to 'not even a little' in terms of degree or amount. We're looking for 'not
+          even a single unit' of something countable, like 'one minute'.
+    scene: A student frantically works on a major assignment with a tight deadline, stressing over every
+      passing moment.
+    register: semi-formal
+    setting: serious
+  - english: Due to an emergency, no one is permitted to enter this area.
+    japanese:
+      - 緊急 事態 に つき、この エリア に は {何 人 たり と も} 立ち入る べから ず。
+      - 緊急 事態 に つき、この エリア に は {何 人 たり と も} 立ち入っ て は なら ない。
+      - 緊急 事態。{何 人 たり と も} 立ち入り 禁止。
+    english_literally: Due to emergency situation, into this area, no matter who, entering is forbidden.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 {も} この エリア に は 立ち入る べから ず。
+        english: No one is permitted to enter this area.
+        hint: 「誰も〜ない」 is a common way to say 'no one.' We're looking for a significantly more formal,
+          emphatic, and absolute prohibition, typical of official rules.
+      - competing_japanese:
+          - 緊急 事態 に つき、この エリア に は 誰 一人 {と し て} 立ち入る べから ず。
+        english: Absolutely no one is permitted to enter this area.
+        hint: 「誰一人として」 is similar to 「何人たりとも」 in conveying 'not a single person,' but 「何人たりとも」 has a more
+          formal and authoritative, often legalistic, tone.
+    scene: A stern warning sign posted at the perimeter of a hazardous site after an incident.
+    register: formal
+    setting: emergency/alarm
+  - english: There is not even a shred of doubt about him.
+    japanese:
+      - 彼 に は {一 片 たり と も} 疑い の 余地 は ない。
+      - 彼 に は {一 片 たり と も} 疑い の 余地 は あり ませ ん。
+      - 彼 に は {一 片 たり と も} 疑う 余地 など ない。
+    english_literally: About him, even one piece of doubt, no room exists.
+    competing_grammar:
+      - competing_japanese:
+          - '{少し も} 疑い の 余地 は ない。'
+        english: There is no room for doubt at all about him.
+        hint: 「少しも〜ない」 refers to 'not even a little bit' in terms of degree. We're looking for 'not even
+          a single shred/piece' of something countable, emphasizing absolute absence.
+      - competing_japanese:
+          - 彼 に は 一 片 {も} 疑い の 余地 は ない。
+        english: There is not even one shred of doubt about him.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 emphasizes a stronger, more absolute, and
+          declarative tone, fitting a definitive statement.
+      - competing_japanese:
+          - 彼 に は 一 片 {で も} 疑い の 余地 は ない。
+        english: Even if it were one shred, there is no room for doubt about him.
+        hint: 「〜でも〜ない」 can imply 'not even X as a possibility.' We're looking for an absolute lack of
+          even a single unit of doubt.
+    scene: A seasoned detective, after a thorough investigation, declares a suspect's complete innocence
+      to their team.
+    register: formal
+    setting: serious
+  - english: This contract is important, so not even one character can be wrong.
+    japanese:
+      - この 契約 書 は 重要 だ から、{一 字 たり と も} 間違え られ ない。
+      - この 契約 書 は 重要 です から、{一 字 たり と も} 間違え られ ませ ん。
+      - この 契約 書 は 重要 だ。{一 字 たり と も} 間違え て は なら ない。
+    english_literally: This contract is important, so even one character cannot be mistaken.
+    competing_grammar:
+      - competing_japanese:
+          - 一 字 {で も} 間違え られ ない。
+        english: Even if it were one character, it cannot be wrong.
+        hint: 「〜でも〜ない」 often implies 'not even X (among other things).' We're looking for a strong, absolute
+          prohibition against any single error.
+      - competing_japanese:
+          - この 契約 書 は 重要 だ から、一 字 {も} 間違え られ ない。
+        english: Not even one character can be wrong.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 adds a stronger, more emphatic and absolute
+          sense, suitable for critical documents where precision is paramount.
+      - competing_japanese:
+          - この 契約 書 は 重要 だ から、{少し も} 間違え られ ない。
+        english: Not at all can be wrong.
+        hint: 「少しも〜ない」 refers to 'not even a little' in terms of degree or amount. We're looking for 'not
+          even a single unit' of speech, like 'one character'.
+    scene: A lawyer reviews a critical contract with a client, stressing the need for absolute accuracy.
+    register: teineigo (polite)
+    setting: professional
+  - english: It's delicate work, so you can't be off by even a millimeter.
+    japanese:
+      - 繊細 な 作業 な の で、{一 ミリ たり と も} ずれ て は いけ ませ ん。
+      - 繊細 な 作業 な の で、{一 ミリ たり と も} ずれ て は いけ ない。
+      - 繊細 な 作業 な の で、{一 ミリ たり と も} ずらす わけ に は いか ない。
+    english_literally: Because it is delicate work, even one millimeter deviation is not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - '{少し も} ずれ て は いけ ませ ん。'
+        english: Not at all can be off.
+        hint: 「少しも〜ない」 refers to 'not even a little' in terms of degree or amount. We're looking for 'not
+          even a single unit' of a specific measurement, like 'one millimeter'.
+      - competing_japanese:
+          - 繊細 な 作業 な の で、一 ミリ {も} ずれ て は いけ ませ ん。
+        english: Not even one millimeter can be off.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 adds a stronger, more emphatic and absolute
+          sense, highlighting the extreme precision required for delicate work.
+      - competing_japanese:
+          - 繊細 な 作業 な の で、一 ミリ {で も} ずれ て は いけ ませ ん。
+        english: Even if it were one millimeter, it cannot be off.
+        hint: 「〜でも〜ない」 can imply 'not even X as a possibility.' We're looking for an absolute prohibition
+          against any single deviation, no matter how small.
+    scene: A master craftsman instructs an apprentice on a precise task that requires absolute accuracy.
+    register: teineigo (polite)
+    setting: instructional
+  - english: He didn't take his eyes off the enemy's movements even for a moment.
+    japanese:
+      - 彼 は 敵 の 動向 から {一瞬 たり と も} 目 を 離さ なかっ た。
+      - 彼 は 敵 の 動向 から {一瞬 たり と も} 目 を 離し ませ ん でし た。
+      - 彼 は 敵 の 動向 から、{一瞬 たり と も} 目 を 離す こと なく 監視 し た。
+    english_literally: He, from the enemy's movements, even for one moment, did not take his eyes off.
+    competing_grammar:
+      - competing_japanese:
+          - 一瞬 {で も} 目 を 離さ なかっ た。
+        english: He did not take his eyes off the enemy's movements even for a moment.
+        hint: 「〜でも〜ない」 can imply 'not even X as a possibility.' We're looking for an absolute continuity
+          of action, emphasizing zero interruption.
+      - competing_japanese:
+          - 彼 は 敵 の 動向 から 一瞬 {も} 目 を 離さ なかっ た。
+        english: He did not take his eyes off the enemy's movements even for a moment.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 emphasizes a stronger, more absolute, and
+          unyielding focus, suitable for intense vigilance.
+      - competing_japanese:
+          - 彼 は 敵 の 動向 から {少し も} 目 を 離さ なかっ た。
+        english: He did not take his eyes off the enemy's movements at all.
+        hint: 「少しも〜ない」 refers to 'not even a little' in terms of degree or amount. We're looking for 'not
+          even a single unit' of time, like 'one moment'.
+    scene: A highly trained sniper maintains unwavering focus on their target in a tense situation.
+    register: formal
+    setting: serious
+  - english: I have never forgotten our promise, not even for a single day.
+    japanese:
+      - あなた と の 約束 は、{一 日 たり と も} 忘れ た こと は あり ませ ん。
+      - あなた と の 約束 は、{一 日 たり と も} 忘れ た こと は ない。
+      - あなた と の 約束 を、{一 日 たり と も} 忘れ た こと など ない。
+    english_literally: The promise with you, even for one day, I have not forgotten.
+    competing_grammar:
+      - competing_japanese:
+          - 一 日 {も} 忘れ た こと は あり ませ ん。
+        english: I have never forgotten our promise, not even for one day.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 emphasizes a stronger, more absolute, and
+          unyielding sense, creating an almost oath-like feeling suitable for an unwavering commitment.
+      - competing_japanese:
+          - あなた と の 約束 は、{少し も} 忘れ た こと は あり ませ ん。
+        english: I have not forgotten our promise at all.
+        hint: 「少しも〜ない」 refers to 'not even a little' in terms of degree or amount. We're looking for 'not
+          even a single unit' of time, like 'one day'.
+      - competing_japanese:
+          - あなた と の 約束 は、一 日 {で も} 忘れ た こと は あり ませ ん。
+        english: Even if it were one day, I have not forgotten our promise.
+        hint: 「〜でも〜ない」 can imply 'not even X as a possibility.' We're looking for an absolute continuity
+          of remembering, emphasizing zero lapses.
+    scene: A loyal friend assures their long-time companion of their unwavering commitment to a past promise.
+    register: shitashii kuchō (intimate)
+    setting: supportive
+    nuance: The use of 「〜たりとも〜ない」 in an intimate register like 「shitashii kuchō」 is quite strong and formal.
+      This formality adds an almost oath-like emphasis to the unwavering commitment to the promise, making
+      the statement particularly solemn and sincere, reinforcing that not a single day could ever pass
+      without remembering the promise.
+  - english: Company confidential information must not be leaked, not even a single word.
+    japanese:
+      - 会社 の 機密 情報 は、{一言 たり と も} 漏らし て は なら ない。
+      - 会社 の 機密 情報 は、{一言 たり と も} 漏らし て は なり ませ ん。
+      - 会社 の 機密 情報 は、{一言 たり と も} 漏らす な。
+    english_literally: Company confidential information, even one word, must not be leaked.
+    competing_grammar:
+      - competing_japanese:
+          - 一言 {も} 漏らし て は なら ない。
+        english: Not even one word must be leaked.
+        hint: While 「〜も〜ない」 conveys 'not even one,' 「〜たりとも〜ない」 adds a stronger, more emphatic and absolute
+          sense, suitable for strict warnings about confidential information.
+      - competing_japanese:
+          - 会社 の 機密 情報 は、{少し も} 漏らし て は なら ない。
+        english: Company confidential information must not be leaked at all.
+        hint: 「少しも〜ない」 refers to 'not even a little' in terms of degree or amount. We're looking for 'not
+          even a single unit' of speech, like 'one word'.
+      - competing_japanese:
+          - 会社 の 機密 情報 は、一言 {で も} 漏らし て は なら ない。
+        english: Even if it were one word, company confidential information must not be leaked.
+        hint: 「〜でも〜ない」 can imply 'not even X as a possibility.' We're looking for an absolute prohibition
+          against any single instance of leaking.
+    scene: A senior manager gives a stern warning to employees regarding data security during a confidential
+      project meeting.
+    register: formal
+    setting: commanding
+  - english: The data in this lab is top secret, so access is prohibited for anyone.
+    japanese:
+      - この 研究 室 の データ は 極秘 な の で、{何 人 たり と も} アクセス 禁止 だ。
+      - この 研究 室 の データ は 極秘 です の で、{何 人 たり と も} アクセス 禁止 です。
+      - この 研究 室 の データ は 極秘。{何 人 たり と も} アクセス 禁止。
+    english_literally: This lab's data is top secret, so no matter who, access is prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 {に も} アクセス 禁止 だ。
+        english: Access is prohibited for anyone.
+        hint: 「誰にも」 is a common way to say 'for anyone.' We're looking for a significantly more formal,
+          emphatic, and absolute prohibition, typical of official rules.
+      - competing_japanese:
+          - この 研究 室 の データ は 極秘 な の で、誰 {も} アクセス 禁止 だ。
+        english: The data in this lab is top secret, so no one is allowed to access it.
+        hint: 「誰も〜ない」 is a common way to say 'no one.' We're looking for a significantly more formal,
+          emphatic, and absolute prohibition, often found in official declarations.
+      - competing_japanese:
+          - この 研究 室 の データ は 極秘 な の で、誰 一人 {と し て} アクセス 禁止 だ。
+        english: The data in this lab is top secret, so absolutely no one is allowed to access it.
+        hint: 「誰一人として」 is similar to 「何人たりとも」 in conveying 'not a single person,' but 「何人たりとも」 has a more
+          formal and authoritative, often legalistic, tone.
+    scene: A security notice posted on the door of a highly restricted research laboratory.
+    register: formal
+    setting: technical
+post_example_writeup: The expression 「何人たりとも」 is frequently used in situations where access or actions
+  are strictly prohibited, often with legal or serious consequences.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/１-りとも-ない

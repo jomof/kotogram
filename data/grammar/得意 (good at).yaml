@@ -1,0 +1,278 @@
+grammar_point: 得意 (good at)
+learn_before:
+  - Verb[imperative] (imperative)
+  - あそこ (over there)
+  - ちょっと (adverb)
+  - どこ (where)
+meaning: good at; one's strong point; proud or triumphant (in one's ability)
+pronunciation:
+  katakana: トクイ
+  romaji: tokui
+formation:
+  Noun + が + 得意だ: Indicates that one is good at a specific noun (subject, sport, etc.).
+  Verb[dictionary form] + の + が + 得意だ: Indicates that one is good at performing a specific action.
+  得意な + Noun: Describes a noun as one's strong point or specialty.
+  得意 (as an adverb): Used to describe a state of feeling proud or confident, or doing something skillfully.
+jlpt: N3
+etymology: The kanji 得 (toku) means 'gain, obtain, acquire' and 意 (i) means 'idea, thought, mind.' Together,
+  得意 literally suggests 'gaining favor/advantage in one's mind' or 'what one's mind has acquired well.'
+  This historical context underpins its modern meaning of being proficient at something and feeling confident
+  or proud about it.
+writeup: '得意 (tokui) is a versatile Japanese word that functions as a な-adjective (adjectival noun), primarily
+  conveying the meaning of being good at something, one''s strong point, or specialty. It can also carry
+  an emotional nuance of pride or triumph regarding one''s ability.Key Usage Patterns: * [Noun] が 得意だ:
+  Used to express being good at a specific subject, sport, or activity. For example, 「数学が{得意だ}」 (I am
+  good at math). * [Verb dictionary form] の が 得意だ: Used when the strong point is an action. The verb needs
+  to be nominalized with の. For example, 「料理をするのが{得意だ}」 (I am good at cooking). * 得意な [Noun]: Used to
+  describe a noun as one''s strong point or specialty. For example, 「{得意な}科目」 (my strong subject).The
+  nuance of "pride" or "triumph" emerges when 得意 is used in contexts where one has achieved something
+  well or proven their capability. For instance, after winning a game, someone might say 「{得意な}顔をする」 (to
+  make a triumphant face).'
+false_friends:
+  - term: 好き (suki)
+    meaning: to like; to be fond of
+    kind: often confused with
+    nuance: While 得意 means 'good at' or 'one's strong point', 好き expresses a personal preference or enjoyment,
+      not necessarily skill. One might like something without being good at it, or be good at something
+      without liking it.
+    grammar_point: <suggest>:Nounが好みだ (to like)
+  - term: 上手 (jouzu)
+    meaning: skillful; good at
+    kind: similar expression
+    nuance: 上手 (jouzu) is a more objective assessment of skill, indicating that someone performs a task
+      well. 得意, on the other hand, implies a personal strong point often suggesting a natural talent or
+      confidence, and it's generally not used to praise someone else directly. When praising others, 上手は
+      (jouzu wa) is more common. For example, one would say 「日本語が{お上手}ですね」 (Your Japanese is good, isn't
+      it?), not 「日本語が{お得意}ですね」.
+    grammar_point: <suggest>:上手 (skillful)
+  - term: 苦手 (nigatena)
+    meaning: not good at; weak point
+    kind: antonym
+    nuance: 苦手 is the direct opposite of 得意. It describes something one is not good at, struggles with,
+      or dislikes. While 得意 implies confidence and aptitude, 苦手 implies a lack of confidence or difficulty.
+    grammar_point: 苦手 (not good at)
+post_false_friends_writeup: Understanding the subtle differences between 得意, 好き, and 上手 is key to using
+  them correctly. While all three can relate to abilities or preferences, their focus differs. 得意 emphasizes
+  a personal strong point often implying a natural talent or confidence. 上手 is a more objective assessment
+  of skill, indicating that someone performs a task well. 好き expresses a personal preference or enjoyment.
+  Furthermore, 苦手 serves as the direct antonym to 得意, expressing one's weakness or dislike for something.
+examples:
+  - english: My younger brother is good at drawing.
+    japanese:
+      - 弟 は 絵 が {得意 だ}。
+      - 弟 は 絵 が {得意 です}。
+      - 弟、絵 が {得意} だ ぜ。
+      - 弟 は 絵 を 描く の が {得意 です}。
+    english_literally: Younger brother, as for drawing, is skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は 絵 が 好き だ。
+        english: My younger brother likes drawing.
+        hint: 「好き」 means to like something, not necessarily to be good at it. We're looking for an expression
+          of skill.
+      - competing_japanese:
+          - 弟 は 絵 が 上手 だ。
+        english: My younger brother is skillful at drawing.
+        hint: 「上手」 is a general term for being skillful. 「得意」 implies it's a personal strong point or
+          natural talent. We're looking for something that highlights his personal strength.
+    scene: A sister is talking about her younger brother's talents to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「得意だ」 implies that drawing is his natural strong point, something he excels at
+      with ease, rather than just being objectively skillful (上手).
+  - english: I'm not good at speaking in front of people.
+    japanese:
+      - 人前 で 話す の が {得意 で は ない}。
+      - 人前 で 話す の が {得意 で は あり ませ ん}。
+      - 人前 で 話す の が {得意 じゃ ない}。
+      - 人前 で 話す の が {得意 で は ござい ませ ん}。
+    english_literally: In front of people, speaking, as for it, is not my strong point.
+    competing_grammar:
+      - competing_japanese:
+          - 人前 で 話す の が 嫌い だ。
+        english: I dislike speaking in front of people.
+        hint: 「嫌いだ」 means to dislike. We're looking for an expression of not being good at something.
+      - competing_japanese:
+          - 人前 で 話す の が 上手 で は ない。
+        english: I am not skillful at speaking in front of people.
+        hint: 「上手ではない」 indicates a lack of skill. 「得意ではない」 implies a personal lack of confidence or aptitude
+          for it. We're looking for a personal weakness.
+    scene: A student is explaining their discomfort with public speaking to their professor.
+    register: formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: 「得意ではない」 expresses a personal lack of aptitude or confidence in public speaking, conveying
+      that it's a weak point for the speaker. This is more personal than simply saying one is not skillful.
+  - english: My specialty dish is curry.
+    japanese:
+      - 私 の {得意 な} 料理 は カレー です。
+      - 俺 の {得意 な} 料理 は カレー だ。
+      - 私 の {得意 な} 料理 は カレー よ。
+      - 私 の {得意 な} 料理 は カレー で ござい ます。
+    english_literally: My strong point dish is curry.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 好き な 料理 は カレー です。
+        english: My favorite dish is curry.
+        hint: 「好きな」 means favorite or liked. We're looking for a dish that is your strong point in cooking.
+      - competing_japanese:
+          - 私 の 上手 な 料理 は カレー です。
+        english: My skillful dish is curry.
+        hint: While grammatically possible, 「上手な料理」 sounds less natural for 'specialty dish'. 「得意な料理」
+          implies it's your go-to, best-executed dish, often with pride.
+    scene: Someone introducing their best dish at a potluck gathering.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: Using 「得意な」 here highlights curry as their personal strong point in cooking, something they
+      are confident and perhaps proud about making. It's their signature dish.
+  - english: He made a triumphant face after scoring the winning goal.
+    japanese:
+      - 彼 は 決勝 ゴール を 決め て {得意 な} 顔 を し た。
+      - 彼 は 決勝 ゴール を 決め て {得意 な} 顔 を 見せ た。
+    english_literally: He, scoring the winning goal, made a triumphant face.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 決勝 ゴール を 決め て 嬉しい 顔 を し た。
+        english: He scored the winning goal and made a happy face.
+        hint: 「嬉しい顔」 means a happy face. 「得意な顔」 specifically conveys a proud or triumphant expression,
+          not just happiness. We're looking for that sense of triumph.
+    scene: Describing a soccer player's reaction after a decisive play that secured victory.
+    register: casual
+    setting: storytelling
+    nuance: 「得意な顔をする」 (tokui na kao o suru) directly shows the 'triumphant' or 'proud' aspect of 得意, where
+      one displays satisfaction in their success or skill. It's more specific than just being happy.
+  - english: Are you good at games?
+    japanese:
+      - 君、ゲーム {得意}？
+      - ゲーム は {得意 です か}？
+      - ゲーム を する の は {得意 です か}？
+      - ゲーム {得意} な の？
+    english_literally: You, games, strong point?
+    competing_grammar:
+      - competing_japanese:
+          - 君、ゲーム 好き？
+        english: Do you like games?
+        hint: 「好き？」 asks about preference. We're looking for an expression of skill. We're looking for
+          an inquiry about skill.
+      - competing_japanese:
+          - 君、ゲーム 上手？
+        english: Are you skillful at games?
+        hint: 「上手？」 asks about objective skill. 「得意？」 asks if it's your personal strong suit or something
+          you feel confident about. We're looking for an inquiry about their personal strong point.
+    scene: Two male friends chatting casually about hobbies.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: This is a casual way of asking if gaming is someone's strong suit or something they excel
+      at, typical among close friends. The lack of 「だ」 and use of 「君」 make it very informal and masculine.
+  - english: Our company is particularly good at data analysis.
+    japanese:
+      - 当社 は データ 分析 が 特に {得意 で ござい ます}。
+      - 当社 は データ 分析 が 特に {得意 です}。
+      - 当社 は データ 分析 を 特に {得意 と し て おり ます}。
+    english_literally: Our company, as for data analysis, especially is our strong point.
+    competing_grammar:
+      - competing_japanese:
+          - 当社 は データ 分析 が 特に 上手 で ござい ます。
+        english: Our company is particularly skillful at data analysis.
+        hint: While 「上手」 is possible, 「得意」 emphasizes that data analysis is a core competency and a distinct
+          strength of the company, often implying confidence in that area. We're looking for a statement
+          about their key strength.
+    scene: A company representative giving a formal business presentation to potential clients.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: Using 「得意でございます」 highlights data analysis as a core competency and a distinct strength of
+      the company. 「でございます」 is a very polite and formal copula, appropriate for business settings, conveying
+      a humble yet confident presentation of their expertise.
+  - english: When I was young, I was good at math, but now...
+    japanese:
+      - 若い 頃 は 数学 が {得意 だっ た} ん だ けど なあ。
+      - 若い 頃 は 数学 が {得意 でし た} けど ね。
+      - 若い 頃 は 数学 が {得意 だっ た}。
+    english_literally: Young, when I was, math, was my strong point, but now...
+    competing_grammar:
+      - competing_japanese:
+          - 若い 頃 は 数学 が 好き だっ た ん だ けど なあ。
+        english: When I was young, I liked math, but now...
+        hint: 「好きだった」 indicates a past preference. We're looking for an expression of a past skill or
+          strength. We're looking for a past ability.
+    scene: An older man reminiscing about his school days with a younger acquaintance.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_age: older
+    nuance: The use of 「得意だった」 signifies that math was a personal strength for him in his youth. The ending
+      「なあ」 adds a wistful, reflective, and slightly melancholic tone, often used by older speakers when
+      thinking aloud or expressing mild regret or nostalgia. This usage is common among older males.
+  - english: Unfortunately, I'm not very good at singing.
+    japanese:
+      - 残念 ながら、歌 は あまり {得意 で は ござい ませ ん}。
+      - 残念 ながら、歌 は あまり {得意 で は あり ませ ん}。
+      - 残念 ながら、歌 は あまり {得意 じゃ ない}。
+    english_literally: Regrettably, as for singing, not very, it is not my strong point.
+    competing_grammar:
+      - competing_japanese:
+          - 残念 ながら、歌 は あまり 上手 で は ござい ませ ん。
+        english: Unfortunately, I'm not very skillful at singing.
+        hint: 「上手ではない」 emphasizes a lack of objective skill. 「得意ではない」 expresses a personal weakness or
+          discomfort with the activity. We're looking for an expression of personal aptitude.
+    scene: Someone politely declining an invitation to karaoke at a company party.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: negative non-past polite (～ません)
+    nuance: 「得意ではございません」 is a very polite and humble way to state a personal weakness, implying that singing
+      is not something one is confident or naturally good at. The phrase 「残念ながら」 (zannennagara) adds to
+      the apologetic tone.
+  - english: While he's good at cooking, he's not good at cleaning.
+    japanese:
+      - 彼 は 料理 は {得意} だ が、掃除 は 苦手 だ。
+      - 彼 は 料理 は {得意 です} が、掃除 は 苦手 です。
+      - 彼 は 料理 は {得意 な の} に、掃除 は 苦手 だ。
+    english_literally: He, as for cooking, is good at, but as for cleaning, is not good at.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 料理 は 上手 だ が、掃除 は 苦手 だ。
+        english: He is skillful at cooking, but not good at cleaning.
+        hint: 「得意」 highlights cooking as his personal strong point. 「上手」 is a more general statement of
+          skill. We are looking for an expression of personal strength.
+    scene: Two roommates discussing the habits of a third roommate.
+    register: casual
+    setting: informative
+    nuance: This sentence highlights a personal strength and weakness. 「料理は{得意}だが」 emphasizes that cooking
+      is his strong suit, while 「苦手だ」 (nigateda) is its direct antonym, indicating a lack of aptitude
+      for cleaning. The use of the contrastive particle 「は」 emphasizes the comparison between his two
+      abilities.
+  - english: If you're good at English, please help me with my homework.
+    japanese:
+      - もし 英語 が {得意} なら、宿題 を 手伝っ て ください。
+      - もし 英語 が {得意} でし たら、宿題 を 手伝っ て いただけ ます か。
+      - もし 英語 が {得意} だっ たら、宿題 を 手伝っ て くれ。
+    english_literally: If English is your strong point, homework, please help.
+    competing_grammar:
+      - competing_japanese:
+          - もし 英語 が 好き なら、宿題 を 手伝っ て ください。
+        english: If you like English, please help me with my homework.
+        hint: 「好き」 indicates preference. Here, the request for help is based on skill, not just enjoyment.
+          We're looking for a condition based on ability.
+      - competing_japanese:
+          - もし 英語 が 上手 なら、宿題 を 手伝っ て ください。
+        english: If you are skillful at English, please help me with my homework.
+        hint: 「上手」 focuses on objective skill. 「得意」 implies a personal aptitude and confidence in English,
+          making it a more direct appeal to someone's strong suit. We're looking for a personal aptitude.
+    scene: A student asking a classmate for help with their homework.
+    register: casual
+    setting: instructional
+    nuance: The phrase 「英語が{得意}なら」 uses the casual conditional form 「なら」, implying 'if it is the case
+      that you are good at English'. This is a direct appeal to the classmate's recognized strength or
+      specialty in English, rather than just objective skill.
+post_example_writeup: As seen in the examples, 得意 can be used to describe skills, subjects, or activities
+  where one has a natural aptitude or feels a high degree of confidence. It's often paired with the particle
+  が for the object of skill or のが for actions. The nuance of 'pride' can be seen in expressions like 「得意な顔」.
+  Remember to choose the appropriate copula (だ, です, でございます) and tense (だった) based on the context and desired
+  level of formality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/得意

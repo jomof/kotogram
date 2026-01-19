@@ -1,0 +1,346 @@
+grammar_point: どっち (which way・which direction)
+learn_before:
+  - どちら (which way, formal)
+meaning: which one (of two options)・which way・where
+pronunciation:
+  katakana: ドッチ
+  romaji: docchi
+formation:
+  どっち + Noun: Used to ask 'which Noun' when there are two options.
+  どっち + Particle (e.g., が・を・に・へ): Used to ask 'which way' or 'which one' when it functions as a subject,
+    object, or destination particle.
+  どっち (as a standalone question): Used informally to ask 'which one' or 'which way' in general conversation.
+jlpt: N5
+etymology: The word 'どっち' (docchi) is a colloquial contraction of 'どちら' (dochira). 'どちら' itself is formed
+  from the interrogative prefix 'ど-' (do-), signifying 'which' or 'where,' combined with 'ちら' (chira).
+  The 'ちら' component is related to demonstratives like 'こちら' (kochira - this way), 'そちら' (sochira - that
+  way), and 'あちら' (achira - that way over there), which historically indicated direction or side. Therefore,
+  'どっち' inherently carries the meaning of choosing between two specific directions or options, making
+  it a concise and informal way to ask 'which of two' or 'which way.'
+writeup: |-
+  The grammar point 'どっち' (docchi) is a casual and very common interrogative word used to ask 'which one' when there are **only two** distinct options, or to inquire about 'which way' or 'where.' It functions as an informal counterpart to 'どちら' (dochira), making it highly prevalent in everyday conversations among friends, family, or colleagues in relaxed settings.
+
+  Unlike 'どれ' (dore), which is used when there are three or more choices, 'どっち' is specifically reserved for situations with a clear binary choice. For instance, when choosing between two items on a menu, asking which of two paths to take, or determining who among two individuals is responsible, 'どっち' is the appropriate term.
+
+  Its usage is straightforward: it can directly precede a noun to form 'どっちのNoun' (which Noun), or it can be followed by a particle like 'が' (ga - subject), 'を' (o - object), 'に' (ni - destination/target), or 'へ' (e - direction) to specify its grammatical role in the sentence. It can also stand alone as a complete question when the context is clear.
+
+  While 'どっち' is informal, it is widely understood and accepted in casual spoken Japanese. Students should be mindful of the social context and their relationship with the listener when deciding between 'どっち' and its more polite counterpart, 'どちら'.
+false_friends:
+  - term: どちら (which way, polite)
+    meaning: which one (of two options)・which way・where (polite)
+    kind: similar expression
+    nuance: While 'どちら' also means 'which (of two)' or 'which way,' it is the more formal and polite version
+      of 'どっち'. 'どっち' is used in casual settings, whereas 'どちら' is suitable for formal situations or when
+      speaking to someone you want to show respect.
+    grammar_point: <suggest>:どちら (which way, polite)
+  - term: どれ (which of 3 or more)
+    meaning: which one (of three or more options)
+    kind: similar expression
+    nuance: Unlike 'どっち,' which is used for two options, 'どれ' is used when choosing from three or more
+      items or people. It is a general interrogative for selection from a group.
+    grammar_point: どれ (which of 3 or more)
+  - term: どこ (where)
+    meaning: where
+    kind: often confused with
+    nuance: '''どこ'' specifically asks ''where'' in terms of location, while ''どっち'' asks ''which way''
+      or ''which of two directions.'' Although related to location, ''どっち'' implies a choice between specific
+      routes or sides, not just a general place.'
+    grammar_point: どこ (where)
+post_false_friends_writeup: Understanding the subtle differences between 'どっち,' 'どちら,' and 'どれ' is crucial
+  for natural Japanese communication. Remember that 'どっち' is for a choice between two, 'どちら' is the polite
+  form of 'どっち,' and 'どれ' is for choices among three or more. Similarly, while 'どっち' can ask about directions,
+  'どこ' is the general word for 'where' when no specific two-way choice is implied. Paying attention to
+  the number of options and the level of formality will help you use these interrogatives correctly.
+examples:
+  - english: Which one do you prefer, coffee or tea?
+    japanese:
+      - コーヒー と 紅茶、{どっち} が いい？
+      - コーヒー と 紅茶、{どっち} が いい です か？
+      - コーヒー と 紅茶、どちら が いい です か？
+    english_literally: Coffee and tea, which one is good?
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー と 紅茶、どれ が いい？
+        english: Coffee and tea, which one (from many options) is good?
+        hint: 「どれ」 is used when there are three or more options. We're looking for a choice between only
+          two.
+      - competing_japanese:
+          - コーヒー と 紅茶、どちら が よろしい です か？
+        english: Coffee and tea, which one would be better (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a more casual expression suitable for friends.
+    scene: A friend is asking you what you'd like to drink.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: This is a common casual inquiry between friends. The phrasing 「どっち が いい？」 is a direct, informal
+      way to ask for a preference between two options, coffee and tea. It's suitable for a relaxed setting.
+  - english: Which way is the station?
+    japanese:
+      - 駅 は {どっち}？
+      - 駅 は {どっち} です か？
+      - 駅 は どちら です か？
+    english_literally: Station is which way?
+    competing_grammar:
+      - competing_japanese:
+          - 駅 は どこ です か？
+        english: Where is the station?
+        hint: 「どこ」 asks for a general location. We're looking for an inquiry about direction, implying
+          a choice between two paths.
+      - competing_japanese:
+          - 駅 は どちら です か？
+        english: Which way is the station (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a more casual expression suitable for a quick
+          question to a passerby.
+    scene: You're lost and asking a passerby for directions in a casual manner.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: In a casual context, when asking for directions, 「どっち」 implies a choice between two obvious
+      paths (e.g., left or right, this street or that street). The omission of 「ですか」 makes it more direct
+      and informal, fitting for a quick question to a passerby.
+  - english: This one or that one, which one is better?
+    japanese:
+      - これ と それ、{どっち} が いい？
+      - これ と それ、{どっち} が いい です か？
+      - これ と それ、どちら が よろしい です か？
+    english_literally: This and that, which one is good?
+    competing_grammar:
+      - competing_japanese:
+          - これ と それ、どれ が いい？
+        english: This and that, which one (from many options) is good?
+        hint: 「どれ」 is used when there are three or more options. We're looking for a choice between only
+          two.
+      - competing_japanese:
+          - これ と それ、どちら が いい です か？
+        english: This and that, which one is good (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a casual expression between friends.
+    scene: You are shopping with a friend and comparing two items.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: When comparing two specific items (「これ」 and 「それ」), 「どっち が いい？」 is the natural, informal way
+      to ask for an opinion. This sentence reflects a common scenario in casual shopping among friends.
+  - english: I wonder which way he went.
+    japanese:
+      - 彼 は {どっち} へ 行っ た の か な。
+      - 彼 は {どっち} へ 行っ た の か しら。
+      - 彼 は どちら へ 行っ た の か でしょう か。
+    english_literally: He which way to went I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は どこ へ 行っ た の か な。
+        english: I wonder where he went.
+        hint: 「どこ」 asks for a general location. We're looking for an inquiry about direction, implying
+          a choice between two paths or possibilities.
+      - competing_japanese:
+          - 彼 は どちら へ 行っ た の か な。
+        english: I wonder which way he went (polite).
+        hint: 「どちら」 is a polite form. We're looking for a more casual, self-directed thought.
+    scene: A person is reflecting to themselves, trying to figure out where someone went.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「のか な」 at the end indicates a casual, self-directed thought, appropriate for a
+      male speaker reflecting. 「どっち へ」 specifies wondering about the direction of travel, not just a general
+      location. This construction implies a pondering over two possible routes.
+  - english: Which team won?
+    japanese:
+      - '{どっち} の チーム が 勝っ た？'
+      - '{どっち} の チーム が 勝ち まし た か？'
+      - どちら の チーム が 勝ち まし た か？
+    english_literally: Which team won?
+    competing_grammar:
+      - competing_japanese:
+          - どの チーム が 勝っ た？
+        english: Which team (from many options) won?
+        hint: 「どの」 is used when there are three or more options. We're looking for a choice between only
+          two teams.
+      - competing_japanese:
+          - どちら の チーム が 勝ち まし た か？
+        english: Which team won (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a casual expression suitable for discussing sports
+          results with friends.
+    scene: Two friends are discussing the result of a sports match where only two teams competed.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The direct question 「どっち の チーム が 勝った？」 is natural and casual for a female speaker inquiring
+      about a binary outcome (which of the two teams). It perfectly fits a friendly conversation about
+      a sports match.
+  - english: Which hand do you use?
+    japanese:
+      - '{どっち} の 手 を 使う？'
+      - '{どっち} の 手 を 使い ます か？'
+      - どちら の 手 を お 使い です か？
+    english_literally: Which hand do you use?
+    competing_grammar:
+      - competing_japanese:
+          - どちら の 手 を お 使い です か？
+        english: Which hand do you use (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a more direct, casual question from an older person
+          to a younger one.
+      - competing_japanese:
+          - どちら の 手 で 書く の が 好き です か？
+        english: Which hand do you prefer to write with?
+        hint: This question asks about preference for writing, not just which hand they typically use.
+          We're looking for a direct question about hand usage.
+    scene: A teacher is observing a young student trying to write and asks which hand they typically use.
+    register: casual
+    setting: instructional
+    speaker_age: older
+    nuance: 「どっち の 手」 is a direct and common way for an older speaker to ask 'which hand' when there are
+      only two options (left or right). The casual tone is appropriate for a teacher speaking to younger
+      students in an instructional setting.
+  - english: Which movie do you want to watch tonight, action or comedy?
+    japanese:
+      - 今夜 は アクション と コメディ、{どっち} の 映画 を 見 たい？
+      - 今夜 は アクション と コメディ、{どっち} の 映画 を 見 たい です か？
+      - 今夜 は アクション と コメディ、どちら の 映画 を ご覧 に なり たい です か？
+    english_literally: Tonight, action and comedy, which movie want to watch?
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 は アクション と コメディ、どの 映画 を 見 たい？
+        english: Tonight, action and comedy, which movie (from many options) do you want to watch?
+        hint: 「どの」 is used when there are three or more options. We're looking for a choice between only
+          two genres.
+      - competing_japanese:
+          - 今夜 は アクション と コメディ、どちら の 映画 を 見 たい です か？
+        english: Tonight, action and comedy, which movie do you want to watch (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a more casual expression suitable for an intimate
+          setting between partners.
+    scene: A couple is deciding what movie to watch together.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「どっち の 映画」 for a choice between two genres (action or comedy) is perfectly natural
+      in an intimate, informal setting. The particle 「は」 after 「今夜」 sets the topic for the evening, common
+      in casual speech between partners.
+  - english: Which path should we take from here?
+    japanese:
+      - ここ から {どっち} の 道 に 行こう か？
+      - ここ から {どっち} の 道 に 行き ましょう か？
+      - ここ から どちら の 道 に 行き ましょう か？
+    english_literally: From here which path to let's go?
+    competing_grammar:
+      - competing_japanese:
+          - ここ から どこ に 行き ましょう か？
+        english: Where should we go from here?
+        hint: 「どこ」 asks for a general location. We're looking for an inquiry about direction, implying
+          a choice between two specific paths.
+      - competing_japanese:
+          - ここ から どちら の 道 に 行き ましょう か？
+        english: Which path should we take from here (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a more casual expression suitable for friends
+          deciding together.
+    scene: Two hikers at a fork in the road, deciding which way to go.
+    register: casual
+    setting: friendly
+    nuance: The question 「どっち の 道 に 行こう か？」 is a casual way to ask 'which of two paths' should be chosen.
+      The volitional form 「行こう か」 suggests a shared decision among friends, suitable for a relaxed outdoor
+      setting.
+  - english: Which one tastes better, this one or that one?
+    japanese:
+      - これ と あれ、{どっち} が 美味しい？
+      - これ と あれ、{どっち} が 美味しい です か？
+      - これ と あれ、どちら が 美味しい です か？
+    english_literally: This and that, which one is delicious?
+    competing_grammar:
+      - competing_japanese:
+          - これ と あれ、どれ が 美味しい？
+        english: This and that, which one (from many options) is delicious?
+        hint: 「どれ」 is used when there are three or more options. We're looking for a choice between only
+          two.
+      - competing_japanese:
+          - これ と あれ、どちら が 美味しい です か？
+        english: This and that, which one is delicious (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a more direct, casual question even in a professional
+          setting where efficiency is key.
+    scene: A chef asking a taste-tester to compare two dishes.
+    register: casual
+    setting: professional
+    speaker_gender: male
+    nuance: Even in a professional setting, especially in creative fields like cooking, a direct, casual
+      question like 「どっち が 美味しい？」 can be used when comparing two items for a specific quality (taste).
+      It's efficient and common when focusing on the task.
+  - english: Which side of the bed is yours?
+    japanese:
+      - ベッド の {どっち} 側 が 君 の？
+      - ベッド の {どっち} 側 が お前 の？
+      - ベッド の どちら 側 が あなた の です か？
+    english_literally: Bed's which side is yours?
+    competing_grammar:
+      - competing_japanese:
+          - ベッド の どちら が あなた の もの です か？
+        english: Which one of the bed is yours?
+        hint: This asks about the bed itself being someone's property. We're looking for which side of
+          the bed is yours.
+      - competing_japanese:
+          - ベッド の どちら 側 が あなた の です か？
+        english: Which side of the bed is yours (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a casual expression suitable for roommates.
+    scene: Two roommates moving into a new apartment, deciding who gets which side of a shared bed.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「どっち 側」 (which side) naturally refers to a binary choice (left or right). The casual
+      possessive 「君 の」 (yours) fits the intimate roommate context, commonly used by a female speaker in
+      informal settings.
+  - english: Which one do you think is correct?
+    japanese:
+      - '{どっち} が 正しい と 思う？'
+      - '{どっち} が 正しい と 思い ます か？'
+      - どちら が 正しい と 思い ます か？
+    english_literally: Which one is correct (do you) think?
+    competing_grammar:
+      - competing_japanese:
+          - どれ が 正しい と 思う？
+        english: Which one (from many options) do you think is correct?
+        hint: 「どれ」 is used when there are three or more options. We're looking for a choice between only
+          two.
+      - competing_japanese:
+          - どちら が 正しい と 思い ます か？
+        english: Which one do you think is correct (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a casual expression suitable for peers in an academic
+          setting.
+    scene: A student asking a classmate for their opinion on two possible answers to a problem.
+    register: casual
+    setting: academic
+    speaker_age: younger
+    nuance: This is a common casual query in an academic setting among peers. 「どっち が 正しい」 is a direct
+      way for a younger speaker to ask for an opinion on a choice between two options, typical in collaborative
+      study.
+  - english: Which of these two shirts do you like better?
+    japanese:
+      - この 二 枚 の シャツ、{どっち} が 好き？
+      - この 二 枚 の シャツ、{どっち} が 好き です か？
+      - この 二 枚 の シャツ、どちら が お 好き です か？
+    english_literally: These two shirts, which one like?
+    competing_grammar:
+      - competing_japanese:
+          - この 二 枚 の シャツ、どれ が 好き？
+        english: These two shirts, which one (from many options) do you like?
+        hint: 「どれ」 is used when there are three or more options. We're looking for a choice between only
+          two.
+      - competing_japanese:
+          - この 二 枚 の シャツ、どちら が 好き です か？
+        english: These two shirts, which one do you like (polite)?
+        hint: 「どちら」 is a polite form. We're looking for a casual expression suitable for friends asking
+          fashion advice.
+    scene: A person asking their friend for fashion advice while trying on clothes.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: Specifying 「この 二枚 の シャツ」 reinforces the two-option choice, making 「どっち」 the appropriate interrogative.
+      The question 「どっち が 好き？」 is a natural, informal way for female friends to seek advice from each
+      other.
+post_example_writeup: As you can see from the examples, 'どっち' is highly versatile in casual Japanese for
+  making binary choices or inquiring about direction. Its informality makes it a staple in everyday conversation,
+  from deciding on drinks to asking for directions. Pay close attention to the context and your relationship
+  with the listener to determine if 'どっち' or its more polite alternative 'どちら' is more appropriate.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/どっち

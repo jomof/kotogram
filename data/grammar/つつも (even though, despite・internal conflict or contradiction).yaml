@@ -1,0 +1,238 @@
+grammar_point: つつも (even though, despite・internal conflict or contradiction)
+learn_before:
+  - '[Verb-stem]ながら・つつ (while doing)'
+meaning: even though, despite
+pronunciation:
+  katakana: ツツモ
+  romaji: tsutsumo
+formation:
+  Verb-stem + つつも: Used to express 'even though' or 'despite' an action or state, often highlighting an
+    internal contradiction or conflict within the subject.
+jlpt: N2
+etymology: The origin of 「つつも」 lies in the classical Japanese auxiliary verb 「つつ」, which indicates simultaneous
+  or continuous action, derived from the particle 「つ」 (a connective). The particle 「も」, meaning 'even'
+  or 'also', adds a concessive nuance. Thus, 「つつも」 literally means 'even while doing/being', evolving
+  to express 'despite' or 'even though' by emphasizing the simultaneous existence of contradictory states
+  or actions. This highlights the inherent tension between the two clauses.
+writeup: |-
+  The grammar point 「つつも」 is used to convey the meaning of "even though" or "despite." It connects two clauses where the second clause expresses something that occurs or is true, contradictory to the first clause. The key nuance of 「つつも」 is that it often implies an **internal conflict, regret, or a conscious awareness** of the contradiction on the part of the subject. It is frequently employed in more formal or literary contexts, particularly in written Japanese.
+
+  This pattern highlights a situation where the subject knows or feels one thing, but acts, or finds themselves in a situation, contrary to that knowledge or feeling. For instance, if someone understands a situation is bad but continues with it, or has a certain feeling but acts against it, 「つつも」 is fitting. It's a way of saying, "I knew X, but I did Y anyway," or "Despite being X, Y happened."
+
+  While similar to other concessive expressions, 「つつも」 distinctively emphasizes the subjective experience of the contradiction. The speaker or subject is typically aware of the discrepancy, which can lead to feelings of guilt, regret, or a simple acknowledgement of an unavoidable contradiction.
+false_friends:
+  - term: 〜ても (even if, even though)
+    meaning: even if, even though
+    kind: similar expression
+    nuance: 「〜ても」 is a general concessive form that means "even if" or "even though." It does not necessarily
+      carry the nuance of internal conflict or self-awareness that 「つつも」 does. It simply states that despite
+      a certain condition, something else happens.
+    grammar_point: ても (even if・even though)
+  - term: 〜のに (despite, although)
+    meaning: despite, although (implying unexpectedness or dissatisfaction)
+    kind: similar expression
+    nuance: 「〜のに」 expresses unexpectedness or dissatisfaction. It indicates that the second clause is
+      contrary to what one would expect given the first clause, often with a feeling of complaint or surprise.
+      Unlike 「つつも」, it doesn't necessarily focus on an internal struggle of the subject but rather on
+      the objective discrepancy or the speaker's reaction to it.
+    grammar_point: のに (unexpected result)
+  - term: 〜ながら (while doing)
+    meaning: while doing, at the same time as
+    kind: similar expression
+    nuance: 「〜ながら」 primarily denotes simultaneous actions. While 「ながらも」 (which is a variant of ながら and
+      can be very similar to 「つつも」) can express concession, the basic 「ながら」 is about simultaneity without
+      the strong implication of internal contradiction or regret present in 「つつも」.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+  - term: 〜けれども (although, but)
+    meaning: although, but
+    kind: similar expression
+    nuance: 「〜けれども」 is a straightforward conjunctive particle meaning "although" or "but." It connects
+      two clauses that are somewhat contrary or provide contrasting information, but it lacks the specific
+      nuance of internal conflict or regret characteristic of 「つつも」. It's a more neutral connective.
+    grammar_point: しかし (but・however)
+  - term: 〜にもかかわらず (despite, regardless of)
+    meaning: despite, regardless of
+    kind: similar expression
+    nuance: 「〜にもかかわらず」 conveys a strong sense of "despite" or "regardless of." It highlights that something
+      happened or is true, completely unaffected by a condition that might logically hinder it. This often
+      implies overcoming an obstacle, rather than an internal struggle. It is generally more formal and
+      objective than 「つつも」.
+    grammar_point: にかかわらず (regardless of)
+post_false_friends_writeup: While all these expressions convey a sense of concession or contradiction,
+  「つつも」 is unique in its emphasis on the subject's internal state. It highlights a conscious, often regrettable,
+  action or state that goes against what one knows or feels. In contrast, 「〜ても」 is a general 'even if',
+  「〜のに」 expresses surprise or dissatisfaction with an unexpected outcome, and 「〜ながら」 is mainly about simultaneous
+  actions (though 「ながらも」 can overlap with 「つつも」, its origin is simultaneity). 「〜けれども」 is a neutral 'but',
+  and 「〜にもかかわらず」 emphasizes overcoming an external obstacle, not internal conflict. When choosing 「つつも」,
+  consider if the contradiction involves a personal, conscious conflict or a feeling of knowing better.
+examples:
+  - english: Even though I knew it was wrong, I stole a cookie.
+    japanese:
+      - 悪い こと と 知り つつ も、クッキー を 盗ん だ。
+      - 悪い こと と 知り つつ も、クッキー を 盗み まし た。
+      - 悪い こと と 知り つつ も、クッキー 盗ん じゃっ た。
+    english_literally: Knowing it was bad, even while doing so, I stole a cookie.
+    competing_grammar:
+      - competing_japanese:
+          - 悪い こと を 知っ て い て も、クッキー を 盗ん だ。
+        english: Even if I knew it was wrong, I stole a cookie.
+        hint: 「〜ても」 generally expresses 'even if' without the strong emphasis on an internal, conscious
+          contradiction or regret that 「つつも」 implies. We're looking for a grammar point that suggests
+          internal conflict.
+    scene: A child is recounting a mischievous act they committed, feeling a bit guilty.
+    register: casual
+    setting: storytelling
+  - english: Even though I felt uneasy, I kept quiet.
+    japanese:
+      - 不安 を 感じ つつ も、黙っ て い た。
+      - 不安 を 感じ つつ も、黙っ て い まし た。
+    english_literally: Feeling uneasiness, even while doing so, I kept quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 不安 を 感じ た の に、黙っ て い た。
+        english: Even though I felt uneasy, I kept quiet (unexpectedly).
+        hint: 「〜のに」 expresses unexpectedness or dissatisfaction. While it shows a contradiction, it doesn't
+          carry the internal struggle of knowing you should speak up but holding back. We're looking for
+          a grammar point that highlights this internal contradiction.
+    scene: A person reflects on a past situation where they hesitated to speak up.
+    register: formal
+    setting: reflective
+  - english: Even though he was injured, he continued to run.
+    japanese:
+      - 怪我 を し つつ も、彼 は 走り 続け た。
+      - 怪我 を し つつ も、彼 は 走り 続け まし た。
+    english_literally: Injuring himself (or being injured), even while doing so, he continued to run.
+    competing_grammar:
+      - competing_japanese:
+          - 怪我 を し て いる の に、彼 は 走り 続け た。
+        english: Even though he was injured, he kept running (surprisingly).
+        hint: 「〜のに」 emphasizes the unexpected nature of the action. 「つつも」 would imply he *knew* he was
+          injured and *shouldn't* run, but ran anyway, highlighting his internal decision despite his
+          physical state.
+    scene: A sports commentator describes a determined athlete's performance.
+    register: semi-formal
+    setting: informative
+  - english: While aware of the risks, they proceeded with the plan.
+    japanese:
+      - リスク を 認識 し つつ も、彼 ら は 計画 を 進め た。
+      - リスク を 認識 し つつ も、彼 ら は 計画 を 進め まし た。
+    english_literally: Recognizing the risks, even while doing so, they proceeded with the plan.
+    competing_grammar:
+      - competing_japanese:
+          - リスク を 認識 し て い た に も かかわら ず、彼 ら は 計画 を 進め た。
+        english: Despite recognizing the risks, they proceeded with the plan.
+        hint: 「〜にもかかわらず」 emphasizes that something happened 'regardless of' an external condition or obstacle.
+          「つつも」 highlights their internal awareness of the risks and their conscious decision to proceed
+          despite that knowledge.
+    scene: A business team is discussing the launch of a new, potentially risky, product.
+    register: formal
+    setting: professional
+  - english: Though she wanted to cry, she forced herself to smile.
+    japanese:
+      - 泣き たい と 思い つつ も、彼女 は 笑顔 を 作っ た。
+      - 泣き たい と 思い つつ も、彼女 は 笑顔 を 作り まし た。
+    english_literally: Thinking 'I want to cry', even while doing so, she made a smile.
+    competing_grammar:
+      - competing_japanese:
+          - 泣き たい と 思っ た が、彼女 は 笑顔 を 作っ た。
+        english: She wanted to cry, but she made a smile.
+        hint: 「〜が」 simply states a contrast. 「つつも」 specifically shows the internal struggle of wanting
+          to cry yet choosing to smile, highlighting the emotional contradiction. We're looking for that
+          internal conflict.
+    scene: A young woman attends a difficult family gathering.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「つつも」 here emphasizes the character's profound internal struggle and emotional
+      control. While she deeply wants to cry (泣きたい), she consciously chooses to put on a brave face (笑顔
+      を 作った). This shows her will suppressing her emotions, a common theme in female portrayal in Japanese
+      media.
+  - english: Even though he knows the truth, he continues to lie.
+    japanese:
+      - 真実 を 知り つつ も、彼 は 嘘 を つき 続け て いる。
+      - 真実 を 知り つつ も、彼 は 嘘 を つき 続け て い ます。
+    english_literally: Knowing the truth, even while doing so, he continues to tell lies.
+    competing_grammar:
+      - competing_japanese:
+          - 真実 を 知っ て いる けれど、彼 は 嘘 を つき 続け て いる。
+        english: He knows the truth, but he continues to lie.
+        hint: 「〜けれど」 is a simple 'but' connective. 「つつも」 implies a deeper, often negative, internal conflict
+          where the person is aware of their wrongdoing but continues it anyway. We're looking for this
+          nuance of internal knowledge being ignored.
+    scene: A friend discusses another friend's difficult behavior.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「知りつつも、嘘 を つき続けている」 conveys a sense of strong disapproval and frustration from
+      the male speaker. It implies the subject's conscious and ongoing deception despite knowing the truth,
+      highlighting a morally questionable internal conflict often expressed by male speakers when discussing
+      such behavior.
+  - english: Even though I was busy, I made an effort to attend the meeting.
+    japanese:
+      - 多忙 を 極め つつ も、会議 に 出席 する よう 努め まし た。
+      - 多忙 を 極め つつ も、会議 に 出席 する よう 努め た。
+    english_literally: Even while being extremely busy, I made an effort to attend the meeting.
+    competing_grammar:
+      - competing_japanese:
+          - 多忙 を 極め て い た けれど、会議 に 出席 する よう 努め まし た。
+        english: I was extremely busy, but I made an effort to attend the meeting.
+        hint: 「〜けれど」 is a more neutral 'but'. 「つつも」 here implies a greater sense of duty or internal obligation
+          despite the business, showcasing the speaker's conscious effort against a challenging circumstance.
+          It emphasizes the dedication.
+    scene: An employee explains their effort to their manager.
+    register: formal
+    setting: professional
+  - english: Even though it was dangerous, she did not hesitate to help.
+    japanese:
+      - 危険 を 承知 し つつ も、彼女 は 助け を 躊躇 し なかっ た。
+      - 危険 を 承知 し つつ も、彼女 は 助け を 躊躇 し ませ ん でし た。
+    english_literally: Knowing the danger, even while doing so, she did not hesitate to help.
+    competing_grammar:
+      - competing_japanese:
+          - 危険 だっ た の に、彼女 は 助け を 躊躇 し なかっ た。
+        english: It was dangerous, but she did not hesitate to help (unexpectedly).
+        hint: While 「〜のに」 conveys unexpectedness, 「つつも」 here emphasizes her conscious awareness of the
+          danger and her choice *not* to hesitate, highlighting her internal resolve despite the risk.
+          It focuses on the internal decision.
+    scene: A narrator describes a heroic act.
+    register: formal
+    setting: storytelling
+  - english: Even though he knew it was futile, he continued to hope.
+    japanese:
+      - 無駄 だ と 知り つつ も、彼 は 望み を 捨て なかっ た。
+      - 無駄 だ と 知り つつ も、彼 は 望み を 捨て ませ ん でし た。
+    english_literally: Knowing it was futile, even while doing so, he did not abandon hope.
+    competing_grammar:
+      - competing_japanese:
+          - 無駄 だ と 知っ て い て も、彼 は 望み を 捨て なかっ た。
+        english: Even if he knew it was futile, he did not abandon hope.
+        hint: 「〜ても」 is a general concession. 「つつも」 here deepens the sense of internal struggle, where
+          he knowingly continues to hope despite the futility, indicating a profound personal conviction
+          or stubbornness. We're looking for that internal acknowledgment.
+    scene: A character in a tragic story clings to a faint possibility.
+    register: bungo (literary)
+    setting: melancholic
+  - english: Even though I hate natto, I eat it for my health.
+    japanese:
+      - 納豆 が 嫌い つつ も、健康 の ため に 食べる。
+      - 納豆 が 嫌い つつ も、健康 の ため に 食べ ます。
+    english_literally: Hating natto, even while doing so, I eat it for health.
+    competing_grammar:
+      - competing_japanese:
+          - 納豆 が 嫌い です が、健康 の ため に 食べ ます。
+        english: I hate natto, but I eat it for my health.
+        hint: 「〜ですが」 is a simple polite conjunction. 「つつも」 emphasizes the internal struggle of consuming
+          something disliked out of a conscious choice for health benefits, highlighting the contradiction
+          between preference and action. We're looking for this internal sacrifice.
+    scene: Someone explains their dietary habits.
+    register: casual
+    setting: informative
+post_example_writeup: As seen in these examples, 「つつも」 is particularly effective when describing situations
+  where an individual's actions or current state contradict their own knowledge, feelings, or principles.
+  This internal tension is what sets 「つつも」 apart from other concessive expressions. It often conveys a
+  subtle sense of self-awareness, resignation, or a determined adherence to a principle despite personal
+  cost.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/つつも

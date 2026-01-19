@@ -1,0 +1,282 @@
+grammar_point: ところ (upon discovering)
+learn_before:
+  - (にし)たところで (even if)
+  - ずっと (by far)
+meaning: Upon doing; after; as a result of
+pronunciation:
+  katakana: トコロ
+  romaji: tokoro
+formation:
+  Verb [past, informal] + ところ: Indicates that a result occurred after a certain action.
+jlpt: N2
+etymology: The word 「ところ」 literally means 'place,' 'spot,' 'scene,' 'situation,' or 'circumstance.' Its
+  usage here extends this meaning to refer to the 'situation' or 'state' that arises *after* an action
+  has been completed, often revealing an unexpected or newly discovered outcome.
+writeup: The grammar point 「ところ」, when preceded by a verb in its past tense (た-form), indicates that a
+  certain situation or result arose upon the completion of the preceding action. It is often used to convey
+  that the outcome was somewhat unexpected or newly discovered as a consequence of the action. This usage
+  of 「ところ」 emphasizes the subsequent state or discovery directly linked to the prior action. It is typically
+  found in formal or written contexts, lending a somewhat objective or reporting tone to the statement.
+  While 「～たら」 and 「～た時」 can also express a temporal sequence, 「ところ」 distinctly highlights the *result*
+  or *consequence* that follows the action, often with a sense of discovery or surprise.
+false_friends:
+  - term: たら
+    meaning: if; when
+    kind: similar expression
+    nuance: Unlike 「ところ」, 「たら」 does not necessarily emphasize an unexpected or surprising result; it simply
+      states a condition or temporal sequence without a strong focus on the outcome as a discovery.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: 時
+    meaning: when; at the time of
+    kind: similar expression
+    nuance: Unlike 「ところ」, 「時」 is a more general expression for 'when' and does not focus on the outcome
+      or discovery that follows an action; it simply indicates a point in time.
+    grammar_point: とき (when)
+  - term: 結果
+    meaning: as a result of
+    kind: similar expression
+    nuance: While 「ところ」 implies a result, 「結果」 more explicitly states the cause-and-effect relationship,
+      often in a more formal or analytical context. 「ところ」 carries a nuance of discovery rather than just
+      stating a direct consequence.
+    grammar_point: '[Verb-た・Nounの]結果 (as a result of)'
+post_false_friends_writeup: While 「たら」 and 「時」 can also translate to 'when,' 「ところ」 specifically emphasizes
+  the *result* or subsequent situation that arises, often with a sense of discovery or unexpectedness.
+  「結果」 similarly indicates a result, but 「ところ」 is more about the realization *upon* an action, making
+  it less direct than 「結果」's explicit cause-and-effect. Choose 「ところ」 when you want to highlight the connection
+  between an action and its outcome, particularly if the result is a newfound situation or something surprising.
+examples:
+  - english: When I called the hospital, I was told that an appointment was necessary.
+    japanese:
+      - 病院 に 電話 し た {ところ}、予約 が 必要 だ と 言わ れ まし た。
+      - 病院 に 電話 し た {ところ}、予約 が 必要 だ と 言わ れ た。
+      - 病院 に 電話 し た {ところ}、予約 が 必要 だ と の こと でし た。
+    english_literally: Hospital to phone did upon doing, appointment is necessary told was.
+    competing_grammar:
+      - competing_japanese:
+          - 病院 に 電話 し た {時} に、予約 が 必要 だ と 言わ れ まし た。
+        english: When I called the hospital, I was told that an appointment was necessary.
+        hint: Using 「時」 states a simple temporal relation. We're looking for an outcome or discovery.
+      - competing_japanese:
+          - 病院 に 電話 し {たら}、予約 が 必要 だ と 言わ れ まし た。
+        english: If/When I called the hospital, I was told that an appointment was necessary.
+        hint: While 「たら」 can express a sequence, it doesn't emphasize the immediate, perhaps new, realization
+          of an outcome as strongly. We're looking for a discovery or unexpected outcome.
+    scene: A person, unaware of hospital procedures, calls to inquire about a visit.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「言われました」 (was told) in the passive voice implies that the information was received
+      upon making the call, which aligns perfectly with the discovery aspect of 「ところ」. This example uses
+      the polite form 「言われました」. It is a common professional scenario.
+  - english: When I tried cooking with a new recipe, it was more delicious than I imagined.
+    japanese:
+      - 新しい レシピ で 料理 し て み た {ところ}、想像 以上 に 美味しかっ た です。
+      - 新しい レシピ で 料理 し て み た {ところ}、想像 以上 に 美味しかっ た。
+    english_literally: New recipe with cooking tried upon doing, imagination above delicious was.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい レシピ で 料理 し て み {たら}、想像 以上 に 美味しかっ た です。
+        english: If/When I tried cooking with a new recipe, it was more delicious than I imagined.
+        hint: The phrase 「～てみたところ」 highlights the act of trying and the subsequent discovery of an unexpected
+          positive outcome, which is a key nuance of 「ところ」. We're looking for a discovery or unexpected
+          outcome.
+    scene: A home cook, experimenting with a new dish, is pleasantly surprised by the result.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「～てみたところ」 highlights the act of trying and the subsequent discovery of an unexpected
+      positive outcome, which is a key nuance of 「ところ」. 「美味しかった です」 and 「美味しかった」 both convey the positive
+      discovery, one politely and one casually. The speaker might be sharing her pleasant surprise with
+      friends or family.
+  - english: When I presented the proposal at the meeting, I unexpectedly received agreement from everyone.
+    japanese:
+      - 会議 で 企画 を 提出 し た {ところ}、思いのほか 皆 さん に 賛同 いただけ まし た。
+      - 会議 で 企画 を 提出 し た {ところ}、思いのほか 皆 さん に 賛同 いただけ た。
+    english_literally: Meeting at proposal submitted upon doing, more than expected everyone to agreement
+      received.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 で 企画 を 提出 し た {時} に、思いのほか 皆 さん に 賛同 いただけ まし た。
+        english: When I presented the proposal at the meeting, I unexpectedly received agreement from
+          everyone.
+        hint: The nuance of 「思いのほか」 (omoi no hoka) meaning 'more than expected' pairs effectively with
+          「ところ」's emphasis on a discovered or unexpected result. We're looking for a discovered or unexpected
+          result.
+    scene: A junior employee, nervous about a new idea, gets a surprisingly positive reception in a corporate
+      meeting.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The nuance of 「思いのほか」 (omoi no hoka) meaning 'more than expected' pairs effectively with 「ところ」's
+      emphasis on a discovered or unexpected result. 「賛同 いただけ まし た」 (was able to get agreement) uses humble
+      language suitable for a professional setting, especially from a junior employee.
+  - english: While I was looking for my keys, I unexpectedly found them inside the refrigerator.
+    japanese:
+      - カギ を 探し て い た {ところ}、まさか 冷蔵 庫 の 中 に ある の を 見つけ まし た。
+      - カギ を 探し て い た {ところ}、まさか 冷蔵 庫 の 中 に ある の を 見つけ た。
+      - カギ を 探し て た {ところ}、まさか 冷蔵 庫 の 中 に ある の を 見つけ ちゃっ た。
+    english_literally: Keys searching was upon doing, unbelievably refrigerator inside existing thing
+      found.
+    competing_grammar:
+      - competing_japanese:
+          - カギ を 探し て い た {時} に、まさか 冷蔵 庫 の 中 に ある の を 見つけ まし た。
+        english: While I was looking for my keys, I unexpectedly found them inside the refrigerator.
+        hint: The use of 「まさか」 (masaka) strongly emphasizes the unexpected discovery, aligning perfectly
+          with the discovery aspect of 「ところ」. We're looking for an unexpected discovery.
+    scene: A person frantically searching for their lost keys discovers them in a completely illogical
+      place.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「まさか」 (masaka) strongly emphasizes the unexpected discovery, aligning perfectly
+      with the discovery aspect of 「ところ」. The casual forms 「見つけ た」 and 「見つけ ちゃっ た」 (found it, oops!) enhance
+      the humorous and surprising tone.
+  - english: When I requested a day off from my manager, it was easily approved.
+    japanese:
+      - 部 長 に 休み を お 願い し た {ところ}、あっさり 許可 さ れ まし た。
+      - 部 長 に 休み を お 願い し た {ところ}、あっさり 許可 さ れ た。
+      - 部 長 に 休み を 願い 出 た {ところ}、あっさり 許可 さ れ まし た。
+    english_literally: Manager to day off requested upon doing, easily approved was.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 に 休み を お 願い し {たら}、あっさり 許可 さ れ まし た。
+        english: If/When I requested a day off from my manager, it was easily approved.
+        hint: The term 「あっさり」 (assari) meaning 'easily, without fuss' underscores the immediate and perhaps
+          unexpected positive outcome after the action of requesting, which is effectively conveyed by
+          「ところ」. We're looking for an immediate and perhaps unexpected positive outcome.
+    scene: An employee, anticipating a difficult conversation, is relieved when their request is granted
+      with surprising ease.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The term 「あっさり」 (assari) meaning 'easily, without fuss' underscores the immediate and perhaps
+      unexpected positive outcome after the action of requesting, which is effectively conveyed by 「ところ」.
+      「お 願い し た」 is a common polite phrasing, while 「願い 出 た」 is slightly more formal/humble for requesting.
+  - english: After studying diligently, the exam was much easier than expected.
+    japanese:
+      - しっかり 勉強 し た {ところ}、試験 が 予想 より ずっと 簡単 でし た。
+      - しっかり 勉強 し た {ところ}、試験 が 予想 より ずっと 簡単 だっ た。
+    english_literally: Diligently study did upon doing, exam predicted than much easy was.
+    competing_grammar:
+      - competing_japanese:
+          - しっかり 勉強 し た {時} に、試験 が 予想 より ずっと 簡単 でし た。
+        english: When I studied diligently, the exam was much easier than expected.
+        hint: This example highlights the discovery of the exam's difficulty *at the moment of taking
+          it*, directly as a result of the preceding diligent study. We're looking for a discovery or
+          realization at a specific moment.
+    scene: A student discusses their exam experience, reflecting on their preparation.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example highlights the discovery of the exam's difficulty *at the moment of taking it*,
+      directly as a result of the preceding diligent study. The casual 「簡単 だっ た」 indicates sharing this
+      realization with a peer.
+  - english: When I tried repairing the broken watch, it started working properly.
+    japanese:
+      - 動か なく なっ た 時計 を 直し て み た {ところ}、ちゃんと 動く よう に なり まし た。
+      - 動か なく なっ た 時計 を 直し て み た {ところ}、ちゃんと 動く よう に なっ た。
+    english_literally: Not moving became watch repaired tried upon doing, properly move became.
+    competing_grammar:
+      - competing_japanese:
+          - 動か なく なっ た 時計 を 直し て み {たら}、ちゃんと 動く よう に なり まし た。
+        english: If/When I tried repairing the broken watch, it started working properly.
+        hint: The phrase 「～てみたところ」 effectively conveys the experimental action leading to a surprising
+          and positive outcome, emphasizing the discovery aspect of 「ところ」. We're looking for an experimental
+          action leading to a surprising outcome.
+    scene: Someone attempting to fix a broken item, not expecting it to work, is surprised by their success.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「～てみたところ」 effectively conveys the experimental action leading to a surprising and
+      positive outcome, emphasizing the discovery aspect of 「ところ」. The casual 「動く よう に なっ た」 expresses
+      the unexpected success directly.
+  - english: Upon opening the mysterious box, I found an ancient map.
+    japanese:
+      - 不思議 な 箱 を 開け て み た {ところ}、古い 地図 が 出 て き まし た。
+      - 不思議 な 箱 を 開け て み た {ところ}、古い 地図 が 出 て き た。
+    english_literally: Mysterious box opened tried upon doing, old map came out.
+    competing_grammar:
+      - competing_japanese:
+          - 不思議 な 箱 を 開け て み {たら}、古い 地図 が 出 て き まし た。
+        english: If/When I opened the mysterious box, an ancient map came out.
+        hint: 「たら」 can express sequence but misses the nuance of a discovery or revelation that 「ところ」
+          conveys, especially when paired with 「～てみた」. We're looking for a discovery or revelation.
+    scene: A curious person discovers an antique box in their attic.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrase 「～てみたところ」 highlights the action of trying something (opening the box) and the **subsequent
+      discovery** of the map, emphasizing the element of surprise. 「出 て き まし た」 (came out) further reinforces
+      this sense of something being revealed. This is a common phrasing for recounting a personal experience.
+  - english: When I tried to contact him, I found out he had already moved.
+    japanese:
+      - 彼 に 連絡 し た {ところ}、もう 引っ越し て いる こと が わかり まし た。
+      - 彼 に 連絡 し た {ところ}、もう 引っ越し て いる こと が わかっ た。
+    english_literally: He to contacted upon doing, already moved thing became clear.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 連絡 し た {時} に、もう 引っ越し て いる こと が わかり まし た。
+        english: When I contacted him, I found out he had already moved.
+        hint: 「時 に」 simply states a temporal coincidence, whereas 「ところ」 highlights the consequence or
+          discovery resulting from the action of contacting. We're looking for a consequence or discovery.
+    scene: A friend tries to get in touch with an acquaintance after some time.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: This sentence uses 「連絡 し た {ところ}」 to describe the **discovery** that occurred as a result
+      of the action of contacting. The unexpected nature of him having already moved is well-suited to
+      「ところ」. The polite ending 「わかり まし た」 is appropriate when sharing this information with a friend in
+      a casual, yet respectful, manner.
+  - english: After starting the task, I realized it was much more difficult than I had anticipated.
+    japanese:
+      - その 作業 を 始め て み た {ところ}、予想 以上 に 難しい こと が わかり まし た。
+      - その 作業 を 始め て み た {ところ}、予想 以上 に 難しい こと が わかっ た。
+    english_literally: That task started tried upon doing, expectation above difficult thing became clear.
+    competing_grammar:
+      - competing_japanese:
+          - その 作業 を 始め て み {たら}、予想 以上 に 難しい こと が わかり まし た。
+        english: If/When I started the task, I realized it was much more difficult than I had anticipated.
+        hint: While 「たら」 indicates a sequence, 「ところ」 emphasizes the realization or discovery of the difficulty
+          *upon* trying the task. We're looking for a realization or discovery upon trying.
+    scene: A new employee receives their first independent task at a company.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「始め て み た {ところ}」 effectively conveys the initial action and the **subsequent realization**
+      of the task's unexpected difficulty. The phrase 「予想 以上 に」 (more than expected) pairs naturally with
+      「ところ」's nuance of discovery. This is a typical statement made in a professional setting, sharing
+      a work experience with a colleague.
+  - english: Upon conducting the experiment, we observed an unprecedented reaction.
+    japanese:
+      - 実験 を 行っ た {ところ}、前例 の ない 反応 が 観察 さ れ まし た。
+      - 実験 を 行っ た {ところ}、前例 の ない 反応 が 観察 さ れ た。
+    english_literally: Experiment conducted upon doing, unprecedented reaction observed was.
+    competing_grammar:
+      - competing_japanese:
+          - 実験 を 行っ た {結果}、前例 の ない 反応 が 観察 さ れ まし た。
+        english: As a result of conducting the experiment, an unprecedented reaction was observed.
+        hint: 「結果」 (kekka) explicitly states a direct result or outcome, often in a more formal or scientific
+          context. 「ところ」 focuses more on the *discovery* or *observation* that happened *as a consequence*
+          of the action. We're looking for a discovery or observation.
+    scene: Scientists in a research laboratory analyzing experimental results.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: This use of 「ところ」 is common in academic and scientific contexts to report a finding or **observation**
+      made as a direct consequence of an action like conducting an experiment or survey. 「観察 さ れ まし た」
+      (was observed) highlights this sense of discovery in a formal, objective tone, suitable for presenting
+      findings to a group.
+post_example_writeup: As you can see from the examples, 「ところ」 is quite versatile in expressing an outcome
+  or discovery that directly follows an action. Pay attention to the subtle nuance of *discovery* or *realization*
+  that it conveys, especially when compared to more general temporal connectors like 「たら」 or 「時」.

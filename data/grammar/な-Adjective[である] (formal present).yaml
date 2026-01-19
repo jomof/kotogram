@@ -1,0 +1,206 @@
+grammar_point: な-Adjective[である] (formal present)
+learn_before:
+  - どこ (where)
+meaning: to be (formal, written, or academic)
+pronunciation:
+  katakana: デアル
+  romaji: dearu
+formation:
+  な-Adjective stem + である: Used to formally state a quality or state described by a な-adjective.
+jlpt: N1
+etymology: The copula 「である」 originates from the combination of the particle 「で」 (indicating a state or
+  condition, similar to the English 'in the state of') and the verb 「ある」 (to exist, to be). This construction
+  historically provided a more explicit and assertive way to state 'to be in a state' or 'to exist as
+  something,' evolving into its current use as a formal and objective copula in modern Japanese, distinct
+  from the more casual 「だ」 or polite 「です」.
+writeup: |-
+  The expression 「な-Adjective + である」 is a highly formal and objective way to state that something possesses a certain quality or is in a particular state, as described by a な-adjective. It is most commonly encountered in **written contexts**, such as academic papers, scientific reports, legal documents, official announcements, and formal news articles.
+
+  Unlike 「です」 or 「だ」, which are common in everyday conversation, 「である」 lends a sense of **authority, objectivity, and detachment** to the statement. It suggests that the information being presented is a definitive fact or a universally accepted truth, rather than a personal opinion or a polite assertion. For example, stating 「これは重要である」 (This is important) in a formal document emphasizes the objective importance of the subject, whereas 「これは重要です」 would sound more conversational.
+
+  While grammatically similar to simply linking a な-adjective directly to a noun (e.g., 重要な点 - an important point), 「な-Adjective + である」 functions as a **predicate**, completing the sentence and asserting the quality. It is also often used as a connective in complex sentences to provide formal explanations or conditions.
+
+  It is **rarely used in casual spoken Japanese** as it can sound stiff, pedantic, or overly formal. Speakers who use it in conversation might be perceived as trying to emphasize their authority or appear highly intellectual, though it can occasionally be heard in very formal speeches or presentations.
+false_friends:
+  - term: です
+    meaning: polite copula
+    kind: similar expression
+    nuance: 「です」 is a polite and common copula used in everyday conversation and general polite writing.
+      It lacks the strong objectivity and formality of 「である」.
+    grammar_point: です (polite copula)
+  - term: だ
+    meaning: casual copula
+    kind: similar expression
+    nuance: 「だ」 is the casual copula used in informal conversation and casual writing. It is the plain
+      form and contrasts sharply with the formality of 「である」.
+    grammar_point: だ (casual copula)
+  - term: ではない
+    meaning: formal negative copula
+    kind: similar expression
+    nuance: While 「である」 is affirmative, 「ではない」 is its formal negative counterpart for nouns and な-adjectives.
+      Both are formal, but one is affirmative and the other is negative.
+    grammar_point: ではない (formal negative copula)
+  - term: にあります
+    meaning: to exist (inanimate), to be at
+    kind: often confused with
+    nuance: 「にあります」 indicates physical existence or location for inanimate objects. It cannot be used
+      as a general copula to describe qualities with な-adjectives. For example, you cannot say 「静かにあります」
+      to mean 'it is quiet'.
+    grammar_point: ある (to exist, inanimate・to have)
+post_false_friends_writeup: While 「です」 and 「だ」 also function as copulas for な-adjectives, their usage
+  registers are distinct. 「な-Adjective + である」 is reserved for contexts demanding high formality and objectivity,
+  such as academic papers or legal texts. In contrast, 「です」 is used for general politeness, and 「だ」 for
+  casual conversation. 「にあります」, on the other hand, describes existence or location and does not serve
+  as a predicate for describing a noun's quality with a な-adjective. Understanding these differences is
+  key to appropriately selecting the correct expression for the context.
+examples:
+  - english: The research results are significant.
+    japanese:
+      - 研究 結果 は 重要 {で ある}。
+      - 研究 結果 は 重要 {で あり ます}。
+    english_literally: Research results are important.
+    competing_grammar:
+      - competing_japanese:
+          - 研究 結果 は 重要 です。
+        english: The research results are important. (polite)
+        hint: We are looking for a formal, objective statement suitable for academic writing. 「です」 is
+          polite but not as formal or objective.
+      - competing_japanese:
+          - 研究 結果 は 重要 だ。
+        english: The research results are important. (casual)
+        hint: We are looking for a formal, objective statement. 「だ」 is casual and not suitable for formal
+          contexts.
+    scene: A sentence from the conclusion section of a scientific paper.
+    register: formal
+    setting: academic
+  - english: This phenomenon is common.
+    japanese:
+      - この 現象 は 一般 的 {で ある}。
+      - この 現象 は 一般 的 {で あり ます}。
+    english_literally: This phenomenon is general.
+    competing_grammar:
+      - competing_japanese:
+          - この 現象 は 一般 的 です。
+        english: This phenomenon is common. (polite)
+        hint: The nuance requested is highly objective and formal, suitable for a scientific observation.
+          「です」 is too conversational.
+    scene: Observing a natural event and documenting it in a research log.
+    register: formal
+    setting: academic
+  - english: The decision is final and binding.
+    japanese:
+      - その 決定 は 最終 的 かつ 拘束 的 {で ある}。
+      - その 決定 は 最終 的 かつ 拘束 的 {で あり ます}。
+    english_literally: That decision is final and binding.
+    competing_grammar:
+      - competing_japanese:
+          - その 決定 は 最終 的 かつ 拘束 的 です。
+        english: The decision is final and binding. (polite)
+        hint: This is a legal statement requiring ultimate formality and authority. 「です」 is not strong
+          enough.
+    scene: A passage from a legal document outlining a court ruling.
+    register: formal
+    setting: legal
+  - english: The method used is effective.
+    japanese:
+      - 用い られ た 方法 は 効果 的 {で ある}。
+      - 用い られ た 方法 は 効果 的 {で あり ます}。
+    english_literally: Used method is effective.
+    competing_grammar:
+      - competing_japanese:
+          - 用い られ た 方法 は 効果 的 です。
+        english: The method used is effective. (polite)
+        hint: In a formal report, objectivity about the method's effectiveness is key. Consider the context
+          of a formal assessment.
+    scene: An evaluation report detailing the success of a new protocol.
+    register: formal
+    setting: professional
+  - english: The data collected are accurate.
+    japanese:
+      - 収集 さ れ た データ は 正確 {で ある}。
+      - 収集 さ れ た データ は 正確 {で あり ます}。
+    english_literally: Collected data is accurate.
+    competing_grammar:
+      - competing_japanese:
+          - 収集 さ れ た データ は 正確 です。
+        english: The data collected are accurate. (polite)
+        hint: The sentence is for a factual, objective report. 「です」 introduces a degree of personal judgment
+          or politeness not desired here.
+    scene: A technical report summarizing the findings of an experiment.
+    register: formal
+    setting: technical
+  - english: This theory is universally applicable.
+    japanese:
+      - この 理論 は 普遍 的 {で ある}。
+      - この 理論 は 普遍 的 {で あり ます}。
+    english_literally: This theory is universal.
+    competing_grammar:
+      - competing_japanese:
+          - この 理論 は 普遍 的 です。
+        english: This theory is universally applicable. (polite)
+        hint: For a strong, academic assertion of a theory's scope, a more definitive and objective copula
+          is needed than 「です」.
+    scene: An abstract of a philosophical text discussing the nature of a theory.
+    register: formal
+    setting: academic
+  - english: The conclusion is logical.
+    japanese:
+      - その 結論 は 論理 的 {で ある}。
+      - その 結論 は 論理 的 {で あり ます}。
+    english_literally: That conclusion is logical.
+    competing_grammar:
+      - competing_japanese:
+          - その 結論 は 論理 的 です。
+        english: The conclusion is logical. (polite)
+        hint: To formally state an objective assessment of a conclusion's validity, opt for the more declarative
+          form.
+    scene: A peer review comment on a research paper, critiquing the arguments.
+    register: formal
+    setting: academic
+  - english: The responsibility for this incident is clear.
+    japanese:
+      - この 事件 の 責任 は 明確 {で ある}。
+      - この 事件 の 責任 は 明確 {で あり ます}。
+    english_literally: This incident's responsibility is clear.
+    competing_grammar:
+      - competing_japanese:
+          - この 事件 の 責任 は 明確 です。
+        english: The responsibility for this incident is clear. (polite)
+        hint: For a formal, factual statement regarding culpability, a more objective and less conversational
+          tone is appropriate.
+    scene: A police report detailing the findings of an investigation.
+    register: formal
+    setting: professional
+  - english: The purpose of this project is definite.
+    japanese:
+      - この プロジェクト の 目的 は 確実 {で ある}。
+      - この プロジェクト の 目的 は 確実 {で あり ます}。
+    english_literally: This project's purpose is definite.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト の 目的 は 確実 です。
+        english: The purpose of this project is definite. (polite)
+        hint: To convey the certainty of a project's objective in a formal setting, use the more assertive
+          copula.
+    scene: A project proposal outlining its goals and objectives.
+    register: formal
+    setting: professional
+  - english: His contribution to the team was significant.
+    japanese:
+      - 彼 の チーム へ の 貢献 は 多大 {で ある}。
+      - 彼 の チーム へ の 貢献 は 多大 {で あり ます}。
+    english_literally: His team to contribution is immense.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の チーム へ の 貢献 は 多大 です。
+        english: His contribution to the team was significant. (polite)
+        hint: When making an official assessment of someone's performance, a formal and objective statement
+          is preferred.
+    scene: An annual performance review document for an employee.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: no one
+    nuance: This phrasing, often found in written performance reviews, maintains a professional and objective
+      tone regarding an individual's contribution. 「多大である」 (tadai dearu) expresses 'immense' or 'significant'
+      in a formal, declarative manner.

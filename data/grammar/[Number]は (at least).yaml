@@ -1,0 +1,208 @@
+grammar_point: '[Number]は (at least)'
+learn_before:
+  - Verb[ている・てる] (progressive・resultative)
+  - Verb[まい] (negative volitional)
+  - で (by time)
+  - で (cause・reason)
+  - といった (such as)
+  - には及ばない (cannot compare・no need to)
+  - 並み (on par with・standard)
+meaning: Used to emphasize a minimum number or quantity, indicating "at least".
+pronunciation:
+  katakana: ナンバー ワ
+  romaji: nanbaa wa
+formation:
+  '[Number/Quantity] + は': Indicates a minimum value or threshold, implying "at least".
+jlpt: N3
+etymology: The particle 「は」 (wa) fundamentally serves as a topic marker, drawing attention to the element
+  it accompanies. In the context of 「Numberは」, it takes on a specific emphatic and contrastive role, highlighting
+  the numerical quantity as the minimum threshold. This usage evolved from its general function of singling
+  out information for emphasis, effectively contrasting the stated minimum with any lower amount.
+writeup: The grammar point 「Numberは」 is used to emphasize a minimum number or quantity. It indicates that
+  the stated amount is the lowest limit required, expected, or permissible. While 「は」 is primarily known
+  as a topic marker, in this construction, it functions emphatically to highlight the number as a crucial
+  threshold. This pattern is frequently seen with verbs or adjectives that express necessity, duration,
+  or cost, such as 必要だ (hitsuyou da - necessary), かかる (kakaru - to take time or cost), or ある (aru - to
+  exist/to be). It asserts that 'at least this much' is the case or is needed. **Important Considerations:**
+  Unlike 「Numberも」, which emphasizes a surprisingly large quantity or abundance, 「Numberは」 focuses on
+  the baseline, the 'not less than' amount. It differs from 「しか〜ない」 or 「だけ」, which convey a sense of limitation
+  or 'only this much and no more.' 「Numberは」 is about the floor, not the ceiling. When used in conjunction
+  with things like time or money, it can convey a sense of 'it's only this much, but it's still significant'
+  or 'this is the bare minimum.' For example, saying 「一 時間 は かかる」 (ichijikan wa kakaru) suggests 'it will
+  take at least an hour,' implying that less than an hour is not enough.
+false_friends:
+  - term: Numberも
+    meaning: as many as, as much as
+    kind: similar expression
+    nuance: 「Numberも」 emphasizes a quantity that is large or more than expected. 「Numberは」 emphasizes
+      a minimum, meaning "at least this much."
+    grammar_point: Number+も (emphatic quantity)
+  - term: しか〜ない
+    meaning: only, nothing but
+    kind: antonym
+    nuance: 「しか〜ない」 emphasizes a limited or small quantity, indicating "only this much and no more." 「Numberは」
+      emphasizes a minimum quantity, indicating "at least this much."
+    grammar_point: しか〜ない (only, nothing but)
+  - term: だけ
+    meaning: only, just
+    kind: similar expression
+    nuance: 「だけ」 specifies a limit, implying "no more than" or "only that amount." While 「Numberは」 sets
+      a minimum, 「だけ」 sets a maximum or exclusive quantity.
+    grammar_point: だけ (only・just)
+  - term: くらい
+    meaning: about, approximately
+    kind: similar expression
+    nuance: 「くらい」 indicates an approximate quantity, while 「Numberは」 specifies a definite minimum.
+    grammar_point: くらい (approximate quantity or degree)
+post_false_friends_writeup: While 「Numberは」 sets a definite lower limit ('at least'), 「Numberも」 emphasizes
+  a quantity that is surprisingly large or abundant ('as many/much as'). Expressions like 「しか〜ない」 and
+  「だけ」 are used to indicate an upper limit or a restrictive, exclusive quantity ('only'). For approximations,
+  use 「くらい」. Understanding these distinctions is key to precise communication in Japanese.
+examples:
+  - english: We need at least three people.
+    japanese:
+      - 三 人 は 必要 です。
+      - 三 人 は 必要 だ。
+      - 三 人 は いる。
+      - 三 人 は いり ます。
+    english_literally: Three people, at least, are necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 三 人 も 必要 です。
+        english: As many as three people are needed.
+        hint: 「も」 emphasizes a quantity that is large or more than expected. We're looking for a grammar
+          point that emphasizes a minimum quantity.
+      - competing_japanese:
+          - 三 人 しか 必要 で ない。
+        english: Only three people are needed.
+        hint: 「しか〜ない」 emphasizes a small or limited quantity. We're looking for a grammar point that emphasizes
+          a minimum quantity.
+    scene: A project manager talking to their team about staffing a task.
+    register: formal
+    setting: professional
+  - english: This will cost at least 5000 yen.
+    japanese:
+      - これ は 五千 円 は かかり ます。
+      - これ は 五千 円 は かかる。
+    english_literally: This, 5000 yen at least, will take (cost).
+    competing_grammar:
+      - competing_japanese:
+          - これ は 五千 円 くらい かかり ます。
+        english: This will cost about 5000 yen.
+        hint: 「くらい」 indicates an approximate quantity. We're looking for a grammar point that specifies
+          a definite minimum.
+    scene: A shopper asking about a product's price, and the clerk is giving an estimate.
+    register: teineigo (polite)
+    setting: informative
+  - english: It will take at least one hour.
+    japanese:
+      - 一 時間 は かかり ます。
+      - 一 時間 は かかる。
+    english_literally: One hour, at least, will take (time).
+    competing_grammar:
+      - competing_japanese:
+          - 一 時間 だけ かかり ます。
+        english: It will only take one hour.
+        hint: 「だけ」 emphasizes a restrictive quantity, indicating "no more than." We're looking for a grammar
+          point that emphasizes a minimum quantity.
+    scene: Someone giving directions and estimating travel time.
+    register: teineigo (polite)
+    setting: informative
+  - english: It's at least 10 kilometers from here.
+    japanese:
+      - ここ から 十 キロ は あり ます。
+      - ここ から 十 キロ は ある。
+    english_literally: From here, 10 kilometers at least, there is.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から 十 キロ も あり ます。
+        english: It's as much as 10 kilometers from here.
+        hint: 「も」 emphasizes a quantity that is large or more than expected. We're looking for a grammar
+          point that emphasizes a minimum quantity.
+    scene: Two friends estimating a distance to their destination.
+    register: casual
+    setting: friendly
+  - english: You need to study at least two hours a day.
+    japanese:
+      - 一 日 二 時間 は 勉強 する 必要 が あり ます。
+      - 一 日 二 時間 は 勉強 する 必要 が ある。
+    english_literally: One day, two hours at least, studying is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 一 日 二 時間 くらい 勉強 する 必要 が あり ます。
+        english: You need to study about two hours a day.
+        hint: 「くらい」 indicates an approximate quantity. We're looking for a grammar point that specifies
+          a definite minimum.
+    scene: A teacher advising a student on how much they should study for an exam.
+    register: formal
+    setting: academic
+  - english: He can at least run a marathon.
+    japanese:
+      - 彼 は マラソン は 走れる。
+      - 彼 は マラソン は 走れ ます。
+    english_literally: He, as for marathon, can run.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は マラソン も 走れる。
+        english: He can even run a marathon.
+        hint: 「も」 emphasizes an additional capability, suggesting he can do other things too. We're looking
+          for a grammar point that emphasizes a minimum capability.
+    scene: Friends discussing someone's athletic ability, setting a baseline for his skills.
+    register: casual
+    setting: friendly
+  - english: You have to be at least 20 years old to drink.
+    japanese:
+      - お 酒 を 飲む に は 二十歳 は 必要 です。
+      - お 酒 を 飲む に は 二十歳 は 必要 だ。
+    english_literally: For drinking alcohol, 20 years old at least, is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - お 酒 を 飲む に は 二十歳 だけ 必要 です。
+        english: You only need to be 20 years old to drink.
+        hint: 「だけ」 emphasizes a restrictive quantity. We're looking for a grammar point that emphasizes
+          a minimum requirement.
+    scene: A bartender explaining the legal drinking age to a customer.
+    register: formal
+    setting: informative
+  - english: Please buy at least three.
+    japanese:
+      - 三 つ は 買っ て ください。
+      - 三 つ は 買っ て。
+    english_literally: Three at least, please buy.
+    competing_grammar:
+      - competing_japanese:
+          - 三 つ しか 買え ない。
+        english: I can only buy three.
+        hint: 「しか〜ない」 emphasizes a small or limited quantity. We're looking for a grammar point that emphasizes
+          a minimum quantity.
+    scene: A parent telling a child to buy groceries, specifying a minimum quantity.
+    register: teineigo (polite)
+    setting: instructional
+  - english: You need at least five years of experience.
+    japanese:
+      - 五 年 は 経験 が 必要 です。
+      - 五 年 は 経験 が 必要 だ。
+    english_literally: Five years at least, experience is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 五 年 くらい 経験 が 必要 です。
+        english: You need about five years of experience.
+        hint: 「くらい」 indicates an approximate quantity. We're looking for a grammar point that specifies
+          a definite minimum.
+    scene: An HR manager interviewing a job candidate.
+    register: formal
+    setting: professional
+  - english: You need at least 70 points to pass.
+    japanese:
+      - 合格 する に は 七十 点 は 必要 です。
+      - 合格 する に は 七十 点 は 必要 だ。
+    english_literally: For passing, 70 points at least, are necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 合格 する に は 七十 点 しか 必要 で ない。
+        english: You only need 70 points to pass.
+        hint: 「しか〜ない」 emphasizes a small or limited quantity. We're looking for a grammar point that emphasizes
+          a minimum quantity.
+    scene: A teacher explaining exam requirements to students.
+    register: formal
+    setting: academic

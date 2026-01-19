@@ -1,0 +1,285 @@
+grammar_point: 南 (south)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[た] (past tense)
+  - Verb[ます] (polite present)
+  - '[Noun]をください (please give me)'
+  - 〜付き (attached with)
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - が (subject marker)
+  - でございます (polite copula, formal)
+  - どうぞ (here you are・please・invitation)
+  - どっち (which way・which direction)
+  - どの (which)
+  - に (static location・time)
+  - にする (to decide or make)
+  - のうち(で) (within・among)
+  - 利用する (to use)
+  - 北 (north)
+  - 背面 (back surface spatial)
+  - 興味がある (to have an interest in)
+  - ～口 (exit・entrance)
+meaning: South
+pronunciation:
+  katakana: ミナミ
+  romaji: minami
+formation:
+  南: Refers to the cardinal direction south.
+  '[場所] の 南': Indicates a location to the south of a specified place.
+  南 に/へ [動詞]: Indicates movement or direction towards the south.
+  南 にある/います: Indicates that something or someone is located in the south.
+  南 の [名詞]: Modifies a noun, indicating it is related to the south (e.g., southern wind, southern part).
+jlpt: N5
+etymology: The kanji 南 (minami) is a pictographic character that has evolved over time. Its ancient form
+  depicted a musical instrument, possibly a drum or bell, or a flag. The connection to "south" is thought
+  to derive from the direction towards which such instruments were typically played or where flags would
+  flutter in a warm breeze, symbolizing a warm, bright direction.
+writeup: |-
+  南 (minami) refers to the cardinal direction "south." It is one of the four main directions: 東 (higashi - east), 西 (nishi - west), 南 (minami - south), and 北 (kita - north). Like other cardinal directions, 南 can be used as a standalone noun or combined with particles to indicate location, direction, or modification.
+
+  When used to indicate a location, it often takes the particle に (ni) or で (de). For movement towards the south, へ (e) or に (ni) are common. It can also modify a noun using the particle の (no), such as 南の風 (minami no kaze - southern wind).
+
+  Japanese directional terms are often used relatively. For instance, 「駅の南」 (eki no minami) means "to the south of the station." Understanding the relationship between the reference point and the direction is key.
+false_friends:
+  - term: 北
+    meaning: North
+    kind: antonym
+    nuance: 北 (kita) is the opposite cardinal direction, meaning north, whereas 南 (minami) means south.
+    grammar_point: 北 (north)
+  - term: 東
+    meaning: East
+    kind: similar expression
+    nuance: 東 (higashi) is another cardinal direction, meaning east, which is distinct from 南 (minami)'s
+      meaning of south.
+    grammar_point: 東 (east)
+  - term: 西
+    meaning: West
+    kind: similar expression
+    nuance: 西 (nishi) is another cardinal direction, meaning west, which is distinct from 南 (minami)'s
+      meaning of south.
+    grammar_point: 西 (west)
+  - term: 上
+    meaning: Up, above
+    kind: often confused with
+    nuance: 上 (ue) indicates a relative position of being higher or above something, whereas 南 (minami)
+      refers to an absolute cardinal direction, south.
+    grammar_point: 上、下 (vertical position)
+  - term: 下
+    meaning: Down, below
+    kind: often confused with
+    nuance: 下 (shita) indicates a relative position of being lower or below something, whereas 南 (minami)
+      refers to an absolute cardinal direction, south.
+    grammar_point: 上、下 (vertical position)
+  - term: 前
+    meaning: Front
+    kind: often confused with
+    nuance: 前 (mae) indicates a relative position of being in front, which depends on one's orientation,
+      unlike 南 (minami) which is an absolute direction.
+    grammar_point: 前・後ろ (front and back spatial orientation)
+  - term: 後ろ
+    meaning: Back, behind
+    kind: often confused with
+    nuance: 後ろ (ushiro) indicates a relative position of being behind, which depends on one's orientation,
+      unlike 南 (minami) which is an absolute direction.
+    grammar_point: 前・後ろ (front and back spatial orientation)
+  - term: 右
+    meaning: Right
+    kind: often confused with
+    nuance: 右 (migi) indicates a relative direction to one's right side, which changes with orientation,
+      unlike 南 (minami) which is an absolute direction.
+    grammar_point: 右・左 (left and right)
+  - term: 左
+    meaning: Left
+    kind: often confused with
+    nuance: 左 (hidari) indicates a relative direction to one's left side, which changes with orientation,
+      unlike 南 (minami) which is an absolute direction.
+    grammar_point: 右・左 (left and right)
+post_false_friends_writeup: While 南 (minami) is one of the cardinal directions, it's important to distinguish
+  it from other positional terms. 「上」 (ue), 「下」 (shita), 「前」 (mae), 「後ろ」 (ushiro), 「右」 (migi), and 「左」
+  (hidari) describe relative positions (up, down, front, back, right, left) rather than fixed points on
+  a compass. Cardinal directions like 南 (minami) are absolute and do not change based on the observer's
+  perspective, whereas relative positions do. For instance, "right" changes depending on which way you
+  are facing, but "south" always points in the same direction.
+examples:
+  - english: The south is over there.
+    japanese:
+      - 南 は あそこ です。
+      - 南 は あそこ だ。
+      - 南 は あそこ だ よ。
+    english_literally: South is over there.
+    competing_grammar:
+      - competing_japanese:
+          - 南 に あそこ が あり ます。
+        english: Over there exists in the south.
+        hint: This phrasing would mean 'over there' is *in* the south, rather than 'the south *is* over
+          there.' We're looking for a simple declarative statement of location.
+    scene: A tour guide pointing out directions to a group of tourists.
+    register: formal
+    setting: informative
+    nuance: This is a straightforward declarative sentence indicating the direction of south. The use
+      of 「あそこ」 (asoko) points to a place distant from both the speaker and listener.
+  - english: The train station is to the south of the hotel.
+    japanese:
+      - ホテル の 南 に 駅 が あり ます。
+      - ホテル の 南 に 駅 が ござい ます。
+      - ホテル の 南 に 駅 が ある。
+    english_literally: Hotel's south to station exists.
+    competing_grammar:
+      - competing_japanese:
+          - ホテル の 南 です、駅 は。
+        english: The station is the south of the hotel.
+        hint: While understandable, this is a less natural way to state a fixed location. The focus should
+          be on the station's existence *at* a location relative to the hotel. We're looking for a statement
+          about static existence.
+    scene: Giving directions to someone asking for the train station.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This sentence uses 「〜の南に」 (no minami ni) to specify a location relative to a landmark, which
+      is a common way to give directions in Japanese. The 「あります」 (arimasu) implies the static existence
+      of the station.
+  - english: We need to head south from here.
+    japanese:
+      - ここ から 南 へ 進む 必要 が あり ます。
+      - ここ から 南 へ 行く 必要 が あり ます。
+      - ここ から 南 へ 進む 必要 が ある。
+      - ここ から 南 へ 行く 必要 が ある。
+    english_literally: From here south towards advance need is.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から 南 に 行か なけれ ば なり ませ ん。
+        english: From here, we must go to the south.
+        hint: This emphasizes 'must go' rather than 'need to head' and uses 'to' rather than 'towards'.
+          We're looking for a phrasing that indicates a necessary action of heading in a direction.
+    scene: Two hikers consulting a map.
+    register: semi-formal
+    setting: instructional
+    nuance: The particle 「へ」 (e) clearly indicates the direction of movement. 「進む 必要があります」 (susumu hitsuyou
+      ga arimasu) conveys a necessity or need to proceed, fitting for a planning conversation like hiking.
+  - english: A warm southern wind is blowing today.
+    japanese:
+      - 今日 は 暖かい 南 の 風 が 吹い て い ます。
+      - 今日 は 暖かい 南風 が 吹い て い ます。
+      - 今日 は 暖かい 南 の 風 が 吹い て おり ます。
+    english_literally: Today warm south's wind blowing is.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 南 に 暖かい 風 が 吹い て い ます。
+        english: Today, a warm wind is blowing in the south.
+        hint: This sentence means the wind is blowing *in* the southern region, not that the wind itself
+          *originates* from the south. We're looking for a wind *from* the south.
+    scene: Someone commenting on the weather.
+    register: casual
+    setting: friendly
+    nuance: Here, 南 (minami) modifies 風 (kaze - wind) using the particle の (no), specifying the origin
+      of the wind. This is a typical descriptive use of directions.
+  - english: This store is located in the southern part of the city.
+    japanese:
+      - この 店 は 市 の 南部 に あり ます。
+      - この 店 は 市 の 南部 に ある。
+    english_literally: This store city's southern part to exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 は 市 の 南 に あり ます。
+        english: This store is located to the south of the city.
+        hint: Using just 「南」 might imply it's simply to the south of the city boundary, not necessarily
+          *within* the southern *part* of the city. We're looking for the more specific term for a section
+          of a city.
+    scene: Explaining a store's location.
+    register: formal
+    setting: informative
+    nuance: The term 「南部」 (nanbu) means 'southern part' or 'southern region', illustrating how directional
+      words combine with other nouns to form compound terms for geographical areas.
+  - english: Which way is south from here?
+    japanese:
+      - ここ から 南 は どちら です か？
+      - ここ から 南 は どっち？
+      - ここ から 南 は どちら の 方向 です か？
+    english_literally: From here south is which way?
+    competing_grammar:
+      - competing_japanese:
+          - 南 は どこ です か？
+        english: Where is south?
+        hint: This is a general question about where south is, not specifically from the current location.
+          We're looking for a question asking about the direction *from here*.
+    scene: A tourist asking a local for directions.
+    register: teineigo (polite)
+    setting: interrogative
+    nuance: 「どちら」 (dochira) is the polite interrogative pronoun for 'which way'. This phrase is common
+      for asking for directions from one's current location, indicated by 「ここ から」 (koko kara).
+  - english: Please use the South Exit.
+    japanese:
+      - 南口 を ご 利用 ください。
+      - 南口 を 利用 し て ください。
+    english_literally: South exit please use.
+    competing_grammar:
+      - competing_japanese:
+          - 南 の 出口 を ご 利用 ください。
+        english: Please use the exit to the south.
+        hint: While technically understandable, 「南 の 出口」 is less natural for a fixed entrance/exit than
+          the compound noun 「南口」. We're looking for the common specific term for a named exit.
+    scene: An announcement at a train station.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「南口」 (minamiguchi) is a compound noun, meaning 'South Exit'. The use of 「ご〜ください」 (go~kudasai)
+      is a polite and formal way to give instructions or make requests, typically heard in public announcements.
+      This specific construction is very common in train stations and large buildings.
+    etymology: 「南口」 (minamiguchi) is a common compound noun meaning "south exit." The use of 口 (kuchi)
+      for "exit" or "entrance" combined with a direction is standard for station or building exits.
+  - english: He lives way down south, doesn't he?
+    japanese:
+      - 彼 は ずっと 南 の 方 に 住ん でる ん だ よ ね。
+      - 彼 は ずっと 南 の 方 に 住ん でる の よ ね。
+    english_literally: He far south's direction to living is, right?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は ずっと 南 に 住ん でる ん だ よ ね。
+        english: He lives way south, doesn't he?
+        hint: Omitting 「の 方」 makes the location slightly less general and can imply a more precise point
+          rather than a broad direction. We're looking for a phrase emphasizing a less specific, general
+          southern area.
+    scene: Friends gossiping about an acquaintance.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「南 の 方」 (minami no hou) emphasizes a general southern direction rather than a precise
+      point, suggesting a sense of distance or a less specific location. The 「〜んだよね」 (nda yo ne) ending
+      is a casual, agreement-seeking tag, common among close friends, especially female speakers, creating
+      a warm, conversational tone.
+  - english: The northern regions are cold, but the southern regions are warm.
+    japanese:
+      - 北 の 地域 は 寒い です が、南 の 地域 は 暖かい です。
+      - 北 の 地域 は 寒い です けど、南 の 地域 は 暖かい です。
+      - 北 の 地域 は 寒い けど、南 の 地域 は 暖かい。
+    english_literally: North's regions cold are but, south's regions warm are.
+    competing_grammar:
+      - competing_japanese:
+          - 北 の 地方 は 寒い です が、南 の 地方 は 暖かい です。
+        english: The northern provinces are cold, but the southern provinces are warm.
+        hint: 「地方」 (chihou) also means region/province but might carry a slightly different nuance depending
+          on context. We're looking for the term used in the original example, 「地域」.
+    scene: A geography lesson.
+    register: formal
+    setting: academic
+    nuance: This example highlights the contrast between directions using 「が」 (ga) as a conjunctive particle
+      meaning 'but'. It demonstrates how cardinal directions are used to describe characteristics of different
+      regions.
+  - english: The house faces south.
+    japanese:
+      - その 家 は 南 を 向い て い ます。
+      - その 家 は 南 を 向い て いる。
+      - その 家 は 南 を 向い て おり ます。
+    english_literally: That house south is facing.
+    competing_grammar:
+      - competing_japanese:
+          - その 家 は 南向き です。
+        english: That house is south-facing.
+        hint: This is a more concise and common adjective for "south-facing," but it doesn't use the verb
+          「向く」 (to face). We're looking for an example that demonstrates the use of the verb 'to face'
+          with a direction.
+    scene: Describing a house's orientation.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「〜を向く」 (o muku) means 'to face something'. This construction is commonly used to describe
+      the orientation of buildings or objects. Facing south in Japan is often desirable for sunlight exposure.

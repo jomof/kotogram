@@ -1,0 +1,216 @@
+grammar_point: Verb[ます] (polite present)
+learn_before:
+  - にする (to decide or make)
+meaning: polite present tense verb
+pronunciation:
+  katakana: マス
+  romaji: masu
+formation:
+  Verb[ます-stem] + ます: Forms the polite, non-past affirmative form of a verb.
+jlpt: N5
+etymology: The auxiliary verb 「ます」 is believed to have originated from the verb 「参る」(まいる), meaning "to
+  go" or "to come" in a humble context, which was also used as an auxiliary verb to indicate respectful
+  action. Over time, its meaning shifted to solely convey politeness, losing its original lexical meaning.
+  This evolution reflects a linguistic process where a word with concrete meaning becomes grammaticalized,
+  serving a more abstract function like indicating politeness.
+writeup: |-
+  The 「ます」 form is the cornerstone of polite Japanese verb conjugation, serving as the standard non-past affirmative ending for verbs in formal and semi-formal contexts. It attaches to the `ます-stem` of a verb. For example, the dictionary form 「食べる」(taberu, to eat) becomes 「食べます」(tabemasu), and 「行く」(iku, to go) becomes 「行きます」(ikimasu).
+
+  This form is essential for demonstrating respect and politeness towards your listener, making it appropriate for a wide range of situations, including speaking with strangers, colleagues, superiors, or in public settings. It signals that you are conversing in a courteous and respectful manner, which is a fundamental aspect of Japanese communication.
+
+  While 「ます」 primarily indicates present and future actions, its exact tense is often determined by context or accompanying temporal adverbs. For instance, 「毎日食べます」(mainichi tabemasu) means "I eat every day" (habitual), and 「明日食べます」(ashita tabemasu) means "I will eat tomorrow" (future).
+
+  Understanding and correctly using the 「ます」 form is crucial for building a solid foundation in Japanese politeness and for effective communication in most social situations.
+false_friends:
+  - term: です
+    meaning: polite copula (is/am/are)
+    kind: often confused with
+    nuance: 「です」 is a polite copula used to link nouns or na-adjectives to a subject, indicating identity
+      or state (e.g., 「学生です」(gakusei desu, I am a student)). In contrast, 「ます」 is an auxiliary verb attached
+      to the `ます-stem` of verbs to create polite conjugations, expressing actions or states. They serve
+      different grammatical functions and are not interchangeable.
+    grammar_point: です (polite copula)
+post_false_friends_writeup: 'It''s common for learners to confuse 「ます」 and 「です」 because both are polite
+  sentence-ending forms. However, their usage is distinct. 「ます」 is specifically for verbs, indicating
+  an action or occurrence in a polite manner. 「です」 is used for nouns and adjectives (including な-adjectives),
+  serving as a polite equivalent to "is," "am," or "are," describing the nature or state of something.
+  Remember: verbs use 「ます」, nouns and adjectives use 「です」.'
+examples:
+  - english: I eat sushi.
+    japanese:
+      - 私 は 寿司 を {食べ ます}。
+      - 寿司 を {食べ ます}。
+      - お 寿司 を {食べ ます}。
+      - 寿司 を {頂き ます}。
+      - お 寿司 を {頂き ます}。
+    english_literally: As for me, sushi I eat.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 寿司 を 食べる。
+        english: I eat sushi.
+        hint: 「食べる」 is the plain form, used in casual conversations among close friends or family. We're
+          looking for a polite expression suitable for general conversation.
+    scene: A student is introducing themselves and their preferences.
+    register: teineigo (polite)
+    setting: informative
+  - english: I study Japanese every day.
+    japanese:
+      - 毎日 日本 語 を {勉強 し ます}。
+      - 毎日 {勉強 し ます}。
+      - 日本 語 を 毎日 {勉強 し ます}。
+      - 毎日 日本 語 を {勉強 いたし ます}。
+    english_literally: Every day Japanese I study.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 日本 語 を 勉強 する。
+        english: I study Japanese every day.
+        hint: 「勉強 する」 is the plain form. We're looking for a polite form.
+    scene: A person describing their daily routine to a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+  - english: I will go to the station tomorrow.
+    japanese:
+      - 明日 駅 へ {行き ます}。
+      - 明日 駅 へ {参り ます}。
+      - 駅 へ 明日 {行き ます}。
+    english_literally: Tomorrow station to I go.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 駅 へ 行く。
+        english: I will go to the station tomorrow.
+        hint: 「行く」 is the plain form. We're looking for a polite form.
+    scene: Someone informing their friend of their plans.
+    register: teineigo (polite)
+    setting: informative
+  - english: I will help.
+    japanese:
+      - 私 が {手伝い ます}。
+      - '{手伝い ます}。'
+      - お {手伝い し ます}。
+      - お {手伝い いたし ます}。
+    english_literally: I who help.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 手伝おう。
+        english: I'll help (volitional).
+        hint: 「手伝おう」 is the volitional form, indicating a strong intention or suggestion. We're looking
+          for a simple polite statement of intention.
+    scene: Someone offering assistance in a polite manner.
+    register: teineigo (polite)
+    setting: supportive
+  - english: The cat sleeps well.
+    japanese:
+      - 猫 は よく {寝 ます}。
+      - よく {寝 ます}。
+      - あの 猫 は よく {寝 ます}。
+      - 猫 は よく {眠り ます}。
+    english_literally: As for cat, well sleeps.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は よく 寝る。
+        english: The cat sleeps well.
+        hint: 「寝る」 is the plain form. We're looking for a polite way to describe the cat's action.
+    scene: Someone commenting on their pet's behavior.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The flowers bloom in spring.
+    japanese:
+      - 春 に 花 が {咲き ます}。
+      - 花 は 春 に {咲き ます}。
+      - 春 に 花 が {開花 し ます}。
+    english_literally: Spring in flowers bloom.
+    competing_grammar:
+      - competing_japanese:
+          - 春 に 花 が 咲く。
+        english: The flowers bloom in spring.
+        hint: 「咲く」 is the plain form for a general truth. We need the polite form.
+    scene: A teacher explaining seasonal changes to young students.
+    register: teineigo (polite)
+    setting: instructional
+  - english: I understand Japanese a little.
+    japanese:
+      - 日本 語 が 少し {分かり ます}。
+      - 少し {分かり ます}。
+      - 日本 語 が {分かり ます}。
+    english_literally: Japanese slightly I understand.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 少し 分かる。
+        english: I understand Japanese a little.
+        hint: 「分かる」 is the plain form. We're looking for a polite way to state this.
+    scene: A non-native speaker answering a question about their language skills.
+    register: teineigo (polite)
+    setting: informative
+  - english: I will contact you tomorrow.
+    japanese:
+      - 明日 ご 連絡 {し ます}。
+      - 明日 ご 連絡 {いたし ます}。
+      - ご 連絡 {し ます}。
+    english_literally: Tomorrow your contact I do.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 連絡 する。
+        english: I will contact you tomorrow.
+        hint: 「連絡 する」 is the plain form. We're looking for a more formal and polite expression suitable
+          for a business context.
+    scene: A business professional ending a conversation with a client.
+    register: formal
+    setting: professional
+  - english: Please come to my house next time.
+    japanese:
+      - 今度 私 の 家 へ {来 ます} か？
+      - 今度 私 の 家 へ {いらっしゃい ます} か？
+      - 今度 家 へ {来 ます} か？
+      - 今度 家 へ {いらっしゃい ます} か？
+    english_literally: Next time my house to come?
+    competing_grammar:
+      - competing_japanese:
+          - 今度 私 の 家 へ 来る？
+        english: Will you come to my house next time?
+        hint: 「来る」 is the plain form. We're looking for a polite invitation. The question particle 「か」
+          makes it a polite question.
+    scene: A friend informally inviting another friend to their house.
+    register: teineigo (polite)
+    setting: friendly
+  - english: This machine works well.
+    japanese:
+      - この 機械 は よく {動き ます}。
+      - 機械 は よく {動き ます}。
+      - この 機械 は よく {作動 し ます}。
+    english_literally: This machine well works.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は よく 動く。
+        english: This machine works well.
+        hint: 「動く」 is the plain form. We're looking for a polite description of the machine's action.
+    scene: A technician explaining the functionality of equipment.
+    register: formal
+    setting: informative
+  - english: I always drink coffee in the morning.
+    japanese:
+      - 毎朝 コーヒー を {飲み ます}。
+      - コーヒー を 毎朝 {飲み ます}。
+      - 毎朝 コーヒー を {頂き ます}。
+    english_literally: Every morning coffee I drink.
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝 コーヒー を 飲む。
+        english: I always drink coffee in the morning.
+        hint: 「飲む」 is the plain form. We need the polite version.
+    scene: A person casually sharing their morning routine.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I will watch a movie tonight.
+    japanese:
+      - 今夜 映画 を {見 ます}。
+      - 映画 を 今夜 {見 ます}。
+      - 今夜 映画 を {拝見 し ます}。
+    english_literally: Tonight movie I watch.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 映画 を 見る。
+        english: I will watch a movie tonight.
+        hint: 「見る」 is the plain form. We need the polite version.
+    scene: Someone telling a family member their evening plans.
+    register: teineigo (polite)
+    setting: friendly

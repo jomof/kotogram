@@ -1,0 +1,269 @@
+grammar_point: はもちろん (not only... but also)
+learn_before:
+  - Verb[えば] (conditional)
+  - ちょっと (adverb)
+  - 一番 (superlative)
+meaning: Not only... but also, Let alone, Not to mention, Of course
+pronunciation:
+  katakana: ワモチロン
+  romaji: wa mochiron
+formation:
+  Noun A + はもちろん + Noun B + も: Expresses that not only is 'A' true or applicable, but 'B' is as well.
+jlpt: N3
+etymology: 「は」 is the topic particle. 「もちろん」 means "of course" or "naturally". Thus, the phrase highlights
+  that something is naturally the case, while also implying there is something else to consider.
+writeup: 「はもちろん」, or occasionally 「は勿論」, is a phrase in Japanese that presents an item or concept (A)
+  as being obvious or a given, while also highlighting another item or concept (B) that shares a similar
+  quality or is worth mentioning. The particle 「は」 functions as a topic marker, setting (A) as the primary
+  focus, before the adverb 「もちろん」 reinforces its natural or expected status. Following this, the sentence
+  introduces (B), often with the particle 「も」, indicating that (B) possesses a similar attribute or is
+  equally relevant. This construction is typically used directly after noun (A), before the sentence continues
+  to discuss noun (B). It can be translated into English using phrases such as "not only (A), but also
+  (B)", "let alone (A), (B)", or "not to mention (A), (B)". While sharing a similar meaning with 「だけでなく」,
+  「はもちろん」 carries a more formal tone. Due to this increased formality, it may sound somewhat stiff in
+  casual conversations unless the speaker intends to emphasize a point significantly.
+false_friends:
+  - term: はもとより
+    meaning: Not only... but also, Let alone, Of course
+    kind: synonym
+    nuance: 「はもとより」 is a more formal and literary version of 「はもちろん」, often used in written Japanese.
+    grammar_point: はもとより (not only・let alone)
+  - term: だけでなく
+    meaning: Not only… but also
+    kind: synonym
+    nuance: 「だけでなく」 is a more neutral and common synonym, suitable for a broader range of contexts compared
+      to the slightly more emphatic 「はもちろん」.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: に加えて
+    meaning: In addition to
+    kind: synonym
+    nuance: 「に加えて」 emphasizes adding something new or additional, whereas 「はもちろん」 focuses on the first
+      item being an obvious given before the second is mentioned.
+    grammar_point: それに (in addition・moreover)
+  - term: に限らず
+    meaning: Not limited to
+    kind: similar expression
+    nuance: 「に限らず」 indicates that something is not restricted to a specific case or group, broadening
+      the scope, while 「はもちろん」 highlights an obvious item and an additional one.
+    grammar_point: に限らず (not limited to)
+  - term: をはじめ
+    meaning: Starting with
+    kind: similar expression
+    nuance: 「をはじめ」 introduces a representative item as the starting point of a list, implying other similar
+      items exist. 「はもちろん」 focuses on two specific elements with the first being obvious.
+    grammar_point: をはじめ (starting with)
+  - term: ばかりでなく
+    meaning: Not only…but also, As well as
+    kind: synonym
+    nuance: 「ばかりでなく」 is generally considered slightly more formal than 「だけでなく」 but less so than 「はもちろん」.
+      It conveys the idea of 'not just... but also' without the strong 'of course' nuance.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: のみならず
+    meaning: Not only... but also
+    kind: synonym
+    nuance: 「のみならず」 is a highly formal and often literary expression for 'not only... but also'. It indicates
+      that the preceding item is not the sole case, with other items existing or being true.
+    grammar_point: はもとより (not only・let alone)
+  - term: もさることながら
+    meaning: Not only... but more so
+    kind: synonym
+    nuance: 「もさることながら」 means 'not only X, but Y is even more so', emphasizing the second item after acknowledging
+      the first. This is similar to 「はもちろん」 in treating the first item as a given, but it adds a stronger
+      comparative element.
+    grammar_point: もさることながら (not only・but more so)
+post_false_friends_writeup: While all these expressions share the idea of 'not only... but also', they
+  differ in formality, emphasis, and the nuance of the relationship between the items. 「はもちろん」 highlights
+  that the first item is an obvious given. 「はもとより」 and 「のみならず」 are more formal and literary. 「だけでなく」 and
+  「ばかりでなく」 are more neutral. 「に加えて」 emphasizes adding something new, 「に限らず」 broadens scope, 「をはじめ」 starts
+  a list, and 「もさることながら」 comparatively emphasizes the second item.
+examples:
+  - english: He can speak not only Japanese, but also English.
+    japanese:
+      - 彼 は 日本 語 {は もちろん}、英語 も 話せ ます。
+      - 彼 は 日本 語 {は もちろん}、英語 も 話せる。
+    english_literally: He, Japanese, of course, English also, can speak.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 語 {だけ で なく} 英語 も 話せ ます。
+        english: He can speak not only Japanese, but also English.
+        hint: 「だけでなく」 is a more neutral expression, suitable for a broader range of contexts. We're looking
+          for a phrase that implies one thing is obvious, and another is also true.
+    scene: A colleague informing another about a new team member's language skills.
+    register: teineigo (polite)
+    setting: informative
+  - english: This smartphone not only has a good camera, but you can also enjoy games.
+    japanese:
+      - この スマート フォン は カメラ {は もちろん}、ゲーム も 楽しめる よ。
+      - この スマート フォン は カメラ {は もちろん}、ゲーム も 楽しめる。
+      - この スマート フォン は カメラ {は もちろん}、ゲーム も 楽しめ ます。
+    english_literally: This smartphone, camera, of course, games also, can be enjoyed.
+    competing_grammar:
+      - competing_japanese:
+          - この スマート フォン は カメラ {だけ で なく} ゲーム も 楽しめる よ。
+        english: This smartphone not only has a good camera, but you can also enjoy games.
+        hint: 「だけでなく」 simply lists additional features without the emphasis that the first item is an
+          obvious given. We're looking for an expression that suggests the camera is an expected good
+          feature, and the games are a bonus.
+    scene: A friend showing off their new smartphone to another, highlighting its features.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: A male speaker might use 「楽しめるよ」 to express enthusiasm for the gaming aspect, implying a shared
+      interest in tech features with a casual tone.
+  - english: This cake shop's shortcake is a given, but their pudding is also very delicious.
+    japanese:
+      - この ケーキ 屋 さん は ショート ケーキ {は もちろん}、プリン も とても 美味しい です。
+      - この ケーキ 屋 さん は ショート ケーキ {は もちろん}、プリン も とても 美味しい。
+      - この ケーキ 屋 さん は ショート ケーキ {は もちろん}、プリン も めっちゃ 美味しい よ。
+    english_literally: This cake shop, shortcake, of course, pudding also, very delicious.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ 屋 さん は ショート ケーキ {だけ で なく} プリン も とても 美味しい です。
+        english: This cake shop's shortcake is good, and their pudding is also very delicious.
+        hint: 「だけでなく」 conveys 'not only... but also' without implying that the first item is an obvious
+          or established fact. We're looking for a way to say the shortcake is already known to be good,
+          and the pudding is also good.
+    scene: A friend recommending a sweets shop to another.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: A female speaker might use 「とても美味しいです」 with a slightly more expressive tone when sharing a
+      positive food experience, conveying personal delight and a stronger recommendation.
+  - english: He's not only good at cooking, but also good at tidying up, which is a great help.
+    japanese:
+      - 彼 は 料理 {は もちろん}、片付け も 上手 な の で、本当 に 助かり ます。
+      - 彼 は 料理 {は もちろん}、片付け も 上手 な の で、本当 に 助かる。
+    english_literally: He, cooking, of course, tidying up also, skilled, so, truly, helpful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 料理 {だけ で なく} 片付け も 上手 な の で、本当 に 助かり ます。
+        english: He is not only good at cooking, but also good at tidying up, which is a great help.
+        hint: 「だけでなく」 simply adds an additional skill without implying that the first skill is already
+          widely recognized or expected. We're looking for an expression that treats cooking as an expected
+          good quality, and tidying up as an added bonus.
+    scene: A roommate expressing appreciation for another roommate's helpfulness.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: no one
+    nuance: A male speaker might express gratitude using 「本当に助かります」 in a straightforward, appreciative
+      manner, emphasizing the practical benefit of the other person's skills in a shared living situation.
+  - english: In this project, safety is a given, but cost also needs to be considered.
+    japanese:
+      - この プロジェクト で は 安全 {は もちろん}、コスト も 考慮 する 必要 が あり ます。
+      - この プロジェクト で は 安全 {は もちろん}、コスト も 考慮 する 必要 が ある。
+    english_literally: This project, safety, of course, cost also, considering, necessity, there is.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト で は 安全 {だけ で なく} コスト も 考慮 する 必要 が あり ます。
+        english: In this project, not only safety but also cost needs to be considered.
+        hint: 「だけでなく」 states that both are true, but doesn't convey that safety is a fundamental, expected
+          element. We're looking for a phrase that establishes safety as a primary, obvious concern before
+          introducing cost.
+    scene: A team leader outlining priorities for a new project to their team.
+    register: formal
+    setting: professional
+  - english: She not only studies literature, but also deeply studies science.
+    japanese:
+      - 彼女 は 文学 {は もちろん}、科学 も 深く 学ん で い ます。
+      - 彼女 は 文学 {は もちろん}、科学 も 深く 学ん で いる。
+    english_literally: She, literature, of course, science also, deeply, studies.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 文学 {だけ で なく} 科学 も 深く 学ん で い ます。
+        english: She not only studies literature, but also deeply studies science.
+        hint: 「だけでなく」 merely indicates two subjects of study without emphasizing that the first is a given
+          or already impressive achievement. We're looking for an expression that highlights the literature
+          study as already noteworthy, and the science study as an impressive addition.
+    scene: A professor discussing a student's broad academic interests during a meeting.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: A professor, potentially an older male, would use a formal and informative tone when discussing
+      a student's academic profile. The use of 「深く学んでいます」 indicates a comprehensive understanding, suitable
+      for an academic discussion.
+  - english: This restaurant's ramen is a given, but their gyoza is also exquisite.
+    japanese:
+      - この ラーメン 屋 は ラーメン {は もちろん}、餃子 も 絶品 だ よ。
+      - この ラーメン 屋 は ラーメン {は もちろん}、餃子 も 絶品 です。
+      - この ラーメン 屋 は ラーメン {は もちろん}、餃子 も 絶品。
+    english_literally: This ramen shop, ramen, of course, gyoza also, exquisite.
+    competing_grammar:
+      - competing_japanese:
+          - この ラーメン 屋 は ラーメン {だけ で なく} 餃子 も 絶品 です。
+        english: This ramen shop's ramen is good, and their gyoza is also exquisite.
+        hint: 「だけでなく」 conveys 'not only... but also' without implying that the first item is an obvious
+          excellence. We're looking for a way to say the ramen is already known to be great, and the gyoza
+          is an additional amazing dish.
+    scene: Two friends are discussing good places to eat lunch.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: A female speaker might use 「絶品だね」 or 「絶品だよ」 to express enthusiasm about the food, often seeking
+      agreement or sharing personal delight in a friendly context.
+  - english: As a professional athlete, physical strength is a given, but mental toughness is also crucial.
+    japanese:
+      - プロ の アスリート は 体力 {は もちろん}、精神 力 も 不可欠 です。
+      - プロ の アスリート は 体力 {は もちろん}、精神 力 も 不可欠 だ。
+    english_literally: Professional athlete, physical strength, of course, mental strength also, indispensable.
+    competing_grammar:
+      - competing_japanese:
+          - プロ の アスリート は 体力 {に 加え て} 精神 力 も 不可欠 です。
+        english: For professional athletes, in addition to physical strength, mental toughness is also
+          indispensable.
+        hint: 「に加えて」 emphasizes adding something new or extra, rather than taking the first item as a
+          fundamental, established truth. We're looking for a phrase that establishes physical strength
+          as an obvious requirement, and mental toughness as another critical factor.
+    scene: A sports commentator analyzing an athlete's performance.
+    register: formal
+    setting: informative
+    speaker_age: older
+    nuance: An older speaker, like a commentator, would use formal language such as 「不可欠です」 when discussing
+      important qualities. The phrase 「体力はもちろん」 implies that physical strength is a widely accepted baseline
+      for professional athletes.
+  - english: The host not only prepared delicious food, but also entertaining games.
+    japanese:
+      - ホスト は 美味しい 料理 {は もちろん}、楽しい ゲーム も 用意 し て くれ た。
+      - ホスト は 美味しい 料理 {は もちろん}、楽しい ゲーム も 用意 し て くれ まし た。
+    english_literally: The host, delicious food, of course, fun games also, prepared (for us).
+    competing_grammar:
+      - competing_japanese:
+          - ホスト は 美味しい 料理 {だけ で なく} 楽しい ゲーム も 用意 し て くれ た。
+        english: The host not only prepared delicious food, but also fun games.
+        hint: 「だけでなく」 simply lists two things the host prepared. We're looking for an expression that
+          suggests the delicious food was expected, and the games were a pleasant surprise or additional
+          effort.
+    scene: Friends debriefing after a party, complimenting the host.
+    register: casual
+    setting: friendly
+    listener_gender: group
+    nuance: When talking about someone doing something for you, the verb 「〜てくれた」 is common in casual speech.
+      The speaker is relaying a positive impression of the host to a group of friends.
+  - english: For this exam, understanding the basics is a given, but applying them is also important.
+    japanese:
+      - この 試験 で は 基本 の 理解 {は もちろん}、応用 力 も 重要 です。
+      - この 試験 で は 基本 の 理解 {は もちろん}、応用 力 も 重要 だ。
+    english_literally: This exam, basics understanding, of course, application ability also, important.
+    competing_grammar:
+      - competing_japanese:
+          - この 試験 で は 基本 の 理解 {に とどまら ず}、応用 力 も 重要 です。
+        english: For this exam, it's not limited to understanding the basics; application ability is also
+          important.
+        hint: 「にとどまらず」 means 'not limited to' and implies something goes beyond a certain boundary. While
+          similar, it doesn't carry the "obvious" nuance of the first item as strongly as 「はもちろん」. We're
+          looking for a phrase that assumes basic understanding is a prerequisite, and application is
+          a further, vital skill.
+    scene: A university professor giving advice to students before an exam.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male professor addressing students would likely use formal and instructional language, such
+      as 「重要です」. The phrase 「基本の理解はもちろん」 establishes the foundational knowledge as an expected baseline.
+post_example_writeup: Understanding the precise nuance of 「はもちろん」 often comes from recognizing that the
+  first element mentioned is treated as a baseline or an obvious truth, with the second element being
+  an additional, sometimes unexpected, point. This sets it apart from more general 'not only... but also'
+  constructions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AF%E3%82%82%E3%81%A1%E3%82%8B%E3%82%93

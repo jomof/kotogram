@@ -1,0 +1,537 @@
+grammar_point: て初めて (for the first time after)
+learn_before:
+  - い-Adjective[さ] (nominalizer)
+meaning: Only after, Not until, Only when, Only because, For the first time (doing something)
+pronunciation:
+  katakana: テハジメテ
+  romaji: te hajimete
+formation:
+  Verb - te form + 初めて: Expresses that something happens or someone does something only after a certain
+    action or event occurs.
+  て form of verb + 初めて + わかる/気づく/知る: Indicates that one understands, realizes, or knows something for
+    the first time after a certain action.
+jlpt: N3
+etymology: The grammar point 「て初めて」 is composed of 「て」, which connects actions in sequence, and 「初めて」
+  (hajimete), meaning "for the first time." Thus, it literally means "after doing something, for the first
+  time [something else happens]."
+writeup: |-
+  「て初めて」 is used to express that something happens or becomes apparent **only after** a certain action or event has taken place. It emphasizes the idea that the first action is a necessary condition for the subsequent event to occur or be understood. This often carries a sense of discovery or realization that comes as a result of the first action. This is often translated as "not until", "only after", or "for the first time [doing something]."
+
+  Originally, 「始めて」 ('commencing with') and 「初めて」 ('starting with') were both used with this expression. However, using 「始めて」 is considered incorrect in modern Japanese, as only 「初めて」 strictly carries the meaning of 'for the first time' and implies a new, unique experience.
+false_friends:
+  - term: てからでないと
+    meaning: (Not) unless ~ cannot, (Not) until ~ cannot
+    kind: synonym
+    nuance: Unlike 「て初めて」, 「てからでないと」 implies that the second action *cannot* happen unless the first action
+      occurs.
+    grammar_point: '[Verb-て]からでないと〜ない (unless after doing)'
+  - term: てから
+    meaning: Once...is done, Once...happens, After doing
+    kind: synonym
+    nuance: Unlike 「て初めて」, 「てから」 simply indicates sequence without necessarily implying a realization
+      or discovery.
+    grammar_point: てから (after and since)
+  - term: 上で
+    meaning: After, Upon
+    kind: synonym
+    nuance: Unlike 「て初めて」, 「上で」 often suggests a deliberate action taken after careful consideration.
+    grammar_point: 上で (after doing)
+  - term: たら
+    meaning: If; When; After
+    kind: similar expression
+    nuance: Unlike 「て初めて」, 「たら」 simply indicates a conditional or temporal sequence without implying a
+      new realization or discovery.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: とき
+    meaning: When, at the time of
+    kind: similar expression
+    nuance: Unlike 「て初めて」, 「時」 specifies a point in time when an action occurred, not necessarily that
+      something was understood for the first time as a result of that action.
+    grammar_point: とき (when)
+  - term: Verb[て]+こそ
+    meaning: Only if; precisely by; not until
+    kind: similar expression
+    nuance: Unlike 「て初めて」 which emphasizes a new discovery or realization occurring for the first time
+      *as a result* of an action, 「てこそ」 highlights the *indispensable condition* for something to truly
+      become possible or valid, often implying a positive outcome or achievement.
+    grammar_point: '[Verb-て]こそ (only if or by)'
+post_false_friends_writeup: To avoid mixing up 「て初めて」 with similar expressions, remember that 「て初めて」 specifically
+  highlights a realization, discovery, or new understanding that occurs *as a direct result* of the first
+  action. If you simply want to indicate a sequence of events, 「てから」 is more appropriate. If you want
+  to emphasize that the first action is a prerequisite for the second, use 「てからでないと」. If you want to suggest
+  careful consideration between the two events, then use 「上で」. For simple temporal or conditional relationships,
+  「たら」 or 「時」 are more suitable. In contrast, 「てこそ」 emphasizes that the preceding action is the *only*
+  or *most crucial* way to achieve a particular state or outcome, often a positive one, rather than a
+  new discovery.
+examples:
+  - english: Only after cooking for myself did I understand how difficult my mother's life was.
+    japanese:
+      - 料理 し て {て 初めて}、母 の 大変 さ が 分かっ た。
+      - 料理 し て {て 初めて}、母 の 大変 さ が 分かり まし た。
+      - 料理 し て {て 初めて}、母 の 大変 さ に 気付い た。
+      - 自分 で 料理 し て {て 初めて}、母 の 大変 さ が 身 に しみ て 分かっ た。
+    english_literally: Having cooked, for the first time, mother's difficulty became understood.
+    competing_grammar:
+      - competing_japanese:
+          - 料理 し て {て から} 母 の 大変 さ が 分かっ た。
+        english: After cooking, I understood my mother's hardships.
+        hint: 「てから」 simply states a sequence of events, not emphasizing a new discovery or profound realization.
+      - competing_japanese:
+          - 料理 し て {て から で ない と}、母 の 大変 さ が 分から なかっ た だろう。
+        english: If I hadn't cooked, I probably wouldn't have understood my mother's hardships.
+        hint: 「てからでないと」 implies that the second action *cannot* happen unless the first action occurs,
+          focusing on prerequisite rather than first-time realization.
+      - competing_japanese:
+          - 料理 し た {上 で}、母 の 大変 さ が 分かっ た。
+        english: Having cooked, I understood my mother's hardships.
+        hint: 「上で」 suggests a deliberate action followed by understanding, but doesn't convey the sense
+          of a first-time profound understanding.
+      - competing_japanese:
+          - 料理 し {たら} 母 の 大変 さ が 分かっ た。
+        english: If I cooked, I understood my mother's hardships.
+        hint: 「たら」 indicates a conditional or temporal sequence, not specifically a new discovery or realization
+          that emerged for the first time.
+      - competing_japanese:
+          - 料理 し た {時}、母 の 大変 さ が 分かっ た。
+        english: At the time I cooked, I understood my mother's hardships.
+        hint: 「時」 specifies a point in time when an action occurred, not that the understanding was a
+          *new* insight uniquely enabled by that action.
+      - competing_japanese:
+          - 料理 し て {こそ}、母 の 大変 さ が 分かる。
+        english: Only by cooking can one truly understand a mother's hardships.
+        hint: 「てこそ」 emphasizes that the preceding action is the *only* or *most crucial* way to achieve
+          a particular state or outcome, rather than a new discovery that occurred.
+    scene: A young adult living alone for the first time reflects on their mother's efforts.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The speaker's realization is emphasized by 「分かった」 (wakatta), which signifies a personal understanding
+      that occurred only after the direct experience of cooking, highlighting a newly gained perspective.
+  - english: It was only after practicing many times that I was able to play skillfully for the first
+      time.
+    japanese:
+      - 何 回 も 練習 し て {て 初めて}、ひける よう に なっ た。
+      - 何 回 も 練習 し て {て 初めて}、弾ける よう に なり まし た。
+      - 何 度 も 練習 を 重ね て {て 初めて}、ようやく 弾ける よう に なっ た。
+      - たくさん 練習 し て {て 初めて}、うまく 弾ける よう に なっ た。
+    english_literally: Having practiced many times, for the first time, I became able to play.
+    competing_grammar:
+      - competing_japanese:
+          - 何 回 も 練習 し {たら} ひける よう に なっ た。
+        english: If I practiced many times, I became able to play.
+        hint: 「たら」 indicates a conditional or temporal sequence, not specifically a new discovery or realization
+          that emerged for the first time.
+      - competing_japanese:
+          - 何 度 も 練習 し て {て から で ない と}、弾ける よう に は なら なかっ た だろう。
+        english: If I hadn't practiced many times, I probably wouldn't have been able to play.
+        hint: 「てからでないと」 focuses on practice as a necessary *precondition* to be able to play, rather than
+          highlighting the *first instance* of playing skillfully after practice.
+      - competing_japanese:
+          - 何 度 も 練習 し て {て から}、弾ける よう に なっ た。
+        english: After practicing many times, I became able to play.
+        hint: 「てから」 simply states the sequence of events, not emphasizing that being able to play skillfully
+          was a *new* or *first-time* outcome specifically *because* of the extensive practice.
+      - competing_japanese:
+          - 練習 し た {上 で}、ひける よう に なっ た。
+        english: Having practiced, I became able to play.
+        hint: 「上で」 implies a deliberate action followed by understanding, but doesn't convey the sense
+          of *first-time achievement* or *discovery* of ability.
+      - competing_japanese:
+          - 何 度 も 練習 し た {時}、ひける よう に なっ た。
+        english: At the time I practiced many times, I became able to play.
+        hint: 「時」 simply marks the point in time when the ability was gained, not that the ability was
+          a *new* or *first-time* outcome uniquely enabled by the prior action.
+      - competing_japanese:
+          - 何 度 も 練習 し て {こそ}、弾ける よう に なる。
+        english: Only by practicing many times can one truly become able to play.
+        hint: 「てこそ」 emphasizes that extensive practice is the *only* way to *truly* become able to play,
+          highlighting it as an essential condition for mastery, not the *initial instance* of playing
+          skillfully.
+    scene: A musician describing their journey to mastering an instrument.
+    register: semi-formal
+    setting: instructional
+    nuance: The phrase 「ひけるように なった」 (hikeru you ni natta) indicates a newly acquired ability or state,
+      directly linked to the practice being the catalyst for this first-time achievement.
+  - english: It was only after actually visiting Kyoto that I truly felt its beauty for the first time.
+    japanese:
+      - 実際 に 京都 を 訪れ て {て 初めて}、その 美し さ を 感じ た。
+      - 実際 に 京都 を 訪れ て {て 初めて}、その 美し さ を 感じ まし た。
+      - 実際 に 京都 に 足 を 運ん で {て 初めて}、その 美し さ に 心 を 奪わ れ た。
+      - 実際 に 京都 に 行っ て {て 初めて}、その 美し さ が よく 分かっ た。
+    english_literally: Actually having visited Kyoto, for the first time, its beauty was felt.
+    competing_grammar:
+      - competing_japanese:
+          - 実際 に 京都 を 訪れ た {時}、その 美し さ を 感じ た。
+        english: At the time I actually visited Kyoto, I felt its beauty.
+        hint: 「時」 simply states the point in time when the feeling occurred, not that the beauty was a
+          *new* or *first-time* experience uniquely enabled by the visit.
+      - competing_japanese:
+          - 実際 に 京都 を 訪れ て {て から で ない と}、その 美し さ は 本当 に 分から なかっ た だろう。
+        english: If I hadn't actually visited Kyoto, I probably wouldn't have truly understood its beauty.
+        hint: 「てからでないと」 suggests that without visiting, one *couldn't* truly understand its beauty, focusing
+          on the prerequisite rather than the first-time realization.
+      - competing_japanese:
+          - 実際 に 京都 を 訪れ て {て から}、その 美し さ を 感じ た。
+        english: After actually visiting Kyoto, I felt its beauty.
+        hint: 「てから」 merely states the sequence, without implying the beauty was a *new* or *first-time*
+          experience uniquely enabled by the visit.
+      - competing_japanese:
+          - 京都 を 訪れ た {上 で}、その 美し さ を 感じ た。
+        english: Having visited Kyoto, I felt its beauty.
+        hint: 「上で」 implies a deliberate visit leading to the feeling, but not necessarily a *first-time*
+          profound feeling or discovery.
+      - competing_japanese:
+          - 実際 に 京都 を 訪れ {たら}、その 美し さ を 感じ た。
+        english: If I actually visited Kyoto, I felt its beauty.
+        hint: 「たら」 implies a conditional outcome or simple temporal relation, not the specific sense of
+          a *first-time* profound experience.
+      - competing_japanese:
+          - 京都 を 訪れ て {こそ}、その 美し さ を 感じる こと が できる。
+        english: Only by visiting Kyoto can one truly feel its beauty.
+        hint: 「てこそ」 emphasizes that visiting Kyoto is the *only* way to *truly* experience its beauty,
+          highlighting it as an essential condition for genuine appreciation, not the initial moment of
+          realization.
+    scene: A traveler sharing their experience of Kyoto, highlighting a new depth of appreciation.
+    register: formal
+    setting: informative
+    nuance: The use of 「感じた」 (kanjita) implies a deeper, personal experience and emotional connection
+      to the beauty, which was a new sensation for the speaker, brought about by the act of visiting for
+      the first time.
+  - english: Only after listening to his story did I truly understand his feelings for the first time.
+    japanese:
+      - 彼 の 話 を 聞い て {て 初めて}、彼 の 気持ち が 分かっ た。
+      - 彼 の 話 を 聞い て {て 初めて}、彼 の 気持ち が 分かり まし た。
+      - 彼 の 話 に 耳 を 傾け て {て 初めて}、彼 の 気持ち が 痛い ほど 分かっ た。
+      - 彼 の 話 を 拝聴 し て {て 初めて}、彼 の 御 気持ち を 察し た。
+    english_literally: Having heard his story, for the first time, his feelings were understood.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 を 聞い て {て から} 彼 の 気持ち が 分かっ た。
+        english: After listening to his story, I understood his feelings.
+        hint: 「てから」 simply states a sequence, without implying that the understanding was a *new* or *first-time*
+          realization.
+      - competing_japanese:
+          - 彼 の 話 を 聞い て {て から で ない と}、彼 の 気持ち は 本当 に 分から なかっ た だろう。
+        english: If I hadn't listened to his story, I probably wouldn't have truly understood his feelings.
+        hint: 「てからでないと」 focuses on hearing the story as a necessary *precondition* for understanding,
+          rather than the understanding being a *first-time* realization after hearing the story.
+      - competing_japanese:
+          - 彼 の 話 を 聞い た {上 で}、彼 の 気持ち が 分かっ た。
+        english: Having listened to his story, I understood his feelings.
+        hint: 「上で」 suggests a deliberate listening followed by understanding, but doesn't convey the *first-time*
+          realization.
+      - competing_japanese:
+          - 彼 の 話 を 聞い {たら}、彼 の 気持ち が 分かっ た。
+        english: If I listened to his story, I understood his feelings.
+        hint: 「たら」 presents understanding as a conditional or simple temporal outcome, not a *new* understanding
+          occurring for the first time.
+      - competing_japanese:
+          - 彼 の 話 を 聞い た {時}、彼 の 気持ち が 分かっ た。
+        english: At the time I listened to his story, I understood his feelings.
+        hint: 「時」 simply states the point in time when understanding occurred, not that it was a *new*
+          or *first-time* understanding uniquely enabled by hearing the story.
+      - competing_japanese:
+          - 彼 の 話 を 聞い て {こそ}、彼 の 気持ち が 分かる。
+        english: Only by listening to his story can one truly understand his feelings.
+        hint: 「てこそ」 implies that only by listening to his story can one *truly* understand his feelings,
+          highlighting it as an essential condition for genuine understanding, not the initial moment
+          of realization.
+    scene: A friend empathizing with another after a deep conversation.
+    register: casual
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「彼の 気持ち が 分かった」 (kare no kimochi ga wakatta) indicates a deep empathetic understanding
+      achieved only after the specific action of listening to his story, highlighting the newness of this
+      understanding.
+  - english: It was only after quitting my job that I was able to feel true freedom for the first time.
+    japanese:
+      - 会社 を 辞め て {て 初めて}、本当 の 自由 を 感じる こと が でき た。
+      - 会社 を 辞め て {て 初めて}、本当 の 自由 を 感じる こと が でき まし た。
+      - 仕事 を 辞め て {て 初めて}、本当 の 自由 を 感じ られ た。
+      - 会社 を 辞め て {て 初めて}、真 の 自由 を 噛みしめ た。
+    english_literally: Having quit the company, for the first time, I was able to feel true freedom.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 を 辞め た {後 で}、本当 の 自由 を 感じ た。
+        english: After quitting the company, I felt true freedom.
+        hint: 「後で」 indicates a simple temporal sequence, not emphasizing that the feeling of true freedom
+          was a *new* or *first-time* experience uniquely enabled by quitting.
+      - competing_japanese:
+          - 会社 を 辞め て {て から で ない と}、本当 の 自由 を 感じる こと は なかっ た だろう。
+        english: If I hadn't quit the company, I probably wouldn't have felt true freedom.
+        hint: 「てからでないと」 implies that without quitting, feeling true freedom *would not have been possible*,
+          focusing on the necessity rather than the first-time discovery.
+      - competing_japanese:
+          - 会社 を 辞め て {て から}、本当 の 自由 を 感じる こと が でき た。
+        english: After quitting the company, I was able to feel true freedom.
+        hint: 「てから」 simply describes a sequence of events, not emphasizing that the feeling of true freedom
+          was a *new* or *first-time* experience uniquely enabled by quitting.
+      - competing_japanese:
+          - 会社 を 辞め た {上 で}、本当 の 自由 を 感じる こと が でき た。
+        english: Having quit the company, I was able to feel true freedom.
+        hint: 「上で」 implies a decision to quit followed by the feeling of freedom, but doesn't highlight
+          the *first-time* experience of that freedom.
+      - competing_japanese:
+          - 会社 を 辞め {たら}、本当 の 自由 を 感じる こと が でき た。
+        english: If I quit the company, I was able to feel true freedom.
+        hint: 「たら」 indicates a conditional outcome or simple temporal relation, not the specific sense
+          of a *first-time* profound feeling.
+      - competing_japanese:
+          - 会社 を 辞め た {時}、本当 の 自由 を 感じる こと が でき た。
+        english: At the time I quit the company, I was able to feel true freedom.
+        hint: 「時」 simply states the point in time when the feeling occurred, not that it was a *new* or
+          *first-time* feeling uniquely enabled by quitting.
+      - competing_japanese:
+          - 会社 を 辞め て {こそ}、本当 の 自由 を 感じる こと が できる。
+        english: Only by quitting the company can one truly feel genuine freedom.
+        hint: 「てこそ」 emphasizes that quitting the job is the *only* way to *truly* experience genuine freedom,
+          highlighting it as an essential condition for profound liberation, not the initial moment of
+          realization.
+    scene: A person reflecting on their career change and new sense of liberation.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: male
+    nuance: 「本当 の 自由 を 感じる こと が できた」 (hontou no jiyuu wo kanjiru koto ga dekita) expresses the acquisition
+      of a new, significant feeling of freedom that was previously unknown, directly caused by the act
+      of leaving the company.
+  - english: Only after experiencing failure did I truly understand the importance of perseverance for
+      the first time.
+    japanese:
+      - 失敗 を 経験 し て {て 初めて}、忍耐 の 大切 さ を 知っ た。
+      - 失敗 を 経験 し て {て 初めて}、忍耐 の 大切 さ を 知り まし た。
+      - 一 度 どん底 を 経験 し て {て 初めて}、粘り強 さ の 大切 さ に 気づかさ れ た。
+      - 数々 の 失敗 を 経験 し て {て 初めて}、諦め ない こと の 価値 を 悟っ た。
+    english_literally: Having experienced failure, for the first time, I learned the importance of perseverance.
+    competing_grammar:
+      - competing_japanese:
+          - 失敗 を 経験 し て {て から} 忍耐 の 大切 さ を 知っ た。
+        english: After experiencing failure, I learned the importance of perseverance.
+        hint: 「てから」 simply indicates a sequence of events, without emphasizing a new, profound realization
+          of importance.
+      - competing_japanese:
+          - 失敗 を 経験 し た {上 で} 忍耐 の 大切 さ を 知っ た。
+        english: Having experienced failure, I learned the importance of perseverance.
+        hint: 「上で」 suggests a deliberate action followed by understanding, but doesn't convey the sense
+          of a first-time profound understanding or discovery.
+    scene: A mentor sharing a life lesson with a younger colleague after overcoming a setback.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    nuance: The use of 「知った」 (shitta) conveys a deeper, internal understanding of perseverance's value
+      that was gained specifically and for the first time through the experience of failure, emphasizing
+      the personal impact.
+  - english: Only after falling ill did I truly appreciate the importance of health for the first time.
+    japanese:
+      - 病気 に なっ て {て 初めて}、健康 の 大切 さ を 痛感 し た。
+      - 病気 に なっ て {て 初めて}、健康 の 大切 さ を 痛感 し まし た。
+      - 大病 を 患っ て {て 初めて}、健康 の あり がたみ を 心底 知っ た。
+      - 体調 を 崩し て {て 初めて}、健康 で ある こと の 貴重 さ を 理解 し た。
+    english_literally: Having become sick, for the first time, I keenly felt the importance of health.
+    competing_grammar:
+      - competing_japanese:
+          - 病気 に なっ て {て から} 健康 の 大切 さ を 痛感 し た。
+        english: After falling ill, I keenly felt the importance of health.
+        hint: 「てから」 simply states the sequence of events without emphasizing that the appreciation was
+          a *new* or *first-time* realization prompted by the illness.
+      - competing_japanese:
+          - 病気 に なっ た {時}、健康 の 大切 さ を 痛感 し た。
+        english: At the time I fell ill, I keenly felt the importance of health.
+        hint: 「時」 simply marks a point in time, not highlighting that the appreciation of health was a
+          *new* insight uniquely gained due to the illness.
+    scene: Someone recovering from an illness reflecting on their past habits and newfound appreciation.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The phrase 「健康 の 大切 さ を 痛感 した」 (kenkou no taisetsu sa wo tsuukan shita) means 'keenly felt
+      the importance of health,' indicating a profound, first-time realization that arose directly from
+      the experience of illness.
+  - english: Only after living abroad did I truly understand Japanese culture for the first time.
+    japanese:
+      - 海外 で 暮らし て {て 初めて}、日本 文化 の 素晴らし さ を 知っ た。
+      - 海外 で 暮らし て {て 初めて}、日本 文化 の 素晴らし さ を 知り まし た。
+      - 外国 に 住ん で {て 初めて}、日本 の 文化 の 深 さ を 実感 し た。
+      - 海外 生活 を 経験 し て {て 初めて}、日本 人 と し て の アイデンティティ を 再 認識 し た。
+    english_literally: Having lived abroad, for the first time, I learned the splendor of Japanese culture.
+    competing_grammar:
+      - competing_japanese:
+          - 海外 で 暮らし {たら} 日本 文化 の 素晴らし さ を 知っ た。
+        english: If I lived abroad, I learned the splendor of Japanese culture.
+        hint: 「たら」 indicates a conditional or simple temporal relation, not the specific sense of a *first-time*
+          profound understanding.
+      - competing_japanese:
+          - 海外 で 暮らし て {て から で ない と}、日本 文化 の 素晴らし さ は 分から なかっ た だろう。
+        english: If I hadn't lived abroad, I probably wouldn't have understood the splendor of Japanese
+          culture.
+        hint: 「てからでないと」 implies that living abroad was a necessary *precondition* for understanding, rather
+          than the understanding being a *first-time* realization after living there.
+    scene: A Japanese person who returned home after studying or working overseas shares their insights.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    nuance: 「日本 文化 の 素晴らし さ を 知った」 (Nihon bunka no subarashisa wo shitta) implies a newfound appreciation
+      and understanding of their own culture, which could only be truly grasped from an outside perspective
+      after living abroad.
+  - english: Only after experiencing war did I truly understand the value of peace for the first time.
+    japanese:
+      - 戦争 を 経験 し て {て 初めて}、平和 の 尊 さ が 身 に しみ た。
+      - 戦争 を 経験 し て {て 初めて}、平和 の 尊 さ が 身 に しみ まし た。
+      - 戦禍 を 経験 し て {て 初めて}、平和 の 大切 さ を 骨身 に 染み て 知っ た。
+      - 戦場 を 知っ て {て 初めて}、日常 の 平穏 が どれ ほど 貴重 か を 悟っ た。
+    english_literally: Having experienced war, for the first time, the preciousness of peace soaked into
+      my body.
+    competing_grammar:
+      - competing_japanese:
+          - 戦争 を 経験 し て {て から} 平和 の 尊 さ が 身 に しみ た。
+        english: After experiencing war, the preciousness of peace soaked into my body.
+        hint: 「てから」 simply states the sequence of events without emphasizing a new, profound realization
+          or appreciation.
+      - competing_japanese:
+          - 戦争 を 経験 し た {時}、平和 の 尊 さ が 身 に しみ た。
+        english: At the time I experienced war, the preciousness of peace soaked into my body.
+        hint: 「時」 specifies a point in time, not that the deep understanding of peace's value was a *new*
+          insight uniquely gained as a result of the war.
+    scene: A veteran reflecting on their past experiences and advocating for peace.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    speaker_age: older
+    nuance: The phrase 「平和 の 尊 さ が 身 に しみた」 (heiwa no toutosa ga mi ni shimita) profoundly expresses a
+      deep, personal, and first-time realization of the preciousness of peace, an understanding that could
+      only be achieved through the harsh experience of war.
+  - english: Only after having children of my own did I truly understand my parents' love for the first
+      time.
+    japanese:
+      - 自分 が 親 に なっ て {て 初めて}、親 の 愛 が 分かっ た。
+      - 自分 が 親 に なっ て {て 初めて}、親 の 愛 が 分かり まし た。
+      - 子供 を 産ん で {て 初めて}、両親 の あり がたみ を 心 から 理解 し た。
+      - 子育て を 経験 し て {て 初めて}、親 の 無償 の 愛 に 気付かさ れ た。
+    english_literally: Having become a parent myself, for the first time, I understood parental love.
+    competing_grammar:
+      - competing_japanese:
+          - 自分 が 親 に なっ て {て から} 親 の 愛 が 分かっ た。
+        english: After becoming a parent myself, I understood parental love.
+        hint: 「てから」 simply indicates a temporal sequence, not emphasizing a new, profound realization
+          or understanding of love.
+      - competing_japanese:
+          - 自分 が 親 に なっ た {上 で} 親 の 愛 が 分かっ た。
+        english: Having become a parent myself, I understood parental love.
+        hint: 「上で」 implies a deliberate action followed by understanding, but doesn't convey the sense
+          of a first-time profound understanding or discovery.
+    scene: A new parent reflecting on their newfound empathy for their own parents.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: The use of 「親 の 愛 が 分かった」 (oya no ai ga wakatta) signifies a deep, personal, and first-time
+      understanding of parental love that was only possible after experiencing parenthood oneself, highlighting
+      empathy gained through experience.
+  - english: Only after receiving that criticism did I truly grasp the areas I needed to improve for the
+      first time.
+    japanese:
+      - あの 批判 を 受け て {て 初めて}、自分 の 改善 点 が 見え た。
+      - あの 批判 を 受け て {て 初めて}、自分 の 改善 点 が 見え まし た。
+      - あの 厳しい 忠告 を 受け止め て {て 初めて}、自身 の 課題 が 明確 に なっ た。
+      - 顧客 から の 厳しい 意見 を 聞い て {て 初めて}、自分 の 未熟 さ を 痛感 し た。
+    english_literally: Having received that criticism, for the first time, my own improvement points became
+      visible.
+    competing_grammar:
+      - competing_japanese:
+          - あの 批判 を 受け て {て から} 自分 の 改善 点 が 見え た。
+        english: After receiving that criticism, my improvement points became visible.
+        hint: 「てから」 simply indicates a temporal sequence, not emphasizing a new, revelatory understanding
+          of one's shortcomings.
+      - competing_japanese:
+          - あの 批判 を 受け た {時}、自分 の 改善 点 が 見え た。
+        english: At the time I received that criticism, my improvement points became visible.
+        hint: 「時」 specifies a point in time, not that the realization of improvement points was a *new*
+          insight uniquely gained from that criticism.
+    scene: A professional reflecting on constructive feedback that led to a breakthrough in their work.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    nuance: 「自分 の 改善 点 が 見えた」 (jibun no kaizen-ten ga mieta) implies a clarity or realization of one's
+      own flaws or areas for growth, which was previously unseen and only became apparent after receiving
+      the criticism, marking a first-time insight.
+  - english: Only after the earthquake did I truly realize how fragile life is for the first time.
+    japanese:
+      - 地震 を 経験 し て {て 初めて}、人生 の 儚 さ を 実感 し た。
+      - 地震 を 経験 し て {て 初めて}、人生 の 儚 さ を 実感 し まし た。
+      - 震災 を 経験 し て {て 初めて}、命 の 尊 さ と 脆 さ を 悟っ た。
+      - 大 地震 に 遭遇 し て {て 初めて}、当たり前 の 日常 が どれ ほど 尊い か を 悟っ た。
+    english_literally: Having experienced the earthquake, for the first time, I felt the fragility of
+      life.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 を 経験 し て {て から} 人生 の 儚 さ を 実感 し た。
+        english: After experiencing the earthquake, I felt the fragility of life.
+        hint: 「てから」 simply states a sequence, not emphasizing a new, profound realization about life's
+          fragility.
+      - competing_japanese:
+          - 地震 を 経験 し た {上 で} 人生 の 儚 さ を 実感 し た。
+        english: Having experienced the earthquake, I felt the fragility of life.
+        hint: 「上で」 implies a deliberate action followed by understanding, but doesn't convey the sense
+          of a first-time profound understanding.
+    scene: A survivor of a natural disaster reflecting on the profound impact it had on their worldview.
+    register: formal
+    setting: serious
+    nuance: The phrase 「人生 の 儚 さ を 実感 した」 (jinsei no hakanasa wo jikkan shita) means 'I truly felt the
+      transience/fragility of life,' indicating a deep, visceral, and first-time understanding that came
+      directly from the impactful experience of the earthquake.
+  - english: Only after learning Japanese did I truly appreciate the nuances of traditional Japanese poetry
+      for the first time.
+    japanese:
+      - 日本 語 を 学ん で {て 初めて}、和歌 の 奥深 さ が 分かっ た。
+      - 日本 語 を 学ん で {て 初めて}、和歌 の 奥深 さ が 分かり まし た。
+      - 日本 語 を 習得 し て {て 初めて}、俳句 の 微妙 な 表現 を 理解 でき た。
+      - 日本 語 を 勉強 し て {て 初めて}、日本 文学 の 真 の 魅力 を 感じ た。
+    english_literally: Having learned Japanese, for the first time, I understood the profundity of Waka
+      poetry.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 学ん で {て から} 和歌 の 奥深 さ が 分かっ た。
+        english: After learning Japanese, I understood the profundity of Waka poetry.
+        hint: 「てから」 simply states the sequence, not emphasizing a new, profound appreciation or insight
+          into the nuances.
+      - competing_japanese:
+          - 日本 語 を 学ん だ {時}、和歌 の 奥深 さ が 分かっ た。
+        english: At the time I learned Japanese, I understood the profundity of Waka poetry.
+        hint: 「時」 merely marks a point in time, not highlighting that the understanding of poetry's depth
+          was a *new* insight uniquely gained through Japanese study.
+    scene: A student of Japanese literature discussing their linguistic journey and its impact on their
+      understanding of classic texts.
+    register: formal
+    setting: academic
+    nuance: 「和歌 の 奥深 さ が 分かった」 (waka no okuyukisa ga wakatta) conveys a newfound, deeper understanding
+      of the profound nature and subtleties of traditional Japanese poetry, an insight that was previously
+      inaccessible before learning the language.
+  - english: Only after graduating from university did I truly feel the weight of social responsibility
+      for the first time.
+    japanese:
+      - 大学 を 卒業 し て {て 初めて}、社会 の 責任 の 重 さ を 感じ た。
+      - 大学 を 卒業 し て {て 初めて}、社会 の 責任 の 重 さ を 感じ まし た。
+      - 大学 を 出 て {て 初めて}、一 社会 人 と し て の 責任 を 痛感 し た。
+      - 学業 を 終え て {て 初めて}、世間 の 厳し さ と 自己 責任 の 重要 性 を 悟っ た。
+    english_literally: Having graduated university, for the first time, I felt the weight of social responsibility.
+    competing_grammar:
+      - competing_japanese:
+          - 大学 を 卒業 し て {て から} 社会 の 責任 の 重 さ を 感じ た。
+        english: After graduating from university, I felt the weight of social responsibility.
+        hint: 「てから」 simply indicates a temporal sequence, not emphasizing a new, profound realization
+          about societal responsibility.
+      - competing_japanese:
+          - 大学 を 卒業 し た {上 で} 社会 の 責任 の 重 さ を 感じ た。
+        english: Having graduated from university, I felt the weight of social responsibility.
+        hint: 「上で」 implies a deliberate action followed by understanding, but doesn't convey the sense
+          of a first-time profound realization.
+    scene: A recent graduate reflecting on their transition from student life to the working world.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    nuance: The phrase 「社会 の 責任 の 重 さ を 感じた」 (shakai no sekinin no omosa wo kanjita) indicates a newly
+      acquired, profound sense of the burden and importance of social responsibility, a realization that
+      was previously unexperienced as a student.
+post_example_writeup: These examples illustrate how 「て初めて」 is used to mark a significant new understanding
+  or realization that occurs specifically and often profoundly *after* a particular experience. It's not
+  just a sequence of events, but a moment of new insight or appreciation triggered by the preceding action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/て初めて

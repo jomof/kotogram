@@ -1,0 +1,283 @@
+grammar_point: '[Noun]が下手 (unskillful at)'
+learn_before:
+  - Verb[たい] (desiderative)
+  - '[Verb-dictionary]のが上手だ・下手だ (to be good at・bad at doing)'
+  - あまりに (excessively・too much)
+  - ですから (therefore)
+  - に比べて (compared to)
+  - は〜が (topic's attribute)
+meaning: unskillful at; poor at
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 下手だ
+    rarity: common
+    meaning: unskillful at
+  - conjugation-type: non-past polite (～ます)
+    form: 下手です
+    rarity: common
+    meaning: unskillful at
+  - conjugation-type: negative plain (～ない)
+    form: 下手ではない / 下手じゃない
+    rarity: common
+    meaning: not unskillful at
+  - conjugation-type: negative non-past polite (～ません)
+    form: 下手ではありません / 下手じゃありません
+    rarity: common
+    meaning: not unskillful at
+  - conjugation-type: past plain (～た)
+    form: 下手だった
+    rarity: common
+    meaning: was unskillful at
+  - conjugation-type: past polite (～ました)
+    form: 下手でした
+    rarity: common
+    meaning: was unskillful at
+  - conjugation-type: negative past plain (～なかった)
+    form: 下手ではなかった / 下手じゃなかった
+    rarity: common
+    meaning: was not unskillful at
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 下手ではありませんでした / 下手じゃありませんでした
+    rarity: common
+    meaning: was not unskillful at
+  - conjugation-type: te-form (～て)
+    form: 下手で
+    rarity: common
+    meaning: being unskillful at (and)
+  - conjugation-type: conditional (～たら)
+    form: 下手だったら
+    rarity: common
+    meaning: if unskillful at
+  - conjugation-type: concessive (～ても)
+    form: 下手でも
+    rarity: common
+    meaning: even if unskillful at
+pronunciation:
+  katakana: ヘタ
+  romaji: Heta
+formation:
+  '[Noun] + が + 下手だ': Indicates that someone lacks skill in a particular area or at a particular thing.
+jlpt: N4
+etymology: 下手 (heta) literally combines 下 (shita, "below" or "lower") and 手 (te, "hand"). This etymology
+  suggests an image of having one's hand positioned "lower" or being "less skilled" in a craft or activity,
+  leading to its meaning of clumsiness or lack of proficiency. It contrasts directly with 上手 (jouzu, "upper
+  hand"), which means skillful.
+writeup: 下手 (heta) is a な-adjective used to express that someone is unskillful or poor at a particular
+  activity or task. It is often paired with the particle が to mark the area of proficiency. While 下手 can
+  be used broadly, it carries a nuance that can be direct or even impolite when used to describe someone
+  else's abilities, especially if that person is present. Therefore, it is often used when speaking about
+  **one's own lack of skill** in a self-deprecating manner, or when speaking about someone else's skill
+  *indirectly* or *impersonally*. For example, saying 「私は絵が下手です。」 (I am bad at drawing.) is very common
+  and natural. However, saying 「あなたは歌が下手ですね。」 (You are bad at singing, aren't you?) can sound blunt and
+  rude, even if true. This grammar point is straightforward in its meaning but requires careful consideration
+  of context and politeness levels, particularly when discussing others' capabilities. For situations
+  where a softer expression is preferred, especially when discussing someone else's skill, other phrases
+  like `あまり得意じゃない` (amari tokui janai - not very good at) might be more appropriate.
+false_friends:
+  - term: 上手 (jouzu)
+    meaning: skillful at; good at
+    kind: antonym
+    nuance: 上手 is the direct opposite of 下手. While 下手 can be impolite when describing others, 上手 can sometimes
+      feel like praising someone from above (if used by a superior to a subordinate), so お上手ですね (o-jouzu
+      desu ne) is often used ironically or as light flattery. For genuine praise, it's safer to use specific
+      compliments about the action itself.
+    grammar_point: <suggest>:[Noun]が上手だ (skillful at)
+  - term: 苦手 (nigate)
+    meaning: not good at; weak point
+    kind: similar expression
+    nuance: 苦手 implies a personal feeling of discomfort or aversion towards something, or simply that
+      one is not good at it, often without implying a judgment on one's innate skill. It's a more polite
+      and softer way to say "I'm not good at this" or "I don't like this type of thing/person". 下手 is
+      more about the objective lack of skill.
+    grammar_point: 苦手 (not good at)
+  - term: 出来ない (dekinai)
+    meaning: cannot do; unable to do
+    kind: similar expression
+    nuance: 出来ない denotes an inability to perform an action, either due to a lack of physical capability,
+      knowledge, or opportunity. It's a binary state (can vs. cannot). 下手 denotes a degree of skill—one
+      can do it, but not well. For instance, 「私はピアノが弾けません。」 (I cannot play the piano.) means I literally
+      don't know how or am physically unable. 「私はピアノが下手です。」 (I am bad at playing the piano.) means I can
+      play, but my performance is poor.
+    grammar_point: Verb[(ら)れる] (potential)
+post_false_friends_writeup: While 下手 (heta) expresses a direct lack of skill, it is important to distinguish
+  it from other similar expressions to convey the intended nuance accurately. 上手 (jouzu) is its direct
+  opposite, meaning "skillful." However, using 上手 to praise someone, especially a subordinate, can sometimes
+  be perceived as condescending, akin to saying "good job, little one." For direct praise to peers or
+  superiors, it is often better to use more specific compliments about their achievement or skill. 苦手
+  (nigate) is a softer and more polite way to express not being good at something. It often conveys a
+  personal dislike or a feeling of being weak in a particular area, rather than a definitive lack of skill.
+  For example, 「歌は苦手です。」 (Uta wa nigate desu - Singing is not my strong suit / I'm not good at singing)
+  sounds less harsh than 「歌が下手です。」 (Uta ga heta desu - I am bad at singing). 苦手 also extends to situations
+  or people one finds difficult to handle. 出来ない (dekinai) means "cannot do" or "unable to do." This indicates
+  a complete inability to perform an action, possibly due to lack of knowledge, physical capability, or
+  opportunity. 下手 implies that one *can* do the action, but *not well*. Therefore, choosing between 下手
+  and 出来ない depends on whether the person performs the action poorly (下手) or cannot perform it at all (出来ない).
+examples:
+  - english: I'm really bad at singing.
+    japanese:
+      - 私 は 歌 が {下手 だ}。
+      - 私 は 歌 が {下手 です}。
+    english_literally: As for me, singing is unskillful.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 歌 が {苦手 だ}。
+        english: I'm not good at singing (implying dislike or weakness).
+        hint: 「苦手」 implies a personal weakness or dislike, whereas 「下手」 specifically means lacking skill.
+          We're looking for an objective lack of skill here.
+      - competing_japanese:
+          - 私 は 歌 が {歌え ない}。
+        english: I cannot sing.
+        hint: 「歌えない」 means you are literally unable to sing, perhaps due to physical reasons or never
+          having learned. We're looking for someone who *can* sing, but does so poorly.
+    scene: A friend asks you to join karaoke, and you're admitting your vocal limitations.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: Unfortunately, I am poor at drawing.
+    japanese:
+      - 私 は 絵 が {下手 です}。
+      - 私 は 絵 が {下手 だ}。
+    english_literally: As for me, drawing is unskillful.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 絵 が {得意 で は あり ませ ん}。
+        english: I am not good at drawing (but don't necessarily dislike it).
+        hint: 「得意ではありません」 is a polite way to say one is not good at something. We're looking for a more
+          direct statement of lacking skill.
+    scene: At an art workshop, explaining your skill level to the instructor.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: My younger brother is bad at sports.
+    japanese:
+      - 弟 は スポーツ が {下手 だ}。
+      - 弟 は スポーツ が {下手 です}。
+    english_literally: As for younger brother, sports is unskillful.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は スポーツ が {苦手 だ}。
+        english: My younger brother is not good at sports (perhaps dislikes them).
+        hint: 「苦手」 implies a personal weakness or dislike. We're describing an objective lack of skill
+          in sports.
+      - competing_japanese:
+          - 弟 は スポーツ が {でき ない}。
+        english: My younger brother cannot do sports.
+        hint: 「できない」 means he is unable to participate in sports at all. We're looking for someone who
+          *can* participate, but performs poorly.
+    scene: Talking about your family with a friend during a casual chat.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: It seems Mr. Tanaka is not good at cooking.
+    japanese:
+      - 田中 さん は 料理 が {下手 な よう です}。
+      - 田中 さん は 料理 が {下手 な よう だ}。
+    english_literally: As for Mr. Tanaka, it seems cooking is unskillful.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は 料理 が {苦手 な よう です}。
+        english: It seems Mr. Tanaka finds cooking difficult/dislikes it.
+        hint: 「苦手」 suggests a personal aversion or struggle, whereas 「下手」 implies a lack of cooking skill
+          based on observation.
+    scene: Two colleagues discussing a potluck and observing a new dish made by Mr. Tanaka.
+    register: formal
+    setting: informative
+    nuance: The use of `なようです` (na you desu) softens the observation, making it more polite when commenting
+      on someone else's skill.
+  - english: I used to be terrible at English.
+    japanese:
+      - 昔、私 は 英語 が {下手 だっ た}。
+      - 昔、私 は 英語 が {下手 でし た}。
+    english_literally: Long ago, as for me, English was unskillful.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、私 は 英語 が {苦手 だっ た}。
+        english: Long ago, I found English difficult/disliked it.
+        hint: 「苦手だった」 implies a past personal aversion or difficulty with English. We're talking about
+          a past lack of proficiency.
+    scene: Reflecting on your learning journey with a new acquaintance who is struggling with English.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: Is he bad at handling money?
+    japanese:
+      - 彼 は お 金 の 扱い が {下手 です か}？
+      - 彼 は お 金 の 扱い が {下手 か}？
+    english_literally: As for him, money's handling is unskillful?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は お 金 の 扱い が {苦手 です か}？
+        english: Does he find handling money difficult/dislike it?
+        hint: 「苦手ですか」 asks if he has an aversion or finds it personally challenging. We're asking about
+          his actual skill in handling money.
+    scene: Discussing a mutual friend's financial habits with a trusted confidant.
+    register: formal
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+  - english: I'm so bad at it that it's embarrassing!
+    japanese:
+      - あまり に {下手 で} 恥ずかしい！
+      - あまり に {下手 で} 恥ずかしい です！
+    english_literally: So unskillful, it is embarrassing!
+    competing_grammar:
+      - competing_japanese:
+          - あまり に {苦手 で} 恥ずかしい！
+        english: It's such a weak point for me that it's embarrassing!
+        hint: 「苦手で」 implies a personal struggle or dislike. This sentence emphasizes the objective poor
+          performance, leading to embarrassment.
+    scene: Trying to learn a new skill like juggling with friends and failing spectacularly, eliciting
+      laughter.
+    register: casual
+    setting: humorous
+    conjugation: te-form (～て)
+  - english: Compared to my older sister, I'm bad at sports.
+    japanese:
+      - 姉 に 比べ て、私 は 運動 が {下手 です}。
+      - 姉 に 比べ て、私 は 運動 が {下手 だ}。
+    english_literally: Compared to older sister, as for me, exercise is unskillful.
+    competing_grammar:
+      - competing_japanese:
+          - 姉 に 比べ て、私 は 運動 が {得意 で は あり ませ ん}。
+        english: Compared to my older sister, I am not good at sports (politely).
+        hint: 「得意ではありません」 is a polite way to state a lack of skill, but 「下手です」 provides a more direct
+          comparison of proficiency.
+    scene: Talking to a relative about family talents, highlighting a personal weakness in contrast to
+      a sibling's strength.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: I'm not good at speaking in front of people.
+    japanese:
+      - 人前 で 話す の が {下手 だ}。
+      - 人前 で 話す の が {下手 です}。
+    english_literally: Speaking in front of people is unskillful.
+    competing_grammar:
+      - competing_japanese:
+          - 人前 で 話す の が {苦手 だ}。
+        english: I find speaking in front of people difficult/uncomfortable.
+        hint: 「苦手だ」 would imply personal discomfort or aversion. Here, we're explicitly stating a lack
+          of skill in public speaking.
+    scene: Explaining to a team leader why you prefer not to give presentations, focusing on your speaking
+      ability.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: I'm bad at carpentry, so I can't build anything.
+    japanese:
+      - 俺 は 大工 仕事 が {下手 だ から}、何 も 作れ ない。
+      - 私 は 大工 仕事 が {下手 です から}、何 も 作れ ませ ん。
+    english_literally: As for me, carpentry is unskillful, so I cannot make anything.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 は 大工 仕事 が {でき ない から}、何 も 作れ ない。
+        english: I cannot do carpentry, so I cannot build anything.
+        hint: 「できない」 implies a complete inability. 「下手だから」 means you can do it to some extent, but not
+          well.
+    scene: Talking to a male friend about DIY projects and admitting your lack of skills.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of `俺` (ore) for "I" is characteristic of casual male speech. `下手だから` uses the plain
+      form of the adjective with `から` to state the reason directly.

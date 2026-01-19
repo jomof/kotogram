@@ -1,0 +1,217 @@
+grammar_point: 先 (ahead・first)
+learn_before:
+  - どうぞ (here you are・please・invitation)
+meaning: ahead・front・prior・destination・tip
+pronunciation:
+  katakana: サキ
+  romaji: saki
+formation:
+  Noun の 先: Refers to the tip or end of a noun, or the destination related to a noun.
+  Verb[dictionary] 先: Indicates the destination or place associated with the verb's action.
+  先 に: Functions adverbially, meaning 'ahead,' 'first,' or 'in advance.'
+  先 だ: Used with a copula to state that something is 'ahead' or 'first.'
+jlpt: N3
+etymology: The kanji 先 literally means "ahead" or "previous." It encompasses notions of spatial front,
+  temporal precedence, and the leading edge or tip of something. Its broad application stems from this
+  core idea of being 'before' or 'at the forefront' in various contexts, evolving to describe everything
+  from physical points to chronological order or future prospects.
+writeup: |-
+  先 (さき) is a versatile noun in Japanese that conveys a range of meanings related to position, time, and direction. At its core, 先 indicates something that is "ahead," "in front," or "previous." This can be understood in several ways:
+
+  1.  **Spatial Ahead/Front**: It refers to a location that is forward or further along. For example, 「道の 先」 (michi no saki) means "the end of the road" or "further down the road." It can also mean the "tip" or "end" of an object, like 「指の 先」 (yubi no saki) for "fingertip."
+  2.  **Temporal Prior/Future**: 先 can denote something that happened "before" or will happen in the "future." 「先 ほど」 (saki hodo) means "a little while ago," while 「先 のこと」 (saki no koto) refers to "things in the future." It can also indicate priority, as in "doing something first."
+  3.  **Destination/Place**: When combined with a verb, 先 can refer to a destination or place associated with that action. For instance, 「旅行 先」 (ryokōsaki) means "travel destination," and 「仕事 先」 (shigotosaki) means "workplace" or "client site."
+  4.  **The Other Party**: In certain contexts, especially in business or polite conversation, 先 can refer to the other person or party one is dealing with, implying "the one ahead" or "the one I'm interacting with." For example, 「お取引 先」 (otorihikisaki) means "business partner" or "client."
+
+  Understanding the fundamental concept of "being before" or "at the leading edge" helps to grasp the various applications of 先. The precise meaning often depends on the particles used with it and the surrounding context.
+false_friends:
+  - term: 後
+    meaning: after, behind
+    kind: antonym
+    nuance: 後 is the direct opposite of 先 in both temporal and spatial contexts. While 先 refers to what
+      comes before or is ahead, 後 refers to what comes after or is behind.
+    grammar_point: <suggest>:後 (after・behind)
+  - term: 前
+    meaning: front, before
+    kind: similar expression
+    nuance: Both 先 and 前 can mean "before" or "front." However, 前 often refers to an immediate, directly
+      observable "front" or "before," whereas 先 can imply a "tip," "further ahead" (like a destination),
+      or "previous" in a more general sense. For example, 「駅の 前」 is directly in front of the station,
+      while 「道の 先」 is further down the road.
+    grammar_point: 前・後ろ (front and back spatial orientation)
+  - term: 行き先
+    meaning: destination
+    kind: similar expression
+    nuance: 行き先 is a compound noun specifically meaning "destination" or "the place one is headed." While
+      先 can refer to a destination, 行き先 is a more precise and common term when explicitly talking about
+      where someone or something is going.
+    grammar_point: <suggest>:行き先 (destination)
+post_false_friends_writeup: While 先, 前, and 後 all relate to spatial and temporal positioning, their precise
+  usage differs. 先 focuses on the 'leading edge' or 'point ahead,' whether physically or chronologically.
+  前 is more about the immediate 'front' or 'before.' 後 is the clear opposite, indicating 'behind' or 'after.'
+  行き先 is a specialized term for a 'destination,' building on 先's core meaning but with a more specific
+  focus.
+examples:
+  - english: Please go ahead.
+    japanese:
+      - 先 へ 進ん で ください。
+      - どうぞ、先 へ。
+      - 先 行っ て。
+    english_literally: Please advance to ahead.
+    competing_grammar:
+      - competing_japanese:
+          - 前 へ 進ん で ください。
+        english: Please advance to the front.
+        hint: 前 へ (mae e) refers to moving towards the immediate front. We're looking for moving generally
+          'ahead' or 'forward'.
+    scene: A tour guide instructing visitors to proceed down a path.
+    register: formal
+    setting: instructional
+  - english: The tip of the pen is broken.
+    japanese:
+      - ペン の 先 が 折れ て いる。
+      - ペン の 先 が 折れ て い ます。
+      - ペン 先 折れ てる。
+    english_literally: The pen's tip is broken.
+    competing_grammar:
+      - competing_japanese:
+          - ペン の 端 が 折れ て いる。
+        english: The end of the pen is broken.
+        hint: 端 (hashi) refers to a general end or edge. We're looking for the very 'tip' or pointed end.
+    scene: Someone examining a damaged pen after dropping it.
+    register: casual
+    setting: informative
+  - english: I just saw him a little while ago.
+    japanese:
+      - 先 ほど 彼 を 見かけ まし た。
+      - 先 ほど 彼 見かけ た。
+      - 先 ほど 彼 を お 見かけ し まし た。
+    english_literally: Ahead time him saw.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 前 に 彼 を 見かけ まし た。
+        english: I saw him a little before.
+        hint: 少し 前 (sukoshi mae) is also 'a little while ago' but 先ほど (saki hodo) is a more natural and
+          common fixed expression for 'a short while ago'.
+    scene: Two friends talking about someone they just encountered on the street.
+    register: formal
+    setting: friendly
+    conjugation: past polite (～ました)
+  - english: I cannot foresee what will happen in the future.
+    japanese:
+      - 先 の こと は 誰 も 分から ない。
+      - 先 の こと 誰 も 分から ない。
+      - 先 の 事柄 は 誰 に も 分から ない。
+    english_literally: Ahead's thing no one knows.
+    competing_grammar:
+      - competing_japanese:
+          - 将来 の こと は 誰 も 分から ない。
+        english: No one knows about the future.
+        hint: 将来 (shōrai) specifically means 'the future.' 先 の こと (saki no koto) implies 'things ahead'
+          or 'things to come' but has a slightly broader nuance, extending to the immediate next steps
+          or plans, not just the distant future. We're looking for a slightly more general sense of what's
+          to come.
+    scene: A philosophical discussion among friends about uncertainties in life.
+    register: casual
+    setting: reflective
+  - english: You go first.
+    japanese:
+      - 先 に 行っ て ください。
+      - 先 行っ て。
+      - どうぞ、お 先 に。
+    english_literally: Ahead go please.
+    competing_grammar:
+      - competing_japanese:
+          - 最初 に 行っ て ください。
+        english: Please go at the very beginning.
+        hint: 最初 に (saisho ni) means 'at the very beginning' of a sequence. We're looking for 'ahead of
+          me' or 'before me' in a casual, polite deferential way.
+    scene: Two people arriving at a doorway, and one politely gestures for the other to enter first.
+    register: formal
+    setting: friendly
+  - english: Where is your travel destination?
+    japanese:
+      - 旅行 先 は どこ です か？
+      - ご 旅行 先 は どちら です か？
+      - 旅行 先 どこ？
+    english_literally: Travel destination is where?
+    competing_grammar:
+      - competing_japanese:
+          - 行き先 は どこ です か？
+        english: Where is your destination?
+        hint: 行き先 (yukisaki) is a general term for 'destination.' 旅行 先 (ryokō saki) specifies it as a
+          'travel destination,' a more precise compound noun.
+    scene: Two new acquaintances making small talk at a gathering, asking about each other's recent trips.
+    register: formal
+    setting: interrogative
+  - english: We are visiting our client's office tomorrow.
+    japanese:
+      - 明日、お 取引 先 へ 伺い ます。
+      - 明日、お 取引 先 へ 行き ます。
+      - 明日、取引 先 へ 行く。
+    english_literally: Tomorrow, client's place to visit (humble).
+    competing_grammar:
+      - competing_japanese:
+          - 明日、クライアント の オフィス へ 伺い ます。
+        english: Tomorrow, I will visit the client's office.
+        hint: クライアント (kuraianto) and オフィス (ofisu) are English loanwords. お取引先 (otorihikisaki) is a common,
+          polite Japanese term specifically for a business client or partner's location. We're looking
+          for the standard respectful term in Japanese business context.
+    scene: A business meeting where team members are discussing their schedule for the next day.
+    register: kenjōgo (humble)
+    setting: professional
+    nuance: 「お取引先」 is a key term in Japanese business etiquette, referring to a business partner or client
+      with respect. 「伺います」 is the humble form of 行きます (to go) or 訪ねます (to visit), reinforcing the humble
+      register appropriate when speaking about one's actions to a superior or client.
+  - english: The child is walking at the front of the group.
+    japanese:
+      - 子供 は グループ の 先 を 歩い て いる。
+      - 子供 グループ の 先 歩い てる。
+      - その 子 は 集団 の 先頭 を 歩ん で いる。
+    english_literally: Child is group's front walking.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は グループ の 前 を 歩い て いる。
+        english: The child is walking in front of the group.
+        hint: 前 を 歩く (mae o aruku) can mean walking in front of someone, but 先 を 歩く (saki o aruku) specifically
+          implies leading or being at the very head of the group, emphasizing precedence in position.
+    scene: A teacher observing children on a field trip, noting how one child is eagerly leading the way.
+    register: casual
+    setting: informative
+    conjugation: progressive (～ている)
+  - english: Let's decide the date first.
+    japanese:
+      - 先 に 日程 を 決め ましょう。
+      - 先 に 日程 決めよう。
+    english_literally: Ahead schedule decide let's.
+    competing_grammar:
+      - competing_japanese:
+          - まず 日程 を 決め ましょう。
+        english: First, let's decide the date.
+        hint: まず (mazu) means 'first' in the sense of 'initially' or 'to begin with.' 先 に (saki ni) can
+          also mean 'first,' but often implies 'before other things' or 'ahead of schedule/others,' emphasizing
+          priority in sequence. We're looking for prioritizing this action among others.
+    scene: Friends planning an outing, prioritizing setting a date before other details.
+    register: formal
+    setting: friendly
+    conjugation: volitional polite (～ましょう)
+  - english: From now on, let's be more careful.
+    japanese:
+      - これ から 先、もっと 気 を つけ ましょう。
+      - これ から 先、もっと 気 を つけよう。
+    english_literally: From now ahead, more attention put let's.
+    competing_grammar:
+      - competing_japanese:
+          - これ から、もっと 気 を つけ ましょう。
+        english: From now, let's be more careful.
+        hint: これ から (kore kara) means 'from now.' Adding 先 emphasizes the forward movement in time, meaning
+          'from this point onward into the future,' making the statement stronger and more definitive.
+          We're looking for that stronger emphasis.
+    scene: A team reflecting on a recent mistake and resolving to improve in the future.
+    register: formal
+    setting: serious
+    conjugation: volitional polite (～ましょう)
+post_example_writeup: The examples illustrate how 先 functions across various contexts, from concrete spatial
+  locations like the tip of an object to abstract temporal references and even roles in human interactions.
+  Pay close attention to the particles and accompanying verbs, as they often clarify the precise nuance
+  of 先 in a given sentence.

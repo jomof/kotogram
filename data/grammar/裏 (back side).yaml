@@ -1,0 +1,232 @@
+grammar_point: 裏 (back side)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Noun]をください (please give me)'
+  - その (that)
+meaning: The reverse side, back, inside, or hidden aspect of something. It can refer to a physical surface,
+  the interior of an object, or a concealed truth or motive.
+pronunciation:
+  katakana: ウラ
+  romaji: ura
+formation:
+  Noun の 裏: Indicates the reverse side or hidden part of a noun, or 'behind' something related to the
+    noun.
+  ～の裏 (abstract usage): Refers to the hidden truth, motive, or intention behind an action or situation.
+jlpt: N3
+etymology: The kanji 裏 (ura) literally means 'inside' or 'rear'. Historically, it has referred to the
+  inner part of clothing or the reverse side of a surface. This core concept of 'inwardness' or 'reversal'
+  extended to abstract meanings like 'behind the scenes' or 'hidden truth', as these are also 'inside'
+  or 'reversed' from what is outwardly presented.
+writeup: |-
+  The word 裏 (ura) is a versatile noun in Japanese that encompasses several related meanings, all stemming from the core idea of a 'reverse' or 'inner' side. Its usage can be broadly categorized into concrete and abstract applications.
+
+  **Concrete Meanings:**
+
+  1.  **The physical back or reverse side:** This is the most straightforward use. For example, the back of a piece of paper (紙の裏), the other side of a coin (コインの裏), or the back of a building (建物の裏). In this sense, it is directly opposed to 表 (omote), which means the 'front' or 'face' side.
+
+  2.  **The inside of an object, especially clothing:** When referring to clothing, 裏 (ura) means the lining or the inside surface (例: コートの裏 - the lining of a coat). This is also in contrast to 表 (omote), which would be the outer fabric.
+
+  **Abstract Meanings:**
+
+  1.  **Behind the scenes; hidden aspect:** This is a common abstract usage. It refers to what happens out of public view, the true intentions, or the less visible reality behind an apparent situation. For instance, `裏で動く` means 'to work behind the scenes' or 'to pull strings'. Similarly, `裏の顔` (ura no kao) implies a 'hidden face' or 'secret personality'.
+
+  2.  **The other side of a situation or argument:** It can also denote the opposite perspective or the negative aspect of something, akin to 'the flip side' in English. For example, discussing `物事の裏表` (monogoto no ura omote) means considering both the good and bad or front and back aspects of things.
+
+  Understanding 裏 often requires grasping its relationship with 表 (omote), as they form a fundamental pair in Japanese culture and language, representing opposing but interconnected aspects of things.
+false_friends:
+  - term: 表 (omote)
+    meaning: Front side; surface; public face
+    kind: antonym
+    nuance: While 裏 refers to the reverse, hidden, or inner side, 表 refers to the front, visible, or public
+      side. They are direct opposites and often used together as a pair, like `裏表` (ura omote - front
+      and back, or two-faced).
+    grammar_point: <suggest>:表 (front side)
+  - term: 奥 (oku)
+    meaning: Inner part; back; depth; inside (of a house/room)
+    kind: similar expression
+    nuance: 奥 refers to the deep inside or furthest part of a space, implying depth or a secluded area.
+      裏, on the other hand, means the reverse side or the hidden surface of something. While both can
+      refer to 'inside' aspects, `奥` suggests 'deep within' (e.g., `部屋の奥` - the back/depth of the room)
+      whereas `裏` suggests 'the other side' or 'lining' (e.g., `本の裏` - the back cover of a book).
+    grammar_point: 奥,手前 (depth・foreground spatial)
+  - term: 裏切る (uragiru)
+    meaning: To betray; to go against expectations
+    kind: often confused with
+    nuance: 裏 (ura) is a noun meaning 'back side' or 'hidden aspect'. 裏切る (uragiru) is a verb meaning
+      'to betray' or 'to go back on (a promise/expectation)'. While 裏切る contains the kanji 裏, it functions
+      as a verb and describes an action of breaking trust or expectations, distinct from the noun 裏.
+    grammar_point: <suggest>:裏切る (to betray)
+post_false_friends_writeup: When distinguishing 裏 from its false friends, remember that 表 (omote) is its
+  direct opposite, always referring to the front or visible side. 奥 (oku) describes depth or the furthest
+  inward point of a space, unlike 裏 which denotes the reverse surface or hidden aspect. Finally, 裏切る (uragiru)
+  is a verb, signifying the act of betrayal, while 裏 (ura) itself is a noun referring to a side or aspect.
+examples:
+  - english: Please write your name on the back of the paper.
+    japanese:
+      - 紙 の {裏} に 名前 を 書い て ください。
+      - 紙 の {裏} に お 名前 を お 書き ください。
+      - 紙 の {裏} に 名前 を 書い て。
+    english_literally: Paper's back to name please write.
+    competing_grammar:
+      - competing_japanese:
+          - 紙 の 表 に 名前 を 書い て ください。
+        english: Please write your name on the front of the paper.
+        hint: This refers to the visible, front side. We're looking for the reverse side.
+    scene: An instructor is giving out handouts in a class.
+    register: formal
+    setting: instructional
+    nuance: The use of `裏` here specifically refers to the reverse side of a flat object like paper, contrasting
+      with `表` (omote).
+  - english: The detective investigated what was happening behind the scenes.
+    japanese:
+      - 探偵 は {裏} で 何 が 起き て いる か を 調査 し まし た。
+      - 探偵 は {裏} で 何 が 起き て いる の か を 調査 し た。
+    english_literally: Detective subject behind scenes what subject happening was question marker investigation-did.
+    competing_grammar:
+      - competing_japanese:
+          - 探偵 は 奥 で 何 が 起き て いる か を 調査 し た。
+        english: The detective investigated what was happening deep inside (e.g., a building).
+        hint: 奥 refers to the deep interior of a physical space. We're looking for something that indicates
+          hidden or secretive goings-on, not just a physical location.
+    scene: A serious crime investigation is underway.
+    register: formal
+    setting: serious
+    nuance: In this context, `裏` is used abstractly to mean 'behind the scenes' or 'secretly', implying
+      actions that are not openly visible or known.
+  - english: There's a back entrance to this building.
+    japanese:
+      - この 建物 に は {裏} 口 が あり ます。
+      - この 建物 に は {裏} 口 が ある よ。
+    english_literally: This building to back entrance exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 建物 に は 正面 玄関 が あり ます。
+        english: This building has a main entrance.
+        hint: We are looking for an entrance that is not the main one, suggesting a less obvious or secondary
+          entry point.
+    scene: Giving directions to a friend visiting your workplace.
+    register: casual
+    setting: friendly
+    nuance: '`裏口` (uraguchi) is a common compound word meaning ''back entrance'' or ''back door'', directly
+      contrasting with `表玄関` (omote genkan - front entrance).'
+  - english: She wears her jacket inside out.
+    japanese:
+      - 彼女 は ジャケット を {裏} 返し て 着 て いる。
+      - 彼女 は ジャケット を {裏} 返し て 着 て ます。
+    english_literally: She jacket object marker inside out turning wearing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は ジャケット を 表 に し て 着 て いる。
+        english: She wears her jacket right side out.
+        hint: This sentence describes wearing it the correct way. We're looking for the opposite, where
+          the inside is shown.
+    scene: Two friends casually observing someone's attire.
+    register: casual
+    setting: casual slang
+    nuance: '`裏返す` (uragaesu) means ''to turn inside out'' or ''to flip over''. Here, `裏` specifically
+      refers to the inside lining of the jacket.'
+  - english: Even if it's a good story, there's always a hidden side to it.
+    japanese:
+      - どんな に いい 話 で も、必ず {裏} が ある もの だ。
+      - どんな に いい 話 で も、必ず {裏} が あり ます。
+    english_literally: No matter how good story even if, surely hidden side exists thing is.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に いい 話 で も、必ず 理由 が ある もの だ。
+        english: No matter how good a story, there is always a reason.
+        hint: While a reason might exist, '裏' here implies a more concealed or less obvious aspect, often
+          with a slightly negative connotation, rather than just a general reason.
+    scene: A cynical person commenting on a seemingly perfect situation.
+    register: casual
+    setting: reflective
+    nuance: Here, `裏` refers to the less obvious, potentially negative or manipulative, aspect of a situation,
+      implying that things are not always as they seem on the surface.
+  - english: He has a polite public face, but a completely different hidden personality.
+    japanese:
+      - 彼 は 丁寧 な 表 の 顔 と は 別 に、全く 違う {裏} の 顔 を 持っ て いる。
+      - 彼 は 丁寧 な 表 の 顔 と は 別 に、全く 違う {裏} の 顔 を 持っ て い ます。
+    english_literally: He polite public-face and besides, completely different hidden-face possesses.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 丁寧 な 表 の 顔 と は 別 に、全く 違う 性格 を 持っ て いる。
+        english: He has a polite public face, but a completely different personality.
+        hint: While '性格' (seikaku - personality) is general, '裏の顔' specifically implies a deceptive or
+          hidden aspect of one's character, contrasting with their outward appearance.
+    scene: Gossiping about a mutual acquaintance.
+    register: casual
+    setting: intimate
+    nuance: '`裏の顔` (ura no kao) directly translates to ''back face'' but means ''hidden side of one''s
+      character'' or ''secret personality''. This is a very common idiomatic use of `裏`.'
+  - english: Please write your name on the back of the photo.
+    japanese:
+      - 写真 の {裏} に お 名前 を お 書き ください。
+      - 写真 の {裏} に お 名前 を ご 記入 ください。
+    english_literally: Photo's back on name polite please-write.
+    competing_grammar:
+      - competing_japanese:
+          - 写真 の 表面 に お 名前 を お 書き ください。
+        english: Please write your name on the surface of the photo.
+        hint: 表面 (hyōmen) is a more general term for 'surface'. While technically correct, `裏` is specifically
+          preferred for the 'reverse side' of a flat item like a photo, indicating a specific opposing
+          side rather than just any surface.
+    scene: A staff member at a photo studio instructing a customer.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The use of `裏` for the 'back' of a photo is standard, and the polite language `お名前を書きください`
+      enhances the professional setting.
+  - english: I accidentally wore my T-shirt inside out this morning.
+    japanese:
+      - 今朝、間違っ て T シャツ を {裏} 表 に 着 て しまっ た。
+      - 今朝、間違っ て T シャツ を {裏} 表 に 着 ちゃっ た。
+    english_literally: This morning, by mistake T-shirt object marker inside-out wore-finished.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝、間違っ て T シャツ を 逆 に 着 て しまっ た。
+        english: This morning, I accidentally wore my T-shirt reversed.
+        hint: '`逆` (gyaku) means ''reverse'' or ''opposite'' in a general sense. `裏表` is a specific compound
+          for ''inside out'' when talking about clothing or similar items, directly contrasting the inner
+          and outer surfaces.'
+    scene: Someone recounting a small embarrassing moment to a friend.
+    register: casual
+    setting: humorous
+    nuance: '`裏表` (uraomote) as a single phrase means ''inside out'' when applied to clothing, emphasizing
+      the mix-up of the front and back, and inside and outside surfaces.'
+  - english: There must be some hidden motive behind his generosity.
+    japanese:
+      - 彼 の 親切 の {裏} に は、何 か 隠さ れ た 動機 が ある に 違い ない。
+      - 彼 の 親切 の {裏} に は、何 か 隠さ れ た 動機 が ある はず だ。
+    english_literally: His kindness's back to something hidden motive exists without doubt.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 親切 の 意図 に は、何 か 隠さ れ た 動機 が ある に 違い ない。
+        english: There must be some hidden motive in his kindness's intention.
+        hint: 意図 (ito - intention) is a general term. `裏` more strongly implies a deeper, possibly manipulative
+          or self-serving, hidden aspect behind a seemingly good action.
+    scene: Two colleagues discussing a suspiciously kind act by another colleague.
+    register: semi-formal
+    setting: serious
+    nuance: Here, `裏` abstractly signifies a 'hidden motive' or 'ulterior motive' that contrasts with
+      the apparent act of kindness, suggesting a deeper, less obvious truth.
+  - english: The lining of the coat is made of silk.
+    japanese:
+      - その コート の {裏} は シルク で でき て い ます。
+      - その コート の {裏} は シルク で でき て いる。
+    english_literally: That coat's lining is silk with made-is.
+    competing_grammar:
+      - competing_japanese:
+          - その コート の 内側 は シルク で でき て いる。
+        english: The inside of the coat is made of silk.
+        hint: 内側 (uchigawa) generally means 'inside part'. While correct, `裏` is specifically preferred
+          for the 'lining' of clothing, indicating the reverse side of the fabric.
+    scene: A salesperson describing a coat to a customer.
+    register: formal
+    setting: professional
+    nuance: '`裏` in the context of clothing specifically refers to the `lining`, which is the inner, less
+      visible layer of fabric, as opposed to `表` (omote), the outer layer.'
+post_example_writeup: As you can see from these examples, 裏 (ura) can be used both concretely for physical
+  'back' or 'inside' surfaces, and abstractly for 'hidden' or 'behind-the-scenes' aspects. The meaning
+  often becomes clear from context and the nouns it modifies or the verbs it combines with, such as `裏口`
+  (back entrance) or `裏の顔` (hidden face). Its pairing with 表 (omote - front) is particularly important
+  for understanding its core meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/裏

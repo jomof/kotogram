@@ -1,0 +1,504 @@
+grammar_point: か (or)
+learn_before:
+  - どっち (which way・which direction)
+meaning: Or; whether (alternative marker)
+pronunciation:
+  katakana: カ
+  romaji: ka
+formation:
+  Noun A + か + Noun B: Connects two or more nouns, implying a choice or alternative between them.
+  い-adjective (plain) + か + い-adjective (plain): Connects two い-adjectives in their plain form, indicating
+    alternative states.
+  な-adjective (stem) + か + な-adjective (stem/だ): Connects two な-adjectives in their stem form, indicating
+    alternative states (can optionally add だ for declarative).
+  Verb (plain) + か + Verb (plain): Connects two verbs in their plain form, implying a choice between actions
+    or possibilities.
+  Phrase/Clause (plain) + か + Phrase/Clause (plain): Connects two plain phrases or clauses, indicating
+    alternative possibilities or conditions.
+jlpt: N5
+etymology: The particle 「か」 is historically rooted in its function as a question marker. Its use to denote
+  'or' stems from this interrogative nature, essentially posing a choice as an implicit question. Over
+  time, this evolved to present alternatives or possibilities, where the question is about which of the
+  presented options is true or chosen, rather than simply asking 'is this true?'.
+writeup: |-
+  The particle 「か」, primarily known as a question marker, also functions crucially in Japanese to present alternatives, much like 'or' in English. This usage fundamentally revolves around offering choices or indicating uncertainty between two or more items, actions, or clauses.
+
+  When 「か」 connects nouns, it directly implies a choice between those nouns. For example, 「コーヒーかお茶」 (coffee or tea) presents two beverage options. This can extend to any plain form of a verb or adjective, linking two potential actions or states. For instance, 「行くか行かないか」 (go or not go) highlights a dilemma or choice.
+
+  It's important to understand the nuance: while its form is identical to the question particle, 「か」 here isn't always forming a direct question. Instead, it frames the preceding elements as a set of mutually exclusive or uncertain options. The context dictates whether a choice is being offered, or if the speaker is merely stating a range of possibilities.
+
+  **Important Considerations:**
+  *   **Formality:** When using 「か」 to list alternatives, especially with phrases, it's generally placed after the plain form of verbs and adjectives. Directly adding polite forms like 「です」 or 「ます」 after each alternative can shift the nuance, making it sound more like a direct, formal question for each item rather than a collective offering of choices. For example, 「パンですかりますか」 would be unnatural for offering choices; instead, one would say 「パンかご飯か」.
+  *   **Implied Choice:** Often, even without an explicit 'which one?' (e.g., 「どちら」 or 「どっち」), the presence of 「か」 implies that a selection needs to be made from the listed options.
+false_friends:
+  - term: それとも
+    meaning: Or, or else (introduces an alternative question)
+    kind: similar expression
+    nuance: While 「か」 can connect items within a single question, 「それとも」 typically introduces an entirely
+      new, alternative question or clause. For example, 「コーヒーにしますか。それとも紅茶にしますか。」 (Will you have coffee?
+      Or will you have tea?) emphasizes two distinct interrogatives.
+    grammar_point: それとも (or・or else)
+  - term: あるいは
+    meaning: Or, possibly (introduces another possibility or explanation, more formal)
+    kind: similar expression
+    nuance: 「あるいは」 is a more formal conjunction used to suggest another possibility, often in written
+      language or formal speech. It doesn't necessarily imply a direct choice but rather another viable
+      option. For example, 「病気、あるいは疲労が原因かもしれません。」 (Illness, or possibly fatigue, may be the cause.)
+    grammar_point: あるいは (or・alternatively)
+  - term: 〜なり〜なり
+    meaning: Or, either... or (offers multiple options, suggesting any is acceptable)
+    kind: similar expression
+    nuance: Unlike 「か」 which presents discrete choices, 「〜なり〜なり」 indicates that any of the listed options
+      are acceptable or that the speaker doesn't care which one is chosen. For example, 「電話するなり、メールするなりしてください。」
+      (Please call or email, or do something.)
+    grammar_point: なり〜なり (either... or)
+  - term: でも
+    meaning: But, however (expresses contrast or addition)
+    kind: often confused with
+    nuance: 「でも」 functions as a conjunction meaning 'but' or 'however', indicating a contrast or concession,
+      which is fundamentally different from 「か」's role in presenting alternatives. For example, 「今日は忙しい。でも、行きます。」
+      (I'm busy today, but I'll go.)
+    grammar_point: しかし (but・however)
+  - term: Question-phrase+か
+    meaning: Including questions within sentences (e.g., in embedded clauses)
+    kind: similar expression
+    nuance: This usage of 「か」 integrates an indirect question into a larger sentence, often followed by
+      verbs like わかる (to understand) or 教える (to teach). It is distinct from the 'or' function, which directly
+      lists options. For example, 「彼が来るかどうかわからない。」 (I don't know whether he will come or not.)
+    grammar_point: Question-phrase+か (embedded question)
+  - term: や
+    meaning: and so on (non-exhaustive list)
+    kind: similar expression
+    nuance: 「か」 presents a choice from a limited set of options, often binary or a few specific items.
+      「や」 is used for non-exhaustive listing, implying "and others" or "such things as". It doesn't present
+      a choice, but rather examples.
+    grammar_point: や (non-exhaustive list)
+  - term: とか
+    meaning: among other things, for example, such as (listing examples)
+    kind: similar expression
+    nuance: Similar to 「や」, 「とか」 also lists examples non-exhaustively, but often carries a more casual
+      or vague nuance, sometimes implying hearsay. It doesn't create a choice like 「か」.
+    grammar_point: とか (hearsay)
+  - term: もしくは
+    meaning: or (formal alternative)
+    kind: synonym
+    nuance: 「もしくは」 is a formal conjunction meaning 'or', often used in written contexts or official statements.
+      While a direct synonym for 'or', it lacks the interrogative or choice-based nuance often present
+      with 「か」.
+    grammar_point: もしくは (or・formal alternative)
+  - term: か否か
+    meaning: whether or not (formal)
+    kind: similar expression
+    nuance: This expression explicitly presents a binary "yes or no" question within a larger sentence,
+      similar to how 「か」 can be used with a negative form (e.g., 来るか来ないか). However, 「か否か」 is more formal
+      and always implies a definitive binary outcome.
+    grammar_point: か否か (whether or not)
+  - term: と
+    meaning: and (exhaustive list)
+    kind: antonym
+    nuance: 「か」 presents options, suggesting a choice or uncertainty between them. 「と」 is used to exhaustively
+      list items, implying that all listed items are included and there are no other options. It contrasts
+      directly with the 'choice' aspect of 「か」.
+    grammar_point: と (and, connects nouns)
+  - term: たり〜たりする
+    meaning: To do things like X and Y; sometimes X and sometimes Y
+    kind: similar expression
+    nuance: 「か」 presents a static choice or an uncertain alternative. 「たり〜たりする」 describes alternating
+      actions or states over time, often implying a pattern or a series of examples.
+    grammar_point: Verb[たり] (representative listing)
+  - term: <suggest>:も〜ば〜も (sometimes this・sometimes that)
+    meaning: Sometimes this, sometimes that; doing things like A and B
+    kind: similar expression
+    nuance: While 「か」 presents a choice between discrete options, this structure emphasizes a range of
+      activities or states that occur intermittently or alternately.
+    grammar_point: も〜ば〜も (sometimes this・sometimes that)
+post_false_friends_writeup: While 「か」 is versatile in presenting alternatives, other expressions serve
+  similar but distinct purposes. 「それとも」 introduces an alternative question; 「あるいは」 and 「もしくは」 offer another
+  possibility, often in more formal contexts; and 「〜なり〜なり」 implies that any of the listed options are
+  acceptable. 「や」, 「とか」, and `たり〜たりする` are used for non-exhaustive listing of examples or alternating
+  actions, not for presenting a singular choice or uncertainty like 「か」. Additionally, patterns like `も〜ば〜も`
+  indicate a simultaneous presence of multiple factors or alternating states rather than a selection between
+  distinct options. 「と」, on the other hand, is used for exhaustive listing, directly contrasting with
+  the 'choice' aspect of 「か」. Finally, 「か」 also has a distinct role in forming embedded questions, which
+  differs from its 'or' function, while 「か否か」 is a formal binary variant. Understanding these differences
+  allows for more precise expression.
+examples:
+  - english: Bread or rice, do you want to eat?
+    japanese:
+      - パン {か} ご飯、食べ たい？
+      - パン {か} ご飯、どっち 食べる？
+      - パン {か} ご飯、どっち が いい？
+    english_literally: Bread or rice, want to eat?
+    competing_grammar:
+      - competing_japanese:
+          - '{パン}、{ご飯}、食べ たい？'
+        english: Bread, rice, do you want to eat?
+        hint: Without 「か」, simply listing items might sound like two separate questions or an incomplete
+          thought. 「か」 clearly presents them as a single choice set. We're looking for a direct, clear
+          offer.
+      - competing_japanese:
+          - パン が 食べ たい？{それ と も} ご飯 が 食べ たい？
+        english: Do you want to eat bread? Or do you want to eat rice?
+        hint: 「それとも」 typically introduces a distinct, alternative question and is overly formal and verbose
+          for a casual conversation between a mother and child. We're looking for a more natural, concise
+          way to offer a choice.
+      - competing_japanese:
+          - パン {あるいは} ご飯 が 食べ たい です か？
+        english: Do you wish to eat bread? Or possibly rice?
+        hint: 「あるいは」 is a more formal conjunction used for suggesting another possibility, often inappropriate
+          for casual family settings. We're looking for a simple, direct question about preference.
+      - competing_japanese:
+          - パン {なり} ご飯 {なり} 好き な 方 を 食べ なさい。
+        english: Eat bread or rice, whichever you like.
+        hint: 「〜なり〜なり」 implies that any of the listed options are acceptable, not a question about which
+          one is preferred. We're looking for a clear choice.
+    scene: A mother offering her child breakfast options.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「か」 to connect 「パン」 (bread) and 「ご飯」 (rice) clearly presents options from a speaker
+      (older female) to a younger listener. The informal ending 「食べたい？」 makes it a soft, inviting question,
+      typical in family settings.
+  - english: Reading or writing, which do you like more?
+    japanese:
+      - 読む {か} 書く {か}、どっち が 好き？
+      - 読む の {か} 書く の {か}、どっち が 好き？
+      - 読書 {か} 作文 {か}、どっち が 好き？
+      - 読書 {か} 作文 {か}、どちら が お 好き です か？
+    english_literally: Read or write, which like more?
+    competing_grammar:
+      - competing_japanese:
+          - '{読む} の が 好き？{書く} の が 好き？'
+        english: Do you like reading? Do you like writing?
+        hint: This phrasing creates two distinct questions, losing the direct comparison implied by 「か」
+          between the two activities. We're looking for a single choice.
+      - competing_japanese:
+          - 読む の が 好き です か。{それ と も} 書く の が 好き です か。
+        english: Do you like reading? Or do you like writing?
+        hint: 「それとも」 typically introduces a distinct, alternative question. We're looking for a single
+          question offering a choice between two actions.
+      - competing_japanese:
+          - '{読む}。{書く}。どっち が 好き？'
+        english: Read. Write. Which do you like more?
+        hint: Listing activities without 「か」 can sound disjointed or declarative, rather than presenting
+          them as related choices for comparison. We're looking for a smooth link between choices.
+      - competing_japanese:
+          - 読む こと、{あるいは} 書く こと、どちら が 好き です か。
+        english: Do you think this apple is big, or possibly small?
+        hint: 「あるいは」 is more formal and introduces a possibility, rather than a direct comparison for
+          preference. We're looking for a more natural way to ask about a preference.
+      - competing_japanese:
+          - 読む {なり} 書く {なり}、どんな こと で も いい から、好き な こと を 見つけ なさい。
+        english: Whether reading or writing, find something you like to do.
+        hint: 「〜なり〜なり」 implies that any of the listed options are acceptable or that the speaker doesn't
+          care which one is chosen, which is not what we're asking. We're looking for a specific preference.
+    scene: Two students discussing their favorite subjects or hobbies during a study session.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: Using 「か」 after plain forms of verbs 「読む」 (read) and 「書く」 (write) concisely presents two activities
+      for comparison. The phrase 「どっちが 好き？」 (which do you like more?) is a common casual way to ask for
+      a preference between given options.
+  - english: Teacher or student, which are you?
+    japanese:
+      - 先生 {か} 学生 {か}、あなた は どちら です か。
+      - 先生 {か} 学生 {か}、どちら です か。
+      - 先生 {か} 学生 {か}、お 立場 は どちら で いらっしゃい ます か。
+    english_literally: Teacher or student, you are which one?
+    competing_grammar:
+      - competing_japanese:
+          - 先生 です か。{それ と も} 学生 です か。
+        english: Are you a teacher? Or are you a student?
+        hint: While grammatically correct, this phrasing can feel slightly aggressive or overly direct
+          for a polite inquiry about someone's affiliation. 「か」 allows for a more fluid presentation of
+          options within a single question.
+      - competing_japanese:
+          - '{先生}。{学生}。あなた は どちら です か。'
+        english: Teacher. Student. Which are you?
+        hint: Omitting 「か」 would make the initial words sound like mere labels rather than presented choices.
+          We're looking for a polite, structured question.
+      - competing_japanese:
+          - 先生、{あるいは} 学生、あなた は どちら です か。
+        english: Teacher, or possibly student, which are you?
+        hint: 「あるいは」 is a more formal conjunction used to suggest another possibility or explanation,
+          often in written language. We're looking for a direct question offering a choice between two
+          roles.
+      - competing_japanese:
+          - 先生 {なり} 学生 {なり}、何 か 役割 が ある と 思う の です が。
+        english: Whether teacher or student, I believe there is some role.
+        hint: 「〜なり〜なり」 implies that any of the listed options are acceptable or that the speaker doesn't
+          care which one is chosen, which doesn't fit the context of directly asking someone's role. We're
+          looking for a precise inquiry about identity.
+    scene: A new administrative staff member politely inquiring about a person's role at a school.
+    register: formal
+    setting: professional
+    nuance: The formal question uses 「か」 to connect two roles, 「先生」 (teacher) and 「学生」 (student), presenting
+      them as clear alternatives. The 「どちら です か」 (which one are you?) ending is polite and common for
+      asking about choices between items.
+  - english: This apple, is it big or small, which one?
+    japanese:
+      - この りんご は 大きい {か} 小さい {か}、どっち？
+      - この りんご は 大きい の {か} 小さい の {か}、どっち？
+      - この りんご は 大きい {か} 小さい {か}、どちら？
+      - この りんご は 大きい {か} 小さい {か}、どちら です か？
+    english_literally: This apple, big or small, which one?
+    competing_grammar:
+      - competing_japanese:
+          - この りんご は 大きい？{それ と も} 小さい？
+        english: Is this apple big? Or is it small?
+        hint: This would separate the two size inquiries into distinct questions, losing the direct comparison
+          implied by 「か」 between the two activities. We're looking for a single observation of size.
+      - competing_japanese:
+          - この りんご は {大きい}？{小さい}？どっち？
+        english: Is this apple big? Small? Which one?
+        hint: Without 「か」, the adjectives might feel less connected as direct options, making the question
+          slightly ambiguous or less grammatically cohesive. We're looking for a single observation of
+          size.
+      - competing_japanese:
+          - この りんご は 大きい の か、{あるいは} 小さい の か、どちら だ と 思う？
+        english: Do you think this apple is big, or possibly small?
+        hint: 「あるいは」 is more formal and introduces a possibility, rather than a direct comparison for
+          a clear choice. We're looking for a straightforward question about size.
+      - competing_japanese:
+          - 大きい {なり} 小さい {なり}、どんな 形 で も この りんご は おいしい よ。
+        english: Whether big or small, this apple is delicious.
+        hint: 「〜なり〜なり」 indicates that any of the listed states are acceptable, not a question asking for
+          a specific assessment. We're looking for an inquiry about a single characteristic.
+    scene: Two friends examining an apple, one asking for the other's perception of its size.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: Here, 「か」 connects two plain-form い-adjectives, 「大きい」 (big) and 「小さい」 (small), indicating
+      a choice between descriptive states. The casual 「どっち？」 (which one?) is common among friends when
+      asking for a simple assessment.
+  - english: Busy or free, which do you prefer?
+    japanese:
+      - 忙しい {か} 暇 {か}、どっち の ほう が いい？
+      - 忙しい の {か} 暇 な の {か}、どっち の ほう が いい？
+      - 忙しい の {か} 暇 な の {か}、どちら の ほう が いい です か？
+      - 忙しい {か} 暇 {か}、どちら の 状態 が 理想 です か？
+    english_literally: Busy or free, which direction better?
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい の が いい です か。{それ と も} 暇 な の が いい です か。
+        english: Is it better to be busy? Or is it better to be free?
+        hint: This phrasing is overly formal and verbose for a casual conversation between colleagues,
+          making it less natural. 「か」 offers a concise and direct way to inquire about a preference.
+      - competing_japanese:
+          - 忙しい、{あるいは} 暇、どっち の ほう が いい？
+        english: Busy, or perhaps free, which is better?
+        hint: 「あるいは」 is typically used for suggesting an alternative possibility, often in a more formal
+          or written context, rather than a direct comparison for preference. We're looking for a direct
+          comparison for preference.
+      - competing_japanese:
+          - '{忙しい}？{暇}？どっち の ほう が いい？'
+        english: Busy? Free? Which is better?
+        hint: Simply listing adjectives without 「か」 can make the options feel disconnected. We're looking
+          for a clear choice between two states.
+      - competing_japanese:
+          - 忙しい {なり} 暇 {なり}、どちら に せよ 充実 し て いる なら いい です よ ね。
+        english: Whether busy or free, it's good as long as you're fulfilled.
+        hint: 「〜なり〜なり」 indicates that any of the listed states are acceptable, not a question asking for
+          a specific preference. We're looking for an inquiry about a preferred state.
+    scene: Two coworkers discussing their schedule preferences for a project.
+    register: casual
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「か」 to connect 「忙しい」 (busy) and 「暇」 (free time), both な-adjectives, clearly presents
+      a choice between states. The casual 「どっちのほうがいい？」 (which is better?) is natural for coworkers discussing
+      preferences.
+  - english: Dog or cat, which one are you raising?
+    japanese:
+      - 犬 {か} 猫 {か}、どっち を 飼っ て いる の？
+      - 犬 {か} 猫 {か}、どちら を 飼っ て いる の？
+      - 犬 {か} 猫 {か}、飼っ て いる の は どっち？
+      - 犬 {か} 猫 {か}、どちら か を 飼っ て いらっしゃい ます か？
+    english_literally: Dog or cat, which one raising?
+    competing_grammar:
+      - competing_japanese:
+          - 犬 を 飼っ て いる の？{それ と も} 猫 を 飼っ て いる の？
+        english: Are you raising a dog? Or are you raising a cat?
+        hint: This is too formal and repetitive for a casual schoolyard conversation. 「か」 streamlines
+          the question to a single choice between two pet types.
+      - competing_japanese:
+          - '{犬}、{猫}、どっち を 飼っ て いる の？'
+        english: Dog, cat, which one are you raising?
+        hint: Simply listing the animals without 「か」 might make the question sound slightly blunt or less
+          like a direct choice. We're looking for a casual inquiry.
+      - competing_japanese:
+          - 犬 を 飼っ て いる の か、{あるいは} 猫 を 飼っ て いる の か、どちら の 手段 で いらっしゃる の です か？
+        english: Is it that you are raising a dog, or possibly a cat, which method will you use?
+        hint: 「あるいは」 is formal and often used for possibilities rather than direct choices, making it
+          unnatural for a casual conversation. We're looking for a concise question about pets.
+      - competing_japanese:
+          - 犬 {なり} 猫 {なり}、飼い たい と 思う 動物 を 飼え ば いい よ。
+        english: Whether a dog or a cat, you should raise an animal you want to.
+        hint: 「〜なり〜なり」 indicates that any of the listed options are acceptable, not a question asking
+          what kind of pet someone already has. We're looking for an inquiry about their current pet.
+    scene: Two classmates chatting about pets after school.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「か」 between 「犬」 (dog) and 「猫」 (cat) presents two common pet options. The casual
+      「どっちを 飼って いる の？」 (which one are you raising?) is typical for younger speakers discussing everyday
+      topics.
+  - english: Tokyo or Osaka, where do you want to go?
+    japanese:
+      - 東京 {か} 大阪 {か}、行き たい 所 は どこ です か。
+      - 東京 {か} 大阪 {か}、どちら の 方面 に 行か れ ます か。
+      - 東京 {か} 大阪 {か}、お 考え の 方面 は どちら です か。
+      - 東京 {か} 大阪 {か}、ご 希望 の 方面 は どちら で いらっしゃい ます か。
+    english_literally: Tokyo or Osaka, the place you want to go is where?
+    competing_grammar:
+      - competing_japanese:
+          - 東京 に 行き たい です か。{それ と も} 大阪 に 行き たい です か。
+        english: Do you want to go to Tokyo? Or do you want to go to Osaka?
+        hint: This creates two separate, slightly rigid questions. 「か」 offers a more natural flow for
+          presenting multiple destination choices within a single inquiry, which is more common in professional
+          client interactions.
+      - competing_japanese:
+          - '{東京}。{大阪}。行き たい 所 は どこ です か。'
+        english: Tokyo. Osaka. Where do you want to go?
+        hint: Merely stating the cities without 「か」 makes them sound like isolated words rather than a
+          pair of related options being presented for a choice. We're looking for clear choices to a client.
+      - competing_japanese:
+          - 東京、{あるいは} 大阪、行き たい 所 は どこ です か。
+        english: Tokyo, or perhaps Osaka, where do you want to go?
+        hint: 「あるいは」 is more about offering another possibility or explanation, often in formal or written
+          contexts, rather than a direct choice. We're looking for an explicit choice between destinations.
+      - competing_japanese:
+          - 東京 {なり} 大阪 {なり}、どちら か を 旅先 と し て ご 検討 ください。
+        english: Please consider Tokyo or Osaka as your travel destination, whichever.
+        hint: 「〜なり〜なり」 indicates that any of the listed options are acceptable, not a question asking
+          for a specific preference. We're looking for a precise inquiry about a desired destination.
+    scene: A travel agent discussing holiday destinations with a client.
+    register: formal
+    setting: professional
+    nuance: Using 「か」 to connect 「東京」 (Tokyo) and 「大阪」 (Osaka) efficiently presents two major city options.
+      The phrase 「行きたい 所 は どこ です か」 (where do you want to go?) maintains a polite and professional tone,
+      suitable for formal settings.
+  - english: Today or tomorrow, can we meet?
+    japanese:
+      - 今日 {か} 明日、あえ ます か。
+      - 今日 {か} 明日 で、お 会い でき ます か。
+      - 今日 {か} 明日 で、ご 都合 は いかが です か。
+      - 本日 {か} 明日 {か}、お 会い する こと は 可能 です か？
+    english_literally: Today or tomorrow, can meet?
+    competing_grammar:
+      - competing_japanese:
+          - 今日、あえ ます か。{それ と も} 明日、あえ ます か。
+        english: Can we meet today? Or can we meet tomorrow?
+        hint: This verbose phrasing is less efficient and slightly redundant for a quick, polite inquiry
+          between colleagues. 「か」 keeps the suggestion concise and direct.
+      - competing_japanese:
+          - '{今日}。{明日}。あえ ます か。'
+        english: Today. Tomorrow. Can we meet?
+        hint: Just stating the days without 「か」 can sound abrupt or incomplete, lacking the explicit connection
+          that offers a choice. We're looking for a clear, professional offer of flexibility.
+      - competing_japanese:
+          - 今日、{あるいは} 明日、あえ ます か。
+        english: Today, or perhaps tomorrow, can we meet?
+        hint: 「あるいは」 suggests an alternative possibility in a formal or written context. We're looking
+          for a direct choice between two options for meeting.
+      - competing_japanese:
+          - 今日 {なり} 明日 {なり}、いつ で も 構い ませ ん の で お 会い し ましょう。
+        english: Whether today or tomorrow, it doesn't matter, let's meet.
+        hint: 「〜なり〜なり」 indicates that any of the listed options are acceptable, not a question asking
+          for a specific preference. We're looking for an inquiry about availability.
+    scene: A colleague suggesting two possible dates for a meeting during a busy work week.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The particle 「か」 connects the temporal nouns 「今日」 (today) and 「明日」 (tomorrow), presenting
+      them as alternative options for a meeting. The polite form 「あえます か」 (can meet?) makes the suggestion
+      suitable for professional communication, particularly when addressing a group or senior colleague.
+  - english: Come by train or by car, which one?
+    japanese:
+      - 電車 で 来る {か}、車 で 来る {か}、どっち？
+      - 電車 {か} 車 {か}、どう やっ て 来る？
+      - 電車 で 来る の {か} 車 で 来る の {か}、どっち？
+      - 電車 {か} 車 {か}、どちら の 交通 手段 で いらっしゃい ます か？
+    english_literally: By train come or by car come, which one?
+    competing_grammar:
+      - competing_japanese:
+          - 電車 で 来る？{それ と も} 車 で 来る？
+        english: Are you coming by train? Or are you coming by car?
+        hint: This is too formal and separates the options unnecessarily. 「か」 provides a smooth, informal
+          way to offer a choice between two actions or methods, fitting a casual conversation.
+      - competing_japanese:
+          - 電車 で {来る}。車 で {来る}。どっち？
+        english: Come by train. Come by car. Which one?
+        hint: Simply listing the actions without 「か」 might sound like two separate statements rather than
+          options linked for a choice. We're looking for a joint decision for transportation.
+      - competing_japanese:
+          - 電車 で 来る の か、{あるいは} 車 で 来る の か、どちら の 手段 で いらっしゃる の です か？
+        english: Is it that you'll come by train, or possibly by car, which method will you use?
+        hint: 「あるいは」 is formal and used for possibilities, not ideal for a casual conversation between
+          friends about a direct choice. We're looking for a more natural way to ask about transportation.
+      - competing_japanese:
+          - 電車 {なり} 車 {なり}、好き な 方法 で 来 て いい よ。
+        english: Whether by train or by car, you can come by whichever method you like.
+        hint: 「〜なり〜なり」 indicates that any of the listed options are acceptable, not a question asking
+          about the specific planned method of arrival. We're looking for an inquiry about their choice
+          of transport.
+    scene: Friends deciding on transportation to a party, with one asking about the preferred method.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using 「か」 to connect two plain-form verb phrases 「電車 で 来る」 (come by train) and 「車 で 来る」 (come
+      by car) offers a choice between transportation methods. The casual 「どっち？」 (which one?) indicates
+      a relaxed setting among friends.
+  - english: I don't know if he's coming or not.
+    japanese:
+      - 彼 が 来る の {か} 来 ない の {か}、わから ない。
+      - 彼 が 来る {か} 来 ない {か}、わから ない。
+      - 彼 が 来る の {か} 来 ない の {か}、分かり ませ ん。
+      - 彼 が 来る {か} 来 ない {か}、分かり ませ ん。
+    english_literally: He coming or not coming, don't know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 来る {か い な か}、わから ない。
+        english: I don't know whether he's coming or not.
+        hint: While 「〜かどうか」 is a common way to express 'whether or not', using 「か」 to connect two explicit
+          alternatives (coming or not coming) can emphasize the dilemma more. We're looking for an expression
+          of uncertainty between two distinct possibilities.
+      - competing_japanese:
+          - 彼 は {来る} の？{来 ない} の？
+        english: Is he coming? Is he not coming?
+        hint: This phrasing forms two separate questions, which sounds more like a direct inquiry to someone
+          else rather than an expression of internal uncertainty or wondering. We're looking for an expression
+          of the speaker's own lack of knowledge about a single outcome.
+      - competing_japanese:
+          - 彼 が 来る、{あるいは} 来 ない、わから ない。
+        english: He is coming, or possibly not coming, I don't know.
+        hint: 「あるいは」 is a more formal conjunction that suggests another possibility. It doesn't quite
+          fit the nuance of expressing internal uncertainty about a direct binary outcome as naturally
+          as 「か」 does. We're looking for a concise way to express not knowing which of two states is true.
+    scene: Someone is waiting for a friend and is unsure about their arrival, speaking to themselves or
+      a close friend.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「か」 here connects two contrasting plain clauses, 「来る」 (coming) and 「来ない」 (not coming),
+      to express uncertainty about the situation. The nominalizer 「の」 before 「か」 is often used when posing
+      an internal or indirect question about a proposition or state, making it sound more natural in this
+      context.
+post_example_writeup: As demonstrated in these examples, the particle 「か」 is incredibly versatile for
+  presenting alternatives in Japanese. It allows for concise and natural expression across various registers
+  and settings, from casual conversations among friends to formal professional inquiries. Pay attention
+  to the surrounding sentence structure and other particles (like 「どっち」 or 「どちら」) as they often work in
+  conjunction with 「か」 to clarify the nature of the choice or question being posed.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/か-or

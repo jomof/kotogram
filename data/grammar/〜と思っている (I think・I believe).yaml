@@ -1,0 +1,283 @@
+grammar_point: 〜と思っている (I think・I believe)
+learn_before:
+  - '[Verb-よう]思う (intend to)'
+meaning: I think / I believe
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 思っている
+    rarity: common
+    meaning: I think/believe
+  - conjugation-type: non-past polite (～ます)
+    form: 思っています
+    rarity: common
+    meaning: I think/believe (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 思っていない
+    rarity: common
+    meaning: I don't think/believe
+  - conjugation-type: negative non-past polite (～ません)
+    form: 思っていません
+    rarity: common
+    meaning: I don't think/believe (polite)
+  - conjugation-type: past plain (～た)
+    form: 思っていた
+    rarity: common
+    meaning: I thought/believed
+  - conjugation-type: past polite (～ました)
+    form: 思っていました
+    rarity: common
+    meaning: I thought/believed (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 思っていなかった
+    rarity: common
+    meaning: I didn't think/believe
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 思っていませんでした
+    rarity: common
+    meaning: I didn't think/believe (polite)
+pronunciation:
+  katakana: ト オモッテ イル
+  romaji: to omotte iru
+formation:
+  Verb[dictionary form] + と思っている: Expresses a current thought or belief.
+  い-Adjective + と思っている: Expresses a current thought or belief about an い-adjective.
+  な-Adjective + だ + と思っている: Expresses a current thought or belief about a な-adjective (using the plain
+    copula だ).
+  Noun + だ + と思っている: Expresses a current thought or belief about a noun (using the plain copula だ).
+jlpt: N4
+etymology: The construction combines と (to), which functions as a quotative particle marking the preceding
+  clause as a direct or indirect quote or the content of thought, with 思う (omou), meaning "to think" or
+  "to feel." The ている (te-iru) ending signifies a continuous state or an ongoing action. Historically,
+  思う has been used to express internal thoughts and feelings. The addition of ている specifically emphasizes
+  the state of holding that thought or belief, distinguishing it from a one-time mental act. This evolution
+  allows for a more nuanced expression of a held opinion or a prolonged state of consideration.
+writeup: |-
+  〜と思っている (to omotte iru) is a grammatical construction used to express what one is currently thinking or what one's settled belief or opinion is. It combines the quotative particle と (to) with the verb 思う (omou - to think) in its て形 (te-form), 思って (omotte), followed by the auxiliary verb いる (iru - to exist, indicating a continuous state).
+
+  Unlike the simple 〜と思う (to omou), which can express a momentary thought or a general opinion, 〜と思っている emphasizes a continuous state of thinking or a belief that is held over a period. It suggests that the speaker has considered something and holds a particular view or is currently engaged in the act of thinking.
+
+  This form is versatile and can be used with various types of clauses preceding と:
+
+  *   **Verb clauses**: 「明日、雨が降ると{思っています}。」 (I think it will rain tomorrow.)
+  *   **い-Adjective clauses**: 「この本は面白いと{思っています}。」 (I think this book is interesting.)
+  *   **な-Adjective clauses**: 「彼は親切だと{思っています}。」 (I think he is kind.) - Note: な-Adjectives use だ before と.
+  *   **Noun clauses**: 「彼女は学生だと{思っています}。」 (I think she is a student.) - Note: Nouns use だ before と.
+
+  It is important to understand the nuance:
+
+  *   **と思う**: Can be a spontaneous thought or a general, less personal opinion.
+      *   「あ、雨が降ると{思う}。」 (Oh, I think it will rain. - Sudden thought)
+  *   **と思っている**: Implies a more sustained thought process, a current belief, or an opinion that has been formed.
+      *   「地球温暖化は深刻な問題だと{思っています}。」 (I believe global warming is a serious problem. - Settled belief)
+false_friends:
+  - term: 〜と思う
+    meaning: I think / I believe (momentary or general thought)
+    kind: similar expression
+    nuance: 〜と思う expresses a more immediate or general thought/opinion. It lacks the continuous or settled
+      belief nuance of 〜と思っている. For example, 「美味しいと{思う}」 (I think it's delicious) is a direct reaction,
+      while 「美味しいと{思っている}」 (I believe it's delicious) implies a settled opinion formed over time or experience.
+    grammar_point: <suggest>:と 思う (I think or thought)
+  - term: 〜と言っている
+    meaning: someone is saying / has said
+    kind: similar expression
+    nuance: While structurally similar (と + verb in ている form), 〜と言っている uses 言う (iu - to say) instead of
+      思う (omou - to think). It reports what someone else is saying or has said, not one's own internal
+      thought or belief.
+    grammar_point: <suggest>:Verb[て]いる (ongoing state・habitual action・resultant state)
+  - term: 〜と考えている
+    meaning: I am considering / I am thinking (carefully)
+    kind: similar expression
+    nuance: 〜と考えている uses 考える (kangaeru - to consider, to ponder), which implies a more deliberate, deeper,
+      or analytical thought process compared to the general 思う. It suggests active contemplation or planning.
+    grammar_point: <suggest>:Verb[て]考える (to be considering・to be thinking carefully)
+post_false_friends_writeup: When deciding between 〜と思う, 〜と思っている, and 〜と考えている, consider the **duration**
+  and **depth** of the thought. 〜と思う is for quick, immediate opinions. 〜と思っている is for opinions or beliefs
+  held over time, or thoughts that are currently ongoing. 〜と考えている is for more deliberate, analytical,
+  or long-term considerations. For example, if you just tasted something and it's good, you'd say 「美味しいと{思う}」.
+  If you've loved that food your whole life, you'd say 「美味しいと{思っている}」. If you're pondering a complex problem,
+  you'd say 「どうすればいいかと{考えている}」.
+examples:
+  - english: I believe that this plan is the best.
+    japanese:
+      - この 計画 が 一番 だ と {思っ て い ます}。
+      - この 計画 が 一番 だ と {思っ てる}。
+    english_literally: As for this plan, that it is the best, I am thinking/believing.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が 一番 だ と 思い ます。
+        english: I think this plan is the best (momentary thought).
+        hint: Using 思います suggests a more immediate or general thought. We're looking for a settled belief.
+    scene: A team meeting where a manager expresses their conviction about a proposed plan.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: 「だと思っています」 indicates a firm, considered belief held by the speaker, often used in professional
+      contexts to convey a well-thought-out opinion.
+  - english: I'm thinking about what to eat for dinner.
+    japanese:
+      - 晩ご飯 に 何 を 食べる か {思っ て いる} ところ。
+      - 晩ご飯 に 何 を 食べる か {思っ て い ます} ところ です。
+      - 晩ご飯 に 何 食べる か {思っ てる} とこ。
+    english_literally: For dinner, what to eat, I am thinking about right now.
+    competing_grammar:
+      - competing_japanese:
+          - 晩ご飯 に 何 を 食べる か 考える ところ。
+        english: I'm considering what to eat for dinner.
+        hint: 考える implies a more deliberate, analytical thought process. We're looking for a more casual,
+          ongoing thought.
+    scene: Two friends are chatting casually about their evening plans, and one is still deciding on food.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: 「思っているところ」 indicates the thought process is currently happening and is still in progress,
+      fitting for a casual discussion about immediate plans.
+  - english: I think it's better to finish homework early.
+    japanese:
+      - 宿題 は 早く 終わら せ た 方 が いい と {思っ て いる}。
+      - 宿題 は 早く 終わら せ た 方 が いい と {思っ て い ます}。
+    english_literally: As for homework, that finishing it early is better, I think.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 は 早く 終わら せ た 方 が いい と 思う。
+        english: I think it's better to finish homework early (general opinion).
+        hint: 思う can be a sudden thought or general opinion. We're looking for a more sustained belief
+          or personal rule.
+    scene: A male student giving advice to a younger sibling or friend about study habits.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The plain form 「思っている」 is common for general advice or stating one's personal rule in casual
+      contexts. The male speaker uses this form to impart wisdom based on their sustained belief.
+  - english: I believe she is having a difficult time right now.
+    japanese:
+      - 彼女 は 今、大変 な 時期 を 過ごし て いる と {思っ て おり ます}。
+      - 彼女 は 今、大変 な 時期 を 過ごし て いる と {思っ て い ます}。
+    english_literally: As for her, now, that she is spending a difficult period, I am humbly thinking/believing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 今、大変 な 時期 を 過ごし て いる と 存じ ます。
+        english: I humbly know/think she is having a difficult time right now.
+        hint: 存じます (zonjimasu) is a humble verb indicating knowing or thinking. While polite, 思っております
+          specifically uses 思う for the act of believing or thinking.
+    scene: A female colleague expressing concern to another colleague or superior about a mutual friend
+      who is facing challenges.
+    register: formal
+    setting: sympathetic
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    nuance: 「思っております」 is the humble form of 「思っています」 (from 思う + ております), showing politeness and a slight
+      deference. It is often used by female speakers when expressing a nuanced or sensitive opinion to
+      a superior or peer in a formal setting, emphasizing humility in their belief.
+  - english: I thought it was going to be difficult.
+    japanese:
+      - 難しい だろう と {思っ て い まし た}。
+      - 難しい だろう と {思っ て い た}。
+    english_literally: That it would probably be difficult, I was thinking/believing.
+    competing_grammar:
+      - competing_japanese:
+          - 難しい だろう と 思っ た。
+        english: I thought it would be difficult (single past thought).
+        hint: 思った (omotta) indicates a single past instance of thinking. We're looking for a state of
+          believing or ongoing thought in the past.
+    scene: Someone reflecting on their initial expectations before an event, which turned out to be different.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: 「思っていました」 implies that the belief or thought was held continuously for some period in the
+      past, rather than being a fleeting thought.
+  - english: I don't think that's a good idea.
+    japanese:
+      - それ は いい アイデア で は ない と {思っ て い ませ ん}。
+      - それ は いい アイデア で は ない と {思っ て い ない}。
+    english_literally: As for that, that it is not a good idea, I am not thinking/believing.
+    competing_grammar:
+      - competing_japanese:
+          - それ は いい アイデア で は ない と 思う。
+        english: I don't think that's a good idea (simple negative opinion).
+        hint: 思う (omou) in negative states a simple opinion. We're looking for a negative belief that
+          is held or a current thought.
+    scene: Someone politely disagreeing with a suggestion during a discussion or brainstorming session.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    nuance: The negative polite form 「思っていません」 conveys a polite but firm disagreement, indicating that
+      the speaker currently holds the belief that the idea is not good.
+  - english: I strongly believe that perseverance is important.
+    japanese:
+      - 忍耐 は 大切 だ と 強く {思っ て い ます}。
+      - 忍耐 は 大切 だ と 強く {思っ て いる}。
+    english_literally: As for perseverance, that it is important, I strongly think/believe.
+    competing_grammar:
+      - competing_japanese:
+          - 忍耐 は 大切 だ と 強く 考え ます。
+        english: I strongly consider perseverance to be important.
+        hint: 考えます (kangaemasu) implies more analytical consideration. We're looking for a deeply held
+          personal belief.
+    scene: An elder giving life advice to a younger person, sharing a deeply held conviction.
+    register: formal
+    setting: inspirational
+    conjugation: non-past polite (～ます)
+    speaker_age: older
+    nuance: 「強く思っています」 adds emphasis to the conviction, indicating a long-standing and firm personal belief.
+      An older speaker might use this to convey accumulated wisdom and experience.
+  - english: If you think it's fine, then let's go with that.
+    japanese:
+      - よい と {思っ て いる} なら、それ で 進め ましょう。
+      - よい と {思っ て い ます} なら、それ で 進め ましょう。
+    english_literally: If you are thinking/believing that it is good, then let's proceed with that.
+    competing_grammar:
+      - competing_japanese:
+          - よい と 思う なら、それ で 進め ましょう。
+        english: If you think it's fine (in that moment), then let's go with that.
+        hint: 思うなら implies a more immediate or conditional thought. We're asking if the belief is currently
+          held.
+    scene: A team leader asking for confirmation from a team member before moving forward with a decision.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The 「〜なら」 (if) conditional shows that the action depends on the other person's currently held
+      belief or opinion, indicating the leader values their team member's conviction.
+  - english: I've always thought you were very kind.
+    japanese:
+      - 昔 から、あなた は とても 親切 だ と {思っ て い まし た}。
+      - 昔 から、あなた は とても 親切 だ と {思っ て い た}。
+    english_literally: Since long ago, as for you, that you are very kind, I was thinking/believing.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 から、あなた は とても 親切 だ と 思っ た。
+        english: I thought you were very kind (a specific past realization).
+        hint: 思った (omotta) signifies a single past realization or thought. We're expressing a continuous
+          belief held since long ago.
+    scene: One person expressing appreciation to another, revealing a long-standing positive impression.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+    nuance: 「昔から」 emphasizes the continuous nature of the belief or feeling, indicating that the speaker
+      has held this opinion consistently over a long period. 「親切だと思っていました」 conveys a heartfelt, sustained
+      impression.
+  - english: What do you think about this?
+    japanese:
+      - これ に つい て どう {思っ て い ます} か。
+      - これ に つい て どう {思っ てる}？
+    english_literally: Regarding this, how are you thinking/believing?
+    competing_grammar:
+      - competing_japanese:
+          - これ に つい て どう 思い ます か。
+        english: What do you think about this? (seeking an immediate opinion).
+        hint: 思います (omoimasu) typically seeks a general or immediate opinion. We're asking for a more
+          considered or held belief.
+    scene: A teacher asking a student for their opinion on a topic discussed in class, encouraging deeper
+      thought.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: non-past polite (～ます)
+    nuance: Direct question using the grammar point to inquire about a currently held opinion or belief.
+      It's more about their established view than a quick, off-the-cuff thought.
+post_example_writeup: The examples illustrate how 〜と思っている can be used across various contexts, from professional
+  settings to casual conversations, always emphasizing a continuous thought process or a settled belief.
+  Pay attention to the choice of tense and politeness level, as these convey additional nuances about
+  the speaker's relationship with the listener and the situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/思う

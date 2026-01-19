@@ -1,0 +1,351 @@
+grammar_point: ことによる (cause reason)
+learn_before:
+  - 〜によるものだ (is due to)
+meaning: to be due to; to be caused by; to be brought about by; to be the result of
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ことによる
+    rarity: common
+    meaning: to be due to; to be caused by
+  - conjugation-type: negative plain (～ない)
+    form: ことによらない
+    rarity: common
+    meaning: not to be due to; not to be caused by
+  - conjugation-type: non-past polite (～ます)
+    form: ことによります
+    rarity: common
+    meaning: to be due to; to be caused by (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: ことによりません
+    rarity: common
+    meaning: not to be due to; not to be caused by (polite)
+  - conjugation-type: past plain (～た)
+    form: ことによった
+    rarity: common
+    meaning: was due to; was caused by
+  - conjugation-type: negative past plain (～なかった)
+    form: ことによらなかった
+    rarity: common
+    meaning: was not due to; was not caused by
+  - conjugation-type: past polite (～ました)
+    form: ことによりました
+    rarity: common
+    meaning: was due to; was caused by (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ことによりませんでした
+    rarity: common
+    meaning: was not due to; was not caused by (polite)
+  - conjugation-type: conditional (～ば)
+    form: ことによれば
+    rarity: common
+    meaning: if it is due to; if it is caused by
+  - conjugation-type: conditional (～たら)
+    form: ことによったら
+    rarity: less common
+    meaning: if it is due to (less common conditional)
+  - conjugation-type: concessive (～ても)
+    form: ことによっても
+    rarity: less common
+    meaning: even if it is due to
+pronunciation:
+  katakana: コトニヨル
+  romaji: koto ni yoru
+formation:
+  動詞・い形容詞 (普通形) + ことによる: Indicates the cause when it is an action or state expressed by a verb or i-adjective
+    in plain form.
+  な形容詞語幹 + なことによる: Indicates the cause when it is a state expressed by a na-adjective stem followed by
+    な.
+  名詞 + であることによる: Indicates the cause when it is a noun followed by である.
+jlpt: N2
+etymology: The grammar point 「ことによる」 is derived from the noun 「こと」 (koto, meaning 'thing' or 'matter')
+  combined with the verb 「よる」 (yoru, meaning 'to depend on' or 'to be caused by'). Literally, it means
+  'due to the matter of,' indicating that the preceding clause is the reason for the result.
+writeup: 'The grammar point 「ことによる」 is used to express that a certain situation or result is **caused
+  by** or **due to** a specific reason or action. It is a more formal expression, predominantly found
+  in writing and formal speech. It typically follows a plain form clause: a verb or i-adjective in its
+  plain form, a na-adjective stem followed by 「なことによる」, or a noun followed by 「であることによる」. While similar
+  in meaning to 「ためだ」 or 「からだ」, 「ことによる」 carries a higher degree of formality.'
+false_friends:
+  - term: せいにする
+    meaning: to blame (something); to attribute (something) to
+    kind: similar expression
+    nuance: Unlike 「ことによる」, 「せいにする」 is used to assign blame or responsibility for a negative outcome.
+      「ことによる」 merely indicates a cause without necessarily assigning blame.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: おかげで
+    meaning: thanks to; owing to
+    kind: similar expression
+    nuance: 「おかげで」 is used to express gratitude for a positive result due to someone or something, whereas
+      「ことによる」 simply states the cause, regardless of whether the result is positive or negative.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: ため・ために
+    meaning: because of; for the purpose of
+    kind: similar expression
+    nuance: 「ため・ために」 are general causal expressions. 「ことによる」 is more formal and emphasizes the source
+      or origin of the cause, framing it as the direct underlying reason for a state or outcome. 「ことによる」
+      often appears as a definitive statement of causality, whereas 「ため」 can also express purpose or a
+      more general "because."
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: によって・による・により
+    meaning: by means of; due to; depending on
+    kind: often confused with
+    nuance: 「によって・による・により」 has a broader range of meanings, including "by means of" or "depending on,"
+      in addition to "due to." 「ことによる」 exclusively focuses on identifying the cause or reason for a state
+      or outcome. The key difference is the scope of causality and other functions.
+    grammar_point: '[Noun]によって (means・method)'
+  - term: ことから
+    meaning: from the fact that; because; due to; given that
+    kind: similar expression
+    nuance: 「ことから」 often implies that an action or fact leads to a logical consequence or inference. 「ことによる」
+      directly attributes the state or outcome to the cause, defining the origin of the situation itself.
+      「ことから」 can suggest "based on the fact that..." while 「ことによる」 means "it is because of...".
+    grammar_point: ことから (from the fact that)
+post_false_friends_writeup: 'When using 「ことによる」, remember that it is a formal expression that simply states
+  the cause of a situation. Avoid using it when you intend to assign blame (use 「せいにする」 instead) or express
+  gratitude (use 「おかげで」 instead). Pay close attention to the nuance: while 「ため」 and 「から」 provide general
+  reasons, 「ことによる」 points to the specific underlying cause of a result. Also, differentiate it from 「によって」,
+  which has broader meanings beyond just cause, and 「ことから」, which often implies a cause that leads to
+  an inference.'
+examples:
+  - english: The delay in this project is due to the budget being insufficient.
+    japanese:
+      - 今回 の プロジェクト の 遅延 は、予算 が 不足 し て い た {こと に よる}。
+      - 今回 の プロジェクト の 遅延 は、予算 が 不足 し て い た {こと に よる もの です}。
+    english_literally: This time's project's delay, budget insufficient having been due to.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 が 不足 し て い た {の で}、今回 の プロジェクト は 遅延 し た。
+        english: Because the budget was insufficient, this project was delayed.
+        hint: 「ので」 expresses a reason or cause, but 「ことによる」 emphasizes the specific cause of a state or
+          outcome. We're looking for an expression that attributes the delay directly to the budget issue.
+      - competing_japanese:
+          - 予算 が 不足 し て い た {ため}、今回 の プロジェクト は 遅延 し た。
+        english: While 「ため」 also indicates cause, 「ことによる」 makes the cause the defining characteristic
+          of the delay, suitable for a formal explanation where the cause is directly identified as the
+          defining characteristic of the delay. We're looking for an expression that states the delay
+          is because of the budget.
+        hint: While 「ため」 also indicates cause, 「ことによる」 makes the cause the defining characteristic of
+          the delay, suitable for a formal explanation where the cause is directly identified as the defining
+          characteristic of the delay. We're looking for an expression that states the delay is because
+          of the budget.
+    scene: A project manager explaining why a project is behind schedule.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses a formal register suitable for a professional setting, where precise attribution
+      of cause is necessary. 「予算が不足していた」 clearly states the reason for the delay.
+  - english: The reason for that accident is said to be due to the driver's carelessness.
+    japanese:
+      - その 事故 の 理由 は、運転 手 が 不 注意 だっ た {こと に よる} と さ れ て い ます。
+      - その 事故 の 理由 は、運転 手 が 不 注意 だっ た {こと に よる と} 考え られ ます。
+    english_literally: That accident's reason, driver careless having been due to, is said to be.
+    competing_grammar:
+      - competing_japanese:
+          - 運転 手 が 不 注意 だっ た {ため}、その 事故 が 起き た と 言わ れ て い ます。
+        english: It is said that the accident happened because the driver was careless.
+        hint: 「ため」 indicates a cause, but 「ことによる」 is used to state that the accident is the result of
+          the driver's carelessness, often in formal or declarative contexts. We're looking for a formal
+          attribution of cause.
+    scene: A news reporter delivering a factual update.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence is appropriate for a news report, where information is presented objectively.
+      The use of 「不注意だったことによる」 formally assigns the cause of the accident.
+    etymology: 不注意 (fuchūi) meaning 'carelessness' consists of 不 (fu) 'not' and 注意 (chūi) 'caution.'
+  - english: His report caused misunderstanding due to the facts being inaccurate.
+    japanese:
+      - 彼 の 報告 書 は、事実 が {不 正確 な こと に よる} 誤解 を 招い た。
+      - 彼 の 報告 書 は、事実 が 不 正確 で あっ た {こと に よる} 誤解 を 招い た。
+    english_literally: His report, facts inaccurate due to misunderstanding invited.
+    competing_grammar:
+      - competing_japanese:
+          - 事実 が 不 正確 で あっ た {ため}、彼 の 報告 書 は 誤解 を 招い た。
+        english: Because the facts were inaccurate, his report caused misunderstanding.
+        hint: While 「ため」 can express cause, 「ことによる」 makes the inaccuracy itself the direct cause of the
+          misunderstanding, suitable for a formal assessment of causation. We're looking for an T that
+          directly links the inaccuracy to the misunderstanding.
+    scene: A colleague discussing a problematic report.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence demonstrates the `な形容詞語幹 + なことによる` formation, where 「不正確であったことによる」 directly
+      attributes the misunderstanding to the inaccuracy of the facts. This is typical in a professional
+      context where analytical precision is valued.
+  - english: The economic growth in this region is due to foreign investment being active.
+    japanese:
+      - この 地域 の 経済 成長 は、外国 投資 が {活発 で ある こと に よる} もの だ。
+      - この 地域 の 経済 成長 は、外国 投資 が {活発 で ある こと に よる} もの です。
+    english_literally: This region's economic growth, foreign investment active being due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 外国 投資 が 活発 で ある {ため}、この 地域 の 経済 は 成長 し た。
+        english: Due to foreign investment being active, this region's economy grew.
+        hint: 「ことによる」 frames the active foreign investment as the fundamental reason for the growth itself,
+          providing a more definitive causal explanation fitting for an analytical report. We're looking
+          for an expression that states the growth is because of the investment.
+    scene: An analyst explaining regional economic trends.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The usage of 「活発であることによる」 clearly links the economic growth to the active state of foreign
+      investment, utilizing the `名詞 + であることによる` formation. This formal phrasing is characteristic of academic
+      or analytical discourse.
+  - english: The recent decline in stock prices is thought to be due to the global economy being unstable.
+    japanese:
+      - 最近 の 株価 の 下落 は、世界 経済 が 不 安定 で あっ た {こと に よる} と 考え られ ます。
+      - 最近 の 株価 の 下落 は、世界 経済 が 不 安定 で あっ た {こと に よる もの だ と} 考え られ ます。
+    english_literally: Recent stock prices' decline, world economy unstable having been due to, is thought.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 経済 が 不 安定 で あっ た {ため}、最近 の 株価 は 下落 し た と 考え られ ます。
+        english: It is thought that the recent stock prices declined because the world economy was unstable.
+        hint: 「ことによる」 explicitly attributes the cause of the market decline to the fact of global economic
+          instability, providing a more definitive and analytical tone than a simple 「ため」. We're looking
+          for a formal explanation of the cause.
+    scene: An economist presenting an analysis.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: This academic explanation uses 「不安定であったことによる」 to provide a reasoned cause for a complex economic
+      phenomenon. It implies an objective analysis typical of expert discourse.
+    etymology: 株価 (kabuka) meaning 'stock prices' consists of 株 (kabu) 'stock' and 値 (ka) 'value.'
+  - english: His success is something that is due to him continuously making constant effort.
+    japanese:
+      - 彼 の 成功 は、彼 が 不断 の 努力 を 続け た {こと に よる} もの だ。
+      - 彼 の 成功 は、彼 が 不断 の 努力 を 続け た {こと に よる} もの です。
+    english_literally: His success, he constant effort continued due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 不断 の 努力 を 続け た {から}、成功 し た の だ。
+        english: He succeeded because he continuously made constant effort.
+        hint: While 「から」 expresses a cause, 「ことによる」 emphasizes that the success is literally the result
+          of his effort, giving it a more objective, undeniable quality. We're looking for an expression
+          that formally attributes success to effort.
+      - competing_japanese:
+          - 彼 が 不断 の 努力 を 続け た {おかげ で}、成功 し た の だ。
+        english: Thanks to him continuously making constant effort, he succeeded.
+        hint: 「おかげで」 implies a positive outcome with a nuance of gratitude or benefit, which is not the
+          primary focus here. We're looking to simply state the direct causal link without implying gratitude.
+    scene: A mentor encouraging a mentee by referencing a successful person.
+    register: semi-formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「不断の努力を続けたことによる」 is used to highlight the direct cause of success in a somewhat encouraging,
+      yet still formal, manner. The phrase 「ものだ」 adds emphasis to the resulting outcome.
+    etymology: 不断 (fudan) meaning 'constant' consists of 不 (fu) 'not' and 断 (dan) 'break.'
+  - english: Our recent arguments are due to our communication being insufficient.
+    japanese:
+      - 私 たち の 最近 の 喧嘩 は、お 互い の コミュニケーション が 不足 し て い た {こと に よる} の だ ね。
+      - 私 たち の 最近 の 喧嘩 は、お 互い の コミュニケーション が 不足 し て い た {こと に よる} の です。
+    english_literally: Our recent arguments, mutual communication insufficient having been due to, you
+      see.
+    competing_grammar:
+      - competing_japanese:
+          - お 互い の コミュニケーション が 不足 し て い た {から}、最近 喧嘩 し た の だ ね。
+        english: We argued recently because our communication was insufficient, you see.
+        hint: While 「から」 states a reason, 「ことによる」 provides a more definitive, almost objective conclusion
+          about the root cause of their arguments, suitable for a joint realization. We're looking for
+          a formal statement of cause.
+    scene: A couple discussing their relationship issues.
+    register: shitashii kuchō (intimate)
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: Despite the formality of 「ことによる」, the use of 「私たち」 (watashitachi) and the softener 「のだね」 (no
+      dane) makes this feel intimate and reflective. The speaker uses a formal grammatical structure to
+      clearly state the cause of a shared, personal problem, highlighting a desire for mutual understanding.
+    etymology: 喧嘩 (kenka) meaning 'argument' is formed from 喧 (ken) 'noisy' and 嘩 (ka) 'brawl.'
+  - english: That painter's works attract people, which is probably due to his rich experiences.
+    japanese:
+      - あの 画家 の 作品 が 人々 を 惹きつける の は、彼 の 経験 が 豊富 だっ た {こと に よる} の だろう。
+      - あの 画家 の 作品 が 人々 を 惹きつける の は、彼 の 経験 が 豊富 だっ た {こと に よる} の でしょ う。
+    english_literally: That painter's works attracting people is, his experiences rich having been due
+      to, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 経験 豊富 だっ た {ため}、作品 が 人々 を 惹きつける の だろう。
+        english: Probably because his experiences were rich, his works attract people.
+        hint: 「ことによる」 asserts that the artist's appeal is intrinsically due to his rich experiences, aligning
+          with an expert's interpretive analysis, more so than a simple 「ため」. We're looking for an analytical
+          explanation of the cause.
+    scene: An art critic discussing an artist's unique appeal.
+    register: formal
+    setting: creative
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence is suitable for an analytical context, like art criticism. 「経験が豊富だったことによる」 attributes
+      the artist's appeal to a specific quality, demonstrating a formal analysis of cause and effect.
+    etymology: 惹きつける (hikitsukeru) means 'to attract' or 'to fascinate', often used for things that capture
+      attention.
+  - english: My heart dances like this because your smile was just too wonderful.
+    japanese:
+      - 僕 の 心 が こんな に 踊る の は、君 の 笑顔 が あまり に 素敵 だっ た {こと に よる} の さ。
+      - 僕 の 心 が こんな に 踊る の は、君 の 笑顔 が あまり に 素敵 だっ た {こと に よる} の です よ。
+    english_literally: My heart this much dances is, your smile too wonderful having been due to, you
+      know.
+    competing_grammar:
+      - competing_japanese:
+          - 君 の 笑顔 が あまり に 素敵 だっ た {から}、僕 の 心 が こんな に 踊る の さ。
+        english: My heart dances like this because your smile was just too wonderful.
+        hint: While 「から」 is causal, the speaker chooses 「ことによる」 to elevate the cause (her wonderful smile)
+          to a more profound, almost scientific explanation for his emotional state, adding a humorous
+          and self-aware touch. We're looking for a slightly more sophisticated way to state the cause
+          playfully.
+    scene: A man flirting with a woman on a first date.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「僕の心がこんなに踊る」 conveys an intimate feeling, and the casual 「のさ」 softens the otherwise
+      formal 「ことによる」. This creates a playful and slightly self-aware tone, as if the speaker is trying
+      to intellectually rationalize a very personal emotional reaction to flirt.
+    etymology: 踊る (odoru) meaning 'to dance' can metaphorically describe a pounding heart.
+  - english: The decline in sales is due to the new product not being accepted by the market.
+    japanese:
+      - 売上 の 減少 は、新 製品 が 市場 に 受け入れ られ なかっ た {こと に よる}。
+      - 売上 の 減少 は、新 製品 が 市場 に 受け入れ られ なかっ た {こと に よる もの です}。
+    english_literally: Sales' decrease is, new product market-to not accepted was due to.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 が 市場 に 受け入れ られ なかっ た {ため}、売上 が 減少 し た。
+        english: Because the new product wasn't accepted by the market, sales declined.
+        hint: While 「ため」 states a reason, 「ことによる」 emphasizes that the sales decline is directly a consequence
+          of the product's market rejection. We're looking for an expression that attributes the decline
+          directly to the product's acceptance.
+    scene: A marketing team analyzing quarterly sales figures.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence applies 「ことによる」 in a business context to clearly state the reason for a negative
+      outcome, maintaining a professional and analytical tone. The verb 「受け入れられなかった」 clearly indicates
+      the specific cause.
+  - english: If the failure was due to a lack of preparation, then we must reflect on that point.
+    japanese:
+      - 失敗 が 準備 不足 で あっ た {こと に よれ ば}、その 点 を 反省 す べき です。
+      - 失敗 が 準備 不足 で あっ た {こと に よる の で あれ ば}、その 点 を 反省 す べき です。
+    english_literally: Failure, preparation insufficiency having been due to, that point reflect should
+      do.
+    competing_grammar:
+      - competing_japanese:
+          - 失敗 が 準備 不足 だっ た {なら ば}、その 点 を 反省 す べき です。
+        english: If the failure was due to a lack of preparation, then we must reflect on that point.
+        hint: While 「ならば」 expresses a conditional, 「ことによれば」 specifically frames the condition as being
+          caused by the lack of preparation, providing a more formal and analytical attribution.
+    scene: A team leader addressing their team after a project setback.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+    nuance: This formal expression uses the conditional form of 「ことによる」 to suggest a course of action
+      dependent on the identified cause. The phrase 「であることによれば」 specifically attributes the failure to
+      a lack of preparation, emphasizing the analytical and reflective nature of the discussion.
+post_example_writeup: The examples illustrate how 「ことによる」 serves as a formal and precise way to identify
+  the cause of a situation, outcome, or state. It is particularly useful in contexts requiring objectivity
+  and clarity, such as business reports, academic analysis, or news reporting. While other causal expressions
+  like 「から」 or 「ため」 convey similar meanings, 「ことによる」 often implies a more fundamental or defining causal
+  relationship.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことによる

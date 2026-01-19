@@ -1,0 +1,297 @@
+grammar_point: となると (when it comes to)
+learn_before:
+  - もし・もしも (if, emphasis)
+meaning: When it comes to; if it is true that; if it is the case that; if it turns out that
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: となると
+    rarity: common
+    meaning: When it comes to; if it is true that
+  - conjugation-type: negative plain (～ない)
+    form: とならないと
+    rarity: less common
+    meaning: If it is not true that; when it does not come to
+pronunciation:
+  katakana: トナルト
+  romaji: tonaru to
+formation:
+  '[Noun] + となると': Indicates a topic or situation that serves as a premise for what follows.
+  '[Sentence (plain form)] + となると': Expresses a condition or hypothetical situation, leading to a consequence.
+jlpt: N2
+etymology: The phrase 「となると」 is derived from the verb 「なる (naru)」, meaning "to become" or "to turn into."
+  The 「と」 particle indicates a conditional relationship or a trigger. Thus, 「となると」 literally means "if
+  it becomes" or "when it comes to becoming." This evolved to express the idea of "when a situation becomes
+  X" or "when the topic turns to X," leading to its modern usage of "when it comes to" or "if it turns
+  out that."
+writeup: |-
+  「となると」 is a versatile expression in Japanese that serves two primary functions: to introduce a specific topic for discussion or to set up a conditional situation. In its first usage, `[Noun] + となると`, it signifies "when it comes to" or "as for," bringing a particular subject into focus and often implying that different considerations apply to this subject. For example, when discussing various types of food, one might say 「魚となると話は別だ」 (When it comes to fish, it's a different story), indicating that fish has unique aspects not covered by the general discussion.
+
+  The second usage, `[Sentence (plain form)] + となると`, acts as a conditional conjunction, meaning "if it is true that," "if it is the case that," or "if it turns out that." This form introduces a hypothetical or realized condition that has a direct and often significant consequence. It is frequently used when considering the ramifications of a particular event or situation. For instance, 「彼が来ないとなると、計画を変更する必要がある」 (If it turns out he's not coming, we'll need to change the plan).
+
+  This grammar point emphasizes the critical nature of the preceding condition or topic, indicating that it's a turning point that leads to a particular outcome or a change in perspective. While it can be used in casual conversation, especially when shifting topics or discussing everyday contingencies, it also appears in more formal or semi-formal contexts when discussing serious implications or consequences.
+false_friends:
+  - term: としたら (if assuming)
+    meaning: If that's the case; in that case; supposing that
+    kind: similar expression
+    nuance: While both express conditional relationships, 「とすると」 often implies a more direct and immediate
+      consequence based on a hypothetical supposition, whereas 「となると」 emphasizes the natural progression
+      of events or considerations *given* a certain topic or realized situation.
+    grammar_point: としたら (if assuming)
+  - term: と言えば・と言うと・と言ったら (speaking of)
+    meaning: Speaking of; when it comes to
+    kind: often confused with
+    nuance: 「といえば」 is used to bring up a related topic or make an association, often as a conversational
+      segue or to elaborate on a previous point. In contrast, 「となると」 introduces a condition or a shift
+      in focus that *leads to* a different consideration or consequence, rather than just an associative
+      thought.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+post_false_friends_writeup: While 「とすると」, 「といえば」, and 「となると」 all introduce new ideas, they vary in their
+  specific use. 「とすると」 is used to present a hypothesis and its immediate, logical consequence. 「といえば」
+  is used to discuss something connected to what was previously mentioned, often as a casual thought or
+  elaboration. 「となると」 is used to indicate a new state of affairs, topic, or realization that brings about
+  another state of affairs or a specific consideration.
+examples:
+  - english: When it comes to money, he suddenly becomes quiet.
+    japanese:
+      - お 金 の こと {と なる と}、彼 は 急 に 無口 に なる。
+      - お 金 の こと {と なる と}、彼 は 急 に 無口 に なり ます。
+      - お 金 の 話 {と なる と}、彼 は 急 に 黙り込み ます。
+      - 金 の こと {と なる と}、あいつ 急 に 黙る よ な。
+    english_literally: As for money, when it comes to it, he suddenly becomes quiet.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 の こと {と いえ ば}、彼 は 急 に 無口 に なる。
+        english: Speaking of money, he suddenly becomes quiet.
+        hint: 「といえば」 brings up a related topic, but 「となると」 emphasizes that the topic itself causes a specific
+          reaction or consequence.
+    scene: A close friend is discussing a mutual acquaintance who has a peculiar reaction to financial
+      topics.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 'The speaker observes a specific behavioral change: 「急に無口になる」 (suddenly becomes quiet). The
+      use of 「お金のこととなると」 directly links this change to the topic of money, implying a characteristic reaction
+      rather than just a general statement about his knowledge.'
+    etymology: The phrase 「急に」 (kyū ni) means 'suddenly' and is derived from the kanji 急 which means 'urgent'
+      or 'sudden'. 「無口」 (mukuchi) means 'taciturn' or 'reserved', combining 無 (mu - nothing, without)
+      and 口 (kuchi - mouth).
+  - english: If the new project leader turns out to be you, everyone will probably be relieved.
+    japanese:
+      - 新しい プロジェクト の リーダー が 君 {と なる と}、みんな 安心 する だろう。
+      - 新しい プロジェクト の リーダー が 君 {と なる と}、みんな 安心 する でしょう。
+      - 新しい プロジェクト の リーダー が あなた 様 {と なる と}、皆 様 方 は 安心 さ れる こと でしょう。
+      - もし 新しい リーダー が 君 {と なる と}、皆 ホッ と する はず だ。
+    english_literally: New project's leader, if it becomes you, everyone will probably be relieved.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト の リーダー が 君 {だっ たら}、みんな 安心 する だろう。
+        english: If the new project leader were you, everyone would probably be relieved.
+        hint: 「だったら」 is a general conditional. 「となると」 implies a consequence or outcome *if* something
+          turns out to be true, often with a sense of confirmation.
+    scene: A manager is subtly encouraging a talented employee to consider a leadership role, hinting
+      at the team's positive reaction.
+    register: semi-formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The manager uses 「安心するだろう」 to express confidence in the team's reaction, suggesting the employee's
+      leadership would bring a sense of security. The phrase 「君となると」 highlights the specific individual
+      as the key factor for this outcome, underscoring the trust placed in them.
+    etymology: 「安心」 (anshin) means 'relief' or 'peace of mind'. It combines 安 (an - peace, safety) and
+      心 (shin - heart, mind).
+  - english: When it comes to drone photography as a hobby, he gets so absorbed he forgets the time.
+    japanese:
+      - 趣味 の ドローン 撮影 {と なる と}、彼 は 時間 を 忘れ て 没頭 する。
+      - 趣味 の ドローン 撮影 {と なる と}、彼 は 時間 を 忘れ て 没頭 し ます。
+      - 趣味 の ドローン 撮影 {と なる と}、あいつ 時間 忘れ て 没頭 し ちゃう ん だ よ な。
+      - 趣味 の ドローン 撮影 {と なる と}、彼 は 時間 を 忘れ て 夢中 に なり ます。
+    english_literally: When it comes to drone photography as a hobby, he forgets time and becomes absorbed.
+    competing_grammar:
+      - competing_japanese:
+          - 趣味 の ドローン 撮影 {に つい て は}、彼 は 時間 を 忘れ て 没頭 する。
+        english: Regarding drone photography as a hobby, he gets so absorbed he forgets the time.
+        hint: 「については」 simply introduces a topic, but 「となると」 emphasizes that the specific topic leads to
+          a particular, often strong, reaction or state.
+    scene: A friend is describing another friend's intense passion for a specific hobby.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    etymology: 「没頭」 (bottō) combines 没 (bō - to sink, to be immersed) and 頭 (tō - head), literally 'to
+      sink one's head into', implying deep absorption. 「趣味」 (shumi) means 'hobby' and 「撮影」 (satsuei) means
+      'filming'.
+  - english: If it's true that he has such a serious illness, we'll have no choice but to cancel the trip.
+    japanese:
+      - 彼 が そんな 重い 病気 だ {と なる と}、旅行 は 中止 せ ざる を え ない。
+      - 彼 が そんな 重い 病気 だ {と なる と}、旅行 は 中止 せ ざる を え ませ ん。
+      - 彼 が その よう な 重い ご 病気 だ {と なる と}、旅行 は 中止 せ ざる を 得 ない 状況 です。
+      - もし 彼 が そんな 重い 病気 だ {と なる と}、旅 は 無理 です ね。
+    english_literally: If it becomes that he has such a serious illness, the trip cannot but be cancelled.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が そんな 重い 病気 {なら}、旅行 は 中止 せ ざる を え ない。
+        english: If he has such a serious illness, we'll have no choice but to cancel the trip.
+        hint: 「なら」 is a simple conditional. 「となると」 implies a stronger causal link, suggesting that this
+          particular situation *results in* the stated consequence with a sense of inevitability.
+    scene: A woman is reluctantly discussing the necessity of canceling travel plans due to a friend's
+      severe health condition.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「中止せざるをえない」 conveys a strong sense of inevitability and reluctance, emphasizing
+      that cancellation is the only option. 「そんな重い病気だとなると」 highlights the gravity of the condition as
+      the direct cause for this unavoidable decision, fitting for a speaker conveying difficult news.
+    etymology: 「中止」 (chūshi) means 'cancellation' or 'suspension', combining 中 (chū - middle) and 止 (shi
+      - stop). 「病気」 (byōki) means 'illness'.
+  - english: If tomorrow's weather doesn't turn out bad, our plans will be ruined.
+    japanese:
+      - もし 明日 の 天気 が 悪い {と なら ない と}、予定 が 台無し に なる。
+      - もし 明日 の 天気 が 悪い {と なら ない と}、予定 が 台無し に なり ます。
+      - 明日 の 天気 が 悪い {と なら ない と}、やべえ、計画 終わる ぞ。
+    english_literally: If tomorrow's weather does not become bad, our plans will be ruined.
+    competing_grammar:
+      - competing_japanese:
+          - もし 明日 の 天気 が 悪く {なけれ ば}、予定 が 台無し に なる。
+        english: If tomorrow's weather is not bad, our plans will be ruined.
+        hint: 「～なければ」 is a common negative conditional. 「とならないと」 refers to a situation *not turning out*
+          in a certain way, leading to a consequence, emphasizing a dynamic 'becoming'.
+    scene: Two friends are making plans, but they are concerned about the weather forecast for an outdoor
+      event.
+    register: casual
+    setting: cautious
+    conjugation: negative plain (～ない)
+    listener_gender: group
+    nuance: The phrase 「予定が台無しになる」 expresses strong concern about the plans being ruined. The negative
+      conditional 「悪くならないと」 (if it doesn't become bad) highlights the necessity of the weather remaining
+      favorable for the plans to proceed, reflecting a cautious attitude among friends planning an outdoor
+      activity.
+    etymology: 「台無し」 (dainashi) means 'ruined' or 'spoiled', combining 台 (dai - stand/base) and 無し (nashi
+      - without), suggesting something that has lost its foundation or purpose and is now useless or ruined.
+      「天気」 (tenki) means 'weather'.
+  - english: When it comes to sudden business trips, preparing is tough, isn't it?
+    japanese:
+      - 急 な 出張 {と なる と}、準備 が 大変 です よ ね。
+      - 急 な 出張 {と なる と}、準備 大変 だ よ な。
+      - 急 な ご 出張 {と なる と}、準備 は ご 苦労 さ れ ます ね。
+      - 急 な 出張 {と なる と}、用意 する の が 難しい です よ ね。
+    english_literally: When it becomes a sudden business trip, preparation is tough, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 急 な 出張 {の 場合}、準備 が 大変 です よ ね。
+        english: In the case of sudden business trips, preparing is tough, isn't it?
+        hint: 「の場合」 states a general case. 「となると」 highlights the situation as a distinct topic that brings
+          about specific considerations or difficulties, implying a deeper impact.
+    scene: Colleagues are commiserating about the difficulties of their demanding jobs.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The speaker uses 「大変です よね」 to seek agreement from the listener, creating a shared understanding
+      of the difficulties associated with 「急な出張」. This polite and empathetic tone is common in professional
+      settings when discussing work-related challenges.
+    etymology: 「出張」 (shucchō) means 'business trip', combining 出 (shutsu - go out) and 張 (chō - stretch,
+      extend). 「準備」 (junbi) means 'preparation'.
+  - english: If it turns out we need to solve that difficult problem, we'll need an expert's help.
+    japanese:
+      - あの 難しい 問題 を 解決 する {と なる と}、専門 家 の 助け が 必要 だ。
+      - あの 難しい 問題 を 解決 する {と なる と}、専門 家 の 助け が 必要 です。
+      - その 困難 な 問題 を 解決 する {と なる と}、専門 家 の 協力 が 不可欠 でしょう。
+      - あの 難問 を 解決 する {と なる と}、プロ の 助言 が 要る。
+    english_literally: If it becomes that we solve that difficult problem, the help of an expert is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - あの 難しい 問題 を 解決 する {なら}、専門 家 の 助け が 必要 だ。
+        english: If we are to solve that difficult problem, we'll need an expert's help.
+        hint: 「なら」 is a general conditional. 「となると」 emphasizes that the necessity of solving the problem
+          *leads to* the need for expert help, implying a direct and significant consequence.
+    scene: A team leader is assessing the feasibility of a complex task and realizing external assistance
+      might be required.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「解決するとなると」 sets a conditional premise for needing assistance, emphasizing that
+      this specific, difficult task necessitates specialized support. The speaker's tone is pragmatic,
+      assessing the situation and stating the necessary resources, common in a team leader's address.
+    etymology: 「解決」 (kaiketsu) means 'solution' or 'settlement'. The first kanji, 解 (kai), means 'to unravel'
+      or 'to solve', and 決 (ketsu) means 'to decide' or 'to determine'. 「専門家」 (senmonka) means 'expert'.
+  - english: When it comes to camping on the weekend, the weather becomes a concern, doesn't it?
+    japanese:
+      - 週末 の キャンプ {と なる と}、天気 が 心配 に なる ね。
+      - 週末 の キャンプ {と なる と}、天気 が 心配 に なり ます ね。
+      - 週末 の キャンプ {と なる と}、お 天気 の こと が 気 に なり ます よ ね。
+      - 週末 キャンプ {と なる と}、天気 ホント 心配 だ よ ねー。
+    english_literally: When it becomes weekend camping, the weather becomes a concern, doesn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 週末 の キャンプ {は}、天気 が 心配 に なる ね。
+        english: As for weekend camping, the weather becomes a concern, ='
+        hint: 「は」 marks a topic generally. 「となると」 implies that the topic of 'weekend camping' is what
+          *triggers* the concern about the weather, connecting the two more closely.
+    scene: Friends are discussing their upcoming weekend camping trip and their hopes for good weather.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: The speaker uses 「心配になるね」 to express a shared feeling of anxiety about the weather, and 「となると」
+      links this concern directly to the specific activity of 「週末のキャンプ」. This casual expression seeks
+      agreement from friends in a relaxed setting.
+    etymology: 「週末」 (shūmatsu) means 'weekend', combining 週 (shū - week) and 末 (matsu - end). 「心配」 (shinpai)
+      means 'worry' or 'concern', combining 心 (shin - heart, mind) and 配 (pai - distribute, arrange, also
+      related to anxiety).
+  - english: If this plan fails, the company's future is in jeopardy.
+    japanese:
+      - この 計画 が 失敗 {と なる と}、会社 の 将来 が 危うい。
+      - この 計画 が 失敗 {と なる と}、会社 の 将来 が 危うい です。
+      - この 計画 が 失敗 {と なる と}、弊社 の 将来 は 危機 に 瀕 する こと でしょう。
+      - もし この プラン が 失敗 {と なる と}、会社 の 存続 が 危ない。
+    english_literally: If this plan becomes a failure, the company's future is dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が 失敗 {し たら}、会社 の 将来 が 危うい。
+        english: If this plan fails, the company's future is in jeopardy.
+        hint: 「～したら」 is a common conditional. 「となると」 highlights that the failure *turning into a reality*
+          directly leads to the critical state of the company's future, emphasizing the significant implications.
+    scene: Executives are in a tense board meeting, contemplating the severe consequences of a critical
+      business strategy not succeeding.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「将来が危うい」 conveys a dire prediction for the company's future. The use of 「失敗となると」
+      underscores the critical nature of the plan's success, implying that its failure would be a definitive
+      turning point with severe repercussions, suitable for a formal business context.
+    etymology: 「将来」 (shōrai) means 'future'. It combines 将 (shō - lead, command) and 来 (rai - come, next),
+      suggesting what 'will come next'. 「失敗」 (shippai) means 'failure'.
+  - english: If it comes to choosing between work and family, family always comes first.
+    japanese:
+      - 仕事 と 家族 の どちら か を 選ぶ {と なる と}、常 に 家族 が 最 優先 だ。
+      - 仕事 と 家族 の どちら か を 選ぶ {と なる と}、常 に 家族 が 最 優先 です。
+      - 仕事 と 家族、どちら か を 選ぶ {と なる と}、私 は 常 に 家族 を 最 優先 いたし ます。
+      - 仕事 か 家族 か を 選ぶ {と なる と}、やはり 家族 を 大切 に する。
+    english_literally: Work and family's either one to choose, if it becomes, always family is most priority.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 と 家族 の どちら か を 選ぶ {なら}、常 に 家族 が 最 優先 だ。
+        english: If it's choosing between work and family, family always comes first.
+        hint: 「なら」 is a general conditional. 「となると」 emphasizes that the act of choosing *becomes* a pivotal
+          situation that directly leads to the stated priority.
+    scene: A busy professional explaining their life priorities to a new colleague or mentee.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「常に家族が最優先だ」 to convey a strong personal principle. The phrase 「仕事と家族のどちらかを選ぶとなると」
+      sets up a hypothetical but critical situation, emphasizing the speaker's firm decision when faced
+      with such a choice, which is characteristic of a professional discussing values.
+    etymology: 「優先」 (yūsen) means 'priority', combining 優 (yū - superior) and 先 (sen - ahead). 「仕事」 (shigoto)
+      means 'work' and 「家族」 (kazoku) means 'family'.
+post_example_writeup: The phrase 「となると」 allows you to smoothly introduce a topic, condition, or situation
+  that dictates what follows. It is useful in many situations, whether discussing a specific hobby, a
+  personal trait, or the serious implications of an event.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/となると

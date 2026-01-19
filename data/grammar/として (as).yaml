@@ -1,0 +1,230 @@
+grammar_point: として (as)
+learn_before:
+  - '[Verb-dictionary]こと (nominalization)'
+  - '[Verb-dictionary]のが好きだ (to like doing)'
+  - '[Verb-stem]かねる (unable to・hesitant to)'
+  - そして (and・and then)
+  - できない (cannot do・unable to do)
+  - でできる (made of)
+  - と (and, connects nouns)
+  - 並びに (and・as well as・formal)
+  - 側面 (aspect side)
+meaning: As (in the role of), for
+pronunciation:
+  katakana: トシテ
+  romaji: toshite
+formation:
+  Noun + として: Indicates role, function, or capacity. Translates to 'as' in English.
+jlpt: N3
+etymology: The grammar point 「として」 is derived from the particle 「と」, which indicates a result or assumption,
+  combined with 「して」, the te-form of the verb 「する」 (to do). This combination creates the nuance of something
+  being regarded or used 'as' something else, establishing a basis or capacity.
+writeup: |-
+  「として」 expresses the idea of something being considered in a certain role, function, or capacity. It is analogous to "as" or "in the capacity of" in English. This grammatical structure combines the case marking particle 「と」, used to highlight a result or condition, with 「して」, the te-form of the verb 「する」 (to do).
+
+  When 「と」 is used to indicate a result, it implies that a preceding element (A) is a plain or unchanging fact, serving as the basis for a subsequent statement (B). By adding 「して」, 「として」 presents (A) as the foundational point from which (B) can be determined or evaluated. For example, 「医者として」 (as a doctor) establishes the role of a doctor as the basis for whatever statement follows.
+
+  While 「として」 is a combination of these elements, it often functions as a 副助詞 (adverbial particle) in its own right. This means it typically attaches directly to nouns, indicating that the noun functions or is regarded as something specific. This usage emphasizes one particular aspect or role of a person or thing, even if other aspects exist. It implies that the statement (B) is being made solely based on the aspect defined by (A), disregarding other characteristics for that specific context.
+
+  This is a widely used grammatical construction, common across various contexts and demographics in Japanese.
+false_friends:
+  - term: たる
+    meaning: To be (in a position of), as a, for
+    kind: synonym
+    nuance: Unlike 「として」, 「たる」 implies a certain standard or expectation that comes with a position. It
+      is considered more formal and literary.
+    grammar_point: たる (to be in a position of)
+  - term: ように
+    meaning: Like, as if, for a purpose
+    kind: similar expression
+    nuance: 「ように」 expresses similarity, manner, or purpose, indicating *how* something is or *how* an
+      action is performed. 「として」 specifies the *role*, *capacity*, or *nature* of a person or thing.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: にとって
+    meaning: For, to, from the standpoint of
+    kind: similar expression
+    nuance: 「にとって」 focuses on the perspective or benefit *for* someone. 「として」 defines *what* something
+      is being regarded *as*, specifying its role or function.
+    grammar_point: にとって (from the standpoint of)
+post_false_friends_writeup: Both 「として」 and 「たる」 can express roles or functions, but they differ in nuance
+  and formality. 「として」 is a more general way to indicate a role or function, while 「たる」 implies a certain
+  standard or expectation associated with that role. When in doubt, 「として」 is the safer, more versatile
+  choice for everyday conversations. Meanwhile, 「ように」 indicates manner or resemblance, like 'as if' or
+  'in the way that', describing *how* something is done or perceived, rather than defining a role or capacity.
+  「にとって」 highlights something's significance or perspective *for* a particular person or group.
+examples:
+  - english: As a teacher, he is admired by his students.
+    japanese:
+      - 彼 は 先生 {と し て}、生徒 に 慕わ れ て いる。
+      - 彼 は 先生 {と し て}、生徒 に 慕わ れ て い ます。
+      - 彼 は 先生 {と し て}、生徒 から 慕わ れ て いる。
+    english_literally: As a teacher, he is admired by students.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 先生 な {の で}、生徒 に 慕わ れ て いる。
+        english: Because he is a teacher, he is admired by his students.
+        hint: 「なので」 expresses a reason or cause. We're looking for a phrase that expresses a role or capacity,
+          not merely a reason.
+    scene: A new principal observes a popular teacher.
+    register: formal
+    setting: professional
+    nuance: 「先生として」 highlights his role as a teacher, which is the basis for student admiration. This
+      is a common, neutral usage.
+  - english: This room is used as a storage room.
+    japanese:
+      - この 部屋 は 倉庫 {と し て} 使わ れ て いる。
+      - この 部屋 は 倉庫 {と し て} 使わ れ て い ます。
+      - この 部屋 は 倉庫 {と し て} 用い られ て いる。
+    english_literally: This room is used as a storage room.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 倉庫 {だ}。
+        english: This room is a storage room.
+        hint: 「だ」 simply states a fact. We're looking for a phrase that indicates the purpose or function
+          for which something is used.
+    scene: A tour guide explaining the purpose of a room in an old building.
+    register: semi-formal
+    setting: informative
+    nuance: 「倉庫として」 specifies the function or purpose of the room. It indicates the room's current use.
+  - english: As a parent, one should seriously consider their children's future.
+    japanese:
+      - 親 {と し て}、子供 の 将来 を 真剣 に 考える べき だ。
+      - 親 {と し て}、子供 の 将来 を 真剣 に 考える べき です。
+      - 親 {と し て} は、子供 の 将来 を 真剣 に 考える べき だ。
+    english_literally: As a parent, one should seriously consider their children's future.
+    competing_grammar:
+      - competing_japanese:
+          - 親 {なら ば}、子供 の 将来 を 真剣 に 考える べき だ。
+        english: If one is a parent, one should seriously consider their children's future.
+        hint: 「ならば」 expresses a conditional. We're looking for a phrase that implies a duty or responsibility
+          associated with a role.
+    scene: A father gives advice to his son who is about to become a parent.
+    register: semi-formal
+    setting: serious
+    nuance: 「親として」 implies a duty or responsibility associated with the role of a parent. The expression
+      「〜べきだ」 (should) reinforces this sense of obligation.
+  - english: As a Japanese person, I want to cherish this culture.
+    japanese:
+      - 私 は 日本 人 {と し て}、この 文化 を 大切 に し たい。
+      - 私 は 日本 人 {と し て}、この 文化 を 大切 に し たい です。
+      - 日本 人 {と し て}、この 文化 を 大切 に し たい。
+    english_literally: As a Japanese person, I want to cherish this culture.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 日本 人 {だ から}、この 文化 を 大切 に し たい。
+        english: Because I am Japanese, I want to cherish this culture.
+        hint: 「だから」 indicates a reason. We're looking for a phrase that expresses an identity or perspective
+          from which an action or desire arises.
+    scene: A young woman reflecting on her heritage.
+    register: formal
+    setting: reflective
+    speaker_gender: female
+    nuance: 「日本人として」 indicates the speaker's perspective and desire stemming from her identity. This phrasing
+      reflects a personal conviction.
+  - english: I like drawing as a hobby.
+    japanese:
+      - 趣味 {と し て} 絵 を 描く の が 好き です。
+      - 趣味 {と し て} 絵 を 描く の が 好き だ。
+      - 絵 を 描く こと を 趣味 {と し て} い ます。
+    english_literally: As a hobby, I like drawing.
+    competing_grammar:
+      - competing_japanese:
+          - 絵 を 描く の が 趣味 {です}。
+        english: Drawing is my hobby.
+        hint: This simply states that drawing is a hobby. We're looking for a phrase that frames the activity
+          (drawing) as a hobby.
+    scene: Two colleagues discussing their free time activities.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「趣味として」 specifies the category or nature of the activity. It frames drawing within the context
+      of a hobby.
+  - english: Such a statement disqualifies one as a politician.
+    japanese:
+      - そんな 発言 は 政治 家 {と し て} 失格 だ。
+      - そんな 発言 は 政治 家 {と し て} 失格 です。
+      - そんな 発言 は 政治 家 {と し て} まさに 失格 だ。
+    english_literally: Such a statement, as a politician, is a disqualification.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 発言 は 政治 家 {じゃ ない}。
+        english: Such a statement means they are not a politician.
+        hint: 「じゃない」 denies their status. We're looking for a phrase that implies failing to meet the
+          expected standards or responsibilities of a politician.
+    scene: A news commentator criticizing a politician's public statement.
+    register: casual
+    setting: serious
+    nuance: 「政治家として失格だ」 is a strong judgment, implying failure to meet the expected standards or responsibilities
+      of a politician. The choice of 「失格だ」 conveys strong disapproval.
+  - english: As a husband and as a father, he supports his family.
+    japanese:
+      - 彼 は 夫 {と し て}、そして 父親 {と し て}、家族 を 支え て いる。
+      - 彼 は 夫 {と し て}、そして 父親 {と し て}、家族 を 支え て い ます。
+      - 彼 は 夫 {と し て}、並び に 父親 {と し て}、家族 を 支え て いる。
+    english_literally: He, as a husband, and as a father, supports his family.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 夫 で 父親 な {の で}、家族 を 支え て いる。
+        english: Because he is a husband and a father, he supports his family.
+        hint: 「なので」 expresses a reason. We're looking for a phrase that emphasizes distinct roles or capacities.
+    scene: A family member describing the head of the household.
+    register: semi-formal
+    setting: informative
+    nuance: This sentence uses 「として」 twice to emphasize dual roles. The repetition of 「として」 highlights
+      both equally important capacities of the individual.
+  - english: I can understand your opinion as a fact, but I cannot agree with it.
+    japanese:
+      - あなた の 意見 は 事実 {と し て} 理解 できる が、賛同 でき ない。
+      - あなた の 意見 は 事実 {と し て} 理解 でき ます が、賛同 でき ませ ん。
+      - あなた の 意見 は 事実 {と し て} 認識 でき ます が、賛同 致し かね ます。
+    english_literally: Your opinion, as a fact, can be understood, but I cannot agree with it.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 意見 は 事実 {だ} が、賛同 でき ない。
+        english: Your opinion is a fact, but I cannot agree with it.
+        hint: This states that the opinion is a fact. We're looking for a phrase that implies acknowledging
+          something as a fact, suggesting a distinction between understanding and agreement.
+    scene: During a contentious business meeting.
+    register: formal
+    setting: serious
+    nuance: 「事実として理解できるが」 implies that something is acknowledged as a factual point, but the speaker might
+      have reservations or not fully embrace its implications.
+  - english: As a Japanese learner, mastering kanji is an unavoidable challenge.
+    japanese:
+      - 日本 語 学習 者 {と し て}、漢字 の 習得 は 避け て 通れ ない 課題 だ。
+      - 日本 語 学習 者 {と し て}、漢字 の 習得 は 避け て 通れ ない 課題 です。
+      - 日本 語 学習 者 {と し て} は、漢字 の 習得 は 避け て 通れ ない 課題 だ。
+    english_literally: As a Japanese learner, mastering kanji is an unavoidable task.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 学習 者 {に とっ て}、漢字 の 習得 は 避け て 通れ ない 課題 だ。
+        english: For a Japanese learner, mastering kanji is an unavoidable challenge.
+        hint: 「にとって」 expresses 'for' or 'from the perspective of'. We're looking for a phrase that positions
+          someone within a specific role, providing context for the statement that follows.
+    scene: A student discussing the challenges of Japanese grammar.
+    register: semi-formal
+    setting: reflective
+    nuance: 「日本語学習者として」 positions the speaker (or a general learner) within that specific role, providing
+      the context for the statement about kanji. This phrasing implies a shared experience among learners.
+  - english: This product is recognized as the best in its category.
+    japanese:
+      - この 製品 は カテゴリー で 最高 {と し て} 認め られ て いる。
+      - この 製品 は カテゴリー で 最高 {と し て} 認め られ て い ます。
+      - この 製品 は カテゴリー で 最高 の も の {と し て} 認め られ て いる。
+    english_literally: This product, as the best in its category, is recognized.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は カテゴリー で 最高 {で ある}。
+        english: This product is the best in its category.
+        hint: 「である」 simply states a fact. We're looking for a phrase that expresses how something is regarded
+          or recognized within a certain context.
+    scene: A marketing manager giving a presentation about a new product's success.
+    register: formal
+    setting: informative
+    nuance: 「最高として」 emphasizes that the product is regarded or acknowledged as the best, rather than just
+      stating it is the best. It highlights the recognition it has received.
+post_example_writeup: Understanding the nuanced use of 「として」 is crucial for accurately expressing roles,
+  capacities, and standards in Japanese. Pay close attention to the context and what aspect of the noun
+  「として」 is modifying; whether it's a role, a function, or a condition under which something is understood
+  or judged.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/として

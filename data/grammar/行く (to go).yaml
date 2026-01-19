@@ -1,0 +1,326 @@
+grammar_point: 行く (to go)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+meaning: to go
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 行く
+    rarity: common
+    meaning: to go
+  - conjugation-type: non-past polite (～ます)
+    form: 行きます
+    rarity: common
+    meaning: will go / go
+  - conjugation-type: past plain (～た)
+    form: 行った
+    rarity: common
+    meaning: went
+  - conjugation-type: past polite (～ました)
+    form: 行きました
+    rarity: common
+    meaning: went
+  - conjugation-type: negative plain (～ない)
+    form: 行かない
+    rarity: common
+    meaning: don't go / won't go
+  - conjugation-type: negative non-past polite (～ません)
+    form: 行きません
+    rarity: common
+    meaning: won't go / don't go
+  - conjugation-type: negative past plain (～なかった)
+    form: 行かなかった
+    rarity: common
+    meaning: didn't go
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 行きませんでした
+    rarity: common
+    meaning: didn't go
+  - conjugation-type: te-form (～て)
+    form: 行って
+    rarity: common
+    meaning: going and then / go and
+  - conjugation-type: volitional (～よう)
+    form: 行こう
+    rarity: common
+    meaning: let's go
+  - conjugation-type: volitional polite (～ましょう)
+    form: 行きましょう
+    rarity: common
+    meaning: let's go
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 行け
+    rarity: common
+    meaning: Go!
+  - conjugation-type: imperative polite (～なさい)
+    form: 行きなさい
+    rarity: common
+    meaning: Please go
+  - conjugation-type: potential (～られる/～える)
+    form: 行ける
+    rarity: common
+    meaning: can go / able to go
+  - conjugation-type: passive (～られる/～かれる)
+    form: 行かれる
+    rarity: common
+    meaning: to be gone (e.g. by someone's will, or a place is visited)
+  - conjugation-type: causative (～させる)
+    form: 行かせる
+    rarity: common
+    meaning: to make / let go
+  - conjugation-type: causative-passive (～させられる)
+    form: 行かせられる
+    rarity: less common
+    meaning: to be made / forced to go
+  - conjugation-type: conditional (～ば)
+    form: 行けば
+    rarity: common
+    meaning: if go
+  - conjugation-type: conditional (～たら)
+    form: 行ったら
+    rarity: common
+    meaning: if went / if go
+  - conjugation-type: concessive (～ても)
+    form: 行っても
+    rarity: common
+    meaning: even if go
+  - conjugation-type: desiderative (～たい)
+    form: 行きたい
+    rarity: common
+    meaning: want to go
+  - conjugation-type: progressive (～ている)
+    form: 行っている
+    rarity: common
+    meaning: is going / has gone
+pronunciation:
+  katakana: イク
+  romaji: Iku
+formation:
+  '[場所] へ / に + 行く': To go to a place.
+  '[目的] に + 行く': To go for a purpose (often with Verb[stem] + に).
+  '[手段] で + 行く': To go by means of something.
+jlpt: N5
+etymology: The modern Japanese verb 「行く」 (iku) has its roots in Old Japanese 「ゆく」 (yuku). Over time, the
+  pronunciation shifted from the y sound to i when followed by u or o in certain contexts, which is a
+  common phonetic change in Japanese. While both 「行く」 (iku) and 「逝く」 (yuku) use the same kanji, 「逝く」 specifically
+  means "to pass away" or "to die," retaining the older pronunciation for a more somber context, highlighting
+  the finality of a journey. This distinction in pronunciation for different nuances, despite sharing
+  the same kanji, showcases how the language has evolved to convey subtle differences in meaning and formality.
+writeup: 「行く」 is a fundamental Japanese verb meaning "to go." It describes movement away from the speaker's
+  current location or a designated point of reference. It is used broadly for physical travel, but also
+  extends to abstract concepts like time passing or processes continuing. The choice between 「行く」 and
+  its counterpart 「来る (kuru)」 (to come) is entirely dependent on the speaker's perspective. If the movement
+  is away from the speaker, you use 「行く」. If the movement is towards the speaker, you use 「来る」. This distinction
+  is crucial and a common point of confusion for English speakers, as English "go" can sometimes be used
+  in contexts where Japanese would use "come." When specifying the destination, the particle 「へ」 (e) or
+  「に」 (ni) is typically used. 「へ」 emphasizes the direction of movement, while 「に」 emphasizes the arrival
+  at a specific destination. Both are often interchangeable in simple contexts. When specifying the means
+  of transport, the particle 「で」 (de) is used. 「行く」 can also be used in various compound verbs and set
+  phrases, indicating progression or continuation. For instance, 「〜ていく」 denotes a change that proceeds
+  away from the present point in time or space, or a gradual change into the future.
+false_friends:
+  - term: 来る
+    meaning: to come
+    kind: antonym
+    nuance: 「来る」 indicates movement towards the speaker or a point of reference. Unlike 「行く」, which means
+      movement away.
+    grammar_point: くる (come)
+  - term: 帰る
+    meaning: to return; to go home
+    kind: similar expression
+    nuance: While 「行く」 is general "to go", 「帰る」 specifically means "to return" or "to go home". It implies
+      returning to a familiar place, often one's residence.
+    grammar_point: <suggest>:帰る (to return; to go home)
+  - term: 向かう
+    meaning: to head toward; to face
+    kind: similar expression
+    nuance: 「向かう」 focuses on the direction or orientation towards something, often implying the start
+      of a journey or facing a certain direction. While similar to 「行く」 in conveying direction, 「向かう」
+      doesn't necessarily imply reaching the destination, but rather the act of heading there. 「行く」 focuses
+      on the act of going and reaching.
+    grammar_point: <suggest>:向かう (to head toward; to face)
+post_false_friends_writeup: Understanding the subtle distinctions between 「行く」, 「来る」, 「帰る」, and 「向かう」
+  is key to natural Japanese. 「行く」 describes general movement away from the speaker. Its direct opposite
+  is 「来る」, which describes movement towards the speaker. 「帰る」 is a specific type of 「行く」 or 「来る」, always
+  involving a return to a home or familiar base. 「向かう」 describes the act of heading in a direction, focusing
+  more on the orientation or initial part of the journey rather than the completion of going. For example,
+  you might 「駅 に {向かって} いる」 (are heading towards the station), and once you are on your way to the station,
+  you are 「駅 に {行く}」 (going to the station).
+examples:
+  - english: I go to school every day.
+    japanese:
+      - 毎日、学校 へ {行き ます}。
+      - 毎日、学校 へ {行く}。
+    english_literally: Every day, to school, I go.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、学校 に {来 ます}。
+        english: I come to school every day.
+        hint: 「来ます」 means to come, implying movement towards the speaker or a specified reference point.
+          We're looking for movement away from the speaker.
+    scene: A student talks about their daily routine.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: Let's go to the store by car.
+    japanese:
+      - 車 で スーパー へ {行き ましょう}。
+      - 車 で スーパー へ {行こう}。
+    english_literally: By car, to the supermarket, let's go.
+    competing_grammar:
+      - competing_japanese:
+          - 車 で スーパー に {来 ましょう}。
+        english: Let's come to the supermarket by car.
+        hint: 「来ましょう」 means let's come. We're suggesting going to the store, not coming to it.
+      - competing_japanese:
+          - 車 で スーパー へ {向かい ましょう}。
+        english: Let's head towards the supermarket by car.
+        hint: 「向かう」 means to head towards or face. We're looking for the act of going and arriving.
+    scene: Two friends decide to go shopping.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: volitional polite (～ましょう)
+  - english: I went to Japan last year.
+    japanese:
+      - 去年、日本 へ {行き まし た}。
+      - 去年、日本 へ {行っ た}。
+    english_literally: Last year, to Japan, I went.
+    competing_grammar:
+      - competing_japanese:
+          - 去年、日本 に {来 まし た}。
+        english: Last year, I came to Japan.
+        hint: 「来ました」 means came, implying the speaker is now in Japan. We're talking about a past trip
+          where the speaker is no longer there or the perspective is from outside Japan.
+      - competing_japanese:
+          - 去年、日本 に {帰り まし た}。
+        english: Last year, I returned to Japan.
+        hint: 「帰る」 means to return home. This implies Japan is the speaker's home country, which is not
+          specified in the English.
+    scene: Someone is reminiscing about their travels.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+  - english: Are you going to the party tonight?
+    japanese:
+      - 今夜、パーティー に {行く}？
+      - 今夜、パーティー に {行き ます} か？
+    english_literally: Tonight, to the party, go?
+    competing_grammar:
+      - competing_japanese:
+          - 今夜、パーティー に {来る}？
+        english: Are you coming to the party tonight?
+        hint: 「来る」 means to come, implying the person asking is already at the party or will be. We're
+          asking if the listener will go to the party from their current location.
+    scene: A young woman asks her friend about evening plans.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual plain form 「行く？」 is commonly used among close friends, and while grammatically
+      gender-neutral, the rising intonation makes it a natural question for a female speaker to a friend.
+  - english: I will go buy some milk.
+    japanese:
+      - 牛乳 を 買い に {行く} よ。
+      - 牛乳 を 買い に {行き ます}。
+    english_literally: Milk to buy, will go (assertive).
+    competing_grammar:
+      - competing_japanese:
+          - 牛乳 を 買い に {来る} よ。
+        english: I will come to buy some milk.
+        hint: 「来る」 means to come. We're stating an intention to go out and buy milk, not come to a place
+          to buy it.
+    scene: A father tells his family he's leaving to get milk.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of the plain form 「行く」 combined with the sentence-ending particle 「よ」 (yo) indicates
+      a casual and assertive statement common in male speech when informing others of an action.
+  - english: If you don't go, you'll regret it.
+    japanese:
+      - '{行か ない} と 後悔 する よ。'
+      - '{行か なけれ ば} 後悔 し ます よ。'
+    english_literally: If don't go, regret will do (assertive).
+    competing_grammar:
+      - competing_japanese:
+          - '{来 ない} と 後悔 する よ。'
+        english: If you don't come, you'll regret it.
+        hint: 「来ない」 means don't come. We're advising someone about the consequence of not going to an
+          event or place.
+    scene: An older sibling advises their younger sibling to attend an event.
+    register: casual
+    setting: persuasive
+    conjugation: negative plain (～ない)
+    speaker_age: older
+    nuance: The plain negative form 「行かない」 coupled with 「と」 (if/when) and the assertive 「よ」 is typical
+      for giving strong advice or warning in a casual context, often from an older person to a younger
+      one.
+  - english: I want to go to Kyoto next spring.
+    japanese:
+      - 来年 の 春、京都 に {行き たい} です。
+      - 来年 の 春、京都 に {行き たい}。
+    english_literally: Next year's spring, to Kyoto, want to go (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 来年 の 春、京都 に {来 たい} です。
+        english: Next spring, I want to come to Kyoto.
+        hint: 「来たい」 means want to come. This sentence expresses a desire to go to Kyoto, implying the
+          speaker is not currently there.
+    scene: A person talks about their travel plans to a colleague.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: desiderative (～たい)
+  - english: Don't go to dangerous places!
+    japanese:
+      - 危ない 場所 に {行か ない} で！
+      - 危ない 場所 に {行か ない} で ください！
+    english_literally: Dangerous places to, don't go!
+    competing_grammar:
+      - competing_japanese:
+          - 危ない 場所 に {来 ない} で！
+        english: Don't come to dangerous places!
+        hint: 「来ないで」 means don't come. We're telling someone not to move away from safety towards danger.
+    scene: A worried parent warns their child.
+    register: casual
+    setting: commanding
+    conjugation: negative plain (～ない)
+  - english: Time passes quickly.
+    japanese:
+      - 時 が 早く {行く}。
+      - 時 が 早く {行き ます}。
+    english_literally: Time, quickly, goes.
+    competing_grammar:
+      - competing_japanese:
+          - 時 が 早く {来る}。
+        english: Time comes quickly.
+        hint: 「来る」 means to come. While 'time comes' is possible in English, in Japanese, 'time goes'
+          is the standard expression for time passing, emphasizing its progression away.
+    scene: A general observation about the passage of time.
+    register: bungo (literary)
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: While 「時間が経つ」 (jikan ga tatsu) is more common for 'time passes', 「時が行く」 (toki ga iku) has
+      a slightly poetic or literary feel, emphasizing the flow or progression of time. It's often found
+      in literature or more reflective contexts.
+  - english: Please go straight ahead.
+    japanese:
+      - まっすぐ {行っ て} ください。
+      - まっすぐ {行き なさい}。
+    english_literally: Straight, go please.
+    competing_grammar:
+      - competing_japanese:
+          - まっすぐ {来 て} ください。
+        english: Please come straight ahead.
+        hint: 「来て」 means please come. This implies guiding someone towards the speaker, but the context
+          is giving a general direction to follow.
+    scene: A store clerk gives directions to a customer.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: te-form (～て)
+post_example_writeup: As demonstrated in the examples, 「行く」 is a versatile verb. Pay close attention to
+  the particles used, especially 「へ」 and 「に」 for destinations, and 「で」 for means of transportation. The
+  nuances between 「行く」 and 「来る」 are critical and depend entirely on the speaker's viewpoint relative to
+  the action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/いく

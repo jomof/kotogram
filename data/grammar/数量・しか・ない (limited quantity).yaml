@@ -1,0 +1,280 @@
+grammar_point: 数量・しか・ない (limited quantity)
+learn_before:
+  - しか〜ない (only, nothing but)
+meaning: No more than, Not exceeding, As few as/as little as, Only
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: 〜ない
+    rarity: common
+    meaning: no more than (present/future)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 〜ません
+    rarity: common
+    meaning: no more than (present/future, polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 〜なかった
+    rarity: common
+    meaning: had no more than (past)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 〜ませんでした
+    rarity: common
+    meaning: had no more than (past, polite)
+pronunciation:
+  katakana: シカナイ
+  romaji: shika nai
+formation:
+  Number + しか + Negative Verb: Indicates 'no more than' or 'only' a certain quantity.
+jlpt: N4
+etymology: The particle 「しか」 implies a limitation or restriction. When combined with a negative verb 「ない」,
+  it creates the nuance of 'nothing but' or 'only'. The number specifies the quantity being limited.
+writeup: The particle 「しか」 is similar to 「だけ」 in that both can express "only." However, 「しか」 must be used
+  with a negative verb. Therefore, 「しか〜ない」 translates to "there's only (A)" or "there's nothing but (A)."
+  This grammar point is used specifically with numbers to indicate a limited quantity. It often carries
+  a nuance of insufficiency, regret, or a negative sentiment regarding the smallness of the quantity.
+false_friends:
+  - term: だけ
+    meaning: Only, just
+    kind: similar expression
+    nuance: Unlike 「しか〜ない」, 「だけ」 is used in affirmative sentences. 「だけ」 suggests a choice from multiple
+      options, whereas 「しか〜ない」 emphasizes the lack of alternatives.
+    grammar_point: だけ (only・just)
+  - term: しか〜ない
+    meaning: only, nothing but
+    kind: similar expression
+    nuance: This form of 「しか～ない」 generally implies a qualitative restriction, meaning "nothing but X"
+      or "only X exists/is possible," focusing on the *type* or *nature* of something rather than its
+      *quantity*. For example, 「彼女は彼しか愛さない」 (She loves no one but him). In contrast, 「数量 + しか〜ない」 specifically
+      limits a quantity and often implies insufficiency or dissatisfaction.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: 〜たりとも〜ない
+    meaning: Not even one; not a single.
+    kind: similar expression
+    nuance: While 「しか～ない」 indicates a mere or insufficient quantity, 「～たりとも～ない」 emphasizes an absolute
+      absence, stating that not even the smallest unit exists or is allowed. It carries a more absolute
+      and often stricter tone.
+    grammar_point: 〜たりとも〜ない (not even a single)
+  - term: すこしも〜ない
+    meaning: Not even a little, Not at all, Not in the least, Never
+    kind: similar expression
+    nuance: 「すこしも～ない」 is an adverb that modifies a verb or adjective to express "not at all" or "not even
+      slightly," often implying that something *should* exist or be present but isn't. 「しか～ない」, on the
+      other hand, explicitly states the *limited quantity* of something that *does* exist, implying it's
+      insufficient.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: ろくに〜ない
+    meaning: Not sufficiently; not satisfactorily; not properly; not well; hardly
+    kind: similar expression
+    nuance: While 「しか～ない」 denotes a small, insufficient quantity, 「ろくに～ない」 describes a lack of quality
+      or adequacy in an action or state. For example, 「ろくに寝てない」 means "haven't slept properly/enough,"
+      which is similar to "only slept a little," but the focus is on the *quality* of the sleep rather
+      than just the number of hours.
+    grammar_point: ろくに〜ない (not properly)
+  - term: にすぎない
+    meaning: No more than, just, merely
+    kind: similar expression
+    nuance: 「～にすぎない」 carries a nuance of insignificance or unimportance, stating that something is "merely
+      X" and nothing more. While 「しか～ない」 expresses a quantitative limitation leading to insufficiency
+      or regret, 「～にすぎない」 often implies a qualitative judgment of something's limited importance or scope.
+    grammar_point: にすぎない (no more than)
+post_false_friends_writeup: To avoid confusion, remember that 「しか」 always requires a negative verb. Use
+  「だけ」 when you want to express "only" in an affirmative sentence. Think of 「しか」 as emphasizing the absence
+  of other options, while 「だけ」 highlights a specific choice. When dealing with numbers, 「しか〜ない」 carries
+  the nuance of limitation and often dissatisfaction, contrasting with phrases that simply state an amount
+  or denote a complete absence without such an emotional or judgmental overtone.
+examples:
+  - english: He only studies for one hour every day.
+    japanese:
+      - 彼 は 毎日 1 時間 {しか} 勉強 し {ない}。
+      - 彼 は 毎日 1 時間 {しか} 勉強 し {ませ ん}。
+      - 彼 は 毎日 1 時間 {しか} 勉強 し て い {ない}。
+      - 彼 は 毎日 1 時間 {しか} 勉強 し て い {ませ ん}。
+    english_literally: As for him, every day, one hour only studies not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 毎日 1 時間 {だけ} 勉強 する。
+        english: He studies for only one hour every day.
+        hint: Using 「だけ」 simply states the duration without implying it's insufficient. We're looking
+          for an expression that suggests the amount of study is not enough.
+    scene: A parent expressing concern about their child's study habits.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    speaker_age: older
+  - english: I only have 1000 yen on hand right now.
+    japanese:
+      - 今、私 の 手元 に 1000 円 {しか} ない ん だ。
+      - 今、私 の 手元 に 1000 円 {しか} あり ませ ん。
+      - 今、手元 に 1000 円 {しか} ない。
+      - 今、手元 に 1000 円 {しか} ない です。
+    english_literally: Now, my at hand 1000 yen only is not.
+    competing_grammar:
+      - competing_japanese:
+          - 今、私 の 手元 に 1000 円 {だけ} ある ん だ。
+        english: I just have 1000 yen on hand right now.
+        hint: Using 「だけ」 simply states the amount you have. We're looking for an expression that implies
+          the amount is insufficient for a purpose or a problem.
+    scene: A friend trying to split the bill, but realizing they don't have enough cash.
+    register: casual
+    setting: apologetic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+  - english: There are only 5 minutes left until the train departs.
+    japanese:
+      - 電車 の 時間 まで、あと 5 分 {しか} ない。
+      - 電車 の 時間 まで、あと 5 分 {しか} あり ませ ん。
+      - 電車 の 時間 まで、あと 5 分 {しか} ない ん だ。
+    english_literally: Train's time until, remaining 5 minutes only not.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 の 時間 まで、あと 5 分 {だけ} ある。
+        english: There are just 5 minutes left until the train departs.
+        hint: Using 「だけ」 states the remaining time as a simple fact. We're looking for an expression that
+          implies urgency or that the time is barely enough.
+    scene: A student rushing to catch a train, noting the limited time.
+    register: casual
+    setting: emergency/alarm
+    conjugation: negative plain (～ない)
+  - english: There is only one TV in my house.
+    japanese:
+      - 私 の 家 に は、テレビ が 1 台 {しか} ない。
+      - 私 の 家 に は、テレビ が 1 台 {しか} あり ませ ん。
+      - 家 に は テレビ が 1 台 {しか} ない。
+    english_literally: My house in, TV is 1 unit only not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 家 に は、テレビ が 1 台 {だけ} ある。
+        english: In my house, there is just one TV.
+        hint: Using 「だけ」 simply states the quantity. We're looking for an expression that suggests dissatisfaction
+          or a perceived lack.
+    scene: A child complaining about not having enough TVs for everyone to watch what they want.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: There was only an apple to eat, so I ate the apple.
+    japanese:
+      - 食べる 物 は、りんご {しか} なかっ た から、りんご を 食べ た。
+      - 食べる 物 は、りんご {しか} あり ませ ん でし た から、りんご を 食べ まし た。
+      - 食べ られる 物 は、りんご {しか} なかっ た から、りんご を 食べ た。
+    english_literally: Thing to eat, apple only was not, so apple ate.
+    competing_grammar:
+      - competing_japanese:
+          - 食べる 物 は、りんご {だけ} あっ た から、りんご を 食べ た。
+        english: There was only an apple to eat, so I ate the apple.
+        hint: Using 「だけ」 could imply the apple was merely the chosen option. We're looking for an expression
+          that stresses the absolute lack of other choices.
+    scene: Someone is hungry but finds their food options extremely limited.
+    register: casual
+    setting: informative
+    conjugation: negative past plain (～なかった)
+  - english: I can only stay here for one more year.
+    japanese:
+      - 私 に は、もう 1 年 {しか} ここ に い られ {ない}。
+      - 私 に は、もう 1 年 {しか} ここ に い られ {ませ ん}。
+      - もう 1 年 {しか} ここ に い られ {ない} ん だ。
+    english_literally: For me, already 1 year only here can stay not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に は、もう 1 年 {だけ} ここ に い られる。
+        english: I can stay here for just one more year.
+        hint: Using 「だけ」 simply states the duration of stay. We're looking for an expression that conveys
+          a sense of regret about the limited time.
+    scene: A student discussing their limited time before graduating and leaving a beloved place.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: Only one person will help with this job.
+    japanese:
+      - この 仕事 は、1人 {しか} 手伝っ て くれ {ない}。
+      - この 仕事 は、1人 {しか} 手伝っ て くれ {ませ ん}。
+      - この 仕事 は、1人 {しか} 協力 し て くれ {ない}。
+    english_literally: This job, 1 person only will help not.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は、1人 {だけ} 手伝っ て くれる。
+        english: Only one person will help with this job.
+        hint: Using 「だけ」 simply states the number of helpers. We're looking for an expression that implies
+          dissatisfaction or insufficiency regarding the number of people helping.
+    scene: A project manager expressing frustration about insufficient support.
+    register: semi-formal
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: There are only 30 minutes left until the presentation.
+    japanese:
+      - プレゼン まで、あと 30 分 {しか} ない よ。
+      - プレゼン まで、あと 30 分 {しか} あり ませ ん よ。
+      - プレゼン まで、あと 30 分 {しか} ない。
+    english_literally: Presentation until, remaining 30 minutes only not, you know.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン まで、あと 30 分 {だけ} ある よ。
+        english: There are just 30 minutes left until the presentation, you know.
+        hint: Using 「だけ」 states the remaining time as a simple fact. We're looking for an expression that
+          implies a critical lack of time or urgency.
+    scene: A colleague urgently reminding another about an upcoming presentation.
+    register: semi-formal
+    setting: emergency/alarm
+    conjugation: negative plain (～ない)
+    speaker_age: younger
+  - english: Even though he's rich, he only spends 1000 yen.
+    japanese:
+      - 彼 は お 金持ち な の に、1000 円 {しか} 使わ {ない}。
+      - 彼 は お 金持ち な の に、1000 円 {しか} 使い {ませ ん}。
+      - 彼 は お 金持ち な の に、1000 円 {しか} 使わ {ない} ん です。
+    english_literally: As for him, rich despite, 1000 yen only uses not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は お 金持ち な の に、1000 円 {だけ} 使う。
+        english: Even though he's rich, he only spends 1000 yen.
+        hint: Using 「だけ」 states the amount spent without judgment. We're looking for an expression that
+          conveys surprise or a negative judgment about the small amount for a rich person.
+    scene: Colleagues gossiping about a wealthy but frugal boss.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: I can only be with you for 10 more minutes.
+    japanese:
+      - 君 と は、あと 10 分 {しか} 一緒 に い られ {ない}。
+      - 君 と は、あと 10 分 {しか} 一緒 に い られ {ませ ん}。
+      - 君 と は、あと 10 分 {しか} 一緒 に い られ {ない} ん だ。
+    english_literally: With you, remaining 10 minutes only together can be not.
+    competing_grammar:
+      - competing_japanese:
+          - 君 と は、あと 10 分 {だけ} 一緒 に い られる。
+        english: I can be with you for just 10 more minutes.
+        hint: Using 「だけ」 simply states the remaining time. We're looking for an expression that conveys
+          sadness or regret over the limited duration.
+    scene: Someone expressing sadness that their time together is limited.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「君」, indicating intimacy and a close relationship. The phrase 「一緒にいられない」
+      conveys a sense of longing and a desire for more time together. The situation is melancholic because
+      「一緒にいられない」 implies they want to be together longer than the limited time.
+  - english: I only have 500 yen.
+    japanese:
+      - 私 は お 金 が 500 円 {しか} 持っ て い {ない}。
+      - 私 は お 金 が 500 円 {しか} 持っ て い {ませ ん}。
+      - 500 円 {しか} 持っ て い {ない}。
+    english_literally: As for me, money is 500 yen only have not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は お 金 が 500 円 {だけ} 持っ て いる。
+        english: I just have 500 yen.
+        hint: Using 「だけ」 states the amount you possess without implying a problem. We're looking for an
+          expression that implies the amount is insufficient or disappointing.
+    scene: A woman lamenting her lack of money when she wants to buy something expensive.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: The use of 「私」 by a female speaker combined with 「お金が500円しかない」 clearly expresses a personal
+      financial limitation, emphasizing the insufficiency of the amount. This tone is common for 「しか〜ない」
+      when expressing a negative or disappointing state.
+post_example_writeup: As demonstrated in these examples, 「しか〜ない」 always carries a nuance of limitation,
+  scarcity, or insufficiency, often implying a negative sentiment from the speaker. This contrasts with
+  「だけ」, which simply states a quantity or extent without such an emotional or judgmental overtone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/number-しか-ない

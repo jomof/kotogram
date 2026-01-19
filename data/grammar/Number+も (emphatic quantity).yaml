@@ -1,0 +1,244 @@
+grammar_point: Number+も (emphatic quantity)
+learn_before:
+  - 一度も〜ない (not even once)
+meaning: Indicates a surprising or emphatic quantity, e
+pronunciation:
+  katakana: ナンバーモ
+  romaji: nanbā mo
+formation:
+  Number + Counter + も: Indicates a surprisingly large or small quantity (e.g., "as many as X", "not even
+    X").
+  一つも / 一人も + Negative Verb: Emphasizes the complete absence of even one item or person.
+jlpt: N4
+etymology: も (mo) is a particle that originally means "also" or "too." When used with numbers, it emphasizes
+  the quantity, expressing surprise or disbelief, similar to how "even" or "as much as" functions in English.
+  It's like saying, "Wow, *even* that many!"
+writeup: 'The adverbial particle も (mo) is used to highlight something unexpected within a given context.
+  When placed after a specific number and counter, it emphasizes that the quantity itself is surprising,
+  regardless of whether it''s higher or lower than anticipated. This can be translated as "as much as
+  (A)" or "not even (A)" in English. For instance, in the case of 一つも (not even one) or 一人も (not even
+  one person), も powerfully stresses the complete absence. While this usage may seem distinct from も''s
+  general meaning of "also" or "too," it fundamentally extends the same concept: pointing out something
+  unexpected that falls within a particular category or group.'
+false_friends:
+  - term: ばかり
+    meaning: only; nothing but
+    kind: similar expression
+    nuance: Unlike 「Number+も」, 「ばかり」 indicates an exclusive focus on one thing, implying that there is
+      nothing else. For example, 「彼 は ゲーム ばかり し て いる」 (He only plays games) means he does nothing but
+      play games. 「Number+も」 emphasizes the surprising quantity of something, not its exclusivity.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: ばかりか~(さえ)
+    meaning: Not only... but also; much more than; in addition to.
+    kind: similar expression
+    nuance: While 「Number+も」 emphasizes a surprising *quantity* of a single item or event, 「ばかりか〜(さえ)」
+      focuses on an additional, often more surprising, element beyond what's already expected. It means
+      "not only A, but also B (and B is even more significant/surprising)." The nuance of 「も」 in the former
+      is about the amount itself, whereas in the latter, it's about the addition of an unexpected element.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+post_false_friends_writeup: 'While 「Quantity + も」 is used to emphasize an unexpected quantity, 「ばかり」 conveys
+  an exclusive meaning, indicating that only a certain thing exists or that a certain state continues.
+  It''s crucial to differentiate: use 「も」 to highlight surprising amounts, and 「ばかり」 to express exclusivity
+  or that something is solely present. Additionally, 「ばかりか〜(さえ)」 extends the idea of surprising inclusion
+  but applies to listing multiple, escalating points rather than just a single surprising quantity.'
+examples:
+  - english: He works as many as 10 hours a day.
+    japanese:
+      - 彼 は 一 日 に １０ 時間 {も} 働く。
+      - 彼 は 一 日 に １０ 時間 {も} 働き ます。
+      - 彼、一 日 に １０ 時間 {も} 働く ん だ って。
+      - 彼 は 毎日 １０ 時間 {も} 労働 し て い ます。
+    english_literally: He works as much as 10 hours in one day.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一 日 に １０ 時間 働く。
+        english: He works 10 hours a day.
+        hint: The nuance changes depending on whether the speaker is surprised by the quantity or just
+          stating a fact. We're looking for emphasis on the surprisingly large quantity.
+    scene: A colleague is surprised by another's long work hours.
+    register: casual
+    setting: informative
+    nuance: The use of 「も」 after 「１０時間」 highlights the speaker's surprise at the considerable number of
+      hours worked, implying that 10 hours is an unusually long period for daily work.
+  - english: This bag cost as much as 50,000 yen, so I was surprised.
+    japanese:
+      - この カバン は ５ 万 円 {も} し た の で、びっくり し た。
+      - この カバン は ５ 万 円 {も} し た の で、びっくり し まし た。
+      - この カバン、５ 万 円 {も} し た から 驚い た よ。
+      - まさ か ５ 万 円 {も} する と は 思わ なかっ た の で、驚き を 隠せ ませ ん でし た。
+    english_literally: This bag cost as much as 50,000 yen, so I was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - この カバン は ５ 万 円 し た の で、びっくり し た。
+        english: This bag cost 50,000 yen, so I was surprised.
+        hint: The difference lies in whether the emphasis is on the sheer amount being surprising or just
+          stating the amount. We're looking for the sense of 'as much as'.
+    scene: Someone recounting their shock after buying an expensive bag.
+    register: casual
+    setting: excited
+    nuance: 「も」 here emphasizes the large amount of money (５万円), conveying the speaker's surprise or disbelief
+      at the cost of the bag. The phrase 「びっくりした」 (was surprised) directly supports this nuance.
+  - english: She has never failed, not even once.
+    japanese:
+      - 彼女 は 一 度 {も} 失敗 を し た こと が ない。
+      - 彼女 は 一 度 {も} 失敗 を し た こと が あり ませ ん。
+      - 彼女、一 度 {も} 失敗 なんて ない ん だ よ。
+      - 彼女 に は 一 度 {も} 失敗 と いう 経験 が 無い。
+    english_literally: She has never done a failure, not even once.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 失敗 を し た こと が ない。
+        english: She has not failed.
+        hint: While both indicate no failure, one emphasizes the absolute lack of even a single instance.
+          We're looking for the strong emphasis of 'not even once'.
+    scene: Someone is praising a very successful person.
+    register: formal
+    setting: supportive
+    nuance: The combination of 「一度も」 with the negative verb 「ない」 strongly emphasizes the complete absence
+      of any failure, highlighting the person's perfect record. It expresses a sense of admiration for
+      such an achievement.
+  - english: Even though I practiced many times, I still can't become good at it.
+    japanese:
+      - 何 度 {も} 練習 し た の に、まだ 上手 に なれ ない。
+      - 何 度 {も} 練習 し た の に、まだ 上手 に なれ ませ ん。
+      - 何 度 {も} やっ た の に、全然 上手く なら ない ん だ。
+      - 再 三 再四 練習 し て いる に {も} 関わら ず、依然 と し て 上達 し ない。
+    english_literally: Even though I practiced many times, still I cannot become skillful.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 練習 し た の に、まだ 上手 に なれ ない。
+        english: Even though I practiced a lot, I still can't become good at it.
+        hint: Both express 'a lot,' but one carries a nuance of frustration or surprise regarding the
+          quantity itself. We're looking for that emphatic, surprising quantity.
+    scene: A student expressing frustration about a skill they are trying to master.
+    register: casual
+    setting: melancholic
+    nuance: 「何度 も」 emphasizes the repeated efforts made by the speaker. The particle 「も」 here conveys
+      a sense of frustration or disbelief that despite such a significant number of practice sessions,
+      the desired improvement has not been achieved.
+  - english: My grandmother is as old as 90.
+    japanese:
+      - 私 の 祖母 は ９０ 歳 {も} です。
+      - 私 の 祖母 は ９０ 歳 {も} だ。
+      - 私 の 祖母 は ９０ 歳 {も} に なり ます。
+      - 私 の 祖母 は ９０ 歳 {も} 生き て い ます。
+      - 祖母 は もう ９０ 歳 {も} だ よ。
+    english_literally: My grandmother is living as much as 90 years old.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 祖母 は ９０ 歳 です。
+        english: My grandmother is 90 years old.
+        hint: One simply states a fact, while the other expresses admiration or surprise about the age.
+          We're looking for the nuance of 'as old as'.
+    scene: Someone proudly talking about their long-lived grandmother.
+    register: teineigo (polite)
+    setting: optimistic
+    nuance: 「も」 after 「９０歳」 emphasizes the surprising and impressive age of the grandmother, conveying
+      a sense of respect or admiration for her long life. It implies that 90 years old is considered a
+      remarkable age.
+  - english: Even though he's been in Japan for a year, he has never eaten ramen, not even once.
+    japanese:
+      - 彼 は 日本 に １ 年 {も} いる の に、ラーメン を 一 度 {も} 食べ た こと が ない。
+      - 彼 は 日本 に １ 年 {も} いる の に、ラーメン を 一 度 {も} 食べ た こと が あり ませ ん。
+      - 日本 に １ 年 {も} いる の に、彼、ラーメン 一 度 {も} 食べ て ない ん だ って。
+      - 彼 は 日本 滞在 １ 年 {も} に も 関わら ず、一 度 と し て ラーメン を 食し た 経験 が ない。
+    english_literally: Even though he is in Japan for one year, he has not eaten ramen even one time.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 に １ 年 いる の に、ラーメン を 食べ た こと が ない。
+        english: Even though he's been in Japan for a year, he has not eaten ramen.
+        hint: One expresses a simple negative, while the other strongly emphasizes the complete lack of
+          even a single instance. We're looking for the emphatic 'not even once'.
+    scene: Friends gossiping about a foreign friend's peculiar eating habits.
+    register: casual
+    setting: humorous
+    nuance: 「一度も」 combined with the negative 「ない」 expresses the surprising and absolute lack of the experience,
+      particularly unexpected for someone living in Japan. The tone is often one of mild disbelief or
+      amusement.
+  - english: The meeting continued for as long as 3 hours, so everyone was tired.
+    japanese:
+      - 会議 は ３ 時間 {も} 続い た の で、皆 疲れ て い た。
+      - 会議 は ３ 時間 {も} 続い た の で、皆 疲れ て い まし た。
+      - 会議 が ３ 時間 {も} あっ た から、みんな クタクタ だっ た よ。
+      - 定例 会議 は ３ 時間 {も} に 亘り、参加 者 全員 が 疲弊 し た。
+    english_literally: The meeting continued for as much as 3 hours, so everyone was tired.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は ３ 時間 続い た の で、皆 疲れ て い た。
+        english: The meeting continued for 3 hours, so everyone was tired.
+        hint: The key is whether the duration is presented as a fact or as surprisingly long. We're looking
+          for emphasis on the 'as long as' aspect.
+    scene: Colleagues complaining about a lengthy meeting.
+    register: formal
+    setting: melancholic
+    nuance: The 「も」 after 「３時間」 emphasizes the surprising duration of the meeting, implying that 3 hours
+      is considered a long time. It provides a strong reason for the collective fatigue (皆 疲れて い た).
+  - english: I walked as much as 2 kilometers from my house to the station.
+    japanese:
+      - 家 から 駅 まで ２ キロ {も} 歩い た。
+      - 家 から 駅 まで ２ キロ {も} 歩き まし た。
+      - 家 から 駅 まで ２ キロ {も} 歩い て き た よ。
+      - 自宅 から 駅 まで ２ キロ {も} 徒歩 で 移動 し まし た。
+    english_literally: I walked as much as 2 kilometers from house to station.
+    competing_grammar:
+      - competing_japanese:
+          - 家 から 駅 まで ２ キロ 歩い た。
+        english: I walked 2 kilometers from my house to the station.
+        hint: Consider if the distance is merely stated as a fact or if the speaker is expressing surprise
+          or a sense of effort regarding that distance. We're looking for emphasis on the 'as much as'
+          aspect.
+    scene: A person expressing their physical effort after a long walk.
+    register: casual
+    setting: cautious
+    nuance: 「も」 after 「２キロ」 emphasizes the considerable distance walked, suggesting that 2 kilometers
+      is perceived as a long or tiring walk by the speaker. It adds a slight sense of effort or surprise
+      at the distance.
+  - english: I finished this difficult report without even taking three hours.
+    japanese:
+      - この 難しい レポート を ３ 時間 {も} かから ず に 終わら せ た。
+      - この 難しい レポート を ３ 時間 {も} かから ず に 終わら せ まし た。
+      - こんな 難しい レポート な の に ３ 時間 {も} かから なかっ た よ。
+      - 当該 難解 な 報告 書 を ３ 時間 {も} かけ ず に 完了 し た。
+    english_literally: This difficult report, without even taking 3 hours, finished.
+    competing_grammar:
+      - competing_japanese:
+          - この 難しい レポート を ３ 時間 で 終わら せ た。
+        english: I finished this difficult report in three hours.
+        hint: One emphasizes the speed as remarkable, while the other just states the time taken. We're
+          looking for emphasis on "as little as".
+    scene: A busy professional proudly tells their colleague about their efficiency.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: The 「も」 after 「３時間」 combined with 「かからず に」 emphasizes that three hours is an unexpectedly
+      *short* time to complete a difficult report, conveying efficiency and perhaps a touch of pride.
+      It implies that the task was completed much faster than one might anticipate.
+  - english: Even one drop of that poison can be fatal.
+    japanese:
+      - その 毒 は 一 滴 {も} 命 に 関わる。
+      - その 毒 は 一 滴 {も} 命 に 関わり ます。
+      - この 毒、一 滴 {も} 飲ん じゃ ダメ だ よ。
+      - 当該 毒薬 は、たった 一 滴 {も} 摂取 すれ ば 命 に 関わり ます。
+    english_literally: That poison, even one drop, is life-threatening.
+    competing_grammar:
+      - competing_japanese:
+          - その 毒 は 一 滴 で 命 に 関わる。
+        english: One drop of that poison can be fatal.
+        hint: The difference lies in expressing that *even* a minute quantity has a significant effect,
+          versus simply stating the quantity required. We're looking for emphasis on 'even one'.
+    scene: A scientist warning a colleague about a dangerous substance.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「一滴も」 highlights the extreme potency of the poison, emphasizing that even a tiny
+      amount can have fatal consequences. This conveys a strong sense of caution and seriousness about
+      the substance.
+post_example_writeup: 「Quantity + も」 is employed when the speaker finds the quantity unexpected or wishes
+  to emphasize it. This applies to both large quantities, conveying a sense of "as many as," and small
+  quantities used with a negative nuance, akin to "not even." The use of 「も」 in these contexts often expresses
+  emotions such as surprise, disbelief, frustration, or admiration. When coupled with a negative form,
+  it intensifies the meaning to "not at all" or "absolutely not."
+sources:
+  bunpro: https://bunpro.jp/grammar_points/number-も

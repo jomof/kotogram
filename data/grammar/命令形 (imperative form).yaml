@@ -1,0 +1,466 @@
+grammar_point: 命令形 (imperative form)
+learn_before:
+  - Verb[よう] (volitional)
+  - い-adjective (sentence-ending)
+  - さ (casual emphasis)
+  - ぜ (male emphatic particle)
+  - という (each)
+  - という (naming and definition)
+  - にする (to decide or make)
+  - 南 (south)
+  - 注意する (to pay attention・to warn・to caution)
+meaning: Do (something)! / (Verb)!
+meaning_warning: This conjugation can sound rude and threatening, so use it with caution.
+conjugations:
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 書け
+    rarity: common
+    meaning: Write!
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 食べろ
+    rarity: common
+    meaning: Eat!
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 食べよ
+    rarity: less common
+    meaning: Eat! (literary/archaic)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: しろ
+    rarity: common
+    meaning: Do it!
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: せよ
+    rarity: less common
+    meaning: Do it! (formal/literary/archaic)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: 来い
+    rarity: common
+    meaning: Come!
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: こよ
+    rarity: very rare
+    meaning: Come! (literary/archaic)
+  - conjugation-type: imperative polite (～なさい)
+    form: 書きなさい
+    rarity: common
+    meaning: Please write. (instructional)
+  - conjugation-type: imperative polite (～なさい)
+    form: 食べなさい
+    rarity: common
+    meaning: Please eat. (instructional)
+  - conjugation-type: imperative polite (～なさい)
+    form: しなさい
+    rarity: common
+    meaning: Please do. (instructional)
+  - conjugation-type: imperative polite (～なさい)
+    form: 来なさい
+    rarity: common
+    meaning: Please come. (instructional)
+  - conjugation-type: negative plain (～ない)
+    form: 書くな
+    rarity: common
+    meaning: Don't write!
+  - conjugation-type: negative plain (～ない)
+    form: 食べるな
+    rarity: common
+    meaning: Don't eat!
+  - conjugation-type: negative plain (～ない)
+    form: するな
+    rarity: common
+    meaning: Don't do!
+  - conjugation-type: negative plain (～ない)
+    form: 来るな
+    rarity: common
+    meaning: Don't come!
+pronunciation:
+  katakana: メイレイケイ
+  romaji: meireikei
+formation:
+  'う-verbs: Replace the last kana with the equivalent え sound kana': 'Example: 書く (kaku) → 書け (kake)'
+  'る-verbs: Replace る with ろ or よ': 'Example: 食べる (taberu) → 食べろ (tabero) or 食べよ (tabeyo)'
+  'Irregular verbs: する → しろ, 来る → 来い': These verbs have unique imperative forms.
+  'Negative Imperative: Verb dictionary form + な': 'Example: 食べる (taberu) → 食べるな (taberu na) Don''t eat!'
+jlpt: N4
+etymology: 「命令」 (meirei) means "command" or "order," and 「形」 (kei) means "form." Thus, 「命令形」 literally
+  means "command form." The suffix 「な」 for negative imperative likely stems from the negative auxiliary
+  「ない」, with its final vowel sound shortened and used as a direct prohibition.
+writeup: |-
+  The imperative form (命令形 *meireikei*) is a direct way to express commands, instructions, or prohibitions in Japanese. It is one of the fundamental conjugations of verbs.
+
+  While you'll often see the imperative form on traffic signs or public notices (for example, 「止まれ！」 "Stop!"), it's less common in everyday conversation due to its directness and potential to sound harsh. You might hear it shouted at sports events, during demonstrations, or in urgent situations where a clear, immediate command is necessary.
+
+  There are several ways to form the plain imperative:
+
+  *   **う-verbs:** Change the final う sound to an え sound. For example, 書く (kaku, to write) becomes 書け (kake, Write!).
+  *   **る-verbs:** Replace る with ろ or よ. For example, 食べる (taberu, to eat) becomes 食べろ (tabero, Eat!). The よ ending is now rare and primarily used in written forms or very archaic contexts.
+  *   **Irregular verbs:** する (suru, to do) becomes しろ (shiro, Do it!), and 来る (kuru, to come) becomes 来い (koi, Come!).
+  *   **Negative Imperative:** To prohibit an action, attach 「な」 directly to the dictionary form of the verb. For example, 走るな (hashiruna, Don't run!). This is a very blunt and direct prohibition.
+
+  When softened with the particle よ, the plain imperative is primarily a **masculine pattern**, used between men who know each other well to offer strong advice or encouragement. For example, saying 「頑張れよ」 to a male friend who is taking a test. In general, women tend to use the て-form (te-form) with softening particles, which is considered more polite.
+
+  There is also a polite imperative form, created by attaching 「なさい」 to the ます-stem of a verb (e.g., 「食べなさい」, 「読みなさい」). This form is typically used by teachers and parents when speaking to children, or in written instructions like those on test papers. While softer than the plain imperative, it still carries an instructional or authoritative tone.
+
+  Finally, note that verbs like ある and いる (which express states of existence rather than actions) generally do not have plain imperative forms for direct commands in modern Japanese.
+false_friends:
+  - term: Verb[て] (casual request)
+    meaning: Please do for me (Casual request)
+    kind: similar expression
+    nuance: Unlike the plain imperative, the te-form is much softer and can be used to make requests or
+      gentle commands, often followed by 「ください」 for politeness or 「ね」 for softening.
+    grammar_point: Verb[て] (casual request)
+  - term: ましょう (polite volitional or suggestion)
+    meaning: Shall we? Shall I?
+    kind: similar expression
+    nuance: 「～ましょう」 expresses invitation or suggestion, whereas the imperative directly commands action
+      from the listener.
+    grammar_point: ましょう (polite volitional or suggestion)
+  - term: Verb[volitional] (plain)
+    meaning: Let's, Shall we (Plain volitional)
+    kind: similar expression
+    nuance: The plain volitional expresses the speaker's intention or invites the listener to do something
+      together, unlike the imperative which dictates the listener's action.
+    grammar_point: <suggest>:Verb[volitional] (plain)
+  - term: たまえ (light command)
+    meaning: To order or firmly request (someone of lower status to do something).
+    kind: similar expression
+    nuance: While also a command, 「たまえ」 is a much softer and less direct form, often used by superiors
+      to subordinates or within close, informal male relationships, without the harshness of the plain
+      imperative.
+    grammar_point: たまえ (light command)
+  - term: べからず (must not)
+    meaning: Must not; should not; cannot; do not
+    kind: similar expression
+    nuance: 「べからず」 is a strong, formal, and often written prohibition, similar to the negative imperative
+      「～な」 but carries a more archaic or absolute tone, typically for rules or warnings.
+    grammar_point: べからず (must not)
+  - term: てはいけない (must not・cannot)
+    meaning: Must not; may not; cannot.
+    kind: similar expression
+    nuance: This form expresses prohibition in a more generalized or advisory way compared to the direct
+      and blunt imperative 「～な」.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+post_false_friends_writeup: The imperative form (命令形) is the most direct way to issue commands or prohibitions.
+  It stands in stark contrast to the softer **Verb[て] (casual request)** form, which, even when used as
+  a command (e.g., 「～て」 or 「～てください」), conveys a gentler request or instruction rather than a forceful
+  order. Similarly, volitional forms like **ましょう (polite volitional or suggestion)** and **Verb[volitional]
+  (plain)** express joint intentions or suggestions, inviting participation rather than dictating action.
+  For prohibitions, while **負けるな (negative imperative)** is blunt and direct, forms like **てはいけない (must
+  not・cannot)** convey a more general prohibition or rule, and the archaic **べからず (must not)** is typically
+  seen in written warnings or regulations. The command form **たまえ (light command)** is also less forceful,
+  used in specific contexts where a superior addresses a subordinate informally.
+examples:
+  - english: There is a warning sign on the station platform that says Stop!
+    japanese:
+      - 駅 の ホーム に『{止まれ}』と いう 注意 書き が ある。
+      - 駅 の ホーム に『{止まれ よ}』と いう 注意 書き が ある。
+    english_literally: At the station platform, there is a warning sign saying "Stop!".
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の ホーム に『止まっ {て ください}。』と いう 注意 書き が ある。
+        english: At the station platform, there is a warning sign saying "Please stop.". (polite request)
+        hint: 「止まってください」 is a polite request. Signs usually use a direct, concise command like 「止まれ」 for
+          clarity and urgency.
+      - competing_japanese:
+          - 駅 の ホーム に『止まり {なさい}。』と いう 注意 書き が ある。
+        english: At the station platform, there is a warning sign saying "Stop.". (instructional)
+        hint: 「止まりなさい」 is an instructional imperative, often used by parents or teachers. Signs use a
+          more neutral, direct imperative.
+    scene: You are at a train station and see a warning sign on the platform.
+    register: formal
+    setting: informative
+    conjugation: imperative plain (～ろ/～え)
+  - english: It's a fire! Get out of here quickly!
+    japanese:
+      - 火事 だ！早く ここ から {逃げろ}！
+      - 火事 だ！早く ここ から {逃げよ}！
+      - 火事 だ！早く ここ から {逃げろ よ}！
+      - 火事 だ！早く ここ から {逃げよ よ}！
+    english_literally: It's a fire! Quickly, from here, escape!
+    competing_grammar:
+      - competing_japanese:
+          - 火事 だ！早く ここ から {逃げ て}！
+        english: It's a fire! Get out of here quickly! (gentle request)
+        hint: The te-form 「逃げて」 is a softer request. In an emergency, the direct imperative 「逃げろ」 conveys
+          much stronger urgency and command.
+      - competing_japanese:
+          - 火事 だ！早く ここ から {逃げ なさい}！
+        english: It's a fire! Get out of here quickly! (instructional)
+        hint: 「逃げなさい」 has an instructional tone. For an emergency, the bare imperative 「逃げろ」 is used for
+          immediate, forceful command.
+    scene: A person shouting to a group of people trapped in a burning building.
+    register: casual
+    setting: emergency/alarm
+    conjugation: imperative plain (～ろ/～え)
+  - english: It's okay. Have more confidence!
+    japanese:
+      - 大丈夫 だ よ。もっと 自信 を {持て}。
+      - 大丈夫 だ よ。もっと 自信 を {持て よ}。
+    english_literally: It's okay. More confidence, have it!
+    competing_grammar:
+      - competing_japanese:
+          - 大丈夫 だ よ。もっと 自信 を {持っ て} ね。
+        english: It's okay. Have more confidence. (soft request)
+        hint: 「持ってね」 is a softer and more gender-neutral encouragement. The direct imperative 「持て」 with
+          「よ」 is typically used between close male friends to give strong, direct encouragement.
+      - competing_japanese:
+          - 大丈夫 だ よ。もっと 自信 を {持ち なさい}。
+        english: It's okay. Have more confidence. (instructional)
+        hint: 「持ちなさい」 implies a more instructional or parental tone. 「持て よ」 is a direct and casual encouragement
+          among peers.
+    scene: A male senior student encouraging his male junior teammate after a tough game.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: male
+    nuance: The masculine-leaning particle 「よ」 combined with the direct imperative 「持て」 shows a casual,
+      supportive, and assertive tone, typical between close male friends or teammates.
+  - english: Don't lose! Fight with all your might until the very end!
+    japanese:
+      - '{負ける な}！最後 まで 全力 で {戦え}！'
+      - '{負ける な}！最後 まで 全力 で {戦え よ}！'
+    english_literally: That guy is an enemy. Absolutely don't forgive him! Defeat!
+    competing_grammar:
+      - competing_japanese:
+          - 負ける な！最後 まで 全力 で {戦っ て}！
+        english: Don't lose! Fight with all your might until the very end! (mild command)
+        hint: The te-form 「戦って」 is a milder command. 「戦え」 is a much more forceful and rousing command,
+          suitable for motivating athletes.
+      - competing_japanese:
+          - 負ける な！最後 まで 全力 で {戦い なさい}！
+        english: Don't lose! Fight with all your might until the very end! (instructional)
+        hint: 「戦いなさい」 is instructional. 「戦え」 is a powerful, direct command to rally and inspire.
+    scene: A coach shouting encouragement to their athlete during a crucial moment in a competition.
+    register: casual
+    setting: inspirational
+    speaker_age: older
+    nuance: The powerful and direct imperative 「戦え」 is used by an older speaker, like a coach, to strongly
+      motivate an athlete in a critical competitive situation, emphasizing determination.
+    etymology: The negative imperative 「～な」 is a concise and forceful way to prohibit an action. Historically,
+      it evolved from the classical negative particle 「ぬ」 or 「ない」, indicating a direct and strong prohibition
+      rather than a mere negation.
+  - english: It's a joke. Don't get so angry, hey, look over here!
+    japanese:
+      - 冗談 だ よ。そんな に 怒る な よ、ほら、こっち を {見ろ}。
+      - 冗談 だ よ。そんな に 怒る な よ、ほら、こっち を {見ろ よ}。
+      - 冗談 だ よ。そんな に 怒る な よ、ほら、こっち を {見よ}。
+      - 冗談 だ よ。そんな に 怒る な よ、ほら、こっち を {見よ よ}.
+    english_literally: It's a joke! Don't get that angry, hey, look this way!
+    competing_grammar:
+      - competing_japanese:
+          - 冗談 だ よ。そんな に 怒る な よ、ほら、こっち を {見 て} よ。
+        english: It's a joke. Don't get so angry, hey, look over here! (soft request)
+        hint: 「見てよ」 is a softer, more coaxing request. 「見ろよ」 is more direct and assertive, typical for
+          a playful male interaction.
+      - competing_japanese:
+          - 冗談 だ よ。そんな に 怒る な よ、ほら、こっち を {見 て ください}。
+        english: It's a joke. Don't get so angry, hey, please look over here! (polite request)
+        hint: 「見てください」 is a formal polite request. 「見ろよ」 is a casual, direct, and slightly teasing command
+          used between close friends.
+    scene: A playful man trying to cheer up his sulking female friend after a minor disagreement.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker uses the direct imperative 「見ろ」 softened by the masculine-leaning 「よ」, creating
+      a playful, slightly assertive tone to coax his female friend, emphasizing his desire for her attention.
+  - english: He's an enemy. Never forgive him! Defeat him!
+    japanese:
+      - あいつ は 敵 だ。絶対 に {許す な}！{倒せ}！
+      - あいつ は 敵 だ。絶対 に {許す な}！{倒せ よ}！
+    english_literally: That guy is an enemy. Absolutely don't forgive him! Defeat!
+    competing_grammar:
+      - competing_japanese:
+          - あいつ は 敵 だ。絶対 に 許す な！{倒し て}！
+        english: He's an enemy. Never forgive him! Defeat him! (mild command)
+        hint: 「倒して」 is a milder command. 「倒せ」 is a very strong, forceful command, crucial in a military
+          or battle context.
+      - competing_japanese:
+          - あいつ は 敵 だ。絶対 に 許す な！{倒し なさい}！
+        english: He's an enemy. Never forgive him! Defeat him! (instructional)
+        hint: 「倒しなさい」 is instructional. 「倒せ」 is an urgent, aggressive command with no room for leniency,
+          used in high-stakes situations.
+    scene: A leader riling up their troops before a battle.
+    register: formal
+    setting: commanding
+    speaker_gender: male
+    listener_gender: group
+    nuance: The stark, forceful imperative 「倒せ」 is used by a male leader addressing a group, conveying
+      an absolute and aggressive command crucial in a military context, emphasizing no room for failure.
+  - english: On the exam paper, it says, Choose the correct answer.
+    japanese:
+      - 試験 用 紙 に、『正しい 答え を {選び なさい}。』と 書い て ある。
+      - 試験 用 紙 に、『正しい 答え を {選べ}。』と 書い て ある.
+    english_literally: On the exam paper, it is written, "Correct answer, choose."
+    competing_grammar:
+      - competing_japanese:
+          - 試験 用 紙 に、『正しい 答え を {選ん で ください}。』と 書い て ある。
+        english: On the exam paper, it is written, "Please choose the correct answer." (polite request)
+        hint: 「選んでください」 is a polite request. 「選びなさい」 is an instructional form, common for written instructions
+          like on exam papers.
+      - competing_japanese:
+          - 試験 用 紙 に『正しい 答え を {選べ}。』と 書い て ある。
+        english: On the exam paper, it is written, "Choose the correct answer." (direct command)
+        hint: 「選べ」 is a very direct and forceful command. 「選びなさい」 is a softer, instructional form used
+          in educational contexts.
+    scene: A standardized test paper provides clear instructions to test-takers.
+    register: formal
+    setting: instructional
+    conjugation: imperative polite (～なさい)
+  - english: The mother told her child, who kept playing, Go to bed now.
+    japanese:
+      - お 母 さん が、遊び 続ける 子供 に『もう {寝 なさい}。』と 言っ た。
+      - お 母 さん が、遊び 続ける 子供 に『もう {寝ろ}。』と 言っ た。
+      - お 母 さん が、遊び 続ける 子供 に『もう {寝ろ よ}。』と 言っ た。
+      - お 母 さん が、遊び 続ける 子供 に『もう {寝よ}。』と 言っ た。
+      - お 母 さん が、遊び 続ける 子供 に『もう {寝よ よ}。』と 言っ た.
+    english_literally: Mother, to the child who keeps playing, said, "Already, go to bed."
+    competing_grammar:
+      - competing_japanese:
+          - お 母 さん が、遊び 続ける 子供 に『もう {寝 て}。』と 言っ た。
+        english: The mother told her child, who kept playing, "Go to bed now." (gentle command)
+        hint: 「寝て」 is a softer, more casual command. 「寝なさい」 carries a gentler, more authoritative tone,
+          typical of a parent giving an instruction.
+      - competing_japanese:
+          - お 母 さん が、遊び 続ける 子供 に『もう {寝ろ}。』と 言っ た。
+        english: The mother told her child, who kept playing, "Go to bed now!" (forceful command)
+        hint: 「寝ろ」 is a very forceful command. 「寝なさい」 is a softer, instructional tone used by parents.
+    scene: A mother gently but firmly tells her child to go to sleep after they've been playing late.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    speaker_age: older
+    nuance: The 「なさい」 form, used by an older female speaker (mother) to a younger person (child), conveys
+      a softer yet authoritative instruction to go to bed, typical of parental guidance.
+  - english: The child called to the cat, Come!
+    japanese:
+      - 子供 が 猫 に『{来い}！』と 呼ん だ。
+      - 子供 が 猫 に『{来い よ}！』と 呼ん だ。
+      - 子供 が 猫 に『{こよ}！』と 呼ん だ。
+      - 子供 が 猫 に『{こよ よ}！』と 呼ん だ.
+    english_literally: Child, to cat, called, "Come!"
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 猫 に『{来 て}！』と 呼ん だ。
+        english: The child called to the cat, "Come!" (gentle request)
+        hint: 「来て」 is a softer request. 「来い」 is a direct and emphatic command, often used for pets or
+          in urgent situations.
+      - competing_japanese:
+          - 子供 が 猫 に『{来 なさい}！』と 呼ん だ。
+        english: The child called to the cat, "Come!" (instructional)
+        hint: 「来なさい」 is instructional. 「来い」 is a more direct, emphatic command, suitable for calling animals.
+    scene: A child trying to get their pet cat to come closer.
+    register: casual
+    setting: friendly
+    conjugation: imperative plain (～ろ/～え)
+  - english: Give back my money!
+    japanese:
+      - 僕 の お 金 を {返せ}！
+      - 僕 の お 金 を {返せ よ}！
+    english_literally: My money, give back!
+    competing_grammar:
+      - competing_japanese:
+          - 僕 の お 金 を {返し て}！
+        english: Give back my money! (mild command)
+        hint: 「返して」 is a milder command. 「返せ」 conveys intense anger and a forceful demand for immediate
+          action, far stronger than the softened 「て」 form.
+      - competing_japanese:
+          - 僕 の お 金 を {返し て ください}！
+        english: Please give back my money! (polite request)
+        hint: 「返してください」 is a polite request. 「返せ」 is a forceful, angry demand with no politeness.
+    scene: A person angrily demanding that their money be returned after being cheated.
+    register: casual
+    setting: serious
+    conjugation: imperative plain (～ろ/～え)
+  - english: Come on, everyone, let's sing joyfully!
+    japanese:
+      - さあ、みんな で 楽しく {歌え}！
+      - さあ、みんな で 楽しく {歌え よ}！
+    english_literally: Come on, everyone, joyfully, sing!
+    competing_grammar:
+      - competing_japanese:
+          - さあ、みんな で 楽しく {歌っ て}！
+        english: Come on, everyone, let's sing joyfully! (mild encouragement)
+        hint: 「歌って」 is a milder encouragement. 「歌え」 is a strong, rousing command, typically used to energize
+          a group for participation.
+      - competing_japanese:
+          - さあ、みんな で 楽しく {歌い なさい}！
+        english: Come on, everyone, sing joyfully! (instructional)
+        hint: 「歌いなさい」 is instructional. 「歌え」 is a direct command to rally and energize a group for participation.
+    scene: A group leader trying to energize the members for a cheerful activity.
+    register: casual
+    setting: excited
+    conjugation: imperative plain (～ろ/～え)
+  - english: My father strictly told me, Clean your room!
+    japanese:
+      - 父 が 私 に『部屋 を {片付けろ}！』と 厳しく 言っ た。
+      - 父 が 私 に『部屋 を {片付け よ}！』と 厳しく 言っ た。
+      - 父 が 私 に『部屋 を {片付け よ}！』と 厳しく 言っ た。
+      - 父 が 私 に『部屋 を {片付け よ よ}！』と 厳しく 言っ た.
+    english_literally: Father, to me, said strictly, "Room, clean it!"
+    competing_grammar:
+      - competing_japanese:
+          - 父 が 私 に『部屋 を {片付け て}！』と 厳しく 言っ た。
+        english: My father strictly told me, "Clean your room!" (mild command)
+        hint: 「片付けて」 is a softer command. 「片付けろ」 is a firm and exasperated command, conveying impatience
+          and disciplinary tone.
+      - competing_japanese:
+          - 父 が 私 に『部屋 を {片付け なさい}！』と 厳しく 言っ た。
+        english: My father strictly told me, "Clean your room!" (instructional)
+        hint: 「片付けなさい」 is a gentler, instructional tone. 「片付けろ」 is a much more forceful command, expressing
+          frustration.
+    scene: A father, frustrated with a messy room, sternly tells his child to clean it.
+    register: casual
+    setting: commanding
+    speaker_age: older
+    nuance: The firm and direct imperative 「片付けろ」 is used by an older speaker (father) to a younger one
+      (child) to convey an exasperated command to clean their room, typical in a family context.
+  - english: Dangerous! Come here quickly!
+    japanese:
+      - 危ない！早く こちら へ {来い}！
+      - 危ない！早く こちら へ {来い よ}！
+      - 危ない！早く こちら へ {こよ}！
+      - 危ない！早く こちら へ {こよ よ}！
+    english_literally: Dangerous! Quickly, to here, come!
+    competing_grammar:
+      - competing_japanese:
+          - 危ない！早く こちら へ {来 て}！
+        english: Dangerous! Come here quickly! (mild command)
+        hint: 「来て」 is a milder command. 「来い」 is a very urgent and forceful command, used for immediate
+          action in an emergency.
+      - competing_japanese:
+          - 危ない！早く こちら へ {来 なさい}！
+        english: Dangerous! Come here quickly! (instructional)
+        hint: 「来なさい」 is instructional. 「来い」 is a direct, urgent command, not suitable for leisurely instruction.
+    scene: A parent shouting to their child who is running into a dangerous situation.
+    register: casual
+    setting: emergency/alarm
+    conjugation: imperative plain (～ろ/～え)
+  - english: To win the game, don't give up until the end and do your best!
+    japanese:
+      - 試合 に 勝つ ため に、最後 まで 諦め ず に {頑張れ}！
+      - 試合 に 勝つ ため に、最後 まで 諦め ず に {頑張れ よ}！
+    english_literally: Game, to win, until the end, without giving up, do your best!
+    competing_grammar:
+      - competing_japanese:
+          - 試合 に 勝つ ため に、最後 まで 諦め ず に {頑張っ て}！
+        english: To win the game, don't give up until the end and do your best! (mild encouragement)
+        hint: 「頑張って」 is a general, polite encouragement. 「頑張れ」 is a strong, motivational command, used
+          to rally a team in competition.
+      - competing_japanese:
+          - 試合 に 勝つ ため に、最後 まで 諦め ず に {頑張り なさい}！
+        english: To win the game, don't give up until the end and do your best! (instructional)
+        hint: 「頑張りなさい」 is instructional. 「頑張れ」 is a powerful, direct command to inspire and motivate a
+          group.
+    scene: A sports coach giving a motivational speech to their team before a critical match.
+    register: casual
+    setting: inspirational
+    speaker_age: older
+    nuance: The strong and motivational imperative 「頑張れ」 is used by an older speaker, like a coach, to
+      inspire a group, conveying a powerful call to effort and resilience.
+post_example_writeup: Remember, the plain imperative form can easily come across as rude or overly strong.
+  It's best to use it sparingly, and only in situations where a direct command is necessary and expected,
+  or when the context clearly indicates encouragement among close individuals. The 「なさい」 form is generally
+  safer for giving instructions, and the negative imperative 「～な」 is a very direct prohibition. Consider
+  the social context and your relationship with the listener carefully before using this form.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/命令形

@@ -1,0 +1,227 @@
+grammar_point: 分かる (understand and know)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[ます] (polite present)
+  - Verb[ません] (polite negative)
+  - '[Verb-stem]にくい (difficult to do)'
+  - '[Verb-stem]やすい (easy to do)'
+  - 〜なくても (even if not)
+  - ああ (like that over there)
+  - い-Adjective[さ] (nominalizer)
+  - ことだし (because of; since)
+  - と (quotation marker)
+  - な-Adjective[でも] (concessive)
+  - 気持ち (feeling・mood)
+  - ～の気持ちで (with a feeling of)
+meaning: to understand, to know, to comprehend
+pronunciation:
+  katakana: わかる
+  romaji: wakaru
+formation:
+  Subject が + Thing が + 分かる: Indicates that the subject understands or knows the thing. The thing understood
+    is marked with が.
+  Subject には + Thing が + 分かる: Emphasizes that it is the subject who understands/knows, often implying
+    others might not, or as a softening expression.
+  Matter の + Verb[dictionary] + のが + 分かる: To understand or know the act of doing something.
+jlpt: N5
+etymology: The verb 「分かる」 (wakaru) originally comes from 「分く」 (waku), meaning 'to divide' or 'to separate.'
+  From this root, it evolved to mean 'to distinguish' or 'to discern,' leading to its current meaning
+  of 'to understand' or 'to comprehend.' This etymology highlights the idea of separating out, or distinguishing,
+  different elements to gain clarity and grasp the whole. It's not about actively putting knowledge into
+  your head, but rather about things becoming clear or distinguishable on their own.
+writeup: |-
+  「分かる」 (wakaru) is a fundamental verb in Japanese that signifies 'to understand,' 'to know,' or 'to comprehend.' Unlike actively acquiring knowledge or being familiar with something, 「分かる」 often implies a state where something becomes clear or intelligible to you. It's less about the effort you put into learning and more about the result of information sinking in or being perceived.
+
+  This verb is typically used with the particle 「が」 to mark the thing that is understood or known. For example, 「日本語が分かります」 (Nihongo ga wakarimasu) means 'I understand Japanese.' This construction emphasizes that Japanese 'is understandable' to you.
+
+  It can also be used in more nuanced ways:
+  *   **Perception or Discernment**: It can refer to discerning something through sensory perception or logical deduction, such as 「音が分かる」 (Oto ga wakaru - 'I can hear/understand the sound') or 「意味が分かる」 (Imi ga wakaru - 'I understand the meaning').
+  *   **Discovery or Realization**: 「分かった！」 (Wakatta!) is a common exclamation meaning 'I got it!' or 'I understand now!' indicating a sudden realization.
+  *   **Intelligibility**: It can describe whether something itself is comprehensible to others, as in 「私の話は分かりますか」 (Watashi no hanashi wa wakarimasu ka - 'Is my story understandable?').
+
+  When expressing that *you* understand something, it's common to use 「私には分かります」 (watashi ni wa wakarimasu). The particle 「には」 can add a nuance of 'as far as I am concerned' or 'for me,' often implying a personal understanding or even a subtle distinction from others' understanding.
+
+  「分かる」 is an intransitive verb, meaning it does not take a direct object marked by 「を」. Instead, the thing understood is marked by 「が」. This is a key point to remember for its usage.
+false_friends:
+  - term: 知る
+    meaning: to know, to be aware of
+    kind: often confused with
+    nuance: 「知る」 implies having acquired information or being acquainted with facts. It's about having
+      knowledge or awareness. In contrast, 「分かる」 implies comprehension, discernment, or a state of understanding.
+      You might 「知る」 (know) a fact, but not necessarily 「分かる」 (understand) its implications.
+    grammar_point: 知る (to know or find out)
+post_false_friends_writeup: 'While both 「分かる」 and 「知る」 relate to knowledge, their fundamental difference
+  lies in their focus. 「知る」 is about possessing information or being acquainted with something—it''s about
+  "knowing *of*." For instance, 「私は彼の名前を{知っています}」 (Watashi wa kare no namae o shitte imasu - "I know his
+  name") means you possess the information of his name. On the other hand, 「分かる」 is about processing and
+  comprehending that information—it''s about "understanding." 「彼の言っていることが{分かる}」 (Kare no itte iru koto
+  ga wakaru - "I understand what he''s saying") implies not just hearing the words, but grasping their
+  meaning. Think of it this way: you can 「知る」 (know) that a certain math formula exists, but you need
+  to 「分かる」 (understand) how to apply it.'
+examples:
+  - english: I understand Japanese.
+    japanese:
+      - 日本 語 が {分かる}。
+      - 日本 語 が {分かり ます}。
+    english_literally: Japanese (subject) understands.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 知る。
+        english: To know Japanese (to be aware of it).
+        hint: 「知る」 means to know or be aware of, not necessarily to understand or comprehend. We're looking
+          for the state of understanding.
+    scene: A new language learner confirming their comprehension.
+    register: casual
+    setting: informative
+  - english: Do you understand what I'm saying?
+    japanese:
+      - 私 の 言っ て いる こと が {分かり ます} か？
+      - 私 の 言っ て いる こと が {分かる}？
+    english_literally: My saying thing (subject) understands question?
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 言っ て いる こと を 知っ て い ます か？
+        english: Do you know what I'm saying?
+        hint: This asks if you are aware of or familiar with what I'm saying, not if you comprehend it.
+          We're looking for understanding.
+    scene: A teacher checking if a student follows along.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「分かりますか」 with 「私 の 言っている こと」 is a polite way to check comprehension. Female speakers
+      might use a slightly softer tone.
+  - english: Ah, now I understand!
+    japanese:
+      - あ、今 {分かっ た}！
+      - あ、今 {分かり まし た}！
+    english_literally: Ah, now understood!
+    competing_grammar:
+      - competing_japanese:
+          - あ、今 知っ た！
+        english: Ah, now I became aware of it!
+        hint: This means you just learned or became aware of a fact, not that you comprehended it. We're
+          looking for a sudden understanding.
+    scene: Someone finally solving a puzzle or a problem.
+    register: casual
+    setting: excited
+    conjugation: past plain (～た)
+    nuance: 「分かった」 implies a sudden realization or discovery. The exclamation 「あ、」 often precedes such
+      a spontaneous understanding.
+  - english: I don't understand this problem.
+    japanese:
+      - この 問題 が {分から ない}。
+      - この 問題 が {分かり ませ ん}。
+    english_literally: This problem (subject) does not understand.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 を 知ら ない。
+        english: I don't know this problem.
+        hint: This means you are not familiar with the problem, not that you can't comprehend it. We're
+          looking for inability to understand.
+    scene: A student struggling with homework.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: I understand how you feel.
+    japanese:
+      - あなた の 気持ち が {分かる} よ。
+      - あなた の 気持ち が {分かり ます} よ。
+    english_literally: Your feeling (subject) understands (emphasis).
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 気持ち を 知っ て いる。
+        english: I know your feelings.
+        hint: This means you are aware of their feelings, not that you comprehend or empathize with them.
+          We're looking for understanding and empathy.
+    scene: Consoling a friend.
+    register: casual
+    setting: supportive
+    nuance: 「分かる よ」 is a common casual phrase to show empathy and assure the listener that their feelings
+      are comprehended. The 「よ」 particle adds a sense of assertion and reassurance.
+  - english: His handwriting is so messy, it's hard to understand.
+    japanese:
+      - 彼 の 字 は 汚く て、{分かり にくい}。
+      - 彼 の 字 は 汚く て、{分かり にくい} です。
+    english_literally: His handwriting is messy, hard to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 字 が 読み にくい。
+        english: His handwriting is hard to read.
+        hint: This focuses on the act of reading, not the comprehension of the meaning. We're looking
+          for difficulty in understanding the content.
+    scene: Two colleagues discussing a messy document.
+    register: casual
+    setting: informative
+    conjugation: desiderative (～たい)
+    nuance: 「分かりにくい」 emphasizes that the handwriting *itself* is difficult to comprehend, rather than
+      the person having difficulty. This form implies 'difficult to understand' or 'unintelligible'.
+  - english: I understand what she wants to do.
+    japanese:
+      - 彼女 が 何 を し たい の か、{分かる}。
+      - 彼女 が 何 を し たい の か、{分かり ます}。
+    english_literally: She (subject) what wants to do (embedded question), understands.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 何 を し たい の か、知っ て いる。
+        english: I know what she wants to do.
+        hint: This implies awareness of her plans, not necessarily a deeper comprehension of her motivations
+          or intentions. We're looking for understanding of the intention.
+    scene: Friends discussing a mutual acquaintance's plans.
+    register: casual
+    setting: friendly
+    nuance: This sentence structure uses an embedded question (「何 を したい のか」) followed by 「分かる」 to express
+      understanding of a concept or intention.
+  - english: It makes sense from his perspective.
+    japanese:
+      - 彼 に は {分かる} こと だ。
+      - 彼 に は {分かる} こと です。
+    english_literally: For him understands thing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に とっ て は 当たり前 の こと だ。
+        english: For him, it's a natural thing.
+        hint: This emphasizes that something is obvious or commonplace for him, not that he comprehends
+          it from his viewpoint. We're looking for something that is understandable specifically from
+          his perspective.
+    scene: Explaining why someone might have acted a certain way.
+    register: casual
+    setting: informative
+    nuance: 「彼 には 分かる」 implies that *only* he (or someone in his position) would understand, or that it's
+      understandable *to him*. The 「には」 particle emphasizes the subject's unique perspective.
+  - english: Even if the pronunciation isn't perfect, I can usually understand what they mean.
+    japanese:
+      - 発音 が 完璧 じゃ なく て も、大体 意味 は {分かる}。
+      - 発音 が 完璧 じゃ なく て も、大体 意味 は {分かり ます}。
+    english_literally: Pronunciation not perfect even if, mostly meaning (topic) understands.
+    competing_grammar:
+      - competing_japanese:
+          - 発音 が 完璧 じゃ なく て も、大体 意味 を 推測 できる。
+        english: Even if the pronunciation isn't perfect, I can usually guess the meaning.
+        hint: This implies making an educated guess, not actual comprehension. We're looking for genuine
+          understanding despite imperfections.
+    scene: A student talking about their experience studying abroad.
+    register: casual
+    setting: reflective
+    nuance: This example shows how 「分かる」 can apply to understanding content despite imperfections, focusing
+      on the core meaning being conveyed.
+  - english: Did you get that?
+    japanese:
+      - '{分かっ た}？'
+      - '{分かっ た} か？'
+    english_literally: Understood?
+    competing_grammar:
+      - competing_japanese:
+          - 聞き まし た か？
+        english: Did you hear that?
+        hint: This only asks if you physically heard something, not if you comprehended it. We're looking
+          for confirmation of understanding.
+    scene: A teacher checking quickly if students grasped a point.
+    register: casual
+    setting: interrogative
+    conjugation: past plain (～た)
+    nuance: A very common, short, and casual way to ask for confirmation of understanding, especially
+      among peers or from a superior to a subordinate.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/分かる

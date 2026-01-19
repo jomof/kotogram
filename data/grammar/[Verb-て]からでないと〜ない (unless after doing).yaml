@@ -1,0 +1,236 @@
+grammar_point: '[Verb-て]からでないと〜ない (unless after doing)'
+learn_before:
+  - てから (after and since)
+meaning: Unless a prior action is completed, a subsequent action or state cannot happen or is impossible.
+pronunciation:
+  katakana: テカラデナイト
+  romaji: te kara de nai to
+formation:
+  Verb in て-form + からでないと: Expresses that unless action A is completed, action B cannot happen.
+  Verb in て-form + からでなければ: Alternative form expressing the same meaning.
+jlpt: N2
+etymology: 「てからでないと」 is constructed from the て-form of a verb, followed by 「から」 (from), 「で」, 「ない」 (not),
+  and 「と」 (if). Literally, it means something along the lines of "if it is not from after doing." This
+  emphasizes the prerequisite of a completed action, where a negative outcome is certain without its fulfillment.
+writeup: |-
+  This grammar point, 「てからでないと」, expresses that something cannot happen unless a prior action is completed. The nuance carried by this form is that the consequence, stated in the latter part of the sentence, will always be negative. This means the second clause will typically contain a negative verb or phrase, such as 「できません」 or 「ないでしょう」.
+
+  This form emphasizes a strict temporal sequence. It means that action A *must* be completed before action B can happen. It literally translates to "unless it is after doing X, Y cannot happen." It's often used when talking about necessary steps in a process, procedures, or prerequisites for a task.
+false_friends:
+  - term: て初めて
+    meaning: For the first time, Not until, Only after, Only when, Only because
+    kind: often confused with
+    nuance: Unlike 「てからでないと」, 「て初めて」 emphasizes a realization or a new understanding that comes after
+      an experience, rather than a simple sequence of events or a prerequisite for an action. It implies
+      a new discovery or awareness resulting from the action.
+    grammar_point: て初めて (for the first time after)
+  - term: Verb[ない]+ば
+    meaning: If (not) / unless
+    kind: similar expression
+    nuance: 「なければ」 is a more direct and general conditional form meaning 'if not' or 'unless'. While similar,
+      「てからでないと」 often carries a stronger nuance of an indispensable or fundamental condition, suggesting
+      a more significant barrier or prerequisite that *must* be met for something to proceed. 「なければ」 can
+      apply to a broader range of less critical or general conditions.
+    grammar_point: ば (conditional, if A then B)
+  - term: Verb[ない]+ては
+    meaning: If (not) / unless / must
+    kind: similar expression
+    nuance: Similar to 「なければ」, 「なくては」 functions as a conditional 'unless' or expresses necessity ('must').
+      「てからでないと」, while conveying a similar core meaning, tends to be perceived as more formal and emphasizes
+      the conditional consequence in a more emphatic and somewhat decisive way than the simpler and more
+      common 「なくては」.
+    grammar_point: ては (inevitable negative outcome)
+  - term: Verb[て] + すみません
+    meaning: apologizing for action
+    kind: similar expression
+    nuance: This phrase is used to apologize for a past action. It implies regret for something that has
+      already occurred or is occurring. In contrast, 「てからでないと」 expresses a prerequisite for a future action
+      or state, with a focus on preventing a negative outcome, not regretting one.
+    grammar_point: '[Verb-て]すみません (apologizing for action)'
+  - term: ないでください・ないで
+    meaning: please don't
+    kind: similar expression
+    nuance: 「ないでください」 is a polite request or command to *not* do something. It expresses a direct prohibition.
+      「てからでないと」, however, conveys a conditional impossibility or inevitability, not a command. It describes
+      what *will* or *won't* happen if a condition is not met, rather than instructing someone on what
+      to do or not to do.
+    grammar_point: ないでください・ないで (please don't)
+post_false_friends_writeup: To differentiate, remember that 「てからでないと」 focuses on a strict temporal sequence
+  of actions, where the completion of the first is an absolute prerequisite. Simpler conditional forms
+  like 「なければ」 and 「なくては」 are more general. Forms like 「て初めて」 indicate a new realization or understanding.
+  「てすみません」 and 「ないでください」 are used for apologies and prohibitions, respectively, and do not convey conditional
+  impossibility. Understanding these distinctions is key to using each expression accurately.
+examples:
+  - english: You cannot quit your current company until you have applied for a new job.
+    japanese:
+      - 新しい 仕事 に 応募 し て {から で ない と}、今 の 会社 を 辞める こと は でき ませ ん。
+      - 新しい 仕事 に 応募 し て {から で なけれ ば}、今 の 会社 を 辞める こと は でき ませ ん。
+    english_literally: Unless it is after applying to a new job, quitting the current company cannot be
+      done.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 仕事 に 応募 し {なけれ ば}、今 の 会社 を 辞める こと は でき ませ ん。
+        english: If you don't apply for a new job, you cannot quit your current company.
+        hint: The scene emphasizes the completion of the application process (応募してから) as the prerequisite
+          before making the drastic decision to quit, highlighting the sequential nature. We're looking
+          for a pattern that specifically requires an action to be completed before another can happen.
+    scene: A career counselor is advising a client not to leave their current job until they have a solid
+      plan.
+    register: formal
+    setting: persuasive
+  - english: You cannot take photos until you have inserted a memory card into this camera.
+    japanese:
+      - この カメラ に 記録 カード を 入れ て {から で ない と}、写真 を 撮る こと は でき ませ ん。
+      - この カメラ に 記録 カード を 入れ て {から で なけれ ば}、写真 を 撮る こと は でき ませ ん。
+    english_literally: Unless it is after inserting a recording card, taking pictures cannot be done.
+    competing_grammar:
+      - competing_japanese:
+          - この カメラ に 記録 カード を 入れ {なけれ ば}、写真 を 撮る こと は でき ませ ん。
+        english: If you don't insert a memory card into this camera, you cannot take photos.
+        hint: The scene implies that the act of inserting the card (入れてから) must be completed before the
+          function becomes available, focusing on the sequence of operations. We're looking for a pattern
+          that emphasizes the prerequisite completion of an action.
+    scene: A shop assistant is showing a customer how to use a new digital camera.
+    register: formal
+    setting: instructional
+  - english: You cannot enter this area unless you show your ID card.
+    japanese:
+      - ID カード を 提示 し て {から で なけれ ば}、この エリア に 入る こと は でき ませ ん。
+      - ID カード を 提示 し て {から で ない と}、この エリア に 入る こと は でき ませ ん。
+    english_literally: Unless it is after presenting your ID card, entering this area cannot be done.
+    competing_grammar:
+      - competing_japanese:
+          - ID カード を 提示 し {なけれ ば}、この エリア に 入る こと は でき ませ ん。
+        english: If you don't show your ID card, you cannot enter this area.
+        hint: The scene emphasizes that the act of presenting the ID (提示してから) must be completed for entry,
+          highlighting the necessary preceding action. We're looking for a phrase that implies the action
+          must be done first.
+    scene: A security guard is explaining entry rules at a restricted building.
+    register: formal
+    setting: instructional
+  - english: I cannot decide on such a large purchase unless I discuss it thoroughly with my family.
+    japanese:
+      - 家族 と よく 話し合っ て {から で なけれ ば}、この よう な 大きな 買い物 は 決め られ ませ ん。
+      - 家族 と よく 話し合っ て {から で ない と}、この よう な 大きな 買い物 は 決め られ ませ ん。
+    english_literally: Unless it is after discussing well with family, such a big purchase cannot be decided.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 と よく 話し合わ {なけれ ば}、この よう な 大きな 買い物 は 決め られ ませ ん。
+        english: If I don't discuss it thoroughly with my family, I cannot decide on such a large purchase.
+        hint: The scene clarifies that the discussion with the family must be completed (話し合ってから) before
+          a decision can be made, emphasizing the preparatory step. We're looking for a pattern that highlights
+          completion as a strict prerequisite.
+    scene: A person is telling a salesperson that they need to consult with their family before buying
+      a house.
+    register: semi-formal
+    setting: negotiating
+  - english: You cannot carry out that mission until you have completed the rigorous training.
+    japanese:
+      - 厳しい 訓練 を 終え て {から で ない と}、その 任務 を 遂行 する こと は でき ませ ん。
+      - 厳しい 訓練 を 終え て {から で なけれ ば}、その 任務 を 遂行 する こと は でき ませ ん。
+    english_literally: Unless it is after finishing the rigorous training, carrying out that mission cannot
+      be done.
+    competing_grammar:
+      - competing_japanese:
+          - 厳しい 訓練 を 終え {なけれ ば}、その 任務 を 遂行 する こと は でき ませ ん。
+        english: If you don't complete the rigorous training, you cannot carry out that mission.
+        hint: The scene stresses that the training must be fully completed (終えてから) before the mission
+          can be attempted, focusing on the necessary prior action. We're looking for a phrase indicating
+          that action A must be finished first.
+    scene: A military commander is briefing a new recruit about the prerequisites for a dangerous assignment.
+    register: formal
+    setting: commanding
+  - english: I can't eat sweets until I finish my homework.
+    japanese:
+      - 宿題 を 終わら せ て {から で ない と}、お 菓子 を 食べ させ て もらえ ませ ん。
+      - 宿題 を 終わら せ て {から で なけれ ば}、お 菓子 を 食べ させ て もらえ ませ ん。
+    english_literally: Unless it is after finishing homework, being allowed to eat sweets is not possible.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 を 終わら せ {なけれ ば}、お 菓子 を 食べ させ て もらえ ませ ん。
+        english: If I don't finish my homework, I won't be allowed to eat sweets.
+        hint: The scene clearly links the completion of homework (終わらせてから) as the essential prerequisite
+          for getting sweets, emphasizing the sequence. We're looking for a pattern that specifies that
+          an action must be done before another can occur.
+    scene: A child is complaining to a friend about their strict parents.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The use of 「～てももらえません」 indicates receiving a favor or permission, highlighting the dependent
+      relationship with the parents, typical for a child speaking about parental rules. The phrasing suggests
+      a slightly exasperated tone common among younger speakers regarding chores or restrictions imposed
+      by older family members.
+  - english: You can't start the next project until you submit this report.
+    japanese:
+      - この レポート を 提出 し て {から で ない と}、次 の プロジェクト に 取り かかれ ない よ。
+      - この レポート を 提出 し て {から で なけれ ば}、次 の プロジェクト に 取り かかれ ない よ。
+    english_literally: Unless it is after submitting this report, starting the next project cannot be
+      done.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート を 提出 し {なけれ ば}、次 の プロジェクト に 取り かかれ ない よ。
+        english: If you don't submit this report, you can't start the next project.
+        hint: The scene implies that the report's submission (提出してから) is a completed prerequisite for
+          moving on, highlighting the workflow dependency. We're looking for a phrase that means 'unless
+          after something is done'.
+    scene: A project manager is telling a team member about the workflow.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The sentence ending 「～ないよ」 is a direct, casual way to convey a rule or consequence, often
+      used between colleagues or superiors and subordinates in a semi-formal setting. For a male project
+      manager to a female team member, it implies a clear expectation rather than a suggestion.
+  - english: You must not operate this machine unless you have performed a safety check.
+    japanese:
+      - 安全 確認 を 行っ て {から で ない と}、この 機械 を 操作 し て は いけ ませ ん。
+      - 安全 確認 を 行っ て {から で なけれ ば}、この 機械 を 操作 し て は いけ ませ ん。
+    english_literally: Unless it is after performing a safety check, operating this machine must not be
+      done.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 確認 を 行わ {なけれ ば}、この 機械 を 操作 し て は いけ ませ ん。
+        english: If you don't perform a safety check, you must not operate this machine.
+        hint: The scene emphasizes that the safety check (安全確認を行ってから) is a crucial, completed prerequisite
+          for operating the machinery, stressing the sequence for safety. We're looking for a pattern
+          that insists on the completion of the safety check.
+    scene: A foreman is giving safety instructions to new workers on a construction site.
+    register: formal
+    setting: instructional
+  - english: You cannot view all content unless you have completed member registration.
+    japanese:
+      - 会員 登録 を 済ま せ て {から で ない と}、全て の コンテンツ を 閲覧 する こと は でき ませ ん。
+      - 会員 登録 を 済ま せ て {から で なけれ ば}、全て の コンテンツ を 閲覧 する こと は でき ませ ん。
+    english_literally: Unless it is after finishing member registration, viewing all content cannot be
+      done.
+    competing_grammar:
+      - competing_japanese:
+          - 会員 登録 を 済ま せ {なけれ ば}、全て の コンテンツ を 閲覧 する こと は でき ませ ん。
+        english: If you don't complete member registration, you cannot view all content.
+        hint: The scene highlights that the complete gathering of clues (済ませてから) is the necessary preliminary
+          action for solving the mystery, rather than just the absence of clues. We're looking for a phrase
+          that implies access is granted only after an action is finished.
+    scene: A website's terms and conditions page explaining access rules.
+    register: formal
+    setting: informative
+  - english: You shouldn't start this investment unless you have consulted an expert.
+    japanese:
+      - 専門 家 に 相談 し て {から で ない と}、この 投資 を 始める べき で は あり ませ ん。
+      - 専門 家 に 相談 し て {から で なけれ ば}、この 投資 を 始める べき で は あり ませ ん。
+    english_literally: Unless it is after consulting an expert, starting this investment should not be
+      done.
+    competing_grammar:
+      - competing_japanese:
+          - 専門 家 に 相談 し {なけれ ば}、この 投資 を 始める べき で は あり ませ ん。
+        english: If you don't consult an expert, you shouldn't start this investment.
+        hint: The scene stresses that the consultation with an expert (相談してから) must be completed as a
+          crucial prerequisite before beginning the investment, emphasizing a deliberate sequence. We're
+          looking for a pattern that emphasizes the necessity of completing the consultation first.
+    scene: A financial advisor is warning a client about the risks of hasty decisions.
+    register: formal
+    setting: persuasive
+post_example_writeup: These examples demonstrate how 「てからでないと」 is used to stress the essential nature
+  of a condition for a subsequent outcome. It is often found in situations where a strong, almost absolute,
+  dependency exists between an action and its result. Pay attention to the subtle differences from simpler
+  conditional forms; this grammar point emphasizes a non-negotiable prerequisite.

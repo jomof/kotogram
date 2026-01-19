@@ -1,0 +1,292 @@
+grammar_point: に合わせる・に合う (match or fit)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Verb-て]もらう (to have someone do, receive an action)'
+  - てある (resultant state)
+  - 中を (movement through or within condition)
+  - 同士 (fellow; mutual)
+  - ～に沿って (in line with・in accordance with・following)
+meaning: In accordance with, matching, fitting, suitable for, to adjust or tune to
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: 合わせて
+    rarity: common
+    meaning: adjusting to, matching, combining (active adaptation)
+  - conjugation-type: past plain (～た)
+    form: 合った
+    rarity: common
+    meaning: suited for, fitted, matched (inherent suitability)
+pronunciation:
+  katakana: ニアワセテ・ニアッタ
+  romaji: ni awasete, ni atta
+formation:
+  Noun + に + 合わせて: To match, adjust to, or in accordance with Noun
+  Noun + に + 合った + Noun: Noun that matches or is suitable for Noun
+jlpt: N3
+etymology: The grammar point 「に合わせて」 comes from the verb 「合わせる」 (awaseru), meaning "to match" or "to combine."
+  「に合った」 comes from the verb 「合う」 (au), meaning "to fit" or "to suit." The 「に」 indicates the target or
+  standard to which something is being matched or fitted.
+writeup: |-
+  The expressions 「に合わせて」 and 「に合った」 are used to convey the idea of conforming, adjusting, or being suitable for something. They indicate a relationship where one element is made to fit or harmonize with another.
+
+  **に合わせて (ni awasete)**
+  This form uses the te-form of the verb 「合わせる」 (awaseru), which fundamentally means "to combine," "to match," or "to adjust." When used with 「に」, it expresses an active adjustment or alignment with a standard, condition, or target. It implies a deliberate action to make something fit or be in accordance with the preceding noun. For instance, you adjust your pace to someone else's or tailor a plan to a situation.
+
+  **に合った (ni atta)**
+  This form uses the past tense of the verb 「合う」 (au), meaning "to fit," "to suit," or "to match" naturally. When used with 「に」, it describes something that is inherently suitable, appropriate, or a good match for the preceding noun. It often implies a pre-existing harmony or compatibility, or that something has been found to be perfectly suited. For example, a color that naturally suits a room, or a job that perfectly fits one's skills.
+
+  **Key Differences and Nuances**
+  *   **に合わせて** implies an *action* of adjusting or making something conform. It suggests dynamic adaptation.
+  *   **に合った** describes a *state* of suitability or a good fit. It suggests a static characteristic or a result of successful matching.
+false_friends:
+  - term: に応じて
+    meaning: Depending or based on, according to, in response to, suitable for or to
+    kind: synonym
+    nuance: Unlike 「に合わせて・に合った」, 「に応じて」 emphasizes adapting or responding to something, often a changing
+      circumstance or condition.
+    grammar_point: に応じて (depending on)
+  - term: にしたがって
+    meaning: As, following, as then, according to, in accordance with
+    kind: synonym
+    nuance: 「にしたがって」 focuses on following a rule, instruction, or precedent, whereas 「に合わせて・に合った」 is broader
+      and includes matching physical characteristics or preferences.
+    grammar_point: に従って・従い (in accordance with and proportional change)
+  - term: にもとづいて
+    meaning: Based on, in accordance with
+    kind: synonym
+    nuance: 「にもとづいて」 highlights the foundation or basis upon which something is decided or done, emphasizing
+      reasoning and justification, which is not as prominent in 「に合わせて・に合った」.
+    grammar_point: にもとづいて (based on)
+  - term: 向き
+    meaning: Suitable for, facing
+    kind: synonym
+    nuance: 「向き」 describes something that is inherently suitable for a specific purpose or type of person,
+      while 「に合わせて・に合った」 implies a more active or intentional matching or adjustment.
+    grammar_point: '[Noun]向き (suitable for)'
+  - term: 向け
+    meaning: Intended for, aimed at
+    kind: synonym
+    nuance: 「向け」 indicates that something is designed or targeted towards a specific audience, whereas
+      「に合わせて・に合った」 implies something that aligns with or is appropriate for something else.
+    grammar_point: 向け (intended for)
+post_false_friends_writeup: While these expressions share the idea of suitability or correspondence, they
+  differ in nuance. Use 「に応じて」 when emphasizing adaptation, 「にしたがって」 for following rules, 「にもとづいて」 for
+  basing something on a foundation, 「向き」 for inherent suitability, and 「向け」 for something designed for
+  a specific audience. Choose 「に合わせて・に合った」 when you want to convey a matching or fitting relationship
+  between two things without the additional emphasis.
+examples:
+  - english: She is practicing singing along with music.
+    japanese:
+      - 彼女 は 音楽 に {合わせ て} 歌 を 歌う 練習 を し て い ます。
+      - 彼女 は 音楽 に {合わせ て} 歌 の 練習 を し て いる。
+      - 彼女 は 音楽 に {合わせ て} 歌 を 歌っ て いる よ。
+    english_literally: She is practicing singing in accordance with music.
+    competing_grammar:
+      - competing_japanese:
+          - 音楽 を 聞き {ながら} 歌 を 歌う 練習 を し て い ます。
+        english: She is practicing singing while listening to music.
+        hint: 「ながら」 is used for simultaneous actions. We're looking for an expression that indicates active
+          adjustment to the music.
+    scene: A young woman is alone in her room, focused on improving her singing.
+    register: casual
+    setting: creative
+    conjugation: te-form (～て)
+    speaker_gender: female
+  - english: Changing how you speak to match the person you're talking to is truly exhausting.
+    japanese:
+      - 相手 に {合わせ て} 話し 方 を 変える こと は 本当 に 疲れる。
+      - 相手 に {合わせ て} 話し 方 を 変える の は 本当 に 疲れる。
+      - 相手 に {合わせ て} 話し 方 を 変える の は マジ で 疲れる よ。
+    english_literally: Changing talking style in accordance with the other party is truly exhausting.
+    competing_grammar:
+      - competing_japanese:
+          - 相手 に 合わせる {よう に} 話し 方 を 変える の は 疲れる。
+        english: Changing how you speak so that it matches the other person is exhausting.
+        hint: 「ように」 indicates purpose or result. Here, we're expressing a direct adjustment or conformity
+          to the other person, not just a resulting state.
+    scene: A man confides in a close friend after a long day of social events.
+    register: casual
+    setting: melancholic
+    conjugation: te-form (～て)
+    speaker_gender: male
+  - english: Let's choose a painting that suits this wall.
+    japanese:
+      - この 壁 に {合っ た} 絵 を 選び ましょう。
+      - この 壁 に {合っ た} 絵 を 選ぼう よ。
+      - この 壁 に {合う} 絵 を 選ぼう か。
+    english_literally: Let's choose a painting that met/suited this wall.
+    competing_grammar:
+      - competing_japanese:
+          - この 壁 に {似合う} 絵 を 選び ましょう。
+        english: Let's choose a painting that looks good on this wall.
+        hint: 「似合う」 means something looks good on or suits someone aesthetically. 「に合った」 implies a deeper
+          fit or suitability, not just appearance.
+    scene: Two friends are decorating a new apartment.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+  - english: I want you to play music that suits the atmosphere of this room.
+    japanese:
+      - この 部屋 の 雰囲気 に {合っ た} 音楽 を 流し て ほしい。
+      - この 部屋 の 雰囲気 に {合っ た} 音楽、流し て ほしい な。
+      - この 部屋 の 雰囲気 に {合っ た} 音楽 を 流し て もらい たい。
+    english_literally: I want you to play music that matched/suited the atmosphere of this room.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 の 雰囲気 に {ふさわしい} 音楽 を 流し て ほしい。
+        english: I want you to play music appropriate for the atmosphere of this room.
+        hint: 「ふさわしい」 means 'appropriate' or 'suitable' in a formal sense. 「に合った」 suggests a natural,
+          inherent fit or harmony.
+    scene: A man and woman are relaxing at home, setting a mood.
+    register: casual
+    setting: intimate
+    conjugation: past plain (～た)
+    speaker_gender: male
+  - english: He adjusted his speech according to the audience's reaction.
+    japanese:
+      - 観客 の 反応 に {合わせ て}、彼 は スピーチ を 調整 し た。
+      - 観客 の 反応 に {合わせ て}、彼 は スピーチ を 調整 し まし た。
+      - 観客 の 反応 に {合わせ て}、彼 は スピーチ を 調整 し た よ。
+    english_literally: In accordance with the audience's reaction, he adjusted his speech.
+    competing_grammar:
+      - competing_japanese:
+          - 観客 の 反応 を 見 {ながら}、彼 は スピーチ を 調整 し た。
+        english: While watching the audience's reaction, he adjusted his speech.
+        hint: 「ながら」 is for simultaneous action, often with observation. 「に合わせて」 indicates active adjustment
+          *in response to* or *in conformity with* something.
+    scene: A public speaker making real-time adjustments to his presentation.
+    register: semi-formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: male
+  - english: We will develop new products to meet customer needs.
+    japanese:
+      - 顧客 の ニーズ に {合わせ て}、新しい 商品 を 開発 する。
+      - 顧客 の ニーズ に {合わせ て}、新しい 商品 を 開発 し ます。
+      - 顧客 の ニーズ に {合わせ て}、新 商品 を 開発 する 予定 です。
+    english_literally: We will develop new products in accordance with customer needs.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 の ニーズ に {応じ て}、新しい 商品 を 開発 する。
+        english: We will develop new products in response to customer needs.
+        hint: 「に応じて」 implies adapting to changing circumstances or responding to requests. 「に合わせて」 emphasizes
+          tailoring or customizing to precisely fit needs.
+    scene: A team meeting discussing product strategy.
+    register: semi-formal
+    setting: serious
+    conjugation: te-form (～て)
+  - english: Please set goals in accordance with the team's capabilities.
+    japanese:
+      - チーム の 能力 に {合わせ て}、目標 を 設定 し て ください。
+      - チーム の 能力 に {合わせ て}、目標 を 設定 し ましょう。
+      - チーム の 能力 に {合わせ て}、目標 を 設定 し て ね。
+    english_literally: Please set goals in accordance with the team's capabilities.
+    competing_grammar:
+      - competing_japanese:
+          - チーム の 能力 を {考慮 し て}、目標 を 設定 し て ください。
+        english: Please set goals considering the team's capabilities.
+        hint: 「考慮して」 means 'considering' or 'taking into account.' 「に合わせて」 suggests the goals are specifically
+          *tuned to* or *aligned with* the capabilities.
+    scene: A manager instructing his team on goal setting.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: group
+  - english: I'm really happy I found a job that suits me.
+    japanese:
+      - 私 に {合っ た} 仕事 が 見つかっ て、本当 に 嬉しい。
+      - 私 に {合っ た} 仕事 が 見つかっ て、本当 に 嬉しい です。
+      - 私 に {合っ た} 仕事 見つかっ て、マジ 嬉しい よ。
+    english_literally: I'm really happy that a job that matched/suited me was found.
+    competing_grammar:
+      - competing_japanese:
+          - 私 に {向い て いる} 仕事 が 見つかっ て、本当 に 嬉しい。
+        english: I'm really happy I found a job that I'm suited for.
+        hint: 「向いている」 means 'suited for' in the sense of being appropriate for one's aptitude or character.
+          「に合った」 implies a mutual, inherent fit or compatibility.
+    scene: A woman happily telling a friend about her new job.
+    register: casual
+    setting: optimistic
+    conjugation: past plain (～た)
+    speaker_gender: female
+  - english: I'm looking for furniture that fits the size of this room.
+    japanese:
+      - この 部屋 の 広 さ に {合っ た} 家具 を 探し て い ます。
+      - この 部屋 の 広 さ に {合っ た} 家具 を 探し て いる。
+      - この 部屋 の 広 さ に {合う} 家具 を 探し て い ます。
+    english_literally: I'm looking for furniture that matched/suited the size of this room.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 の 広 さ に {適切 な} 家具 を 探し て い ます。
+        english: I'm looking for appropriate furniture for the size of this room.
+        hint: 「適切な」 means 'appropriate' or 'suitable' in a general sense. 「に合った」 implies a precise fit
+          in terms of dimensions and proportion.
+    scene: A customer asking a furniture store employee for assistance.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+  - english: We proceed with lessons according to each student's individual level.
+    japanese:
+      - 学生 一人一人 の レベル に {合わせ て}、授業 を 進め て い ます。
+      - 学生 一人一人 の レベル に {合わせ て}、授業 を 進め て おり ます。
+      - 学生 一人一人 の レベル に {合わせ て}、授業 進め てる よ。
+    english_literally: We proceed with lessons in accordance with each student's individual level.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 一人一人 の レベル を {考慮 し て}、授業 を 進め て い ます。
+        english: We proceed with lessons considering each student's individual level.
+        hint: 「考慮して」 means 'considering' or 'taking into account.' 「に合わせて」 highlights the active *tailoring*
+          of lessons to precisely fit each student's level.
+    scene: A teacher explaining their teaching methodology to parents or colleagues.
+    register: semi-formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+  - english: She changed the plan in accordance with everyone's opinions.
+    japanese:
+      - 彼女 は みんな の 意見 に {合わせ て}、計画 を 変更 し た。
+      - 彼女 は みんな の 意見 に {合わせ て}、計画 を 変更 し まし た。
+      - 彼女 は みんな の 意見 に {合わせ て}、計画 変え た ん だ よ。
+    english_literally: She changed the plan in accordance with everyone's opinions.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は みんな の 意見 を {考慮 し て}、計画 を 変更 し た。
+        english: She changed the plan considering everyone's opinions.
+        hint: 「考慮して」 means 'considering' or 'taking into account.' 「に合わせて」 implies the plan was *aligned
+          with* or *adjusted to conform to* the opinions, indicating a direct influence.
+    scene: Someone explaining why a decision was made in a casual conversation.
+    register: casual
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: male
+  - english: Hey, I found the perfect gift that suits you, what do you think?
+    japanese:
+      - ねえ、君 に {合っ た} 完璧 な プレゼント を 見つけ た ん だ けど、どう？
+      - ねえ、君 に {合っ た} 完璧 な プレゼント 見つけ た ん だ けど、どう か な？
+      - ねえ、君 に {合う} 完璧 な プレゼント を 見つけ た ん だ けど、どう か な？
+    english_literally: Hey, I found a perfect gift that matched/suited you, how is it?
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、君 に {似合う} 完璧 な プレゼント を 見つけ た ん だ けど、どう？
+        english: Hey, I found a perfect gift that looks good on you, what do you think?
+        hint: 「似合う」 means something looks good on or suits someone aesthetically. 「に合った」 implies a deeper
+          understanding of one's personality or preferences, suggesting a more inherent and personal fit.
+    scene: A man presenting a gift to a woman he is trying to impress.
+    register: casual
+    setting: flirty
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The casual tone of 「ねえ」 and the direct question 「どう？」 after presenting a discovery ("見つけ たん
+      だ けど") make this phrase sound intimate and slightly leading. When a male speaker uses 「君 に 合っ た」
+      to a female listener in this context, it suggests a thoughtful gesture aimed at impressing her.
+post_example_writeup: As seen in the examples, 「に合わせて」 often implies a dynamic adjustment or action taken
+  to conform to something, whereas 「に合った」 describes a state of fitting or suitability that is already
+  present or has been achieved. Pay attention to the verb from which each form is derived to grasp this
+  distinction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に合わせて-に合った

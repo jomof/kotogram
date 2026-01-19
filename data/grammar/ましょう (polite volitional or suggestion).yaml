@@ -1,0 +1,259 @@
+grammar_point: ましょう (polite volitional or suggestion)
+learn_before:
+  - '[Verb-ましょう]+か (polite offer or suggestion)'
+meaning: Let's (do something) or Shall we (do something)? (polite suggestion)
+pronunciation:
+  katakana: マショウ
+  romaji: mashō
+formation:
+  Verb[ます-stem] + ましょう: Used to express a polite invitation, suggestion, or the speaker's polite volition
+    to do something.
+jlpt: N5
+etymology: The origin of 「ましょう」 can be traced back to the older volitional forms of verbs. Historically,
+  the volitional ending was 「む」, which evolved through various stages. The 「ます」 ending is a politeness
+  marker. Combining the volitional concept with politeness, 「まし」 emerged as a polite volitional stem,
+  to which the particle 「ょう」 (from 「う」 or 「よう」) was added to form 「ましょう」. This linguistic evolution reflects
+  the Japanese language's emphasis on conveying both action and social consideration.
+writeup: |-
+  The polite volitional form 「ましょう」 is a fundamental grammar point in Japanese, used to express a polite invitation, suggestion, or the speaker's polite intention to do something. It is formed by attaching 「ましょう」 to the ます-stem of a verb. For instance, 「行きます」 (to go) becomes 「行きましょう」 (Let's go). While it translates simply as 'Let's...' or 'Shall we...?' in English, its usage extends beyond mere suggestion. It can convey a firm polite decision by the speaker, especially when responding to an invitation or proposing an action.
+
+  It's commonly used in situations where the speaker wants to include the listener in an action or offer to do something politely. For example, when offering help, one might say 「手伝いましょうか？」 (Shall I help you?). When proposing a group activity, it's natural to say 「一緒に食べましょう」 (Let's eat together). The polite nature of 「ましょう」 makes it suitable for various everyday interactions, from casual conversations with friends and colleagues to more formal settings.
+
+  While 「ましょう」 is generally used by both male and female speakers, subtle gendered differences in speech patterns might lead to variations in its frequency or context of use. However, the form itself is gender-neutral. It's a cornerstone of polite Japanese communication, enabling clear and considerate expression of intentions and invitations.
+false_friends:
+  - term: Verb[よう]
+    meaning: plain volitional
+    kind: similar expression
+    nuance: While 「よう」 (e.g., 「行こう」) also expresses volition or suggestion, it is the plain, casual form.
+      「ましょう」 is the polite equivalent, suitable for more formal settings or when addressing someone you
+      don't have a close relationship with. 「よう」 is typically used among close friends or family.
+    grammar_point: Verb[よう] (volitional)
+  - term: ませんか
+    meaning: Why don't we? / Won't you?
+    kind: similar expression
+    nuance: '「ませんか」 is an invitation that often carries a nuance of polite questioning or sounding out
+      the other person''s willingness, like ''Won''t you...?'' or ''How about...?''. 「ましょう」 is a more
+      direct proposal or statement of shared intention: ''Let''s do this''. The choice depends on whether
+      you want to sound out the other party''s opinion more or state a shared action more directly.'
+    grammar_point: ませんか (invitation or suggestion)
+  - term: Verb[て]ください
+    meaning: Please do (polite request)
+    kind: similar expression
+    nuance: 「てください」 is a direct polite request or command, focusing on the listener performing an action.
+      「ましょう」 is a suggestion or shared intention, where the speaker is also involved or proposing an action
+      for both parties, or politely stating their own intention.
+    grammar_point: てください (polite request)
+  - term: Verb[ます]
+    meaning: polite non-past/present
+    kind: similar expression
+    nuance: The 「ます」 form states facts or habits in a polite manner (e.g., 「行きます」 - 'I will go' or 'I
+      go'). 「ましょう」, derived from the ます-stem, adds the nuance of volition or suggestion ('Let's go').
+      While both are polite, 「ます」 is declarative, whereas 「ましょう」 is proactive or invitational.
+    grammar_point: Verb[ます] (polite present)
+post_false_friends_writeup: Distinguishing between these expressions is key to natural Japanese. While
+  「ましょう」 signals a mutual or polite intention, 「よう」 is its casual counterpart. 「ませんか」 probes for agreement,
+  acting as a polite 'Why don't we...?', whereas 「ましょう」 is a more straightforward 'Let's'. Finally, 「てください」
+  is a direct polite request, urging the listener to act, unlike 「ましょう」 which involves the speaker's volition.
+examples:
+  - english: Let's eat lunch together at noon.
+    japanese:
+      - お 昼 に {食べ ましょう}。
+      - お 昼ご飯 を {食べ ましょう}。
+      - お 昼 に 一緒 に {食べ ましょう}。
+    english_literally: At noon, let's eat.
+    competing_grammar:
+      - competing_japanese:
+          - お 昼 に 食べよう。
+        english: Let's eat lunch at noon. (casual)
+        hint: This uses the casual volitional form. We're looking for the polite form.
+      - competing_japanese:
+          - お 昼 に 食べ ませ ん か。
+        english: Won't we eat lunch at noon? / Shall we eat lunch at noon?
+        hint: This is a polite invitation that sounds out the other person's willingness. We're looking
+          for a more direct 'let's'.
+    scene: A colleague suggesting a lunch plan to another colleague they have a polite but friendly relationship
+      with.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Okay, let's start with this task.
+    japanese:
+      - はい、で は、この 仕事 から 始め {ましょう}。
+      - で は、この 仕事 から 始め {ましょう}。
+      - はい、この 仕事 に 取り掛かり {ましょう}。
+    english_literally: Yes, then, let's start from this work.
+    competing_grammar:
+      - competing_japanese:
+          - はい、で は、この 仕事 から 始めよう。
+        english: Okay, let's start with this task. (casual)
+        hint: This uses the plain volitional. We need the polite form suitable for a professional setting.
+      - competing_japanese:
+          - はい、で は、この 仕事 を 始め て ください。
+        english: Okay, please start this task.
+        hint: This is a direct command. We're looking for a statement of shared intention or a polite
+          suggestion.
+    scene: A team leader addressing their team at the start of a meeting.
+    register: teineigo (polite)
+    setting: professional
+  - english: The movie will start soon, so let's hurry up and get there.
+    japanese:
+      - 映画 が もう すぐ 始まる から、急い で 行き {ましょう}。
+      - 映画 が もう すぐ 始まる の で、急い で 行き {ましょう}。
+      - 映画 が もう すぐ 始まる の で、急い で 向かい {ましょう}。
+    english_literally: Because the movie will start soon, let's hurry and go.
+    competing_grammar:
+      - competing_japanese:
+          - 映画 が もう すぐ 始まる から、急い で 行こう。
+        english: The movie will start soon, so let's hurry and get there. (casual)
+        hint: This is the casual volitional. The context suggests a polite interaction.
+    scene: Two friends who are usually polite with each other are heading to the cinema.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I'll carry this heavy bag for you.
+    japanese:
+      - この 重い 荷物、私 が 持ち {ましょう}。
+      - この 重い 荷物、私 が お 持ち し {ましょう}。
+      - 私 が この 重い 荷物 を 持ち {ましょう}。
+    english_literally: This heavy luggage, I shall carry it.
+    competing_grammar:
+      - competing_japanese:
+          - この 重い 荷物、私 が 持つ よ。
+        english: I'll carry this heavy bag. (casual, direct)
+        hint: This is a plain statement of intention with a casual particle. We're looking for a polite
+          offer of assistance.
+      - competing_japanese:
+          - この 重い 荷物、私 が 持ち ます。
+        english: I will carry this heavy bag. (polite, declarative)
+        hint: This is a polite declarative statement, not an offer or suggestion. 「ましょう」 explicitly conveys
+          the willingness to do something for someone.
+    scene: A younger person offering to help an older person with their luggage.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_age: younger
+  - english: It's cold, so let's close the window.
+    japanese:
+      - 寒い から、窓 を 閉め {ましょう}。
+      - 寒い の で、窓 を 閉め {し ましょう}。
+      - 窓 を 閉め {ましょう}、寒い です から。
+    english_literally: Because it's cold, let's close the window.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い から、窓 を 閉めよう。
+        english: It's cold, so let's close the window. (casual)
+        hint: This is the casual volitional. We're looking for a polite suggestion.
+      - competing_japanese:
+          - 寒い から、窓 を 閉め て ください。
+        english: It's cold, so please close the window.
+        hint: This is a direct polite request to the listener. We're looking for a shared action or suggestion.
+    scene: Two people are in a room and one suggests closing the window.
+    register: teineigo (polite)
+    setting: friendly
+  - english: If you don't understand, let's ask the teacher together.
+    japanese:
+      - もし 分から なけれ ば、先生 に 聞き {ましょう}。
+      - もし 分から なかっ たら、先生 に 聞き {ましょう}。
+      - 分から なけれ ば、先生 に 質問 し {ましょう}。
+    english_literally: If you don't understand, let's ask the teacher.
+    competing_grammar:
+      - competing_japanese:
+          - もし 分から なけれ ば、先生 に 聞こう。
+        english: If you don't understand, let's ask the teacher. (casual)
+        hint: This uses the casual volitional. The context of asking a teacher suggests a polite approach.
+    scene: A student proposing a plan to another student regarding their studies.
+    register: teineigo (polite)
+    setting: academic
+  - english: Since everyone has gathered, let's begin the meeting.
+    japanese:
+      - 皆 集まっ た の で、会議 を 始め {ましょう}。
+      - 皆 集まり まし た の で、会議 を 始め {ましょう}。
+      - 皆 様 お 集まり です の で、会議 を 始め {ましょう}。
+    english_literally: Since everyone has gathered, let's start the meeting.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 集まっ た の で、会議 を 始めよう。
+        english: Since everyone has gathered, let's begin the meeting. (casual)
+        hint: This is the plain volitional. In a meeting setting, politeness is usually preferred.
+    scene: A chairperson addressing attendees at the start of a formal meeting.
+    register: teineigo (polite)
+    setting: professional
+    listener_gender: group
+  - english: Let's take a break here, shall we?
+    japanese:
+      - ここ で 少し 休憩 し {ましょう} か。
+      - ここ で 休憩 し {ましょう} か。
+      - 少し 休憩 し {ましょう} か、ここ で。
+    english_literally: Here, a little break, shall we do?
+    competing_grammar:
+      - competing_japanese:
+          - ここ で 少し 休憩 し ませ ん か。
+        english: Won't we take a break here?
+        hint: This is a polite invitation or inquiry. We're looking for a more direct, yet polite, suggestion
+          for a shared action.
+      - competing_japanese:
+          - ここ で 少し 休憩 しよう か。
+        english: Shall we take a break here? (casual)
+        hint: This uses the casual volitional. We need the polite form.
+    scene: Someone proposes a break to their colleagues during a long work session.
+    register: teineigo (polite)
+    setting: professional
+  - english: When you come to Japan, let's definitely meet up!
+    japanese:
+      - 日本 に 来 たら、ぜひ 会い {ましょう} ね！
+      - 日本 へ いらっしゃっ たら、ぜひ 会い {ましょう} ね！
+      - 日本 に いらし たら、ぜひ お 会い し {ましょう} ね！
+    english_literally: If you come to Japan, by all means, let's meet, right!
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 来 たら、ぜひ 会おう ね！
+        english: When you come to Japan, let's definitely meet up! (casual)
+        hint: This is the casual volitional. The addition of 「ね」 makes it friendly, but the base verb
+          is casual.
+    scene: A Japanese person saying goodbye to an international friend, expressing hope for a future meeting.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The use of 「会いましょうね」 adds a friendly touch to the polite suggestion, making it sound warm
+      and inviting. The final 「ね」 seeks confirmation or agreement from the listener.
+  - english: It's late, so let's call it a day and go home.
+    japanese:
+      - もう 遅い から、今日 は ここ で 終わり に し {ましょう}。
+      - もう 遅い の で、今日 は ここ で 終わり に し {ましょう}。
+      - 今日 は もう 遅い です から、ここ で 終わり に し {ましょう}。
+    english_literally: It's already late, so let's finish here today.
+    competing_grammar:
+      - competing_japanese:
+          - もう 遅い から、今日 は ここ で 終わり に しよう。
+        english: It's late, so let's call it a day and go home. (casual)
+        hint: This uses the casual volitional. We're looking for the polite form suitable for a work context.
+    scene: A manager concluding a meeting or work session with their team.
+    register: teineigo (polite)
+    setting: professional
+  - english: Don't worry, I'll definitely take care of it.
+    japanese:
+      - ご 心配 なく、私 が きっと なん と か し {ましょう}。
+      - ご 心配 なく、私 が なん と か し {ましょう}。
+      - ご 心配 なく、私 が お 引き受け し {ましょう}。
+    english_literally: Don't worry, I will surely manage it somehow.
+    competing_grammar:
+      - competing_japanese:
+          - ご 心配 なく、私 が きっと なん と か する わ。
+        english: Don't worry, I'll definitely take care of it. (female casual)
+        hint: This uses a casual female ending 「わ」. We need a polite and reassuring expression from a
+          male speaker.
+      - competing_japanese:
+          - ご 心配 なく、私 が きっと なん と か し ます。
+        english: Don't worry, I will definitely take care of it. (polite, declarative)
+        hint: This is a polite declarative statement, but 「しましょう」 implies a stronger promise or determination
+          from the speaker to take action on behalf of the listener, especially when reassuring them.
+    scene: A male supervisor reassuring a worried subordinate.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_gender: male
+    nuance: Here, 「なんとかしましょう」 is a polite and reassuring promise, emphasizing the speaker's intention
+      to handle the situation. The male speaker's use of 「私」 combined with this polite volitional gives
+      a sense of reliable commitment.
+post_example_writeup: 'The examples illustrate how 「ましょう」 serves various functions: from simple suggestions
+  for shared activities to polite offers of help and firm, polite statements of intention. Its versatility
+  makes it an indispensable tool for polite communication in Japanese. Pay attention to the subtle differences
+  in nuance when 「ましょう」 is used with or without the interrogative particle 「か」, as well as how it contrasts
+  with its casual counterpart 「よう」, and other polite forms like 「ませんか」 and 「てください」.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ましょう

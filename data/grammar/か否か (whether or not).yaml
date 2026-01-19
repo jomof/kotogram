@@ -1,0 +1,283 @@
+grammar_point: か否か (whether or not)
+learn_before:
+  - '[Noun]を問わず (regardless of)'
+  - '[Verb-た]や否や (as soon as・no sooner than)'
+  - にかかわらず (regardless of)
+  - 左右する (to influence or control)
+meaning: Whether or not
+pronunciation:
+  katakana: カ イナ カ
+  romaji: ka inaka
+formation:
+  Verb (plain form) + か否か: Used to express "whether or not" in relation to an action.
+  い-adjective (plain form) + か否か: Used to express "whether or not" in relation to a state or quality described
+    by an い-adjective.
+  な-adjective + である/だった/であった + か否か: Used to express "whether or not" in relation to a state or quality
+    described by a な-adjective. The "である" form is more formal than "だ".
+  Noun + である/だった/であった + か否か: Used to express "whether or not" in relation to a noun's identity or state.
+    The "である" form is more formal than "だ".
+  Verb (plain non-past) + べき (である) + か否か: Used to express "whether or not something should be done" or
+    "whether something is appropriate".
+jlpt: N1
+etymology: The term 「否 (ina)」 in Japanese means "no" or "negative." When paired with the particle 「か (ka)」,
+  which indicates a question or alternative, 「か否か」 literally translates to "or no." This construction
+  has evolved into a formal expression denoting a binary choice or uncertainty, asking whether something
+  is the case or not. Its usage is rooted in classical Japanese literary forms, contributing to its current
+  formal and written register.
+writeup: 「か否か (ka inaka)」 is a formal Japanese expression meaning "whether or not." It is primarily used
+  in written contexts, such as official documents, academic papers, and formal announcements, and can
+  also be found in highly formal speech, often conveying a somewhat stiff or rigid tone. It follows verbs
+  and い-adjectives in their plain forms. For な-adjectives and nouns, it typically follows 「である」, 「だった」,
+  or 「であった」 to maintain formality. This structure is frequently seen in conjunction with phrases like
+  「べき (beki)」 (should), 「を問わず (o towazu)」 (regardless of), or 「にかかわらず (ni kakawarazu)」 (without being
+  affected by), serving to delineate conditions or determine the suitability of something based on a given
+  situation. While 「かどうか」 carries the same meaning, 「か否か」 is distinct in its elevated formality, making
+  it unsuitable for casual conversation.
+false_friends:
+  - term: かどうか
+    meaning: Whether or not, If...or not
+    kind: synonym
+    nuance: 「かどうか」 is commonly used in everyday conversation and general writing, offering a more versatile
+      and less formal alternative to 「か否か」.
+    grammar_point: かどうか (whether or not)
+  - term: か～ないか
+    meaning: Whether or not (typically emphasizing the immediate aftermath of an action)
+    kind: similar expression
+    nuance: 「か～ないか」 often implies that something happened just as (or immediately after) something else
+      occurred (e.g., 「着くか着かないか」 - 'just as I arrived or not'). While it also involves 'whether or not',
+      its primary nuance is temporal proximity, unlike the general 'whether or not' of 「か否か」.
+    grammar_point: か〜ないかのうちに (immediately after)
+  - term: や否や
+    meaning: As soon as; no sooner than
+    kind: often confused with
+    nuance: While phonetically similar to 「か否か」 due to the shared '否や' sound, 「や否や」 expresses immediate
+      temporal succession, meaning 'as soon as' or 'the moment that', completely unrelated to 'whether
+      or not'.
+    grammar_point: '[Verb-た]とたん(に) (as soon as・the moment)'
+post_false_friends_writeup: While 「か否か」, 「かどうか」, and 「か～ないか」 all relate to conditions or choices, their
+  nuances and formality vary significantly. 「か否か」 is reserved for formal and often rigid contexts, emphasizing
+  a precise binary choice. 「かどうか」, conversely, serves the same logical function but is suitable for all
+  registers, from casual conversation to general writing. 「か～ないか」 introduces a strong temporal aspect,
+  specifically meaning 'just as' or 'the moment that something happens,' despite its partial phonetic
+  similarity to 'whether or not'. Finally, 「や否や」 is an entirely distinct expression that denotes immediate
+  temporal succession ('as soon as'), and should not be confused with the 'whether or not' meaning of
+  「か否か」, despite sharing the 否や sound.
+examples:
+  - english: I need to decide by tonight whether or not to participate in the new project.
+    japanese:
+      - 新しい プロジェクト に 参加 する {か 否 か}、今夜 まで に 決める 必要 が ある。
+      - 新しい プロジェクト に 参加 する {か 否 か}、今晩 中 に 決断 する 必要 が ござい ます。
+    english_literally: New project to participate whether or not, by tonight need to decide exists.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト に 参加 する {か どう か}、今夜 まで に 決める 必要 が ある。
+        english: I need to decide by tonight whether or not to participate in the new project.
+        hint: While `かどうか` is suitable for general inquiry, `か否か` emphasizes the seriousness and formality
+          of considering a project decision.
+      - competing_japanese:
+          - 新しい プロジェクト に 参加 する {か し ない か}、今夜 まで に 決める 必要 が ある。
+        english: I need to decide by tonight whether or not to participate in the new project.
+        hint: 「するかしないか」 is a simpler, more direct way to express 'whether or not', but 「か否か」 adds a layer
+          of formality and decisiveness appropriate for significant project decisions.
+    scene: A project manager evaluating a new work assignment and its implications.
+    register: formal
+    setting: serious
+    nuance: The use of 「必要 が ある」 ('there is a need') combined with 「か否か」 emphasizes the critical nature
+      of the decision in a professional context. The alternative 「決断 する 必要 が ござい ます」 further elevates
+      the formality, suitable for an internal business communication.
+    etymology: 「次第」 has roots in old Japanese implying an order or sequence, in this context its evolution
+      suggests personal control in decision-making processes, often in formal situations.
+  - english: It is necessary to carefully consider whether or not this proposal is appropriate.
+    japanese:
+      - この 提案 が 適切 で ある {か 否 か}、慎重 に 検討 する 必要 が ある。
+      - 本 提案 の 妥当 性 で ある {か 否 か}、慎重 な 検討 が 求め られる。
+    english_literally: This proposal is appropriate whether or not, carefully consider need exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 提案 が 適切 {か どう か}、慎重 に 検討 する 必要 が ある。
+        english: It is necessary to carefully consider whether or not this proposal is appropriate.
+        hint: 「かどうか」 is suitable for general inquiry but 「か否か」 adds a formal and objective tone, aligning
+          with the need for careful consideration in a professional setting like a board meeting.
+      - competing_japanese:
+          - この 提案 が 適切 {か そう で ない か}、慎重 に 検討 する 必要 が ある。
+        english: It is necessary to carefully consider whether or not this proposal is appropriate.
+        hint: While 「適切かそうでないか」 directly states the binary, 「か否か」 adds a formal and objective tone, aligning
+          with the need for careful consideration in this context.
+    scene: A board meeting where members are discussing a critical business proposal.
+    register: formal
+    setting: academic
+    nuance: The phrase 「慎重 に 検討 する 必要 が ある」 ('there is a need to carefully consider') highlights the formal
+      and analytical nature of the decision-making process. The alternative using 「本 提案 の 妥当 性 で ある か否か」
+      and 「慎重 な 検討 が 求め られる」 further emphasizes the academic and formal tone typical in serious deliberations.
+    etymology: 「検討」 implies a process of detailed examination and deliberation, often used in formal settings
+      to convey thoroughness.
+  - english: Whether or not he is the true culprit depends on the evidence.
+    japanese:
+      - 彼 が 真 犯人 で ある {か 否 か} は、証拠 次第 だ。
+      - 彼 が 真 犯人 で ある {か 否 か} は、提出 さ れ た 証拠 に よっ て 左右 さ れる。
+    english_literally: He is true culprit whether or not, evidence depending on it is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 真 犯人 で ある {か どう か} は、証拠 次第 だ。
+        english: Whether or not he is the true culprit depends on the evidence.
+        hint: 「かどうか」 is more common for general uncertainty, but 「か否か」 is preferred for legal or official
+          contexts requiring a clear, formal statement of a binary condition regarding guilt.
+    scene: Detectives examining forensic reports to determine a suspect's guilt.
+    register: formal
+    setting: serious
+    nuance: The structure 「証拠 次第 だ」 ('depends on the evidence') implies a reliance on objective facts,
+      aligning with the formal and unambiguous tone of 「か否か」. The phrase 「提出 された 証拠 に よって 左右 される」 emphasizes
+      the decisive role of presented evidence, common in legal discourse.
+    etymology: 「証拠」 is derived from the legal and evidentiary practices where verifiable proof is paramount,
+      emphasizing precision and objectivity.
+  - english: We should hurry to confirm whether or not that information is accurate.
+    japanese:
+      - その 情報 が 正確 で ある {か 否 か}、確認 を 急ぐ べき だ。
+      - 当該 情報 の 正確 性 {か 否 か}、早急 に 確認 す べき だ。
+    english_literally: That information is accurate whether or not, confirmation hurry should.
+    competing_grammar:
+      - competing_japanese:
+          - その 情報 が 正確 で ある {か どう か}、確認 を 急ぐ べき だ。
+        english: We should hurry to confirm whether or not that information is accurate.
+        hint: 「かどうか」 is generally used, but 「か否か」 implies a more rigorous and official verification process,
+          fitting the urgency of confirming accuracy in professional communications.
+    scene: Journalists racing against a deadline to verify a breaking news story.
+    register: bijinesu nihongo (business)
+    setting: cautious
+    nuance: The verb 「急ぐ べきだ」 ('should hurry') coupled with the need for accuracy, emphasizes the urgency
+      and seriousness often found in professional communications using 「か否か」. The alternative sentence
+      with 「当該 情報 の 正確 性」 and 「早急 に 確認 すべき」 adds a layer of official business language, suitable for internal
+      memos or urgent directives.
+    etymology: 「確認」 suggests a process of cross-checking or verifying information to ensure its veracity,
+      a concept crucial in fields demanding high accuracy.
+  - english: Whether or not this plan should be executed was debated in the committee.
+    japanese:
+      - この 計画 を 実行 する べき {か 否 か}、委員 会 で 議論 さ れ た。
+      - 本 計画 の 実施 の 是非 {か 否 か}、委員 会 にて 討議 さ れ た。
+    english_literally: This plan to execute should whether or not, committee in debated was.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 を 実行 する べき {か どう か}、委員 会 で 議論 さ れ た。
+        english: Whether or not this plan should be executed was debated in the committee.
+        hint: 「かどうか」 is less formal for debate topics, while 「か否か」 lends an official, structured tone
+          to the discussion of whether a plan *should* be implemented.
+    scene: A government committee discussing the feasibility and implications of a new policy.
+    register: bungo (literary)
+    setting: professional
+    nuance: The combination of 「べきか否か」 with 「委員会 で 議論 された」 ('was debated in the committee') highlights
+      a formal deliberation process where propriety and necessity are key discussion points. The alternative
+      uses 「実施 の 是非」, which is a more literary and formal way to ask about the pros and cons or rightness/wrongness
+      of execution, further aligning with the 'bungo' register.
+    etymology: 「議論」 has roots in the formal exchange of ideas and opinions, often seen in structured settings
+      like committees or legislative bodies.
+  - english: Many people have doubts about whether or not an organizational leader should be sincere.
+    japanese:
+      - 組織 の リーダー が 誠実 で ある べき {か 否 か}、多く の 人 が 疑問 を 抱い て いる。
+      - 組織 の リーダー は 誠実 で ある べき {か 否 か}、世論 は 懐疑 的 な 見 方 を 示し て いる。
+    english_literally: Organization's leader is sincere should whether or not, many people doubts are
+      holding.
+    competing_grammar:
+      - competing_japanese:
+          - 組織 の リーダー が 誠実 で ある {か どう か}、多く の 人 が 疑問 を 抱い て いる。
+        english: Many people have doubts about whether or not an organizational leader should be sincere.
+        hint: 「かどうか」 is acceptable, but 「か否か」 adds gravitas to the philosophical debate about leadership
+          ethics, especially in formal public discourse.
+    scene: A public forum where citizens are questioning the ethics of their leaders.
+    register: formal
+    setting: serious
+    nuance: The phrase 「疑問 を 抱いて いる」 ('are holding doubts') paired with 「であるべきか否か」 reflects a serious,
+      often critical, public discourse on moral obligations of leadership. The second example's 「世論 は
+      懐疑 的 な 見方 を 示して いる」 ('public opinion shows a skeptical view') uses even more formal language, fitting
+      a discussion of public sentiment regarding ethical leadership.
+    etymology: 「誠実」 signifies truthfulness and sincerity, qualities that have been historically valued
+      in leadership and public trust, making it a fitting subject for formal inquiry.
+  - english: Regardless of whether or not the weather is good, the event will be held as scheduled.
+    japanese:
+      - 天候 が 良好 で ある {か 否 か} に かかわら ず、イベント は 予定 通り 開催 さ れ ます。
+      - 天候 が 良好 {か 否 か} に 関わら ず、行事 は 予定 通り 執り行わ れる。
+    english_literally: Weather is good whether or not regardless, event is schedule通り held will be.
+    competing_grammar:
+      - competing_japanese:
+          - 天候 が 良好 で ある {か どう か} に かかわら ず、イベント は 予定 通り 開催 さ れ ます。
+        english: Regardless of whether or not the weather is good, the event will be held as scheduled.
+        hint: 「かどうか」 is commonly used with 「にかかわらず」, but 「か否か」 here emphasizes the official, unchangeable
+          nature of the announcement, typical for formal event declarations.
+    scene: An event coordinator making an official announcement about an outdoor festival.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: The use of 「にかかわらず」 ('regardless of') with 「か否か」 reinforces an absolute determination, commonly
+      seen in official statements to convey certainty and immutability. The alternative sentence with
+      「良好 か否か に 関わらず」 and 「行事 は 予定 通り 執り行われる」 uses even more formal and precise terms for an official
+      announcement, characteristic of business Japanese.
+    etymology: 「開催」 emphasizes the formal act of holding an event or meeting, often involving official
+      procedures and planning.
+  - english: Regardless of whether or not that opinion is the majority view, it should be evaluated fairly.
+    japanese:
+      - その 意見 が 多数 派 で ある {か 否 か} を 問わ ず、公平 に 評価 す べき だ。
+      - 当該 意見 が 多数 派 で ある {か 否 か} を 問わ ず、公正 に 評価 さ れる べき で ある。
+    english_literally: That opinion is majority whether or not without questioning, fairly evaluated should.
+    competing_grammar:
+      - competing_japanese:
+          - その 意見 が 多数 派 で ある {か どう か} を 問わ ず、公平 に 評価 す べき だ。
+        english: Regardless of whether or not that opinion is the majority view, it should be evaluated
+          fairly.
+        hint: While 「かどうか」 is generally understood, 「か否か」 reinforces the impartial and objective evaluation
+          required in formal settings like legal or academic discourse, especially when used with 「を問わず」.
+    scene: A judge instructing a jury to consider all evidence impartially.
+    register: formal
+    setting: academic
+    nuance: The construction 「を 問わず」 ('without questioning') coupled with 「か否か」 and 「公平 に 評価 すべきだ」 ('should
+      be evaluated fairly') emphasizes objectivity and impartiality, typical of formal legal or academic
+      discourse. The second example uses 「当該 意見」 for 'that opinion' and 「公正 に 評価 される べき である」 for 'should
+      be evaluated fairly', which further elevates the formal and legalistic tone.
+    etymology: 「公平」 implies a balance and adherence to justice, a concept deeply ingrained in legal and
+      ethical frameworks.
+  - english: Philosophers have debated for many years whether or not it is possible to change history.
+    japanese:
+      - 歴史 を 変える こと が 可能 で ある {か 否 か}、哲学 者 たち は 長年 議論 し て き た。
+      - 歴史 を 変える こと の 可否 で ある {か 否 か} に つい て、哲学 者 たち が 長年 に わたり 論じ て き た。
+    english_literally: History to change that is possible whether or not, philosophers for many years
+      debated have.
+    competing_grammar:
+      - competing_japanese:
+          - 歴史 を 変える こと が 可能 {か どう か}、哲学 者 たち は 長年 議論 し て き た。
+        english: Philosophers have debated for many years whether or not it is possible to change history.
+        hint: 「かどうか」 is acceptable, but 「か否か」 highlights the profound and academic nature of the philosophical
+          question, fitting a long-standing debate.
+    scene: A university professor giving a lecture on the philosophy of time and causality.
+    register: formal
+    setting: reflective
+    nuance: The intellectual and abstract nature of the topic, combined with the phrase 「長年 議論 してきた」 ('have
+      debated for many years'), aligns with the formal and analytical tone of 「か否か」 in academic discourse.
+      The alternative using 「可否 で ある」 for 'possibility or not' and 「長年 に わたり 論じて きた」 further emphasizes
+      the academic and intellectual rigor of the discussion.
+    etymology: 「可能」 speaks to the inherent potential or feasibility of an action, often explored in theoretical
+      or philosophical discussions.
+  - english: The report investigates whether or not the company complied with the regulations.
+    japanese:
+      - 報告 書 は、会社 が 規定 を 遵守 し た {か 否 か} を 調査 する。
+      - 報告 書 は、企業 が 規制 を 遵守 し た {か 否 か} に つい て 調査 を 行う。
+    english_literally: Report, company regulations complied whether or not, investigates.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 は、会社 が 規定 を 遵守 し た {か どう か} を 調査 する。
+        english: The report investigates whether or not the company complied with the regulations.
+        hint: While 「かどうか」 is suitable for general inquiry, 「か否か」 lends a more formal and objective tone,
+          appropriate for official reports and compliance investigations.
+    scene: A legal team reviewing a corporate compliance report.
+    register: formal
+    setting: professional
+    nuance: The use of 「遵守 し た か否か」 highlights the objective and fact-checking nature of a formal report,
+      crucial in legal or compliance contexts. The alternative uses 「企業 が 規制 を 遵守 し た か否か について 調査 を 行う」
+      which is more common in written legal or business documents.
+    etymology: 「調査」 implies a systematic and thorough examination or inquiry into facts, often used in
+      official or investigative contexts.
+post_example_writeup: As observed in the examples, 「か否か」 maintains a consistently formal tone. It is particularly
+  effective when discussing objective facts, legal matters, academic theories, or making formal announcements,
+  where clarity and an authoritative voice are paramount. Its usage emphasizes a precise binary choice
+  or determination, distinguishing it from more casual alternatives. While `かどうか` is often interchangeable
+  in terms of meaning, `か否か` always elevates the register, making it suitable for contexts demanding gravity
+  or officiality. The `か～ないか` structure, however, is distinct in its temporal nuance, focusing on immediate
+  occurrence rather than a general binary condition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/か否か

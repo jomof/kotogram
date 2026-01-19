@@ -1,0 +1,263 @@
+grammar_point: といった (such as)
+learn_before:
+  - '[Noun]が好きだ (to like)'
+  - い-Adjective[くありません] (polite negative form)
+  - い-Adjective[くない] (negative)
+  - い-adjective (sentence-ending)
+  - が (subject marker)
+  - で (cause・reason)
+  - と (and, connects nouns)
+  - な-Adjectives (adjectival nouns)
+meaning: Such as, Like, So much as
+pronunciation:
+  katakana: トイッタ
+  romaji: to itta
+formation:
+  Noun1、Noun2、… + といった + Noun: Lists examples of things belonging to a particular category.
+  Sentence1、Sentence2、Sentence3、… + といった + Noun: Describes characteristics or features associated with
+    something.
+jlpt: N2
+etymology: 「といった」 comes from 「と」 (a particle indicating content or quotation) and the past tense of the
+  verb 「言う」 (iu, to say). It literally means “something that can be said as...” and is used to introduce
+  examples or things that fall under a certain category.
+writeup: '「といった」 functions similarly to 「など」 or 「の よう な」, providing examples. It is formed from the quotative
+  particle 「と」 and the past tense of the verb 「言う」 (to say). Its literal interpretation can be understood
+  as “that can be said as...”, serving to introduce representative examples within a broader category.
+  This grammar point can be used in two primary patterns: **Noun + といった + Noun**: This pattern is used
+  to list specific items that belong to a general category. For instance, 「犬、猫 といった ペット」 (pets such as
+  dogs and cats) specifies typical examples within the category of “pets.” **Sentence + といった + Noun**:
+  This pattern allows for describing characteristics, concepts, or problems by presenting a sentence or
+  phrase as an example of that characteristic. For example, 「持ち運び しやすい、容量 が 大きい といった 特徴」 (characteristics
+  such as being easy to carry and having a large capacity) uses descriptive phrases as examples of “characteristics.”
+  It is often combined with other listing particles like 「や」 or 「とか」 when multiple examples are being
+  provided, as in 「洗濯 や 料理 といった 家事」 (household chores such as laundry and cooking). Additionally, 「といった」
+  can be used in the fixed expression 「これ と いった」, which typically appears with a negative verb, meaning
+  “any particular” or “any specific.” For example, 「これ と いった 理由 も ない」 means “without any particular reason.”'
+false_friends:
+  - term: なんか・なんて
+    meaning: Such as, Things like, Emphasis
+    kind: synonym
+    nuance: While 「なんか」 and 「なんて」 can also list examples, they often carry a more casual, dismissive,
+      or emphatic tone than 「といった」.
+    grammar_point: 〜など・〜なんか (listing examples)
+  - term: とか〜とか
+    meaning: Among other things, For example, Such as
+    kind: synonym
+    nuance: 「とか〜とか」 is similar to 「といった」 for listing examples, but it's generally used when the list is
+      not exhaustive, implying there are other similar items not mentioned.
+    grammar_point: とか〜とか (listing examples)
+  - term: など
+    meaning: Such as, Things like, Etc., And so on
+    kind: synonym
+    nuance: 「など」 is a more general term for listing examples and can also imply “etc.” or “and so on,”
+      suggesting the list is incomplete. 「といった」 often provides more specific or illustrative examples.
+    grammar_point: 〜など・〜なんか (listing examples)
+  - term: のような
+    meaning: Like, Similar to
+    kind: similar expression
+    nuance: 「のような」 emphasizes similarity or resemblance, meaning 'things that are like X.' 「といった」 specifically
+      introduces X as a representative example within a category or as a concrete illustration of a concept.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+post_false_friends_writeup: When choosing between 「といった」, 「なんか/なんて」, 「とか〜とか」, 「など」, and 「の よう な」, remember
+  the subtle nuances of formality, exhaustiveness, and emphasis that each one carries.
+examples:
+  - english: He likes ball games such as soccer and basketball.
+    japanese:
+      - 彼 は サッカー や バスケットボール {と いっ た} 球技 が 好き です。
+      - 彼 は サッカー や バスケットボール {と いっ た} 球技 が 好き だ。
+    english_literally: As for him, ball games such as soccer and basketball are liked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は サッカー {と か} バスケットボール {と か} の 球技 が 好き です。
+        english: He likes ball games such as soccer or basketball, among other things.
+        hint: 「とか〜とか」 suggests that the list of examples is not exhaustive and is typically used in more
+          casual conversations. We're looking for a formal, clear example.
+      - competing_japanese:
+          - 彼 は サッカー や バスケットボール {の よう な} 球技 が 好き です。
+        english: He likes ball games that are like soccer and basketball.
+        hint: 「〜のような」 explicitly states that something is 'like' or 'similar to' the examples given, focusing
+          on resemblance. We're listing representative examples belonging to a category.
+    scene: A friend is talking about their colleague's hobbies.
+    register: formal
+    setting: informative
+  - english: In Tokyo, there are many lively places such as Shibuya and Shinjuku.
+    japanese:
+      - 東京 に は 渋谷 や 新宿 {と いっ た} 賑やか な 場所 が たくさん あり ます。
+      - 東京 に は 渋谷 や 新宿 {と いっ た} 賑やか な 場所 が たくさん ある。
+    english_literally: In Tokyo, lively places such as Shibuya and Shinjuku exist a lot.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 に は 渋谷 {と か} 新宿 {と か} の 賑やか な 場所 が たくさん あり ます。
+        english: In Tokyo, there are many lively places such as Shibuya or Shinjuku, among others.
+        hint: 「とか〜とか」 implies an incomplete list and is usually more casual. We are looking for a clear,
+          representative example of lively places in Tokyo.
+      - competing_japanese:
+          - 東京 に は 渋谷 や 新宿 {の よう な} 賑やか な 場所 が たくさん あり ます。
+        english: In Tokyo, there are many lively places that are like Shibuya and Shinjuku.
+        hint: 「〜のような」 highlights similarity or resemblance. 「といった」 is used to provide representative examples
+          belonging to a category.
+    scene: A tour guide is explaining popular areas in Tokyo.
+    register: formal
+    setting: informative
+  - english: Without any particular reason, I stayed home all day today.
+    japanese:
+      - 特に {これ と いっ た} 理由 も なく、今日 は 一 日中 家 に い た。
+      - 特に {これ と いっ た} 理由 も なく、今日 は 一 日中 家 に い まし た。
+    english_literally: Without any reason that can be particularly said, today I stayed home all day.
+    competing_grammar:
+      - competing_japanese:
+          - 特に 理由 が ない {の に}、今日 は 一 日中 家 に い た。
+        english: Even though there was no particular reason, I stayed home all day today.
+        hint: 「これ と いった」 specifically emphasizes the lack of any distinguishable or significant reason,
+          conveying a stronger sense of absence than just '理由 が ない'.
+    scene: Someone is explaining their uneventful day.
+    register: casual
+    setting: reflective
+  - english: Problems such as low wages and excessive overtime are serious for young workers.
+    japanese:
+      - 賃金 が 低い、残業 が 多い {と いっ た} 問題 は、若い 労働 者 に とっ て 深刻 だ。
+      - 賃金 が 低い、残業 が 多い {と いっ た} 問題 は、若い 労働 者 に とっ て 深刻 です。
+    english_literally: Problems such as low wages and excessive overtime are serious for young workers.
+    competing_grammar:
+      - competing_japanese:
+          - 賃金 が 低い {と か} 残業 が 多い {と か} の 問題 は、若い 労働 者 に とっ て 深刻 だ。
+        english: Problems such as low wages or excessive overtime, among other things.
+        hint: 「とか〜とか」 implies an incomplete and often casual list. This sentence discusses serious issues
+          in a formal tone.
+      - competing_japanese:
+          - 賃金 が 低い、残業 が 多い {の よう な} 問題 は、若い 労働 者 に とっ て 深刻 だ。
+        english: Problems like low wages or excessive overtime are serious for young workers.
+        hint: 「〜のような」 emphasizes similarity. 「といった」 introduces concrete examples that define the problem.
+    scene: An analyst is discussing challenges faced by recent graduates.
+    register: formal
+    setting: serious
+  - english: He has no interest in sports like baseball or golf.
+    japanese:
+      - 彼 は 野球 や ゴルフ {と いっ た} スポーツ に 興味 が ない。
+      - 彼 は 野球 や ゴルフ {と いっ た} スポーツ に 興味 が あり ませ ん。
+    english_literally: As for him, sports such as baseball or golf, interest does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 野球 や ゴルフ {なん か} スポーツ に 興味 が ない。
+        english: He has no interest in sports like baseball or golf (with a dismissive tone).
+        hint: 「なんか」 can be used to convey a dismissive or slightly negative nuance towards the listed
+          items. We're looking for a neutral description of his lack of interest.
+      - competing_japanese:
+          - 彼 は 野球 {と か} ゴルフ {と か} の スポーツ に 興味 が ない。
+        english: He has no interest in sports like baseball or golf, among others.
+        hint: 「とか〜とか」 is typically used for a non-exhaustive and more casual list. This example describes
+          a general disinterest in these types of sports.
+      - competing_japanese:
+          - 彼 は 野球 や ゴルフ {の よう な} スポーツ に 興味 が ない。
+        english: He has no interest in sports that are like baseball or golf.
+        hint: 「〜のような」 focuses on resemblance. 「といった」 specifies the type of sports he dislikes.
+    scene: A man is explaining why he doesn't join office sports clubs.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    nuance: The neutral tone of the sentence and the use of 「彼」 suggests a male speaker casually explaining
+      their preferences.
+  - english: On holidays, I like quiet ways to spend time, such as reading or taking a walk.
+    japanese:
+      - 休日 は 読書 と か 散歩 {と いっ た} 静か な 過ごし 方 が 好き です。
+      - 休日 は 読書 と か 散歩 {と いっ た} 静か な 過ごし 方 が 好き だ。
+      - 休日 は 読書 や 散歩 {と いっ た} 静か な 過ごし 方 が 好き です。
+    english_literally: On holidays, quiet ways to spend time such as reading or taking a walk, I like.
+    competing_grammar:
+      - competing_japanese:
+          - 休日 は 読書 と か 散歩 {なんて} 静か な 過ごし 方 が 好き です。
+        english: On holidays, I like quiet ways to spend time such as reading or taking a walk (implying
+          these are typical or simple quiet activities).
+        hint: 「なんて」 can add a nuance of emphasis or mild surprise, often used when describing something
+          as typical or simple. We're simply listing examples of quiet activities.
+      - competing_japanese:
+          - 休日 は 読書 と か 散歩 {の よう な} 静か な 過ごし 方 が 好き です。
+        english: On holidays, I like quiet ways to spend time that are like reading or taking a walk.
+        hint: 「〜のような」 describes similarity. 「といった」 specifies actual examples of quiet ways to spend time.
+    scene: A woman is describing her ideal weekend activities.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The gentle and descriptive nature of the sentence aligns well with a female speaker describing
+      personal preferences in a friendly setting. The use of 「とか」 indicates a casual listing.
+  - english: An easy idea like dreams come true if you make an effort is dangerous.
+    japanese:
+      - 『努力 すれ ば 夢 は 叶う』{と いっ た} 安易 な 考え 方 は 危険 だ。
+      - 『努力 すれ ば 夢 は 叶う』{と いっ た} 安易 な 考え 方 は 危険 です。
+    english_literally: An easy idea that can be said, dreams come true if you make an effort, is dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - 『努力 すれ ば 夢 は 叶う』{なんて} 安易 な 考え 方 は 危険 だ。
+        english: An easy idea like 'dreams come true if you make an effort' (with a dismissive tone) is
+          dangerous.
+        hint: 「なんて」 adds a dismissive or disparaging nuance to the quoted idea. We are presenting the
+          idea as an example without necessarily disparaging it directly with the grammar.
+      - competing_japanese:
+          - 『努力 すれ ば 夢 は 叶う』{と いう} 安易 な 考え 方 は 危険 だ。
+        english: The easy idea that 'dreams come true if you make an effort' is dangerous.
+        hint: While 「と いう」 also works, 「といった」 emphasizes that the quoted statement is just one example
+          of a simplistic idea, implying there are others like it, fitting a persuasive argument about
+          dangerous philosophies.
+    scene: A mentor is cautioning a student about naive beliefs.
+    register: formal
+    setting: persuasive
+  - english: Global issues such as global warming and environmental destruction should be tackled collaboratively
+      by humanity.
+    japanese:
+      - 地球 温暖 化 や 環境 破壊 {と いっ た} グローバル な 問題 は、人類 が 協力 し て 取り組む べき だ。
+      - 地球 温暖 化 や 環境 破壊 {と いっ た} グローバル な 問題 は、人類 が 協力 し て 取り組む べき です。
+    english_literally: Global issues such as global warming and environmental destruction, humanity should
+      tackle collaboratively.
+    competing_grammar:
+      - competing_japanese:
+          - 地球 温暖 化 や 環境 破壊 {の よう な} グローバル な 問題 は、人類 が 協力 し て 取り組む べき だ。
+        english: Global issues that are like global warming and environmental destruction should be tackled
+          collaboratively by humanity.
+        hint: 「〜のような」 highlights resemblance. 「といった」 explicitly presents these as representative examples
+          of global issues.
+    scene: A speaker at a conference is emphasizing the urgency of current world challenges.
+    register: formal
+    setting: serious
+  - english: Ingredients like fish and vegetables are good for your health.
+    japanese:
+      - 魚 や 野菜 {と いっ た} 食材 は、健康 に 良い。
+      - 魚 や 野菜 {と いっ た} 食材 は、健康 に 良い です。
+    english_literally: Ingredients such as fish and vegetables are good for health.
+    competing_grammar:
+      - competing_japanese:
+          - 魚 {と か} 野菜 {と か} の 食材 は、健康 に 良い。
+        english: Ingredients like fish or vegetables, among others, are good for your health.
+        hint: 「とか〜とか」 implies an incomplete list and is typically more casual. We are stating general
+          examples of healthy ingredients.
+      - competing_japanese:
+          - 魚 や 野菜 {の よう な} 食材 は、健康 に 良い。
+        english: Ingredients that are like fish and vegetables are good for your health.
+        hint: 「〜のような」 indicates similarity. 「といった」 lists concrete examples of healthy ingredients.
+    scene: A nutritionist is giving advice on healthy eating.
+    register: teineigo (polite)
+    setting: instructional
+  - english: A good student has qualities such as diligence and a willingness to learn.
+    japanese:
+      - 良い 学生 は 勤勉 さ や 学習 意欲 {と いっ た} 質 を 持ち合わせ て い ます。
+      - 良い 学生 は 勤勉 さ や 学習 意欲 {と いっ た} 質 を 持ち合わせ て いる。
+    english_literally: A good student possesses qualities such as diligence and willingness to learn.
+    competing_grammar:
+      - competing_japanese:
+          - 良い 学生 は 勤勉 さ や 学習 意欲 {の よう な} 質 を 持ち合わせ て い ます。
+        english: A good student has qualities that are like diligence and a willingness to learn.
+        hint: 「〜のような」 emphasizes resemblance. 「といった」 provides concrete examples of the qualities themselves.
+      - competing_japanese:
+          - 良い 学生 は 勤勉 さ や 学習 意欲 {など} の 質 を 持ち合わせ て い ます。
+        english: A good student has qualities such as diligence and willingness to learn, etc.
+        hint: 「など」 implies a more general list and can include “etc.” 「といった」 focuses on specific, representative
+          examples.
+    scene: A teacher is giving advice to new students.
+    register: formal
+    setting: instructional
+post_example_writeup: These examples illustrate that 「といった」 is used to provide specific instances that
+  exemplify a broader category or concept. It's often used with particles like 「や」 or 「とか」 to list multiple
+  examples, creating a natural flow in both formal and casual contexts. When considering alternatives
+  like 「など」, 「とか〜とか」, 「なんか/なんて」, or 「の よう な」, remember the subtle nuances of formality, exhaustiveness,
+  and emphasis that each one carries.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/といった

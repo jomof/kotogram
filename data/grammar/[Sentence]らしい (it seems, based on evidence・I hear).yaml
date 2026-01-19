@@ -1,0 +1,295 @@
+grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+learn_before:
+  - らしい (it seems, based on evidence・I hear)
+meaning: It seems; I hear; apparently; looks like (based on what one hears or sees).
+pronunciation:
+  katakana: ラシイ
+  romaji: rashii
+formation:
+  Verb (plain form) + らしい: Indicates that the speaker has heard or observed something, and it appears
+    to be true.
+  い-Adjective (plain form) + らしい: Indicates that the speaker has heard or observed something, and it appears
+    to be true.
+  な-Adjective (stem) + らしい: Indicates that the speaker has heard or observed something, and it appears
+    to be true.
+  Noun + らしい: Indicates that the speaker has heard or observed something, and it appears to be true.
+jlpt: N3
+etymology: The particle 「らしい」 originates from the classical Japanese form 「然し」 (shikashi), which meant
+  “so, thus, like that.” Over time, it evolved from expressing mere resemblance (similar to 「～の如し」, 'no
+  gotoshi') to conveying an appearance or inference based on observation or hearsay. The root sense of
+  'being like something' expanded to 'appearing to be' or 'sounding like,' reflecting information gathered
+  indirectly. This evolution highlights its function as a marker of perceived reality rather than absolute
+  fact.
+writeup: |-
+  The grammar point 「らしい」 is used to express an inference or a statement based on what one has heard or observed, but without absolute certainty. It translates to "it seems," "I hear," "apparently," or "looks like." The speaker is not stating a fact directly, but rather conveying something they believe to be true based on available evidence or information.
+
+  「らしい」 can attach to the plain form of verbs, い-adjectives, the stem of な-adjectives, and nouns. For example, 「行くらしい」 (I hear they're going), 「美味しいらしい」 (It seems delicious), 「元気らしい」 (He seems healthy), or 「雨らしい」 (It seems like rain).
+
+  This expression is versatile and can be used in both casual and somewhat formal contexts, though its primary function is to convey information that is not personally verified. It often implies that the speaker has a good reason for their inference, such as having heard it from a reliable source or having observed clear signs.
+false_friends:
+  - term: 〜そうだ (hear that)
+    meaning: I heard that, it is said that
+    kind: similar expression
+    nuance: 「そうだ」 (hearsay) implies information directly received from a specific source (e.g., news,
+      a person told you), often carrying a stronger sense of being a direct report. In contrast, 「らしい」
+      implies an inference from general information, common knowledge, or observable signs, making the
+      source less direct or specific.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: '[Adj-stem]・[V-stem]そうだ (looks・seems like)'
+    meaning: It looks like, seems like (based on direct observation).
+    kind: similar expression
+    nuance: 「そうだ」 (appearance) is based on direct visual or sensory observation, indicating something
+      'looks' or 'appears' a certain way (e.g., 'it looks delicious'). 「らしい」, on the other hand, is an
+      inference based on less direct signs or general impressions, often including hearsay.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: ようだ (it seems)
+    meaning: It seems that, it appears that, it looks like (based on speaker's conjecture).
+    kind: similar expression
+    nuance: 「ようだ」 is a subjective judgment or conjecture based on the speaker's personal impression or
+      feeling, often with a sense of 'it's like X' or 'it resembles X'. 「らしい」 is more objective, based
+      on information or observable signs that lead to an inference, and implies a stronger likelihood
+      of truth.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: みたい (similar to)
+    meaning: Like, Similar to, Resembling; seems like.
+    kind: similar expression
+    nuance: 「みたい」 is a casual version of 「ようだ」, expressing subjective conjecture or resemblance. It often
+      implies a more vague or less certain impression than 「らしい」. While 「らしい」 often suggests a logical
+      inference from evidence, 「みたい」 can be a simpler, more intuitive guess.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+post_false_friends_writeup: When distinguishing between 「らしい」, 「そうだ」, 「ようだ」, and 「みたい」, consider the source
+  and certainty of the information. 「らしい」 is about inferring something based on general information, common
+  sense, or observable signs. 「そうだ」 for hearsay is about reporting what you've been told directly. 「そうだ」
+  for appearance is about direct sensory observation. 「ようだ」 and 「みたい」 are more about subjective conjecture
+  or resemblance based on your personal impression, with 「みたい」 being the most casual.
+examples:
+  - english: I heard that Tanaka-sensei will be late today.
+    japanese:
+      - 田中 先生 は 今日、遅れる {らしい}。
+      - 田中 先生 は 今日、遅れる {らしい} です。
+    english_literally: Tanaka-sensei today, will be late it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 先生 は 今日、遅れる そう です。
+        english: I heard Tanaka-sensei will be late today (from a direct source).
+        hint: 「そうです」 here implies a direct report from a specific source, like an announcement or another
+          person. We're looking for a more general inference or hearsay.
+    scene: A student tells another student about their teacher before class starts.
+    register: casual
+    setting: academic
+    nuance: This sentence uses 「らしい」 to convey information about the teacher's lateness. It suggests the
+      speaker heard it indirectly or inferred it from some general sign, rather than being told directly
+      by the teacher themselves.
+  - english: This cake is really delicious, it seems.
+    japanese:
+      - この ケーキ は とても 美味しい {らしい}。
+      - この ケーキ は とても 美味しい {らしい} です。
+    english_literally: This cake is very delicious it seems.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は とても 美味しい そう だ。
+          - この ケーキ は とても 美味し そう です。
+        english: This cake looks very delicious (based on appearance).
+        hint: 「そうだ」 (appearance) refers to a direct visual judgment, like 'it looks delicious'. We are
+          looking for an inference based on something less direct, like what people generally say or what
+          is implied.
+      - competing_japanese:
+          - この ケーキ は とても 美味しい よう だ。
+          - この ケーキ は とても 美味しい みたい だ。
+        english: This cake seems very delicious (based on subjective impression).
+        hint: 「ようだ」/「みたいだ」 express a more subjective impression or resemblance. We are looking for an
+          inference based on some form of evidence or indirect information.
+    scene: Someone observes a cake on display in a cafe or hears positive comments about it from other
+      customers.
+    register: casual
+    setting: casual slang
+    nuance: The speaker's use of 「らしい」 suggests they haven't tasted the cake themselves, but are inferring
+      its deliciousness from external factors such as its appealing appearance, enticing smell, or what
+      they've heard from others.
+  - english: He seems to be quite healthy now.
+    japanese:
+      - 彼 は もう 随分 元気 {らしい}。
+      - 彼 は もう 随分 元気 {らしい} です。
+    english_literally: He is already quite healthy it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は もう 随分 元気 だ そう だ。
+        english: I heard he is quite healthy now (from someone specific).
+        hint: 「だそうだ」 would be used if you heard this from a specific person. Here, we're conveying a general
+          impression or rumor.
+    scene: Friends discussing a mutual acquaintance who was recently ill, now appearing well.
+    register: casual
+    setting: friendly
+    nuance: This sentence uses 「らしい」 to convey an inference about someone's current health. It suggests
+      the information comes from recent reports or observable signs, rather than direct conversation with
+      the person.
+  - english: The new manager is a very strict person, I hear.
+    japanese:
+      - 新しい 部長 は とても 厳しい 人 {らしい}。
+      - 新しい 部長 は とても 厳しい 人 {らしい} です。
+    english_literally: New manager is very strict person it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 部長 は とても 厳しい 人 だ そう だ。
+        english: I heard the new manager is a very strict person (from a specific source).
+        hint: 「だそうだ」 would be used if you heard this from a specific person. Here, we're conveying a general
+          impression or rumor.
+    scene: Colleagues gossiping about their newly appointed boss in the office break room.
+    register: semi-formal
+    setting: professional
+    nuance: The use of 「らしい」 here implies that the speaker has not directly experienced the manager's
+      strictness but has heard about it through office chatter or observation of their behavior, making
+      it an inference rather than a direct statement of fact. This is common in professional settings
+      when discussing new colleagues based on early impressions.
+  - english: It seems they've already finished the project.
+    japanese:
+      - 彼 ら は もう プロジェクト を 終え た {らしい}。
+      - 彼 ら は もう プロジェクト を 終え た {らしい} です。
+    english_literally: They already project finished it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は もう プロジェクト を 終え た そう だ。
+        english: I heard they've already finished the project (from a direct report).
+        hint: 「そうだ」 would imply a direct report or official announcement. We're looking for an inference
+          based on indirect information or signs.
+    scene: A team leader checking on project progress and noticing signs that it might be complete, but
+      not having received a formal report yet.
+    register: formal
+    setting: professional
+    nuance: In this professional context, 「らしい」 indicates that the completion of the project is an inference
+      based on visible progress or unofficial reports, rather than a formally confirmed fact. This allows
+      for a cautious statement.
+  - english: It seems the train hasn't arrived yet.
+    japanese:
+      - 電車 は まだ 着い て い ない {らしい}。
+      - 電車 は まだ 着い て い ない {らしい} です。
+    english_literally: Train still hasn't arrived it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は まだ 着い て い ない よう だ。
+        english: It appears the train hasn't arrived yet (subjective observation).
+        hint: 「ようだ」 would be a more subjective observation. 「らしい」 suggests an inference based on what
+          is commonly known or observed in the situation, like a lack of announcements or the platform
+          being empty.
+    scene: People waiting at a train station, observing the platform and the lack of announcements, inferring
+      that the train is delayed.
+    register: casual
+    setting: emergency/alarm
+    nuance: The use of 「らしい」 here suggests an inference drawn from the current situation – perhaps no
+      train visible, no announcements, or general delays. It's a conclusion based on available, albeit
+      indirect, evidence.
+  - english: The company seems to be planning a new product launch next month.
+    japanese:
+      - 会社 は 来月 新しい 製品 を 発表 する {らしい}。
+      - 会社 は 来月 新しい 製品 を 発表 する {らしい} です。
+    english_literally: Company next month new product will announce it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 は 来月 新しい 製品 を 発表 する そう だ。
+        english: I heard the company is planning a new product launch next month (official news).
+        hint: 「そうだ」 here would imply a direct official source, like an announcement or a memo. 「らしい」 suggests
+          more of a rumor or inference based on industry chatter.
+    scene: Business partners discussing market trends and potential competitor moves during a casual meeting.
+    register: formal
+    setting: professional
+    nuance: This sentence reflects an inference based on insider information, rumors, or industry analysis
+      rather than a confirmed official announcement. It allows for a formal yet cautious discussion about
+      future plans.
+  - english: He didn't realize his mistake, it seems.
+    japanese:
+      - 彼 は 自分 の 間違い に 気付か なかっ た {らしい}。
+      - 彼 は 自分 の 間違い に 気付か なかっ た {らしい} です。
+    english_literally: He himself's mistake to didn't notice it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 自分 の 間違い に 気付か なかっ た よう だ。
+        english: It appears he didn't realize his mistake (subjective judgment).
+        hint: 「ようだ」 indicates a subjective judgment based on observed behavior. 「らしい」 suggests the inference
+          is based on signs that clearly point to him not realizing, or on something you heard about him.
+    scene: Two friends discussing a third person's behavior, which suggests a lack of understanding of
+      their own error.
+    register: casual
+    setting: friendly
+    nuance: The use of 「らしい」 here implies that the speaker is inferring the person's unawareness based
+      on their actions, attitude, or perhaps what others have mentioned, rather than having directly confirmed
+      it with the person.
+  - english: That rumor seems to be true, actually.
+    japanese:
+      - あの 噂 は 本当 {らしい} よ。
+      - あの 噂 は 本当 {らしい}。
+      - あの 噂 は 本当 {らしい} です。
+      - あの 噂 は 本当 {らしい} です よ。
+    english_literally: That rumor is true it seems, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 噂 は 本当 だ そう だ よ。
+        english: I heard that rumor is true (from a confirmed source).
+        hint: 「だそうだ」 would imply a direct confirmation from a source. 「らしい」 is used to convey a sense
+          of 'it turns out to be true' based on accumulating evidence or consistent reports.
+    scene: Friends confirming a piece of gossip they heard, as more and more information comes to light.
+    register: casual
+    setting: casual slang
+    nuance: The 「らしい」 here, combined with 「よ」, emphasizes that an initial rumor, which was once indirect
+      or uncertain, is now turning out to be correct based on accumulating signs or new information. The
+      「よ」 adds a sense of sharing new information or confirming something for the listener.
+  - english: I heard it's going to rain tomorrow, is that right?
+    japanese:
+      - 明日 は 雨 {らしい} けど、本当？
+      - 明日 は 雨 {らしい} です けど、本当？
+    english_literally: Tomorrow is rain it seems but, true?
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 雨 だ そう です が、本当？
+        english: I heard it's going to rain tomorrow (from forecast), but is it true?
+        hint: 「だそうです」 is more commonly used when quoting a direct report like a weather forecast. 「らしい」
+          here expresses a more general inference or hearsay when asking for confirmation.
+    scene: Someone asking a friend about the weather forecast for an outdoor event the next day.
+    register: casual
+    setting: interrogative
+    nuance: This example uses 「らしい」 to seek confirmation for information that the speaker has received
+      indirectly (e.g., heard it from someone, saw a quick glance at a forecast). The 「けど、本当？」 part directly
+      asks for verification.
+  - english: Mommy seems tired.
+    japanese:
+      - ママ は 疲れ て いる {らしい}。
+      - ママ は 疲れ て いる {らしい} です。
+    english_literally: Mommy is tired it seems.
+    competing_grammar:
+      - competing_japanese:
+          - ママ は 疲れ て いる よう だ。
+          - ママ は 疲れ て いる みたい だ。
+        english: Mommy appears tired (subjective impression).
+        hint: 「ようだ」/「みたいだ」 express a subjective appearance. 「らしい」 implies a more logical inference based
+          on observations like slow movements or frequent sighs.
+    scene: A child observes their mother after a long day, noting signs of fatigue like yawning or slow
+      movements.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    nuance: This is a simple observation and inference by a child using 「らしい」. It indicates that the child
+      perceives their mother to be tired based on observable signs, even if the mother hasn't explicitly
+      said so. The phrasing is common for children reporting an inferred state.
+  - english: The project's deadline is quite strict, it appears.
+    japanese:
+      - プロジェクト の 締め切り は 結構 厳しい {らしい}。
+      - プロジェクト の 締め切り は 結構 厳しい {らしい} です。
+    english_literally: Project's deadline is quite strict it seems.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト の 締め切り は 結構 厳しい よう だ。
+        english: The project's deadline appears quite strict (subjective impression).
+        hint: 「ようだ」 would convey a subjective impression. 「らしい」 is an inference based on received information
+          or observed circumstances about the project, like the number of tasks or limited time.
+    scene: A new team member getting information about a project from a colleague, inferring the strictness
+      of the deadline from the discussion.
+    register: semi-formal
+    setting: professional
+    nuance: Here, 「らしい」 conveys an inference about the project's deadline. It suggests the speaker has
+      gathered information or observed circumstances that lead them to conclude the deadline is strict,
+      rather than having it explicitly stated by a superior.
+post_example_writeup: Understanding the subtle differences between 「らしい」 and its similar expressions is
+  key to natural Japanese. While 「らしい」 infers from evidence or indirect information, choosing the right
+  nuance depends on whether you are reporting a direct source, making a subjective judgment, or stating
+  a direct observation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%89%E3%81%97%E3%81%84

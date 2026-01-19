@@ -1,0 +1,318 @@
+grammar_point: 〜以下 (less than or equal to・the following)
+learn_before:
+  - あそこ (over there)
+  - い-Adjective[ければ] (conditional)
+  - おきに (at intervals of)
+  - ちょっと (adverb)
+  - で構成される (to be composed of)
+  - とおり (exactly as)
+  - とされている (is considered)
+  - とする (to assume・to decide)
+  - どこ (where)
+  - 以上です (that's all・conclusion)
+  - 真上 (directly above)
+  - ～口 (exit・entrance)
+meaning: At most; not more than; less than or equal to; the following; hereafter
+meaning_warning: Actual Amount ≤ Amount+Counter
+pronunciation:
+  katakana: イカ
+  romaji: ika
+formation:
+  Amount + 以下: Indicates something is less than or equal to a specified amount.
+  以下の + Noun: Indicates something that follows. This form is particularly used in written communication
+    to introduce lists or details that will be presented immediately after the phrase itself, often literally
+    'below' in a document. For instance, 「以下の点にご注意ください」 means 'please pay attention to the following points'.
+jlpt: N4
+etymology: 'The term 「以下」 is composed of two kanji: 「以」 (i), meaning "by means of" or "from," and 「下」
+  (ka), meaning "below" or "under." Thus, 「以下」 literally signifies "from below," indicating a value or
+  position that is at or below a certain point. Its usage for "the following" evolved from its role in
+  documents, signifying "what comes below this point."'
+writeup: The grammar point 「以下」 (ika) serves two primary functions in Japanese, both derived from its
+  literal meaning of "below" or "under." It is essential for specifying limits and for introducing subsequent
+  content. Firstly, 「以下」 is used to denote a quantity or value that is **"less than or equal to"** a stated
+  amount. When attached directly to a numerical value, a counter, or an amount, it includes that specific
+  amount as the upper boundary. For instance, 「５００円以下」 means "500 yen or less." This is a precise and
+  common usage in rules, specifications, and pricing, often seen in official notices, regulations, and
+  product descriptions. Secondly, 「以下」 is employed to mean **"the following"** or "hereafter." This usage
+  is particularly prevalent in written communication, such as official documents, reports, and presentations.
+  Phrases like 「以下の通り」 (as follows) or 「以下の点にご注意ください」 (please note the following points) are standard
+  ways to direct the reader's attention to information that will be presented immediately after. This
+  function acts as a formal signpost, indicating that details are about to be laid out.
+false_friends:
+  - term: 以上
+    meaning: More than (or equal to), Over・(and) above, Any more・Greater, Exceeding
+    kind: antonym
+    nuance: Unlike 「以下」, 「以上」 indicates that something is at or or above a certain limit.
+    grammar_point: '[Noun]以上 (more than or equal to)'
+  - term: 未満
+    meaning: Less than, under (a specified amount, explicitly excluding that amount).
+    kind: similar expression
+    nuance: Unlike 「以下」 which includes the specified numerical value, 「未満」 explicitly excludes it. For
+      example, 「20歳以下」 includes 20-year-olds, while 「20歳未満」 means 'under 20', excluding 20-year-olds.
+    grammar_point: 未満 (strictly less than)
+  - term: 以内
+    meaning: Within (a certain range or limit); inside.
+    kind: similar expression
+    nuance: While 「以下」 typically refers to a value being less than or equal to a specific point, 「以内」
+      refers to something being 'within' a range or boundary, often implying a space or time limit. For
+      example, 「10分以内」 means 'within 10 minutes'.
+    grammar_point: 以内 (within)
+post_false_friends_writeup: Understanding the precise difference between 「以下」, 「以上」, 「未満」, and 「以内」 is
+  crucial for accuracy in Japanese, especially in formal contexts. While 「以下」 and 「以上」 set inclusive upper
+  and lower bounds respectively, 「未満」 explicitly excludes the number, and 「以内」 refers to being contained
+  'within' a limit, often spatial or temporal. These distinctions are critical in legal documents, technical
+  specifications, and general precise communication.
+examples:
+  - english: The student discount applies to those 25 years old or younger.
+    japanese:
+      - 学生 割引 は ２５ 歳 {以下} の 方 に 適用 さ れ ます。
+      - 学生 割引 は ２５ 歳 {以下} の 方 が 対象 です。
+    english_literally: Student discount, 25 years old and under people to applies.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 割引 は ２５ 歳 {まで} の 方 に 適用 さ れ ます。
+        english: The student discount applies to those up to 25 years old.
+        hint: 「まで」 indicates 'up to' a certain point. While often inclusive, 「以下」 is more commonly used
+          and formal for stating a specific upper age limit, explicitly including the age itself. We're
+          looking for a formal term that means '25 years old or less'.
+      - competing_japanese:
+          - 学生 割引 は ２５ 歳 {未満} の 方 に 適用 さ れ ます。
+        english: The student discount applies to those less than 25 years old.
+        hint: 「未満」 (miman) means 'less than', explicitly excluding the specified number. Here, the discount
+          includes those who are exactly 25 years old. We're looking for a term that means '25 years old
+          or less'.
+    scene: A university staff member explains eligibility for a student discount to a new student.
+    register: formal
+    setting: informative
+    nuance: The use of 「～に適用されます」 makes the statement formal and objective, common in institutional settings.
+      「２５歳以下」 specifies the age limit, which is inclusive of 25 years old, a precision valued in official
+      communication. This phrasing is neutral in terms of gender or age, focusing on the policy itself.
+  - english: Please keep the weight of this bag to 5kg or less.
+    japanese:
+      - この バッグ の 重 さ は ５ kg {以下} に し て ください。
+      - この バッグ の 重 さ は ５ kg {以下} に お 願い し ます。
+      - この バッグ の 重 さ は ５ kg {以下} と し て ください。
+    english_literally: This bag's weight 5kg under please do.
+    competing_grammar:
+      - competing_japanese:
+          - この バッグ の 重 さ は ５ kg {まで} に し て ください。
+        english: Please keep the weight of this bag up to 5kg.
+        hint: 「まで」 indicates 'up to' a certain point. While it can imply inclusivity, 「以下」 is a more formal
+          and precise term for 'less than or equal to' a specific numerical limit, especially in official
+          instructions. We're looking for a formal way to express '5kg or less'.
+      - competing_japanese:
+          - この バッグ の 重 さ は ５ kg {以内} に し て ください。
+        english: Please keep the weight of this bag within 5kg.
+        hint: 「以内」 (inai) means 'within' a certain range or limit. While it also implies inclusivity,
+          「以下」 more directly translates to 'less than or equal to' and is often preferred for exact numerical
+          upper bounds. We're looking for a phrase that means '5kg or less'.
+    scene: An airline attendant instructs a passenger at check-in about luggage weight limits.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「～にしてください」 is a polite request, emphasizing the desired state. The use of 「重さ」
+      (weight) with 「５kg以下」 clearly indicates a physical limit, specifically '5kg or less'. A female attendant
+      might use this polite framing in a service context, maintaining an appropriate level of formality
+      with a customer.
+  - english: Students who score 60 points or less on the exam must take a retest.
+    japanese:
+      - 試験 で ６０ 点 {以下} の 学生 は 再 テスト を 受け なけれ ば なり ませ ん。
+      - 試験 で ６０ 点 {以下} の 学生 は 再 テスト が 必須 と なり ます。
+      - 試験 で ６０ 点 {以下} の 学生 は 再 テスト を 受け なけれ ば いけ ませ ん。
+    english_literally: Exam at 60 points under students retest must take.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 で ６０ 点 {未満} の 学生 は 再 テスト を 受け なけれ ば なり ませ ん。
+        english: Students who score less than 60 points on the exam must take a retest.
+        hint: 「未満」 (miman) explicitly means 'less than', excluding the specified number. In this case,
+          60 points itself is included in the retest requirement. We're looking for a phrase that means
+          '60 points or less'.
+    scene: A high school teacher announces the grading policy after an exam.
+    register: formal
+    setting: instructional
+    speaker_age: older
+    nuance: The formal phrase 「～なければなりません」 (must) conveys a strict rule. 「６０点以下」 specifies the exact threshold
+      for the retest, including those who scored exactly 60 points. An older teacher would typically use
+      such formal language with students, reinforcing the seriousness of academic requirements.
+  - english: For the sweets, two eggs or fewer are sufficient for the ingredients.
+    japanese:
+      - お 菓子 の 材料 は 卵 が 二 個 {以下} あれ ば 十分 です。
+      - お 菓子 の 材料 は 卵 が 二 個 {以下} で 十分 です。
+    english_literally: Sweets' ingredients eggs two pieces under if there are sufficient is.
+    competing_grammar:
+      - competing_japanese:
+          - お 菓子 の 材料 は 卵 が 二 個 {まで} あれ ば 十分 です。
+        english: For the sweets, up to two eggs are sufficient for the ingredients.
+        hint: 「まで」 indicates 'up to' a certain point. While it can imply inclusivity, 「以下」 more precisely
+          states 'two eggs or less' as the maximum amount. We're looking for a term that means 'two eggs
+          or fewer'.
+    scene: A baking instructor explains how many eggs are needed for a recipe.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「～ば十分です」 (if ~ it's enough) indicates a practical limit. The grammar point 「二個以下」 specifies
+      the maximum number of eggs, including two eggs. A male instructor might use this precise phrasing
+      in a formal class setting, ensuring clarity for all students.
+  - english: Admission is free for elementary school children and younger.
+    japanese:
+      - 小学 生 {以下} の お 子 様 は 入場 料 無料 です。
+      - 小学 生 {以下} は 入場 無料 です。
+      - 小学 生 {以下} の お 子 様 の 入場 料 は 無料 と なり ます。
+    english_literally: Elementary school student under children admission fee free is.
+    competing_grammar:
+      - competing_japanese:
+          - 小学 生 {まで} の お 子 様 は 入場 料 無料 です。
+        english: Admission is free for children up to elementary school age.
+        hint: While 「まで」 (until/up to) can convey a similar meaning, 「以下」 explicitly includes elementary
+          school students and anyone younger. 「まで」 might be ambiguous about whether 'elementary school'
+          itself is included or just the ages leading up to it. We're looking for a clear inclusive term,
+          appropriate for official announcements to avoid confusion.
+      - competing_japanese:
+          - 小学 生 {未満} の お 子 様 は 入場 料 無料 です。
+        english: Admission is free for children younger than elementary school age.
+        hint: 「未満」 (miman) means 'less than', explicitly excluding elementary school students. This sentence
+          clearly states that elementary school students themselves are also included. We're looking for
+          a term that explicitly includes elementary schoolers and those younger.
+    scene: A notice at a museum entrance regarding ticket prices for children.
+    register: formal
+    setting: informative
+    nuance: The formal language like 「お子様」 (children, respectful) and 「無料です」 (it is free) suits a public
+      announcement. 「小学生以下」 sets the age bracket, including elementary schoolers and those even younger,
+      ensuring clarity for families and aligning with official policies where precise age ranges are important.
+  - english: Today's report is as follows.
+    japanese:
+      - 本日 の 報告 書 は {以下} の 通り です。
+      - 本日 の 報告 書 は {以下} の 通り で ござい ます。
+    english_literally: Today's report the following is.
+    competing_grammar:
+      - competing_japanese:
+          - 本日 の 報告 書 は {次 の 通り} です。
+        english: Today's report is as follows.
+        hint: 「次の通り」 also means 'as follows' but doesn't necessarily imply that the content is literally
+          'below' or 'after' the current text in a document or presentation. 「以下」 specifically refers
+          to content that is presented physically after the current point, which is typical for reports.
+          We're looking for a formal term that literally means 'the following'.
+    scene: A manager begins a presentation by introducing the day's report.
+    register: formal
+    setting: professional
+    nuance: 「以下の通りです」 is a very common and formal way to introduce content that immediately follows, often
+      seen in business presentations or documents. It signals that the details are about to be presented
+      immediately 'below' this statement. This phrase is gender and age-neutral, common in formal business
+      communication.
+  - english: The following data is shown on the next page.
+    japanese:
+      - 次 の ページ に {以下} の データ が 示さ れ て い ます。
+      - 次 の ページ に {以下} の データ が 掲載 さ れ て い ます。
+      - '{以下} の データ は 次 の ページ に 示さ れ て い ます。'
+    english_literally: Next page on the following data is shown.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の ページ に {その} データ が 示さ れ て い ます。
+        english: That data is shown on the next page.
+        hint: 「その」 refers to data previously mentioned or in context. 「以下」 explicitly refers to data that
+          is literally 'below' the current text in a document. We're looking for a phrase that means 'the
+          following data'.
+    scene: A presenter directs the audience's attention to a slide containing statistics.
+    register: formal
+    setting: academic
+    nuance: 「次のページに」 (on the next page) clearly indicates where the information will be found. 「以下のデータ」
+      introduces the specific content that follows, emphasizing that the data is literally 'below' the
+      current text in the presentation flow. The passive form 「示されています」 is common for objective presentation
+      of facts in academic settings.
+  - english: The temperature today will be 20 degrees Celsius or lower.
+    japanese:
+      - 今日 の 気温 は ２０ 度 {以下} でしょう。
+      - 今日 の 気温 は ２０ 度 {以下} です。
+      - 今日 の 気温 は ２０ 度 {以下} と なる 見込み です。
+    english_literally: Today's temperature 20 degrees below probably.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 気温 は ２０ 度 {まで} でしょう。
+        english: The temperature today will be up to 20 degrees Celsius.
+        hint: 「まで」 indicates 'up to' a certain point. While it can imply inclusivity, 「以下」 is more precise
+          for explicitly including the given temperature as the upper limit. We're looking for a term
+          that means '20 degrees Celsius or lower'.
+      - competing_japanese:
+          - 今日 の 気温 は ２０ 度 {未満} でしょう。
+        english: The temperature today will be less than 20 degrees Celsius.
+        hint: 「未満」 (miman) means 'less than', explicitly excluding the specified number. Here, 20 degrees
+          Celsius itself is included as a possibility. We're looking for a term that means '20 degrees
+          Celsius or lower'.
+    scene: A meteorologist reporting on the morning news.
+    register: formal
+    setting: informative
+    nuance: The use of 「でしょう」 expresses a probability, suitable for a weather forecast. The formal tone
+      is maintained, characteristic of news broadcasts. 「２０度以下」 specifies an exact upper boundary, including
+      20 degrees Celsius, crucial for clear weather reporting.
+  - english: Please write your answer in the space below.
+    japanese:
+      - 答え を {以下} の 空欄 に お 書き ください。
+      - '{以下} の 空欄 に 答え を 記入 し て ください。'
+      - '{以下} の 空欄 に 答え を 書い て ください。'
+    english_literally: Answer the following blank space please write.
+    competing_grammar:
+      - competing_japanese:
+          - 答え を {次 の 空欄} に お 書き ください。
+        english: Please write your answer in the next blank space.
+        hint: While 「次 の」 (tsugi no) means 'next', 「以下」 specifically refers to content or space that is
+          physically 'below' the current point in a document or on a page, which is more appropriate for
+          written instructions, especially for exams. We're looking for a phrase that means 'the space
+          below'.
+    scene: A proctor addressing students at the start of an exam.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「お書きください」 is a polite command, common in formal instructional settings like exams. 「以下の空欄」
+      literally directs attention to the blank space that appears 'below' the current text, emphasizing
+      the physical layout of the document. This phrasing is neutral in terms of gender or age, suitable
+      for a proctor addressing a group of students.
+  - english: For details, please refer to the section below.
+    japanese:
+      - 詳細 は {以下} の 項目 を ご 参照 ください。
+      - 詳細 は {以下} の 項目 を ご 確認 ください。
+      - 詳細 は {以下} の 項目 を ご覧 ください。
+    english_literally: Details the following item please refer.
+    competing_grammar:
+      - competing_japanese:
+          - 詳細 は {次 の 項目} を ご 参照 ください。
+        english: For details, please refer to the next section.
+        hint: Similar to previous examples, 「次 の」 (tsugi no) means 'next' in a sequence. However, 「以下」
+          specifically implies that the item or section being referred to is 'below' the current position
+          in the document. We're looking for a phrase that means 'the section below'.
+    scene: A business professional explaining a complex proposal to a client.
+    register: formal
+    setting: professional
+    nuance: 「ご参照ください」 is a highly polite and formal request, suitable for professional and business contexts.
+      「以下の項目」 is a precise way to refer to a specific part of a document that is presented immediately
+      after or 'below' the current point of discussion, ensuring clear communication of where further
+      information can be found.
+  - english: The minimum order quantity for this product is 10 units or more. Orders of 9 units or fewer
+      cannot be accepted.
+    japanese:
+      - この 製品 の 最低 発注 量 は １０ 個 {以上} です。９ 個 {以下} の ご 注文 は お 受け でき ませ ん。
+      - この 製品 は １０ 個 {以上} から の ご 注文 と なり ます。９ 個 {以下} は 受け 付け て おり ませ ん。
+    english_literally: This product's minimum order quantity 10 pieces or more is. 9 pieces or less orders
+      cannot be accepted.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 の 最低 発注 量 は １０ 個 です。９ 個 {未満} の ご 注文 は お 受け でき ませ ん。
+        english: The minimum order quantity for this product is 10 units. Orders of less than 9 units
+          cannot be accepted.
+        hint: This example specifically highlights how 「以下」 contrasts with 「以上」 and defines the boundary.
+          While 「未満」 might be used for 'less than 9', the use of 「以下」 here specifically refers to '9 or
+          less', creating a clear, inclusive upper limit for what is not acceptable. We're demonstrating
+          the contrast with 「以上」 and the boundary for unacceptable orders.
+    scene: A sales representative explains ordering policies to a new client.
+    register: bijinesu nihongo (business)
+    setting: negotiating
+    nuance: This example directly contrasts 「以上」 and 「以下」 to define acceptable and unacceptable order
+      quantities. The business Japanese register (「お受けできません」) emphasizes professionalism. The use of both
+      terms within one statement is common in policy explanations to establish precise boundaries.
+post_example_writeup: Understanding the context is key to distinguishing between 「以下」 meaning "less than
+  or equal to" and "the following." When it precedes a noun or is used in a set phrase like 「以下の通り」, it
+  signals upcoming content. When it modifies a number or quantity, it sets an inclusive upper limit. Pay
+  close attention to whether the grammar point is used as part of a numerical expression or as a discourse
+  marker for text organization; the latter is almost exclusively used in written contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/いか

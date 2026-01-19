@@ -1,0 +1,277 @@
+grammar_point: あるいは (or・alternatively)
+learn_before:
+  - Verb[させる] (causative)
+  - までに (by the time)
+meaning: Or, possibly, maybe, perhaps, or alternatively.
+pronunciation:
+  katakana: アルイハ
+  romaji: aruiwa
+formation:
+  Noun1 + か + あるいは + Noun2: Indicates a choice or possibility between two nouns.
+  Verb (plain form) + か + あるいは + Verb (plain form): Indicates a choice or possibility between two verbs.
+  Adjective (い-form) + か + あるいは + Adjective (い-form): Indicates a choice or possibility between two い-adjectives.
+  Adjective (な-stem) + か + あるいは + Adjective (な-stem): Indicates a choice or possibility between two な-adjectives.
+  Sentence + あるいは + Sentence: Indicates an alternative explanation, situation, or possibility.
+jlpt: N3
+etymology: 「あるいは」 comes from the verb 「或る」 (aru), meaning "a certain", the suffix 「い」 (i) used for making
+  い-adjectives, and the adverbial particle 「は」 (wa). The literal sense is akin to "another possibility."
+  This reflects its function of introducing an alternative or additional option among possibilities.
+writeup: 「あるいは」 is a formal conjunction used to present alternatives or possibilities. It is generally
+  more formal and sometimes carries a stiffer nuance than similar expressions like 「または」 or 「それとも」. This
+  makes it particularly suitable for academic, professional, or written contexts rather than casual conversation.
+  While it often appears after a statement that ends with 「か」, indicating a clear choice between options,
+  it can also stand alone to introduce an alternative explanation or a different possibility. It can be
+  translated as "or," "possibly," "maybe," "perhaps," or "alternatively." Its etymology, stemming from
+  a word meaning 'a certain' or 'another,' helps us understand its core function of introducing an additional,
+  specific option.
+false_friends:
+  - term: か
+    meaning: Or
+    kind: similar expression
+    nuance: 「か」 is a versatile particle used to link alternatives (AかBか) and also as a question marker.
+      While 「あるいは」 can sometimes follow 「か」 to emphasize an alternative, 「あるいは」 itself is a more formal
+      conjunction used to introduce a clear alternative or additional possibility in a statement, not
+      just to list options or form questions.
+    grammar_point: か (question)
+  - term: または
+    meaning: Or; either... or...
+    kind: synonym
+    nuance: Both mean "or" and present alternatives. However, 「または」 is generally used for simply listing
+      options (especially two) in a formal or objective manner. 「あるいは」, while also formal, often implies
+      a more significant or distinct alternative, or introduces a different perspective or explanation.
+    grammar_point: または (or; either... or...)
+  - term: それとも
+    meaning: Or, or else
+    kind: similar expression
+    nuance: 「それとも」 is primarily used to ask a question offering a choice between two options (Aですか、それともBですか).
+      It is much less common for stating alternatives within a declarative sentence, which is the main
+      function of 「あるいは」.
+    grammar_point: それとも (or・or else)
+  - term: もしかしたら
+    meaning: Perhaps, Maybe, Possibly
+    kind: similar expression
+    nuance: 「もしかしたら」 expresses a degree of uncertainty or speculation about a single event or outcome,
+      implying 'it might be that...'. In contrast, 「あるいは」 presents a clear alternative or different possibility
+      among known options or explanations, often in a more objective or formal context.
+    grammar_point: もしかしたら (perhaps)
+post_false_friends_writeup: To differentiate, remember that 「か」 is more direct in presenting options and
+  has broader uses beyond just alternatives. 「または」 is also formal, but more for listing straightforward
+  options. 「それとも」 is almost exclusively used in questions to present a choice. In contrast, 「あるいは」 is
+  employed when you are explicitly offering a significant alternative or a different possibility within
+  a formal declarative context, and it can also introduce an alternative explanation.
+examples:
+  - english: Please make them exercise, or possibly reduce their food.
+    japanese:
+      - 運動 を さ せる か {あるいは} 餌 を 減らし て ください。
+      - 運動 を さ せる {あるいは} 餌 を 減らし て ください。
+    english_literally: Exercise make do or alternatively food reduce please.
+    competing_grammar:
+      - competing_japanese:
+          - 運動 を さ せる か、{また は} 餌 を 減らし て ください。
+        english: Please make them exercise, or alternatively reduce their food.
+        hint: While 「または」 also means 'or,' 「あるいは」 is more formal and used to present a significant alternative.
+          We're looking for a formal instruction for alternative actions.
+    scene: A veterinarian giving instructions to a pet owner.
+    register: formal
+    setting: instructional
+    nuance: The use of the imperative 「～てください」 (te kudasai) combined with 「あるいは」 presents a formal and
+      clear instruction for alternative actions, suitable for professional advice. The option of including
+      or omitting the initial 「か」 before 「あるいは」 is often a matter of emphasis; including it can make the
+      alternatives slightly more explicit.
+    etymology: させる (saseru) is the causative form of する (suru), meaning 'to make someone do' or 'to let
+      someone do'.
+  - english: If the computer runs slowly or maybe won't turn on, we will fix it.
+    japanese:
+      - パソコン の 動作 が 遅い か {あるいは} 電源 が 入ら なく なっ た 場合 は、私 達 が 直し ます。
+      - パソコン の 動作 が 遅い {あるいは} 電源 が 入ら なく なっ た 場合 は、私 達 が 直し ます。
+    english_literally: Computer's operation is slow or alternatively power not turn on became case is,
+      we fix.
+    competing_grammar:
+      - competing_japanese:
+          - パソコン の 動作 が 遅い か、{また は} 電源 が 点か なく なっ た 場合 は、私 達 が 直し ます。
+        english: If the computer runs slowly or alternatively won't turn on, we will fix it.
+        hint: 「または」 can also link conditions, but 「あるいは」 emphasizes distinct, potentially significant
+          conditions in a formal context. We're looking for a formal statement of alternative conditions.
+    scene: A technician speaking to a customer.
+    register: formal
+    setting: professional
+    nuance: The phrase 「～場合は」 (baai wa) sets up a formal conditional statement, emphasizing that the technician
+      is providing a solution for specific, potential issues. The formal tone is consistent with professional
+      customer service. 「電源 が 入ら なく なっ た」 (dengen ga hairanaku natta) is a more idiomatic way to say 'the
+      power won't turn on' for electronic devices.
+    etymology: 「動作」 (dousa) refers to operation or performance. 「電源」 (dengen) means 'power supply' or
+      'power source'.
+  - english: I heard that if you are famous or perhaps beautiful, you can easily join that group.
+    japanese:
+      - 有名 か {あるいは} 綺麗 で あれ ば、その 集団 に 簡単 に 参加 できる と 聞き まし た。
+      - 有名 {あるいは} 綺麗 で あれ ば、その 集団 に 簡単 に 参加 できる と 聞き まし た。
+    english_literally: Famous or alternatively beautiful if, that group to easily participate can do heard.
+    competing_grammar:
+      - competing_japanese:
+          - 有名 か、{また は} 綺麗 で あれ ば、その 集団 に 簡単 に 参加 できる と 聞き まし た。
+        english: I heard that if you are famous or alternatively beautiful, you can easily join that group.
+        hint: 「または」 is a simpler 'or,' whereas 「あるいは」 formally introduces an alternative criterion. We're
+          looking for a formal discussion of alternative criteria.
+    scene: An academic discussing the criteria for joining an exclusive society.
+    register: formal
+    setting: informative
+    nuance: The phrase 「～と聞きました」 (to kikimashita) expresses hearsay or something heard indirectly, here
+      used in a formal context to convey reported information. The construction 「有名かあるいは綺麗であれば」 specifies
+      alternative conditions for joining the group. Omitting the initial 「か」 still maintains the meaning
+      but might feel slightly less explicit about the alternatives.
+    etymology: 「簡単に」 (kantan ni) means 'easily' and is an adverbial form derived from the な-adjective
+      簡単 (kantan).
+  - english: I will try to have it finished by Saturday or possibly Sunday.
+    japanese:
+      - 土曜 日 か {あるいは} 日曜 日 まで に は 終わら せ て おき ます。
+      - 土曜 日 {あるいは} 日曜 日 まで に は 終わら せ て おき ます。
+    english_literally: Saturday or alternatively Sunday by is finish will keep.
+    competing_grammar:
+      - competing_japanese:
+          - 土曜 日 か、{また は} 日曜 日 まで に は 終わら せ て おき ます。
+        english: I will try to have it finished by Saturday or alternatively by Sunday.
+        hint: 「または」 is a common 'or,' but 「あるいは」 conveys a more considered alternative or option, especially
+          in a professional setting. We're looking for a formal commitment to alternative deadlines.
+    scene: An employee speaking to their boss.
+    register: semi-formal
+    setting: professional
+    nuance: The speaker is making a commitment using 「～ておきます」 (te okimasu), which indicates completing
+      something in advance for a future state. Using 「あるいは」 to connect the two days (土曜日 or 日曜日) presents
+      these as formal, distinct possibilities for the completion date. The presence or absence of 「か」
+      before 「あるいは」 does not significantly alter the meaning here, both are natural.
+    etymology: 「～ておく」 (te oku) literally means 'to do and put it' and implies doing something in preparation
+      for something else.
+  - english: I can't eat any dishes that use milk, or, alternatively, cheese.
+    japanese:
+      - 牛乳 {あるいは} チーズ が 使わ れ て いる 料理 は 食べ られ ませ ん。
+      - 牛乳 か {あるいは} チーズ が 使わ れ て いる 料理 は 食べ られ ませ ん。
+    english_literally: Milk alternatively cheese that used are dishes cannot eat.
+    competing_grammar:
+      - competing_japanese:
+          - 牛乳 か、{また は} チーズ が 使わ れ て いる 料理 は 食べ られ ませ ん。
+        english: I can't eat any dishes that use milk, or alternatively, cheese.
+        hint: While 「または」 lists options, 「あるいは」 emphasizes distinct alternatives with more formal weight.
+          We're looking for a formal way to state distinct dietary restrictions.
+    scene: Someone with a lactose intolerance explaining their dietary restrictions.
+    register: formal
+    setting: informative
+    nuance: This expresses a dietary restriction clearly and politely. 「食べられません」 (taberaremasen) is the
+      potential form of 食べる (taberu) in the negative, indicating inability. Using 「あるいは」 to connect the
+      two ingredients is suitable for a formal explanation of dietary requirements. Adding 「か」 after 牛乳
+      can make the 'or' slightly more explicit, although both forms are natural.
+    etymology: 「牛乳」 (gyūnyū) literally means 'cow's milk'.
+  - english: A new student will come on either Monday, or another possibility is Tuesday.
+    japanese:
+      - 月曜 日 {あるいは} 火曜 日 に 新しい 生徒 が 来 ます。
+      - 月曜 日 か {あるいは} 火曜 日 に 新しい 生徒 が 来 ます。
+    english_literally: Monday alternatively Tuesday on new student will come.
+    competing_grammar:
+      - competing_japanese:
+          - 月曜 日 か、{また は} 火曜 日 に 新しい 生徒 が 来 ます。
+        english: A new student will come on either Monday or alternatively Tuesday.
+        hint: 「または」 simply presents options, but 「あるいは」 emphasizes a specific alternative for a formal
+          announcement. We're looking for a formal statement of alternative possibilities for arrival.
+    scene: A teacher informing colleagues about a new student.
+    register: formal
+    setting: informative
+    nuance: This sentence expresses uncertainty about the exact day a new student will arrive, presenting
+      two alternative days formally. 「生徒」 (seito) refers to a student, typically at the elementary, middle,
+      or high school level. Both versions, with and without 「か」 before 「あるいは」, are grammatically correct
+      and convey the same meaning in this context.
+    etymology: 「来ます」 (kimasu) is the polite non-past form of 来る (kuru), meaning 'to come'.
+  - english: This matter is either effective or perhaps has a problem.
+    japanese:
+      - この 件 は、効果 が ある か {あるいは} 問題 が ある か の どちら か でしょう。
+      - この 件 は、効果 が ある {あるいは} 問題 が ある か の どちら か でしょう。
+    english_literally: This matter is, effect has or alternatively problem has either one probably.
+    competing_grammar:
+      - competing_japanese:
+          - この 件 は、効果 が ある か、{また は} 問題 が ある か の どちら か でしょう。
+        english: This matter is either effective or alternatively has a problem.
+        hint: 「または」 is a simpler 'or' for listing, but 「あるいは」 is used in formal contexts to present distinct,
+          weighty alternatives for consideration. We're looking for a formal evaluation of two distinct
+          possibilities.
+    scene: A male executive critically evaluating a business proposal in a meeting.
+    register: formal
+    setting: negotiating
+    nuance: The phrase 「～か、あるいは～か の どちらか」 is a specific and formal construction often used to express
+      "either A or B" when discussing two possibilities. The use of 「でしょう」 (deshou) adds a degree of certainty
+      or polite conjecture. 「効果 が ある」 (kouka ga aru) means 'to be effective' or 'to have an effect', and
+      「問題 が ある」 (mondai ga aru) means 'to have a problem'.
+  - english: These survey results will either lead to new discoveries or alternatively change the way
+      we think.
+    japanese:
+      - この 調査 の 結果 は、新しい 発見 に つながる か {あるいは} 考え 方 を 変える もの と なる でしょう。
+      - この 調査 の 結果 は、新しい 発見 に つながる {あるいは} 考え 方 を 変える もの と なる でしょう。
+    english_literally: These survey's results are, new discoveries connect to or alternatively way of
+      thinking change things will become probably.
+    competing_grammar:
+      - competing_japanese:
+          - この 調査 の 結果 は、新しい 発見 に つながる か、{また は} 考え 方 を 変える もの と なる でしょう。
+        english: These survey results will either lead to new discoveries or alternatively change the
+          way we think.
+        hint: While 「または」 can link outcomes, 「あるいは」 emphasizes two significant and distinct potential
+          outcomes, appropriate for formal academic discourse. We're looking for a formal presentation
+          of two profound possibilities.
+    scene: A female scientist presenting her findings at an academic conference.
+    register: formal
+    setting: informative
+    nuance: In an academic presentation, formal and precise language like 「～につながるか、あるいは～となるでしょう」 is used
+      to present significant implications of research findings. The phrase 「～でしょう」 (deshou) conveys a
+      professional forecast. Omitting the initial 「か」 before 「あるいは」 is also natural in formal speech when
+      the conjunction itself clearly indicates an alternative.
+    etymology: 「考え方」 (kangaekata) means 'way of thinking' and is formed by combining the verb stem of
+      考える (kangaeru, to think) with 方 (kata, way/method).
+  - english: The new product launch might occur next quarter, or perhaps it could be postponed due to
+      unforeseen circumstances.
+    japanese:
+      - 新 製品 の 発売 は 来 期 に なる か、{あるいは} 予期 せ ぬ 事情 で 延期 さ れる か も しれ ませ ん。
+      - 新 製品 の 発売 は 来 期 に なる {あるいは} 予期 せ ぬ 事情 で 延期 さ れる か も しれ ませ ん。
+    english_literally: New product's launch next quarter become or alternatively unforeseen circumstances
+      by postponed be might.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 の 発売 は 来 期 に なる か も しれ ない し、{また は} 予期 せ ぬ 事情 で 延期 に なる か も しれ ませ ん。
+        english: The new product launch might occur next quarter, and it might also be postponed due to
+          unforeseen circumstances.
+        hint: 「あるいは」 is used to present a distinct alternative, often a significant one, after considering
+          another possibility. The competing sentence uses 'し' to list possibilities and 'また は' to connect
+          them, which can sound less cohesive than 「あるいは」 in a formal context. We're looking for a concise
+          formal statement of alternative outcomes.
+    scene: A project manager is briefing the executive team on a new product's development status.
+    register: semi-formal
+    setting: informative
+    nuance: The use of 「～かもしれません」 (kamoshiremasen) indicates a degree of uncertainty, appropriate for
+      a project update where variables are still at play. 「あるいは」 connects two potential future states,
+      maintaining a professional and cautious tone. Both versions, with and without the initial 「か」, are
+      common in expressing such alternative possibilities.
+    etymology: 「予期 せ ぬ」 (yoki senu) is a formal phrase meaning 'unforeseen' or 'unexpected', often found
+      in official documents or formal speech.
+  - english: The cause of the incident is still under investigation. Alternatively, it might have been
+      a simple human error.
+    japanese:
+      - その 事件 の 原因 は まだ 調査 中 です。{あるいは}、単純 な 人為 的 ミス だっ た の か も しれ ませ ん。
+      - その 事件 の 原因 は まだ 調査 中 です、{あるいは} 単純 な 人為 的 ミス だっ た の か も しれ ませ ん。
+    english_literally: That incident's cause still investigation during is. Alternatively simple human
+      error was might.
+    competing_grammar:
+      - competing_japanese:
+          - その 事件 の 原因 は まだ 調査 中 です。{しかし}、単純 な 人為 的 ミス だっ た の か も しれ ませ ん。
+        english: The cause of the incident is still under investigation. However, it might have been a
+          simple human error.
+        hint: 「しかし」 (shikashi) introduces a contrasting idea, while 「あるいは」 introduces an alternative possibility
+          or explanation. We're looking for an alternative explanation, not just a contrast.
+    scene: A police detective is explaining the ongoing investigation of a minor incident to a journalist.
+    register: formal
+    setting: informative
+    nuance: When 「あるいは」 is used at the beginning of a sentence following another, it acts as a discourse
+      marker meaning 'alternatively' or 'or perhaps,' introducing a different perspective or explanation.
+      This usage is common in formal and objective discussions, such as a police investigation update.
+      「人為 的 ミス」 (jin'iteki misu) is a formal way to say "human error."
+    etymology: 「調査中」 (chōsa chū) means 'under investigation' and is formed by adding 中 (chū, during/in
+      the middle of) to the noun 調査 (chōsa, investigation).
+post_example_writeup: As you can see from the examples, 「あるいは」 often appears in formal contexts and can
+  be used to connect clauses, nouns, or even entire sentences. While the initial 「か」 before 「あるいは」 is
+  often optional, its presence can emphasize the alternatives being presented.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/あるいは

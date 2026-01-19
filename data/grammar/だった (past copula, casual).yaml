@@ -1,0 +1,394 @@
+grammar_point: だった (past copula, casual)
+learn_before:
+  - '[Noun]が好きだ (to like)'
+  - '[Verb-stem][Place noun] (location where action occurs)'
+  - が (subject marker)
+  - けっこう (quite・ample・no thanks)
+  - て初めて (for the first time after)
+  - な-Adjective (predicate form)
+  - な-Adjective[だった] (plain past)
+  - な-Adjective[でした] (polite past)
+  - なあ (emotional emphasis)
+  - なかなか (quite not easily)
+  - なかなか〜ない (not easily)
+  - は〜だ (topic & copula)
+  - やつ (informal thing or person)
+  - 一番 (superlative)
+  - 代わりに (instead of・in exchange for)
+  - 何 (what)
+  - 最初 (first・beginning)
+meaning: was (casual)
+pronunciation:
+  katakana: ダッタ
+  romaji: datta
+formation:
+  Noun + だった: Indicates the past tense of a noun in casual speech.
+  な-Adjective + だった: Indicates the past tense of a な-adjective in casual speech.
+jlpt: N5
+etymology: 「だった」 is the past tense form of the copula 「だ」. It is formed by adding 「た」 (the past tense
+  auxiliary verb) to 「だ」, resulting in 「だった」.
+writeup: |-
+  「だった」 is an auxiliary verb used to express the past tense of nouns and な-adjectives in casual speech. It indicates that something "was" or "were" a certain way in the past. Essentially, it functions as the past tense form of the casual copula 「だ」. For example, if you want to say "It was a student," you would say 「学生だった」 (Gakusei datta). If you want to say "It was kind," you would say 「親切だった」 (Shinsetsu datta).
+
+  Formation is straightforward: for **nouns**, you directly attach 「だった」. For **な-adjectives**, you also directly attach 「だった」. It is crucial to remember that 「だった」 **cannot** be used with い-adjectives. い-adjectives have their own distinct past tense conjugation rules (e.g., 「暑い」 (atsui - hot) becomes 「暑かった」 (atsukatta - was hot), not 「暑いだった」 (atsui datta)).
+false_friends:
+  - term: Verb Past Tense
+    meaning: Verbs in past tense (e.g., 食べた)
+    kind: often confused with
+    nuance: Unlike 「だった」, which is an auxiliary verb for nouns and な-adjectives, verbs have their own
+      distinct past tense conjugations (e.g., 「食べた」 means "ate," referring to an action, not a state of
+      being).
+    grammar_point: <suggest>:Verb (past tense)
+  - term: だ
+    meaning: to be, is (casual present copula)
+    kind: similar expression
+    nuance: 「だ」 is the present tense casual form of the copula; 「だった」 is its past tense equivalent.
+    grammar_point: だ (casual copula)
+  - term: でした
+    meaning: was (polite)
+    kind: similar expression
+    nuance: 「でした」 is the polite form of the past copula, used when politeness is required, whereas 「だった」
+      is the casual form.
+    grammar_point: でした (past copula, polite)
+  - term: であった
+    meaning: was, were (more formal/literary past copula)
+    kind: similar expression
+    nuance: 「であった」 is a more formal or literary equivalent to 「だった」, often found in written language or
+      very formal speech, whereas 「だった」 is common in everyday casual conversation.
+    grammar_point: <suggest>:であった (formal literary past copula)
+  - term: でございました
+    meaning: was, were (humble past copula)
+    kind: similar expression
+    nuance: 「でございました」 is the humble form of the past copula, used when showing respect to the listener
+      or the context. It is much more formal than 「だった」 and is typically used in specific honorific situations.
+    grammar_point: <suggest>:でございました (humble past copula)
+post_false_friends_writeup: Remember that 「だった」 is specifically for indicating the past tense of nouns
+  and な-adjectives in casual speech. For verbs, you'll need to use the appropriate verb conjugation. Be
+  mindful of the significant difference in formality and usage between 「だった」, 「でした」, 「であった」, and 「でございました」.
+examples:
+  - english: When he was a student, he was a truly good person.
+    japanese:
+      - 学生 の 時、彼 は 本当 に いい 人 {だっ た}。
+      - 学生 {だっ た} 時、彼 は 本当 に いい 人 {だっ た}。
+      - 学生 の 時、あの 人 は 本当 に いい 人 {だっ た}。
+      - 学生 の 時、あの 人 は マジ いい やつ {だっ た} よ。
+      - 昔、学生 時代、あいつ は 本当 に いい やつ {だっ た} なあ。
+      - 昔、学生 の 頃、彼 は ホント いい 人 {だっ た} よ。
+      - 学生 の 時、彼 は 本当 に いい 人物 {だっ た}。
+      - 学生 の 頃 は、あいつ、めちゃくちゃ いい やつ {だっ た} ん だ よ。
+    english_literally: Student's time, he truly good person was.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 の 時、彼 は 本当 に いい 人 {で あっ た}。
+        english: When he was a student, he was a truly good person.
+        hint: 「であった」 is a more formal or literary expression. We're looking for a casual past tense here.
+      - competing_japanese:
+          - 学生 の 時、彼 は 本当 に いい 人 {だっ た} {か も しれ ない}。
+        english: When he was a student, he might have been a truly good person.
+        hint: 「かもしれない」 adds uncertainty. We're looking for a definite past statement here.
+      - competing_japanese:
+          - 学生 の 時、彼 は 本当 に いい 人 {だ}。
+        english: When he is a student, he is a truly good person.
+        hint: 「だ」 is the present tense copula. We're looking for the past tense, indicating a state that
+          existed previously.
+      - competing_japanese:
+          - 学生 の 時、彼 は 本当 に いい 人 {で ござい まし た}。
+        english: When he was a student, he was a truly good person (humble/formal).
+        hint: 「でございました」 is a very formal or humble expression, not suitable for this casual conversation
+          between friends. We're looking for a casual past tense.
+    scene: A male friend talking to another male friend about a mutual acquaintance from their school
+      days.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「だった」 fits the informal tone of friends reminiscing about shared past experiences.
+      Phrases like 「学生 の 時」 (when he was a student) and 「本当 に いい 人」 (a truly good person) are typical
+      for casual conversation between male friends, reflecting a shared past.
+  - english: My favorite food was bread.
+    japanese:
+      - 私 の 好き な 食べ物 は パン {だっ た}。
+      - 私 の 好き な 食べ物 は パン {だっ た} ん だ。
+      - 一番 好き な 食べ物 は パン {だっ た} よ。
+      - 私 が 一番 好き {だっ た} 食べ物 は パン {だっ た} の。
+      - 昔 は、好き な 食べ物、パン {だっ た} なあ。
+      - 子供 の 頃、好き な もの は パン {だっ た} なあ。
+      - 小さい 時 は、パン が 大好き {だっ た}。
+    english_literally: My favorite food bread was.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 好き な 食べ物 は パン {で あっ た}。
+        english: My favorite food was bread.
+        hint: 「であった」 is a more formal or literary expression. We're looking for a casual past tense here.
+      - competing_japanese:
+          - 私 の 好き な 食べ物 は パン {です}。
+        english: My favorite food is bread.
+        hint: 「です」 is the polite present tense copula. This sentence expresses a past preference, so we
+          need the past tense form.
+      - competing_japanese:
+          - 私 の 好き な 食べ物 は パン {だ}。
+        english: My favorite food is bread.
+        hint: 「だ」 is the present tense casual copula. This sentence expresses a past preference, so we
+          need the past tense form.
+      - competing_japanese:
+          - 私 の 好き な 食べ物 は パン {で ござい まし た}。
+        english: My favorite food was bread (humble/formal).
+        hint: 「でございました」 is a very formal or humble expression, not suitable for a casual conversation
+          between young friends. We're looking for a casual past tense.
+    scene: A girl telling her friend about her preferences when she was younger.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「だった」 is used in casual speech, which is appropriate for a young girl talking to her friend
+      about past likes. The phrase 「私 の 好き な 食べ物 は パン だった」 conveys a simple past preference, typical for
+      informal conversation.
+  - english: When I was a child, my playground was this mountain.
+    japanese:
+      - 子供 の 時、僕 の 遊び場 は この 山 {だっ た}。
+      - 子供 の 頃、僕 の 遊び場 は この 山 {だっ た}。
+      - 子供 の 時 は、ここ が 僕 の 遊び場 {だっ た} ん だ。
+      - 小さい 頃、オレ の 遊び場 は この 山 {だっ た} な。
+      - 子供 の 頃、あの 山 が 俺 の 遊び場 {だっ た} ん だ。
+      - 子供 の 頃 は、私 の 遊び場、この 山 {だっ た} の よ。
+      - 小さい 頃、ここ が 私 の 遊び場 {だっ た} わ。
+    english_literally: Child's time, my playground this mountain was.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 時、僕 の 遊び場 は この 山 {で あっ た}。
+        english: When I was a child, my playground was this mountain.
+        hint: 「であった」 is a more formal or literary expression. We're looking for a casual past tense here.
+      - competing_japanese:
+          - 子供 の 時、僕 の 遊び場 は この 山 {です}。
+        english: When I was a child, my playground is this mountain.
+        hint: 「です」 is the present tense copula. We're looking for the past tense.
+      - competing_japanese:
+          - 子供 の 時、僕 の 遊び場 は この 山 {だ}。
+        english: When I was a child, my playground is this mountain.
+        hint: 「だ」 is the present tense copula. This sentence describes a past situation, so we need the
+          past tense form.
+      - competing_japanese:
+          - 子供 の 時、僕 の 遊び場 は この 山 {で ござい まし た}。
+        english: When I was a child, my playground was this mountain (humble/formal).
+        hint: 「でございました」 is a very formal or humble expression, not suitable for a casual, reflective conversation
+          between close friends. We're looking for a casual past tense.
+    scene: A man reminiscing about his childhood with a close friend while looking at an old mountain.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「僕」 by a male speaker and the casual 「だった」 are appropriate for intimate conversation
+      with a close friend, reflecting a relaxed atmosphere. The phrase 「子供 の 時」 (when I was a child) sets
+      the past context for the personal reflection.
+  - english: That cat was seriously fat!
+    japanese:
+      - あの 猫、マジ で デブ {だっ た} わ！
+      - あの 猫、本当 に デブ {だっ た} よ！
+      - あの 猫、やばい デブ {だっ た} ね！
+      - あの 猫、超 デブ {だっ た} よ！
+    english_literally: That cat, seriously fat was!
+    competing_grammar:
+      - competing_japanese:
+          - あの 猫、マジ で デブ {です}。
+        english: That cat is seriously fat.
+        hint: 「です」 is the present tense copula. We're talking about a past observation, so we need the
+          past tense form.
+      - competing_japanese:
+          - あの 猫、マジ で デブ {だ}。
+        english: That cat is seriously fat.
+        hint: 「だ」 is the present tense casual copula. We need the past tense to describe a past state.
+      - competing_japanese:
+          - あの 猫、マジ で {太っ て い た}。
+        english: That cat was seriously getting fat / fattening.
+        hint: 「太っていた」 is the past progressive form of a verb, implying a process. We're looking for a
+          simple past state of being.
+    scene: A young woman exaggerating to her male friend about a cat she saw.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「わ」 by a female speaker and the interjection 「マジ で」 (seriously) are common in casual,
+      exaggerated speech. 「デブ だった」 emphasizes a past state with a lighthearted, almost gossipy tone, fitting
+      for friends.
+  - english: My first car was a bright red sports car.
+    japanese:
+      - 最初 の 車 は 真っ赤 な スポーツ カー {だっ た} なあ。
+      - 初めて の 車 は 真っ赤 な スポーツ カー {だっ た} ん だ よ。
+      - 一番 最初 の 車 は 真っ赤 な スポーツ カー {だっ た} よ。
+      - 初めて 買っ た 車 は 真っ赤 な スポーツ カー {だっ た} ね。
+    english_literally: First car bright red sports car was, wasn't it.
+    competing_grammar:
+      - competing_japanese:
+          - 最初 の 車 は 真っ赤 な スポーツ カー {だ}。
+        english: My first car is a bright red sports car.
+        hint: 「だ」 is the casual present tense copula. We are describing a car from the past, so we need
+          the past tense.
+      - competing_japanese:
+          - 最初 の 車 は 真っ赤 な スポーツ カー {です}。
+        english: My first car is a bright red sports car.
+        hint: 「です」 is the polite present tense copula. We are recounting a past event, so the past tense
+          is necessary.
+      - competing_japanese:
+          - 最初 の 車 は 真っ赤 な スポーツ カー {で あっ た}。
+        english: My first car was a bright red sports car.
+        hint: 「であった」 is a more formal or literary expression, not typically used in casual storytelling
+          or personal reflections.
+    scene: An older man musing to himself or narrating a story about his youth.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The use of 「だった」 combined with the sentence-final particle 「なあ」 conveys a reflective or nostalgic
+      tone, as if the speaker is lost in thought or casually recounting a memory. This is common when
+      reminiscing about personal past experiences.
+  - english: My childhood dream was to become an astronaut.
+    japanese:
+      - 子供 の 頃 の 夢 は 宇宙 飛行 士 {だっ た}。
+      - 私 の 小さい 頃 の 夢 は 宇宙 飛行 士 {だっ た} よ。
+      - 昔 の 私 の 夢 は 宇宙 飛行 士 {だっ た} ん だ。
+      - 子供 の 時 の 夢 は 宇宙 飛行 士 {だっ た} なあ。
+    english_literally: Child's time's dream astronaut was.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃 の 夢 は 宇宙 飛行 士 {だ}。
+        english: My childhood dream is to become an astronaut.
+        hint: 「だ」 is the present tense copula. We're looking for the past tense to describe a past dream.
+      - competing_japanese:
+          - 子供 の 頃 の 夢 は 宇宙 飛行 士 {です}。
+        english: My childhood dream is to become an astronaut.
+        hint: 「です」 is the polite present tense copula. We need the casual past tense to describe a past
+          dream in casual speech.
+    scene: A person sharing a childhood dream with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual 「だった」 is used here to share a personal, past dream with a friend, fitting the informal
+      and friendly context. The phrase 「子供 の 頃 の 夢」 (my childhood dream) sets the past context.
+  - english: His explanation was very polite and careful.
+    japanese:
+      - 彼 の 説明 は とても 丁寧 {だっ た}。
+      - 彼 の 説明 は すごく 丁寧 {だっ た} よ。
+      - 彼 の 説明 は とても 親切 {だっ た} ね。
+      - あの 人 の 説明 は とても 丁寧 {だっ た} ん だ。
+    english_literally: His explanation very polite was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 説明 は とても 丁寧 {だ}。
+        english: His explanation is very polite and careful.
+        hint: 「だ」 is the present tense copula. We are describing a past event, so we need the past tense.
+      - competing_japanese:
+          - 彼 の 説明 は とても 丁寧 {です}。
+        english: His explanation is very polite and careful.
+        hint: 「です」 is the polite present tense copula. We need the casual past tense for this informal
+          conversation.
+      - competing_japanese:
+          - 彼 の 説明 は とても 丁寧 {で あっ た}。
+        english: His explanation was very polite and careful.
+        hint: 「であった」 is a formal expression. We're looking for a casual past tense here.
+    scene: Two friends discussing a recent presentation they attended.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「だった」 with the な-adjective 「丁寧」 (polite/careful) reflects a casual assessment of
+      a past event. The natural flow of conversation between friends supports this informal usage.
+  - english: She was the class president.
+    japanese:
+      - 彼女 は クラス の 委員 長 {だっ た}。
+      - 彼女、学級 委員 長 {だっ た} ん だ よ ね。
+      - 彼女 って、昔 委員 長 {だっ た} ん だ よ。
+      - あの 子 は クラス の 委員 長 {だっ た} なあ。
+    english_literally: She class's president was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は クラス の 委員 長 {だ}。
+        english: She is the class president.
+        hint: 「だ」 is the present tense copula. We are talking about a past role, so the past tense is
+          needed.
+      - competing_japanese:
+          - 彼女 は クラス の 委員 長 {です}。
+        english: She is the class president.
+        hint: 「です」 is the polite present tense copula. We need the casual past tense to discuss a past
+          role informally.
+      - competing_japanese:
+          - 彼女 は クラス の 委員 長 {で あっ た}。
+        english: She was the class president.
+        hint: 「であった」 is a formal expression. We're looking for a casual past tense here.
+    scene: Someone talking about a former classmate during a casual get-together.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: This example uses 「だった」 to casually state a past status or role. The context of discussing
+      a former classmate naturally calls for informal language among friends.
+  - english: Yesterday's weather was fine.
+    japanese:
+      - 昨日 の 天気 は 晴れ {だっ た}。
+      - 昨日 の 天気、すごく 晴れ {だっ た} よ。
+      - 昨日、いい 天気 {だっ た} なあ。
+      - 昨日 の 天気 は 最高 {だっ た} ね。
+    english_literally: Yesterday's weather fine weather was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 天気 は 晴れ {だ}。
+        english: Yesterday's weather is fine.
+        hint: 「だ」 is the present tense copula. We are describing yesterday's weather, so the past tense
+          is necessary.
+      - competing_japanese:
+          - 昨日 の 天気 は 晴れ {です}。
+        english: Yesterday's weather is fine.
+        hint: 「です」 is the polite present tense copula. We need the casual past tense for this informal
+          conversation about the weather.
+    scene: Friends chatting casually about the previous day's weather.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「だった」 makes the statement about past weather casual, as expected between friends.
+      「晴れ」 is treated as a noun here, taking 「だった」 to indicate its past state.
+  - english: Back then, he was quite the prankster.
+    japanese:
+      - 昔、彼 は なかなか の いたずらっ子 {だっ た}。
+      - 昔 の あいつ は、かなり の いたずらっ子 {だっ た} な。
+      - 彼 は 昔、結構 な いたずらっ子 {だっ た} よ。
+      - あの 人 は 小さい 頃、本当 に いたずらっ子 {だっ た} ん だ。
+    english_literally: Long ago, he quite the prankster was.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、彼 は なかなか の いたずらっ子 {だ}。
+        english: Back then, he is quite the prankster.
+        hint: 「だ」 is the present tense copula. We are talking about a past characteristic, so the past
+          tense is required.
+      - competing_japanese:
+          - 昔、彼 は なかなか の いたずらっ子 {です}。
+        english: Back then, he is quite the prankster.
+        hint: 「です」 is the polite present tense copula. We need the casual past tense for this reflective,
+          informal recounting.
+      - competing_japanese:
+          - 昔、彼 は なかなか の いたずらっ子 {で あっ た}。
+        english: Back then, he was quite the prankster.
+        hint: 「であった」 is a formal or literary expression. We're looking for a casual past tense suitable
+          for a personal recollection.
+    scene: An old friend recalling someone's past behavior during a casual conversation.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The informal 「だった」 is perfect for reminiscing about a past personality trait among old friends.
+      The term 「いたずらっ子」 (prankster) adds to the casual and anecdotal tone of the conversation.
+post_example_writeup: The examples illustrate how 「だった」 is used with nouns and な-adjectives in casual
+  contexts. Pay close attention to the registers and settings to ensure you select the appropriate past
+  tense copula for your situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だった-でした

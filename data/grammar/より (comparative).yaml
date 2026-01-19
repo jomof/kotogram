@@ -1,0 +1,674 @@
+grammar_point: より (comparative)
+learn_before:
+  - ずっと (continuous state or action)
+  - だ (casual copula)
+  - で言うと (in terms of)
+  - どれ (which of 3 or more)
+  - のみならず (not only・let alone)
+  - はもとより (not only・let alone)
+  - ほかに ほかには (other besides)
+  - より (from・extent・range)
+  - を置いて他に〜ない (nothing else compares)
+  - 無視する (to ignore)
+meaning: Than, more than, rather than
+pronunciation:
+  katakana: ヨリ
+  romaji: yori
+formation:
+  Noun + より: Indicates a comparison, meaning 'more than' or 'rather than', where the noun is the point
+    of comparison.
+  Noun A + より + Noun B + の方が + Adjective: Explicitly states that Noun B is more adjective than Noun A.
+  Verb (dictionary form) + より: Indicates a preference, meaning 'rather than doing Verb'.
+jlpt: N4
+etymology: The particle 「より」 originates from the verb 「寄る (よる)」, meaning "to approach" or "to gather."
+  Over time, its meaning evolved to indicate a point of origin or a point of comparison, eventually leading
+  to its modern usage of "than" when making comparisons.
+writeup: The particle 「より」 is used to indicate a standard of comparison. It functions to specify the item
+  or action that something else is 'more' or 'less' than. When used in a comparison, the element immediately
+  preceding 「より」 is the standard being surpassed or exceeded. Therefore, the item connected to 「より」 is
+  implicitly understood to be 'less' in the characteristic being discussed, compared to the other element
+  in the sentence. While 「より」 can stand alone, it is frequently seen in the structure 「A より B の方が Adjective
+  です」, explicitly stating that 'B is more (adjective) than A'. However, in casual conversation, 「より」 can
+  sometimes appear without a directly stated comparison object, implying a comparison against 'other things'
+  or general expectations. It is crucial to understand that 「より」 marks the **point of comparison** that
+  is being surpassed. For instance, in "A より B が 好き" (I like B more than A), 'A' is the reference point
+  that is 'less preferred' than 'B'.
+false_friends:
+  - term: ほど〜ない
+    meaning: Is not as…as, Isn't... like..., Not to the extent of...
+    kind: antonym
+    nuance: Unlike 「より」 which indicates superiority, 「ほど〜ない」 indicates inferiority, meaning 'not to the
+      extent of' or 'not as...as'.
+    grammar_point: ほど〜ない (not as... as)
+  - term: より〜のほうが
+    meaning: To be more ~ than ~
+    kind: similar expression
+    nuance: This is a more explicit and common phrasing for direct comparisons, often used when comparing
+      two specific items (A and B). While 「より」 can stand alone for general comparison, 「〜のほうが」 clarifies
+      the comparison between two specific entities.
+    grammar_point: '[Y]より[X]のほうが (comparison, X is more than Y)'
+  - term: というより
+    meaning: '...is more of a... than a..., Rather than saying that...'
+    kind: often confused with
+    nuance: Used to rephrase or correct a statement, implying that one description is more accurate than
+      another, rather than making a direct comparison of degree or quantity.
+    grammar_point: というより (rather than)
+  - term: 以上に
+    meaning: More than, exceeding, no less than
+    kind: similar expression
+    nuance: Indicates surpassing a certain standard, expectation, or quantity. It doesn't typically establish
+      a direct comparison between two specific items in the same way 「より」 does, but rather an overall
+      surpassing.
+    grammar_point: 以上に (more than expected)
+  - term: こそ
+    meaning: For sure, for certain, even more so, underlined or bolded text
+    kind: often confused with
+    nuance: Emphasizes the preceding word or phrase, highlighting its importance or uniqueness, not making
+      a comparison of degree. It expresses a strong affirmation or determination.
+    grammar_point: こそ (emphasis)
+  - term: 以上
+    meaning: More than (or equal to), over (and) above, any more, greater, exceeding
+    kind: often confused with
+    nuance: Indicates a quantity or level that is equal to or greater than a specified amount, whereas
+      「より」 focuses on a qualitative or quantitative comparison where one thing *surpasses* another.
+    grammar_point: '[Noun]以上 (more than or equal to)'
+  - term: に比べて
+    meaning: Compared to; in comparison with
+    kind: similar expression
+    nuance: A more formal or explicit way to state a comparison, often used in academic or statistical
+      contexts, or when the comparison involves complex aspects rather than a simple 'more than'.
+    grammar_point: に比べて (compared to)
+  - term: と〜では
+    meaning: To compare two specific items or ideas, often to highlight a difference or choice between
+      them.
+    kind: similar expression
+    nuance: Explicitly sets up a comparison between two items, often used to introduce a discussion about
+      their differences or to present options for consideration.
+    grammar_point: <suggest>:と〜では (comparison)
+  - term: 〜ぐらいなら
+    meaning: If it's going to be X, then Y
+    kind: often confused with
+    nuance: Implies a negative judgment about the first action/state and suggests a less undesirable or
+      alternative option. It carries a nuance of 'if forced to choose between two undesirable options'.
+    grammar_point: ぐらいなら (rather than・would rather)
+  - term: 群を抜いて
+    meaning: To be outstandingly superior; to stand out from the rest.
+    kind: similar expression
+    nuance: Indicates that something is exceptionally superior, standing out significantly from a group,
+      rather than simply stating one item is 'more' than another in a direct comparison of degree.
+    grammar_point: <suggest>:群を抜いて (outstanding, preeminent)
+  - term: 想像以上
+    meaning: Beyond imagination; more than one imagined or expected.
+    kind: similar expression
+    nuance: Refers to something exceeding expectations or previous imaginings. It functions adverbially,
+      similar to 'surprisingly' or 'unexpectedly', rather than forming a direct comparison between two
+      nouns or actions with explicit comparison points.
+    grammar_point: <suggest>:想像以上 (more than imagined, beyond imagination)
+  - term: 最も
+    meaning: Most, highest, greatest
+    kind: similar expression
+    nuance: 「最も」 is a superlative, indicating the *highest* degree within a group, whereas 「より」 is comparative,
+      indicating one item is *more* than another specific item.
+    grammar_point: <suggest>:最も (most, highest, greatest)
+  - term: 一番
+    meaning: Most, best, number one
+    kind: similar expression
+    nuance: Similar to 「最も」, 「一番」 signifies the absolute top or most extreme, unlike 「より」 which establishes
+      a relative comparison between two entities.
+    grammar_point: 一番 (superlative)
+post_false_friends_writeup: 'To differentiate 「より」 from similar expressions, consider its primary function:
+  establishing a direct comparison where one element *surpasses* another. If you''re stating that something
+  is not as X as Y, use 「ほど〜ない」. If you''re explicitly comparing two specific items (A and B), 「〜のほうが」
+  is a common and clear choice. For rephrasing or correcting a statement, 「というより」 is appropriate. When
+  discussing something exceeding a standard or quantity, use 「以上に」 or 「以上」. If you need to emphasize a
+  point or specific item, 「こそ」 serves that purpose. 「最も」 and 「一番」 express the absolute highest degree,
+  not a relative comparison. Each of these alternatives carries distinct nuances that differ from the
+  straightforward comparative function of 「より」.'
+examples:
+  - english: Cats are smaller than dogs.
+    japanese:
+      - 猫 は 犬 {より} 小さい です。
+      - 猫 は 犬 {より} 小さい。
+      - 犬 {より} 猫 の 方 が 小さい です。
+      - 犬 {より} 猫 の 方 が 小さい。
+      - 猫 は 犬 {より} 小さい ん です。
+      - 犬 {より} 猫 の 方 が 小さく て、かわいい です ね。
+    english_literally: Cats, compared to dogs, are small.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 は 猫 {ほど} 小さく ない です。
+        english: Dogs are not as small as cats.
+        hint: 「ほど〜ない」 indicates 'not to the extent of'. Here, it means dogs are not small to the extent
+          cats are, implying dogs are larger, which is the opposite of the original sentence. We're looking
+          for a comparison that states cats are smaller than dogs.
+      - competing_japanese:
+          - 猫 は 犬 {と いう より}、より 小さい です。
+        english: Cats are, rather than dogs, more small.
+        hint: 「というより」 is used to rephrase a statement, suggesting one description is more accurate than
+          another. It doesn't make a direct comparison of degree. We're looking for a direct comparison
+          of size.
+      - competing_japanese:
+          - 猫 {こそ} 犬 より 小さい です。
+        english: It is *cats* that are smaller than dogs.
+        hint: 「こそ」 emphasizes the preceding word, highlighting its importance. We're looking for a simple
+          comparison, not emphasis on the subject.
+      - competing_japanese:
+          - 猫 は 犬 {に 比べ て} 小さい です。
+        english: Compared to dogs, cats are small.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this simple comparison.
+      - competing_japanese:
+          - 猫 {と} 犬 {で は}、猫 の 方 が 小さい です。
+        english: When comparing cats and dogs, cats are smaller.
+        hint: 「と〜では」 sets up a clear contrast between two items for comparison. While grammatically correct,
+          「より」 is more concise for expressing this simple comparison. We're looking for a concise comparison.
+      - competing_japanese:
+          - 猫 は 動物 の 中 で {最も} 小さい です。
+        english: Cats are the smallest among animals.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group. We're looking for a
+          comparison between two specific items (cats and dogs).
+      - competing_japanese:
+          - 猫 は 動物 の 中 で {一番} 小さい です。
+        english: Cats are the smallest among animals.
+        hint: 「一番」 is a superlative, indicating the absolute top. We're looking for a comparison between
+          two specific items (cats and dogs).
+    scene: Two children are discussing their favorite pets, and one makes an observation about their size.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: Even when discussing simple facts, Japanese children are often taught to use polite language,
+      such as the 「です」 ending here, to maintain decorum and respect. The use of 「です」 is gender-neutral
+      and age-neutral, suitable for a young female speaker addressing a male peer in an informative context.
+  - english: Summer is hotter than winter.
+    japanese:
+      - 夏 は 冬 {より} 暑い です。
+      - 夏 は 冬 {より} 暑い。
+      - 冬 {より} 夏 の 方 が 暑い です。
+      - 冬 {より} 夏 の 方 が 暑い。
+      - 夏 は 冬 {より} 暑い ん です ね。
+      - 冬 {より} 夏 の 方 が ずっと 暑い です よ。
+    english_literally: Summer, compared to winter, is hot.
+    competing_grammar:
+      - competing_japanese:
+          - 冬 は 夏 {ほど} 暑く ない です。
+        english: Winter is not as hot as summer.
+        hint: 「ほど〜ない」 indicates 'not to the extent of'. While true, the original states summer is hotter
+          than winter. We're looking for a statement about summer being hotter.
+      - competing_japanese:
+          - 夏 は 冬 {と いう より}、熱い です。
+        english: Summer is, rather than winter, hot.
+        hint: 「というより」 is for rephrasing or correcting. It's not suitable for a direct comparison of temperature.
+          We need to directly compare the heat of summer and winter.
+      - competing_japanese:
+          - 夏 {こそ} 冬 より 暑い です。
+        english: It is *summer* that is hotter than winter.
+        hint: 「こそ」 emphasizes the preceding word. We're making a factual comparison, not emphasizing the
+          subject.
+      - competing_japanese:
+          - 夏 は 冬 {に 比べ て} 暑い です。
+        english: Compared to winter, summer is hot.
+        hint: 「に比べて」 means 'compared to'. While similar in meaning, it's a slightly more formal or explicit
+          phrasing than 「より」. We're looking for the simpler comparative particle.
+      - competing_japanese:
+          - 夏 {と} 冬 {で は}、夏 の 方 が 暑い です。
+        english: When comparing summer and winter, summer is hotter.
+        hint: 「と〜では」 sets up a clear contrast between two items for comparison. While grammatically correct,
+          「より」 is more concise for expressing this simple comparison. We're looking for a concise comparison.
+      - competing_japanese:
+          - 夏 は 季節 の 中 で {最も} 暑い です。
+        english: Summer is the hottest among seasons.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group. We're looking for a
+          comparison between two specific items (summer and winter).
+      - competing_japanese:
+          - 夏 は 季節 の 中 で {一番} 暑い です。
+        english: Summer is the hottest among seasons.
+        hint: 「一番」 is a superlative, indicating the absolute top. We're looking for a comparison between
+          two specific items (summer and winter).
+    scene: Friends are chatting about the weather, reminiscing about the previous season.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The polite register with 「です」 is appropriate for casual conversations among friends, indicating
+      a general politeness without being overly formal. An older male speaker might use this common polite
+      form when reminiscing with a group.
+  - english: Running is faster than walking.
+    japanese:
+      - 歩く {より} 走る 方 が 速い です。
+      - 歩く {より} 走る 方 が 速い。
+      - 歩く {より} 走る が 速い です。
+      - 歩く {より} 走る が 速い。
+      - 歩く {より} 走る 方 が 断然 速い です よ。
+      - 走る 方 が 歩く {より} 全然 楽しい よ。
+    english_literally: Running, compared to walking, is fast.
+    competing_grammar:
+      - competing_japanese:
+          - 歩く の は 走る {ほど} 速く ない です。
+        english: Walking is not as fast as running.
+        hint: 「ほど〜ない」 indicates 'not to the extent of'. The original states running is faster than walking.
+          We're looking for a statement about running's superiority in speed.
+      - competing_japanese:
+          - 歩く {と いう より} 走る 方 が 速い です。
+        english: Running is, rather than walking, faster.
+        hint: 「というより」 rephrases or corrects a statement. It's not suitable for direct comparisons of inherent
+          qualities like speed. We're looking for a direct comparison of speed.
+      - competing_japanese:
+          - 走る 方 {こそ} 歩く より 速い です。
+        english: It is *running* that is faster than walking.
+        hint: 「こそ」 adds emphasis. We're looking for a general statement of comparison, not emphasizing
+          running.
+      - competing_japanese:
+          - 歩く の {に 比べ て} 走る 方 が 速い です。
+        english: Compared to walking, running is faster.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this comparison.
+      - competing_japanese:
+          - 歩く の {と} 走る の {で は}、走る 方 が 速い です。
+        english: When comparing walking and running, running is faster.
+        hint: 「と〜では」 sets up a clear contrast between two items for comparison. While grammatically correct,
+          「より」 is more concise for expressing this simple comparison. We're looking for a concise comparison.
+      - competing_japanese:
+          - 短 距離 走 は 陸上 競技 の 中 で {最も} 速い です。
+        english: Short-distance running is the fastest among track events.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group. We're looking for a
+          comparison between two specific actions (running and walking).
+      - competing_japanese:
+          - 走る の は 運動 の 中 で {一番} 速い です。
+        english: Running is the fastest among exercises.
+        hint: 「一番」 is a superlative, indicating the absolute top. We're looking for a comparison between
+          two specific actions (running and walking).
+    scene: A coach is giving advice to an athlete about improving their speed.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: In an instructional setting, polite language with 「です」 is standard to convey professionalism
+      and respect to the listener. An older male coach typically uses this form to address athletes, ensuring
+      the advice is perceived as helpful and authoritative.
+  - english: This camera is superior.
+    japanese:
+      - この カメラ は 他 の カメラ {より} 優れ て い ます。
+      - この カメラ は 他 の カメラ {より} 優れ て いる。
+      - 他 の カメラ {より} この カメラ の 方 が 優れ て い ます。
+      - 他 の カメラ {より} この カメラ の 方 が 優れ て いる。
+      - この カメラ は 他 の カメラ {より} も 優れ て い ます ね。
+      - 他 の カメラ {より} この カメラ の 方 が 性能 が 優れ て い ます。
+    english_literally: This camera, compared to other cameras, is excellent.
+    competing_grammar:
+      - competing_japanese:
+          - 他 の カメラ は この カメラ {ほど} 優れ て い ませ ん。
+        english: Other cameras are not as superior as this camera.
+        hint: 「ほど〜ない」 states inferiority or lack of extent. The original sentence states this camera is
+          superior. We're looking for a statement of superiority.
+      - competing_japanese:
+          - この カメラ は 優れ て いる {と いう より}、革新 的 です。
+        english: This camera is more innovative than just superior.
+        hint: 「というより」 implies one description is more fitting than another. We're comparing its superiority
+          to other cameras, not rephrasing its quality.
+      - competing_japanese:
+          - この カメラ は 期待 {以上 に} 優れ て い ます。
+        english: This camera is superior beyond expectation.
+        hint: 「以上に」 implies exceeding a quantity or expectation. We're comparing this camera's quality
+          to other cameras, not to an expectation.
+      - competing_japanese:
+          - この カメラ {こそ} 他 の カメラ より 優れ て い ます。
+        english: It is *this camera* that is superior to other cameras.
+        hint: 「こそ」 emphasizes the subject. We're stating a comparison, not emphasizing the specific camera.
+      - competing_japanese:
+          - この カメラ は 他 の カメラ {に 比べ て} 優れ て い ます。
+        english: Compared to other cameras, this camera is superior.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this comparison.
+      - competing_japanese:
+          - この カメラ {と} 他 の カメラ {で は}、この カメラ の 方 が 優れ て い ます。
+        english: When comparing this camera and other cameras, this camera is superior.
+        hint: 「と〜では」 sets up a clear contrast between two items for comparison. While grammatically correct,
+          「より」 is more concise for expressing this simple comparison. We're looking for a concise comparison.
+      - competing_japanese:
+          - この カメラ は {群 を 抜い て} 優れ て い ます。
+        english: This camera is outstandingly superior.
+        hint: 「群を抜いて」 implies exceptional superiority, standing out from a group. We're looking for a
+          direct comparison against other cameras, not absolute preeminence.
+      - competing_japanese:
+          - この カメラ は 当社 の 製品 の 中 で {最も} 優れ て い ます。
+        english: This camera is the most superior among our company's products.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group. We're looking for a
+          comparison between two specific items (this camera and other cameras).
+      - competing_japanese:
+          - この カメラ は 当社 の 製品 の 中 で {一番} 優れ て い ます。
+        english: This camera is the most superior among our company's products.
+        hint: 「一番」 is a superlative, indicating the absolute top. We're looking for a comparison between
+          two specific items (this camera and other cameras).
+    scene: A salesperson highlights the key features of a camera to a potential buyer, implying its superiority
+      among other models.
+    register: teineigo (polite)
+    setting: persuasive
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: Polite language with 「です」 and 「ます」 forms is essential in a professional sales environment
+      to show respect to the customer and build trust. An older female salesperson would use this register
+      to make the product sound reliable and her presentation credible to a male customer.
+  - english: More snow fell today than yesterday.
+    japanese:
+      - 今日 は 昨日 {より} 多く の 雪 が 降っ た。
+      - 今日 は 昨日 {より} 多く の 雪 が 降り まし た。
+      - 昨日 {より} 今日 の 方 が 多く の 雪 が 降っ た。
+      - 昨日 {より} 今日 の 方 が 多く の 雪 が 降り まし た。
+      - 今日 は 昨日 {より} 雪 が たくさん 降っ た ね。
+      - 昨日 {より} 今日 の 方 が どっと 雪 が 降っ た わ。
+    english_literally: Today, compared to yesterday, much snow fell.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 今日 {ほど} 多く の 雪 が 降ら なかっ た。
+        english: Yesterday, not as much snow fell as today.
+        hint: 「ほど〜ない」 states inferiority or lack of extent. The original says *more* snow fell today,
+          not *less* yesterday. We're looking for a comparison of quantity.
+      - competing_japanese:
+          - 今日 は 昨日 {と いう より}、かなり の 雪 が 降っ た。
+        english: Today, rather than yesterday, a lot of snow fell.
+        hint: 「というより」 implies rephrasing or correcting a statement. We are making a direct quantitative
+          comparison between two days, not rephrasing the day. We're looking for a direct comparison.
+      - competing_japanese:
+          - 今日 は 昨日 {以上 に} 雪 が 降っ た。
+        english: Today, snow fell at or above yesterday's snowfall amount / beyond yesterday's amount.
+        hint: 「以上に」 implies exceeding a quantity or expectation. While similar, 「より」 focuses on the direct
+          comparison point of yesterday.
+      - competing_japanese:
+          - 今日 {こそ} 昨日 より 多く の 雪 が 降っ た。
+        english: It is *today* that more snow fell than yesterday.
+        hint: 「こそ」 adds emphasis. We're making a factual comparison of snow amounts, not emphasizing the
+          day.
+      - competing_japanese:
+          - 今日 は 昨日 の 降雪 量 {以上} に 雪 が 降っ た。
+        english: Today, snow fell at or above yesterday's snowfall amount.
+        hint: 「以上」 indicates a quantity equal to or greater than a specified amount. 「より」 specifically
+          means 'more than' without including equality, focusing on one surpassing the other.
+      - competing_japanese:
+          - 今日 は 昨日 {に 比べ て} 雪 が 多かっ た。
+        english: Compared to yesterday, snow was plentiful today.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this comparison.
+      - competing_japanese:
+          - 昨日 {と} 今日 {で は}、今日 の 方 が 雪 が 多い。
+        english: When comparing yesterday and today, today has more snow.
+        hint: 「と〜では」 sets up a clear contrast between two items for comparison. While grammatically correct,
+          「より」 is more concise for expressing this simple comparison. We're looking for a concise comparison.
+      - competing_japanese:
+          - 今冬 は {最も} 雪 が 多い です。
+        english: This winter has the most snow.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group. We're looking for a
+          comparison between two specific time points (today and yesterday).
+      - competing_japanese:
+          - 今日 は 今 冬 {一番} の 雪 です。
+        english: Today is the most snow of this winter.
+        hint: 「一番」 is a superlative, indicating the absolute top. We're looking for a comparison between
+          two specific time points (today and yesterday).
+    scene: Two neighbors are looking out the window, surprised by the heavy snowfall overnight.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The casual register, indicated by the plain past form 「降った」, is typical for conversations
+      between neighbors or close acquaintances. An older male might use this direct and informal tone
+      when sharing a common observation with a female neighbor.
+  - english: Her voice was more beautiful than I had imagined.
+    japanese:
+      - 彼女 の 声 は 想像 し て い た {より} 美しかっ た。
+      - 彼女 の 声 は 想像 し て い た {より} 美しかっ た です。
+      - 想像 し て い た {より} 彼女 の 声 の 方 が 美しかっ た。
+      - 想像 し て い た {より} 彼女 の 声 の 方 が 美しかっ た です。
+      - 彼女 の 声 は 想像 し て い た {より} もっと 美しかっ た です。
+      - 想像 し て い た {より} 彼女 の 声 の 方 が はるか に 美しかっ た わ。
+    english_literally: Her voice, compared to what I had imagined, was beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 声 は 想像 し て い た {ほど} 美しく なかっ た。
+        english: Her voice was not as beautiful as I had imagined.
+        hint: 「ほど〜ない」 indicates 'not to the extent of'. The original sentence states her voice was *more*
+          beautiful. We're looking for superiority.
+      - competing_japanese:
+          - 彼女 の 声 は 美しい {と いう より}、感動 的 だっ た。
+        english: Her voice was more moving than beautiful.
+        hint: 「というより」 implies rephrasing a statement. Here, we're making a direct comparison to imagination,
+          not rephrasing the quality itself. We're looking for a direct comparison.
+      - competing_japanese:
+          - 彼女 の 声 は 想像 {以上 に} 美しかっ た。
+        english: Her voice was beautiful beyond imagination.
+        hint: 「以上に」 implies exceeding a level or expectation. While very similar in meaning, 「より」 specifically
+          marks the point of comparison (imagination) that was surpassed.
+      - competing_japanese:
+          - 彼女 の 声 {こそ} 想像 し て い た より 美しかっ た。
+        english: It is *her voice* that was more beautiful than I had imagined.
+        hint: 「こそ」 adds emphasis. We're expressing the degree of beauty compared to imagination, not emphasizing
+          the voice itself.
+      - competing_japanese:
+          - 彼女 の 声 は 想像 し て い た の {に 比べ て} 美しかっ た。
+        english: Compared to what I had imagined, her voice was beautiful.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this comparison.
+      - competing_japanese:
+          - 彼女 の 声 は 今 まで 聞い た 中 で {最も} 美しかっ た。
+        english: Her voice was the most beautiful I had ever heard.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group. We're looking for a
+          comparison to a specific expectation (what was imagined).
+      - competing_japanese:
+          - 彼女 の 声 は 今 まで 聞い た 中 で {一番} 美しかっ た。
+        english: Her voice was the most beautiful I had ever heard.
+        hint: 「一番」 is a superlative, indicating the absolute top. We're looking for a comparison to a
+          specific expectation (what was imagined).
+    scene: A person expresses their pleasant surprise after hearing a singer perform for the first time.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The polite register with 「美しかった」 followed by the implied 「です」 is suitable for reflective statements,
+      allowing the speaker to share a personal sentiment in a generally respectful manner. A younger female
+      speaker might use this expression when conveying a positive emotional experience to a general audience
+      or in a slightly formal context.
+  - english: I want to play games rather than study.
+    japanese:
+      - 勉強 する {より} ゲーム を し たい。
+      - 勉強 する {より} ゲーム を し たい です。
+      - 勉強 する {より} ゲーム を する 方 が し たい。
+      - 勉強 する {より} ゲーム を する 方 が し たい です。
+      - 勉強 する {より} ゲーム し たい なあ。
+      - ゲーム する 方 が 勉強 する {より} 全然 楽しい よ。
+    english_literally: Rather than studying, I want to play games.
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 は ゲーム {ほど} 楽しく ない。
+        english: Studying is not as fun as games.
+        hint: 「ほど〜ない」 states inferiority in terms of extent. The original sentence expresses a preference
+          ('want to do games more than study'), not a statement about enjoyment levels. We're looking
+          for a comparative preference.
+      - competing_japanese:
+          - 勉強 する {と いう より}、早く 遊び たい。
+        english: Rather than saying I'm studying, I want to play soon.
+        hint: 「というより」 rephrases a statement or suggests a more accurate description. The original expresses
+          a preference between two actions, not a rephrasing of what 'studying' means. We're looking for
+          a comparison of desires.
+      - competing_japanese:
+          - ゲーム {こそ} 勉強 する より し たい。
+        english: It is *games* that I want to do more than studying.
+        hint: 「こそ」 adds emphasis. The original is a direct comparison of desires, not emphasizing one
+          activity over the other with strong conviction.
+      - competing_japanese:
+          - 勉強 する の {に 比べ て} ゲーム を する 方 が し たい。
+        english: Compared to studying, I want to play games.
+        hint: 「に比べて」 means 'compared to' and can be used for actions, but 「より」 is more direct for expressing
+          a preference in this informal context. We're looking for the simpler comparative particle.
+      - competing_japanese:
+          - 勉強 する の {と} ゲーム を する の {で は}、ゲーム を する 方 が し たい。
+        english: When comparing studying and playing games, I want to play games.
+        hint: 「と〜では」 sets up a clear contrast between two items or actions for comparison. While grammatically
+          correct, 「より」 is more concise for expressing this preference. We're looking for a concise comparison
+          of preference.
+      - competing_japanese:
+          - 勉強 する {ぐらい なら} ゲーム を し たい。
+        english: If it's going to be studying, then I'd rather play games.
+        hint: 「〜ぐらいなら」 carries a nuance of 'if you're going to do something as bad as X, you might as
+          well do Y', implying a negative judgment about studying. The scene depicts a simple preference,
+          not a strong negative sentiment, making 「より」 more appropriate.
+      - competing_japanese:
+          - ゲーム が {最も} 楽しい です。
+        english: Games are the most fun.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group. We're looking for a
+          preference between two specific activities (studying and playing games).
+      - competing_japanese:
+          - ゲーム が {一番} 好き です。
+        english: I like games the most.
+        hint: 「一番」 is a superlative, indicating the absolute top. We're looking for a preference between
+          two specific activities (studying and playing games).
+    scene: A teenager complains to their friend about having to study for an exam.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual register, using the plain form 「したい」, is characteristic of conversations between
+      teenagers or close friends. A young male speaker would naturally use this informal tone when expressing
+      a personal desire or complaint to a male peer.
+  - english: It's faster to go by train than by car.
+    japanese:
+      - 電車 の 方 が 車 {より} 速い です。
+      - 電車 の 方 が 車 {より} 速い。
+      - 車 {より} 電車 の 方 が 速い です。
+      - 車 {より} 電車 の 方 が 速い。
+    english_literally: Train's side, compared to car, is fast.
+    competing_grammar:
+      - competing_japanese:
+          - 車 は 電車 {ほど} 速く ない です。
+        english: The car is not as fast as the train.
+        hint: 「ほど〜ない」 indicates 'not to the extent of'. The original states the train is faster than the
+          car. We're looking for a comparison of speed, where the train is superior.
+      - competing_japanese:
+          - 電車 {と いう より}、新 幹線 の 方 が 速い です。
+        english: Rather than the train, the Shinkansen is faster.
+        hint: 「というより」 implies rephrasing or correcting a statement. We are making a direct comparison
+          between train and car, not clarifying what 'train' means or introducing a third option. We're
+          looking for a direct comparison.
+      - competing_japanese:
+          - 電車 {こそ} 車 より 速い です。
+        english: It is *the train* that is faster than the car.
+        hint: 「こそ」 adds emphasis. We're stating a general fact about speed, not emphasizing the train
+          as the unique fast option.
+      - competing_japanese:
+          - 電車 は 車 {に 比べ て} 速い です。
+        english: Compared to the car, the train is fast.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this comparison.
+      - competing_japanese:
+          - 電車 {と} 車 {で は}、電車 の 方 が 速い です。
+        english: When comparing train and car, the train is faster.
+        hint: 「と〜では」 sets up an explicit comparison. While correct, 「より」 is more concise for expressing
+          this simple comparison. We're looking for a concise comparison.
+    scene: A young man is giving directions to an older woman who is planning her commute.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of polite language with 「です」 is appropriate when a younger person is addressing an
+      older person, even in an informal informative context, demonstrating respect. This is common practice
+      in Japanese society.
+  - english: She sings better than him.
+    japanese:
+      - 彼女 は 彼 {より} 歌 が 上手 です。
+      - 彼女 は 彼 {より} 歌 が 上手。
+      - 彼 {より} 彼女 の 方 が 歌 が 上手 です。
+      - 彼 {より} 彼女 の 方 が 歌 が 上手。
+    english_literally: As for her, compared to him, singing is good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 彼女 {ほど} 歌 が 上手く ない です。
+        english: He doesn't sing as well as her.
+        hint: 「ほど〜ない」 indicates 'not to the extent of'. The original states she sings *better*. We're
+          looking for a comparison of superiority in singing ability.
+      - competing_japanese:
+          - 彼女 は 歌 が 上手 {と いう より}、才能 が ある です。
+        english: Rather than saying she sings well, she has talent.
+        hint: 「というより」 implies rephrasing a statement. Here, we're making a direct comparison of singing
+          ability, not rephrasing the quality itself. We're looking for a direct comparison.
+      - competing_japanese:
+          - 彼女 {こそ} 彼 より 歌 が 上手 です。
+        english: It is *she* who sings better than him.
+        hint: 「こそ」 adds emphasis. We're making a factual comparison, not emphasizing her as the unique
+          talented singer.
+      - competing_japanese:
+          - 彼女 は 彼 {に 比べ て} 歌 が 上手 です。
+        english: Compared to him, she sings well.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this comparison.
+      - competing_japanese:
+          - 彼女 {と} 彼 {で は}、彼女 の 方 が 歌 が 上手 です。
+        english: When comparing her and him, she sings better.
+        hint: 「と〜では」 sets up an explicit comparison. While correct, 「より」 is more concise for expressing
+          this simple comparison. We're looking for a concise comparison.
+    scene: A group of friends are discussing the results of a karaoke competition.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: In a casual setting among friends, especially young people, the plain form or common polite
+      form with 「です」 is used. The speaker's observation is a direct comparison of skill without needing
+      overly formal language. The use of 「です」 adds a slight formality often found in casual conversation.
+  - english: Health is more important than money.
+    japanese:
+      - お 金 {より} 健康 が 大切 です。
+      - お 金 {より} 健康 が 大切。
+      - 健康 が お 金 {より} 大切 です。
+      - 健康 が お 金 {より} 大切。
+    english_literally: Compared to money, health is important.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 は お 金 {ほど} 大切 じゃ ない です。
+        english: Health is not as important as money.
+        hint: 「ほど〜ない」 indicates 'not to the extent of'. The original states health is *more* important.
+          We're looking for a comparison of superiority in importance.
+      - competing_japanese:
+          - お 金 は 大切 {と いう より}、必要 です。
+        english: Rather than saying money is important, it's necessary.
+        hint: 「と いう より」 implies rephrasing or correcting a statement. We are stating a direct comparison
+          of importance between health and money, not rephrasing the meaning of money. We're looking for
+          a direct comparison.
+      - competing_japanese:
+          - 健康 {こそ} お 金 より 大切 です。
+        english: It is *health* that is more important than money.
+        hint: 「こそ」 adds emphasis. We're stating a general truth, not emphasizing health as the unique
+          important thing.
+      - competing_japanese:
+          - 健康 は お 金 {に 比べ て} 大切 です。
+        english: Compared to money, health is important.
+        hint: 「に比べて」 means 'compared to'. While grammatically correct, 「より」 is a more direct and common
+          way to express this comparison.
+      - competing_japanese:
+          - お 金 {と} 健康 {で は}、健康 の 方 が 大切 です。
+        english: When comparing money and health, health is more important.
+        hint: 「と〜では」 sets up an explicit comparison. While correct, 「より」 is more concise for expressing
+          this simple comparison. We're looking for a concise comparison.
+      - competing_japanese:
+          - 健康 が {最も} 大切 です。
+        english: Health is the most important.
+        hint: 「最も」 is a superlative, indicating the highest degree within a group (all things considered).
+          We're looking for a comparison between two specific items (health and money).
+    scene: A mother is advising her daughter about life priorities.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: A parent giving life advice often uses polite language to convey seriousness and respect for
+      the listener's future choices. The 「です」 ending here reflects this instructive and caring tone from
+      an older female speaker to a younger female listener.
+post_example_writeup: When using 「より」, it's essential to ensure that the comparison is clear and logical.
+  While the particle itself points to the standard, the context or the presence of 「〜のほうが」 helps clarify
+  which item or action is deemed 'more' in the given characteristic. Pay attention to the natural flow
+  of the Japanese sentence to accurately convey your intended comparison.

@@ -1,0 +1,207 @@
+grammar_point: だいたい (approximation)
+learn_before:
+  - だいたい (in the first place)
+meaning: Approximately; Mostly; Generally
+pronunciation:
+  katakana: ダイタイ
+  romaji: daitai
+formation:
+  だいたい: Adverb, modifying a statement about quantity or degree.
+  だいたい の + Noun: Functions attributively, meaning 'most of' or 'general'.
+jlpt: N4
+etymology: 大体 (だいたい) is formed from the kanji 大 (だい), meaning "large" or "great," and 体 (たい), meaning
+  "body" or "substance." Together, they suggest the main or essential part of something, which leads to
+  its various meanings of 'generally' or 'roughly.' It emphasizes the 'broad outline' or 'main point'
+  rather than precise details.
+writeup: だいたい (daitai) functions as an adverb in Japanese, primarily indicating the "main point" or "essence"
+  of something, leading to various nuances. It is commonly translated as "mostly," "generally," or "for
+  the most part," conveying an approximate quantity, degree, or typicality. This grammar point can modify
+  entire phrases or be used directly before a noun in the form of **大体の + noun**.
+false_friends:
+  - term: ほとんど
+    meaning: almost all, mostly, barely
+    kind: similar expression
+    nuance: ほとんど emphasizes proximity to 100% or completion, often implying a near-total or a near-negative.
+      だいたい, on the other hand, indicates a general typicality or a broad approximation, without necessarily
+      implying a high percentage near completion. だいたい suggests a rough estimation, while ほとんど suggests
+      near completion or near absence.
+    grammar_point: ほとんど (almost all or hardly any)
+  - term: およそ
+    meaning: about, roughly
+    kind: similar expression
+    nuance: およそ is generally interchangeable with だいたい when referring to numerical approximations. However,
+      だいたい has a broader scope, applying to general concepts, states, or main points beyond just numerical
+      values, whereas およそ tends to be more strictly quantitative. およそ is often seen as slightly more formal
+      and typically precedes numbers.
+    grammar_point: およそ・おおよそ (approximate・generally・not at all)
+  - term: 約
+    meaning: approximately
+    kind: similar expression
+    nuance: 約 is primarily used only with numbers to indicate approximation and is typically more formal
+      and precise than だいたい. In contrast, だいたい can be used more broadly with general concepts, states,
+      or main points, extending beyond purely numerical contexts. 約 is almost exclusively found in written
+      or very formal spoken contexts preceding a numerical value.
+    grammar_point: <suggest>:約 (approximately)
+post_false_friends_writeup: While だいたい, ほとんど, およそ, and 約 all touch upon aspects of approximation, understanding
+  their subtle differences is key. だいたい offers the broadest application, covering general typicality,
+  and approximations. ほとんど focuses on near-completeness. およそ and 約 are more specific to numerical approximations,
+  with 約 being the most formal and precise.
+examples:
+  - english: I'll be there in about 5 minutes.
+    japanese:
+      - '{だいたい} 5 分 で 着く よ。'
+      - '{だいたい} 5 分 で 着き ます。'
+      - '{だいたい} 5 分 で 着く ぜ。'
+    english_literally: About 5 minutes, I will arrive.
+    competing_grammar:
+      - competing_japanese:
+          - '{ぴったり} 5 分 で 着く よ。'
+        english: I'll be there in exactly 5 minutes.
+        hint: 「ぴったり」 means 'exactly'. We're looking for an approximate arrival time here.
+    scene: Someone on the phone, telling a friend they are almost there.
+    register: casual
+    setting: friendly
+  - english: Around what time do you think you'll arrive for the meeting?
+    japanese:
+      - 会議 に は {だいたい} 何時 頃 に なり そう です か？
+      - 会議 に は {だいたい} 何時 頃 に なり ます か？
+      - 会議 に は {だいたい} 何時 頃 に なり そう？
+      - 会議 に は {だいたい} 何時 頃 に 着く？
+    english_literally: As for the meeting, around what time do you think it will be roughly?
+    competing_grammar:
+      - competing_japanese:
+          - '{ぴったり} 何 時 に なり ます か？'
+        english: What time will it be exactly?
+        hint: 「ぴったり」 means 'exactly'. We're looking for an approximate time here.
+    scene: A project manager asking a team member for an estimated arrival time for a meeting.
+    register: formal
+    setting: professional
+  - english: I generally wake up at 7 AM every day.
+    japanese:
+      - 私 は 毎日 {だいたい} 7 時 に 起床 し ます。
+      - 私 は 毎日 {だいたい} 7 時 に 起き ます。
+      - 私 は 毎日 {だいたい} 7 時 に 起きる。
+      - 毎日 {だいたい} 7 時 に 起きる よ。
+    english_literally: As for me, every day I generally wake up at 7 o'clock.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 毎日 {いつ も} 7 時 に 起床 し ます。
+        english: I always wake up at 7 AM every day.
+        hint: 「いつも」 means 'always' and suggests a fixed routine. We're looking for a general habit.
+    scene: A college student describing their daily routine to a new roommate.
+    register: teineigo (polite)
+    setting: informative
+  - english: Most Japanese people can use chopsticks.
+    japanese:
+      - '{だいたい} の 日本 人 は 箸 が 使え ます。'
+      - '{だいたい} の 日本 人 は 箸 が 使える。'
+      - 日本 人 の {だいたい} は 箸 が 使え ます。
+    english_literally: Most of Japanese people can use chopsticks.
+    competing_grammar:
+      - competing_japanese:
+          - '{ほとんど} の 日本 人 は 箸 が 使え ます。'
+        english: Almost all Japanese people can use chopsticks.
+        hint: 「ほとんど」 emphasizes a very high percentage or near-totality. We're looking for a general majority.
+    scene: A teacher explaining common cultural skills to a class of foreign students.
+    register: formal
+    setting: academic
+  - english: I feel that their opinions are largely the same.
+    japanese:
+      - 彼 ら の 意見 は {だいたい} 同じ だ と 私 は 感じる。
+      - 彼 ら の 意見 は {だいたい} 同じ だ と 私 は 感じ ます。
+      - 彼 ら の 意見 は {だいたい} 同じ です。
+      - 彼 ら の 意見 は {だいたい} 同じ だ と 思う。
+    english_literally: Their opinions are largely the same, I feel.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら の 意見 は {全く 同じ} だ と 私 は 感じる。
+        english: I feel that their opinions are completely the same.
+        hint: 「全く同じ」 means 'completely the same'. We're looking for a general similarity, not exact identity.
+    scene: A team leader summarizing a discussion, noting a general consensus.
+    register: formal
+    setting: professional
+  - english: I can roughly understand how to use this software.
+    japanese:
+      - この ソフトウェア の 使い 方 は {だいたい} 理解 でき ます。
+      - この ソフトウェア の 使い 方 は {だいたい} 分かり ます。
+      - この ソフトウェア の 使い 方 は {だいたい} 理解 できる。
+      - この ソフトウェア の 使い 方 は {だいたい} 分かる。
+    english_literally: The usage of this software, I can roughly understand.
+    competing_grammar:
+      - competing_japanese:
+          - この ソフトウェア の 使い 方 は {少し} 理解 でき ます。
+        english: I can understand a little about how to use this software.
+        hint: 「少し」 means 'a little' and implies a minimal understanding. We're looking for a general or
+          rough understanding.
+    scene: A new employee confirming their basic understanding of a new system.
+    register: teineigo (polite)
+    setting: professional
+  - english: This dish is mostly delicious, but the flavor is a bit mild.
+    japanese:
+      - この 料理 は {だいたい} 美味しい ん です が、少し 味 が 薄い です。
+      - この 料理 は {だいたい} 美味しい です が、少し 味 が 薄い です。
+      - この 料理 は {だいたい} 美味しい けど、少し 味 が 薄い ね。
+      - この 料理 {だいたい} 美味しい ん だ けど、味 薄い な。
+    english_literally: This dish is mostly delicious, but the taste is a little bland.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は {完璧 に} 美味しい ん です。
+        english: This dish is perfectly delicious.
+        hint: 「完璧に美味しい」 means 'perfectly delicious' and suggests no flaws. We're looking for a general
+          assessment with a slight reservation.
+    scene: A food critic giving a nuanced review of a new restaurant dish.
+    register: formal
+    setting: professional
+  - english: He has a general grasp of the project's situation.
+    japanese:
+      - 彼 は プロジェクト の {だいたい} の 状況 を 把握 し て い ます。
+      - 彼 は プロジェクト の {だいたい} の 状況 を 把握 し て いる。
+      - 彼 は {だいたい} プロジェクト の 状況 を 把握 し て い ます。
+      - 彼 は {だいたい} プロジェクト の 状況 分かっ てる よ。
+    english_literally: He grasps the general situation of the project.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は プロジェクト の {全て} の 状況 を 把握 し て い ます。
+        english: He has a grasp of all situations of the project.
+        hint: 「全て」 means 'all' and implies a complete understanding. We're looking for a general understanding.
+    scene: A manager informing a client about the project lead's awareness.
+    register: teineigo (polite)
+    setting: professional
+  - english: Dad usually comes home around 6 PM every day.
+    japanese:
+      - お 父 さん は {だいたい} 毎日 6 時 に 帰宅 し ます。
+      - お 父 さん は {だいたい} 毎日 6 時 に 帰り ます。
+      - お 父 さん は {だいたい} 毎日 6 時 に 帰る。
+      - お 父 さん、{だいたい} 毎日 6 時 に 帰っ て くる よ。
+    english_literally: Dad, generally every day at 6 o'clock, returns home.
+    competing_grammar:
+      - competing_japanese:
+          - お 父 さん は 毎日 {ぴったり} 6 時 に 帰宅 し ます。
+        english: Dad comes home exactly at 6 PM every day.
+        hint: 「ぴったり」 means 'exactly'. We're looking for an approximate time for a regular routine.
+    scene: A young child on the phone telling a caller about their father's typical arrival time.
+    register: teineigo (polite)
+    setting: informative
+    speaker_age: younger
+  - english: This book is mostly interesting, but sometimes there are difficult parts.
+    japanese:
+      - この 本 は {だいたい} 面白い です が、時々 難しい 部分 が あり ます。
+      - この 本 は {だいたい} 面白い です けど、時々 難しい 部分 が あり ます。
+      - この 本 は {だいたい} 面白い けど、時々 難しい 部分 が ある。
+      - この 本 {だいたい} 面白い ん だ けど、たまに 難しい 所 も ある よ。
+    english_literally: This book is mostly interesting, but sometimes there are difficult parts.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は {とても} 面白い です。
+        english: This book is very interesting.
+        hint: 「とても」 means 'very' and implies an unqualified positive assessment. We're looking for a general
+          assessment with a minor reservation.
+    scene: A student recommending a book to a friend, noting its general quality with a minor reservation.
+    register: casual
+    setting: friendly
+post_example_writeup: While だいたい broadly conveys a sense of generality or approximation, the specific
+  context and surrounding phrasing are crucial for determining its precise nuance. For example, when used
+  with numbers or quantities, it functions much like "approximately," whereas with abstract concepts,
+  it leans more towards "mostly" or "essentially." Pay close attention to the verb or noun it modifies.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だいたい

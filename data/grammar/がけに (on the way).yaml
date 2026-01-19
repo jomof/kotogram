@@ -1,0 +1,247 @@
+grammar_point: がけに (on the way)
+learn_before:
+  - 〜ていく (change toward future・movement away from speaker)
+  - たくさん (many・a lot)
+meaning: On the way to, As you go, While doing
+meaning_warning: Kanji is rarely used
+pronunciation:
+  katakana: ガケニ
+  romaji: gakeni
+formation:
+  Verb[ます-stem] + がけに: Indicates doing something 'on the way' or 'while' performing the verb.
+jlpt: N2
+etymology: 「がけに」 comes from the verb 「掛ける (かける)」, meaning "to hang, to suspend, to start, to begin." In
+  this grammar point, it carries the nuance of something being done *in the process* of doing something
+  else, like hanging an action *onto* another. It conveys the sense of extending or placing something
+  across a duration or process, thus implying that action (B) is carried out *along the span* of action
+  (A).
+writeup: |-
+  The grammar point 「がけに」 attaches to the ます-stem of a verb, indicating that an action (B) occurs 'on the way to' or 'while' performing another action (A). While it may not be as frequently encountered in modern Japanese as some other expressions, its nuance is quite specific. It suggests that action (B) is performed either incidentally during action (A), or specifically because action (A) presents a convenient opportunity for action (B).
+
+  This structure can appear with or without its corresponding kanji, 掛けに. Both forms are valid, though the hiragana version is more common in modern usage. Familiarity with both forms is beneficial for recognition.
+false_friends:
+  - term: 途中に・途中で
+    meaning: On the way, Partway, In the middle of
+    kind: synonym
+    nuance: Unlike 「がけに」, 「途中に」 or 「途中で」 simply state that an action occurs at some point during a journey
+      or process, without necessarily implying convenience or integration into the primary action.
+    grammar_point: 途中に・途中で (in the middle of)
+  - term: ついでに
+    meaning: While you are at it, On the occasion
+    kind: synonym
+    nuance: 「ついでに」 emphasizes taking advantage of an opportunity to do something extra because you are
+      already engaged in another activity. While similar, 「がけに」 focuses more on the action being performed
+      naturally 'along the way' of a movement, whereas 「ついでに」 is about leveraging an existing occasion.
+    grammar_point: ついでに (taking the opportunity)
+post_false_friends_writeup: Both 「途中に」/「途中で」 and 「ついでに」 can be used to express doing something "on the
+  way," but they have slightly different nuances. When using 「がけに」, focus on the idea of the action happening
+  *during* the journey or process as a natural or convenient inclusion. 「ついでに」 is more about doing something
+  *because* you're already doing something else and want to take advantage of that opportunity, regardless
+  of whether it's part of a physical journey.
+examples:
+  - english: On my way home from work, I bought a drink at the convenience store.
+    japanese:
+      - 会社 の 帰り {がけ に} コンビニ で 飲み物 を 買っ た。
+      - 会社 の 帰り {がけ に} コンビニ で 飲み物 を 買い まし た。
+    english_literally: Company's going home while at convenience store drink bought.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 帰り {途中 で} コンビニ で 飲み物 を 買っ た。
+        english: On the way home from work, I bought a drink at the convenience store.
+        hint: 「途中で」 simply indicates an action occurred during a journey. 「がけに」 implies the action was
+          a natural or convenient stop integrated into the journey.
+    scene: A person reflecting on their daily routine.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「帰り がけ に」 emphasizes that buying the drink was a quick, integrated stop, part of
+      the natural flow of going home from work, rather than a separate, deliberate errand.
+    etymology: The formation combines the noun '帰り' (kaeri, return) with 'がけに' to indicate 'on the way
+      back'.
+  - english: Today, on my way to work, I'll try stopping by the new bakery.
+    japanese:
+      - 今日 は 職場 へ の 行き {がけ に} 新しい パン 屋 に 寄っ て みよう。
+      - 今日 は 職場 へ の 行き {がけ に} 新しい パン 屋 に 寄っ て み ましょう。
+    english_literally: Today workplace to going while new bakery to stop by try.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 職場 へ の 行き {ついで に} 新しい パン 屋 に 寄っ て みよう。
+        english: Today, while going to work, I'll take the opportunity to stop by the new bakery.
+        hint: 「ついでに」 suggests doing something extra because you're already doing something else, implying
+          leveraging an opportunity. 「がけに」 focuses on the action being a natural part of the journey.
+    scene: Someone planning their morning commute.
+    register: casual
+    setting: informative
+    conjugation: volitional (～よう)
+    nuance: 「行き がけ に」 highlights the new bakery visit as a convenient and natural detour during the commute,
+      indicating efficiency rather than a major disruption to the journey.
+    etymology: 「行き」 (iki, going) combines with 「がけに」 to form 'on the way there'.
+  - english: Manager, could you please hand this document to Tanaka on your way home?
+    japanese:
+      - 部 長、帰り {がけ に} この 書類 を 田中 さん に 渡し て いただけ ます か？
+      - 部 長、帰り {がけ に} この 書類 を 田中 さん に お 渡し いただけ ます か？
+      - 部 長、帰り {がけ に} この 書類 を 田中 さん に お 渡し 願え ます か？
+    english_literally: Manager, going home while this document Tanaka-san to hand over can you give?
+    competing_grammar:
+      - competing_japanese:
+          - 部 長、{帰り に} この 書類 を 田中 さん に 渡し て いただけ ます か？
+        english: Manager, could you please hand this document to Tanaka when you go home?
+        hint: 「帰り に」 is a more general expression for 'on your way home' or 'when you go home', without
+          the nuance of the action being integrated into the process of going home. We're looking for
+          an action conveniently performed *during* the journey.
+    scene: An employee asking their manager for a favor.
+    register: semi-formal
+    setting: instructional
+    conjugation: te-form (～て)
+    nuance: The request 「渡し て いただけ ます か？」 is polite and formal. 「帰り がけ に」 softens the request by suggesting
+      the action is a convenient and efficient integration into the manager's existing journey home, rather
+      than an additional task.
+    etymology: Similar to example 0, 「帰り がけ に」 combines '帰り' (kaeri) with 'がけに'.
+  - english: When I was a child, I often played in that park on my way to school.
+    japanese:
+      - 子供 の 頃、学校 へ の 行き {がけ に} よく あの 公園 で 遊ん だ もの だ。
+      - 子供 の 頃、学校 へ の 行き {がけ に} よく あの 公園 で 遊び まし た。
+    english_literally: Child's time, school to going while often that park in played it was.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃、学校 へ の 行き {途中 で} よく あの 公園 で 遊ん だ もの だ。
+        english: When I was a child, I often played in that park on the way to school.
+        hint: 「途中で」 indicates an action occurring during a journey, but 「がけに」 implies a more habitual
+          or integrated stop *as part of* the journey. We're looking for that natural, in-process feel.
+    scene: A grandparent reminiscing with their grandchild.
+    register: casual
+    setting: storytelling
+    speaker_age: older
+    nuance: The phrase 「よく 遊ん だ もの だ」 indicates a nostalgic recollection of something that used to happen
+      frequently. 「行き がけ に」 emphasizes that playing in the park was a routine, natural part of the journey
+      to school, almost a ritual, rather than an isolated event.
+    etymology: As in example 1, 「行き がけ に」 combines '行き' (iki) with 'がけに'.
+  - english: If she's sick, she'd probably be happy if you visited her on your way home.
+    japanese:
+      - もし 彼女 が 病気 なら、帰り {がけ に} お 見舞い に 行け ば 喜ぶ だろう。
+      - もし 彼女 が 病気 なら、帰り {がけ に} お 見舞い に 行け ば 喜ぶ でしょ う。
+    english_literally: If she sick, going home while visit to go if happy probably.
+    competing_grammar:
+      - competing_japanese:
+          - もし 彼女 が 病気 なら、{帰る 時 に} お 見舞い に 行け ば 喜ぶ だろう。
+        english: If she's sick, she'd probably be happy if you visited her when you go home.
+        hint: 「帰る 時 に」 indicates an action at the point of going home, but 「がけに」 conveys the nuance of
+          the visit being a natural, convenient stop *during* the journey. We're looking for the 'on the
+          way' nuance.
+    scene: A friend offering advice to another friend whose girlfriend is ill.
+    register: casual
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+    nuance: 「帰り がけ に」 here highlights that the visit would be a thoughtful act seamlessly integrated into
+      the journey home, implying convenience and care. The use of 「喜ぶ だろう」 indicates a strong probability
+      of happiness.
+    etymology: Again, 「帰り がけ に」 combines '帰り' (kaeri) with 'がけに'.
+  - english: Next time we meet, should I buy some sweets from your favorite cake shop on the way?
+    japanese:
+      - 今度 会う 時、行き {がけ に} 好き な ケーキ 屋 の スイーツ を 買っ て 行こう か？
+      - 今度 会う 時、行き {がけ に} 好き な ケーキ 屋 の スイーツ を 買っ て 行き ましょう か？
+    english_literally: Next time meet, going while favorite cake shop's sweets buy go I?
+    competing_grammar:
+      - competing_japanese:
+          - 今度 会う 時、行き {ついで に} 好き な ケーキ 屋 の スイーツ を 買っ て 行こう か？
+        english: Next time we meet, should I buy some sweets from your favorite cake shop while I'm at
+          it?
+        hint: 「ついでに」 emphasizes taking advantage of an opportunity to do something extra. 「がけに」 emphasizes
+          the action being a natural and convenient part of the journey itself. We're looking for the
+          latter.
+    scene: A person making a thoughtful offer to someone they are interested in, for a casual meeting.
+    register: semi-formal
+    setting: first-date
+    speaker_gender: female
+    nuance: The question 「買っ て 行こう か？」 is a polite offer. 「行き がけ に」 suggests that picking up the sweets
+      would be a natural and convenient part of the journey to the meeting, making the offer seem thoughtful
+      and easy to fulfill for the speaker.
+    etymology: Similar to example 1, 「行き がけ に」 combines '行き' (iki) with 'がけに'.
+  - english: That guy earlier, he was singing a strange song on his way here, wasn't he?
+    japanese:
+      - さっき の 彼、来 {がけ に} 変 な 歌 を 歌っ て た よ ね。
+      - さっき の 彼、来 {がけ に} 変 な 歌 を 歌っ て い まし た よ ね。
+    english_literally: Just now that guy, coming while strange song was singing, right?
+    competing_grammar:
+      - competing_japanese:
+          - さっき の 彼、{来 た 時 に} 変 な 歌 を 歌っ て た よ ね。
+        english: That guy earlier, he was singing a strange song when he came, wasn't he?
+        hint: 「来た 時に」 simply states an action occurred at the time of arrival. 「がけに」 specifies the singing
+          occurred *during the process* of his arrival. We're looking for the 'on the way here' nuance.
+    scene: Two friends gossiping about someone they just saw.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「さっき の 彼」 (that guy earlier) and the sentence-final particle 「〜た よね」, which seeks
+      confirmation while sharing information, are common in casual, conversational exchanges, particularly
+      among female friends sharing observations or gossip. 「来 がけ に」 specifies the singing occurred precisely
+      *during* the process of his arrival, rather than just at some random point on his journey.
+    etymology: 「来 がけ に」 combines the verb stem of 「来る」 (kuru, to come) with 「がけに」, meaning 'on the way
+      here'.
+  - english: Hey, how about a quick drink on the way home? I have so much I want to talk about.
+    japanese:
+      - ねえ、帰り {がけ に} 軽く 一 杯、どう？話し たい こと が たくさん ある ん だ。
+      - ねえ、帰り {がけ に} 軽く 一 杯、どう だ？話し たい こと が たくさん ある ん だ。
+    english_literally: Hey, going home while lightly one drink, how? Want to talk things a lot there is.
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、帰る {途中 で} 軽く 一 杯、どう？話し たい こと が たくさん ある ん だ。
+        english: Hey, how about a quick drink on the way home? I have so much I want to talk about.
+        hint: 「帰る 途中で」 is a general phrase for 'on the way home'. 「がけに」 subtly implies the drink is a
+          natural, convenient part of the journey, making the invitation feel more spontaneous and less
+          like a separate event. We're looking for that integrated feeling.
+    scene: A man subtly inviting a colleague for a casual drink after work.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The particle 「ねえ」 is a casual and intimate address. The phrase 「軽く 一杯 、 どう？」 (how about a
+      quick drink?) is a common, informal invitation. The addition of 「話したい こと が たくさん ある ん だ」 (I have
+      a lot I want to talk about) suggests a desire for deeper conversation, often used in a subtly persuasive
+      or flirty manner. 「帰り がけ に」 frames the drink as a natural, seamless extension of the day, making
+      the invitation feel less formal and more spontaneous.
+    etymology: Similar to example 0, 「帰り がけ に」 combines '帰り' (kaeri) with 'がけに'.
+  - english: On my way to the party, I picked up some wine.
+    japanese:
+      - パーティー へ の 行き {がけ に} ワイン を 買っ て いっ た。
+      - パーティー へ の 行き {がけ に} ワイン を 買っ て いき まし た。
+    english_literally: Party to going while wine bought went.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー へ 行く {途中 で} ワイン を 買っ て いっ た。
+        english: On the way to the party, I bought wine.
+        hint: 「途中 で」 is a general term for 'during the journey', whereas 「がけに」 implies the action was
+          a natural and convenient stop integrated into the journey itself. We're looking for the latter
+          nuance.
+    scene: A friend recounting how they prepared for a party, emphasizing their efficiency.
+    register: casual
+    setting: storytelling
+    nuance: The phrase 「行き がけ に」 emphasizes that picking up the wine was a convenient and natural part
+      of the journey *to* the party, implying thoughtfulness and efficiency rather than a separate errand.
+    etymology: The term 「行き」 (iki) refers to the act of going or departing, and combined with 「がけに」, it
+      indicates an action performed during the process of going somewhere.
+  - english: On his way out, he left a message for me.
+    japanese:
+      - 彼 は 出 {がけ に} 私 に メッセージ を 残し て いっ た。
+      - 彼 は 出 {がけ に} 私 に メッセージ を 残し て いき まし た。
+    english_literally: He going out while me to message left went.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {出る 時 に} 私 に メッセージ を 残し て いっ た。
+        english: When he left, he left a message for me.
+        hint: 「出る 時 に」 indicates an action performed at the exact time of departure, but 「がけに」 suggests
+          it was done *in the process* of leaving, implying it was incidental or just before leaving.
+          We're looking for that 'as he was going out' nuance.
+    scene: A colleague informing another about someone's departure and what they did.
+    register: semi-formal
+    setting: informative
+    nuance: The phrase 「出 がけ に」 emphasizes that leaving the message was an incidental action performed
+      precisely *as* he was in the process of departing, suggesting it was done just before or during
+      the act of leaving, making it sound very timely.
+    etymology: 「出」 (de) is the verb stem of 「出る」 (deru), meaning 'to leave' or 'to go out'. Combining
+      it with 「がけに」 indicates an.action performed in the midst of one's departure.
+post_example_writeup: The usage of がけに emphasizes the action being performed as an integral part of the
+  primary movement or journey, rather than just something that happens to occur at a point in time or
+  location.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がけに

@@ -1,0 +1,607 @@
+grammar_point: しか〜ない (only, nothing but)
+learn_before:
+  - 数量・しか・ない (limited quantity)
+meaning: Only; nothing but; have no choice but to
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: しか ない
+    rarity: common
+    meaning: only; nothing but
+  - conjugation-type: negative non-past polite (～ません)
+    form: しか ありません
+    rarity: common
+    meaning: only; nothing but
+  - conjugation-type: negative past plain (～なかった)
+    form: しか なかった
+    rarity: common
+    meaning: only; nothing but (past)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: しか ありませんでした
+    rarity: common
+    meaning: only; nothing but (past, polite)
+  - conjugation-type: dictionary (plain non-past)
+    form: しかない
+    rarity: common
+    meaning: Have no choice but, Only, Just
+  - conjugation-type: non-past polite (～ます)
+    form: しかありません
+    rarity: common
+    meaning: Have no choice but, Only, Just
+  - conjugation-type: past plain (～た)
+    form: しかなかった
+    rarity: common
+    meaning: Had no choice but, There was only, There was just
+  - conjugation-type: past polite (～ました)
+    form: しかありませんでした
+    rarity: common
+    meaning: Had no choice but, There was only, There was just
+pronunciation:
+  katakana: シカナイ
+  romaji: shika nai
+formation:
+  '[Noun] + しか + [Negative Verb]': Indicates that there is nothing but the stated noun and expresses a
+    limited or exclusive situation.
+  Verb in dictionary form + しかない: Expresses the idea that there is no other option but to perform the
+    specified verb.
+  Noun + しかない: Expresses the idea that there is only the specified noun available.
+jlpt: N4
+etymology: The particle 「しか」 likely evolved from a combination of 「し」 (an emphatic particle) and 「か」 (a
+  question particle). Over time, it transitioned to its current exclusive meaning, always used with a
+  negative predicate. When 「ない」 or its variants are appended, it literally means "only exists not," implying
+  that nothing else exists or is possible. For the "no choice but" meaning, the structure "Verb + しかない"
+  reinforces this idea of no alternative, forming a complete phrase.
+writeup: |-
+  The grammatical structure 「しか〜ない」 serves to express exclusivity, limitation, or the lack of alternatives, akin to the English "only," "nothing but," or "have no choice but to." A distinguishing feature of 「しか」 is its mandatory pairing with a negative predicate, most commonly the plain negative form 「ない」 or the polite negative 「ません」. This inherent negativity is why 「しか〜ない」 is often translated as "there is nothing but (X)" or "only (X) exists," emphasizing the singular presence or characteristic of X.
+
+  When 「しか」 functions with nouns, pronouns, or quantity expressions (e.g., 「水しか飲まない」 - "I drink nothing but water"), it denotes a strict boundary or a singular focus, highlighting a sense of scarcity or limitation. It implies that nothing beyond that specific element is available or considered.
+
+  When 「しか」 directly follows a verb in its plain form (e.g., 「するしかない」), it translates to "have no choice but to do X" or "X is the only option," indicating an unavoidable action due to a lack of alternatives. This usage emphasizes a strong compulsion or resignation, where external circumstances dictate the singular course of action. In highly casual contexts, especially in manga or anime, 「しかない」 may be contracted to 「っきゃない」, carrying the same meaning but with a more colloquial and emphatic tone.
+false_friends:
+  - term: だけ
+    meaning: Only, just
+    kind: similar expression
+    nuance: Unlike 「しか」, 「だけ」 can be used with affirmative verbs. 「水だけ飲む」 means "I only drink water,"
+      focusing on the quantity without the strong implication of limitation or negativity that 「しか」 carries.
+      「だけ」 simply states a limitation without implying a lack or a necessary consequence.
+    grammar_point: だけ (only・just)
+  - term: ばかり
+    meaning: Only, just, nothing but
+    kind: similar expression
+    nuance: 「ばかり」 often implies repetition or doing nothing else, sometimes with a negative connotation
+      (e.g., 「食べてばかりいる」 - "You're always just eating"). It can also mean "just finished." While it expresses
+      limitation, it doesn't carry the inherent negative predicate requirement or the sense of unavoidable
+      action of 「しか〜ない」.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: でしかない
+    meaning: Merely, nothing but, no more than
+    kind: similar expression
+    nuance: This is used to emphasize that something is nothing more than what it is, often suggesting
+      insignificance or a lack of depth. 「単なる偶然でしかない」 (It's merely a coincidence). It expresses exclusivity
+      of a different kind – a lack of additional qualities or meaning, rather than a quantitative limitation
+      or absence of alternatives.
+    grammar_point: でしかない (merely・nothing but)
+  - term: にほかならない
+    meaning: Nothing but, none other than, simply
+    kind: similar expression
+    nuance: A more formal and definitive expression than 「しか〜ない」, used to assert that something is precisely
+      what it appears to be and nothing else. 「彼の成功は努力にほかならない」 (His success is nothing but hard work).
+      It expresses identity or cause with a strong assertion, not merely a limited quantity or an unavoidable
+      action.
+    grammar_point: にほかならない (nothing but)
+  - term: きり
+    meaning: Only, just, since
+    kind: similar expression
+    nuance: Similar to 「だけ」 and 「しか」 in expressing limitation. 「一人きり」 (only one person). However, 「きり」
+      can also mean "since" (e.g., 「会ったきり」 - since we met) or imply doing something until a certain point.
+      It doesn't inherently carry the negative predicate requirement of 「しか」.
+    grammar_point: 〜きり (only・just)
+  - term: を置いて他に〜ない
+    meaning: Nothing else compares
+    kind: similar expression
+    nuance: A more emphatic and often literary expression of exclusivity, similar to "there is no one/nothing
+      else but X." 「彼を置いてほかに適任者はいない」 (There's no one else suitable but him). It implies that the item/person
+      mentioned is uniquely qualified or exceptional, making others unsuitable.
+    grammar_point: を置いて他に〜ない (nothing else compares)
+  - term: ただ〜のみ
+    meaning: Nothing but, only, all that remains
+    kind: similar expression
+    nuance: 「ただ〜のみ」 is a highly formal and literary expression emphasizing exclusivity, often used to
+      imply that nothing else exists or remains. Unlike 「しか〜ない」, it does not require a negative predicate
+      but inherently conveys an exhaustive limitation. It suggests a bare minimum or a singular focus
+      with a grander, more formal tone.
+    grammar_point: ただ〜のみ (nothing but)
+  - term: のみ
+    meaning: Only, just, nothing but
+    kind: similar expression
+    nuance: 「のみ」 is a more formal and literary equivalent of 「だけ」, meaning 'only' or 'just'. Like 「だけ」,
+      it can be used with affirmative verbs and does not carry the strong negative implication or the
+      mandatory negative predicate of 「しか」. It is typically seen in written language or very formal speech.
+    grammar_point: のみ (only・just)
+  - term: にすぎない
+    meaning: No more than, just, merely
+    kind: similar expression
+    nuance: 「にすぎない」 expresses that something is 'no more than' or 'merely' a certain thing, often implying
+      that its importance or extent is limited and perhaps less than what might be assumed. It carries
+      a sense of downplaying or trivializing, focusing on the insufficient nature of something. While
+      「しか〜ない」 states exclusivity, 「にすぎない」 emphasizes insufficiency or lack of significance.
+    grammar_point: にすぎない (no more than)
+  - term: よりしかたがない
+    meaning: There is no choice but, can't be helped, inevitable
+    kind: similar expression
+    nuance: 「よりしかたがない」 expresses a stronger sense of resignation or acceptance of an unavoidable situation,
+      whereas 「しか〜ない」 focuses on the simple lack of alternatives.
+    grammar_point: よりほかない・よりしかたがない (no choice but)
+  - term: よりほかない
+    meaning: To have no choice but, no other way than, have to
+    kind: similar expression
+    nuance: 「よりほかない」 has a slightly more formal tone compared to 「しか〜ない」 and often appears in written
+      or more formal spoken contexts, though both convey the meaning of having no other option.
+    grammar_point: よりほかない・よりしかたがない (no choice but)
+  - term: ざるを得ない
+    meaning: Can't help doing, have no choice but
+    kind: similar expression
+    nuance: 「ざるを得ない」 is a more formal expression, often used to describe situations where one is compelled
+      to act due to rules, obligations, or external pressure, whereas 「しか〜ない」 simply indicates the absence
+      of alternatives.
+    grammar_point: ざるを得ない (have no choice but to)
+post_false_friends_writeup: While 「しか〜ない」 emphasizes strict limits or the absence of alternatives through
+  its mandatory pairing with a negative verb, conveying a sense of scarcity, difficulty, or necessity,
+  several other expressions convey similar ideas with distinct implications. 「だけ」 and its more formal
+  counterpart 「のみ」 simply mean "only" or "just" and can be used with affirmative verbs, lacking the inherent
+  negative connotation of 「しか」. 「ばかり」 suggests an excessive focus or a continuous state, often with a
+  slight critical tone, or can indicate something has "just finished." 「でしかない」 and 「にすぎない」 both express
+  that something is "merely" or "nothing more than" a certain thing, often implying insignificance or
+  a lack of depth beyond that stated. More formal or emphatic expressions like 「にほかならない」, 「ただ〜のみ」, 「を置いて他に〜ない」,
+  「よりしかたがない」, 「よりほかない」, and 「ざるを得ない」 are used to assert that something is precisely what it appears to
+  be, or that nothing else compares to it, or that there is an unavoidable compulsion, conveying a stronger
+  sense of definitive exclusivity, unique suitability, or resignation.
+examples:
+  - english: There's nothing but water in my refrigerator.
+    japanese:
+      - 私 の 冷蔵 庫 に は 水 {しか} 入っ て {い ない}。
+      - 私 の 冷蔵 庫 に は 水 {しか} 入っ て {い ませ ん}。
+    english_literally: In my refrigerator, only water is contained not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 冷蔵 庫 に は 水 {だけ} 入っ て いる。
+        english: There's only water in my refrigerator (and nothing else of note).
+        hint: The nuance of 'only' here is a simple statement of fact, not emphasizing scarcity or a negative
+          situation. We're looking for an expression that implies a lack or negative outcome.
+    scene: A person opening their fridge and commenting on its contents to a friend.
+    register: casual
+    setting: informative
+    nuance: The phrase 「しか入っていない」 emphasizes the absence of anything else besides water, implying a strong
+      limitation or even a lack of variety. It highlights that the refrigerator contains only water, and
+      nothing else. The use of 「私 の 冷蔵 庫 に は」 specifies the location directly relevant to the speaker.
+    etymology: The negative verb 「いない」 comes from 「いる」 which means 'to exist' or 'to be present.' The
+      negative form with 「しか」 signifies the non-existence of anything beyond the stated item, creating
+      a strong sense of exclusivity.
+  - english: There's only one week left until the exam.
+    japanese:
+      - 試験 まで 残り 一 週間 {しか} {ない}。
+      - 試験 まで 残り 一 週間 {しか} {あり ませ ん}。
+    english_literally: Until exam, remaining one week only is not.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 まで 残り 一 週間 {だけ} だ。
+        english: There's only one week left until the exam (a neutral statement).
+        hint: This expression simply states a limited quantity. We're looking for a phrase that implies
+          a strong sense of limitation or urgency.
+    scene: A student realizing the short amount of time before a test.
+    register: casual
+    setting: serious
+    nuance: The use of 「しか〜ない」 here creates a sense of scarcity and urgency, implying that one week is
+      a very limited amount of time. It emphasizes the strict boundary of the remaining time, often with
+      a feeling of pressure. The phrase 「試験 まで」 sets the context of an approaching deadline.
+    etymology: 「ない」 (to not exist, to not be) is used with 「しか」 to convey that nothing more than one week
+      exists, emphasizing the strict limit and the lack of additional time.
+  - english: Only she understands my troubles.
+    japanese:
+      - 私 の 悩み は、彼女 {しか} 理解 し て くれ {ない}。
+      - 私 の 悩み は、彼女 {しか} 理解 し て くれ {ませ ん}。
+    english_literally: My troubles, only she understands for me not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 悩み は、彼女 {だけ} が 理解 し て くれる。
+        english: As for my troubles, only she understands them.
+        hint: This phrase sounds more like a neutral statement about who understands. We're looking for
+          an expression that emphasizes the exclusivity of who understands, often implying a sense of
+          uniqueness or irreplaceable value.
+    scene: Someone confiding in a close friend about a personal issue.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「〜てくれない」 implies that the action (understanding) is done for the speaker's benefit,
+      and the negative form with 「しか」 reinforces that only this person provides that benefit, highlighting
+      a unique and perhaps irreplaceable bond. The use of 「私 の 悩み は」 suggests a personal, perhaps intimate,
+      topic often discussed among close female friends.
+    etymology: The verb 「理解 する」 means 'to understand.' When combined with 「〜てくれる」, it indicates an action
+      done for the speaker's benefit. The negative 「くれない」 with 「しか」 emphatically states that no one else
+      extends this understanding.
+  - english: He thinks of nothing but chasing his dreams.
+    japanese:
+      - 彼 は 夢 を 追いかける こと {しか} 考え {ない}。
+      - 彼 は 夢 を 追いかける こと {しか} 考え {ませ ん}。
+    english_literally: He, chasing dreams thing only thinks not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 夢 を 追いかける こと {だけ} 考え て いる。
+        english: He only thinks about chasing his dreams (neutral, descriptive).
+        hint: This expression simply states what he thinks about. We're looking for a phrase that implies
+          a strong focus to the exclusion of all other thoughts, almost to a fault.
+    scene: A mentor discussing a driven protégé.
+    register: formal
+    setting: serious
+    speaker_age: older
+    nuance: The structure 「〜しか考えない」 highlights an exclusive preoccupation, implying that other considerations
+      are entirely absent from his thoughts. This is a common phrasing to describe someone deeply devoted
+      to a single pursuit, often used by an older, more experienced speaker to describe a younger person's
+      drive. The use of 「彼 は」 emphasizes the subject's singular focus, setting a slightly formal tone.
+    etymology: 「考える」 means 'to think.' The combination with 「しか〜ない」 indicates that no other thoughts exist
+      for the subject. This formation expresses a complete lack of consideration for anything outside
+      of the stated focus.
+  - english: At this time, there's only one bus left to the airport.
+    japanese:
+      - この 時間 なら、空港 へ 行く バス は もう 一 本 {しか} {ない}。
+      - この 時間 なら、空港 へ 行く バス は もう 一 本 {しか} {あり ませ ん}。
+    english_literally: This time if, to airport go bus already one vehicle only is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 時間 なら、空港 へ 行く バス は もう 一 本 {だけ} だ。
+        english: This time, there's only one bus left to the airport (neutral statement).
+        hint: This expresses a simple count. We're looking for an expression that conveys a sense of limited
+          options and potential inconvenience due to the scarcity.
+    scene: A traveler at a bus stop realizing they're running out of options.
+    register: casual
+    setting: serious
+    nuance: The 「しか〜ない」 here conveys a sense of limited options and urgency, implying that due to the
+      late hour, there are no other buses available. It highlights the restrictive nature of the situation
+      for the traveler. The phrase 「この 時間 なら」 specifies the time constraint.
+    etymology: The phrase 「もう 一 本」 means 'already one (long cylindrical object/bus).' Combined with 「しか〜ない」,
+      it strongly indicates that only this single option remains, with all others having ceased to exist
+      or be available.
+  - english: My smartphone only has 1GB of data left.
+    japanese:
+      - 私 の スマホ に は、データ が １ ギガ {しか} 残っ て {い ない}。
+      - 私 の スマホ に は、データ が １ ギガ {しか} 残っ て {い ませ ん}。
+    english_literally: My smartphone to, data 1 gigabyte only remains not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の スマホ に は、データ が １ ギガ {だけ} 残っ て いる。
+        english: My smartphone has only 1GB of data left (as a neutral statement).
+        hint: This phrasing simply states the amount. We're looking for an expression that emphasizes
+          the scarcity of the data, implying it's not enough or problematic.
+    scene: A teenager checking their phone data usage with concern.
+    register: casual
+    setting: serious
+    speaker_age: younger
+    nuance: The usage here emphasizes a limited amount of data, implying it is insufficient or problematic.
+      The casual phrasing and concern about phone data are typical of a younger speaker. The use of 「私
+      の スマホ に は」 establishes the direct relevance to the speaker's personal device.
+    etymology: 「残っている」 means 'to be remaining.' The negative 「いない」 with 「しか」 emphasizes that only a meager
+      1GB exists, underscoring the scarcity and potential inconvenience caused by such a limited amount.
+  - english: Only specific staff are allowed to enter this room.
+    japanese:
+      - この 部屋 は、特定 の スタッフ {しか} 入れ {ない} よう に なっ て いる。
+      - この 部屋 は、特定 の スタッフ {しか} 入れ {ませ ん} よう に なっ て い ます。
+    english_literally: This room, specific staff only can enter not way has become.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は、特定 の スタッフ {だけ} が 入れる よう に なっ て いる。
+        english: This room is set up so that only specific staff can enter.
+        hint: This option expresses the exclusivity more neutrally. We're looking for a phrase that implies
+          a strict restriction or prohibition for others, emphasizing the exclusion.
+    scene: A security guard explaining access rules for a restricted area.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    nuance: The phrase 「〜しか入れない」 explicitly states that no one else can enter, conveying a sense of strictness
+      and security. This is often used in professional or instructional contexts to define restricted
+      access, aligning with a male security guard's role. The structure 「〜ようになっている」 further formalizes
+      this as an established rule or system.
+    etymology: The potential form 「入れる」 (can enter) combined with 「しか〜ない」 signifies that entry is restricted
+      to specific individuals, with no other individuals having the ability to enter. 「ように なっている」 indicates
+      a state or rule that has come to be.
+  - english: It's hard to get tickets for that singer's concert. That's because it's only held once a
+      year.
+    japanese:
+      - あの 歌手 の コンサート は、チケット が なかなか 手 に 入ら {ない}。年 に 一 度 {しか} 開催 さ れ {ない} から だ。
+      - あの 歌手 の コンサート は、チケット が なかなか 手 に 入ら {ない}。年 に 一 度 {しか} 開催 さ れ {ませ ん} から です。
+    english_literally: That singer's concert, tickets rarely obtain not. Year in one time only held is
+      not because.
+    competing_grammar:
+      - competing_japanese:
+          - あの 歌手 の コンサート は、チケット が なかなか 手 に 入ら ない。年 に 一 度 {だけ} 開催 さ れる から だ。
+        english: It's hard to get tickets for that singer's concert. That's because it's only held once
+          a year (neutral frequency).
+        hint: This expresses the frequency as a simple fact. We're looking for a phrase that emphasizes
+          the rarity as a strong limitation, directly linking it to the difficulty of obtaining tickets.
+    scene: Two fans discussing the difficulty of attending a concert.
+    register: casual
+    setting: informative
+    nuance: The 「しか〜ない」 highlights the infrequency of the concert, implying that this rarity is the direct
+      cause of the difficulty in obtaining tickets. It emphasizes the severe limitation on opportunity.
+      The particle 「から」 reinforces the causal relationship, making the reason explicit.
+    etymology: 「開催 される」 means 'to be held.' The negative form 「されない」 with 「しか」 underscores that it is
+      held only once a year, stressing the extremely limited frequency of the event and its impact on
+      ticket availability.
+  - english: I only have 500 yen in my wallet.
+    japanese:
+      - 私 の 財布 に は ５００ 円 {しか} {ない}。
+      - 私 の 財布 に は ５００ 円 {しか} {あり ませ ん}。
+    english_literally: My wallet in, 500 yen only is not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 財布 に は ５００ 円 {だけ} ある。
+        english: I have only 500 yen in my wallet (neutral statement).
+        hint: This simply states the amount. We're looking for a phrase that implies a strong limitation
+          or a feeling of not having enough money.
+    scene: A student checking their wallet before lunch.
+    register: casual
+    setting: serious
+    nuance: The use of 「しか〜ない」 here emphasizes the scarcity of money, implying that 500 yen is a very
+      limited amount and possibly insufficient for what they need or want. It conveys a feeling of disappointment
+      or mild distress due to the lack of more funds. The phrase 「私 の 財布 に は」 sets the personal context.
+    etymology: 「ない」 here indicates non-existence of anything beyond 500 yen, highlighting the strict limitation
+      of funds.
+  - english: He can only speak a little Japanese.
+    japanese:
+      - 彼 は 日本 語 が 少し {しか} 話せ {ない}。
+      - 彼 は 日本 語 が 少し {しか} 話せ {ませ ん}。
+    english_literally: He, Japanese a little only can speak not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 少し {だけ} 日本 語 を 話せる。
+        english: He can speak only a little Japanese (neutral statement of ability).
+        hint: This is a neutral statement about his Japanese ability. We're looking for an expression
+          that emphasizes the limit of his ability, often implying that it's insufficient or not impressive.
+    scene: Colleagues discussing a new foreign team member's Japanese proficiency.
+    register: formal
+    setting: informative
+    nuance: The phrase 「少し しか 話せ ない」 highlights the limited extent of his Japanese ability, suggesting
+      that it might be insufficient for certain situations or that he wishes he could speak more. This
+      phrasing is common in informative settings when evaluating someone's skills, and the use of 「彼 は」
+      sets a neutral, descriptive tone.
+    etymology: The potential form 「話せる」 (can speak) combined with 「しか〜ない」 indicates a restriction on the
+      degree to which something can be done, emphasizing that only a small amount of proficiency exists.
+  - english: If it's come to this point, there's no choice but to call the police, is there?
+    japanese:
+      - もう こう なっ たら 警察 を 呼ぶ {しか ない} だろう。
+      - もう こう なっ たら 警察 を 呼ぶ {しか あり ませ ん} でしょう。
+    english_literally: Already if it has become like this, police to call there is only no choice but
+      it is probably.
+    competing_grammar:
+      - competing_japanese:
+          - もう こう なっ たら 警察 を {呼ば なけれ ば なら ない} だろう。
+        english: If it's come to this point, we have to call the police, don't we?
+        hint: The scene implies a reluctant acceptance of the only viable solution, not merely an obligation,
+          which 「警察 を 呼ば なけれ ば なら ない」 (have to call the police) would suggest. We're looking for an expression
+          that indicates no other options.
+    scene: A corporate executive facing an internal scandal and realizing the severity of the situation.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: There's no last train, so we have no choice but to go home by taxi, huh?
+    japanese:
+      - 終電 が ない から、タクシー で 帰る {しか ない} ね。
+      - 終電 が ない から、タクシー で 帰る {しか あり ませ ん} ね。
+      - 終電 が ない から、タクシー で 帰る {っきゃ ない} ね。
+    english_literally: Last train no because, taxi by return there is only no choice but huh.
+    competing_grammar:
+      - competing_japanese:
+          - 終電 が ない から、タクシー で {帰っ た 方 が いい} ね。
+        english: Since there's no last train, it's better to go home by taxi, huh?
+        hint: The scene emphasizes that taking a taxi is the *only* remaining option, not just a suggestion
+          or preferred method, which 「タクシー で 帰っ た 方 が いい」 (it's better to go home by taxi) would imply.
+          We're looking for a statement about an unavoidable action.
+    scene: Two college students leaving a late-night study session, realizing they missed the last train.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: Weekends are always crowded, so we just have to wait a bit.
+    japanese:
+      - 週末 は いつ も 混む から、少し 待つ {しか ない} よ。
+      - 週末 は いつ も 混む から、少し 待つ {しか あり ませ ん} よ。
+      - 週末 は いつ も 混む から、少し 待つ {っきゃ ない} よ。
+    english_literally: Weekend always crowded because, a little wait there is only no choice but you know.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 は いつ も 混む から、{待た なけれ ば なら ない} よ。
+        english: Weekends are always crowded, so we must wait a bit.
+        hint: The scene highlights that waiting is the only feasible option due to the crowd, rather than
+          a strict command or unavoidable duty, which 「待た なけれ ば なら ない」 (must wait) would suggest. We're
+          looking for a simple statement of no alternative.
+    scene: A family waiting in a long line to enter a popular amusement park on a busy weekend.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: They don't have time to pick us up, so we have no choice but to walk home from here.
+    japanese:
+      - 迎え に 来 て もらえる 時間 が ない から、ここ から 歩い て 帰る {しか ない}。
+      - 迎え に 来 て もらえる 時間 が ない から、ここ から 歩い て 帰る {しか あり ませ ん}。
+      - 迎え に 来 て もらえる 時間 が ない から、ここ から 歩い て 帰る {っきゃ ない}。
+    english_literally: Pick up come receive-potential time no because, here from walk return there is
+      only no choice but.
+    competing_grammar:
+      - competing_japanese:
+          - 迎え に 来 て もらえる 時間 が ない から、ここ から {歩い て 帰ら ざる を 得 ない}。
+        english: They don't have time to pick us up, so we can't help but walk home from here.
+        hint: While both express compulsion, 「歩い て 帰ら ざる を 得 ない」 carries a more formal and stronger sense
+          of resignation to an unavoidable situation. The scene suggests a more straightforward, regrettable
+          lack of alternatives for the speaker. We're looking for a simpler expression of having no choice.
+    scene: Two friends stranded at a remote location, realizing their ride is unable to come.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+  - english: It's my birthday today, so we have no choice but to celebrate grandly, right?
+    japanese:
+      - 今日 は 私 の 誕生 日 だ から、盛大 に 祝う {しか ない} でしょ？
+      - 今日 は 私 の 誕生 日 です から、盛大 に 祝う {しか あり ませ ん} でしょう？
+      - 今日 は 私 の 誕生 日 だ から、盛大 に 祝う {っきゃ ない} でしょ？
+    english_literally: Today is my birthday because, grandly celebrate there is only no choice but right?
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 私 の 誕生 日 だ から、盛大 に {祝い たい} でしょ？
+        english: It's my birthday today, so I want to celebrate grandly, don't I?
+        hint: The scene emphasizes that a grand celebration is the *only* acceptable outcome for her birthday,
+          creating a playful sense of obligation rather than just a personal desire, which 「盛大 に 祝い たい」
+          (I want to celebrate grandly) would express. We're looking for a phrase implying an unavoidable
+          conclusion.
+    scene: A young woman playfully but firmly trying to convince her friends to throw a big birthday party.
+    register: casual
+    setting: excited
+    conjugation: dictionary (plain non-past)
+  - english: Now is too early, so you have no choice but to wait.
+    japanese:
+      - 今 は 時期 尚早 だ から、待つ {しか ない} です よ。
+      - 今 は 時期 尚早 だ から、待つ {しか あり ませ ん} よ。
+      - 今 は 時期 尚早 だ から、待つ {っきゃ ない} です よ。
+      - 今 は 時期 尚早 だ から、待つ {っきゃ ない} よ.
+    english_literally: Now is time too early because, wait there is only no choice but polite you know.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は 時期 尚早 だ から、{待つ べき} です よ。
+        english: Now is too early, so you should wait.
+        hint: 「待つ べき です」 (you should wait) is a more direct and sometimes stronger advice, while 「待つ しか
+          ない です」, as used in the scene, implies that waiting is the only realistic option given the circumstances,
+          delivered with a polite, reassuring tone. We're looking for an expression that indicates inevitability,
+          not just a recommendation.
+    scene: An older, experienced person calmly advising a younger, impatient individual about a project.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_age: older
+    nuance: The use of 「です よ」 (desu yo) adds a polite, slightly assertive, and reassuring tone, often
+      used by an older person advising a younger one. The 'yo' emphasizes the certainty of the advice.
+      This combination effectively conveys a gentle yet firm message that waiting is the only viable option.
+    etymology: The use of 「です よ」 instead of just 「です」 adds emphasis and certainty to the statement, often
+      conveying a sense of gentle persuasion or conviction.
+  - english: I put in so much effort, but with these results, I can only laugh.
+    japanese:
+      - こんな に 努力 し た の に、結果 が これ じゃあ、笑う {しか ない} わ。
+      - こんな に 努力 し た の に、結果 が これ じゃあ、笑う {しか あり ませ ん} わ。
+      - こんな に 努力 し た の に、結果 が これ じゃあ、笑う {っきゃ ない} わ。
+      - こんな に 努力 し た の に、結果 が これ じゃあ、笑う {しか ない}.
+    english_literally: This much effort did although, result is this if, laugh there is only no choice
+      but feminine.
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 努力 し た の に、結果 が これ じゃあ、笑う {しか ない} ね。
+        english: I put in so much effort, but with these results, I can only laugh, huh?
+        hint: Adding 「ね」 (ne) would soften the statement and invite agreement, whereas the scene focuses
+          on the speaker's personal, almost resigned, realization that laughter is the only possible reaction
+          given the absurdity of the situation. We're looking for a more personal, assertive statement
+          of unavoidable reaction.
+    scene: A woman reflecting on a disappointing outcome despite her best efforts.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: The sentence ends with 「わ」, which is a feminine sentence-final particle indicating a gentle
+      assertion or resignation, adding to the melancholic and reflective tone. This particle makes the
+      statement feel more personal and internal, reflecting a unique female speech pattern.
+    etymology: The particle 「わ」 (wa) at the end of a sentence is commonly used by female speakers to express
+      emphasis, confirmation, or sometimes emotional nuance, often with a softened or reflective tone.
+      Its usage dates back to classical Japanese, originally more broadly used, but evolving to be primarily
+      feminine in modern speech.
+  - english: To his kind words, I had no choice but to convey my gratitude.
+    japanese:
+      - 彼 の 優しい 言葉 に、感謝 の 気持ち を 伝える {しか なかっ た}。
+      - 彼 の 優しい 言葉 に、感謝 の 気持ち を 伝える {しか あり ませ ん でし た}。
+      - 彼 の 優しい 言葉 に、感謝 の 気持ち を 伝える {っきゃ なかっ た}.
+    english_literally: His kind words to, gratitude of feeling to convey there was only no choice but.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 優しい 言葉 に、感謝 の 気持ち を {伝え なけれ ば なら なかっ た}。
+        english: To his kind words, I had to convey my gratitude.
+        hint: 「伝え なけれ ば なら なかっ た」 (had to convey) implies a sense of obligation or duty. The scene, however,
+          suggests that conveying gratitude was the *only* natural and heartfelt response, not a mere
+          compulsion. We're looking for an expression of an unavoidable, almost instinctive reaction.
+    scene: A young woman describing how overwhelmed she felt by a man's kindness, compelling her to express
+      thanks.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: The use of 「しか なかった」 in this context implies that the overwhelming kindness of his words left
+      her with no other possible response than to express her gratitude. It conveys a sincere, almost
+      compelled, emotional reaction, suitable for an intimate conversation. The feminine speaker expresses
+      a deep emotional impact, highlighting the sincerity of her forced gratitude.
+    etymology: 「しか なかった」 is the past tense of 「しかない」. The past tense emphasizes that the situation or
+      the lack of other options has already been realized and acted upon, solidifying the idea that there
+      was no alternative in that past moment.
+  - english: There's no other chance like this, so we have no choice but to do it, right?!
+    japanese:
+      - これ だけ の 機会 は ない ん だ から、やる {っきゃ ない} でしょ！
+      - これ だけ の 機会 は ない ん だ から、やる {しか ない} でしょ！
+      - これ だけ の 機会 は ない ん です から、やる {しか あり ませ ん} でしょう！
+    english_literally: This much of opportunity no because, do there is only no choice but right?!
+    competing_grammar:
+      - competing_japanese:
+          - これ だけ の 機会 は ない ん だ から、やる {しか ない} でしょう。
+        english: There's no other chance like this, so we have no choice but to do it, right?
+        hint: While 「やる しか ない でしょう」 also conveys the meaning, the use of the contracted 「っきゃ ない」 in the
+          scene makes it significantly more casual, emphatic, and indicative of a strong, almost impulsive
+          drive to act, typical in persuasive speech. We're looking for a more colloquial and impactful
+          statement of inevitability.
+    scene: A young man enthusiastically rallying his team members to seize a unique opportunity.
+    register: casual
+    setting: persuasive
+    speaker_gender: male
+    nuance: The use of the contracted form 「っきゃ ない」 makes this sentence very casual and emphatic, often
+      used in enthusiastic or persuasive contexts, especially by male speakers in a decisive tone. The
+      final 「でしょ！」 adds a strong rhetorical flourish, seeking agreement from the listeners in a way that
+      implies a shared, unavoidable conclusion. This casual, direct address is characteristic of male
+      speech when motivating others.
+    etymology: The contraction 「っきゃ ない」 from 「しか ない」 is a phonetic shortening that emphasizes the immediacy
+      and unavoidable nature of the action, often used to convey strong emotion or a determined resolve
+      in colloquial speech.
+  - english: If it's come this far, I have no choice but to give it my all!
+    japanese:
+      - ここ まで 来 たら、全力 を 出す {っきゃ ない} な！
+      - ここ まで 来 たら、全力 を 出す {しか ない} な！
+    english_literally: Here until if it has come, full strength to put out there is only no choice but
+      particle!
+    competing_grammar:
+      - competing_japanese:
+          - ここ まで 来 たら、全力 を {出さ ざる を 得 ない} な！
+        english: If it's come this far, I can't help but give it my all!
+        hint: 「出さ ざる を 得 ない な」 is a much more formal and less personal way of expressing compulsion. The
+          scene, using 「っきゃ ない な」, emphasizes a personal, determined, and emphatic lack of other options
+          in a dramatic, action-oriented context. We're looking for a strong, casual declaration of commitment.
+    scene: A main character in a battle anime facing a powerful opponent, realizing they must use their
+      full power.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    nuance: 「っきゃ ない」 is a very casual, often used in anime or strong exclamation, indicating a lack of
+      alternatives. The final 「な」 (na) is a masculine sentence-ending particle often used for emphasis
+      or self-affirmation, fitting the excited, climactic setting. This direct, almost self-talk, tone
+      is highly characteristic of male characters in moments of resolve.
+    etymology: The particle 「な」 at the end of a sentence, especially after plain forms, can convey a sense
+      of personal conviction, self-reflection, or a call for agreement. When used by male speakers, it
+      often adds a strong, decisive, or slightly assertive tone.
+  - english: Since there's only this, please do it with this.
+    japanese:
+      - これ {しか ない} から、これ で やっ て ください。
+      - これ {しか あり ませ ん} から、これ で やっ て ください。
+      - これ {っきゃ ない} から、これ で やっ て ください.
+    english_literally: This there is only no choice but because, this with do please.
+    competing_grammar:
+      - competing_japanese:
+          - これ {だけ しか ない} から、これ で やっ て ください。
+        english: Since there is only this much, please do it with this.
+        hint: While similar, 「これ だけ しか ない」 would emphasize the *amount* or *quantity* of what's available.
+          The scene implies that this particular item is the *only* option, not just limited in quantity,
+          making 「これ しか ない」 more appropriate. We're looking for an indication that there is no other choice
+          of item.
+    scene: A teacher handing out limited art supplies to a student, indicating that this is all that's
+      available.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+post_example_writeup: The examples illustrate how 「しか〜ない」 is used to emphasize a strict limit or exclusivity,
+  often implying a sense of scarcity, difficulty, or lack of alternatives. Notice how the negative verb
+  is integral to conveying that "nothing but" or "only" the specified item/quantity/action exists. The
+  shortened form, 「っきゃない」, is primarily used in casual conversation, anime, or manga, carrying the same
+  meaning but with a more colloquial and emphatic tone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/しか-ない

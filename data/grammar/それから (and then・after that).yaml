@@ -1,0 +1,453 @@
+grammar_point: それから (and then・after that)
+learn_before:
+  - Verb[て] (and then)
+  - ご (honorific prefix for Sino-Japanese words)
+  - すごく (very・incredibly)
+  - ずっと (continuous state or action)
+  - と (quotation marker)
+  - の (nominalizer・question particle)
+  - 加えて (in addition・adding to that)
+meaning: And then, after that, also, in addition to that
+pronunciation:
+  katakana: ソレカラ
+  romaji: sore kara
+formation:
+  Clause 1 + それから + Clause 2: Indicates a sequence of actions or events.
+  Item 1 + (と) + Item 2 + (と) + それから + Item 3: Lists items in addition to what was mentioned before.
+jlpt: N4
+etymology: 「それ」 (sore) refers to "that," and 「から」 (kara) means "from." So, literally, 「それから」 means "from
+  that," indicating a continuation or addition from a previous point or topic.
+writeup: |-
+  「それから」 is a versatile conjunction used to connect clauses or list items. Its primary function is to indicate a sequence of actions or events, much like "and then" or "after that" in English. It implies a smooth, natural temporal or logical progression, linking what has just been mentioned with what follows. For example, after discussing one activity, one might say 「それから」 to introduce the next.
+
+  Beyond sequencing, 「それから」 can also be used to add items to a list, similar to "also" or "in addition." This usage is often found in casual conversation when a speaker remembers another item to add, or wants to provide further descriptive points. It can sometimes introduce an afterthought, giving the impression of a spontaneous addition, akin to "oh, and another thing."
+
+  While 「それから」 can be used in various registers, it leans towards a more conversational tone compared to its more formal counterpart, 「そして」. Its flexibility makes it a common and indispensable expression in daily Japanese communication.
+false_friends:
+  - term: そして
+    meaning: And, and then
+    kind: similar expression
+    nuance: 「そして」 is more formal and often used in written language, whereas 「それから」 is more common in
+      everyday conversation.
+    grammar_point: そして (and・and then)
+  - term: また
+    meaning: Also, again
+    kind: similar expression
+    nuance: 「また」 is used to add similar items or repeat an action, while 「それから」 indicates a sequence or
+      progression.
+    grammar_point: また (again; also; or)
+  - term: その結果
+    meaning: As a result
+    kind: similar expression
+    nuance: 「その結果」 explicitly states a consequence, indicating a cause-and-effect relationship. 「それから」
+      simply marks the next item or event in a sequence.
+    grammar_point: その結果 (as a result)
+  - term: それに
+    meaning: And, Besides, Moreover, In addition
+    kind: similar expression
+    nuance: 「それに」 often adds a stronger emphasis or a sense of 'what's more' to the additional point,
+      whereas 「それから」 is a more neutral conjunction for adding points.
+    grammar_point: それに (in addition・moreover)
+  - term: 〜てから
+    meaning: After doing
+    kind: similar expression
+    nuance: 「〜てから」 emphasizes the completion of the preceding action before the next one, whereas 「それから」
+      simply indicates a subsequent action in a sequence without necessarily stressing the completion
+      or a strong causal link.
+    grammar_point: てから (after and since)
+  - term: そのあと
+    meaning: After that; subsequently
+    kind: similar expression
+    nuance: 「そのあと」 explicitly indicates a temporal succession, focusing on 'after that' in a direct sense.
+      「それから」, while also indicating sequence, can additionally function to introduce an afterthought or
+      an additional item to a list, giving it a broader usage than just strict temporal succession.
+    grammar_point: あとで (after・later)
+post_false_friends_writeup: 「それから」, 「そして」, 「また」, 「その結果」, 「それに」, 「〜てから」, and 「そのあと」 can all be used to
+  add information, but they differ in nuance. Use 「それから」 to indicate a sequence of actions or to introduce
+  an afterthought, particularly in casual conversation. Opt for 「そして」 in formal contexts or when connecting
+  more substantial clauses. Choose 「また」 when adding similar items or repeating an action. Use 「その結果」 when
+  explicitly stating a consequence. Employ 「それに」 when emphasizing an additional point with a nuance of
+  'what's more.' Use 「〜てから」 when emphasizing that an action must be completed before the next can begin.
+  Consider 「そのあと」 for strict temporal 'after that' scenarios.
+examples:
+  - english: I did my homework, and then I played in the park with my friends.
+    japanese:
+      - 宿題 を し て、{それ から} 友達 と 公園 で 遊び まし た。
+      - 宿題 し て、{それ から} 友達 と 公園 で 遊ん だ。
+    english_literally: Did homework, and then played in the park with friends.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 を し て、{そして} 友達 と 公園 で 遊び まし た。
+        english: I did my homework, and then (formally) I played in the park with my friends.
+        hint: 「そして」 is more formal and often connects larger clauses, making it less natural for a simple,
+          casual sequence of events. We're looking for a more conversational progression.
+      - competing_japanese:
+          - 宿題 を し {て から} 友達 と 公園 で 遊び まし た。
+        english: After doing my homework, I played in the park with my friends.
+        hint: 「〜てから」 emphasizes the completion of the first action before the second. 「それから」 implies a
+          simple, direct progression without stressing the completion as much.
+      - competing_japanese:
+          - 宿題 を し て、{その あと} 友達 と 公園 で 遊び まし た。
+        english: I did my homework, after that I played in the park with my friends.
+        hint: 「その あと」 literally means 'after that'. While similar, 「それから」 feels more like a smooth, conversational
+          flow when simply listing sequential activities.
+    scene: A young student recounting their afternoon to their parent.
+    register: casual
+    setting: informative
+  - english: This dog is small, and also very energetic.
+    japanese:
+      - この 犬 は 小さく て、{それ から} とても 元気 です。
+      - この 犬、小さい し、{それ から} とても 元気 な ん だ。
+    english_literally: This dog is small, and then very energetic.
+    competing_grammar:
+      - competing_japanese:
+          - この 犬 は 小さく て、{そして} とても 元気 です。
+        english: This dog is small, and then (formally) very energetic.
+        hint: 「そして」 is more formal and often connects larger clauses, making it less natural for simply
+          adding another descriptive quality in a casual conversation. We're looking for a natural flow
+          of descriptive points.
+      - competing_japanese:
+          - この 犬 は 小さく て、{それ に} とても 元気 です。
+        english: This dog is small, and what's more, very energetic.
+        hint: 「それに」 can put more emphasis on the additional point or imply a stronger connection. 「それから」
+          works more neutrally for simply adding another quality.
+      - competing_japanese:
+          - この 犬 は 小さく て、{また} とても 元気 です。
+        english: This dog is small, and also very energetic.
+        hint: 「また」 is typically for adding similar items or repeat an action, while 「それから」 indicates a
+          sequence or progression. While it can work here, 「それから」 is a common choice for adding descriptive
+          qualities in a natural conversation.
+    scene: Someone describing a pet to a friend.
+    register: casual
+    setting: friendly
+    nuance: This example uses the 「て」-form of adjectives (小さく て) followed by 「それから」 to add another quality
+      (元気 です), providing a natural flow for descriptions.
+  - english: I bought milk, bread, and eggs.
+    japanese:
+      - 牛乳 と パン、{それ から} 卵 を 買い まし た。
+      - 牛乳 と パン、{それ から} 卵 買っ た よ。
+    english_literally: Bought milk and bread, and then eggs.
+    competing_grammar:
+      - competing_japanese:
+          - 牛乳 {と} パン {と} 卵 を 買い まし た。
+        english: I bought milk, bread, and eggs.
+        hint: Simply listing with 「と」 for every item can sound a bit dry or exhaustive. 「それから」 is very
+          common when adding a final item to a list in a conversational setting, often with a slight pause
+          before it, as if remembering or confirming the last item.
+      - competing_japanese:
+          - 牛乳 と パン、{そして} 卵 を 買い まし た。
+        english: I bought milk, bread, and then (formally) eggs.
+        hint: 「そして」 is typically used for connecting more substantial clauses. For a simple list of items,
+          「それから」 is more natural and conversational.
+    scene: A person telling their roommate what groceries they bought.
+    register: teineigo (polite)
+    setting: professional
+  - english: Yesterday I went shopping, and then I bought new clothes.
+    japanese:
+      - 昨日 は 買い物 に 行っ て、{それ から} 新しい 服 を 買い まし た。
+      - 昨日、買い物 行っ て、{それ から} 新しい 服 買っ た ん だ。
+    english_literally: Yesterday went shopping, and then bought new clothes.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 買い物 に 行っ て、{そして} 新しい 服 を 買い まし た。
+        english: Yesterday I went shopping, and then (formally) I bought new clothes.
+        hint: 「そして」 can connect events, but 「それから」 often feels more conversational and natural when describing
+          a smooth sequence of daily activities. We're looking for a smooth, natural transition.
+      - competing_japanese:
+          - 昨日 は 買い物 に 行っ て、{その あと} 新しい 服 を 買い まし た。
+        english: Yesterday I went shopping, after that I played in the park with my friends.
+        hint: 「その あと」 emphasizes a direct temporal succession. 「それから」 implies a similar sequence but can
+          convey a slightly more conversational or narrative flow without over-emphasizing the exact timing.
+    scene: A friend describing their productive day to another friend.
+    register: semi-formal
+    setting: storytelling
+    nuance: 「それから」 is used here to indicate a chronological sequence of events, common in everyday conversational
+      storytelling. The use of the 「て」 form of the verb 行く (行って) connects the actions smoothly.
+  - english: After reading a book, I listened to music.
+    japanese:
+      - 本 を 読ん だ 後、{それ から} 音楽 を 聞き まし た。
+      - 本 読ん だ 後、{それ から} 音楽 聞い た よ。
+    english_literally: After reading a book, and then listened to music.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を 読ん だ 後、{そして} 音楽 を 聞き まし た。
+        english: After reading a book, and then (formally) I listened to music.
+        hint: 「そして」 is typically more formal. 「それから」 is often used in conversational recountings of sequential
+          actions, maintaining a natural flow.
+      - competing_japanese:
+          - 本 を 読ん だ 後、{その あと} 音楽 を 聞き まし た。
+        english: After reading a book, after that I listened to music.
+        hint: 「その あと」 explicitly states 'after that.' While correct, 「それから」 often feels more like a smooth,
+          conversational way to transition between steps in an agenda.
+    scene: Someone explaining their relaxing evening activities.
+    register: casual
+    setting: reflective
+    nuance: 「それから」 clearly marks the subsequent action after the first task is completed, emphasizing
+      the direct progression of events in a relaxed, reflective tone.
+  - english: He is good at English, and can also speak a little Chinese.
+    japanese:
+      - 彼 は 英語 が 上手 で、{それ から} 中国 語 も 少し 話せ ます。
+      - 彼 は 英語 が 上手 で、{それ から} 中国 語 も 少し 話せる ん です。
+    english_literally: He is good at English, and then also can speak a little Chinese.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 英語 が 上手 で、{そして} 中国 語 も 少し 話せ ます。
+        english: He is good at English, and then (formally) can also speak a little Chinese.
+        hint: 「そして」 is more formal and often used to connect larger, more distinct clauses. For simply
+          listing additional qualities, 「それから」 is a natural and neutral choice, especially in conversational
+          settings.
+      - competing_japanese:
+          - 彼 は 英語 が 上手 で、{それ に} 中国 語 も 少し 話せ ます。
+        english: He is good at English, and what's more, can also speak a little Chinese.
+        hint: 「それに」 can add a nuance of 'what's more' or 'besides that,' sometimes implying a stronger
+          emphasis on the additional point. 「それから」 functions as a simpler, more neutral connector for
+          adding attributes.
+      - competing_japanese:
+          - 彼 は 英語 が 上手 で、{また} 中国 語 も 少し 話せ ます。
+        english: He is good at English, and also can speak a little Chinese.
+        hint: 「また」 is generally used for adding items that are similar or for repeating actions. While
+          it can connect skills, 「それから」 is more versatile for listing additional qualities or points.
+    scene: A recruiter listing a candidate's qualifications.
+    register: semi-formal
+    setting: informative
+    nuance: This example highlights the use of 「それから」 to add another skill or attribute to a list of qualifications,
+      providing a natural flow to the description. It avoids overemphasizing the additional point, making
+      it suitable for a professional, informative context.
+  - english: First, let's all greet each other, and then let's exchange opinions.
+    japanese:
+      - まず、みんな で 挨拶 し て、{それ から} 意見 を 出し合い ましょう。
+      - まず、みんな で 挨拶 し て、{それ から} 意見 出し合おう よ。
+    english_literally: First, let's all greet, and then let's exchange opinions.
+    competing_grammar:
+      - competing_japanese:
+          - まず、みんな で 挨拶 し て、{そして} 意見 を 出し合い ましょう。
+        english: First, let's all greet each other, and then (formally) let's exchange opinions.
+        hint: 「そして」 is more formal for connecting sequential actions. 「それから」 is a natural, conversational
+          choice to indicate the next step in a planned sequence, especially when proposing activities
+          to others.
+      - competing_japanese:
+          - まず、みんな で 挨拶 し て、{その あと} 意見 を 出し合い ましょう。
+        english: First, let's all greet each other, after that let's exchange opinions.
+        hint: 「その あと」 specifies 'after that.' While correct, 「それから」 often feels more like a smooth, conversational
+          way to transition between steps in an agenda.
+    scene: A team leader setting the agenda for a meeting.
+    register: semi-formal
+    setting: instructional
+  - english: You're cute. And also easy to talk to.
+    japanese:
+      - かわいい ね。{それ から}、話し やすい ね。
+      - 可愛い ね。{それ から}、話し やすい よ ね。
+    english_literally: Cute, isn't it. And then, easy to talk to, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - かわいい ね。{それ に}、話し やすい ね。
+        english: You're cute. What's more, easy to talk to.
+        hint: 「それに」 often adds a stronger emphasis or a sense of 'what's more.' In a casual, flirty context,
+          「それから」 subtly adds another desirable quality, making it feel less like a formal list and more
+          like a spontaneous observation.
+      - competing_japanese:
+          - かわいい ね。{そして}、話し やすい ね。
+        english: You're cute. And then (formally), easy to talk to.
+        hint: 「そして」 is too formal for this type of casual, observational compliment. 「それから」 allows for
+          a more natural, conversational addition of another point.
+      - competing_japanese:
+          - かわいい ね。{また}、話し やすい ね。
+        english: You're cute. Also, easy to talk to.
+        hint: While 「また」 can add another item, 「それから」 works better when adding a consecutive, non-repeating
+          descriptive quality in a conversational flow.
+    scene: A man complimenting a woman he just met.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The casual 「ね」 at the end of each phrase indicates a conversational, agreement-seeking tone.
+      The use of 「それから」 serves to add a second, complementary observation, maintaining a light and engaging
+      atmosphere, suitable for a flirty interaction.
+  - english: Today I found an interesting book. Oh, and I also found the pen I'd been looking for!
+    japanese:
+      - 今日 は おもしろい 本 を 見つけ た よ。{それ から}、ずっと さがし て い た ペン も 見つけ た ん だ！
+      - 今日、おもしろい 本 見つけ た！{それ から}、ずっと 探し て た ペン も 見つかっ た！
+    english_literally: Today found an interesting book, you know. And then, the pen I had been looking
+      for, also found!
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は おもしろい 本 を 見つけ た よ。{それ に}、ずっと さがし て い た ペン も 見つけ た ん だ！
+        english: Today I found an interesting book. What's more, I also found the pen I'd been looking
+          for!
+        hint: 「それに」 can put stronger emphasis on the additional point. 「それから」 is most natural here because
+          it signals a spontaneous recollection or an 'Oh, and another thing' type of addition, which
+          fits the scene of remembering a detail.
+      - competing_japanese:
+          - 今日 は おもしろい 本 を 見つけ た よ。{そして}、ずっと さがし て い た ペン も 見つけ た ん だ！
+        english: Today I found an interesting book. And then (formally), I also found the pen I'd been
+          looking for!
+        hint: 「そして」 feels too formal for a sudden, casual afterthought. 「それから」 better conveys the spontaneous
+          nature of remembering an additional detail.
+      - competing_japanese:
+          - 今日 は おもしろい 本 を 見つけ た よ。{また}、ずっと さがし て い た ペン も 見つけ た ん だ！
+        english: Today I found an interesting book. Also, I found the pen I'd been looking for!
+        hint: 「また」 is typically for adding similar items or repeating actions. While it can connect ideas,
+          「それから」 is more fitting for an additional, distinct piece of information remembered as an afterthought.
+    scene: A woman casually chatting with a friend, remembering something she forgot to mention about
+      her shopping trip.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The 「んだ」 at the end of 「見つけ た ん だ」 indicates a casual, explanatory tone, often used when providing
+      new or slightly unexpected information. The 「見つけ た よ」 adds a gentle, informative ending. The use
+      of 「それから」 here signals an afterthought or an additional detail not necessarily part of the main
+      sequence, common when recollecting details in conversation.
+  - english: First, thoroughly mix the flour, and then, add the eggs.
+    japanese:
+      - まず、小麦 粉 を よく 混ぜ て、{それ から} 卵 を 加え て ください。
+      - まず、小麦 粉 を よく 混ぜ て、{それ から} 卵 を 入れ て ください。
+    english_literally: First, flour mix well, and then, eggs add please.
+    competing_grammar:
+      - competing_japanese:
+          - まず、小麦 粉 を よく 混ぜ て、{そして} 卵 を 加え て ください。
+        english: First, thoroughly mix the flour, and then (formally), add the eggs.
+        hint: 「そして」 is often more formal or used for connecting larger, more distinct clauses. For sequential
+          steps in an instruction, 「それから」 provides a natural and smooth transition. We're looking for
+          a smooth progression of instructions.
+      - competing_japanese:
+          - まず、小麦 粉 を よく 混ぜ {た 後}、卵 を 加え て ください。
+        english: After thoroughly mixing the flour, add the eggs.
+        hint: 「〜た 後 (あと)」 explicitly means 'after' and emphasizes the completion of the prior step. While
+          grammatically correct, 「それから」 feels more like a direct continuation in a step-by-step instruction,
+          without necessarily emphasizing the completion as much. We're looking for a simple sequential
+          step.
+    scene: A chef giving detailed cooking instructions during a demonstration.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example showcases 「それから」 for clearly indicating the next step in a sequential process,
+      which is very common in instructional contexts like recipes or directions. The use of the 「て」 form
+      of 「混ぜる」 (混ぜ て) connects smoothly to 「それから」, providing clear, ordered instructions.
+  - english: She finished her work, and then went home.
+    japanese:
+      - 彼女 は 仕事 を 終え て、{それ から} 家 に 帰り まし た。
+      - 彼女 は 仕事 を 終え て、{それ から} 家 帰っ た よ。
+    english_literally: She finished work, and then went home.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 仕事 を 終え て、{そして} 家 に 帰り まし た。
+        english: She finished her work, and then (formally) went home.
+        hint: 「そして」 is more formal. 「それから」 is a natural choice for describing a simple, chronological
+          sequence of events in everyday conversation.
+      - competing_japanese:
+          - 彼女 は 仕事 を 終え {て から} 家 に 帰り まし た。
+        english: After she finished her work, she went home.
+        hint: 「〜てから」 emphasizes that the second action occurred *after* the completion of the first. 「それから」
+          simply states the next event in a sequence without necessarily stressing completion.
+    scene: A colleague describing someone's daily routine.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: This sentence uses 「それから」 to smoothly connect two actions performed by the same person in
+      chronological order. The casual 「よ」 at the end of the second Japanese example adds a light, informative
+      tone.
+  - english: Let's first decide on the date, and then we'll choose the location.
+    japanese:
+      - まず、日付 を 決め ましょう。{それ から}、場所 を 選び ましょう。
+      - まず、日付 決めよ う よ。{それ から}、場所 選ぼ う よ。
+    english_literally: First, let's decide the date. And then, let's choose the location.
+    competing_grammar:
+      - competing_japanese:
+          - まず、日付 を 決め ましょう。{そして}、場所 を 選び ましょう。
+        english: First, let's decide on the date. And then (formally), we'll choose the location.
+        hint: 「そして」 can connect propositions, but 「それから」 is more common when outlining a clear sequence
+          of steps in a plan or agenda.
+      - competing_japanese:
+          - まず、日付 を 決め {た あと}、場所 を 選び ましょう。
+        english: First, after deciding the date, let's choose the location.
+        hint: 「〜た あと」 is precise about the timing (after doing X), but 「それから」 offers a more general 'and
+          next' flow, suitable for outlining a series of actions.
+    scene: Two friends planning a trip together.
+    register: semi-formal
+    setting: negotiating
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「まず」 (first) followed by 「それから」 clearly establishes a two-step process, common
+      in planning conversations. The volitional form 「〜ましょう」 or 「〜よう よ」 indicates a shared intention or
+      proposal.
+  - english: The soup is hot, and it's also very spicy.
+    japanese:
+      - スープ は 熱く て、{それ から} とても 辛い です。
+      - スープ、熱い し、{それ から} すごく 辛い ね。
+    english_literally: Soup is hot, and then very spicy.
+    competing_grammar:
+      - competing_japanese:
+          - スープ は 熱く て、{そして} とても 辛い です。
+        english: The soup is hot, and then (formally) very spicy.
+        hint: 「そして」 is typically more formal for linking descriptions. 「それから」 provides a natural, conversational
+          way to add another characteristic.
+      - competing_japanese:
+          - スープ は 熱く て、{それ に} とても 辛い です。
+        english: The soup is hot, and what's more, very spicy.
+        hint: 「それに」 might imply a stronger emphasis or an unexpected addition. 「それから」 serves as a more
+          neutral additive conjunction here.
+    scene: Someone describing a dish they are eating to a dining companion.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: Similar to describing the dog, 「それから」 is used here to list multiple qualities of the soup.
+      The 「し」 particle in the casual Japanese example adds to the feeling of listing multiple reasons
+      or attributes.
+  - english: I'll clean the kitchen, and then I'll take out the trash.
+    japanese:
+      - 台所 を 掃除 し て、{それ から} ゴミ を 出し ます。
+      - 台所 掃除 し て、{それ から} ゴミ 出す ね。
+    english_literally: Kitchen clean, and then trash take out.
+    competing_grammar:
+      - competing_japanese:
+          - 台所 を 掃除 し て、{そして} ゴミ を 出し ます。
+        english: I'll clean the kitchen, and then (formally) I'll take out the trash.
+        hint: For straightforward, sequential chores, 「それから」 is often more natural and conversational
+          than the more formal 「そして」.
+      - competing_japanese:
+          - 台所 を 掃除 し {た 後}、ゴミ を 出し ます。
+        english: After cleaning the kitchen, I'll take out the trash.
+        hint: 「〜た 後」 emphasizes completion. 「それから」 simply indicates the next step in a planned sequence.
+    scene: A person telling their roommate about their household chores.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: This example uses 「それから」 to link two sequential household tasks, maintaining a casual and
+      practical tone. The 「ね」 at the end of the casual Japanese example seeks agreement or confirms the
+      intention.
+  - english: First, please confirm your reservation details, and then proceed to check-in.
+    japanese:
+      - まず、ご 予約 内容 を ご 確認 ください。{それ から}、チェック イン へ お 進み ください。
+      - まず、ご 予約 内容 ご 確認 ください。{それ から}、チェック イン へ どうぞ。
+    english_literally: First, your reservation details please confirm. And then, to check-in please proceed.
+    competing_grammar:
+      - competing_japanese:
+          - まず、ご 予約 内容 を ご 確認 ください。{そして}、チェック イン へ お 進み ください。
+        english: First, please confirm your reservation details. And then (formally), proceed to check-in.
+        hint: Even in formal instructions, 「それから」 works well for clear sequential steps. 「そして」 might imply
+          a slightly stronger logical connection, but 「それから」 is still very common for simple, ordered
+          instructions.
+      - competing_japanese:
+          - まず、ご 予約 内容 を ご 確認 いただい {た 後}、チェック イン へ お 進み ください。
+        english: First, after having confirmed your reservation details, please proceed to check-in.
+        hint: 「〜た 後」 explicitly states 'after doing X'. 「それから」 is a more direct way to list the next instruction
+          without over-emphasizing the completion of the previous step.
+    scene: An airline attendant giving instructions to a passenger at the airport.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    nuance: In a formal, instructional context, 「それから」 clearly delineates steps. The honorifics 「ご確認 ください」
+      and 「お進み ください」 maintain politeness. 「それから」 provides a smooth, unambiguous transition between necessary
+      actions for the listener.
+post_example_writeup: As seen in the examples, 「それから」 offers flexibility for both sequential actions and
+  adding items. Its conversational tone makes it ideal for everyday communication, distinguishing it from
+  more formal alternatives like 「そして」 or more specific connectors like 「〜てから」. Pay attention to the context
+  to choose the most natural-sounding option.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/それから

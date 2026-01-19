@@ -1,0 +1,301 @@
+grammar_point: もしかしたら (perhaps)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - '[Verb-た]ほうがいい (it is better to do)'
+  - かもしれない (might・maybe)
+  - としたら (if assuming)
+  - 変わる (to change)
+  - 後を継ぐ (to succeed or take over)
+meaning: Perhaps, maybe, possibly
+pronunciation:
+  katakana: モシカシタラ
+  romaji: moshikashitara
+formation:
+  若し (もし) + か + する の仮定形 (したら): Expresses possibility or uncertainty, literally 'if it happens to be the
+    case'.
+  若し (もし) + か + する のて形 (して): Similar usage to 'もしかしたら', often implying a slight sense of speculation or
+    surprise.
+  若し (もし) + か + する と (suru to): Similar usage to 'もしかしたら', often used when considering a range of possibilities
+    or outcomes.
+jlpt: N3
+etymology: The phrase 「もしかしたら」 is derived from the adverb 「若し (moshi)」 meaning 'if,' the case marking
+  particle 「か (ka)」, and 「したら (shitara)」, which is a conditional form of the verb 「する (suru)」 (to do).
+  This structure conveys a sense of hypothetical occurrence. Variants such as 「もしかして」 and 「もしかすると」 use
+  the te-form 「して」 and the conditional 「すると」 respectively, maintaining a similar core meaning of 'if it
+  happens to be the case' or 'should it so happen that,' thereby expressing uncertainty or possibility.
+writeup: 「もしかしたら」 is an adverb used to express uncertainty or possibility, equivalent to English terms
+  like "perhaps," "maybe," or "possibly." This expression, along with its close relatives 「もしかして」 and
+  「もしかすると」, functions to introduce hypothetical situations or potential outcomes. Like many other Japanese
+  adverbs, 「もしかしたら」 frequently appears at the beginning of a sentence. To further emphasize the degree
+  of uncertainty, it is often combined with the auxiliary phrase 「かもしれない」, although this is not always
+  mandatory. While 「もしかしたら」 presents a hypothetical condition, the overall tense and aspect of the sentence
+  are determined by the main clause that follows.
+false_friends:
+  - term: おそらく
+    meaning: Probably, perhaps, (most) likely, (I) fear that
+    kind: synonym
+    nuance: Unlike 「もしかしたら」, 「おそらく」 suggests a higher degree of probability or certainty regarding an
+      outcome, leaning more towards 'probably' than 'possibly'.
+    grammar_point: おそらく (probably)
+  - term: かもしれない
+    meaning: Might, maybe, probably
+    kind: similar expression
+    nuance: While 「かもしれない」 often appears in sentences with 「もしかしたら」 to emphasize uncertainty, it can also
+      be used independently to express possibility without the introductory nuance of a hypothetical situation,
+      focusing purely on potentiality rather than a hypothetical 'if it happens to be the case'.
+    grammar_point: かもしれない (might・maybe)
+  - term: あるいは
+    meaning: Or, possibly, maybe, perhaps, or possibly
+    kind: similar expression
+    nuance: 「あるいは」 is more commonly used to present alternative options or possibilities, or as a conjunction
+      meaning 'or', whereas 「もしかしたら」 focuses on a single uncertain possibility or hypothetical event.
+    grammar_point: あるいは (or・alternatively)
+  - term: ひょっとしたら
+    meaning: Maybe, perhaps, by any chance
+    kind: synonym
+    nuance: Very similar to 「もしかしたら」, but can sometimes imply a more unexpected or surprising possibility,
+      or a possibility that is less likely but still conceivable. It often carries a slightly more informal
+      or casual tone than 「もしかしたら」.
+    grammar_point: <strongly-suggest>:ひょっとしたら (maybe, perhaps, by any chance)
+  - term: きっと
+    meaning: Surely, undoubtedly, almost certainly
+    kind: similar expression
+    nuance: 「きっと」 expresses a strong conviction or high degree of certainty, directly contrasting the
+      uncertainty and weak possibility conveyed by 「もしかしたら」. It implies that the speaker is very confident
+      about the outcome.
+    grammar_point: <strongly-suggest>:きっと (surely, undoubtedly, almost certainly)
+post_false_friends_writeup: These expressions are similar but convey different levels of certainty or
+  slightly different contexts. To avoid confusion, remember that 「もしかしたら」 introduces a weak, often uncertain
+  possibility, often used for speculative thoughts. 「おそらく」 indicates a higher degree of probability, leaning
+  towards 'probably' or 'most likely.' 「あるいは」 is typically used when presenting alternatives or adding
+  an 'or possibly' nuance. 「ひょっとしたら」 is very close to 「もしかしたら」 but can emphasize a more unexpected or
+  less likely possibility. 「きっと」, conversely, indicates strong confidence in an outcome, standing in direct
+  contrast to the tentativeness of 「もしかしたら」.
+examples:
+  - english: Perhaps it will rain tomorrow.
+    japanese:
+      - '{もし か し たら} 明日 雨 が 降る か も しれ ない。'
+      - '{もし か し て} 明日 雨 が 降る か も しれ ない。'
+      - '{もし か する と} 明日 雨 が 降る か も しれ ない。'
+    english_literally: If it happens to be the case, tomorrow rain might fall.
+    competing_grammar:
+      - competing_japanese:
+          - '{た ぶん} 明日 雨 が 降る {だろう}'
+        english: Probably it will rain tomorrow.
+        hint: This phrase expresses a higher degree of probability, whereas the scene implies a weaker
+          possibility. We're looking for a phrase that suggests a faint chance.
+    scene: Someone looking at a cloudy sky and considering the weather.
+    register: casual
+    setting: cautious
+    speaker_age: younger
+    nuance: This is a very common and direct use of 「もしかしたら」 to express a simple, uncertain possibility
+      about a future event. The casual tone suits a younger speaker contemplating the weather.
+  - english: Maybe I will be able to go.
+    japanese:
+      - '{もし か し たら} 行ける か も しれ ない。'
+      - '{もし か し て} 行ける か も しれ ない。'
+      - '{もし か する と} 行ける か も しれ ない。'
+    english_literally: If it happens to be the case, going is possible.
+    competing_grammar:
+      - competing_japanese:
+          - '{た ぶん} 行ける {だろう}'
+        english: Probably I will be able to go.
+        hint: The scene emphasizes a weaker possibility and uncertainty, not a higher probability. We're
+          looking for a phrase that implies a faint chance, not a likely outcome.
+    scene: Someone unsure about their ability to attend an event.
+    register: casual
+    setting: cautious
+    speaker_age: younger
+    nuance: The speaker expresses uncertainty about their ability to attend, a common nuance when using
+      「もしかしたら」 combined with 「かも しれない」 to convey a possibility that is not yet certain. This is typical
+      casual conversation among younger individuals, implying a hypothetical situation that might lead
+      to attendance.
+  - english: Perhaps he's not feeling well.
+    japanese:
+      - '{もし か し たら} 彼 は 体調 が 悪い の か も しれ ませ ん。'
+      - '{もし か し て} 彼 は 体調 が 悪い の か も しれ ませ ん。'
+      - '{もし か する と} 彼 は 体調 が 悪い の か も しれ ませ ん。'
+      - '{もし か し たら} 彼 は 体調 が 悪い か も しれ ませ ん。'
+      - '{もし か し て} 彼 は 体調 が 悪い か も しれ ませ ん。'
+      - '{もし か する と} 彼 は 体調 が 悪い か も しれ ませ ん。'
+    english_literally: If it happens to be the case, he might be in bad physical condition.
+    competing_grammar:
+      - competing_japanese:
+          - '{た ぶん} 彼 は 体調 が 悪い {だろう}。'
+        english: He's probably not feeling well.
+        hint: The scene implies a cautious speculation, not a strong probability. We're looking for a
+          phrase that suggests a weak possibility.
+    scene: Colleagues discussing an absent coworker, expressing concern.
+    register: semi-formal
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: This phrase allows the speaker to express empathetic speculation about someone's condition
+      politely. The use of 「かもしれません」 maintains a respectful distance while conveying concern, suitable
+      for a semi-formal work environment and an older female speaking to an older male colleague.
+  - english: I may have to work, so I can't say anything for certain right now.
+    japanese:
+      - '{もし か し て} 仕事 が ある か も しれ ない から、今 は はっきり し た こと が 言え ない。'
+      - '{もし か し たら} 仕事 が ある か も しれ ない から、今 は はっきり し た こと が 言え ない。'
+      - '{もし か する と} 仕事 が ある か も しれ ない から、今 は はっきり し た こと が 言え ない。'
+    english_literally: If it happens to be the case, there might be work, so now I cannot say anything
+      clearly.
+    competing_grammar:
+      - competing_japanese:
+          - '{多分} 仕事 が ある から、今 は はっきり し た こと が 言え ない。'
+        english: I probably have work, so I can't say anything for certain right now.
+        hint: The scene focuses on a weak possibility for why the speaker can't commit. We're looking
+          for a phrase that emphasizes a slight chance, not a probable one.
+    scene: Someone explaining why they can't commit to plans.
+    register: semi-formal
+    setting: cautious
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker, a male, uses 「もしかして」 to cautiously explain the possibility of work preventing
+      a firm commitment, which is a common polite way to decline or postpone plans in professional or
+      semi-formal settings, particularly when addressing a female listener. The use of 「かも しれない」 reinforces
+      the uncertainty, maintaining a respectful tone by not giving a definitive 'no'.
+  - english: Perhaps we should consider another option.
+    japanese:
+      - '{もし か し たら} 他 の 選択 肢 も 検討 し た ほう が いい か も しれ ませ ん。'
+      - '{もし か し て} 他 の 選択 肢 も 検討 し た ほう が いい か も しれ ませ ん。'
+      - '{もし か する と} 他 の 選択 肢 も 検討 し た ほう が いい か も しれ ませ ん。'
+    english_literally: If it happens to be the case, it might be better to consider other options too.
+    competing_grammar:
+      - competing_japanese:
+          - 他 の 選択 肢 を 検討 {す べき} だ と 思い ます。
+        english: I think we should consider other options.
+        hint: This phrase is a direct recommendation, whereas the scene requires a softer, more tentative
+          suggestion. We're looking for a phrase that introduces an option as a possibility rather than
+          a necessity.
+    scene: A team meeting where a difficult decision needs to be made, and a team member offers a hesitant
+      suggestion.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    speaker_age: older
+    nuance: This example uses 「もしかしたら」 to introduce a suggestion in a formal and respectful manner. By
+      framing it as a possibility 「検討 し た ほう が いい か も しれ ませ ん」, the speaker softens the impact of their
+      opinion, allowing for discussion without being overly assertive, which is typical in Japanese business
+      settings, especially for an older female speaker addressing a group.
+  - english: Maybe Ann-chan might come, but is everyone okay with that?
+    japanese:
+      - '{もし か する と} アン ちゃん も 来る か も しれ ない けど、みんな は 平気？'
+      - '{もし か し たら} アン ちゃん も 来る か も しれ ない けど、みんな は 平気？'
+      - '{もし か し て} アン ちゃん も 来る か も しれ ない けど、みんな は 平気？'
+    english_literally: If it happens to be the case, Ann-chan might also come, but is everyone fine with
+      it?
+    competing_grammar:
+      - competing_japanese:
+          - '{多分} アン ちゃん も 来る {だろう} けど、みんな は 平気？'
+        english: Ann-chan will probably come, but is everyone okay with that?
+        hint: The scene describes a tentative check about a possibility, not a high likelihood. We're
+          looking for a phrase that emphasizes uncertainty, not probability.
+    scene: A friend checking with others about a potential addition to a group, sensitive to group dynamics.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+    nuance: This sentence uses 「もしかすると」 to gently introduce a possibility regarding someone else's attendance,
+      followed by a question to gauge others' reactions. The 「平気？」 shows consideration for the group's
+      comfort, typical among close friends, implying a speculative and inclusive query. The use of 「アンちゃん」
+      is a familiar term, reinforcing the casual and friendly setting.
+  - english: Perhaps I said something strange yesterday.
+    japanese:
+      - '{もし か し たら} 昨日 変 な こと を 言っ た か も しれ ない。'
+      - '{もし か し て} 昨日 変 な こと を 言っ た か も しれ ない。'
+      - '{もし か する と} 昨日 変 な こと を 言っ た か も しれ ない。'
+    english_literally: If it happens to be the case, yesterday I might have said a strange thing.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 変 な こと を 言っ た {に 違い ない}。
+        english: I must have said something strange yesterday.
+        hint: This phrase expresses strong certainty, whereas the scene implies mere speculation and uncertainty
+          about a past action. We're looking for a phrase that conveys a possibility, not a definite conclusion.
+    scene: Someone recalling a conversation from the previous day, feeling a slight apprehension about
+      their words.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「もしかしたら」 combined with the past tense and 「かもしれない」 allows the speaker to express a hesitant
+      and uncertain self-reflection about a past action. This nuance suggests a mild worry or sudden realization,
+      common in casual internal monologues or discussions with close friends. The speaker, a younger female,
+      uses a common casual speech pattern.
+  - english: Perhaps we can go to the park later?
+    japanese:
+      - '{もし か し たら} 後 で 公園 に 行ける か も しれ ない よ？'
+      - '{もし か し て} 後 で 公園 に 行ける か も しれ ない よ？'
+      - '{もし か する と} 後 で 公園 に 行ける か も しれ ない よ？'
+    english_literally: If it happens to be the case, later to the park might be able to go, you know?
+    competing_grammar:
+      - competing_japanese:
+          - 後 で 公園 に {行こう か}？
+        english: Shall we go to the park later?
+        hint: This phrase is a direct invitation, whereas the scene implies a gentler suggestion, acknowledging
+          a possibility rather than a firm plan. We're looking for a phrase that hints at a potential
+          activity.
+    scene: A parent suggesting a possible fun activity to their child, leaving room for other plans.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: This phrasing uses 「もしかしたら」 to introduce a tentative suggestion, making it less of a direct
+      command or invitation and more of a gentle possibility. The sentence-final particle 「よ」 adds a soft,
+      reassuring, or informing tone, often used by parents to their children, making the suggestion feel
+      warm and open.
+  - english: Perhaps the train will be delayed due to the snow, so we should leave early.
+    japanese:
+      - '{もし か し たら} 雪 で 電車 が 遅れる か も しれ ない から、早く 出発 しよう。'
+      - '{もし か し て} 雪 で 電車 が 遅れる か も しれ ない から、早く 出発 しよう。'
+      - '{もし か する と} 雪 で 電車 が 遅れる か も しれ ない から、早く 出発 しよう。'
+    english_literally: If it happens to be the case, by snow the train might be delayed, therefore, let's
+      depart early.
+    competing_grammar:
+      - competing_japanese:
+          - '{多分} 雪 で 電車 が 遅れる から、早く 出発 しよう。'
+        english: Probably the train will be delayed due to the snow, so let's leave early.
+        hint: The scene implies a cautious prediction and a preventative measure, not a strong likelihood.
+          We're looking for a phrase that conveys a weaker possibility as the basis for a proactive decision.
+    scene: Friends planning a trip during winter, anticipating potential travel issues.
+    register: casual
+    setting: cautious
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: This example demonstrates 「もしかしたら」 being used to express a potential future problem (train
+      delay) as the reason for taking a preventative action (leaving early). The 「かもしれないから」 structure
+      clearly links the uncertainty to the subsequent advice. This is a practical use in casual conversation
+      between younger friends, showing foresight.
+  - english: Perhaps there is still a possibility of success.
+    japanese:
+      - '{もし か し たら} まだ 成功 する 可能 性 が ある か も しれ ませ ん。'
+      - '{もし か し て} まだ 成功 する 可能 性 が ある か も しれ ませ ん。'
+      - '{もし か する と} まだ 成功 する 可能 性 が ある か も しれ ませ ん。'
+    english_literally: If it happens to be the case, still success possibility might be.
+    competing_grammar:
+      - competing_japanese:
+          - まだ 成功 する 可能 性 が ある と {思い ます}。
+        english: I think there is still a possibility of success.
+        hint: This phrase expresses a personal belief or opinion, whereas the scene needs to convey a
+          more objective, uncertain possibility. We're looking for a phrase that emphasizes the 'maybe'
+          aspect rather than a firm thought.
+    scene: A project manager discussing a challenging project with their team, trying to motivate them
+      by highlighting a slim chance.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    speaker_age: older
+    nuance: In a professional context, 「もしかしたら」 is used here to cautiously suggest a remaining chance
+      of success, maintaining a realistic yet hopeful tone. The use of 「かもしれません」 reinforces the politeness
+      and acknowledges the uncertainty inherent in the situation, suitable for an older male leader addressing
+      his team in a serious discussion.
+post_example_writeup: 'The different forms of 「もしかしたら」— 「もしかしたら」, 「もしかして」, and 「もしかすると」—are largely interchangeable
+  in meaning when expressing uncertainty or possibility. While subtle nuances exist, particularly in their
+  grammatical endings (conditional 「たら」, te-form 「て」, and conditional 「と」), their core function remains
+  consistent: to introduce a hypothetical situation. The choice often comes down to stylistic preference
+  or the specific flow of the sentence. All forms are typically used in conjunction with auxiliary expressions
+  of possibility like 「かもしれない」 or 「でしょう」 to complete the probabilistic statement.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/もしかしたら

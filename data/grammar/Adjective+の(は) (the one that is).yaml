@@ -1,0 +1,429 @@
+grammar_point: Adjective+の(は) (the one that is)
+learn_before:
+  - やつ (informal thing or person)
+meaning: The one that is...
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 形容詞 (い形) + の
+    rarity: common
+    meaning: the one that is [i-adjective]
+  - conjugation-type: dictionary (plain non-past)
+    form: 形容動詞 (な形) + なの
+    rarity: common
+    meaning: the one that is [na-adjective]
+  - conjugation-type: negative plain (～ない)
+    form: 形容詞 (い形) (ない形) + の
+    rarity: common
+    meaning: the one that is not [i-adjective]
+  - conjugation-type: negative plain (～ない)
+    form: 形容動詞 (な形) (ない形) + なの
+    rarity: common
+    meaning: the one that is not [na-adjective]
+  - conjugation-type: past plain (～た)
+    form: 形容詞 (い形) (た形) + の
+    rarity: common
+    meaning: the one that was [i-adjective]
+  - conjugation-type: past plain (～た)
+    form: 形容動詞 (な形) (た形) + なの
+    rarity: common
+    meaning: the one that was [na-adjective]
+  - conjugation-type: negative past plain (～なかった)
+    form: 形容詞 (い形) (なかった形) + の
+    rarity: common
+    meaning: the one that was not [i-adjective]
+  - conjugation-type: negative past plain (～なかった)
+    form: 形容動詞 (な形) (なかった形) + なの
+    rarity: common
+    meaning: the one that was not [na-adjective]
+pronunciation:
+  katakana: ケイヨウシ ノ(ワ)
+  romaji: keiyoushi no (wa)
+formation:
+  い-Adjective + の(は/が/も): Nominalizes an い-adjective, referring to an implicit noun or thing.
+  な-Adjective stem + なの(は/が/も): Nominalizes a な-adjective, referring to an implicit noun or thing. Requires
+    な before の.
+jlpt: N5
+etymology: The particle 「の」 acts as a nominalizer, turning the preceding word or phrase into a noun. In
+  this grammatical structure, it specifically nominalizes an adjective. The particle 「は」 is the topic
+  marker, indicating what the speaker is focusing on. Other particles like 「が」 (subject marker) or 「も」
+  (also/too) can follow 「の」, depending on the desired grammatical role or nuance.
+writeup: |-
+  The grammatical pattern 「Adjective + の(は/が/も)」 is used to refer to a person or thing that possesses a particular adjectival quality, without explicitly stating the noun.
+
+  For **い-adjectives**, you simply attach 「の」 directly to the adjective (e.g., 「高い の」, 「安い の」). For **な-adjectives**, you must insert 「な」 before 「の」 (e.g., 「きれい な の」, 「元気 な の」).
+
+  Following 「の」, various particles can be used, with 「は」, 「が」, and 「も」 being the most common:
+
+  *   **は**: Marks the nominalized adjective as the topic of the sentence.
+  *   **が**: Marks the nominalized adjective as the subject of the sentence (often indicating new information or emphasis).
+  *   **も**: Indicates 'also' or 'too', applying the statement to the nominalized adjective in addition to something else.
+
+  This construction is highly versatile and frequently used in everyday Japanese conversations to avoid redundancy and make sentences more fluid.
+false_friends:
+  - term: Adjective + Noun
+    meaning: An adjective directly modifying a noun (e.g., 古い 車 - old car)
+    kind: similar expression
+    nuance: While grammatically correct, using 'Adjective + Noun' can be redundant if the noun has already
+      been established or is easily inferred from context. 'Adjective+の' replaces the noun, making the
+      expression more concise.
+    grammar_point: <suggest>:Adjective + Noun (modifying nouns)
+  - term: の (possession)
+    meaning: Possessive particle (e.g., 私 の 本 - my book)
+    kind: often confused with
+    nuance: This 「の」 indicates possession or belonging, connecting two nouns. It is distinct from the
+      nominalizing 「の」 which converts an adjective into a noun-like entity in this grammar point.
+    grammar_point: の (possession)
+  - term: の (sentence-ending)
+    meaning: Sentence-ending particle (e.g., どこ 行く の？ - Where are you going?)
+    kind: often confused with
+    nuance: This 「の」 is placed at the end of a sentence to add emphasis, seek explanation, or ask a question,
+      primarily in casual speech. It does not nominalize the preceding adjective or replace a noun.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+post_false_friends_writeup: The particle 「の」 has multiple functions in Japanese. While it can indicate
+  possession or appear as a sentence-ending particle, its role in this grammar point is to nominalize
+  adjectives. Understanding the context and the word preceding 「の」 is key to distinguishing its various
+  uses and avoiding confusion.
+examples:
+  - english: Among these, which one is the old one?
+    japanese:
+      - この 中 で {古い の} は どれ です か。
+      - この 中 で {古い の} は どれ？
+      - この 中 で {古い の} は どれ だ？
+    english_literally: Among these, the old one, which is it?
+    competing_grammar:
+      - competing_japanese:
+          - この 中 で 古い {物} は どれ です か。
+        english: Among these, which old item is it?
+        hint: The scene focuses on items already present in a shop, making 「の」 (implying 'the old one'
+          of the items) more natural than explicitly stating 「物」.
+      - competing_japanese:
+          - 古い {方} は どれ です か。
+        english: Which is the older one?
+        hint: While 「方」 can also refer to 'one', 「の」 is more commonly used for nominalization of adjectives
+          to refer to an object's quality in general, whereas 「方」 often implies a choice between two or
+          more options.
+      - competing_japanese:
+          - この 中 で 古い {もの} は どれ です か。
+        english: Among these, which old thing is it?
+        hint: Using 「もの」 explicitly states the noun 'thing', whereas 「の」 implicitly refers to 'the one'
+          with that quality, making the expression more concise.
+    scene: A man is looking at several antique items in a shop and asks the shopkeeper for clarification.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker uses the polite form 「ですか」 and 「の」 to refer to an unspecified 'thing' that is
+      old. 「古い の」 acts as a noun phrase replacing 「古い 物」 or 「古い 品」.
+  - english: The ones I like, after all, are spicy dishes.
+    japanese:
+      - 私 が {好き な の} は、やはり 辛い 料理 です。
+      - 私 が {好き な の} は、やはり 辛い 料理 だ ね。
+      - 私 が {好き な の} は、やっぱ 辛い 料理 だ な。
+      - 私 が {好き な もの} は、やはり 辛い 料理 です。
+    english_literally: The one I like, after all, is spicy dish.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 好き な {物} は、やはり 辛い 料理 です。
+        english: The things I like, after all, are spicy dishes.
+        hint: The context of discussing general food preferences makes 「の」 (referring to the type of thing
+          liked) more concise and idiomatic than explicitly stating 「物」 (thing/object).
+      - competing_japanese:
+          - 私 は やはり 辛い 料理 が {好き です}。
+        english: I, after all, like spicy dishes.
+        hint: This is a simpler sentence structure stating preference directly, without nominalizing the
+          adjective. We're looking for a structure that nominalizes the adjective.
+      - competing_japanese:
+          - 私 が 好き な {もの} は、やはり 辛い 料理 です。
+        english: The things I like, after all, are spicy dishes.
+        hint: Using 「もの」 explicitly states the noun 'thing', whereas 「の」 implicitly refers to 'the one'
+          with that quality, making the expression more concise.
+    scene: A woman is discussing her food preferences with friends at a restaurant.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「好き な の」 nominalizes the な-adjective 「好き」 (likeable/favorite), functioning as 'the thing I
+      like'. The particle 「は」 marks this as the topic. The feminine nuance comes from the gentle tone
+      overall and the choice of topic.
+  - english: I bought it yesterday. How was that expensive one?
+    japanese:
+      - 昨日 買い まし た。あの {高い の} は どう でし た か。
+      - 昨日 買っ た よ。あの {高い の} は どう だっ た？
+      - 昨日 買い まし た。あの {高価 な もの} は いかが でし た か。
+    english_literally: Yesterday bought. That expensive one, how was it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 高い {物} は どう でし た か。
+        english: How was that expensive item?
+        hint: The previous conversation about 'it' allows the use of 「の」 to avoid repeating the noun for
+          the expensive item, making the conversation flow more naturally.
+      - competing_japanese:
+          - あの {高価 な もの} は いかが でし た か。
+        english: How was that expensive item?
+        hint: This uses a more formal adjective 「高価な」 and explicitly states 「もの」, which is generally less
+          concise than using 「の」 when the context is clear.
+    scene: A man asks his friend about an expensive gadget they discussed buying recently.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「高い の」 refers to the expensive item that was previously talked about. It's concise and avoids
+      repeating the noun for the item. The polite 「どう でしたか」 maintains a respectful distance.
+  - english: Sorry, I can't eat the one that doesn't taste good.
+    japanese:
+      - ごめん、{美味しく ない の} は 食べ られ ない よ。
+      - ごめん、{美味しく ない の} は 食べ られ ない もん！
+      - すみ ませ ん、{美味しく ない の} は 食べ られ ませ ん。
+      - ごめん、{美味しく ない の} は 食べ られ ない な。
+    english_literally: Sorry, the not delicious one, cannot eat.
+    competing_grammar:
+      - competing_japanese:
+          - 美味しく ない {料理} は 食べ られ ない よ。
+        english: Sorry, I can't eat the dish that doesn't taste good.
+        hint: The scene implies a general refusal based on taste, not necessarily a specific dish. 「の」
+          allows the child to refer to 'anything that doesn't taste good' rather than a specific 'dish'.
+      - competing_japanese:
+          - 美味しく ない {の}？食べ られ ない {の}？
+        english: Is it not delicious? Can't you eat it?
+        hint: The sentence-ending 「の」 turns a statement into a question, often seeking explanation, while
+          「の は」 nominalizes an adjective to refer to 'the thing that is'.
+      - competing_japanese:
+          - 美味しく ない {もの} は 食べ られ ない よ。
+        english: Sorry, I can't eat something that doesn't taste good.
+        hint: Using 「もの」 explicitly states the noun 'thing', whereas 「の」 implicitly refers to 'the one'
+          with that quality, making the expression more concise.
+    scene: A child refuses to eat a dish his mother cooked.
+    register: casual
+    setting: apologetic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「美味しくない の」 uses the plain negative form of the い-adjective 「美味しい」, nominalizing it to mean
+      'the thing that isn't delicious'. The casual 「よ」 at the end gives it a direct, slightly firm child-like
+      tone.
+  - english: I can't concentrate on studying if it's not quiet.
+    japanese:
+      - '{静か じゃ ない の} は、勉強 に 集中 でき ませ ん。'
+      - '{静か じゃ ない の} は、勉強 に 集中 でき ない よ。'
+      - '{静か じゃ ない の} は、勉強 に 集中 でき ない。'
+      - '{静か じゃ ない の} だ と、勉強 に 集中 でき ませ ん。'
+    english_literally: The not quiet one, cannot concentrate on studying.
+    competing_grammar:
+      - competing_japanese:
+          - 静か じゃ ない {環境} で は 勉強 に 集中 でき ませ ん。
+        english: I can't concentrate on studying in an environment that is not quiet.
+        hint: 「の」 here nominalizes the state of not being quiet, referring to a general condition rather
+          than a specific noisy 'environment', making the complaint broader.
+      - competing_japanese:
+          - 静か で ない {と} 勉強 に 集中 でき ませ ん。
+        english: If it's not quiet, I can't concentrate on studying.
+        hint: This uses a conditional structure 「～でない と」 instead of nominalizing the adjective to refer
+          to a state. We're looking for a nominalized form.
+      - competing_japanese:
+          - 静か な {場所} じゃ ない {と} 勉強 に 集中 でき ませ ん。
+        english: If it's not a quiet place, I can't concentrate on studying.
+        hint: This explicitly mentions 'place' 「場所」 and uses a conditional, rather than nominalizing the
+          adjective itself.
+      - competing_japanese:
+          - 静か で ない {もの} は、勉強 に 集中 でき ませ ん。
+        english: Things that are not quiet, I can't concentrate on studying.
+        hint: Using 「もの」 explicitly states the noun 'thing', whereas 「の」 implicitly refers to 'the one'
+          with that quality, making the expression more concise.
+    scene: A student complains to their roommate about the noise in their shared living space.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「静か じゃ ない の」 uses the plain negative form of the な-adjective 「静か」, referring to a situation
+      or place that is not quiet. The polite ending 「できません」 indicates a respectful but firm complaint.
+      The nominalization helps generalize the situation rather than specifying a 'noisy room' or 'noisy
+      situation'.
+  - english: The cute one is that cat over there, you know.
+    japanese:
+      - '{可愛い の} は あっち の 猫 だ よ。'
+      - '{可愛い の} が あっち の 猫 だ よ。'
+      - '{可愛い の} は あっち の 猫 だ。'
+      - '{可愛い もの} は あっち の 猫 です よ。'
+    english_literally: The cute one is that cat over there.
+    competing_grammar:
+      - competing_japanese:
+          - 可愛い {猫} は あっち の 猫 だ よ。
+        english: The cute cat is that cat over there, you know.
+        hint: When pointing out a specific instance of something previously implied (a cat in a pet shop),
+          「の」 is often used to refer to 'the one with that quality' rather than explicitly naming the
+          noun again.
+      - competing_japanese:
+          - 可愛い {の}？あっち の 猫 は。
+        english: Is it cute? That cat over there.
+        hint: The sentence-ending 「の」 turns a statement into a question, often seeking explanation, while
+          「の は」 nominalizes an adjective to refer to 'the thing that is'.
+      - competing_japanese:
+          - 可愛い {子} は あっち の 猫 だ よ。
+        english: The cute little one is that cat over there, you know.
+        hint: While 「子」 can be used informally for animals or small things, 「の」 is a more general nominalizer
+          for adjectives.
+      - competing_japanese:
+          - 可愛い {もの} は あっち の 猫 だ よ。
+        english: The cute thing is that cat over there, you know.
+        hint: Using 「もの」 explicitly states the noun 'thing', whereas 「の」 implicitly refers to 'the one'
+          with that quality, making the expression more concise.
+    scene: Two friends are looking at cats in a pet shop. One friend points out a specific cat.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「可愛い の」 refers to 'the cute one', replacing 「可愛い 猫」 (cute cat) to avoid repetition. The particle
+      「よ」 adds a gentle, informative, or assertive tone typical in casual conversation among friends.
+  - english: Let's try both the one that was cheap and the one that was expensive.
+    japanese:
+      - '{安かっ た の} も、{高かっ た の} も、どちら も 試し て み ましょう。'
+      - '{安かっ た の} も、{高かっ た の} も、両方 試し て みよう よ。'
+      - '{安かっ た の} も、{高かっ た の} も、どちら も 試し て みよう。'
+      - '{安かっ た もの} も、{高かっ た もの} も、どちら も 試し て み ましょう。'
+    english_literally: The one that was cheap also, the one that was expensive also, let's try both.
+    competing_grammar:
+      - competing_japanese:
+          - 安かっ た {物} も、高かっ た {物} も、どちら も 試し て み ましょう。
+        english: Let's try both the cheap item and the expensive item.
+        hint: Using 「物」 explicitly states the noun, whereas 「の」 implicitly refers to 'the one' with that
+          quality, making the expression more concise when the noun is understood.
+      - competing_japanese:
+          - 安い {方} も、高い {方} も、どちら も 試し て み ましょう。
+        english: Let's try both the cheaper option and the more expensive option.
+        hint: 「方」 implies a choice between options, whereas 「の」 more generally nominalizes the adjective
+          to refer to something possessing that quality.
+      - competing_japanese:
+          - 安価 だっ た {もの} も、高価 だっ た {もの} も、どちら も 試し て み ましょう。
+        english: Let's try both the inexpensive one and the expensive one.
+        hint: This uses more formal adjectives and explicitly states 「もの」, which is generally less concise
+          than using 「の」 when the context is clear.
+    scene: Two colleagues are choosing between two different product prototypes for testing, one cheap
+      and one expensive.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: female
+    nuance: This example uses 「の」 with both 「安かった」 (past of い-adjective 「安い」) and 「高かった」 (past of い-adjective
+      「高い」). The 「も」 particle indicates 'also' or 'both'. The combination 「～かった の も」 creates a parallel
+      structure to compare the two items. The polite volitional 「～ましょう」 is suitable for a professional
+      setting.
+  - english: We immediately threw away the one that wasn't clean.
+    japanese:
+      - '{綺麗 じゃ なかっ た の} は、すぐ に 捨て まし た。'
+      - '{綺麗 じゃ なかっ た の} は、すぐ 捨て た よ。'
+      - '{綺麗 で は なかっ た もの} は、直ちに 処分 いたし まし た。'
+    english_literally: The one that wasn't clean, immediately threw away.
+    competing_grammar:
+      - competing_japanese:
+          - 綺麗 じゃ なかっ た {製品} は、すぐ に 捨て まし た。
+        english: We immediately threw away the product that wasn't clean.
+        hint: 「の」 nominalizes the adjective to refer to 'the one' with that quality, implicitly replacing
+          the noun. Using 「製品」 explicitly states the noun.
+      - competing_japanese:
+          - 綺麗 で なかっ た {もの} は、すぐ に 捨て まし た。
+        english: We immediately threw away the thing that wasn't clean.
+        hint: Using 「もの」 explicitly states the noun 'thing', whereas 「の」 implicitly refers to 'the one'
+          with that quality, making the expression more concise.
+      - competing_japanese:
+          - '{汚い もの} は、すぐ に 捨て まし た。'
+        english: We immediately threw away the dirty one.
+        hint: While 「汚い」 is an antonym for clean, 「綺麗 じゃなかった の」 specifically states what *wasn't* clean,
+          implying a deviation from an expected state, rather than simply being dirty.
+    scene: A manager reports to their boss about handling defective products.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「綺麗 じゃなかった の」 uses the plain negative past form of the な-adjective 「綺麗」, nominalizing 'the
+      one that wasn't clean'. While 「処分 しました」 (disposed of) is more formal, 「捨てました」 (threw away) is common
+      and appropriate for a professional context without requiring N1 kanji. This phrasing efficiently
+      refers to the specific item without naming it.
+  - english: The convenient one is already sold out.
+    japanese:
+      - '{便利 な の} は もう 売り切れ まし た。'
+      - '{便利 な やつ} は もう 売り切れ まし た。'
+      - '{便利 な もの} は もう 売り切れ まし た。'
+    english_literally: The convenient one, already sold out.
+    competing_grammar:
+      - competing_japanese:
+          - 便利 な {商品} は もう 売り切れ まし た。
+        english: The convenient product is already sold out.
+        hint: When the context of the noun is clear, using 「の」 to refer to 'the one with that quality'
+          makes the expression more concise and natural than explicitly stating the noun like 「商品」.
+    scene: A customer asks a store clerk about a popular, conveniently designed electronic gadget.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「便利な の」 nominalizes the な-adjective 「便利」 (convenient), functioning as 'the convenient one'.
+      The polite 「売り切れました」 is appropriate for a customer-clerk interaction. The use of 「の」 is natural
+      when referring to an implied item already clear in context.
+  - english: The fun one was definitely the trip to Okinawa.
+    japanese:
+      - '{楽しかっ た の} は やっぱり 沖縄 旅行 だ よ。'
+      - '{楽しかっ た やつ} は やっぱり 沖縄 旅行 だ よ。'
+      - '{楽しかっ た こと} は やっぱり 沖縄 旅行 だ よ。'
+    english_literally: The one that was fun, after all, was the Okinawa trip.
+    competing_grammar:
+      - competing_japanese:
+          - 楽しかっ た {旅行} は やっぱり 沖縄 旅行 だ よ。
+        english: The fun trip was definitely the Okinawa trip.
+        hint: 「の」 here effectively replaces the noun 「旅行」, allowing for a more succinct expression when
+          the context makes the implied noun clear.
+      - competing_japanese:
+          - 一番 楽しかっ た {の} は 沖縄 旅行 だ よ。
+        english: The most fun one was definitely the Okinawa trip.
+        hint: Adding 「一番」 changes the nuance to a superlative ('most fun'), which is different from simply
+          identifying 'the fun one'.
+    scene: Two male friends are discussing their favorite past vacations over drinks.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「楽しかった の」 uses the past tense of the い-adjective 「楽しい」 (fun), nominalizing it to mean 'the
+      one that was fun'. The casual 「だ よ」 at the end adds a sense of assertion or shared understanding
+      between friends. This is a common way for male friends to share opinions.
+  - english: The one that wasn't boring was actually the last lecture.
+    japanese:
+      - '{つまら なく なかっ た の} は 実 は 最後 の 講義 でし た。'
+      - '{つまら なく なかっ た やつ} は 実 は 最後 の 講義 でし た。'
+      - '{つまら なく なかっ た もの} は 実 は 最後 の 講義 でし た。'
+    english_literally: The not boring one, actually was the last lecture.
+    competing_grammar:
+      - competing_japanese:
+          - '{面白かっ た の} は 実 は 最後 の 講義 でし た。'
+        english: The interesting one was actually the last lecture.
+        hint: 「つまらなく なかった」 implies a more subdued positive, suggesting it wasn't bad, rather than being
+          actively 'interesting' or 'good' like 「面白かった」.
+      - competing_japanese:
+          - '{退屈 で なかっ た の} は 実 は 最後 の 講義 でし た。'
+        english: The one that wasn't tedious was actually the last lecture.
+        hint: While similar, 「つまらない」 directly means 'boring' or 'dull', whereas 「退屈」 often implies 'tedious'
+          or 'wearisome', which can carry a slightly different nuance in context.
+    scene: A university student is talking to a classmate about a series of lectures they just attended.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative past plain (～なかった)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「つまらなく なかった の」 uses the negative past of the い-adjective 「つまらない」 (boring), nominalizing it
+      to mean 'the one that wasn't boring'. The use of 「実は」 (actually) adds a slight surprise. This nuanced
+      positive ('not boring' rather than 'interesting') is well captured by the negative form. The polite
+      ending 「でした」 is suitable for conversing with a classmate.
+post_example_writeup: This pattern is highly flexible and appears frequently in everyday conversation
+  as it provides a concise way to refer to items or concepts based on their characteristics without needing
+  to constantly repeat the specific noun. Mastering its use will greatly enhance your fluency.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/adjective-の-は

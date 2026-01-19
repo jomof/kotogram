@@ -1,0 +1,432 @@
+grammar_point: ちなみに (by the way)
+learn_before:
+  - 〜代 (decade or generation)
+  - いい (good)
+  - が (subject marker)
+  - でございます (polite copula, formal)
+  - と (with)
+  - 各 (each or every)
+  - 方面 (general direction・route)
+meaning: Incidentally, by the way, in connection with
+pronunciation:
+  katakana: チナミニ
+  romaji: chinamini
+formation:
+  Sentence 1 + ちなみに + Sentence 2: Adds related but somewhat tangential information to the previous statement.
+jlpt: N2
+etymology: The term 「ちなみに」 comes from the verb 「因む」(chinamu), which means "to be connected with" or "be
+  associated with." Over time, it evolved into an adverbial phrase used to introduce related information.
+writeup: 「ちなみに」 is a conjunction used to introduce additional, related information that is not essential
+  to the main point. Think of it as a way to add an interesting side note or a relevant fact that the
+  listener might find useful or interesting. It is similar to saying "by the way" or "incidentally" in
+  English. 「ちなみに」 is generally used in more formal or semi-formal contexts; it is not typically used in
+  very casual conversations among close friends. The information that follows 「ちなみに」 is often something
+  the speaker thinks the listener might find useful or interesting, but it is not a direct continuation
+  of the main topic. While both 「ちなみに」 and 「ところで」 can be translated as "by the way," 「ちなみに」 is used to
+  add related information, whereas 「ところで」 is used to change the topic completely.
+false_friends:
+  - term: ところで
+    meaning: by the way
+    kind: similar expression
+    nuance: Unlike 「ちなみに」 which adds related information, 「ところで」 is used to change the topic entirely.
+    grammar_point: ところで (by the way)
+  - term: しかも
+    meaning: moreover, furthermore
+    kind: similar expression
+    nuance: While 「ちなみに」 introduces related, often tangential information, 「しかも」 adds information that
+      strengthens or elaborates on the preceding statement, often implying an unexpected or additional
+      positive/negative aspect.
+    grammar_point: それに (in addition・moreover)
+  - term: それに
+    meaning: in addition
+    kind: similar expression
+    nuance: 「それに」 typically adds another point of comparable importance or another reason to what has
+      been said. 「ちなみに」 is more for a non-essential, incidental piece of related information.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: While both 「ちなみに」 and 「ところで」 can be translated as "by the way," it is important
+  to remember their distinct uses. Use 「ちなみに」 when you want to add related information to what you have
+  already said. Use 「ところで」 when you want to completely change the subject. Expressions like 「しかも」 and
+  「それに」 also add information, but they tend to build upon or reinforce the previous statement with more
+  emphasis or comparable importance, whereas 「ちなみに」 maintains a more casual, supplementary feel.
+examples:
+  - english: My hobby is reading. Incidentally, I've been really into historical novels lately.
+    japanese:
+      - 私 の 趣味 は 読書 です。{ちなみ に}、最近 は 歴史 小説 に はまっ て い ます。
+      - 僕 の 趣味 は 読書 だ よ。{ちなみ に}、最近 は 歴史 小説 に はまっ て いる ん だ。
+      - 私 の 趣味 は 読書 で ござい ます。{ちなみ に}、最近 は 歴史 小説 に はまっ て おり ます。
+    english_literally: As for my hobby, it is reading. Incidentally, recently I am absorbed in historical
+      novels.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 趣味 は 読書 です。{ところ で}、最近 は 歴史 小説 に はまっ て い ます。
+        english: My hobby is reading. By the way, I've been really into historical novels.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. We're looking for
+          a way to add an incidental detail about your hobby.
+      - competing_japanese:
+          - 私 の 趣味 は 読書 です。{そして} 最近 は 歴史 小説 に はまっ て い ます。
+        english: My hobby is reading. And lately, I've been really into historical novels.
+        hint: 「そして」 connects two sequential actions or facts with equal weight. Here, the second part
+          is an additional, slightly more specific detail about the hobby. We're looking for a way to
+          signal related but secondary information.
+      - competing_japanese:
+          - 私 の 趣味 は 読書 です。最近 は 歴史 小説 に はまっ て い ます。
+        english: While grammatically correct, this phrasing lacks the nuance of introducing a secondary,
+          related detail. We're looking for a way to explicitly state this information is incidental.
+        hint: While grammatically correct, this phrasing lacks the nuance of introducing a secondary,
+          related detail. We're looking for a way to explicitly state this information is incidental.
+    scene: A man is casually talking to his friend about his hobbies.
+    register: casual
+    setting: friendly
+  - english: The meeting will start as scheduled at 10 AM. By the way, the documents are placed on everyone's
+      desk.
+    japanese:
+      - 会議 は 予定 通り 10 時 に 始め ます。{ちなみ に}、資料 は 皆 さん の 机 の 上 に 置い て あり ます。
+      - 会議 は 10 時 から です。{ちなみ に}、資料 は すでに 配布 済み です。
+      - 会議 は 予定 通り 10 時 に 開始 し ます。{ちなみ に}、お 手元 に 資料 が ござい ます。
+    english_literally: The meeting will start as scheduled at 10 AM. Incidentally, documents are placed
+      on everyone's desk.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 予定 通り 10 時 に 始め ます。{ところ で}、資料 は 皆 さん の 机 の 上 に 置い て あり ます。
+        english: The meeting will start as scheduled at 10 AM. By the way, the documents are placed on
+          everyone's desk.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. Here, the document
+          placement is directly related to the meeting. We're looking for a way to add an incidental detail
+          about the meeting.
+      - competing_japanese:
+          - 会議 は 予定 通り 10 時 に 始め ます。{そして}、資料 は 皆 さん の 机 の 上 に 置い て あり ます。
+        english: The meeting will start as scheduled at 10 AM. And the documents are placed on everyone's
+          desk.
+        hint: 「そして」 connects two sequential actions or facts with equal weight. Here, the document information
+          is supplementary to the main announcement. We're looking for a way to introduce related, but
+          secondary, information.
+      - competing_japanese:
+          - 会議 は 予定 通り 10 時 に 始め ます。資料 は 皆 さん の 机 の 上 に 置い て あり ます。
+        english: In a professional setting, providing information about the documents is an important,
+          but supplementary detail to the main announcement about the meeting start time. We're looking
+          for a way to explicitly state this information is incidental.
+        hint: In a professional setting, providing information about the documents is an important, but
+          supplementary detail to the main announcement about the meeting start time. We're looking for
+          a way to explicitly state this information is incidental.
+    scene: A meeting organizer addressing participants in a professional setting.
+    register: formal
+    setting: informative
+  - english: This computer is very easy to use. By the way, it's currently on sale, so it's a good deal.
+    japanese:
+      - この パソコン は とても 使い やすい です よ。{ちなみ に}、今 なら キャンペーン 中 で お 得 です。
+      - この パソコン、すごく 使い やすい ん です よ。{ちなみ に}、今 なら すごく お 買い得 です。
+      - こちら の パソコン は 大変 使い やすい です。{ちなみ に}、現在 セール 中 で 大変 お 得 と なっ て おり ます。
+    english_literally: This personal computer is very easy to use. Incidentally, if it's now, it's during
+      a campaign and is a good deal.
+    competing_grammar:
+      - competing_japanese:
+          - この パソコン は とても 使い やすい です よ。{ところ で}、今 なら キャンペーン 中 で お 得 です。
+        english: This computer is very easy to use. By the way, it's currently on sale, so it's a good
+          deal.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. Here, the sale
+          is directly related to the computer. We're looking for a way to add an incidental sales point.
+      - competing_japanese:
+          - この パソコン は とても 使い やすい です よ。{また}、今 なら キャンペーン 中 で お 得 です。
+        english: This computer is very easy to use. Also, it's currently on sale, so it's a good deal.
+        hint: 「また」 adds another point of equal importance. Here, the sale is a supplementary detail to
+          the main point about ease of use. We're looking for a way to introduce additional, but less
+          central, information.
+      - competing_japanese:
+          - この パソコン は とても 使い やすい です よ。今 なら キャンペーン 中 で お 得 です。
+        english: The scene portrays a persuasive sales interaction where the sale information is an added
+          incentive to the main point about ease of use. We're looking for a way to emphasize this as
+          an extra benefit, drawing attention to it as a valuable, related detail.
+        hint: The scene portrays a persuasive sales interaction where the sale information is an added
+          incentive to the main point about ease of use. We're looking for a way to emphasize this as
+          an extra benefit, drawing attention to it as a valuable, related detail.
+    scene: A salesperson is trying to convince a customer to buy a computer.
+    register: semi-formal
+    setting: persuasive
+  - english: Next month, I plan to go on a trip to Okinawa with my family. Incidentally, it's my first
+      time in Okinawa.
+    japanese:
+      - 来月、家族 と 沖縄 に 旅行 に 行く 予定 です。{ちなみ に}、私 は 初めて の 沖縄 です。
+      - 来月、家族 で 沖縄 旅行 に 行く ん だ！{ちなみ に}、私、沖縄 は 初めて な の。
+      - 来月、家族 と 沖縄 へ 旅行 に 参る 予定 です。{ちなみ に}、私 に とっ て は 初めて の 沖縄 と なり ます。
+    english_literally: Next month, with family to Okinawa, going on a trip is the plan. Incidentally,
+      as for me, it's my first time in Okinawa.
+    competing_grammar:
+      - competing_japanese:
+          - 来月、家族 と 沖縄 に 旅行 に 行く 予定 です。{ところ で}、私 は 初めて の 沖縄 です。
+        english: Next month, I plan to go on a trip to Okinawa with my family. By the way, it's my first
+          time in Okinawa.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. Your first time
+          in Okinawa is a related detail about your trip. We're looking for a way to add an incidental,
+          related piece of information.
+      - competing_japanese:
+          - 来月、家族 と 沖縄 に 旅行 に 行く 予定 です。{そして}、私 は 初めて の 沖縄 です。
+        english: Next month, I plan to go on a trip to Okinawa with my family. And it's my first time
+          in Okinawa.
+        hint: 「そして」 connects two sequential actions or facts with equal weight. Here, the 'first time'
+          information is a personal, supplementary detail. We're looking for a way to introduce related,
+          supplementary information.
+      - competing_japanese:
+          - 来月、家族 と 沖縄 に 旅行 に 行く 予定 です。私 は 初めて の 沖縄 です。
+        english: The scene suggests a personal disclosure where the fact of it being her first time in
+          Okinawa is a related but secondary personal detail. We're looking for a way to naturally introduce
+          this as an incidental thought or excitement.
+        hint: The scene suggests a personal disclosure where the fact of it being her first time in Okinawa
+          is a related but secondary personal detail. We're looking for a way to naturally introduce this
+          as an incidental thought or excitement.
+    scene: A woman is sharing her vacation plans with a close friend.
+    register: semi-formal
+    setting: friendly
+  - english: In Japan, Shinkansen delays are very rare. By the way, even for a delay of a few minutes,
+      there is an apology.
+    japanese:
+      - 日本 で は、新 幹線 の 遅延 は ほとんど あり ませ ん。{ちなみ に}、数 分 の 遅れ で も 謝罪 が あり ます。
+      - 日本 に おき まし て は、新 幹線 の 遅延 は 極めて 稀 です。{ちなみ に}、わずか 数 分 の 遅れ で も 丁寧 な 謝罪 が 行わ れ ます。
+      - 日本 の 新 幹線 って、本当 に 遅れ ない よ ね。{ちなみ に}、ちょっと の 遅れ で も、ちゃんと 謝っ て くれる ん だ。
+    english_literally: In Japan, Shinkansen delays are almost none. Incidentally, even with a delay of
+      a few minutes, there is an apology.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 で は、新 幹線 の 遅延 は ほとんど あり ませ ん。{ところ で}、数 分 の 遅れ で も 謝罪 が あり ます。
+        english: In Japan, Shinkansen delays are very rare. By the way, even for a delay of a few minutes,
+          there is an apology.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. The apology for
+          minor delays is a related cultural detail about punctuality. We're looking for a way to add
+          an incidental cultural insight.
+      - competing_japanese:
+          - 日本 で は、新 幹線 の 遅延 は ほとんど あり ませ ん。{その 上}、数 分 の 遅れ で も 謝罪 が あり ます。
+        english: In Japan, Shinkansen delays are very rare. On top of that, even for a delay of a few
+          minutes, there is an apology.
+        hint: 「その上」 implies adding another benefit or characteristic. Here, the apology is a specific
+          detail about a rare event, not an additional positive characteristic. We're looking for a way
+          to introduce related, supplementary information.
+      - competing_japanese:
+          - 日本 で は、新 幹線 の 遅延 は ほとんど あり ませ ん。数 分 の 遅れ で も 謝罪 が あり ます。
+        english: The scene implies a cultural explanation where the detail about apologies is a specific,
+          characteristic follow-up to the general statement about rare delays. We're looking for a way
+          to highlight this as an illustrative, related point, deepening the listener's understanding
+          of Japanese punctuality.
+        hint: The scene implies a cultural explanation where the detail about apologies is a specific,
+          characteristic follow-up to the general statement about rare delays. We're looking for a way
+          to highlight this as an illustrative, related point, deepening the listener's understanding
+          of Japanese punctuality.
+    scene: An experienced traveler explaining aspects of Japanese culture to a foreign visitor.
+    register: semi-formal
+    setting: informative
+  - english: Yesterday, I watched a movie and was very moved. By the way, the person next to me was crying
+      the whole time.
+    japanese:
+      - 昨日 は 映画 を 見 て、とても 感動 し まし た。{ちなみ に}、隣 の 席 の 人 が ずっと 泣い て い まし た。
+      - 昨日 映画 見 た ん だ けど、めっちゃ 感動 し た ん だ。{ちなみ に}、隣 の 人、ずっと 泣い て た よ。
+      - 昨日 映画 を 観 て、本当 に 感動 いたし まし て。{ちなみ に}、お 隣 の 方 が 終始 泣い て おら れ まし た。
+    english_literally: Yesterday, watching a movie, I was very moved. Incidentally, the person next to
+      me was crying the whole time.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 映画 を 見 て、とても 感動 し まし た。{ところ で}、隣 の 席 の 人 が ずっと 泣い て い まし た。
+        english: Yesterday, I watched a movie and was very moved. By the way, the person next to me was
+          crying the whole time.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. The person crying
+          is a related observation about the movie experience. We're looking for a way to add an incidental,
+          somewhat humorous detail.
+      - competing_japanese:
+          - 昨日 は 映画 を 見 て、とても 感動 し まし た。{そして} 隣 の 席 の 人 が ずっと 泣い て い まし た。
+        english: Yesterday, I watched a movie and was very moved. And the person next to me was crying
+          the whole time.
+        hint: 「そして」 connects two sequential actions or facts with equal weight. Here, the crying person
+          is an observation, not an additional factor for your emotion. We're looking for a way to introduce
+          related, supplementary information.
+      - competing_japanese:
+          - 昨日 は 映画 を 見 て、とても 感動 し まし た。{それ に}、隣 の 席 の 人 が ずっと 泣い て い まし た。
+        english: Yesterday, I watched a movie and was very moved. In addition, the person next to me was
+          crying the whole time.
+        hint: 「それに」 adds another item to a list or another reason. Here, the crying person is an observation,
+          not an additional factor for your emotion. We're looking for a way to introduce related, supplementary
+          information.
+    scene: A person recounting a memorable movie experience to a friend, adding a humorous observation.
+    register: casual
+    setting: storytelling
+  - english: This project is scheduled to be completed next week. By the way, a new member has also joined.
+    japanese:
+      - この プロジェクト は 来週 に 完了 する 予定 だ。{ちなみ に}、新しい メンバー も 参加 する こと に なっ た。
+      - 本 プロジェクト は 来週 完了 予定 です。{ちなみ に}、新規 メンバー の 参加 も 決定 いたし まし た。
+      - プロジェクト は 来週 完了 予定 だ。{ちなみ に}、新 メンバー が 加わる こと に なっ た ぞ。
+    english_literally: This project is scheduled to be completed next week. Incidentally, a new member
+      also decided to participate.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 来週 に 完了 する 予定 だ。{ところ で}、新しい メンバー も 参加 する こと に なっ た。
+        english: This project is scheduled to be completed next week. By the way, a new member has also
+          joined.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. The new member
+          is a related update about the project. We're looking for a way to add an incidental, related
+          piece of information about the project.
+      - competing_japanese:
+          - この プロジェクト は 来週 に 完了 する 予定 だ。{加え て}、新しい メンバー も 参加 する こと に なっ た。
+        english: This project is scheduled to be completed next week. In addition, a new member has also
+          joined.
+        hint: 「加えて」 signifies adding more to what's already stated. Here, the new member is a relevant
+          update, but not an additional point that directly builds on the completion schedule. We're looking
+          for a way to introduce related, supplementary information.
+      - competing_japanese:
+          - この プロジェクト は 来週 に 完了 する 予定 だ。新しい メンバー も 参加 する こと に なっ た。
+        english: In a professional update, the addition of a new member is a relevant but secondary piece
+          of information to the project completion date. We're looking for a way to efficiently add this
+          detail as a connected piece of news rather than a completely separate announcement.
+        hint: In a professional update, the addition of a new member is a relevant but secondary piece
+          of information to the project completion date. We're looking for a way to efficiently add this
+          detail as a connected piece of news rather than a completely separate announcement.
+    scene: A male project manager updating his team members on a project's status.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    nuance: The male speaker uses 「ちなみに」 to add a relevant, but non-critical update about team composition.
+      The use of 「だ」 at the end of the first sentence is characteristic of male speech in professional
+      but less formal settings when delivering information.
+  - english: The black tea at this cafe is really delicious. By the way, the manager apparently used to
+      live in England.
+    japanese:
+      - この カフェ の 紅茶 は すごく 美味しい の よ。{ちなみ に}、店長 さん は 昔、イギリス に 住ん で い た そう よ。
+      - ここ の 紅茶、マジ で 美味しい ん だ よ！{ちなみ に}、店長、昔 イギリス に 住ん で た らしい よ。
+      - この カフェ の 紅茶 は 大変 美味しい です。{ちなみ に}、店長 さん は 以前 イギリス に 居住 さ れ て い た そう です。
+    english_literally: This cafe's black tea is very delicious. Incidentally, the manager apparently used
+      to live in England long ago.
+    competing_grammar:
+      - competing_japanese:
+          - この カフェ の 紅茶 は すごく 美味しい の よ。{ところ で}、店長 さん は 昔、イギリス に 住ん で い た そう よ。
+        english: The black tea at this cafe is really delicious. By the way, the manager apparently used
+          to live in England.
+        hint: 「ところで」 is used to change the topic entirely, not to add related details. The manager's background
+          is a related piece of trivia about the cafe. We're looking for a way to add an incidental, related
+          detail.
+      - competing_japanese:
+          - この カフェ の 紅茶 は すごく 美味しい の よ。{それ から}、店長 さん は 昔、イギリス に 住ん で い た そう よ。
+        english: This black tea at this cafe is really delicious. And then, the manager apparently used
+          to live in England.
+        hint: 「それから」 is often used to list sequential events or additional items. Here, the manager's
+          background is a related fact, not a sequential event. We're looking for a way to introduce related,
+          supplementary information.
+      - competing_japanese:
+          - この カフェ の 紅茶 は すごく 美味しい の よ。店長 さん は 昔、イギリス に 住ん で い た そう よ。
+        english: The scene implies a friendly conversation where the detail about the manager is an interesting,
+          related piece of trivia. We're looking for a way to naturally introduce this as a fascinating
+          aside, suggesting a deeper connection between the tea quality and the manager's background.
+        hint: The scene implies a friendly conversation where the detail about the manager is an interesting,
+          related piece of trivia. We're looking for a way to naturally introduce this as a fascinating
+          aside, suggesting a deeper connection between the tea quality and the manager's background.
+    scene: A woman telling her friend about a new cafe she discovered, sharing a bit of trivia.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The female speaker uses 「ちなみに」 to add an interesting, related fact about the cafe. The sentence
+      ends with 「の よ」 and 「そう よ」, which are common sentence-final particles used by female speakers to
+      add emphasis or a gentle explanatory tone.
+  - english: I've started jogging every morning. By the way, it's really helped clear my head.
+    japanese:
+      - 毎朝 ジョギング を 始め まし た。{ちなみ に}、頭 が すっきり し ます よ。
+      - 毎朝 ジョギング、始め た ん だ。{ちなみ に}、頭、すごく すっきり する ん だ よ。
+      - 毎朝 の ジョギング を 日課 と し て おり ます。{ちなみ に}、精神 的 に も 大変 すっきり いたし ます。
+    english_literally: Every morning jogging started. Incidentally, my head feels refreshed.
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝 ジョギング を 始め まし た。{ところ で}、頭 が すっきり し ます よ。
+        english: I've started jogging every morning. By the way, it's really helped clear my head.
+        hint: 「ところで」 is used to change the topic entirely. Here, the benefit of jogging is directly related
+          to the activity itself. We're looking for a way to add an incidental benefit or observation.
+      - competing_japanese:
+          - 毎朝 ジョギング を 始め まし た。{そして}、頭 が すっきり し ます よ。
+        english: I've started jogging every morning. And it's really helped clear my head.
+        hint: 「そして」 connects two sequential actions or facts with equal weight. Here, the feeling of refreshment
+          is a secondary, related result. We're looking for a way to introduce related, supplementary
+          information.
+      - competing_japanese:
+          - 毎朝 ジョギング を 始め まし た。頭 が すっきり し ます よ。
+        english: The scene implies sharing a personal experience where the benefit is a positive, related
+          outcome. We're looking for a way to naturally introduce this as an incidental observation about
+          the main topic.
+        hint: The scene implies sharing a personal experience where the benefit is a positive, related
+          outcome. We're looking for a way to naturally introduce this as an incidental observation about
+          the main topic.
+    scene: A woman casually discussing her new fitness routine with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The female speaker uses 「ちなみに」 to add a personal benefit related to her new habit. The use
+      of 「～ます よ」 in the polite form and 「～する ん だ よ」 in the casual form is typical of friendly conversation,
+      adding a soft emphasis or confirmation.
+  - english: I saw that new historical drama yesterday. By the way, the costumes were absolutely stunning.
+    japanese:
+      - 昨日、新しい 歴史 ドラマ を 見 まし た。{ちなみ に}、衣装 が 本当 に 素晴らしかっ た です。
+      - 昨日、新作 の 歴史 ドラマ 観 た ん だ。{ちなみ に}、衣装 が めっちゃ 綺麗 だっ た よ。
+      - 昨日、新作 の 歴史 ドラマ を 拝見 いたし まし た。{ちなみ に}、衣装 の 細部 まで 実 に 秀逸 で ござい まし た。
+    english_literally: Yesterday, new historical drama saw. Incidentally, costumes were truly splendid.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、新しい 歴史 ドラマ を 見 まし た。{ところ で}、衣装 が 本当 に 素晴らしかっ た です。
+        english: I saw that new historical drama yesterday. By the way, the costumes were absolutely stunning.
+        hint: 「ところで」 is used to change the topic entirely. Here, the costumes are an integral part of
+          the historical drama. We're looking for a way to add an incidental detail about the drama.
+      - competing_japanese:
+          - 昨日、新しい 歴史 ドラマ を 見 まし た。{しかも}、衣装 が 本当 に 素晴らしかっ た です。
+        english: I saw that new historical drama yesterday. Moreover, the costumes were absolutely stunning.
+        hint: 「しかも」 adds something additional and often unexpected or surprising. While the costumes are
+          a good point, 「ちなみに」 suggests it's a related, secondary observation. We're looking for a way
+          to introduce related, supplementary information.
+      - competing_japanese:
+          - 昨日、新しい 歴史 ドラマ を 見 まし た。衣装 が 本当 に 素晴らしかっ た です。
+        english: The scene implies a conversation about a cultural experience where the visual aspect
+          is a striking, related detail. We're looking for a way to naturally introduce this as an intriguing,
+          related observation about the drama.
+        hint: The scene implies a conversation about a cultural experience where the visual aspect is
+          a striking, related detail. We're looking for a way to naturally introduce this as an intriguing,
+          related observation about the drama.
+    scene: A man enthusiastically sharing his impressions of a historical drama with a colleague.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    nuance: The male speaker uses 「ちなみに」 to highlight a specific detail of the drama that impressed him.
+      The use of 「～まし た」 and 「～でした」 is polite and appropriate for discussing cultural topics in a semi-formal
+      setting.
+  - english: This research paper received excellent reviews. By the way, the lead author is still an undergraduate
+      student.
+    japanese:
+      - この 研究 論文 は 素晴らしい 評価 を 得 まし た。{ちなみ に}、筆頭 著者 は まだ 大学 生 な の です。
+      - この 研究 論文、すごい 評価 もらっ た ん だ よ。{ちなみ に}、筆頭 著者、まだ 大学 生 な ん だ って。
+      - 本 研究 論文 は、各 方面 から 絶賛 さ れ て おり ます。{ちなみ に}、筆頭 著者 は、いまだ 学部 生 で ござい ます。
+    english_literally: This research paper received splendid evaluation. Incidentally, the lead author
+      is still a university student.
+    competing_grammar:
+      - competing_japanese:
+          - この 研究 論文 は 素晴らしい 評価 を 得 まし た。{ところ で}、筆頭 著者 は まだ 大学 生 な の です。
+        english: This research paper received excellent reviews. By the way, the lead author is still
+          an undergraduate student.
+        hint: 「ところで」 is used to change the topic entirely. Here, the author's status is a related and
+          surprising detail about the paper. We're looking for a way to add an incidental, impressive
+          detail.
+      - competing_japanese:
+          - この 研究 論文 は 素晴らしい 評価 を 得 まし た。{その 結果}、筆頭 著者 は まだ 大学 生 な の です。
+        english: This research paper received excellent reviews. As a result, the lead author is still
+          an undergraduate student.
+        hint: 「その結果」 indicates a cause-and-effect relationship. Here, the author's age is a surprising
+          fact, not a result of the paper's reviews. We're looking for a way to introduce a related, supplementary
+          piece of information without implying causality.
+      - competing_japanese:
+          - この 研究 論文 は 素晴らしい 評価 を 得 まし た。筆頭 著者 は まだ 大学 生 な の です。
+        english: The scene implies a context where the author's age is a surprising and significant detail
+          related to the paper's success. We're looking for a way to highlight this as an incidental yet
+          remarkable fact that adds to the impressiveness of the achievement.
+        hint: The scene implies a context where the author's age is a surprising and significant detail
+          related to the paper's success. We're looking for a way to highlight this as an incidental yet
+          remarkable fact that adds to the impressiveness of the achievement.
+    scene: A professor proudly sharing news about a student's achievement.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    nuance: The male speaker uses 「ちなみに」 to add a surprising and impressive detail about the author's
+      age, emphasizing the achievement. The use of 「～な の です」 adds a slight explanatory or emphasizing
+      tone to the surprising fact, suggesting a shared appreciation for the student's talent.
+post_example_writeup: When using 「ちなみに」, pay attention to the flow of conversation. It should feel natural
+  to interject this piece of information without it seeming out of place or as if you're abruptly changing
+  the subject. The key is that the information, while secondary, still bears a clear connection to what
+  was just discussed.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A1%E3%81%AA%E3%81%BF%E3%81%AB

@@ -1,0 +1,207 @@
+grammar_point: に (agent・source)
+learn_before:
+  - Verb[(ら)れる] (direct passive)
+meaning: Indicates the agent of a passive action (by) or the source from which something is received or
+  given (from).
+pronunciation:
+  katakana: ニ
+  romaji: ni
+formation:
+  '[Agent] に + Verb[passive]': Indicates the person or thing performing the action in a passive sentence.
+  '[Giver] に + もらう / くれる / etc.': Indicates the person or entity from whom something is received or given.
+jlpt: N4
+etymology: The particle に has ancient origins, evolving from a locative marker to indicate a point of
+  arrival, purpose, time, and eventually, the agent or source. Its core sense of "point of contact" or
+  "direction towards" extended to marking the origin of an action (agent) or a transfer (source).
+writeup: に is a versatile particle in Japanese, carrying various meanings depending on context. When used
+  to mark the agent of a passive verb, it directly answers "by whom" or "by what." For instance, in sentences
+  like 「先生 {に} 褒められた」 (I was praised by the teacher), 先生に specifies the agent of the praising action.
+  This usage is crucial for understanding passive constructions, which are quite common in Japanese. Additionally,
+  に designates the source in verbs related to giving, receiving, or being affected by an action. For example,
+  「友達 {に} 本を借りた」 (I borrowed a book from a friend) uses 友達に to indicate the source from whom the book
+  was borrowed. This function extends to various verbs like teach (教える), ask (聞く), and receive (もらう).
+  The key is that に pinpoints the origin of an action or transfer, making it a critical particle for expressing
+  such relationships in sentences.
+false_friends:
+  - term: が (subject marker)
+    meaning: Indicates the subject of a verb.
+    kind: often confused with
+    nuance: While が marks the subject of an active sentence, {に} marks the agent of a passive sentence.
+      The subject of a passive sentence is the recipient of the action, marked by が.
+    grammar_point: が (subject marker)
+  - term: から (from)
+    meaning: Indicates a starting point, source, or cause.
+    kind: often confused with
+    nuance: Both {に} and {から} can indicate a source. {に} is often used with verbs of giving/receiving
+      to indicate the direct person/entity from whom one receives. {から} emphasizes the point of origin,
+      often used for inanimate sources or broader origins, or when the transfer is indirect (e.g., received
+      information from a company 「会社 から」).
+    grammar_point: から (from)
+  - term: で (means・method)
+    meaning: Indicates the means, method, or cause.
+    kind: often confused with
+    nuance: While {に} marks the agent of a passive action (by someone), {で} can mark the tool or material
+      used for an action (by means of something inanimate). For example, 「鉛筆 {で} 書く」 (write with a pencil)
+      uses {で} for the tool.
+    grammar_point: で (means・method)
+post_false_friends_writeup: Understanding the nuanced differences between {に} (agent・source) and other
+  particles like {が}, {から}, and {で} is crucial for precise communication. Remember that {に} specifically
+  identifies the active agent in a passive construction, or the direct personal source of receiving. {から}
+  is broader for origins, and {で} is for instruments or means. Mastering these distinctions will significantly
+  enhance your ability to express complex ideas accurately.
+examples:
+  - english: I was praised by the teacher.
+    japanese:
+      - 先生 {に} 褒め られ まし た。
+      - 先生 {に} 褒め られ た。
+    english_literally: By the teacher, I was praised.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 褒め まし た。
+        english: The teacher praised (someone).
+        hint: This sentence uses {が} to mark the teacher as the subject performing the action, not the
+          agent of a passive action. We're looking for a passive sentence where the teacher is the agent.
+    scene: You are recalling a pleasant memory from school.
+    register: teineigo (polite)
+    setting: reflective
+  - english: My younger sister was scolded by my mother.
+    japanese:
+      - 妹 は 母 {に} 叱ら れ まし た。
+      - 妹 は 母 {に} 叱ら れ た。
+    english_literally: My younger sister, by my mother, was scolded.
+    competing_grammar:
+      - competing_japanese:
+          - 妹 は 母 から 叱ら れ まし た。
+        english: My younger sister was scolded by my mother (from the mother).
+        hint: While {から} can indicate a source, {に} is more commonly used for the direct agent of a passive
+          action like scolding. We're looking for the agent of the passive action.
+    scene: You are explaining a family incident to a friend.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+  - english: I was bitten by a dog.
+    japanese:
+      - 犬 {に} 噛ま れ まし た。
+      - 犬 {に} 噛ま れ た。
+    english_literally: By a dog, I was bitten.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 が 噛み まし た。
+        english: A dog bit (someone).
+        hint: This is an active sentence where the dog is the subject. We want to say you were the one
+          who experienced the action, making the dog the passive agent with {に}.
+    scene: You're at the hospital explaining what happened.
+    register: teineigo (polite)
+    setting: serious
+  - english: I received money from my father.
+    japanese:
+      - 父 {に} お 金 を もらい まし た。
+      - 父 {に} お 金 を もらっ た。
+    english_literally: From father, money I received.
+    competing_grammar:
+      - competing_japanese:
+          - 父 から お 金 を もらい まし た。
+        english: I received money from my father (from the father's side).
+        hint: Both {に} and {から} can be used, but {に} implies a more direct transfer from the person. {から}
+          can imply the origin or source more broadly. We're looking for the direct giver here.
+    scene: You're telling your friend about receiving your allowance.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I learned Japanese from Sensei Tanaka.
+    japanese:
+      - 田中 先生 {に} 日本 語 を 習い まし た。
+      - 田中 先生 {に} 日本 語 を 習っ た。
+    english_literally: From Tanaka Sensei, Japanese I learned.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 先生 から 日本 語 を 習い まし た。
+        english: I learned Japanese from Sensei Tanaka (from the source).
+        hint: While {から} is also common for learning, {に} emphasizes the person as the direct teacher
+          or source of knowledge, often used interchangeably with {から} for this verb. We're looking for
+          the direct instructor.
+    scene: You're introducing yourself at a Japanese language exchange event.
+    register: teineigo (polite)
+    setting: informative
+  - english: I borrowed a book from my friend.
+    japanese:
+      - 友達 {に} 本 を 借り まし た。
+      - 友達 {に} 本 を 借り た。
+    english_literally: From friend, book I borrowed.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 から 本 を 借り まし た。
+        english: I borrowed a book from my friend (from the friend's side).
+        hint: For verbs like 借りる (to borrow), {に} indicates the person who lends, while {から} indicates
+          the source. Both are often interchangeable, but {に} focuses on the direct person. We're looking
+          for the direct lender.
+    scene: You're explaining how you got a particular book.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I was asked a question by my senpai.
+    japanese:
+      - 先輩 {に} 質問 を 聞か れ まし た。
+      - 先輩 {に} 質問 を 聞か れ た。
+    english_literally: By senpai, a question I was asked.
+    competing_grammar:
+      - competing_japanese:
+          - 先輩 から 質問 を 聞か れ まし た。
+        english: I was asked a question from my senpai (from senpai's side).
+        hint: Both {に} and {から} can be used with 聞かれる (to be asked), but {に} is often preferred when emphasizing
+          the direct agent of the asking action in a passive context. We're looking for the agent of the
+          passive action.
+    scene: You're describing a conversation you had at work/school.
+    register: teineigo (polite)
+    setting: professional
+  - english: I was surprised by the sudden news.
+    japanese:
+      - 突然 の 知らせ {に} 驚き まし た。
+      - 突然 の 知らせ {に} 驚い た。
+    english_literally: By the sudden news, I was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 突然 の 知らせ で 驚き まし た。
+        english: I was surprised by the sudden news (due to the news).
+        hint: While {で} can indicate a cause or reason, {に} is used with verbs like 驚く (to be surprised)
+          to indicate the specific object or source of the emotion/reaction. We're looking for the direct
+          source of the surprise.
+    scene: You are reacting to unexpected information.
+    register: teineigo (polite)
+    setting: serious
+  - english: I received a letter from him.
+    japanese:
+      - 彼 {に} 手紙 を もらい まし た。
+      - 彼 {に} 手紙 を もらっ た。
+    english_literally: From him, a letter I received.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 から 手紙 を もらい まし た。
+        english: I received a letter from him (from his side).
+        hint: Both {に} and {から} can be used when receiving something from a person. {に} tends to be used
+          when emphasizing the direct person from whom you received it. We're looking for the direct sender.
+    scene: You're sharing news about a pen pal.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The town was destroyed by the earthquake.
+    japanese:
+      - 町 は 地震 {に} よっ て 破壊 さ れ まし た。
+      - 町 は 地震 {に} よっ て 破壊 さ れ た。
+    english_literally: The town, by the earthquake, was destroyed.
+    competing_grammar:
+      - competing_japanese:
+          - 町 は 地震 で 破壊 さ れ まし た。
+        english: The town was destroyed by the earthquake (due to the earthquake).
+        hint: While {で} can indicate the cause, {によって} is a more formal and common way to specify an inanimate
+          agent in a passive sentence, especially for large-scale events, often paired with {に} in this
+          context. We're looking for a clear agent of destruction.
+    scene: You are watching a news report about a disaster.
+    register: formal
+    setting: informative
+post_example_writeup: 'The examples illustrate how {に} functions both to mark the agent in passive constructions,
+  encompassing both animate and inanimate agents, and to indicate the source from which an action or item
+  is received. The choice between {に} and {から} for ''source'' often comes down to nuance: {に} often implies
+  a more direct or personal interaction with the source, especially with verbs of giving/receiving, while
+  {から} can indicate a broader or more indirect origin. Similarly, for inanimate agents in passive sentences,
+  {によって} (which typically follows {に}) is often preferred for more formal or large-scale events, while
+  {で} is used for tools or means.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に

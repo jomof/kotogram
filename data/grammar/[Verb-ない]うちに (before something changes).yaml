@@ -1,0 +1,242 @@
+grammar_point: '[Verb-ない]うちに (before something changes)'
+learn_before:
+  - うち (within or while)
+meaning: before something changes or while there is still time to do something
+pronunciation:
+  katakana: ウチニ
+  romaji: uchini
+formation:
+  Verb-ない form + うちに: Used to express doing something before a state or condition changes.
+jlpt: N3
+etymology: 「うちに」 is formed from 「うち」 (内, meaning "inside" or "within") and the particle 「に」. When combined
+  with the negative form of a verb (Verb-ない), it signifies acting "within the state of not having done
+  the verb." This construction literally means 'while [Verb] has not happened yet,' conveying the sense
+  of performing an action 'before' the situation changes or before the action described by the positive
+  form of the verb occurs. The nuance of urgency or making good use of a limited timeframe stems from
+  this concept of acting 'within' a fleeting opportunity.
+writeup: The grammar pattern 「Verb-ないうちに」 expresses the idea of performing an action or making a change
+  *before* a certain state or condition ceases to exist or changes. It highlights the importance of seizing
+  the opportunity while it is still available. This implies that if the action is not taken promptly,
+  the opportunity might be lost, or the situation might become unfavorable for that action. This pattern
+  is often used when there is a sense of urgency or a limited window of time. For instance, you might
+  use it to say "Do something before it gets dark" or "Eat it before it gets cold." The focus is on acting
+  *before* a natural or expected change occurs. It often suggests a proactive measure.
+false_friends:
+  - term: 〜ているうちに
+    meaning: while (doing something), something else happens (often unintentionally or unexpectedly)
+    kind: similar expression
+    nuance: 「〜ているうちに」 indicates that during the continuous action of the first clause, another event occurs,
+      often without direct intention or planning. It describes a natural unfolding of events. In contrast,
+      「〜ないうちに」 emphasizes a deliberate action taken to utilize the existing state or to prevent an undesirable
+      future state.
+    grammar_point: '[Verb-dictionary・い-Adj・な-Adj・Nounの]うちに (while a state continues)'
+  - term: 〜前に
+    meaning: before (doing something)
+    kind: similar expression
+    nuance: 「〜前に」 is a more general term for "before," simply indicating temporal precedence without the
+      nuance of urgency or utilizing a fleeting opportunity. 「〜ないうちに」 specifically implies acting *within*
+      a time frame to avoid a consequence or to make use of an existing condition.
+    grammar_point: まえに (before・in front)
+  - term: 〜ないで
+    meaning: without doing or don't do
+    kind: often confused with
+    nuance: 「〜ないで」 can indicate either "without doing X" (as a conjunctive, connecting clauses) or "please
+      don't do X" (as a negative imperative). It doesn't carry the "while there's still time" or "before
+      something changes" nuance of 「〜ないうちに」. The core difference lies in whether the action is being performed
+      (or not performed) as a means or a state, versus being performed within a specific, time-sensitive
+      window.
+    grammar_point: ないでください・ないで (please don't)
+post_false_friends_writeup: While 「Verb-ないうちに」 and 「〜前に」 both translate to "before," the crucial distinction
+  lies in the nuance of timing and consequence. 「Verb-ないうちに」 implies a window of opportunity to act *before*
+  a specific state changes or an undesirable situation occurs. It carries a sense of "while it's still
+  possible" or "before it's too late." 「〜前に」, on the other hand, is a simple temporal marker, indicating
+  that an action precedes another, without any inherent urgency or implication about the state of affairs.
+  For example, 「寝る前に本を読む」 (I read a book before sleeping) is a simple sequence, whereas 「寝ないうちに宿題を終わらせる」
+  (Finish homework before sleeping (while still awake and able)) conveys a more pressing need. 「〜ているうちに」
+  is also distinct. It describes something happening naturally *during* an ongoing state or action, often
+  an unintended or unexpected development. In contrast, 「Verb-ないうちに」 is about taking a deliberate action
+  *before* a change, making the most of the current circumstances. Finally, 「〜ないで」 is a negative conjunctive
+  or imperative. 「食べないで」 means "without eating" or "don't eat." It doesn't imply a timeframe for an action
+  to be completed before a state changes, but rather the absence of an action or a command to not perform
+  an action.
+examples:
+  - english: Let's go home before it gets dark.
+    japanese:
+      - 暗く なら ない {うち に} 帰り ましょう。
+      - 暗く なら ない {うち に} 帰ろう。
+    english_literally: While it does not become dark, let's go home.
+    competing_grammar:
+      - competing_japanese:
+          - 暗く なる 前 に 帰り ましょう。
+        english: Let's go home before it becomes dark.
+        hint: 「〜前に」 simply indicates temporal precedence. 「〜ないうちに」 implies acting while a state is still
+          valid, often with a sense of urgency. We're looking for an action that uses the current, unchanged
+          state to avoid a future inconvenience.
+    scene: Two friends are enjoying a park, and the sun is starting to set.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: Please return the book before I forget.
+    japanese:
+      - 忘れ ない {うち に} 本 を 返し て ください。
+      - 忘れ ない {うち に} 本 を 返し て。
+    english_literally: While I do not forget, please return the book.
+    competing_grammar:
+      - competing_japanese:
+          - 忘れる 前 に 本 を 返し て ください。
+        english: Please return the book before I forget.
+        hint: 「〜前に」 is a simple temporal marker. 「〜ないうちに」 emphasizes taking action while the opportunity
+          still exists and before a change (forgetting) occurs. We're looking for acting within a window
+          of not forgetting.
+    scene: A friend reminding another friend to return a borrowed book.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: We should eat it before it gets cold.
+    japanese:
+      - 冷め ない {うち に} 食べ た ほう が いい よ。
+      - 冷め ない {うち に} 食べ た ほう が いい です よ。
+    english_literally: While it does not get cold, it's better to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 冷める 前 に 食べ た ほう が いい よ。
+        english: You should eat it before it gets cold.
+        hint: 「〜前に」 just states a sequence. 「〜ないうちに」 carries a nuance of urgency, using the present condition
+          (not cold) to one's advantage. We're looking for eating it while it's still warm.
+    scene: A friend advises another friend about hot food.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: Let's decide on the plan before the deadline approaches.
+    japanese:
+      - 締め切り が 来 ない {うち に} 計画 を 決め ましょう。
+      - 締め切り が 来 ない {うち に} 計画 を 決めよう。
+    english_literally: While the deadline does not come, let's decide on the plan.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り が 来る 前 に 計画 を 決め ましょう。
+        english: Let's decide on the plan before the deadline comes.
+        hint: 「〜前に」 is a simple temporal marker. 「〜ないうちに」 emphasizes acting during the period when the
+          negative state is still true, highlighting proactive action. We're looking for deciding while
+          the deadline has not yet arrived.
+    scene: Colleagues discussing project planning.
+    register: semi-formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    nuance: The phrase 「来ないうちに」 suggests making use of the time before the deadline arrives, emphasizing
+      proactivity in decision-making.
+  - english: I want to ask him before he leaves.
+    japanese:
+      - 彼 が 帰ら ない {うち に} 聞き たい。
+      - 彼 が 帰ら ない {うち に} 聞き たい です。
+    english_literally: While he does not return (go home), I want to ask.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 帰る 前 に 聞き たい。
+        english: I want to ask him before he goes home.
+        hint: 「〜前に」 indicates simple temporal order. 「〜ないうちに」 implies seizing an opportunity while it
+          still exists to prevent a missed chance. We're looking for asking him while he is still here.
+    scene: A person wants to talk to someone before they depart.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: The use of 「帰らないうちに」 indicates a desire to seize the opportunity to ask while the person is
+      still present. This implies that if the person leaves, the opportunity will be lost. The male speaker
+      uses plain form 「聞きたい」.
+  - english: Let's practice enough before we forget the steps.
+    japanese:
+      - 手順 を 忘れ ない {うち に} 十分 練習 し ましょう。
+      - 手順 を 忘れ ない {うち に} 十分 練習 しよう。
+    english_literally: While we do not forget the steps, let's practice enough.
+    competing_grammar:
+      - competing_japanese:
+          - 手順 を 忘れる 前 に 十分 練習 し ましょう。
+        english: Let's practice enough before we forget the steps.
+        hint: 「〜前に」 is a simple temporal marker. 「〜ないうちに」 carries the nuance of acting while a specific
+          negative state (not forgetting) is still true, emphasizing preemptive action. We're looking
+          for practicing while the steps are still remembered.
+    scene: Two dancers preparing for a performance.
+    register: casual
+    setting: creative
+    conjugation: negative plain (～ない)
+  - english: I need to prepare before the typhoon hits.
+    japanese:
+      - 台風 が 来 ない {うち に} 準備 し なく ちゃ。
+      - 台風 が 来 ない {うち に} 準備 し なきゃ。
+      - 台風 が 来 ない {うち に} 準備 し なけれ ば なり ませ ん。
+    english_literally: While the typhoon does not come, I must prepare.
+    competing_grammar:
+      - competing_japanese:
+          - 台風 が 来る 前 に 準備 し なく ちゃ。
+        english: I need to prepare before the typhoon comes.
+        hint: 「〜前に」 indicates a sequence of events. 「〜ないうちに」 emphasizes acting proactively to make the
+          most of the current state (no typhoon) to avoid future difficulties. We're looking for preparing
+          during the period before the typhoon's arrival.
+    scene: A person talking to themselves, preparing for a natural disaster.
+    register: casual
+    setting: emergency/alarm
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: The speaker's use of 「来ないうちに」 conveys a sense of urgency, emphasizing the need to act now
+      before the typhoon's arrival makes preparation difficult or impossible. The casual contraction 「しなくちゃ」
+      adds to the personal, urgent tone.
+  - english: You should decide on your major before you become a third-year student.
+    japanese:
+      - 3 年 生 に なら ない {うち に} 専攻 を 決め た ほう が いい です よ。
+      - 3 年 生 に なら ない {うち に} 専攻 を 決め た ほう が いい よ。
+    english_literally: While you do not become a third-year student, it's better to decide your major.
+    competing_grammar:
+      - competing_japanese:
+          - 3 年 生 に なる 前 に 専攻 を 決め た ほう が いい です よ。
+        english: You should decide on your major before you become a third-year student.
+        hint: 「〜前に」 simply orders events. 「〜ないうちに」 highlights the importance of acting within a current
+          state (not yet a third-year student) to seize an opportunity or avoid limitations. We're looking
+          for deciding while still in the earlier academic stage.
+    scene: A university advisor speaks to a student.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: negative plain (～ない)
+    nuance: The phrase 「ならないうちに」 implies making a decision within the current academic stage, emphasizing
+      the importance of utilizing the time before the situation changes (becoming a third-year student)
+      and options might become limited.
+  - english: Please take a picture before the flowers wither.
+    japanese:
+      - 花 が 枯れ ない {うち に} 写真 を 撮っ て ください。
+      - 花 が 枯れ ない {うち に} 写真 を 撮っ て。
+    english_literally: While the flowers do not wither, please take a picture.
+    competing_grammar:
+      - competing_japanese:
+          - 花 が 枯れる 前 に 写真 を 撮っ て ください。
+        english: Please take a picture before the flowers wither.
+        hint: 「〜前に」 denotes simple temporal order. 「〜ないうちに」 implies acting while a state of beauty (not
+          withered) still exists, often with a sense of seizing a fleeting opportunity. We're looking
+          for taking a picture while the flowers are still fresh.
+    scene: A photographer instructing someone or someone talking to a friend in a garden.
+    register: semi-formal
+    setting: creative
+    conjugation: negative plain (～ない)
+  - english: Let's talk about it before it becomes a big problem.
+    japanese:
+      - 大きな 問題 に なら ない {うち に} 話し合い ましょう。
+      - 大きな 問題 に なら ない {うち に} 話し合おう。
+    english_literally: While it does not become a big problem, let's discuss it.
+    competing_grammar:
+      - competing_japanese:
+          - 大きな 問題 に なる 前 に 話し合い ましょう。
+        english: Let's talk about it before it becomes a big problem.
+        hint: 「〜前に」 indicates a simple time sequence. 「〜ないうちに」 emphasizes discussing proactively while
+          the issue is still manageable (not yet a big problem). We're looking for talking about it during
+          the period before it escalates.
+    scene: A manager addresses their team about a potential issue.
+    register: formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    nuance: The use of 「ならないうちに」 expresses the need for proactive communication to prevent the issue from
+      escalating, emphasizing early intervention during the current manageable state.
+post_example_writeup: As seen in the examples, 「Verb-ないうちに」 is used to stress the importance of performing
+  an action *before* a specific negative state of affairs changes, or before a particular event occurs.
+  This construction often implies a time-sensitive window or an dynamism to be gained by acting promptly.
+  It differs from a simple "before" statement by adding a nuance of exploiting the current condition or
+  preventing an undesired future outcome. Pay close attention to the verb in the negative form, as it
+  defines the changing state that the action in the main clause precedes.

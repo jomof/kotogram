@@ -1,0 +1,551 @@
+grammar_point: Verb[させられる] (causative-passive)
+learn_before:
+  - Verb[(ら)れる] (adversative passive)
+  - '[Noun]が嫌いだ (to dislike)'
+  - '[Verb-stem]かねる (unable to・hesitant to)'
+  - '[Verb-stem]つづける (to continue doing)'
+  - てよかった (glad or relieved that)
+  - なくてもいい (no need to)
+  - 何[Counter]も (many of something)
+  - 先 (ahead・first)
+  - 嫌 (unpleasant・disagreeable)
+meaning: To be made to do something; To be forced to do
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: させられる
+    rarity: common
+    meaning: to be made to do
+  - conjugation-type: non-past polite (～ます)
+    form: させられます
+    rarity: common
+    meaning: to be made to do (polite)
+  - conjugation-type: negative plain (～ない)
+    form: させられない
+    rarity: common
+    meaning: not to be made to do
+  - conjugation-type: negative non-past polite (～ません)
+    form: させられません
+    rarity: common
+    meaning: not to be made to do (polite)
+  - conjugation-type: past plain (～た)
+    form: させられた
+    rarity: common
+    meaning: was made to do
+  - conjugation-type: past polite (～ました)
+    form: させられました
+    rarity: common
+    meaning: was made to do (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: させられなかった
+    rarity: common
+    meaning: was not made to do
+  - conjugation-type: negative past polite (～ませんでした)
+    form: させられませんでした
+    rarity: common
+    meaning: was not made to do (polite)
+  - conjugation-type: te-form (～て)
+    form: させられて
+    rarity: common
+    meaning: being made to do (te-form)
+  - conjugation-type: conditional (～ば)
+    form: させられれば
+    rarity: uncommon
+    meaning: if made to do
+  - conjugation-type: conditional (～たら)
+    form: させられたら
+    rarity: uncommon
+    meaning: if made to do (conditional)
+  - conjugation-type: concessive (～ても)
+    form: させられても
+    rarity: less common
+    meaning: even if made to do
+  - conjugation-type: volitional (～よう)
+    form: させられよう
+    rarity: rare
+    meaning: let's be made to do / intend to be made to do
+  - conjugation-type: volitional polite (～ましょう)
+    form: させられましょう
+    rarity: rare
+    meaning: let's be made to do (polite) / shall we be made to do
+pronunciation:
+  katakana: サセラレル
+  romaji: saserareru
+formation:
+  Group 1 verbs (u-verbs): Verb (A-form) + せられる (e.g., 飲む → 飲ま + せられる → 飲ませられる)
+  Group 2 verbs (ru-verbs): Verb (stem) + させられる (e.g., 食べる → 食べ + させられる → 食べさせられる)
+  Irregular verb する: させられる
+  Irregular verb 来る: 来させられる
+jlpt: N4
+etymology: The causative-passive form is a compound grammatical construction. It derives from the combination
+  of the causative auxiliary verb 「せる/させる」, which indicates causing or allowing an action, and the passive
+  auxiliary verb 「られる」, which indicates being the recipient of an action. Thus, 「させられる」 literally means
+  "to be caused to do" or "to be made to do," reflecting a sequential application of these grammatical
+  functions. Its evolution stems from the need to express situations where one is compelled to act.
+writeup: 'The causative-passive form, **させられる** (or **せられる** for Group 1 verbs), is a grammatical construction
+  used to express that the subject is **made to do** something or **forced to do** something by another
+  agent. This form combines the meaning of the causative (making someone do something) with the passive
+  (being acted upon), resulting in the subject experiencing the compulsion to act. Sentences using this
+  form are typically from the perspective of the person who has *been made to do* something, and they
+  often carry a negative connotation, indicating that the action was against the subject''s will or caused
+  them inconvenience.The formation rules are as follows: For **Group 1 verbs (u-verbs)**, the final 『う』
+  sound of the verb is changed to its 『あ』 equivalent, and then **せられる** is added. For example, 読む (yomu,
+  to read) becomes 読ませられる (yomaserareru, to be made to read). For **Group 2 verbs (ru-verbs)**, **させられる**
+  is added directly to the verb stem. For example, 食べる (taberu, to eat) becomes 食べさせられる (tabesaserareru,
+  to be made to eat).**Irregular verbs** have special forms: する (suru, to do) becomes **させられる** (saserareru,
+  to be made to do). 来る (kuru, to come) becomes **来させられる** (kosaserareru, to be made to come).In a causative-passive
+  sentence, the agent who *forces* or *makes* the subject do something is typically marked with the particle
+  **に**. The subject who is *being forced* to do the action is marked with **が**. This is a reversal of
+  the agent-subject marking seen in the simple causative form.It is important to note that the shorter
+  passive form **れる** cannot be used in place of **られる** in causative-passive sentences. This is because
+  both **せる** and **させる** end with an 『え』 sound kana (`せ`) when they connect with the passive ending.
+  This rule applies to all verbs that have an 『え』 sound kana at their conjugation point (excluding the
+  potential use of **れる** and **られる**).'
+false_friends:
+  - term: れる られる (passive・potential・spontaneous・respectful)
+    meaning: To be done; To receive an action (simple passive)
+    kind: similar expression
+    nuance: While 「られる」 is the passive auxiliary, this grammar point specifically deals with the *causative-passive*
+      (e.g., させられる), meaning "to be *made* to do." Simple passive 「られる」 just means "to be done" without
+      the element of compulsion. The forms can overlap for certain verbs, but the meaning is distinct.
+      For example, 食べられる can mean 'can eat' (potential) or 'is eaten' (passive), while 食べさせられる specifically
+      means 'is made to eat'.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: 使役 (causative)
+    meaning: To make/let someone do something
+    kind: antonym
+    nuance: This is the active counterpart, where the subject *causes* someone else to do an action (e.g.,
+      食べさせる, "make someone eat"), as opposed to the causative-passive where the subject *is caused* to
+      do an action (e.g., 食べさせられる, "is made to eat"). They represent opposite directions of influence
+      regarding compulsion or permission, with the agent of the action being the key differentiator.
+    grammar_point: Verb[させる] (causative)
+  - term: られる (ability)
+    meaning: Can do; Is able to do
+    kind: often confused with
+    nuance: For Group 2 verbs (e.g., 食べる → 食べられる), the potential form is identical to the simple passive.
+      However, the causative-passive (e.g., 食べさせられる) is distinct from the potential form and refers to
+      being compelled, not having the ability, to do something. Context, especially the presence of an
+      agent with に, is crucial for distinguishing these meanings.
+    grammar_point: Verb[(ら)れる] (potential)
+  - term: られる (honorific)
+    meaning: Respectfully do; To graciously do
+    kind: often confused with
+    nuance: Similar to the potential form, the honorific use of 「られる」 (e.g., 話される, "to speak" respectfully)
+      can overlap in form with simple passive. However, the causative-passive form (e.g., 話させられる, "to
+      be made to speak") does not typically serve an honorific function and carries a meaning of compulsion
+      rather than respect.
+    grammar_point: <suggest>:られる (honorific)
+post_false_friends_writeup: The grammatical functions of forms ending in 「られる」 or 「させられる」 can be nuanced.
+  While 「させられる」 clearly denotes being compelled to perform an action, the simpler 「られる」 can express several
+  different meanings depending on context. It can be used for the direct passive voice ("to be done to"),
+  the indirect or adversative passive (where one is negatively affected by another's action), or even
+  to express potential ("can do") or honorifics when attached to certain verb stems. Pay close attention
+  to the verb's stem form (whether it's an a-form + せられる or stem + させられる) and the particles used (especially
+  「に」 to mark the agent of compulsion) to accurately distinguish the causative-passive from these other
+  forms.
+examples:
+  - english: I was suddenly made to create the presentation materials.
+    japanese:
+      - プレゼン 資料 を 急 に {作ら させ られ た}。
+      - プレゼン 資料 を 急 に {作ら させ られ まし た}。
+      - プレゼン 資料 を 急 に {作らさ れ ちゃっ た}。
+    english_literally: Presentation materials, suddenly, was made to create.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン 資料 を 急 に {作っ た}。
+        english: This simply states that the action was performed. It doesn't convey the sense of being
+          compelled or forced. We're looking for an expression that indicates someone *made* you do it.
+        hint: This simply states that the action was performed. It doesn't convey the sense of being compelled
+          or forced. We're looking for an expression that indicates someone *made* you do it.
+      - competing_japanese:
+          - プレゼン 資料 を 急 に {作る よう に 言わ れ た}。
+        english: I was suddenly told to create the presentation materials.
+        hint: This indicates being told to do something, which is a type of instruction, but it doesn't
+          necessarily imply the strong compulsion or unpleasantness often associated with the causative-passive.
+          We're looking for a situation where you were *made* to do it.
+      - competing_japanese:
+          - プレゼン 資料 を 急 に {作ら なけれ ば なら なかっ た}。
+        english: I suddenly had to create the presentation materials.
+        hint: This expresses necessity or obligation, but it doesn't specify an external agent who forced
+          you to do it. It could be due to circumstances, not a specific person. We're looking for an
+          expression where an external agent compelled the action.
+    scene: A busy office worker complains to a colleague about an unexpected last-minute task.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+  - english: I was forced by the teacher to eat vegetables I don't like.
+    japanese:
+      - 私 は 先生 に 嫌い な 野菜 を {食べ させ られ まし た}。
+      - 私 は 先生 に 嫌い な 野菜 を {食べ させ られ た}。
+      - 私 は 先生 に 嫌い な 野菜 を {食べ させ られ ちゃっ た}。
+    english_literally: I, by teacher, disliked vegetables, was made to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は 私 に 嫌い な 野菜 を {食べ させ た}。
+        english: The teacher made me eat vegetables I don't like.
+        hint: This is the active causative form from the teacher's perspective, focusing on the teacher's
+          action. We are looking for the passive perspective, focusing on the speaker being forced to
+          eat.
+      - competing_japanese:
+          - 嫌い な 野菜 だっ た けど、先生 の 前 だ から {食べ た}。
+        english: They were vegetables I didn't like, but I ate them because I was in front of the teacher.
+        hint: This implies a reason for eating, but not necessarily a direct compulsion from the teacher
+          using a specific grammatical form. We're looking for a phrase that specifically states the speaker
+          was *made* to eat.
+      - competing_japanese:
+          - 先生 に 嫌い な 野菜 を {食べる よう に 言わ れ た}。
+        english: I was told by the teacher to eat vegetables I don't like.
+        hint: This means you were instructed, but doesn't always carry the same strong nuance of being
+          *forced* or compelled against your will as the causative-passive. We're looking for a stronger
+          sense of compulsion.
+    scene: A child recounts a negative school lunch experience to their parent.
+    register: casual
+    setting: melancholic
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+  - english: I'm fed up with being made to do the same work every day.
+    japanese:
+      - 毎日 同じ 作業 を {さ せ られ て}、うんざり です。
+      - 毎日 同じ 作業 を {さ せ られ まし て}、うんざり です。
+      - 毎日 同じ 作業 ばかり {さ せ られ て}、うんざり です。
+    english_literally: Every day, same task, being made to do, fed up.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 同じ 作業 を {する の は} うんざり です。
+        english: Doing the same work every day is tiresome.
+        hint: This emphasizes the act of doing the work itself, not the external compulsion. We're looking
+          for a phrase that clearly states the speaker is *being made* to do the work.
+      - competing_japanese:
+          - 毎日 同じ 作業 を {強制 さ れ て}、うんざり です。
+        english: While this also conveys being forced, it uses a separate verb 「強制される」. The causative-passive
+          uses an auxiliary verb to embed the 'being made to do' meaning more directly into the main verb.
+          We're looking for the causative-passive form.
+        hint: While this also conveys being forced, it uses a separate verb 「強制される」. The causative-passive
+          uses an auxiliary verb to embed the 'being made to do' meaning more directly into the main verb.
+          We're looking for the causative-passive form.
+      - competing_japanese:
+          - 毎日 同じ 作業 {ばかり で}、うんざり です。
+        english: This focuses on the repetitive nature of the work using 「ばかり」, but doesn't necessarily
+          imply that an external agent is making the speaker do it. We're looking for the idea of compulsion.
+        hint: This focuses on the repetitive nature of the work using 「ばかり」, but doesn't necessarily imply
+          that an external agent is making the speaker do it. We're looking for the idea of compulsion.
+    scene: An employee expresses their frustration about repetitive tasks to a close coworker.
+    register: casual
+    setting: pessimistic
+    conjugation: te-form (～て)
+  - english: The traffic jam made me arrive later than planned.
+    japanese:
+      - 渋滞 で 予定 より 遅く {来さ せ られ た}。
+      - 渋滞 で 予定 より 遅く {来さ せ られ まし た}。
+      - 渋滞 で 予定 より 遅く {来さ せ られ ちゃっ た}。
+    english_literally: By traffic jam, schedule than late, was made to come.
+    competing_grammar:
+      - competing_japanese:
+          - 渋滞 で 予定 より 遅く {来 た}。
+        english: I came later than planned because of the traffic jam.
+        hint: This simply states that you arrived late. It doesn't emphasize that an external factor (the
+          traffic jam) *forced* you to be late, often implying an unavoidable negative consequence. We're
+          looking for a phrase that expresses compulsion.
+      - competing_japanese:
+          - 渋滞 で 予定 が {遅れ た}。
+        english: My schedule was delayed due to the traffic jam.
+        hint: This focuses on the schedule being delayed, which is passive for an inanimate object, rather
+          than you personally being compelled to be late. We're looking for a phrase that expresses the
+          subject's forced action.
+      - competing_japanese:
+          - 渋滞 に {巻き込ま れ て}、予定 より 遅く なっ た。
+        english: I got caught in a traffic jam and became later than planned.
+        hint: This explains the situation of being caught in traffic, leading to lateness, but doesn't
+          use the direct causative-passive form to express the compulsion to arrive late. We're looking
+          for a direct causative-passive expression.
+    scene: Someone apologizes for their lateness, explaining the cause.
+    register: semi-formal
+    setting: apologetic
+    conjugation: past plain (～た)
+  - english: I can't be made to do such a terrible thing.
+    japanese:
+      - あんな ひどい こと を {さ せ られ ない}。
+      - あんな ひどい こと を {さ せ られ ませ ん}。
+      - あんな ひどい こと を {さ せ られる もん か}。
+    english_literally: Such terrible thing, cannot be made to do.
+    competing_grammar:
+      - competing_japanese:
+          - あんな ひどい こと を {し ない}。
+        english: I won't do such a terrible thing.
+        hint: This is a simple negative statement of intention. It doesn't convey the nuance of being
+          unable or unwilling to be *forced* into an action. We're looking for the idea of being compelled.
+      - competing_japanese:
+          - あんな ひどい こと は {でき ない}。
+        english: I can't do such a terrible thing.
+        hint: This expresses an inability or strong refusal to perform the action yourself, but it doesn't
+          specify that an external force is trying to make you do it. We're looking for the idea of being
+          *made* to do something.
+      - competing_japanese:
+          - あんな ひどい こと を {する わけ に は いか ない}。
+        english: It's out of the question to do such a terrible thing.
+        hint: This implies that doing such a thing is unacceptable or impossible for various reasons (moral,
+          logical), but doesn't specifically address the notion of being *compelled* to do it. We're looking
+          for the causative-passive refusal.
+    scene: A person adamantly refuses an unethical request.
+    register: casual
+    setting: commanding
+    conjugation: negative plain (～ない)
+  - english: If I'm forced to work overtime by my boss, I won't make it today.
+    japanese:
+      - もし 上司 に 残業 を {さ せ られ たら}、今日 は 間に合い ませ ん。
+      - もし 上司 に 残業 を {さ せ られれ ば}、今日 は 間に合い ませ ん。
+      - もし 上司 に 残業 を {さ せ られ ちゃっ たら}、今日 は 間に合い ませ ん。
+    english_literally: If by boss, overtime, made to do, today won't be on time.
+    competing_grammar:
+      - competing_japanese:
+          - もし 上司 に 残業 を {さ せ たら}、今日 は 間に合い ませ ん。
+        english: If I make the boss work overtime, I won't make it today.
+        hint: This is the active causative form, meaning *you* would make your boss work overtime, which
+          is the opposite of the intended meaning. We're looking for the passive sense, where you are
+          *made* to work overtime.
+      - competing_japanese:
+          - もし 上司 に 残業 {する よう に 言わ れ たら}、今日 は 間に合い ませ ん。
+        english: If I'm told by my boss to work overtime, I won't make it today.
+        hint: This means you were told or ordered to do something, which is similar but doesn't always
+          carry the same strong nuance of being *forced* against one's will as the causative-passive.
+          We're looking for a stronger sense of compulsion.
+      - competing_japanese:
+          - もし 上司 に 残業 を {命じ られ たら}、今日 は 間に合い ませ ん。
+        english: 「命じられる」 means 'to be ordered' or 'commanded', conveying a strong sense of directive.
+          While similar in meaning, the causative-passive specifically emphasizes being *caused* to do
+          something, often implying an unwanted outcome, which this phrase might not always capture. We're
+          looking for the causative-passive.
+        hint: 「命じられる」 means 'to be ordered' or 'commanded', conveying a strong sense of directive. While
+          similar in meaning, the causative-passive specifically emphasizes being *caused* to do something,
+          often implying an unwanted outcome, which this phrase might not always capture. We're looking
+          for the causative-passive.
+    scene: An employee tells a friend about a potential obstacle to their evening plans.
+    register: casual
+    setting: cautious
+    conjugation: conditional (～たら)
+  - english: I was made to drink sake by a client.
+    japanese:
+      - 取引 先 の 方 に 日本 酒 を {飲ま せ られ まし た}。
+      - 取引 先 の 方 に 日本 酒 を {飲ま せ られ た}。
+      - 取引 先 の 方 に 日本 酒 を {飲まさ れ ちゃい まし た}。
+    english_literally: By client, sake, was made to drink.
+    competing_grammar:
+      - competing_japanese:
+          - 取引 先 の 方 は 私 に 日本 酒 を {飲ま せ た}。
+        english: The client made me drink sake.
+        hint: This is the active causative form, focusing on the client's action. We are looking for the
+          passive perspective, focusing on the speaker being forced to drink sake.
+      - competing_japanese:
+          - 取引 先 の 方 と 日本 酒 を {飲ん だ}。
+        english: I drank sake with the client.
+        hint: This is a neutral statement indicating an action performed together. It doesn't convey any
+          sense of compulsion or being forced to drink. We're looking for a phrase that implies being
+          compelled.
+      - competing_japanese:
+          - 取引 先 の 方 に 日本 酒 を {勧め られ た}。
+        english: 「勧められた」 means 'was recommended' or 'was offered'. While it implies some social pressure
+          to accept, it's generally less forceful than being 'made to do'. We're looking for a stronger
+          sense of compulsion, as conveyed by the causative-passive.
+        hint: 「勧められた」 means 'was recommended' or 'was offered'. While it implies some social pressure
+          to accept, it's generally less forceful than being 'made to do'. We're looking for a stronger
+          sense of compulsion, as conveyed by the causative-passive.
+    scene: A salesman tells his colleague about a recent client dinner.
+    register: semi-formal
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「飲ませられました」 implies that the speaker (male salesman) felt a social obligation or
+      pressure to drink sake with the client, even if he didn't necessarily want to. This construction
+      is often used to describe unwanted or unavoidable social obligations in a professional context.
+  - english: I was made to rewrite the report because of my mistake.
+    japanese:
+      - 私 の ミス で、レポート を {書き 直さ せ られ まし た}。
+      - 私 の ミス で、レポート を {書き 直さ せ られ た}。
+    english_literally: My mistake by, report, was made to rewrite.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の ミス で、レポート を {書き 直し まし た}。
+        english: Because of my mistake, I rewrote the report.
+        hint: This simply states that you rewrote the report. It doesn't convey that someone else *made*
+          you do it. We're looking for an expression that indicates external compulsion.
+      - competing_japanese:
+          - 私 の ミス で、レポート を {書き 直す 必要 が あり まし た}。
+        english: This expresses necessity, but not necessarily that a specific agent forced you to do
+          it against your will. We're looking for a phrase that expresses being *made* to do something.
+        hint: This expresses necessity, but not necessarily that a specific agent forced you to do it
+          against your will. We're looking for a phrase that expresses being *made* to do something.
+    scene: A student or employee, frustrated, tells a friend about having to redo a task.
+    register: semi-formal
+    setting: serious
+    conjugation: past polite (～ました)
+  - english: I was made to apologize for my subordinate's mistake.
+    japanese:
+      - 部下 の ミス で、私 が {謝ら せ られ まし た}。
+      - 部下 の ミス で、私 が {謝ら せ られ た}。
+    english_literally: Subordinate's mistake by, I, was made to apologize.
+    competing_grammar:
+      - competing_japanese:
+          - 部下 の ミス で、私 が {謝り まし た}。
+        english: Because of my subordinate's mistake, I apologized.
+        hint: This simply states that you apologized. It doesn't convey that you were *forced* or *made*
+          to do it by someone else. We're looking for a phrase that expresses external compulsion.
+      - competing_japanese:
+          - 部下 の ミス で、私 が {謝ら なけれ ば なり ませ ん でし た}。
+        english: This expresses obligation, but doesn't necessarily imply that a specific person *made*
+          you apologize, rather that it was a necessary action. We're looking for an expression where
+          an agent compelled the action.
+        hint: This expresses obligation, but doesn't necessarily imply that a specific person *made* you
+          apologize, rather that it was a necessary action. We're looking for an expression where an agent
+          compelled the action.
+    scene: A manager expresses their frustration to a colleague about taking responsibility for someone
+      else's error.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「謝らせられました」 by a male manager implies a regrettable situation where he was compelled
+      to perform an act of humility or concession due to a subordinate's error, highlighting the burden
+      and formal nature of the compulsion within a business context.
+  - english: I was made to listen to the loud music coming from next door all night.
+    japanese:
+      - 一 晩 中、隣 から の 大 音量 の 音楽 を {聞か せ られ まし た}。
+      - 一 晩 中、隣 から の 大 音量 の 音楽 を {聞か せ られ た}。
+    english_literally: All night, next door's loud volume music, was made to listen.
+    competing_grammar:
+      - competing_japanese:
+          - 一 晩 中、隣 から の 大 音量 の 音楽 を {聞い て い まし た}。
+        english: This simply states that you heard the music. It doesn't convey the negative connotation
+          of being *forced* to listen against your will, or the sense of annoyance often implied by the
+          causative-passive. We're looking for a phrase that expresses an unpleasant compulsion.
+        hint: This simply states that you heard the music. It doesn't convey the negative connotation
+          of being *forced* to listen against your will, or the sense of annoyance often implied by the
+          causative-passive. We're looking for a phrase that expresses an unpleasant compulsion.
+      - competing_japanese:
+          - 一 晩 中、隣 から の 大 音量 の 音楽 が {聞こえ て い まし た}。
+        english: This describes the music as being audible (using the potential verb 「聞こえる」), but doesn't
+          express the listener's forced endurance of it. We're looking for a phrase that emphasizes being
+          *made* to endure the listening.
+        hint: This describes the music as being audible (using the potential verb 「聞こえる」), but doesn't
+          express the listener's forced endurance of it. We're looking for a phrase that emphasizes being
+          *made* to endure the listening.
+    scene: Someone, looking tired, complains to a friend about noisy neighbors.
+    register: casual
+    setting: melancholic
+    conjugation: past polite (～ました)
+  - english: I'm sick of being made to work overtime every day.
+    japanese:
+      - 毎日、残業 を {さ せ られ る} の は もう 嫌 だ。
+      - 毎日、残業 を {さ せ られ ます} の は もう 嫌 です。
+      - 毎日、残業 {さ せ られん} の は もう 嫌 だ。
+    english_literally: Every day, overtime, being made to do, is already disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、残業 を {する の は} もう 嫌 だ。
+        english: This states dislike for the action itself, but not necessarily that an external force
+          is compelling the action. We're looking for a situation where you are *made* to work overtime.
+        hint: This states dislike for the action itself, but not necessarily that an external force is
+          compelling the action. We're looking for a situation where you are *made* to work overtime.
+      - competing_japanese:
+          - 毎日、残業 を {せ ざる を 得 ない}。
+        english: This implies obligation, but the causative-passive specifically emphasizes that someone
+          *else* is making you do it. We're looking for an expression of being compelled by an external
+          agent.
+        hint: This implies obligation, but the causative-passive specifically emphasizes that someone
+          *else* is making you do it. We're looking for an expression of being compelled by an external
+          agent.
+    scene: An office worker complaining about their daily grind to a friend.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「させられる」 in the dictionary form emphasizes the ongoing, habitual, and unpleasant
+      nature of being compelled to work overtime, portraying the speaker's resignation and frustration.
+      The phrase 「もう嫌だ」 further highlights this strong negative feeling about the continuous compulsion.
+  - english: I cannot be made to do such a dangerous job by the company.
+    japanese:
+      - 会社 に そんな 危険 な 仕事 を {さ せ られ ませ ん}。
+      - 会社 に そんな 危険 な 仕事 を {さ せ られ ない}。
+      - 会社 に そんな 危険 な 仕事 を {さ せ られる もの か}。
+    english_literally: By company, such dangerous job, cannot be made to do.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 に そんな 危険 な 仕事 を {し ませ ん}。
+        english: This is a statement of personal refusal, but it doesn't express the idea that the company
+          is *trying* to compel the action. We're looking for a phrase that conveys the impossibility
+          of being forced.
+        hint: This is a statement of personal refusal, but it doesn't express the idea that the company
+          is *trying* to compel the action. We're looking for a phrase that conveys the impossibility
+          of being forced.
+      - competing_japanese:
+          - 会社 に そんな 危険 な 仕事 を {頼ま れ ませ ん}。
+        english: 「頼まれる」 means 'to be asked' or 'requested'. This is a weaker form of compulsion than 'being
+          made to do'. We're looking for a stronger sense of being compelled against one's will.
+        hint: 「頼まれる」 means 'to be asked' or 'requested'. This is a weaker form of compulsion than 'being
+          made to do'. We're looking for a stronger sense of being compelled against one's will.
+    scene: An employee expressing their refusal to take on a hazardous task to a superior or colleague.
+    register: formal
+    setting: serious
+    conjugation: negative non-past polite (～ません)
+    nuance: The use of the polite negative 「させられません」 clearly states the speaker's firm refusal to accept
+      a dangerous task, indicating that they will not allow themselves to be compelled by the company
+      into such a situation.
+  - english: Surprisingly, I wasn't made to sing at the karaoke party.
+    japanese:
+      - カラオケ で 歌 を {歌わ せ られ なかっ た}。
+      - カラオケ で 歌 を {歌わ せ られ ませ ん でし た}。
+      - カラオケ で 歌 を {歌わ せ られ なく て よかっ た}。
+    english_literally: At karaoke, song, wasn't made to sing.
+    competing_grammar:
+      - competing_japanese:
+          - カラオケ で 歌 を {歌わ なかっ た}。
+        english: This simply states that you didn't sing, without implying that someone tried to force
+          you. We're looking for an expression that conveys relief from potential compulsion.
+        hint: This simply states that you didn't sing, without implying that someone tried to force you.
+          We're looking for an expression that conveys relief from potential compulsion.
+      - competing_japanese:
+          - カラオケ で 歌 を {歌う 必要 が なかっ た}。
+        english: This suggests a lack of necessity, but not that you were *not forced* to do it. We're
+          looking for a phrase that expresses the absence of compulsion.
+        hint: This suggests a lack of necessity, but not that you were *not forced* to do it. We're looking
+          for a phrase that expresses the absence of compulsion.
+    scene: Someone expressing relief after a social gathering where singing is often expected.
+    register: casual
+    setting: excited
+    conjugation: negative past plain (～なかった)
+    nuance: The phrase 「歌わせられなかった」 conveys relief at having avoided an unwanted social obligation, emphasizing
+      that the compulsion (to sing) did not occur, despite it potentially being expected in a karaoke
+      setting.
+  - english: Even if I'm made to repeat it many times, I still won't understand.
+    japanese:
+      - 何 回 も {繰り返さ せ られ て も}、やはり 分かり ませ ん。
+      - 何 回 も {繰り返さ せ られ まし て も}、やはり 分かり かね ます。
+      - 何 回 も {繰り返さ せ られ て も}、やっぱり 分から ない。
+    english_literally: Many times, even if made to repeat, still don't understand.
+    competing_grammar:
+      - competing_japanese:
+          - 何 回 も {繰り返し て も}、やはり 分かり ませ ん。
+        english: This expresses the futility of personal repetition, but doesn't convey that an external
+          party is *making* you repeat it. We're looking for the concessive form of the causative-passive.
+        hint: This expresses the futility of personal repetition, but doesn't convey that an external
+          party is *making* you repeat it. We're looking for the concessive form of the causative-passive.
+      - competing_japanese:
+          - 何 回 {繰り返す よう に 言わ れ て も}、やはり 分かり ませ ん。
+        english: 「言われても」 implies being told, which is less forceful than being directly *made* to perform
+          the action. We're looking for a stronger sense of compulsion.
+        hint: 「言われても」 implies being told, which is less forceful than being directly *made* to perform
+          the action. We're looking for a stronger sense of compulsion.
+    scene: A student struggling with a difficult concept tells their tutor or parent.
+    register: semi-formal
+    setting: academic
+    conjugation: concessive (～ても)
+    nuance: The concessive form 「繰り返させられても」 highlights the futility of being compelled to repeat an action.
+      It expresses that despite repeated compulsion, the desired outcome (understanding) will not be achieved,
+      emphasizing the speaker's frustration and the unreasonableness of the demand.
+post_example_writeup: When using the causative-passive, it's important to understand the nuance of negative
+  compulsion. While it literally means 'to be made to do,' it often implies that the action was undesirable
+  or inconvenient for the subject. Pay attention to the agent (marked by に) and the context to fully grasp
+  the often subtle feeling of burden or lack of choice that this grammatical form conveys.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/causative-passive

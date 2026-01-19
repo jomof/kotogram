@@ -1,0 +1,261 @@
+grammar_point: '[Verb-て]はだめ (must not・cannot)'
+learn_before:
+  - '[Verb-て]もいい (it''s okay to)'
+  - 無視する (to ignore)
+  - 用心する (to be cautious・to take precautions・to be on guard)
+  - 途中に・途中で (in the middle of)
+  - 風 (style・manner)
+meaning: must not; cannot; it is forbidden to
+pronunciation:
+  katakana: テハダメ
+  romaji: te wa dame
+formation:
+  Verb[て] form + は + だめ: Indicates that an action is prohibited or forbidden.
+  Verb[て] form + は + だめです: A polite form of prohibition, indicating something is not good to do.
+jlpt: N5
+etymology: The 『て』 form is a conjunctive form of verbs, allowing connection to subsequent elements. The
+  particle 『は』 acts as a topic marker, highlighting the action that is being discussed as 'no good.' 『だめ』
+  (駄目) originally comes from the game of Go, referring to a 'useless' or 'neutral' point on the board.
+  Over time, its meaning expanded to 'useless,' 'no good,' 'ineffective,' and subsequently to 'forbidden'
+  or 'not allowed,' implying that the action would be 'no good' if carried out.
+writeup: The grammar pattern 『Verb[て]はだめ』 is a straightforward way to express prohibition in Japanese.
+  It directly translates to 'must not,' 'cannot,' or 'it is forbidden to.' This construction is formed
+  by taking the te-form of a verb, adding the particle 『は』, and then attaching 『だめ』. While 『だめ』 literally
+  means 'no good' or 'useless,' in this context, it functions to unequivocally state that the preceding
+  action is impermissible. This expression is widely used in daily conversation, particularly in casual
+  settings or when addressing children, subordinates, or close acquaintances. For instance, a parent might
+  tell a child, 『走ってはだめ』 (You must not run) or a supervisor might instruct an employee, 『ここで寝てはだめです』 (You
+  cannot sleep here). The addition of 『です』 (です) makes it more polite, but the core 『だめ』 still retains
+  a relatively direct or admonishing tone compared to other expressions of prohibition. Understanding
+  the nuance of 『だめ』 is crucial. It conveys that performing the action would lead to a 'bad' or 'unacceptable'
+  outcome. This differs subtly from more formal prohibitions that might imply a rule or law. Instead,
+  『〜てはだめ』 often feels like a personal warning or a judgment of the action's inherent undesirability.
+false_friends:
+  - term: 〜てはいけない
+    meaning: must not; should not; it is not allowed
+    kind: similar expression
+    nuance: 『〜てはいけない』 often implies a more formal rule, a stronger sense of obligation, or a universal
+      prohibition. 『〜てはだめ』 is more personal, indicating that the action is 'no good' or 'a bad idea' in
+      a specific context.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: 〜てはならない
+    meaning: must not; should not (formal)
+    kind: similar expression
+    nuance: 『〜てはならない』 is a highly formal or literary expression of prohibition, often found in written
+      rules, laws, or strong proclamations. It is much stronger and less conversational than 『〜てはだめ』.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: ないでください
+    meaning: Please don't
+    kind: similar expression
+    nuance: 『ないでください』 is a polite request not to do something, giving the listener a choice. 『〜てはだめ』,
+      conversely, is a direct statement of prohibition, leaving no room for choice and implying that the
+      action is absolutely impermissible.
+    grammar_point: ないでください・ないで (please don't)
+post_false_friends_writeup: While 『〜てはだめ』, 『〜てはいけない』, 『〜てはならない』, and 『ないでください』 all express forms of negative
+  constraint, their nuances differ significantly in terms of formality, bluntness, and the underlying
+  reason for the prohibition. 『〜てはだめ』 tends to be the most personal and direct, conveying that an action
+  is 'bad' or 'unacceptable.' 『〜てはいけない』 implies a more established rule or a stronger sense of 'should
+  not,' while 『〜てはならない』 is reserved for very formal or strict prohibitions. 『ないでください』 is simply a polite
+  request, offering the most leeway to the listener. Choosing the correct expression depends on the context,
+  the relationship between speakers, and the desired level of formality and nuance in your communication.
+examples:
+  - english: You must not run in the hallway.
+    japanese:
+      - 廊下 で {走っ て は だめ} です よ。
+      - 廊下 で {走っ て は だめ} です。
+      - 廊下 で {走っ て は だめ} だ よ。
+      - 廊下 で {走っ て は だめ}！
+    english_literally: In the hallway, running is no good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 廊下 で 走ら ない で ください ね。
+        english: Please don't run in the hallway.
+        hint: This is a polite request, not a strong prohibition. We're looking for an expression that
+          forbids the action.
+      - competing_japanese:
+          - 廊下 で 走っ て は いけ ませ ん よ。
+        english: You must not run in the hallway.
+        hint: While correct, this sounds more like a strict rule from an authority. We're looking for
+          a slightly softer, more personal prohibition.
+    scene: A teacher gently reminds a student about school rules.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The speaker uses 『走ってはだめです よ』, which softens the directness of 『だめ』 with 『です』 for politeness
+      and 『よ』 for emphasis and shared understanding. This phrasing is common for teachers addressing students,
+      implying a gentle but firm warning.
+  - english: You must not touch the exhibits.
+    japanese:
+      - 展示 品 に {触っ て は だめ} です。
+      - 展示 品 に {触っ て は だめ} だ。
+    english_literally: To the exhibits, touching is no good.
+    competing_grammar:
+      - competing_japanese:
+          - 展示 品 に 触ら ない で ください。
+        english: Please don't touch the exhibits.
+        hint: This is a polite request, implying the listener has a choice. We're looking for a clear
+          prohibition.
+    scene: A museum guide explains rules to visitors.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+  - english: In this library, you must not talk loudly.
+    japanese:
+      - この 図書 館 で は 大きな 声 で {話し て は だめ} だ。
+      - この 図書 館 で は 大きな 声 で {話し て は だめ} です。
+      - この 図書 館 で は 大きな 声 で {話し て は だめ}！
+    english_literally: In this library, with a loud voice, talking is no good.
+    competing_grammar:
+      - competing_japanese:
+          - この 図書 館 で は 大きな 声 で 話し て は いけ ない。
+        english: In this library, you must not talk loudly.
+        hint: This is a stronger, more universal prohibition. We're looking for a slightly more direct,
+          casual statement of unacceptability.
+    scene: A student reminds another student about library etiquette.
+    register: casual
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 『話してはだめ だ』 creates a casual and direct prohibition. The final 『だ』 reinforces the
+      casualness, suitable for one student speaking to another about a basic rule. This phrase implies,
+      'It's simply not acceptable here.'
+  - english: You cannot eat in this area.
+    japanese:
+      - この エリア で は {食べ て は だめ} です。
+      - この エリア で は {食べ て は だめ} だ。
+      - この エリア で {食べ て は だめ}！
+    english_literally: In this area, eating is no good.
+    competing_grammar:
+      - competing_japanese:
+          - この エリア で は 食事 し ない で ください。
+        english: Please don't eat in this area.
+        hint: This is a polite request. We need an expression for prohibition.
+    scene: A staff member informs a customer about food restrictions in a specific zone.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+  - english: No matter how sleepy you are, you must not fall asleep during the meeting.
+    japanese:
+      - いくら 眠く て も、会議 中 に {寝 て は だめ} だ よ。
+      - いくら 眠く て も、会議 中 に {寝 て は だめ} です よ。
+      - いくら 眠く て も、会議 中 に {寝 て は だめ} だ。
+    english_literally: No matter how sleepy, during the meeting, sleeping is no good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - いくら 眠く て も、会議 中 に 寝 て は いけ ない よ。
+        english: No matter how sleepy you are, you must not fall asleep during the meeting.
+        hint: This is a stronger prohibition, implying a strict rule. We're looking for a slightly more
+          personal or direct 'it's not okay.'
+    scene: A colleague gives friendly advice to a tired coworker.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual 『だめ だよ』 creates a casual and direct prohibition suitable for colleagues, making
+      it sound like a friendly warning rather than a strict rule. It implies 'it's not a good idea' or
+      'you'll get into trouble if you do.'
+  - english: Children, you must not play with fire.
+    japanese:
+      - 子供 たち、火 で {遊ん で は だめ} だ よ。
+      - 子供 たち、火 で {遊ん で は だめ} です よ。
+      - 子供 たち、火 で {遊ん で は だめ}！
+    english_literally: Children, with fire, playing is no good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち、火 で 遊ん で は いけ ない よ。
+        english: Children, you must not play with fire.
+        hint: While valid, this sounds like a more formal or stern rule. We're looking for a common, slightly
+          softer parental warning.
+    scene: A mother warns her children about a dangerous activity.
+    register: casual
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The direct address to 『子供たち』 (children) combined with 『遊んではだめ だ よ』 creates a firm yet caring
+      parental warning. The 『よ』 at the end adds a softer, slightly advisory tone, indicating a shared
+      understanding of common sense.
+  - english: You can't give up halfway through.
+    japanese:
+      - 途中 で {諦め て は だめ} です。
+      - 途中 で {諦め て は だめ} だ。
+      - 途中 で {諦め て は だめ}！
+    english_literally: Midway, giving up is no good.
+    competing_grammar:
+      - competing_japanese:
+          - 途中 で 諦め て は いけ ませ ん。
+        english: You must not give up halfway through.
+        hint: This is a more formal and strict prohibition. We are looking for a general admonition that
+          is less rule-like.
+    scene: A coach encourages an athlete during a tough training session.
+    register: teineigo (polite)
+    setting: inspirational
+    conjugation: te-form (～て)
+  - english: You must not forget your passport when traveling abroad.
+    japanese:
+      - 海外 旅行 の 際 に、パスポート を {忘れ て は だめ} です よ。
+      - 海外 旅行 の 際 に、パスポート を {忘れ て は だめ} です。
+      - 海外 旅行 の 際 に、パスポート を {忘れ て は だめ} だ よ。
+    english_literally: When traveling abroad, forgetting your passport is no good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 海外 旅行 の 際 に、パスポート を 忘れ て は いけ ませ ん よ。
+        english: You must not forget your passport when traveling abroad.
+        hint: This phrase suggests a stronger, more official rule. We need a more practical warning about
+          an undesirable outcome.
+    scene: A travel agent advises a client.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+  - english: You can't just ignore people's feelings.
+    japanese:
+      - 人 の 気持ち を {無視 し て は だめ} だ よ。
+      - 人 の 気持ち を {無視 し て は だめ} です よ。
+      - 人 の 気持ち を {無視 し て は だめ}！
+    english_literally: People's feelings, ignoring is no good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 人 の 気持ち を 無視 し て は いけ ない よ。
+        english: You must not ignore people's feelings.
+        hint: This carries a more imperative tone. We're looking for a more generalized statement that
+          'it's not okay' to do so.
+    scene: A friend gives advice to another friend who is being insensitive.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+  - english: When cooking, you must not remove your eyes from the pot.
+    japanese:
+      - 料理 を する 時 は、鍋 から 目 を {離し て は だめ} だ よ。
+      - 料理 を する 時 は、鍋 から 目 を {離し て は だめ} です よ。
+      - 料理 を する 時 は、鍋 から 目 を {離し て は だめ} だ。
+    english_literally: When cooking, from the pot, taking your eyes off is no good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 料理 を する 時 は、鍋 から 目 を 離し て は いけ ない よ。
+        english: When cooking, you must not remove your eyes from the pot.
+        hint: This version sounds more like a strict culinary rule. We want to convey a practical warning
+          about potential problems.
+    scene: A seasoned chef instructs a new apprentice.
+    register: casual
+    setting: instructional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 『離してはだめ だ よ』 (You must not take your eyes off) is a common casual warning, often
+      used when explaining safety or practical advice. The 『よ』 at the end adds a softer, slightly advisory
+      tone, indicating a shared understanding of common sense.
+post_example_writeup: As illustrated by the examples, 『Verb[て]はだめ』 can be adapted for various situations
+  by changing the final particle or copula. While 『だめ』 itself is inherently casual, adding 『です』 makes
+  the expression polite, suitable for informing or advising in more formal interactions. The inclusion
+  of particles like 『よ』 (よ) can further soften the tone, making a direct prohibition sound more like a
+  friendly reminder or a piece of common sense advice. Pay close attention to these subtle changes to
+  convey the appropriate level of formality and nuance in your communication.

@@ -1,0 +1,277 @@
+grammar_point: もっとも (qualification・however)
+learn_before:
+  - もっとも (most, extremely)
+meaning: Although, but, however, for all that, provided that
+pronunciation:
+  katakana: モットモ
+  romaji: mottomo
+formation:
+  Sentence 1 + 。もっとも + Sentence 2 + (が/けど/けれども): Used to introduce a contrasting or clarifying point to
+    a previous statement. Indicates that while the first statement is true, it doesn't represent the complete
+    picture.
+jlpt: N3
+etymology: もっとも is derived from the adjective 尤も (mottomo), meaning "reasonable" or "justifiable." The
+  conjunction retains this sense of acknowledging a previous point while introducing a qualification or
+  exception. It implies that while the first statement has merit, there's another aspect to consider.
+writeup: もっとも, sometimes written as 尤も, is a conjunction used to clarify that the preceding statement
+  (A) is not the only consideration. Common translations include "although," "for all that," or "with
+  that said," depending on context. The speaker acknowledges the validity of (A) but introduces a qualification.
+  The subsequent clause (B) often ends with が, けど, or けれども, signaling a contrast or additional information.
+  As a noun, 尤も means "to stand to reason," a nuance that carries over to its conjunctive usage.
+false_friends:
+  - term: それなのに
+    meaning: And yet, Despite this
+    kind: similar expression
+    nuance: While もっとも introduces a valid qualification to a statement, それなのに emphasizes an unexpected
+      or illogical outcome or fact despite the preceding information.
+    grammar_point: それなのに (and yet・despite that)
+  - term: しかしながら
+    meaning: However, nevertheless, but
+    kind: similar expression
+    nuance: しかしながら is a more formal and objective conjunction, typically used in written or highly formal
+      speech, indicating a direct contrast or opposition. もっとも, while formal, often presents a qualification
+      that is logically connected to the preceding statement, rather than a direct opposition.
+    grammar_point: しかし (but・however)
+  - term: しかし
+    meaning: However, but
+    kind: similar expression
+    nuance: しかし is a direct and objective conjunction that introduces a contradiction or strong counterpoint.
+      もっとも, while also introducing a contrasting idea, often serves to add a specific condition or a logical
+      qualification to the preceding statement.
+    grammar_point: しかし (but・however)
+  - term: だけど
+    meaning: But, however
+    kind: similar expression
+    nuance: だけど is a casual conjunction indicating simple opposition or addition. It is more colloquial
+      and less formal than もっとも.
+    grammar_point: しかし (but・however)
+  - term: でも
+    meaning: Even; or something; any; no matter
+    kind: similar expression
+    nuance: でも is a more casual conjunction than もっとも, primarily used to express a mild contrast or to
+      add supplementary information, and often implies a slight concession or suggestion. It lacks the
+      more formal and specific 'qualification' nuance of もっとも.
+    grammar_point: でも (even・any・no matter)
+  - term: だが
+    meaning: But, however
+    kind: similar expression
+    nuance: だが in its polite forms (such as ですが) introduces a contrast in formal situations, maintaining
+      politeness in spoken language. もっとも introduces a more specific qualification.
+    grammar_point: しかし (but・however)
+  - term: とはいえ
+    meaning: Although; even though; that being said; however; nevertheless.
+    kind: similar expression
+    nuance: While both とはいえ and もっとも introduce a concession or qualification, とはいえ tends to emphasize
+      that something is true despite an acknowledged fact, often with a sense of reality checking or a
+      slight letdown. もっとも, on the other hand, adds a relevant and often logical condition or exception
+      to a previously stated fact, making the overall statement more precise.
+    grammar_point: とはいえ (though)
+post_false_friends_writeup: While expressions like それなのに, しかしながら, しかし, だけど, でも, だが, and とはいえ might appear
+  similar to もっとも, each carries distinct nuances. もっとも specifically introduces a valid qualification or
+  exception to a previous statement, implying that while the initial statement has merit, it does not
+  represent the complete picture. それなのに highlights an unexpected or illogical contrast. しかし and しかしながら
+  offer more direct and objective contradictions or shifts in argument, with しかしながら being more formal.
+  だけど, でも, and だが are more general-purpose conjunctions for introducing mild contrasts or additional information,
+  varying in formality, but lacking the specific 'qualifying' or 'reasonable exception' nuance of もっとも.
+  とはいえ introduces a concession where something is true despite an acknowledged fact, often with a sense
+  of a reality check.
+examples:
+  - english: My sister is skilled at playing the piano, although she can only play one song.
+    japanese:
+      - 私 の 妹 は ピアノ を 弾く の が 上手 だ。{もっとも}、弾ける の は 一 曲 だけ だ。
+      - 私 の 妹 は ピアノ を 弾く の が 上手 です。{もっとも}、弾ける の は 一 曲 だけ です。
+    english_literally: My younger sister, as for playing piano, is skillful. Most true (However), what
+      can be played is only one song.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 妹 は ピアノ を 弾く の が 上手 だ。{だ けど}、弾ける の は 一 曲 だけ だ。
+        english: My sister is skilled at playing the piano, but she can only play one song.
+        hint: だけど is a more casual and direct 'but'. もっとも introduces a more nuanced qualification. We're
+          looking for a slightly more reflective or nuanced qualification rather than a simple, direct
+          'but'.
+    scene: Two friends discussing talents.
+    register: casual
+    setting: friendly
+    nuance: The casual register is evident in the general phrasing and the use of the plain form 「だ」.
+      The statement subtly qualifies a previous point.
+  - english: I adore sukiyaki, but that doesn't mean I can eat it every day.
+    japanese:
+      - 俺 は すき焼き が 大好き だ。{もっとも}、毎日 食べ られる 訳 で は ない。
+      - 私 は すき焼き が 大好き です。{もっとも}、毎日 食べ られる 訳 で は あり ませ ん。
+      - 私 は すき焼き が 大好き だ。{もっとも}、毎日 られる 訳 で は ない。
+    english_literally: As for me, sukiyaki is very liked. Most true (However), it is not the case that
+      I can eat it every day.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 は すき焼き が 大好き だ。{しかし}、毎日 食べ られる 訳 で は ない。
+        english: I adore sukiyaki, however, that doesn't mean I can eat it every day.
+        hint: しかし offers a more direct and objective contradiction. もっとも introduces a nuanced qualification
+          to a personal preference. We're looking for a personal, slightly informal context where a nuanced
+          qualification is offered.
+    scene: A man is passionately describing his favorite dish to a close friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of the male pronoun 「俺」 and the plain form 「だ」 indicates casual male speech. The phrase
+      「訳 で は ない」 is a common way to express a limitation or exception.
+  - english: I am incredibly knowledgeable about Korea. However, I've never actually been there.
+    japanese:
+      - 私 は 韓国 に つい て ものすごく 詳しい です。{もっとも}、韓国 に は 行っ た 事 が ない けど。
+      - 私 は 韓国 に つい て ものすごく 詳しい です。{もっとも}、韓国 に は 行っ た 事 が あり ませ ん が。
+      - 私 は 韓国 に つい て ものすごく 詳しい。{もっとも}、韓国 に は 行っ た 事 が ない けど。
+    english_literally: As for me, about Korea, I am extremely knowledgeable. Most true (However), as for
+      Korea, I have never been.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 韓国 に つい て ものすごく 詳しい です。{だ けど}、韓国 に は 行っ た 事 が ない けど。
+        english: I am incredibly knowledgeable about Korea. But, I've never actually been there.
+        hint: だけど is a simpler, more casual 'but'. もっとも sets up an initial strong point before adding
+          a mitigating fact. We're looking for a situation where the speaker wants to present an initial
+          strong point before adding a mitigating fact.
+    scene: Someone is trying to impress others with their deep knowledge of a country, then adds a caveat.
+    register: casual
+    setting: informative
+    nuance: The use of 「です」 and 「詳しい」 maintains a polite and informative tone, while 「けど」 adds a conversational,
+      slightly casual qualification at the end.
+  - english: I brought my personal computer to the office today. However, I don't really need it.
+    japanese:
+      - 今日 は 会社 に 自分 の パソコン を 持っ て き た。{もっとも}、自分 の パソコン は いら ない が。
+      - 今日 は 会社 に 自分 の パソコン を 持っ て き まし た。{もっとも}、自分 の パソコン は 必要 あり ませ ん が。
+      - 今日 は 会社 に 自分 の パソコン を 持っ て き まし た。{尤も}、自分 の パソコン は 必要 あり ませ ん が。
+    english_literally: Today, to the company, my own personal computer was brought. Most true (However),
+      my own personal computer is not needed.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 会社 に 自分 の パソコン を 持っ て き た。{しかし}、自分 の パソコン は いら ない が。
+        english: I brought my personal computer to the office today. However, I don't really need it.
+        hint: しかし is a more direct and objective 'however'. もっとも conveys a nuanced qualification that
+          softens the statement. We're looking for a polite, yet direct, qualification appropriate for
+          a workplace conversation.
+    scene: An employee explaining a minor inconvenience to a colleague in a professional setting.
+    register: semi-formal
+    setting: professional
+    nuance: The use of 「が」 at the end, along with the standard vocabulary, maintains a semi-formal and
+      professional tone suitable for a workplace conversation.
+  - english: This jewel is extremely valuable. However, it's not the most precious among my possessions.
+    japanese:
+      - この 宝石 は 非常 に 貴重 だ。{尤も} 私 が 持っ て いる 中 で 一 番 大切 な 訳 で は ない。
+      - この 宝石 は 非常 に 貴重 です。{もっとも} 私 が 持っ て いる 中 で 一 番 大切 な 訳 で は あり ませ ん。
+      - この 宝石 は 非常 に 貴重 です。{もっとも} 私 の 中 で は 一 番 大切 と いう 訳 で も ない です。
+    english_literally: This jewel is very valuable. Most true (However), it's not the case that it's the
+      most important among what I possess.
+    competing_grammar:
+      - competing_japanese:
+          - この 宝石 は 非常 に 貴重 だ。{それ な の に}、私 が 持っ て いる 中 で 一 番 大切 な 訳 で は ない。
+        english: This jewel is extremely valuable. And yet, it's not the most precious among my possessions.
+        hint: それなのに implies an unexpected or illogical contrast. 尤も introduces a more reflective and personal
+          qualification. We're looking for a sophisticated discussion where a direct, unexpected contrast
+          might be too strong.
+    scene: A connoisseur describing a rare item, then adding a personal perspective.
+    register: formal
+    setting: serious
+    nuance: The kanji form 「尤も」 lends a more formal and slightly literary tone to the sentence. The entire
+      sentence maintains a formal register.
+  - english: That person's story seems trustworthy to some extent. However, there are still dubious parts.
+    japanese:
+      - あの 人 の 話 は、ある 程度 まで 信用 できる よう だ。{尤も} まだ 疑わしい 部分 も ある けど。
+      - あの 人 の 話 は、ある 程度 まで 信用 できる よう です。{もっとも} まだ 疑わしい 部分 も あり ます が。
+      - あの 人 の 話 は、ある 程度 まで 信用 できる よう だ。{もっとも} まだ 疑わしい 部分 も ある。
+    english_literally: As for that person's story, up to a certain extent, it seems it can be trusted.
+      Most true (However), there are still doubtful parts.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 の 話 は、ある 程度 まで 信用 できる よう だ。{だ けど}、まだ 疑わしい 部分 も ある けど。
+        english: That person's story seems trustworthy to some extent. But, there are still dubious parts.
+        hint: だけど is a more casual 'but'. 尤も acknowledges a truth while also expressing reservations.
+          We're looking for a context where a nuanced qualification is needed, acknowledging a truth while
+          also expressing reservations.
+    scene: A detective expressing cautious optimism about a witness's testimony.
+    register: semi-formal
+    setting: cautious
+    nuance: The use of 「ようだが」 or 「けど」 makes the statement slightly less assertive, indicating a cautious
+      or hesitant nuance suitable for a semi-formal setting.
+  - english: There are many cups here. However, I cannot tell you which one is the true Holy Grail. Please
+      choose wisely.
+    japanese:
+      - ここ に たくさん の 杯 が あり ます。{尤も}、私 は どれ が 本物 の 聖 杯 か を 教える こと が でき ませ ん が。上手く 選ん で ください。
+      - ここ に たくさん の 杯 が あり ます。{もっとも}、私 は どれ が 本物 の 聖 杯 か を 教える こと が でき ませ ん が。上手く 選ん で ください。
+    english_literally: Here, there are many cups. Most true (However), I cannot teach which one is the
+      true Holy Grail. Please choose skillfully.
+    competing_grammar:
+      - competing_japanese:
+          - ここ に たくさん の 杯 が あり ます。{です が}、私 は どれ が 本物 の 聖 杯 か を 教える こと が でき ませ ん が。上手く 選ん で ください。
+        english: There are many cups here. But, I cannot tell you which one is the true Holy Grail. Please
+          choose wisely.
+        hint: ですが is a polite 'but'. 尤も emphasizes a specific limitation within a larger context of expectation.
+          We're looking for a sense of ancient wisdom and challenge, where the speaker highlights a specific
+          limitation.
+    scene: A mysterious sage addressing adventurers, offering a challenging task.
+    register: formal
+    setting: storytelling
+    nuance: The formal phrasing 「〜ことができませんが」 is respectful and formal, fitting the tone of a sage addressing
+      adventurers. The use of 「尤も」 contributes to the solemn and slightly archaic atmosphere.
+  - english: I can speak Japanese. However, it's only a little bit.
+    japanese:
+      - 日本 語 を 話せ ます。{もっとも}、少し だけ です が。
+      - 日本 語 話せる よ。{もっとも}、少し だけ だ けど ね。
+      - 日本 語 は 少し 話せ ます。{もっとも}、まだまだ です が。
+    english_literally: Japanese can be spoken. Most true (However), it is only a little.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 話せ ます。{で も}、少し だけ です が。
+        english: I can speak Japanese. But, it's only a little bit.
+        hint: でも is a casual 'but'. もっとも subtly qualifies the previous statement without sounding too
+          direct or abrupt. We're looking for modesty and politeness, where the statement is subtly qualified.
+    scene: A modest student downplaying their language skills to a native speaker.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「ます」 and 「です」, along with 「が」 at the end, makes the statement polite and demonstrates
+      modesty, typical in a formal informative setting.
+  - english: You're right. My favorite thing is ramen. However, I can't always eat it.
+    japanese:
+      - 君 は 正しい。俺 の 一 番 好き な もの は、ラーメン だ。{もっとも} いつ も 食べ られる 訳 で は ない。
+      - あなた は 正しい。私 の 一 番 好き な もの は、ラーメン です。{もっとも} いつ も 食べ られる 訳 で は ない です。
+      - その 通り です。私 の 一 番 好き な もの は ラーメン です。{もっとも} いつ も 食べ られる 訳 で は あり ませ ん。
+    english_literally: You are correct. My number one liked thing is ramen. Most true (However), it's
+      not the case that it can always be eaten.
+    competing_grammar:
+      - competing_japanese:
+          - 君 は 正しい。俺 の 一 番 好き な もの は、ラーメン だ。{だ けど}、いつ も 食べ られる 訳 で は ない。
+        english: You're right. My favorite thing is ramen. But, I can't always eat it.
+        hint: だけど is a direct 'but'. もっとも introduces a playful qualification that softens the previous
+          strong statement. We're looking for a playful qualification that softens a strong statement,
+          maintaining a light, intimate tone.
+    scene: A man flirts while discussing his food preferences with someone he's trying to impress.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「俺」 by the male speaker is intimate and casual. The plain form 「だ」 and the slightly
+      colloquial 「訳 で は ない」 add to the intimate and flirty tone, especially in combination with the topic
+      of ramen.
+  - english: We will complete the project by the end of the month. However, that's assuming there are
+      no unexpected problems.
+    japanese:
+      - プロジェクト は 月末 まで に 完了 する 予定 です。{もっとも}、予期 せ ぬ 問題 が なけれ ば の 話 です が。
+      - プロジェクト は 月末 まで に 完了 する 予定 で ござい ます。{もっとも}、予期 せ ぬ 問題 が 発生 し なけれ ば の 話 で ござい ます が。
+    english_literally: The project, by the end of the month, is planned to be completed. Most true (However),
+      if there are no unexpected problems, it is that kind of story (talking about that).
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト は 月末 まで に 完了 する 予定 です。{しかし}、予期 せ ぬ 問題 が なけれ ば の 話 です が。
+        english: We will complete the project by the end of the month. However, that's assuming there
+          are no unexpected problems.
+        hint: しかし is a more direct and objective 'however' or 'but'. もっとも is used to introduce a specific
+          condition or qualification to a statement that is otherwise presented as fact. We're looking
+          for a nuance that acknowledges a condition for the statement to hold true.
+    scene: A project manager giving an update to their team.
+    register: formal
+    setting: informative
+    nuance: The use of `予定 です` and `～の 話 です が` maintains a professional, slightly cautious tone. `もっとも`
+      here serves to manage expectations by adding a crucial contingency, which is typical in business
+      communication. The very formal version uses `で ござい ます` for heightened politeness.
+post_example_writeup: When using もっとも, it's important to remember that it introduces a qualification,
+  contrast, or exception to a previous statement. This is different from simply adding information, as
+  it sets up a somewhat opposing point or clarifies a limitation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/もっとも

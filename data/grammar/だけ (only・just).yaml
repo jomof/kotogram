@@ -1,0 +1,446 @@
+grammar_point: だけ (only・just)
+learn_before:
+  - だけで (just by)
+  - だけは (do to the fullest extent)
+meaning: Only, Just
+pronunciation:
+  katakana: ダケ
+  romaji: dake
+formation:
+  '[Noun] + だけ': Indicates a limit to only the noun.
+  '[Verb (dictionary form)] + だけ': Indicates that the action is performed to a limited extent or is the
+    only action.
+  '[い-Adjective] + だけ': Expresses that only the quality of the い-adjective applies.
+  '[な-Adjective (stem)] + だけ': Used to emphasize the given quality as the sole characteristic, often with
+    a slight negative or dismissive nuance.
+  '[な-Adjective (な)] + だけ': Used to modify a noun, indicating that the な-adjective is the only relevant
+    quality.
+  '[Potential Verb] + だけ + [same Verb]': Means 'as much as one can Verb'.
+  '[Non-volitional Verb] + だけ + [same Verb]': Means 'to the utmost extent of the Non-volitional Verb'.
+  できるだけ + [Adjective/Adverb]: Means 'as much/as possible' (literally 'can do as much as').
+jlpt: N5
+etymology: The origin of 「だけ」 is debated, with possibilities including a derivation from 「丈 (take)」, referring
+  to length or degree, or from 「竹 (take)」, used metaphorically to indicate a limited quantity. Regardless,
+  its function as a limiting particle has been consistent.
+writeup: |-
+  「だけ」 is a particle used to convey the meaning of "only" or "just," serving to restrict or limit the scope of the preceding word or phrase. It signifies that among various possibilities, only the specified item is true or has been selected.
+
+  It can attach to a wide range of words:
+  *   **Nouns**: Directly attaches to a noun to indicate that *only* that noun is involved or relevant.
+  *   **Verbs (dictionary form)**: When appended to a verb in its dictionary (plain) form, 「だけ」 limits the action to that specific verb. It can also be used in more complex constructions to mean "as much as one can do something" or "do something to the fullest extent."
+  *   **い-Adjectives**: When used with an い-adjective, it emphasizes that the given quality is the sole characteristic. This can sometimes carry a dismissive nuance, suggesting that the quality is present but insufficient or undesirable on its own.
+  *   **な-Adjectives**: For な-adjectives, the usage varies. If 「だけ」 follows the stem of a な-adjective (e.g., 「暇だけ」), it often implies that the adjective's core essence is the *only* thing present, potentially with a slightly critical or dismissive tone. When 「だけ」 follows the な-form (e.g., 「暇なだけ」), it typically clarifies that the adjective is the *only* relevant quality in modifying something, providing a reason or explanation that excludes other factors.
+
+  Beyond simple limitation, 「だけ」 also appears in expressions like 「できるだけ」 (as much as possible) or 「VれるだけVる」 (do as much as one can V), indicating an action performed to its maximum capacity or desire. These uses expand its meaning beyond mere restriction to encompass degrees or limits of possibility.
+false_friends:
+  - term: しか〜ない
+    meaning: There is only, nothing but
+    kind: similar expression
+    nuance: While both limit options, 「しか〜ない」 often carries a nuance of regret, insufficiency, or a lack
+      of alternatives, emphasizing what is *not* present. 「だけ」 is more neutral, simply stating what *is*
+      present exclusively.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: ばかり
+    meaning: Just, only, nothing but
+    kind: similar expression
+    nuance: 「ばかり」 can imply repetition or an abundance of something, or it can focus exclusively on one
+      thing to the neglect of others. Unlike 「だけ」, 「ばかり」 often carries a nuance of 'always doing X' or
+      'being full of X'.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: きり
+    meaning: Only, just
+    kind: similar expression
+    nuance: 「きり」 emphasizes exclusivity or finality, often implying that something is limited to a single
+      occurrence or state, and nothing else has happened or will happen since then. It can convey a sense
+      of unexpected finality or a slightly stronger, more restrictive limitation than 「だけ」.
+    grammar_point: 〜きり (only・just)
+  - term: のみ
+    meaning: Only
+    kind: similar expression
+    nuance: 「のみ」 is a more formal and literary way to express "only" compared to 「だけ」, which is common
+      in everyday conversation. While their core meanings are similar, 「のみ」 adds a sense of formality
+      or written expression.
+    grammar_point: のみ (only・just)
+  - term: のみならず
+    meaning: Not only… but also
+    kind: similar expression
+    nuance: 「のみならず」 is a more formal and emphatic expression for 'not only... but also', often used in
+      written Japanese or formal speech. While 「だけ」 can be part of expressions like 「だけでなく」 (not only),
+      「のみならず」 functions as a complete conjunction expressing a broader scope of inclusion rather than
+      a simple limitation.
+    grammar_point: はもとより (not only・let alone)
+post_false_friends_writeup: To avoid confusion between these limiting expressions, consider their nuanced
+  implications. 「だけ」 simply restricts options. 「しか〜ない」 adds a layer of insufficiency or regret. 「ばかり」
+  suggests repetition or an exclusive focus, sometimes implying neglect of other things. 「きり」 conveys
+  a sense of finality or a singular, unchanging state. Lastly, 「のみ」 functions identically to 「だけ」 but
+  in formal or written contexts. 「のみならず」 expands on the 'not only' concept in a formal register. Choosing
+  the correct expression depends on the specific nuance you wish to convey.
+examples:
+  - english: For drinks, it's just water.
+    japanese:
+      - 飲み物 は 水 {だけ} です。
+      - 飲み物 は 水 {だけ} だ。
+      - 飲み物 は 水 {だけ} で ござい ます。
+      - 飲み物 は 水 {のみ} です。
+    english_literally: As for me, I eat apples.
+    competing_grammar:
+      - competing_japanese:
+          - 飲み物 は 水 {しか} あり ませ ん。
+        english: For drinks, there is only water.
+        hint: 「しか〜ない (only, nothing but)」 implies a negative nuance, suggesting a lack or insufficiency
+          of options. We're looking for a neutral statement of fact about the sole available option, which
+          「だけ (only, just)」 conveys without implying disappointment or limitation.
+      - competing_japanese:
+          - 飲み物 は 水 {ばかり} です。
+        english: For drinks, it's nothing but water.
+        hint: 「ばかり (only, excessive)」 can imply an abundance or an exclusive focus on one thing, sometimes
+          suggesting excess or neglect of others. We're looking for a simple statement of limitation.
+      - competing_japanese:
+          - 飲み物 は 水 {きり} です。
+        english: For drinks, it's only water (and nothing else).
+        hint: 「きり (only, since)」 often conveys a sense of finality or that only one thing is present and
+          nothing else followed. We're looking for a simple limiting statement.
+      - competing_japanese:
+          - 飲み物 は 水 {のみ} です。
+        english: For drinks, it's only water (formal).
+        hint: 「のみ (only, just)」 is a more formal equivalent to 「だけ」. We're looking for the common, neutral
+          limiting particle.
+    scene: A server telling a customer the available drink options, emphasizing that only water is provided.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「水だけ」 simply states the sole item available, Water. The polite form 「です」 further
+      reinforces the neutral and informative tone suitable for a professional setting. The phrase 「水だけ」
+      highlights the sole item.
+  - english: Today, I'm just studying; I haven't played yet.
+    japanese:
+      - 今日 は 勉強 する {だけ} で、まだ 遊ん で い ませ ん。
+      - 今日 は 勉強 する {だけ} で、まだ 遊ん で ない。
+      - 今日、勉強 する {だけ} で、まだ 遊ん で ねえ よ。
+      - 本日 は 勉強 する {だけ} で、まだ 遊ん で おり ませ ん。
+    english_literally: Today, it's only studying, and I haven't played yet.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 勉強 し {て}、まだ 遊ん で い ませ ん。
+        english: Today, I studied, and haven't played yet.
+        hint: Simply using the te-form 「して」 would connect the actions without emphasizing exclusivity.
+          The scene requires the nuance that *only* studying has occurred, which 「だけ (only, just)」 provides,
+          indicating a limitation on activities.
+      - competing_japanese:
+          - 今日 は 勉強 {しか} し て い ませ ん。
+        english: Today, I have only studied.
+        hint: 「しか〜ない (only, nothing but)」 emphasizes insufficiency or a lack of options, implying that
+          *only* studying was done and it's perhaps not ideal. We're looking for a neutral statement of
+          limitation.
+      - competing_japanese:
+          - 今日 は 勉強 {ばかり} し て い ます。
+        english: Today, I am only studying.
+        hint: 「ばかり (only, excessive)」 can imply being completely engrossed in something, sometimes with
+          a nuance of neglecting other things. We're looking for a statement that simply limits the activity.
+      - competing_japanese:
+          - 今日 は 勉強 する {きり} です。
+        english: Today, I have only been studying.
+        hint: 「きり (only, since)」 often suggests that an action is limited to a single occurrence or that
+          nothing else has happened since. We're looking for a general limitation of activity.
+      - competing_japanese:
+          - 今日 は 勉強 する {のみ} です。
+        english: Today, it is only studying.
+        hint: 「のみ (only, just)」 is a more formal way to say 'only'. We're looking for the commonly used
+          particle.
+    scene: A student telling a friend about their activities for the day, emphasizing that their time
+      has been exclusively dedicated to studying.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「勉強するだけ」 emphasizes that studying is the sole activity performed so far. The casual
+      tone and focus on personal activities are common among younger speakers discussing their day with
+      friends. The male casual ending 「ねえよ」 further emphasizes this.
+  - english: This cake is just sweet; it doesn't have a special flavor.
+    japanese:
+      - この ケーキ は 甘い {だけ} で、特別 な 味 は し ませ ん。
+      - この ケーキ は 甘い {だけ} で、特別 な 味 は し ない。
+      - この ケーキ、甘い {だけ} で、特別 な 味 し ねえ な。
+      - この ケーキ は 甘い {だけ} で、特別 な 味 は ござい ませ ん。
+      - この ケーキ は 甘い {のみ} で、特別 な 味 は し ませ ん。
+    english_literally: This cake is only sweet, and it doesn't have a special flavor.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は 甘く {て}、特別 な 味 は し ませ ん。
+        english: This cake is sweet, and it doesn't have a special flavor.
+        hint: Using 「〜て」 merely lists attributes. The scene calls for a nuanced critique where 'sweetness'
+          is presented as the *only* characteristic, implying a lack of other desirable qualities. 「だけ
+          (only, just)」 conveys this dismissive nuance.
+      - competing_japanese:
+          - この ケーキ は 甘く {しか} ない です。
+        english: This cake is only sweet.
+        hint: 「しか〜ない (only, nothing but)」 implies that it's *only* sweet and nothing else, often with
+          a negative implication of insufficiency. We're looking for a statement that simply identifies
+          'sweet' as the sole quality.
+      - competing_japanese:
+          - この ケーキ は 甘い {ばかり} です。
+        english: This cake is nothing but sweet.
+        hint: 「ばかり (only, excessive)」 here could imply it's 'nothing but sweet' or 'full of sweetness,'
+          potentially with a critical tone. We're looking for a statement that simply limits the characteristic.
+      - competing_japanese:
+          - この ケーキ は 甘い {きり} です。
+        english: This cake is only sweet, that's it.
+        hint: 「きり (only, since)」 often conveys a sense of finality or that only one thing is present and
+          nothing else followed. We're looking for a simple limiting statement about a quality.
+      - competing_japanese:
+          - この ケーキ は 甘い {のみ} です。
+        english: This cake is only sweet (formal).
+        hint: 「のみ (only, just)」 is a more formal way to say 'only'. We're looking for the commonly used
+          particle.
+    scene: A food critic offering a critique of a dessert, implying that its sweetness is its only notable
+      quality, and not necessarily a positive one.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「甘いだけ」 highlights that 'sweetness' is the exclusive quality, suggesting a lack
+      of complexity or other flavors. The polite form 「ません」 maintains the formal register.
+  - english: He's just kind; he doesn't have true friends.
+    japanese:
+      - 彼 は 親切 {だけ} で、本当 の 友達 は い ませ ん。
+      - 彼 は 親切 {だけ} で、本当 の 友達 は い ない。
+      - あいつ、親切 {だけ} で、本当 の 友達 い ねえ よ。
+      - 彼 は 親切 {だけ} と いう こと で、本当 の 友達 は い ませ ん。
+    english_literally: He is only kind, and he doesn't have true friends.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 親切 です {が}、本当 の 友達 は い ませ ん。
+        english: He is kind, but he doesn't have true friends.
+        hint: A simple 「〜ですが」 (but) would connect two facts neutrally. The scene implies a critical judgment
+          that 'kindness' is his *only* attribute, and it's insufficient for forming deep bonds. 「だけ (only,
+          just)」 conveys this dismissive or limiting assessment.
+      - competing_japanese:
+          - 彼 は 親切 {しか} ない です。
+        english: He is only kind.
+        hint: 「しか〜ない (only, nothing but)」 implies that kindness is the *only* thing he has, often with
+          a negative connotation of insufficiency or a lack of other qualities. We're looking for a statement
+          that simply limits his primary characteristic.
+      - competing_japanese:
+          - 彼 は 親切 {ばかり} です。
+        english: He is nothing but kind.
+        hint: 「ばかり (only, excessive)」 can imply that kindness is his dominant or exclusive trait, potentially
+          to the point of being one-dimensional. We're looking for a statement that simply limits his
+          characteristic.
+      - competing_japanese:
+          - 彼 は 親切 な {きり} です。
+        english: He is only kind, that's it.
+        hint: 「きり (only, since)」 often suggests a single, unchanging state or that nothing else has happened
+          since. We're looking for a simple limiting statement about a characteristic.
+      - competing_japanese:
+          - 彼 は 親切 {のみ} です。
+        english: He is only kind (formal).
+        hint: 「のみ (only, just)」 is a more formal way to say 'only'. We're looking for the commonly used
+          particle.
+    scene: Two colleagues discussing a new hire who is outwardly kind but struggles to form genuine connections,
+      implying a superficiality.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: By attaching 「だけ」 to the stem 「親切」, the speaker implies that his kindness is his *only* significant
+      trait, suggesting a superficiality or a lack of other necessary qualities for genuine friendship.
+      This carries a subtly critical tone. The very casual 「いねえよ」 for 'isn't' is typically used by younger
+      males.
+  - english: The reason he did something like that is just that it's simple.
+    japanese:
+      - 彼 が そんな こと を し た の は、ただ 単純 な {だけ} です。
+      - 彼 が そんな こと を し た の は、ただ 単純 な {だけ} だ。
+      - あいつ が そんな こと し た の は、単純 な {だけ} だ よ。
+      - 彼 が その よう な こと を なさっ た の は、ただ 単純 な {だけ} で ござい ます。
+      - 彼 が そんな こと を し た の は、ただ 単純 な {のみ} です。
+    english_literally: The reason he did such a thing is just that it's simple.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が そんな こと を し た の は、ただ 単純 {です}。
+        english: The reason he did something like that is simply that it's simple.
+        hint: Without 「だけ (only, just)」, this would be a simple statement of simplicity. The scene requires
+          emphasizing that simplicity is the *sole* reason, clarifying that no other factors are at play.
+          「だけ」 conveys this exclusive reason.
+      - competing_japanese:
+          - 彼 が そんな こと を し た の は、単純 {しか} ない です。
+        english: The reason he did something like that is only simplicity.
+        hint: 「しか〜ない (only, nothing but)」 implies that simplicity is the *only* explanation, often with
+          a nuance of there being no other valid reasons. We're looking for a neutral statement that limits
+          the explanation to simplicity.
+      - competing_japanese:
+          - 彼 が そんな こと を し た の は、単純 {ばかり} です。
+        english: The reason he did something like that is nothing but simplicity.
+        hint: 「ばかり (only, excessive)」 could imply that it's 'nothing but simple' or 'full of simplicity,'
+          potentially emphasizing an oversimplification. We're looking for a statement that simply limits
+          the explanation.
+      - competing_japanese:
+          - 彼 が そんな こと を し た の は、単純 な {きり} です。
+        english: The reason he did something like that is only simplicity, and that's it.
+        hint: 「きり (only, since)」 often suggests a single, unchanging state or a sense of unexpected finality.
+          We're looking for a simple limiting statement about the reason.
+      - competing_japanese:
+          - 彼 が そんな こと を し た の は、ただ 単純 な {のみ} です。
+        english: The reason he did something like that is only simplicity (formal).
+        hint: 「のみ (only, just)」 is a more formal way to say 'only'. We're looking for the commonly used
+          particle.
+    scene: A person explaining a straightforward, uncomplicated motive behind someone's action, ruling
+      out complex explanations.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The expression 「単純なだけ」 emphasizes that 'simplicity' is the exclusive and complete explanation
+      for the action, negating any hidden complexities. The polite form 「です」 maintains a neutral, informative
+      tone.
+  - english: I ran as much as I could and finally reached the goal.
+    japanese:
+      - 走れる {だけ} 走っ て、やっと ゴール に 着き まし た。
+      - 走れる {だけ} 走っ て、やっと ゴール 着い た。
+      - 走れる {だけ} 走っ て、やっと ゴール 着い た わ。
+      - 走れる {だけ} 走り、ようやく ゴール に 到着 いたし まし た。
+    english_literally: I ran as much as I could run, and finally arrived at the goal.
+    competing_grammar:
+      - competing_japanese:
+          - '{たくさん} 走っ て、やっと ゴール に 着き まし た。'
+        english: I ran a lot, and finally reached the goal.
+        hint: 「たくさん (many・a lot)」 indicates quantity but doesn't convey the sense of reaching one's maximum
+          capacity or 'running to the limit.' The scene focuses on the nuance of pushing physical boundaries,
+          which 「走れるだけ走る」 (run as much as one can run) expresses.
+    scene: An exhausted marathon runner describing reaching the finish line after pushing their physical
+      limits.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: The repetition of the verb in 「走れるだけ走って」 emphasizes the action was performed to the absolute
+      maximum capacity. The casual register is appropriate for a personal reflection shared with a peer
+      after an strenuous event. 「着いた」 is a casual form of 「着きました」.
+  - english: This plant has grown as much as it can; it won't get any bigger than this.
+    japanese:
+      - この 植物 は 伸びる {だけ} 伸び て、もう これ 以上 は 大きく なり ませ ん。
+      - この 植物 は 伸びる {だけ} 伸び て、もう これ 以上 は 大きく なら ない。
+      - この 植物 は 伸長 する {だけ} 伸長 し て、これ 以上 の 成長 は 見込め ませ ん。
+    english_literally: This plant grew as much as it grew, and it will not become bigger than this anymore.
+    competing_grammar:
+      - competing_japanese:
+          - この 植物 は 伸びる ところ {まで} 伸び て、もう これ 以上 は 大きく なり ませ ん。
+        english: This plant grew to the point it could grow, and won't get any bigger than this.
+        hint: 「まで (limit extent)」 indicates a limit or boundary. While it specifies the extent, it doesn't
+          emphasize the natural, inherent maximum achieved by the verb's action itself as strongly as
+          the `VるだけVる` construction. We're looking for the phrase that highlights the utmost natural growth.
+    scene: A botanist explaining to a curious visitor that a particular plant has reached its maximum
+      size and will not grow further.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    nuance: The usage 「伸びるだけ伸びて」 indicates that the plant has reached its natural maximum growth. The
+      polite form 「なりません」 and academic setting make the explanation formal and objective, fitting a botanist's
+      informative tone. The repetition of 「伸びる」 emphasizes the completion of growth.
+  - english: Please complete this report as soon as possible.
+    japanese:
+      - できる {だけ} 早く、この 報告 書 を 完成 さ せ て 下さい。
+      - できる {だけ} 早く、この 報告 書 完成 さ せ て。
+      - できる {だけ} 早く、この 報告 書 を 完成 さ せ て いただけ ます でしょう か。
+      - できる {だけ} 早く、この 報告 書 を 完成 さ せろ。
+    english_literally: As much as can be done quickly, please complete this report.
+    competing_grammar:
+      - competing_japanese:
+          - 早く この 報告 書 を 完成 さ せ {て} 下さい。
+        english: Please complete this report quickly.
+        hint: While 「早く」 (quickly) suggests speed, 「できるだけ (as much as possible)」 (as much as possible)
+          explicitly conveys the imperative to maximize effort and speed to the fullest extent. The scene's
+          urgency aligns with the stronger emphasis of 「できるだけ」.
+      - competing_japanese:
+          - '{なるべく} 早く、この 報告 書 を 完成 さ せ て 下さい。'
+        english: As much as possible quickly, please complete this report.
+        hint: 「なるべく (as much as possible)」 means 'as much as possible' or 'as soon as possible,' but 「できるだけ」
+          literally uses the verb 'to be able to do,' making it a more direct expression of 'as much as
+          one *can* do.' We're looking for the phrase that uses the specific form of できる.
+    scene: A project manager instructing a team member to prioritize and finish a report quickly, emphasizing
+      urgency.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「できるだけ早く」 is a common fixed phrase indicating maximum effort towards speed. The polite imperative
+      「完成させて下さい」 is standard in a professional context, where clear and polite instructions are required.
+      The phrase 「できるだけ」 conveys a strong request for efficiency.
+  - english: I just need a little bit of time.
+    japanese:
+      - 時間 は 少し {だけ} 必要 です。
+      - 時間 は 少し {だけ} 要る よ。
+    english_literally: As for time, only a little is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 は 少し {しか} 必要 あり ませ ん。
+        english: I only need a little time.
+        hint: 「しか〜ない (only, nothing but)」 implies that a small amount is available and perhaps insufficient
+          or regrettable. We're looking for a neutral statement that simply quantifies the exact, limited
+          amount needed, which 「少しだけ」 conveys.
+    scene: A busy person making a small request to buy some time from a colleague or friend.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The use of 「少しだけ」 emphasizes that the required time is minimal, perhaps to convey that it
+      won't be a burden or inconvenience. The polite 「です」 maintains a respectful tone appropriate for
+      a professional setting.
+  - english: This is the only thing I can do now.
+    japanese:
+      - 今、私 に できる の は これ {だけ} です。
+      - 今、私 に できる の は これ {だけ} だ。
+    english_literally: Now, that which I can do is only this.
+    competing_grammar:
+      - competing_japanese:
+          - 今、私 に できる の は これ {しか} あり ませ ん。
+        english: Now, I can only do this.
+        hint: 「しか〜ない (only, nothing but)」 emphasizes that there's *nothing else* that can be done, often
+          with a nuance of regret or a lack of options. We're looking for a statement that simply limits
+          the capability to 'this one thing' without the negative implication.
+      - competing_japanese:
+          - 今、私 に できる の は これ {ばかり} です。
+        english: Now, what I can do is nothing but this.
+        hint: 「ばかり (only, excessive)」 can imply an exclusive focus on one thing, potentially suggesting
+          that other important things are being neglected. We're looking for a simple statement of limitation.
+    scene: Someone feeling helpless or restricted by circumstances, indicating their limited but certain
+      capability.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: 「これだけ」 emphasizes that despite the situation, this specific action or item is the *only* one
+      available to them, often implying a sense of resignation or determination within limits. The 「です」
+      maintains a neutral, informative tone.
+  - english: He just nodded without saying a word.
+    japanese:
+      - 彼 は 何 も 言わ ず に 頷く {だけ} でし た。
+      - 彼 は 何 も 言わ ず に 頷い た {だけ} だ。
+    english_literally: He was only nodding without saying anything.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 何 も 言わ ず に 頷き まし {た}。
+        english: He nodded without saying anything.
+        hint: While simply stating the action, this doesn't emphasize that *only* nodding occurred. The
+          scene implies a lack of other expected responses (like speaking), which 「だけ (only, just)」 highlights
+          by limiting his action solely to nodding.
+      - competing_japanese:
+          - 彼 は 何 も 言わ ず に 頷く {ばかり} でし た。
+        english: He was nothing but nodding without saying anything.
+        hint: 「ばかり (only, excessive)」 could imply that he was 'constantly nodding' or 'doing nothing but
+          nodding,' perhaps suggesting an excessive or repetitive action. We're looking for a statement
+          that simply limits his action to nodding, implying a lack of other actions.
+    scene: Someone describing another person's minimal reaction or non-verbal communication in a situation
+      where more was expected.
+    register: teineigo (polite)
+    setting: storytelling
+    nuance: 「頷くだけ」 emphasizes the singular action of nodding, implying that no other verbal or more substantial
+      response was given. This can suggest a lack of engagement, simple agreement, or a deliberate choice
+      not to speak. The 「でした」 makes it a polite observation.
+post_example_writeup: When 「だけ」 is used with な-adjectives, there is a subtle distinction based on the
+  form. If 「だけ」 follows the stem of a な-adjective (e.g., 「暇だけ」, 'just leisure'), it tends to imply that
+  the noun's core essence or concept is the only thing present, often with a slightly dismissive or critical
+  nuance. For instance, 「彼は暇だけ」 might imply 'He is nothing but idle' or 'All he has is free time.' Conversely,
+  when 「だけ」 follows the な-form (e.g., 「暇なだけ」, 'only free (time)'), it emphasizes that the adjective modifies
+  something, and this specific quality is the only one relevant to the discussion, as in 「彼が来ないのは暇なだけだ」
+  ('The reason he isn't coming is just that he's free/has nothing else to do').
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だけ

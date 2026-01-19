@@ -1,0 +1,225 @@
+grammar_point: 加えて (in addition・adding to that)
+learn_before:
+  - 加えると (to add)
+meaning: in addition
+pronunciation:
+  katakana: クワエテ
+  romaji: kuwaete
+formation:
+  Noun に加えて: Used to introduce an additional noun or item, meaning "in addition to Noun."
+  Verb[て] 加えて: Used to add another action or state, emphasizing the cumulative effect of actions.
+  Sentence 加えて: Used as a conjunctive word to add further information or a new element to a previously
+    stated sentence.
+jlpt: N3
+etymology: The term 加えて (kuwaete) is the te-form of the verb 加える (kuwaeru), which means "to add," "to
+  sum up," or "to include." Historically, its use as a conjunctive expression evolved from its literal
+  meaning of "adding on" to convey the sense of "in addition" or "furthermore." This grammaticalization
+  allows it to function as a transition word that introduces supplementary information or another element
+  to what has already been stated, whether it be a list, a reason, or an action.
+writeup: 加えて (kuwaete) is a versatile conjunction used to introduce additional information that supplements
+  or reinforces a previously stated idea, fact, or action. It can be translated as "in addition," "furthermore,"
+  "moreover," or "on top of that." It is more formal than simply connecting clauses with と or そして, and
+  implies a logical extension or accumulation of points. This grammar point is commonly used in both written
+  and spoken Japanese, especially in contexts where clarity and a structured presentation of information
+  are important, such as presentations, reports, or formal discussions. It allows the speaker or writer
+  to build upon previous statements by adding new details, reasons, or examples.
+false_friends:
+  - term: そして
+    meaning: and.and then
+    kind: similar expression
+    nuance: そして (soshite) is a general conjunctive particle that primarily indicates a sequential or simple
+      additive relationship between clauses or sentences. It implies "and then" or "and," focusing on
+      the flow of events or listing items without necessarily emphasizing the cumulative aspect. 加えて (kuwaete),
+      on the other hand, specifically introduces additional information or an additive element that reinforces
+      or expands upon what was previously mentioned, often with a slightly more formal tone.
+    grammar_point: そして (and・and then)
+  - term: また
+    meaning: again.also.or
+    kind: similar expression
+    nuance: また (mata) can mean "also" or "again," indicating repetition or the inclusion of another item.
+      While it adds information, it is generally less formal than 加えて (kuwaete) and can simply list items
+      or actions without strongly emphasizing the idea of accumulation or building upon a previous point.
+      加えて carries a stronger sense of "in addition to what was already stated."
+    grammar_point: また (again; also; or)
+  - term: おまけに
+    meaning: in addition.on top of that
+    kind: similar expression
+    nuance: おまけに (omake ni) means "in addition" or "to make matters worse/better," but it often carries
+      a nuance of an extra, often unexpected, or even a slightly negative or positive, addition. It can
+      imply a "bonus" or an "unfortunate consequence." 加えて (kuwaete) is more neutral and objective, simply
+      stating the addition without the implied emotional coloring.
+    grammar_point: おまけに (in addition・on top of that)
+  - term: その上
+    meaning: in addition.moreover
+    kind: similar expression
+    nuance: その上 (sono ue) is very similar to 加えて (kuwaete), meaning "in addition" or "moreover." However,
+      その上 often suggests a logical progression or a surprising reinforcement of the previous statement,
+      implying "on top of that, something else is true." 加えて can be a more general and direct way to simply
+      state an additional point, without necessarily implying a strong logical connection or surprise.
+    grammar_point: <suggest>:それに・加えて・その上・しかも (in addition・moreover)
+  - term: それに
+    meaning: in addition.moreover
+    kind: similar expression
+    nuance: それに (sore ni) is a relatively casual conjunction used to add another point or reason. It's
+      often used when simply listing additional facts. While similar to 加えて (kuwaete), 加えて is generally
+      more formal and emphasizes the cumulative effect of adding information, making it suitable for more
+      structured or formal discourse. それに is more akin to simply saying "and also."
+    grammar_point: <suggest>:それに・加えて・その上・しかも (in addition・moreover)
+post_false_friends_writeup: The choice among these "in addition" expressions often depends on the formality,
+  nuance, and the type of information being added. While そして, また, and それに are generally more casual and
+  serve broader connective functions, 加えて and その上 lean towards more formal or structured contexts, emphasizing
+  the accumulation or logical progression of points. おまけに uniquely carries an emotional connotation of
+  an additional, often unexpected, factor. Understanding these subtle differences will allow you to select
+  the most appropriate expression for your intended meaning and context.
+examples:
+  - english: In addition to the delicious food, the atmosphere of the restaurant was also wonderful.
+    japanese:
+      - 美味しい 料理 {に 加え て}、レストラン の 雰囲気 も 素晴らしかっ た です。
+      - 美味しい 料理 {に 加え て}、レストラン の 雰囲気 も 素晴らしかっ た。
+    english_literally: Delicious food in addition, restaurant's atmosphere also was wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - 美味しい 料理 そして レストラン の 雰囲気 も 素晴らしかっ た です。
+        english: The delicious food, and the restaurant's atmosphere was also wonderful.
+        hint: 「そして」 simply connects items or clauses. It doesn't emphasize the 'addition' in the same
+          way. We're looking for an expression that highlights something being added on top of another.
+    scene: Describing a pleasant dining experience.
+    register: teineigo (polite)
+    setting: informative
+  - english: He worked hard, and in addition, he never gave up.
+    japanese:
+      - 彼 は 一生 懸命 働き {、加え て}、決して 諦め ませ ん でし た。
+      - 彼 は 一生 懸命 働き {、加え て}、決して 諦め なかっ た です。
+      - 彼 は 一生 懸命 働き {、加え て}、決して 諦め なかっ た。
+    english_literally: He hard worked, in addition, never gave up.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一生 懸命 働き、その 上、決して 諦め ませ ん でし た。
+        english: He worked hard, and what's more, he never gave up.
+        hint: 「その上」 also means 'in addition,' but it often suggests a surprising or reinforcing additional
+          point. We're looking for a more general additive connection.
+    scene: Praising someone's persistent effort.
+    register: formal
+    setting: supportive
+  - english: The company's profits increased significantly this year. In addition, its market share also
+      expanded.
+    japanese:
+      - 今年 は 会社 の 利益 が 大幅 に 増加 し まし た {。加え て}、市場 シェア も 拡大 し まし た。
+      - 今年 は 会社 の 利益 が 大幅 に 増加 し まし た {。加え て}、市場 シェア も 拡大 し た。
+    english_literally: This year company's profits greatly increased. In addition, market share also expanded.
+    competing_grammar:
+      - competing_japanese:
+          - 今年 は 会社 の 利益 が 大幅 に 増加 し まし た。それ に、市場 シェア も 拡大 し まし た。
+        english: This year, the company's profits increased significantly. And also, its market share
+          expanded.
+        hint: 「それに」 is often more casual and simply lists additional facts. We're looking for a more formal
+          and cumulative addition suitable for a business context.
+    scene: Reporting on a company's performance.
+    register: bijinesu nihongo (business)
+    setting: informative
+  - english: In addition to excellent academic performance, she also excelled in extracurricular activities.
+    japanese:
+      - 彼女 は 優秀 な 学業 成績 {に 加え て}、部 活動 で も 活躍 し まし た。
+      - 彼女 は 優秀 な 学業 成績 {に 加え て}、部 活動 で も 活躍 し た。
+    english_literally: She excellent academic performance in addition, club activities in also was active.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 優秀 な 学業 成績 もちろん、部 活動 で も 活躍 し まし た。
+        english: She excelled in extracurricular activities, let alone excellent academic performance.
+        hint: 「もちろん」 (of course) can imply something is also true, but it shifts the emphasis to 'let
+          alone' or 'naturally,' not simply 'in addition.' We're looking for a direct additive expression.
+    scene: Discussing a student's achievements.
+    register: formal
+    setting: academic
+  - english: This product is environmentally friendly, and in addition, it is also very durable.
+    japanese:
+      - この 製品 は 環境 に 優しく {、加え て}、耐久 性 も 非常 に 高い です。
+      - この 製品 は 環境 に 優しく {、加え て}、耐久 性 も 非常 に 高い。
+    english_literally: This product environment friendly, in addition, durability also very high is.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は 環境 に 優しく て、おまけ に、耐久 性 も 非常 に 高い です。
+        english: This product is environmentally friendly, and to top it off, it's also very durable.
+        hint: 「おまけに」 often carries a nuance of an unexpected or bonus addition, or something that makes
+          things 'worse' or 'better'. We're looking for a neutral addition of features.
+    scene: Presenting a product's features.
+    register: teineigo (polite)
+    setting: professional
+  - english: The project was delayed due to unforeseen problems. In addition, the budget also exceeded.
+    japanese:
+      - プロジェクト は 予期 せ ぬ 問題 で 遅れ まし た {。加え て}、予算 も オーバー し まし た。
+      - プロジェクト は 予期 せ ぬ 問題 で 遅れ まし た {。加え て}、予算 も オーバー し た。
+    english_literally: Project unforeseen problems by delayed. In addition, budget also exceeded.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト は 予期 せ ぬ 問題 で 遅れ まし た。そして 予算 も オーバー し まし た。
+        english: The project was delayed due to unforeseen problems. And then the budget also exceeded.
+        hint: 「そして」 implies a sequence or simple connection, but it doesn't emphasize the additive nature
+          of the second point in relation to the first. We're looking for a clear statement of an additional
+          negative factor.
+    scene: Explaining project difficulties.
+    register: teineigo (polite)
+    setting: serious
+  - english: In addition to ramen, I also like curry.
+    japanese:
+      - ラーメン {に 加え て}、カレー も 好き です。
+      - ラーメン {に 加え て}、カレー も 好き だ。
+    english_literally: Ramen in addition, curry also like.
+    competing_grammar:
+      - competing_japanese:
+          - ラーメン も、カレー も 好き です。
+        english: I like both ramen and curry.
+        hint: Using 「も～も～」 emphasizes 'both' but doesn't explicitly state that one is an addition to another
+          previously known item. We're looking for the specific nuance of 'in addition to X, Y also'.
+    scene: Casual conversation about food preferences.
+    register: casual
+    setting: friendly
+    nuance: While 加えて is generally more formal, it can be used in casual speech, though 「それに」 or simply
+      listing might be more common for simple additions like this.
+  - english: He helps others, and in addition, he always tries to do his best.
+    japanese:
+      - 彼 は 人 を 助け {、加え て}、いつ も 最善 を 尽くそう と 努力 し て い ます。
+      - 彼 は 人 を 助け {、加え て}、いつ も 最善 を 尽くそう と 努力 し て いる。
+    english_literally: He people helps, in addition, always best tries to do efforts doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 人 を 助け、さらに、いつ も 最善 を 尽くそう と 努力 し て い ます。
+        english: He helps others, and furthermore, he always tries to do his best.
+        hint: 「さらに」 (furthermore) is very similar, but 「加えて」 often emphasizes that the second point literally
+          'adds' to the first, building a comprehensive picture of the person's character. We're looking
+          for that direct additive sense.
+    scene: Describing someone's positive character.
+    register: teineigo (polite)
+    setting: supportive
+  - english: The new policy was implemented last month. In addition, various training programs have also
+      been prepared.
+    japanese:
+      - 新しい 政策 は 先月 実施 さ れ まし た {。加え て}、様々 な 研修 プログラム も 用意 さ れ まし た。
+      - 新しい 政策 は 先月 実施 さ れ まし た {。加え て}、様々 な 研修 プログラム も 用意 さ れ た。
+    english_literally: New policy last month implemented. In addition, various training programs also
+      prepared.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 政策 は 先月 実施 さ れ まし た。その 上、様々 な 研修 プログラム も 用意 さ れ まし た。
+        english: The new policy was implemented last month. What's more, various training programs have
+          also been prepared.
+        hint: 「その上」 can imply an additional and perhaps even more significant point. We're looking for
+          a neutral and formal way to present supplementary information.
+    scene: Presenting updates on a new policy.
+    register: bijinesu nihongo (business)
+    setting: informative
+  - english: In addition to improved sales, customer satisfaction also increased significantly.
+    japanese:
+      - 売上 が 改善 し {、加え て}、顧客 満足 度 も 大幅 に 向上 し まし た。
+      - 売上 が 改善 し {、加え て}、顧客 満足 度 も 大幅 に 向上 し た。
+    english_literally: Sales improved, in addition, customer satisfaction also greatly improved.
+    competing_grammar:
+      - competing_japanese:
+          - 売上 が 改善 し、そして 顧客 満足 度 も 大幅 に 向上 し まし た。
+        english: Sales improved, and then customer satisfaction also significantly increased.
+        hint: 「そして」 focuses on sequential events or simple connections. We're looking for an expression
+          that highlights the cumulative effect of improvements, emphasizing the 'addition' of another
+          positive outcome.
+    scene: Discussing business results.
+    register: teineigo (polite)
+    setting: informative

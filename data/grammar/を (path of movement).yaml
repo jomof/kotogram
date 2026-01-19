@@ -1,0 +1,256 @@
+grammar_point: を (path of movement)
+learn_before:
+  - を (direct object marker)
+meaning: through, across, along
+pronunciation:
+  katakana: ヲ
+  romaji: o
+formation:
+  '[Noun] + を + [Movement Verb]': Indicates movement through or across a space
+jlpt: N5
+etymology: The particle を originates from the verb 離る (hanaru), meaning "to separate" or "to move away
+  from." Over time, its function evolved to indicate movement away from a starting point or, more broadly,
+  movement through a space.
+writeup: The particle を indicates movement through a space. It is used with verbs of motion to show the
+  path or area traversed. Think of it as tracing the route someone or something takes, not just the destination.
+  For example, 公園 {を} 通って means "passing through the park," not just going *to* the park. This particle
+  highlights the trajectory or medium of movement, emphasizing the dynamic interaction between the subject
+  and the space it occupies during transit. It's crucial for expressing actions like 'crossing,' 'passing
+  along,' or 'running through,' as it clearly defines the expanse over which these actions unfold. を is
+  particularly versatile, applicable to various scales of movement, from navigating a city street to flying
+  across the sky. Understanding its role is fundamental to accurately describing spatial actions in Japanese.
+false_friends:
+  - term: に
+    meaning: to, at (location of existence or arrival)
+    kind: often confused with
+    nuance: Unlike を which indicates movement *through* a space, に indicates movement *to* a destination
+      or a specific point *at* which an action happens. It marks the result of movement, not the path.
+    grammar_point: に (static location・time)
+  - term: で
+    meaning: at, in, by (location where an action takes place)
+    kind: often confused with
+    nuance: Unlike を which indicates movement *through* a space, で indicates the location *where* an action
+      occurs. The action happens *at* that place, not *through* it.
+    grammar_point: で (location of action)
+  - term: から
+    meaning: from (origin or starting point)
+    kind: often confused with
+    nuance: While を indicates the path traversed (e.g., 歩道 {を} 歩く - walk *along* the sidewalk), から indicates
+      the point of origin (e.g., 家 {から} 歩く - walk *from* home).
+    grammar_point: から (from)
+post_false_friends_writeup: While を clearly marks the path of movement, it is essential to distinguish
+  its usage from other particles like に, で, and から. For instance, when using verbs like 登る (noboru - to
+  climb), を specifies the *path traversed* (e.g., 山 {を} 登る - climbing along the mountain, traversing its
+  surface), whereas に specifies the *destination* or *point of arrival* (e.g., 山 {に} 登る - climbing *to*
+  the mountain, reaching its summit). Similarly, で indicates the *location where an action takes place*
+  (e.g., 公園 {で} 遊ぶ - playing *in* the park), not the path of movement through it. Lastly, から signifies
+  the *starting point* or origin of an action (e.g., 家 {から} 出る - leave *from* home), which is distinct
+  from traversing a space. Mastering these distinctions is key to precise expression.
+examples:
+  - english: Every day, I walk this road to go to school.
+    japanese:
+      - 毎日、この {道} {を} {歩い て} 学校 {に} 行き ます。
+      - 毎日、この {道} {を} {歩き}、学校 {へ} 参り ます。
+      - 毎日、この {道} {を} {歩い て} 学校 {に} 行く。
+    english_literally: Every day, this road through, walking, to school go.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、この {道} で 学校 {に} 行き ます。
+        english: Every day, I go to school walking *at* this road.
+        hint: で indicates the location where an action takes place, not the path through which movement
+          occurs. We're looking for how you traverse the road.
+    scene: A younger student explaining their daily commute to an older teacher.
+    register: teineigo (polite)
+    setting: informative
+    speaker_age: younger
+    nuance: The use of 「行きます」 is polite, suitable for a younger student addressing an older teacher. 「{道}
+      {を} {歩いて}」 clearly expresses the path of movement. The speaker is younger, and the listener is older,
+      so the polite form is appropriate. Alternatively, 「へ」 can be used instead of 「に」 for direction with
+      motion verbs, adding a slightly more formal or older tone. 「参ります」 is a humble verb used by the speaker
+      to show respect to the listener. When a younger person addresses an older person, this level of
+      formality and humility is generally appreciated. The example also uses 「歩き」, the masu-stem of the
+      verb 歩く followed by a comma, which functions as a conjunctive to link two actions, implying sequence
+      or cause and effect, which is more common in formal or written contexts.
+  - english: A bird is flying in the sky.
+    japanese:
+      - '{鳥} {が} {空} {を} {飛ん で} い ます。'
+      - '{鳥} {が} {空} {を} {飛ん で い ます}。'
+      - '{鳥} {が} {空} {を} {飛ん で} いる。'
+    english_literally: Bird, sky through, flying.
+    competing_grammar:
+      - competing_japanese:
+          - '{鳥} {が} {空} {に} {飛ん で} い ます。'
+        english: A bird is flying *at* the sky.
+        hint: に implies a specific point or destination, not movement throughout an expanse. We're looking
+          for movement *throughout* the sky.
+    scene: Describing a bird's flight.
+    register: semi-formal
+    setting: informative
+    nuance: 「{飛んで} います」 uses the ている form, indicating an ongoing action. 「{空} {を}」 shows the expanse through
+      which the bird moves.
+  - english: The cat is running around the garden.
+    japanese:
+      - '{猫} {が} {庭} {を} {走っ て} いる。'
+      - '{猫} {が} {庭} {を} {走っ て い ます}。'
+      - '{猫} {が} {庭} {を} {走っ て} る。'
+    english_literally: Cat, garden through, running.
+    competing_grammar:
+      - competing_japanese:
+          - '{猫} {が} {庭} で {走っ て} いる。'
+        english: The cat is running *in* the garden.
+        hint: で specifies the location *where* an action occurs, not the path of movement. We're looking
+          for the cat running *throughout* the garden.
+    scene: Observing a cat's activity.
+    register: semi-formal
+    setting: informative
+    nuance: 「{走って} いる」 indicates the cat is currently running. 「{庭} {を}」 denotes the area within which
+      the running is taking place.
+  - english: It's dangerous to swim across this river.
+    japanese:
+      - この {川} {を} {泳い で} {渡る} の {は} {危険} {です}。
+      - この {川} {を} {泳い で} {渡る} の {は} {危険} だ.
+    english_literally: This river through, swimming crossing, is dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - この {川} {に} {泳い で} {渡る} の {は} {危険} {です}。
+        english: It's dangerous to swim *to* this river and cross.
+        hint: に implies reaching a destination, not the act of traversing across the entire space. We're
+          looking for the action of swimming *across* the river.
+    scene: Warning someone about swimming in a river.
+    register: semi-formal
+    setting: cautious
+    nuance: 「{泳いで} {渡る}」 expresses the action of swimming across, with 「{川} {を}」 specifying the river
+      as the medium of passage. The use of 「{危険} {です}」 makes it a direct and polite warning.
+  - english: Please be careful when crossing the street.
+    japanese:
+      - '{道} {を} {渡る} {時} {は} 気 {を} {つけ て ください}。'
+      - '{道} {を} {渡る} {時} {は} 気 {を} {つけ なさい}。'
+      - '{道} {を} {渡る} {時} {は} 気 {を} {つけ て ね}。'
+      - '{道} {を} {渡る} {時} {は} 気 {を} {つけろ}.'
+    english_literally: Road through, crossing time, be careful please.
+    competing_grammar:
+      - competing_japanese:
+          - '{道} で 気 {を} {付け て ください}。'
+        english: Please be careful *on* the road.
+        hint: で indicates a static location where an action takes place, not the dynamic action of traversing.
+          We're looking for the act of *crossing* the street.
+    scene: An older parent advising their younger child about street safety.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_age: older
+    nuance: The direct, polite request 「気 {を} {つけてください}」 is typical advice given by an older person to
+      a younger one. 「{道} {を} {渡る}」 precisely indicates the action and the path. The instruction 「気 {を}
+      {つけなさい}」 is also appropriate from an older speaker to a younger listener.
+  - english: She ran up the stairs.
+    japanese:
+      - '{彼女} {は} {階段} {を} {駆け上がっ た}。'
+      - '{彼女} {は} {階段} {を} {駆け上がり まし た}。'
+    english_literally: She, stairs through, ran up.
+    competing_grammar:
+      - competing_japanese:
+          - '{彼女} {は} {階段} で {駆け上がっ た}。'
+        english: She ran *on* the stairs.
+        hint: で indicates the location *where* the action occurs, not the path of movement. We're looking
+          for the action of running *up* the entire flight of stairs.
+    scene: Describing someone quickly ascending stairs.
+    register: semi-formal
+    setting: informative
+    nuance: 「{駆け上がった}」 emphasizes a swift movement upwards. 「{階段} {を}」 signifies the stairs as the path
+      of ascent. This is a common narrative phrasing.
+  - english: When you look up at the night sky, you can see many stars.
+    japanese:
+      - '{夜空} {を} {見上げる} と、たくさん の {星} {が} {見える}。'
+      - '{夜空} {を} {見上げ ます} と、たくさん の {星} {が} {見え ます}。'
+    english_literally: Night sky through, looking up, many stars are visible.
+    competing_grammar:
+      - competing_japanese:
+          - '{夜空} {に} {見上げる} と、たくさん の {星} {が} {見える}。'
+        english: When you look up *to* the night sky, many stars are visible.
+        hint: に would indicate looking *to* a specific point. We're looking for the act of scanning or
+          observing *across* the expanse of the sky.
+    scene: Contemplating the night sky.
+    register: semi-formal
+    setting: reflective
+    nuance: 「{夜空} {を} {見上げる}」 uses 「を」 to indicate the object of the upward gaze, treating the sky as
+      the 'space' being looked across or into. 「{見える}」 is an N5 verb meaning 'can be seen'.
+  - english: I plan to sightsee in Kyoto tomorrow.
+    japanese:
+      - 明日、{京都} {を} {観光} {する} {予定} {です}。
+      - 明日、{京都} {を} {観光} {する} {予定} だ.
+      - 明日、{京都} {を} {巡る} {予定} {です}。
+    english_literally: Tomorrow, Kyoto through, sightseeing do plan is.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、{京都} で {観光} {する} {予定} {です}。
+        english: I plan to sightsee *in* Kyoto tomorrow.
+        hint: で indicates the location *where* the action occurs. We're looking for the action of touring
+          *throughout* Kyoto.
+    scene: Planning a trip to Kyoto.
+    register: semi-formal
+    setting: informative
+    nuance: 「{京都} {を} {観光} {する}」 is a common usage where 「を」 indicates the area or place being toured
+      or explored. The verb 「{観光} {する}」 implies moving through that space.
+  - english: He moved through the crowd as if weaving through it.
+    japanese:
+      - '{彼} {は} {人混み} {を} {縫う よう に} {進ん だ}。'
+      - '{彼} {は} {人混み} {を} {縫う よう に} {進み まし た}。'
+      - '{彼} {は} {人混み} {を} {かき分け て} {進ん だ}。'
+    english_literally: He, crowd through, as if sewing, advanced.
+    competing_grammar:
+      - competing_japanese:
+          - '{彼} {は} {人混み} で {進ん だ}。'
+        english: He advanced *in* the crowd.
+        hint: で indicates the location *where* the action occurs, not the path of movement. We're looking
+          for the action of moving *through* the crowd, indicating a path.
+    scene: Describing someone navigating a crowded area.
+    register: semi-formal
+    setting: informative
+    nuance: 「{人混み} {を} {縫うように}」 is a nuanced expression, literally 'as if sewing through the crowd,' vividly
+      describing movement through a dense space. This shows a more advanced application of 「を」.
+  - english: Tonight, I want to reach your heart with my feelings.
+    japanese:
+      - '{今夜}、{君} {の} ハート {を} {通っ て}、私 {の} {気持ち} {を} {届け たい な}。'
+      - '{今夜}、{君} {の} ハート {を} {通っ て}、私 {の} {気持ち} {を} {届け たい}。'
+      - '{今夜}、{君} {の} ハート {を} {通っ て}、俺 {の} {気持ち} {を} {届け たい}。'
+    english_literally: Tonight, your heart through, my feelings want to convey.
+    competing_grammar:
+      - competing_japanese:
+          - '{今夜}、{君} の ハート {に} {気持ち} {を} {届け たい な}。'
+        english: Tonight, I want to convey my feelings *to* your heart.
+        hint: に implies merely reaching a destination. We're looking for the metaphorical act of feelings
+          passing *through* the heart's defenses or layers.
+    scene: Flirting with someone on a first date.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The 「な」 at the end adds a sense of longing and is commonly used by men to express their feelings
+      to women. The metaphorical use of 「ハート {を} {通って}」 (passing through the heart) is creative and romantic.
+      The use of 「俺」 instead of 「私」 is more typical for male speakers.
+  - english: Shall we take a walk through a quieter place?
+    japanese:
+      - '{もっと} {静か な} {場所} {を} {散歩} {し ない}？'
+      - '{もっと} {静か な} {場所} {を} {散歩} {し ませ ん か}？'
+    english_literally: More quiet place through, stroll not do?
+    competing_grammar:
+      - competing_japanese:
+          - '{もっと} {静か な} {場所} で {散歩} {し ない}？'
+        english: Shall we take a walk *in* a quieter place?
+        hint: で indicates the location *where* the stroll occurs. We're looking for the action of walking
+          *through* or *around* the quieter area.
+    scene: A woman gently suggesting to a man they move to a more private spot during a date.
+    register: shitashii kuchō (intimate)
+    setting: first-date
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「{散歩} {しない}？」 is an informal, inviting suggestion. 「{静か な} {場所} {を}」 uses 「を」 to
+      indicate the path or area of the walk. The overall tone is soft and inviting, and it's common for
+      women to initiate intimate moments with phrases like this. The speaker is female and listener male.
+post_example_writeup: These examples demonstrate the versatility of the particle を in marking the path
+  or area of movement, whether literal or metaphorical. It is crucial to remember that を focuses on the
+  trajectory, the space being traversed, rather than merely the static location where an action occurs
+  (で), a destination (に), or an origin (から). Pay close attention to the verb used with を, as it will often
+  be a verb of motion that implies movement through an expanse. This distinction is fundamental to conveying
+  precise spatial relationships in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を-(movement-through-space)

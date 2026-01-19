@@ -1,0 +1,230 @@
+grammar_point: 次第 (as soon as)
+learn_before:
+  - '[Verb-stem]次第 (as soon as)'
+meaning: as soon as; immediately upon
+pronunciation:
+  katakana: シダイ
+  romaji: shidai
+formation:
+  Verb[stem] + 次第: Used when the action B will be taken immediately after the completion of action A.
+  Noun + 次第: Used when action B will be taken immediately upon the occurrence or receipt of the Noun.
+jlpt: N2
+etymology: The term 「次第」 (しだい) is derived from the kanji 「次」 (next, sequence) and 「第」 (order, sequence).
+  Historically, it signified the 'sequence of events' or 'how things proceed.' This foundational meaning
+  evolved to convey 'depending on the circumstances' and later, 'as soon as,' emphasizing the immediate
+  succession of events. Its contemporary use for 'as soon as' directly reflects this original concept
+  of an orderly and immediate follow-up.
+writeup: |-
+  「次第」 is a grammatical construction utilized to convey that an action will be initiated **immediately** after a preceding event or condition has been successfully met. It expresses a robust sense of urgency and assurance regarding the impending action. Consequently, it is frequently encountered in formal settings, such as corporate communications, public declarations, and official directives.
+
+  In contrast to broader conditional expressions, 「次第」 underscores that the subsequent action is entirely dependent on the completion of the former and will commence without any postponement. It is particularly effective when articulating a commitment to act once a specific condition has been fulfilled.
+
+  **Important Considerations:**
+  *   **Formality**: 「次第」 inherently carries a formal or business-like tone. Its use in casual conversations may be perceived as stiff or excessively polite, leading to an unnatural interaction.
+  *   **Volitional/Future Action**: The clause that follows 「次第」 typically denotes a future action, often one that is volitional or represents a firm decision. It is rarely employed to describe past occurrences or habitual behaviors.
+  *   **Speaker's Intention**: This construction commonly reflects the speaker's intention or a predefined course of action.
+  *   **Tense**: The verb preceding 「次第」 is generally in its dictionary form. For nouns, the structure is Noun + 次第.
+false_friends:
+  - term: Verb[て]から
+    meaning: after; since
+    kind: similar expression
+    nuance: 「〜てから」 merely indicates a sequence of events (A happens, then B happens) without emphasizing
+      immediacy or formality. The time gap between A and B can be variable, unlike the promptness implied
+      by 「次第」.
+    grammar_point: てから (after and since)
+  - term: Verb[た]とたん(に)
+    meaning: as soon as; the moment
+    kind: similar expression
+    nuance: 「〜とたん(に)」 expresses that something happened immediately and often *unexpectedly* after another
+      event. It's typically used for sudden, sometimes surprising occurrences or actions that happen almost
+      automatically, whereas 「次第」 is usually for planned, deliberate actions.
+    grammar_point: <suggest>:Verb[た] とたん(に)・が早いか・や否や・なり (as soon as)
+  - term: Verb[た]が早いか
+    meaning: as soon as; no sooner... than
+    kind: similar expression
+    nuance: 「〜が早いか」 is a highly emphatic expression of immediacy, often suggesting that the second action
+      occurred *almost simultaneously* with the first. It typically describes instinctive, sudden, or
+      dramatic reactions and is more literary than 「次第」.
+    grammar_point: <suggest>:Verb[た] とたん(に)・が早いか・や否や・なり (as soon as)
+post_false_friends_writeup: While 「次第」, 「〜てから」, 「〜とたん(に)」, and 「〜が早いか」 can all denote sequential actions,
+  their nuances and appropriate contexts vary significantly. Use 「次第」 to convey a resolute and prompt
+  action that will follow immediately upon the completion of a prior step, particularly in formal or official
+  communication. In contrast, 「〜てから」 is a neutral sequential marker, 「〜とたん(に)」 emphasizes sudden and often
+  unexpected immediate reactions, and 「〜が早いか」 is reserved for highly simultaneous, often instinctive,
+  or dramatic sequences. Understanding these distinctions is key to using each expression naturally and
+  effectively.
+examples:
+  - english: We will contact you as soon as the preparations are complete.
+    japanese:
+      - 準備 が {完了 し 次第}、ご 連絡 いたし ます。
+      - 準備 が {整い 次第}、ご 連絡 いたし ます。
+      - 準備 が {でき 次第}、ご 連絡 いたし ます。
+      - 準備 が {整い 次第}、連絡 さ せ て いただき ます。
+    english_literally: Preparations completing as soon as, we will contact.
+    competing_grammar:
+      - competing_japanese:
+          - 準備 が 完了 し て から、ご 連絡 いたし ます。
+        english: After the preparations are complete, we will contact you.
+        hint: 「〜てから」 simply states that one action happens after another without emphasizing immediate
+          succession or formality. We're looking for an immediate and formal action.
+      - competing_japanese:
+          - 準備 が 完了 し た とたん に、ご 連絡 いたし ます。
+        english: The moment preparations are complete, we will contact you.
+        hint: 「〜とたん(に)」 is often used for sudden, sometimes unexpected actions, or when the second action
+          happens almost automatically. We're looking for a planned, committed immediate action.
+    scene: A company representative assures a client about a pending action.
+    register: formal
+    setting: professional
+  - english: We will begin distributing tickets as soon as they arrive.
+    japanese:
+      - チケット が {届き 次第}、配布 を 開始 いたし ます。
+      - チケット が {到着 し 次第}、配布 を 開始 いたし ます。
+      - チケット が {届き 次第}、配布 を 始め ます。
+      - チケット が {到着 し 次第}、配布 を 始め ます。
+    english_literally: Tickets arriving as soon as, distribution will begin.
+    competing_grammar:
+      - competing_japanese:
+          - チケット が 届い たら、配布 を 開始 いたし ます。
+        english: If/when the tickets arrive, we will begin distributing them.
+        hint: 「〜たら」 is a general conditional form that doesn't necessarily imply immediate or formal action.
+          We're looking for a strong commitment to immediate action upon arrival.
+    scene: An announcement is made to a waiting crowd at an event.
+    register: formal
+    setting: informative
+  - english: I will call you back as soon as I confirm the details.
+    japanese:
+      - 詳細 を {確認 し 次第}、お 電話 いたし ます。
+      - 詳細 を {確認 し 次第}、お 電話 さ せ て いただき ます。
+      - 詳細 を {確認 し 次第}、お 電話 し ます。
+    english_literally: Details confirming as soon as, I will call.
+    competing_grammar:
+      - competing_japanese:
+          - 詳細 を 確認 し たら、お 電話 いたし ます。
+        english: When I confirm the details, I will call you.
+        hint: 「〜たら」 indicates a temporal sequence but lacks the nuance of immediate, committed action
+          that 「次第」 provides.
+    scene: A customer service agent responds to a customer's inquiry.
+    register: formal
+    setting: professional
+  - english: We will decide on the plan as soon as we hear everyone's opinions.
+    japanese:
+      - 皆 様 の 意見 を {聞き 次第}、企画 を 決定 し ます。
+      - 皆 様 の 意見 を {伺い 次第}、企画 を 決定 いたし ます。
+      - 皆 様 の 意見 を {お 聞き し 次第}、企画 を 決定 し ます。
+    english_literally: Everyone's opinions hearing as soon as, plan will decide.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 様 の 意見 を 聞い て から、企画 を 決定 し ます。
+        english: After hearing everyone's opinions, we will decide on the plan.
+        hint: 「〜てから」 suggests a sequence but not necessarily the immediate and formal execution that 「次第」
+          conveys.
+    scene: A project manager addresses their team during a meeting.
+    register: formal
+    setting: professional
+  - english: We will send the documents as soon as we receive your application.
+    japanese:
+      - 申込 書 を {受け取り 次第}、書類 を 郵送 し ます。
+      - 申込 書 を {受領 し 次第}、書類 を 郵送 いたし ます。
+      - 申込 書 を {頂戴 し 次第}、書類 を 郵送 いたし ます。
+    english_literally: Application form receiving as soon as, documents will mail.
+    competing_grammar:
+      - competing_japanese:
+          - 申込 書 を 受け取っ たら、書類 を 郵送 し ます。
+        english: If/when we receive your application, we will mail the documents.
+        hint: 「〜たら」 expresses a condition but does not carry the same strong implication of immediate
+          and definite action as 「次第」.
+    scene: A university admissions office sends an automated response to an applicant.
+    register: formal
+    setting: academic
+  - english: Emergency personnel will arrive as soon as possible.
+    japanese:
+      - 救助 隊 が {到着 し 次第}、現場 で の 活動 を 開始 し ます。
+      - 救助 隊 が {到着 し 次第}、現場 で の 活動 を 開始 いたし ます。
+      - 救助 隊 が {現場 に 到着 し 次第}、活動 を 開始 いたし ます。
+    english_literally: Rescue team arriving as soon as, on-site activities will begin.
+    competing_grammar:
+      - competing_japanese:
+          - 救助 隊 が 到着 する と、現場 で の 活動 を 開始 し ます。
+        english: When the rescue team arrives, they will begin activities at the scene.
+        hint: 「〜と」 can imply an immediate and natural consequence, but 「次第」 specifically highlights a
+          planned or expected immediate action in a formal context more strongly than 「〜と」.
+    scene: A news reporter provides an update on a developing situation.
+    register: formal
+    setting: serious
+  - english: I will depart as soon as my luggage is ready.
+    japanese:
+      - 荷物 の {準備 が でき 次第}、出発 し ます。
+      - 荷物 の {準備 が でき 次第}、出発 いたし ます。
+      - 荷物 が {整い 次第}、出発 し ます。
+      - 荷物 が {でき 次第}、出発 し ます。
+    english_literally: Luggage preparations completing as soon as, I will depart.
+    competing_grammar:
+      - competing_japanese:
+          - 荷物 の 準備 が でき たら、出発 し ます。
+        english: When my luggage is ready, I will depart.
+        hint: 「〜たら」 is a more casual and general conditional form; 「次第」 suggests a more deliberate and
+          immediate departure, even if the context is personal.
+    scene: A person informs their family that they are about to leave for a trip.
+    register: semi-formal
+    setting: friendly
+  - english: Please start the work as soon as the materials are delivered.
+    japanese:
+      - 材料 が {届き 次第}、作業 を 始め て ください。
+      - 材料 が {到着 し 次第}、作業 を 始め て ください。
+      - 材料 が {届き 次第}、作業 に 取り掛かっ て ください。
+    english_literally: Materials arriving as soon as, please start work.
+    competing_grammar:
+      - competing_japanese:
+          - 材料 が 届い て から、作業 を 始め て ください。
+        english: After the materials are delivered, please start the work.
+        hint: Using 「〜てから」 here loses the strong sense of immediate instruction and promptness conveyed
+          by 「次第」.
+    scene: A supervisor gives an instruction to an employee.
+    register: formal
+    setting: instructional
+  - english: We will proceed with the schedule immediately upon confirmation from the client.
+    japanese:
+      - お 客 様 の {確認 次第}、スケジュール を 進め ます。
+      - お 客 様 の {ご 確認 次第}、スケジュール を 進め させ て いただき ます。
+      - お 客 様 の {確認 が 取れ 次第}、スケジュール を 進め ます。
+    english_literally: Client's confirmation as soon as, schedule will proceed.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様 の 確認 が あれ ば、スケジュール を 進め ます。
+        english: If there is confirmation from the client, we will proceed with the schedule.
+        hint: 「〜ば」 indicates a simple condition, not the assured and immediate follow-through that is
+          characteristic of 「次第」 in this business context.
+    scene: A project team discusses the next steps during a client meeting.
+    register: formal
+    setting: professional
+  - english: I will return to the office as soon as the meeting ends.
+    japanese:
+      - 会議 が {終わり 次第}、会社 に 戻り ます。
+      - 会議 が {終了 し 次第}、会社 に 戻り ます。
+      - 会議 が {終わり 次第}、会社 へ 戻り ます。
+    english_literally: Meeting ending as soon as, return to office.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 が 終わっ たら、会社 に 戻り ます。
+        english: When the meeting ends, I will return to the office.
+        hint: 「〜たら」 is a straightforward conditional. While correct, 「次第」 adds a nuance of immediacy and
+          a more formal commitment to returning right after the meeting.
+    scene: A person informs a colleague about their movements after a meeting.
+    register: formal
+    setting: professional
+  - english: The product will be shipped as soon as it is available.
+    japanese:
+      - 商品 が {出来上がり 次第}、発送 いたし ます。
+      - 商品 が {完成 し 次第}、発送 いたし ます。
+      - 商品 が {準備 でき 次第}、発送 いたし ます。
+      - 商品 が {出来上がり 次第}、発送 し ます。
+    english_literally: Product becoming ready as soon as, we will ship.
+    competing_grammar:
+      - competing_japanese:
+          - 商品 が 出来上がる と 同時 に、発送 いたし ます。
+        english: We will ship the product at the same time it is available.
+        hint: 「〜と同時に」 emphasizes simultaneity. While close, 「次第」 specifically highlights that the shipment
+          will happen immediately *after* completion, rather than precisely at the same moment.
+    scene: An online store provides an update on a customer's order.
+    register: formal
+    setting: informative

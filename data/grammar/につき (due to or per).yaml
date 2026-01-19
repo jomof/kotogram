@@ -1,0 +1,486 @@
+grammar_point: につき (due to or per)
+learn_before:
+  - あそこ (over there)
+meaning: Due to, on account of, for each/every
+pronunciation:
+  katakana: ニツキ
+  romaji: ni tsuki
+formation:
+  Noun + につき: Indicates a reason, cause, or rate/ratio. Often used in formal announcements or notifications.
+jlpt: N2
+etymology: The grammar point 「につき」 comes from 「に」 (a particle indicating location, time, or reason) and
+  the conjunctive form (連用形) of the verb 「就く」 (つく), which means "to take up" or "to assume." The original
+  meaning of 「就く」 implies taking up a position or role. Therefore, 「につき」 retains a sense of being directly
+  linked or attached to something, which evolved into expressing a reason, cause, or a condition that
+  something is "due to" or "pertains to."
+writeup: 「につき」 is a formal grammar point primarily used in written Japanese and formal announcements.
+  It combines 「に」 and the conjunctive form of the verb 「就く」 (to take up, to assume). While 「就く」 often
+  refers to assuming a new position, 「につき」 conveys meanings such as "due to," "on account of," or "for
+  each." It directly follows a noun to explain a reason, cause, or rate. This grammar is frequently found
+  in official documents and notifications due to its formality. It is a neutral expression, suitable for
+  both positive and negative consequences, unlike expressions like 「おかげで」 or 「せいで」.
+false_friends:
+  - term: にあたり・にあたって
+    meaning: When, when doing something, on the occasion, at the time
+    kind: synonym
+    nuance: Unlike 「につき」, 「にあたり」 or 「にあたって」 is used to express what one does *on the occasion of* something,
+      not necessarily as a direct cause or reason.
+    grammar_point: 際に (at the time of・when・on the occasion of)
+  - term: ために
+    meaning: For the purpose of・because of
+    kind: synonym
+    nuance: 「ために」 can also mean "for the sake of." 「につき」 doesn't have this nuance and is more formal.
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: について
+    meaning: Concerning, about, regarding
+    kind: synonym
+    nuance: 「について」 means "about" a topic, not "due to" it. 「につき」 specifies a reason or the nature of something.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: おかげで
+    meaning: Thanks to, because of
+    kind: synonym
+    nuance: 「おかげで」 is used when the result is positive. 「につき」 is neutral and can be used for negative
+      consequences.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: せい
+    meaning: Because of, due to, blame
+    kind: synonym
+    nuance: 「せいで」 is used when the result is negative and someone is to blame. 「につき」 is a more neutral
+      and objective reason.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: ごとに
+    meaning: While 「につき」 often indicates a fixed rate or reason per unit in formal contexts, 「ごとに」 generally
+      expresses repetition or distribution for 'every' or 'each' instance in a broader range of situations,
+      including informal ones. 「につき」 implies a strict, often official, link between the unit and the consequence/rate.
+    kind: similar expression
+    nuance: While 「につき」 often indicates a fixed rate or reason per unit in formal contexts, 「ごとに」 generally
+      expresses repetition or distribution for 'every' or 'each' instance in a broader range of situations,
+      including informal ones. 「につき」 implies a strict, often official, link between the unit and the consequence/rate.
+    grammar_point: ごとに (each・every)
+  - term: ので
+    meaning: Because, so, since, the reason being
+    kind: similar expression
+    nuance: 「ので」 is a softer, more common conjunction for expressing reason, often implying a natural
+      consequence or a mild cause. 「につき」 is much more formal and direct, typically used in announcements
+      or official explanations where the reason is stated clearly and concisely.
+    grammar_point: '[Clause]から (because・so)'
+post_false_friends_writeup: When choosing between 「につき」 and similar expressions, consider the level of
+  formality required, whether there is a sense of gratitude or blame, and whether you are referring to
+  a topic versus providing a reason. 「につき」 is best suited for formal explanations or announcements, while
+  other expressions may be more appropriate for casual conversation or specific nuances. For instance,
+  「ので」 offers a softer explanation of a reason, while 「ために」 can imply purpose, a nuance 「につき」 lacks. Expressions
+  like 「おかげで」 and 「せいで」 carry positive and negative connotations respectively, which 「につき」 does not.
+examples:
+  - english: Due to strong winds, today's operations will be suspended.
+    japanese:
+      - 強風 {に つき}、本日 の 運行 は 中止 と なり ます。
+      - 強風 {に つき}、本日 の 運行 は 中止 です。
+    english_literally: Strong winds due to, today's operations will be suspended.
+    competing_grammar:
+      - competing_japanese:
+          - 強風 {の ため に}、本日 の 運行 は 中止 と なり ます。
+        english: Because of strong winds, today's operations will be suspended.
+        hint: While 「ために」 expresses cause, 「につき」 is more formal and typically used in public announcements,
+          giving it an official tone. We're looking for an official reason for the suspension.
+      - competing_japanese:
+          - 強風 {な の で}、本日 の 運行 は 中止 と なり ます。
+        english: Because it's strong winds, today's operations will be suspended.
+        hint: 「ので」 is a softer, more common way to express a reason in everyday conversation. 「につき」 is
+          much more formal and used in official announcements. We're looking for a formal, direct statement
+          of cause.
+      - competing_japanese:
+          - 強風 {に あたり}、本日 の 運行 は 中止 と なり ます。
+        english: On the occasion of strong winds, today's operations will be suspended.
+        hint: 「にあたり」 is used for actions taken *at the time of* an important event, not as a direct cause.
+          We're looking for a reason for the suspension, not an occasion.
+      - competing_japanese:
+          - 強風 {の おかげ で}、本日 の 運行 は 中止 と なり ます。
+        english: Thanks to strong winds, today's operations will be suspended.
+        hint: 「おかげで」 implies a positive outcome or gratitude. Suspension of operations is a negative outcome.
+          We're looking for a neutral statement of cause.
+      - competing_japanese:
+          - 強風 {の せい で}、本日 の 運行 は 中止 と なり ます。
+        english: Because of the strong winds, today's operations will be suspended.
+        hint: 「せいで」 often implies blame or a negative consequence, whereas 「につき」 states a neutral, objective
+          reason for a formal announcement. We're looking for a neutral, official reason.
+    scene: A message displayed on a public transport information board.
+    register: formal
+    setting: informative
+    nuance: This is a very common usage of 「につき」 in public announcements, conveying a direct and official
+      reason for a change in service. The use of 「となります」 (tonarimasu) further reinforces the formal, declarative
+      tone. The overall phrasing is standard for official notifications where precision and conciseness
+      are paramount.
+    etymology: 「運行」 (unko) literally means 'transport operation' or 'service operation'. 「中止」 (chuushi)
+      means 'suspension' or 'cancellation'. The term 「となります」 is a formal way to express something coming
+      into being or a decision being made, often used in official announcements.
+  - english: Due to a system failure, our services are currently suspended temporarily.
+    japanese:
+      - システム 障害 {に つき}、現在 サービス を 一時 停止 し て おり ます。
+      - システム 障害 {に つき}、現在 サービス を 停止 し て おり ます。
+    english_literally: System failure due to, currently service temporarily suspended is.
+    competing_grammar:
+      - competing_japanese:
+          - システム 障害 {の ため に}、現在 サービス を 一時 停止 し て おり ます。
+        english: Because of a system failure, our services are currently suspended temporarily.
+        hint: While 「ために」 expresses cause, 「につき」 conveys a more official and formal reason, suitable for
+          public announcements. We're looking for an official statement of cause.
+      - competing_japanese:
+          - システム 障害 {な の で}、現在 サービス を 一時 停止 し て おり ます。
+        english: Because there's a system failure, our services are currently suspended temporarily.
+        hint: 「ので」 is common for everyday reasons. 「につき」 is used for formal, often official, explanations
+          for actions or situations. We're looking for a formal, direct statement of cause.
+      - competing_japanese:
+          - システム 障害 {に あたり}、現在 サービス を 一時 停止 し て おり ます。
+        english: At the time of a system failure, our services are currently suspended temporarily.
+        hint: 「にあたり」 is for actions taken *at the time of* something. Here, the system failure is the
+          *cause* for suspension, not an occasion for action. We're looking for the reason for the suspension.
+      - competing_japanese:
+          - システム 障害 {の おかげ で}、現在 サービス を 一時 停止 し て おり ます。
+        english: Thanks to a system failure, our services are currently suspended temporarily.
+        hint: 「おかげで」 implies a positive outcome. A system failure is not a positive cause. We're looking
+          for a neutral statement of cause.
+      - competing_japanese:
+          - システム 障害 {の せい で}、現在 サービス を 一時 停止 し て おり ます。
+        english: Because of the system failure, our services are currently suspended temporarily.
+        hint: 「せいで」 often implies blame or a negative consequence. 「につき」 states a neutral, objective reason,
+          common in formal apologies. We're looking for a neutral, official reason.
+    scene: An announcement on a company's website or an automated phone message.
+    register: formal
+    setting: apologetic
+    nuance: This is a typical phrase used in business or public service announcements for unavoidable
+      issues. 「システム 障害」 (shisutemu shougai) refers to a system malfunction, and 「一時 停止」 (ichiji teishi)
+      means temporary suspension, all contributing to the formal tone. 「して おります」 (shite orimasu) is the
+      humble form of 「しています」, appropriate for a company apologetically informing customers.
+    etymology: 「システム 障害」 (shisutemu shougai) means a malfunction or failure of a system. 「一時 停止」 (ichiji
+      teishi) means 'temporary suspension'. The verb 「おります」 is a humble form of 「います」, used by a speaker
+      to show deference to the listener or the situation.
+  - english: Regarding the business communication, we have sent an email to all employees.
+    japanese:
+      - 業務 連絡 {に つき}、社員 全員 に メール を 送付 し まし た。
+      - 業務 連絡 {に つき}、全 社員 に メール を 送付 し まし た。
+    english_literally: Business communication due to, employees all to email sent.
+    competing_grammar:
+      - competing_japanese:
+          - 業務 連絡 {に つい て}、社員 全員 に メール を 送付 し まし た。
+        english: Regarding business communication, we have sent an email to all employees.
+        hint: 「について」 indicates the subject of discussion or a topic. 「につき」 here indicates the *reason*
+          or *nature* of the communication, often used in official contexts to link a preceding noun to
+          an outcome. We're looking for the reason for sending the email, not just a topic.
+      - competing_japanese:
+          - 業務 連絡 {の ため に}、社員 全員 に メール を 送付 し まし た。
+        english: For the purpose of business communication, we have sent an email to all employees.
+        hint: 「のために」 can express purpose ("for the sake of"). 「につき」 indicates the subject or reason, not
+          a purpose. We're stating the *nature* of the communication, not its purpose.
+      - competing_japanese:
+          - 業務 連絡 {に あたり}、社員 全員 に メール を 送付 し まし た。
+        english: On the occasion of a business communication, we have sent an email to all employees.
+        hint: 「にあたり」 suggests an action performed *when* something happens. Here, the business communication
+          is the *subject* or *reason* for sending the email, not an event that triggers an an action.
+          We're looking for the cause or nature of the email, not the timing.
+      - competing_japanese:
+          - 業務 連絡 {の おかげ で}、社員 全員 に メール を 送付 し まし た。
+        english: Thanks to the business communication, we have sent an email to all employees.
+        hint: 「おかげで」 implies a positive result due to the preceding cause. 「につき」 simply states the reason
+          or nature of the communication, without implying a positive outcome. We're looking for a neutral
+          statement of cause.
+    scene: A manager informing a colleague about an action taken.
+    register: semi-formal
+    setting: professional
+    nuance: The context of an internal company communication, where formality and directness are valued,
+      makes 「につき」 a natural choice for indicating the *reason* or *nature* for sending the email. 「業務
+      連絡」 (gyoumu renraku) specifically means business communication, emphasizing the formal, work-related
+      nature. 「送付 しました」 (soufu shimashita) is a formal way to say "sent," fitting the tone.
+    etymology: 「業務 連絡」 (gyoumu renraku) refers to a business-related notice or communication. 「送付」 (soufu)
+      is a formal term for 'sending' documents or mail.
+  - english: Applications are limited to one per person.
+    japanese:
+      - お 申し込み は お 一人 様 {に つき}、一 回 限り と さ せ て 頂き ます。
+      - お 一人 様 {に つき}、一 回 まで と さ せ て 頂き ます。
+    english_literally: Applications for one person per, one time only will be allowed.
+    competing_grammar:
+      - competing_japanese:
+          - お 申し込み は お 一人 様 {ごと に}、一 回 限り と さ せ て 頂き ます。
+        english: Applications are limited to once for each person.
+        hint: While both express "per unit," 「につき」 is more formal and strict, common in official rules
+          and limitations. 「ごとに」 is more general and often used for simple repetition. We're stating a
+          formal, fixed rule.
+    scene: Instructions on an application form or a website for a limited-time offer.
+    register: formal
+    setting: instructional
+    nuance: The phrase 「お 一人 様」 and the general context of official instructions reinforce the formal,
+      administrative tone where 「につき」 is common for limits. 「お 一人 様」 (o-hitori sama) is a polite way to
+      say "one person," common in service industries. 「一 回 限り」 (ikkai kagiri) means "once only," and 「させて
+      頂き ます」 (sasete itadakimasu) is a humble and polite way to state a rule or limitation, appropriate
+      for formal announcements to customers.
+    etymology: 「お 一人 様」 (o-hitori sama) is a polite form meaning 'one person'. 「一 回 限り」 (ikkai kagiri)
+      means 'limited to one time'. The phrase 「させて頂く」 is a common humble expression used when one is granted
+      permission or is doing something for the benefit of others.
+  - english: The parking lot charges 300 yen per hour.
+    japanese:
+      - 駐車 場 は 一 時間 {に つき}、三百 円 の 料金 と なり ます。
+      - 駐車 場 は 一 時間 {に つき}、三百 円 です。
+    english_literally: Parking lot one hour per, three hundred yen fee will be.
+    competing_grammar:
+      - competing_japanese:
+          - 駐車 場 は 一 時間 {ごと に}、三百 円 の 料金 と なり ます。
+        english: The parking lot charges 300 yen every hour.
+        hint: 「ごとに」 describes frequency or distribution. 「につき」 specifically states a rate *per* unit in
+          a formal context, emphasizing the fixed and official nature of the charge. We're stating an
+          official rate.
+    scene: A sign at a parking lot entrance.
+    register: formal
+    setting: informative
+    nuance: The use of 「につき」 for pricing is very common in public and commercial settings, signaling a
+      clear, fixed rate. 「駐車 場」 (chuushajou) means parking lot. This structure is frequently seen in official
+      fee schedules or signs, indicating a fixed rate, often concluding with 「となります」 (tonarimasu) to convey
+      a definitive condition.
+    etymology: 「駐車 場」 (chuushajou) means 'parking lot'. 「料金」 (ryoukin) means 'fee' or 'charge'. 「となります」
+      is a formal expression indicating a result or fixed condition.
+  - english: For each typo, five points will be deducted.
+    japanese:
+      - 誤字 一 箇所 {に つき}、五 点 減点 と し ます。
+      - 誤字 一 箇所 {に つき}、五 点 の 減点 と なり ます。
+    english_literally: Typo one place per, five points deduction will be.
+    competing_grammar:
+      - competing_japanese:
+          - 誤字 一 箇所 {ごと に}、五 点 減点 と し ます。
+        english: For every typo, five points will be deducted.
+        hint: Both express "per unit," but 「につき」 is more formal and used for official rules and penalties,
+          emphasizing the direct correspondence. We're stating an official penalty rule.
+    scene: A teacher explaining grading criteria to students.
+    register: formal
+    setting: academic
+    nuance: The context of strict, formal academic rules, where precision is key, naturally points towards
+      「につき」 for stating a direct consequence per instance. 「誤字」 (goji) means typo, and 「減点」 (genten) means
+      deduction of points. This phrasing is typical in academic or formal assessment settings, ensuring
+      clarity and strict adherence to rules. The use of 「と します」 indicates a determined rule or policy.
+    etymology: 「誤字」 (goji) means 'typographical error' or 'typo'. 「減点」 (genten) means 'deduction of points'.
+      「と します」 is a formal way to state a rule or decision.
+  - english: Due to our company's circumstances, we will be changing the contract details.
+    japanese:
+      - 弊社 の 都合 {に つき}、契約 内容 を 変更 さ せ て 頂き ます。
+      - 弊社 の 都合 {に つき}、契約 内容 を 変更 さ せ て 頂き ます。
+    english_literally: Our company's circumstances due to, contract details change allow us to receive
+      (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 弊社 の 都合 {の ため に}、契約 内容 を 変更 さ せ て 頂き ます。
+        english: Because of our company's circumstances, we will be changing the contract details.
+        hint: While 「ために」 expresses cause, 「につき」 is used in formal business contexts to clearly state
+          the reason for a change, maintaining a highly official tone. We're looking for a formal, business
+          reason.
+      - competing_japanese:
+          - 弊社 の 都合 {な の で}、契約 内容 を 変更 さ せ て 頂き ます。
+        english: Because our company has circumstances, we will be changing the contract details.
+        hint: 「ので」 states a reason generally and is softer. 「につき」 is much more formal and direct, typical
+          in official communications. We're looking for a formal, direct statement of cause.
+      - competing_japanese:
+          - 弊社 の 都合 {に あたり}、契約 内容 を 変更 さ せ て 頂き ます。
+        english: On the occasion of our company's circumstances, we will be changing the contract details.
+        hint: 「にあたり」 signifies doing something *at the time of* an event. Here, the company's circumstances
+          are the *reason* for the change, not an event prompting an action. We're looking for the reason,
+          not the timing.
+      - competing_japanese:
+          - 弊社 の 都合 {の おかげ で}、契約 内容 を 変更 さ せ て 頂き ます。
+        english: Thanks to our company's circumstances, we will be changing the contract details.
+        hint: 「おかげで」 implies a positive result. Changing contract details due to company circumstances
+          is often not a positive event for the other party, making this usage inappropriate. We're looking
+          for a neutral statement of cause.
+      - competing_japanese:
+          - 弊社 の 都合 {の せい で}、契約 内容 を 変更 さ せ て 頂き ます。
+        english: Because of our company's circumstances, we will be changing the contract details.
+        hint: 「せいで」 implies blame for a negative outcome. While the company's circumstances cause the
+          change, 「につき」 maintains a formal, neutral tone rather than implying fault. We're looking for
+          a neutral, official reason.
+    scene: A business letter or formal communication from a company to a client.
+    register: bijinesu nihongo (business)
+    setting: negotiating
+    nuance: The formal business context and the use of humble language reinforce the choice of 「につき」 for
+      a precise, official explanation of the reason. 「弊社の 都合」 (heisha no tsugou) is a humble way of saying
+      "our company's circumstances." 「変更 させて 頂きます」 (henkou sasete itadakimasu) is a polite and humble
+      way to state that the company will make a change, indicating that the speaker is doing something
+      that benefits the listener or for which the listener's understanding/permission is sought. This
+      phrasing is standard in business communication.
+    etymology: 「弊社の 都合」 (heisha no tsugou) is a humble way of saying 'our company's circumstances' or
+      'our company's convenience'. 「契約 内容」 (keiyaku naiyou) means 'contract details'. The auxiliary verb
+      「頂く」 is a humble form of 「もらう」, indicating that the action is received from someone or is done with
+      their implicit approval.
+  - english: Due to venue preparations, today's lecture will start from 1 PM.
+    japanese:
+      - 会場 準備 {に つき}、本日 の 講演 は 午後 一 時 から 開始 さ れ ます。
+      - 会場 準備 {に つき}、本日 の 講演 は 午後 一 時 から です。
+    english_literally: Venue preparations due to, today's lecture from 1 PM will start.
+    competing_grammar:
+      - competing_japanese:
+          - 会場 準備 {の ため に}、本日 の 講演 は 午後 一 時 から 開始 さ れ ます。
+        english: Because of venue preparations, today's lecture will start from 1 PM.
+        hint: 「ために」 expresses cause, but 「につき」 is more formal and used for official announcements of reasons,
+          especially for delays or changes. We're looking for a formal, direct statement of cause.
+      - competing_japanese:
+          - 会場 準備 {な の で}、本日 の 講演 は 午後 一 時 から 開始 さ れ ます。
+        english: Because there are venue preparations, today's lecture will start from 1 PM.
+        hint: 「ので」 is a common, softer way to state a reason. 「につき」 is more formal and direct, typical
+          in public announcements. We're looking for a formal, official reason.
+      - competing_japanese:
+          - 会場 準備 {に あたり}、本日 の 講演 は 午後 一 時 から 開始 さ れ ます。
+        english: At the time of venue preparations, today's lecture will start from 1 PM.
+        hint: 「にあたり」 means *at the time of* an important event. Here, the venue preparation is the *cause*
+          for the delay, not an occasion for action. We're looking for the reason for the delay.
+      - competing_japanese:
+          - 会場 準備 {の せい で}、本日 の 講演 は 午後 一 時 から 開始 さ れ ます。
+        english: Because of venue preparations, today's lecture will start from 1 PM.
+        hint: 「せいで」 implies blame for a negative outcome. Here, preparations are a necessary reason for
+          a delay, not something to blame. We're looking for a neutral, official reason.
+    scene: An announcement posted at a conference hall.
+    register: formal
+    setting: informative
+    nuance: The setting of a public announcement for an event, indicating a clear and concise reason for
+      a schedule change, favors the formal and direct 「につき」. 「会場 準備」 (kaijou junbi) means venue preparation.
+      「開始 されます」 (kaishi saremasu) is a polite and formal way to say "will start." This is common in event
+      announcements, providing necessary information to an audience in a clear, unambiguous manner.
+    etymology: 「会場 準備」 (kaijou junbi) means 'venue preparation' or 'hall setup'. 「講演」 (kouen) means 'lecture'
+      or 'speech'. The passive form 「されます」 implies that the starting time is determined by external circumstances.
+  - english: Due to staff training, our store will be closed today.
+    japanese:
+      - 社員 研修 {に つき}、本日 は 休業 と さ せ て 頂き ます。
+      - 社員 研修 {に つき}、本日 は 休業 と なり ます。
+    english_literally: Staff training due to, today store closed will be allowed (humbly).
+    competing_grammar:
+      - competing_japanese:
+          - 社員 研修 {の ため に}、本日 は 休業 と さ せ て 頂き ます。
+        english: Because of staff training, our store will be closed today.
+        hint: While 「ために」 can express cause, 「につき」 is more commonly used in formal announcements for business
+          closures or changes, conveying an official and direct reason. We're looking for a formal announcement
+          of a store closure.
+      - competing_japanese:
+          - 社員 研修 {な の で}、本日 は 休業 と さ せ て 頂き ます。
+        english: Because it's staff training, our store will be closed today.
+        hint: 「ので」 is a softer and more casual way to state a reason. 「につき」 is much more formal and direct,
+          fitting for a public notice from a business. We're looking for a formal, direct statement of
+          cause.
+      - competing_japanese:
+          - 社員 研修 {の おかげ で}、本日 は 休業 と さ せ て 頂き ます。
+        english: Thanks to staff training, our store will be closed today.
+        hint: 「おかげで」 implies a positive outcome. A store closure, while for a good reason (training),
+          is typically an inconvenience to customers, making this usage inappropriate for a neutral announcement.
+          We're looking for a neutral statement of cause.
+    scene: A notice posted on a store's entrance or website.
+    register: formal
+    setting: informative
+    nuance: This usage is typical for businesses informing customers of temporary closures. 「社員 研修」 (shain
+      kenshū) means 'staff training'. The humble form 「と させて頂きます」 (to sasete itadakimasu) is used to politely
+      convey a decision that might affect customers, characteristic of formal business communication.
+    etymology: 「社員 研修」 (shain kenshū) means 'employee training' or 'staff training'. 「休業」 (kyūgyō) means
+      'closed for business'.
+  - english: Customs duty is 5% per item.
+    japanese:
+      - 輸入 品 は 一 品 {に つき}、五 パーセント の 関税 が かかり ます。
+      - 輸入 品 は 一 品 {に つき}、関税 が 五 パーセント かかり ます。
+    english_literally: Imported goods one item per, five percent customs duty applies.
+    competing_grammar:
+      - competing_japanese:
+          - 輸入 品 は 一 品 {ごと に}、五 パーセント の 関税 が かかり ます。
+        english: Customs duty is 5% for every item.
+        hint: While 「ごとに」 can also mean "per unit," 「につき」 is specifically used in formal, official contexts
+          like tax regulations or official charges, emphasizing a strict and fixed rate. We're looking
+          for an official statement of a fixed rate.
+    scene: A notice from customs or a guide for international shipping.
+    register: formal
+    setting: technical
+    nuance: This clearly illustrates the 'per unit' meaning of 「につき」 in a formal, regulatory context.
+      「輸入 品」 (yunyū hin) means 'imported goods'. 「関税」 (kanzei) means 'customs duty'. This construction
+      is common in official rules, tariffs, or legal documents to specify rates or conditions tied to
+      individual units.
+    etymology: 「輸入 品」 (yunyū hin) means 'imported goods'. 「関税」 (kanzei) means 'customs duty' or 'tariff'.
+      The verb 「かかります」 here means 'is levied' or 'is imposed'.
+  - english: For each participant, a fee of 1000 yen will be charged.
+    japanese:
+      - 参加 者 お 一人 様 {に つき}、参加 費 千 円 を 申し受け ます。
+      - 参加 者 お 一人 様 {に つき}、参加 費 は 千 円 です。
+    english_literally: Participants one person per, participation fee one thousand yen will be charged.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 お 一人 様 {ごと に}、参加 費 千 円 を 申し受け ます。
+        english: For every participant, a fee of 1000 yen will be charged.
+        hint: 「につき」 is preferred for official charges and rates in formal settings, emphasizing the fixed
+          obligation. We're looking for a formal statement of a per-person charge.
+    scene: A sign or pamphlet at a conference registration desk.
+    register: formal
+    setting: informative
+    nuance: This exemplifies the use of 「につき」 for a fixed charge per unit (person) in an official context.
+      「参加 者」 (sankasha) means 'participant', and 「参加 費」 (sankahi) is 'participation fee'. 「申し受け ます」 (moushiukemasu)
+      is a humble and formal verb for 'to accept/receive money', commonly used by service providers.
+    etymology: 「参加 者」 (sankasha) means 'participant'. 「申し受け ます」 (moushiukemasu) is a humble expression
+      meaning 'to accept/receive' (money or goods), typically used by a business or service provider.
+  - english: Due to bad weather, the outdoor event has been canceled.
+    japanese:
+      - 悪 天候 {に つき}、屋外 イベント は 中止 と なり まし た。
+      - 悪 天候 {に つき}、屋外 イベント は 中止 です。
+    english_literally: Bad weather due to, outdoor event canceled became.
+    competing_grammar:
+      - competing_japanese:
+          - 悪 天候 {の ため に}、屋外 イベント は 中止 と なり まし た。
+        english: Because of bad weather, the outdoor event has been canceled.
+        hint: 「につき」 is suitable for formal announcements like cancellations, stating the direct, objective
+          reason. We're looking for a formal reason for cancellation.
+      - competing_japanese:
+          - 悪 天候 {な の で}、屋外 イベント は 中止 と なり まし た。
+        english: Because the weather was bad, the outdoor event has been canceled.
+        hint: 「ので」 is more casual. 「につき」 provides a more official and direct reason for an event cancellation
+          in a formal context. We're looking for a formal, objective reason.
+    scene: An announcement at a public park or event venue.
+    register: formal
+    setting: informative
+    nuance: This usage is common for public announcements regarding event status changes, where 「につき」
+      conveys a clear and undeniable reason. 「悪天候」 (akutenkou) means 'bad weather', and 「屋外 イベント」 (okugai
+      ibento) means 'outdoor event'. The phrase effectively communicates the cause for cancellation in
+      a straightforward, official manner.
+    etymology: 「悪天候」 (akutenkou) means 'bad weather'. 「屋外 イベント」 (okugai ibento) refers to an 'outdoor
+      event'. 「中止 と なり まし た」 signifies that the event has come to be canceled.
+  - english: Due to unforeseen circumstances, the meeting has been postponed.
+    japanese:
+      - やむ を 得 ない 事情 {に つき}、会議 は 延期 と なり まし た。
+      - やむ を 得 ない 事情 {に つき}、会議 は 延期 です。
+    english_literally: Unavoidable circumstances due to, meeting postponed became.
+    competing_grammar:
+      - competing_japanese:
+          - やむ を 得 ない 事情 {の ため に}、会議 は 延期 と なり まし た。
+        english: Because of unavoidable circumstances, the meeting has been postponed.
+        hint: While 「ために」 expresses cause, 「につき」 is used for official notices, particularly when announcing
+          changes due to circumstances beyond control. We're looking for a formal reason for postponement.
+      - competing_japanese:
+          - やむ を 得 ない 事情 {な の で}、会議 は 延期 と なり まし た。
+        english: Because there were unavoidable circumstances, the meeting has been postponed.
+        hint: 「ので」 is softer. 「につき」 conveys a more formal and official reason, especially when communicating
+          unexpected changes or difficulties. We're looking for a formal, concise reason.
+    scene: An internal company email or memo announcing a schedule change.
+    register: formal
+    setting: informative
+    nuance: This is a common, polite, and formal way to announce unexpected changes when the specific
+      reason is sensitive or complex. 「やむを得ない 事情」 (yamu wo enai jijou) refers to 'unavoidable circumstances'.
+      The use of 「につき」 here is part of standard business etiquette to provide a clear, if general, reason
+      for a disruption.
+    etymology: 「やむを得ない 事情」 (yamu wo enai jijou) means 'unavoidable circumstances' or 'circumstances beyond
+      one's control'. 「延期」 (enki) means 'postponement'.
+  - english: For each purchase of 5,000 yen, you will receive a 500 yen discount coupon.
+    japanese:
+      - お 買い上げ 五千 円 {に つき}、五百 円 分 の 割引 クーポン を 進呈 し ます。
+      - お 買い上げ 五千 円 {に つき}、五百 円 の 割引 クーポン を 差し上げ ます。
+    english_literally: Purchase five thousand yen per, five hundred yen worth of discount coupon will
+      be presented.
+    competing_grammar:
+      - competing_japanese:
+          - お 買い上げ 五千 円 {ごと に}、五百 円 分 の 割引 クーポン を 進呈 し ます。
+        english: For every purchase of 5,000 yen, you will receive a 500 yen discount coupon.
+        hint: While 「ごとに」 expresses repetition, 「につき」 is common in commercial promotions for clearly stating
+          the exact rate or condition for receiving a benefit. We're looking for a precise promotional
+          offer.
+    scene: A poster or announcement in a store during a sales promotion.
+    register: formal
+    setting: persuasive
+    nuance: This phrase is frequently seen in retail and promotional contexts to specify benefits per
+      amount spent. 「お 買い上げ」 (okaiage) is a polite term for 'your purchase'. 「割引 クーポン」 (waribiki kuupon)
+      means 'discount coupon'. 「進呈 し ます」 (shintei shimasu) is a formal way to say 'will present', emphasizing
+      the customer service aspect of the offer.
+    etymology: 「お 買い上げ」 (okaiage) is the polite noun form of 'buying'. 「割引 クーポン」 (waribiki kuupon) is
+      a loanword for 'discount coupon'. 「進呈」 (shintei) is a formal verb meaning 'to present' or 'to give'.

@@ -1,0 +1,260 @@
+grammar_point: い-Adjective[くありません] (polite negative form)
+learn_before:
+  - い-adjective (sentence-ending)
+meaning: is not (い-adjective), polite
+pronunciation:
+  katakana: クアリマセン
+  romaji: kuarimasen
+formation:
+  い-Adjective[stem] + くありません: The polite negative form of an い-adjective. Used to state that something
+    is not [い-adjective], in a polite manner.
+jlpt: N5
+etymology: The 「く」 comes from the adverbial form of い-adjectives, which historically ended in 「く」. The
+  「ありません」 is the polite negative form of the verb 「ある」 (to exist), used here as an auxiliary to negate
+  the adjective. This combination literally means "does not exist in an [adjective] manner."
+writeup: The い-Adjective[くありません] form is used to express the polite negative of い-adjectives. It is formed
+  by changing the final 「い」 of the い-adjective to 「く」 and adding 「ありません」. This structure indicates that
+  something is not in the state described by the い-adjective, in a polite context. It is a fundamental
+  conjugation for expressing polite negative descriptions in Japanese.
+false_friends:
+  - term: い-Adjective[くないです]
+    meaning: is not (い-adjective), polite
+    kind: similar expression
+    nuance: While 「い-Adjective[くないです]」 is grammatically understood and often used in casual spoken Japanese,
+      it is generally considered less formal and less correct than 「い-Adjective[くありません]」. The nuance is
+      that 「ないです」 combines a plain negative adjective with a polite copula, which some consider redundant
+      or less polished. We're looking for the more standard polite negative form.
+    grammar_point: <suggest>:い-Adjective[くないです] (polite negative)
+  - term: い-Adjective[くない]
+    meaning: is not (い-adjective), plain
+    kind: similar expression
+    nuance: 「い-Adjective[くない]」 is the plain negative form, suitable for casual conversation among friends
+      or family, but lacks the politeness required in formal situations. We're looking for a polite negative
+      form.
+    grammar_point: い-Adjective (past negative)
+  - term: な-Adjective[ではありません]
+    meaning: is not (な-adjective), polite
+    kind: similar expression
+    nuance: 「な-Adjective[ではありません]」 is the polite negative form for な-adjectives and nouns. Although both
+      express polite negation, they apply to different parts of speech and follow different formation
+      rules. We're looking for the polite negative of い-adjectives.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+post_false_friends_writeup: While 「い-Adjective[くありません]」 is the most standard polite negative for い-adjectives,
+  you might encounter 「い-Adjective[くないです]」 in informal speech. The key difference lies in the level of
+  formality and grammatical preference; 「くありません」 is consistently polite and grammatically established,
+  whereas 「くないです」 is a more casual construction often heard but sometimes flagged as less precise. 「い-Adjective[くない]」
+  is simply the plain form, used in casual settings. Remember that な-adjectives and nouns use 「ではありません」
+  for their polite negative, following a different pattern entirely. Distinguishing these forms is crucial
+  for proper usage in various social contexts.
+examples:
+  - english: This book is not interesting.
+    japanese:
+      - この 本 は {面白く あり ませ ん}。
+      - この 本 は {面白く ござい ませ ん}。
+    english_literally: This book, as for, is not interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 面白く ない です。
+        english: This book is not interesting (casual polite).
+        hint: 「面白くないです」 is a grammatically common and understood form, but 「面白くありません」 is considered more
+          standard polite Japanese. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - この 本 は 面白く ない。
+        english: This book is not interesting (plain).
+        hint: 「面白くない」 is a plain form. We're looking for the polite negative form.
+    scene: A student is politely discussing a book with their teacher.
+    register: teineigo (polite)
+    setting: academic
+  - english: The food is not delicious.
+    japanese:
+      - 食べ物 は {美味しく あり ませ ん}。
+      - 食べ物 は {美味しく ござい ませ ん}。
+    english_literally: Food, as for, is not delicious.
+    competing_grammar:
+      - competing_japanese:
+          - 食べ物 は 美味しく ない です。
+        english: The food is not delicious (casual polite).
+        hint: 「美味しくないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - 食べ物 は 美味しく ない。
+        english: The food is not delicious (plain).
+        hint: 「美味しくない」 is plain form. We're looking for the polite negative form.
+    scene: A customer politely informs a server about their meal at a restaurant.
+    register: teineigo (polite)
+    setting: professional
+  - english: This bag is not heavy.
+    japanese:
+      - この カバン は {重く あり ませ ん}。
+      - この カバン は {重く ござい ませ ん}。
+    english_literally: This bag, as for, is not heavy.
+    competing_grammar:
+      - competing_japanese:
+          - この カバン は 重く ない です。
+        english: This bag is not heavy (casual polite).
+        hint: 「重くないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - この カバン は 重く ない。
+        english: この カバン は 重くない。
+        hint: 「重くない」 is plain form. We're looking for the polite negative form.
+    scene: A person reassures their friend who is offering to carry their bag.
+    register: teineigo (polite)
+    setting: friendly
+  - english: That problem is not difficult.
+    japanese:
+      - その 問題 は {難しく あり ませ ん}。
+      - その 問題 は {難しく ござい ませ ん}。
+    english_literally: That problem, as for, is not difficult.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は 難しく ない です。
+        english: That problem is not difficult (casual polite).
+        hint: 「難しくないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - その 問題 は 難しく ない。
+        english: That problem is not difficult (plain).
+        hint: 「難しくない」 is plain form. We're looking for the polite negative form.
+    scene: A tutor calmly explains to a student that a math problem isn't as hard as it looks.
+    register: teineigo (polite)
+    setting: academic
+  - english: The weather is not good today.
+    japanese:
+      - 今日 の 天気 は {良く あり ませ ん}。
+      - 今日 の 天気 は {良く ござい ませ ん}。
+    english_literally: Today's weather, as for, is not good.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 天気 は 良く ない です。
+        english: The weather is not good today (casual polite).
+        hint: 「良くないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - 今日 の 天気 は 良く ない。
+        english: The weather is not good today (plain).
+        hint: 「良くない」 is plain form. We're looking for the polite negative form.
+    scene: Two colleagues discussing the gloomy weather in the office.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The い-adjective 「良い」 (yoi) becomes 「良くありません」, not 「いありません」. This is an irregular conjugation
+      for this specific adjective, where the stem changes from 「い」 to 「よ」. Pay attention to this common
+      irregularity. 「良くありません」 is the polite negative of 「良い」.
+    etymology: The irregular conjugation of 「良い」 to 「良く」 comes from an older form 「よろし」. The adverbial
+      form 「良く」 (yoku) is derived from this older stem, which then combines with 「ありません」.
+  - english: The computer is not new.
+    japanese:
+      - その パソコン は {新しく あり ませ ん}。
+      - その パソコン は {新しく ござい ませ ん}。
+    english_literally: That computer, as for, is not new.
+    competing_grammar:
+      - competing_japanese:
+          - その パソコン は 新しく ない です。
+        english: The computer is not new (casual polite).
+        hint: 「新しくないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - その パソコン は 新しく ない。
+        english: The computer is not new (plain).
+        hint: 「新しくない」 is plain form. We're looking for the polite negative form.
+    scene: A person explains to a potential buyer that the used computer is not a brand new model.
+    register: teineigo (polite)
+    setting: professional
+  - english: This movie is not sad.
+    japanese:
+      - この 映画 は {悲しく あり ませ ん}。
+      - この 映画 は {悲しく ござい ませ ん}。
+    english_literally: This movie, as for, is not sad.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は 悲しく ない です。
+        english: This movie is not sad (casual polite).
+        hint: 「悲しくないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - この 映画 は 悲しく ない。
+        english: This movie is not sad (plain).
+        hint: 「悲しくない」 is plain form. We're looking for the polite negative form.
+    scene: Two friends discussing a movie they just watched, with one trying to convince the other it
+      wasn't a tearjerker.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The sound is not loud.
+    japanese:
+      - 音 は {大きく あり ませ ん}。
+      - 音 は {大きく ござい ませ ん}。
+    english_literally: Sound, as for, is not loud.
+    competing_grammar:
+      - competing_japanese:
+          - 音 は 大きく ない です。
+        english: The sound is not loud (casual polite).
+        hint: 「大きくないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - 音 は 大きく ない。
+        english: The sound is not loud (plain).
+        hint: 「大きくない」 is plain form. We're looking for the polite negative form.
+    scene: A musician politely assures an audience member that the volume is not too high.
+    register: teineigo (polite)
+    setting: professional
+  - english: That restaurant is not cheap.
+    japanese:
+      - あの レストラン は {安く あり ませ ん}。
+      - あの レストラン は {安く ござい ませ ん}。
+    english_literally: That restaurant, as for, is not cheap.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 安く ない です。
+        english: That restaurant is not cheap (casual polite).
+        hint: 「安くないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - あの レストラン は 安く ない。
+        english: That restaurant is not cheap (plain).
+        hint: 「安くない」 is plain form. We're looking for the polite negative form.
+    scene: A person gives their friend a polite heads-up about the prices at a restaurant.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The coffee is not hot.
+    japanese:
+      - コーヒー は {熱く あり ませ ん}。
+      - コーヒー は {熱く ござい ませ ん}。
+    english_literally: Coffee, as for, is not hot.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー は 熱く ない です。
+        english: The coffee is not hot (casual polite).
+        hint: 「熱くないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - コーヒー は 熱く ない。
+        english: The coffee is not hot (plain).
+        hint: 「熱くない」 is plain form. We're looking for the polite negative form.
+    scene: A barista apologizes for the temperature of a drink.
+    register: teineigo (polite)
+    setting: professional
+  - english: That story is not long.
+    japanese:
+      - その 話 は {長く あり ませ ん}。
+      - その 話 は {長く ござい ませ ん}。
+    english_literally: That story, as for, is not long.
+    competing_grammar:
+      - competing_japanese:
+          - その 話 は 長く ない です。
+        english: That story is not long (casual polite).
+        hint: 「長くないです」 is casual polite. We're looking for the standard polite negative form.
+      - competing_japanese:
+          - その 話 は 長く ない。
+        english: That story is not long (plain).
+        hint: 「長くない」 is plain form. We're looking for the polite negative form.
+    scene: A novelist reassures a publisher that their new manuscript will not be excessively long.
+    register: teineigo (polite)
+    setting: professional
+  - english: The exam wasn't easy.
+    japanese:
+      - 試験 は {易しく あり ませ ん でし た}。
+      - 試験 は {易しく ござい ませ ん でし た}。
+    english_literally: Exam, as for, was not easy.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 易しく なかっ た です。
+        english: The exam wasn't easy (casual polite past).
+        hint: 「易しくなかったです」 is casual polite past. We're looking for the standard polite negative past form.
+      - competing_japanese:
+          - 試験 は 易しく なかっ た。
+        english: The exam wasn't easy (plain past).
+        hint: 「易しくなかった」 is plain past form. We're looking for the polite negative past form.
+    scene: Students are discussing a recent exam with their teacher after it's over.
+    register: teineigo (polite)
+    setting: academic

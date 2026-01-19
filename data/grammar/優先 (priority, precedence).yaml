@@ -1,0 +1,217 @@
+grammar_point: 優先 (priority, precedence)
+better_grammar_point_name:
+  - <suggest>:優先 (priority)
+  - <suggest>:優先する (to prioritize)
+learn_before:
+  - どう (how)
+meaning: priority, precedence
+pronunciation:
+  katakana: ユーセン
+  romaji: yūsen
+formation:
+  Noun + 優先: Indicates that the noun takes precedence or is the top priority.
+  Noun + を + 優先 する: Used to express the action of prioritizing a noun.
+  優先的に: Used adverbially to mean 'with priority' or 'preferentially'.
+jlpt: N2
+etymology: Composed of 優 (yuu - superior, excellent) and 先 (sen - before, ahead). Literally means "superior
+  first" or "placing superiority ahead," encapsulating the idea of giving something a higher position
+  or more importance.
+writeup: |-
+  「優先」 (ゆうせん) is a versatile term that expresses the concept of **priority** or **precedence**. It is commonly used to indicate that something takes precedence, is given special consideration, or is positioned ahead of other things in importance or order.
+
+  It can function as a noun, as in 「安全 優先」 (あんぜん ゆうせん - safety first). This noun usage is common in slogans, principles, or general statements. When combined with the verb 「する」 (to do), it forms 「優先する」 (ゆうせんする), meaning "to prioritize" or "to give priority to." This usage highlights a deliberate action of selecting one thing over another in terms of importance.
+
+  Furthermore, it can be used adverbially with 「的に」 (てきに), as in 「優先的に」 (ゆうせんてきに), meaning "preferentially" or "with priority." This emphasizes the manner in which an action is carried out.
+
+  「優先」 is often encountered in formal contexts, such as business, policy-making, traffic rules, or logical discussions, where clear ordering of importance is necessary. It implies a conscious decision or an established principle.
+false_friends:
+  - term: 一番
+    meaning: the most, number one
+    kind: similar expression
+    nuance: 「一番」 indicates a superlative rank (the highest, the best, the first in order) but doesn't
+      necessarily imply a *deliberate prioritization* in the same way 「優先」 does. It's about being at the
+      top of a list, not about actively choosing to put something at the top.
+    grammar_point: 一番 (superlative)
+  - term: まず
+    meaning: first, to begin with
+    kind: similar expression
+    nuance: 「まず」 indicates the **first step** in a sequence of actions or a preliminary point. It's about
+      chronological order or initial action, not about inherent importance or choosing to place something
+      above others. 「優先」 focuses on importance, 「まず」 on order.
+    grammar_point: まず (priority・initial action)
+  - term: 先に
+    meaning: ahead, previously, first
+    kind: similar expression
+    nuance: 「先に」 indicates doing something **earlier** or **before** something else. Similar to 「まず」,
+      it's often about sequential timing rather than a judgment of importance. While 「優先」 implies 「先に」
+      in importance, 「先に」 doesn't always imply 「優先」.
+    grammar_point: 先 (ahead・first)
+  - term: 重きを置く
+    meaning: to place importance on, to emphasize
+    kind: similar expression
+    nuance: 「重きを置く」 explicitly means "to place importance on," which is very close in meaning to 「優先する」.
+      However, 「重きを置く」 often describes the *attitude* or *focus* of a person or group, while 「優先」 can
+      describe an action, a state, or a principle. 「優先」 is more direct in stating "this *is* the priority,"
+      whereas 「重きを置く」 is more "we *consider* this important."
+    grammar_point: <suggest>:重きを置く (to place importance on)
+post_false_friends_writeup: While 「優先」, 「一番」, 「まず」, 「先に」, and 「重きを置く」 all relate to concepts of order
+  or importance, their specific uses differ. 「優先」 denotes a **deliberate decision or principle** to put
+  something first due to its inherent importance. 「一番」 describes a **rank**, indicating something is at
+  the top, but not necessarily chosen to be so. 「まず」 and 「先に」 both refer to **temporal or sequential order**,
+  indicating what comes first in time or sequence. 「重きを置く」 focuses on the **act of emphasizing** something,
+  often referring to a policy or mindset. When choosing, consider if you are describing a ranking, a sequence,
+  an emphasis, or an active decision to prioritize.
+examples:
+  - english: Safety first.
+    japanese:
+      - 安全 {優先}。
+      - 安全 が {優先} です。
+    english_literally: Safety priority.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 が 一番 だ。
+        english: Safety is number one.
+        hint: While safety might be "number one," {優先} specifically states it's given precedence, implying
+          a deliberate choice.
+    scene: A company slogan prominently displayed in a factory.
+    register: formal
+    setting: professional
+  - english: We prioritize customer satisfaction above all else.
+    japanese:
+      - 私 たち は 顧客 満足 を 何 より も {優先 し ます}。
+      - 弊社 は 顧客 満足 を 何 より も {優先 いたし ます}。
+      - 顧客 満足 を 最も {優先 し ます}。
+    english_literally: We customer satisfaction object-marker than anything else prioritize.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 顧客 満足 に 何 より も 重き を 置き ます。
+        english: We place importance on customer satisfaction above all else.
+        hint: 「重きを置く」 describes where emphasis is placed, while {優先する} is a more direct statement of what
+          comes first.
+    scene: A CEO addressing employees during an annual meeting.
+    register: teineigo (polite)
+    setting: professional
+  - english: Urgent tasks are processed preferentially.
+    japanese:
+      - 緊急 の 課題 は {優先 的 に} 処理 さ れ ます。
+      - 緊急 の 課題 は {優先 さ れる べき} です。
+      - 緊急 の 課題 は {優先 的 に} 処理 する べき です。
+    english_literally: Urgent tasks are preferentially processed.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 の 課題 は まず 処理 さ れ ます。
+        english: Urgent tasks are processed first.
+        hint: 「まず」 indicates an initial step in a sequence, not necessarily a special favored treatment
+          as {優先的に} implies.
+    scene: An IT manager explains the new ticketing system to their team.
+    register: formal
+    setting: professional
+  - english: In an emergency, saving lives takes priority.
+    japanese:
+      - 緊急 時 に は、人命 救助 が {優先 さ れ ます}。
+      - 緊急 時 に は、人命 救助 が {優先 さ れる}。
+      - 緊急 時 に は、人命 救助 を {優先 す べき} です。
+    english_literally: In emergency time, human life rescue is prioritized.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 時 に は、人命 救助 が 一番 だ。
+        english: In an emergency, life-saving is number one.
+        hint: While life-saving is "number one," {優先されます} implies a protocol or rule where it is explicitly
+          given precedence.
+    scene: A speaker delivers a disaster preparedness briefing to the community.
+    register: formal
+    setting: serious
+  - english: Elderly people have priority seating on the train.
+    japanese:
+      - 電車 で は 高齢 者 が {優先 席} を 利用 でき ます。
+      - 電車 の {優先 席} は 高齢 者 用 です。
+      - 電車 で は 高齢 者 が {優先} さ れ ます。
+    english_literally: On train elderly people priority seat can use.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 で は 高齢 者 が 先 に 座り ます。
+        english: On the train, elderly people sit first.
+        hint: 「先に」 indicates who sits first in time, but {優先席} refers to a designated seat for priority,
+          not just whoever gets there first.
+    scene: A train announcement reminds passengers about designated seating.
+    register: formal
+    setting: informative
+  - english: Family comes first.
+    japanese:
+      - 家族 が {優先} だ よ。
+      - 家族 が {優先} よ。
+      - 家族 が {優先} です。
+    english_literally: Family is priority, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 が 大事 だ よ。
+        english: Family is important, you know.
+        hint: While family is 「大事」 (important), {優先} implies that family should be put before other things,
+          a statement of active prioritization.
+    scene: A friend advises another about work-life balance after a long work week.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual copula 「だ」 and the sentence-final particle 「よ」 make this advice sound friendly
+      and personal, commonly used between close male friends, asserting a principle of life.
+  - english: My personal feelings are not prioritized in this job.
+    japanese:
+      - この 仕事 で は 私 の 個人 的 な 感情 は {優先 さ れ ませ ん}。
+      - この 仕事 で は 私 の 個人 的 な 感情 は {優先 さ れ ない}。
+    english_literally: In this job my personal feelings are not prioritized.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 で は 私 の 個人 的 な 感情 は 無視 さ れ ます。
+        english: In this job, my personal feelings are ignored.
+        hint: 「無視されます」 (are ignored) implies a complete disregard, whereas {優先されません} means they are simply
+          not given higher importance.
+    scene: A new employee expresses their dissatisfaction with their work environment to a colleague.
+    register: teineigo (polite)
+    setting: serious
+  - english: They prioritized profit over quality.
+    japanese:
+      - 彼 ら は 品質 より も 利益 を {優先 し まし た}。
+      - 彼 ら は 品質 より も 利益 を {優先 し た}。
+      - 彼 ら は 利益 を {優先 し た} の です。
+    english_literally: They quality than profit object-marker prioritized.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 品質 より も 利益 を 先 に 考え まし た。
+        english: They thought of profit first, rather than quality.
+        hint: 「先に考える」 means to consider something first in order, while {優先する} implies making it the principal
+          consideration above others.
+    scene: A business analyst presents a critical review of a company's past decisions to a board.
+    register: formal
+    setting: academic
+  - english: If you prioritize efficiency, the process will be simpler.
+    japanese:
+      - 効率 を {優先 すれ ば}、プロセス は より 単純 に なり ます。
+      - 効率 を {優先 し たら}、プロセス は より 単純 に なり ます。
+      - 効率 を {優先 する なら}、プロセス は より 単純 に なり ます。
+    english_literally: Efficiency object-marker if prioritize, process will become simpler.
+    competing_grammar:
+      - competing_japanese:
+          - 効率 が 一番 なら、プロセス は より 単純 に なり ます。
+        english: If efficiency is number one, the process will be simpler.
+        hint: 「一番」 just states a fact about ranking, whereas {優先すれば} implies an active choice to treat
+          efficiency as the most important factor.
+    scene: A project manager explains a new strategy to optimize workflow.
+    register: formal
+    setting: professional
+  - english: At the emergency exit, women and children are given priority.
+    japanese:
+      - 非常 口 で は、女性 と 子供 が {優先 さ れ ます}。
+      - 非常 口 で は、女性 と 子供 が {優先 さ れる}。
+      - 非常 口 で は、女性 と 子供 を {優先 する} こと に なっ て い ます。
+      - 非常 口 で は、女性 と 子供 が {優先} です。
+    english_literally: At emergency exit, women and children are prioritized.
+    competing_grammar:
+      - competing_japanese:
+          - 非常 口 で は、女性 と 子供 が 先 に 行き ます。
+        english: At the emergency exit, women and children go first.
+        hint: 「先に 行きます」 indicates the order of departure, but {優先されます} specifically states they are given
+          preferential treatment, which is a stronger statement than just going first.
+    scene: A flight attendant gives safety instructions before takeoff.
+    register: formal
+    setting: instructional

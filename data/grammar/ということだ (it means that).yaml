@@ -1,0 +1,361 @@
+grammar_point: ということだ (it means that)
+learn_before:
+  - ぜ (male emphatic particle)
+  - つまり・要するに (in short・to sum up)
+  - ということ(は) (that means)
+  - によると・によれば (according to)
+  - までに (by the time)
+meaning: It means that; It is said that; I heard that
+meaning_warning: Can be rephrased to とのことだ if expresses hearsay.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ということだ
+    rarity: common
+    meaning: It is said that; It means that
+  - conjugation-type: non-past polite (～ます)
+    form: ということです
+    rarity: common
+    meaning: It is said that; It means that (polite)
+pronunciation:
+  katakana: トイウコトダ
+  romaji: to iu koto da
+formation:
+  Plain form (Verb, い-Adjective, な-Adjective + だ, Noun + だ) + ということだ: Indicates that something is said
+    to be the case, or that something means something.
+jlpt: N3
+etymology: The phrase 「ということだ」 is derived from the combining form of the verb 「言う」 (iu, to say), the noun
+  「事」 (koto, thing/matter), and the copula 「だ」 (da, to be). Literally, it translates to 'it is the matter
+  of saying [X]', which evolves to convey the sense of 'it is said that [X]' or 'it means that [X]'. The
+  inclusion of 「だ」 emphasizes the factual nature or certainty of the reported information or explanation.
+writeup: |-
+  「ということだ」 is a versatile grammar point used to convey information that the speaker has heard from another source, or to explain the meaning or implication of a preceding statement or situation. It can be translated as "it is said that," "I heard that," "rumor has it that," or "it means that."
+
+  Unlike the more casual 「そうだ」 which often carries a nuance of speculation or less certainty, 「ということだ」 implies a higher degree of factual confirmation or established knowledge. The 「だ」 (or 「です」 in polite form) component emphasizes this certainty, making the statement sound more authoritative and reliable.
+
+  This grammar point is frequently paired with phrases that explicitly state the source of the information, such as 「～によると」 (ni yoru to, according to ~) or 「～によれば」 (ni yo reba, according to ~). When used in this manner, it functions to present a report or finding from a specific source as a confirmed fact.
+
+  While often used for hearsay, it can also be used to draw a conclusion or explain the meaning of a situation. For example, if someone states a fact, using 「ということだ」 can explain what that fact implies. For instance, 「彼 は 日本語 を 話せる ということだ」 (kare wa nihongo o hanaseru to iu koto da) could mean "It is said that he can speak Japanese" (hearsay) or "It means that he can speak Japanese" (explaining an implication). The context usually clarifies the intended nuance.
+
+  It is generally considered more formal than 「そうだ」 when reporting information that has been heard. When expressing hearsay that cannot be easily proven, or when the emphasis is more on the source than the information itself, 「とのことだ」 can sometimes be used as a slightly softer alternative, which also emphasizes the origin of the information.
+false_friends:
+  - term: ことなの
+    meaning: (A) is (Description of A), (A) means that (Description of A)
+    kind: similar expression
+    nuance: 「ことなの」 is an explanatory nominalizer that literally translates to 'it is a matter of (X)',
+      whereas 「ということだ」 reports what has been said about something or explains its meaning from an objective
+      standpoint. 「ことなの」 is more about defining a concept or action, typically in a casual explanatory
+      context, while 「ということだ」 is more about reporting or concluding.
+    grammar_point: ことなの (it is that)
+  - term: だって
+    meaning: I heard/was said, Because, But, Even or also, Even if or even though
+    kind: often confused with
+    nuance: 「だって」 can be a very informal way to report hearsay (often with a nuance of complaint or defense),
+      but it has many other meanings like "because" or "even if." Unlike 「ということだ」, which solely conveys
+      information or explanation, 「だって」 has a broader range of uses and often implies a personal emotional
+      context or reason that 「ということだ」 does not carry.
+    grammar_point: だって (even・also)
+  - term: とか
+    meaning: I heard that… something like, They said ... or something
+    kind: similar expression
+    nuance: 「とか」 indicates uncertainty or vagueness about the information or its source, often used to
+      list examples without being exhaustive. In contrast, 「ということだ」 presents information as relatively
+      certain and confirmed, even if heard from someone else. 「とか」 implies 'I heard something like that,'
+      while 「ということだ」 implies 'I heard that, and it is the case that...'.
+    grammar_point: とか (hearsay)
+  - term: ということ
+    meaning: ~ing, The ~ that ~ (Nominalization)
+    kind: similar expression
+    nuance: 「ということ」 without the copula 「だ」 primarily functions as a nominalizer, turning a preceding phrase
+      or sentence into a noun clause, often meaning 'the fact that ~' or 'the act of ~ing'. It does not
+      carry the sense of hearsay or explanation on its own. 「ということだ」 adds the copula to state 'it *is*
+      the fact that ~' or 'it *means* that ~', completing the statement with an assertion or conclusion.
+    grammar_point: <suggest>:ということ (nominalizer・conclusion)
+  - term: そうだ (hear that)
+    meaning: I heard that; It is said that
+    kind: similar expression
+    nuance: 「そうだ」 is generally less formal than 「ということだ」 when reporting hearsay and can imply more speculation
+      or a less definite source. 「ということだ」 typically suggests a higher degree of certainty and is often
+      used for official reports or established facts, while 「そうだ」 might be used for common rumors or less
+      verified information. 「そうだ」 can also indicate something 'seems' or 'looks like,' a meaning 「ということだ」
+      does not have.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: '[Sentence]らしい (it seems・I hear)'
+    meaning: Seems like; I heard that; apparently
+    kind: similar expression
+    nuance: 「らしい」 indicates that the information is based on observation or inference, implying a weaker,
+      more speculative form of hearsay compared to the more assertive and certain 「ということだ」. While both
+      can convey 'I heard,' 「らしい」 means 'it seems like,' focusing on outward appearance or indirect evidence,
+      whereas 「ということだ」 states 'it is said that,' focusing on a confirmed report or meaning.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: というわけではない
+    meaning: It doesn't mean that, It is not the case, It's not like
+    kind: similar expression
+    nuance: 「ということだ」 states a conclusion or reported fact, while 「というわけではない」 negates the idea that something
+      is necessarily true. It denies an absolute conclusion.
+    grammar_point: (という)わけではない (it's not that...)
+  - term: に決まっている
+    meaning: It is surely the case; It is bound to be; It is certainly true.
+    kind: similar expression
+    nuance: Both express certainty. 「に決まっている」 conveys the speaker's strong conviction or subjective certainty,
+      often based on strong logical deduction or intuition. 「ということだ」 is more about reporting an objective
+      fact, established meaning, or information received from a reliable source.
+    grammar_point: に決まっている (surely is)
+  - term: といわれている
+    meaning: It is said that, Is known as
+    kind: similar expression
+    nuance: 「といわれている」 emphasizes that something is widely said or generally accepted, often referring
+      to common knowledge or public opinion. 「ということだ」 can also report what is said, but its emphasis is
+      more on *the fact* of what is being stated or its logical conclusion, and it can also explain meaning
+      or implication. 「といわれている」 implies a more general, perhaps less direct, source.
+    grammar_point: といわれている (it is said that)
+post_false_friends_writeup: To differentiate between 「ということだ」 and similar expressions, remember that 「ということだ」
+  serves to present information as a confirmed report or a clear explanation of meaning. It carries a
+  sense of certainty and often implies that the information is established or comes from a reliable source.
+  In contrast, 「そうだ」, 「らしい」, and 「といわれている」 imply varying degrees of hearsay or general acceptance, with
+  「らしい」 often being the least certain and based on observation, and 「といわれている」 emphasizing general knowledge
+  or public opinion rather than a speaker's direct assertion of meaning. 「ことなの」 and 「ということ」 primarily
+  function as nominalizers or for general explanation without the definitive assertion that 「ということだ」 provides.
+  「だって」 and 「とか」 have broader applications beyond simply reporting information, often carrying nuances
+  of reason, examples, or uncertainty that are not inherent to 「ということだ」. Lastly, while 「に決まっている」 expresses
+  certainty like 「ということだ」, it conveys the speaker's strong, subjective conviction, unlike 「ということだ」's focus
+  on objective reporting or logical implication.
+examples:
+  - english: It is said that according to company policy, working from home will be abolished from this
+      quarter.
+    japanese:
+      - 会社 の 方針 で、今期 から 在宅 勤務 が 廃止 に なる {と いう こと だ}。
+      - 会社 の 方針 で、今期 から 在宅 勤務 が 廃止 に なる {と の こと だ}。
+      - 会社 の 方針 で、今期 から 在宅 勤務 が 廃止 に なる {と いう こと です}。
+      - 会社 の 方針 で、今期 から 在宅 勤務 が 廃止 に なる {と の こと です}。
+    english_literally: Due to the company's policy, from this quarter remote work will be abolished, that
+      is to say.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 方針 で、今期 から 在宅 勤務 が 廃止 に なる {そう だ}。
+        english: I heard that according to company policy, working from home will be abolished from this
+          quarter.
+        hint: 「そうだ」 is a general way to convey hearsay, but 「ということだ」 implies a more definite and confirmed
+          report of information.
+    scene: A manager is informing their team about a new company policy that has been decided in a meeting.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: This statement uses 「ということだ」 to report a decision based on official company policy, conveying
+      a high degree of certainty and formality suitable for a professional announcement. The phrasing
+      suggests the information is a confirmed fact.
+    etymology: The use of 「方針」 (hōshin) refers to a definite policy or plan, reinforcing the certainty
+      implied by 「ということだ」。
+  - english: In other words, he won't accept our proposal.
+    japanese:
+      - つまり、彼 は 私 たち の 提案 を 受け入れ ない {と いう こと だ}。
+      - 要する に、彼 は 私 たち の 提案 を 受け入れ ない {と いう こと だ}。
+      - つまり、彼 は 私 たち の 提案 を 受け入れ ない {と いう こと です}。
+      - 要する に、彼 は 私 たち の 提案 を 受け入れ ない {と いう こと です}.
+    english_literally: That is to say, he our proposal will not accept, that is to say.
+    competing_grammar:
+      - competing_japanese:
+          - つまり、彼 は 私 たち の 提案 を 受け入れ ない {と いう 意味 だ}。
+        english: In other words, he means that he won't accept our proposal.
+        hint: 「という意味だ」 explicitly defines meaning. 「ということだ」 implies it as a conclusion or implication.
+    scene: During a project debrief, one team member clarifies what a client's vague response implies.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「ということだ」 is used to draw a conclusion or explain the implication of a situation, clarifying
+      what an earlier, possibly ambiguous, statement means. 「つまり」 emphasizes that this is a summary or
+      interpretation.
+    etymology: 「つまり」 (tsumari) often precedes a summary or conclusion, derived from the verb 「詰まる」 (tsumaru)
+      meaning 'to be詰まって (tsumatte, packed tightly)' or 'to be blocked,' implying a concise summation.
+  - english: According to Sato-san, the new department head is quite a strict person.
+    japanese:
+      - 佐藤 さん の 話 だ と、新しい 部長 は かなり 厳しい 人 {と いう こと だ} よ。
+      - 佐藤 さん が 言う に は、新しい 部長 は かなり 厳しい 人 {って こと だ} よ。
+      - 佐藤 さん の 話 だ と、新しい 部長 は かなり 厳しい 人 {と いう こと です} よ。
+      - 佐藤 さん が 言う に は、新しい 部長 は かなり 厳しい 人 {と いう こと です} よ。
+    english_literally: According to Sato-san's talk, the new department head quite strict person, that
+      is to say, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 佐藤 さん の 話 だ と、新しい 部長 は かなり 厳しい 人 {らしい} よ。
+        english: According to Sato-san, the new department head seems to be quite a strict person, you
+          know.
+        hint: 「らしい」 suggests information based on appearance or indirect evidence. 「ということだ」 conveys information
+          as a more confirmed report.
+    scene: Two male colleagues are chatting during a coffee break about a new manager.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker uses 「佐藤 さん の 話 だ と」 to indicate the source of the information. The choice
+      of 「ということだ よ」 in a casual setting suggests he is relaying a piece of information he heard and considers
+      credible. The 「よ」 particle adds emphasis or conviction to his statement, which is common in male
+      speech for sharing information with a certain degree of assurance.
+    etymology: The phrase 「話 だ と」 (hanashi da to) implies 'according to what I heard/from their story',
+      showing the information's origin. 「よ」 is a sentence-final particle used for emphasis, assertion,
+      or to call attention to information.
+  - english: On the TV news, it's said that that famous actress is getting married.
+    japanese:
+      - テレビ の ニュース で、あの 有名 な 女優 さん が 結婚 する {と いう こと だ} わ。
+      - テレビ の ニュース で、あの 有名 な 女優 さん が 結婚 する {って こと だ} わ.
+    english_literally: On the TV news, that famous actress is getting married, that is to say.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ の ニュース で、あの 有名 な 女優 さん が 結婚 する {そう だ} わ。
+        english: On the TV news, I heard that that famous actress is getting married.
+        hint: 「そうだ」 is for general hearsay. 「ということだ」 is often for news presented as fact.
+      - competing_japanese:
+          - テレビ の ニュース で、あの 有名 な 女優 さん が 結婚 する {と か}。
+        english: On the TV news, I heard that that famous actress is getting married, or something.
+        hint: 「とか」 implies uncertainty or vagueness, while 「ということだ」 presents information as more certain.
+    scene: Two female friends are discussing celebrity gossip while watching TV.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The female speaker indicates the source with 「テレビ の ニュース で」. Her use of 「ということだ わ」 is a common
+      feminine sentence-ending particle that adds a soft, informative, or slightly exclamatory nuance,
+      often used when sharing new or interesting information with another woman. This example shows that
+      while 「ということだ」 implies certainty, in casual female speech, it can still be used for news that is
+      simply reported, even if it's celebrity gossip.
+    etymology: 「わ」 is a sentence-final particle predominantly used by women, conveying a sense of conviction,
+      gentle assertion, or an emotional nuance. 「女優」 (joyū) means actress, often used in conversations
+      about celebrities.
+  - english: According to the doctor's explanation, early detection is important for this symptom.
+    japanese:
+      - 医師 の 説明 に よる と、この 症状 は 早期 発見 が 重要 {と いう こと です}。
+      - 医師 の 説明 に よる と、この 症状 は 早期 発見 が 重要 {と の こと です}.
+    english_literally: According to the doctor's explanation, this symptom early detection is important,
+      that is to say.
+    competing_grammar:
+      - competing_japanese:
+          - 医師 の 説明 に よる と、この 症状 は 早期 発見 が 重要 {だ そう です}。
+        english: According to the doctor's explanation, I heard that early detection is important for
+          this symptom.
+        hint: 「だそうです」 is polite hearsay, but 「ということ です」 emphasizes a confirmed fact from a reliable source.
+    scene: A patient's family member relays information from the doctor to another family member, emphasizing
+      the importance of the doctor's advice.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+    nuance: This formal usage of 「ということ です」 with 「医師 の 説明 に よると」 emphasizes that the information is a
+      confirmed medical fact from a reliable source. It's used to relay professional advice with appropriate
+      gravity and politeness.
+    etymology: 「に よると」 (ni yoru to) means 'according to,' specifically citing a source for information.
+      「早期 発見」 (sōki hakken) means 'early detection,' a critical phrase in medical contexts.
+  - english: The proverb 'Haste makes waste' means that when you are in a hurry, you should act carefully
+      without panicking.
+    japanese:
+      - 『急が ば 回れ』と いう の は、急い で いる 時 こそ、焦ら ず 慎重 に 行動 す べき {と いう こと だ}。
+      - 『急が ば 回れ』と いう 意味 は、急い で いる 時 こそ、焦ら ず 慎重 に 行動 す べき {と いう こと だ}。
+      - 『急が ば 回れ』と いう の は、急い で いる 時 こそ、焦ら ず 慎重 に 行動 す べき {と いう こと です}。
+      - 『急が ば 回れ』と いう 意味 は、急い で いる 時 こそ、焦ら ず 慎重 に 行動 す べき {と いう こと です}.
+    english_literally: '''If you hurry, go around'' means that when hurrying, precisely, without panicking
+      carefully you should act, that is to say.'
+    competing_grammar:
+      - competing_japanese:
+          - 『急が ば 回れ』と いう の は、急い で いる 時 こそ、焦ら ず 慎重 に 行動 す べき {と いう 意味 だ}。
+        english: The proverb 'Haste makes waste' means that when you are in a hurry, you should act carefully
+          without panicking.
+        hint: 「という意味だ」 explicitly states "it means". 「ということだ」 can also convey meaning as a summary or
+          conclusion.
+    scene: A teacher explains the deeper meaning of the Japanese proverb '急がば回れ' (isogaba maware) to their
+      students, ensuring they grasp its underlying wisdom.
+    register: bijinesu nihongo (business)
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: This example uses 「ということだ」 to provide an explanation or interpretation of a proverb, suitable
+      for an academic setting. The phrase 「…というのは」 explicitly introduces the explanation. An older speaker
+      often uses such precise and pedagogical language when imparting wisdom.
+    etymology: 「急がば回れ」 (isogaba maware) is a Japanese proverb literally meaning 'if you hurry, go around
+      (the long way),' implying that taking a longer, safer path is often faster than rushing and making
+      mistakes. 「…というのは」 (to iu no wa) is a common pattern to introduce an explanation or definition,
+      meaning 'the thing that is called...' or 'what is meant by...'.
+  - english: So, that means we need to leave now if we want to make it on time.
+    japanese:
+      - じゃあ、間に合う ため に は 今 出発 する {と いう こと だ} ね。
+      - じゃあ、間に合う ため に は 今 出発 する {って こと だ} ね。
+    english_literally: Well then, in order to make it on time, depart now, that is to say, right?
+    competing_grammar:
+      - competing_japanese:
+          - じゃあ、間に合う ため に は 今 出発 し {なきゃ}！
+        english: Well then, we have to leave now if we want to make it on time!
+        hint: This phrase expresses a direct necessity or obligation, while 「ということだ」 draws a conclusion
+          from the situation.
+    scene: Two friends are looking at their watches, realizing they're running late for an appointment.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    nuance: The particle 「ね」 at the end invites agreement from the listener, making the statement a shared
+      realization rather than a definitive statement of fact. It's common in casual conversations to confirm
+      a conclusion. The phrase 「じゃあ」 (well then) sets up the conclusion.
+  - english: The memo states that all reports must be submitted by Friday. That's what it means.
+    japanese:
+      - その メモ に は、報告 書 は 金曜 日 まで に 提出 と の こと です。つまり、金曜 日 まで に 提出 し なけれ ば なら ない {と いう こと です}。
+      - その メモ に は、報告 書 は 金曜 日 まで に 提出 と の こと です。要する に、金曜 日 まで に 提出 し なけれ ば なら ない {と いう こと です}.
+    english_literally: In that memo, reports by Friday submission, that is what is said. That is to say,
+      by Friday must submit, that is what it means.
+    competing_grammar:
+      - competing_japanese:
+          - その メモ に は、報告 書 は 金曜 日 まで に 提出 と の こと です。つまり、金曜 日 まで に 提出 し {なけれ ば なら ない}。
+        english: The memo states that all reports must be submitted by Friday. In other words, you must
+          submit by Friday.
+        hint: 「なければならない」 directly states obligation, while 「ということだ」 explains the meaning or implication
+          of the prior statement.
+    scene: A team leader explains a new company directive to their team members.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The leader uses 「とのことです」 to cite the memo as the source, then clarifies its meaning with 「つまり」
+      (in other words) followed by 「ということ です」. This two-part structure (reporting and then explaining)
+      shows a comprehensive understanding and communication of the directive. The polite form 「です」 is
+      appropriate for a team briefing.
+  - english: To say 'ignorance is bliss' means that sometimes not knowing the truth can bring happiness.
+    japanese:
+      - 『知ら ぬ が 仏』と いう の は、時 に は 真実 を 知ら ない 方 が 幸せ だ {と いう こと だ}。
+      - 『知ら ぬ が 仏』と いう の は、時 に は 真実 を 知ら ない 方 が 幸せ だ {と いう こと です}。
+    english_literally: '''Not knowing is Buddha'' means, sometimes not knowing the truth is happier, that
+      is to say.'
+    competing_grammar:
+      - competing_japanese:
+          - 『知ら ぬ が 仏』と いう の は、時 に は 真実 を 知ら ない 方 が 幸せ {な ん です}。
+        english: To say 'ignorance is bliss' is that sometimes not knowing the truth is happier.
+        hint: 「んです」 (no desu) is for explanation based on personal observation or emphasis, not typically
+          for defining abstract meanings. We're looking for a general interpretation.
+    scene: A university lecturer is explaining the nuanced meaning of a Japanese proverb to their students.
+    register: bijinesu nihongo (business)
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: This example uses 「ということだ」 to interpret the deeper meaning of a proverb, suitable for an academic
+      setting. The phrase 「…というのは」 explicitly introduces the explanation. An older speaker often uses
+      such precise and pedagogical language when imparting wisdom.
+  - english: So, if I don't study for the exam, it means I'll definitely fail.
+    japanese:
+      - じゃあ、試験 の ため に 勉強 し ない {と いう こと は}、絶対 落ちる {と いう こと だ} な。
+      - じゃあ、試験 の ため に 勉強 し ない {と いう こと は}、絶対 落ちる {って こと だ} な。
+    english_literally: Well then, not studying for the exam means, definitely fail, that is to say, huh.
+    competing_grammar:
+      - competing_japanese:
+          - じゃあ、試験 の ため に 勉強 し ない {と}、絶対 落ちる な。
+        english: Well then, if I don't study for the exam, I'll definitely fail.
+        hint: This alternative states a direct conditional outcome. 「ということだ」 is used to explicitly state
+          the implication or meaning of the first part of the sentence.
+    scene: A student is contemplating their choices the night before a big exam.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+    listener_gender: no one
+    nuance: The speaker uses 「と いう こと は」 to set up the premise, then concludes with 「と いう こと だ」, expressing
+      a personal, somewhat grim realization. The sentence-final particle 「な」 (uttered with a falling intonation)
+      indicates a self-reflection or a confirmation to oneself, common in internal monologues or very
+      casual speech. The contracted form 「って こと だ」 is also common in such situations.
+post_example_writeup: The examples illustrate how 「ということだ」 is used both to report information heard from
+  others, often with a sense of certainty or confirmation, and to explain the meaning or implication of
+  a statement or situation. The register can vary from formal (especially with official sources) to casual
+  when discussing personal news or common knowledge. The choice between 「ということだ」 and similar expressions
+  often hinges on the speaker's perceived certainty of the information and the desired level of formality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ということだ

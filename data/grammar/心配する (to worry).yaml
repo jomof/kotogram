@@ -1,0 +1,323 @@
+grammar_point: 心配する (to worry)
+learn_before:
+  - Number+も (emphatic quantity)
+  - Verb[ないで] (negative without doing)
+  - あそこ (over there)
+  - あんなに (that much over there)
+  - かどうか (whether or not)
+  - ちょっと (adverb)
+  - となると (when it comes to)
+  - どこ (where)
+  - ないでください・ないで (please don't)
+  - の (possession)
+  - を (emotion's object or cause)
+  - 様子 (state・situation・appearance)
+meaning: to worry, to be concerned, to feel anxious
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 心配する
+    rarity: common
+    meaning: to worry
+  - conjugation-type: non-past polite (～ます)
+    form: 心配します
+    rarity: common
+    meaning: to worry (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 心配しない
+    rarity: common
+    meaning: not to worry
+  - conjugation-type: negative non-past polite (～ません)
+    form: 心配しません
+    rarity: common
+    meaning: not to worry (polite)
+  - conjugation-type: past plain (～た)
+    form: 心配した
+    rarity: common
+    meaning: worried
+  - conjugation-type: past polite (～ました)
+    form: 心配しました
+    rarity: common
+    meaning: worried (polite)
+  - conjugation-type: te-form (～て)
+    form: 心配して
+    rarity: common
+    meaning: worrying and
+  - conjugation-type: progressive (～ている)
+    form: 心配している
+    rarity: common
+    meaning: is worrying / have worried
+  - conjugation-type: volitional (～よう)
+    form: 心配しよう
+    rarity: less common
+    meaning: let's worry / I intend to worry
+  - conjugation-type: volitional polite (～ましょう)
+    form: 心配しましょう
+    rarity: less common
+    meaning: let's worry (polite)
+  - conjugation-type: causative (～させる)
+    form: 心配させる
+    rarity: common
+    meaning: to make someone worry
+  - conjugation-type: passive (～られる/～かれる)
+    form: 心配される
+    rarity: common
+    meaning: to be worried (by someone/something)
+  - conjugation-type: causative-passive (～させられる)
+    form: 心配させられる
+    rarity: common
+    meaning: to be made to worry
+pronunciation:
+  katakana: シンパイする
+  romaji: shinpai suru
+formation:
+  Noun + を + 心配する: To worry about Noun.
+  Noun + の + 心配をする: To do the worrying about Noun (emphasizes the act of worrying).
+  Clause (plain form) + か + 心配する: To worry whether Clause is true.
+  Clause (plain form) + かどうか + 心配する: To worry whether or not Clause is true.
+  Noun + について + 心配する: To worry about Noun (regarding Noun).
+jlpt: N4
+etymology: '心配 (しんぱい) is a compound noun from Chinese characters: 心 (しん - kokoro) meaning "heart, mind,
+  spirit," and 配 (ぱい - kubaru) meaning "to distribute, to arrange, to be concerned." Literally, it implies
+  one''s heart/mind being "distributed" or "scattered" due to concern, leading to the meaning "worry"
+  or "anxiety." When combined with する (to do), it forms the verb "to worry."'
+writeup: '`心配する` (しんぱいする) is a fundamental Japanese verb used to express the act of worrying, being concerned,
+  or feeling anxious. It is a する verb, meaning it combines a noun (`心配`) with the verb `する` (to do) to
+  form a verb phrase. This structure allows `心配` to also function as a noun, meaning "worry" or "concern,"
+  often seen in phrases like `心配事` (shinpai-goto, "a worry/concern"). The range of emotions expressed
+  by `心配する` can vary from mild apprehension to deep distress. It is commonly used when expressing concern
+  for someone''s well-being, anxiety about an uncertain future event, or unease regarding a situation.
+  When specifying what one is worried *about*, `心配する` often takes the particle `を` or `について`. For example,
+  `試験を心配する` means "to worry about the exam," and `家族について心配する` means "to worry about one''s family." It
+  can also take a plain form clause followed by `か` or `かどうか` to express worry about a possibility, such
+  as `雨が降るか心配する` (to worry if it will rain). `心配する` primarily focuses on the internal state of the worrier.
+  While its basic meaning is straightforward, the context and conjugation will determine the politeness
+  and specific nuance. For instance, `心配しないでください` (Please don''t worry) is a very common phrase used to
+  comfort someone.'
+false_friends:
+  - term: 不安
+    meaning: anxiety, uneasiness, apprehension
+    kind: similar expression
+    nuance: '`不安` is primarily a noun or な-adjective (when combined with だ or です: `不安だ` - "is anxious").
+      It describes the *state* of being anxious or uneasy, often more general and less directed than `心配する`.
+      While `心配する` is an action of worrying, `不安` is a feeling of unease.'
+    grammar_point: <strongly-suggest>:不安 (anxiety・uneasiness)
+  - term: 気になる
+    meaning: to be on one's mind, to be bothered by, to feel like doing
+    kind: similar expression
+    nuance: '`気になる` expresses that something "comes to mind" or "bothers" you, often implying curiosity,
+      slight concern, or a persistent thought. It''s a more passive feeling than `心配する`. You don''t actively
+      *do* the "worrying" like with `心配する`; rather, something *becomes* a concern to you. It can also
+      mean "to become interested in."'
+    grammar_point: 気になる (to be concerned or interested)
+  - term: 悩む
+    meaning: to be troubled, to be distressed, to agonize
+    kind: similar expression
+    nuance: '`悩む` implies a deeper, more prolonged state of mental distress, struggle, or agonizing over
+      a problem, often with the implication of seeking a solution. `心配する` is about an *anticipatory* fear
+      or concern, whereas `悩む` is about being *presently* tormented by a difficult issue or decision.'
+    grammar_point: <strongly-suggest>:悩む (to be troubled・agonize)
+post_false_friends_writeup: While `心配する`, `不安`, `気になる`, and `悩む` all relate to states of unease or mental
+  discomfort, they differ in their active/passive nature and intensity. `心配する` is the most direct verb
+  for "to worry" about something specific. `不安` describes a general state of anxiety. `気になる` means something
+  is on your mind, perhaps a minor concern or curiosity. `悩む` suggests a deeper, more persistent struggle
+  with a problem, often implying an active search for a solution. Choosing the right term depends on whether
+  you are describing an action, a state, a passive feeling, or an ongoing struggle.
+examples:
+  - english: I'm worried about tomorrow's weather.
+    japanese:
+      - 明日 の 天気 が {心配 です}。
+      - 明日 の 天気 が {心配 だ}。
+      - 明日 の 天気 を {心配 し て い ます}。
+    english_literally: Tomorrow's weather is worry.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 天気 が 不安 です。
+        english: Tomorrow's weather is uncertain/uneasy.
+        hint: '`不安です` describes a general feeling of uneasiness or uncertainty, rather than the active
+          act of worrying. We''re looking for an active sense of worry.'
+      - competing_japanese:
+          - 明日 の 天気 が 気 に なり ます。
+        english: Tomorrow's weather is on my mind/I'm concerned about it.
+        hint: '`気になります` implies something simply comes to mind as a minor concern or curiosity. We''re
+          looking for a more direct expression of worry.'
+    scene: Talking to a friend about an upcoming outdoor event.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: I'm worried about my grandmother's health.
+    japanese:
+      - 祖母 の 健康 を {心配 し て い ます}。
+      - 祖母 の 健康 が {心配 です}。
+      - 祖母 の 健康 を {心配 し て いる}。
+    english_literally: Grandmother's health I am worrying.
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 の 健康 を 案じ て い ます。
+        english: I'm apprehensive about my grandmother's health (more formal).
+        hint: '`案じる` is a more formal verb for being concerned or anxious. We''re looking for the more
+          common, everyday word for worry.'
+      - competing_japanese:
+          - 祖母 の 健康 が 不安 です。
+        english: My grandmother's health makes me uneasy.
+        hint: '`不安です` conveys a state of uneasiness. We''re looking for the active act of worrying.'
+    scene: Discussing family with a relative.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: progressive (～ている)
+  - english: Please don't worry.
+    japanese:
+      - '{心配 し ない} で ください。'
+      - '{心配 し ない で} ね。'
+      - '{心配 し ない で} くれ。'
+    english_literally: Don't worry please.
+    competing_grammar:
+      - competing_japanese:
+          - '{気 に し ない で} ください。'
+        english: Please don't mind.
+        hint: '`気にしない` means to "not care" or "not be bothered by" something. We''re looking for "not
+          to worry."'
+      - competing_japanese:
+          - 悩ま ない で ください。
+        english: Please don't be distressed/agonize.
+        hint: '`悩む` implies a deeper, more agonizing state of trouble. We''re looking for a general expression
+          to stop worrying.'
+    scene: Comforting a distressed friend.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: negative plain (～ない)
+  - english: I worried a lot about that exam.
+    japanese:
+      - あの 試験 の こと、すごく {心配 し まし た}。
+      - あの 試験 の こと、すごく {心配 し た}。
+      - あの 試験 で すごく {心配 し まし た}。
+    english_literally: That exam's thing, extremely worried.
+    competing_grammar:
+      - competing_japanese:
+          - あの 試験 の こと、すごく 不安 でし た。
+        english: I was very uneasy about that exam.
+        hint: '`不安でした` describes a past state of uneasiness. We''re looking for the active past act of
+          worrying.'
+      - competing_japanese:
+          - あの 試験 で とても 悩み まし た。
+        english: I agonized a lot over that exam.
+        hint: '`悩む` indicates a prolonged struggle or agonizing. We''re looking for a simple expression
+          of having worried.'
+    scene: Reflecting on a past difficult event with a classmate.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+  - english: I'm worried if I can make it in time.
+    japanese:
+      - 間に合う か どう か {心配 です}。
+      - 間に合う か どう か {心配 だ}。
+      - 間に合う か どう か {心配 し て い ます}。
+    english_literally: Make it in time or not worry is.
+    competing_grammar:
+      - competing_japanese:
+          - 間に合う か どう か 不安 です。
+        english: It's uneasy whether I can make it in time.
+        hint: '`不安です` focuses on the feeling of uneasiness. We''re looking for an active feeling of worry.'
+    scene: Rushing to an appointment.
+    register: teineigo (polite)
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    nuance: '`間に合うかどうが` implies uncertainty about whether an action will be completed in time.'
+  - english: Oh man, I'm really worried.
+    japanese:
+      - や べぇ、マジ で {心配 だ}。
+      - や ばい、本当 に {心配 だ}。
+    english_literally: Oh no, seriously worry is.
+    competing_grammar:
+      - competing_japanese:
+          - や べぇ、マジ で 不安 だ。
+        english: Oh no, I'm seriously uneasy.
+        hint: '`不安だ` expresses a state of anxiety or uneasiness. We''re looking for the act of worrying.'
+    scene: A young man reacting to a sudden problem with his friends.
+    register: casual
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: '`やべぇ` is a very casual, masculine exclamation of trouble. `マジで` emphasizes the seriousness.
+      `心配だ` is the casual, plain form.'
+  - english: I'm worried about that child, running around like that.
+    japanese:
+      - あんな に 走り回っ て、あの 子 が {心配 だ} わ。
+      - あんな に 走り回っ て、あの 子 が {心配 よ}。
+    english_literally: That much running around, that child is worry.
+    competing_grammar:
+      - competing_japanese:
+          - あんな に 走り回っ て、あの 子 が 気がかり だ わ。
+        english: That child is a concern, running around like that.
+        hint: '`気がかり` implies something that is on one''s mind, a source of concern. We''re looking for
+          the more direct ''worry''.'
+    scene: A mother watching children play at a park.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The sentence-final particle `わ` adds a feminine, softer touch to the expression of concern.
+      `よ` is also a feminine option.
+  - english: We are concerned about the impact on the local economy.
+    japanese:
+      - 地域 経済 へ の 影響 を {心配 し て おり ます}。
+      - 地域 経済 へ の 影響 を {心配 し て い ます}。
+    english_literally: Regional economy's impact we are worrying (humble).
+    competing_grammar:
+      - competing_japanese:
+          - 地域 経済 へ の 影響 を 懸念 し て おり ます。
+        english: We are apprehensive about the impact on the local economy.
+        hint: '`懸念する` is a more formal and official term for concern or apprehension. We''re looking for
+          a humble but general term for worrying.'
+    scene: A business meeting discussing a new project.
+    register: kenjōgo (humble)
+    setting: professional
+    conjugation: progressive (～ている)
+    nuance: '`心配しております` is the humble form of `心配しています`, used to show humility to the listener while discussing
+      one''s own concerns. `影響` (eikyō) means "impact."'
+  - english: Because I was worried about my friend, I went to check on them.
+    japanese:
+      - 友達 の こと が {心配 で}、様子 を 見 に 行っ た。
+      - 友達 の こと が {心配 だっ た の で}、様子 を 見 に 行っ た。
+      - 友達 の こと を {心配 し て}、様子 を 見 に 行っ た。
+    english_literally: Friend's matter being worry, state to see went.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 の こと が 気 に なっ て、様子 を 見 に 行っ た。
+        english: Because my friend was on my mind, I went to check on them.
+        hint: '`気になって` implies something was on your mind as a concern. We''re looking for a stronger
+          sense of worry as the reason.'
+    scene: Explaining a past action to another friend.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: '`心配で` functions as a cause or reason, meaning "because I was worried."'
+  - english: Lately, I've been vaguely worried about the future.
+    japanese:
+      - 最近、漠然 と 将来 が {心配 だ}。
+      - 最近、漠然 と 将来 が {心配 です}。
+      - 最近、漠然 と 将来 の こと が {心配 だ}。
+    english_literally: Recently, vaguely future is worry.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、漠然 と 将来 が 不安 だ。
+        english: Recently, I've been vaguely uneasy about the future.
+        hint: '`不安だ` describes a state of general unease or anxiety. We''re looking for an active feeling
+          of worry.'
+      - competing_japanese:
+          - 最近、漠然 と 将来 に 悩ん で いる。
+        english: Recently, I've been vaguely agonizing over the future.
+        hint: '`悩む` implies a deeper, prolonged struggle. We''re looking for a general sense of worry,
+          not agonizing.'
+    scene: A young adult confiding in a mentor.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: '`漠然と` (bakuzen to) means "vaguely" or "indistinctly," indicating a general, undefined sense
+      of worry.'
+post_example_writeup: These examples demonstrate the versatility of `心配する` across various contexts and
+  registers. Notice how the choice of particles (`が`, `を`, `について`) and verb forms (`です`, `だ`, `している`)
+  conveys different shades of meaning and politeness, all while retaining the core sense of worrying.
+  Pay close attention to the nuance provided in each example, as it often highlights the subtle differences
+  in usage that are crucial for natural Japanese communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/心配する

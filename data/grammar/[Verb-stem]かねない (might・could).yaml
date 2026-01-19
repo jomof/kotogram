@@ -1,0 +1,302 @@
+grammar_point: '[Verb-stem]かねない (might・could)'
+learn_before:
+  - に気をつける (to be careful of)
+  - 注意する (to pay attention・to warn・to caution)
+meaning: Might, could, capable of, possible
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: かねない
+    rarity: common
+    meaning: might; could; capable of
+  - conjugation-type: non-past polite (～ます)
+    form: かねません
+    rarity: common
+    meaning: might; could; capable of (polite)
+pronunciation:
+  katakana: カネナイ
+  romaji: kanenai
+formation:
+  Verb (masu-stem) + かねない: Indicates a possibility of something happening, often something undesirable.
+  Noun + に + かねない: Indicates a possibility of something happening, often something undesirable, relating
+    to a state or condition.
+jlpt: N2
+etymology: 「かねない」 is derived from the negative form of the verb 「兼ねる (kaneru)」. Originally, 「兼ねる」 carried
+  the nuance of 'to find difficult' or 'to be unable to (do something).' Thus, 「かねない」, meaning 'not difficult
+  to do' or 'not unable to do,' evolved to express a strong possibility or capability, especially when
+  referring to undesirable or negative outcomes. It suggests that something is well within the realm of
+  possibility or capability.
+writeup: |-
+  The grammar pattern 「かねない」 indicates a strong possibility that something will happen, especially when it is an undesirable outcome that the speaker often cannot control. It is frequently translated as "might," "could," or "is capable of." This expression is typically used after the **ます-stem of verbs** or after **nouns followed by に**.
+
+  It is common to see 「かねない」 follow conditional phrases that include 「と」, 「ば」, 「たら」, or 「でも」, indicating that "if X were to happen, Y might also occur." While the primary use of 「かねない」 is to highlight negative or unfavorable outcomes, it can occasionally be employed sarcastically to imply a desired or even humorous outcome, where the possibility is so evident that it's almost ironic.
+false_friends:
+  - term: かねる
+    meaning: Cannot, Be unable to, Hard to, Hesitant to
+    kind: antonym
+    nuance: Unlike 「かねない」, which expresses possibility, 「かねる」 expresses an inability, difficulty, or reluctance
+      to do something. For example, 「理解しかねる」 means 'I find it difficult to understand' or 'I cannot understand'.
+    grammar_point: '[Verb-stem]かねる (unable to・hesitant to)'
+  - term: 恐れがある
+    meaning: There is a risk or fear that, Be in danger of, Possibility of
+    kind: synonym
+    nuance: 「恐れがある」 also expresses the possibility of something undesirable happening. However, 「恐れがある」
+      tends to be more formal and objective, often used in official warnings or reports, whereas 「かねない」
+      can be used in a wider range of contexts, including more personal or casual warnings.
+    grammar_point: 恐れがある (risk or fear)
+  - term: なくはない
+    meaning: It's not that..., Kind of, might, Slightly, Somewhat, In some respects
+    kind: synonym
+    nuance: While 「なくはない」 can imply a possibility, it often expresses a weaker or more nuanced possibility,
+      sometimes even a reluctant admission. It's a double negative that softens the statement, implying
+      'it's not impossible' rather than a direct strong possibility like 「かねない」.
+    grammar_point: なくはない (softened possibility)
+  - term: まい
+    meaning: Won't, intend not to, probably not
+    kind: antonym
+    nuance: While 「かねない」 expresses a strong possibility of something undesirable occurring, 「まい」 expresses
+      a strong negative intention or a strong improbability of something happening. For example, 「二度と行くまい」
+      means 'I will never go again'.
+    grammar_point: Verb[まい] (negative volitional)
+  - term: はずがない
+    meaning: Hardly possible, cannot be, highly unlikely, improbable
+    kind: antonym
+    nuance: 「かねない」 indicates a strong possibility, especially of a negative event. In contrast, 「はずがない」
+      denotes logical impossibility or extreme unlikelihood based on reason or common sense. If something
+      「はずがない」, it cannot happen, whereas with 「かねない」, it might happen.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: そうもない
+    meaning: Very unlikely to, does not seem that, does not appear that
+    kind: antonym
+    nuance: 「かねない」 suggests a strong potential for something to happen. 「そうもない」 indicates that something
+      appears unlikely to happen based on current observation or circumstances. It describes a low probability,
+      not a strong possibility.
+    grammar_point: そうにない・そうもない (unlikely to)
+post_false_friends_writeup: When distinguishing 「かねない」 from similar expressions, remember that 「かねない」
+  points to a strong and often undesirable possibility that is well within the realm of what could happen.
+  「恐れがある」 shares this focus on negative possibilities but is generally more formal. In contrast, 「かねる」
+  is its direct opposite, signifying inability or difficulty. Other expressions like 「まい」, 「はずがない」, and
+  「そうもない」, while also related to possibility, express varying degrees of *unlikelihood* or *impossibility*,
+  which is the inverse of 「かねない」's strong likelihood.
+examples:
+  - english: Please refrain from smoking in bed as it might cause a fire.
+    japanese:
+      - ベッド で の 喫煙 は 火事 に なり {かね ない} の で、ご 遠慮 ください。
+      - ベッド で の 喫煙 は 火事 に なり {かね ませ ん} の で、ご 遠慮 ください。
+    english_literally: Smoking in bed might cause a fire, so please refrain.
+    competing_grammar:
+      - competing_japanese:
+          - ベッド で の 喫煙 は 火事 に なる {恐れ が ある} の で、ご 遠慮 ください。
+        english: Please refrain from smoking in bed as there is a risk of fire.
+        hint: 「恐れがある」 also indicates a risk, but 「かねない」 specifically emphasizes a strong, undesirable
+          possibility, often implying that such an outcome is quite likely to occur due to the circumstances.
+    scene: A polite notice in a hotel room, warning guests about fire safety.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The direct yet polite instruction using 「ご遠慮ください」 combined with 「かねない」 emphasizes the serious,
+      undesirable outcome of a fire, making the warning more impactful for a diverse group of hotel guests.
+  - english: A tsunami might follow an earthquake, so let's evacuate early.
+    japanese:
+      - 地震 の 後 に は 津波 が 起こり {かね ない} の で、早め に 避難 し ましょう。
+      - 地震 の 後 に は 津波 が 起こり {かね ませ ん} の で、早め に 避難 し ましょう。
+    english_literally: After an earthquake, a tsunami might occur, so let's evacuate early.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 の 後 に は 津波 が 起こる {か も しれ ない} の で、早め に 避難 し ましょう。
+        english: A tsunami might follow an earthquake, so let's evacuate early (general possibility).
+        hint: While 「かもしれない」 expresses a possibility, 「かねない」 conveys a stronger, more definite likelihood
+          of an undesirable event, urging immediate action.
+    scene: A public service announcement after an earthquake, urging residents to take immediate action.
+    register: formal
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「かねない」 with the volitional 「～ましょう」 in a public announcement lends urgency to the
+      warning, indicating a strong, almost inevitable potential for a negative event (tsunami) and prompting
+      collective action for safety.
+  - english: Overworking can become a cause of mental stress.
+    japanese:
+      - 仕事 の し すぎ は、精神 的 な ストレス の 原因 に なり {かね ない} です。
+      - 仕事 の し すぎ は、精神 的 な ストレス の 原因 に なり {かね ない}。
+      - 仕事 の し すぎ は、精神 的 な ストレス の 原因 に なり {かね ませ ん}.
+    english_literally: Doing too much work might become a cause of mental stress.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 の し すぎ は、精神 的 な ストレス の 原因 に なる {こと が ある} です。
+        english: Overworking can sometimes become a cause of mental stress.
+        hint: 「～ことがある」 indicates something happens occasionally or can happen, but 「かねない」 suggests a strong,
+          inherent potential for that outcome.
+    scene: A doctor advising a patient about the importance of work-life balance for their mental health.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The doctor's use of 「かねないです」 in a formal setting emphasizes the strong causal link between
+      overwork and mental stress, delivering a clear and professional warning to the patient.
+  - english: If this dog bites you, it could cause a serious injury, so be careful.
+    japanese:
+      - この 犬 に 噛ま れ たら、大 怪我 を し {かね ない} から 気 を つけ て。
+      - この 犬 に 噛ま れ たら、大 怪我 を し {かね ない} の で、気 を つけ て ください。
+      - この 犬 に 噛ま れ たら、大 怪我 を し {かね ませ ん} から、気 を つけ て ください。
+    english_literally: If bitten by this dog, you might sustain a serious injury, so be careful.
+    competing_grammar:
+      - competing_japanese:
+          - この 犬 に 噛ま れ たら、大 怪我 を する {か も しれ ない} から 気 を つけ て。
+        english: If this dog bites you, you might get a serious injury (general possibility).
+        hint: 「かもしれない」 suggests a mere possibility, whereas 「かねない」 implies a strong, almost inevitable
+          potential for a negative consequence given the situation.
+    scene: A friend warning another friend about a protective dog known to bite.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The direct warning with 「かねない」 combined with the casual 「～から気を付けて」 creates a frank, personal
+      cautionary note between friends, highlighting the very real and immediate potential for harm from
+      the dog.
+  - english: If you don't study at all, you might fail the exam. Oh well.
+    japanese:
+      - 全然 勉強 し ない ん じゃ、試験 に 落ち {かね ない} よ。ま、いっ か。
+      - 全然 勉強 し ない の なら、試験 に 落ち {かね ませ ん} よ。まあ、仕方 あり ませ ん ね。
+    english_literally: If you don't study at all, you might fall in the exam. Oh well.
+    competing_grammar:
+      - competing_japanese:
+          - 全然 勉強 し ない ん じゃ、試験 に 落ちる {か も しれ ない} よ。ま、いっ か。
+        english: If you don't study at all, you might fail the exam (general possibility). Oh well.
+        hint: Using 「かもしれない」 here would simply state a possibility. 「かねない」 adds a stronger implication
+          that failure is highly probable due to the lack of effort, making the sarcasm more potent.
+    scene: A student teasing a friend who is clearly not putting any effort into preparing for an upcoming
+      exam.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The sarcastic use of 「かねない」, followed by the dismissive 「ま、いっか」 and the casual sentence-final
+      particle 「よ」, creates a lighthearted yet pointed jab, implying that failure is not just possible
+      but almost certain given the lack of effort.
+  - english: If these confidential documents are disclosed externally, it could develop into a major scandal.
+    japanese:
+      - この 機密 文書 が 外部 に 開示 さ れれ ば、大 スキャンダル に 発展 し {かね ない}。
+      - この 機密 文書 が 外部 に 開示 さ れれ ば、大 スキャンダル に 発展 し {かね ませ ん}。
+    english_literally: If these confidential documents are disclosed externally, it might develop into
+      a major scandal.
+    competing_grammar:
+      - competing_japanese:
+          - この 機密 文書 が 外部 に 開示 さ れれ ば、大 スキャンダル に 発展 する {恐れ が ある}。
+        english: If these confidential documents are disclosed externally, there is a risk it could develop
+          into a major scandal.
+        hint: Both express possibility, but 「恐れがある」 is more objective and typically used in formal warnings,
+          while 「かねない」 emphasizes a strong, inherent risk.
+    scene: Two executives discussing highly sensitive company information and the severe repercussions
+      of its release.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: In this professional and serious setting, 「かねない」 effectively conveys the grave, undesirable
+      potential consequence of disclosing confidential documents, underscoring the high stakes involved
+      in the situation.
+  - english: Excessive alcohol consumption could harm your health, so please be careful.
+    japanese:
+      - お 酒 の 飲み すぎ は、健康 を 害し {かね ませ ん} の で ご 注意 ください。
+      - お 酒 の 飲み すぎ は、健康 を 害し {かね ない} の で、注意 し て ください。
+    english_literally: Excessive drinking of alcohol might harm health, so please be careful.
+    competing_grammar:
+      - competing_japanese:
+          - お 酒 の 飲み すぎ は、健康 を 害する {恐れ が あり ます} の で ご 注意 ください。
+        english: Excessive alcohol consumption has a risk of harming your health, so please be careful.
+        hint: 「恐れがあります」 is a more formal and objective way to state a risk. 「かねません」 implies a strong likelihood
+          of a negative outcome, often used in a persuasive or cautionary tone.
+    scene: A public health announcement on television, warning viewers about the dangers of heavy drinking.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The polite form 「かねません」 used in a public health context ensures the warning is respectful
+      yet authoritative, clearly communicating the potential for serious health damage from excessive
+      drinking to a broad audience.
+  - english: If you leave that problem unresolved, it could create friction within the team.
+    japanese:
+      - その 問題 を 放置 し て おく と、チーム 内 で 摩擦 を 生み {かね ない} よ。
+      - その 問題 を 放置 し て おく と、チーム 内 で 摩擦 を 生み {かね ない}。
+      - その 問題 を 放置 し て おく と、チーム 内 で 摩擦 を 生み {かね ませ ん}。
+    english_literally: If you leave that problem unresolved, it might create friction within the team.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 を 放置 し て おく と、チーム 内 で 摩擦 を 生む {か も しれ ない} よ。
+        english: If you leave that problem unresolved, it might create friction within the team (general
+          possibility).
+        hint: 「かもしれない」 suggests a general possibility. 「かねない」 implies a strong, undesirable potential
+          for conflict to arise if the problem is ignored.
+    scene: A team leader gently advising a team member about the importance of addressing a pending issue.
+    register: semi-formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The team leader's use of 「かねないよ」 combines a direct warning about potential conflict with the
+      softening effect of 「よ」, making the advice firm but approachable, aiming to persuade the team member
+      to act.
+  - english: If we're together like that every day, people around us might get the wrong idea, you know.
+    japanese:
+      - 毎日 あんな に 一緒 に い たら、周り に 勘違い さ れ {かね ない} わ ね。
+      - 毎日 あんな に 一緒 に い たら、周り に 勘違い さ れ {かね ない} よ。
+      - 毎日 あんな に 一緒 に い たら、周り に 勘違い さ れ {かね ませ ん}。
+    english_literally: If we are together like that every day, we might be misunderstood by those around
+      us, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 あんな に 一緒 に い たら、周り に 勘違い さ れる {か も しれ ない} わ ね。
+        english: If we're together like that every day, people around us might get the wrong idea (general
+          possibility), you know.
+        hint: 「かもしれない」 merely states a possibility. 「かねない」 expresses a strong, almost certain likelihood
+          of misunderstanding, given the situation.
+    scene: Two female friends chatting about a mutual acquaintance who is spending a lot of time with
+      someone of the opposite sex.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: The use of the sentence-final particle 「わね」 is typical of female speech, emphasizing the speaker's
+      concern about social perception and potential misunderstandings through the strong possibility conveyed
+      by 「かねない」.
+  - english: If this secret gets out, it could cause big trouble.
+    japanese:
+      - この 秘密 が ばれ たら、大変 な こと に なり {かね ない}。
+      - この 秘密 が ばれ たら、大変 な こと に なり {かね ませ ん}。
+    english_literally: If this secret is revealed, it might become a big trouble.
+    competing_grammar:
+      - competing_japanese:
+          - この 秘密 が ばれ たら、大変 な こと に なる {か も しれ ない}。
+        english: If this secret gets out, it might cause big trouble (general possibility).
+        hint: While 「かもしれない」 states a possibility, 「かねない」 implies a strong, almost certain likelihood
+          of a negative outcome if the secret is revealed, emphasizing the seriousness of the situation.
+    scene: Two friends whispering about a sensitive piece of information that must be kept confidential.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual tone highlights the very real and immediate negative consequence of the secret
+      being exposed. The use of 「かねない」 conveys a strong warning between close friends, indicating that
+      the 'big trouble' is a highly probable and undesirable outcome.
+post_example_writeup: As illustrated in the examples, 「かねない」 is versatile, appearing in various contexts
+  from formal warnings to casual conversations. Its ability to express a strong, often undesirable, possibility
+  makes it a powerful tool for conveying caution or even sarcasm in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かねない

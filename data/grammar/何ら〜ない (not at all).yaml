@@ -1,0 +1,299 @@
+grammar_point: 何ら〜ない (not at all)
+matcher: |-
+  ⌈ˢ何ᵖpronᵇ何ʳナン⌉
+  ⌈ˢらᵖsuff:noun_likeᵇらᵈ等ʳラ⌉
+  .*
+  {nai}
+learn_before:
+  - Verb[なかった] (past negative)
+  - 〜について・〜に関して (about・regarding)
+  - いかなる (no matter what kind of)
+  - によると・によれば (according to)
+  - に対して (towards; in contrast)
+meaning: Not at all; not any; nothing; no whatsoever
+pronunciation:
+  katakana: ナンラナイ
+  romaji: nanra nai
+formation:
+  何ら + Noun + が/も + ない: Expresses a strong negative statement indicating 'not at all,' 'not any,' 'nothing,'
+    or 'no ~ whatsoever' (e.g., 何ら進歩がない - There is no progress whatsoever).
+  何ら + (Noun + Particle) + Verb(negative plain): Indicates that an action is not performed at all or there
+    is no instance of it whatsoever (e.g., 何ら返事が来ない - No reply came).
+  何らの + Noun + も + (ない / Verb(negative plain)): A highly emphatic and formal expression of complete absence
+    or non-occurrence of a noun or action related to a noun (e.g., 何らの愛情もない - Someone doesn’t love someone
+    at all).
+jlpt: N1
+etymology: 「何 (nan)」 means "what" or "any," and 「ら (ra)」 is a suffix indicating plurality or emphasis.
+  Together with 「ない (nai),」 it creates a strong negation, emphasizing that there isn't anything at all.
+writeup: The grammar point 「何ら〜ない (nanra ~ nai)」 is used to express a strong negative statement, emphasizing
+  a complete absence or lack. It translates to "not at all," "not any," "nothing," or "no ~ whatsoever."
+  This expression is primarily found in formal writing and speech, making it common in contexts such as
+  official documents, news reports, academic papers, and serious discussions. Its formality means it is
+  less common in everyday, casual conversation. While it shares meaning with expressions like 「何も〜ない」,
+  「少しも〜ない」, 「ちっとも〜ない」, 「全然〜ない」, and 「全く〜ない」, 「何ら〜ない」 conveys a more absolute and authoritative negation.
+  It leaves no room for ambiguity, underscoring a total and unequivocal lack or non-existence.
+false_friends:
+  - term: 何も〜ない
+    meaning: nothing; not anything
+    kind: similar expression
+    nuance: 「何も〜ない」 is a general negative, less formal and absolute. It doesn't modify a specific noun
+      phrase as strongly as 「何ら」 does.
+    grammar_point: <suggest>:何も〜ない (nothing; not anything)
+  - term: 全然〜ない
+    meaning: not at all; absolutely not
+    kind: similar expression
+    nuance: 「全然〜ない」 is common in casual talk and can be an exaggeration. 「何ら〜ない」 is formal and strictly
+      absolute, without exaggeration.
+    grammar_point: 全然 (not at all; totally)
+  - term: 少しも〜ない
+    meaning: not even a little; not at all
+    kind: similar expression
+    nuance: 「少しも〜ない」 highlights the lack of even a small amount. 「何ら〜ない」 focuses on a total, formal absence,
+      not just a minimal one.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: 全く〜ない
+    meaning: not at all; completely not
+    kind: similar expression
+    nuance: 「全く〜ない」 means complete negation in various contexts. 「何ら〜ない」 is more formal and emphasizes
+      a definite, total absence, often used for denial.
+    grammar_point: 全く〜ない (not at all)
+  - term: ちっとも〜ない
+    meaning: not at all; not in the least
+    kind: similar expression
+    nuance: 「ちっとも〜ない」 is casual and often implies frustration, used for concrete things. 「何ら〜ない」 is much
+      more formal.
+    grammar_point: <suggest>:ちっとも〜ない (not at all; not in the least)
+  - term: 一切〜ない
+    meaning: not at all; absolutely not; not whatsoever
+    kind: similar expression
+    nuance: 「一切〜ない」 is very close to 「何ら〜ない」 in formality and absolute negation, but 「何ら〜ない」 often carries
+      a nuance of denying the existence of even a trace or element of something, especially when denying
+      responsibility or connection.
+    grammar_point: 一切〜ない (not at all)
+post_false_friends_writeup: While many expressions can convey negation, 「何ら〜ない」 holds a unique place due
+  to its strong, absolute, and formal nature. For casual conversation, alternatives like 「何も〜ない」, 「全然〜ない」,
+  「少しも〜ない」, 「全く〜ない」, or 「ちっとも〜ない」 are more appropriate. 「何ら〜ない」 is best reserved for situations requiring
+  a definitive and authoritative denial or statement of complete absence, such as official statements,
+  legal documents, or academic discourse.
+examples:
+  - english: The government has no solution whatsoever for this problem.
+    japanese:
+      - この 問題 に 対し て、政府 は {何 ら} 解決 策 が ない。
+      - この 問題 に 対し て、政府 は {何 ら の} 解決 策 も ない。
+    english_literally: Regarding this problem, the government has no solution whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 に 対し て、政府 は {何 も} 解決 策 が ない。
+        english: Regarding this problem, the government has no solution.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no solution whatsoever.
+    scene: A frustrated citizen discussing current events with a friend.
+    register: formal
+    setting: serious
+    nuance: The use of 「何ら 解決 策 が ない」 emphasizes the complete absence of solutions, suggesting a strong
+      critical assessment of the government's capability. This formal expression fits the serious tone.
+  - english: That company's new product has no originality whatsoever.
+    japanese:
+      - あの 会社 の 新 製品 に は、{何 ら} 独自 性 が ない。
+      - あの 会社 の 新 製品 に は、{何 ら の} 独自 性 も ない。
+    english_literally: That company's new product, as for it, has no originality whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - あの 会社 の 新 製品 に は、{何 も} 独自 性 が ない。
+        english: That company's new product has no originality.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no originality whatsoever.
+    scene: A market analyst delivering a report on a competitor's product.
+    register: formal
+    setting: professional
+    nuance: The phrase 「何ら 独自 性 が ない」 precisely conveys an absolute lack of originality, suitable for
+      a professional assessment. It leaves no room for debate about innovation.
+  - english: I have no connection whatsoever to this matter.
+    japanese:
+      - 本件 に 関し て、私 に は {何 ら} 関係 が ない。
+      - 本件 に 関し て、私 に は {何 ら の} 関係 も ない。
+    english_literally: Regarding this matter, as for me, there is no connection whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - 本件 に 関し て、私 に は {何 も} 関係 が ない。
+        english: Regarding this matter, I have no connection.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no connection whatsoever.
+    scene: A man being interrogated by the police regarding an incident.
+    register: formal
+    setting: serious
+    nuance: The speaker uses 「何ら 関係 が ない」 to strongly assert a complete lack of involvement, fitting a
+      serious, formal context like a police interrogation. The phrase 「私 に は」 emphasizes the speaker's
+      personal denial.
+  - english: He did not yield to any pressure whatsoever.
+    japanese:
+      - 彼 は どんな 圧力 に も {何 ら} 屈 し なかっ た。
+      - 彼 は どんな 圧力 に も {何 ら の} 屈服 も し なかっ た。
+    english_literally: He did not yield to any pressure whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は どんな 圧力 に も {何 も} 屈 し なかっ た。
+        english: He did not yield to any pressure.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no yielding whatsoever.
+    scene: A historian describing a historical figure's steadfastness during a difficult period.
+    register: formal
+    setting: storytelling
+    nuance: The phrase 「何ら 屈 し なかっ た」 highlights the subject's absolute refusal to yield to any pressure,
+      conveying a strong character trait suitable for a historical narrative.
+  - english: This plan was not influenced by his opinion at all.
+    japanese:
+      - この 計画 は 彼 の 意見 に {何 ら} 影響 を 受け なかっ た。
+      - この 計画 は 彼 の 意見 に {何 ら の} 影響 も 受け なかっ た。
+    english_literally: This plan, regarding his opinion, did not receive any influence whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 彼 の 意見 に {何 も} 影響 を 受け なかっ た。
+        english: This plan was not influenced by his opinion.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no influence whatsoever.
+    scene: A project manager explaining the final version of a plan to a team member.
+    register: formal
+    setting: professional
+    nuance: The use of 「何ら 影響 を 受け なかっ た」 explicitly states that there was absolutely no impact, reinforcing
+      the plan's independence. This is appropriate for a professional setting where clarity about autonomy
+      is valued.
+  - english: That controversy brought no progress to society whatsoever.
+    japanese:
+      - その 論争 は、社会 に {何 ら} 進歩 を もたらさ なかっ た。
+      - その 論争 は、社会 に {何 ら の} 進歩 も もたらさ なかっ た。
+    english_literally: That controversy, as for society, brought no progress whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - その 論争 は、社会 に {何 も} 進歩 を もたらさ なかっ た。
+        english: That controversy brought no progress to society.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no progress whatsoever.
+    scene: A philosopher reflecting on the outcome of a past debate in a lecture.
+    register: formal
+    setting: academic
+    nuance: Using 「何ら 進歩 を もたらさ なかっ た」 delivers a definitive judgment on the complete lack of positive
+      outcome, appropriate for an academic analysis of a past event. It underscores a total absence of
+      improvement.
+  - english: We assume no responsibility whatsoever for lost articles.
+    japanese:
+      - 当方 は 紛失 物 に 対し、{何 ら の} 責任 も 負い ませ ん。
+      - 当方 は 紛失 物 に 対し、{何 ら} 責任 を 負い ませ ん。
+    english_literally: Our side, towards lost articles, does not bear any responsibility whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - 当方 は 紛失 物 に 対し、{何 も} 責任 を 負い ませ ん。
+        english: Our side does not bear any responsibility for lost articles.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no responsibility whatsoever.
+    scene: A clear notice posted in a public facility or locker room.
+    register: formal
+    setting: informative
+    nuance: The phrase 「何ら の 責任 も 負い ませ ん」 creates a strong, unambiguous disclaimer, commonly used in
+      official and informative contexts like public notices, emphasizing absolute non-liability.
+  - english: These survey results have no contradiction whatsoever with the previous report.
+    japanese:
+      - この 調査 結果 は、以前 の 報告 と {何 ら の} 矛盾 も ない。
+      - この 調査 結果 は、以前 の 報告 と {何 ら} 矛盾 が ない。
+    english_literally: These survey results, with the previous report, have no contradiction whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - この 調査 結果 は、以前 の 報告 と {何 も} 矛盾 が ない。
+        english: These survey results have no contradiction with the previous report.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no contradiction whatsoever.
+    scene: A researcher presenting findings in a conference, emphasizing consistency.
+    register: formal
+    setting: academic
+    nuance: The phrase 「何ら の 矛盾 も ない」 precisely conveys a complete absence of inconsistency, which is
+      crucial for academic presentations. It signifies perfect alignment between reports.
+  - english: Regardless of the reason, no compromise whatsoever is allowed.
+    japanese:
+      - いかなる 理由 で あろう と、{何 ら の} 妥協 も 許さ れ ない。
+      - いかなる 理由 で あろう と、{何 ら} 妥協 が 許さ れ ない。
+    english_literally: Whatever the reason may be, any compromise whatsoever is not permitted.
+    competing_grammar:
+      - competing_japanese:
+          - いかなる 理由 で あろう と、{何 も} 妥協 は 許さ れ ない。
+        english: Whatever the reason may be, no compromise is allowed.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no compromise whatsoever.
+    scene: A strict manager laying down new rules for a project.
+    register: formal
+    setting: commanding
+    nuance: The use of 「何ら の 妥協 も 許さ れ ない」 expresses an absolute, uncompromising stance, leaving no room
+      for negotiation. This commanding tone is suitable for strict directives.
+  - english: He has no knowledge whatsoever about the subject.
+    japanese:
+      - 彼 は その 件 に つい て、{何 ら} 知識 が ない。
+      - 彼 は その 件 に つい て、{何 ら の} 知識 も ない。
+    english_literally: He, about that matter, has no knowledge whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は その 件 に つい て、{何 も} 知識 が ない。
+        english: He has no knowledge about the subject.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no knowledge whatsoever.
+    scene: A university professor assessing a student's lack of foundational understanding during a lecture.
+    register: formal
+    setting: informative
+    nuance: The phrase 「何ら 知識 が ない」 strongly asserts a complete absence of knowledge, fitting the critical
+      assessment in an academic context. It highlights a fundamental lack of understanding.
+  - english: I have not received any contact whatsoever regarding that matter.
+    japanese:
+      - その 件 に 関し て、{何 ら} 連絡 が ない。
+      - その 件 に 関し て、{何 ら の} 連絡 も ない。
+    english_literally: Regarding that matter, there is no contact whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - その 件 に 関し て、{何 も} 連絡 が ない。
+        english: Regarding that matter, there is no contact.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no contact whatsoever.
+    scene: A person formally inquiring about an expected communication.
+    register: formal
+    setting: professional
+    nuance: The use of 「何ら 連絡 が ない」 emphasizes the complete absence of communication, conveying a formal
+      and somewhat impatient tone regarding an expected update.
+  - english: There was no damage whatsoever from the storm.
+    japanese:
+      - 嵐 に よる 被害 は、{何 ら} なかっ た。
+      - 嵐 に よる 被害 は、{何 ら の} 被害 も なかっ た。
+    english_literally: The damage due to the storm was not whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - 嵐 に よる 被害 は、{何 も} なかっ た。
+        english: There was no damage from the storm.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no damage whatsoever.
+    scene: A news reporter delivering an official statement about a natural disaster.
+    register: formal
+    setting: informative
+    nuance: The phrase 「何ら なかった」 combined with 「被害」 (damage) offers a definitive and reassuring statement
+      of complete absence of damage, common in official reports after an event.
+  - english: I feel no anxiety whatsoever about the upcoming presentation.
+    japanese:
+      - 来週 の プレゼン に つい て、{何 ら} 不安 は ない。
+      - 来週 の プレゼン に つい て、{何 ら の} 不安 も ない。
+    english_literally: About next week's presentation, there is no anxiety whatsoever.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の プレゼン に つい て、{何 も} 不安 は ない。
+        english: I feel no anxiety about the upcoming presentation.
+        hint: 「何も〜ない」 expresses a general absence. We're looking for a formal, absolute negation, indicating
+          literally no anxiety whatsoever.
+    scene: A confident professional speaking to a colleague before a major event.
+    register: formal
+    setting: professional
+    nuance: The use of 「何ら 不安 は ない」 emphasizes a complete and strong lack of anxiety, projecting a high
+      level of confidence suitable for a professional setting.
+post_example_writeup: The examples illustrate how 「何ら〜ない」 functions to provide a definitive and absolute
+  negation across various formal contexts, from professional assessments and academic discussions to legal
+  disclaimers and commanding directives. Its use consistently conveys a sense of finality and authoritativeness,
+  leaving no ambiguity about the complete absence or non-occurrence of something. Observe how it naturally
+  integrates into phrases like 「解決 策 が ない」 (no solution), 「独自 性 が ない」 (no originality), and 「関係 が ない」
+  (no connection), reinforcing their already negative meanings to an absolute degree. This consistent
+  emphasis on totality makes 「何ら〜ない」 a powerful tool in formal Japanese for expressing a strong, unequivocal
+  stance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/1132

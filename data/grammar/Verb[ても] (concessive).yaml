@@ -1,0 +1,273 @@
+grammar_point: Verb[ても] (concessive)
+learn_before:
+  - (っ)たって (even if・even though)
+  - '[Clause]と言っても (although・even though)'
+  - い-Adjective[くても] (concessive)
+  - いくら (how much)
+  - いくら〜でも (no matter how much)
+  - なくて (negative te-form)
+  - も (addition or emphasis particle)
+  - 命令形 (imperative form)
+  - 絶対に〜ない (absolutely not)
+meaning: even if; even though; no matter how/what/who/where/when
+pronunciation:
+  katakana: テモ
+  romaji: temo
+formation:
+  Verb (て-form) + も: Indicates that the action or state of the main clause is true or happens regardless
+    of the condition expressed by the verb in the て-form.
+  Interrogative + Verb (て-form) + も: Used to express 'no matter how/what/who/where/when' by combining
+    an interrogative word (e.g. いつ, どこ, だれ, いくら, どんなに) with the て-form of a verb and も.
+jlpt: N4
+etymology: The structure Verb[ても] + も derives from the conjunctive て-form of a verb, which indicates a
+  sequence or manner, combined with the particle も. The particle も inherently carries the meaning of 'also'
+  or 'even.' Thus, Verb[て] + も literally means 'even by doing [verb]' or 'even if [verb] is done,' leading
+  to its concessive meaning of 'even if' or 'even though.'
+writeup: |-
+  The grammatical pattern Verb[ても] is used to express a concessive meaning, similar to 'even if,' 'even though,' or 'no matter what/how/who/where/when' in English. It is formed by taking the て-form of a verb and attaching the particle も. This construction indicates that the action or state in the main clause will occur or remain true regardless of the condition described in the て-form clause.
+
+  One common usage is to state a general truth or something that holds true under various circumstances. For example, 「雨 が 降っ て も、試合 は 続く」 (Even if it rains, the game will continue) implies that the rain is not a factor that will stop the game.
+
+  Another significant use is with interrogative words (such as いつ, どこ, だれ, なに, いくら, どんなに). When combined with Verb[ても], these form expressions like 「いつ 食べ て も」 (no matter when I eat), 「どこ に 行っ て も」 (no matter where I go), or 「だれ が 来 て も」 (no matter who comes). This emphasizes that the outcome is constant, irrespective of the variable introduced by the interrogative.
+
+  While other conditional forms like 〜たら or 〜ば also mean 'if,' Verb[ても] specifically adds the nuance of 'even if,' highlighting that the subsequent action or state is unaffected by the preceding condition, often implying a surprising or strong determination.
+false_friends:
+  - term: 〜けど・けれども
+    meaning: but; although
+    kind: similar expression
+    nuance: 「〜けど」 simply connects two clauses with a sense of contrast or concession. It lacks the strong
+      'even if' emphasis of Verb[ても] and does not imply that the condition is overcome or irrelevant.
+    grammar_point: しかし (but・however)
+  - term: 〜のに
+    meaning: even though; despite
+    kind: similar expression
+    nuance: While both are concessive, 「〜のに」 often carries a nuance of dissatisfaction, regret, or surprise
+      because something *did* happen contrary to expectation. Verb[ても] focuses more on the irrelevance
+      of a condition to an outcome, rather than an unfulfilled expectation.
+    grammar_point: のに (unexpected result)
+  - term: 〜たら
+    meaning: if; when
+    kind: similar expression
+    nuance: 「〜たら」 is a general conditional form meaning 'if A, then B' or 'when A, then B.' It does not
+      carry the 'even if' or 'no matter what' nuance that Verb[ても] does. With 「〜たら」, B is directly consequent
+      to A, whereas with Verb[ても], B occurs *despite* A.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: 〜ば
+    meaning: if
+    kind: similar expression
+    nuance: Similar to 「〜たら」, 「〜ば」 is a general conditional form. It implies a cause-and-effect relationship
+      without the strong concessive 'even if' nuance of Verb[ても].
+    grammar_point: ば (conditional, if A then B)
+  - term: Verb[ても]いい
+    meaning: it's okay to (do); may (do)
+    kind: often confused with
+    nuance: Although it contains Verb[ても], this entire phrase functions to grant permission or indicate
+      that something is acceptable. The 'も' in this case is part of a fixed expression for permission,
+      not a simple concessive 'even if'.
+    grammar_point: '[Verb-て]もいい (it''s okay to)'
+  - term: 〜ても〜なくても
+    meaning: whether or not
+    kind: similar expression
+    nuance: This pattern explicitly states two exhaustive possibilities (doing or not doing) and indicates
+      that the result is the same regardless. While it uses Verb[ても], its function is to cover both sides
+      of a binary condition, whereas simple Verb[ても] focuses on the 'even if' aspect of a single condition.
+    grammar_point: 〜ても〜なくても (whether or not)
+post_false_friends_writeup: While several expressions can convey a sense of 'if' or 'although,' Verb[ても]
+  specifically highlights that the consequence or state is **unaffected** by the condition. Unlike general
+  conditionals, it emphasizes the persistence of the outcome despite the preceding action or circumstance.
+  When deciding between Verb[ても] and others, consider if you want to stress the 'even if' aspect or if
+  you are simply stating a contrast or a straightforward conditional relationship.
+examples:
+  - english: Even if it rains, the game will continue.
+    japanese:
+      - 雨 が {降っ て も}、試合 は 続き ます。
+      - 雨 が {降っ て も}、試合 は 続く。
+    english_literally: Rain falls even if, game continues.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降る と、試合 は 続き ます。
+        english: When it rains, the game continues.
+        hint: 「と」 indicates a natural or inevitable consequence when a condition is met, without the 'even
+          if' nuance of overcoming a condition. We're looking for a concession here.
+    scene: A baseball coach is addressing his team before a game, despite dark clouds overhead.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「降って も」 (futte mo) clearly indicates that the rain, a potential impediment, will
+      not affect the continuation of the game, emphasizing resilience. The polite form 「続きます」 suits the
+      formal context of a coach addressing a team.
+  - english: No matter how much I eat, I don't gain weight.
+    japanese:
+      - いくら {食べ て も}、太り ませ ん。
+      - いくら {食べ て も}、太ら ない。
+      - いくら {食っ て も}、太ら ねえ。
+    english_literally: How much eat even if, don't get fat.
+    competing_grammar:
+      - competing_japanese:
+          - いくら 食べ て も いい です か。
+        english: Is it okay to eat as much as I want?
+        hint: This phrase grants permission. We're looking for a statement about a condition that has
+          no effect on an outcome.
+    scene: A young woman is talking to her friend about her metabolism.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「いくら 食べ て も」 (ikura tabete mo) combines the interrogative 「いくら」 (how much) with 「ても」 to mean
+      'no matter how much.' The polite negative 「太りません」 (futorimasen) is standard for casual but polite
+      conversation between friends.
+  - english: Even if you don't understand, please ask questions.
+    japanese:
+      - 分 から {なく て も}、質問 し て ください。
+      - 分 から {なく て も}、質問 し なさい。
+      - 分 から {なく て も}、質問 し な よ。
+    english_literally: Don't understand even if, please question do.
+    competing_grammar:
+      - competing_japanese:
+          - 分から なく て も いい から、質問 し て ください。
+        english: It's okay if you don't understand, so please ask questions.
+        hint: This uses 「〜てもいい」 to express permission or acceptability. We're looking for 'even if' without
+          conveying permission.
+    scene: A teacher is encouraging students to participate in class.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: Here, 「分から なくて も」 (wakaranakute mo) means 'even if you don't understand.' It uses the negative
+      て-form 「分からなくて」. The phrase 「質問 し て ください」 is a polite request, appropriate for a teacher.
+  - english: Even if you say 'no,' I will do it.
+    japanese:
+      - 嫌 だ と {言っ て も}、私 は やる。
+      - 嫌 だ と {言っ て も}、俺 は やる さ。
+      - 嫌 だ と {言っ て も}、私 は やる わ。
+    english_literally: Hate is that even if say, I do.
+    competing_grammar:
+      - competing_japanese:
+          - 嫌 だ と 言っ たら、私 は やる。
+        english: If you say no, I will do it.
+        hint: 「〜たら」 is a simple conditional, implying 'if A, then B.' It doesn't carry the forceful 'even
+          if' nuance of overcoming opposition that 「〜ても」 does. We're looking for that strong concessive
+          nuance.
+    scene: A determined person is speaking to someone who is trying to stop them.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「嫌 だ と 言って も」 (iya da to itte mo) shows that even strong opposition will not deter the speaker.
+      The plain form 「やる」 (yaru) reflects a casual, resolute tone typical in a firm declaration among
+      peers.
+  - english: No matter where I go, I always meet kind people.
+    japanese:
+      - どこ へ {行っ て も}、いつ も 親切 な 人 に 会い ます。
+      - どこ へ {行っ て も}、いつ も 親切 な 人 に 会う。
+    english_literally: Where to go even if, always kind person to meet.
+    competing_grammar:
+      - competing_japanese:
+          - どこ に 行け ば、いつ も 親切 な 人 に 会い ます か。
+        english: If I go where, will I always meet kind people?
+        hint: This is asking for a condition to meet kind people. We are making a statement about a universal
+          truth regardless of location.
+    scene: Someone reflecting on their travel experiences.
+    register: teineigo (polite)
+    setting: reflective
+    nuance: 「どこ へ 行って も」 (doko e itte mo) exemplifies the 'no matter where' usage, indicating a consistent
+      experience across various locations. The polite 「会います」 (aimasu) is suitable for a general statement.
+  - english: Even if it's difficult, I will definitely not give up.
+    japanese:
+      - 難しく {て も}、絶対 に 諦め ない。
+      - 難しく {たっ て}、絶対 に 諦め ない。
+      - 難しく {て も}、絶対 に 諦め ねぇ。
+    english_literally: Difficult even if, absolutely give up not.
+    competing_grammar:
+      - competing_japanese:
+          - 難しく て も いい から、諦め ない。
+        english: It's okay if it's difficult, so I won't give up.
+        hint: This expresses that difficulty is acceptable. We are emphasizing that difficulty will not
+          stop the action, not that it's okay.
+    scene: A student motivating themselves while studying for a challenging exam.
+    register: casual
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「難しく て も」 (muzukashikute mo) uses the い-adjective て-form to express 'even if it's difficult.'
+      The plain negative 「諦め ない」 (akiramenai) conveys a strong, personal resolve, often used in self-talk.
+  - english: Even if you forget my name, it's okay.
+    japanese:
+      - 僕 の 名前 を {忘れ て も}、大丈夫 です よ。
+      - 僕 の 名前 を {忘れ て も}、大丈夫 だ よ。
+      - 俺 の 名前 を {忘れ て も}、大丈夫 だ よ。
+    english_literally: My name forget even if, okay is particle.
+    competing_grammar:
+      - competing_japanese:
+          - 僕 の 名前 を 忘れ て も いい です か。
+        english: Is it okay if I forget your name?
+        hint: This is a question asking for permission. We are reassuring someone that forgetting is acceptable,
+          not asking if it's allowed.
+    scene: An elderly man reassuring a young person who is embarrassed about forgetting his name.
+    register: teineigo (polite)
+    setting: supportive
+    speaker_gender: male
+    speaker_age: older
+    nuance: The male speaker uses 「僕」 (boku) for 'my name.' 「忘れ て も」 (wasurete mo) states that even the
+      potentially awkward act of forgetting is fine. The 「です よ」 (desu yo) adds a gentle, reassuring emphasis,
+      fitting for an older speaker comforting a younger one.
+  - english: Even if you try hard, it might not always go well.
+    japanese:
+      - '{頑張っ て も}、いつ も うまく いく と は 限り ませ ん よ。'
+      - '{頑張っ て も}、いつ も うまく いく と は 限ら ない よ。'
+    english_literally: Try hard even if, always well go not limited particle.
+    competing_grammar:
+      - competing_japanese:
+          - 頑張っ たら、いつ も 上手く いく でしょう。
+        english: If you try hard, it will probably always go well.
+        hint: This expresses a positive expectation if a condition is met. We are expressing a more nuanced
+          reality where effort doesn't guarantee success.
+    scene: An older sibling advising a younger one about life's challenges.
+    register: teineigo (polite)
+    setting: sympathetic
+    speaker_gender: female
+    speaker_age: older
+    nuance: 「頑張って も」 (ganbatte mo) sets up the concessive condition. The phrase 「うまく いく とは 限りません」 (umaku
+      iku to wa kagirimasen) means 'it's not always the case that it goes well,' offering a realistic
+      perspective. The gentle 「よ」 at the end is used to share information or advice softly.
+  - english: No matter what kind of difficulties arise, I will overcome them.
+    japanese:
+      - どんな 困難 が {あっ て も}、乗り越え ます。
+      - どんな 困難 が {あっ て も}、乗り越える。
+    english_literally: What kind of difficulties exist even if, overcome.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 困難 が あっ て も いい から、乗り越え ます。
+        english: It's okay if there are any difficulties, so I will overcome them.
+        hint: This uses 「〜てもいい」 to express acceptability. We are conveying determination to overcome difficulties
+          regardless of their nature.
+    scene: A politician giving a speech, inspiring the public.
+    register: teineigo (polite)
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「どんな 困難 が あって も」 (donna konnan ga atte mo) combines the interrogative 「どんな」 (what kind of)
+      with 「ても」 to express 'no matter what kind of difficulties.' The formal 「乗り越え ます」 (norikoemasu) is
+      appropriate for a public address.
+  - english: Even if I go to bed early, I can't fall asleep.
+    japanese:
+      - 早く {寝 て も}、なかなか 眠れ ない。
+      - 早く {寝 たって}、なかなか 眠れ ない。
+    english_literally: Early sleep even if, not easily sleep can't.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 寝 たら、なかなか 眠れ ない でしょう。
+        english: If I go to bed early, I probably can't fall asleep.
+        hint: This is a prediction based on a simple conditional 'if'. We are expressing frustration that
+          an action (going to bed early) doesn't lead to the desired outcome.
+    scene: Someone complaining about insomnia.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「早く 寝 て も」 (hayaku nete mo) expresses the frustration of trying an action (going to bed early)
+      that doesn't yield the expected result. 「なかなか 眠れ ない」 (nakanaka nemurenai) means 'can't easily fall
+      asleep,' conveying the struggle with insomnia.
+post_example_writeup: As you can see from the examples, Verb[ても] is highly versatile. It can be used to
+  express a simple concession, 'even if X, then Y,' or, when combined with interrogatives like どこ (where),
+  いつ (when), だれ (who), or どんなに (however much), it forms powerful phrases meaning 'no matter where/when/who/how
+  much.' Pay attention to the context and the speaker's intent to fully grasp its nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ても

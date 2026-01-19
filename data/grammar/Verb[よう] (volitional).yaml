@@ -1,0 +1,213 @@
+grammar_point: Verb[よう] (volitional)
+matcher: '{verb-volitional}'
+learn_before:
+  - '[Noun]をください (please give me)'
+  - ちょっと (adverb)
+  - にする (to decide or make)
+meaning: Let's do; I intend to do
+pronunciation:
+  katakana: ヨウ
+  romaji: yō
+formation:
+  Group 1 Verb (u-ending) + おう: e.g., 読む (yomu) → 読もう (yomou)
+  Group 2 Verb (ru-ending) + よう: e.g., 食べる (taberu) → 食べよう (tabeyou)
+  Irregular Verb する (suru) → しよう (shiyou): e.g., 勉強する (benkyō suru) → 勉強しよう (benkyō shiyou)
+  Irregular Verb 来る (kuru) → 来よう (koyou): e.g., 来る (kuru) → 来よう (koyou)
+jlpt: N5
+etymology: The Japanese volitional form, ending in 「よう」 for most verbs, evolved from older classical Japanese
+  forms. Originally, verbs often conjugated with endings like 「む」 (mú) or 「う」 (ú) to express intention
+  or desire. Over centuries, these endings phonetically shifted and merged into the modern 「よう」. For instance,
+  五段動詞 (Group 1 verbs) historically changed their final syllable's vowel sound and added 「う」 (e.g., nom-u
+  + umu → nom-o-u). 一段動詞 (Group 2 verbs) and irregular verbs developed their patterns through similar
+  linguistic processes, leading to the uniform and ubiquitous modern volitional forms. This evolution
+  reflects a drive for phonological simplicity and grammatical consistency in expressing a speaker's will
+  or proposition.
+writeup: |-
+  The plain volitional form, ending in 「よう」, is a fundamental verb conjugation in Japanese that primarily expresses two key meanings: **suggestion or invitation** and the **speaker's intention or decision**. It's considered a plain form, meaning it's typically used in casual speech among friends, family, or people of equal or lower status.
+
+  When used as a **suggestion or invitation**, it translates to 'Let's do X' or 'Shall we do X?'. This usage often implies a shared action or a proposal to someone else. It's less formal than its polite counterpart, 「ましょう」, and is commonly heard in everyday conversations. The emphasis is on proposing an action to be done together or by the listener, as a casual prompt.
+
+  When expressing the **speaker's intention or decision**, it translates to 'I intend to do X' or 'I will do X'. In this context, the volitional form reflects a personal resolve or a decision made by the speaker. This can be used when talking to oneself, making a firm commitment, or simply stating one's plan. It's often followed by phrases like 「と思う」 (to think/intend) to make the intention more explicit, but even alone, the volitional form can convey this meaning, especially with appropriate intonation. It's a direct way for the speaker to assert their will or future action.
+false_friends:
+  - term: ましょう (polite volitional or suggestion)
+    meaning: Let's do・shall we・I intend to do (polite)
+    kind: similar expression
+    nuance: While 「よう」 is the plain volitional form, 「ましょう」 is its polite equivalent. Both express suggestion
+      or intention, but 「ましょう」 is used in formal settings or when addressing someone you want to show
+      respect to.
+    grammar_point: <suggest>:Verb[ましょう] (polite volitional or suggestion)
+  - term: Verb[volitional-よう]+ようと思う (intend to)
+    meaning: I intend to do X
+    kind: similar expression
+    nuance: The simple 「よう」 form can imply intention, but adding 「と思う」 makes the intention more explicit
+      and less ambiguous, especially if the context might otherwise suggest a mere suggestion. 「ようと思う」
+      emphasizes the speaker's thought process or decision.
+    grammar_point: '[Verb-よう]思う (intend to)'
+  - term: Verb[たい] (desiderative)
+    meaning: Want to do X
+    kind: similar expression
+    nuance: The 「たい」 form expresses the speaker's desire or wish to do something, focusing on the feeling
+      of wanting. In contrast, 「よう」 expresses the speaker's intention or a direct proposal to act. One
+      is a wish, the other is a resolve or suggestion.
+    grammar_point: Verb[たい] (desiderative)
+post_false_friends_writeup: When differentiating between 「よう」, 「ましょう」, and 「たい」, remember that 「よう」 is
+  the casual, plain form for 'let's' or 'I intend'. 「ましょう」 conveys the same meaning but with politeness.
+  「たい」, however, expresses 'want to'—a personal desire rather than a proposed action or firm intention.
+  Pay attention to the level of formality and whether the speaker is expressing a desire, a direct intention,
+  or proposing an action.
+examples:
+  - english: Let's eat lunch together!
+    japanese:
+      - 昼 ごはん を {食べよう}！
+      - ご飯 を {食べよう}！
+      - 昼飯 を {食べよう}！
+    english_literally: Lunch, let's eat!
+    competing_grammar:
+      - competing_japanese:
+          - 昼 ごはん を 食べる の は どう です か？
+        english: How about eating lunch together?
+        hint: This suggests an action using 'dou desu ka'. We're looking for a direct suggestion or intention
+          using the plain volitional form.
+      - competing_japanese:
+          - 昼 ごはん が 食べ たい！
+        english: I want to eat lunch!
+        hint: This expresses desire (want to eat). We're looking for a suggestion or intention (let's
+          eat).
+    scene: Two friends deciding what to do for lunch.
+    register: casual
+    setting: friendly
+  - english: I'll study hard from tomorrow!
+    japanese:
+      - 明日 から 一生 懸命 {勉強 しよう}！
+      - 明日 から 頑張っ て {勉強 しよう}！
+      - 明日 から 頑張ろう！
+    english_literally: From tomorrow, hard, let's study!
+    competing_grammar:
+      - competing_japanese:
+          - 明日 から 一生 懸命 勉強 する つもり だ！
+        english: I intend to study hard from tomorrow!
+        hint: This explicitly states intention using 'tsumori da'. We're looking for the simple volitional
+          form.
+      - competing_japanese:
+          - 明日 から 一生 懸命 勉強 し たい。
+        english: I want to study hard from tomorrow.
+        hint: This expresses desire (want to study). We're looking for a firm intention or decision.
+    scene: A student making a New Year's resolution to themselves.
+    register: casual
+    setting: serious
+  - english: Let's go to the park!
+    japanese:
+      - 公園 へ {行こう}！
+      - 公園 に {行こう}！
+    english_literally: To the park, let's go!
+    competing_grammar:
+      - competing_japanese:
+          - 公園 へ 行き ませ ん か？
+        english: Why don't we go to the park?
+        hint: This is a polite invitation. We're looking for a casual suggestion using the plain volitional
+          form.
+    scene: A child asks their parent, 'What should we do?', and the parent suggests going outside.
+    register: casual
+    setting: friendly
+  - english: Let's rest for a bit.
+    japanese:
+      - 少し {休もう}。
+      - ちょっと {休もう}。
+    english_literally: A little, let's rest.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 休ん で ください。
+        english: Please rest for a bit.
+        hint: This is a polite request. We're looking for a suggestion for shared action.
+    scene: Colleagues working on a project decide to take a short break.
+    register: casual
+    setting: friendly
+  - english: I will do my best!
+    japanese:
+      - 全力 を {尽くそう}！
+      - ベスト を {尽くそう}！
+      - 頑張ろう！
+    english_literally: All strength, let's exert!
+    competing_grammar:
+      - competing_japanese:
+          - 全力 を 尽くし ます。
+        english: I will do my best. (polite)
+        hint: This uses the polite non-past form. We're looking for a strong, casual expression of intention.
+    scene: An athlete encouraging themselves before a competition.
+    register: casual
+    setting: inspirational
+  - english: Let's meet again next week.
+    japanese:
+      - 来週 また {会おう}。
+      - 来週、また {会おう} ね。
+    english_literally: Next week again, let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 また 会う の は どう です か？
+        english: How about meeting again next week?
+        hint: This suggests meeting using 'dou desu ka'. We're looking for a direct suggestion for a shared
+          action using the plain volitional form.
+    scene: Friends saying goodbye after a casual gathering.
+    register: casual
+    setting: friendly
+  - english: I'll finish this work today!
+    japanese:
+      - 今日 中 に この 仕事 を {終わら せよう}！
+      - 今日 中 に この 作業 を {終わら せよう}！
+    english_literally: By today, this work, I will make finish!
+    competing_grammar:
+      - competing_japanese:
+          - 今日 中 に この 仕事 を 終え たい。
+        english: I want to finish this work today.
+        hint: This expresses desire (want to finish). We're looking for a firm intention or decision.
+    scene: A busy professional determined to meet a deadline.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    nuance: The use of the volitional form 「終わらせよう」 by a female speaker here shows her personal determination
+      and resolve to complete the task. While some older female speech patterns might use different sentence-ending
+      particles, the volitional form itself is gender-neutral and can be used by anyone to express intention.
+  - english: Okay, I've decided! I'll buy that book.
+    japanese:
+      - よし、{買おう}！その 本。
+      - よし、その 本 {買おう}！
+    english_literally: Alright, let's buy! That book.
+    competing_grammar:
+      - competing_japanese:
+          - よし、その 本 を 買う こと に し た！
+        english: Alright, I decided to buy that book!
+        hint: This uses 'koto ni suru' to express a decision. We're looking for a simple, direct expression
+          of intention.
+    scene: Someone in a bookstore who has been deliberating over a purchase suddenly makes up their mind.
+    register: casual
+    setting: excited
+  - english: Let's drink sake.
+    japanese:
+      - お 酒 を {飲もう}。
+      - 酒 {飲もう}。
+    english_literally: Sake, let's drink.
+    competing_grammar:
+      - competing_japanese:
+          - お 酒 を 飲み ませ ん か？
+        english: Would you like to drink sake? (polite invitation)
+        hint: This is a polite invitation. We're looking for a casual suggestion.
+    scene: Friends at an izakaya (Japanese pub) deciding what to order.
+    register: casual
+    setting: friendly
+  - english: Let's try!
+    japanese:
+      - '{やっ て みよう}！'
+      - '{やろう}！'
+    english_literally: Let's try doing it!
+    competing_grammar:
+      - competing_japanese:
+          - やっ て み ませ ん か！
+        english: Why don't we try?
+        hint: This is a polite invitation to try. We're looking for a direct, casual suggestion using
+          the plain volitional form.
+    scene: Someone feeling hesitant about a new challenge, and a friend encourages them.
+    register: casual
+    setting: supportive
+post_example_writeup: As seen in these examples, the plain volitional form 「よう」 is flexible. It can convey
+  a sense of joint action, a personal commitment, or even an encouraging push. Its meaning is often clarified
+  by the context and the speaker's intonation.

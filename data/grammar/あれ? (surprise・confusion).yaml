@@ -1,0 +1,248 @@
+grammar_point: あれ? (surprise・confusion)
+learn_before:
+  - あれ (that over there)
+meaning: Huh? Oh? What the? (expressing surprise or confusion)
+pronunciation:
+  katakana: アレ
+  romaji: are
+formation:
+  Interjection 'あれ?': Used as a standalone utterance to express sudden surprise or confusion.
+jlpt: N5
+etymology: The interjection 「あれ?」 is believed to derive from the demonstrative pronoun 「あれ」 (that, over
+  there). The connection lies in the sudden shift of attention to something unexpected or out of place,
+  as if mentally pointing to an anomaly. It's akin to an abbreviated 'What is that (unexpected thing)?'
+  or 'That's not right?' condensed into a single sound. This evolution highlights how a word for spatial
+  reference can extend to cognitive states of surprise or disarray, representing a mental 'pointing' at
+  something unforeseen.
+writeup: |-
+  The Japanese interjection 「あれ?」 is used to express mild surprise, confusion, or a sudden realization that something is amiss. It functions similarly to English phrases like 'Huh?', 'Oh?', 'What the...?', or 'Wait a minute!' It is typically used when you encounter something that doesn't match your expectations, you realize you've forgotten something, or you notice an unexpected change.
+
+  Unlike the demonstrative pronoun 「あれ」 (that, over there), this interjection stands alone and conveys a spontaneous emotional or cognitive reaction. It can be spoken aloud to oneself or to others, or it can represent an internal thought. While it can imply a question, it's not a direct interrogative particle; rather, it prompts a re-evaluation of the current situation.
+false_friends:
+  - term: あれ (that one over there)
+    meaning: That (over there)
+    kind: often confused with
+    nuance: This 「あれ」 is a demonstrative pronoun referring to a distant object or concept, whereas the
+      interjection 「あれ?」 expresses surprise or confusion about a present situation. The former is used
+      to point, the latter to react.
+    grammar_point: これ (this)
+post_false_friends_writeup: It is important not to confuse the interjection 「あれ?」 with the demonstrative
+  pronoun 「あれ」. While they sound identical, their usage and function are distinct. The demonstrative 「あれ」
+  is part of the こそあど series and refers to something or someone far from both the speaker and the listener.
+  The interjection 「あれ?」, on the other hand, is a standalone utterance reflecting an immediate feeling
+  of mild surprise or disorientation.
+examples:
+  - english: Huh? My keys aren't here.
+    japanese:
+      - '{あれ}?鍵 が ない。'
+      - '{あれ}?鍵 が あり ませ ん。'
+      - '{あれ}?鍵 が なくなっ てる。'
+    english_literally: Huh? Keys don't exist.
+    competing_grammar:
+      - competing_japanese:
+          - 何?鍵 が ない。
+        english: What? My keys aren't here.
+        hint: 「何?」 (nani?) is a more direct and sometimes stronger expression of question or surprise
+          than 「あれ?」. We're looking for a softer, more reflective expression of mild confusion.
+    scene: A person searches their pocket and finds nothing.
+    register: casual
+    setting: reflective
+    nuance: This is a simple, internal expression of confusion upon realizing something is missing. The
+      speaker is talking to themselves.
+  - english: Oh? It's snowing.
+    japanese:
+      - '{あれ}?雪 が 降っ て いる。'
+      - '{あれ}?雪 が 降っ て い ます。'
+      - '{あれ}?雪 だ。'
+    english_literally: Oh? Snow is falling.
+    competing_grammar:
+      - competing_japanese:
+          - わあ！雪 が 降っ て いる。
+        english: Wow! It's snowing.
+        hint: 「わあ！」 (waa!) expresses stronger excitement or awe. We're looking for mild surprise or confusion,
+          not strong emotion.
+    scene: Looking out the window.
+    register: casual
+    setting: excited
+    nuance: A mild surprise at an unexpected weather condition. The tone is one of slight unexpectedness
+      rather than strong emotion.
+  - english: Huh? I thought I pressed save.
+    japanese:
+      - '{あれ}?保存 し た と 思っ た の に。'
+      - '{あれ}?保存 し た と 思っ て い まし た の に。'
+      - '{あれ}?保存 し た はず な の に。'
+    english_literally: Huh? I thought I saved it, despite that.
+    competing_grammar:
+      - competing_japanese:
+          - しまっ た ! 保存 し た と 思っ た の に。
+        english: Darn it! I thought I pressed save.
+        hint: 「しまった!」 (shimatta!) implies a stronger sense of having made a mistake or being in trouble.
+          We're looking for initial confusion.
+    scene: Discovering unsaved work on a computer.
+    register: casual
+    setting: friendly
+    nuance: Expresses confusion and slight frustration over a perceived action not having occurred. The
+      particle 「のに」 adds a nuance of regret or disappointment because something didn't happen as expected.
+  - english: What the? There's a cat on the roof.
+    japanese:
+      - '{あれ}?屋根 の 上 に 猫 が いる。'
+      - '{あれ}?屋根 の 上 に 猫 が い ます。'
+      - '{あれ}?屋根 の 上 に 猫 が いる よ。'
+    english_literally: What the? On roof, cat exists.
+    competing_grammar:
+      - competing_japanese:
+          - びっくり！屋根 の 上 に 猫 が いる。
+        english: Surprising! There's a cat on the roof.
+        hint: 「びっくり」 (bikkuri) focuses on the feeling of being surprised. 「あれ?」 also conveys surprise
+          but leans more towards a confused inquiry about the unexpected sight.
+    scene: Looking at a neighbor's house.
+    register: casual
+    setting: pessimistic
+    nuance: Indicates surprise at an unusual sight. The speaker is reacting to something unusual in their
+      environment.
+  - english: Oh, hey, you're here.
+    japanese:
+      - '{あれ}?君 も い た の?'
+      - '{あれ}?あなた も い た の?'
+      - '{あれ}?あなた も いらし た の です か?'
+    english_literally: Oh? You also were here?
+    competing_grammar:
+      - competing_japanese:
+          - やあ、君 も い た の?
+        english: Hey, you're here too?
+        hint: 「やあ」 (yaa) is a simple greeting. 「あれ?」 here carries an added nuance of mild surprise at
+          the unexpected encounter.
+    scene: Seeing a friend in an unexpected place.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker uses 「あれ?」 followed by 「君 も いた の?」 which is a casual, slightly surprised
+      way to acknowledge the listener's presence. 「君」 is often used by males to refer to younger males
+      or close friends, highlighting a casual relationship.
+  - english: Huh? Didn't you say you'd be home?
+    japanese:
+      - '{あれ}?家 に いる って 言っ て た じゃ なかっ た っけ?'
+      - '{あれ}?家 に いる って 言っ て ませ ん でし た っけ?'
+      - '{あれ}?家 に いる って 言っ た と 思う けど?'
+    english_literally: Huh? Didn't you say you'd be home?
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に?家 に いる って 言っ て た じゃ なかっ た っけ?
+        english: Really? Didn't you say you'd be home?
+        hint: 「本当に?」 (hontou ni?) questions the truth of a statement. 「あれ?」 here expresses confusion about
+          a discrepancy, rather than doubt about the statement itself.
+    scene: Speaking to someone who is clearly not home.
+    register: casual
+    setting: interrogative
+    nuance: Expressing mild confusion or questioning a discrepancy in what was previously stated. The
+      phrase 「じゃなかったっけ?」 adds a nuance of trying to recall information while expressing slight disbelief.
+  - english: Hmm? Where did my glasses go?
+    japanese:
+      - '{あれ}?私 の 眼鏡 どこ に 行っ た の?'
+      - '{あれ}?私 の 眼鏡 どこ に 行き まし た か?'
+      - '{あれ}?眼鏡 どこ だろう?'
+    english_literally: Hmm? My glasses where did they go?
+    competing_grammar:
+      - competing_japanese:
+          - どこ だ?私 の 眼鏡 どこ に 行っ た の?
+        english: Where is it? Where did my glasses go?
+        hint: 「どこ だ?」 (doko da?) is a more direct question. 「あれ?」 precedes the question, adding an initial
+          moment of confusion or a realization that something is missing.
+    scene: Searching for something typically found in a specific spot.
+    register: casual
+    setting: reflective
+    nuance: A common utterance when one discovers an item missing from its usual spot. It's often an internal
+      monologue or spoken to oneself, indicating a moment of cognitive dissonance.
+  - english: What? I got it wrong again.
+    japanese:
+      - '{あれ}?また 間違え ちゃっ た。'
+      - '{あれ}?また 間違え て しまい まし た。'
+      - '{あれ}?また 失敗 し た。'
+    english_literally: What? Made a mistake again.
+    competing_grammar:
+      - competing_japanese:
+          - ええ?また 間違え ちゃっ た。
+        english: Huh? I got it wrong again.
+        hint: 「ええ?」 (ee?) is a general expression of surprise or questioning. 「あれ?」 is more specific to
+          confusion or realizing a problem, often with a slight tone of self-correction.
+    scene: Playing a quiz game and getting an answer wrong.
+    register: casual
+    setting: melancholic
+    nuance: Expresses disappointment and confusion over repeating a mistake. 「ちゃった」 indicates an unintended
+      or regrettable action, emphasizing the negative outcome of the mistake.
+  - english: Oh? Did you get a haircut?
+    japanese:
+      - '{あれ}?髪 切っ た の?'
+      - '{あれ}?髪 を 切り まし た か?'
+      - '{あれ}?髪 切っ た ん です か?'
+    english_literally: Oh? Cut hair?
+    competing_grammar:
+      - competing_japanese:
+          - もし か し て、髪 切っ た の?
+        english: By any chance, did you get a haircut?
+        hint: 「もしかして」 (moshikashite) is used when tentatively asking about something suspected. 「あれ?」
+          is a more direct, immediate reaction to a noticed change.
+    scene: Greeting a friend.
+    register: casual
+    setting: friendly
+    nuance: A subtle way to point out a change in someone's appearance without being too direct, implying
+      slight surprise or a dawning realization.
+  - english: Huh? It's already 3 o'clock?
+    japanese:
+      - '{あれ}?もう ３ 時?'
+      - '{あれ}?もう ３ 時 です か?'
+      - '{あれ}?もう ３ 時 じゃん !'
+    english_literally: Huh? Already 3 o'clock?
+    competing_grammar:
+      - competing_japanese:
+          - うそ ! もう ３ 時?
+        english: No way! It's already 3 o'clock?
+        hint: 「うそ!」 (uso!) expresses stronger disbelief or shock. 「あれ?」 is a milder, more contemplative
+          reaction to the unexpected passage of time.
+    scene: Checking the time and realizing more time has passed than expected.
+    register: casual
+    setting: cautious
+    nuance: Indicates a mild shock or disbelief at the passage of time. It's a spontaneous reaction of
+      surprise or confusion about the current state compared to expectations.
+  - english: Huh? Why isn't the light turning on?
+    japanese:
+      - '{あれ}?電気 が つか ない な。'
+      - '{あれ}?電気 が つき ませ ん ね。'
+      - '{あれ}?電気 が 点か ない よ。'
+    english_literally: Huh? Light isn't turning on, huh.
+    competing_grammar:
+      - competing_japanese:
+          - どう し て?電気 が つか ない な。
+        english: Why? The light isn't turning on, huh.
+        hint: 「どうして?」 (doushite?) is a direct question asking for a reason. 「あれ?」 here precedes the questioning,
+          indicating an initial moment of confusion or a problem observed.
+    scene: Trying to turn on a light switch.
+    register: casual
+    setting: interrogative
+    nuance: Expresses confusion or puzzlement when something fails to operate as anticipated. The sentence-ending
+      particle 「な」 adds a slight contemplative or self-addressed nuance, often used when one realizes
+      something to themselves.
+  - english: Oh? The store is closed today.
+    japanese:
+      - '{あれ}?今日 は お 店 閉まっ てる。'
+      - '{あれ}?今日 は お 店 閉まっ て い ます。'
+      - '{あれ}?今日 は 店 が 閉まっ てる。'
+    english_literally: Oh? Today store is closed.
+    competing_grammar:
+      - competing_japanese:
+          - あら?今日 は お 店 閉まっ てる。
+        english: Oh? The store is closed today.
+        hint: 「あら?」 (ara?) is also an interjection of surprise, but it is typically used by female speakers.
+          「あれ?」 is gender-neutral.
+    scene: Arriving at a store and finding it unexpectedly closed.
+    register: casual
+    setting: serious
+    nuance: Shows mild surprise upon encountering an unexpected situation outside of one's direct control.
+      It indicates that the situation doesn't align with the speaker's expectations.
+post_example_writeup: As seen in these examples, 「あれ?」 is a versatile interjection used for a range of
+  mild surprises and confusions, from realizing a personal oversight to noticing external anomalies. Its
+  strength lies in its simplicity and ability to convey an immediate, often self-directed, reaction to
+  something unexpected.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/あれ?

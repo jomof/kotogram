@@ -1,0 +1,740 @@
+grammar_point: '[Clause]から (because・so)'
+matcher: |-
+  ⌈ˢからᵖprt:conjunctive_particleᵇからʳカラ⌉|
+  ⌈ˢからᵖprt:case_particleᵇからʳカラ⌉
+learn_before:
+  - い-adjective (sentence-ending)
+  - いっぱい (full・a lot)
+  - ですから (therefore)
+  - ね (seeking agreement)
+  - は (topic and contrast)
+meaning: because, so
+pronunciation:
+  katakana: カラ
+  romaji: kara
+formation:
+  Verb (plain form) + から: Indicates a reason or cause (e.g., 食べるから, 食べたから).
+  Verb (polite ます/ました form) + から: Indicates a reason or cause (e.g., 食べますから, 食べましたから).
+  い-adjective (plain form) + から: Indicates a reason or cause (e.g., 高いから, 寒かったから).
+  い-adjective + です + から: Indicates a reason or cause (e.g., 高いですから, 寒かったですから).
+  な-adjective + だ + から: Indicates a reason or cause (e.g., 静かだ{から}).
+  na-adjective + から: Indicates a reason or cause in casual speech (e.g., 静か{から}).
+  な-adjective + です + から: Indicates a reason or cause (e.g., 静かですから).
+  Noun + だ + から: Indicates a reason or cause (e.g., 学生だ{から}).
+  Noun + から: Indicates a reason or cause in casual speech (e.g., 学生{から}).
+  Noun + です + から: Indicates a reason or cause (e.g., 学生ですから).
+jlpt: N5
+etymology: The particle 「から」 originally indicated a starting point in time or space, meaning "from." Over
+  time, it evolved to also express the origin or cause of something, hence its use to mean "because" or
+  "since." This progression from a physical or temporal origin to a logical or causal origin is a common
+  linguistic phenomenon. The 'from' aspect remains relevant, as it implies a causal chain originating
+  from the stated reason.
+writeup: |-
+  The grammar point 「から」 is used to express a reason or cause, translating to "because," "since," or "so." It conveys a direct, often subjective or personal reason, making it suitable for asserting opinions, justifying actions, or stating direct conclusions. 「から」 frequently implies a strong cause-and-effect relationship and can sound more assertive or insistent, particularly when used in commands or strong requests.
+
+  **Formation:**
+  「から」 can follow verbs, i-adjectives, na-adjectives, and nouns. The form of the preceding word depends on whether it's plain or polite speech:
+  - **Verbs:** Plain form (Vる/Vた/Vない/Vなかった) + から (e.g., 食べるから, 食べたから) or polite form (Vます/Vました) + から (e.g., 食べますから, 食べませんでしたから).
+  - **い-adjectives:** Plain form (e.g., 高いから, 寒かったから) or polite form (い-adj + です + から, e.g., 高いですから, 寒かったですから).
+  - **な-adjectives:** Plain form uses だ + から (e.g., 静かだ{から}). In casual speech, the 「だ」 can often be omitted (e.g., 静かから). Polite form uses です + から (e.g., 静かですから).
+  - **Nouns:** Plain form uses だ + から (e.g., 学生だ{から}). In casual speech, the 「だ」 can often be omitted (e.g., 学生から). Polite form uses です + から (e.g., 学生ですから).
+
+  In all structures, the clause stating the reason always precedes the main clause that states the result, clearly establishing the causal relationship.
+
+  **Distinction from 「ので」:**
+  While both 「から」 and 「ので」 indicate a reason, 「から」 is generally more subjective, direct, and can be used to assert a personal viewpoint. It is more common in casual conversation and can sometimes imply a stronger, more personal justification or even a command. For instance, in a sentence like 「暑いから、窓を開けてください」(It's hot, so please open the window), the 「から」 emphasizes the speaker's personal feeling and direct request. This contrasts with 「ので」, which tends to present reasons more objectively, politely, or as a natural consequence, often without personal assertion. 「ので」 is generally preferred in formal or very polite contexts and when a reason is a neutral fact, whereas 「から」 maintains a direct link between the speaker's reasoning and the action.
+false_friends:
+  - term: ため(に)
+    meaning: for the sake of, due to
+    kind: similar expression
+    nuance: Often implies a more formal or serious tone and is frequently used to describe negative consequences
+      or formal reasons. It can also indicate purpose ('for the sake of'). It's generally less conversational
+      than から。
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: ものだから
+    meaning: Because, the reason is
+    kind: similar expression
+    nuance: A more emphatic and often explanatory or justificatory form of 'because.' It suggests that
+      the reason is self-evident or unavoidable, sometimes implying an excuse or a strong personal sentiment,
+      or used to offer a polite explanation/justification (e.g., in an apology).
+    grammar_point: もので・ものだから (because・as an excuse)
+  - term: からこそ
+    meaning: precisely because, for the very reason that
+    kind: similar expression
+    nuance: Adds strong emphasis to the reason, highlighting that the preceding clause is *the* definitive
+      or critical reason for the subsequent action or state. It intensifies the causal link, making the
+      reason undeniable or exceptional.
+    grammar_point: からこそ (emphasized reason)
+  - term: し〜し
+    meaning: And, giving reasons
+    kind: similar expression
+    nuance: Lists reasons, implying there might be other reasons not stated, or that the reason given
+      is just one among several. Unlike から, which state a direct cause-and-effect, し provides reasons
+      that support a conclusion or action, but in a softer, less assertive way.
+    grammar_point: し〜し (and; listing reasons)
+  - term: Verb[て] (uncontrollable consequence)
+    meaning: because of, due to, since; expresses a cause-and-effect relationship where the cause is often
+      beyond the speaker's control.
+    kind: similar expression
+    nuance: The te-form can express a cause or reason, indicating a natural sequence or consequence rather
+      than a strong, explicit cause-and-effect relationship. It's often used when the cause is obvious
+      or when simply linking events. から is more explicit in stating a reason or justification.
+    grammar_point: Verbて (uncontrollable consequence)
+  - term: なぜなら〜から
+    meaning: Because, the reason is, that is because
+    kind: similar expression
+    nuance: Used to introduce a more formal and emphatic explanation, often clarifying a preceding statement.
+      It typically appears after the main statement, providing the reason.
+    grammar_point: なぜなら〜から (emphasized reason)
+  - term: もの・もん
+    meaning: Because, cause
+    kind: similar expression
+    nuance: Very casual and often used by children or in intimate conversation to state a reason or complaint,
+      sometimes with a nuance of asserting one's opinion. Much less formal than から。
+    grammar_point: もの・もん (because・since)
+post_false_friends_writeup: While 「から」 indicates a direct reason, other expressions like 「ため」, 「ものだから」,
+  「からこそ」, 「し」, the te-form, 「なぜなら〜から」, and 「もの・もん」 also convey causality but with distinct nuances. Selecting
+  the appropriate expression depends on the desired level of formality, objectivity, and emphasis. For
+  instance, 「から」 provides a direct causal link, often being more subjective or assertive. In contrast,
+  「ため」 is formal and objective, 「ものだから」 emphasizes justification, 「からこそ」 strongly asserts the critical
+  reason, 「し」 lists multiple reasons, the te-form describes natural consequences, 「なぜなら〜から」 formally clarifies
+  a reason, and 「もの・もん」 offers casual, often emotional, justifications. Understanding these subtle differences
+  is key to natural Japanese expression.
+examples:
+  - english: Because I read books every day, I have more things to talk about.
+    japanese:
+      - 毎日 本 を 読む {から}、話す こと が 増え ます。
+      - 毎日 本 を 読む {から}、話す こと が 増える。
+      - 毎日 本 読む {から}、話す こと 増える ぜ。
+      - 毎日 本 読む {から}、話す こと 増える わ ね。
+      - 毎日 本 読む {から}、話す こと 増え ちゃっ て。
+      - 毎日 本 読む {から}、話題 が 尽き ない の よ。
+    english_literally: Every day books reading because, talking things increase.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 本 を 読む {の だ}、話す こと が 増え ます。
+        english: The reason I have more things to talk about is because I read books every day.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We are looking for
+          a simple, direct reason.
+      - competing_japanese:
+          - 毎日 本 を 読む {ゆえ に}、話す こと が 増え ます。
+        english: It is precisely because I read books every day that I have more things to talk about.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+      - competing_japanese:
+          - 毎日 本 を 読む {ため}、話す こと が 増え ます。
+        english: Due to reading books every day, I have more things to talk about.
+        hint: 「ため」 is often more formal and can imply a consequence. We are looking for a direct causal
+          statement.
+      - competing_japanese:
+          - 毎日 本 も 読む {し}、話す こと も 増え ます。
+        english: I read books every day, so I have more things to talk about.
+        hint: 「し」 lists reasons, implying there might be other factors. We are looking for a direct and
+          singular cause.
+    scene: A student explaining how reading helps them converse more effectively.
+    register: formal
+    setting: informative
+    nuance: The use of 「から」 here directly states the speaker's personal reason for their improved conversational
+      ability. It's a straightforward explanation of a cause and effect, where the speaker's habit is
+      the clear driver of the result.
+  - english: Because I ate a lot, I'm full.
+    japanese:
+      - たくさん 食べ た {から}、お腹 が いっぱい だ。
+      - たくさん 食べ まし た {から}、お腹 が いっぱい です。
+      - たくさん 食っ た {から}、腹 いっぱい だ。
+      - たくさん 食べ ちゃっ た {から}、お腹 いっぱい な の。
+      - いっぱい 食べ た {から}、もう 食べ られ ない。
+      - ご飯 たくさん 食べ た {から}、お腹 が 満たさ れ てる わ。
+    english_literally: A lot ate because, stomach is full.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 食べ た {ため}、お腹 が いっぱい だ。
+        english: Due to having eaten a lot, I'm full.
+        hint: 「ため」 is often used for more formal or serious reasons and can imply a consequence. We are
+          looking for a direct, personal reason.
+      - competing_japanese:
+          - たくさん 食べ た {の だ}、お腹 が いっぱい だ。
+        english: The reason I'm full is because I ate a lot.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We are looking for
+          a simple, direct reason.
+      - competing_japanese:
+          - たくさん 食べ た {ゆえ に}、お腹 が いっぱい だ。
+        english: It is precisely because I ate a lot that I'm full.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+      - competing_japanese:
+          - たくさん 食べ {て}、お腹 が いっぱい だ。
+        english: Having eaten a lot, I'm full.
+        hint: 「〜て」 form can express a cause, but it's more about a direct, natural consequence, less about
+          the speaker's conscious reason or will. We are looking for a clear reason for being full.
+      - competing_japanese:
+          - たくさん 食べ た {し}、お腹 が いっぱい だ。
+        english: I ate a lot, so I'm full.
+        hint: 「し」 lists reasons, implying there might be other factors. We are looking for a direct, singular
+          cause-and-effect.
+    scene: Someone stating their reason for not wanting more food after a large meal.
+    register: casual
+    setting: reflective
+    nuance: The use of 「から」 here makes a direct, personal statement about the cause of being full. It
+      conveys a clear and immediate connection between the action of eating and the resulting state, typical
+      in casual explanations.
+  - english: Because it's hot today, I will drink a lot of water.
+    japanese:
+      - 今日 は 暑い {から}、水 を たくさん 飲み ます。
+      - 今日 は 暑い {から}、水 を たくさん 飲む。
+      - 今日 暑い {から}、水 ガンガン 飲む わ。
+      - 今日 暑い {から}、水 いっぱい 飲もう ぜ。
+      - 今日 暑い {から}、水分 を しっかり 摂り ましょう。
+      - 今日 暑い {から}、水 いっぱい 飲ん ど こう。
+    english_literally: Today is hot because, water a lot drink.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 暑い {ため}、水 を たくさん 飲み ます。
+        english: Due to it being hot today, I will drink a lot of water.
+        hint: 「ため」 is generally more formal and objective, and can imply a more direct consequence. We
+          are looking for a direct and assertive reason.
+      - competing_japanese:
+          - 今日 は 暑い {の だ}、水 を たくさん 飲み ます。
+        english: The reason I will drink a lot of water is because it's hot today.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We are looking for
+          a straightforward reason for an action.
+      - competing_japanese:
+          - 今日 は 暑い {ゆえ に}、水 を たくさん 飲み ます。
+        english: It is precisely because it's hot today that I will drink a lot of water.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+      - competing_japanese:
+          - 今日 は 暑い {し}、水 を たくさん 飲み ます。
+        english: I read books every day, so I have more things to talk about.
+        hint: 「し」 lists reasons, implying there might be other factors. We are looking for a direct and
+          singular cause.
+      - competing_japanese:
+          - 今日 は 暑く {て}、水 を たくさん 飲み ます。
+        english: It's hot today, so I will drink a lot of water.
+        hint: The te-form connects events in a sequence or as a mild cause. We are looking for a clear
+          reason for an action.
+    scene: Someone giving a practical reason for their action due to the weather.
+    register: formal
+    setting: instructional
+    nuance: The use of 「から」 here directly connects the weather (a factual condition) to the speaker's
+      decision to drink water. It's a pragmatic and direct statement of cause, often used when expressing
+      a clear and simple reason for an action.
+  - english: Because it was cold yesterday, I wore a sweater.
+    japanese:
+      - 昨日 は 寒かっ た {から}、セーター を 着 まし た。
+      - 昨日 寒かっ た {から}、セーター 着 た。
+      - 昨日 寒かっ た {から}、セーター 着 た ん だ よ。
+      - 昨日 寒かっ た {から}、セーター 着 て た の よ。
+      - 昨日 は 寒かっ た {から}、セーター 着 て き た よ。
+      - 昨日 寒かっ た {から}、今日 は 暖かく し て き た わ。
+    english_literally: Yesterday was cold because, sweater wore.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 寒かっ た {ため}、セーター を 着 まし た。
+        english: Due to it having been cold yesterday, I wore a sweater.
+        hint: 「ため」 is typically used for more formal or objective reasons, or when describing a consequence.
+          We are looking for a direct causal relationship.
+      - competing_japanese:
+          - 昨日 は 寒かっ た {の だ}、セーター を 着 まし た。
+        english: The reason I wore a sweater is because it was cold yesterday.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We are looking for
+          a straightforward causal statement.
+      - competing_japanese:
+          - 昨日 は 寒かっ た {ゆえ に}、セーター を 着 まし た。
+        english: It is precisely because it was cold yesterday that I wore a sweater.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+      - competing_japanese:
+          - 昨日 は 寒く {て}、セーター を 着 まし た。
+        english: Yesterday, it was cold, so I wore a sweater.
+        hint: The te-form indicates a natural sequence or cause. We are looking for a direct explanation
+          of the reason.
+      - competing_japanese:
+          - 昨日 は 寒かっ た {し}、セーター を 着 まし た。
+        english: Yesterday, it was cold, so I wore a sweater.
+        hint: 「し」 lists reasons, implying there might be other factors. We are looking for a direct, singular
+          cause-and-effect.
+    scene: Someone explaining their clothing choice based on the previous day's weather.
+    register: formal
+    setting: informative
+    nuance: The sentence uses 「から」 to provide a clear and direct reason for an action. Even though the
+      reason is an objective fact (the weather), the use of 「から」 makes it sound like a personal explanation
+      or justification for the decision to wear a sweater.
+  - english: Because that child is very lively, everyone likes them.
+    japanese:
+      - あの 子 は とても 元気 だ {から}、みんな が 好き です。
+      - あの 子 元気 だ {から}、みんな 好き な ん だ。
+      - あの 子 めっちゃ 元気 だ {から}、みんな 好き な ん だ よ ね。
+      - あの 子 すごく 元気 だ {から}、みんな に 好か れ てる の。
+      - あの 子 とても 元気 だ {から}、みんな に 愛さ れ てる よ。
+      - あの 子、元気 だ {から}、どこ で も 人気 者 だ よ ね。
+    english_literally: That child is very lively because, everyone likes them.
+    competing_grammar:
+      - competing_japanese:
+          - あの 子 は とても 元気 な {ため}、みんな が 好き です。
+        english: Due to that child being very lively, everyone likes them.
+        hint: 「ため」 is often used for more formal or objective reasons. We are looking for a direct, personal
+          observation and its consequence.
+      - competing_japanese:
+          - あの 子 は とても 元気 な {の だ}、みんな が 好き です。
+        english: The reason everyone likes that child is because they are very lively.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We are looking for
+          a direct causal link.
+      - competing_japanese:
+          - あの 子 は とても 元気 な {ゆえ に}、みんな が 好き です。
+        english: It is precisely because that child is very lively that everyone likes them.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+      - competing_japanese:
+          - あの 子 は とても 元気 {な し}、みんな が 好き です。
+        english: That child is very lively, and everyone likes them.
+        hint: 「し」 lists reasons or attributes, but doesn't necessarily imply a direct cause. We are looking
+          for a clear reason for the child's popularity.
+    scene: An adult describing a child's popularity based on their energetic personality.
+    register: formal
+    setting: friendly
+    nuance: Here, 「から」 is used to state a direct reason for the child's popularity, stemming from the
+      speaker's observation of their liveliness. It emphasizes the direct correlation and is a common
+      way to express personal observations as explanations.
+  - english: Because I'm a student, I have time.
+    japanese:
+      - 私 は 学生 だ {から}、時間 が あり ます。
+      - 私 は 学生 だ {から}、時間 ある よ。
+      - 学生 だ {から}、時間 いっぱい ある ん だ。
+      - 学生 だ {から}、暇 な の。
+      - 学生 だ {から}、結構 自由 な 時間 が ある ん です。
+      - 私 学生 {から}、時間 は ある よ ね。
+    english_literally: I am student because, time exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 学生 で ある {ため}、時間 が あり ます。
+        english: Due to me being a student, I have time.
+        hint: 「ため」 is generally more formal and objective. We are looking for a direct and common personal
+          explanation.
+      - competing_japanese:
+          - 私 は 学生 {な の だ}、時間 が あり ます。
+        english: The reason I have time is because I'm a student.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We are looking for
+          a straightforward explanation of personal circumstances.
+      - competing_japanese:
+          - 私 は 学生 で ある {ゆえ に}、時間 が あり ます。
+        english: It is precisely because I'm a student that I have time.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+      - competing_japanese:
+          - 私 は 学生 {な し}、時間 が あり ます。
+        english: I am a student, so I have time.
+        hint: 「し」 lists reasons, often implying there are others. We are looking for a singular, direct
+          reason for having time.
+    scene: A male student explaining to a female friend why he has free time.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of plain form 「だ」 followed by 「から」 is typical in casual speech, directly stating the
+      speaker's status as the reason. This direct expression, like 「時間 ある よ」, is common when explaining
+      personal circumstances to a close acquaintance and can often have a slightly masculine-leaning nuance.
+  - english: Because he is an adult, he can decide for himself.
+    japanese:
+      - 彼 は 大人 だ {から}、自分 で 決め られる。
+      - 彼 は 大人 です {から}、自分 で 決め られ ます。
+      - 大人 な ん だ {から}、自分 で 決め なさい。
+      - 彼 大人 だ {から}、自分 で 決め させ て あげ ましょう。
+      - 彼 は 大人 な ん だ {から}、自分 で 決め させ て も いい わ ね。
+      - 大人 な ん だ {から}、もう 口出し し ない で いい よ ね。
+    english_literally: He is adult because, by himself can decide.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 大人 で ある {ため}、自分 で 決め られる。
+        english: Due to him being an adult, he can decide for himself.
+        hint: 「ため」 is generally more formal and objective, and can imply a consequence. We are looking
+          for a firm statement of fact about an adult's autonomy.
+      - competing_japanese:
+          - 彼 は 大人 {な の だ}、自分 で 決め られる。
+        english: The reason he can decide for himself is because he is an adult.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We are looking for
+          a direct statement of fact.
+      - competing_japanese:
+          - 彼 は 大人 で ある {ゆえ に}、自分 で 決め られる。
+        english: It is precisely because he is an adult that he can decide for himself.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+    scene: An older woman explaining the autonomy of an adult male to a group.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「大人 な ん だ から」 emphasizes that because he is an adult, it is a given or natural
+      consequence that he can decide for himself. The use of 「から」 here makes the statement direct and
+      assertive, conveying a sense of 'it's only natural that...' or 'since he's an adult, he should...'.
+      This is suitable for an older female speaker making a clear point.
+  - english: Because I have a headache, I can't concentrate on my studies.
+    japanese:
+      - 頭 が 痛い {から}、勉強 に 集中 でき ませ ん。
+      - 頭 が 痛い {から}、勉強 集中 でき ない。
+      - 頭 痛い {から}、勉強 どころ じゃ ない わ。
+      - 頭 が 痛い {から}、ちょっと 休み たい な。
+      - 頭 が 痛く {て から}、少し 休憩 し ませ ん か。
+      - 頭 が 痛い {から}、今日 は もう 帰ろう か な。
+    english_literally: Head is painful because, study can't concentrate.
+    competing_grammar:
+      - competing_japanese:
+          - 頭 が 痛い {ため}、勉強 に 集中 でき ませ ん。
+        english: Due to a headache, I can't concentrate on my studies.
+        hint: 「ため」 is formal, implies cause/consequence. We need a direct personal reason.
+      - competing_japanese:
+          - 頭 が 痛い {の だ}、勉強 に 集中 でき ませ ん。
+        english: The reason I can't concentrate on my studies is because I have a headache.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We need a direct
+          reason.
+    scene: A student explaining to their teacher why they are struggling in class.
+    register: formal
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The female speaker uses 「頭 が 痛い {から}」 to directly state the personal reason for her lack of
+      concentration. This use of 「から」 is straightforward, offering a clear and somewhat assertive explanation
+      for a personal state, even in a polite context with the teacher.
+  - english: Because it's a secret, please don't tell anyone.
+    japanese:
+      - 秘密 です {から}、誰 に も 言わ ない で ください。
+      - 秘密 だ {から}、誰 に も 言う な よ。
+      - 内緒 だ {から}、みんな に は 言わ ない で ね。
+      - 秘密 だ {から}、絶対 に 誰 に も 言わ ない で くれ。
+      - 秘め事 です {から}、口外 無用 で お 願い し ます。
+      - これ は 秘密 だ {から}、あなた だけ に 話す わ ね。
+    english_literally: Secret is because, to anyone don't say please.
+    competing_grammar:
+      - competing_japanese:
+          - 秘密 の {ため}、誰 に も 言わ ない で ください。
+        english: Due to it being a secret, please don't tell anyone.
+        hint: 「ため」 is formal and often for objective reasons or consequences. We need a direct causal
+          statement for a request.
+    scene: A friend entrusting a secret to another.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「秘密 です {から}」 with the polite copula 「です」 to make the reason for the injunction
+      clear and direct. This emphasizes that the secret itself is the **sole** reason for the request,
+      conveying a strong sense of trust and seriousness between friends. 「から」 asserts this reason very
+      directly.
+  - english: Because it's getting late, let's go home.
+    japanese:
+      - もう 時間 が 遅い {から}、帰り ましょう。
+      - もう 遅い {から}、帰ろう か。
+      - もう こんな 時間 だ {から}、そろそろ 帰ろう よ。
+      - 時間 が 遅い {から}、お 開き に し ませ ん か。
+      - もう かなり 遅い {から}、家 に 戻る 時間 だ ね。
+      - もう 時間 が 時間 だ {から}、お いとま しよう か。
+    english_literally: Already time is late because, let's go home.
+    competing_grammar:
+      - competing_japanese:
+          - もう 時間 が 遅い {ゆえ に}、帰り ましょう。
+        english: It is precisely because it's getting late that we should go home.
+        hint: 「ゆえに」 is a formal way to express a strong reason or cause. We are looking for a general
+          causal statement.
+    scene: Colleagues at a relaxed gathering after work deciding to wrap things up.
+    register: semi-formal
+    setting: persuasive
+    speaker_gender: female
+    nuance: The female speaker uses 「もう 時間 が 遅い {から}」 to present a clear, direct reason for leaving. The
+      use of 「帰り ましょう」 (polite volitional) makes the suggestion inclusive and polite. 「から」 makes the reason
+      feel like a direct, undeniable prompt for action from the speaker's perspective.
+  - english: Because the train was delayed, I was late for the meeting.
+    japanese:
+      - 電車 が 遅れ た {から}、会議 に 遅れ まし た。
+      - 電車 が 遅れ た {から}、会議 に 遅れ た ん だ。
+      - 電車 が 遅れ た {から}、会議 に 遅刻 し ちゃっ た よ。
+      - 電車 が 遅れ まし た {から}、会議 に 遅れ まし た。
+      - 電車 が 遅れ た {から}、打ち合わせ に 遅刻 し ちゃっ た の。
+      - 電車 が 遅れ た {から}、約束 の 時間 に 間に合わ なく なっ て しまっ た の。
+      - 電車 が 遅れ た {から}、申し訳 ない ん だ けど、遅れる と 連絡 し まし た。
+    english_literally: Train was delayed because, meeting to was late.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 遅れ た {ため}、会議 に 遅れ まし た。
+        english: Due to it having been cold yesterday, I wore a sweater.
+        hint: 「ため」 is typically used for more formal or objective reasons, or when describing a consequence.
+          We are looking for a direct causal relationship.
+    scene: Someone explaining their tardiness to a colleague.
+    register: formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「電車 が 遅れ た {から}」 to state a direct and undeniable cause for being late. This
+      straightforward use of 「から」 is common when providing a clear, assertive reason or justification
+      for an action or outcome. The formal 「遅れ まし た」 maintains politeness in a professional setting.
+  - english: Because I like Japanese culture, I started studying Japanese.
+    japanese:
+      - 日本 文化 が 好き だ {から}、日本 語 を 勉強 し 始め まし た。
+      - 日本 文化 が 好き だ {から}、日本 語 勉強 し てる ん だ。
+      - 日本 文化 好き だ {から}、日本 語 始め た ん だ よ。
+      - 日本 文化 好き だ {から}、日本 語 習い 始め た の。
+      - 日本 文化 が 好き だ {から}、日本 語 を 学ぶ こと に し まし た。
+      - 私 は 日本 文化 が 大好き だ {から}、日本 語 を 勉強 する の が 楽しい の。
+    english_literally: Japanese culture is liked because, Japanese language study began.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 文化 が 好き {な ため}、日本 語 を 勉強 し 始め まし た。
+        english: Due to liking Japanese culture, I started studying Japanese.
+        hint: 「ため」 is often used for more formal or objective reasons. We're looking for a direct and
+          personal motivation.
+    scene: A student telling their Japanese teacher about their motivation to learn the language.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker uses 「日本 文化 が 好き だ {から}」 to directly state the personal reason for starting Japanese
+      studies. The use of 「だ」 (plain form of the copula for adjectives/nouns) before 「から」 is grammatically
+      correct here and conveys a straightforward, honest explanation, even in a formal setting with the
+      teacher.
+  - english: This book is interesting, so please try reading it.
+    japanese:
+      - この 本 は おもしろい {から}、読ん で み て ください。
+      - この 本 は おもしろい {から}、読ん で み ない？
+      - この 本 面白い {から}、読ん で み て ください。
+      - この 本 が 面白い {から}、読ん で み て ね。
+    english_literally: Because this book is interesting, please try reading it.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は おもしろい {の だ}、読ん で み て ください。
+        english: It's because this book is interesting, so please try reading it.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation, not necessarily an
+          emotional justification. We're looking for an objective reason.
+      - competing_japanese:
+          - この 本 は おもしろい {の です}、読ん で み て ください。
+        english: As this book is interesting, please try reading it.
+        hint: 「のです」 offers a polite explanation or justification. While polite, 「から」 is more direct in
+          presenting the reason for the recommendation, often with a subtle assertive tone.
+      - competing_japanese:
+          - この 本 は 面白い {し 〜 し}、読み やすい し、読ん で み て ください。
+        english: This book is interesting, and it's easy to read, so please try reading it.
+        hint: 「し〜し」 is used to list multiple reasons for a recommendation, suggesting there could be other
+          factors. We're looking for a simple, singular reason.
+    scene: A friend enthusiastically recommending a book they enjoyed to another friend.
+    register: casual
+    setting: friendly
+    nuance: The speaker uses 「おもしろい {から}」 to directly state their personal evaluation of the book as the
+      reason for the recommendation. This makes the suggestion feel more like a direct, personal appeal
+      to the listener, as if saying 'I think it's interesting, so you should really read it!'
+  - english: Because it's raining today, I won't go outside.
+    japanese:
+      - 今日 は 雨 だ {から}、外 へ 行き ませ ん。
+      - 今日 は 雨 だ {から}、外 へ 行か ない。
+      - 今日 雨 だ {から}、外 に 行き ませ ん。
+      - 今日 は 雨 だ {から}、外 へ 行か へん。
+    english_literally: Because today is rain, outside will not go.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 雨 な {の だ}、外 へ 行き ませ ん。
+        english: It's because it's raining today, so I won't go outside.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation. We're looking for
+          a straightforward objective reason.
+      - competing_japanese:
+          - 今日 は 雨 な {の です}、外 へ 行き ませ ん。
+        english: As it's raining today, I won't go outside.
+        hint: 「のです」 offers a polite way to offer an explanation or justification. While polite, 「から」 is
+          more simply direct and asserts a personal decision based on the weather.
+      - competing_japanese:
+          - 今日 雨 な {もん}、外 行か ない。
+        english: It's because it's raining today, I'm not going outside.
+        hint: 「もん」 is a very casual, often assertive expression for giving a reason, typical in intimate
+          contexts. We're looking for a more neutral explanation.
+    scene: A person looking out the window and deciding to stay indoors due to the weather.
+    register: casual
+    setting: reflective
+    nuance: Here, 「雨 だ {から}」 is used to state a direct personal decision based on the objective fact of
+      rain. While the reason itself is objective, the use of 「から」 gives it a nuance of the speaker's immediate,
+      direct response or justification for their action.
+  - english: Since today is Sunday, I'll rest leisurely.
+    japanese:
+      - 今日 は 日曜 日 だ {から}、ゆっくり 休み ます。
+      - 今日 は 日曜 日 だ {から}、ゆっくり 休む。
+      - 今日 日曜 日 だ {から}、ゆっくり 休み ます。
+      - 今日 は 日曜 日 だ {から}、ゆっくり 休む よ。
+    english_literally: Because today is Sunday, I will rest leisurely.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 日曜 日 な {の だ}、ゆっくり 休み ます。
+        english: It's because today is Sunday, so I'll rest leisurely.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation, rather than implying
+          justification or an excuse. We're looking for a simple, objective reason.
+      - competing_japanese:
+          - 今日 は 日曜 日 だ {し 〜 し}、天気 も いい し、ゆっくり 休み ます。
+        english: Today is Sunday, and the weather is good, so I'll rest leisurely.
+        hint: 「し〜し」 is used to list multiple reasons, implying a combination of factors. We're looking
+          for a direct causal connection based on a single clear reason.
+    scene: A person looking forward to a relaxing day off from work or school.
+    register: casual
+    setting: optimistic
+    nuance: The use of 「日曜 日 だ {から}」 directly states the factual reason for the speaker's planned leisurely
+      rest. 「から」 highlights this as the immediate and sufficient reason for their personal decision or
+      plan.
+  - english: Since the company president will speak, please be quiet.
+    japanese:
+      - 社長 が お 話し に なり ます {から}、しずか に し て ください。
+      - 社長 が お 話し に なり ます {から}、静粛 に。
+      - 社長 が お 話し に なる {から}、しずか に し て ください。
+      - 社長 が お 話し に なり ます {から}、お 静か に お 願い し ます。
+    english_literally: Because the company president will speak, please make it quiet.
+    competing_grammar:
+      - competing_japanese:
+          - しずか に し て ください。{その 理由 は} 社長 が お 話し に なり ます {ため です}。
+        english: Please be quiet. The reason is because the company president will speak.
+        hint: 「その理由で」 introduces the reason after the main statement, clarifying it. We're looking for
+          a construction where the reason precedes the consequence.
+      - competing_japanese:
+          - 社長 が お 話し に なり ます {の です}、しずか に し て ください。
+        english: As the company president will speak, please be quiet.
+        hint: 「のです」 offers a polite, formal explanation or justification. While similar, 「から」 here makes
+          the request more direct and assertive, almost like a command based on an impending event.
+    scene: An assistant addressing a group of employees before a meeting with the president.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「お話し に なります」 (honorific) and 「しずか に し て ください」 (polite request) maintains formality.
+      By using 「から」, the speaker presents the president's upcoming speech as a direct and authoritative
+      reason for the imperative to be quiet, making the instruction firm and immediate.
+  - english: The road is crowded, so let's leave a little early.
+    japanese:
+      - 道 が こん で い ます {から}、少し 早く 出発 し ましょう。
+      - 道 が こん で いる {から}、少し 早く 出発 しよう。
+      - 道 が 混雑 し て いる {から}、少し 早く 出発 し ましょう。
+      - 道 が 混ん でる {から}、早く 出よう か。
+      - 道 が 混ん でる {から}、少し 早め に 出よう ね。
+    english_literally: Because the road is crowded, let's depart a little early.
+    competing_grammar:
+      - competing_japanese:
+          - 道 が こん で いる {の だ}、少し 早く 出発 しよう。
+        english: It's because the road is crowded, so let's leave a little early.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation, not a justification
+          or excuse. We're looking for a factual reason for a logical suggestion.
+      - competing_japanese:
+          - 道 が こん で いる {し 〜 し}、時間 も ない し、少し 早く 出発 し ましょう。
+        english: The road is crowded, and we don't have much time, so let's leave a little early.
+        hint: 「し〜し」 is used to list multiple contributing reasons. We're looking for a direct causal connection
+          based on the single reason given.
+    scene: A family preparing for a road trip, checking traffic conditions on a navigation app.
+    register: casual
+    setting: cautious
+    nuance: The objective observation of 「道 が こん で います」 (the road is crowded) serves as the basis for
+      the suggestion 「早く 出発 しましょう」 (let's leave early). The use of 「から」 here makes the suggestion a direct
+      and immediate consequence of the traffic, conveying a sense of practical necessity from the speaker's
+      perspective.
+  - english: Since you're busy, I apologize for disturbing you.
+    japanese:
+      - お 忙しい {から}、お 邪魔 し て 申し訳 あり ませ ん。
+      - お 忙しい {から}、失礼 し ます。
+      - お 忙しい です {から}、お 邪魔 し て 申し訳 あり ませ ん。
+      - お 忙しい だろ う {から}、手短 に 用件 だけ 伝え ます ね。
+      - お 忙しい の に 恐縮 です {から}、手短 に お 話し さ せ て ください。
+    english_literally: Because you are busy, I apologize for disturbing.
+    competing_grammar:
+      - competing_japanese:
+          - お 忙しい {の です}、お 邪魔 し て 申し訳 あり ませ ん。
+        english: As you are busy, I apologize for disturbing you.
+        hint: 「のです」 is often used for polite justification or explanation. 「から」 presents the reason more
+          directly as an objective fact, but can be less deferential than ので.
+      - competing_japanese:
+          - お 忙しい {の だ}、お 邪魔 し て 申し訳 あり ませ ん。
+        english: It's because you're busy, so I apologize for disturbing you.
+        hint: 「のだ」 emphasizes the reason or provides an explanation for a situation, not necessarily an
+          emotional justification. We're looking for a more neutral, objective reason for the apology.
+    scene: A younger male subordinate entering a busy female superior's office to ask a quick question.
+    register: semi-formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The honorific 「お忙しい」 and the polite apology 「申し訳 ありません」 create a respectful tone. By using
+      「から」, the speaker directly states the superior's busyness as the reason for the apology. While polite,
+      this usage is more direct than using 「ので」, emphasizing the clear and undeniable cause of the interruption
+      from the speaker's viewpoint. This choice conveys a strong sense of responsibility for the inconvenience
+      caused.
+  - english: A new system will begin, so we will hold an information session beforehand.
+    japanese:
+      - 新しい 制度 が 始まる {から}、事前 に 説明 会 を 行い ます。
+      - 新しい 制度 が 始まり ます {から}、事前 に 説明 会 を 行い ます。
+      - 新しい 制度 が 始まる {から}、事前 に 説明 会 を 開催 し ます。
+      - 新しい 制度 が 始まる {から}、事前 に 説明 会 を 開き ます。
+      - 新 制度 が 始まる {から}、事前 説明 会 を 開催 いたし ます。
+    english_literally: Because a new system will begin, an information session will be held beforehand.
+    competing_grammar:
+      - competing_japanese:
+          - 事前 に 説明 会 を 行い ます。{その 理由 は} 新しい 制度 が 始まり ます {ため です}。
+        english: We will hold an information session beforehand. The reason is because the new system
+          will begin.
+        hint: 「その理由で」 is used to provide an emphatic reason *after* the statement, often clarifying it.
+          We're looking for a construction where the reason directly precedes the consequence.
+      - competing_japanese:
+          - 新しい 制度 が 始まり ます {の です}、事前 に 説明 会 を 行い ます。
+        english: As a new system will begin, we will hold an information session beforehand.
+        hint: 「のです」 conveys a polite explanation or justification, sometimes implying a softer or more
+          explanatory tone than the direct connection of 「から」.
+    scene: An official announcement being made at a company or school about upcoming operational changes.
+    register: formal
+    setting: informative
+    nuance: In this formal announcement, 「から」 is used to state the new system's start as a direct and
+      immediate cause for holding the information session. This makes the announcement clear and authoritative,
+      emphasizing the direct link between the event and the resulting action.
+  - english: Because I have a prior engagement, I cannot attend the party.
+    japanese:
+      - 先約 が ある {から}、パーティー に 参加 でき ませ ん。
+      - 先約 が あり ます {から}、パーティー に 参加 でき ませ ん。
+      - 先約 が ある {から}、パーティー は ちょと 難しい です ね。
+      - 先約 が ある {から}、パーティー に 出 られ ない。
+      - 先約 が ござい ます {から}、パーティー は 欠席 さ せ て いただき ます。
+      - 申し訳 あり ませ ん、先約 が ある {から}、参加 は 叶い ませ ん。
+    english_literally: Because there is a prior engagement, cannot attend the party.
+    competing_grammar:
+      - competing_japanese:
+          - 先約 が ある {の です}、パーティー に 参加 でき ませ ん。
+        english: As I have a prior engagement, I cannot attend the party.
+        hint: 「のです」 is often used for polite justification or explanation. 「から」 presents the reason more
+          directly as an objective fact without extra nuance of justification.
+    scene: A colleague politely declining an invitation to an office party due to a previous commitment.
+    register: semi-formal
+    setting: apologetic
+    speaker_gender: female
+    listener_gender: group
+    nuance: Using 「先約 が あります {から}」 presents the prior engagement as a direct and unavoidable circumstance,
+      serving as a clear reason for the inability to attend. This directness is characteristic of 「から」,
+      making the refusal sound like a regrettable consequence of the fact, rather than a personal choice,
+      thus maintaining politeness in a semi-formal context.
+  - english: Because the train was delayed, I was late for work.
+    japanese:
+      - 電車 が 遅れ た {から}、会社 に 遅刻 し まし た。
+      - 電車 が 遅れ た {から}、会社 に 遅刻 し た。
+      - 電車 が 遅れ た {から}、会社 に 遅刻 し ちゃっ た。
+      - 電車 が 遅れ まし た {から}、会社 に 遅刻 し まし た。
+      - 電車 が 遅延 し た {から}、会社 に 遅刻 し まし た。
+      - 電車 が 遅れ た {から}、遅刻 せ ず に は いか なかっ た ん です。
+    english_literally: Because the train was delayed, arrived late to company.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 遅れ た {の だ}、会社 に 遅刻 し まし た。
+        english: It's because the train was delayed that I was late for work.
+        hint: 「のだ」 often carries a nuance of a self-evident reason or general truth, not an appeal for
+          understanding. We're looking for a simpler, objective explanation of the situation.
+      - competing_japanese:
+          - 会社 に 遅刻 し まし た。{その 理由 は} 電車 が 遅れ た {ため です}。
+        english: I was late for work. The reason is because the train was delayed.
+        hint: 「その理由で」 is used to provide an emphatic reason *after* the statement, often clarifying it.
+          We're looking for a structure where the reason directly precedes the consequence.
+    scene: An employee explaining their tardiness to a superior upon arriving at the office.
+    register: formal
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「電車 が 遅れ まし た {から}」 presents the train delay as a direct, factual reason for being
+      late. This straightforward assertion of the cause is characteristic of 「から」, providing a clear explanation
+      in a professional context. The politeness is maintained by the formal ending 「遅刻 し まし た」.
+post_example_writeup: When using 「から」, remember its direct and often subjective nature. It's excellent
+  for stating clear reasons, personal justifications, and can carry a sense of insistence or command,
+  especially in casual speech. While it can be used for objective reasons, it emphasizes the speaker's
+  direct connection to or assertion of that reason, distinguishing it from other causal expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%8B%E3%82%89%E3%83%BB%E3%81%AE%E3%81%A7-reason%E3%83%BBcause

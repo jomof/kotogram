@@ -1,0 +1,626 @@
+grammar_point: Verb[て] (and then)
+learn_before:
+  - Verb[imperative] (imperative)
+meaning: And, and then, after that (sequence)
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: て
+    rarity: common
+    meaning: connecting actions sequentially
+pronunciation:
+  katakana: テ
+  romaji: te
+formation:
+  Verb[て] + B: Indicates a sequence of events, where Verb[て] happens before B.
+jlpt: N5
+etymology: The 「て」 form, known as the 'te-form', is a versatile conjunctive form in Japanese. Linguistically,
+  its origin is debated, but it is commonly understood to have evolved from the 連用形 (ren'youkei, conjunctive
+  form) of verbs, often combined with the particle 「て」 which historically served as a connective. Over
+  centuries, this combination fossilized and grammaticalized, expanding its functions to include not only
+  the sequential linking of actions, as seen in this grammar point, but also indicating cause, means,
+  manner, and simultaneous actions. Its fundamental role, however, remains to connect clauses, forming
+  a continuous flow of thought or action.
+writeup: The 「て」 form of a verb, followed by another verb phrase, is often translated as "and then" or
+  "and". This is how Japanese lists sequences of events that happen one after another. This grammar construction
+  is used for listing things that happen in order, for example, "I did (A), then (B), then (C)". Other
+  grammar structures will need to be used if you would like to talk about things that happen/happened
+  in no particular order. For example 「たり〜たりする」, which will appear in a sentence like "I did things like
+  (C), and (A), oh, and (B)!".
+false_friends:
+  - term: Verb[て] (non-sequential events)
+    meaning: Non-sequential actions/states (e.g., reason, manner, simultaneous, contrast)
+    kind: similar expression
+    nuance: While the 「て」 form is used, this refers to various other functions of the 「て」 form that do
+      not strictly denote a temporal sequence of actions, such as indicating a reason, a manner, or a
+      state. It can also link simultaneous actions or actions in contrast. It's often used when the actions
+      are not strictly sequential, or when the second action happens because of the first. In contrast,
+      this grammar point specifically focuses on actions that happen one after another.
+    grammar_point: Verb[て] (non-sequential events)
+  - term: '[i-Adj-stem]くて (and・because)'
+    meaning: Connecting adjectives or nouns (e.g., reason, state, listing attributes)
+    kind: similar expression
+    nuance: This usage of the 「て」 form (or 「で」 for nouns) is for connecting adjectives or nouns, often
+      to describe a state, attribute, or reason, rather than linking sequential verbs as in this grammar
+      point.
+    grammar_point: <suggest>:[i-Adj-stem]くて (and)
+  - term: てから (after and since)
+    meaning: After doing, Once... is done, Since
+    kind: similar expression
+    nuance: While 「てから」 explicitly states 'after doing' the first action, making the temporal separation
+      clearer and sometimes implying a causal link, 「Verb[て]」 implies a more direct and natural flow of
+      purely sequential actions, often without a distinct pause or emphasis on completion.
+    grammar_point: てから (after and since)
+  - term: たら (if・when・after)
+    meaning: If; When; After
+    kind: often confused with
+    nuance: 「Verb[たら]」 primarily functions as a conditional form, meaning 'if' or 'when' a condition is
+      met, then something happens. While it can imply a sequence in some contexts, its core meaning is
+      conditional, unlike 「Verb[て]」 which is a simple sequential link.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: ないで (without doing)
+    meaning: Without doing Verb / Do not do Verb and...
+    kind: similar expression
+    nuance: 「Verb[ないで]」 indicates performing an action while not doing the first verb, or performing the
+      second action instead of the first. It expresses absence of the first action. This contrasts with
+      「Verb[て]」 which expresses the completion of the first action before the second.
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: たり〜たりする (do things like x and y)
+    meaning: Doing things like X and Y (non-exhaustive listing)
+    kind: often confused with
+    nuance: While both can list actions, Verb[て] connects actions in a direct, chronological sequence.
+      Verb[たり] Verb[たり] する implies a non-exhaustive list of actions or states, often suggesting randomness
+      or a representative sample, not necessarily a strict chronological order.
+    grammar_point: Verb[たり] (representative listing)
+  - term: '[Verb-stem]ながら (while doing)'
+    meaning: While doing Verb (simultaneous action)
+    kind: similar expression
+    nuance: Verb[て] signifies sequential actions, where one action is completed before the next begins.
+      Verb[ながら] specifically denotes two actions occurring at the same time, with the main action being
+      performed while the secondary action is also happening.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+  - term: そして (and・and then)
+    meaning: And; and then
+    kind: similar expression
+    nuance: 「そして」 is a conjunction that connects sentences or clauses, indicating a sequence of events
+      or additional information. Unlike the Verb[て] form, which creates a more tightly knit single sentence
+      structure for sequential actions, 「そして」 typically connects more independent clauses or sentences.
+    grammar_point: そして (and・and then)
+  - term: それから (and then・after that)
+    meaning: And then, after that, also, in addition to that
+    kind: similar expression
+    nuance: Like 「そして」, 「それから」 connects clauses or sentences to indicate sequence or addition. It functions
+      as a conjunction between more independent statements, whereas the Verb[て] form creates a tighter,
+      single sentence structure for sequential actions.
+    grammar_point: それから (and then・after that)
+  - term: た後で (after doing)
+    meaning: After doing, upon completion of
+    kind: similar expression
+    nuance: While similar to the sequential te-form, 「～た後で」 explicitly emphasizes the completion of the
+      first action before the second, often implying a more distinct separation or a more deliberate action
+      following the first. The te-form implies a more direct and natural flow.
+    grammar_point: あとで (after・later)
+  - term: まえに (before)
+    meaning: Before (doing something), in front of
+    kind: antonym
+    nuance: This expresses an action or state that happens *before* another, serving as a temporal opposite
+      to the sequential te-form which describes actions happening *after* each other.
+    grammar_point: まえに (before・in front)
+  - term: ずに (without doing)
+    meaning: Without doing, not doing
+    kind: antonym
+    nuance: The sequential te-form means 'doing A, and then B'. In contrast, 「～ずに」 means 'doing B without
+      doing A', expressing the absence of the first action.
+    grammar_point: ずに・ないで・ことなく (without doing)
+post_false_friends_writeup: To distinguish these similar expressions, remember that the core function
+  of 「Verb[て]」 in this context is to connect actions in a direct, natural sequence. While 「てから」 and 「～た後で」
+  also indicate sequence, they emphasize the completion of the first action as a distinct event before
+  the next. Conditional forms like 「Verb[たら]」 focus on the hypothetical 'if' or 'when' aspect. 「Verb[ないで]」
+  or 「Verb[ずに]」 specifically mean 'without doing' something. 「Verb[たり] Verb[たり] する」 lists actions non-exhaustively
+  or randomly, not necessarily in strict sequence. 「Verb[ながら]」 indicates simultaneous actions. 「Verb[て]
+  (non-sequential)」 focuses on other uses of the te-form like cause, means, or manner. 「そして」 and 「それから」
+  connect more independent clauses or sentences in sequence, acting as conjunctions rather than internal
+  verb conjugations. Conversely, 「～まえに」 indicates actions that happen *before* the main action.
+examples:
+  - english: Every morning, I wash my face and eat breakfast.
+    japanese:
+      - 毎朝 顔 を {洗っ て} 朝ご飯 を 食べ ます。
+      - 毎朝 顔 を {洗っ て} 朝ご飯 を 食べる。
+      - 毎朝 顔 を {洗っ て} 朝ご飯 を 頂き ます。
+      - 毎朝 顔 を {洗っ て} 朝飯 食う。
+      - 毎朝 顔 を {洗っ て} 朝食 を 取り ます。
+      - 毎朝 顔 を {洗っ て} 朝食 を 摂り ます。
+    english_literally: Every morning, washing face, I eat breakfast.
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝 顔 を 洗い ます。{そして} 朝ご飯 を 食べ ます。
+        english: Every morning, I wash my face. And then, I eat breakfast.
+        hint: The original sentence implies a fluid, continuous daily habit, making the sequential te-form
+          a natural choice for connecting actions seamlessly rather than presenting them as disconnected
+          statements.
+      - competing_japanese:
+          - 毎朝 顔 を 洗っ {た 後 で} 朝ご飯 を 食べ ます。
+        english: Every morning, after washing my face, I eat breakfast.
+        hint: While grammatically correct, adding 「後で」 makes the sequence overly explicit and less natural
+          for a simple, routine action. The sequential te-form conveys the immediate succession more smoothly.
+      - competing_japanese:
+          - 毎朝 顔 を 洗っ {たら} 朝ご飯 を 食べ ます。
+        english: Every morning, if I wash my face, I eat breakfast.
+        hint: 「～たら」 typically indicates a conditional 'if/when', suggesting that eating breakfast is contingent
+          upon washing the face. The te-form simply states the sequence of routine actions without implying
+          conditionality.
+      - competing_japanese:
+          - 毎朝 顔 を 洗わ {ない で} 朝ご飯 を 食べ ます。
+        english: Every morning, I eat breakfast without washing my face.
+        hint: The original describes a routine where washing your face precedes breakfast. This alternative
+          means you eat breakfast *without* washing your face, reversing the logical order for the intended
+          sequential action.
+      - competing_japanese:
+          - 毎朝 顔 を 洗っ {たり} 朝ご飯 を 食べ {たり} し ます。
+        english: Every morning, I do things like washing my face and eating breakfast.
+        hint: This form suggests a non-exhaustive, often random, list of activities. We are describing
+          a fixed, chronological routine.
+      - competing_japanese:
+          - 毎朝 顔 を 洗い {ながら} 朝ご飯 を 食べ ます。
+        english: Every morning, I eat breakfast while washing my face.
+        hint: This implies both actions should happen simultaneously. We're looking for actions performed
+          one after the other in a routine.
+      - competing_japanese:
+          - 毎日 {忙しく て} 朝ご飯 を 食べ られ ませ ん。
+        english: Because I'm busy every day, I can't eat breakfast.
+        hint: This sentence uses the te-form 「忙しく て」 to express a reason or cause for not being able to
+          eat breakfast, not a sequence of actions like the original sentence.
+    scene: Someone describing their daily routine.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: When describing daily routines, using the te-form like 「洗って」 shows that a series of actions
+      occur in a natural flow. The polite ending 「食べます」 makes it suitable for general informational communication.
+  - english: I went to Kyoto and saw many temples.
+    japanese:
+      - 京都 に {行っ て} たくさん の お 寺 を 見 まし た。
+      - 京都 に {行っ て} たくさん の お 寺 を 見 た。
+      - 京都 に {行っ て} たくさん の お 寺 を 拝見 し まし た。
+      - 京都 に {行っ て} めっちゃ お 寺 見 た わ。
+      - 京都 に {行っ て} たくさん の お 寺 を 観光 し まし た。
+      - 京都 に {行っ て} いっぱい お 寺 を 見 た よ。
+    english_literally: Going to Kyoto, I saw many temples.
+    competing_grammar:
+      - competing_japanese:
+          - 京都 に 行っ た。{そして} たくさん の お 寺 を 見 た。
+        english: I went to Kyoto. And then, I saw many temples.
+        hint: The original sentence implies a single, continuous narrative flow, which the sequential
+          te-form achieves. Using 「そして」 would break the flow, making it sound like a list of separate
+          events rather than a seamless story.
+      - competing_japanese:
+          - 京都 に 行っ {た 後 で} たくさん の お 寺 を 見 まし た。
+        english: After going to Kyoto, I saw many temples.
+        hint: While 「後で」 makes the temporal separation more explicit, suggesting a more deliberate break
+          between actions. The sequential te-form implies a smoother, more continuous flow of travel and
+          sightseeing.
+      - competing_japanese:
+          - 京都 に 行っ {たら} たくさん の お 寺 を 見 まし た。
+        english: If/When I went to Kyoto, I saw many temples.
+        hint: 「～たら」 typically indicates a conditional 'if/when', suggesting that seeing temples is contingent
+          on going to Kyoto. The te-form describes what *you did* in order.
+      - competing_japanese:
+          - たくさん の お 寺 を 見 {ない で} 京都 に 行き まし た。
+        english: I went to Kyoto without seeing many temples.
+        hint: The original describes a sequence of actions you *performed* in Kyoto. This alternative
+          states that you went to the movie *without* performing the first action, highlighting the 'without
+          doing X' meaning of 「～ないで」.
+      - competing_japanese:
+          - 京都 に 行っ {たり} たくさん の お 寺 を 見 {たり} し まし た。
+        english: I did things like going to Kyoto and seeing many temples.
+        hint: This implies a non-exhaustive list of activities you did in Kyoto, not a direct sequence
+          of traveling to Kyoto and then seeing temples. We are looking for a clear, sequential narrative.
+      - competing_japanese:
+          - 京都 に 行き {ながら} たくさん の お 寺 を 見 まし た。
+        english: While going to Kyoto, I saw many temples.
+        hint: This implies that seeing temples happened *during* the act of going to Kyoto, not *after*
+          arriving. We're looking for a sequence of arrival followed by sightseeing.
+    scene: A friend sharing travel experiences with another friend.
+    register: casual
+    setting: storytelling
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    nuance: When a female speaker shares a casual travel experience with a friend, using the te-form 「行って」
+      naturally expresses the continuity of actions. The use of 「めっっちゃ」 (a casual intensifier) and the
+      sentence-final particle 「わ」 (often used by female speakers to express emotion or emphasis) adds
+      to the intimate, casual tone.
+  - english: Please press this button and proceed to the next screen.
+    japanese:
+      - この ボタン を {押し て} 次 の 画面 に 進ん で ください。
+      - この ボタン を {押し て} 次 の 画面 に 進ん で ね。
+      - この ボタン を {押し て} 次 の 画面 に 進み なさい。
+      - この ボタン を {押し て} 次 の 画面 に 進め。
+      - この ボタン を {押し て} 次 の 画面 へ 進ん で ください ませ。
+      - この ボタン を {押し て} 次 の 画面 に 進ん で ちょうだい。
+    english_literally: Pressing this button, please proceed to the next screen.
+    competing_grammar:
+      - competing_japanese:
+          - この ボタン を 押し て ください。{それ から} 次 の 画面 に 進ん で ください。
+        english: Please press this button. After that, please proceed to the next screen.
+        hint: The original sentence highlights a single, cohesive instruction, which the sequential te-form
+          achieves by seamlessly merging the two commands. Separating them with 「それから」 would make the
+          instruction sound more abrupt and less fluid.
+      - competing_japanese:
+          - この ボタン を 押し {た 後 で} 次 の 画面 に 進ん で ください。
+        english: After pressing this button, please proceed to the next screen.
+        hint: Using 「後で」 emphasizes that the button press must be fully completed before proceeding, which
+          is correct, but the te-form provides a more fluid, integrated instruction for a single, connected
+          process.
+      - competing_japanese:
+          - この ボタン を 押し {たら} 次 の 画面 に 進ん で ください。
+        english: If/When you press this button, please proceed to the next screen.
+        hint: 「～たら」 typically indicates a conditional 'if/when', suggesting that pressing the button is
+          a condition for proceeding. The te-form presents it as a single, direct instruction to be followed
+          sequentially.
+      - competing_japanese:
+          - この ボタン を 押さ {ない で} 次 の 画面 に 進ん で ください。
+        english: Please proceed to the next screen without pressing this button.
+        hint: The original is a clear sequential instruction. This alternative contradicts the instruction,
+          indicating that the second action should occur *without* the first, which is the opposite of
+          the intended sequence.
+      - competing_japanese:
+          - この ボタン を 押し {たり} 次 の 画面 に 進ん {だり} し て ください。
+        english: Please do things like pressing this button and proceeding to the next screen.
+        hint: This implies a general suggestion to do various tasks, not a specific, ordered instruction.
+          We are looking for a direct command to perform actions in a clear sequence.
+      - competing_japanese:
+          - この ボタン を 押し {ながら} 次 の 画面 に 進ん で ください。
+        english: Please proceed to the next screen while pressing this button.
+        hint: This implies both actions should happen at the exact same time. We're looking for a sequence
+          where the button press precedes the screen transition.
+    scene: Instructions on a touch screen kiosk.
+    register: formal
+    setting: instructional
+    conjugation: te-form (～て)
+    nuance: 「押して」 smoothly connects the action of pressing the button and proceeding to the next screen,
+      functioning as a clear, continuous instruction. Together with the polite request form 「進んで ください」,
+      it is suitable for formal instructional contexts like on an information board.
+  - english: I called my friend, and then we went to see a movie.
+    japanese:
+      - 友達 に 電話 を {かけ て} 映画 を 見 に 行き まし た。
+      - 友達 に 電話 を {かけ て} 映画 を 見 に 行っ た。
+      - 友達 に 電話 {し て} 映画 を 見 に 行っ た。
+      - 友達 に 電話 {し て} 映画 見 に 行こ う ぜ。
+      - 友達 に 電話 {かけ て} 映画 見 に 行っ た の。
+    english_literally: Calling my friend, we went to see a movie.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 に 電話 を かけ まし た。{そして} 映画 を 見 に 行き まし た。
+        english: I called my friend. And then, we went to see a movie.
+        hint: The original emphasizes a smooth, continuous flow of actions. Using 「そして」 breaks the flow
+          into two separate statements, making the connection less direct.
+      - competing_japanese:
+          - 友達 に 電話 を かけ {た 後 で} 映画 を 見 に 行き まし た。
+        english: After calling my friend, we went to see a movie.
+        hint: While 「後で」 correctly indicates sequence, the te-form conveys a more natural and immediate
+          succession of events, suitable for casual storytelling where actions flow seamlessly.
+      - competing_japanese:
+          - 友達 に 電話 を かけ {たら} 映画 を 見 に 行き まし た。
+        english: If/When I called my friend, we went to see a movie.
+        hint: 「～たら」 would imply a conditional 'if/when I called my friend,' which is less natural for
+          recounting a definite past sequence. The te-form directly states the chronological order of
+          events that occurred.
+      - competing_japanese:
+          - 友達 に 電話 を かけ {ない で} 映画 を 見 に 行き まし た。
+        english: I went to see a movie without calling my friend.
+        hint: The original sentence describes a sequence of actions you *performed* in Kyoto. This alternative
+          states that you went to the movie *without* performing the first action, which is a different
+          meaning from the sequential 「～て」 form.
+      - competing_japanese:
+          - 友達 に 電話 を かけ {たり} 映画 を 見 に 行っ {たり} し まし た。
+        english: I did things like calling my friend and going to see a movie.
+        hint: This implies a non-exhaustive list of activities, not a clear chronological sequence of
+          events you performed. We are looking for a clear order of actions.
+      - competing_japanese:
+          - 友達 に 電話 を かけ {ながら} 映画 を 見 に 行き まし た。
+        english: While calling my friend, I went to see a movie.
+        hint: This implies that calling the friend and going to the movie happened simultaneously. We're
+          looking for actions that happened one after the other.
+    scene: A person recounting their evening plans or what they did yesterday.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    nuance: When recounting past events, using the te-form 「かけ て」 naturally connects sequential actions,
+      creating a smooth narrative flow. The use of the sentence-final particle 「ぜ」 (as in 「行こ う ぜ」) is
+      typically used by male speakers to express a strong suggestion or invitation. The polite ending
+      「行き まし た」 maintains a respectful tone, suitable for general conversation.
+  - english: Read the book and tell me your thoughts.
+    japanese:
+      - その 本 を {読ん で} 感想 を 聞か せ て ください。
+      - その 本 を {読ん で} 感想 を 聞か せ て ね。
+      - その 本 を {読ん で} 感想 を 教え て ください。
+      - その 本 を {読ん で} 感想 を お 聞か せ 願え ます か。
+      - その 本 を {読ん で} 意見 聞か せ て くれ。
+      - その 本 を {読ん で}、ご 感想 を お 聞か せ ください。
+      - その 本 を {読ん で}、感想 聞か せ て。
+    english_literally: Thinking carefully, then please tell me the answer.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 を 読ん {で から} 感想 を 聞か せ て ください。
+        english: After reading that book, please tell me your thoughts.
+        hint: 「～てから」 emphasizes that the first action must be fully completed before the second. We're
+          looking for a simpler, more fluid sequential connection.
+      - competing_japanese:
+          - その 本 を 読ん {だ 後 で} 感想 を 聞か せ て ください。
+        english: After reading that book, please tell me your thoughts.
+        hint: 「～た後で」 explicitly states 'after doing,' implying a clearer, more distinct temporal separation
+          than the te-form alone. We're looking for a simpler, more fluid sequential connection.
+      - competing_japanese:
+          - その 本 を 読ん {だら} 感想 を 聞か せ て ください。
+        english: If/When you read that book, please tell me your thoughts.
+        hint: 「～たら」 is a conditional form that means 'if' or 'when' a condition is met, then something
+          happens. While it can imply sequence, the te-form used here directly presents the sequence,
+          not as a condition. We're looking for a clear sequential instruction.
+      - competing_japanese:
+          - その 本 を 読ま {ない で} 感想 を 聞か せ て ください。
+        english: Please tell me your thoughts without reading that book.
+        hint: The original requests you to read the book *first* before sharing your thoughts. This alternative
+          implies giving thoughts *without* the prerequisite reading, highlighting the 'without doing
+          X' meaning of 「～ないで」.
+      - competing_japanese:
+          - その 本 を 読ん {だり} 感想 を 聞か せ {たり} し て ください。
+        english: Please do things like reading that book and telling me your thoughts.
+        hint: This suggests a general list of actions to perform, rather than a clear, sequential instruction
+          where one action must precede the other. We're looking for a direct instruction for a sequential
+          task.
+      - competing_japanese:
+          - その 本 を 読み {ながら} 感想 を 聞か せ て ください。
+        english: Please tell me your thoughts while reading that book.
+        hint: This implies discussing thoughts during the reading process, not after completing the book.
+          We are looking for a sequence where the reading is finished before the discussion.
+    scene: A teacher asking a student for their opinion after completing a task.
+    register: semi-formal
+    setting: academic
+    conjugation: te-form (～て)
+    nuance: Using 「読んで」 smoothly connects the action of reading with the request for thoughts. This is
+      a polite request suitable for an academic setting.
+  - english: First, chop the vegetables, then fry them in a pan.
+    japanese:
+      - まず 野菜 を {切っ て}、フライパン で 炒め て ください。
+      - まず 野菜 を {切っ て}、フライパン で 炒め て ね。
+      - まず 野菜 を {切っ て}、フライパン で 炒めろ。
+      - まず 野菜 を {切っ て}、フライパン で 炒め なさい。
+      - まず 野菜 を {切っ て}、フライパン で 炒め て 頂戴。
+    english_literally: First, chopping vegetables, please fry them in a pan.
+    competing_grammar:
+      - competing_japanese:
+          - まず 野菜 を 切り ます。{それ から} フライパン で 炒め て ください。
+        english: First, chop the vegetables. After that, please fry them in a pan.
+        hint: The original sentence uses the te-form to smoothly connect two steps of an instruction,
+          implying a natural flow. Using 「それから」 would break this flow into two distinct, separate commands.
+      - competing_japanese:
+          - 野菜 を 切っ {た 後 で} フライパン で 炒め て ください。
+        english: After chopping the vegetables, please fry them in a pan.
+        hint: While correct, 「～た 後 で」 explicitly states 'after' and can imply a distinct pause or separation
+          between actions. The te-form suggests a more continuous and integrated sequence of steps.
+      - competing_japanese:
+          - 野菜 を 切っ {たら} フライパン で 炒め て ください。
+        english: If/When you chop the vegetables, please fry them in a pan.
+        hint: 「～たら」 is a conditional form, implying 'if/when' the first action is completed, then the
+          second should follow. The te-form directly presents the actions as a sequential instruction,
+          not a conditional one.
+    scene: Someone giving cooking instructions to a beginner.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: te-form (～て)
+    nuance: The te-form 「切って」 naturally connects the two actions as a single, flowing instruction, making
+      it clear that one action immediately precedes the other. The polite ending 「～てください」 ensures the
+      instruction is gentle and respectful, suitable for teaching.
+  - english: I went to the supermarket, bought groceries, and came home.
+    japanese:
+      - スーパー に {行っ て}、買い物 を {し て}、家 に 帰り まし た。
+      - スーパー に {行っ て}、買い物 を {し て}、家 に 帰っ た。
+      - スーパー に {行っ て}、買い物 を {し て}、帰宅 し まし た。
+      - スーパー に {行っ て}、買い物 を {し て}、家 戻っ た わ。
+      - スーパー に {行っ て}、買い物 を {し て}、自宅 に 戻り まし た。
+    english_literally: Going to the supermarket, doing shopping, I returned home.
+    competing_grammar:
+      - competing_japanese:
+          - スーパー に 行き まし た。{それ から} 買い物 を し て、家 に 帰り まし た。
+        english: I went to the supermarket. After that, I bought groceries, and came home.
+        hint: The original sentence uses the te-form to create a seamless narrative of sequential events.
+          Breaking it with 「それから」 would make the actions sound like distinct, disconnected events rather
+          than steps in one task.
+      - competing_japanese:
+          - スーパー に 行っ {た 後 で} 買い物 を し て、家 に 帰り まし た。
+        english: After going to the supermarket, I bought groceries, and came home.
+        hint: While grammatically correct, using 「～た後で」 emphasizes a distinct break between going to the
+          supermarket and the subsequent actions. The te-form creates a smoother narrative flow for a
+          series of connected actions.
+      - competing_japanese:
+          - スーパー に {行く 前 に} 買い物 を し て、家 に 帰り まし た。
+        english: 'This changes the sequence entirely. The original describes actions in a specific order:
+          going to the supermarket *first*, then buying groceries, then returning home.'
+        hint: 'This changes the sequence entirely. The original describes actions in a specific order:
+          going to the supermarket *first*, then buying groceries, then returning home.'
+      - competing_japanese:
+          - スーパー に 行か {ず に} 買い物 を し て、家 に 帰り まし た。
+        english: Without going to the supermarket, I bought groceries, and came home.
+        hint: The original explicitly states going to the supermarket as the first action. This alternative
+          implies that the groceries were bought without that initial trip, conveying a very different
+          meaning.
+    scene: A person recounting their daily errands to a family member.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「行って」 and 「し て」 links the actions smoothly, describing a typical sequence of errands
+      in a continuous flow. The sentence-final particle 「わ」 in 「家 戻っ た わ」 is commonly used by female speakers,
+      adding a softer, more reflective tone. The polite ending 「～ました」 is appropriate for a polite conversation
+      between family members, showing consideration.
+  - english: We'll go to the airport, check in, and then fly to Okinawa.
+    japanese:
+      - 空港 に {行っ て}、チェック イン {し て}、それ から 沖縄 に 飛び ます。
+      - 空港 に {行っ て}、チェック イン {し て}、それ から 沖縄 に 飛ぶ よ。
+      - 空港 に {行っ て}、チェック イン {し て}、それ から 沖縄 へ 向かい ます。
+      - 空港 に {行っ て}、チェック イン {し て}、そん で 沖縄 飛ぶ から。
+      - 空港 に {行っ て}、チェック イン {し て}、いざ 沖縄 へ。
+    english_literally: Going to the airport, checking in, then flying to Okinawa.
+    competing_grammar:
+      - competing_japanese:
+          - 空港 に 行き ます。{そして} チェック イン し て、それ から 沖縄 に 飛び ます。
+        english: We'll go to the airport. And then we'll check in, and then fly to Okinawa.
+        hint: The original sentence presents a cohesive series of future actions using the te-form, suggesting
+          a smooth, anticipated progression. Separating them with 「そして」 can make the plan sound more fragmented.
+      - competing_japanese:
+          - 空港 に 行っ {た 後 で} チェック イン し て、それ から 沖縄 に 飛び ます。
+        english: After going to the airport, checking in, then flying to Okinawa.
+        hint: Using 「～た後で」 explicitly separates the first action from the next, making the sequence sound
+          less integrated. The te-form provides a more cohesive description of a planned series of actions.
+      - competing_japanese:
+          - 空港 に 着い {たら}、チェック イン し て、それ から 沖縄 に 飛び ます。
+        english: Once we arrive at the airport, we'll check in, and then fly to Okinawa.
+        hint: This version emphasizes the condition of 'arriving at the airport' before the next steps.
+          The te-form in the original just describes the direct flow of actions without adding an explicit
+          conditional nuance.
+      - competing_japanese:
+          - 空港 に 行き {ながら} チェック イン を し ます。
+        english: We'll check in while going to the airport.
+        hint: The original sentence describes a sequence where checking in happens *after* arriving at
+          the airport. This alternative implies simultaneous actions, which is not the intended meaning
+          of this travel plan.
+    scene: Friends discussing their upcoming travel plans.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: 「行って」 and 「し て」 seamlessly describe the sequence of actions for travel plans, conveying a
+      sense of anticipation and flow. The casual tone is maintained by the choice of sentence-ending (e.g.,
+      「飛ぶ よ」), typical among friends discussing future events.
+  - english: Please think carefully, and then give me your answer.
+    japanese:
+      - よく {考え て}、それ から 答え を 教え て ください。
+      - よく {考え て}、それ から 答え を 教え て ね。
+      - よく {考え て}、それ から 答え を 伝え なさい。
+      - よく {考え て}、それ から 答え を 言え。
+      - よく {考え て}、それ から ご 回答 を お 願い いたし ます。
+      - よく {考え て}、そん で 答え 教え て。
+    english_literally: Thinking carefully, then please tell me the answer.
+    competing_grammar:
+      - competing_japanese:
+          - よく 考え て ください。{そして} 答え を 教え て ください。
+        english: Please think carefully. And then, please tell me the answer.
+        hint: The original sentence uses the te-form to create a single, continuous instruction. Separating
+          the commands with 「そして」 would make them sound more abrupt and less like a natural flow of a
+          single task.
+      - competing_japanese:
+          - よく 考え {た 後 で} 答え を 教え て ください。
+        english: After thinking carefully, please tell me your answer.
+        hint: While grammatically correct, 「～た 後 で」 emphasizes a distinct break between 'thinking' and
+          'telling.' The te-form suggests a more immediate and integrated sequence of mental process leading
+          to an action.
+      - competing_japanese:
+          - よく 考え {たら} 答え を 教え て ください。
+        english: If/When you think carefully, please tell me your answer.
+        hint: '「～たら」 makes the action of ''''telling'''' conditional on the first: ''''If/When you think
+          carefully, then tell me your answer.'''' The te-form, conversely, presents ''''thinking''''
+          as a direct, necessary preliminary step to ''''telling,'''' not a condition.'
+    scene: A manager instructing an employee on a task.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: The te-form 「考えて」 connects the prerequisite thinking action with the subsequent request for
+      an answer, implying a natural flow of a task. The phrase 「よく」 (carefully/well) emphasizes the thoroughness
+      expected. The use of 「～てください」 is a standard polite command, suitable for a superior to a subordinate.
+  - english: I researched the topic, wrote the report, and submitted it.
+    japanese:
+      - テーマ を {調べ て}、レポート を {書い て}、提出 し まし た。
+      - テーマ を {調べ て}、レポート を {書い て}、提出 し た。
+      - テーマ を {調べ て}、レポート を {書い て}、提出 いたし まし た。
+      - テーマ {調べ て}、レポート {書い て}、出し た よ。
+      - 議題 を {調査 し て}、報告 書 を {作成 し て}、提出 し まし た。
+    english_literally: Researching the topic, writing the report, I submitted it.
+    competing_grammar:
+      - competing_japanese:
+          - テーマ を 調べ まし た。{それ から} レポート を 書き、提出 し まし た。
+        english: I researched the topic. Then I wrote the report, and submitted it.
+        hint: The original sentence uses the te-form to smoothly link a series of actions as a continuous
+          process. Separating them with 「それから」 would make them sound like distinct, disconnected events
+          rather than steps in one task.
+      - competing_japanese:
+          - テーマ を 調べ {た 後 で} レポート を 書き、提出 し まし た。
+        english: After researching the topic, I wrote the report, and submitted it.
+        hint: While 「～た 後 で」 accurately indicates sequence, the te-form expresses a more direct and natural
+          progression of actions, suggesting that one immediately leads to the next without a significant
+          temporal gap.
+      - competing_japanese:
+          - テーマ を 調べ {たら} レポート を 書き、提出 し まし た。
+        english: If/When I researched the topic, I wrote the report, and submitted it.
+        hint: 「～たら」 suggests a conditional relationship. The original sentence is a statement of completed
+          actions in a specific sequence, not a hypothetical scenario or condition.
+    scene: A university student explaining their recent assignment completion to a classmate.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: te-form (～て)
+    nuance: The te-forms 「調べて」 and 「書いて」 efficiently connect the steps of the academic process in a clear,
+      logical sequence. The polite 「～ました」 ending is common among university students when describing their
+      work to peers in a general setting, maintaining a respectful but not overly formal tone.
+  - english: I woke up and brushed my teeth.
+    japanese:
+      - 起き {て} 歯 を 磨き まし た。
+      - 起き {て} 歯 を 磨い た。
+    english_literally: Waking up, I brushed my teeth.
+    competing_grammar:
+      - competing_japanese:
+          - 起き {た 後 で} 歯 を 磨き まし た。
+        english: After waking up, I brushed my teeth.
+        hint: 「～た後で」 implies a more distinct separation between actions. The te-form emphasizes a smooth,
+          natural flow of actions.
+      - competing_japanese:
+          - 起き {たら} 歯 を 磨き まし た。
+        english: If/When I woke up, I brushed my teeth.
+        hint: 「～たら」 suggests a condition. The te-form describes a direct sequence of events that actually
+          happened.
+      - competing_japanese:
+          - 起き {ない で} 歯 を 磨き まし た。
+        english: I brushed my teeth without waking up.
+        hint: This contradicts the logic. The te-form states a sequence, not an absence of the first action.
+      - competing_japanese:
+          - 起き {ながら} 歯 を 磨き まし た。
+        english: While waking up, I brushed my teeth.
+        hint: This implies simultaneous action, which is less natural for this sequence.
+    scene: Someone talking about their morning routine.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+  - english: I closed the door and locked it.
+    japanese:
+      - ドア を {閉め て} 鍵 を かけ まし た。
+      - ドア を {閉め て} 鍵 を かけ た。
+    english_literally: Closing the door, I locked it.
+    competing_grammar:
+      - competing_japanese:
+          - ドア を 閉め {た 後 で} 鍵 を かけ まし た。
+        english: After closing the door, I locked it.
+        hint: 「～た後で」 emphasizes a clearer separation between actions. The te-form conveys a tighter, more
+          immediate sequence.
+      - competing_japanese:
+          - ドア を 閉め {たら} 鍵 を かけ まし た。
+        english: If/When I closed the door, I locked it.
+        hint: 「～たら」 suggests a conditional. The te-form describes a direct sequence of events.
+      - competing_japanese:
+          - ドア を 閉め {ない で} 鍵 を かけ まし た。
+        english: I locked the door without closing it.
+        hint: This changes the meaning to an impossible or illogical action, as it implies skipping the
+          first necessary step.
+      - competing_japanese:
+          - ドア を 閉め {ながら} 鍵 を かけ まし た。
+        english: While closing the door, I locked it.
+        hint: This implies simultaneous action. The te-form describes one action immediately followed
+          by the other.
+    scene: Someone describing securing their house before leaving.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+post_example_writeup: The examples illustrate how the Verb[て] form is used to connect actions in a clear,
+  sequential manner. Notice how the nuance of the overall sentence, including its register and setting,
+  is often determined by the final verb or phrase in the sentence, rather than the te-form itself. This
+  highlights the te-form's versatility as a connector that adapts to various communicative contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verb-て-b

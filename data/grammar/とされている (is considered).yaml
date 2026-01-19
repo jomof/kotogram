@@ -1,0 +1,380 @@
+grammar_point: とされている (is considered)
+learn_before:
+  - おきに (at intervals of)
+  - とする (to assume・to decide)
+meaning: To be considered, To be deemed, Be regarded as, Be accepted as, To be said, To be accredited
+  with
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: とされている
+    rarity: common
+    meaning: to be considered as
+  - conjugation-type: non-past polite (～ます)
+    form: とされています
+    rarity: common
+    meaning: to be considered as (polite)
+  - conjugation-type: negative plain (～ない)
+    form: とされていない
+    rarity: common
+    meaning: not considered as
+  - conjugation-type: negative non-past polite (～ません)
+    form: とされていません
+    rarity: common
+    meaning: not considered as (polite)
+  - conjugation-type: past plain (～た)
+    form: とされていた
+    rarity: common
+    meaning: was considered as
+  - conjugation-type: past polite (～ました)
+    form: とされていました
+    rarity: common
+    meaning: was considered as (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: とされていなかった
+    rarity: common
+    meaning: was not considered as
+  - conjugation-type: negative past polite (～ませんでした)
+    form: とされていませんでした
+    rarity: common
+    meaning: was not considered as (polite)
+  - conjugation-type: te-form (～て)
+    form: とされていて
+    rarity: less common
+    meaning: being considered as (te-form)
+  - conjugation-type: conditional (～ば)
+    form: とされていれば
+    rarity: uncommon
+    meaning: if considered as
+  - conjugation-type: conditional (～たら)
+    form: とされていたら
+    rarity: uncommon
+    meaning: if it was considered as
+pronunciation:
+  katakana: トサレテイル
+  romaji: to sarete iru
+formation:
+  Noun + だ + とされている: Expresses a widely accepted belief or understanding about something.
+  Verb (plain form) + とされている: Indicates that something is considered to be the case.
+  Adjective (plain form) + とされている: Indicates that something is considered to be the case (for adjectives).
+jlpt: N3
+etymology: This grammar point is derived from 「する」 (to do), in its passive form 「される」, combined with the
+  particle 「と」. 「と」 here indicates that something is *being said*, *thought*, or *considered* in a particular
+  way. Thus, 「とされている」 literally translates to "is being done as," but carries the nuance of something
+  being widely accepted or considered. The continuous aspect 「ている」 indicates that this state of being
+  considered is ongoing or generally true. The etymological roots emphasize a collective action of 'regarding'
+  or 'treating as', which evolved into the sense of something being generally accepted or reputed.
+writeup: |-
+  「とされている」 expresses that something is widely believed, regarded, or considered to be a certain way. It's similar to saying "it is said that..." or "it is considered that...". This grammar point is useful for describing generally accepted facts, beliefs, or common knowledge, emphasizing that a broad consensus exists rather than a personal opinion.
+
+  It is often found in academic writing, news reports, and formal speech, lending an objective or authoritative tone to the statement. While often used in formal contexts, it can also appear in casual conversation when explaining something as common knowledge.
+false_friends:
+  - term: 思われる (to seem・impersonal)
+    meaning: to seem; to appear; to be thought; to be considered
+    kind: similar expression
+    nuance: Unlike 「とされている」 which conveys a widely accepted belief or consensus, 「思われる」 expresses a personal
+      opinion or speculation, implying uncertainty or that it's merely the speaker's conjecture. 「思われる」
+      suggests a subjective feeling or impression.
+    grammar_point: 思われる (to seem・impersonal)
+  - term: ということだ (it means that)
+    meaning: It means that; It is said that; I heard that
+    kind: often confused with
+    nuance: 「ということだ」 indicates information heard from someone else, often a specific source, or a summary
+      of something. 「とされている」, on the other hand, expresses something generally accepted or regarded by
+      many people, without necessarily pointing to a specific source of information.
+    grammar_point: ということだ (it means that)
+  - term: ことになっている (expected to; scheduled to)
+    meaning: To be expected to, to be scheduled to
+    kind: similar expression
+    nuance: 「ことになっている」 indicates a general rule, a decision, or a convention that has been established,
+      often implying an obligation or expectation. It's about what *is supposed to happen* or *is established
+      practice*. 「とされている」, on the other hand, describes what is *widely believed or regarded as true*,
+      a consensus rather than a rule or schedule.
+    grammar_point: ことになっている (expected to; scheduled to)
+  - term: と言える (it can be said)
+    meaning: Would or could say that...・Can probably say that...・Fair to say that...
+    kind: similar expression
+    nuance: 「と言える」 implies that a statement is justifiable or can reasonably be concluded. It's often
+      used to present a speaker's reasoned conclusion or a generally accepted interpretation. While 「とされている」
+      also deals with general acceptance, it emphasizes a more established, impersonal consideration or
+      reputation, often without the explicit reasoning process implied by 「と言える」. 「と言える」 has a slightly
+      more subjective or argumentative tone, whereas 「とされている」 is more descriptive of an existing consensus.
+    grammar_point: と言える (it can be said)
+post_false_friends_writeup: Be mindful of the subtle differences between 「とされている」, 「思われる」, 「ということだ」, 「ことになっている」,
+  and 「と言える」. 「とされている」 implies a widely held belief or general consensus. 「思われる」 expresses personal speculation
+  or a subjective impression. 「ということだ」 indicates information from a specific source or a summary of a
+  situation. 「ことになっている」 describes established rules or expectations. 「と言える」 conveys a justifiable conclusion
+  or reasonable interpretation.
+examples:
+  - english: Cats are considered to be able to see well even at night.
+    japanese:
+      - 猫 は 夜 で も よく {見える と さ れ て いる}。
+      - 猫 は 夜 で も よく {見える と さ れ て い ます}。
+    english_literally: As for me, even at night, they are considered to be able to see well.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は 夜 で も よく {見える}。
+        english: Cats can see well even at night.
+        hint: This states it as a direct fact. We're looking for a phrase that implies it's a widely accepted
+          belief or common knowledge.
+    scene: You are talking to a friend about the unique abilities of animals.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: Using 「とされている」 in casual conversation, as a female speaker, suggests sharing a widely accepted
+      piece of information or common knowledge rather than stating a personal observation. The phrase
+      「見えるとされている」 implies that this fact about cats is generally understood or believed by many, not just
+      a claim by the speaker.
+    etymology: The concept of cats' night vision being common knowledge is reflected in the use of 「とされている」,
+      which implies a shared understanding rather than a newly presented fact. The consensus around this
+      belief has been 'established' over time, aligning with the nuance of 'to be regarded as'.
+  - english: In this region, the summer festival is considered an important event.
+    japanese:
+      - この 地域 で は、夏祭り が 大切 な 行事 {だ と さ れ て いる}。
+      - この 地域 で は、夏祭り が 大切 な 行事 {だ と さ れ て い ます}。
+    english_literally: In this region, the summer festival is considered to be an important event.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 で は、夏祭り が 大切 な 行事 {だ}。
+        english: This presents it as a definite fact. We're looking for a phrase that expresses that it's
+          widely regarded or considered important.
+        hint: This presents it as a definite fact. We're looking for a phrase that expresses that it's
+          widely regarded or considered important.
+      - competing_japanese:
+          - この 地域 で は、夏祭り が 大切 な 行事 {だ と 思う}。
+        english: In this region, I think the summer festival is an important event.
+        hint: This expresses the speaker's personal opinion. We're looking for a phrase that suggests
+          a collective belief or acceptance.
+    scene: You are explaining a local custom to a visitor.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: A male speaker explaining a local custom in a semi-formal context using 「大切だとされている」 emphasizes
+      that the summer festival's importance is a widely held, accepted belief within the community, not
+      just a personal opinion. It suggests an established understanding.
+    etymology: The phrase 「大切だとされている」 indicates a traditional or established importance, aligning with
+      the etymological nuance of 「とされている」 as something 'done as' or 'regarded as' by many. This collective
+      'regarding' is what makes it a deeply ingrained local understanding.
+  - english: That rumor is not yet considered to be true.
+    japanese:
+      - その うわさ は、まだ 本当 {だ と さ れ て い ませ ん}。
+      - その うわさ は、まだ 本当 {だ と さ れ て い ない}。
+    english_literally: As for that rumor, it is not yet considered to be true.
+    competing_grammar:
+      - competing_japanese:
+          - その うわさ は、まだ 本当 {で は ない}。
+        english: This is a direct statement that the rumor is not true.
+        hint: This is a direct statement that the rumor is not true. We're looking for a phrase that indicates
+          it's *considered* or *accepted* as true by a general consensus or official confirmation.
+      - competing_japanese:
+          - その うわさ は、まだ 本当 {か どう か} 分かり ませ ん。
+        english: This expresses uncertainty based on personal knowledge.
+        hint: This expresses uncertainty based on personal knowledge. We're looking for a phrase that
+          implies a lack of general acceptance or official confirmation.
+    scene: You are discussing unconfirmed information with a colleague.
+    register: semi-formal
+    setting: serious
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    listener_gender: group
+    nuance: When a female speaker uses 「本当だとされていません」 in a semi-formal setting with colleagues, it conveys
+      that the rumor lacks widespread acceptance or official confirmation, reflecting a cautious, objective
+      stance regarding its veracity. It avoids personal judgment.
+    etymology: The negative form 「とされていません」 suggests a lack of common consensus or official recognition,
+      which stems from the original meaning of 「とされている」 as something 'done as' or 'regarded as' by many.
+      The absence of this collective 'doing' or 'regarding' means it's not accepted as truth.
+  - english: In the past, the Earth was considered to be flat.
+    japanese:
+      - 昔 は、地球 が 平ら {だ と さ れ て い た}。
+      - 昔 は、地球 が 平ら {だ と さ れ て い まし た}。
+    english_literally: In the past, the Earth was considered to be flat.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 は、地球 が 平ら {だっ た}。
+        english: This states it as a past fact.
+        hint: This states it as a past fact. We're looking for a phrase that suggests it was a *belief*
+          or *understanding* in the past, not necessarily a factual truth.
+      - competing_japanese:
+          - 昔 は、地球 が 平ら {だ と いう こと} が 分かっ て い た。
+        english: This implies a past understanding or finding.
+        hint: This implies a past understanding or finding. We're looking for a phrase that describes
+          a widely held belief or common knowledge, not just a known fact.
+    scene: You are giving a history lecture on ancient beliefs.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+    nuance: In an academic setting, a male lecturer using 「平らだとされていた」 clearly indicates that this was
+      a widely held belief or common understanding in the past, without necessarily implying it was factually
+      correct. The plain past form suits historical accounts.
+    etymology: The past tense 「とされていた」 highlights how a concept was 'considered' or 'regarded' in a historical
+      context, emphasizing its status as a past collective understanding rather than a current scientific
+      truth. The past 'being done as' refers to how people collectively treated the Earth's shape in that
+      era.
+  - english: For health, sufficient sleep is considered important.
+    japanese:
+      - 健康 の ため に、十分 な 睡眠 が 大切 {だ と さ れ て い ます}。
+      - 健康 の ため に、十分 な 睡眠 が 大切 {だ と さ れ て いる}。
+    english_literally: For the sake of health, sufficient sleep is considered important.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 の ため に、十分 な 睡眠 が 大切 {です}。
+        english: This is a direct statement of importance.
+        hint: This is a direct statement of importance. We're looking for a phrase that indicates it's
+          *widely accepted* or *considered* important by a general consensus.
+      - competing_japanese:
+          - 健康 の ため に、十分 な 睡眠 が 大切 {だ と 思い ます}。
+        english: This expresses the speaker's personal opinion.
+        hint: This expresses the speaker's personal opinion. We're looking for a phrase that conveys a
+          generally accepted truth or common wisdom.
+    scene: You are giving a presentation on healthy lifestyle habits.
+    register: formal
+    setting: instructional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female speaker using 「大切だとされています」 in a formal, instructional context conveys that sufficient
+      sleep's importance is a generally accepted fact or common wisdom regarding health, rather than a
+      personal recommendation. The polite form is suitable for presentations.
+    etymology: The use of 「大切だとされています」 to present common knowledge about health reflects the grammatical
+      point's core function of conveying something that is widely 'considered' or 'accepted' as truth,
+      stemming from collective human understanding. This implies a historical and ongoing collective 'treatment'
+      of sleep as important.
+  - english: This old building is not considered safe.
+    japanese:
+      - この 古い 建物 は、安全 {だ と さ れ て い ない}。
+      - この 古い 建物 は、安全 {だ と さ れ て い ませ ん}。
+    english_literally: This old building, as for it, is not considered safe.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 建物 は、安全 {で は ない}。
+        english: This is a direct statement that the building is unsafe.
+        hint: This is a direct statement that the building is unsafe. We're looking for a phrase that
+          indicates it's *not deemed* or *not accepted* as safe by a general or official assessment.
+      - competing_japanese:
+          - この 古い 建物 は、安全 だ {と は 思わ れ ない}。
+        english: This expresses a lack of belief or perception of unsafety.
+        hint: This expresses a lack of belief or perception of unsafety. We're looking for a phrase that
+          suggests a lack of general or official consensus on its safety.
+    scene: You are explaining why a certain building is not allowed to be entered.
+    register: casual
+    setting: cautious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: When a male speaker uses 「安全だとされていない」 in a casual, cautious tone, it suggests that the building
+      is not widely or officially deemed safe, implying a consensus among those who have assessed it,
+      rather than just a personal opinion.
+    etymology: The negative plain form 「安全だとされていない」 emphasizes that the building 'has not been regarded'
+      or 'is not accepted as' safe, highlighting the absence of a collective agreement or judgment on
+      its safety, consistent with the grammatical point's origin in expressing collective perception.
+      The current state is that it is not 'treated as' safe.
+  - english: If he had been considered the culprit, what would have happened?
+    japanese:
+      - 彼 が 犯人 {だ と さ れ て い たら}、どう なっ て い た だろう？
+      - 彼 が 犯人 {だ と さ れ て い まし たら}、どう なっ て い た でしょ う か？
+    english_literally: If he had been considered the culprit, what would have happened, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 犯人 {だっ たら}、どう なっ て い た だろう？
+        english: This sentence directly assumes he was the culprit.
+        hint: This sentence directly assumes he was the culprit. We're looking for a phrase that suggests
+          a hypothetical situation where someone was widely perceived or deemed as the culprit.
+    scene: You are speculating with a friend about the outcome of a past case.
+    register: casual
+    setting: interrogative
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker using 「犯人だとされていたら」 in a casual, speculative context implies a hypothetical
+      scenario where there was a widespread perception or judgment that he was the culprit. This is more
+      nuanced than a simple hypothetical assumption of guilt, emphasizing the 'being regarded as' aspect.
+    etymology: The conditional form 「とされていたら」 explores a hypothetical situation based on what was 'considered'
+      or 'regarded' to be the case, reflecting the underlying meaning of 'being done as' or 'accepted
+      as' and its potential outcomes. The focus is on the hypothetical 'treatment' of him as the culprit.
+  - english: If that method is considered the best, we will use this.
+    japanese:
+      - その 方法 が 最善 {だ と さ れ て いれ ば}、これ を 使い ます。
+      - その 方法 が 最善 {だ と さ れ て いれ ば}、これ を 使う。
+    english_literally: If that method is considered the best, we will use this.
+    competing_grammar:
+      - competing_japanese:
+          - その 方法 が 最善 {で あれ ば}、これ を 使い ます。
+        english: This sentence states a simple conditional about the method's quality.
+        hint: This sentence states a simple conditional about the method's quality. We're looking for
+          a phrase that implies a method is widely regarded or accepted as the best.
+    scene: You are in a business meeting, discussing strategy.
+    register: semi-formal
+    setting: negotiating
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: group
+    nuance: In a business negotiation, a male speaker using 「最善だとされていれば」 indicates that the decision to
+      use the method is contingent on it being widely accepted or generally deemed as the best, not just
+      a personal assessment. The conditional 「～ば」 makes it a strategic consideration.
+    etymology: The phrase 「最善だとされていれば」 uses the conditional form of 「とされている」 to mean 'if it is widely
+      regarded as the best', emphasizing that a collective opinion or consensus would drive the decision,
+      stemming from the grammar point's core meaning of general acceptance. It means 'if it is 'treated
+      as' the best by others'.
+  - english: That plan was considered to be successful, but the outcome was different.
+    japanese:
+      - その 計画 は 成功 する {と さ れ て い まし た} が、結果 は 違い まし た。
+      - その 計画 は 成功 する {と さ れ て い た} が、結果 は 違っ た。
+    english_literally: That plan was considered to succeed, but the result was different.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 成功 {し まし た}。
+        english: This sentence states that the plan was successful.
+        hint: This sentence states that the plan was successful. We're looking for a phrase that expresses
+          a past expectation or widespread belief about its success, contrasted with a different outcome.
+    scene: You are reflecting on a past project's discrepancy between expectation and reality.
+    register: semi-formal
+    setting: reflective
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: male
+    nuance: When a female speaker reflects on a past project, using 「成功するとされていました」 conveys that the plan
+      was widely expected or generally believed to succeed, setting up a contrast with the actual, differing
+      outcome. This nuance of collective expectation is key.
+    etymology: The polite past tense 「とされていました」 implies that a plan was 'regarded as' or 'expected to
+      be' successful by many at a certain point in the past. This reflects the nuance of general acceptance
+      or belief, which is then contrasted with a different reality. The plan was 'treated as' successful
+      prior to its completion.
+  - english: This herb is considered effective for headaches.
+    japanese:
+      - この 薬草 は 頭痛 に {効く と さ れ て いる}。
+      - この 薬草 は 頭痛 に {効く と さ れ て い ます}。
+    english_literally: This herb, as for it, is considered to be effective for headaches.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬草 は 頭痛 に {効く}。
+        english: This states it as a direct fact.
+        hint: This states it as a direct fact. We're looking for a phrase that implies it's a widely accepted
+          belief or common knowledge.
+      - competing_japanese:
+          - この 薬草 は 頭痛 に {効く と 思う}。
+        english: This expresses the speaker's personal opinion.
+        hint: This expresses the speaker's personal opinion. We're looking for a phrase that suggests
+          a collective belief or acceptance.
+    scene: A doctor is explaining traditional medicine to a patient.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male doctor using 「効くとされている」 in a semi-formal, informative context conveys that the herb's
+      effectiveness for headaches is a widely accepted traditional belief or common knowledge, without
+      necessarily claiming it as a proven scientific fact.
+    etymology: The use of 「効くとされている」 in this context highlights how the efficacy of traditional remedies
+      is often conveyed as established collective knowledge, rather than empirically proven scientific
+      fact, reflecting the core meaning of 'being widely regarded'. The herb has been 'treated as' effective
+      for a long time.
+post_example_writeup: When using 「とされている」, remember that you're conveying a widely held belief, not necessarily
+  a proven fact. It's a useful phrase for sharing common knowledge or stating generally accepted ideas
+  without claiming absolute truth.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とされている

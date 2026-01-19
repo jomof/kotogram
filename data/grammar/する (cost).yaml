@@ -1,0 +1,375 @@
+grammar_point: する (cost)
+learn_before:
+  - する (to do・make)
+meaning: To cost (money); to take (time)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: する
+    rarity: common
+    meaning: to cost / to take (time)
+  - conjugation-type: non-past polite (～ます)
+    form: します
+    rarity: common
+    meaning: to cost / to take (time)
+  - conjugation-type: negative plain (～ない)
+    form: しない
+    rarity: common
+    meaning: does not cost / does not take (time)
+  - conjugation-type: negative non-past polite (～ません)
+    form: しません
+    rarity: common
+    meaning: does not cost / does not take (time)
+  - conjugation-type: past plain (～た)
+    form: した
+    rarity: common
+    meaning: cost / took (time)
+  - conjugation-type: past polite (～ました)
+    form: しました
+    rarity: common
+    meaning: cost / took (time)
+  - conjugation-type: negative past plain (～なかった)
+    form: しなかった
+    rarity: common
+    meaning: did not cost / did not take (time)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: しませんでした
+    rarity: common
+    meaning: did not cost / did not take (time)
+  - conjugation-type: te-form (～て)
+    form: して
+    rarity: common
+    meaning: costing / taking (time), and...
+  - conjugation-type: conditional (～ば)
+    form: すれば
+    rarity: less common
+    meaning: if it costs / if it takes (time)
+  - conjugation-type: conditional (～たら)
+    form: したら
+    rarity: common
+    meaning: if it costs / if it takes (time)
+  - conjugation-type: volitional (～よう)
+    form: しよう
+    rarity: less common
+    meaning: it will likely cost / it will likely take (time) (estimation)
+  - conjugation-type: volitional polite (～ましょう)
+    form: しましょう
+    rarity: uncommon
+    meaning: it will likely cost / it will likely take (time) (polite estimation)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: しろ
+    rarity: very rare
+    meaning: cost! / take! (unnatural for this usage)
+  - conjugation-type: imperative polite (～なさい)
+    form: しなさい
+    rarity: very rare
+    meaning: please cost! / please take! (unnatural for this usage)
+pronunciation:
+  katakana: スル
+  romaji: suru
+formation:
+  '[Object] + は/が + [Amount] + {する}': Indicates the cost of something.
+  '[Time Period] + {する}': Indicates the duration of time.
+jlpt: N5
+etymology: The verb 「する」 originally meant "to do" or "to make." Over time, it evolved to also express
+  the concept of something costing a certain amount, essentially "making" or "equaling" that value. This
+  usage likely stemmed from the idea of a transaction, where something "does" or "makes" a particular
+  price. Its usage for time might similarly derive from an action "making" a certain duration pass.
+writeup: |-
+  The verb 「する」 is highly versatile in Japanese, and one of its lesser-known usages is to express either the cost of something or the duration of a period. This is distinct from its more common meaning of "to do."
+
+  **1. Expressing Cost (費用)**
+  When used to express cost, 「する」 follows the pattern: **[Object] + は/が + [Amount] + {する}**. This directly states the price of an item or service.
+
+  *   Example: この カメラ は 五万円 {する}。(This camera costs 50,000 yen.)
+
+  This usage is common in various settings, from casual conversations to professional inquiries about pricing.
+
+  **2. Expressing Time Duration (期間)**
+  When 「する」 expresses time duration, it indicates that a certain period of time has passed or will pass. This usage is typically found in subordinate clauses, describing a period leading up to another event or condition.
+
+  *   Example: 後 一年 {したら} 大学 を 出る。(After one more year, I will graduate from college.)
+
+  It is grammatically unusual for this sense of 「する」 to appear in the main clause independently; it usually modifies another action or state that occurs after the specified duration.
+
+  **Important Considerations:**
+  *   The context will always clarify whether 「する」 refers to "to do," "to cost," or "to take (time)." For cost, look for monetary values. For time, look for time-related nouns.
+  *   While 「する」 can be conjugated like a regular verb in this sense (e.g., します, した, しない), imperative forms like 「しろ」 or 「しなさい」 are extremely unnatural and virtually never used for this specific meaning, as you cannot command something to cost a certain amount or a specific duration to pass.
+false_friends:
+  - term: できる
+    meaning: to be able to do; to be completed/made
+    kind: often confused with
+    nuance: While 「できる」 is the potential form of 「する」 (to do), it does not typically convey the meaning
+      of 'costing' or 'taking (time)' in the same way as this specific usage of 「する」. Instead, it means
+      something 'can be done' or 'comes into existence'.
+    grammar_point: <suggest>:できる (to be able to)
+  - term: かかる
+    meaning: to take (time or money); to hang; to be covered by
+    kind: similar expression
+    nuance: While 「かかる」 also means "to take (time or money)" but implies the *expenditure* or *incurring*
+      of that time or money. In contrast, 「する」 (cost/time) describes the inherent *value* or *duration*
+      itself, without emphasizing the process of expenditure. For example, a trip might 『かかる』 a week and
+      『する』 a high price.
+    grammar_point: <suggest>:かかる (to take time or money)
+  - term: なる
+    meaning: to become
+    kind: often confused with
+    nuance: While 「なる」 indicates a change of state (e.g., 'it becomes 1,000 yen'), 「する」 for cost directly
+      states the price something takes on. 「なる」 implies a transformation, while 「する」 implies an intrinsic
+      or assigned value.
+    grammar_point: <suggest>:なる (to become)
+post_false_friends_writeup: The distinction between 「する」 (cost/time), 「できる」, and 「かかる」 is important. 「できる」
+  primarily means 'to be able to do' or 'to be completed,' and should not be confused with 「する」 in the
+  sense of cost. 「かかる」, while also related to time and money, often emphasizes the *process* of expenditure
+  or the *effort* involved, whereas 「する」 focuses on the inherent *value* or *duration* of something. When
+  discussing cost, 「する」 presents the price as a characteristic, while 「かかる」 describes the action of the
+  cost being incurred.
+examples:
+  - english: This book costs 1,000 yen.
+    japanese:
+      - この 本 は 千 円 {する}。
+      - この 本 は 千 円 {し ます}。
+      - この 本、千 円 {する} よ。
+    english_literally: This book, as for, 1,000 yen makes.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 千 円 {かかり ます}。
+          - この 本 は 千 円 {かかる}。
+        english: This book will incur a cost of 1,000 yen.
+        hint: While `かかる` implies the *incurring* or *expenditure* of cost, `する` here states the inherent
+          *value* or *price* of the item. We're looking for a direct statement of price.
+      - competing_japanese:
+          - この 本 は 千 円 {です}。
+          - この 本 は 千 円 {だ}。
+        english: This book is 1,000 yen.
+        hint: While `です` simply states a fact, `する` in this context emphasizes the act of 'making' or
+          'equaling' that price, focusing on the transaction or assigned value. We're looking for a verb
+          that indicates the cost it takes on.
+    scene: A young student pointing out the price of a textbook to a friend.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: How much does this game cost?
+    japanese:
+      - この ゲーム は いくら {し ます} か。
+      - この ゲーム は いくら {する} の？
+      - この ゲーム、いくら {する}？
+    english_literally: This game, as for, how much makes question?
+    competing_grammar:
+      - competing_japanese:
+          - この ゲーム は いくら {かかり ます} か。
+          - この ゲーム は いくら {かかる} の？
+        english: How much will this game incur?
+        hint: The question is about the direct cost of the item, not about the resources or effort expended
+          to obtain it. `かかる` is about the process of incurring, while `する` is about the price itself.
+          We're looking for a direct inquiry about the cost.
+      - competing_japanese:
+          - この ゲーム は いくら {です か}。
+          - この ゲーム は いくら {な の}。
+        english: How much is this game?
+        hint: While `ですか` is a simple factual inquiry, `しますか` implies a more active question about the
+          pricing or transaction. We're looking for a verb that indicates what price the game 'makes'.
+    scene: A child asking their parent about the price of a video game in a store.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+    speaker_age: younger
+  - english: The new TV cost 200,000 yen.
+    japanese:
+      - 新しい テレビ は 二十 万 円 {し た}。
+      - 新しい テレビ は 二十 万 円 {し まし た}。
+      - 新しい テレビ、二十 万 円 {し た} ぜ！
+    english_literally: New TV, as for, 200,000 yen made.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい テレビ は 二十 万 円 {かかり まし た}。
+          - 新しい テレビ は 二十 万 円 {かかっ た}。
+        english: The new TV incurred a cost of 200,000 yen.
+        hint: The context is simply stating the final price, not emphasizing the process or effort of
+          incurring the cost. `する` is more direct for stating the price. We're looking for a verb that
+          indicates the price it took on.
+    scene: A man telling his friend about a recent purchase.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: male
+  - english: That watch doesn't cost that much.
+    japanese:
+      - その 時計 は そんな に 高く {し ませ ん} よ。
+      - その 時計 は そんな に 高く {し ない} よ。
+      - その 時計、そんな に 高く {し ない} って。
+    english_literally: That watch, as for, that much expensive does not make, you know.
+    competing_grammar:
+      - competing_japanese:
+          - その 時計 は そんな に 高く {あり ませ ん} よ。
+          - その 時計 は そんな に 高く {ない} よ。
+        english: That watch isn't that expensive.
+        hint: While `ありません` states a fact, `しません` directly negates the 'costing' action, emphasizing that
+          the price isn't as high as perhaps perceived. We're looking for a verb that denies the watch
+          'making' that high a price.
+    scene: A salesperson reassuring a customer about the price of a watch.
+    register: teineigo (polite)
+    setting: persuasive
+    conjugation: negative non-past polite (～ません)
+  - english: If you practice a little more, you'll be able to play well.
+    japanese:
+      - もう 少し 練習 {すれ ば} 上手 に 弾ける よう に なる。
+      - もう 少し 練習 {すれ ば} 上手 に 弾ける よう に なり ます。
+    english_literally: A little more practice if does, skillfully can play become.
+    competing_grammar:
+      - competing_japanese:
+          - もう 少し 練習 {する と} 上手 に 弾ける よう に なる。
+          - もう 少し 練習 {する と} 上手 に 弾ける よう に なり ます。
+        english: If you practice a little more, you will become able to play well.
+        hint: While `すると` can also indicate a condition, `すれば` often carries a slightly stronger sense
+          of necessary action or effort that must be "taken" for the outcome to follow. We're looking
+          for a conditional verb emphasizing the required duration of practice.
+    scene: A music teacher encouraging their student.
+    register: semi-formal
+    setting: instructional
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「～すれば」 here sets a condition, where the 'practice' is the duration or amount of
+      effort 'taken' for the improvement to occur. The female teacher might use 「～ようになる」 to gently suggest
+      progress.
+  - english: After two more years, she will graduate from university.
+    japanese:
+      - 後 二 年 {し たら}、彼女 は 大学 を 卒業 {し ます}。
+      - 後 二 年 {し たら}、彼女 は 大学 を 卒業 {する}。
+      - 後 二 年 {し まし たら}、彼女 は 大学 を 卒業 {し ます}。
+    english_literally: After two years makes, she, as for, university graduates.
+    competing_grammar:
+      - competing_japanese:
+          - 二 年間 {経っ たら}、彼女 は 大学 を 卒業 {し ます}。
+          - 二 年間 {経っ たら}、彼女 は 大学 を 卒業 {する}。
+        english: After two years have passed, she will graduate from university.
+        hint: '`したら` here emphasizes the specific period that will ''pass'' or ''take'' before the next
+          event, making it a more direct temporal marker than the more general `経ったら` which means ''after
+          a period passes''. We''re looking for a verb that indicates the time taken before graduation.'
+    scene: A parent talking about their daughter's future academic plans.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: conditional (～たら)
+    speaker_gender: male
+  - english: This project will probably take another half year.
+    japanese:
+      - この プロジェクト は あと 半年 {する} だろう。
+      - この プロジェクト は あと 半年 {する} でしょう。
+      - この プロジェクト は あと 半年 {する} だ。
+    english_literally: This project, as for, another half year makes probably.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は あと 半年 {かかる} だろう。
+          - この プロジェクト は あと 半年 {かかる} でしょう。
+        english: This project will probably require another half year.
+        hint: While `かかる` is also correct for time, `する` focuses on the 'passage' or 'duration' of the
+          time itself rather than the 'expenditure' of time. We're looking for a verb that states the
+          likely duration the project will 'make'.
+    scene: A project manager estimating the remaining time for a complex task.
+    register: semi-formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: The combination with 「だろう」 indicates an estimation, common in professional or academic contexts
+      when discussing future timelines. 「半年する」 implies that half a year will be the *duration* of the
+      remaining work.
+  - english: The repair of this car cost 100,000 yen, and it seems it will be finished in three more days.
+    japanese:
+      - この 車 の 修理 は 十 万 円 {し まし た} が、後 三 日 {し たら} 終わる そう です。
+      - この 車 の 修理 は 十 万 円 {し た} が、後 三 日 {し たら} 終わる そう だ。
+      - この 車 の 修理 は 十 万 円 {し まし たら} が、後 三 日 {し まし たら} 終わる そう です。
+    english_literally: This car's repair, as for, 100,000 yen made, but, after three days makes, finish
+      seems.
+    competing_grammar:
+      - competing_japanese:
+          - この 車 の 修理 は 十 万 円 {かかり まし た} が、後 三 日 し たら 終わる そう です。
+          - この 車 の 修理 は 十 万 円 {かかっ た} が、後 三 日 し たら 終わる そう だ。
+        english: The repair of this car incurred a cost of 100,000 yen, and it seems it will be finished
+          in three more days.
+        hint: Using `しました` for cost emphasizes the direct price, while `かかりました` emphasizes the *incurring*
+          of that cost. We're looking for a direct statement of the price.
+      - competing_japanese:
+          - この 車 の 修理 は 十 万 円 し まし た が、後 三 日 {経っ たら} 終わる そう です。
+          - この 車 の 修理 は 十 万 円 し た が、後 三 日 {経っ たら} 終わる そう だ。
+        english: The repair of this car cost 100,000 yen, and it seems it will be finished after three
+          more days pass.
+        hint: The `したら` here emphasizes the specific duration that will `take` before the next event,
+          making it more focused on the active duration than the more general `経ったら` meaning 'after a
+          period passes'. We're looking for a verb that indicates the time taken until completion.
+    scene: A car owner explaining the status of their car repair to a concerned friend.
+    register: casual
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: female
+  - english: The total cost for the new system will be approximately 5 million yen.
+    japanese:
+      - 新 システム の 総額 は 約 五百 万 円 {し ます}。
+      - 新 システム の 総額 は 約 五百 万 円 {する} でしょう。
+      - 新 システム の 総額 は 約 五百 万 円 {する}。
+    english_literally: New system's total amount, as for, approximately 5 million yen makes.
+    competing_grammar:
+      - competing_japanese:
+          - 新 システム の 総額 は 約 五百 万 円 {かかり ます}。
+          - 新 システム の 総額 は 約 五百 万 円 {かかる} でしょう。
+        english: The total cost for the new system will require approximately 5 million yen.
+        hint: '`かかる` emphasizes the necessary expenditure, while `する` states the approximate value the
+          system will ''make'' or ''amount to''. We are focusing on the total cost.'
+      - competing_japanese:
+          - 新 システム の 総額 は 約 五百 万 円 {です}。
+        english: The total cost for the new system is approximately 5 million yen.
+        hint: '`です` is a simple declarative, but `する` here conveys the idea of the total amount that it
+          ''comes to'' or ''makes'' as a cost, often used in financial estimations. We are looking for
+          a verb that indicates the price it will take on.'
+    scene: A project manager presenting a budget estimate during a business meeting.
+    register: semi-formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    listener_gender: group
+    nuance: In a professional setting, `します` is appropriate. The use of `する` here signifies the final
+      monetary 'amount' or 'value' that the new system will accrue. This is a common way to state approximate
+      costs in business.
+  - english: It only took a few minutes to walk to the station.
+    japanese:
+      - 駅 まで 歩い て 数 分 {し か} {し なかっ た}。
+      - 駅 まで 歩い て 数 分 {し か} {し ませ ん でし た}。
+    english_literally: Station until walked, few minutes only did not make.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 まで 歩い て 数 分 {しか かから なかっ た}。
+          - 駅 まで 歩い て 数 分 {しか かかり ませ ん でし た}。
+        english: It only required a few minutes to walk to the station.
+        hint: While `かかる` implies the *expenditure* of time, `する` focuses on the actual *duration* that
+          passed. This sentence emphasizes the brevity of the time 'made'. We're looking for a verb that
+          states the time actually taken.
+    scene: Two friends chatting casually about their commute to the station.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    nuance: The phrase `しか～なかった` with `する` emphasizes that the action (walking to the station) did not
+      'make' or 'amount to' more than a few minutes, highlighting how short the duration was. This is
+      a very natural and casual way to express that something took surprisingly little time.
+  - english: The trip from Tokyo to Kyoto takes about two and a half hours by Shinkansen.
+    japanese:
+      - 東京 から 京都 まで 新 幹線 で 二 時間 半 {し ます}。
+      - 東京 から 京都 まで 新 幹線 で 二 時間 半 {する}。
+    english_literally: Tokyo from Kyoto until Shinkansen by two hours half makes.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 から 京都 まで 新 幹線 で 二 時間 半 {かかり ます}。
+          - 東京 から 京都 まで 新 幹線 で 二 時間 半 {かかる}。
+        english: The trip from Tokyo to Kyoto requires about two and a half hours by Shinkansen.
+        hint: While `かかる` emphasizes the *expenditure* of time, `する` here describes the inherent *duration*
+          of the trip itself. We're focusing on the time the trip 'makes'.
+    scene: A travel agent explaining travel times to a client planning a trip.
+    register: casual
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: Using 「する」 for time in this context highlights the duration as a characteristic of the event,
+      like the trip 'producing' or 'amouting to' that much time. It's often used when stating expected
+      or typical durations.
+post_example_writeup: As demonstrated in the examples, the usage of 「する」 for cost is fairly straightforward.
+  However, its application for time duration often appears in conjunction with other clauses, typically
+  specifying a condition or a preceding period for a subsequent event. The subordinate clause structure
+  (e.g., 「～したら」 or 「～すれば」) is crucial for this temporal meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/する%20(cost)

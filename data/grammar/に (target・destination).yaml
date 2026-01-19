@@ -1,0 +1,239 @@
+grammar_point: に (target・destination)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[stem] (conjunction)
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - Verb[ました] (polite past)
+  - '[Verb-stem]に行く (to go in order to do)'
+  - '[Verb-て]くれる (to do for me・in-group)'
+  - あげる・やる (to give, outward)
+  - ある (to exist, inanimate・to have)
+  - い (friendly particle)
+  - お (honorific prefix)
+  - か (question)
+  - かける・かけ (in process・incomplete・on the verge)
+  - から (from)
+  - でした (past copula, polite)
+  - と (with)
+  - どの (which)
+  - に (adverbializer)
+  - へいく (to head toward)
+  - よ (emphasis・information sharing)
+  - 差し上げる (humbly give)
+  - 真上 (directly above)
+meaning: Indicates the target or destination of a movement or action.
+pronunciation:
+  katakana: ニ
+  romaji: ni
+formation:
+  Place Noun + に + Movement Verb: Indicates the specific destination of movement (e.g. 行く to go, 来る to
+    come, 帰る to return).
+  Recipient Noun + に + Action Verb: Marks the recipient or target of an action (e.g. 会う to meet, 渡す to
+    hand over, 教える to teach).
+jlpt: N5
+etymology: The particle 「に」 has ancient roots in Old Japanese, evolving from an original function of indicating
+  location, time, and direction. Its usage for 'target' and 'destination' is a natural extension of its
+  core meaning as a marker of specific points. It signifies the 'point of arrival' or the 'point towards
+  which an action is directed', which can be a physical place, a time, or a person/object receiving an
+  action.
+writeup: The particle 「に」 is a fundamental particle in Japanese, serving multiple roles. When indicating
+  a target or destination, it specifies the precise point or entity that a movement or action is directed
+  towards. This makes it distinct from 「へ」 (e.g. へいく (to head toward)), which emphasizes the general direction
+  or route rather than the specific arrival point. While both can often be used interchangeably for physical
+  destinations, 「に」 often implies a stronger sense of arrival or attachment to that specific point. It
+  is crucial for clearly defining where one is going or to whom an action is being performed.
+false_friends:
+  - term: へ (directional particle)
+    meaning: indicates general direction or route
+    kind: similar expression
+    nuance: While both 「に」 and 「へ」 can indicate direction, 「に」 emphasizes the destination or arrival point,
+      whereas 「へ」 emphasizes the general direction or trajectory. Think of 「へ」 as 'towards' and 「に」 as
+      'to'.
+    grammar_point: へ (directional particle)
+  - term: に (static location・time)
+    meaning: indicates static location or time
+    kind: similar expression
+    nuance: This is the same particle 「に」, but used with verbs of existence (e.g. ある, いる) or to mark specific
+      points in time. It indicates 'at' or 'in' a static place/time, not a destination of motion or a
+      recipient.
+    grammar_point: に (static location・time)
+  - term: と (with)
+    meaning: indicates 'with' or 'together with'
+    kind: often confused with
+    nuance: When meeting someone, you might instinctively use 「と」 (with), but Japanese uses 「に」 with 会う
+      (to meet) to indicate the person you are meeting is the target of your action. 「と」 is typically
+      for actions done 'together with' someone.
+    grammar_point: と (with)
+post_false_friends_writeup: Understanding the subtle differences between 「に」, 「へ」, and other uses of 「に」
+  is key. Remember, 「に」 is about the precise destination or the recipient of an action. 「へ」 is about the
+  general direction, and the other 「に」 functions are about static location or time. When you use 「会う」
+  (to meet), it's always 「に」 because the person is the target of your meeting action.
+examples:
+  - english: I'm going to the library.
+    japanese:
+      - 図書 館 {に} 行き ます。
+      - 図書 館 {に} 行く。
+      - 図書 館 {に} 行く わ。
+      - 図書 館 {に} 参り ます。
+    english_literally: Library to go.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 へ 行き ます。
+        english: I'm heading towards the library.
+        hint: 「へ」 emphasizes the general direction or path, not necessarily the arrival at the specific
+          destination like 「に」.
+    scene: A student tells their friend where they are going.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I will return home at 5 PM.
+    japanese:
+      - 午後 5 時 {に} 帰り ます。
+      - 午後 5 時 {に} 帰る。
+      - 5 時 {に} 家 {に} 帰る よ。
+    english_literally: PM 5 o'clock at return.
+    competing_grammar:
+      - competing_japanese:
+          - 午後 5 時 ごろ 帰り ます。
+        english: I will return home around 5 PM.
+        hint: 「ごろ」 indicates an approximate time, whereas 「に」 specifies a precise point in time.
+    scene: A person informing their family of their estimated arrival time.
+    register: teineigo (polite)
+    setting: informative
+  - english: I will meet my friend tomorrow.
+    japanese:
+      - 明日、友達 {に} 会い ます。
+      - 明日、友達 {に} 会う。
+      - 明日、友達 {に} 会う わ。
+    english_literally: Tomorrow, friend to meet.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、友達 と 会い ます。
+        english: Tomorrow, I will meet with my friend.
+        hint: While 「と」 can imply 'with', 「に」 is typically used with verbs like 会う to indicate the target
+          of the meeting action.
+    scene: Someone making plans with a friend over the phone.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The use of 「に」 with 会う (to meet) indicates that the friend is the direct target or recipient
+      of the action of meeting. If you were to use 「と」, it would imply meeting 'together with' the friend,
+      but 「に」 is the more common and natural choice for specifying the person being met.
+  - english: Please give this book to Tanaka-sensei.
+    japanese:
+      - この 本 を 田中 先生 {に} あげ て ください。
+      - この 本 を 田中 先生 {に} 差し上げ て ください。
+      - この 本 を 田中 先生 {に} 渡し て。
+    english_literally: This book Tanaka-sensei to please give.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 を 田中 先生 へ あげ て ください。
+        english: Please give this book towards Tanaka-sensei.
+        hint: 「に」 is used here to clearly mark the recipient of the action 'to give', whereas 「へ」 would
+          emphasize direction.
+    scene: A student asking another student to pass a book to their teacher.
+    register: teineigo (polite)
+    setting: instructional
+  - english: I teach Japanese to beginners.
+    japanese:
+      - 初心 者 {に} 日本 語 を 教え ます。
+      - 初心 者 {に} 日本 語 を 教える。
+      - 初心 者 の 方々 {に} 日本 語 を 教え て い ます。
+    english_literally: Beginners to Japanese teach.
+    competing_grammar:
+      - competing_japanese:
+          - 初心 者 の ため に 日本 語 を 教え ます。
+        english: I teach Japanese for beginners.
+        hint: 「の ため に」 specifies the purpose or benefit for which something is done, not the direct recipient
+          of the action like 「に」.
+    scene: A language teacher describing their work.
+    register: teineigo (polite)
+    setting: informative
+  - english: I will go to the station to pick up my mother.
+    japanese:
+      - 駅 {に} 母 を 迎え {に} 行き ます。
+      - 駅 {に} 母 を 迎え {に} 行く。
+      - 駅 {に} 母 を 迎え {に} 行く わ。
+    english_literally: Station to mother pick up to go.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 へ 母 を 迎え に 行き ます。
+        english: I will head towards the station to pick up my mother.
+        hint: 「へ」 could be used, but 「に」 emphasizes the station as the precise destination for the action
+          of going.
+    scene: A person explaining their afternoon plans to a family member.
+    register: teineigo (polite)
+    setting: friendly
+  - english: He called out to me.
+    japanese:
+      - 彼 は 私 {に} 呼びかけ まし た。
+      - 彼 は 私 {に} 呼びかけ た。
+      - 彼 は 私 {に} 声 を かけ た。
+    english_literally: He me to called out.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 を 呼びかけ まし た。
+        english: He called me out.
+        hint: Using 「を」 would imply 'calling someone out' in a confrontational way, whereas 「に」 marks
+          the person as the target of the 'calling out' action.
+    scene: Someone recounting an interaction with a colleague.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: Send the documents to the main office.
+    japanese:
+      - 書類 を 本社 {に} 送っ て ください。
+      - 書類 を 本社 {に} 送っ て くれ。
+      - 書類 を 本社 {に} 送付 し て 下さい。
+    english_literally: Documents main office to please send.
+    competing_grammar:
+      - competing_japanese:
+          - 書類 を 本社 へ 送っ て ください。
+        english: Please send the documents towards the main office.
+        hint: 「に」 pinpoints the main office as the intended recipient/destination of the delivery, making
+          it more precise than 「へ」.
+    scene: A manager instructing their employee.
+    register: formal
+    setting: professional
+  - english: The cat jumped onto the desk.
+    japanese:
+      - 猫 が 机 {に} 飛び乗り まし た。
+      - 猫 が 机 {に} 飛び乗っ た。
+      - 猫 が 机 の 上 {に} 飛び乗っ た。
+    english_literally: Cat desk onto jumped.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が 机 から 飛び乗り まし た。
+        english: The cat jumped from the desk.
+        hint: 「から」 indicates the starting point of an action, not the destination like 「に」.
+    scene: Someone observing their pet's playful behavior.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: I wrote a letter to my grandmother.
+    japanese:
+      - 祖母 {に} 手紙 を 書き まし た。
+      - 祖母 {に} 手紙 を 書い た。
+      - お 祖母 ちゃん {に} お 手紙 を 書い た よ。
+    english_literally: Grandmother to letter wrote.
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 の ため に 手紙 を 書き まし た。
+        english: I wrote a letter for my grandmother.
+        hint: 「の ため に」 means 'for the benefit of', which is different from writing 'to' someone (the recipient
+          of the letter).
+    scene: A grandchild explaining who they wrote a letter to.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I want to ask the teacher a question.
+    japanese:
+      - 先生 {に} 質問 を し たい です。
+      - 先生 {に} 質問 を し たい。
+      - 先生 {に} 質問 を さ せ て いただき たい の です が。
+    english_literally: Teacher to question want to do.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 へ 質問 を し たい です。
+        english: I want to ask a question towards the teacher.
+        hint: When asking questions, 「に」 clearly marks the teacher as the recipient of the question, not
+          just the general direction.
+    scene: A student raising their hand in class.
+    register: teineigo (polite)
+    setting: academic

@@ -1,0 +1,273 @@
+grammar_point: のは〜のことだ (emphasizing time or circumstance)
+learn_before:
+  - Verb[た] (past tense)
+  - 〜のは〜の方だ (it is X that)
+  - でした (past copula, polite)
+  - と (quotation marker)
+meaning: It was/is that...
+pronunciation:
+  katakana: ノワ ノ コトダ
+  romaji: no wa ~ no koto da
+formation:
+  '[Clause] + のは + [Noun] + のことだ': Used to emphasize when or where something happened.
+jlpt: N3
+etymology: This construction combines the explanatory 「のだ」 (which emphasizes the reason or explanation
+  for something) with 「ことだ」 (it is that...). Together, they pinpoint and emphasize a specific detail,
+  often a time or event. The particle の (no) functions as a nominalizer, turning the preceding clause
+  into a noun phrase, while は (wa) marks this nominalized phrase as the topic. こと (koto) refers to an
+  abstract concept or matter, and だ (da) is the copula, completing the statement. This combination strongly
+  highlights the timing or circumstance as the essence of the statement.
+writeup: 「のは〜のことだ」 is used to emphasize a particular detail, such as the time or place when something
+  happened. Think of it as highlighting the "when" or "where" of a situation. It's similar to saying "It
+  was then that..." or "It is because of this that..." in English. The clause before 「のは」 describes the
+  event, and the noun following describes the specific detail you want to emphasize. This structure is
+  often used to provide a clear, definitive statement about the timing or circumstances of an event, giving
+  it a somewhat declarative or explanatory tone.
+false_friends:
+  - term: ということだ
+    meaning: It means that; I heard that
+    kind: similar expression
+    nuance: Unlike 「のは〜のことだ」, which emphasizes a specific time or circumstance, 「〜ということだ」 conveys information
+      that has been heard or indicates a general meaning or understanding of something.
+    grammar_point: ということだ (it means that)
+  - term: わけだ
+    meaning: That's why; No wonder
+    kind: often confused with
+    nuance: Unlike 「のは〜のことだ」, which pinpoints a specific time or situation, 「〜わけだ」 indicates a reason
+      or a logical conclusion based on given information or context.
+    grammar_point: わけだ (logical conclusion)
+  - term: て初めて
+    meaning: Only after doing, for the first time after
+    kind: similar expression
+    nuance: While 「のは〜のことだ」 emphasizes a specific time, place, or condition as the identified circumstance
+      for an event, 「て初めて」 explicitly highlights that an action or realization occurred only after a preceding
+      event, implying a cause-and-effect relationship where the preceding event was a prerequisite for
+      the subsequent one.
+    grammar_point: て初めて (for the first time after)
+post_false_friends_writeup: When choosing between 「のは〜のことだ」, 「〜ということだ」, 「〜わけだ」, and 「て初めて」, consider the
+  context and your intention. Use 「のは〜のことだ」 when you want to emphasize a particular detail, especially
+  a time or specific circumstance. Use 「〜ということだ」 when you are reporting something you heard or explaining
+  the meaning of something. Use 「〜わけだ」 when you are explaining a reason or a logical conclusion based
+  on observed facts. Use 「て初めて」 when you want to highlight that a new action or understanding only became
+  possible after a prior event. Each structure serves a distinct purpose in emphasizing different aspects
+  of information.
+examples:
+  - english: It was last summer that I first met Tanaka.
+    japanese:
+      - 田中 さん と 初めて 会っ た の は、去年 の 夏 {の こと だ}。
+      - 田中 さん と 初めて 会っ た の は、去年 の 夏 {の こと です}。
+      - 田中 さん と 初めて 会っ た の は、去年 の 夏 {の こと だっ た}。
+      - 田中 さん と 初めて 会っ た の は、去年 の 夏 {の こと でし た}。
+    english_literally: As for having met Tanaka for the first time, it was the matter of last summer.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん と 初めて 会っ た {の は}、去年 の 夏 {だっ た}。
+        english: I first met Tanaka last summer.
+        hint: While 「だった」 states a simple fact, we're looking to emphasize the specific timing of the
+          event.
+    scene: A person reminiscing about meeting someone for the first time.
+    register: casual
+    setting: storytelling
+    nuance: The phrase 「田中 さんと 初めて 会った」 refers to the first meeting with Tanaka. By using 「のは〜のことだ」, the
+      speaker emphasizes that this significant event occurred specifically 'last summer', pinpointing
+      the time with clarity and emphasis.
+    etymology: 「田中」 is a very common family name.
+  - english: It was after living in Japan that I became able to speak a little Japanese.
+    japanese:
+      - 日本 語 が 少し 話せる よう に なっ た の は、日本 に 住ん で から {の こと だ}。
+      - 日本 語 が 少し 話せる よう に なっ た の は、日本 に 住ん で から {の こと です}。
+      - 日本 語 が 少し 話せる よう に なっ た の は、日本 に 住ん で から {の こと だっ た}。
+      - 日本 語 が 少し 話せる よう に なっ た の は、日本 に 住ん で から {の こと でし た}。
+    english_literally: As for becoming able to speak Japanese a little, it was the matter of after living
+      in Japan.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 少し 話せる よう に なっ た {の は}、日本 に 住ん で から {だ}。
+        english: I became able to speak a little Japanese after living in Japan.
+        hint: 「だ」 states a fact, but we're looking to highlight the specific condition or turning point
+          for skill improvement.
+    scene: Someone explaining how they improved their Japanese.
+    register: semi-formal
+    setting: informative
+    nuance: The speaker stresses that the ability to speak Japanese 「日本語 が 少し 話せる ように なった」 was specifically
+      a result of 「日本 に 住んで から」, or 'after living in Japan', highlighting the cause or condition.
+    etymology: 「日本語」 means Japanese language.
+  - english: It was during that quiet night that I revealed my true feelings to him.
+    japanese:
+      - 私 が 彼 に 本当 の 気持ち を 打ち明け た の は、あの 静か な 夜 {の こと だっ た}。
+      - 私 が 彼 に 本当 の 気持ち を 打ち明け た の は、あの 静か な 夜 {の こと だ}。
+      - 私 が 彼 に 本当 の 気持ち を 打ち明け た の は、あの 静か な 夜 {の こと です}。
+      - 私 が 彼 に 本当 の 気持ち を 打ち明け た の は、あの 静か な 夜 {の こと でし た}。
+    english_literally: As for me revealing my true feelings to him, it was the matter of that quiet night.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 彼 に 本当 の 気持ち を 打ち明け た {の は}、あの 静か な 夜 {だっ た}。
+        english: I revealed my true feelings to him during that quiet night.
+        hint: 「だった」 serves as a simple past copula. We're looking to add narrative emphasis and emotional
+          weight to the exact timing of the action.
+    scene: A woman recalling a deeply personal moment.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: This sentence uses 「私」, which is neutral but commonly used by women in casual, intimate settings.
+      The speaker emphasizes that she 「私 が」 revealed her true feelings 「本当 の 気持ち を 打ち明けた」 during that
+      specific quiet night 「あの 静かな 夜」, giving importance to the timing of this significant personal action.
+    etymology: 「打ち明けた」 means to confide or reveal.
+  - english: It was the day we first met that I started to like you.
+    japanese:
+      - 私 が あなた を 好き に なっ た の は、初めて 会っ た 日 {の こと です}。
+      - 私 が あなた を 好き に なっ た の は、初めて 会っ た 日 {の こと だ}。
+      - 私 が あなた を 好き に なっ た の は、初めて 会っ た 日 {の こと だっ た}。
+      - 私 が あなた を 好き に なっ た の は、初めて 会っ た 日 {の こと でし た}。
+    english_literally: As for me coming to like you, it is the matter of the day we first met.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が あなた を 好き に なっ た {の は}、初めて 会っ た 日 {です}。
+        english: I started to like you the day we first met.
+        hint: While 「です」 states a fact politely, we're looking for a more polished and emphatic declaration
+          of the precise moment.
+    scene: A man flirting on a first date.
+    register: teineigo (polite)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses the polite form 「のことです」, which is suitable for a romantic context. The use
+      of 「私」 by a male speaker, while neutral, is common. The sentence emphasizes that the act of starting
+      to like someone 「好き に なった」 occurred precisely on the day they first met 「初めて 会った 日」, pinpointing
+      the moment with romantic significance.
+    etymology: 「好き に なった」 means to come to like someone or something.
+  - english: It was when I saw her smile that I decided to propose.
+    japanese:
+      - 私 が プロポーズ を 決意 し た の は、彼女 の 笑顔 を 見 た 時 {の こと でし た}。
+      - 私 が プロポーズ を 決意 し た の は、彼女 の 笑顔 を 見 た 時 {の こと だ}。
+      - 私 が プロポーズ を 決意 し た の は、彼女 の 笑顔 を 見 た 時 {の こと です}。
+      - 私 が プロポーズ を 決意 し た の は、彼女 の 笑顔 を 見 た 時 {の こと だっ た}。
+    english_literally: As for me deciding to propose, it was the matter of the time I saw her smile.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が プロポーズ を 決意 し た {の は}、彼女 の 笑顔 を 見 た 時 {でし た}。
+        english: I decided to propose when I saw her smile.
+        hint: 「でした」 states a past fact. We're looking to add narrative emphasis and emotional weight to
+          the exact timing of the decision.
+    scene: A man fondly remembering the moment he decided to propose.
+    register: formal
+    setting: reflective
+    speaker_gender: male
+    nuance: The formal ending 「〜でした」 indicates a past event with a degree of formality, suitable for storytelling.
+      The speaker emphasizes that his decision to propose 「プロポーズ を 決意 した」 was directly triggered by the
+      specific moment he saw her smile 「彼女 の 笑顔 を 見た 時」, conveying a strong personal connection to that
+      timing.
+    etymology: 「プロポーズ」 is borrowed from English and refers to a marriage proposal.
+  - english: It was during the period when the economic situation worsened that the company went bankrupt.
+    japanese:
+      - その 会社 が 倒産 し た の は、経済 状況 が 悪化 し た 時期 {の こと だっ た}。
+      - その 会社 が 倒産 し た の は、経済 状況 が 悪化 し た 時期 {の こと だ}。
+      - その 会社 が 倒産 し た の は、経済 状況 が 悪化 し た 時期 {の こと です}。
+      - その 会社 が 倒産 し た の は、経済 状況 が 悪化 し た 時期 {の こと でし た}。
+    english_literally: As for that company going bankrupt, it was the matter of the period when the economic
+      situation worsened.
+    competing_grammar:
+      - competing_japanese:
+          - その 会社 が 倒産 し た {の は}、経済 状況 が 悪化 し た 時期 {だっ た}。
+        english: The company went bankrupt during the period when the economic situation worsened.
+        hint: 「だった」 indicates a past fact. We're looking to clearly pinpoint and emphasize the exact period
+          and causal link.
+    scene: Discussing the downfall of a company in a business context.
+    register: bijinesu nihongo (business)
+    setting: serious
+    nuance: The use of 「〜だった」 gives a factual tone suitable for a business context. The sentence pinpoints
+      the time of the company's bankruptcy 「その 会社 が 倒産 した」 as specifically during the period when the
+      economic situation worsened 「経済 状況 が 悪化 した 時期」, highlighting the critical timing.
+    etymology: 「倒産」 (とうさん) means bankruptcy.
+  - english: It was after the new theory was announced that the research progressed significantly.
+    japanese:
+      - 研究 が 大きく 発展 し た の は、新しい 理論 が 発表 さ れ た 後 {の こと です}。
+      - 研究 が 大きく 発展 し た の は、新しい 理論 が 発表 さ れ た 後 {の こと だ}。
+      - 研究 が 大きく 発展 し た の は、新しい 理論 が 発表 さ れ た 後 {の こと だっ た}。
+      - 研究 が 大きく 発展 し た の は、新しい 理論 が 発表 さ れ た 後 {の こと でし た}。
+    english_literally: As for the research developing greatly, it is the matter of after the new theory
+      was announced.
+    competing_grammar:
+      - competing_japanese:
+          - 研究 が 大きく 発展 し た {の は}、新しい 理論 が 発表 さ れ た 後 {です}。
+        english: The research progressed significantly after the new theory was announced.
+        hint: 「です」 states a fact. We're looking for a more emphatic and formal way to identify the specific
+          condition for the progress.
+    scene: An academic discussing a breakthrough in research.
+    register: formal
+    setting: academic
+    nuance: The formal 「のことです」 is appropriate for academic discourse. The time of the significant research
+      progress 「研究 が 大きく 発展 した」 is emphasized by pinpointing it as occurring specifically after the new
+      theory was announced 「新しい 理論 が 発表 された 後」, providing a clear cause-and-effect relationship.
+    etymology: 「発展」 means progress or development.
+  - english: It was last summer that you joined this project.
+    japanese:
+      - 君 が この プロジェクト に 参加 し た の は、去年 の 夏 {の こと だ}。
+      - 君 が この プロジェクト に 参加 し た の は、去年 の 夏 {の こと です}。
+      - 君 が この プロジェクト に 参加 し た の は、去年 の 夏 {の こと だっ た}。
+      - 君 が この プロジェクト に 参加 し た の は、去年 の 夏 {の こと でし た}。
+    english_literally: As for you joining this project, it is the matter of last summer.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が この プロジェクト に 参加 し た {の は}、去年 の 夏 {だっ た}。
+        english: You joined this project last summer.
+        hint: 「だった」 is a simple past statement. We're looking to emphasize the precise historical reference
+          point for joining the project.
+    scene: A team leader reminding a male team member about the start of his involvement.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker uses 「君 が」 to directly address the male listener, implying a slight seniority
+      or close professional relationship. 「のことだ」 is used to emphasize the specific time he joined the
+      project 「去年 の 夏」, providing a clear and precise historical reference point.
+    etymology: 「プロジェクト」 is a loanword from English.
+  - english: It was in this small town that I found my true calling.
+    japanese:
+      - 私 が 本当 の 生き甲斐 を 見つけ た の は、この 小 さ な 町 {の こと です}。
+      - 私 が 本当 の 生き甲斐 を 見つけ た の は、この 小 さ な 町 {の こと だ}。
+      - 私 が 本当 の 生き甲斐 を 見つけ た の は、この 小 さ な 町 {の こと だっ た}。
+      - 私 が 本当 の 生き甲斐 を 見つけ た の は、この 小 さ な 町 {の こと でし た}。
+    english_literally: As for me finding my true calling, it is the matter of this small town.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 本当 の 生き甲斐 を 見つけ た {の は}、この 小 さ な 町 {です}。
+        english: I found my true calling in this small town.
+        hint: 「です」 states a fact. We're looking to emphasize the specific location where the significant
+          discovery was made.
+    scene: A person reflecting on how a particular place shaped their life purpose.
+    register: formal
+    setting: reflective
+    nuance: This sentence highlights the specific location, 「この 小さな 町」, as the pivotal place where the
+      speaker 「私 が」 discovered their life's purpose 「本当 の 生き甲斐 を 見つけた」. The use of 「のことです」 adds a formal
+      and reflective tone, emphasizing the significance of that place in their personal journey.
+    etymology: 「生き甲斐」 (ikigai) refers to a reason for being, a purpose in life, or something that makes
+      life worth living.
+  - english: It was when I became a parent that I truly understood my parents' feelings.
+    japanese:
+      - 両親 の 気持ち が 本当 に 分かっ た の は、私 が 親 に なっ た 時 {の こと です}。
+      - 両親 の 気持ち が 本当 に 分かっ た の は、私 が 親 に なっ た 時 {の こと だ}。
+      - 両親 の 気持ち が 本当 に 分かっ た の は、私 が 親 に なっ た 時 {の こと だっ た}。
+      - 両親 の 気持ち が 本当 に 分かっ た の は、私 が 親 に なっ た 時 {の こと でし た}。
+    english_literally: As for my parents' feelings truly being understood, it is the matter of the time
+      I became a parent.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 の 気持ち が 本当 に 分かっ た {の は}、私 が 親 に なっ た 時 {です}。
+        english: I truly understood my parents' feelings when I became a parent.
+        hint: While 「です」 simply states the fact, we're aiming to emphasize the life stage that served
+          as the profound turning point for understanding.
+    scene: An adult sharing a realization about their parents after becoming a parent themselves.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    nuance: The speaker uses 「私 が」 and the polite 「のことです」. This example strongly emphasizes the specific
+      life stage 「親 に なった 時」 (when I became a parent) as the moment when the speaker gained a deep understanding
+      of their parents' feelings 「両親 の 気持ち が 本当 に 分かった」. The phrasing highlights this particular timing
+      as the critical point of realization.
+    etymology: 「両親」 (ryōshin) refers to both parents.
+post_example_writeup: In each example, notice how 「のは〜のことだ」 draws attention to the specific time or circumstance,
+  effectively highlighting that element within the sentence. The copula 「だ」 can be changed to 「です」 for
+  polite speech, or to past forms like 「だった」 or 「でした」, to reflect the tense and register of the conversation.
+sources:
+  bunpro: resources/original/dojg/all/のは~のことだ.yaml

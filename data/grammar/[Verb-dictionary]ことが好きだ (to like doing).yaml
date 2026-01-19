@@ -1,0 +1,209 @@
+grammar_point: '[Verb-dictionary]ことが好きだ (to like doing)'
+learn_before:
+  - '[Verb-dictionary]のが好きだ (to like doing)'
+  - と (and, connects nouns)
+meaning: to like doing something
+pronunciation:
+  katakana: コト ガ スキ ダ
+  romaji: koto ga suki da
+formation:
+  Verb[dictionary form] + こと が 好きだ: Expresses liking a specific action or activity, treating the action
+    as an objective concept.
+jlpt: N5
+etymology: The particle 『こと』 (koto) historically signifies a 'thing' or 'matter,' especially an abstract
+  one. When combined with a verb's dictionary form, it serves to nominalize the action, transforming it
+  into a conceptual 'thing' that can then be described or acted upon. 『好き (suki)』, meaning 'liking' or
+  'preference,' combined with 『が (ga)』 as a subject marker, creates the structure 'the act of doing [verb]
+  is liked.' This pattern allows for expressing fondness towards generalized actions or activities.
+writeup: |-
+  The grammar pattern 『Verb[dictionary form]ことが好きだ』 is used to express that you like performing a certain action or activity. The key component here is 『こと (koto)』, which acts as a nominalizer. It takes a verb and transforms it into a noun phrase, allowing it to function as the subject of 『好きだ』 (suki da), which means 'to like'. This construction essentially means 'the act of doing [verb] is liked'.
+
+  This pattern is typically used when you are talking about a general activity or a skill that you enjoy, rather than a specific instance of that action. For example, if you say 「本を読むことが好きです」 (Hon o yomu koto ga suki desu), you are stating that you generally like the activity of reading books. It is a common and fundamental way to express hobbies and interests in Japanese.
+
+  While 『好きだ』 is an adjective, its predicate form changes based on formality. With 『だ』 it is casual, and with 『です』 it becomes polite. For example, 「歌うことが好きだ」 (casual) and 「歌うことが好きです」 (polite) both express 'I like singing'.
+false_friends:
+  - term: '[Noun]が好きだ'
+    meaning: to like something
+    kind: similar expression
+    nuance: This pattern expresses fondness for a specific noun (thing, person, concept), whereas 『{Verb[dictionary]ことが好きだ}』
+      expresses fondness for an action or activity.
+    grammar_point: '[Noun]が好きだ (to like)'
+  - term: '[Verb-dictionary]のが好きだ'
+    meaning: to like doing
+    kind: synonym
+    nuance: While both express liking an action, 『{Verb[dictionary]ことが好きだ}』 often implies a more objective
+      or general liking, sometimes used in more formal or written contexts. 『{Verb[dictionary]のが好きだ}』
+      is generally more common and feels more subjective or personal, fitting well in casual conversation.
+      『こと』 can also be used to refer to abstract concepts or facts, while 『の』 tends to refer to specific
+      events or actions.
+    grammar_point: '[Verb-dictionary]のが好きだ (to like doing)'
+post_false_friends_writeup: Both 『こと』 and 『の』 can nominalize verbs, transforming an action into a noun
+  phrase. However, they carry different nuances. 『こと』 tends to be used when discussing actions or facts
+  in a more abstract, general, or objective sense. It's often found in formal speech, rules, or when referring
+  to skills. For instance, 「泳ぐことが好きだ」 (I like swimming) sounds like a statement about the activity of
+  swimming in general. In contrast, 『の』 is more common in everyday conversation and often carries a more
+  subjective or personal feeling. It can refer to a specific instance of an action or a general activity
+  with a more intimate tone. For example, 「泳ぐのが好きだ」 might imply a personal enjoyment of the act of swimming.
+  While often interchangeable, choosing between 『こと』 and 『の』 can subtly shift the nuance from a general,
+  objective statement to a more personal and subjective one.
+examples:
+  - english: He likes reading books.
+    japanese:
+      - 彼 は 本 を {読む こと が 好き だ}。
+      - 彼 は 本 を {読む こと が 好き です}。
+    english_literally: As for him, the act of reading books is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 本 が 好き だ。
+        english: He likes books.
+        hint: The original sentence expresses liking the *action* of reading, not just the *thing* (books).
+          We're looking for a phrase that nominalizes the verb.
+      - competing_japanese:
+          - 彼 は 本 を 読む の が 好き だ。
+        english: He likes reading books (casual/personal).
+        hint: 『の』 can also nominalize verbs, but 『こと』 is often preferred for more general or objective
+          statements about activities. We're looking for the nominalization using 『こと』.
+    scene: A teacher is discussing their student's hobbies.
+    register: casual
+    setting: informative
+  - english: I like cooking.
+    japanese:
+      - 私 は 料理 する こと が {好き です}。
+      - 私 は 料理 する こと が {好き だ}。
+    english_literally: As for me, the act of cooking is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 料理 する の が 好き です。
+        english: I like cooking (personal/casual).
+        hint: This uses 『の』 for nominalization, which is similar but 『こと』 is also correct here and implies
+          a more general liking for the activity. We're looking for the 『こと』 form.
+    scene: A person is telling a new acquaintance about their hobbies.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Do you like climbing mountains on weekends?
+    japanese:
+      - 週末 に 山 を 登る こと が {好き です か}？
+      - 週末 に 山 を 登る こと が {好き か}？
+    english_literally: On weekends, the act of climbing mountains is liked?
+    competing_grammar:
+      - competing_japanese:
+          - 週末 に 山 を 登る の が 好き です か？
+        english: Do you like climbing mountains on weekends (more personal)?
+        hint: Both 『こと』 and 『の』 can be used for nominalization, but the current grammar point focuses
+          on 『こと』. We're looking for the 『こと』 form.
+    scene: Two friends are planning weekend activities.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: I like singing songs.
+    japanese:
+      - 私 は 歌 を 歌う こと が {好き よ}。
+      - 私 は 歌 を 歌う こと が {好き です わ}。
+      - 私 は 歌 を 歌う こと が {好き だ}。
+    english_literally: As for me, the act of singing songs is liked (female speech).
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 歌 を 歌う の が 好き よ。
+        english: I like singing songs (more personal, female speech).
+        hint: 『こと』 gives a slightly more objective nuance to the activity than 『の』. Focus on the 『こと』
+          nominalization.
+    scene: A young woman is enthusiastically sharing her hobby with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-final particle 『よ』 is commonly used by female speakers to add emphasis or a gentle
+      assertion to their statement, indicating a personal feeling or conveying information to the listener.
+  - english: I like playing games.
+    japanese:
+      - 俺 は ゲーム を する こと が {好き だ}。
+      - 僕 は ゲーム を する こと が {好き です}。
+    english_literally: As for me, the act of playing games is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 は ゲーム を する の が 好き だ。
+        english: I like playing games (more personal).
+        hint: While 『の』 is also a nominalizer, we are specifically focusing on the use of 『こと』 in this
+          context. We're looking for the 『こと』 form.
+    scene: A young man is talking to his friends about his favorite pastime.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of the casual pronoun 『俺 (ore)』 for 'I' is typical of male speech, especially among
+      friends or in casual settings. It conveys a more direct and sometimes rougher tone compared to 『僕
+      (boku)』 or 『私 (watashi)』.
+  - english: I humbly like drawing pictures.
+    japanese:
+      - 私 は 絵 を 描く こと が {好き で ござい ます}。
+      - 私 は 絵 を 描く こと が {好き です}。
+      - 私 は 絵 を 描く こと が {好き だ}。
+    english_literally: As for me, the act of drawing pictures is humbly liked.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 絵 を 描く の が 好き で ござい ます。
+        english: I humbly like drawing pictures (more personal).
+        hint: The use of 『こと』 rather than 『の』 aligns with the formal register of 『でございます』, giving the
+          statement a more objective and refined tone. We're looking for the 『こと』 form.
+    scene: A professional artist is speaking to a client at a gallery opening.
+    register: sonkeigo (respectful)
+    setting: professional
+  - english: For my health, I like taking walks every day.
+    japanese:
+      - 健康 の ため に、毎日 散歩 する こと が {好き です}。
+      - 健康 の ため に、毎日 散歩 する こと が {好き だ}。
+    english_literally: For health, every day, the act of taking walks is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 の ため に、毎日 散歩 する の が 好き です。
+        english: For my health, I like taking walks every day (more personal).
+        hint: This example highlights a reason for the liking. Remember that 『こと』 makes the action a general
+          concept. We're looking for the 『こと』 form.
+    scene: A health conscious individual is explaining their routine to a friend.
+    register: teineigo (polite)
+    setting: informative
+  - english: No matter how tired I am, I like exercising.
+    japanese:
+      - どんな に 疲れ て い て も、運動 する こと が {好き だ}。
+      - どんな に 疲れ て い て も、運動 する こと が {好き です}。
+    english_literally: No matter how tired, the act of exercising is liked.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 疲れ て い て も、運動 する の が 好き だ。
+        english: No matter how tired I am, I like exercising (more personal).
+        hint: This sentence emphasizes the consistent enjoyment of an activity despite conditions. We're
+          looking for the 『こと』 nominalization.
+    scene: An athlete is discussing their dedication to training.
+    register: casual
+    setting: serious
+  - english: Do you like traveling?
+    japanese:
+      - あなた は 旅行 する こと が {好き です か}？
+      - あなた は 旅行 する こと が {好き か}？
+    english_literally: As for you, the act of traveling is liked?
+    competing_grammar:
+      - competing_japanese:
+          - あなた は 旅行 する の が 好き です か？
+        english: Do you like traveling (more personal)?
+        hint: 'Consider the nuance: 『こと』 offers a slightly more objective inquiry about the activity itself.
+          We''re looking for the 『こと』 form.'
+    scene: A person asks a new acquaintance about their interests.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: He likes sleeping, so he always takes naps.
+    japanese:
+      - 彼 は 寝る こと が {好き だ} から、いつ も 昼寝 を し て いる。
+      - 彼 は 寝る こと が {好き です} から、いつ も 昼寝 を し て い ます。
+    english_literally: As for him, the act of sleeping is liked, so always taking naps is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 寝る の が 好き だ から、いつ も 昼寝 を し て いる。
+        english: He likes sleeping (more personal), so he always takes naps.
+        hint: This uses 『こと』 to describe a general fondness for an activity. We're looking for the 『こと』
+          form.
+    scene: A family member is describing a lazy relative.
+    register: casual
+    setting: humorous
+post_example_writeup: The examples illustrate how 『Verb[dictionary]ことが好きだ』 is used to express a general
+  fondness for an action. Notice how the nominalized verb phrase behaves like a noun, allowing 『好きだ』 to
+  modify it. The formality of the sentence is determined by the form of 『好きだ』 itself, as seen with 『好きだ』
+  for casual speech and 『好きです』 or 『好きでございます』 for polite and humble expressions, respectively.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/100

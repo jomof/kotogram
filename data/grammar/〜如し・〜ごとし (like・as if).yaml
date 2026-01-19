@@ -1,0 +1,785 @@
+grammar_point: 〜如し・〜ごとし (like・as if)
+learn_before:
+  - '[Noun]をください (please give me)'
+  - い-Adjective[み] (abstract quality)
+  - 背面 (back surface spatial)
+meaning: Like; as if; similar to
+meaning_warning: よう is now used in most situations except some fixed phrases
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ごとし
+    rarity: common
+    meaning: like; as if; similar to (predicative)
+  - conjugation-type: dictionary (plain non-past)
+    form: ごとく
+    rarity: common
+    meaning: like; as if; similar to (adverbial)
+  - conjugation-type: dictionary (plain non-past)
+    form: ごとき
+    rarity: common
+    meaning: like; as if; similar to (attributive)
+pronunciation:
+  katakana: ゴトク・ゴトキ・ゴトシ
+  romaji: gotoku・gotoki・gotoshi
+formation:
+  Noun + の + ごとし: Used after a noun to mean 'like a noun' or 'similar to a noun'.
+  Verb (plain, non-past) + {が/かの} + ごとし: Used after a plain, non-past verb to mean 'as if the verb is
+    happening' or 'like the verb is happening'. Often implies a hypothetical or feigned action.
+  Noun + (か)の + ごとく: Used adverbially after a noun to mean 'like a noun' or 'as if it were a noun', modifying
+    a verb or adjective.
+  Noun + (か)の + ごとき + Noun: Used attributively after a noun to mean 'a noun that is like a noun' or 'a
+    noun similar to a noun', modifying a following noun.
+  '{Verb (plain, non-past) / Noun + である} + {が/かの} + ごとき + Noun': Used attributively after a plain, non-past
+    verb or a noun + である to mean 'a noun that is as if the verb is happening' or 'a noun that is like
+    the noun', modifying a following noun.
+jlpt: N1
+etymology: The kanji 「如」 itself means 'like' or 'as'. The forms 「如し」 (gotoshi), 「如く」 (gotoku), and 「如き」
+  (gotoki) are derived from classical Japanese and retain a formal, literary flavor. 「如し」 is the base
+  or predicative form, 「如く」 is the adverbial form, and 「如き」 is the attributive form. This classical origin
+  lends them an archaic and elevated feel, often found in literary works, proverbs, and set expressions.
+  The core meaning of comparison is reinforced by the character 「如」, which literally means 'as if' or
+  'like'. This characteristic can also be seen in common Japanese words like 「如何」 (いかが, 'how').
+writeup: 「ごとし」 is an auxiliary adjective used to indicate that something resembles or is similar to something
+  else, or that something appears a certain way. It is primarily found in formal, literary, or archaic
+  contexts, often translated as "like," "as if," or "similar to." Unlike its more common counterparts
+  such as 「ようだ」 or 「みたいだ」, 「ごとし」 lends a more elevated and poetic tone to the expression. It is frequently
+  encountered in classical literature, proverbs, and set phrases, lending a sense of timelessness or profound
+  observation. While 「ごとし」 can be used to make simple comparisons, its strength lies in creating vivid
+  imagery or highlighting a striking resemblance, sometimes bordering on metaphor. It can also be used
+  to describe actions or states that *appear* to be a certain way, even if they are not truly so, conveying
+  a sense of pretense or strong impression. Due to its formal and literary nature, it is rarely used in
+  casual everyday conversation.
+false_friends:
+  - term: ようだ
+    meaning: Seem like; appear; like
+    kind: similar expression
+    nuance: 「ようだ」 is more commonly used in everyday conversation and less formal than 「ごとし」. It can also
+      imply conjecture or uncertainty about something. Colloquial and less formal than 「ごとし」; implies
+      conjecture or uncertainty about something.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: みたいだ
+    meaning: Similar to; like
+    kind: similar expression
+    nuance: 「みたいだ」 is the most casual of the three, typically used in informal speech. It conveys a subjective
+      impression or informal comparison. Most casual and subjective of the three; used in informal speech.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: かのように
+    meaning: As if; like
+    kind: similar expression
+    nuance: 「かのように」 is similar in formality to 「ごとし」 for hypothetical or feigned situations. However,
+      「ごとし」 carries a more classical or literary nuance, often implying a stronger, more profound comparison
+      or appearance, especially in set phrases. Similar in formality for hypothetical and feigned situations,
+      but 「ごとし」 has a more classical or literary nuance and is often used in set phrases for stronger
+      comparisons.
+    grammar_point: かのようだ・かのように (as if)
+  - term: さながら
+    meaning: As if; just like; exactly like
+    kind: similar expression
+    nuance: 「さながら」 is typically used for a strong, vivid, often exact comparison, where the appearance
+      is almost indistinguishable from reality. It implies a high degree of resemblance and is more often
+      used with nouns or nominal phrases than verbs directly. It often carries a dramatic or emphatic
+      tone, similar to 「ごとし」 but perhaps less archaic. Used for strong, vivid, and often exact comparisons,
+      implying indistinguishable appearance; carries a dramatic or emphatic tone, less archaic than 「ごとし」.
+    grammar_point: <suggest>:さながら (as if・just like・exactly like)
+  - term: あたかも
+    meaning: as if, just as if
+    kind: similar expression
+    nuance: 「あたかも」 is an adverb that sets up a hypothetical or comparative situation. While it often pairs
+      with expressions like 「〜のよう」 or 「〜のごとく」, it's not interchangeable as a particle/auxiliary verb and
+      focuses on the condition, not the similarity itself.
+    grammar_point: あたかも (just as if)
+  - term: んばかりに
+    meaning: as if about to
+    kind: similar expression
+    nuance: 「んばかりに」 conveys the strong impression that something is on the verge of happening or looks
+      as though it will. While 「如く」 expresses a general likeness or manner, 「んばかりに」 emphasizes an impending
+      action or extreme state, often with a sense of overflowing emotion or intensity.
+    grammar_point: んばかり (as if about to)
+  - term: とは比べものにならない
+    meaning: incomparable
+    kind: similar expression
+    nuance: While 「如く」 draws a likeness, 「とは比べものにならない」 asserts that two things cannot be compared, usually
+      because one is vastly superior or inferior. It’s a statement of extreme contrast or lack of equivalence,
+      rather than similarity.
+    grammar_point: とは比べものにならない (incomparable)
+post_false_friends_writeup: While 「ように」 is commonly used to express similarity or purpose in modern Japanese,
+  「如く」, 「如き」, and 「如し」 carry a much more formal and literary nuance. Choosing 「如く」 or its related forms
+  conveys a deliberate stylistic choice, often found in poetry, classical texts, or highly formal discourse,
+  to evoke a sense of tradition or elevated expression that 「ように」 simply does not. Furthermore, adverbs
+  like 「あたかも」 and 「さながら」 also express similarity or hypothetical situations. 「あたかも」 functions to set up
+  an 'as if' scenario, typically requiring a comparative phrase like 「〜のよう」 or 「〜のごとく」 to complete its
+  meaning, emphasizing the condition rather than the direct likeness. In contrast, 「さながら」 conveys an exact
+  or striking resemblance, often used for vivid, dramatic comparisons, implying that something is 'just
+  like' or 'exactly like' something else, often even replacing the need for an explicit comparative particle.
+  Additionally, 「んばかりに」 signifies that something is on the verge of occurring or appears to be in an extreme
+  state, often conveying a sense of overflowing emotion or an immediate impression, while 「如く」 denotes
+  a more general quality of being 'like' or 'as if'. Lastly, 「とは比べものにならない」 completely negates comparison,
+  stating that something is so superior or inferior it's beyond comparison, a stark contrast to the core
+  function of 「如く」 which is to establish similarity.
+examples:
+  - english: Life is like a dream.
+    japanese:
+      - 人生 は 夢 の {ごとし}
+      - 人生 は 夢 の {ごとく} で ある
+      - 人生 は 夢 の {ごとき} もの だ
+    english_literally: Life, like a dream.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 は 夢 の {よう だ}
+        english: Life is like a dream.
+        hint: The philosophical context implies a deeper, more profound comparison, which 「ごとし」 conveys
+          better than the more common 「よう だ」. We're looking for a formal, reflective expression.
+      - competing_japanese:
+          - 人生 は 夢 {みたい だ}
+        english: Life is like a dream.
+        hint: The seriousness of the reflection makes the casual 「みたい だ」 inappropriate. We're looking
+          for a formal, reflective expression.
+      - competing_japanese:
+          - 人生 は 夢 {さながら だ}
+        english: Life is just like a dream.
+        hint: 「さながら」 implies a stronger, more exact resemblance, often used for dramatic effect. While
+          similar, 「ごとし」 is more general for this proverb. We're looking for the classical proverb.
+    scene: A philosopher contemplating the fleeting nature of existence.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: He burst out of the room like a storm.
+    japanese:
+      - 彼 は 嵐 の {ごとく}、部屋 から 飛び出し た
+      - 彼 は 嵐 の {ごとき} 勢い で 部屋 から 飛び出し た
+    english_literally: He, like a storm, burst out of the room.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 嵐 の {よう に}、部屋 から 飛び出し た
+        english: He burst out of the room like a storm.
+        hint: The dramatic and forceful action is better emphasized by the strong comparative 「ごとく」, which
+          portrays a more intense and overwhelming manner than the general 「ように」. We're looking for a
+          more intense comparison.
+      - competing_japanese:
+          - 彼 は 嵐 {みたい に}、部屋 から 飛び出し た
+        english: He burst out of the room like a storm.
+        hint: The intense and serious nature of the situation makes the casual 「みたい に」 unsuitable for
+          describing such a forceful departure. We're looking for a formal expression.
+      - competing_japanese:
+          - 彼 は 嵐 {さながら に}、部屋 から 飛び出し た
+        english: He burst out of the room just like a storm.
+        hint: 「さながら」 implies an exact, vivid resemblance. While similar, 「ごとく」 retains a more classical
+          and descriptive tone in this context. We're looking for a classical expression.
+    scene: A furious man, having just received bad news, leaves abruptly.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrase 「嵐 の {ごとく}」 (like a storm) vividly describes the sudden, powerful, and overwhelming
+      manner of his exit, emphasizing the intensity of his emotion and action. The phrasing 「飛び出し た」 does
+      not carry gender-specific nuances.
+    etymology: The phrase 「嵐 の {ごとく}」 (like a storm) evokes a strong image of a sudden, powerful, and
+      disruptive force, drawing on the raw power of nature to describe human action in a highly literary
+      manner. It suggests a sense of inevitability and overwhelming force to the action, stemming from
+      classical literary usage.
+  - english: Her eyes shone with a starlike brilliance.
+    japanese:
+      - 彼女 の 瞳 は 星 の {ごとき} 輝き を 放っ て い た
+      - 彼女 の 瞳 は 星 の {ごとく} 輝い て い た
+      - 彼女 の 瞳 の 輝き は 星 の {ごとし}
+    english_literally: Her eyes emitted a brilliance like a star.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 瞳 は 星 の {よう な} 輝き を 放っ て い た
+        english: Her eyes shone with a starlike brilliance.
+        hint: The poetic and evocative description in a novel calls for the more elevated and profound
+          comparison of 「ごとき」, which gives the brilliance a more striking and exceptional quality than
+          the common 「ような」. We're looking for an elegant, literary comparison.
+      - competing_japanese:
+          - 彼女 の 瞳 は 星 {みたい な} 輝き を 放っ て い た
+        english: Her eyes shone with a starlike brilliance.
+        hint: The literary context and desire for an elegant description render the casual 「みたいな」 inappropriate.
+          We're looking for a formal, artistic expression.
+      - competing_japanese:
+          - 彼女 の 瞳 は 星 {さながら の} 輝き を 放っ て い た
+        english: Her eyes shone with a brilliance just like a star.
+        hint: 「さながら」 implies an exact, vivid resemblance. While similar, 「ごとき」 offers a more classical
+          and poetic nuance for this descriptive context. We're looking for a classical, poetic expression.
+    scene: A novelist describing a character's mesmerizing gaze in a romantic scene.
+    register: formal
+    setting: creative
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「星 の {ごとき} 輝き」 (brilliance like a star) uses the attributive form of 「ごとし」 to modify 「輝き」,
+      emphasizing the extraordinary, dazzling quality of her eyes in a poetic manner. The phrasing 「輝き
+      を 放っ て い た」 does not carry gender-specific nuances.
+    etymology: The expression 「星 の {ごとき}」 (like a star) draws on the long-standing poetic tradition of
+      comparing beauty or brilliance to celestial bodies in Japanese literature, reflecting a classical
+      aesthetic sense.
+  - english: The boy answered calmly, as if he knew everything.
+    japanese:
+      - その 少年 は 全て を 知っ て いる か の {ごとし}、冷静 に 答え た
+      - その 少年 は 全て を 知っ て いる か の {ごとく} 冷静 に 答え た
+      - その 少年 は 全て を 知っ て いる か の {ごとき} 態度 で 答え た
+    english_literally: That boy, as if knowing everything, answered calmly.
+    competing_grammar:
+      - competing_japanese:
+          - その 少年 は 全て を 知っ て いる {かの よう に}、冷静 に 答え た
+        english: The boy answered calmly, as if he knew everything.
+        hint: To convey the strong impression or appearance of knowing everything, possibly hinting at
+          a surprising maturity or feigned omniscience, 「かのごとし」 provides a more impactful observation
+          than the general 「かのよう に」. We're looking for a more impactful observation.
+      - competing_japanese:
+          - その 少年 は 全て を 知っ て いる {みたい に}、冷静 に 答え た
+        english: The boy answered calmly, as if he knew everything.
+        hint: The formal setting of a classroom presentation makes the casual 「みたい に」 unsuitable. We're
+          looking for a formal expression.
+    scene: An experienced teacher questioning a precocious student during a class presentation.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「知っ て いる か の {ごとし}」 (as if he knew) implies a strong observation of the boy's demeanor.
+      It suggests his calmness and answers gave the *impression* of comprehensive knowledge, possibly
+      hinting at surprising maturity or a slight pretense. The 「かの」 adds a sense of unreality to the appearance.
+      The speaker is an older female, but the sentence itself is a neutral description.
+    etymology: The 「か」 in 「かのごとし」 serves as an interrogative particle, which here softens the assertion,
+      creating the nuance of 'as if' or 'it seems like,' rather than a direct statement. This classical
+      usage highlights an appearance or a hypothetical state.
+  - english: This is a situation that feels like falling into despair.
+    japanese:
+      - これ は 絶望 に 陥る が {ごとき} 状況 だ
+      - この 状況 は 絶望 に 陥る が {ごとし}
+    english_literally: This is a situation as if falling into despair.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 絶望 に 陥る {よう な} 状況 だ
+        english: This is a situation that feels like falling into despair.
+        hint: To convey the profound and overwhelming nature of the situation, the strong metaphorical
+          comparison of 「がごとき」 is used, emphasizing the intensity of the feeling it evokes more effectively
+          than the simpler 「ような」. We're looking for a strong metaphorical comparison.
+      - competing_japanese:
+          - これ は 絶望 に 陥る {みたい な} 状況 だ
+        english: This is a situation that feels like falling into despair.
+        hint: The serious and professional context of a project status update renders the casual 「みたい
+          な」 inappropriate. We're looking for a formal expression.
+      - competing_japanese:
+          - これ は 絶望 に 陥る {さながら の} 状況 だ
+        english: This is a situation just like falling into despair.
+        hint: 「さながら」 implies an exact, vivid resemblance. While similar, 「がごとき」 often carries a more profound
+          or dramatic sense of comparison in this context. We're looking for a more dramatic comparison.
+    scene: A team leader describing a dire, seemingly hopeless project status to their colleagues.
+    register: formal
+    setting: pessimistic
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「絶望 に 陥る が{ごとき} 状況」 describes the situation as being so dire that it is directly comparable
+      to the experience of falling into despair. The use of 「がごとき」 here emphasizes the overwhelming sense
+      of hopelessness. This usage is common in dramatic or serious descriptions. The phrasing does not
+      carry gender-specific nuances.
+    etymology: The use of 「が」 in 「がごとき」 or 「がごとし」 is a classical Japanese particle that functions like
+      the modern subject particle 「が」, emphasizing the preceding phrase as the specific point of comparison.
+      This reinforces the strong, almost definitive, nature of the comparison being made.
+  - english: Time flies like an arrow.
+    japanese:
+      - 光陰 矢 の {ごとし}
+      - 光陰 は 矢 の {ごとく} 過ぎ去る
+    english_literally: Time, like an arrow.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 は 矢 の {よう に} 過ぎる
+        english: Time passes like an arrow.
+        hint: This is a well-known Japanese proverb. Using 「ごとし」 preserves its classical, established
+          form and meaning, which is more impactful for a proverb than a modern colloquial phrase like
+          「時間 は 矢 の ように 過ぎる」. We're looking for the exact proverb.
+      - competing_japanese:
+          - 時間 は 矢 {みたい に} 過ぎる
+        english: Time passes like an arrow.
+        hint: The instructional and formal setting makes the casual 「みたい に」 unsuitable for this proverb.
+          We're looking for the formal proverb.
+      - competing_japanese:
+          - 時間 は 矢 {さながら に} 過ぎる
+        english: Time passes just like an arrow.
+        hint: 「さながら」 implies a vivid resemblance, but this phrase is not part of the established proverb.
+          We're looking for the classical proverb.
+    scene: A mentor advising their young protégé to make the most of their limited time.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: This is a fixed and widely recognized proverb (「光陰矢の{ごとし}」). 「矢 の {ごとし}」 is a set expression
+      indicating extreme speed and irreversible progress. Its use underscores the formal and didactic
+      nature of the advice. The older male speaker uses this classic phrase to impart wisdom, typical
+      for a mentor figure.
+    etymology: The proverb 「光陰矢の{ごとし}」 (Time is like an arrow) is a direct translation of a Chinese idiom
+      (光陰如箭), highlighting the deep influence of classical Chinese thought and expression on Japanese
+      literary and philosophical language. The use of 「ごとし」 directly reflects this classical origin.
+  - english: She stared at me with eyes as cold as ice.
+    japanese:
+      - 彼女 は 氷 の {ごとく}、冷たい 目 で 私 を 見つめ た
+      - 彼女 は 氷 の {ごとき} 冷たい 目 で 私 を 見つめ た
+      - 彼女 の 目 の 冷た さ は 氷 の {ごとし}
+    english_literally: She, like ice, stared at me with cold eyes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 氷 の {よう に}、冷たい 目 で 私 を 見つめ た
+        english: She stared at me with eyes as cold as ice.
+        hint: In a dramatic narrative, the stronger, more intense comparison of 「ごとく」 is used to vividly
+          portray the chilling nature of her gaze, emphasizing its profound impact on the speaker more
+          than the general 「ように」. We're looking for a more intense comparison.
+      - competing_japanese:
+          - 彼女 は 氷 {みたい に}、冷たい 目 で 私 を 見つめ た
+        english: She stared at me with eyes as cold as ice.
+        hint: The dramatic and descriptive context makes the casual 「みたい に」 entirely unsuitable for conveying
+          such an impactful and intimidating gaze. We're looking for a formal, descriptive expression.
+      - competing_japanese:
+          - 彼女 は 氷 {さながら に}、冷たい 目 で 私 を 見つめ た
+        english: She stared at me with eyes just like ice.
+        hint: 「さながら」 implies an exact, vivid resemblance. While similar, 「ごとく」 offers a more classical
+          and literary nuance to describe the chilling gaze. We're looking for a classical, literary expression.
+    scene: A character in a dramatic play describing the intimidating gaze of an antagonist.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「氷 の {ごとく}」 adverbially describes the manner of her gaze, directly comparing its coldness
+      and intensity to that of ice. This usage creates a powerful sensory image and conveys the speaker's
+      emotional response to being stared at in such a way. The female speaker's description of another
+      woman's gaze does not carry gender-specific nuances.
+    etymology: The phrase 「氷 の {ごとく}」 (like ice) highlights a universal human experience of coldness and
+      impersonality, using a natural element to describe a character's demeanor. This descriptive power
+      is amplified by the classical tone of 「ごとく」, drawing on a long tradition of symbolic comparisons
+      in literature.
+  - english: His life was truly a story as if it were a miracle.
+    japanese:
+      - 彼 の 人生 は まさに 奇跡 で ある か の {ごとき} 物語 だっ た
+      - 彼 の 人生 は まさに 奇跡 で ある か の {ごとく} 展開 し た 物語 だっ た
+      - 彼 の 人生 の 物語 は まさに 奇跡 で ある か の {ごとし}
+    english_literally: His life was truly a story as if being a miracle.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 人生 は まさに 奇跡 で ある {かの よう な} 物語 だっ た
+        english: His life was truly a story as if it were a miracle.
+        hint: To emphasize the profound, almost unbelievable nature of his life, 「である かのごとき」 provides
+          a more elevated and emphatic comparison, fitting the formal and engaging tone of a biographical
+          introduction better than 「である かのような」. We're looking for an elevated, emphatic comparison.
+      - competing_japanese:
+          - 彼 の 人生 は まさに 奇跡 {みたい な} 物語 だっ た
+        english: His life was truly a story as if it were a miracle.
+        hint: The formal and academic context of a biography makes the casual 「みたい な」 inappropriate. We're
+          looking for a formal expression.
+      - competing_japanese:
+          - 彼 の 人生 は まさに 奇跡 {さながら の} 物語 だっ た
+        english: His life was truly a story just like a miracle.
+        hint: 「さながら」 implies an exact and vivid resemblance, often used when the appearance is almost
+          indistinguishable. While similar, 「かのごとき」 is preferred for describing a story that *seems* like
+          a miracle, adding a nuanced sense of potential unreality often found in historical or biographical
+          contexts. We're looking for a nuance of seeming, rather than exactness.
+    scene: A biographer introducing the extraordinary life of a historical figure to an audience.
+    register: formal
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「奇跡 である か の {ごとき} 物語」 uses the formal 「である」 alongside 「かのごとき」 to modify 「物語」 (story). This
+      construction emphasizes that the life story itself was so extraordinary that it seemed to embody
+      the very essence of a miracle, heightening the descriptive impact for the audience. The female speaker's
+      formal and descriptive language is suitable for addressing a group audience.
+    etymology: The combination of 「である」 (the formal copula) with 「かのごとき」 creates a highly literary and
+      emphatic comparison, reinforcing the idea of a profound, almost philosophical truth. This layered
+      formality emphasizes the significance of the subject, often used in scholarly or biographical contexts.
+  - english: The new employee presented confidently, as if they were a veteran.
+    japanese:
+      - 新人 は ベテラン が {ごとし}、堂々 と 発表 し た
+      - 新人 は ベテラン が {ごとく} 堂々 と 発表 し た
+    english_literally: The new employee, as if being a veteran, presented confidently.
+    competing_grammar:
+      - competing_japanese:
+          - 新人 は ベテラン の {よう に}、堂々 と 発表 し た
+        english: The new employee presented confidently, like a veteran.
+        hint: To highlight the *surprising* and *impressive* nature of the new employee's confidence,
+          which far exceeded expectations, 「がごとし」 provides a stronger, more striking comparison than the
+          neutral 「の ように」. We're looking for a stronger, more striking comparison.
+      - competing_japanese:
+          - 新人 は ベテラン {みたい に}、堂々 と 発表 し た
+        english: The new employee presented confidently, like a veteran.
+        hint: The professional setting of a business presentation and the manager's observation warrant
+          a more formal comparison, making the casual 「みたい に」 unsuitable. We're looking for a formal comparison.
+      - competing_japanese:
+          - 新人 は ベテラン {さながら に}、堂々 と 発表 し た
+        english: The new employee presented confidently, just like a veteran.
+        hint: 「さながら」 implies an exact and vivid resemblance, often used when the appearance is almost
+          indistinguishable. While similar, 「がごとし」 retains a slightly more traditional or literary feel
+          for a surprising observation. We're looking for a slightly more traditional observation.
+    scene: A senior manager observing a surprisingly poised presentation by a new hire.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: 「ベテラン が{ごとし}」 implies that the new employee's confidence and presentation skills *appeared*
+      to be at the level of a veteran, surpassing typical expectations for a newcomer. This conveys a
+      sense of surprise and admiration from the observer. The older male speaker's observation uses a
+      somewhat formal, almost proverbial tone, befitting his professional role.
+    etymology: The use of 「がごとし」 in this context emphasizes the striking *appearance* of the new employee
+      behaving like a veteran, often used to express a strong impression or a surprising deviation from
+      the norm in formal settings.
+  - english: Youth is like a short summer, it passes in an instant.
+    japanese:
+      - 若 さ は 短い 夏 の {ごとし}、あっ と いう 間 に 過ぎ去る
+      - 若 さ は 短い 夏 の {ごとく}、あっ と いう 間 に 過ぎ去る
+      - 短い 夏 の {ごとき} 若 さ は、あっ と いう 間 に 過ぎ去る
+    english_literally: Youth, like a short summer, passes in an instant.
+    competing_grammar:
+      - competing_japanese:
+          - 若 さ は 短い 夏 の {よう に}、あっ と いう 間 に 過ぎ去る
+        english: Youth is like a short summer, it passes in an instant.
+        hint: The poetic and melancholic tone of reflection is better captured by the more literary and
+          profound comparison of 「ごとし」, which emphasizes the deep resonance of the analogy between youth
+          and summer's brevity, compared to the more straightforward 「よう に」. We're looking for a more
+          literary and profound comparison.
+      - competing_japanese:
+          - 若 さ は 短い 夏 {みたい に}、あっ と いう 間 に 過ぎ去る
+        english: Youth is like a short summer, it passes in an. We're looking for a poetic expression.
+        hint: The reflective and somewhat wistful context makes the casual 「みたい に」 inappropriate, as it
+          would diminish the poetic quality of the observation. We're looking for a poetic expression.
+      - competing_japanese:
+          - 若 さ は 短い 夏 {さながら に}、あっ と いう 間 に 過ぎ去る
+        english: Youth is just like a short summer, it passes in an instant.
+        hint: While 「さながら」 implies an exact resemblance, for this poetic reflection, 「ごとし」 better conveys
+          the classical, slightly detached philosophical observation. We're looking for a classical, philosophical
+          comparison.
+    scene: An elderly person reflecting on the passage of time and their youth.
+    register: formal
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: 「短い 夏 の {ごとし}」 functions as a poetic metaphor, equating the fleeting nature of youth to the
+      briefness of summer. This comparison emphasizes the rapid passage of time and evokes a sense of
+      wistfulness and transient beauty. The older female speaker uses this reflective language, typical
+      for someone reminiscing about the past.
+    etymology: The comparison of life stages to seasons is a common motif in poetry and literature across
+      many cultures. The use of 「ごとし」 here adds a classical, almost timeless quality to this universal
+      reflection on youth and the passage of time.
+  - english: The world of dreams and reality are like two sides of the same coin.
+    japanese:
+      - 夢 と 現実 は 表裏 一体 の {ごとし}
+      - 夢 と 現実 は 表裏 一体 の {ごとく} で ある
+      - 夢 と 現実 は 表裏 一体 の {ごとき} もの だ
+    english_literally: Dreams and reality are like two sides of the same coin.
+    competing_grammar:
+      - competing_japanese:
+          - 夢 と 現実 は 表裏 一体 の {よう だ}
+        english: Dreams and reality are like two sides of the same coin.
+        hint: This philosophical statement about the interconnectedness of dreams and reality requires
+          the formal and emphatic tone of 「ごとし」 to convey the profound nature of the comparison, rather
+          than the more common 「よう だ」. We're looking for a philosophical comparison.
+      - competing_japanese:
+          - 夢 と 現実 は 表裏 一体 {みたい だ}
+        english: Dreams and reality are like two sides of the same coin.
+        hint: The academic context of a psychology lecture makes the casual 「みたい だ」 inappropriate for
+          conveying complex philosophical ideas. We're looking for a formal, academic expression.
+    scene: A psychology professor explaining the relationship between conscious and subconscious states.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「表裏一体 の {ごとし}」 emphasizes a profound, intrinsic connection, suggesting that dreams and reality
+      are inseparable despite their apparent differences, much like the two sides of a coin. This is a
+      common philosophical metaphor. The male professor uses this formal expression to convey a deep concept
+      to students.
+    etymology: The phrase 「表裏一体」 (hyōri-ittai) literally means 'front and back are one body', signifying
+      two things that are seemingly opposite but are inseparably linked. Combining it with 「ごとし」 enhances
+      the philosophical depth, indicating a fundamental, almost inherent, resemblance.
+  - english: The old master's words were profound, like a Zen koan.
+    japanese:
+      - 老師 の 言葉 は 禅 の 公案 が {ごとし}、深く 響い た
+      - 老師 の 言葉 は 禅 の 公案 が {ごとく}、深く 響い た
+      - 老師 の 言葉 は 禅 の 公案 が {ごとし}
+    english_literally: The old master's words, like a Zen koan, resonated deeply.
+    competing_grammar:
+      - competing_japanese:
+          - 老師 の 言葉 は 禅 の 公案 の {よう に}、深く 響い た
+        english: The old master's words were profound, like a Zen koan.
+        hint: To convey the enigmatic and deeply insightful nature of the words, drawing a precise parallel
+          to a Zen koan, the specific and formal 「がごとし」 is more fitting than the general 「よう に」. We're
+          looking for a precise, formal parallel.
+      - competing_japanese:
+          - 老師 の 言葉 は 禅 の 公案 {みたい に}、深く 響い た
+        english: The old master's words were profound, like a Zen koan.
+        hint: The context of profound, spiritual wisdom from an old master makes the casual 「みたい に」 entirely
+          inappropriate. We're looking for a formal, spiritual expression.
+    scene: A young monk reflecting on the teachings of his Zen master.
+    register: formal
+    setting: religious
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: 「禅 の 公案 が {ごとし}」 makes a direct and specific comparison, implying the words held a similar
+      depth, enigmatic quality, and purpose to a Zen koan, designed to provoke spiritual insight. The
+      「が」 emphasizes this direct resemblance. The young male monk uses formal language in his reflection,
+      appropriate for discussing spiritual matters.
+    etymology: A 「公案 (koan)」 in Zen Buddhism is a story, dialogue, question, or statement used to provoke
+      the 'great doubt' and test a student's progress in Zen. The comparison with 「がごとし」 highlights the
+      profound, sometimes paradoxical, nature of the master's words, drawing on established spiritual
+      terminology.
+  - english: The politician's speech was full of empty words, like soap bubbles.
+    japanese:
+      - 政治 家 の 演説 は 石鹸 の 泡 が {ごとし}、中身 の ない 言葉 ばかり だっ た
+      - 政治 家 の 演説 は 石鹸 の 泡 が {ごとく}、中身 の ない 言葉 ばかり だっ た
+      - 政治 家 の 演説 は 石鹸 の 泡 が {ごとし}
+    english_literally: The politician's speech, like soap bubbles, was full of empty words.
+    competing_grammar:
+      - competing_japanese:
+          - 政治 家 の 演説 は 石鹸 の 泡 の {よう に}、中身 の ない 言葉 ばかり だっ た
+        english: The politician's speech was full of empty words, like soap bubbles.
+        hint: To convey the speaker's disdain and the transient, unsubstantial nature of the speech, the
+          critical and formal comparison of 「がごとし」 is used, emphasizing the emptiness more sharply than
+          the neutral 「よう に」. We're looking for a critical, formal comparison.
+      - competing_japanese:
+          - 政治 家 の 演説 は 石鹸 の 泡 {みたい に}、中身 の ない 言葉 ばかり だっ た
+        english: The politician's speech was full of empty words, like soap bubbles.
+        hint: The critical and somewhat formal tone of the analysis makes the casual 「みたい に」 unsuitable
+          for conveying the intended judgment. We're looking for a formal, critical expression.
+    scene: A journalist commenting on a politician's insubstantial rhetoric after a press conference.
+    register: formal
+    setting: sarcastic
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「石鹸 の 泡 が {ごとし}」 metaphorically equates the politician's words to soap bubbles—attractive
+      on the surface but ultimately hollow and ephemeral. The use of 「がごとし」 here adds a critical, almost
+      dismissive, nuance to the comparison, suitable for a formal critique. The female journalist uses
+      this expression to convey her professional assessment.
+    etymology: The comparison of empty words to 「石鹸 の 泡」 (soap bubbles) is a common rhetorical device
+      across languages, symbolizing something that appears impressive but lacks substance and vanishes
+      quickly. The classical tone of 「がごとし」 intensifies this critical metaphor.
+  - english: Those ancient castle walls are truly like the history of the past itself.
+    japanese:
+      - その 古き 城壁 は まさに 過去 の 歴史 の {如し}。
+      - その 古き 城壁 は 過去 の 歴史 の {如し}。
+    english_literally: Those old castle walls are truly past's history's like (it).
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 城壁 は まさに 過去 の 歴史 の {よう だ}。
+        english: Those old castle walls are truly like the history of the past.
+        hint: While 「ようだ」 expresses similarity, 「如し」 provides a much more formal and literary tone, emphasizing
+          an embodiment rather than just a resemblance. We're looking for an archaic, profound way to
+          state this.
+    scene: A historian is describing a very old castle to a group of students, emphasizing how much history
+      the walls embody.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「歴史の如し」 places emphasis on the castle walls being the embodiment of history, not just resembling
+      it. The formality of this sentence style is due to the choice of 「如し」 itself, making the statement
+      more refined.
+    etymology: The term 「古き」 (furuki) is the attributive form of the classical adjective 「古し」 (furushi),
+      meaning 'old'. This form is typically found in literary or archaic contexts, fitting the formal
+      register of the sentence. Its use here reinforces the sense of history and age associated with the
+      castle walls. The particle 「まさに」 (masani) intensifies the statement, emphasizing the 'truly' or
+      'exactly' aspect of the comparison, which adds to the formal and declarative tone of the sentence.
+  - english: His eyes emitted a brilliance like that of jewels.
+    japanese:
+      - 彼 の 目 は 宝石 の {如き} 輝き を 放っ て い た。
+      - 彼 の 目 は まさに 宝石 の {如き} 輝き を 放っ て い た。
+    english_literally: His eyes jewels' like brilliance emitted.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 目 は 宝石 の {よう な} 輝き を 放っ て い た。
+        english: His eyes emitted a brilliance like that of jewels.
+        hint: 「のような」 is the modern equivalent for expressing similarity. However, 「如き」 is preferred for
+          a more literary, classical, or poetic description, elevating the imagery.
+    scene: A fantasy novelist describes a character's striking features to convey their exceptional nature.
+    register: bungo (literary)
+    setting: creative
+    nuance: 「宝石の如き輝き」 creates a strong, almost dazzling image, signifying not just a resemblance but an
+      inherent quality. The literary register enhances the descriptive power of the comparison.
+    etymology: The verb 「放つ」 (hanatsu), meaning 'to emit' or 'to release', is often used in literary contexts
+      to describe the emanation of light, energy, or strong emotions. Its choice here enhances the vivid,
+      almost magical description of the character's eyes, fitting the fantasy novel setting. The expression
+      「輝きを放つ」 creates a more dynamic and evocative image than a simple noun-verb combination.
+  - english: She rushed off the stage as if flying.
+    japanese:
+      - 彼女 は 飛ぶ が {如く} 舞台 から 駆け去っ た。
+      - 彼女 は まさに 飛ぶ が {如く} 舞台 から 駆け去っ た。
+    english_literally: She flying's as if stage from rushed away.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 飛ぶ {よう に} 舞台 から 駆け去っ た。
+        english: She rushed off the stage as if flying.
+        hint: 「ように」 is the common modern way to express 'as if' or 'like'. To achieve a more dramatic,
+          formal, or literary effect, a different construction is needed.
+    scene: A theater critic is recounting a dramatic exit during a play, using heightened language to
+      convey the impact.
+    register: formal
+    setting: creative
+    nuance: 「飛ぶが如く」 functions adverbially, intensifying the verb 「駆け去った」 (rushed off), emphasizing the
+      speed and grace of her departure. This conveys a sense of powerful, almost unreal movement, typical
+      in dramatic narratives.
+    etymology: The verb 「駆け去る」 (kakesaru), meaning 'to run away' or 'to rush off', is a compound verb
+      combining 「駆ける」 (kakeru, 'to run, to gallop') and 「去る」 (saru, 'to leave, to pass'). This combination
+      expresses a swift and decisive departure, enhancing the dramatic impact of the scene. The use of
+      「舞台から」 clearly indicates the place of departure, which is essential for visualizing the scene.
+  - english: The soldiers on the battlefield charged into the enemy lines like fierce demons.
+    japanese:
+      - 戦場 の 兵士 達 は 鬼神 の {如く} 敵陣 へ 突進 し た。
+      - 戦場 の 兵士 達 は まさに 鬼神 の {如く} 敵陣 へ 突進 し た。
+    english_literally: Battlefield's soldiers fierce demons' like enemy lines to charged.
+    competing_grammar:
+      - competing_japanese:
+          - 戦場 の 兵士 達 は 鬼神 の {よう に} 敵陣 へ 突進 し た。
+        english: The soldiers on the battlefield charged into the enemy lines like fierce demons.
+        hint: 「のように」 expresses similarity in a neutral tone. We need a more impactful and literary expression
+          for a dramatic war description.
+    scene: A historical war correspondent is describing a particularly intense and chaotic battle, using
+      vivid, almost mythological imagery.
+    register: formal
+    setting: serious
+    nuance: 「鬼神の如く」 describes the soldiers' action with mythical intensity, implying a brutal, unstoppable
+      force. This literary choice enhances the vividness of the battle scene.
+    etymology: 「鬼神」 (kishin) is a compound noun formed from 「鬼」 (oni, 'demon, ogre') and 「神」 (kami, 'god,
+      spirit'). Together, it refers to a fierce, powerful deity or a demonic god. Its use here evokes
+      a sense of terrifying strength and supernatural ferocity, which is fitting for a dramatic war description.
+      The verb 「突進する」 (tosshin suru, 'to charge, to dash forward') is a formal and impactful term for
+      an aggressive forward movement, further emphasizing the intensity of the scene.
+  - english: The wise sage of old taught that life is like a journey.
+    japanese:
+      - 人生 は 旅 の {如し} と 昔 の 賢者 は 説い た。
+      - 人生 は まさに 旅 の {如し} と 昔 の 賢者 は 説い た。
+    english_literally: Life is journey's like, so old wise sage taught.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 は 旅 の {よう だ} と 昔 の 賢者 は 説い た。
+        english: The wise sage of old taught that life is like a journey.
+        hint: 「ようだ」 is used for general resemblance. For a philosophical statement or proverb from a wise
+          sage, a more classical and profound expression is more suitable.
+    scene: A philosopher is quoting an ancient saying to illustrate a point about the human experience.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: 「旅の如し」 uses the terminal form as a timeless metaphorical statement. This use is often found
+      in proverbs or philosophical declarations, lending a profound and universal quality to the meaning.
+    etymology: The verb 「説く」 (toku) means 'to preach, to explain, to advocate'. It implies a profound
+      teaching or a philosophical discourse, rather than a casual explanation. Its usage here is appropriate
+      for a 'wise sage' imparting wisdom. The phrase 「昔の賢者」 (mukashi no kenja, 'wise sage of old') establishes
+      a timeless and authoritative source for the profound statement about life.
+  - english: That incident was truly like a nightmare.
+    japanese:
+      - あの 出来事 は まさに 悪夢 の {如き} もの でし た。
+      - あの 出来事 は 悪夢 の {如き} もの でし た。
+    english_literally: That incident truly nightmare's like thing was.
+    competing_grammar:
+      - competing_japanese:
+          - あの 出来事 は まさに 悪夢 の {よう な} もの でし た。
+        english: That incident was truly like a nightmare.
+        hint: 「のような」 would express similarity but lacks the intensity and formality required to convey
+          the full emotional weight of a traumatic event in this context. We're looking for a more formal
+          and impactful expression.
+    scene: A person, still shaken, describes a traumatic event to a therapist, emphasizing its unreal
+      and terrifying nature with elevated language.
+    register: formal
+    setting: serious
+    nuance: 「悪夢の如き」 highlights the overwhelming and terrifying nature of the incident, equating it to
+      a nightmare in its essence, not just appearance. The formality emphasizes the gravity of the experience.
+    etymology: The noun 「出来事」 (dekigoto) refers to an 'incident' or 'event'. It often implies something
+      significant or noteworthy that has occurred. The noun 「悪夢」 (akumu) literally means 'bad dream' or
+      'nightmare'. The combination 「悪夢の如きもの」 vividly conveys the traumatic and unsettling nature of the
+      event, indicating it was so terrible as to be indistinguishable from a nightmare. The expression
+      「まさに」 (masani) here emphasizes the 'truly' or 'exactly' quality of the resemblance.
+  - english: His singing voice resonated in my heart like an angel's.
+    japanese:
+      - 彼 の 歌声 は 天使 の {如く} 心 に 響き 渡っ た。
+      - 彼 の 歌声 は まさに 天使 の {如く} 心 に 響き 渡っ た。
+    english_literally: His singing voice angel's like heart in resonated across.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 歌声 は 天使 の {よう に} 心 に 響き 渡っ た。
+        english: His singing voice resonated in my heart like an angel's.
+        hint: While 「のように」 expresses similarity, 「如く」 is used here to elevate the description to a more
+          poetic and profound level, suggesting an almost divine quality rather than a mere comparison.
+    scene: A music critic describes a captivating vocal performance, aiming for a poetic and profound
+      appreciation of the artist's talent.
+    register: formal
+    setting: creative
+    nuance: 「天使の如く」 modifies 「響き渡った」, implying an almost divine quality to the voice. This adverbial usage
+      elevates the description, conveying an extraordinary impact.
+    etymology: The verb 「響き渡る」 (hibikiwataru) is a compound verb combining 「響く」 (hibiku, 'to resound,
+      to echo') and 「渡る」 (wataru, 'to cross, to extend across'). This compound vividly describes a sound
+      that spreads widely and powerfully, reaching everywhere, including deeply into one's heart. Its
+      use here magnifies the impact of the singing voice.
+  - english: Her smile had the warmth like that of spring sunshine.
+    japanese:
+      - 彼女 の 微笑み は 春 の 日差し の {如き} 暖か さ だっ た。
+      - 彼女 の 微笑み は まさに 春 の 日差し の {如き} 暖か さ だっ た。
+    english_literally: Her smile spring's sunshine's like warmth was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 微笑み は 春 の 日差し の {よう な} 暖か さ だっ た。
+        english: Her smile had the warmth like that of spring sunshine.
+        hint: While 「のような」 expresses similarity, for a poetic and somewhat elevated romantic expression,
+          a more classical form is appropriate.
+    scene: A suitor, deeply smitten, pens a heartfelt letter to express their affection, using poetic
+      imagery.
+    register: semi-formal
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「春の日差しの如き暖かさ」 compares the smile to spring sunshine, emphasizing its gentle and welcoming
+      nature. The use of 「如き」 adds a poetic and somewhat elevated tone, suitable for intimate romantic
+      expression.
+    etymology: The noun 「微笑み」 (hohoemi) means 'smile'. It is often used in literary or poetic contexts
+      to convey a soft, gentle, or subtle smile, distinct from the more general 「笑顔」 (egao, 'smiling face').
+      The noun 「日差し」 (hizashi) refers to 'sunlight' or 'sunbeams'. The combination 「春の日差し」 evokes a sense
+      of gentle warmth and renewal, common imagery in romantic literature, reinforcing the poetic tone
+      of the example.
+  - english: Their friendship was as firm as a rock, overcoming any hardship.
+    japanese:
+      - 彼 ら の 友情 は 岩 の {如く} 固く、どんな 困難 も 乗り越え た。
+      - 彼 ら の 友情 は まさに 岩 の {如く} 固く、どんな 困難 も 乗り越え た。
+    english_literally: Their friendship rock's like firm, any hardship also overcame.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら の 友情 は 岩 の {よう に} 固く、どんな 困難 も 乗り越え た。
+        english: Their friendship was as firm as a rock, overcoming any hardship.
+        hint: While 「のように」 expresses similarity, 「如く」 is used here to give the description a more classic
+          and epic feel, befitting a story about enduring friendship overcoming great hardships.
+    scene: A narrator describes an enduring bond between two characters in an epic story, highlighting
+      its unbreakable strength.
+    register: formal
+    setting: storytelling
+    nuance: 「岩の如く」 describes the firmness of the friendship, implying unyielding strength and resilience.
+      This adverbial expression elevates the description, making the bond sound legendary.
+    etymology: The verb 「乗り越える」 (norikoeru) is a compound verb meaning 'to overcome' or 'to get over'.
+      It combines 「乗る」 (noru, 'to ride, to get on') and 「越える」 (koeru, 'to cross, to surmount'). This conveys
+      the imagery of literally 'crossing over' an obstacle, which is powerful for expressing triumph over
+      difficulties. The term 「困難」 (konnan) means 'difficulty' or 'hardship'. The phrase 「どんな困難も」 emphasizes
+      'any and all hardships', highlighting the absolute strength of the friendship.
+  - english: This old clock tower is like the hustle and bustle of the old town itself.
+    japanese:
+      - この 古い 時計 台 は 昔 の 街 の 賑わい の {如し}。
+      - この 古い 時計 台 は まさに 昔 の 街 の 賑わい の {如し}。
+    english_literally: This old clock tower old town's bustle's like (it).
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 時計 台 は 昔 の 街 の 賑わい の {よう だ}。
+        english: This old clock tower is like the hustle and bustle of the old town.
+        hint: 「ようだ」 is a common modern equivalent, but 「如し」 provides a more evocative, poetic, and reflective
+          tone, suitable for an older person reminiscing about the past.
+    scene: An elderly resident, standing in a quiet, modern town square, reflects on the vibrant past
+      for a documentary interview.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: 「賑わいの如し」 in the terminal form implies that the clock tower *is* the essence of the old town's
+      hustle, embodying its spirit. The older speaker's use of this formal, almost poetic phrasing enhances
+      the nostalgic and reflective mood.
+    etymology: The noun 「時計台」 (tokeidai) literally means 'clock stand' or 'clock tower'. It is a common
+      architectural feature in many towns and cities, often serving as a landmark. The noun 「賑わい」 (nigiyaka)
+      means 'bustle, prosperity, 'liveliness'. Its use evokes a sense of past vibrancy and activity, fitting
+      the nostalgic context of the sentence. The phrase 「昔の街」 (mukashi no machi, 'old town') directly
+      sets the scene in a bygone era, emphasizing the reflective and historical tone.
+post_example_writeup: The forms 「如く」 (gotoku), 「如き」 (gotoki), and 「如し」 (gotoshi) serve distinct grammatical
+  roles. 「如し」 acts as a predicate, typically concluding a sentence or clause, emphasizing the state of
+  being 'like' something. 「如き」 functions as an attributive, modifying a noun directly, meaning 'such as'
+  or 'like'. 「如く」 serves adverbially, describing how an action is performed, meaning 'as if' or 'in the
+  manner of'.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ごとし

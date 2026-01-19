@@ -1,0 +1,280 @@
+grammar_point: 何でも (anything・everything)
+learn_before:
+  - 何でも (hearsay)
+meaning: anything・everything
+pronunciation:
+  katakana: ナンデモ
+  romaji: nandemo
+formation:
+  何 (なに/なん) + でも: Indicates 'anything' (indiscriminate choice or universality of objects/matters).
+  何 (なん) + で + も: Indicates 'everything' (all-encompassing list or totality).
+jlpt: N3
+etymology: The phrase 何でも combines 何 (nani/nan), meaning "what," and でも (demo), which is a combination
+  of the conjunctive particle で and the particle も. 何 is an interrogative pronoun. The particle で can
+  indicate means, manner, or state. The particle も signifies inclusion, addition, or even emphasis, often
+  translating to "also," "even," or "all." When 何 and でも are combined, the literal sense shifts from "what"
+  to "any" or "every." The も emphasizes the "all-inclusiveness" or "indiscriminateness" of 何. This construction
+  is parallel to 誰でも (dare-demo) for "anyone/everyone," 何処でも (doko-demo) for "anywhere," and いつでも (itsu-demo)
+  for "anytime," where でも acts to generalize the interrogative word. This demonstrates a common pattern
+  in Japanese to form indefinite pronouns or adverbial phrases conveying "any" or "every" by appending
+  でも to interrogative words.
+writeup: |-
+  The grammar point {何でも} is a versatile expression in Japanese that generally translates to "anything" or "everything." It is formed by combining the interrogative pronoun 何 (nani/nan) meaning "what" with the particle でも (demo). The でも here functions to generalize the interrogative, implying "even if it's [what]," thereby extending the meaning to include all possibilities.
+
+  There are two primary ways {何でも} is used:
+
+  1.  **"Anything" (indiscriminate choice):** When you want to convey a willingness to accept any option, or that something is not particular about choice.
+      *   Example: {何でも} 食べる (to eat anything) – implying you are not picky.
+      *   Example: {何でも} いい (anything is fine) – implying you have no preference.
+
+  2.  **"Everything" (all-encompassing):** When you want to express totality, comprehensive knowledge, or that an action applies to all things.
+      *   Example: {何でも} 知っている (to know everything) – implying comprehensive knowledge.
+      *   Example: {何でも} できる (to be able to do everything) – implying complete capability.
+
+  The nuance of {何でも} depends heavily on the context and the verb it modifies. It often carries a sense of readiness, openness, or a lack of limitation. It can also imply a casualness or a broad acceptance.
+
+  It is typically used in affirmative sentences. While similar structures exist with 何 and negation (e.g., 何も〜ない), those convey "nothing" and are distinct in meaning and usage.
+false_friends:
+  - term: 誰でも
+    meaning: anyone・everyone
+    kind: similar expression
+    nuance: 誰でも is constructed similarly to {何でも} but specifically refers to people, indicating "anyone"
+      or "everyone." {何でも} refers to things or matters.
+    grammar_point: 誰でも (anyone・everyone)
+  - term: 何も〜ない
+    meaning: not... anything・nothing
+    kind: antonym
+    nuance: While it uses 何 and も, 何も〜ない explicitly conveys negation, meaning "not anything" or "nothing,"
+      which is the opposite of {何でも}. The も in 何も〜ない functions as a negative polarity item, requiring
+      a negative verb.
+    grammar_point: 何も〜ない (no reason to・no need to)
+  - term: どんなに〜ても
+    meaning: no matter how much
+    kind: similar expression
+    nuance: どんなに〜ても expresses "no matter how much/what kind of," focusing on the degree or type without
+      limitation. {何でも} focuses on the thing itself being "anything" or "everything." They both convey
+      universality but from different angles.
+    grammar_point: どんなに〜ても (no matter how much)
+  - term: 何らかの
+    meaning: some kind of
+    kind: similar expression
+    nuance: 何らかの suggests "some kind of" or "something or other," implying an indefinite but existing
+      item. {何でも} means "anything" or "everything," implying either broad inclusion or complete lack of
+      specificity.
+    grammar_point: 何らかの (some kind of)
+post_false_friends_writeup: It's important to distinguish {何でも} from similarly formed expressions. While
+  誰でも applies the same "any/every" concept to people, {何でも} is exclusively for things or matters. 何も〜ない
+  is a direct opposite, meaning "nothing at all," and requires a negative verb. どんなに〜ても focuses on the
+  degree or intensity ("no matter how much"), not the object itself. Finally, 何らかの implies "some kind
+  of," suggesting a specific but unknown item, rather than the all-encompassing "anything/everything"
+  of {何でも}. Pay close attention to the particles and the verb conjugation to grasp the precise meaning.
+examples:
+  - english: I'll eat anything. I'm not picky at all.
+    japanese:
+      - 私 は {何 で も} 食べ ます。全然 好き嫌い が ない ん です。
+      - 私 {何 で も} 食べる よ。全然 好き嫌い ない ん だ。
+      - '{何 で も} 食べ られ ます。好き嫌い は 一切 あり ませ ん。'
+    english_literally: As for me, anything I eat. There is no pickiness at all.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は {特に} 食べ ませ ん。
+        english: I don't eat anything {in particular}.
+        hint: 「特に」 (toku ni) emphasizes "in particular" when used with negation, implying a specific choice,
+          not general openness. We're looking for an expression that means "I eat anything."
+    scene: A person is asked about their food preferences.
+    register: teineigo (polite)
+    setting: friendly
+  - english: She knows everything about cars. She's a true enthusiast.
+    japanese:
+      - 彼女 は 車 の こと なら {何 で も} 知っ て い ます。本当 に 車好き です ね。
+      - 彼女、車 の こと なら {何 で も} 知っ てる よ。マジ で 車好き だ よ ね。
+      - 車 に 関し て は、彼女 は {何 で も} 把握 し て い ます ね。
+    english_literally: As for her, about cars, if it's anything, she knows. She truly likes cars.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 車 に つい て {少し} 知っ て い ます。
+        english: She knows {a little} about cars.
+        hint: 「少し」 (sukoshi) indicates a small amount of knowledge, not comprehensive knowledge. We're
+          looking for an expression that means she knows "everything."
+    scene: Two friends are talking about a mutual acquaintance's deep knowledge.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The phrase 「車のことなら {何でも} 知っている」 emphasizes her comprehensive knowledge specifically about
+      cars. The use of 「〜のことなら」 sets the scope.
+  - english: You can tell me anything. I promise I won't tell anyone.
+    japanese:
+      - '{何 で も} 言っ て ごらん。誰 に も 言わ ない って 約束 する から。'
+      - '{何 で も} 話し て いい よ。誰 に も 言わ ない から。'
+      - '{何 で も} お 話し ください。決して 口外 し ませ ん の で。'
+    english_literally: Anything say, okay? To anyone, I won't say, because I promise.
+    competing_grammar:
+      - competing_japanese:
+          - '{何 か} 言っ て。'
+        english: Say {something}.
+        hint: 「何か」 (nanika) means "something" specific, not "anything" in an unrestricted sense. We're
+          looking for an expression that encourages revealing "anything" without reservation.
+    scene: A friend comforting another who seems distressed.
+    register: casual
+    setting: intimate
+    listener_gender: female
+    nuance: 「言ってごらん」 is a gentle, encouraging command, often used by someone in a supportive role. This
+      implies a safe space where the listener can reveal 「{何でも}」 (anything).
+  - english: Nowadays, you can buy almost anything online. It's so convenient.
+    japanese:
+      - 最近 は、ネット で {何 で も} 買える よう に なり まし た ね。すごく 便利 です。
+      - 最近、ネット で {何 で も} 買える よう に なっ た ね。めっちゃ 便利 だ よ ね。
+      - 今 は インターネット で {何 で も} 手 に 入り ます ね。非常 に 便利 です。
+    english_literally: Recently, on the net, anything has become buyable. It's very convenient, isn't
+      it?
+    competing_grammar:
+      - competing_japanese:
+          - 最近 は、ネット で {色々 な もの} が 買え ます。
+        english: Recently, you can buy {various things} online.
+        hint: 「色々なもの」 (iroirona mono) means "various things," which suggests a selection, not an all-encompassing
+          "anything." We're looking for an expression that indicates you can buy "anything" online.
+    scene: Two colleagues discussing online shopping.
+    register: teineigo (polite)
+    setting: professional
+  - english: My child can do anything from singing to dancing. They're very talented.
+    japanese:
+      - うち の 子 は 歌 も ダンス も {何 で も} でき ます。本当 に 多才 です。
+      - うち の 子、歌 も ダンス も {何 で も} できる の。ほんと 多才 な ん だ よ。
+      - 私 の 子供 は 歌 や ダンス に 限ら ず {何 で も} こなし ます。
+    english_literally: My child, singing and dancing and anything they can do. Truly talented.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 子 は 歌 も ダンス も {少し} でき ます。
+        english: My child can do {a little} of both singing and dancing.
+        hint: 「少し」 (sukoshi) implies limited ability, not comprehensive talent. We're looking for an expression
+          that means the child can do "everything."
+    scene: A proud parent talking about their child's abilities.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「歌もダンスも {何でも} できます」 emphasizes the child's wide range of abilities, suggesting
+      they can do "everything." The use of 「～も～も」 before {何でも} reinforces the idea of inclusiveness.
+  - english: When it comes to sweets, she'll eat anything.
+    japanese:
+      - 彼女 は 甘い もの なら {何 で も} 食べ ます。
+      - 彼女、甘い もの なら {何 で も} 食べる よ。
+      - 甘い もの だっ たら、彼女 は {何 で も} 大丈夫 です よ。
+    english_literally: As for her, if it's sweet things, anything she eats.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 甘い もの なら {どれ で も} 食べ ます。
+        english: She will eat {any of them} if they are sweet things.
+        hint: 「どれでも」 (doredemo) implies choosing from a specific, limited set, not "anything" in a general,
+          unrestricted sense. We're looking for an expression that means she'll eat "anything" when it
+          comes to sweets.
+    scene: A group of friends deciding on dessert.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: This sentence implies her lack of pickiness specifically for sweets. 「甘いものなら」 (amai mono nara)
+      narrows the scope to sweet things, within which she will eat "anything."
+  - english: If there's anything I can do, please don't hesitate to ask.
+    japanese:
+      - '{何 で も} できる こと が あれ ば、遠慮 なく 言っ て ください ね。'
+      - '{何 で も} 手伝える こと が あっ たら、遠慮 なく 言っ て ね。'
+      - '{何 で も} お 手伝い できる こと が ござい まし たら、ご 遠慮 なく お 申し付け ください。'
+    english_literally: Anything if there is something I can do, without hesitation please say.
+    competing_grammar:
+      - competing_japanese:
+          - '{手伝い} が あれ ば、言っ て ください。'
+        english: If there's {help} you need, please tell me.
+        hint: 「手伝い」 (tetsudai) means "help," which is a specific kind of assistance, not "anything" that
+          can be done. We're looking for a phrase that offers "anything" the speaker can do.
+    scene: Offering help to someone in need.
+    register: teineigo (polite)
+    setting: supportive
+  - english: The internet has everything these days. It's like a bottomless well of information.
+    japanese:
+      - インターネット に は 今 の 時代、{何 で も} あり ます ね。まさに 情報 の 宝庫 です。
+      - ネット って、今 {何 で も} ある よ ね。情報 源 と し て すごい。
+      - オン ライン で は 今日、{何 で も} 見つかり ます ね。まさに 情報 の 源 です。
+    english_literally: On the internet, in today's era, anything exists, doesn't it? Truly a treasure
+      trove of information.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット に は 今 の 時代、{様々 な 情報} が あり ます。
+        english: Recently, you can buy {various things} online.
+        hint: 「様々な情報」 (samazamana jōhō) means "various information," implying a diverse selection, not
+          an all-encompassing "everything." We're looking for an expression that means the internet has
+          "everything."
+    scene: A student marveling at the vastness of online information.
+    register: teineigo (polite)
+    setting: academic
+  - english: My grandmother used to say, you can become anything you want to be.
+    japanese:
+      - 祖母 は よく『あなた は {何 で も} なれる』と 言っ て い まし た。
+      - お ばあ ちゃん、よく『あんた は {何 で も} なれる』って 言っ て た よ。
+      - ばあ ちゃん は いつ も『お前 は {何 で も} なれる ん だ』と 言っ て い た な。
+    english_literally: My grandmother often said, "You, anything can become."
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 は よく『あなた は {どんな 人} に も なれる』と 言っ て い まし た。
+        english: My grandmother often said, "You can become {any kind of person}."
+        hint: 「どんな人」 (donna hito) specifically refers to "any kind of person," not "anything" (in terms
+          of roles, achievements, etc.) in a broader sense. We're looking for a phrase that implies becoming
+          "anything" one desires.
+    scene: Someone reflecting on their grandmother's encouraging words.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「{何でも} なれる」 emphasizes boundless potential. The context of a grandmother's advice
+      lends it a warm, encouraging tone.
+  - english: She can fix anything around the house; she's very handy.
+    japanese:
+      - 彼女 は 家 の 中 の もの は {何 で も} 直せ ます。本当 に 器用 です ね。
+      - 彼女、家 の 中 の もの は {何 で も} 直せる ん だ。ほんと 器用 だ よ ね。
+      - 彼女 は 家庭 内 の 品 は {何 で も} 修理 でき ます。大変 器用 な 方 です。
+    english_literally: As for her, things inside the house, anything she can fix. Truly skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 家 の 中 の もの を {上手 に} 直せ ます。
+        english: She can fix things around the house {skillfully}.
+        hint: 「上手に」 (jōzu ni) means "skillfully" or "well," referring to the manner of doing, not the
+          scope of what can be done. We're looking for an expression that means she can fix "anything"
+          in the house.
+    scene: A homeowner admiring their friend's practical skills.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「家の中のものは {何でも} 直せます」 highlights her comprehensive ability to repair things in the house, suggesting
+      "everything." The modifier 「家の中のものは」 specifies the domain of her skill.
+  - english: No matter what kind of question it is, the professor answers everything carefully.
+    japanese:
+      - どんな 質問 で も、先生 は {何 で も} 丁寧 に 答え て くれ ます。
+      - どんな 質問 で も、先生 は {何 で も} 丁寧 に 答え て くれる ん だ よ。
+      - どの よう な 質問 に も、先生 は {何 なり と} 丁寧 に ご 回答 ください ます。
+    english_literally: No matter what kind of question, the professor anything carefully answers for us.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 質問 で も、先生 は {全部} 丁寧 に 答え て くれ ます。
+        english: No matter what kind of question, the professor answers {all} of them carefully.
+        hint: 「全部」 (zenbu) means "all" in the sense of a complete set, but {何でも} emphasizes the "anything
+          and everything" aspect, implying indiscriminateness. We're looking for a phrase that implies
+          the professor answers "anything" that comes up.
+    scene: Students discussing their helpful professor.
+    register: teineigo (polite)
+    setting: academic
+  - english: The child believes everything his parents say.
+    japanese:
+      - その 子 は 親 が 言う こと なら {何 で も} 信じ ます。
+      - あの 子、親 が 言う こと なら {何 で も} 信じる ん だ。
+      - その お 子 様 は、ご 両親 の お 言葉 なら {何 で も} 疑う こと なく 受け入れ ます。
+    english_literally: That child, if it's what parents say, anything he believes.
+    competing_grammar:
+      - competing_japanese:
+          - その 子 は 親 が 言う こと なら {ほとんど} 信じ ます。
+        english: That child believes {almost everything} his parents say.
+        hint: 「ほとんど」 (hotondo) means "almost all" or "most," indicating a slight reservation, not complete
+          and total belief in "anything." We're looking for an expression that means the child believes
+          "everything" without exception.
+    scene: Observing a very trusting child.
+    register: casual
+    setting: reflective

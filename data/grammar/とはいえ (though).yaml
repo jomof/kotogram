@@ -1,0 +1,291 @@
+grammar_point: とはいえ (though)
+learn_before:
+  - とは言え (that being said)
+meaning: Though, although (I admit that), be that as it may, nonetheless
+pronunciation:
+  katakana: トハイエ
+  romaji: to wa ie
+formation:
+  Sentence [plain form] + とはいえ: Acknowledges a preceding statement or fact, then introduces a contrasting
+    or qualifying point.
+  Noun/Na-adjective + (だ) + とはいえ: For nouns and na-adjectives, the optional だ can be omitted, especially
+    in more formal or literary contexts. However, the plain form is technically the base.
+jlpt: N1
+etymology: The grammar point 「とはいえ」 comes from 「とは言う」 (to say that) + 「いえ」 (imperative form of 言う, meaning
+  'though' or 'although'). The 「は」 here is a topic marker, emphasizing the preceding statement, while
+  「いえ」 indicates a concession or contrast. Thus, the phrase acknowledges a statement but introduces a
+  contrasting idea. It literally means something like 'even if one were to say that...'.
+writeup: 「とはいえ」 is a sophisticated Japanese grammar pattern employed to acknowledge a previous statement
+  or fact, while simultaneously introducing a contrasting or qualifying point. It serves to convey a sense
+  of 'although (A) is true, (B) is also true' or 'be that as it may.' Think of it as saying, 'I concede
+  that point, but...' or 'Having said that, consider this...'. This structure frequently appears in formal
+  settings, such as academic papers, official speeches, or serious discussions. It's often used when the
+  speaker or writer wishes to present a balanced view, or to gently counter a previously stated fact without
+  directly refuting it. The first clause (A) typically presents a fact or commonly held belief, while
+  the second clause (B) introduces a counterpoint, a limitation, or a different perspective that doesn't
+  negate A but adds important context. The phrase technically derives from 〜と (quotative particle) + は
+  (topic/contrastive particle) + 言え (imperative of 言う 'to say'). This literal breakdown emphasizes the
+  acknowledgment of the preceding statement. As such, it can attach to the plain form of verbs, adjectives,
+  and even nouns (with or without だ), making it highly versatile for connecting clauses.
+false_friends:
+  - term: にせよ・にしろ
+    meaning: Even if, even though, no matter, whether… or
+    kind: similar expression
+    nuance: 「にせよ」 and 「にしろ」 focus more on hypothetical situations or possibilities, or a range of conditions,
+      whereas 「とはいえ」 acknowledges a real, existing fact before introducing a contrast.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: であれ
+    meaning: Even if, Even, No matter
+    kind: similar expression
+    nuance: 「であれ」 emphasizes the inclusiveness of a condition or a strong, unconditional assertion. In
+      contrast, 「とはいえ」 introduces a contrasting thought despite an acknowledged fact, not an unconditional
+      statement.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: ものの
+    meaning: Although, but, even though
+    kind: similar expression
+    nuance: While 「ものの」 simply indicates a contrast or a slight disappointment after a fact, 「とはいえ」 acknowledges
+      a fact or statement and then introduces a more significant or often surprising counterpoint. 「ものの」
+      is generally milder and can sometimes imply the speaker's own slight disappointment or resignation.
+    grammar_point: ものの (although・but)
+  - term: どころか
+    meaning: Far from, anything but, let alone
+    kind: similar expression
+    nuance: 「どころか」 strongly implies that a situation is the opposite of what one might expect or is far
+      from a certain state, often escalating to an extreme. In contrast, 「とはいえ」 acknowledges a point as
+      true but then presents a contrasting aspect that coexists, without necessarily negating the first
+      point entirely.
+    grammar_point: どころか (far from)
+  - term: にもかかわらず
+    meaning: Despite, in spite of, regardless, nevertheless
+    kind: similar expression
+    nuance: 「にもかかわらず」 emphasizes that an action or state occurred *despite* a challenging or hindering
+      condition, focusing on the lack of influence the condition had. 「とはいえ」, on the other hand, acknowledges
+      a fact as true and then introduces a contrasting aspect that exists *alongside* it, often providing
+      a more balanced view rather than overcoming a hindrance.
+    grammar_point: にかかわらず (regardless of)
+post_false_friends_writeup: To avoid confusion with similar expressions, remember that 「とはいえ」 is used
+  when you want to acknowledge a point that is largely accepted as true, and then immediately introduce
+  a strong contrasting or qualifying thought. It's about balancing two ideas that might seem contradictory,
+  not just presenting alternatives or suggesting overcoming an obstacle. Pay close attention to whether
+  the first part is a factual statement being acknowledged or a hypothetical/contrary condition.
+examples:
+  - english: Although he is a student, his specialized knowledge is comparable to that of a teacher.
+    japanese:
+      - 彼 は 学生 {と は いえ}、専門 知識 は 先生 に 匹敵 する ほど だ。
+      - 彼 は 学生 で ある {と は いえ}、専門 知識 は 先生 に 匹敵 する ほど だ。
+      - 彼 は 学生 {と は いえ}、専門 知識 は 先生 に 匹敵 する ほど です。
+    english_literally: He, student though he is, specialized knowledge is comparable to a teacher's extent.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 学生 だ {けれど}、専門 知識 は 先生 に 匹敵 する ほど だ。
+        english: He is a student, but his specialized knowledge is comparable to that of a teacher.
+        hint: 「けれど」 is a general conjunction for 'but' or 'although'. We're looking for a phrase that
+          formally acknowledges a fact before introducing a strong, often surprising, counterpoint.
+    scene: A university professor is discussing a particularly talented student with a colleague.
+    register: formal
+    setting: academic
+    nuance: The use of 「とはいえ」 in this academic context allows the professor to acknowledge the student's
+      status (「学生」) while immediately highlighting an exceptional and unexpected level of knowledge (「専門知識
+      は 先生 に 匹敵 する ほど」). It sets a formal tone, conveying respect for both the student's current position
+      and their advanced abilities.
+    etymology: The concept of 「匹敵 する」 (to be comparable to) comes from ancient Chinese, signifying matching
+      opponents or rivals, now used to mean 'on par with' or 'equal to'.
+  - english: Although this technology is innovative, it will probably still take time for it to be put
+      into practical use.
+    japanese:
+      - この 技術 は 革新 的 {と は いえ}、実用 化 に は まだ 時間 が かかる だろう。
+      - この 技術 は 革新 的 だ {と は いえ}、実用 化 に は まだ 時間 が かかる だろう。
+      - この 技術 は 革新 的 {と は いえ}、実用 化 に は まだ 時間 が かかる でしょう。
+    english_literally: This technology, innovative though it is, for practical application still time
+      will probably take.
+    competing_grammar:
+      - competing_japanese:
+          - この 技術 は 革新 的 です {が}、実用 化 に は まだ 時間 が かかる だろう。
+        english: This technology is innovative, but it will probably still take time for it to be put
+          into practical use.
+        hint: 「が」 connects two clauses, often with a contrasting meaning. We're looking for a phrase that
+          specifically acknowledges the preceding statement as true before introducing a significant,
+          often limiting, counterpoint.
+    scene: Engineers are presenting a new technological breakthrough to their management team.
+    register: formal
+    setting: informative
+    nuance: In a professional setting, 「とはいえ」 helps the engineers present a balanced view. It acknowledges
+      the positive aspect (「革新 的」 - innovative) without sugarcoating the challenges (「実用化 に は まだ 時間 が
+      かかる」 - still takes time for practical use). This nuanced approach maintains credibility and professionalism.
+    etymology: The word 「実用化」 (jitsuyouka) literally combines 'actual use' (実用) and '-ization' (化), referring
+      to the process of making something usable in practice.
+  - english: Although this apartment is spacious enough, the poor sunlight is a drawback.
+    japanese:
+      - この アパート は 広 さ が 十分 {と は いえ}、日当たり が 悪い の は 欠点 だ。
+      - この アパート は 広 さ が 十分 で ある {と は いえ}、日当たり が 悪い の は 欠点 だ。
+      - この アパート は 広 さ が 十分 {と は いえ}、日当たり が 悪い の は 欠点 です。
+    english_literally: This apartment, as for spaciousness, is sufficient though, poor sunlight is a drawback.
+    competing_grammar:
+      - competing_japanese:
+          - この アパート は 広 さ が 十分 です {が}、日当たり が 悪い の は 欠点 だ。
+        english: This apartment is spacious enough, but the poor sunlight is a drawback.
+        hint: While 「が」 indicates contrast, 「とはいえ」 emphasizes a concession, acknowledging the truth of
+          the first clause before highlighting a specific drawback or limitation.
+    scene: A real estate agent is showing an apartment to a prospective tenant, highlighting pros and
+      cons.
+    register: semi-formal
+    setting: negotiating
+    nuance: The real estate agent's use of 「とはいえ」 in this semi-formal context allows them to acknowledge
+      a clear positive point (「広さ が 十分」 - spacious enough) while immediately bringing up a significant
+      negative (「日当たり が 悪い」 - poor sunlight). This creates a sense of transparency, balancing the positive
+      and negative aspects for the client.
+    etymology: 「日当たり」 (hiatari) literally means 'sun' (日) + 'hit/strike' (当たり), indicating where the sun
+      hits or shines.
+  - english: Though she's a new employee, she's surprisingly capable at her job.
+    japanese:
+      - 新入 社員 {と は いえ}、彼女 は 驚く ほど 仕事 が できる。
+      - 新入 社員 だ {と は いえ}、彼女 は 驚く ほど 仕事 が できる。
+      - 新入 社員 で ある {と は いえ}、彼女 は 驚く ほど 仕事 が できる。
+      - 新入 社員 {と は いえ}、彼女 は 驚く ほど 仕事 が でき ます。
+    english_literally: New employee though she is, she is surprisingly capable at work.
+    competing_grammar:
+      - competing_japanese:
+          - 新入 社員 な {の に}、彼女 は 驚く ほど 仕事 が できる。
+        english: Even though she's a new employee, she's surprisingly capable at her job.
+        hint: 「のに」 emphasizes an unexpected or surprising outcome given the preceding condition. We're
+          looking for a phrase that formally acknowledges the first statement before presenting a contrasting
+          reality.
+    scene: A manager is praising a new hire to a colleague, acknowledging her inexperience while highlighting
+      her unexpected skill.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: female
+    nuance: The manager's use of 「とはいえ」 in a professional setting conveys a respectful acknowledgment
+      of the new employee's status as 「新入社員」 (new employee) while emphasizing her exceptional capability
+      (「驚く ほど 仕事 が できる」). This phrasing maintains professionalism even when expressing surprise, as opposed
+      to a more casual connector like 「だけど」.
+  - english: Though that person is wealthy, they certainly don't live a luxurious life.
+    japanese:
+      - あの 人 は お 金持ち {と は いえ}、決して 贅沢 な 暮らし は し ない。
+      - あの 人 は お 金持ち だ {と は いえ}、決して 贅沢 な 暮らし は し ない。
+      - あの 人 は お 金持ち で ある {と は いえ}、決して 贅沢 な 暮らし は し ない。
+    english_literally: That person, wealthy though they are, certainly luxurious life does not do.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は お 金持ち だ {けれど}、決して 贅沢 な 暮らし は し ない。
+        english: That person is wealthy, but they certainly don't live a luxurious life.
+        hint: 「けれど」 is a casual conjunction for 'but'. We're looking for a phrase that acknowledges a
+          known fact with a slightly more formal and emphatic tone before introducing a contrasting point.
+    scene: Two acquaintances are discussing a well-known, rich individual in their community, noting their
+      humble lifestyle despite their wealth.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual use of 「とはいえ」 in conversation among friends implies a commonly known fact about
+      the person's wealth (「お 金持ち」), then introduces a surprising contrast (「決して 贅沢 な 暮らし は しない」) without
+      being overly formal. The tone is simply observant, rather than judgmental or surprised, common in
+      casual male conversation.
+  - english: Though it's good for your health, eating the same meal every day gets boring.
+    japanese:
+      - 健康 に 良い と {はい え}、毎日 同じ 食事 を する の は 飽きる。
+      - 健康 に 良い と いう {と は いえ}、毎日 同じ 食事 を する の は 飽きる。
+    english_literally: Good for health it is said, though, eating the same meal every day is boring.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 に 良い {けれど}、毎日 同じ 食事 を する の は 飽きる。
+        english: It's good for your health, but eating the same meal every day gets boring.
+        hint: 「けれど」 offers a general contrast. We're looking for a phrase that allows one to concede a
+          point while immediately presenting a strong, often personal, counter-argument.
+    scene: A person is talking to themselves, reflecting on their diet choices.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: When speaking to oneself, 「とはいえ」 reflects an internal debate or acknowledgment. Here, the
+      speaker acknowledges the health benefits (「健康 に 良い」) but immediately presents a counter-argument
+      based on personal feeling (「毎日 同じ 食事 を する の は 飽きる」 - gets boring). This shows self-reflection rather
+      than external communication.
+    etymology: The verb 「飽きる」 (akiru) means 'to get tired of' or 'to lose interest', often implying a
+      sense of satiation or having had enough of something.
+  - english: Though it's an emergency, it's necessary to act calmly.
+    japanese:
+      - 緊急 事態 {と は いえ}、冷静 に 行動 する 必要 が ある。
+      - 緊急 事態 だ {と は いえ}、冷静 に 行動 する 必要 が ある。
+      - 緊急 事態 で ある {と は いえ}、冷静 に 行動 する 必要 が ある。
+      - 緊急 事態 {と は いえ}、冷静 に 行動 する 必要 が あり ます。
+    english_literally: Emergency situation though it is, calmly acting is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 事態 です {が}、冷静 に 行動 する 必要 が ある。
+        english: It's an emergency, but it's necessary to act calmly.
+        hint: 「が」 provides a simple contrast. We're looking for a phrase that acknowledges the severity
+          of the situation while immediately asserting a crucial, contrasting action or necessity.
+    scene: A disaster relief coordinator is briefing their team on the importance of maintaining composure
+      during a crisis.
+    register: formal
+    setting: commanding
+    nuance: In a commanding and formal context, 「とはいえ」 serves to validate the severity of the situation
+      (「緊急事態」) while simultaneously asserting the crucial need for a specific, contrasting action (「冷静
+      に 行動 する 必要 が ある」 - necessary to act calmly). It lends authority to the instruction by first acknowledging
+      the reality of the challenge.
+  - english: Although it's a difficult task, we must complete it by the deadline.
+    japanese:
+      - 困難 な 課題 {と は いえ}、期限 まで に 完了 し なけれ ば なら ない。
+      - 困難 な 課題 だ {と は いえ}、期限 まで に 完了 し なけれ ば なら ない。
+      - 困難 な 課題 {と は いえ}、期限 まで に 完了 し なけれ ば なり ませ ん。
+    english_literally: Difficult task though it is, by the deadline completion must be done.
+    competing_grammar:
+      - competing_japanese:
+          - 困難 な 課題 だ {が}、期限 まで に 完了 し なけれ ば なら ない。
+        english: It's a difficult task, but we must complete it by the deadline.
+        hint: 「が」 is a simple contrast. We're looking for a phrase that acknowledges a fact and then introduces
+          a strong counter-statement or obligation, often in a formal context.
+    scene: A project manager addressing their team during a critical phase of a project.
+    register: formal
+    setting: professional
+    nuance: This use of 「とはいえ」 in a professional, formal setting allows the project manager to acknowledge
+      the challenge (「困難 な 課題」 - difficult task) while simultaneously reinforcing the absolute necessity
+      of meeting the deadline (「完了 し なけれ ば なら ない」 - must complete). It conveys understanding of the difficulty
+      but also firm resolve.
+  - english: Though it's a small amount, every donation helps.
+    japanese:
+      - 少額 {と は いえ}、全て の 寄付 が 助け に なる。
+      - 少額 で ある {と は いえ}、全て の 寄付 が 助け に なる。
+      - 少額 {と は いえ}、全て の 寄付 が 助け に なり ます。
+    english_literally: Small amount though it is, all donations become a help.
+    competing_grammar:
+      - competing_japanese:
+          - 少額 だ {けれど}、全て の 寄付 が 助け に なる。
+        english: It's a small amount, but every donation helps.
+        hint: 「けれど」 provides a general contrast. We're looking for a phrase that formally acknowledges
+          the preceding statement before introducing a universal truth or encouraging point.
+    scene: A charity event organizer appealing to potential donors.
+    register: formal
+    setting: informative
+    nuance: By using 「とはいえ」, the speaker respectfully acknowledges that some donations may be small (「少額」)
+      but immediately emphasizes their collective importance (「全て の 寄付 が 助け に なる」). This formal phrasing
+      encourages participation by valuing all contributions, regardless of size.
+  - english: Although I'm busy, I'll make time to help you.
+    japanese:
+      - 忙しい {と は いえ}、あなた を 助ける 時間 は 作る よ。
+      - 忙しい {と は いえ}、あなた を 助ける 時間 は 作り ます よ。
+    english_literally: Busy though I am, time to help you, I will make, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい {けれど}、あなた を 助ける 時間 は 作る よ。
+        english: I'm busy, but I'll make time to help you.
+        hint: 「けれど」 is a common casual conjunction. We're looking for a phrase that acknowledges a personal
+          fact (like being busy) but expresses a firm commitment to a contrasting action, often with a
+          slightly more emphatic tone.
+    scene: A friend reassuring another friend who needs help, despite their own demanding schedule.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: Even in a casual setting between friends, 「とはいえ」 adds a slight emphasis to the speaker's acknowledgment
+      of their own busy schedule (「忙しい」) before stating their commitment to help (「助ける 時間 は 作る よ」). It
+      conveys sincerity and effort, rather than just a simple contrast like 「けれど」. The casual 「よ」 further
+      softens the tone, making it sound more personal and reassuring between male friends.
+post_example_writeup: Each example demonstrates how 「とはいえ」 functions to bridge two ideas, acknowledging
+  the first as a premise and then introducing a contrasting, qualifying, or limiting statement. The key
+  is that the first statement is generally accepted as true, and 「とはいえ」 prepares the listener for a nuanced
+  counterpoint rather than a direct contradiction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とはいえ

@@ -1,0 +1,390 @@
+grammar_point: ば (conditional, if A then B)
+learn_before:
+  - '[Noun]が好きだ (to like)'
+  - い-Adjective[ければ] (conditional)
+  - いっぱい (full・a lot)
+  - ぜ (male emphatic particle)
+  - たくさん (many・a lot)
+  - のうち(で) (within・among)
+  - もし・もしも (if, emphasis)
+  - 面 (aspect)
+meaning: If... then (conditional)
+meaning_warning: Hypothetical
+pronunciation:
+  katakana: バ
+  romaji: ba
+formation:
+  'Verb (Group 1: う -> え) + ば': Expresses a conditional 'if' statement.
+  'Verb (Group 2: る -> れば) + ば': Expresses a conditional 'if' statement.
+  'Verb (Irregular: する -> すれば, くる -> くれば)': Expresses a conditional 'if' statement.
+  い-adjective (い -> ければ) + ば: Expresses a conditional 'if' statement.
+  な-adjective + なら / であれば: Expresses a conditional 'if' statement.
+  Noun + なら / であれば: Expresses a conditional 'if' statement.
+jlpt: N4
+etymology: The particle 「ば」 is said to have originated from the topic marker 「は」. It evolved to indicate
+  a condition, eventually becoming the 「ば」 we use today.
+writeup: 'The particle 「ば」 is a fundamental conditional expression in Japanese, similar to "if... then"
+  in English. It is primarily used to express general conditions, habitual actions, or logical consequences
+  where the result is a natural outcome of the condition.Formation:Verbs (Group 1 - Godan): The final
+  「う」 sound changes to an 「え」 sound, and 「ば」 is appended. For example, 読む (yomu) becomes 読めば (yomeba).Verbs
+  (Group 2 - Ichidan): Replace the final 「る」 with 「れば」. For example, 食べる (taberu) becomes 食べれば (tabereba).Irregular
+  Verbs: する (suru) becomes すれば (sureba). くる (kuru) becomes くれば (kureba).い-Adjectives: Replace the final
+  「い」 with 「ければ」. For example, 高い (takai) becomes 高ければ (takakereba).な-Adjectives and Nouns: Append 「ならば」
+  or 「であれば」. For example, 静か (shizuka) becomes 静かならば (shizuka naraba) or 静かであれば (shizuka de areba).Negative
+  Form (using ない): For both the auxiliary verb ない (nai) and い-adjectives ending in ない, replace the final
+  「い」 with 「ければ」. For example, ない becomes なければ (nakereba).Usage Nuances: 「ば」 is particularly suited for
+  expressing general truths, common knowledge, or rules where the condition reliably leads to the outcome.The
+  consequence clause (the second part of the sentence) often expresses something that is naturally expected
+  or generally true, rather than a specific one-time event that happens as a result of the condition.It
+  can also express advice or suggestions.Caution: Be careful not to confuse the conjugation rules for
+  「ば」 with those for passive verbs. For passive verbs, the final kana of a verb changes to an 「あ」 sound
+  before adding 「れる」 (e.g., 読む → 読まれる), whereas for 「ば」, it changes to an 「え」 sound (e.g., 読む → 読めば).Fun
+  Fact: The 「ならば」 (naraba) form, often shortened to 「なら」, is an abbreviation of the classical auxiliary
+  verb なり (nari), meaning "to be". In its hypothetical form, なり would become なれば. While なり itself is rarely
+  used in modern Japanese, なら and ならば are very common.'
+false_friends:
+  - term: たら
+    meaning: If (sequential, completed action, or specific outcome)
+    kind: similar expression
+    nuance: While 「ば」 often expresses general conditions or habitual actions, 「たら」 typically implies that
+      the first action or event must be completed before the second action or result can occur. It can
+      also refer to a specific, one-time hypothetical condition or a discovery.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: なら
+    meaning: If (based on a given or assumed condition/topic)
+    kind: similar expression
+    nuance: 「なら」 is used when stating a condition based on something already known, heard, or assumed
+      by the speaker. It often acts as a conditional topic marker, setting the stage for a piece of advice
+      or information relevant to that specific condition.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: と
+    meaning: If (automatic, natural, or invariable consequence)
+    kind: similar expression
+    nuance: 「と」 indicates an automatic or natural consequence, suggesting that whenever the condition
+      in the first clause occurs, the result in the second clause invariably follows. It's often used
+      for scientific facts, machine operations, or general truths.
+    grammar_point: と (conditional, inevitable result)
+  - term: もし
+    meaning: If (for emphasis or strong hypothetical)
+    kind: similar expression
+    nuance: 「もし」 is an adverb used to add emphasis to a hypothetical condition, making it more uncertain
+      or highlighting its 'if-ness'. It can be used in conjunction with 「ば」, 「たら」, or 「なら」, but it does
+      not form a conditional clause on its own.
+    grammar_point: もし・もしも (if, emphasis)
+  - term: ば〜ほど
+    meaning: The more... the more...
+    kind: similar expression
+    nuance: '「ば〜ほど」 is a specific comparative construction that indicates a proportional relationship:
+      as the degree of the first action or state increases, so does the degree of the second. It is a
+      more complex structure than simple conditional 「ば」.'
+    grammar_point: ば〜ほど (the more...the more)
+post_false_friends_writeup: While 「ば」, 「たら」, 「なら」, and 「と」 can all express conditional relationships,
+  they have subtle differences in nuance and usage. 「ば」 indicates a general condition, 「たら」 suggests a
+  sequence or discovery, 「なら」 implies a known or assumed condition, and 「と」 implies a natural consequence.
+  Understanding these differences will help you choose the most appropriate conditional form for your
+  intended meaning. 「もし」 simply adds emphasis to the conditional.
+examples:
+  - english: If you practice every day, your soccer skills will improve.
+    japanese:
+      - 毎日 練習 す {れ ば}、サッカー が 上手く なる。
+      - 毎日 練習 す {れ ば}、サッカー が 上手く なり ます。
+      - 毎日 練習 す {れ ば}、サッカー が 上達 する。
+      - 毎日 練習 す {れ ば}、サッカー が 上達 し ます。
+    english_literally: If you practice every day, soccer will become skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 練習 し {たら}、サッカー が 上手く なる。
+        english: If you practice every day (and complete it), your soccer skills will improve.
+        hint: 「たら」 implies completion of the first action before the second occurs. 「ば」 focuses on the
+          general condition or habitual nature.
+      - competing_japanese:
+          - 毎日 練習 する {と}、サッカー が 上手く なる。
+        english: If you practice every day, your soccer skills automatically improve.
+        hint: 「と」 implies an automatic or natural consequence. 「ば」 has a slightly more advisory tone for
+          a general truth.
+      - competing_japanese:
+          - 毎日 練習 する {なら}、サッカー が 上手く なる。
+        english: If you practice every day (given that condition), your soccer skills will improve.
+        hint: 「なら」 is often used when reacting to or assuming a condition. 「ば」 states a direct general
+          condition.
+      - competing_japanese:
+          - もし 毎日 練習 す {れ ば}、サッカー が 上手く なる。
+        english: If, indeed, you practice every day, your soccer skills will improve.
+        hint: 「もし」 emphasizes the hypothetical nature. While it can be used with 「ば」, it's not inherent
+          to 「ば」's core function.
+    scene: A coach advising a young athlete on consistent effort.
+    register: casual
+    setting: informative
+  - english: If you eat a lot, your stomach will become full.
+    japanese:
+      - たくさん 食べ {れ ば}、お腹 が いっぱい に なる。
+      - たくさん 食べ {れ ば}、お腹 が いっぱい に なり ます。
+      - たくさん 食べ {れ ば}、お腹 が いっぱい に なる よ。
+      - たくさん 食べ {れ ば}、満腹 に なる。
+      - たくさん 食べ {れ ば}、満腹 に なり ます。
+    english_literally: If you eat a lot, stomach will become full.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 食べ {たら}、お腹 が いっぱい に なる。
+        english: If you eat a lot (and finish it), your stomach will become full.
+        hint: 「たら」 implies the completion of eating. 「ば」 states the general condition of eating a large
+          quantity.
+      - competing_japanese:
+          - たくさん 食べる {と}、お腹 が いっぱい に なる。
+        english: If you eat a lot, your stomach automatically becomes full.
+        hint: 「と」 indicates an automatic, invariable consequence. 「ば」 is a general statement of cause
+          and effect.
+      - competing_japanese:
+          - たくさん 食べる {なら}、お腹 が いっぱい に なる。
+        english: If you eat a lot (in this situation), your stomach will become full.
+        hint: 「なら」 is for conditions based on prior information or assumption. 「ば」 is a general logical
+          outcome.
+      - competing_japanese:
+          - もし たくさん 食べ {れ ば}、お腹 が いっぱい に なる。
+        english: If, indeed, you eat a lot, your stomach will become full.
+        hint: 「もし」 adds emphasis to the hypothetical condition. 「ば」 expresses the general truth.
+    scene: A parent explaining a simple cause-and-effect to a child.
+    register: casual
+    setting: instructional
+  - english: If you study more, you'll probably be able to get into a good university.
+    japanese:
+      - もっと 勉強 す {れ ば}、いい 大学 に 入れる でしょう。
+      - もっと 勉強 す {れ ば}、いい 大学 に 入れる と 思い ます。
+      - もっと 勉強 す {れ ば}、いい 大学 に 入れる よ。
+      - もっと 勉強 す {れ ば}、いい 大学 に 入れる だろう。
+    english_literally: If you study more, good university can enter probably.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 勉強 し {たら}、いい 大学 に 入れる でしょう。
+        english: If you study more (and complete that study), you'll probably be able to get into a good
+          university.
+        hint: 「したら」 focuses on the completion of studying. 「すれば」 highlights the ongoing condition of studying
+          more.
+      - competing_japanese:
+          - もっと 勉強 する {なら ば}、いい 大学 に 入れる でしょう。
+        english: If you study more (given that premise), you'll probably be able to get into a good university.
+        hint: 「ならば」 introduces a condition based on an existing state or assumption. 「すれば」 presents the
+          action as a direct condition.
+      - competing_japanese:
+          - もっと 勉強 する {と}、いい 大学 に 入れる でしょう。
+        english: If you study more, you automatically become able to get into a good university.
+        hint: 「と」 implies an automatic consequence. 「ば」 implies a general logical outcome, often with
+          a hint of advice.
+      - competing_japanese:
+          - もし もっと 勉強 す {れ ば}、いい 大学 に 入れる でしょう。
+        english: If, indeed, you study more, you'll probably be able to get into a good university.
+        hint: 「もし」 emphasizes the hypothetical. 「ば」 expresses the condition directly without additional
+          emphasis.
+    scene: A teacher encouraging a student to work harder.
+    register: semi-formal
+    setting: persuasive
+  - english: If he comes, the atmosphere will surely liven up.
+    japanese:
+      - 彼 が 来 {れ ば}、きっと 場 が 盛り上がる。
+      - 彼 が 来 {れ ば}、きっと 場 が 盛り上がり ます。
+      - 彼 が 来 {れ ば}、間違い なく 場 が 盛り上がる。
+      - 彼 が 来 {れ ば}、必ず 雰囲気 が 盛り上がる でしょう。
+    english_literally: If he comes, surely place will liven up.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 来 {たら}、きっと 場 が 盛り上がる。
+        english: If he comes (and arrives), the atmosphere will surely liven up.
+        hint: 「来たら」 emphasizes the specific moment of his arrival. 「来れば」 expresses a more general expectation
+          of his presence.
+      - competing_japanese:
+          - 彼 が 来る {と}、きっと 場 が 盛り上がる。
+        english: If he comes, the atmosphere automatically livens up.
+        hint: 「来る と」 suggests an automatic, almost inevitable consequence. 「来れば」 allows for prediction
+          or expectation.
+      - competing_japanese:
+          - 彼 が 来る {なら}、きっと 場 が 盛り上がる。
+        english: If he comes (as you say), the atmosphere will surely liven up.
+        hint: 「なら」 is often used for conditions based on known information. 「ば」 states a more direct condition.
+      - competing_japanese:
+          - もし 彼 が 来 {れ ば}、きっと 場 が 盛り上がる。
+        english: If, indeed, he comes, the atmosphere will surely liven up.
+        hint: 「もし」 emphasizes the hypothetical. 「ば」 states the condition directly.
+    scene: Friends discussing someone's arrival at a social gathering.
+    register: casual
+    setting: friendly
+  - english: If this movie is interesting, I'll recommend it to my friends.
+    japanese:
+      - この 映画 が 面 白け {れ ば}、友達 に 勧める よ。
+      - この 映画 が 面 白け {れ ば}、友達 に 勧める。
+      - この 映画 が 面 白け {れ ば}、友達 に 勧め ます。
+      - この 映画 が 面 白け {れ ば}、友人 に お 勧め し ます。
+    english_literally: If this movie is interesting, to friends will recommend.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 が 面白かっ {たら}、友達 に 勧める よ。
+        english: If this movie *was* interesting (after watching), I'll recommend it to my friends.
+        hint: 「面白かったら」 implies a past or completed state. 「面白ければ」 sets a hypothetical condition about
+          its inherent quality.
+      - competing_japanese:
+          - この 映画 が 面白い {なら ば}、友達 に 勧める よ。
+        english: If this movie is interesting (as it is), I'll recommend it to my friends.
+        hint: 「ならば」 often implies the condition is known or assumed. 「面白ければ」 is more about a potential
+          discovery.
+      - competing_japanese:
+          - この 映画 が 面白い {と}、友達 に 勧める よ。
+        english: If this movie is interesting, I automatically recommend it to my friends.
+        hint: 「と」 implies an automatic action. 「ば」 states a condition that leads to a consequence, often
+          a speaker's decision.
+      - competing_japanese:
+          - もし この 映画 が 面 白け {れ ば}、友達 に 勧める よ。
+        english: If, indeed, this movie is interesting, I'll recommend it to my friends.
+        hint: 「もし」 emphasizes the hypothetical. 「ば」 presents the condition directly.
+    scene: Someone watching a movie and considering its quality for recommendation.
+    register: casual
+    setting: reflective
+  - english: If these clothes aren't expensive, I want to buy them.
+    japanese:
+      - この 服 が 高く なけ {れ ば}、買い たい な。
+      - この 服 が 高く なけ {れ ば}、買い たい。
+      - この 服 が 高く なけ {れ ば}、買い たい です。
+      - この 服 が 高く なけ {れ ば}、買う つもり です。
+    english_literally: If these clothes aren't expensive, want to buy.
+    competing_grammar:
+      - competing_japanese:
+          - この 服 が 高く なかっ {たら}、買い たい な。
+        english: If these clothes *were not* expensive (and I found that out), I want to buy them.
+        hint: 「高くなかったら」 focuses on a specific instance of the price being known. 「高く なければ」 expresses a
+          hypothetical condition about the price.
+      - competing_japanese:
+          - この 服 が 高く ない {なら ば}、買い たい な。
+        english: If these clothes are not expensive (as we assume), I want to buy them.
+        hint: 「高くない ならば」 suggests the condition is known or given. 「高く なければ」 presents it as a pure hypothetical.
+      - competing_japanese:
+          - この 服 が 高く ない {と}、買い たい な。
+        english: If these clothes are not expensive, I automatically want to buy them.
+        hint: 「と」 implies an automatic desire. 「ば」 is a condition leading to a wish or intention.
+      - competing_japanese:
+          - もし この 服 が 高く なけ {れ ば}、買い たい な。
+        english: If, indeed, these clothes aren't expensive, I want to buy them.
+        hint: 「もし」 emphasizes the hypothetical. 「ば」 states the condition directly.
+    scene: A shopper examining clothes in a store.
+    register: casual
+    setting: casual slang
+  - english: If this shop is quiet, I'll probably be able to make progress on my work.
+    japanese:
+      - この 店 が 静か な {らば}、仕事 が はかどる だろう。
+      - この 店 が 静か な {ら}、仕事 が はかどる だろう。
+      - この 店 が 静か で あ {れ ば}、仕事 が はかどる だろう。
+      - この 店 が 静か な {らば}、仕事 が はかどる でしょう。
+    english_literally: If this shop is quiet, work will progress probably.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 が 静か だっ{たら}、仕事 が はかどる だろう。
+        english: If this shop *was* quiet (after arriving), I'll probably be able to make progress on
+          my work.
+        hint: 「静かだったら」 implies a past or completed state. 「静かならば」 expresses a condition about its current
+          or general state.
+      - competing_japanese:
+          - この 店 が 静か {なら}、仕事 が はかどる だろう。
+        english: If this shop is quiet (as you say), I'll probably be able to make progress on my work.
+        hint: 「なら」 is a common, slightly less formal alternative. 「ならば」 emphasizes the condition more
+          formally or logically.
+      - competing_japanese:
+          - この 店 が 静か だ {と}、仕事 が はかどる だろう。
+        english: If this shop is quiet, my work automatically progresses.
+        hint: 「と」 suggests an automatic outcome. 「ならば」 indicates a condition for a likely outcome.
+      - competing_japanese:
+          - もし この 店 が 静か {なら ば}、仕事 が はかどる だろう。
+        english: If, indeed, this shop is quiet, I'll probably be able to make progress on my work.
+        hint: 「もし」 adds emphasis to the hypothetical. 「ならば」 presents the condition directly.
+    scene: Someone considering a coffee shop as a workspace.
+    register: semi-formal
+    setting: professional
+  - english: If he is a doctor, he will surely give good advice.
+    japanese:
+      - 彼 が 医者 で あ {れ ば}、きっと 良い アドバイス を くれる だろう。
+      - 彼 が 医者 な {ら}、きっと 良い アドバイス を くれる だろう。
+      - 彼 が 医者 な {らば}、きっと 良い アドバイス を くれる だろう。
+      - 彼 が 医者 で あ {れ ば}、きっと 良い アドバイス を 下さる でしょう。
+    english_literally: If he is a doctor, surely good advice will give probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 医者 だっ{たら}、きっと 良い アドバイス を くれる だろう。
+        english: If he *was* a doctor (and I found that out), he will surely give good advice.
+        hint: 「医者 だったら」 could imply a hypothetical past or specific realization. 「医者 であれば」 expresses a
+          general, logical condition about his profession.
+      - competing_japanese:
+          - 彼 が 医者 {なら}、きっと 良い アドバイス を くれる だろう。
+        english: If he is a doctor (as assumed), he will surely give good advice.
+        hint: 「医者 なら」 is more casual and often used when the condition is assumed. 「医者 であれば」 is more formal
+          and emphasizes the logical connection.
+      - competing_japanese:
+          - 彼 が 医者 だ {と}、きっと 良い アドバイス を くれる だろう。
+        english: If he is a doctor, he automatically gives good advice.
+        hint: 「と」 implies an automatic consequence. 「であれば」 indicates a condition for a likely outcome.
+      - competing_japanese:
+          - もし 彼 が 医者 で あ {れ ば}、きっと 良い アドバイス を くれる だろう。
+        english: If, indeed, he is a doctor, he will surely give good advice.
+        hint: 「もし」 emphasizes the hypothetical. 「であれば」 presents the condition directly.
+    scene: Friends discussing a mutual acquaintance's profession and potential helpfulness.
+    register: formal
+    setting: informative
+  - english: If he weren't a liar, everyone would probably believe him.
+    japanese:
+      - 嘘つき で なけ {れ ば}、みんな 彼 を 信じる だろう。
+      - 嘘つき で なけ {れ ば}、みんな 彼 を 信じる でしょう。
+      - 嘘つき で なけ {れ ば}、皆 彼 を 信じる だろう。
+      - 嘘つき で なけ {れ ば}、皆 彼 を 信じる でしょう。
+    english_literally: If a liar not, everyone him will believe probably.
+    competing_grammar:
+      - competing_japanese:
+          - 嘘つき で なかっ {たら}、みんな 彼 を 信じる だろう。
+        english: If he *was not* a liar (and that was the case), everyone would probably believe him.
+        hint: 「嘘つき で なかったら」 focuses on a specific instance of not being a liar. 「嘘つき で なければ」 refers to
+          a general characteristic or hypothetical scenario.
+      - competing_japanese:
+          - 嘘つき で ない {なら ば}、みんな 彼 を 信じる だろう。
+        english: If he is not a liar (as assumed), everyone would probably believe him.
+        hint: 「嘘つき で ない ならば」 implies the condition is known or assumed. 「嘘つき で なければ」 presents it as a
+          pure hypothetical condition.
+      - competing_japanese:
+          - 嘘つき で ない {と}、みんな 彼 を 信じる だろう。
+        english: If he is not a liar, everyone automatically believes him.
+        hint: 「と」 implies an automatic outcome. 「なければ」 indicates a hypothetical condition.
+      - competing_japanese:
+          - もし 嘘つき で なけ {れ ば}、みんな 彼 を 信じる だろう。
+        english: If, indeed, he weren't a liar, everyone would probably believe him.
+        hint: 「もし」 emphasizes the hypothetical. 「なければ」 presents the condition directly.
+    scene: Friends discussing someone's reputation and trustworthiness.
+    register: casual
+    setting: serious
+  - english: If he comes to like you, he'll send you roses every day.
+    japanese:
+      - もし 彼 が 君 を 好き に な {れ ば}、毎日 バラ を 送る よ。
+      - もし 彼 が 君 を 好き に な {れ ば}、毎日 バラ を 送る。
+      - もし 彼 が 君 を 好き に な {れ ば}、毎日 バラ を 送り ます。
+      - もし 彼 が あなた を 好き に な {れ ば}、毎日 バラ を 送る でしょう。
+      - もし 彼 が 君 を 好 {け ば}、毎日 バラ を 送る よ。
+    english_literally: If he you loves, every day roses will send.
+    competing_grammar:
+      - competing_japanese:
+          - もし 彼 が 君 を 好き に なっ {たら}、毎日 バラ を 送る よ。
+        english: If he comes to like you (and that happens), he'll send you roses every day.
+        hint: 「なったら」 emphasizes a specific point in time or completion. 「なれば」 frames it as a general condition
+          leading to a continuous action.
+      - competing_japanese:
+          - もし 彼 が 君 を 好き に なる {なら}、毎日 バラ を 送る よ。
+        english: If he comes to like you (given that condition), he'll send you roses every day.
+        hint: 「なら」 is often used for conditions based on a premise. 「なれば」 is a more direct conditional.
+      - competing_japanese:
+          - もし 彼 が 君 を 好き に なる {と}、毎日 バラ を 送る よ。
+        english: If he comes to like you, he automatically sends you roses every day.
+        hint: 「と」 implies an automatic consequence. 「なれば」 suggests a condition leading to a habitual action.
+    scene: A female friend giving dating advice to another female friend about a potential male suitor.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker (female) is advising a female listener, using the casual 「よ」 at the end of the
+      sentence. The phrase 「好きになれば」 (suki ni nareba) expresses a hypothetical condition about the man's
+      feelings. This construction is common in casual advice between friends.
+post_example_writeup: The 「ば」 conditional is a versatile grammar point that allows you to express a wide
+  range of hypothetical situations and conditional relationships. Remember to pay attention to the proper
+  verb and adjective conjugations when using this grammar point.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ば

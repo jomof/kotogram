@@ -1,0 +1,275 @@
+grammar_point: いかが (polite how)
+learn_before:
+  - か何か (or something)
+meaning: Polite how; polite inquiry about state or condition; polite offer or suggestion.
+pronunciation:
+  katakana: イカガ
+  romaji: ikaga
+formation:
+  いかが (as an adverb): Used as an adverb to ask 'how' or 'what' in a highly polite context.
+  '[Noun/Phrase] + は {いかが} ですか': To politely offer or suggest something, or inquire about someone's opinion
+    or preference.
+jlpt: N4
+etymology: 如何 originally comes from classical Chinese, where it carried a similar meaning of 'how' or
+  'what manner'. In Japanese, its form いかが evolved specifically to convey a high degree of politeness,
+  making it a key component in formal and respectful interactions.
+writeup: The grammar point 「いかが」 is used to politely inquire about 'how' something is, or to politely
+  offer a suggestion. It conveys a high degree of politeness, making it suitable for formal settings,
+  business interactions, or when showing deep respect or consideration for the listener. While it can
+  often be replaced by 「どう」 or 「どのように」, 「いかが」 always carries a more refined and courteous tone. It is
+  commonly used in phrases like 「いかがですか」 or 「いかがでしょうか」 to ask about someone's well-being, progress, or
+  opinion. It can also be paired with a noun to politely offer something (e.g., food, drink) or suggest
+  an activity. Unlike its more formal counterpart 「いかん」, which focuses on dependency or the 'state of
+  something' in a factual or conditional sense, 「いかが」 is almost exclusively used for polite questions
+  and offers.
+false_friends:
+  - term: どう
+    meaning: How; in what way; what do you think?
+    kind: similar expression
+    nuance: 「どう」 is the general and less formal way to ask "how". 「いかが」 is more polite and formal, often
+      used in set phrases for inquiries or offers.
+    grammar_point: どう (how)
+  - term: どうか
+    meaning: Please (strong request); somehow; by all means.
+    kind: often confused with
+    nuance: While 「いかが」 is a polite inquiry or suggestion, 「どうか」 is a strong, earnest request or an expression
+      of hope, not an interrogative word for condition.
+    grammar_point: どうか (earnestly・please)
+  - term: 如何して
+    meaning: Why; for what reason; how
+    kind: often confused with
+    nuance: 「如何して」 (dōshite) primarily asks for a reason ('why?') or how an action was performed. It is
+      generally informal or semi-formal. 「いかが」 politely inquires about a state, condition, or makes a
+      suggestion.
+    grammar_point: どうして (why)
+  - term: いかにも
+    meaning: Indeed; truly; really; as it should be
+    kind: similar expression
+    nuance: 「いかにも」 emphasizes confirmation or agreement, suggesting something is exactly as expected or
+      characteristic. It does not express polite inquiry or offers like 「いかが」.
+    grammar_point: いかにも (as expected)
+  - term: 如何な
+    meaning: What kind of; what sort of (followed by a noun)
+    kind: similar expression
+    nuance: 「如何な」 (ikana) describes a noun, asking 'what kind of'. It is not used for polite inquiries
+      about state or for making offers.
+    grammar_point: <strongly-suggest>:如何な (what kind of)
+  - term: いかん
+    meaning: To depend on; the state or nature of something; regardless of.
+    kind: similar expression
+    nuance: 「いかん」 focuses on dependency or the nature of something in formal/literary contexts. It lacks
+      the direct interrogative or offering sense of 「いかが」. These were the two meanings split from the
+      original single grammar point.
+    grammar_point: いかん (depending on)
+  - term: いかに
+    meaning: How; how much; how hard; no matter how
+    kind: similar expression
+    nuance: 「いかに」 is a very formal adverb expressing degree or manner, often used in rhetorical questions
+      or to emphasize 'how much' something is. It is less about polite direct inquiry or offering and
+      more about the extent or nature of something.
+    grammar_point: いかに (how; how much)
+post_false_friends_writeup: While 「いかが」 shares some superficial similarities with expressions like 「どう」,
+  「どうか」, 「如何して」, 「いかにも」, 「如何な」, and 「いかん」, it is vital to recognize their distinct functions. 「いかが」 specifically
+  focuses on politely inquiring about 'how' or making a polite offer. In contrast, 「どう」 is its more general
+  counterpart, 「どうか」 expresses strong requests or hopes, 「如何して」 asks for a reason, 「いかにも」 confirms an
+  expectation, 「如何な」 describes a noun, and 「いかん」 denotes dependency or the state of something in formal
+  contexts. Paying close attention to the context and the specific nuance conveyed is key to distinguishing
+  these related expressions.
+examples:
+  - english: How are you doing?
+    japanese:
+      - お 元気 {いかが} です か。
+      - お 元気 {いかが} でしょう か。
+    english_literally: Your health how is it?
+    competing_grammar:
+      - competing_japanese:
+          - お 元気 {です} {か}。
+        english: Are you well?
+        hint: Just 「お元気ですか」 is a standard polite greeting, but adding 「いかが」 makes the inquiry sound softer
+          and more considerate, emphasizing a gentle check-in on their condition rather than just a factual
+          question. We're looking for a warmer, more nuanced way to ask about well-being.
+    scene: A polite greeting between colleagues in the morning.
+    register: formal
+    setting: friendly
+  - english: How about some coffee?
+    japanese:
+      - コーヒー は {いかが} です か。
+      - コーヒー は {いかが} でしょう か。
+      - コーヒー {いかが} です か。
+      - コーヒー {いかが} でしょう か。
+    english_literally: Coffee is how is it?
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー を 飲み {ませ ん か}。
+        english: Won't you drink coffee?
+        hint: 「飲みませんか」 is a direct invitation to drink, which can sound a bit more assertive. 「コーヒーはいかがですか」
+          is a softer, more open-ended offer, allowing the listener more room to politely decline. We're
+          looking for a polite, open-ended offer.
+    scene: A host offering a beverage to a guest.
+    register: teineigo (polite)
+    setting: friendly
+  - english: How about going to see a movie this weekend?
+    japanese:
+      - 今週 末、映画 は {いかが} です か。
+      - 今週 末、映画 は {いかが} でしょう か。
+      - 今週 末、映画 {いかが} です か。
+      - 今週 末、映画 {いかが} でしょう か。
+    english_literally: This weekend, movie is how is it?
+    competing_grammar:
+      - competing_japanese:
+          - 今週 末、映画 に 行き {ませ ん か}。
+        english: Won't you go to the movies this weekend?
+        hint: 「行きませんか」 directly asks 'won't you go?'. 「映画はいかがですか」 is a softer way to propose an activity,
+          giving the other person more space to consider or suggest alternatives. We're looking for a
+          gentle suggestion.
+    scene: Two friends making plans for the weekend.
+    register: semi-formal
+    setting: friendly
+  - english: How was the new movie?
+    japanese:
+      - 新しい 映画 は {いかが} でし た か。
+      - 新しい 映画 は {いかが} でしょう か。
+      - 新しい 映画 {いかが} でし た か。
+      - 新しい 映画 {いかが} でしょう か。
+    english_literally: New movie is how was it?
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 映画 は {どう} {でし た} {か}。
+        english: How was the new movie?
+        hint: 「どうでしたか」 is a common way to ask 'how was it', but 「いかがでしたか」 is more polite and suitable
+          for formal or semi-formal settings, showing more deference to the other person's opinion. We're
+          looking for a more refined way to inquire about an experience.
+    scene: Colleagues discussing a recently released film.
+    register: formal
+    setting: informative
+  - english: How is the preparation for the presentation going?
+    japanese:
+      - プレゼンテーション の 準備 は {いかが} です か。
+      - プレゼンテーション の 準備 は {いかが} でしょう か。
+      - プレゼンテーション の 準備 {いかが} です か。
+      - プレゼンテーション の 準備 {いかが} でしょう か。
+    english_literally: Presentation's preparation is how is it?
+    competing_grammar:
+      - competing_japanese:
+          - プレゼンテーション の 準備 は、うまく {て い ます} {か}。
+        english: Is the presentation preparation going well?
+        hint: This is a direct question about success. 「いかがですか」 is a more general and less intrusive way
+          to ask about progress, allowing the employee to provide a broad update. We're looking for a
+          polite check-in without putting direct pressure.
+    scene: A manager checking in with an employee about a task.
+    register: formal
+    setting: professional
+  - english: How about this option?
+    japanese:
+      - こちら の オプション は {いかが} でしょう か。
+      - こちら の オプション は {いかが} です か。
+      - こちら の オプション {いかが} でしょう か。
+      - こちら の オプション {いかが} です か。
+    english_literally: This option is how would it be?
+    competing_grammar:
+      - competing_japanese:
+          - こちら の オプション は {どう} {です} {か}。
+        english: How is this option?
+        hint: While common, 「どうですか」 can sometimes sound a bit blunt in a professional setting. 「いかがでしょうか」
+          is much more polite and considerate, showing respect for the client's decision-making process.
+          We're looking for a highly polite way to present an option for consideration.
+    scene: A sales representative presenting choices to a client.
+    register: teineigo (polite)
+    setting: professional
+  - english: How are things in Tokyo?
+    japanese:
+      - 東京 の 方 は {いかが} です か。
+      - 東京 の 方 は {いかが} でしょう か。
+      - 東京 の 方 {いかが} です か。
+      - 東京 の 方 {いかが} でしょう か。
+    english_literally: Tokyo's direction is how is it?
+    competing_grammar:
+      - competing_japanese:
+          - 東京 の 方 は {どう} {です} {か}。
+        english: How are things in Tokyo?
+        hint: While 「いかが」 is generally polite, in very casual contexts among close friends, it can be
+          used to inquire generally about someone's situation or a location, maintaining a slightly more
+          refined tone than 「どう」. The phrase 「東京の方」 softens the inquiry and indicates a general scope.
+          We're looking for a polite, softened general inquiry.
+    scene: Someone asking a friend living in Tokyo about their situation.
+    register: casual
+    setting: friendly
+    nuance: While 「いかが」 is generally polite, in very casual contexts among close friends, it can be used
+      to inquire generally about someone's situation or a location, maintaining a slightly more refined
+      tone than 「どう」. The use of 「の方」 further softens the inquiry.
+  - english: How about we take a break here?
+    japanese:
+      - ここ で 少し 休憩 は {いかが} です か。
+      - ここ で 少し 休憩 は {いかが} でしょう か。
+      - ここ で 少し 休憩 {いかが} です か。
+      - ここ で 少し 休憩 {いかが} でしょう か。
+    english_literally: Here at little break is how is it?
+    competing_grammar:
+      - competing_japanese:
+          - ここ で 少し 休憩 し {ませ ん か}。
+        english: Shall we take a break here?
+        hint: 「しませんか」 is a direct invitation. 「休憩はいかがですか」 is a softer, more indirect suggestion, allowing
+          the other person to feel less pressured to agree. We're looking for a gentle, cooperative suggestion.
+    scene: Colleagues working late, one suggests a break.
+    register: semi-formal
+    setting: friendly
+  - english: How about this solution?
+    japanese:
+      - この 解決 策 は {いかが} で ござい ます か。
+      - この 解決 策 は {いかが} でしょう か。
+      - この 解決 策 は {いかが} です か。
+    english_literally: This solution is how is it?
+    competing_grammar:
+      - competing_japanese:
+          - この 解決 策 は {どう} {です} {か}。
+        english: How is this solution?
+        hint: Using 「でございますか」 with 「いかが」 elevates the politeness to the highest degree, appropriate for
+          formal business presentations to clients. 「どうですか」 is too casual for such a setting. We're looking
+          for an extremely polite and deferential way to present a solution.
+    scene: A consultant proposing a solution to a client.
+    register: sonkeigo (respectful)
+    setting: professional
+  - english: How about thinking of it this way?
+    japanese:
+      - この よう に 考える の は {いかが} でしょう か。
+      - この よう に 考える の は {いかが} です か。
+      - この よう に 考える の {いかが} でしょう か。
+      - この よう に 考える の {いかが} です か。
+    english_literally: This way think is how would it be?
+    competing_grammar:
+      - competing_japanese:
+          - この よう に 考える {の は} {どう} {です} {か}。
+        english: How is thinking this way?
+        hint: 「どうですか」 is less formal and might imply a more direct demand for an answer. 「いかがでしょうか」 softens
+          the question, making it an open invitation for reflection and discussion, suitable for an academic
+          setting. We're looking for a polite way to invite consideration of an alternative viewpoint.
+    scene: A professor guiding students in a discussion.
+    register: formal
+    setting: informative
+  - english: How is your health today, Mr. Tanaka?
+    japanese:
+      - 田中 様、本日 の ご 体調 は {いかが} で ござい ます か。
+      - 田中 様、本日 の ご 体調 は {いかが} でしょ う か。
+      - 田中 様、本日 の ご 体調 は {いかが} です か。
+    english_literally: Mr. Tanaka, today's your physical condition is how is it?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん、今日 の 体調 は {どう} {です} {か}。
+        english: Mr. Tanaka, how is your physical condition today?
+        hint: This is the casual equivalent. 「いかがでございますか」 uses extreme politeness, combining 「いかが」 (how)
+          with the humble auxiliary verb 「ございます」. We're looking for the highest level of politeness suitable
+          for professional or honorific contexts, not for a casual chat.
+    scene: A nurse asks a patient about their well-being during a hospital visit.
+    register: sonkeigo (respectful)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「いかがでございますか」 is an extremely polite and respectful way to inquire about someone's
+      condition. The combination of 「いかが」 (how) with the honorific prefix 「ご」 for 「ご体調」 (your physical
+      condition) and the humble auxiliary verb 「ございます」 signifies a high level of deference, appropriate
+      for a medical professional addressing a patient.
+    etymology: The term 「いかが」 itself is a classical form of 'how', which, when combined with honorifics
+      and humble expressions, elevates the formality and respect in modern Japanese.
+post_example_writeup: These examples illustrate the versatile application of 「いかが」 in polite communication,
+  ranging from simple inquiries to more formal suggestions and offers. Its consistent role is to soften
+  the interaction and convey respect for the listener.

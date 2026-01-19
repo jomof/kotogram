@@ -1,0 +1,289 @@
+grammar_point: 何 (what)
+learn_before:
+  - なにか・なにも (something or nothing)
+meaning: what; how many/much
+pronunciation:
+  katakana: ナニ・ナン
+  romaji: nani・nan
+  pronunciation_warning: The pronunciation changes to 「なん」 (nan) before certain sounds (e.g., て-form,
+    da-words, counters).
+formation:
+  何 + particle (e.g., が・を・に・で): What (particle)?
+  何 + counter: How many (counter)?
+  何 + だ/です: What is it?
+  何 + て/と/だ/な sounds (e.g., 何て Nan te, 何と Nanto, 何だ Nanda): The pronunciation becomes 「なん」 to facilitate
+    smoother articulation.
+jlpt: N5
+etymology: The character 何 itself has a complex history. Its ancient forms involved a person carrying
+  something, which evolved to signify 'what' or 'why' in terms of an unknown object or reason. The shift
+  between 「なに」 and 「なん」 is a phonological phenomenon in Japanese, often occurring to ease pronunciation
+  when followed by certain consonants (e.g., 't', 'd', 'n' sounds), a process known as euphony (音便 onbin).
+  「なに」 is the older form, 「なん」 is a phonetic alteration that became standard in specific contexts.
+writeup: |-
+  何 (nani/nan) is one of the most fundamental interrogative pronouns in Japanese, equivalent to "what" in English. Its usage is pervasive across all levels of Japanese communication, from casual conversation to formal writing. The primary challenge for learners is understanding its dual pronunciation: 「なに」 (nani) and 「なん」 (nan).
+
+  Generally, 「なに」 is used when 何 stands alone, is followed by particles like が (ga), を (o), に (ni), へ (e), or serves as the subject or object of a sentence. For example, 「これ は なに です か。」 (Kore wa nani desu ka. - What is this?).
+
+  「なん」 is used in two main scenarios:
+
+  1.  When followed by sounds that are similar to the 'n' sound, such as 't' (た・だ行) or 'd' (だ行) sounds, or certain counters. For instance, 「何 です か。」 (Nan desu ka. - What time is it?) or 「何時 です か。」 (Nan ji desu ka. - What time is it?). This phonetic change makes pronunciation smoother.
+  2.  When it precedes a counter, it asks "how many" or "how much" (e.g., 「何人」 Nan nin - How many people?, 「何歳」 Nan sai - How old?).
+
+  Understanding this distinction is crucial for natural pronunciation and comprehension. While the core meaning remains "what," its specific nuance can change based on context and accompanying particles or counters, ranging from a simple inquiry to expressing surprise or confusion.
+false_friends:
+  - term: 何か
+    meaning: something; anything
+    kind: similar expression
+    nuance: Unlike 「何」 which asks for specific unknown information, 「何か」 refers to an unspecified item
+      or idea. It functions as an indefinite pronoun.
+    grammar_point: <suggest>:何か (something)
+  - term: 何も〜ない
+    meaning: nothing; not anything
+    kind: antonym
+    nuance: This phrase uses 「何」 in combination with 「も」 and a negative verb to express a complete lack
+      or absence. It signifies "not anything at all."
+    grammar_point: <suggest>:何も〜ない (not at all)
+  - term: どう
+    meaning: how; in what way
+    kind: similar expression
+    nuance: While both are interrogatives, 「どう」 asks about method, manner, or state, whereas 「何」 asks
+      about identity or quantity.
+    grammar_point: どう (how)
+  - term: どんな
+    meaning: what kind of; what sort of
+    kind: similar expression
+    nuance: 「どんな」 is an interrogative adjective that asks about the nature or type of something, requiring
+      a noun to follow it. 「何」 asks about identity or quantity directly.
+    grammar_point: どんな (what kind of)
+post_false_friends_writeup: It is important to differentiate 何 (nani/nan) from other interrogative words
+  that might seem similar. While 何 asks "what" (identifying an unknown thing or quantity), 何か means "something"
+  (an unspecified thing). When 何 is followed by も and a negative, as in 何も〜ない, it conveys "nothing at
+  all," indicating a complete absence. Furthermore, carefully distinguish 何 from どう (how), which inquires
+  about method or state, and どんな (what kind of), which seeks information about the type or nature of a
+  noun.
+examples:
+  - english: What is this?
+    japanese:
+      - これ は {なに} です か。
+      - これ {なに}？
+      - これ {なん}？
+    english_literally: As for this, what is it?
+    competing_grammar:
+      - competing_japanese:
+          - これ は {どう} です か。
+        english: How is this?
+        hint: 「どう」 asks about method or state, not identification. We are looking for a way to ask for
+          the identity of an unknown object.
+      - competing_japanese:
+          - これ は {なん} です か。
+        english: What is this?
+        hint: While a common mistake, 「なに」 is typically used when followed by the particle 「は」 or 「を」.
+          We are looking for the standard pronunciation.
+    scene: A person points at an unknown object.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This is a direct, basic question using the polite copula and the "nani" pronunciation, as
+      it's followed by 「です」.
+  - english: What did you buy?
+    japanese:
+      - '{なに} を 買い まし た か。'
+      - '{なに} 買っ た の？'
+      - '{なん} 買っ た の？'
+    english_literally: What did you buy?
+    competing_grammar:
+      - competing_japanese:
+          - '{どう} 買い まし た か。'
+        english: How did you buy it?
+        hint: 「どう」 asks about the method or manner of buying, not the item itself. We are looking for
+          what item was bought.
+      - competing_japanese:
+          - '{どんな} もの を 買い まし た か。'
+        english: What kind of thing did you buy?
+        hint: 「どんな」 specifies the *type* or *kind* of thing, not just 'what'. We are asking for the general
+          identity of the purchased item.
+    scene: One friend asks another after they return from shopping.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: Uses 「なに」 because it's followed by the direct object particle 「を」. The polite past tense 「買いました」
+      makes the question polite.
+  - english: What are you doing?
+    japanese:
+      - '{なに} を し て い ます か。'
+      - '{なに} し てる？'
+      - '{なん} し てる？'
+    english_literally: What are you doing?
+    competing_grammar:
+      - competing_japanese:
+          - '{どう} し て い ます か。'
+        english: How are you doing?
+        hint: 「どう」 asks about one's state or condition, not the specific action they are performing. We
+          want to know the action.
+      - competing_japanese:
+          - '{なに} を やっ て い ます か。'
+        english: What are you doing?
+        hint: 「やる」 can also mean 'to do', but 「する」 is generally more common for 'what are you doing?'
+          in this context.
+    scene: A parent asks their child who is quietly occupied.
+    register: teineigo (polite)
+    setting: interrogative
+    nuance: Again, 「なに」 is used with the direct object particle 「を」, despite the verb being in the progressive
+      form. This is a common and versatile question.
+  - english: What time is it?
+    japanese:
+      - '{なん} 時 です か。'
+      - '{なん} 時？'
+    english_literally: What hour is it?
+    competing_grammar:
+      - competing_japanese:
+          - '{なに} 時 です か。'
+        english: What time is it?
+        hint: When followed by the counter 「時」 (ji), 何 changes its pronunciation to 「なん」. We are looking
+          for the correct pronunciation.
+    scene: A person asks a passerby for the time.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This example demonstrates the pronunciation change to 「なん」 before the counter 「時」 (ji). This
+      is a crucial phonetic rule for 何.
+  - english: How many people?
+    japanese:
+      - '{なん} 人 です か。'
+      - '{なん} 人？'
+    english_literally: What person is it?
+    competing_grammar:
+      - competing_japanese:
+          - '{なに} 人 です か。'
+        english: How many people?
+        hint: When followed by the counter 「人」 (nin/jin), 何 changes its pronunciation to 「なん」. We are
+          looking for the correct pronunciation.
+    scene: A store clerk asks a customer about the size of their party.
+    register: teineigo (polite)
+    setting: professional
+    nuance: Another instance of 「なん」 before a counter, 「人」 (nin). This shows its use for quantity.
+  - english: What's that?
+    japanese:
+      - それ {なん} です か。
+      - それ {なん}？
+      - あれ {なん} だ？
+    english_literally: That, what is it?
+    competing_grammar:
+      - competing_japanese:
+          - それ {なに} です か。
+        english: What's that?
+        hint: While 「なに」 is often used, when directly preceding 「です」 or its casual forms like 「だ」, 「なん」
+          is typically used for smoother pronunciation.
+      - competing_japanese:
+          - それ {どう} です か。
+        english: How is that?
+        hint: 「どう」 asks for an opinion or condition, not the identity of an object. We are asking for
+          the object's identity.
+    scene: A child points at something unfamiliar.
+    register: casual
+    setting: interrogative
+    nuance: This is a very common casual usage. 「なん」 is used before 「です」 (which begins with a 'd' sound,
+      similar to 't'). The omission of 「は」 is common in casual speech.
+  - english: What happened?
+    japanese:
+      - '{なに} が あっ た の？'
+      - '{なに} あっ た の？'
+      - '{なに} が あり まし た か。'
+    english_literally: What occurred?
+    competing_grammar:
+      - competing_japanese:
+          - どう し た の？
+        english: What's wrong? / What did you do?
+        hint: While 「どうしたの」 is common for 'what's wrong?', 「何があったの」 specifically asks 'what happened?'
+          or 'what occurred?'.
+    scene: A friend asks after hearing a loud noise.
+    register: casual
+    setting: interrogative
+    nuance: Uses 「なに」 with 「が」. This is a common casual question about an event or situation.
+  - english: What did you say?
+    japanese:
+      - '{なん} て 言っ た の？'
+      - '{なん} と 言い まし た か。'
+      - '{なに} を 言っ た の？'
+    english_literally: What did you say?
+    competing_grammar:
+      - competing_japanese:
+          - '{なに} て 言っ た の？'
+        english: What did you say?
+        hint: When 何 is followed by 「て」 or 「と」 (quotative particle), its pronunciation typically changes
+          to 「なん」. We are looking for the correct pronunciation.
+      - competing_japanese:
+          - '{どう} 言っ た の？'
+        english: How did you say it?
+        hint: 「どう」 asks about the manner of speaking, not the content of what was said. We want to know
+          the content.
+    scene: Someone didn't quite hear what was said and asks for a repeat.
+    register: casual
+    setting: interrogative
+    nuance: Demonstrates 「なん」 before 「て」 (the casual form of 「と」, the quotative particle). This is a common
+      phonetic change.
+  - english: What a surprise!
+    japanese:
+      - '{なん} と いう こと だ！'
+      - '{なん} と いう こと です か！'
+    english_literally: What a thing it is!
+    competing_grammar:
+      - competing_japanese:
+          - '{なに} と いう こと だ！'
+        english: What a surprise!
+        hint: In exclamatory phrases using 「と いう こと」, 何 is usually pronounced 「なん」. We are looking for
+          the standard pronunciation in this expressive phrase.
+      - competing_japanese:
+          - '{どう} いう こと だ！'
+        english: What do you mean? / What's the meaning?
+        hint: 「どういうことだ」 asks for an explanation, not an exclamation of surprise or magnitude. We are expressing
+          strong emotion.
+    scene: Expressing strong surprise or dismay at a situation.
+    register: casual
+    setting: excited
+    nuance: 「なん」 is used before 「と」 in exclamatory phrases, conveying strong emotion or surprise. This
+      structure emphasizes the extent or nature of something.
+  - english: What's your name?
+    japanese:
+      - お 名前 は {なん} です か。
+      - 名前 {なん} て いう の？
+    english_literally: As for your name, what is it?
+    competing_grammar:
+      - competing_japanese:
+          - お 名前 は {なに} です か。
+        english: What's your name?
+        hint: When directly preceding 「です」 or its casual forms, 何 is typically pronounced 「なん」. We are
+          looking for the standard pronunciation in this common phrase.
+      - competing_japanese:
+          - お 名前 は {どう} です か。
+        english: How is your name?
+        hint: 「どう」 asks about condition or state, not identification. This would be grammatically awkward
+          for asking someone's name. We want to know the name itself.
+    scene: A polite inquiry when meeting someone new.
+    register: teineigo (polite)
+    setting: informative
+    nuance: A classic example where 「なん」 is used before 「です」. This is a very common phrase for introducing
+      oneself, illustrating the standard polite usage.
+  - english: What kind of plan?
+    japanese:
+      - '{なん} の 計画 です か。'
+      - '{なん} の 計画？'
+    english_literally: What plan is it?
+    competing_grammar:
+      - competing_japanese:
+          - '{なに} の 計画 です か。'
+        english: What kind of plan?
+        hint: When 何 is followed by 「の」, it is typically pronounced 「なん」, especially when modifying a
+          noun. We are looking for the correct pronunciation here.
+      - competing_japanese:
+          - '{どんな} 計画 です か。'
+        english: What kind of plan?
+        hint: While 「どんな」 is a valid alternative, 「なんの」 is also used to ask for specification about a
+          noun, sometimes with a slightly broader nuance than 'type'.
+    scene: A team member asks their leader about the next steps.
+    register: teineigo (polite)
+    setting: professional
+    nuance: Uses 「なん」 before 「の」 which modifies a noun 「計画」 (plan). This is a common way to ask "what
+      (kind of) noun" without using どんな.
+post_example_writeup: As these examples demonstrate, correctly choosing between 「なに」 and 「なん」 depends
+  heavily on the phonetic environment or the type of noun/counter that follows. Pay close attention to
+  these patterns to ensure natural and accurate communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/何

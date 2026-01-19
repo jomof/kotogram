@@ -1,0 +1,255 @@
+grammar_point: と (with)
+matcher: |-
+  {noun}{to}{noun}|
+  {to}{noun}⌉|
+  {noun}{to}|
+  {to}は{noun}
+learn_before:
+  - Verb[ている・てる] (progressive・resultative)
+  - Verb[ました] (polite past)
+  - '[Verb-stem]に行く (to go in order to do)'
+  - '[Verb-よう]思う (intend to)'
+meaning: With; Together with; Accompanied by
+pronunciation:
+  katakana: ト
+  romaji: to
+formation:
+  Noun A + と + Noun B + Verb (mutual action): Indicates mutual participation or accompaniment between
+    Noun A and Noun B in an action.
+jlpt: N5
+etymology: The particle 「と」 (to) has roots in the classical Japanese particle 「と言ふ」 (to iu), meaning "to
+  say" or "to be called." This origin explains its use in direct quotations. Over time, its function expanded
+  to express association and conjunction, likely through a semantic extension from connecting speech or
+  thoughts to connecting entities or actions. The meaning of "with" or "and" (in the sense of accompaniment)
+  developed from this core idea of emergence or derivation.
+writeup: "The particle 「と」 (to) is a fundamental particle in Japanese that primarily signifies accompaniment\
+  \ or mutual action. While often translated as \"with\" in English, its core function is to establish\
+  \ a clear relationship between two or more nouns, emphasizing their equal involvement or shared activity.\
+  \ It is used with verbs that inherently suggest interaction or collaboration.\n\nWhen indicating **accompaniment\
+  \ or mutual action**, 「と」 highlights that all connected parties are actively participating in the same\
+  \ action or state. This is evident with verbs that naturally imply shared activity, such as: 「話す」 (hanasu,\
+  \ to talk), 「食べる」 (taberu, to eat), 「遊ぶ」 (asobu, to play), 「結婚する」 (kekkon suru, to marry), 「喧嘩する」 (kenka\
+  \ suru, to quarrel), 「話し合う」 (hanashiau, to discuss). In these contexts, 「と」 signifies a two-way or reciprocal\
+  \ engagement. For example, 「友達 と 話す」 (tomodachi to hanasu) implies a conversation where both individuals\
+  \ are speaking and listening.\n\nIt is imperative to understand the crucial distinction between 「と」\
+  \ and the particle 「に」 (ni). While both can appear in contexts involving interaction, their nuances\
+  \ are fundamentally different:\n\n*   **「と」:** Conveys mutual involvement, cooperation, or reciprocal\
+  \ action. The action is shared by all parties.\n*   **「に」:** Typically marks the target or recipient\
+  \ of a one-sided action. The action is directed *towards* something or someone, without necessarily\
+  \ implying their active participation in the same way as 「と」. \n\nConsider the difference: 「先生 と 話す」\
+  \ (sensei to hanasu) implies a mutual discussion *with* the teacher. Conversely, 「先生 に 話す」 (sensei ni\
+  \ hanasu) means to talk *to* the teacher, suggesting a one-sided communication where the speaker is\
+  \ conveying information *to* the teacher. Mastering this distinction is crucial for natural and precise\
+  \ expression in Japanese."
+false_friends:
+  - term: と (quotation)
+    meaning: that (particle indicating a quote)
+    kind: often confused with
+    nuance: Unlike 「と」 (with), this 「と」 indicates a direct or indirect quotation, functioning like English
+      'that' in reported speech.
+    grammar_point: と (quotation marker)
+  - term: と (inevitable consequence)
+    meaning: If; when; whenever; expresses a natural consequence or a general truth.
+    kind: often confused with
+    nuance: This usage of 「と」 marks a condition that leads to an inevitable or natural outcome, often
+      functioning as 'if' or 'when', unlike the accompaniment function.
+    grammar_point: と (conditional, inevitable result)
+  - term: に (target・direction)
+    meaning: to; for (recipient)
+    kind: often confused with
+    nuance: Unlike 「と」, which denotes mutual action or accompaniment, 「に」 typically marks the target or
+      recipient of a one-sided action, where the action is directed towards someone or something.
+    grammar_point: に (target・destination)
+  - term: に (purpose)
+    meaning: In order to do something; for the purpose of doing something.
+    kind: often confused with
+    nuance: This 「に」 indicates the purpose of a movement (e.g., to go *to* do something), whereas 「と」
+      indicates who or what accompanies the movement.
+    grammar_point: '[Verb-stem]に行く (to go in order to do)'
+post_false_friends_writeup: 'To fully grasp the usage of 「と」 for accompaniment, it''s vital to differentiate
+  it from other instances of 「と」 and from the particle 「に」. While 「と」 can mark quotations or inevitable
+  consequences, its core meaning of "with" always implies a shared or mutual involvement. This is where
+  the distinction from 「に」 becomes crucial: 「に」 points to a *target* or *recipient* of an action, implying
+  a one-sided direction, while 「と」 emphasizes an action done *together* or *in conjunction* with someone
+  or something.'
+examples:
+  - english: I will go to the library with my friend.
+    japanese:
+      - 友達 {と} 図書 館 に 行き ます。
+      - 友達 {と} 図書 館 に 行こう。
+      - 友達 {と} 図書 館 へ 行き ます。
+      - 友達 {と} 図書 館 に 行く。
+    english_literally: Friend with library to go.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 {に} 図書 館 に 行き ます。
+        english: I will go to the library, to my friend.
+        hint: 「に」 marks a target or destination. Using 「に」 with 'friend' implies going *to* your friend,
+          not *with* your friend to the library. We're looking for accompaniment.
+    scene: A student is making plans to meet a friend to study together at the library.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I eat dinner with my family.
+    japanese:
+      - 家族 {と} 夕食 を 食べ ます。
+      - 家族 {と} 夕食 を 食べる。
+      - 家族 {と} ご飯 を 食べ ます。
+      - 家族 {と} 食事 を し ます。
+    english_literally: Family with dinner object-marker eat.
+    competing_grammar:
+      - competing_japanese:
+          - 家族 {に} 夕食 を 食べ ます。
+        english: I eat dinner to my family.
+        hint: 「に」 indicates the recipient or target of an action. Using 「に」 would mean you are eating
+          dinner *to* or *for* your family, which doesn't convey the mutual action of eating together.
+    scene: A person describes their nightly routine of sharing a meal with their family at home.
+    register: teineigo (polite)
+    setting: intimate
+  - english: He talked with the teacher.
+    japanese:
+      - 彼 は 先生 {と} 話し まし た。
+      - 彼 は 先生 {と} 話し た。
+      - 彼 は 先生 {と} お 話し し まし た。
+      - 彼 は 先生 {と} 話し合っ た。
+    english_literally: He subject teacher with talked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 先生 {に} 話し まし た。
+        english: He spoke to the teacher (one-sided).
+        hint: 「に」 implies the action is directed *to* someone. This suggests a one-sided communication,
+          like reporting something. We're looking for a two-way discussion.
+    scene: A student had a discussion with their teacher after class, both contributing to the conversation.
+    register: teineigo (polite)
+    setting: academic
+  - english: I will work with the team.
+    japanese:
+      - チーム {と} 仕事 を し ます。
+      - チーム {と} 仕事 を する。
+      - チーム {と} 協力 し て 仕事 を し ます。
+      - チーム {と} 連携 し て 仕事 を 進め ます。
+    english_literally: Team with work object-marker do.
+    competing_grammar:
+      - competing_japanese:
+          - チーム {に} 仕事 を し ます。
+        english: I will do work for the team.
+        hint: 「に」 marks the target or recipient. Using 「に」 would imply doing work *for* the team, not
+          collaborating *with* them. We're looking for mutual participation.
+    scene: A manager is assigning tasks, indicating that a team member will be collaborating with the
+      rest of the team.
+    register: teineigo (polite)
+    setting: professional
+  - english: Let's go play with friends!
+    japanese:
+      - 友達 {と} 遊び に 行こう！
+      - 友達 {と} 遊び に 行き ましょう！
+      - 友達 {と} 遊ぼう！
+      - 友達 {と} 遊び に 行こっ！
+    english_literally: Friend with play to go-volitional!
+    competing_grammar:
+      - competing_japanese:
+          - 友達 {に} 遊び に 行こう！
+        english: Let's go play (by going) to a friend!
+        hint: 「に」 marks a destination or indirect object. Using 「に」 with 'friends' implies going *to*
+          your friends (as a destination), not going *with* them to play. We're looking for shared action.
+    scene: A young girl excitedly suggests a plan to her friends for a fun outing.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The casual volitional form 「行こう」 is common among younger speakers and highlights enthusiasm
+      for a shared activity. For a female speaker, this direct phrasing without a softening particle (like
+      「ね」) can convey a lively and informal tone.
+  - english: I went drinking with an old friend.
+    japanese:
+      - 昔 の 友人 {と} 飲み に 行っ た。
+      - 昔 の 友人 {と} 飲み に 行き まし た。
+      - 旧友 {と} 飲み に 行っ た。
+      - 旧友 {と} ちょっと 飲み に 行っ た ん だ よ。
+    english_literally: Old friend with drink to went.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の 友人 {に} 飲み に 行っ た。
+        english: I went drinking for/to an old friend.
+        hint: 「に」 indicates the target or purpose. Using 「に」 here would imply going drinking *for* or
+          *to* the friend, rather than sharing the activity *with* them. We're looking for mutual participation.
+    scene: An older man reminisces about a recent casual outing he had with a long-time acquaintance.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: older
+    nuance: Using 「昔 の 友人」 (mukashi no yuujin) is a common phrase for older individuals recalling past
+      relationships. The casual past tense 「行った」 (itta) is typical for informal conversations among men.
+  - english: I played soccer with my classmates.
+    japanese:
+      - クラス メイト {と} サッカー を し まし た。
+      - クラス メイト {と} サッカー を し た。
+      - 同級 生 {と} サッカー を やっ た。
+      - クラス の 友達 {と} サッカー を し た ん だ。
+    english_literally: Classmates with soccer object-marker did.
+    competing_grammar:
+      - competing_japanese:
+          - クラス メイト {に} サッカー を し まし た。
+        english: I played soccer for my classmates.
+        hint: 「に」 would imply playing *for* someone. We are looking for mutual participation, indicating
+          playing *with* them.
+    scene: A student recounts their afternoon activities with their peers during a casual conversation.
+    register: casual
+    setting: friendly
+  - english: Let's study Japanese together with him.
+    japanese:
+      - 彼 {と} 一緒 に 日本 語 を 勉強 し ましょう。
+      - 彼 {と} 日本 語 を 勉強 しよう。
+      - 彼 {と} 一緒 に 日本 語 を 勉強 しよう か。
+      - 彼 {と} 共 に 日本 語 を 学ぼう と 思う。
+    english_literally: He with together Japanese object-marker study let's.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 {に} 日本 語 を 勉強 し ましょう。
+        english: Let's study Japanese to him.
+        hint: Using 「に」 would suggest studying *to* him, or *for* him, not studying *with* him. We want
+          mutual action.
+    scene: A teacher suggests to a student that they include another classmate in their study group.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: male
+    listener_gender: female
+  - english: I get along well with my neighbors.
+    japanese:
+      - 隣人 {と} 仲 が いい です。
+      - 隣人 {と} 仲 が いい。
+      - 近所 の 人 {と} 仲良く し て い ます。
+      - お 隣 さん {と} は 仲良し だ よ。
+    english_literally: Neighbors with relationship subject good is.
+    competing_grammar:
+      - competing_japanese:
+          - 隣人 {に} 仲 が いい です。
+        english: I have a good relationship *towards* my neighbors.
+        hint: 「に」 is not typically used to express a mutual state like 'getting along well'. 「と」 is essential
+          here to show the reciprocal nature of the relationship.
+    scene: A person is describing their harmonious living situation to a new acquaintance.
+    register: teineigo (polite)
+    setting: friendly
+  - english: She is married to a famous actor.
+    japanese:
+      - 彼女 は 有名 な 俳優 {と} 結婚 し て い ます。
+      - 彼女 は 有名 な 俳優 {と} 結婚 し て いる。
+      - 彼女 は 人気 俳優 {と} 夫婦 に なり まし た。
+      - 彼女 は あの 大物 俳優 {と} 結婚 し た の よ。
+    english_literally: She subject famous actor with marriage doing is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 有名 な 俳優 {に} 結婚 し て い ます。
+        english: She married to a famous actor (implies the actor is the recipient of the marriage, less
+          natural).
+        hint: The verb 「結婚する」 (kekkon suru) implies a mutual action. While 「に」 can sometimes be used with
+          it in specific contexts, 「と」 is generally preferred for expressing marriage *with* someone,
+          emphasizing the partnership.
+    scene: Friends are gossiping about a celebrity's recent marriage announcement.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+post_example_writeup: Understanding the precise nuance of 「と」 in marking mutual involvement is key. Pay
+  close attention to verbs that inherently imply shared action and differentiate 「と」 from other particles
+  like 「に」, which carries distinct implications regarding the nature of the relationship.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と-with

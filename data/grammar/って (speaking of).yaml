@@ -1,0 +1,224 @@
+grammar_point: って (speaking of)
+learn_before:
+  - よね (seeking strong agreement)
+meaning: speaking of; regarding; as for
+pronunciation:
+  katakana: ッテ
+  romaji: tte
+formation:
+  Noun + って: Introduces a topic casually, often something recently mentioned or related to the current
+    conversation.
+  Phrase/Clause + って: Introduces a casual quotation or topic based on a statement.
+jlpt: N4
+etymology: The particle 「って」 is a contracted and casual form of the quotation particle 「と」. Over time,
+  「と」, especially in its conversational usage for quoting or stating facts, evolved to be pronounced as
+  「って」. This casual form then extended its function to also introduce topics, much like 「は」, but retaining
+  a more informal and conversational nuance. Its origin from 「と」 explains its flexibility in marking not
+  just direct speech but also subjects or topics that are being 'quoted' or brought up for discussion.
+writeup: 「って」 is a highly versatile and frequently used particle in casual Japanese conversation. It primarily
+  serves as a casual topic marker, similar to 「は」, but with a more informal and conversational tone. It's
+  often used when you want to bring up a topic that was just mentioned, or is implicitly understood from
+  the context, as a way to continue or shift the conversation. It can be thought of as "speaking of...",
+  "as for...", or "you know (that thing about)..."&#13;&#10;&#13;&#10;Unlike the more neutral and formal
+  topic marker 「は」, 「って」 carries a sense of familiarity or can sometimes imply a slight surprise or emphasis
+  on the topic being introduced. It's particularly common among friends and family, or in situations where
+  a relaxed atmosphere is present.&#13;&#10;&#13;&#10;While 「って」 shares some functions with 「と」 (the quotation
+  particle), its use as a topic marker means it's not always quoting. Instead, it's casually bringing
+  a subject to the listener's attention. Understanding its casual nature is key; using it in formal settings
+  would be inappropriate.
+false_friends:
+  - term: と (quotation marker)
+    meaning: quotation marker; means "that" or "and"
+    kind: similar expression
+    nuance: 「と」 is the formal equivalent from which 「って」 derives for quotation. While 「と」 can introduce
+      reported speech or thoughts, 「って」 is the casual form and also functions as a topic marker, which
+      「と」 does not.
+    grammar_point: と (quotation marker)
+  - term: は (topic and contrast)
+    meaning: topic marker; contrast marker
+    kind: similar expression
+    nuance: 「は」 is a neutral and formal topic marker, clearly indicating the main subject. 「って」 is a casual
+      topic marker, often used to pick up on a previously mentioned subject or introduce one informally,
+      with a more conversational flow.
+    grammar_point: は (topic and contrast)
+  - term: という (naming and definition)
+    meaning: refers to; called
+    kind: similar expression
+    nuance: 「という」 is used to define, name, or explain something formally. 「って」 is a casual contraction
+      of 「という」 in certain contexts, particularly when referring to something or someone in an informal
+      way (e.g., 「〜って言うの？」 meaning "What do you call ~?").
+    grammar_point: という (naming and definition)
+  - term: って (casual quotation・reason・topic)
+    meaning: casual quotation; reason; topic
+    kind: similar expression
+    nuance: This grammar point, 「って (speaking of)」, specifically focuses on its function as a topic marker.
+      The broader 「って (casual quotation・reason・topic)」 encompasses this meaning, along with its use for
+      casual quotation and giving reasons. The current grammar point focuses on a specific nuance of that
+      broader category.
+    grammar_point: って (casual quotation・reason・topic)
+post_false_friends_writeup: While 「って」 can indeed serve multiple functions beyond just "speaking of,"
+  such as conveying casual quotations or providing informal reasons, this particular entry highlights
+  its distinct role in introducing or re-introducing a topic in conversation. It is a highly contextual
+  particle, and its exact nuance often depends heavily on intonation and the surrounding conversational
+  flow. Being mindful of the casual register is paramount when choosing to use 「って」 versus its more formal
+  counterparts like 「と」 or 「は」.
+examples:
+  - english: Speaking of Tanaka-san, is he coming to the party?
+    japanese:
+      - 田中 さん って、パーティー に 来る の？
+      - 田中 さん って、パーティー に 来 ます か？
+    english_literally: As for Tanaka-san, coming to party?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は パーティー に 来 ます か？
+        english: As for Tanaka-san, is he coming to the party?
+        hint: 「は」is a neutral topic marker, and 「〜ますか」is polite. We are looking for a casual question
+          to introduce a topic.
+    scene: Two friends casually discussing a party.
+    register: casual
+    setting: friendly
+    nuance: 「田中さんって」casually introduces Tanaka as the topic, implying a common understanding between speakers.
+      The ending 「の？」 adds to the casual, questioning tone typical among friends.
+  - english: Oh, speaking of that game, I haven't finished it yet.
+    japanese:
+      - あ、あの ゲーム って、まだ 終わっ て ない よ。
+      - あ、あの ゲーム って、まだ 終わっ て い ませ ん よ。
+    english_literally: Oh, that game, still not finished.
+    competing_grammar:
+      - competing_japanese:
+          - あ、あの ゲーム は、まだ 終わっ て い ませ ん。
+        english: Oh, as for that game, I haven't finished it yet.
+        hint: 「は」is a more general topic marker used in both formal and casual contexts. 「って」is specifically
+          for bringing up a topic casually in conversation.
+    scene: One friend mentions a game, and the other friend picks up on it.
+    register: casual
+    setting: friendly
+    nuance: 「あのゲームって」is used to bring up the game that was likely just mentioned, acting as a casual "speaking
+      of that." The 「よ」at the end indicates informing the listener.
+  - english: Speaking of this book, it's really interesting.
+    japanese:
+      - この 本 って、すごく 面白い ん だ よ ね。
+      - この 本 って、すごく 面白い ん です よ ね。
+    english_literally: This book, really interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は、すごく 面白い です よ ね。
+        english: This book is really interesting, isn't it?
+        hint: 「は」is a neutral topic marker. 「って」is used to casually introduce a topic, assuming a shared
+          context or recent mention.
+    scene: A student recommending a book to a classmate.
+    register: casual
+    setting: academic
+    nuance: 「この本って」introduces the book as the topic. The 「んだよね」at the end seeks agreement from the listener,
+      making the statement softer and more conversational.
+  - english: What exactly does sushi mean, anyway?
+    japanese:
+      - 『寿司』って、結局 どう いう 意味 な の？
+      - 『寿司』って、結局 どう いう 意味 です か？
+    english_literally: Sushi, after all, what kind of meaning is it?
+    competing_grammar:
+      - competing_japanese:
+          - 『寿司』と いう の は、結局 どう いう 意味 です か？
+        english: As for sushi, what exactly does it mean?
+        hint: 「というのは」is used for formal definitions or explanations. 「って」is a casual way to ask for a
+          definition of a word.
+    scene: A foreign student asking a Japanese friend about a word.
+    register: casual
+    setting: informative
+    nuance: 「「寿司」って」uses って to casually bring up the term "sushi" for clarification, almost like "about
+      'sushi,' what's its meaning?" The casual 「なの？」 emphasizes the direct, informal question.
+  - english: Speaking of the train, it was really crowded today.
+    japanese:
+      - 電車 って、今日 すごく 混ん で た ん だ。
+      - 電車 って、今日 すごく 混ん で い まし た。
+    english_literally: Train, today was very crowded.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は、今日 すごく 混ん で い まし た。
+        english: The train was very crowded today.
+        hint: While 「は」can introduce a topic, 「って」is more natural when casually mentioning something related
+          to the current discussion.
+    scene: Two coworkers commuting together after work.
+    register: casual
+    setting: friendly
+    nuance: 「電車って」casually introduces the topic of the train, often implying a shared experience or common
+      knowledge between the speakers. The 「んだ」 adds an explanatory nuance.
+  - english: People say Tokyo is really expensive, isn't it?
+    japanese:
+      - 東京 って、本当 に 物価 が 高い って 言わ れ てる よ ね。
+      - 東京 って、本当 に 物価 が 高い って 言わ れ て ます よ ね。
+    english_literally: Tokyo, really prices are high, it's said.
+    competing_grammar:
+      - competing_japanese:
+          - 東京 は、本当 に 物価 が 高い と 言わ れ て い ます よ ね。
+        english: Tokyo's cost of living is really said to be high, isn't it?
+        hint: 「って」is more conversational when stating a widely known fact or common perception, especially
+          when seeking agreement.
+    scene: Friends discussing living costs.
+    register: casual
+    setting: friendly
+    nuance: 「東京って」is used here to make a general statement about Tokyo, akin to "as for Tokyo." 「言われてるよね」seeks
+      confirmation and implies shared knowledge or common perception.
+  - english: Ramen is really delicious, don't you think?
+    japanese:
+      - ラーメン って、美味しい よ ね。
+      - ラーメン って、美味しい です ね。
+    english_literally: Ramen, delicious, right?
+    competing_grammar:
+      - competing_japanese:
+          - ラーメン は、美味しい です ね。
+        english: Ramen is delicious, isn't it?
+        hint: 「って」is used to casually bring up a topic for shared reflection or agreement. 「は」is more
+          a simple statement of fact.
+    scene: Two friends chatting about food.
+    register: casual
+    setting: friendly
+    nuance: 「ラーメンって」brings up "ramen" as a topic of shared interest. The 「よね」at the end asks for agreement.
+  - english: Speaking of that new movie, the ending was surprising, wasn't it?
+    japanese:
+      - あの 新作 映画 って、結末 が 意外 だっ た よ ね。
+      - あの 新作 映画 って、結末 が 意外 でし た よ ね。
+    english_literally: That new movie, ending was surprising, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 新作 映画 は、結末 が 意外 でし た ね。
+        english: The ending of that new movie was surprising, wasn't it?
+        hint: 「って」serves to bring up a shared topic in a more conversational and informal manner than
+          a simple 「は」.
+    scene: Friends discussing a recently watched movie.
+    register: casual
+    setting: friendly
+    nuance: 「あの新作映画って」introduces the movie as the topic, likely a movie both speakers have seen or are
+      aware of. 「意外だったよね」expresses a shared sentiment.
+  - english: What was that person's name again?
+    japanese:
+      - あの 人 って、名前 な ん だ っけ？
+      - あの 人 って、名前 何 でし た っけ？
+    english_literally: That person, name was what?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 の 名前 は 何 でし た っけ？
+        english: What was that person's name?
+        hint: 「あの人って」is a very casual way to refer to someone when trying to recall information about
+          them, emphasizing the person as the topic.
+    scene: Someone trying to recall a name to a friend.
+    register: casual
+    setting: friendly
+    nuance: 「あの人って」casually refers to a person previously discussed or known to both. 「なんだっけ？」is a very
+      casual way to ask for a forgotten piece of information.
+  - english: You know, that coffee shop, its atmosphere is really nice.
+    japanese:
+      - あの 喫茶 店 って、雰囲気 が すごく 良い ん だ よ ね。
+      - あの 喫茶 店 って、雰囲気 が すごく 良い ん です よ ね。
+    english_literally: That coffee shop, atmosphere is really good.
+    competing_grammar:
+      - competing_japanese:
+          - あの 喫茶 店 は、雰囲気 が すごく 良い です ね。
+        english: That coffee shop's atmosphere is really good.
+        hint: 「って」is ideal for introducing a topic already known to both speakers in a casual, conversational
+          flow.
+    scene: Friends talking about a place they often visit.
+    register: casual
+    setting: friendly
+    nuance: 「あの喫茶店って」casually brings up the coffee shop as the topic, assuming shared knowledge. 「良いんだよね」expresses
+      a shared positive opinion.

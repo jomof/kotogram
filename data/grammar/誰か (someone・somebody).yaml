@@ -1,0 +1,219 @@
+grammar_point: 誰か (someone・somebody)
+learn_before:
+  - 誰 (who)
+  - 誰も (no one・nobody)
+meaning: Someone; somebody; a certain person
+pronunciation:
+  katakana: ダレカ
+  romaji: dareka
+formation:
+  疑問詞 (Interrogative word) 「誰」 (who) + 助詞 (Particle) 「か」: Forms an indefinite pronoun referring to an
+    unspecified person.
+jlpt: N5
+etymology: The word 「誰か」 is formed by combining the interrogative pronoun 「誰」 (dare), meaning "who," with
+  the particle 「か」 (ka), which typically forms questions. In this context, 「か」 functions to make the pronoun
+  indefinite, transforming "who?" into "someone" or "somebody." This grammatical construction is a common
+  way in Japanese to express indefiniteness by adding 「か」 to interrogative words (e.g., いつか "sometime,"
+  どこか "somewhere," なにか "something").
+writeup: |-
+  「誰か」 (dareka) is an indefinite pronoun in Japanese that means "someone" or "somebody." It refers to an unspecified person, implying that the speaker does not know who the person is, or does not need to specify them. It is commonly used in affirmative sentences where the existence of a person is confirmed, but their identity is unknown.
+
+  While 「誰か」 acts as an indefinite pronoun, it shares its root with the interrogative 「誰」 (dare), which means "who?" or "whom?" The addition of the particle 「か」 removes the interrogative nature and makes it indefinite. This is similar to how "what" becomes "something" in English.
+
+  「誰か」 can function as the subject, object, or part of a phrase depending on the particles attached to it. For example, 「誰か が 来た」 (someone came), 「誰か を 探している」 (I'm looking for someone), or 「誰か に 聞いて みよう」 (Let's try asking someone).
+false_friends:
+  - term: 誰 (who)
+    meaning: who; whom
+    kind: often confused with
+    nuance: 「誰」 is an interrogative pronoun used specifically to ask "who?". 「誰か」, on the other hand,
+      refers to an *unspecified* person in an affirmative or uncertain context. For example, 「誰 ですか？」
+      (Who is it?) vs. 「誰か がいます」 (Someone is here). We're looking for an unknown person, not asking for
+      an identity.
+    grammar_point: 誰 (who)
+  - term: 誰でも (anyone・everyone)
+    meaning: anyone; everyone (without exception)
+    kind: often confused with
+    nuance: 「誰でも」 emphasizes inclusivity or universality, meaning 'anyone at all' or 'everyone'. 「誰か」
+      refers to 'someone' specific but unknown. For instance, 「誰でも できる」 (Anyone can do it) suggests that
+      there are no restrictions, whereas 「誰か できる？」 (Can someone do it?) implies looking for an individual
+      among many.
+    grammar_point: 誰でも (anyone・everyone)
+  - term: 何か (something)
+    meaning: something; anything
+    kind: similar expression
+    nuance: Both 「誰か」 and 「何か」 follow the pattern of interrogative + 「か」, but 「何か」 refers to an unspecified
+      *thing* (e.g., 「何か 食べたい」 - I want to eat something), while 「誰か」 refers to an unspecified *person*.
+      We're looking for a person, not a thing.
+    grammar_point: なにか・なにも (something or nothing)
+post_false_friends_writeup: To differentiate between 「誰か」, 「誰」, 「誰でも」, and 「何か」, focus on their specific
+  functions. 「誰」 is for direct questions about identity. 「誰か」 is for referring to an unknown individual
+  in a positive or uncertain statement. 「誰でも」 is for expressing universal applicability or inclusivity.
+  Finally, 「何か」 is for unknown objects or concepts, similar to 「誰か」 but for non-human entities.
+examples:
+  - english: Is there someone in this room?
+    japanese:
+      - この 部屋 に 誰 か い ます か？
+      - この 部屋 に 誰 か いる？
+      - この 部屋 に 誰 か いらっしゃい ます か？
+    english_literally: In this room, someone is there?
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 に 誰 が い ます か？
+        english: Who is in this room?
+        hint: Using 「誰」 asks for the specific identity of the person, but you're just wondering if *any*
+          person is present. We're looking for an unspecified person.
+    scene: You're entering a quiet room and want to know if it's occupied.
+    register: teineigo (polite)
+    setting: informative
+  - english: Someone knocked on the door.
+    japanese:
+      - 誰 か ドア を ノック し まし た。
+      - 誰 か ドア ノック し た。
+      - 誰 か ドア を ノック いたし まし た。
+    english_literally: Someone the door knocked.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 が ドア を ノック し まし た か？
+        english: Who knocked on the door?
+        hint: This phrasing asks for the identity of the person, but you are stating that an unknown person
+          performed the action. We're looking for an unspecified person.
+    scene: You're recounting an event to a friend.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: Could someone help me?
+    japanese:
+      - 誰 か 手伝っ て くれ ませ ん か？
+      - 誰 か 手伝っ て くれる？
+      - 誰 か 手伝っ て いただけ ませ ん か？
+      - 誰 か お 手伝い いただけ ませ ん か？
+    english_literally: Someone won't you help me?
+    competing_grammar:
+      - competing_japanese:
+          - 誰 で も 手伝っ て くれ ます か？
+        english: Can anyone help me?
+        hint: While 「誰でも」 implies 'anyone at all', it often sounds like you're desperate for *any* help,
+          even unqualified. You just want *a* person to volunteer. We're looking for a specific, unknown
+          person.
+    scene: You're struggling with a task and asking generally for assistance.
+    register: teineigo (polite)
+    setting: apologetic
+    speaker_gender: female
+  - english: I heard someone singing in the next room.
+    japanese:
+      - 隣 の 部屋 で 誰 か 歌っ て いる の が 聞こえ まし た。
+      - 隣 の 部屋 で 誰 か 歌っ てる の が 聞こえ た。
+      - 隣 の 部屋 で 誰 か が 歌っ て いる の が 聞こえ て き まし た。
+    english_literally: Next room in someone singing was heard.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 の 部屋 で 誰 が 歌っ て いる の が 聞こえ まし た か？
+        english: Who was singing in the next room?
+        hint: This asks for the singer's identity. You're simply stating that *an unknown person* was
+          singing. We're looking for an unspecified person.
+    scene: You're telling a friend about a pleasant sound you heard.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Someone must have left this umbrella.
+    japanese:
+      - 誰 か が この 傘 を 忘れ た に 違い ない。
+      - 誰 か が この 傘 忘れ た に 違い ない。
+      - 誰 か が この 傘 を 忘れ た はず だ。
+      - 誰 か が この 傘 忘れ た ん だろ。
+    english_literally: Someone this umbrella forgot surely.
+    competing_grammar:
+      - competing_japanese:
+          - この 傘 を 忘れ た の は 誰 です か？
+        english: Who forgot this umbrella?
+        hint: This is a direct question about who forgot the umbrella. You're stating an assumption that
+          an unknown person left it. We're looking for an unspecified person.
+    scene: You found an umbrella and are speculating who might have left it.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+  - english: Do you think someone could give me a ride to the station?
+    japanese:
+      - 駅 まで 誰 か 送っ て くれる と 思う？
+      - 駅 まで 誰 か 送っ て いただけ ない と 思い ます か？
+      - 駅 まで 誰 か 送っ て くれ ない か な？
+    english_literally: To station someone send me home do you think?
+    competing_grammar:
+      - competing_japanese:
+          - 駅 まで 誰 が 送っ て くれる？
+        english: Who will give me a ride to the station?
+        hint: This asks for a specific person's willingness to give a ride. You are asking if *an unknown
+          person* might be able to help. We're looking for an unspecified person.
+    scene: You're asking a family member if a ride might be possible.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+  - english: It seems someone made a mistake.
+    japanese:
+      - 誰 か が 間違っ た よう だ。
+      - 誰 か が 間違っ た よう です。
+      - 誰 か が 誤っ た よう で ござい ます。
+      - 誰 か が 間違え た みたい だ。
+    english_literally: Someone made a mistake it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 が 間違っ た よう だ？
+        english: Who seems to have made a mistake?
+        hint: This form directly questions the identity of the person who made a mistake. You are observing
+          that *an unknown person* made an error. We're looking for an unspecified person.
+    scene: You're discussing a problem with colleagues, identifying an error without pointing fingers.
+    register: semi-formal
+    setting: professional
+  - english: Someone just rang the doorbell.
+    japanese:
+      - 今、誰 か が ドア ホン を 鳴らし た よ。
+      - 今、誰 か ドア ホン 鳴らし た。
+      - 今、誰 か が ドア ホン を 鳴らし まし た。
+    english_literally: Now, someone doorbell rang particle.
+    competing_grammar:
+      - competing_japanese:
+          - 今、誰 が ドア ホン を 鳴らし た の？
+        english: Who just rang the doorbell?
+        hint: This asks for the specific person's identity. You are stating that *an unknown person* rang
+          the doorbell. We're looking for an unspecified person.
+    scene: You're at home and hear the doorbell ring, informing someone else in the house.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+  - english: If someone asks, please tell them I'm not here.
+    japanese:
+      - もし 誰 か が 尋ね たら、私 は い ない と 伝え て ください。
+      - もし 誰 か が 尋ね たら、私 は い ない と 言っ て ください。
+      - もし 誰 か 尋ね て き たら、私 い ない って 言っ て。
+    english_literally: If someone asks, me is not here tell please.
+    competing_grammar:
+      - competing_japanese:
+          - もし 誰 が 尋ね たら、私 は い ない と 伝え て ください。
+        english: If who asks, please tell them I'm not here.
+        hint: This usage of 「誰」 is ungrammatical here. You need an indefinite pronoun for an unknown person
+          who *might* ask. We're looking for an unspecified person.
+    scene: You're leaving instructions for someone at your office.
+    register: formal
+    setting: professional
+  - english: I wonder if someone will come to pick me up.
+    japanese:
+      - 誰 か 迎え に 来 て くれる か な。
+      - 誰 か 迎え に 来 て くれる でしょう か。
+      - 誰 か 迎え に 来る か な。
+    english_literally: Someone to pick up come give me I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 が 迎え に 来 て くれる か な。
+        english: Who will come to pick me up, I wonder?
+        hint: This phrasing implies you expect a specific person and are wondering about *their* identity.
+          You're wondering if *any* unknown person will come. We're looking for an unspecified person.
+    scene: You're waiting alone and hoping for someone to arrive.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+post_example_writeup: As you can see from the examples, 「誰か」 consistently points to the idea of an 'unknown
+  person' or 'somebody.' Its strength lies in its ability to introduce a person into a sentence without
+  requiring identification, making it useful for general statements, requests, or observations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/誰か

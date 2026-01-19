@@ -1,0 +1,283 @@
+grammar_point: げ (seeming・appearance)
+learn_before:
+  - '[Verb-stem][Place noun] (location where action occurs)'
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - 〜如し・〜ごとし (like・as if)
+  - に (adverbializer)
+  - 近く,遠く (proximity・distance spatial)
+  - 風 (style・manner)
+meaning: Seemingly, giving the appearance of [expresses emotions or feelings]
+pronunciation:
+  katakana: ゲ
+  romaji: ge
+formation:
+  い-adjective stem + げ: Indicates that something seems to exhibit a certain emotion or feeling.
+  な-adjective stem + げ: Indicates that something seems to exhibit a certain quality.
+  noun + げ: Indicates that something seems to exhibit a certain quality.
+jlpt: N2
+etymology: The suffix 「げ」 originates from the kanji 「気」 (ki), which means "spirit," "mind," or "feeling."
+  The suffix 「げ」 retains a sense of sensing or feeling something, but in a more subtle or indirect way.
+  Instead of directly stating a feeling, it indicates that something *gives off the feeling* of something.
+writeup: The suffix 「げ」, sometimes written as 「気」, expresses that something "gives off the feeling of
+  (A)" or "seems like (A)." It's frequently used with emotions and feelings, where certainty is difficult.
+  It can follow the stem form of い-adjectives, the stem of な-adjectives, or nouns, creating a new な-adjective
+  meaning "(A) seeming." This can be followed by 「な」 or 「に」 depending on whether it modifies a noun or
+  verb. 「げ」 is more subjective than 「そう」, indicating lower confidence, because the speaker is "sensing"
+  something. Because it expresses something that the speaker is sensing, it can be difficult to explain
+  to others how to use it.
+false_friends:
+  - term: そうに・そうな
+    meaning: Seem, look like, sound
+    kind: similar expression
+    nuance: Unlike 「げ」, 「そうに／そうな」 is often used with more direct sensory information. It expresses a judgment
+      based on what one sees or hears, not just a feeling.
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: ような気がする
+    meaning: Have a feeling that
+    kind: similar expression
+    nuance: Unlike 「げ」, 「ような気がする」 is a more direct expression of one's own feeling or intuition, rather
+      than an observation of an apparent emotion in someone else.
+    grammar_point: ような気がする (to have a feeling or hunch)
+  - term: み
+    meaning: ~ness, used to indicate conditions or nature
+    kind: similar expression
+    nuance: Unlike 「げ」, 「み」 is used to describe a quality or characteristic, not to suggest that something
+      appears a certain way. It's about inherent nature, not perceived appearance.
+    grammar_point: な-Adjective[み] (abstract quality)
+  - term: ぎみ
+    meaning: Looking, feeling a little, touch of, tending to, slightly
+    kind: similar expression
+    nuance: Unlike 「げ」, 「ぎみ」 is used to express that something is leaning toward a certain condition or
+      state, but not necessarily expressing an emotion or feeling in the same way.
+    grammar_point: ぎみ (slight tendency or feeling)
+  - term: っぽい
+    meaning: ish; characteristic of
+    kind: similar expression
+    nuance: Unlike 「げ」, 「っぽい」 implies something has a tendency or characteristic quality. 「げ」 focuses
+      more on the apparent feeling or emotion.
+    grammar_point: っぽい (ish; characteristic of)
+post_false_friends_writeup: To avoid confusion, remember that 「げ」 is best used to describe how someone
+  *appears* to be feeling, rather than stating how you *know* they feel. Choose 「げ」 when you're inferring
+  someone's emotional state based on their behavior or expression. 「そう」 is more direct, based on sensory
+  input. The others are qualities of something.
+examples:
+  - english: She gazed into the distance with seemingly lonely eyes.
+    japanese:
+      - 彼女 は 寂し {げ} な 目 で、遠く を 見つめ て い た。
+      - 彼女 は 寂し {げ} な 目 で、遠く を 見つめ て い まし た。
+      - 彼女 は 寂し {げ} な 目 で、遠く を 見つめ て た。
+    english_literally: She, with lonely-seeming eyes, was gazing into the distance.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 寂し {そう} な 目 で、遠く を 見つめ て い た。
+        english: She gazed into the distance with eyes that looked lonely.
+        hint: 「そう」 emphasizes a direct visual observation of sadness. We're looking for an observation
+          of a subtle appearance or emanating feeling.
+      - competing_japanese:
+          - 彼女 は {寂しい} 目 で、遠く を 見つめ て い た。
+        english: Using 「寂しい目で」 implies a direct understanding or assertion of her sadness. We're looking
+          for an emphasis on the *impression* of loneliness emanating from her gaze.
+        hint: Using 「寂しい目で」 implies a direct understanding or assertion of her sadness. We're looking
+          for an emphasis on the *impression* of loneliness emanating from her gaze.
+    scene: A person observes someone sitting alone, who appears to be feeling sad or solitary.
+    register: casual
+    setting: reflective
+  - english: The children were playing in the park, seemingly having a good time.
+    japanese:
+      - 子供 たち は 楽し {げ} に 公園 で 遊ん で い た。
+      - 子供 たち は 楽し {げ} に 公園 で 遊ん で い まし た。
+      - 子供 たち は 楽し {げ} に 公園 で 遊ん で た。
+    english_literally: The children were playing in the park, happily-seeming.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 楽し {そう} に 公園 で 遊ん で い た。
+        english: The children were playing in the park, looking like they were having fun.
+        hint: 「そう」 would be a direct observation of their fun based on their actions. We're looking for
+          an emphasis on the *emanation* of their enjoyment, suggesting their happiness was palpable.
+      - competing_japanese:
+          - 子供 たち は 楽しん で いる {よう に} 公園 で 遊ん で い た。
+        english: The children were playing in the park as if they were enjoying themselves.
+        hint: 「楽しんでいるように」 implies a comparison, meaning 'as if they were enjoying themselves.' We're looking
+          for an indication that the enjoyment is genuinely appearing or radiating from them.
+    scene: An adult watches a group of children vigorously playing in a park, their joyful expressions
+      clearly visible.
+    register: casual
+    setting: friendly
+  - english: A somewhat dangerous atmosphere was drifting around that place.
+    japanese:
+      - その 場所 に は、何 か 危な {げ} な 雰囲気 が 漂っ て い た。
+      - その 場所 に は、何 か 危な {げ} な 雰囲気 が 漂っ て い まし た。
+      - その 場所 に は、何 か 危な {げ} な 雰囲気 が 漂っ て い た の です。
+    english_literally: At that place, a somewhat dangerous-seeming atmosphere was drifting.
+    competing_grammar:
+      - competing_japanese:
+          - その 場所 に は、何 か {危ない} 雰囲気 が 漂っ て い た。
+        english: A dangerous atmosphere was drifting around that place.
+        hint: 「危ない雰囲気」 would state the atmosphere as definitively dangerous. We're looking for an *impression*
+          of danger or unsafeness that one senses, suitable for an unsettling atmosphere where the danger
+          is not yet certain.
+      - competing_japanese:
+          - その 場所 に は、何 か 危険 {そう} な 雰囲気 が 漂っ て い た。
+        english: A dangerous-looking atmosphere was drifting around that place.
+        hint: 「危険そうな」 would imply a more direct, visually apparent sign of danger. We're looking for a
+          more subtle, inherent sense of risk or instability being exuded by the place itself.
+    scene: Describing an unsettling location, perhaps an abandoned building or a dimly lit alley, where
+      one senses an underlying risk.
+    register: semi-formal
+    setting: serious
+  - english: Having passed the exam, he had a seemingly satisfied look on his face.
+    japanese:
+      - 彼 は 試験 に 合格 し、満足 {げ} な 顔 を し て い た。
+      - 彼 は 試験 に 合格 し、満足 {げ} な 顔 を し て い まし た。
+      - 彼 は 試験 に 合格 し、満足 {げ} な 顔 を し て た。
+    english_literally: Having passed the exam, he had a satisfied-seeming face.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 試験 に 合格 し、満足 {そう} な 顔 を し て い た。
+        english: Having passed the exam, he had a satisfied-looking face.
+        hint: 「満足そうな顔」 indicates a direct visual observation of satisfaction. We're looking for the *appearance*
+          of satisfaction emanating from his expression, which the observer perceives, possibly subtly.
+      - competing_japanese:
+          - 彼 は 試験 に 合格 し、{満足 し て いる} 顔 を し て い た。
+        english: Having passed the exam, he had a satisfied face.
+        hint: 「満足している顔」 states that he *is* satisfied. We're looking for the *appearance* of satisfaction,
+          implying it's inferred from his look rather than definitively known.
+    scene: A friend observes a colleague or peer immediately after they receive news of a successful exam
+      result, noticing their calm yet pleased expression.
+    register: formal
+    setting: informative
+  - english: After eating healthy food, I feel like I've become somewhat more energetic.
+    japanese:
+      - 体 に 良い もの を 食べ たら、心なし か 元気 {げ} に なっ た 気 が する。
+      - 体 に 良い もの を 食べ たら、心なし か 元気 {げ} に なっ た 気 が し ます。
+      - 体 に 良い もの 食べ たら、心なし か 元気 {げ} に なっ た 気 が する。
+    english_literally: If I eat good things for the body, I feel like I've become somewhat energetic-seeming.
+    competing_grammar:
+      - competing_japanese:
+          - 体 に 良い もの を 食べ たら、心なし か {元気 に なっ た 気 が する}。
+        english: After eating healthy food, I feel like I've become somewhat more energetic.
+        hint: 「元気になった気がする」 would be a more direct statement about one's energy level. We're looking for
+          the subtle, perhaps subconscious, *feeling of appearing* energetic to oneself, focusing on the
+          perceived emanation.
+      - competing_japanese:
+          - 体 に 良い もの を 食べ たら、心なし か 元気 {そう} に なっ た 気 が する。
+        english: After eating healthy food, I feel like I've started to look somewhat more energetic.
+        hint: 「元気そうになった気がする」 would imply observing oneself as looking energetic. 「げ」 is more about an
+          internal sensation of *being* energetic in a way that manifests as an appearance, even if subtly
+          felt only by oneself.
+    scene: A person reflects on their improved physical feeling and slight boost in energy after consuming
+      healthy food, noting a subtle inner change.
+    register: casual
+    setting: reflective
+  - english: She began the presentation with apparent confidence.
+    japanese:
+      - 彼女 は 自信 {げ} に プレゼンテーション を 始め た。
+      - 彼女 は 自信 {げ} に プレゼンテーション を 始め まし た。
+      - 彼女 は 自信 {げ} に プレゼン を 始め た。
+    english_literally: She began the presentation with confidence-seeming.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {自信 を 持っ て} プレゼンテーション を 始め た。
+        english: She began the presentation with confidence.
+        hint: 「自信を持って」 states that she possesses confidence. We're looking for the *appearance* or *emanation*
+          of confidence from her demeanor as she started, which is perceived by the audience.
+      - competing_japanese:
+          - 彼女 は 自信 {あり そう} に プレゼンテーション を 始め た。
+        english: She began the presentation looking like she had confidence.
+        hint: 「自信ありそうに」 implies a more direct, external observation of confidence. We're looking for a
+          more subtle, inherent feeling of confidence that is radiating from her presentation style.
+    scene: Observing a presenter's demeanor as they start, noting their calm and collected manner that
+      suggests inner assurance.
+    register: formal
+    setting: professional
+  - english: Our child was watching the neighbor's child playing happily with seeming envy.
+    japanese:
+      - 隣 の 子供 が 楽し そう に 遊ん で いる の を、うち の 子 が 羨まし {げ} に 見 て い た。
+      - 隣 の 子供 が 楽し そう に 遊ん で いる の を、うち の 子 が 羨まし {げ} に 見 て い まし た。
+      - 隣 の 子供 が 楽し そう に 遊ん でる の を、うち の 子 が 羨まし {げ} に 見 て た。
+    english_literally: Our child was watching the neighbor's child playing happily, with envy-seeming.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 の 子供 が 楽し そう に 遊ん で いる の を、うち の 子 が 羨まし {そう} に 見 て い た。
+        english: Our child was watching the neighbor's child playing happily, looking envious.
+        hint: 「羨ましそうに」 implies a more direct and obvious observation of envy. We're looking for the subtle,
+          perceptible *emanation* of envy from the child's gaze, which the parent infers.
+      - competing_japanese:
+          - 隣 の 子供 が 楽し そう に 遊ん で いる の を、うち の 子 が 羨まし がっ て いる {よう に} 見 て い た。
+        english: Our child was watching the neighbor's child playing happily, as if being envious.
+        hint: 「羨ましがっているように」 implies 'as if' they are envious, suggesting a potential lack of certainty.
+          「げ」 asserts that the envy is truly appearing or radiating from the child's expression.
+    scene: A parent observes their child looking intently at another child playing, noticing a subtle
+      longing or desire in their gaze without any overt declaration.
+    register: casual
+    setting: sympathetic
+  - english: He was talking to someone on the phone and seemed very happy.
+    japanese:
+      - 彼 は 電話 で 誰 か と 話し て い て、とても 幸せ {げ} だっ た。
+      - 彼 は 電話 で 誰 か と 話し て い て、とても 幸せ {げ} でし た。
+      - 彼 は 電話 で 誰 か と 話し て い て、とても 幸せ {げ} だっ た よ。
+    english_literally: He was talking to someone on the phone, and was very happy-seeming.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 電話 で 誰 か と 話し て い て、とても 幸せ {そう} だっ た。
+        english: He was talking to someone on the phone and looked very happy.
+        hint: 「幸せそうだった」 indicates a direct visual observation of happiness. We're looking for the *feeling
+          of happiness* emanating from him and perceptible to the observer, highlighting the subtle nature
+          of the observation.
+      - competing_japanese:
+          - 彼 は 電話 で 誰 か と 幸せ {そう} に 話し て い た。
+        english: He was talking happily to someone on the phone.
+        hint: 「幸せそうに話していた」 focuses on *how* he was talking. We're looking for a description of his overall
+          appearance of happiness emanating from him during the call.
+    scene: Observing someone during a phone call, noticing their bright demeanor and pleasant expressions,
+      indicating deep satisfaction from the conversation.
+    register: semi-formal
+    setting: friendly
+  - english: The child, seemingly sleepy, rubbed their eyes.
+    japanese:
+      - 子供 は 眠た {げ} に 目 を こすっ て い た。
+      - 子供 は 眠た {げ} に 目 を こすっ て い まし た。
+      - 子供 は 眠た {げ} に 目 を こすっ て た。
+    english_literally: The child, sleepily-seeming, was rubbing their eyes.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 眠 {そう} に 目 を こすっ て い た。
+        english: The child looked sleepy and rubbed their eyes.
+        hint: 「眠そうに」 implies a more direct visual cue of sleepiness. We're looking for a softer, more
+          subtle *appearance* of sleepiness that emanates from the child's actions.
+      - competing_japanese:
+          - 子供 は {眠く て} 目 を こすっ て い た。
+        english: The child was sleepy and rubbed their eyes.
+        hint: 「眠くて」 states that the child *is* sleepy. We're looking for the *appearance* or *impression*
+          of sleepiness rather than a direct statement of fact.
+    scene: A parent observing their young child, who is showing subtle signs of tiredness after a long
+      day.
+    register: casual
+    setting: intimate
+  - english: He listened to the long speech with a seemingly bored expression.
+    japanese:
+      - 彼 は 退屈 {げ} な 表情 で 長い スピーチ を 聞い て い た。
+      - 彼 は 退屈 {げ} な 表情 で 長い スピーチ を 聞い て い まし た。
+      - 彼 は 退屈 {げ} な 表情 で 長い スピーチ を 聞い て た。
+    english_literally: He listened to the long speech with a boredom-seeming expression.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 退屈 {そう} な 表情 で 長い スピーチ を 聞い て い た。
+        english: He listened to the long speech with a bored-looking expression.
+        hint: 「退屈そうな表情」 suggests a more obvious and direct visual observation of boredom. We're looking
+          for a subtle *emanation* of boredom from his expression, which might be inferred rather than
+          immediately evident.
+      - competing_japanese:
+          - 彼 は {退屈 し た} 表情 で 長い スピーチ を 聞い て い た。
+        english: He listened to the long speech with a bored expression.
+        hint: 「退屈した表情」 directly states that he *was* bored. We're looking for the *appearance* or *impression*
+          of boredom, implying an observer's interpretation of his look.
+    scene: An attendee at a conference or lecture subtly observing a colleague who appears disinterested
+      in the speaker's lengthy presentation.
+    register: semi-formal
+    setting: professional
+post_example_writeup: As you can see, 「げ」 is particularly useful when you want to convey a subtle observation
+  or inference about someone's emotional state or an object's inherent quality, rather than a direct,
+  objective statement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/げ

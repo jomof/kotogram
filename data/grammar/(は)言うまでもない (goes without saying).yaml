@@ -1,0 +1,247 @@
+grammar_point: (は)言うまでもない (goes without saying)
+learn_before:
+  - のは (emphasis and identification)
+meaning: goes without saying
+pronunciation:
+  katakana: イウマデモナイ
+  romaji: iumademonai
+formation:
+  '[Verb plain form] + (は)言うまでもない': Indicates that an action or state is so obvious, it doesn't need to
+    be stated.
+  '[い-Adjective plain form] + (は)言うまでもない': Indicates that a quality or characteristic is so obvious, it
+    doesn't need to be stated.
+  '[な-Adjective plain form] + (は)言うまでもない': Indicates that a quality or characteristic is so obvious, it
+    doesn't need to be stated.
+  '[Noun] + は言うまでもない': Indicates that a noun or concept is so obvious, it doesn't need to be stated.
+jlpt: N2
+etymology: 'The phrase 「言うまでもない」 literally translates to "there isn''t even [a need] up to the point of
+  saying." It combines 「言う」 (iu, to say), 「まで」 (made, up to/until), and 「もない」 (mo nai, there isn''t even/not
+  necessary). The 「も」 particle here adds emphasis, conveying that it is unnecessary to go as far as speaking
+  about something because its truth or obviousness is already apparent. This linguistic construction clearly
+  illustrates its meaning: the information is so fundamental or widely accepted that verbally stating
+  it is redundant.'
+writeup: |-
+  「(は)言うまでもない」 is a versatile phrase used to convey that something is so self-evident or obvious that it doesn't require explicit mention. It's often translated as "it goes without saying," "needless to say," or "it is obvious." This expression can follow verbs, adjectives, or nouns, typically in their plain forms.
+
+  While the 「は」 particle is optional, its inclusion can add a slight emphasis to the statement being deemed self-evident. When 「は」 is used, it often highlights the topic that is *so* obvious, it doesn't even need to be said.
+
+  This grammar point serves to emphasize the undeniable truth or logical conclusion of a statement. It's not just stating something is true, but that its truth is so fundamental that to state it aloud would be redundant. This can be used to express a general principle, a natural consequence, or an undisputed fact. It's a useful phrase for indicating consensus or an unspoken understanding.
+
+  Be mindful of the context when using this phrase. While it signifies obviousness, overusing it or using it in situations where the information is *not* obvious can come across as condescending or dismissive. It is best reserved for truly self-evident facts or conclusions within a given context.
+false_friends:
+  - term: もちろん (of course)
+    meaning: of course
+    kind: similar expression
+    nuance: 「もちろん」 is a direct confirmation or affirmation. It indicates that something is expected or
+      taken for granted, but doesn't carry the strong implication that saying it is redundant, as 「言うまでもない」
+      does.
+    grammar_point: <suggest>:もちろん (of course)
+  - term: 当然だ (natural・obvious)
+    meaning: it is natural; it is obvious
+    kind: similar expression
+    nuance: 「当然だ」 explicitly states that something is natural or obvious, often providing a reason or
+      justification. 「言うまでもない」, on the other hand, implies that the statement is *so* obvious that verbalizing
+      it is redundant or unnecessary.
+    grammar_point: て当然だ (natural・obvious)
+  - term: はずだ (is expected to be・cannot be)
+    meaning: should be; expected to be
+    kind: similar expression
+    nuance: 「はずだ」 expresses an expectation or logical conclusion based on available information or reasoning.
+      While it suggests a high probability, it doesn't carry the same nuance of self-evidence or redundancy
+      in stating it as 「言うまでもない」.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: に違いない (no doubt)
+    meaning: must be; no doubt
+    kind: similar expression
+    nuance: 「に違いない」 conveys a strong conviction or certainty about something. It emphasizes the speaker's
+      firm belief, whereas 「言うまでもない」 focuses on the inherent and widely recognized obviousness of the
+      statement itself, making its utterance unnecessary.
+    grammar_point: に違いない (no doubt)
+post_false_friends_writeup: While expressions like 「もちろん」, 「当然だ」, 「はずだ」, and 「に違いない」 all relate to certainty
+  or expectation, 「(は)言うまでもない」 stands out by explicitly implying that the statement is so self-evident
+  that it does not even require verbal expression. The others state that something is true, natural, expected,
+  or certain, but 「言うまでもない」 goes a step further to suggest that mentioning it is redundant because its
+  truth is already understood.
+examples:
+  - english: It goes without saying that health is important.
+    japanese:
+      - 健康 が 大切 {で ある} こと は {言う まで も ない}。
+      - 健康 が 大切 な こと は {言う まで も ない}。
+      - 健康 が 大切 だ と いう こと は {言う まで も ない}。
+      - 健康 の 重要 性 {は} {言う まで も ない}。
+      - 健康 が 大切 な の は {言う まで も ない}。
+      - 健康 が 大切 {で ある} こと {言う まで も ない}。
+    english_literally: That health is important goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 が 大切 な の は 当然 だ。
+        english: It's natural that health is important.
+        hint: 「当然だ」 expresses that something is natural or expected, but not necessarily so obvious it's
+          redundant to state.
+    scene: A doctor is giving a general health lecture to a group of people, emphasizing fundamental truths.
+    register: formal
+    setting: informative
+  - english: It goes without saying that if you make an effort, you will succeed.
+    japanese:
+      - 努力 すれ ば 成功 する こと は {言う まで も ない}。
+      - 努力 すれ ば 成功 する の は {言う まで も ない}。
+      - 努力 すれ ば 成功 する の だ から {言う まで も ない}。
+      - 努力 すれ ば 成功 する {こと は 言う まで も ない}。
+    english_literally: If effort is made, success will occur, that goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 努力 すれ ば 成功 する はず だ。
+        english: If you make an effort, you should succeed.
+        hint: 「はずだ」 indicates an expectation or probability based on logic, but not necessarily a universally
+          accepted truth that goes without saying.
+    scene: A motivational speaker addresses a young audience, imparting fundamental life lessons.
+    register: semi-formal
+    setting: inspirational
+  - english: Needless to say, his talent is wonderful.
+    japanese:
+      - 彼 の 才能 が 素晴らしい こと は {言う まで も ない}。
+      - 彼 の 才能 の 素晴らし さ は {言う まで も ない}。
+      - 彼 の 才能 の 素晴らし さ {は 言う まで も ない}。
+      - 彼 の 才能 は 素晴らしい と {言う まで も ない}。
+    english_literally: That his talent is wonderful goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 才能 は もちろん 素晴らしい。
+        english: Of course, his talent is wonderful.
+        hint: 「もちろん」 confirms something as expected, but doesn't carry the nuance of being so self-evident
+          it's redundant to state.
+    scene: Two art critics are discussing a renowned painter's latest exhibition.
+    register: formal
+    setting: academic
+  - english: It's obvious that she is kind.
+    japanese:
+      - 彼女 が 優しい こと は {言う まで も ない}。
+      - 彼女 の 優し さ は {言う まで も ない}。
+      - 彼女 が 優しい の は {言う まで も ない}。
+      - 彼女 が 優しい {こと は 言う まで も ない}。
+    english_literally: That she is kind goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 優しい に 決まっ て いる。
+        english: She must be kind.
+        hint: 「に決まっている」 expresses strong conviction or certainty based on the speaker's belief, not necessarily
+          a universally accepted truth.
+    scene: Friends are discussing a mutual acquaintance's character, and one person states something universally
+      agreed upon.
+    register: casual
+    setting: friendly
+  - english: Safety first goes without saying.
+    japanese:
+      - 安全 第 一 {は} {言う まで も ない}。
+      - 安全 第 一 {で ある} こと は {言う まで も ない}。
+      - 安全 第 一 {だ} と いう こと は {言う まで も ない}。
+      - 安全 第 一 {と いう の は 言う まで も ない}。
+    english_literally: Safety first, that goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 第 一 が 当然 だ。
+        english: Safety first is natural/obvious.
+        hint: While similar, 「当然だ」 merely states something is obvious, whereas 「言うまでもない」 implies it's
+          so fundamental that even mentioning it is redundant.
+    scene: A construction site manager reminds his team of the most fundamental rule before starting work.
+    register: formal
+    setting: instructional
+  - english: Smoking is, of course, prohibited.
+    japanese:
+      - 禁煙 {は} {言う まで も ない}。
+      - 禁煙 {で ある} こと は {言う まで も ない}。
+      - 禁煙 {だ} と いう こと は {言う まで も ない}。
+      - 禁煙 {と いう の は 言う まで も ない}。
+    english_literally: No smoking goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 禁煙 は 当たり前 だ。
+        english: No smoking is a given.
+        hint: 「当たり前だ」 means something is commonplace or a given, which is close but doesn't quite capture
+          the nuance of being so obvious it doesn't need to be stated, as 「言うまでもない」 does.
+    scene: A hotel guest tries to clarify rules in a non-smoking area, but the staff member responds that
+      it's universally understood.
+    register: semi-formal
+    setting: informative
+  - english: Needless to say, he is an expert in this field.
+    japanese:
+      - '{言う まで も なく}、彼 は この 分野 の 専門 家 だ。'
+      - 彼 が この 分野 の 専門 家 {で ある} こと は {言う まで も ない}。
+      - 彼 が この 分野 の 専門 家 だ と いう こと は {言う まで も ない}。
+    english_literally: Needlessly to say, he is an expert in this field.
+    competing_grammar:
+      - competing_japanese:
+          - もちろん、彼 は この 分野 の 専門 家 だ。
+        english: Of course, he is an expert in this field.
+        hint: 「もちろん」 is a simpler 'of course', while 「言うまでもなく」 strongly emphasizes the absolute obviousness
+          of the statement.
+    scene: A professor introduces a guest lecturer to a class, acknowledging his well-known expertise.
+    register: formal
+    setting: academic
+  - english: It goes without saying that being late is not allowed.
+    japanese:
+      - 遅刻 が 許さ れ ない こと は {言う まで も ない}。
+      - 遅刻 が 許さ れ ない の は {言う まで も ない}。
+      - 遅刻 は 許さ れ ない {と 言う まで も ない}。
+    english_literally: That being late is not allowed goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 遅刻 は 許さ れ ない はず だ。
+        english: Being late should not be allowed.
+        hint: 「はずだ」 indicates expectation or likelihood, not the self-evident and undeniable truth implied
+          by 「言うまでもない」.
+    scene: A supervisor reminds employees of basic workplace rules during a meeting.
+    register: formal
+    setting: instructional
+  - english: It goes without saying that humans need freedom.
+    japanese:
+      - 人間 に 自由 が 必要 {で ある} こと は {言う まで も ない}。
+      - 人間 に 自由 が 必要 な こと は {言う まで も ない}。
+      - 人間 に 自由 が 必要 だ と いう こと は {言う まで も ない}。
+      - 人間 に 自由 が 必要 な の は {言う まで も ない}。
+    english_literally: That freedom is necessary for humans goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 に 自由 が 必要 な の は 当然 だ。
+        english: It's natural that humans need freedom.
+        hint: 「当然だ」 simply states something is natural, while 「言うまでもない」 emphasizes that it's an undeniable,
+          self-evident truth.
+    scene: A philosopher discusses fundamental human rights and needs in a public lecture.
+    register: formal
+    setting: academic
+  - english: The importance of this plan goes without saying.
+    japanese:
+      - この 計画 の 重要 性 {は} {言う まで も ない}。
+      - この 計画 の 重要 性 {は 言う まで も ない}。
+      - この 計画 の 重要 性 {は} {言う まで も あり ませ ん}。
+    english_literally: The importance of this plan goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 重要 性 は もちろん 分かる。
+        english: Of course, I understand the importance of this plan.
+        hint: 「もちろん」 acknowledges understanding, but 「言うまでもない」 specifically points out that the importance
+          is so obvious it needs no explanation.
+    scene: During a high-level business meeting, the CEO briefly mentions the project's significance,
+      assuming everyone already grasps it.
+    register: formal
+    setting: professional
+  - english: It goes without saying that respecting elders is essential.
+    japanese:
+      - 年長 者 を 敬う こと が 大切 {で ある} こと は {言う まで も ない}。
+      - 年長 者 を 敬う こと が 大切 な の は {言う まで も ない}。
+      - 年長 者 を 敬う こと が 大切 だ と いう こと は {言う まで も ない}。
+      - 年長 者 を 敬う こと の 大切 さ は {言う まで も ない}。
+    english_literally: That respecting elders is important goes without saying.
+    competing_grammar:
+      - competing_japanese:
+          - 年長 者 を 敬う こと が 大切 な の は 当然 だ。
+        english: It's natural that respecting elders is important.
+        hint: 「当然だ」 states a logical truth, but 「言うまでもない」 implies this truth is so fundamental it barely
+          warrants discussion.
+    scene: A grandparent is imparting traditional values to their grandchild during a family gathering.
+    register: semi-formal
+    setting: informative
+    speaker_age: older
+    nuance: This statement reflects a common cultural value in Japan, where respect for elders is a fundamental
+      principle. The use of 「言うまでもない」 reinforces this as an undisputed, self-evident truth, often taught
+      and understood across generations without much explicit explanation.

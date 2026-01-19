@@ -1,0 +1,293 @@
+grammar_point: てよかった (glad or relieved that)
+learn_before:
+  - なくてもいい (no need to)
+meaning: I'm glad that
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: てよかった
+    rarity: common
+    meaning: glad that
+  - conjugation-type: non-past polite (～ます)
+    form: てよかったです
+    rarity: common
+    meaning: glad that (polite)
+  - conjugation-type: negative plain (～ない)
+    form: なくてよかった
+    rarity: common
+    meaning: glad that did not (more formal)
+  - conjugation-type: negative non-past polite (～ません)
+    form: なくてよかったです
+    rarity: common
+    meaning: glad that did not (polite, more formal)
+  - conjugation-type: negative plain (～ない)
+    form: ないでよかった
+    rarity: common
+    meaning: glad that did not (casual)
+  - conjugation-type: negative non-past polite (～ません)
+    form: ないでよかったです
+    rarity: common
+    meaning: glad that did not (casual, polite)
+pronunciation:
+  katakana: テヨカッタ
+  romaji: te yokatta
+formation:
+  Verb -て form + よかった: Expresses a feeling of relief or satisfaction that something happened or was done.
+  Verb -なくて form + よかった: Expresses a feeling of relief or satisfaction that something didn't happen or
+    wasn't done, often with a slightly more formal nuance.
+  Verb -ないで form + よかった: Expresses a feeling of relief or satisfaction that something didn't happen or
+    wasn't done, often used in casual speech.
+jlpt: N4
+etymology: The grammar point 「てよかった」 is derived from the combination of the 「て」 form of a verb and 「よかった」,
+  which is the past form of the adjective 「いい」 (good). The 「て」 form serves to connect the preceding action
+  or state with the subsequent feeling of 'goodness' or satisfaction about the outcome. Historically,
+  the connective function of the 'te-form' has been robust in Japanese, allowing various consequences
+  or states to be linked. In this case, it specifically links an action to a positive past evaluation,
+  resulting in the meaning of 'I'm glad that...'.
+writeup: |-
+  The grammar point 「てよかった」 expresses a feeling of relief or satisfaction that something happened or was done. It's equivalent to saying "I'm glad that..." or "It's good that..." in English. This expression is broadly used across various contexts, from daily casual conversations to more formal settings.
+
+  It can also express relief that something *didn't* happen, using one of two negative forms:
+  *   **「なくてよかった」 (nakute yokatta):** This form indicates relief that something did not occur. It often carries a slightly more formal or objective nuance and can be found in both spoken and written Japanese. It is formed by connecting the 「ない」 form of the verb (without the final い) to 「くてよかった」.
+  *   **「ないでよかった」 (naide yokatta):** This form also indicates relief that something did not occur, but it is typically used in more casual, spoken Japanese. It emphasizes the choice or action of *not doing* something. It is formed by connecting the 「ない」 form of the verb to 「でよかった」.
+
+  While both negative forms convey a similar meaning, 「ないでよかった」 is generally more common in everyday, informal speech, whereas 「なくてよかった」 might appear in slightly more formal contexts or written language.
+false_friends:
+  - term: ばよかった
+    meaning: Should have, I wish, It would have been better to
+    kind: often confused with
+    nuance: Unlike 「てよかった」 which expresses relief about a past event or non-event, 「ばよかった」 expresses regret
+      or a hypothetical wish that something had been done differently.
+    grammar_point: ばよかった (should have)
+post_false_friends_writeup: The key difference between 「てよかった」 and 「ばよかった」 lies in their emotional tone
+  and implication regarding a past event. 「てよかった」 conveys a sense of relief or satisfaction about something
+  that *did* or *did not* happen, implying a positive outcome from the speaker's perspective. In contrast,
+  「ばよかった」 expresses regret, suggesting that the speaker wishes a past action or situation had been different.
+  To distinguish them, consider whether the speaker is feeling content about what occurred (or didn't
+  occur) or lamenting a missed opportunity or a wrong choice.
+examples:
+  - english: I'm glad I bought new shoes.
+    japanese:
+      - 新しい 靴 を 買っ {て よかっ た}
+      - 新しい 靴 を 買っ {て よかっ た です}
+    english_literally: New shoes having bought, was good.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 靴 を 買っ て {嬉しい}。
+        english: I'm happy I bought new shoes.
+        hint: 「嬉しい」 expresses current happiness, while 「てよかった」 conveys relief or satisfaction about a
+          past action's beneficial outcome. We're looking for satisfaction about a past decision.
+    scene: A young woman is happily trying on her new shoes, feeling pleased with her purchase.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: This is a simple, straightforward expression of personal satisfaction. The use of 「よかった」 in
+      plain form makes it casual and natural for a common, everyday scenario. The phrase 「新しい 靴 を 買っ て」
+      (atarashii kutsu o katte) refers to a completed action leading to the current feeling.
+  - english: I'm glad it didn't rain on us.
+    japanese:
+      - 雨 に 降ら れ {なく て よかっ た です} ね。
+      - 雨 に 降ら れ {なく て よかっ た}。
+      - 雨 に 降ら れ {ない で よかっ た です} ね。
+      - 雨 に 降ら れ {ない で よかっ た}。
+    english_literally: By rain, having been rained upon, was not good, is it?
+    competing_grammar:
+      - competing_japanese:
+          - 雨 に 降ら れ なく て {嬉しい} です ね。
+        english: I'm happy it didn't rain on us.
+        hint: 「嬉しい」 expresses current happiness, while 「なくてよかった」 conveys relief about an avoided negative
+          event. We're looking for relief that something negative was avoided.
+    scene: After an outdoor event, two colleagues are packing up, and the sky clears up.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: negative non-past polite (～ません)
+    listener_gender: group
+    nuance: This example uses the polite 「です ね」 to seek agreement from the listener, common in conversations
+      among colleagues. The passive 「降ら れ」 (furare) implies being affected by the rain. The 「なくてよかった」
+      form conveys a more formal sense of relief regarding an avoided negative event.
+  - english: I'm glad I didn't have to give the presentation after all.
+    japanese:
+      - 結局、プレゼン し {ない で よかっ た}。
+      - 結局、プレゼン し {ない で よかっ た です}。
+      - 結局、プレゼン し {なく て よかっ た}。
+      - 結局、プレゼン し {なく て よかっ た です}。
+    english_literally: After all, presentation having not done, was good.
+    competing_grammar:
+      - competing_japanese:
+          - 結局、プレゼン し なく て {嬉しい}。
+        english: I'm happy I didn't have to give the presentation after all.
+        hint: 「嬉しい」 expresses general present happiness, while 「ないでよかった」 conveys relief about an avoided
+          task. We're looking for relief that an expected task was avoided.
+    scene: A young intern has been preparing for a presentation all week, only to find out it was canceled
+      last minute. They feel relieved.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_age: younger
+    nuance: This uses the casual 「ないでよかった」 form, typical for younger speakers in informal settings to
+      express personal relief that an anticipated task was avoided. The word 「結局」 (kekkyoku) means 'after
+      all', adding to the nuance of final outcome.
+  - english: I'm glad we were able to finish this project.
+    japanese:
+      - この プロジェクト を 終え られ {て よかっ た です}。
+      - この プロジェクト を 終え られ {て よかっ た}。
+    english_literally: This project having been finished, was good, is.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト を 終え られ て {嬉しい} です。
+        english: I'm happy we were able to finish this project.
+        hint: 「嬉しい」 is for general happiness, while 「てよかった」 conveys satisfaction and relief about an achieved
+          outcome. We're looking for relief and satisfaction about a completed project.
+    scene: A female project manager addresses her team after successfully completing a challenging project
+      on a tight deadline.
+    register: formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    nuance: The use of 「です」 makes this a polite and formal statement, appropriate for a project manager
+      addressing a team. The potential form 「終えられ」 (oerare) emphasizes the ability to complete the project,
+      adding to the sense of accomplishment and relief. This phrasing is professional and generally gender-neutral,
+      though here specified for a female speaker to demonstrate variety.
+  - english: I'm glad I went back to get my forgotten item.
+    japanese:
+      - 忘れ物 を 取り に 戻っ {て よかっ た}。
+      - 忘れ物 を 取り に 戻っ {て よかっ た です}。
+    english_literally: Forgotten item, to pick up, having returned, was good.
+    competing_grammar:
+      - competing_japanese:
+          - 忘れ物 を 取り に 戻っ て {嬉しい}。
+        english: I'm happy I went back to get my forgotten item.
+        hint: 「嬉しい」 indicates present happiness, while 「てよかった」 expresses relief about a past action's
+          beneficial outcome. We're looking for satisfaction that a past decision led to a good result.
+    scene: A person remembers they forgot their keys just as they're about to leave, so they go back for
+      them. Later, they realize how crucial those keys were.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: This expresses personal relief or satisfaction about a past action that proved beneficial.
+      The plain form 「よかった」 makes it casual and relatable for an internal thought or informal conversation.
+      The phrase 「忘れ物 を 取り に 戻っ て」 (wasuremono o tori ni modotte) clearly states the action taken.
+  - english: I'm glad I didn't say that extra word at that time.
+    japanese:
+      - あの 時、余計 な 一言 を 言わ {なく て よかっ た です} ね。
+      - あの 時、余計 な 一言 を 言わ {なく て よかっ た}。
+      - あの 時、余計 な 一言 を 言わ {ない で よかっ た です} ね。
+      - あの 時、余計 な 一言 を 言わ {ない で よかっ た}。
+    english_literally: At that time, unnecessary one word, having not said, was good, is it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、余計 な 一言 を 言わ なく て {嬉しい} です ね。
+        english: I'm happy I didn't say that extra word at that time.
+        hint: 「嬉しい」 expresses general happiness, while 「なくてよかった」 conveys relief about avoiding a mistake.
+          We're looking for relief regarding an avoided negative action.
+    scene: A male colleague reflects on a tense meeting where he almost said something inappropriate,
+      expressing relief to another colleague.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: male
+    nuance: This example uses the polite 「です ね」 to seek agreement from the listener, common in professional
+      settings. The phrase 「余計 な 一言 を 言わ」 (yokei na hitokoto o iwa) indicates saying something unnecessary
+      or inappropriate. The 「なくてよかった」 form conveys a more formal sense of relief regarding an avoided
+      negative event, typical for a male speaker in a workplace context.
+  - english: I'm glad I didn't go on the trip. The novel coronavirus is rampant.
+    japanese:
+      - 旅行 に 行か {ない で よかっ た}。新型 コロナ ウイルス が 流行 し て いる から。
+      - 旅行 に 行か {ない で よかっ た です}。新型 コロナ ウイルス が 流行 し て いる から。
+      - 旅行 に 行か {なく て よかっ た}。新型 コロナ ウイルス が 流行 し て いる から。
+      - 旅行 に 行か {なく て よかっ た です}。新型 コロナ ウイルス が 流行 し て いる から。
+    english_literally: To trip, having not gone, was good. Because novel coronavirus is rampant.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 に 行か なく て {嬉しい}。新型 コロナ ウイルス が 流行 し て いる から。
+        english: I'm happy I didn't go on the trip. The novel coronavirus is rampant.
+        hint: 「嬉しい」 expresses general happiness, while 「ないでよかった」 expresses relief about avoiding a negative
+          situation. We're looking for satisfaction that a past non-action prevented a negative outcome.
+    scene: A woman reads news about a viral outbreak in a popular travel destination and expresses relief
+      to her friend that she canceled her trip.
+    register: casual
+    setting: cautious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: This uses the casual 「ないでよかった」, appropriate for informal conversation. The reason for the
+      relief is explicitly stated with 「から」 (kara), adding a clear causal link. The phrasing 「新型 コロナウイルス
+      が 流行 し て いる から」 (shingata koronauirusu ga ryūkō shite iru kara) makes the cautious tone evident.
+  - english: I'm glad I met you.
+    japanese:
+      - 君 と 出会え {て よかっ た} よ。
+      - 君 と 出会え {て よかっ た}。
+      - 君 と 出会え {て よかっ た です} よ。
+      - 君 と 出会え {て よかっ た です}。
+    english_literally: You and having been able to meet, was good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 君 と 出会え て {嬉しい} よ。
+        english: I'm happy I met you.
+        hint: 「嬉しい」 denotes present happiness, while 「てよかった」 emphasizes retrospective appreciation and
+          satisfaction about a past event. We're looking for profound satisfaction about a past encounter.
+    scene: A man on a romantic date expresses his heartfelt feelings to the woman he is with.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「君」 (kimi) is a highly intimate and direct way for a male speaker to refer to a
+      female in a romantic context. The potential form 「出会え」 (deae) implies 'able to meet', emphasizing
+      the significance of the encounter. The final 「よ」 (yo) adds an assertive, heartfelt tone, making
+      this suitable for a deeply personal expression.
+  - english: I'm glad we were able to get through that difficult period together.
+    japanese:
+      - あの 困難 な 時期 を 一緒 に 乗り越え られ {て よかっ た} ね。
+      - あの 困難 な 時期 を 一緒 に 乗り越え られ {て よかっ た です} ね。
+      - あの 困難 な 時期 を 一緒 に 乗り越え られ {て よかっ た}。
+      - あの 困難 な 時期 を 一緒 に 乗り越え られ {て よかっ た です}。
+    english_literally: That difficult period, together having been able to overcome, was good, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 困難 な 時期 を 一緒 に 乗り越え られ て {嬉しい} ね。
+        english: I'm happy we were able to get through that difficult period together.
+        hint: 「嬉しい」 is for general present happiness, while 「てよかった」 conveys deep satisfaction and relief
+          about a past shared achievement. We're looking for profound satisfaction regarding having overcome
+          a challenge together.
+    scene: A couple reminisces about a challenging time in their relationship, expressing mutual relief
+      at having overcome it.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: This sentence expresses profound, shared relief within an intimate relationship. The phrase
+      「乗り越え られ」 (norikoe rare) is a potential passive form meaning 'were able to overcome'. The 「ね」 (ne)
+      at the end invites agreement and confirms the shared sentiment, deepening the intimate atmosphere.
+  - english: I'm glad I decided to study abroad.
+    japanese:
+      - 留学 する こと に し {て よかっ た}。
+      - 留学 する こと に し {て よかっ た です}。
+    english_literally: Studying abroad, deciding to do so, was good.
+    competing_grammar:
+      - competing_japanese:
+          - 留学 する こと に し て {嬉しい}。
+        english: I'm happy I decided to study abroad.
+        hint: 「嬉しい」 expresses general present happiness, while 「てよかった」 conveys a sense of retrospective
+          satisfaction or relief regarding a past decision. We're looking for satisfaction about a past
+          decision that led to a positive outcome.
+      - competing_japanese:
+          - 留学 すれ {ば よかっ た}。
+        english: I should have studied abroad.
+        hint: 「ばよかった」 expresses regret about something that *didn't* happen, whereas 「てよかった」 expresses
+          satisfaction about something that *did* happen. We're looking for relief or satisfaction that
+          a past action was taken.
+    scene: A young woman, having just returned from a study abroad program, tells her parents how much
+      she enjoyed the experience.
+    register: semi-formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「することにする」 (suru koto ni suru) means "to decide to do something," emphasizing a
+      deliberate choice. The use of plain form 「よかった」 with the semi-formal context of speaking to parents
+      makes it heartfelt and appropriate for sharing a personal, positive experience with family.
+post_example_writeup: As these examples demonstrate, 「てよかった」 is a versatile expression for conveying relief,
+  satisfaction, or happiness regarding past events or decisions. Whether expressing personal contentment,
+  professional relief, or intimate appreciation, the choice of verb form and politeness level allows for
+  precise communication of nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/てよかった

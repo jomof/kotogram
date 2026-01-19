@@ -1,0 +1,219 @@
+grammar_point: 〜によるものだ (is due to)
+learn_before:
+  - ことによる (cause reason)
+meaning: is due to; is a result of
+pronunciation:
+  katakana: ニヨルモノダ
+  romaji: ni yoru mono da
+formation:
+  Verb[dictionary] + こと + によるものだ: Indicates that a certain state or situation is caused by the verb's
+    action.
+  Noun + によるものだ: Indicates that a certain state or situation is caused by the noun.
+  い-Adjective + の + によるものだ: Indicates that a certain state or situation is caused by the adjective.
+  な-Adjective + な + の + によるものだ: Indicates that a certain state or situation is caused by the adjective.
+jlpt: N2
+etymology: The phrase combines 「による」(ni yoru), which signifies "according to," "due to," or "by means
+  of," and 「ものだ」(mono da), which is an explanatory or emphasizing expression. Historically, 「による」 comes
+  from 「に因る」, meaning "to be based on" or "to be due to," highlighting the causative aspect. 「ものだ」, originating
+  from 「物」(mono, thing) + 「だ」(copula), evolved to express general truths, strong conviction, or in this
+  context, an explanation that something "is a thing of/due to" something else. Together, they form a
+  clear explanatory structure, often used when presenting a logical conclusion or a formal reason.
+writeup: This grammar point, 「〜によるものだ」, is used to explain that a certain situation or outcome is **due
+  to** or **a result of** a preceding cause or factor. It provides a formal and often analytical explanation
+  for a statement. It's frequently used in situations where you are presenting a reasoned conclusion,
+  reporting findings, or explaining phenomena. It carries a nuance of objective explanation, rather than
+  a simple subjective reason. While 「〜からだ」 or 「〜ので」 can also express cause, 「〜によるものだ」 explicitly states
+  that the preceding information is the **source** or **origin** of the state described. Think of it as
+  saying, "This (situation) is something that stems from/is caused by (that)." It is common in academic
+  papers, news reports, and formal discussions where a logical and well-substantiated explanation is required.
+  It can connect various parts of speech to the cause, including verbs, nouns, and adjectives, often requiring
+  nominalization (e.g., Verb[dictionary]こと, い-Adjectiveの, な-Adjectiveなの).
+false_friends:
+  - term: 〜からだ
+    meaning: is because
+    kind: similar expression
+    nuance: Simple, direct reason. Less formal and analytical than 「〜によるものだ」.
+    grammar_point: '[Clause]から (because・so)'
+  - term: 〜から
+    meaning: because, so
+    kind: similar expression
+    nuance: Indicates cause or reason, often implying a sequence or direct consequence. Broader usage
+      than 「〜によるものだ」.
+    grammar_point: '[Clause]から (because・so)'
+  - term: 〜ので
+    meaning: is because
+    kind: similar expression
+    nuance: Softer and more polite than 「〜からだ」, used to give reasons or explanations.
+    grammar_point: '[Clause]ので (because・so)'
+  - term: 〜ためだ
+    meaning: is for the purpose of; is due to
+    kind: similar expression
+    nuance: Can indicate cause but often implies a pre-determined purpose or a more direct, sometimes
+      negative, impact. 「〜によるものだ」 focuses purely on the origin.
+    grammar_point: '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - term: 〜わけだ
+    meaning: it means that; it's natural that; it's no wonder
+    kind: similar expression
+    nuance: Expresses a logical conclusion, natural consequence, or explanation based on shared understanding,
+      rather than a direct originating cause.
+    grammar_point: わけだ (logical conclusion)
+post_false_friends_writeup: While 「〜からだ」, 「〜から」, 「〜ので」, 「〜ためだ」, and 「〜わけだ」 all relate to cause or explanation,
+  「〜によるものだ」 specifically highlights the preceding clause as the **origin** or **source** of the situation.
+  It implies a more direct, often formal, causal link. 「〜ためだ」 can also indicate cause but often implies
+  a pre-determined purpose or a more direct, often negative, impact. 「〜わけだ」 signifies a logical conclusion
+  or natural consequence, often based on shared understanding, rather than a direct originating cause.
+  「〜によるものだ」 is for explaining *what* something is due to, emphasizing the root cause.
+examples:
+  - english: The increase in sales is due to a new marketing strategy.
+    japanese:
+      - 売上 の 増加 は 新しい マーケティング 戦略 {に よる もの だ}。
+      - 売上 の 増加 は 新しい マーケティング 戦略 {に よる もの} です。
+      - 売上 の 増加 は 新しい マーケティング 戦略 {に よる もの で ある}。
+    english_literally: Sales increase is new marketing strategy due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 売上 の 増加 は 新しい マーケティング 戦略 {からだ}。
+        english: The increase in sales is because of a new marketing strategy.
+        hint: 「からだ」 is a more direct and less formal way to state a reason. We're looking for an expression
+          that formally attributes the sales increase to a strategy as its origin.
+    scene: A business team is discussing recent sales figures.
+    register: formal
+    setting: informative
+  - english: His success is due to his continuous effort.
+    japanese:
+      - 彼 の 成功 は、彼 が 継続 的 に 努力 {する こと に よる もの だ}。
+      - 彼 の 成功 は、彼 が 継続 的 に 努力 {する こと に よる もの} です。
+      - 彼 の 成功 は、彼 が 継続 的 に 努力 {する こと に よる もの で ある}。
+    english_literally: His success is, he continuously effort doing due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 成功 は、彼 が 継続 的 に 努力 {する わけ だ}。
+        english: His success means he continuously makes effort.
+        hint: 「わけだ」 expresses a logical consequence or natural understanding. We're looking for an expression
+          that attributes success directly to effort as the cause.
+    scene: A mentor is explaining a successful person's achievements to a younger colleague.
+    register: formal
+    setting: inspirational
+  - english: The problem being difficult is due to its complexity.
+    japanese:
+      - 問題 が 難しい の は、その 複雑 さ {に よる もの だ}。
+      - 問題 が 難しい の は、その 複雑 さ {に よる もの} です。
+      - 問題 が 難しい の は、その 複雑 さ {に よる もの で ある}。
+    english_literally: Problem is difficult (nominalizer) is, its complexity due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 が 難しい の は、その 複雑 さ {の ため だ}。
+        english: The problem being difficult is for the purpose of its complexity.
+        hint: 「〜のためだ」 can imply purpose or cause, but 「〜によるものだ」 more clearly expresses the source or origin
+          of the difficulty.
+    scene: A student is explaining a challenging math problem to a study group.
+    register: casual
+    setting: academic
+  - english: The charm of this town is due to its rich nature.
+    japanese:
+      - この 街 の 魅力 は、その 自然 の 豊か さ {に よる もの だ}。
+      - この 街 の 魅力 は、その 自然 の 豊か さ {に よる もの} です。
+      - この 街 の 魅力 は、その 自然 の 豊か さ {に よる もの で ある}。
+    english_literally: This town's charm is, its nature's richness due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - この 街 の 魅力 は、自然 が 豊か {な の で} ある。
+        english: The charm of this town is because nature is rich.
+        hint: 「〜なので」 is a simple, softer reason. We're looking for an expression that formally states
+          the source of the charm.
+    scene: A local guide is describing the unique features of their town to a group of tourists.
+    register: formal
+    setting: informative
+  - english: The company's growth is largely due to technological innovation.
+    japanese:
+      - その 企業 の 成長 は、主に 技術 革新 {に よる もの だ}。
+      - その 企業 の 成長 は、主に 技術 革新 {に よる もの} です。
+      - その 企業 の 成長 は、主に 技術 革新 {に よる もの で ある}。
+    english_literally: That company's growth is, mainly technological innovation due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - その 企業 の 成長 は、主に 技術 革新 {からだ}。
+        english: The company's growth is mainly from technological innovation.
+        hint: 「からだ」 provides a direct reason. We're looking for a more formal explanation of what caused
+          the growth.
+    scene: A financial analyst is presenting a quarterly report to stakeholders.
+    register: formal
+    setting: professional
+  - english: Environmental destruction is due to humans neglecting nature.
+    japanese:
+      - 環境 破壊 は 人間 が 自然 を 軽視 {し た こと に よる もの だ}。
+      - 環境 破壊 は 人間 が 自然 を 軽視 {し た こと に よる もの} です。
+      - 環境 破壊 は 人間 が 自然 を 軽視 {し た こと に よる もの で ある}。
+    english_literally: Environmental destruction is humans nature neglecting did fact due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 破壊 は 人間 が 自然 を 軽視 {し た から だ}。
+        english: Environmental destruction is because humans neglected nature.
+        hint: 「からだ」 provides a direct reason. We're looking for a more formal and analytical explanation
+          of the origin of environmental destruction.
+    scene: A professor is delivering a lecture on global environmental issues.
+    register: formal
+    setting: academic
+  - english: His unexpected resignation must be due to some personal circumstances.
+    japanese:
+      - 彼 の 突然 の 辞職 は、何 か 個人 的 な 事情 {に よる もの だ} と 思わ れる。
+      - 彼 の 突然 の 辞職 は、何 か 個人 的 な 事情 {に よる もの} です と 思わ れ ます。
+      - 彼 の 突然 の 辞職 は、何 か 個人 的 な 事情 {に よる もの で ある} と 思わ れる。
+    english_literally: His sudden resignation is, something personal circumstances due to thing is, it
+      is thought.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 突然 の 辞職 は、何 か 個人 的 な 事情 {の はず だ}。
+        english: His sudden resignation should be due to some personal circumstances.
+        hint: 「はずだ」 indicates expectation or certainty based on information. We're looking for an expression
+          that attributes the resignation to its specific cause.
+    scene: Two colleagues are speculating about a coworker's sudden departure in the office breakroom.
+    register: semi-formal
+    setting: reflective
+  - english: The collapse of the building was determined to be due to poor construction.
+    japanese:
+      - その ビル の 倒壊 は、ずさん な 建築 {に よる もの だっ た} と 判明 し た。
+      - その ビル の 倒壊 は、ずさん な 建築 {に よる もの} でし た と 判明 し まし た。
+      - その ビル の 倒壊 は、ずさん な 建築 {に よる もの で あっ た} と 判明 し た。
+    english_literally: That building's collapse is, sloppy construction due to thing was, it was found
+      out.
+    competing_grammar:
+      - competing_japanese:
+          - その ビル の 倒壊 は、ずさん な 建築 {だっ た} と 判明 し た。
+        english: The collapse of the building was determined to be sloppy construction.
+        hint: Adding 「だった」 makes it a direct identification. We're looking for an expression that attributes
+          the collapse to poor construction as its cause.
+    scene: A news anchor is reporting on the findings of an investigation into a structural failure.
+    register: formal
+    setting: informative
+  - english: The beauty of this painting is due to the artist's unique technique.
+    japanese:
+      - この 絵画 の 美し さ は 画家 の 独自 の 技法 {に よる もの だ}。
+      - この 絵画 の 美し さ は 画家 の 独自 の 技法 {に よる もの} です。
+      - この 絵画 の 美し さ は 画家 の 独自 の 技法 {に よる もの で ある}。
+    english_literally: This painting's beauty is artist's unique technique due to thing is.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵画 の 美し さ は 画家 の 独自 の 技法 {だ から だ}。
+        english: The beauty of this painting is because of the artist's unique technique.
+        hint: 「だからだ」 is a simple causative. We're looking for a phrase that explains the beauty as originating
+          from the technique.
+    scene: An art critic is analyzing a masterpiece at a gallery opening.
+    register: formal
+    setting: creative
+  - english: Is this error due to a system malfunction?
+    japanese:
+      - この エラー は システム の 不 具合 {に よる もの} です か？
+      - この エラー は システム の 不 具合 {に よる もの な の}？
+    english_literally: This error is system's malfunction due to thing is?
+    competing_grammar:
+      - competing_japanese:
+          - この エラー は システム の 不 具合 {が 原因} です か？
+        english: Is this error caused by a system malfunction?
+        hint: 「〜が原因です」 directly states the cause. We're looking for an expression that questions if the
+          error's existence is attributable to the malfunction.
+    scene: An employee is asking an IT support person about a computer issue.
+    register: semi-formal
+    setting: interrogative
+sources:
+  bunpro: https://bunpro.jp/grammar_points/〜によるものだ

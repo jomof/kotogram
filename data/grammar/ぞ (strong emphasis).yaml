@@ -1,0 +1,334 @@
+grammar_point: ぞ (strong emphasis)
+learn_before:
+  - Verb[imperative] (imperative)
+meaning: Strong emphasis (primarily used by men)
+pronunciation:
+  katakana: ゾ
+  romaji: zo
+formation:
+  Verb (plain form) + ぞ: Adds strong emphasis or personal resolve to a statement (e.g. dictionary form,
+    plain past, plain negative, plain progressive).
+  い-Adjective (plain form) + ぞ: Adds strong emphasis to a descriptive statement.
+  Noun + ぞ (+ だ): Emphatically highlights the preceding noun as the focus or essence. Often used with
+    a declarative だ.
+  Question Word + ぞ: Intensifies a question word, demanding a specific answer or expressing strong curiosity/frustration.
+jlpt: N3
+etymology: The etymology of 「ぞ」 is believed to stem from older Japanese particles used for assertion and
+  emphasis. In classical Japanese, similar emphatic particles like 「こそ」 and 「なむ」 existed, and 「ぞ」 shares
+  some historical connections, evolving into a direct assertive particle. Its strong association with
+  masculine speech in modern Japanese is a relatively recent development, reflecting shifts in social
+  language use where more direct and forceful expressions became gender-specific.
+writeup: The particle 「ぞ」 is used at the end of sentences to add strong emphasis or assertion. It is primarily
+  used by men and conveys a sense of conviction, determination, or urgency. While 「よ」 offers a softer,
+  more informative emphasis, 「ぞ」 is more direct and forceful, akin to adding multiple exclamation points
+  in English. It can be used for self-encouragement, a strong declaration to others, or even to express
+  strong emotion like triumph or exasperation. Beyond sentence-ending use, 「ぞ」 can also function as an
+  adverbial particle, similar to 「は」, to highlight a preceding noun or question word. In this usage, it
+  strongly emphasizes the word it follows, making the statement or question more intense. **Important
+  Considerations:** *   **Gendered Usage:** 「ぞ」 is strongly associated with male speech. Its use by women
+  is very rare and generally considered unnatural or highly aggressive. *   **Formality:** It almost exclusively
+  attaches to plain forms of verbs and adjectives. It is not typically used with polite forms (～ます, ～です).
+  *   **Tone:** Overuse of 「ぞ」 can make a speaker sound overly assertive, confrontational, or aggressive.
+  Its use should be carefully considered based on context and relationship with the listener.
+false_friends:
+  - term: よ
+    meaning: I tell you; you know (softer emphasis)
+    kind: similar expression
+    nuance: Unlike 「ぞ」, 「よ」 is less forceful and can be used by both men and women to indicate emphasis
+      or draw attention to a point. 「よ」 is more about informing or confirming information, whereas 「ぞ」
+      is about asserting or declaring one's strong conviction or intent.
+    grammar_point: よ (emphasis・information sharing)
+  - term: ぜ
+    meaning: Strong masculine emphasis, often conveying conviction or a direct address.
+    kind: similar expression
+    nuance: Both 「ぞ」 and 「ぜ」 are masculine emphatic particles. 「ぜ」 often carries a more direct, declarative,
+      or challenging tone, particularly when addressing others or expressing a strong conviction. 「ぞ」
+      can also convey a sense of personal resolve, warning, or self-declaration, and its adverbial usage
+      (with nouns/question words) sets it apart from 「ぜ」.
+    grammar_point: ぜ (male emphatic particle)
+  - term: こそ
+    meaning: Precisely; indeed; for sure.
+    kind: similar expression
+    nuance: While both 「ぞ」 and 「こそ」 emphasize the preceding word or phrase, 「こそ」 highlights that element
+      as the precise reason or essential component for something else, implying 'it is precisely X that
+      leads to Y' or 'X and nothing else'. 「ぞ」, on the other hand, is a more general strong assertion
+      or declaration of the speaker's conviction or intention regarding the statement itself, and can
+      also mark a strong general emphasis on a noun.
+    grammar_point: こそ (emphasis)
+post_false_friends_writeup: When distinguishing between 「ぞ」, 「よ」, 「ぜ」, and 「こそ」, consider the intensity
+  and the underlying intent. 「よ」 is a gentle nudge or confirmation, inviting agreement or sharing information.
+  「ぜ」 is a direct, often challenging or confident assertion, typically aimed at the listener. 「ぞ」, on
+  the other hand, is a strong, personal assertion or declaration of the speaker's conviction or intent,
+  and can also emphatically highlight a specific noun or question word. 「こそ」 provides a unique emphasis,
+  highlighting the preceding element as the precise reason or an indispensable factor, often implying
+  'it is precisely X that makes Y true'.
+examples:
+  - english: Now, this is a Japanese car!
+    japanese:
+      - これ {ぞ} 日本 車 だ。
+      - これ {ぞ} 日本 車。
+      - これ {ぞ} 日本 の 車 だ。
+    english_literally: This, indeed, is a Japanese car!
+    competing_grammar:
+      - competing_japanese:
+          - これ だ {よ}、日本 車。
+        english: This is the Japanese car, you know.
+        hint: 「よ」 offers a softer emphasis, often used to inform or confirm, unlike the strong assertion
+          of 「ぞ」. We're looking for strong, declarative emphasis.
+      - competing_japanese:
+          - これ {こそ} 日本 車 だ {ぜ}！
+        english: This is precisely the Japanese car, man!
+        hint: 「ぜ」 is also a strong masculine particle, but it often conveys a more direct, sometimes challenging
+          assertion to the listener, while 「ぞ」 here emphasizes the inherent quality of the object itself.
+          We're looking for a strong, declarative emphasis on the essence of something.
+      - competing_japanese:
+          - これ {こそ} 日本 車 だ。
+        english: This is precisely the Japanese car.
+        hint: 「こそ」 emphasizes that this is the *definitive* Japanese car, implying it's the perfect example
+          or the one that truly fits the description. 「ぞ」 provides a strong, declarative emphasis on the
+          statement as a whole. We're looking for a strong, declarative emphasis on the essence of something.
+    scene: Someone admiring a car with genuine awe and pride.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    nuance: The use of 「これぞ」 emphatically declares that this car is the quintessential example of a Japanese
+      car, conveying strong admiration and a sense of 'This is it!'. This direct, assertive tone is characteristic
+      of masculine speech.
+  - english: Kimonos are Japanese culture!
+    japanese:
+      - 着物 {ぞ} 日本 の 文化 だ。
+      - 着物 {ぞ} 日本 の 文化。
+    english_literally: Kimonos, these indeed are Japanese culture!
+    competing_grammar:
+      - competing_japanese:
+          - 着物 だ {よ}、日本 の 文化 は。
+        english: Kimonos, you know, are Japanese culture.
+        hint: 「よ」 is for informing or confirming with a softer tone, not for making a strong, emphatic
+          declaration like 「ぞ」. We're looking for strong, declarative emphasis.
+      - competing_japanese:
+          - 着物 {こそ} 日本 の 文化 だ {ぜ}！
+        english: Kimonos are precisely Japanese culture, man!
+        hint: While 「ぜ」 is assertive, 「ぞ」 in this adverbial context strongly highlights the preceding
+          noun as the definitive example or essence, rather than a direct challenge or statement to the
+          listener. We're looking for a strong, declarative emphasis on the essence of something.
+      - competing_japanese:
+          - 着物 {こそ} 日本 の 文化 だ。
+        english: Kimonos are precisely Japanese culture.
+        hint: 「こそ」 would emphasize that kimonos are the *quintessential* Japanese culture. 「ぞ」 is a strong,
+          direct assertion that kimonos *are* Japanese culture. We're looking for a strong, declarative
+          emphasis.
+    scene: A man passionately explaining the cultural significance of kimonos to a new acquaintance.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: Here, 「着物ぞ」 functions adverbially, emphatically highlighting 'kimono' as the very essence
+      and embodiment of Japanese culture. This strong, declarative emphasis on a particular noun is typical
+      of masculine, assertive speech.
+  - english: Someone, give me a hand!
+    japanese:
+      - 誰 {ぞ} 手 を 貸せ！
+      - 誰 {ぞ} 手伝っ て くれ！
+      - 誰 {ぞ} 助け て くれ！
+    english_literally: Someone, please indeed lend a hand!
+    competing_grammar:
+      - competing_japanese:
+          - 誰 か 手 を 貸し て {よ}！
+        english: Someone, please help me!
+        hint: This is a softer, more general plea. 「ぞ」 adds intense urgency and a stronger demand for
+          action from 'someone'. We're looking for a forceful command or plea.
+      - competing_japanese:
+          - 誰 か 手 を 貸し て くれ {ぜ}！
+        english: Someone, help me out, man!
+        hint: While 「ぜ」 can convey urgency, 「誰ぞ」 is a more traditional and emphatic way to call for 'someone'
+          specifically, especially in dire situations. We're looking for a forceful command or plea emphasizing
+          'someone'.
+    scene: A person in distress, such as someone trapped or injured, calling out for urgent help.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    nuance: The use of 「誰ぞ」 in this context is an archaic or literary emphatic form that intensifies the
+      request for 'someone' to provide assistance. Coupled with the imperative 「貸せ」, it creates a powerful,
+      urgent, and masculine plea for help, conveying desperation and authority.
+  - english: Where were you and what were you doing out this late at night?
+    japanese:
+      - こんな 夜 遅く まで、どこ {ぞ} で 何 を し て い た？
+      - こんな 夜 遅く まで、どこ {ぞ} で 何 を し て い た ん だ？
+    english_literally: Until this late at night, where indeed were you doing what?
+    competing_grammar:
+      - competing_japanese:
+          - こんな 夜 遅く まで、どこ か で 何 を し て い た {の}？
+        english: What were you doing somewhere late at night?
+        hint: This is a neutral question. The 「ぞ」 emphasizes the question word 'where' to convey stronger
+          interrogation or suspicion. We're looking for emphasis on the question itself.
+      - competing_japanese:
+          - こんな 夜 遅く まで、どこ か で 何 を し て い た ん だ {い}？
+        english: So late at night, what were you doing somewhere, huh?
+        hint: This is a more common casual male interrogative. However, 「どこぞ」 specifically emphasizes
+          the 'where' with an added layer of suspicion or frustration. We're looking for emphasis on the
+          question itself, specifically 'where'.
+    scene: A father sternly questioning his son who has come home very late.
+    register: casual
+    setting: interrogative
+    speaker_gender: male
+    nuance: The use of 「どこぞ」 intensifies the question word 'where,' expressing strong interrogation and
+      suspicion about the location. This usage conveys a demanding and potentially frustrated tone, characteristic
+      of masculine questioning.
+  - english: I lost the key… Now this is troublesome!
+    japanese:
+      - 鍵 を なくし た…。これ は 弱っ た {ぞ}。
+      - 鍵 を なくし た…。これ は 弱っ た ん だ {ぞ}。
+      - 鍵 を なくし た…。弱っ た {ぞ}。
+    english_literally: I lost the key... This has indeed troubled me.
+    competing_grammar:
+      - competing_japanese:
+          - 鍵 を なくし た…。これ は 弱っ た {よ}。
+        english: I lost the key... This has troubled me, you know.
+        hint: 「よ」 indicates informing or sharing information with a softer tone. 「ぞ」 emphasizes the speaker's
+          strong personal exasperation or realization. We're looking for a strong, personal declaration
+          of one's state.
+      - competing_japanese:
+          - 鍵 を なくし た…。これ は 弱っ た {ぜ}！
+        english: I lost the key... This has truly troubled me, man!
+        hint: 「ぜ」 implies a strong statement to the listener. 「ぞ」 here expresses a strong internal feeling
+          or a declaration to oneself, though it can be overheard. We're looking for a strong, personal
+          declaration of one's state.
+    scene: A man is searching frantically for his keys, then slumps as he realizes they are truly gone.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    nuance: The 「ぞ」 in 「弱ったぞ」 conveys the speaker's intense personal realization and exasperation with
+      their predicament. It acts as a strong declaration of their troubled state, often expressed inwardly
+      or to a close audience, typical of masculine self-expression.
+  - english: Yahoo! The experiment went well!
+    japanese:
+      - やっ た〜！実験 が 上手く いっ た {ぞ}！
+      - やっ た〜！実験 が 上手く いっ た ん だ {ぞ}！
+    english_literally: Yay! The experiment went well, indeed!
+    competing_grammar:
+      - competing_japanese:
+          - やっ た〜！実験 が 上手く いっ た {よ}！
+        english: Yay! The experiment went well, you know!
+        hint: 「よ」 is a softer way to share good news. 「ぞ」 adds a stronger, more triumphant assertion of
+          success, conveying great excitement. We're looking for a strong, triumphant declaration of success.
+      - competing_japanese:
+          - やっ た〜！実験 が 上手く いっ た {ぜ}！
+        english: Yay! The experiment went well, man!
+        hint: 「ぜ」 is also a strong masculine expression, but it often implies sharing the excitement with
+          a listener. 「ぞ」 here emphasizes the speaker's own intense feeling of accomplishment. We're looking
+          for a strong, triumphant declaration of success.
+    scene: A scientist, having worked tirelessly, finally achieves a breakthrough in the lab.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    nuance: The 「ぞ」 after 「上手くいった」 emphasizes the speaker's profound sense of triumph and elation at the
+      successful experiment. This strong expression of positive emotion is characteristic of masculine
+      celebratory speech.
+  - english: We are running behind schedule. We will hurry!
+    japanese:
+      - スケジュール より 遅れ て いる。急ぐ {ぞ}！！
+      - スケジュール より 遅れ て いる。急ぐ ん だ {ぞ}！
+    english_literally: We are behind schedule. We will hurry, indeed!
+    competing_grammar:
+      - competing_japanese:
+          - スケジュール より 遅れ て いる。急ぐ {よ}！
+        english: We are behind schedule. We will hurry, you know!
+        hint: 「よ」 shares the intent to hurry with a softer tone. 「ぞ」 conveys a strong personal resolve
+          or a forceful command to action. We're looking for a strong, resolute declaration to hurry.
+      - competing_japanese:
+          - スケジュール より 遅れ て いる。急ぐ {ぜ}！
+        english: We are behind schedule. We will hurry, man!
+        hint: 「ぜ」 is a direct and forceful statement to the listener. While similar, 「ぞ」 here emphasizes
+          the speaker's determined commitment to hurry, often as a self-directive or a strong declaration
+          to a group. We're looking for a strong, resolute declaration to hurry.
+      - competing_japanese:
+          - スケジュール より 遅れ て いる。{急ごう}！
+        english: We are behind schedule. Let's hurry!
+        hint: This is the standard volitional form. While it conveys a similar meaning, it lacks the strong,
+          personal emphasis of 「ぞ」. We're looking for a strong, resolute declaration to hurry.
+    scene: A project leader addressing their team, urging them to pick up the pace due to a deadline.
+    register: semi-formal
+    setting: persuasive
+    speaker_gender: male
+    nuance: The 「ぞ」 after 「急ぐ」 conveys a strong personal resolve or a forceful call to action for the
+      team, indicating 'We *will* hurry!' or 'We *must* hurry!'. This assertive, motivational use is characteristic
+      of masculine speech in a leadership role.
+  - english: You're running too slow! Run faster!
+    japanese:
+      - 走る の が 遅い {ぞ}！もっと 速く 走り なさい！
+      - 走る の が 遅い ん だ {ぞ}！もっと 速く 走り なさい！
+    english_literally: Your running is slow, indeed! Run faster!
+    competing_grammar:
+      - competing_japanese:
+          - 走る の が 遅い {よ}！もっと 速く 走り なさい！
+        english: You're running too slow, you know! Run faster!
+        hint: 「よ」 delivers the criticism more mildly. 「ぞ」 adds a stronger, more direct and commanding
+          emphasis to the criticism. We're looking for a forceful command.
+      - competing_japanese:
+          - 走る の が 遅い {ぜ}！もっと 速く 走り なさい！
+        english: You're running too slow, man! Run faster!
+        hint: While 「ぜ」 can also be commanding, 「ぞ」 here adds a blunt, declarative force to the statement
+          about the slowness, typical of a frustrated coach. We're looking for a forceful command.
+    scene: A demanding coach yelling at a runner who is lagging during practice.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    nuance: The 「ぞ」 after 「遅い」 adds strong, unyielding emphasis to the coach's direct criticism, making
+      the instruction feel more forceful and assertive. This assertive, declarative tone, combined with
+      the imperative 「走りなさい」, is characteristic of masculine speech in an instructional or commanding
+      context.
+  - english: 'Hero: ''I will not let that monster freely do whatever it wants!'''
+    japanese:
+      - ヒーロー:『あの 怪物 に 好き勝手 は さ せ ない {ぞ}！』
+      - ヒーロー:『あの 怪物 に 好き勝手 は さ せ ない ん だ {ぞ}！』
+    english_literally: 'Hero: ''I will not let that monster do as it pleases, indeed!'''
+    competing_grammar:
+      - competing_japanese:
+          - ヒーロー:『あの 怪物 に 好き勝手 は さ せ ない {よ}！』
+        english: 'Hero: ''I won''t let that monster do as it pleases, you know!'''
+        hint: 「よ」 is a softer, more informative denial. 「ぞ」 conveys a powerful, unshakeable personal resolve
+          and determination. We're looking for a strong, resolute vow.
+      - competing_japanese:
+          - ヒーロー:『あの 怪物 に 好き勝手 は さ せ ない {ぜ}！』
+        english: 'Hero: ''I won''t let that monster do as it pleases, man!'''
+        hint: While 「ぜ」 is also very strong and masculine, 「ぞ」 here emphasizes the hero's internal, unwavering
+          commitment and declaration of intent, rather than a direct challenge to the monster or a statement
+          to a peer. We're looking for a strong, resolute vow.
+    scene: A brave hero, standing before a menacing monster, declares their unwavering resolve to protect
+      the innocent.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The 「ぞ」 after 「させない」 powerfully asserts the hero's strong will and unwavering determination
+      not to allow the monster to act freely. This defiant and resolute emphasis is a classic element
+      of heroic, masculine speech, conveying courage and a firm stance.
+  - english: Hey, that dress looks amazing on you.
+    japanese:
+      - ねえ、その ドレス、すごく 似合っ てる {ぞ}。
+      - ねえ、その ドレス、すごく 似合っ てる ん だ {ぞ}。
+    english_literally: Hey, that dress, it really suits you, indeed.
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、その ドレス、すごく 似合っ てる {よ}。
+        english: Hey, that dress, it really suits you, you know.
+        hint: 「よ」 is a gentler way to give a compliment. 「ぞ」 adds a direct and confident assertion, making
+          the compliment more impactful. We're looking for a direct, confident compliment.
+      - competing_japanese:
+          - ねえ、その ドレス、すごく 似合っ てる {ぜ}。
+        english: Hey, that dress, it really suits you, man.
+        hint: While 「ぜ」 is also direct, 「ぞ」 here delivers the compliment with a firm, masculine stamp
+          of approval without being overly aggressive, making it slightly more appreciative in a flirty
+          context. We're looking for a direct, confident compliment.
+    scene: A man at a casual social gathering, offering a sincere compliment to a woman he finds attractive.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The 「ぞ」 in 「似合ってるぞ」 adds a direct and confident assertion to the compliment, giving it a strong,
+      masculine stamp of approval. In this flirty context, it conveys decisiveness and admiration without
+      being overly aggressive, making the compliment more impactful.
+post_example_writeup: The examples provided demonstrate the versatility of 「ぞ」 in conveying strong emphasis.
+  Notice how it consistently adds a layer of conviction or urgency, whether affirming a fact, making a
+  resolution, or delivering a command. Its primary association with masculine speech is evident across
+  various contexts, from casual compliments to serious vows.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ぞ

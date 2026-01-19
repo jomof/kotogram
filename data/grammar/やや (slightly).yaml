@@ -1,0 +1,419 @@
+grammar_point: やや (slightly)
+learn_before:
+  - Verb[えば] (conditional)
+  - い-Adjective[み] (abstract quality)
+meaning: A little bit, marginally, slightly
+pronunciation:
+  katakana: ヤヤ
+  romaji: yaya
+formation:
+  やや + [adjective/verb]: Indicates a slight or marginal degree of the adjective or verb.
+  やや + [noun]: Indicates a slight or marginal amount of the noun.
+jlpt: N2
+etymology: The origin of やや is somewhat debated, but it's believed to have evolved from a reduplication
+  of いや, meaning 'no' or 'not'. The repetition softened the negation into a slight affirmation, eventually
+  leading to its current meaning of 'a little bit' or 'slightly'.
+writeup: やや is an adverb used to express a small degree or extent. It is similar to 少し (sukoshi) or 僅か
+  (wazuka), but やや often suggests that the difference or change, though small, is still perceptible. It
+  can be translated as "a little bit," "slightly," or "marginally."It's often used to describe changes,
+  differences, or qualities that are noticeable but not significant.It commonly appears at the beginning
+  or before the word it modifies in a sentence.
+false_friends:
+  - term: 少し
+    meaning: a little・a bit
+    kind: similar expression
+    nuance: 「やや」 implies a slight but noticeable difference. 「少し」 is more general and can refer to any
+      small amount, regardless of perceptibility.
+    grammar_point: <suggest>:少し (a little・a bit)
+  - term: いくらか
+    meaning: some・a little
+    kind: similar expression
+    nuance: 「やや」 indicates a perceptible degree. 「いくらか」 refers to an unspecified, vague amount, often
+      implying 'somewhat' without a clear sense of degree.
+    grammar_point: <suggest>:いくらか (some・a little)
+  - term: 僅かに
+    meaning: only・slightly
+    kind: similar expression
+    nuance: 「やや」 is generally more objective, indicating a slight but perceptible degree. 「僅かに」 often
+      implies a very small, almost imperceptible amount, or a bare minimum, and can sometimes carry a
+      sense of 'only just'.
+    grammar_point: 僅かに (only・slightly)
+post_false_friends_writeup: When selecting between やや, 少し, いくらか, and 僅かに, consider the precise nuance
+  you wish to convey. Use やや to describe a noticeable yet minor degree or deviation. 少し is appropriate
+  for a general small quantity or extent, without emphasizing its perceptibility. いくらか is best when referring
+  to an unspecified or vague amount. 僅かに emphasizes a very small or bare minimum amount, sometimes implying
+  'only just' or 'barely'.
+examples:
+  - english: This morning is slightly colder than yesterday.
+    japanese:
+      - 今朝 は、昨日 より {やや} 肌寒い。
+      - 今朝 は、昨日 より {やや} 肌寒い です。
+      - 今朝 は、昨日 より {やや} 肌寒く 感じ ます。
+    english_literally: This morning, compared to yesterday, is slightly cold-feeling.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝 は、昨日 より {少し} 肌寒い。
+        english: This morning is a little colder than yesterday.
+        hint: 「少し」 can be more general, simply indicating a small quantity or degree without emphasizing
+          the perceptibility as much. We're looking for a perceptible but not significant difference.
+      - competing_japanese:
+          - 今朝 は、昨日 より {いくら か} 肌寒い。
+        english: This morning is somewhat colder than yesterday (implying an unspecified degree).
+        hint: 「いくらか」 implies an unspecified quantity or degree. We're looking for a perceptible but not
+          significant difference.
+      - competing_japanese:
+          - 今朝 は、昨日 より {ちょっと} 肌寒い。
+        english: This morning is a little colder than yesterday (casual).
+        hint: 「ちょっと」 is a casual expression for 'a little'. We're looking for a more formal or objective
+          way to express a slight difference.
+    scene: Someone is leaving their house in the morning and feels a subtle chill.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrase 「肌寒い」 indicates a cool feeling on the skin. 「やや」 emphasizes that the chill is noticeable
+      but not severe, suggesting a subtle change in temperature.
+  - english: Sales of the new product are slightly lower than expected.
+    japanese:
+      - 新 製品 の 売上 は、予想 より {やや} 低い。
+      - 新 製品 の 売上 は、予想 より {やや} 低い です。
+      - 新 製品 の 売上 は、予想 より {やや} 低下 し て い ます。
+    english_literally: New product's sales, compared to expectation, are slightly low.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 の 売上 は、予想 より {少し} 低い。
+        english: Sales of the new product are a little lower than expected.
+        hint: In formal business contexts, 「やや」 is preferred over 「少し」 to convey a precise, objective,
+          and somewhat softened assessment of a slight deviation. We're looking for a perceptible but
+          not significant difference.
+      - competing_japanese:
+          - 新 製品 の 売上 は、予想 より {いくら か} 低い。
+        english: Sales of the new product are somewhat lower than expected (implying an unspecified degree).
+        hint: 「いくらか」 is used for an unspecified amount. We're looking for a discernible, though minor,
+          deviation.
+      - competing_japanese:
+          - 新 製品 の 売上 は、予想 より {ちょっと} 低い。
+        english: Sales of the new product are a little lower than expected (casual).
+        hint: 「ちょっと」 is primarily used in casual conversation. We're looking for a more formal adverb
+          suitable for business contexts.
+    scene: A sales director is presenting the initial sales report for a new product to the executive
+      team.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: In a professional setting, 「やや」 indicates a measured and objective assessment of a minor discrepancy,
+      preserving formality.
+  - english: I feel like his attitude has become somewhat colder than before.
+    japanese:
+      - 彼 の 態度 は、以前 より {やや} 冷たく なっ た 気 が する。
+      - 彼 の 態度 は、以前 より {やや} 冷たく なっ た よう です。
+      - 彼 の 態度 は、以前 より {やや} 冷たく なっ た と 感じ ます。
+    english_literally: His attitude, compared to before, feels like it became slightly cold.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 態度 は、以前 より {少し} 冷たく なっ た。
+        english: His attitude became a little colder than before.
+        hint: The situation involves a subtle, personal emotional shift, where 「やや」 more precisely conveys
+          a nuanced, introspective observation rather than a simple 'little bit' that 「少し」 implies. We're
+          looking for a subtly perceptible change.
+      - competing_japanese:
+          - 彼 の 態度 は、以前 より {いくら か} 冷たく なっ た 気 が する。
+        english: I feel like his attitude has become somewhat colder than before (implying an unspecified
+          degree).
+        hint: 「いくらか」 suggests an unknown or unspecified degree. We're looking for a subtly perceptible
+          change.
+      - competing_japanese:
+          - 彼 の 態度 は、以前 より {ちょっと} 冷たく なっ た 気 が する。
+        english: I feel like his attitude has become a little colder than before (casual).
+        hint: 「ちょっと」 can be used here, but 「やや」 conveys a more nuanced and introspective observation of
+          a subtle change.
+    scene: A young woman is discussing a difficult personal situation with her best friend.
+    register: shitashii kuchō (intimate)
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「やや」 here expresses a subtle, perceived change in someone's demeanor that, while not drastic,
+      is definitely felt. The phrase 「気 が する」 (kiga suru) often accompanies such subtle, internally felt
+      changes.
+  - english: This project might be slightly short on budget.
+    japanese:
+      - この プロジェクト に は {やや} 予算 が 足り ない か も しれ ませ ん。
+      - この プロジェクト に は {やや} 予算 が 足り ない 可能 性 が あり ます。
+      - この プロジェクト は {やや} 予算 不足 の 可能 性 が あり ます。
+    english_literally: For this project, slightly budget is insufficient, it might be.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト に は {少し} 予算 が 足り ない。
+        english: This project is a little short on budget.
+        hint: 「やや」 emphasizes a discernible lack that impacts the project, suggesting a need for careful
+          consideration rather than a simple quantity statement from 「少し」. We're looking for a detectable,
+          though minor, shortfall.
+      - competing_japanese:
+          - この プロジェクト に は {いくら か} 予算 が 足り ない か も しれ ませ ん。
+        english: This project might be somewhat short on budget (implying an unspecified amount).
+        hint: 「いくらか」 refers to an unspecified quantity. We're looking for a detectable, though minor,
+          shortfall.
+      - competing_japanese:
+          - この プロジェクト に は {ちょっと} 予算 が 足り ない か も しれ ませ ん。
+        english: This project might be a little short on budget (casual).
+        hint: 「ちょっと」 is often too casual for formal discussions of budget shortfalls. We're looking for
+          a term that implies a detectable, but not critical, issue.
+    scene: A project manager is reviewing the budget with the finance department and identifies a minor
+      shortfall.
+    register: semi-formal
+    setting: cautious
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「やや」 subtly points out a detectable deficiency in the budget, implying it warrants attention
+      without being an immediate crisis. The use of 「かもしれません」 further softens the statement, reflecting
+      a cautious approach.
+  - english: The new department is a little further away than before, isn't it?
+    japanese:
+      - 新しい 部署 は、以前 より {やや} 遠く なっ た な。
+      - 新しい 部署 は、以前 より {やや} 遠く なっ た ね。
+      - 新しい 部署 は、以前 より {やや} 遠く なり まし た ね。
+    english_literally: The new department, compared to before, became slightly far away, huh.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 部署 は、以前 より {少し} 遠く なっ た な。
+        english: The new department is a little farther away than before, isn't it?
+        hint: The casual 「な」 at the end works with 「やや」 to express a mild, personal observation about
+          a noticeable but not severely inconvenient change, distinguishing it from a more general 「少し」.
+          We're looking for a subtly noticeable change in distance.
+      - competing_japanese:
+          - 新しい 部署 は、以前 より {いくら か} 遠く なっ た な。
+        english: The new department is somewhat farther away than before, isn't it? (implying an unspecified
+          degree).
+        hint: 「いくらか」 suggests an unknown or unspecified degree. We're looking for a subtly perceptible
+          change.
+      - competing_japanese:
+          - 新しい 部署 は、以前 より {ちょっと} 遠く なっ た な。
+        english: The new department is a little farther away than before, isn{'}t it? (casual).
+        hint: While 「ちょっと」 is natural here, 「やや」 emphasizes the subtle, perceptible change, even in casual
+          conversation.
+    scene: Two male colleagues are walking to their new department location.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「やや」 combined with the casual sentence-ending particle 「な」 conveys a mild, shared
+      observation about a noticeable but not significantly impactful change. This suggests a casual, perhaps
+      slightly grumbling, tone between colleagues.
+  - english: The presentation materials were a little too technical, and it took time to understand them.
+    japanese:
+      - プレゼン 資料 が {やや} 専門 的 すぎ て、理解 する の に 時間 が かかっ た。
+      - プレゼン 資料 が {やや} 専門 的 すぎ て、理解 する の に 時間 が かかり まし た。
+      - プレゼン 資料 が {やや} 専門 的 すぎる ため、理解 に 時間 を 要 し ます。
+    english_literally: Presentation materials, slightly too specialized, understanding took time.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン 資料 が {少し} 専門 的 すぎ て、理解 する の に 時間 が かかっ た。
+        english: The presentation materials were a little too technical, and it took time to understand
+          them.
+        hint: 「やや」 highlights that the technicality was just enough to cause difficulty, making it a precise
+          observation about a threshold, which is a nuance 「少し」 doesn't inherently carry. We're looking
+          for a precise, discernible degree of technicality.
+      - competing_japanese:
+          - プレゼン 資料 が {いくら か} 専門 的 すぎ て、理解 する の に 時間 が かかっ た。
+        english: The presentation materials were somewhat too technical (implying an unspecified degree),
+          and it took time to understand them.
+        hint: 「いくらか」 focuses on an unspecified degree. We're looking for a precise, discernible degree
+          of technicality.
+      - competing_japanese:
+          - プレゼン 資料 が {ちょっと} 専門 的 すぎ て、理解 する の に 時間 が かかっ た。
+        english: The presentation materials were a little too technical (casual), and it took time to
+          understand them.
+        hint: 「ちょっと」 is too casual for an academic setting or a complaint about materials. We're looking
+          for a more precise word that indicates the degree of technicality.
+    scene: A student is complaining to a classmate about a difficult presentation.
+    register: formal
+    setting: academic
+    listener_gender: female
+    nuance: 「やや」 here emphasizes that the materials crossed a certain threshold of technicality, making
+      them difficult to grasp without extra effort. It conveys a precise degree of challenge.
+  - english: There was a slight delay in the train's departure.
+    japanese:
+      - 電車 の 発車 に {やや} 遅れ が 出 た。
+      - 電車 の 発車 に {やや} 遅れ が 出 て おり ます。
+      - 電車 の 発車 に {やや} 遅延 が 生じ て おり ます。
+    english_literally: In train's departure, a slight delay occurred.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 の 発車 に {少し} 遅れ が 出 た。
+        english: There was a little delay in the train's departure.
+        hint: 「少し」 can also mean 'a little', but 「やや」 often indicates a degree that is noticeable but
+          not significant, often used in more formal announcements. We're looking for a perceptible but
+          not significant delay.
+      - competing_japanese:
+          - 電車 の 発車 に {いくら か} 遅れ が 出 た。
+        english: There was some delay in the train's departure.
+        hint: 「いくらか」 implies an unspecified quantity or amount. We're looking for a discernible, albeit
+          minor, delay.
+      - competing_japanese:
+          - 電車 の 発車 に {ちょっと} 遅れ が 出 た。
+        english: There was a little delay in the train's departure (casual).
+        hint: 「ちょっと」 is a casual expression. We're looking for a more formal adverb suitable for public
+          announcements.
+    scene: A train station announcer is informing passengers about a minor disruption.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: In formal announcements like this, 「やや」 is preferred for its precise and objective tone, indicating
+      a minor but officially acknowledged delay.
+  - english: The student's essay was somewhat lacking in logical consistency.
+    japanese:
+      - 学生 の レポート は、{やや} 論理 性 に 欠け て い た。
+      - 学生 の レポート は、{やや} 論理 性 に 欠け て おり まし た。
+      - 学生 の レポート は、{やや} 論理 的 な 一貫 性 に 欠け て い ます。
+    english_literally: Student's report, slightly in logical consistency was lacking.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 の レポート は、{少し} 論理 性 に 欠け て い た。
+        english: The student's essay was a little lacking in logical consistency.
+        hint: 「少し」 is a general term for "a little." 「やや」 implies a noticeable, though not critical, deficiency,
+          which is appropriate for a more formal assessment of an essay. We're looking for a precise,
+          nuanced assessment.
+      - competing_japanese:
+          - 学生 の レポート は、{いくら か} 論理 性 に 欠け て い た。
+        english: The student's essay was somewhat lacking in logical consistency (implying an unspecified
+          degree).
+        hint: 「いくらか」 suggests an unspecified degree. 「やや」 indicates a discernible, though not severe,
+          lack. We're looking for a specific, noticeable degree of lacking.
+      - competing_japanese:
+          - 学生 の レポート は、{かなり} 論理 性 に 欠け て い た。
+        english: The student's essay was quite lacking in logical consistency.
+        hint: 「かなり」 means "quite" or "considerably," indicating a large degree. We're looking for a slight
+          or marginal degree.
+    scene: A professor is grading essays and notes a recurring issue.
+    register: formal
+    setting: academic
+    listener_gender: no one
+    nuance: 「やや」 is used here to offer a nuanced, slightly critical assessment of a student's work, indicating
+      that the flaw is noticeable but not completely undermining the entire essay.
+  - english: This coffee tastes slightly bitter.
+    japanese:
+      - この コーヒー は {やや} 苦い。
+      - この コーヒー は {やや} 苦い です。
+      - この コーヒー は {やや} 苦味 が 強い。
+    english_literally: This coffee, slightly bitter.
+    competing_grammar:
+      - competing_japanese:
+          - この コーヒー は {少し} 苦い。
+        english: This coffee is a little bitter.
+        hint: 「少し」 is a general term for "a little." 「やや」 implies that the bitterness is clearly perceptible,
+          but not overpowering. We're looking for a noticeably bitter taste.
+      - competing_japanese:
+          - この コーヒー は {いくら か} 苦い。
+        english: This coffee is somewhat bitter (implying an unspecified degree).
+        hint: 「いくらか」 implies an unknown or unspecified degree. We're looking for a discernible, though
+          not extreme, bitterness.
+      - competing_japanese:
+          - この コーヒー は {かなり} 苦い。
+        english: This coffee is quite bitter.
+        hint: 「かなり」 means "quite" or "considerably," suggesting a strong bitterness. We're looking for
+          a slight or marginal bitterness.
+    scene: Someone takes a sip of coffee and forms an opinion.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: 「やや」 describes a perceptible but not overwhelming bitterness. It's an objective observation
+      rather than a strong complaint.
+  - english: I felt slightly unwell this morning.
+    japanese:
+      - 今朝 は {やや} 体調 が 悪い。
+      - 今朝 は {やや} 体調 が 悪い です。
+      - 今朝 は {やや} 気分 が 優れ ない。
+    english_literally: This morning, slightly physical condition is bad.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝 は {少し} 体調 が 悪い。
+        english: I felt a little unwell this morning.
+        hint: 「少し」 is a general term. 「やや」 conveys that the unwellness is noticeable and might require
+          attention, even if mild. We're looking for a noticeable, but not severe, feeling of unwellness.
+      - competing_japanese:
+          - 今朝 は {いくら か} 体調 が 悪い。
+        english: I felt somewhat unwell this morning (implying an unspecified degree).
+        hint: 「いくらか」 implies an unspecified degree. 「やや」 indicates a discernible, though not severe, feeling
+          of unwellness. We're looking for a perceptible, minor health issue.
+      - competing_japanese:
+          - 今朝 は {随分} 体調 が 悪い。
+        english: I felt quite unwell this morning.
+        hint: 「随分」 means "quite" or "considerably," indicating a significant degree of unwellness. We're
+          looking for a slight or marginal unwellness.
+    scene: Someone is reflecting on how they feel early in the day.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: 「やや」 indicates a mild degree of unwellness, suggesting it's not severe but noticeable enough
+      to mention or consider. It's a soft way to express feeling slightly off.
+  - english: The response from the customers was slightly slower than anticipated.
+    japanese:
+      - 顧客 から の 反応 が、予想 より {やや} 遅かっ た。
+      - 顧客 から の 反応 が、予想 より {やや} 遅かっ た です。
+      - 顧客 から の 反応 が、予想 より {やや} 鈍かっ た です。
+    english_literally: From customers, reaction, compared to anticipation, was slightly slow.
+    competing_grammar:
+      - competing_japanese:
+          - 顧客 から の 反応 が、予想 より {少し} 遅かっ た。
+        english: The response from the customers was a little slower than anticipated.
+        hint: 「やや」 suggests a perceptible, although not critical, deviation from expectations, often used
+          in professional or analytical contexts. We're looking for a noticeable but not significant difference
+          in speed.
+      - competing_japanese:
+          - 顧客 から の 反応 が、予想 より {いくら か} 遅かっ た。
+        english: The response from the customers was somewhat slower than anticipated (implying an unspecified
+          degree).
+        hint: 「いくらか」 implies an unknown or unspecified degree. We're looking for a discernible, though
+          minor, delay.
+      - competing_japanese:
+          - 顧客 から の 反応 が、予想 より {かなり} 遅かっ た。
+        english: The response from the customers was quite slower than anticipated.
+        hint: 「かなり」 means "quite" or "considerably," indicating a large degree. We're looking for a slight
+          or marginal slowness.
+    scene: A marketing team is discussing the results of a recent campaign.
+    register: semi-formal
+    setting: informative
+    listener_gender: group
+    nuance: 「やや」 is appropriate for a business context, offering a subtle and objective assessment of
+      a slight discrepancy without exaggerating the impact. It signals a minor deviation that warrants
+      observation.
+  - english: The newly installed machine is slightly different from the old model.
+    japanese:
+      - 新しく 導入 さ れ た 機械 は、旧 モデル と {やや} 異なる。
+      - 新しく 導入 さ れ た 機械 は、旧 モデル と {やや} 異なり ます。
+      - 新しく 導入 さ れ た 機械 は、旧 モデル と {やや} 仕様 が 違う。
+    english_literally: Newly introduced machine, from old model, is slightly different.
+    competing_grammar:
+      - competing_japanese:
+          - 新しく 導入 さ れ た 機械 は、旧 モデル と {少し} 異なる。
+        english: The newly installed machine is a little different from the old model.
+        hint: 「やや」 is often used in technical or formal descriptions to indicate a discernible but not
+          fundamental difference. We're looking for a subtle, perceptible variation.
+      - competing_japanese:
+          - 新しく 導入 さ れ た 機械 は、旧 モデル と {いくら か} 異なる。
+        english: The newly installed machine is somewhat different from the old model (implying an unspecified
+          degree).
+        hint: 「いくらか」 implies an unknown or unspecified degree. We're looking for a discernible, though
+          minor, difference.
+      - competing_japanese:
+          - 新しく 導入 さ れ た 機械 は、旧 モデル と {全く} 異なる。
+        english: The newly installed machine is completely different from the old model.
+        hint: 「全く」 means "completely" or "entirely," indicating a significant difference. We're looking
+          for a slight or marginal difference.
+    scene: An engineer is explaining the features of a new piece of equipment.
+    register: formal
+    setting: technical
+    speaker_gender: male
+    listener_gender: group
+    nuance: In a technical context, 「やや」 allows for a precise description of a minor design or functional
+      variation, acknowledging the difference without implying a radical change. It maintains an objective
+      tone.
+post_example_writeup: As these examples demonstrate, 「やや」 is versatile and can be used across various
+  contexts, from casual personal observations to formal business reports and technical explanations. Its
+  core function is to convey a small, yet noticeable, degree of a quality or a slight deviation, making
+  it a valuable adverb for precise communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/やや

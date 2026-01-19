@@ -1,0 +1,213 @@
+grammar_point: 真上 (directly above)
+matcher: ⌈ˢ真上ᵖn~ʳマウエ⌉
+learn_before:
+  - ～口 (exit・entrance)
+meaning: directly above; directly overhead
+pronunciation:
+  katakana: マウエ
+  romaji: maue
+formation:
+  '[Noun] の 真上': Indicates that something is located precisely above a noun.
+  真上 に [Verb]: Describes an action performed or a state existing directly above something.
+  真上 から [Verb]: Describes an action originating from a point directly above.
+jlpt: N3
+etymology: The term combines 真 (ma), meaning 'true,' 'exact,' or 'direct,' with 上 (ue), meaning 'above'
+  or 'up.' This combination emphasizes the precise vertical alignment of one object directly over another.
+writeup: |-
+  真上 (まうえ) is a spatial noun that precisely indicates a position directly above a reference point. The key to understanding 真上 lies in the prefix 「真」(ma), which conveys a sense of "true," "exact," or "direct." While 「上」(ue) simply means "above" or "up" in a general sense, adding 「真」 specifies that the position is exactly perpendicular and directly overhead.
+
+  This precision is crucial in contexts where exact alignment is important, such as in scientific descriptions, architectural plans, or when giving precise directions. It can be used to describe the location of an object relative to another object, or to indicate the direction from which something is moving or originating. For instance, if an airplane is flying directly above a building, you would use 真上. If a light is directly above a table, it's 真上.
+
+  It is typically used with the particle の after a noun to specify what it is directly above, or with に or から to indicate action relative to the "directly above" position.
+false_friends:
+  - term: 上 (ue)
+    meaning: above, up, on
+    kind: similar expression
+    nuance: 「上」(ue) is a general term for "above" or "on top of," without specifying exact vertical alignment.
+      It can refer to anything that is higher in elevation or on a surface. In contrast, 「真上」(maue) specifically
+      denotes the point *directly* overhead, along a vertical line from the reference point.
+    grammar_point: 上、下 (vertical position)
+  - term: 真下 (mashita)
+    meaning: directly below
+    kind: antonym
+    nuance: 「真下」(mashita) is the direct opposite of 「真上」(maue). While 「真上」 means "directly above," 「真下」
+      means "directly below," sharing the same 「真」 (ma) prefix to denote exact vertical alignment.
+    grammar_point: 真下 (directly below)
+post_false_friends_writeup: Understanding the nuance of 「真上」(maue) is key to using it correctly. While
+  「上」(ue) can be used more broadly for anything physically higher or positioned on top, 「真上」 is reserved
+  for instances where the position is perpendicularly aligned, directly overhead. This distinction is
+  vital for conveying precise spatial information. For example, if you say 「鳥が家の{上}にいる」(Tori ga ie no
+  ue ni iru), it could mean the bird is on the roof or simply flying somewhere above the house. However,
+  「鳥が家の{真上}にいる」(Tori ga ie no maue ni iru) clearly indicates the bird is flying directly over the house,
+  directly overhead.
+examples:
+  - english: A small bird is hovering directly above the flower.
+    japanese:
+      - 小さな 鳥 が 花 の {真上} に ホバリング し て いる。
+      - 小さな 鳥 が 花 の {真上} に ホバリング し て い ます。
+    english_literally: Small bird flower's directly above at hovering is doing.
+    competing_grammar:
+      - competing_japanese:
+          - 小さな 鳥 が 花 の 上 に ホバリング し て いる。
+        english: A small bird is hovering above the flower (generally).
+        hint: 「上」 is more general, meaning 'above' or 'on'. We're looking for the phrase that means *directly*
+          above.
+    scene: A nature enthusiast observing a garden.
+    register: casual
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: The use of 「真上」 specifically indicates that the bird is hovering precisely overhead the flower,
+      not just generally above it.
+  - english: There's a big spider web directly above the entrance.
+    japanese:
+      - 入り口 の {真上} に 大きな クモ の 巣 が ある。
+      - 入り口 の {真上} に 大きな クモ の 巣 が あり ます。
+    english_literally: Entrance's directly above at big spider web exists.
+    competing_grammar:
+      - competing_japanese:
+          - 入り口 の 上 に 大きな クモ の 巣 が ある。
+        english: There's a big spider web above the entrance (general position).
+        hint: 「上」 means 'above' or 'on', but not necessarily in a precise vertical line. We need the phrase
+          for *directly* overhead.
+    scene: Someone pointing out something observed in a building.
+    register: casual
+    setting: informative
+    nuance: 「真上」 clarifies that the spider web is precisely overhead the entrance, emphasizing exact vertical
+      alignment rather than just a general 'above' position.
+  - english: The sun is directly overhead at noon.
+    japanese:
+      - 正午 に は 太陽 が {真上} に 来る。
+      - 正午 に は 太陽 が {真上} に 来 ます。
+    english_literally: Noon at, sun directly above comes.
+    competing_grammar:
+      - competing_japanese:
+          - 正午 に は 太陽 が 上 に 来る。
+        english: The sun comes up at noon.
+        hint: 「上」 here could be ambiguous or sound less precise about the sun's exact zenith. We're looking
+          for the term that expresses 'directly overhead'.
+    scene: Explaining a natural phenomenon.
+    register: formal
+    setting: academic
+    nuance: 「真上」 precisely describes the sun's position at its zenith, indicating it is directly perpendicular
+      to the observer at that specific time.
+  - english: A drone flew directly over our heads.
+    japanese:
+      - ドローン が 私 達 の 頭 の {真上} を 飛ん で いっ た。
+      - ドローン が 私 達 の 頭 の {真上} を 飛ん で いき まし た。
+    english_literally: Drone our heads' directly above flew.
+    competing_grammar:
+      - competing_japanese:
+          - ドローン が 私 達 の 頭 の 上 を 飛ん で いっ た。
+        english: A drone flew above our heads (general position).
+        hint: 「上」 suggests a general 'above' movement. We're looking for the term that specifies the drone
+          flew *directly* overhead.
+    scene: Two friends talking about something they saw.
+    register: casual
+    setting: friendly
+    nuance: The particle 「を」 with 「真上」 clarifies that the drone passed through the space precisely above
+      their heads, emphasizing the direct overhead trajectory.
+  - english: The airplane is flying directly above the city.
+    japanese:
+      - 飛行 機 が 都市 の {真上} を 飛ん で い ます。
+      - 飛行 機 が 都市 の {真上} を 飛ん で いる。
+    english_literally: Airplane city's directly above is flying.
+    competing_grammar:
+      - competing_japanese:
+          - 飛行 機 が 都市 の 上 を 飛ん で い ます。
+        english: The airplane is flying above the city (general area).
+        hint: 「上」 implies a general position above the city, not necessarily directly overhead. We're
+          looking for the phrase that means *directly* above.
+    scene: A news report describing an event.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: Using 「真上」 here specifies that the plane is flying directly over a particular point in the
+      city, implying a precise flight path rather than just being generally in the sky above.
+  - english: Please place the lamp directly above the table.
+    japanese:
+      - テーブル の {真上} に ランプ を 置い て ください。
+      - テーブル の {真上} に ランプ を 置い て くれ。
+      - テーブル の {真上} に ランプ を 置い て ちょうだい。
+    english_literally: Table's directly above at lamp please place.
+    competing_grammar:
+      - competing_japanese:
+          - テーブル の 上 に ランプ を 置い て ください。
+        english: Please place the lamp above the table (anywhere on top or higher).
+        hint: 「上」 could mean anywhere on the table surface or just higher. We need the phrase that means
+          *exactly* above, aligned vertically.
+    scene: An interior designer giving instructions.
+    register: formal
+    setting: instructional
+    nuance: 「真上」 is used to ensure the lamp is positioned in exact vertical alignment with the table,
+      crucial for specific lighting design.
+  - english: The ceiling fan is directly above my bed.
+    japanese:
+      - シーリング ファン が 私 の ベッド の {真上} に ある。
+      - シーリング ファン が 私 の ベッド の {真上} に あり ます。
+    english_literally: Ceiling fan my bed's directly above exists.
+    competing_grammar:
+      - competing_japanese:
+          - シーリング ファン が 私 の ベッド の 上 に ある。
+        english: The ceiling fan is above my bed (general position).
+        hint: 「上」 implies a general higher position. We're looking for the term that specifies it's *directly*
+          overhead.
+    scene: A person describing their bedroom layout.
+    register: casual
+    setting: informative
+    nuance: 「真上」 specifies that the fan is positioned precisely over the center or main area of the bed,
+      indicating careful placement or observation.
+  - english: A sign was hung directly above the door.
+    japanese:
+      - 看板 が ドア の {真上} に 吊るさ れ て い た。
+      - 看板 が ドア の {真上} に 吊るさ れ て い まし た。
+    english_literally: Sign door's directly above was hung.
+    competing_grammar:
+      - competing_japanese:
+          - 看板 が ドア の 上 に 吊るさ れ て い た。
+        english: A sign was hung above the door (could be off-center).
+        hint: 「上」 implies a general higher position. We're looking for the term that specifies it's *directly*
+          centered and overhead.
+    scene: Someone describing a building or room.
+    register: semi-formal
+    setting: storytelling
+    nuance: 「真上」 indicates the sign's exact position, directly centered and overhead the door, often implying
+      it's meant to be clearly visible as one approaches.
+  - english: The satellite passes directly over our observation point once a day.
+    japanese:
+      - その 衛星 は 一 日 に 一 度、私 達 の 観測 地点 の {真上} を 通過 する。
+      - その 衛星 は 一 日 に 一 度、私 達 の 観測 地点 の {真上} を 通過 し ます。
+    english_literally: That satellite one day once, our observation point's directly above passes.
+    competing_grammar:
+      - competing_japanese:
+          - その 衛星 は 一 日 に 一 度、私 達 の 観測 地点 の 上 を 通過 する。
+        english: The satellite passes above our observation point once a day (general trajectory).
+        hint: 「上」 implies a general passing above. We're looking for the term that specifies a *direct*
+          overhead pass.
+    scene: A scientist explaining satellite behavior.
+    register: formal
+    setting: technical
+    nuance: In this technical context, 「真上」 is essential to convey the satellite's precise orbital path,
+      directly intersecting the vertical axis of the observation point.
+  - english: The stage light is located directly above the performer.
+    japanese:
+      - 舞台 照明 が 演者 の {真上} に 位置 し て いる。
+      - 舞台 照明 が 演者 の {真上} に 位置 し て い ます。
+    english_literally: Stage light performer's directly above located is.
+    competing_grammar:
+      - competing_japanese:
+          - 舞台 照明 が 演者 の 上 に 位置 し て いる。
+        english: The stage light is located above the performer (general position).
+        hint: 「上」 is general. We're looking for the term that means the light is *precisely* overhead
+          for focused illumination.
+    scene: A stage manager discussing lighting setup.
+    register: formal
+    setting: technical
+    conjugation: progressive (～ている)
+    nuance: The use of 「真上」 emphasizes the precise placement of the light for optimal illumination of
+      the performer, indicating a specific lighting design.
+post_example_writeup: The examples illustrate how 「真上」 consistently conveys a sense of precise vertical
+  alignment. Whether describing the position of objects, natural phenomena, or actions, it ensures that
+  the 'above' relationship is understood as exact and direct, differentiating it from more general spatial
+  indicators.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/真上

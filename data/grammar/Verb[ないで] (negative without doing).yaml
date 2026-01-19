@@ -1,0 +1,249 @@
+grammar_point: Verb[ないで] (negative without doing)
+learn_before:
+  - ないでください・ないで (please don't)
+meaning: without doing something
+pronunciation:
+  katakana: ナイデ
+  romaji: naide
+formation:
+  Verb[ない form] + で: Used to connect two clauses, indicating that the action of the first clause is not
+    performed before the action of the second clause.
+jlpt: N4
+etymology: The etymology of 「ないで」 stems from the negative auxiliary verb 「ない」 combined with the particle
+  「で」. The particle 「で」 originally denoted a means or method, or a cause/reason. In this construction,
+  it signifies 'by not doing' or 'without doing,' highlighting the absence of the first action as the
+  manner or condition for the second action. It's essentially a negative te-form + で, expressing a state
+  or method.
+writeup: |-
+  The grammar point 「ないで」 is formed by attaching 「で」 to the plain negative form of a verb. It primarily serves two main functions in Japanese. First, and as indicated by its name, it can connect two clauses, meaning "without doing [the first action], [the second action occurs]". In this usage, the action described by the first verb is omitted or not performed, and the action of the second verb takes place instead or as a consequence. For example, 「傘 を 持た {ないで} 出かけた」 means "I went out without carrying an umbrella."
+
+  Second, and very commonly, it is used to form negative commands or requests, typically in the polite form 「ないでください」 (please don't do something) or more casually as just 「ないで」 (don't do something). While grammatically it's still "without doing, please...", it functions as a direct prohibition. For example, 「ここに座ら {ないで} ください」 means "Please don't sit here." When used casually as just 「ないで」, it can sometimes feel a bit abrupt if not softened by context or intonation. It's important to understand both functions to use it correctly.
+
+  Compared to other ways of expressing "without doing," 「ないで」 is generally informal and conversational. It is often preferred in daily interactions.
+false_friends:
+  - term: ずに
+    meaning: without doing something (more formal)
+    kind: synonym
+    nuance: While 「ないで」 is common in casual speech, 「ずに」 is a more formal or literary equivalent, often
+      used in written Japanese or more formal spoken contexts. For example, 「食べ{ずに} 出かけた」 is more formal
+      than 「食べ{ないで} 出かけた」.
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: ことなく
+    meaning: without doing (emphasizing complete absence or lack of an action)
+    kind: synonym
+    nuance: 「ことなく」 carries a stronger nuance of 'not at all' or 'completely without'. It implies a more
+      deliberate or absolute absence of the first action. It is also more formal and literary than 「ないで」.
+      For example, 「許可を{得る} {ことなく} 入った」 (entered without obtaining permission) emphasizes the complete
+      lack of permission.
+    grammar_point: ずに・ないで・ことなく (without doing)
+  - term: ないでください
+    meaning: please don't do
+    kind: similar expression
+    nuance: While 「ないで」 is a component of 「ないでください」, the latter functions specifically as a polite negative
+      command or request. 「ないで」 on its own, when used as a clause connector, means 'without doing,' rather
+      than a direct prohibition.
+    grammar_point: てください (polite request)
+post_false_friends_writeup: When choosing between 「ないで」, 「ずに」, and 「ことなく」, consider the level of formality
+  and the nuance you wish to convey. 「ないで」 is the most versatile and casual. 「ずに」 offers a slightly more
+  formal alternative, especially useful in written contexts. 「ことなく」 emphasizes a complete and deliberate
+  absence of an action and is typically reserved for formal or literary settings. Remember that 「ないで」,
+  standing alone at the end of a sentence, functions as a casual negative command, which is distinct from
+  its role as a connective meaning "without doing."
+examples:
+  - english: I went out without eating breakfast.
+    japanese:
+      - 朝ご飯 を 食べ {ない で} 出かけ た。
+      - 朝ご飯 を 食べ {ない で} 出かけ まし た。
+    english_literally: As for breakfast, not eating, went out.
+    competing_grammar:
+      - competing_japanese:
+          - 朝ご飯 を 食べ {ず に} 出かけ た。
+        english: I went out without eating breakfast (more formal).
+        hint: This form is more formal. We're looking for the more common, everyday way to say 'without
+          doing'.
+    scene: A student rushing out the door in the morning.
+    register: casual
+    setting: casual slang
+    nuance: This is a straightforward use of 「ないで」 to indicate an action done without a preceding one.
+      The casual register is appropriate for describing a daily occurrence.
+  - english: Please don't touch that.
+    japanese:
+      - それ を 触ら {ない で} ください。
+      - それ を 触ら {ない で}。
+    english_literally: That, not touching, please.
+    competing_grammar:
+      - competing_japanese:
+          - それ を 触る な。
+        english: Don't touch that! (stronger, plain imperative).
+        hint: This is a very direct and strong command. We're looking for a polite negative request.
+    scene: A parent telling their child not to touch a fragile object.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: Here 「ないで」 is used as part of a polite negative command. 「触ら{ないで}ください」 is a common and polite
+      way to tell someone not to do something.
+  - english: She came to Japan without knowing any Japanese.
+    japanese:
+      - 彼女 は 日本 語 を 知ら {ない で} 日本 に 来 た。
+      - 彼女 は 日本 語 を 知ら {ない で} 日本 に 来 まし た。
+    english_literally: As for her, Japanese, not knowing, came to Japan.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 日本 語 を 知る こと {なく} 日本 に 来 た。
+        english: She came to Japan without any knowledge of Japanese (emphasizing complete lack).
+        hint: This expression emphasizes the complete absence of the action and is more formal. We're
+          looking for a general 'without doing'.
+    scene: Two friends discussing a new international student.
+    register: casual
+    setting: friendly
+    nuance: This example highlights the state of 'not knowing' as the condition for the second action,
+      'coming to Japan'. 「知ら{ないで}」 is natural for this context.
+  - english: Don't just stand there, help me!
+    japanese:
+      - 立っ て いる {ない で}、手伝っ て ください！
+      - 立っ て いる {ない で}、手伝っ て！
+    english_literally: Standing, not doing, please help!
+    competing_grammar:
+      - competing_japanese:
+          - 立っ て いる な、手伝っ て ください！
+        english: Don't stand there! Help me! (stronger, direct command).
+        hint: This is a direct, strong prohibition. We want to imply 'instead of just standing there'.
+    scene: A busy person urging someone idle to assist.
+    register: casual
+    setting: commanding
+    nuance: This shows 「ないで」 being used in a slightly idiomatic way, meaning 'instead of just doing X,
+      do Y'. The speaker is mildly exasperated. 「立って いる {ないで}」 captures the feeling of 'don't just be
+      standing there'.
+  - english: Please don't worry about it.
+    japanese:
+      - 心配 し {ない で} ください。
+      - 心配 し {ない で}。
+    english_literally: Worry, not doing, please.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 する な。
+        english: Don't worry! (very casual, often masculine).
+        hint: This is a very blunt command. We need a polite way to tell someone not to worry.
+    scene: A friend comforting another who is stressed.
+    register: teineigo (polite)
+    setting: supportive
+    nuance: A very common polite negative request. 「心配 し{ないで}ください」 is softer and more empathetic than
+      a direct negative imperative.
+  - english: He went to work without saying anything.
+    japanese:
+      - 彼 は 何 も 言わ {ない で} 仕事 に 行っ た。
+      - 彼 は 何 も 言わ {ない で} 仕事 に 行き まし た。
+    english_literally: As for him, anything, not saying, went to work.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 何 も 言わ {ず に} 仕事 に 行っ た。
+        english: He went to work without saying anything (more formal/written).
+        hint: This alternative is more suitable for formal writing. We're looking for a common conversational
+          expression.
+    scene: A coworker noticing a quiet colleague's departure.
+    register: casual
+    setting: reflective
+    nuance: 「言わ{ないで}」 signifies the omission of speech. This example illustrates how the first action
+      (saying something) was not performed before the second action (going to work).
+  - english: I cooked dinner without using sugar.
+    japanese:
+      - 砂糖 を 使わ {ない で} 晩ご飯 を 作っ た。
+      - 砂糖 を 使わ {ない で} 晩ご飯 を 作り まし た。
+    english_literally: Sugar, not using, dinner, made.
+    competing_grammar:
+      - competing_japanese:
+          - 砂糖 を 使わ {ず に} 晩ご飯 を 作っ た。
+        english: I cooked dinner without using sugar (more formal).
+        hint: This version is slightly more formal. We're looking for a casual way to express 'without
+          doing'.
+    scene: Someone explaining their healthy cooking habits.
+    register: casual
+    setting: informative
+    nuance: This example uses 「ないで」 to express the absence of an ingredient or method in the cooking process.
+  - english: Don't forget your umbrella!
+    japanese:
+      - 傘 を 忘れ {ない で} ね！
+      - 傘 を 忘れ {ない で} よ！
+    english_literally: Umbrella, not forgetting, right!
+    competing_grammar:
+      - competing_japanese:
+          - 傘 を 忘れる な！
+        english: Don't forget your umbrella! (strong command).
+        hint: This is a strong, direct command. We want a softer, reminder-like expression.
+    scene: A mother telling her child to remember their umbrella before leaving.
+    register: shitashii kuchō (intimate)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: This uses 「ないで」 as a casual, gentle negative command/reminder, softened further by 「ね」. A
+      mother might use 「忘れ{ないで}ね」 to her child. The addition of 「ね」 makes it a request for confirmation
+      or shared understanding.
+  - english: I want to finish this task without anyone's help.
+    japanese:
+      - 誰 の 助け も 借り {ない で}、この 仕事 を 終わら せ たい。
+      - 誰 の 助け も 借り {ない で}、この 仕事 を 終わら せ たい です。
+    english_literally: Anyone's help, not borrowing, this work, want to finish.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 の 助け も 借りる こと {なく}、この 仕事 を 終わら せ たい。
+        english: I want to finish this task completely without anyone's help (more formal, emphasizes
+          total absence).
+        hint: This emphasizes a complete lack of help and is more formal. We're looking for a general
+          'without doing'.
+    scene: Someone expressing their determination to complete a task independently.
+    register: casual
+    setting: serious
+    nuance: This example conveys self-reliance, using 「借り{ないで}」 to mean 'without relying on'. It expresses
+      a strong personal desire.
+  - english: Don't go to sleep yet!
+    japanese:
+      - まだ 寝 {ない で}！
+      - まだ 寝 {ない で} ください。
+    english_literally: Still, not sleeping!
+    competing_grammar:
+      - competing_japanese:
+          - まだ 寝る な！
+        english: Don't sleep yet! (very strong, plain imperative).
+        hint: This is a very blunt command. We want a slightly softer, more pleading negative command.
+    scene: Friends on a late night out, one wants to go home.
+    register: casual
+    setting: friendly
+    nuance: Used as a casual negative command, often implying a plea. 「寝{ないで}！」 is a common way to say
+      'Don't go to sleep!' among close friends, implying 'Let's stay up longer!'
+    etymology: The casual command form 「〜ないで」 often carries a nuance of pleading or light admonishment,
+      different from the direct and often harsher 「〜な」 negative imperative. This comes from its origin
+      as a connective ('without doing X, do Y'), which makes it inherently less direct as a prohibition.
+  - english: She practiced the piano everyday without resting.
+    japanese:
+      - 彼女 は 休ま {ない で} 毎日 ピアノ を 練習 し た。
+      - 彼女 は 休ま {ない で} 毎日 ピアノ を 練習 し まし た。
+    english_literally: As for her, not resting, everyday, piano, practiced.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 休ま {ず に} 毎日 ピアノ を 練習 し た。
+        english: She practiced the piano everyday without resting (more formal).
+        hint: This version is more formal. We're looking for a neutral, casual description.
+    scene: A piano teacher describing a dedicated student.
+    register: casual
+    setting: informative
+    nuance: This showcases the continuous nature of an action performed without interruption. 「休ま{ないで}」
+      emphasizes the lack of breaks during her practice.
+  - english: I went home without buying anything.
+    japanese:
+      - 何 も 買わ {ない で} 家 に 帰っ た。
+      - 何 も 買わ {ない で} 家 に 帰り まし た。
+    english_literally: Anything, not buying, went home.
+    competing_grammar:
+      - competing_japanese:
+          - 何 も 買わ {ず に} 家 に 帰っ た。
+        english: I went home without buying anything (more formal).
+        hint: This is a more formal phrasing. We're looking for a casual description of an action.
+    scene: Someone returning from shopping empty-handed.
+    register: casual
+    setting: reflective
+    nuance: 「買わ{ないで}」 indicates the omission of the action of buying before returning home. This is a
+      common situation easily described with 「ないで」.
+post_example_writeup: As these examples demonstrate, 「ないで」 is versatile. It can connect two actions, indicating
+  that the first action was *not* performed, or it can function as a casual negative command. When used
+  as a command, it is often softened by context or an accompanying particle like 「ね」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ないで

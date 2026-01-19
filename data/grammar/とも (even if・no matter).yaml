@@ -1,0 +1,374 @@
+grammar_point: とも (even if・no matter)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Verb-stem]に行く (to go in order to do)'
+  - 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - いずれも (all or none)
+  - どんなに (how much)
+  - なし (without・no)
+  - ようが〜まいが (regardless of whether)
+meaning: Even if, No matter
+pronunciation:
+  katakana: トモ
+  romaji: tomo
+formation:
+  Wh-word + Verb[volitional] + とも: No matter what or who does the action.
+  Wh-word + Adjective[い-stem] + くとも: No matter how much/what an i-adjective describes.
+  Wh-word + Adjective[い-stem] + かろう + とも: No matter how an i-adjective describes (more formal・literary).
+  Wh-word + Adjective[な-stem] + であろうとも: No matter how much/what a na-adjective describes.
+  Wh-word + Noun + であろうとも: No matter what/who a noun describes.
+  Adjective[い-stem] + くとも: At the (adjective)-est...・at least (e.g.・少なくとも).
+  Fixed expressions (e.g.・いずれとも): Used in specific set phrases.
+jlpt: N2
+etymology: The particle 「とも」 originates from the adverbial use of the noun 「共 (tomo)」, meaning 'together'
+  or 'all.' Its evolution into a concessive particle reflects the idea of including all possibilities,
+  leading to the meaning 'even if' or 'no matter.' This suggests that a certain state or action holds
+  true, encompassing all circumstances, including those that might seem to contradict it.
+writeup: |-
+  「とも」 is a particle that can function in various grammatical roles, including as a sentence-ending particle, a conjunction particle, or an adverbial particle. Despite these classifications, its core meaning consistently conveys "even if (A)" or "no matter if (A)," highlighting that "in spite of (A), still (B)".
+
+  As a conjunction particle, 「とも」 is typically paired with words that precede the auxiliary verbs 「う」 or 「よう」, indicating a volitional form (e.g.・「行こうとも」, "even if I go"). It can also follow the conjunctive form of い-adjectives (e.g.・忙しくとも), where it can mean "even if busy" or, in cases like 「少なくとも」, "at least." For a more formal or literary tone with い-adjectives, the `かろう` form can be used, such as 「寒かろうとも」.
+
+  While 「とも」 can sometimes follow a select number of adverbs, this usage is less common and often part of fixed expressions. It's advisable to observe its usage in native material before actively employing it in such contexts. 「とも」 often appears in formal contexts and is less common in everyday, casual speech. However, certain fixed phrases like 「少なくとも (sukunakutomo)」, meaning "at least," are very common in both written and spoken Japanese. Another example is 「いずれとも (izure tomo)」, meaning "either (of the two)" or "both ways."
+false_friends:
+  - term: ようが〜まいが
+    meaning: Even if, No matter what, Whether or not
+    kind: similar expression
+    nuance: 「ようが〜まいが」 is more emphatic and highlights a stronger sense of indifference to the outcome,
+      often implying a comprehensive range of possibilities. It covers a broader range of options exhaustively,
+      whereas 「とも」 typically asserts a fact or decision in the face of a single or specific challenging
+      condition.
+    grammar_point: ようが〜まいが (regardless of whether)
+  - term: にしても
+    meaning: Even though, Even if, Even when, Also
+    kind: similar expression
+    nuance: 「にしても」 often implies a degree of surprise or unexpectedness, or makes a concession while still
+      asserting a point. It can also simply mean "even" or "also," depending on context, whereas 「とも」
+      consistently focuses on an unwavering outcome regardless of the condition.
+    grammar_point: にしても (even if)
+  - term: たとえ〜ても
+    meaning: Even if…is the case, Supposing that
+    kind: similar expression
+    nuance: 「たとえ〜ても」 sets up a hypothetical situation and acknowledges a possible condition, but doesn't
+      always carry the same firm or resolute nuance as 「とも」. It's more of a general conditional, while
+      「とも」 conveys a sense of strong conviction or inevitability.
+    grammar_point: たとえ〜ても (even if)
+  - term: どうしても
+    meaning: Regardless of, No matter what
+    kind: similar expression
+    nuance: 「どうしても」 emphasizes a firm determination or inevitability, often from the speaker's perspective,
+      rather than an objective concession. It speaks to the speaker's internal resolve, whereas 「とも」 describes
+      a situation that holds true independently of the speaker's will.
+    grammar_point: どうしても (inevitably or absolutely)
+  - term: どんなに〜ても
+    meaning: No matter how much
+    kind: similar expression
+    nuance: 「どんなに〜ても」 expresses 'no matter how much/what,' focusing on the degree or extent of a condition.
+      While it conveys concession, 「とも」 often carries a more formal or absolute sense of indifference
+      to the condition, emphasizing a universal truth or unshakeable resolve.
+    grammar_point: どんなに〜ても (no matter how much)
+  - term: といえども
+    meaning: Even if, Although
+    kind: similar expression
+    nuance: 「といえども」 is a more formal and literary equivalent of 「とも」, often used to express a concession
+      despite a significant or surprising fact. It shares the resolute nuance of 「とも」 but is typically
+      found in written or highly formal speech, indicating an exception or qualification.
+    grammar_point: ども (even though)
+post_false_friends_writeup: To avoid confusion between 「とも」 and similar expressions, remember that 「とも」
+  often highlights that a result will be the same regardless of a circumstance, lending a formal or resolute
+  tone. Other similar expressions carry different nuances, such as emphasizing a comprehensive range of
+  possibilities (ようが〜まいが), implying surprise or concession (にしても), setting up hypothetical conditions
+  (たとえ〜ても), expressing the speaker's strong determination (どうしても), or focusing on the extent of a condition
+  (どんなに〜ても). 「といえども」 is a more formal variant that shares the same strong, unwavering nuance.
+examples:
+  - english: No matter what my parents say, I intend to marry him.
+    japanese:
+      - 親 が 何 と 言おう {とも}、私 は 彼 と 結婚 する つもり だ。
+      - 親 が 何 と 言おう {とも}、私 は 彼 と 結婚 する つもり です。
+    english_literally: Parents what say even if, I him with marry intend.
+    competing_grammar:
+      - competing_japanese:
+          - 親 が 何 と 言っ {て も}、私 は 彼 と 結婚 する つもり だ。
+        english: Even if my parents say something, I intend to marry him.
+        hint: We are looking for a grammar that expresses an unwavering decision despite opposition, where
+          『とも』 emphasizes a more absolute dismissal of other opinions. 「ても」 is a more general conditional
+          that allows for the possibility of something happening, whereas 『とも』 implies a strong resolve
+          regardless of any circumstance, often associated with a formal or definitive tone, and typically
+          used in more rigid or absolute statements of intent or fact. The use of 「とも」 here implies a
+          deeper, more resolute commitment than the standard 「ても」 form, which might suggest a softer concession.
+          It does not suggest that your parents will say something, but rather that it does not matter
+          what they say. 「ても」 allows for the possibility that your parents may say something, whereas
+          「とも」 removes that possibility of concern from the speaker, no matter what they say.
+      - competing_japanese:
+          - 親 が 何 と 言っ {たっ て}、私 は 彼 と 結婚 する つもり だ。
+        english: No matter what my parents say, I intend to marry him.
+        hint: We are looking for a grammar that expresses an unwavering decision despite opposition, where
+          『とも』 emphasizes a more absolute dismissal of other opinions. 「たって」 is a more casual variant
+          of 「ても」, often used in spoken Japanese to express similar concessive meaning but with a more
+          relaxed tone. While it conveys "no matter what," it lacks the formal, resolute weight that 「とも」
+          carries, especially when expressing a firm personal decision against potential opposition. The
+          use of 「とも」 here implies a deeper, more resolute commitment than the standard 「たって」 form, which
+          might suggest a softer concession. It does not suggest that your parents will say something,
+          but rather that it does not matter what they say. 「たって」 allows for the possibility that your
+          parents may say something, whereas 「とも」 removes that possibility of concern from the speaker,
+          no matter what they say.
+      - competing_japanese:
+          - 親 が 何 と 言おう {が}、私 は 彼 と 結婚 する つもり だ。
+        english: No matter what my parents say, I intend to marry him.
+        hint: 「とも」 and 「ようが」 are very similar in this context, but 「とも」 has a more formal and definitive
+          nuance when expressing an unwavering decision. We are looking for a grammar that implies a more
+          absolute, unshakeable commitment in formal contexts.
+    scene: A young woman is discussing her life plans with a close friend, expressing her firm decision
+      about marriage despite potential family disapproval.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「言おうとも」 emphasizes the speaker's strong will and determination to marry her partner,
+      regardless of any opposition. This construction indicates an unwavering decision, making it suitable
+      for a direct and resolute statement among close friends. The phrase 「何と 言おう とも」 is gender-neutral.
+      However, in this specific scenario, a female speaker using this strong, resolute tone signifies
+      a firm and independent decision, which might be particularly notable in contexts where family influence
+      on marriage is traditionally significant. This expression showcases her resolve against potential
+      traditional expectations rather than being a gender-specific linguistic marker.
+  - english: No matter how hard he tries, this project probably won't be finished by the deadline.
+    japanese:
+      - 彼 が どれ だけ 頑張ろう {とも}、この プロジェクト は 期限 まで に 終わら ない だろう。
+      - 彼 が どれ だけ 頑張ろう {とも}、この プロジェクト は 期限 まで に 終わり ませ ん でしょう。
+    english_literally: He however much try hard even if, this project deadline by will not finish probably.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が どれ だけ 頑張っ {て も}、この プロジェクト は 期限 まで に 終わら ない だろう。
+        english: Even if he tries hard, this project probably won't be finished by the deadline.
+        hint: While 「ても」 can express concession, 「とも」 here carries a stronger sense of certainty regarding
+          the negative outcome, emphasizing that *no amount* of effort will change the result. We're looking
+          for a grammar that conveys the absolute futility of effort in this situation.
+      - competing_japanese:
+          - 彼 が どれ だけ 頑張ろう {が}、この プロジェクト は 期限 まで に 終わら ない だろう。
+        english: No matter how hard he tries, this project probably won't be finished by the deadline.
+        hint: 「とも」 and 「ようが」 are very close here, but 「とも」 often implies a slightly more formal or definitive
+          tone, emphasizing the inevitability of the outcome regardless of effort. We're looking for a
+          grammar that subtly suggests a higher degree of certainty or formality.
+    scene: A project manager is discussing a challenging task with a colleague, expressing concern about
+      an impending deadline.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「頑張ろうとも」 highlights the manager's acknowledgment of the colleague's (彼) effort,
+      yet firmly concludes that the objective (プロジェクト は 終わら ない) will not be met, implying an unchangeable
+      reality despite dedication. This phrase conveys a conclusive, almost fatalistic perspective, making
+      the statement sound definitive rather than merely conditional.
+  - english: No matter how far it is, I'll go to meet you.
+    japanese:
+      - どんな に 遠く {とも}、あなた に 会い に 行く よ。
+      - どんな に 遠く {とも}、あなた に 会い に 行き ます よ。
+    english_literally: However far even if, you to meet go will.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 遠く {て も}、あなた に 会い に 行く よ。
+        english: Even if it's very far, I'll go to meet you.
+        hint: Both convey concession, but 「とも」 adds a nuance of firm resolve, emphasizing that the distance
+          is entirely disregarded. We're looking for a stronger declaration of commitment, rather than
+          a simple conditional.
+      - competing_japanese:
+          - どんな に 遠かろう {が}、あなた に 会い に 行く よ。
+        english: No matter how far it is, I'll go to meet you.
+        hint: 「とも」 and 「ようが」 are very similar here, but 「とも」 offers a slightly more concise and sometimes
+          more emphatic way to express an unwavering commitment regardless of distance. We're looking
+          for a grammar that conveys strong personal resolve.
+    scene: Two long-distance friends are making plans to meet.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「遠くとも」 (遠い in its adverbial `く` form) paired with 「どんなに」 expresses an absolute disregard for
+      distance as an obstacle. The speaker's statement, delivered casually with 「行くよ」, underscores a deep
+      level of commitment and affection. This firm resolve is typical in intimate or close relationships
+      where obstacles are seen as minor compared to the desire to connect.
+  - english: This problem, assuming the worst-case scenario, will take at least half a year.
+    japanese:
+      - この 問題 は、最悪 の シナリオ を 想定 すれ ば、少なく {とも} 半年 は かかる だろう。
+      - この 問題 は、最悪 の シナリオ を 想定 すれ ば、少なく {とも} 半年 は かかる で しょう。
+    english_literally: This problem, worst scenario assuming if, at least half year will take probably.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は、最悪 の シナリオ を 想定 すれ ば、{最低} 半年 は かかる だろう。
+        english: This problem, assuming the worst-case scenario, will take a minimum of half a year.
+        hint: While 「最低」 means 'minimum,' 「少なくとも」 emphasizes 'at least' as a certainty, often implying
+          that the actual duration could be longer. We're looking for a grammar that implies a guaranteed
+          minimum, rather than just a lowest possible value.
+    scene: During a project planning meeting, a team leader provides a conservative time estimate.
+    register: formal
+    setting: informative
+    nuance: 「少なくとも」 is a common fixed phrase meaning 'at least.' In this context, it provides a firm minimum
+      estimate, signaling caution and realism from the speaker. The use of 「だろう」 softens the definitive
+      statement slightly, indicating a strong probability rather than absolute certainty, fitting a professional
+      discussion where predictions are often made with a degree of prudence.
+  - english: No matter how busy she may be, she always makes time for me.
+    japanese:
+      - 彼女 は どんな に 忙しい で あろう {とも}、いつ も 私 に 時間 を 作っ て くれる。
+      - 彼女 は どんな に 忙しい で あろう {とも}、いつ も 私 に 時間 を 作っ て くれ ます。
+    english_literally: She however busy even if, always me for time makes gives.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は どんな に 忙しく {て も}、いつ も 私 に 時間 を 作っ て くれる。
+        english: Even if she is very busy, she always makes time for me.
+        hint: Both convey the meaning, but 「であろうとも」 highlights an exceptional degree of the condition,
+          emphasizing the consistent action as a remarkable trait. We're looking for a grammar that stresses
+          the remarkable nature of her actions despite extreme circumstances.
+      - competing_japanese:
+          - 彼女 は どんな に 忙しい で あろう {が}、いつ も 私 に 時間 を 作っ て くれる。
+        english: No matter how busy she may be, she always makes time for me.
+        hint: 「とも」 and 「ようが」 are very similar, but 「であろうとも」 here adds a slightly more formal or emphatic
+          tone, underscoring the extraordinary nature of her consistent kindness despite extreme business.
+          We are looking for a grammar that conveys this heightened sense of admiration.
+    scene: A person talks about a kind friend who is always there for them.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: The combination of 「どんなに」 and 「忙しいであろうとも」 paints a picture of extreme business, making the
+      friend's (彼女) consistent action of 「時間 を 作って くれる」 (making time for me) all the more commendable.
+      This nuance elevates the friend's kindness to an admirable level, often used when expressing deep
+      gratitude or respect for someone's character.
+  - english: No matter how much of a genius he may be, success is impossible without effort.
+    japanese:
+      - 彼 が どんな に 天才 で あろう {とも}、努力 なし に 成功 は あり え ない。
+      - 彼 が どんな に 天才 で あろう {とも}、努力 なし に 成功 は あり え ませ ん。
+    english_literally: He however much genius even if, effort without success is exist not possible.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が どんな に 天才 だ と し {て も}、努力 なし に 成功 は あり え ない。
+        english: Even if he is a genius, success is impossible without effort.
+        hint: 「であろうとも」 implies a more general, undeniable truth or principle that holds universally, regardless
+          of the individual. We're looking for a more definitive statement of fact, rather than just a
+          conditional assumption.
+      - competing_japanese:
+          - 彼 が どんな に 天才 で あろう {が}、努力 なし に 成功 は あり え ない。
+        english: No matter how much of a genius he may be, success is impossible without effort.
+        hint: 「とも」 and 「ようが」 are very similar in this construction, both conveying 'no matter how.' However,
+          「とも」 often suggests a slightly more formal and absolute statement of principle, reinforcing
+          the universality of the truth. We're looking for a grammar that strongly emphasizes this unshakeable
+          truth.
+    scene: A teacher is explaining the importance of hard work to students.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「天才であろうとも」 uses the formal concessive form with a noun (天才) and the reinforcing 「であろうとも」,
+      underscoring that even for someone as exceptionally gifted (彼) as a genius, the universal principle
+      of effort leading to success remains. This phrasing adds weight and authority to the teacher's statement,
+      presenting it as an absolute truth applicable to everyone. The formal register reinforces the gravity
+      of this life lesson.
+  - english: No matter what happens, I will protect you.
+    japanese:
+      - 何 が あろう {とも}、私 は あなた を 守る。
+      - 何 が あろう {とも}、私 は あなた を 守り ます。
+    english_literally: What exists even if, I you protect will.
+    competing_grammar:
+      - competing_japanese:
+          - 何 が あっ {て も}、私 は あなた を 守る。
+        english: Even if something happens, I will protect you.
+        hint: While 「ても」 is a general conditional, 「あろうとも」 emphasizes an absolute, unwavering commitment
+          against any conceivable eventuality, no matter how severe. We're looking for a grammar that
+          conveys the most extreme level of determination.
+      - competing_japanese:
+          - 何 が あろう {が}、私 は あなた を 守る。
+        english: No matter what happens, I will protect you.
+        hint: 「とも」 and 「ようが」 are nearly interchangeable here, both expressing an absolute commitment.
+          「とも」 can sometimes feel slightly more traditional or declarative, fitting a solemn vow. We're
+          looking for a grammar that conveys profound and unwavering dedication.
+    scene: A knight pledges loyalty and protection to their lord.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「何 が あろう とも」 (何 is the Wh-word and あろう is the volitional form of ある) is a powerful, almost
+      solemn declaration. This phrase conveys a deep, unconditional promise of protection, often used
+      in highly emotional or dramatic contexts, like a solemn vow or pledge. The male speaker's use reinforces
+      a traditional image of protection and unwavering resolve.
+  - english: Both proposals have their pros and cons, and it's difficult to decide on either.
+    japanese:
+      - どちら の 提案 も 一 長 一短 で、いずれ {とも} 決定 し 難い。
+      - どちら の 提案 も 一 長 一短 で、いずれ {とも} 決定 し 難い です。
+    english_literally: Both proposals also pros cons, either way difficult to decide.
+    competing_grammar:
+      - competing_japanese:
+          - どちら の 提案 も 一 長 一短 で、{どちら も} 決定 し 難い。
+        english: Both proposals have their pros and cons, and both are difficult to decide on.
+        hint: 「いずれとも」 specifically highlights the inability to choose between *two* distinct options,
+          implying a mutual difficulty in preference, whereas 「どちらも」 is more general and simply states
+          that both are difficult.
+    scene: Two business partners are weighing two equally valid options for a new venture.
+    register: formal
+    setting: negotiating
+    nuance: 「いずれとも」 is a fixed expression indicating that a statement applies to 'either of the two' or
+      'both ways.' Here, it emphasizes the equal difficulty in making a decision between the two proposals
+      (どちら の 提案 も). This conveys a balanced, objective assessment, which is fitting for a professional
+      negotiation or discussion where impartiality is key.
+  - english: Even if they are an enemy, one must not forget the spirit of Bushido.
+    japanese:
+      - た と え 敵 で あろう {とも}、武士 道 の 精神 を 忘れ て は なら ない。
+      - た と え 敵 で あろう {とも}、武士 道 の 精神 を 忘れ て は なり ませ ん。
+    english_literally: Even if enemy be even if, Bushido's spirit forget must not.
+    competing_grammar:
+      - competing_japanese:
+          - た と え 敵 で あっ {て も}、武士 道 の 精神 を 忘れ て は なら ない。
+        english: Even if they are an enemy, one must not forget the spirit of Bushido.
+        hint: 「であろうとも」 emphasizes the universality and unconditionality of the principle, applying it
+          to even the most challenging circumstances (such as facing an enemy). It adds a more philosophical
+          weight compared to the simpler 「であっても」.
+      - competing_japanese:
+          - た と え 敵 で あろう {が}、武士 道 の 精神 を 忘れ て は なら ない。
+        english: Even if they are an enemy, one must not forget the spirit of Bushido.
+        hint: 「とも」 and 「ようが」 are very similar here, with 「であろうとも」 adding a slightly more formal and absolute
+          tone to the statement, reinforcing the unshakeable nature of the principle. We are looking for
+          a grammar that emphasizes this profound ethical imperative.
+    scene: A martial arts master teaches their students about ethical conduct.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: This example employs 「であろうとも」 with a noun (敵, enemy) and the reinforcing 「たとえ」 to convey a
+      strong, ethical imperative. The phrase underscores that the principle of Bushido (武士道 の 精神) is so
+      fundamental that it must be upheld regardless of the opponent's status. This makes the statement
+      a profound teaching, emphasizing character and discipline above all else.
+  - english: No matter how cold it might be, he goes out in short sleeves.
+    japanese:
+      - どんな に 寒かろう {とも}、彼 は 半袖 で 出かける。
+      - どんな に 寒かろう {とも}、彼 は 半袖 で 出かけ ます。
+    english_literally: However cold might be even if, he short sleeves with goes out.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 寒く {て も}、彼 は 半袖 で 出かける。
+        english: Even if it's very cold, he goes out in short sleeves.
+        hint: 「寒かろうとも」 uses a more formal/literary volitional form of the i-adjective, conveying a slightly
+          archaic or highly emphasized sense of 'no matter how cold.' We are looking for a more pronounced
+          and formal way to express this defiance of weather.
+      - competing_japanese:
+          - どんな に 寒かろう {が}、彼 は 半袖 で 出かける。
+        english: No matter how cold it might be, he goes out in short sleeves.
+        hint: 「とも」 and 「ようが」 are very similar here, both conveying 'no matter how.' 「寒かろうとも」, however,
+          carries a slightly more formal or almost literary tone, emphasizing the speaker's resignation
+          to or observation of an unchanging characteristic despite extreme conditions. We are looking
+          for a grammar that subtly suggests a more pronounced or dramatic sense of defiance.
+    scene: A family member comments on another's unusual habit of dressing lightly in winter.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「寒かろうとも」 (the formal volitional form of 寒い) paired with 「どんなに」 exaggerates the
+      cold, making his (彼) habit of wearing short sleeves all the more striking. This structure emphasizes
+      an unchangeable, almost stubborn characteristic of the person being described, highlighting their
+      consistent behavior despite external conditions. The slight formality makes it sound like an objective
+      observation rather than a casual complaint.
+post_example_writeup: The examples provided demonstrate how 「とも」 is used across various contexts, from
+  personal resolve to professional declarations, consistently conveying a sense of unwavering certainty
+  or determination in the face of challenging circumstances. Pay attention to the nuanced differences
+  compared to similar concessive expressions like 「ても」 or 「たって」, as 「とも」 often carries a more formal,
+  emphatic, or absolute tone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とも

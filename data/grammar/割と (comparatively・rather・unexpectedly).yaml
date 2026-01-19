@@ -1,0 +1,285 @@
+grammar_point: 割と (comparatively・rather・unexpectedly)
+learn_before:
+  - Rhetorical Question (emphasizing a point)
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]が上手 (good at)'
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - い-Adjective[かった] (past tense)
+  - い-Adjective[み] (abstract quality)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - な-Adjective (predicate form)
+  - な-Adjective[だ] (plain present)
+  - にする (to decide or make)
+  - の (that ~)
+  - は (topic and contrast)
+  - 側 (side or flank)
+  - 分かる (understand and know)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: comparatively, rather, relatively, unexpectedly
+pronunciation:
+  katakana: ワリト
+  romaji: warito
+formation:
+  割と + い-Adjective: Used to describe an adjective's degree as being comparative or rather.
+  割と + な-Adjective: Used to describe an adjective's degree as being comparative or rather.
+  割と + Adverb: Used to describe an adverb's degree as being comparative or rather.
+  割と + Verb: Used to describe a verb's action or state as being comparative or rather, often implying
+    an unexpected degree.
+jlpt: N3
+etymology: The word 割と (warito) is formed from 割 (wari), which means 'ratio,' 'proportion,' or 'percentage,'
+  and the particle と (to), which can indicate a state or result. Historically, 割と implies 'in proportion
+  to' or 'relative to a standard.' Over time, this evolved to mean 'comparatively' or 'rather,' suggesting
+  a deviation from what might be typically expected. It carries the nuance of evaluating something against
+  an implicit or explicit norm, often resulting in a mild surprise or a nuanced assessment.
+writeup: |-
+  The adverb 割と (warito) is used to express that something is 'comparatively,' 'rather,' 'relatively,' or 'unexpectedly' a certain way. It often implies a comparison to a general assumption or a speaker's prior expectation, making the situation a little more (or less) pronounced than anticipated. It's a versatile expression that can be applied to adjectives, adverbs, and sometimes verbs to add a subtle nuance of degree or mild surprise.
+
+  While often translated as 'quite' or 'fairly,' 割と carries a specific connotation of **unexpectedness** or **relativity**. For example, if you say 「この仕事は割と簡単だ」 (Kono shigoto wa warito kantan da), it means 'This job is *rather* easy,' implying that you might have expected it to be harder, or that it's easier compared to other similar jobs. It's not just stating a fact; it's adding a layer of personal assessment or subtle contrast.
+
+  It is commonly used in casual conversation and less frequently in highly formal or academic writing, where more precise adverbs might be preferred.
+false_friends:
+  - term: 結構 (kekkō)
+    meaning: fairly, quite, rather (often with positive surprise)
+    kind: similar expression
+    nuance: While 割と suggests 'more than expected' or 'relatively,' 結構 often implies a stronger degree
+      of 'quite' or 'fairly,' often carrying a nuance of positive surprise or satisfaction. 結構 can also
+      function as 'no thank you' or 'good enough'.
+    grammar_point: <suggest>:結構 (fairly・quite)
+  - term: かなり (kanari)
+    meaning: considerably, quite, fairly (stronger degree)
+    kind: similar expression
+    nuance: かなり indicates a higher degree than 割と. If 割と suggests 'a bit more than expected,' かなり suggests
+      'a significant amount more than expected.' It conveys a stronger impression of 'quite' or 'considerably.'
+    grammar_point: かなり (quite・considerably)
+  - term: 割合に (wariai ni)
+    meaning: comparatively, relatively, proportionatly
+    kind: similar expression
+    nuance: 割合に is very similar to 割と, sharing the same etymological root (割合 - ratio/proportion). 割合に
+      is slightly more formal or explicit in its comparative sense, directly stating 'in proportion to'
+      or 'relative to.' 割と is more common in spoken, casual Japanese.
+    grammar_point: <suggest>:割合に (comparatively・relatively)
+  - term: 思ったより (omotta yori)
+    meaning: more than expected, less than expected
+    kind: similar expression
+    nuance: 思ったより explicitly states the comparison to one's own expectation, literally 'than I thought.'
+      割と can imply this, but it's not always explicitly tied to the speaker's personal expectation.
+    grammar_point: <suggest>:と思ったより (more than expected)
+post_false_friends_writeup: When choosing between 割と and other adverbs like 結構 and かなり, consider the intensity
+  of the degree and the nuance of surprise. 割と is softer and more about general relativity or mild unexpectedness,
+  while 結構 and かなり suggest a stronger degree, with 結構 often implying satisfaction or positive surprise.
+  割合に is almost interchangeable with 割と but carries a slightly more formal or academic tone.
+examples:
+  - english: This book is rather interesting.
+    japanese:
+      - この 本 は {割と} 面白い です よ。
+      - この 本 は {割と} 面白い よ。
+      - この 本 は {割と} 面白い です。
+    english_literally: This book is comparatively interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 結構 面白い です よ。
+        english: This book is quite interesting.
+        hint: 「結構」 often implies a stronger, sometimes positive, degree of 'quite' or 'fairly'. We're
+          looking for a softer, more comparative nuance.
+      - competing_japanese:
+          - この 本 は 思っ た より 面白い です よ。
+        english: This book is more interesting than I thought.
+        hint: 「思ったより」 explicitly states that something is 'more/less than expected'. We're looking for
+          a general comparative expression.
+      - competing_japanese:
+          - この 本 は かなり 面白い です よ。
+        english: This book is considerably interesting.
+        hint: 「かなり」 indicates a stronger degree than the grammar point. We're looking for a word implying
+          a 'rather' or 'relatively' softer degree.
+    scene: A student recommending a book to a friend, expressing mild surprise at its quality.
+    register: casual
+    setting: friendly
+  - english: Japanese is surprisingly easy to understand.
+    japanese:
+      - 日本 語 は {割と} 分かり やすい です ね。
+      - 日本 語 は {割と} 分かり やすい ね。
+      - 日本 語 は {割と} 分かり やすい です。
+    english_literally: Japanese is comparatively easy to understand, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 は 思っ た より 分かり やすい です ね。
+        english: Japanese is easier to understand than I thought.
+        hint: 「思ったより」 explicitly connects the ease to your personal expectation. We're looking for a more
+          general comparative remark.
+      - competing_japanese:
+          - 日本 語 は 結構 分かり やすい です ね。
+        english: Japanese is quite easy to understand.
+        hint: 「結構」 often suggests a stronger degree and can imply positive satisfaction. We're looking
+          for a more moderate and comparative nuance.
+    scene: A foreign student discussing their experience learning Japanese.
+    register: casual
+    setting: academic
+  - english: The test results were rather good.
+    japanese:
+      - テスト の 結果 は {割と} 良かっ た です よ。
+      - テスト の 結果 は {割と} 良かっ た よ。
+      - テスト の 結果 は {割と} 良かっ た です。
+    english_literally: The test's results were comparatively good.
+    competing_grammar:
+      - competing_japanese:
+          - テスト の 結果 は かなり 良かっ た です よ。
+        english: The test results were quite good.
+        hint: 「かなり」 implies a higher degree of goodness. We're looking for a milder, more comparative
+          sense of 'rather'.
+      - competing_japanese:
+          - テスト の 結果 は 想像 以上 に 良かっ た です よ。
+        english: The test results were better than I imagined.
+        hint: 「想像以上に」 is very explicit about exceeding expectations. We're looking for a more general
+          comparative expression.
+    scene: A student telling their friend about their test results, implying they didn't expect them to
+      be that good.
+    register: casual
+    setting: academic
+  - english: The restaurant was rather crowded, so we waited a bit.
+    japanese:
+      - その レストラン は {割と} 混ん で い て、少し 待ち まし た。
+      - その レストラン は {割と} 混ん で い て、少し 待っ た。
+    english_literally: That restaurant was comparatively crowded, and we waited a bit.
+    competing_grammar:
+      - competing_japanese:
+          - その レストラン は 結構 混ん で い て、少し 待ち まし た。
+        english: That restaurant was quite crowded, so we waited a bit.
+        hint: 「結構」 suggests a more significant degree of crowdedness. We're looking for a softer, more
+          relative sense.
+      - competing_japanese:
+          - その レストラン は 思っ た より 混ん で い て、少し 待ち まし た。
+        english: That restaurant was more crowded than I thought, so we waited a bit.
+        hint: 「思ったより」 directly refers to the speaker's expectation. We're looking for a general comparative
+          expression.
+    scene: A person recounting their experience at a popular restaurant.
+    register: casual
+    setting: storytelling
+  - english: It's surprisingly cool tonight, isn't it?
+    japanese:
+      - 今晩 は {割と} 涼しい です ね。
+      - 今晩 は {割と} 涼しい ね。
+      - 今晩 は {割と} 涼しい です。
+    english_literally: Tonight is comparatively cool, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 今晩 は 思っ た より 涼しい です ね。
+        english: Tonight is cooler than I thought, isn't it?
+        hint: 「思ったより」 explicitly refers to a personal expectation. We're looking for a more general 'surprisingly'
+          or 'rather' cool.
+      - competing_japanese:
+          - 今晩 は 結構 涼しい です ね。
+        english: Tonight is quite cool, isn't it?
+        hint: 「結構」 indicates a stronger degree of coolness. We're looking for a milder, comparative tone.
+    scene: Two friends enjoying an evening outside, noticing the weather.
+    register: casual
+    setting: friendly
+  - english: He's surprisingly good at cooking for a man.
+    japanese:
+      - 彼 は 男 の 人 の 割 に {割と} 料理 が 上手 です よ。
+      - 彼 は 男 の 人 の 割 に {割と} 料理 が 上手 だ よ。
+      - 彼 は 男 の 人 の 割 に {割と} 料理 が 上手 です。
+    english_literally: He, for a man, is comparatively good at cooking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 男 の 人 の 割 に 結構 料理 が 上手 です よ。
+        english: He's quite good at cooking for a man.
+        hint: 「結構」 emphasizes a stronger degree of skill. We're looking for a more relative or somewhat
+          surprising level of skill.
+      - competing_japanese:
+          - 彼 は 男 の 人 の 割 に 思っ た より 料理 が 上手 です よ。
+        english: He's better at cooking than I thought for a man.
+        hint: 「思ったより」 directly highlights the speaker's personal surprise. We're looking for a general
+          'surprisingly' good.
+    scene: A woman casually commenting on a male friend's unexpected skill.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: This example uses {割と} to emphasize that his cooking skill 「料理 が 上手 です」 is unexpectedly high
+      for a man, playing on a common (though stereotypical) assumption. The nuance conveyed is mild surprise.
+  - english: The meeting finished rather quickly.
+    japanese:
+      - 会議 は {割と} 早く 終わり まし た。
+      - 会議 は {割と} 早く 終わっ た。
+    english_literally: The meeting comparatively quickly finished.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 結構 早く 終わり まし た。
+        english: The meeting finished quite quickly.
+        hint: 「結構」 suggests a more significant speed. We're looking for a softer, more relative sense.
+      - competing_japanese:
+          - 会議 は 思っ た より 早く 終わり まし た。
+        english: The meeting finished quicker than I thought.
+        hint: 「思ったより」 explicitly refers to a personal expectation. We're looking for a general comparative
+          expression.
+    scene: Colleagues discussing a recently concluded meeting.
+    register: semi-formal
+    setting: professional
+  - english: This cafe is surprisingly quiet.
+    japanese:
+      - この カフェ は {割と} 静か です よ。
+      - この カフェ は {割と} 静か だ よ。
+      - この カフェ は {割と} 静か です。
+    english_literally: This cafe is comparatively quiet.
+    competing_grammar:
+      - competing_japanese:
+          - この カフェ は 結構 静か です よ。
+        english: This cafe is quite quiet.
+        hint: 「結構」 implies a stronger degree of quietness. We're looking for a more relative or somewhat
+          surprising level of quiet.
+      - competing_japanese:
+          - この カフェ は 思っ た より 静か です よ。
+        english: This cafe is quieter than I thought.
+        hint: 「思ったより」 directly refers to the speaker's expectation. We're looking for a general 'surprisingly'
+          quiet.
+    scene: Someone discovering a new cafe and remarking on its atmosphere.
+    register: casual
+    setting: friendly
+  - english: The repair was rather easy, so I did it myself.
+    japanese:
+      - 修理 は {割と} 簡単 だっ た の で、自分 で やり まし た。
+      - 修理 は {割と} 簡単 だっ た の で、自分 で やり まし た。
+      - 修理 は {割と} 簡単 だっ た の で、自分 で やっ た。
+    english_literally: The repair was comparatively easy, so I did it myself.
+    competing_grammar:
+      - competing_japanese:
+          - 修理 は 結構 簡単 だっ た の で、自分 で やり まし た。
+        english: The repair was quite easy, so I did it myself.
+        hint: 「結構」 suggests a more significant ease. We're looking for a softer, more relative sense.
+      - competing_japanese:
+          - 修理 は 思っ た より 簡単 だっ た の で、自分 で やり まし た。
+        english: The repair was easier than I thought, so I did it myself.
+        hint: 「思ったより」 explicitly refers to a personal expectation. We're looking for a general comparative
+          expression.
+    scene: A person explaining why they didn't need professional help for a repair.
+    register: casual
+    setting: informative
+  - english: He gets home rather early these days.
+    japanese:
+      - 最近、彼 は {割と} 早く 帰り ます。
+      - 最近、彼 は {割と} 早く 帰る。
+    english_literally: Recently, he comparatively early returns home.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、彼 は 結構 早く 帰り ます。
+        english: Recently, he gets home quite early.
+        hint: 「結構」 suggests a more significant earliness. We're looking for a softer, more relative sense.
+      - competing_japanese:
+          - 最近、彼 は 思っ た より 早く 帰り ます。
+        english: Recently, he gets home earlier than I thought.
+        hint: 「思ったより」 explicitly refers to a personal expectation. We're looking for a general comparative
+          expression.
+    scene: Someone observing a friend's new routine.
+    register: casual
+    setting: friendly
+post_example_writeup: Notice how 割と often implies a subtle contrast to an expectation, or a general comparison,
+  without explicitly stating what is being compared. It's a nuanced way to express 'more/less than anticipated'
+  or 'relatively so'.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/割と

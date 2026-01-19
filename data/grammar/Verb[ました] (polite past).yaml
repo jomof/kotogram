@@ -1,0 +1,502 @@
+grammar_point: Verb[ました] (polite past)
+learn_before:
+  - で (means・method)
+  - と (with)
+meaning: Polite past tense of verbs
+conjugations:
+  - conjugation-type: past polite (～ました)
+    form: ました
+    rarity: common
+    meaning: polite past
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ませんでした
+    rarity: common
+    meaning: polite negative past
+pronunciation:
+  katakana: マシタ ケイ
+  romaji: mashita kei
+formation:
+  Verb (ます-stem) + ました: Polite past affirmative
+  Verb (ます-stem) + ませんでした: Polite past negative
+jlpt: N5
+etymology: The polite past tense ending 「ました」 evolved from the combination of the polite non-past ending
+  「ます」 and the past auxiliary 「た」. This combination creates a respectful and formal way to express completed
+  actions or states in the past, maintaining social distance and politeness.
+writeup: |-
+  The 「ました」 form is the standard polite past tense for all Japanese verbs. It is formed by attaching 「ました」 to the ます-stem of a verb. For example, to say "ate" politely, 食べます (tabemasu) becomes 食べました (tabemashita), and to say "drank" politely, 飲みます (nomimasu) becomes 飲みました (nomimashita).
+
+  This form is essential for conversing in polite settings, whether in professional environments, with strangers, or with those to whom you wish to show respect. It contrasts directly with the plain past tense (e.g., 食べた, 飲んだ), which is typically reserved for casual conversation among close friends and family, or in informal writing.
+
+  The negative polite past tense is formed by attaching 「ませんでした」 to the ます-stem of the verb. For example, 食べませんでした (tabemasendeshita) means "did not eat politely", and 飲みませんでした (nomimasendeshita) means "did not drink politely". This expresses a past negative action or state while maintaining the same level of politeness as 「ました」.
+
+  Understanding and correctly using 「ました」 and 「ませんでした」 is crucial for navigating social interactions in Japanese, as it directly reflects your consideration for the listener and the formality of the situation.
+false_friends:
+  - term: Verb[た] (past tense)
+    meaning: plain past tense
+    kind: similar expression
+    nuance: Unlike 「ました」 which is polite and attaches to the ます-stem, 「た」 is the casual or plain past
+      tense form and involves irregular sound changes for many verbs.
+    grammar_point: Verb[た] (past tense)
+  - term: Verb[ません] (polite negative)
+    meaning: polite non-past negative
+    kind: similar expression
+    nuance: 「ません」 indicates a polite negative in the non-past (present/future), whereas 「ませんでした」 specifically
+      indicates a polite negative action or state in the past.
+    grammar_point: Verb[ません] (polite negative)
+  - term: だった (past copula, casual)
+    meaning: was (casual copula)
+    kind: often confused with
+    nuance: 「ました」 is for verbs, indicating a completed action. 「でした」 (the polite form of 「だった」) is used
+      with nouns and な-adjectives to express past states or identities. For example, 「学生でした」(was a student)
+      vs. 「勉強しました」(studied).
+    grammar_point: だった (past copula, casual)
+  - term: ていた (past continuous or state)
+    meaning: was doing ~; had been ~
+    kind: often confused with
+    nuance: 「ました」 describes a single, completed past action. 「ていた」 indicates an action that was ongoing
+      in the past, or a state that continued from the past, or a repeated action in the past.
+    grammar_point: Verb[ていた] (past progressive・resultative)
+  - term: Verb[dictionary] (dictionary form)
+    meaning: plain non-past
+    kind: similar expression
+    nuance: The dictionary form (plain non-past) is the base form of the verb, used for present/future
+      or as a casual non-past. 「ました」 is the polite past tense of this base form.
+    grammar_point: Verb[dictionary] (dictionary form)
+  - term: Verb[て] (and then)
+    meaning: and, then (linking actions)
+    kind: often confused with
+    nuance: The 「て」 form links verbs in sequence or indicates a cause, but it does not inherently express
+      past tense on its own. It relies on the final verb in a sentence to determine the tense. 「ました」 explicitly
+      marks a past completed action.
+    grammar_point: Verb[て] (and then)
+post_false_friends_writeup: It is vital to distinguish 「ました」 from other similar grammatical forms to ensure
+  clear and accurate communication. Remember that 「ました」 specifically marks a **polite completed action**
+  in the past. It differs from the plain past 「た」 by its politeness level, from 「ません」 by its tense, and
+  from 「でした」 by its part of speech (verbs vs. nouns/adjectives). Additionally, 「ていた」 describes continuous
+  or repeated past actions/states, while 「ました」 refers to a single, completed event. Finally, the dictionary
+  form is the base, non-past verb, requiring transformation to form 「ました」.
+examples:
+  - english: I bought a new book yesterday.
+    japanese:
+      - 昨日、新しい 本 を {買い まし た}。
+      - 昨日、新しい 本 を {買い まし た} よ。
+      - 昨日、新しい 本 を {購入 し まし た}。
+      - 昨日、新しい 本 を {買い まし た} ん です よ。
+    english_literally: Yesterday, a new book (I) bought.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、新しい 本 を {買っ た}。
+        english: I bought a new book yesterday (casual).
+        hint: This expression uses the plain past form. We're looking for a polite way to state a past
+          action.
+      - competing_japanese:
+          - 昨日、新しい 本 を {買う つもり です}。
+        english: I intend to buy a new book yesterday.
+        hint: This describes future intention, not a completed past action. We're looking for a polite
+          past action.
+      - competing_japanese:
+          - 昨日、新しい 本 を {買い ます}。
+        english: I buy a new book yesterday.
+        hint: This uses the polite non-past form, indicating present or future action. We're looking for
+          a completed past action.
+      - competing_japanese:
+          - 新しい 本 を {買っ て} 読み まし た。
+        english: I bought a new book and read it.
+        hint: The {て}-form connects actions but doesn't explicitly state the past tense for the first
+          verb. We're looking for a simple past action.
+      - competing_japanese:
+          - 新しい 本 を {買っ て い まし た}。
+        english: I was buying a new book.
+        hint: This indicates an ongoing action in the past. We're looking for a completed past action.
+      - competing_japanese:
+          - 昨日、新しい 本 を {買い ませ ん でし た}。
+        english: I didn't buy a new book yesterday.
+        hint: This is the polite negative past form. We're looking for a positive completed action.
+    scene: A person formally reporting on their recent activities to an acquaintance.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: I drank coffee at the office.
+    japanese:
+      - 会社 で コーヒー を {飲み まし た}。
+      - 会社 で コーヒー を {いただき まし た}。
+      - 会社 で コーヒー を {飲み まし た} よ。
+      - 会社 で コーヒー を {飲み まし た} けど。
+      - 会社 で コーヒー を {頂戴 し まし た}。
+      - 会社 にて コーヒー を {飲み まし た}。
+    english_literally: At the company, coffee (I) drank.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 で コーヒー を {飲ん だ}。
+        english: I drank coffee at the office (casual).
+        hint: This expression is more formal. We're looking for a polite way to state a past action, appropriate
+          for a professional setting.
+      - competing_japanese:
+          - 会社 で コーヒー を {飲む つもり です}。
+        english: I intend to drink coffee at the office.
+        hint: This indicates a future intention, not a completed action in the past. We're looking for
+          a polite past action.
+      - competing_japanese:
+          - 会社 で コーヒー を {飲み ます}。
+        english: I drink coffee at the office.
+        hint: This uses the polite non-past form, indicating present or future action. We're looking for
+          a completed past action.
+      - competing_japanese:
+          - コーヒー を {飲ん で} 働き まし た。
+        english: I drank coffee and worked.
+        hint: The {て}-form connects actions but doesn't explicitly state the past tense for the first
+          verb. We're looking for a simple past action.
+      - competing_japanese:
+          - 会社 で コーヒー を {飲ん で い まし た}。
+        english: I was drinking coffee at the office.
+        hint: This indicates an ongoing action in the past. We're looking for a completed past action.
+      - competing_japanese:
+          - 会社 で コーヒー を {飲み ませ ん でし た}。
+        english: I didn't drink coffee at the office.
+        hint: This uses the polite negative past form. We're looking for a positive completed action.
+    scene: A woman informing her superior about her activities.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    nuance: The polite form 「飲み まし た」 or 「いただき まし た」 is suitable for a female speaker addressing a superior
+      in a professional context, demonstrating respect. 「いただき まし た」 adds an extra layer of humility. 「頂戴
+      し まし た」 is an even more humble expression. Adding 「よ」 or 「けど」 softens the statement. Using 「にて」
+      makes the setting slightly more formal.
+  - english: I was tired last night, so I didn't go out.
+    japanese:
+      - 昨日 の 夜 は 疲れ て い た から、外 に {行き ませ ん でし た}。
+      - 昨日 の 夜 は 疲れ て い た から、外 に {行き ませ ん でし た} よ。
+      - 昨日 の 夜 は 疲れ て い た の で、外 に {行き ませ ん でし た}。
+      - 昨夜 は 疲れ て い た ため、外 に {行き ませ ん でし た}。
+      - 昨日 の 夜 は 疲労 の ため、外 に {出 ませ ん でし た}。
+    english_literally: Last night, because (I) was tired, outside (I) did not go.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 夜 は 疲れ て い た から、外 に {行か なかっ た}。
+        english: I was tired last night, so I didn't go out (casual).
+        hint: This uses the plain negative past form. We're looking for a polite way to explain a past
+          negative action.
+      - competing_japanese:
+          - 昨日 の 夜 は 疲れ て い た から、外 に {行き ませ ん}。
+        english: I won't go out because I'm tired.
+        hint: This is the polite negative non-past tense. We're looking for a completed action in the
+          past.
+      - competing_japanese:
+          - 外 に {行か ない で} い まし た。
+        english: I stayed without going out.
+        hint: This implies a state of not going out, not a completed past action of 'didn't go out'. We're
+          looking for a polite negative past action.
+    scene: A student explaining to their professor why they didn't attend an event.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: negative past polite (～ませんでした)
+    nuance: The polite negative past form 「行き ませ ん でし た」 is appropriate when speaking to a professor or
+      in a formal setting. The use of 「から」 or 「ため」 clearly states the reason for not going out. 「出 ませ
+      ん でし た」 is an alternative for 'didn't go out'.
+  - english: I didn't talk about that to the teacher.
+    japanese:
+      - 先生 に その こと を {話し ませ ん でし た}。
+      - 先生 に その こと は {話し ませ ん でし た}。
+      - 先生 に その こと を {話し ませ ん でし た} よ。
+      - 先生 に は その 件 に つい て {話し ませ ん でし た}。
+      - 先生 に は その こと を {お 話し し ませ ん でし た}。
+      - 先生 に は それ を {話し ませ ん でし た}。
+      - 先生 に は その こと を {お 話し し ませ ん でし た} よ。
+    english_literally: To the teacher, about that matter (I) did not talk.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 に その こと を {話さ なかっ た}。
+        english: I didn't talk about that to the teacher (casual).
+        hint: This is a casual form of negative past. We're looking for a polite expression, often used
+          when referring to a person in authority.
+      - competing_japanese:
+          - 先生 に その こと を {話し て い ませ ん}。
+        english: I am not talking about that to the teacher (ongoing negative state).
+        hint: This implies an ongoing negative state or current condition, not a completed past action.
+          We're looking for a polite negative past.
+      - competing_japanese:
+          - 先生 に その こと を {話し ませ ん}。
+        english: I don't talk about that to the teacher.
+        hint: This is the present/future negative polite form. We're looking for a past negative polite
+          action.
+    scene: A student explaining to a classmate why they withheld information from their teacher.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: negative past polite (～ませんでした)
+    speaker_age: younger
+    nuance: Even when speaking casually to a peer, a younger speaker might use 「話し ませ ん でし た」 out of ingrained
+      habit or to maintain a sense of decorum when referring to an authority figure like a teacher. The
+      use of 「は」 in the second Japanese example could add a slight contrastive nuance. 「お 話し し ませ ん でし
+      た」 is a humble form, showing even more respect toward the teacher. Adding 「よ」 to the humble form
+      makes it slightly more emphatic.
+  - english: I read that book until morning.
+    japanese:
+      - その 本 を 朝 まで {読み まし た}。
+      - その 本 を 朝 まで {読み まし た} よ。
+      - 朝 まで その 本 を {読み まし た} ん です。
+      - 夜通し その 本 を {読み まし た}。
+      - あの 本 を 夜 が 明ける まで {読み まし た}。
+    english_literally: That book until morning (I) read.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 を 朝 まで {読ん だ}。
+        english: I read that book until morning (casual).
+        hint: This is the plain form. We are looking for the polite past tense.
+      - competing_japanese:
+          - その 本 を 朝 まで {読み ます}。
+        english: I will read that book until morning.
+        hint: This is the polite present/future tense. We are looking for a completed action in the past.
+      - competing_japanese:
+          - その 本 を 朝 まで {読み ませ ん でし た}。
+        english: I didn't read that book until morning.
+        hint: This is the negative polite past. We are looking for a positive completed action.
+    scene: A colleague describing their intense reading session to a co-worker.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: The polite past form 「読み まし た」 is appropriate in a professional or general polite context.
+      Adding 「よ」 or 「ん です」 adds an explanatory or confirmatory nuance, which is common when sharing personal
+      experiences in a polite conversation. 「夜通し」 means 'all night long'.
+  - english: I wrote a letter to my grandmother.
+    japanese:
+      - 祖母 に 手紙 を {書き まし た}。
+      - 祖母 に 手紙 を {書き まし た} よ。
+      - 祖母 に お 手紙 を {書き まし た}。
+      - お ばあ ちゃん に 手紙 を {書き まし た}。
+      - 祖母 へ 手紙 を {書き まし た}。
+    english_literally: To grandmother, a letter (I) wrote.
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 に 手紙 を {書い た}。
+        english: I wrote a letter to my grandmother (casual).
+        hint: This is the plain form. We are looking for a polite expression, suitable for general respectful
+          conversation.
+      - competing_japanese:
+          - 祖母 に 手紙 を {書く つもり です}。
+        english: I intend to write a letter to my grandmother.
+        hint: This expresses future intention. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 祖母 に 手紙 を {書き ませ ん でし た}。
+        english: I didn't write a letter to my grandmother.
+        hint: This is the negative polite past. We are looking for a positive completed action.
+    scene: A woman telling her colleague about her weekend activities.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    nuance: Using 「書き まし た」 is appropriate for a polite setting. 「祖母」 is a formal term for 'grandmother',
+      suitable for polite conversation. 「お ばあちゃん」 makes it slightly more affectionate. The inclusion of
+      「お」 as in 「お 手紙」 indicates respect for the object, common in polite female speech or when showing
+      deference.
+  - english: We talked for a long time at the cafe.
+    japanese:
+      - カフェ で 長く {話し まし た}。
+      - カフェ で 長い 時間 {話し まし た} ね。
+      - 喫茶 店 で ずっと {話し まし た}。
+      - 喫茶 店 で 長く {話し まし た} よ。
+    english_literally: At the cafe, for a long time (we) talked.
+    competing_grammar:
+      - competing_japanese:
+          - カフェ で 長く {話し た}。
+        english: We talked for a long time at the cafe (casual).
+        hint: This is the plain form. We are looking for the polite past tense.
+      - competing_japanese:
+          - カフェ で 長く {話し ます}。
+        english: We will talk for a long time at the cafe.
+        hint: This implies a future action. We are looking for a completed action in the past.
+      - competing_japanese:
+          - カフェ で 長く {話し ませ ん でし た}。
+        english: I didn't talk for a long time at the cafe.
+        hint: This is the polite negative past. We are looking for a positive completed action.
+    scene: Two colleagues discussing a past meeting at a cafe.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    nuance: The polite past 「話し まし た」 is natural in a general polite setting. Adding 「ね」 at the end invites
+      agreement and shared sentiment, emphasizing the friendly but polite tone of the conversation. 「長い
+      時間」 is a common way to express 'for a long time'.
+  - english: He ran very fast in the marathon.
+    japanese:
+      - 彼 は マラソン で とても 速く {走り まし た}。
+      - 彼 は マラソン で ずいぶん 速く {走り まし た}。
+      - 彼 は マラソン で 素晴らしい スピード で {走り まし た}。
+      - 彼 は マラソン で すごく 速く {走り まし た} よ。
+      - 彼 は マラソン で 猛烈 に {走り まし た}。
+    english_literally: He in marathon very fast ran.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は マラソン で とても 速く {走っ た}。
+        english: He ran very fast in the marathon (casual).
+        hint: This is the plain form. We are looking for a polite expression, suitable for reporting facts
+          generally.
+      - competing_japanese:
+          - 彼 は マラソン で とても 速く {走り ます}。
+        english: He runs very fast in the marathon.
+        hint: This is the polite present/future tense. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 彼 は マラソン で とても 速く {走り ませ ん でし た}。
+        english: He didn't run very fast in the marathon.
+        hint: This is the negative polite past. We are looking for a positive completed action.
+    scene: A sports reporter giving an update on a recent marathon.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: The polite past form 「走り まし た」 is appropriate for a formal, informative setting like a news
+      report. Adverbs like 「とても 速く」 (very fast) or 「ずいぶん 速く」 (quite fast) emphasize the speed. While the
+      casual 「走っ た」 is possible, 「走り まし た」 maintains the necessary formality for a public report.
+  - english: I used this pen a lot during the exam.
+    japanese:
+      - 試験 中 に この ペン を たくさん {使い まし た}。
+      - テスト 中 に この ペン を よく {使い まし た}。
+      - 試験 中 に この ペン を ずいぶん {使い まし た} よ。
+      - テスト の 間 に この ペン を {使い まし た}。
+    english_literally: During the exam, this pen (I) used a lot.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 中 に この ペン を たくさん {使っ た}。
+        english: I used this pen a lot during the exam (casual).
+        hint: This is the plain form. We are looking for a polite expression, common in academic or professional
+          settings.
+      - competing_japanese:
+          - 試験 中 に この ペン を たくさん {使い ます}。
+        english: I use this pen a lot during the exam.
+        hint: This is the polite present/future tense. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 試験 中 に この ペン を {使い ませ ん でし た}。
+        english: I didn't use this pen a lot during the exam.
+        hint: This is the negative polite past. We are looking for a positive completed action.
+    scene: A student talking to their professor after an exam.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past polite (～ました)
+    nuance: Using 「使い まし た」 is appropriate for a student addressing a professor, demonstrating politeness.
+      「たくさん」 (a lot) or 「よく」 (often/well) indicate the extent of use. The sentence-ending particle 「よ」
+      can add a slight emphasis or confirmation, which can soften the statement even in a polite context.
+  - english: My grandfather lived in the countryside for a long time.
+    japanese:
+      - 祖父 は 長い 間 田舎 に {住み まし た}。
+      - お じい ちゃん は ずっと 田舎 に {住み まし た}。
+      - 祖父 は 昔 から 田舎 に {住み まし た} よ。
+      - 祖父 は 生涯 田舎 に {住み まし た}。
+    english_literally: Grandfather for a long time in countryside lived.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 長い 間 田舎 に {住ん だ}。
+        english: My grandfather lived in the countryside for a long time (casual).
+        hint: This is the plain form. We are looking for a polite expression, showing respect when talking
+          about family members.
+      - competing_japanese:
+          - 祖父 は 長い 間 田舎 に {住み ます}。
+        english: My grandfather lives in the countryside for a long time.
+        hint: This is the polite present/future tense. We are looking for a completed state in the past.
+      - competing_japanese:
+          - 祖父 は 長い 間 田舎 に {住み ませ ん でし た}。
+        english: My grandfather didn't live in the countryside for a long time.
+        hint: This is the negative polite past. We are looking for a positive completed state.
+      - competing_japanese:
+          - 祖父 は 長い 間 田舎 に {住ん で い まし た}。
+        english: My grandfather was living in the countryside for a long time (continuous).
+        hint: This expresses a continuous action or state in the past. We are looking for a simple polite
+          past action or state.
+    scene: A woman sharing family history with a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    nuance: Using 「住み まし た」 is appropriate for a polite setting. 「祖父」 is a formal term for 'grandfather',
+      suitable for polite conversation. 「お じいちゃん」 makes it slightly more affectionate. 「長い 間」 means 'for
+      a long time'. The 「よ」 at the end can add a gentle emphasis.
+  - english: The child cried when he got lost.
+    japanese:
+      - その 子 は 迷子 に なっ て {泣き まし た}。
+      - 子供 は 迷子 に なっ て {泣き まし た}。
+      - 迷子 に なっ たら、子供 は 大声 で {泣き まし た}。
+      - 迷子 に なっ たら、その 子 は {泣き まし た}。
+    english_literally: That child lost became and cried.
+    competing_grammar:
+      - competing_japanese:
+          - その 子 は 迷子 に なっ て {泣い た}。
+        english: The child cried when he got lost (casual).
+        hint: This is the plain form. We are looking for a polite statement about a past event.
+      - competing_japanese:
+          - その 子 は 迷子 に なっ て {泣き ます}。
+        english: The child will cry when he gets lost.
+        hint: This implies a future likelihood. We are looking for a completed action in the past.
+      - competing_japanese:
+          - その 子 は 迷子 に なっ て {泣き ませ ん でし た}。
+        english: The child didn't cry when he got lost.
+        hint: This is the polite negative past. We are looking for a positive completed action.
+    scene: A teacher recounting an incident to a parent during a parent-teacher conference.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    nuance: The polite past form 「泣き まし た」 is appropriate for formal communication like a conference.
+      「迷子 に なっ て」 (became lost and...) describes the preceding event. 「大声 で」 means 'loudly', adding detail
+      to the crying.
+  - english: I played outside with my friends all day yesterday.
+    japanese:
+      - 昨日 は 友達 と 外 で 一 日 中 {遊び まし た}。
+      - 昨日 は 友達 と 外 で ずっと {遊び まし た} よ。
+      - 昨日 は 友人 と 終日 外 で {遊び まし た}。
+      - 昨日 は 友達 と 外 で {遊ん で い まし た}。
+    english_literally: Yesterday, with friends outside all day (I) played.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 友達 と 外 で 一 日 中 {遊ん だ}。
+        english: I played outside with my friends all day yesterday (casual).
+        hint: This is the plain form. We are looking for a polite statement about a past activity.
+      - competing_japanese:
+          - 昨日 は 友達 と 外 で 一 日 中 {遊び ます}。
+        english: Yesterday, I will play outside with my friends all day.
+        hint: This describes a future action, not a completed past action. We are looking for a polite
+          past action.
+      - competing_japanese:
+          - 昨日 は 友達 と 外 で 一 日 中 {遊び ませ ん でし た}。
+        english: I didn't play outside with my friends all day yesterday.
+        hint: This is the polite negative past. We are looking for a positive completed action.
+    scene: A student politely telling their teacher about their weekend activities.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past polite (～ました)
+    nuance: The polite past form 「遊び まし た」 is typical for a student speaking politely to a teacher. 「一日中」
+      (all day long) emphasizes the duration of the activity. The addition of 「よ」 can make the statement
+      more emphatic or convey a sense of sharing, which is common in polite conversation.
+  - english: I entered the university last year.
+    japanese:
+      - 去年 大学 に {入り まし た}。
+      - 昨年 大学 に {入学 し まし た}。
+      - 去年 大学 へ {入り まし た} よ。
+      - 去年 大学 に {入っ た} ん です よ。
+      - 昨年 大学 に {合格 し まし た}。
+    english_literally: Last year, to university (I) entered.
+    competing_grammar:
+      - competing_japanese:
+          - 去年 大学 に {入っ た}。
+        english: I entered the university last year (casual).
+        hint: This is the plain form. We are looking for a polite expression, suitable for formal settings
+          or when speaking respectfully.
+      - competing_japanese:
+          - 去年 大学 に {入り ます}。
+        english: Last year, I will enter the university.
+        hint: This is the polite present/future tense, and 'last year' is contradictory. We are looking
+          for a completed action in the past.
+      - competing_japanese:
+          - 去年 大学 に {入り ませ ん でし た}。
+        english: I didn't enter the university last year.
+        hint: This is the negative polite past. We are looking for a positive completed action.
+    scene: A young adult introducing themselves at a job interview.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_age: younger
+    nuance: The polite past form 「入り まし た」 or 「入学 し まし た」 is appropriate in a professional setting like
+      a job interview. 「昨年」 is a more formal term for 'last year' than 「去年」. The phrase 「入っ た ん です よ」,
+      while using the plain past of the verb, is made polite by 「ん です よ」, which also adds an explanatory
+      or conversational nuance, common when sharing information in a polite context.
+post_example_writeup: The 「ました」 form consistently attaches to the ます-stem of verbs, making its conjugation
+  highly regular and straightforward compared to the plain past forms. The negative polite past, 「ませんでした」,
+  follows the same regularity. Mastering these forms allows for polite and precise communication of past
+  events in a wide range of social contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/う-verb-past

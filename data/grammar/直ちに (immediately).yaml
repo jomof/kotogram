@@ -1,0 +1,291 @@
+grammar_point: 直ちに (immediately)
+learn_before:
+  - ばあいは (in the event of)
+  - 際に (at the time of・when・on the occasion of)
+meaning: Immediately; at once; without delay
+pronunciation:
+  katakana: タダチニ
+  romaji: tadachi ni
+formation:
+  直ちに + Verb: The adverb 直ちに modifies a verb, indicating immediate and direct action.
+  直ちに + Sentence: Used at the beginning of a sentence to emphasize the immediacy and purposefulness of
+    the entire action.
+jlpt: N3
+etymology: '直ちに (tadachi ni) derives from the kanji 直 (choku), meaning ''direct'' or ''straight.'' This
+  etymological root clearly reflects the core nuance of the word: an action is carried out directly, without
+  deviation or delay, and often with a sense of purpose or intention. It implies a ''straightforward''
+  and ''immediate'' response.'
+writeup: |-
+  The adverb **直ちに (tadachi ni)** is used to convey that an action or event occurs “immediately,” “at once,” or “without delay.” It carries a strong nuance of directness and often purposefulness, implying that the action is a direct, intentional response to a preceding situation or command. While it can appear anywhere an adverb would, it is frequently placed at the beginning of a sentence to emphasize its immediate nature.
+
+  **直ちに** is often found in formal contexts, such as official directives, public announcements, or when expressing a firm, urgent intention. For example, in emergency situations, you might hear instructions like 「直ちに避難してください」(Please evacuate immediately), where the immediacy and directness are critical.
+
+  It is important to distinguish **直ちに** from other adverbs that mean 'immediately,' such as **忽ち (tachimachi)** or **すぐに (sugu ni)**. While **すぐに** is a general and widely used term for 'immediately,' **直ちに** emphasizes a more formal, decisive, and often intentional immediacy. **忽ち**, on the other hand, describes something happening 'immediately' but often implies a sudden, spontaneous, or unintentional change, like something spreading quickly without direct human intervention.
+false_friends:
+  - term: たちまち
+    meaning: Immediately, quickly, suddenly, in a moment or flash
+    kind: synonym
+    nuance: Unlike 直ちに, たちまち emphasizes the speed and suddenness of the action, often without the intentional
+      or direct aspect. It describes something that happens spontaneously or naturally, rather than as
+      a deliberate response.
+    grammar_point: たちまち (suddenly・immediately)
+  - term: か〜ないかのうちに
+    meaning: Right after, as soon as, just when, barely
+    kind: similar expression
+    nuance: か〜ないかのうちに focuses on the near simultaneity of two events, highlighting that the second event
+      happens almost immediately after the first. It describes the timing of events rather than a direct,
+      intentional action following another.
+    grammar_point: か〜ないかのうちに (immediately after)
+  - term: かと思ったら・かと思うと
+    meaning: Then again, just when I thought, no sooner than
+    kind: similar expression
+    nuance: かと思ったら/かと思うと indicates a quick and often unexpected change or realization, where one thing
+      happens almost immediately after another. It focuses on the surprising swiftness of a transition,
+      not necessarily a direct, purposeful action.
+    grammar_point: かと思ったら・かと思うと (unexpected succession)
+  - term: V-stem + 次第
+    meaning: As soon as
+    kind: synonym
+    nuance: 次第 (shidai) implies a sequence or procedure to be followed, often with a sense of completion
+      before the next step. While it denotes immediacy, it's more about 'as soon as [X is done], then
+      [Y will happen]' and often involves a pre-arranged plan, contrasting with 直ちに's emphasis on a direct,
+      urgent response.
+    grammar_point: '[Verb-stem]次第 (as soon as)'
+  - term: たとたんに
+    meaning: The instant or moment, as soon as, just as
+    kind: similar expression
+    nuance: とたんに indicates something happens at the very moment something else occurs, often resulting
+      in an immediate and unexpected change. It highlights the instantaneous nature of a consequence or
+      new state, without necessarily implying the intentionality or formal urgency of 直ちに.
+    grammar_point: '[Verb-た]とたん(に) (as soon as・the moment)'
+  - term: すぐに
+    meaning: Immediately, right away, soon
+    kind: synonym
+    nuance: すぐに (sugu ni) is the most common and general term for 'immediately.' While it expresses promptness,
+      it lacks the formal register, strong intentionality, and sense of directness that 直ちに conveys. It
+      can be used in almost any context, whereas 直ちに is typically reserved for more formal or critical
+      situations.
+    grammar_point: すぐ (immediately・easily)
+post_false_friends_writeup: When choosing between these expressions, consider the nuance of immediacy
+  you wish to convey. Use 直ちに for actions that are direct, purposeful, and often carry a sense of urgency
+  or formality. If the focus is on suddenness or an unintentional, rapid change, たちまち might be more appropriate.
+  For nearly simultaneous events or quick, unexpected transitions, か～ないかのうちに or とたんに are suitable. 次第
+  implies a sequential immediacy, often based on a pre-established plan. Lastly, すぐに is the most versatile
+  and general term for 'immediately,' used when the specific nuances of directness, purpose, or formality
+  are not emphasized.
+examples:
+  - english: If a disaster occurs, please evacuate to a safe place immediately.
+    japanese:
+      - 災害 が 発生 し たら、{直ちに} 安全 な 場所 へ 避難 し て ください。
+      - 災害 が 発生 し た 場合 は、{直ちに} 安全 な 場所 へ 避難 し なさい。
+      - 災害 が 発生 し た 際 に は、{直ちに} 安全 な 場所 へ 避難 せよ。
+      - 災害 が 発生 し た 際 は、{直ちに} 安全 な 場所 へ 避難 願い ます。
+    english_literally: If a disaster occurs, please directly evacuate to a safe place.
+    competing_grammar:
+      - competing_japanese:
+          - 災害 が 発生 し たら、{すぐ に} 安全 な 場所 へ 避難 し て ください。
+        english: If a disaster occurs, please evacuate to a safe place right away.
+        hint: 「直ちに」conveys a formal, official, and urgent directive, often used in public safety announcements.
+          We're looking for a formal and urgent command.
+    scene: A public safety announcement being broadcast during an emergency drill.
+    register: formal
+    setting: emergency/alarm
+  - english: This area is off-limits. Please leave here immediately.
+    japanese:
+      - この エリア は 立ち入り 禁止 です。{直ちに} ここ から 立ち去っ て ください。
+      - 当 エリア は 立ち入り 禁止 です。{直ちに} ここ から ご 退去 ください。
+      - この エリア は 立ち入り 禁止 です。{直ちに} ここ から 立ち去れ。
+      - この エリア は 立ち入り 禁止 と なっ て おり ます。{直ちに} ご 退去 願い ます。
+    english_literally: This area is off-limits. Please directly leave from here.
+    competing_grammar:
+      - competing_japanese:
+          - この エリア は 立ち入り 禁止 です。{すぐ に} ここ から 立ち去っ て ください。
+        english: This area is off-limits. Please leave here right away.
+        hint: 「直ちに」emphasizes an immediate, authoritative command, fitting for a direct order from an
+          authority figure. We're looking for a strong, authoritative command.
+    scene: A security guard speaking firmly to someone trespassing on private property.
+    register: formal
+    setting: commanding
+  - english: If you feel an earthquake, please check and extinguish any flames immediately.
+    japanese:
+      - 地震 の 揺れ を 感じ たら、{直ちに} 火の元 を 確認 し て 消し て ください。
+      - 地震 の 揺れ を 感じ た 場合 は、{直ちに} 火の元 を 確認 し なさい。
+      - 地震 の 揺れ を 感じ た 際 は、{直ちに} 火の元 を 確認 し、消火 せよ。
+      - 地震 を 感じ た 際 に は、{直ちに} 火の元 を 確認 の 上、消火 し て ください。
+    english_literally: If you feel earthquake shaking, please directly confirm and extinguish fire sources.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 の 揺れ を 感じ たら、{すぐ に} 火の元 を 確認 し て 消し て ください。
+        english: If you feel an earthquake, please check and extinguish any flames right away.
+        hint: 「直ちに」highlights the critical and non-negotiable nature of the immediate action required
+          for safety. We're looking for a critical and urgent instruction.
+    scene: An instructor giving crucial safety instructions during a disaster preparedness seminar.
+    register: semi-formal
+    setting: instructional
+  - english: Kenta, finish your homework immediately before watching TV.
+    japanese:
+      - ケンタ、テレビ を 見る 前 に {直ちに} 宿題 を 終わら せ なさい。
+      - ケンタ、テレビ を 見る 前 に {直ちに} 宿題 を 終わら せろ。
+      - ケンタ、テレビ を 見る 前 に {直ちに} 宿題 を 済ま せ なさい。
+      - ケンタ、テレビ を 見る 前 に {直ちに} 宿題 を 終わら せろ よ。
+    english_literally: Kenta, directly finish your homework before watching TV.
+    competing_grammar:
+      - competing_japanese:
+          - ケンタ、テレビ を 見る 前 に {すぐ に} 宿題 を 終わら せ なさい。
+        english: Kenta, finish your homework right away before watching TV.
+        hint: 「直ちに」conveys a non-negotiable and immediate command from a parental figure, emphasizing
+          the directness of the required action. We're looking for a firm, direct instruction from a parent.
+    scene: A mother giving a firm instruction to her son about his homework.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「～なさい」 is a polite imperative often used by parents to children, implying a clear
+      expectation. The overall tone is firm but not overly harsh, typical of an older female speaking
+      to a younger male in a family setting.
+  - english: If any issues arise with the project's progress, please report them to me immediately.
+    japanese:
+      - プロジェクト の 進捗 に 問題 が 生じ たら、{直ちに} 私 に 報告 し て ください。
+      - プロジェクト の 進捗 に 問題 が 生じ た 際 は、{直ちに} 私 に 報告 願い ます。
+      - プロジェクト の 進捗 に 問題 が 生じ た 場合 は、{直ちに} 私 に 報告 する よう に。
+      - プロジェクト の 進捗 に 問題 が 生じ た 際 は、{直ちに} ご 報告 ください。
+    english_literally: If problems arise with project progress, please directly report to me.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト の 進捗 に 問題 が 生じ たら、{すぐ に} 私 に 報告 し て ください。
+        english: If any issues arise with the project's progress, please report them to me right away.
+        hint: 「直ちに」conveys the professional expectation for a direct and urgent report in a business setting,
+          adding a sense of criticality beyond simple speed. We're looking for a formal, critical instruction.
+    scene: A manager instructing their team about reporting procedures.
+    register: formal
+    setting: professional
+  - english: The effects of this treatment will not appear immediately.
+    japanese:
+      - この 治療 の 効果 は、{直ちに} 現れる もの で は あり ませ ん。
+      - この 治療 の 効果 は、{直ちに は} 現れ ませ ん。
+      - この 治療 の 効果 は、{直ちに は} 出 ませ ん。
+      - 本 治療 の 効果 は、{直ちに は} 期待 でき かね ます。
+    english_literally: The effects of this treatment will not directly appear.
+    competing_grammar:
+      - competing_japanese:
+          - この 治療 の 効果 は、{すぐ に} 現れる もの で は あり ませ ん。
+        english: The effects of this treatment will not appear right away.
+        hint: 「直ちに」is suitable for formal explanations in a medical context, implying that the direct
+          and expected manifestation of a result is not instantaneous. We're looking for a formal explanation
+          about immediate results.
+    scene: A doctor explaining the gradual nature of a medical treatment to a patient.
+    register: formal
+    setting: informative
+  - english: After graduating, I intend to start my own business immediately.
+    japanese:
+      - 卒業 し たら、{直ちに} 自分 の ビジネス を 始める つもり だ。
+      - 卒業 し たら、{直ちに} 自分 の ビジネス を 始め ます。
+      - 卒業 し たら、{直ちに} 起業 する つもり です。
+      - 卒業 後 は、{直ちに} 起業 致し ます 所存 です。
+    english_literally: After graduating, I intend to directly start my own business.
+    competing_grammar:
+      - competing_japanese:
+          - 卒業 し たら、{すぐ に} 自分 の ビジネス を 始める つもり だ。
+        english: After graduating, I intend to start my own business right away.
+        hint: 「直ちに」expresses a strong, intentional, and urgent personal resolve, emphasizing a direct,
+          immediate commitment. We're looking for a decisive and immediate personal commitment.
+    scene: A university student sharing their ambitious post-graduation plans.
+    register: casual
+    setting: optimistic
+  - english: Hey, Yuuki! Let's tell everyone about this new idea immediately and hold a meeting!
+    japanese:
+      - ねえ、ユウキ！この 新しい アイデア、{直ちに} みんな に 伝え て、会議 を 開こう よ！
+      - ねえ、ユウキ！この 新しい アイデア、{直ちに} みんな に 伝え て、会議 しよう よ！
+      - ユウキ、この 新しい アイデア、{直ちに} みんな に 伝え て、会議 開こう！
+      - おい、ユウキ！この 新しい アイデア、{直ちに} みんな に 伝え て、会議 する ぞ！
+    english_literally: Hey, Yuuki! Directly tell everyone about this new idea, and let's hold a meeting!
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、ユウキ！この 新しい アイデア、{すぐ に} みんな に 伝え て、会議 を 開こう よ！
+        english: Hey, Yuuki! Let's tell everyone about this new idea right away and hold a meeting!
+        hint: 「直ちに」in this casual context adds a sense of urgency and directness to the speaker's excitement,
+          emphasizing a decisive, immediate course of action. We're looking for an immediate and enthusiastic
+          action from a casual speaker.
+    scene: A male colleague excitedly proposing an urgent action to his female colleague.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The informal exclamation 「ねえ」 and the volitional ending 「～ようよ」 indicate a casual, friendly
+      setting. The speaker's use of 「直ちに」, typically a formal adverb, combined with these casual markers,
+      creates a nuance of intense enthusiasm and a strong desire for immediate, purposeful action, which
+      is characteristic of younger, energetic speakers.
+  - english: This report needs to be submitted immediately. The deadline is today.
+    japanese:
+      - この レポート は、{直ちに} 提出 が 必要 です。締め切り は 今日 です。
+      - この レポート は、{直ちに} 提出 が 必要 だ。締め切り は 今日 だ。
+      - 本 レポート は、{直ちに} 提出 する 必要 が ござい ます。締め切り は 本日 で ござい ます。
+      - この レポート は、{直ちに} 提出 し なけれ ば なり ませ ん。締め切り は 今日 です。
+    english_literally: This report, submission is directly necessary. The deadline is today.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート は、{すぐ に} 提出 が 必要 です。締め切り は 今日 です。
+        english: This report needs to be submitted right away. The deadline is today.
+        hint: 「直ちに」conveys the high urgency and directness of the requirement, appropriate for a critical
+          task with an immediate deadline. We're looking for an immediate and critical requirement.
+    scene: A supervisor reminding an employee about an urgent report deadline.
+    register: formal
+    setting: professional
+  - english: Please move your car immediately. You are obstructing the fire truck's passage.
+    japanese:
+      - '{直ちに} 車 を 移動 し て ください。消防 車 の 通行 を 妨げ て い ます。'
+      - '{直ちに} お 車 を 移動 し て ください。消防 車 の 通行 を 妨げ て おり ます。'
+      - '{直ちに} 車 を 移動 せよ。消防 車 の 通行 を 妨げ て いる。'
+      - '{直ちに} 車 の 移動 を。消防 車 の 通行 を 妨げ て い ます。'
+    english_literally: Directly, please move your car. You are obstructing the fire truck's passage.
+    competing_grammar:
+      - competing_japanese:
+          - を {すぐ に} 車 を 移動 し て ください。消防 車 の 通行 を 妨げ て い ます。
+        english: Please move your car right away. You are obstructing the fire truck's passage.
+        hint: 「直ちに」emphasizes an official and non-negotiable directive, typical of an authority figure
+          enforcing rules in an emergency. We're looking for a strong, official command.
+    scene: A police officer issuing an urgent command to a driver blocking an emergency vehicle.
+    register: formal
+    setting: commanding
+  - english: His condition was complicated, so a diagnosis could not be made immediately.
+    japanese:
+      - 彼 の 病状 は 複雑 で、{直ちに は} 診断 でき ませ ん でし た。
+      - 彼 の 病状 は 複雑 で、{直ちに は} 診断 が でき なかっ た。
+      - 彼 の 病状 は 複雑 だっ た ため、{直ちに は} 診断 は 困難 でし た。
+      - 病状 が 複雑 な ため、{直ちに は} 診断 が つき ませ ん でし た。
+    english_literally: His condition was complicated, so diagnosis was not directly possible.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 病状 は 複雑 で、{すぐ に} 診断 でき ませ ん でし た。
+        english: His condition was complicated, so a diagnosis could not be made right away.
+        hint: 「直ちには」is used in more formal or official contexts to indicate that an immediate, direct
+          outcome is not expected. We're looking for a formal explanation about the impossibility of an
+          immediate diagnosis.
+    scene: A doctor explaining a difficult case to a concerned family member.
+    register: formal
+    setting: informative
+  - english: If I had the power to change the world, I would immediately eradicate poverty.
+    japanese:
+      - もし 私 が 世界 を 変える 力 を 持っ たら、{直ちに} 貧困 を なくす だろう。
+      - もし 私 が 世界 を 変える 力 を 持っ て い た なら ば、{直ちに} 貧困 を なくし ます。
+      - 私 に 世界 を 変える 力 が あれ ば、{直ちに} 貧困 を 根絶 する でしょ う。
+      - 仮 に 私 が 世界 を 変える 力 を 持っ て い た と すれ ば、{直ちに} 貧困 を 撲滅 し ます。
+    english_literally: If I had the power to change the world, I would directly eradicate poverty.
+    competing_grammar:
+      - competing_japanese:
+          - もし 私 が 世界 を 変える 力 を 持っ たら、{すぐ に} 貧困 を なくす だろう。
+        english: If I had the power to change the world, I would eradicate poverty right away.
+        hint: 「直ちに」here adds a strong, decisive, and intentional commitment to the action, indicating
+          a direct and immediate response to a hypothetical condition. We're looking for an immediate
+          and strong commitment to a hypothetical action.
+    scene: A person expressing an idealistic and firm resolve about a global issue.
+    register: formal
+    setting: inspirational
+post_example_writeup: As you can see from the examples, **直ちに** is versatile enough to be used across
+  various situations, from official directives to personal declarations of intent. Its core meaning of
+  direct and urgent immediacy remains consistent, but the choice of surrounding grammar and vocabulary
+  dictates the overall register and nuance of the sentence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/直ちに

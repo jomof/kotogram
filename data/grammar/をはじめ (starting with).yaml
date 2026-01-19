@@ -1,0 +1,441 @@
+grammar_point: をはじめ (starting with)
+learn_before:
+  - Verb[stem] (conjunction)
+  - 〜おかげで・〜せいで (because of, positive・negative result)
+  - に先立ち (prior to)
+  - 影響する (to affect・to influence)
+meaning: Starting with・not only...but also...
+pronunciation:
+  katakana: ヲハジメ
+  romaji: o hajime
+formation:
+  Noun + をはじめ: Indicates that the noun is the primary example or starting point in a series.
+jlpt: N3
+etymology: 「始め (hajime)」 means "beginning" or "start." The particle 「を (o)」 marks the noun as the object
+  of the implied verb, indicating that something is starting with that noun. The construction emphasizes
+  the primary example as the 'starting point' from which other elements or characteristics proceed.
+writeup: 「をはじめ」 is used to present a topic or example as a "starting point," often implying a logical
+  progression from that point. It can be translated as "not only (A), but (B)" or "starting with (A),
+  (B)". It highlights one noun as the initial example before introducing others. It emphasizes (A) as
+  the starting point. Expressions like 「として」 may be paired to further emphasize (A), similar to "with
+  (A) as the starting point, (B)". This grammar point is commonly used in both written and formal spoken
+  Japanese.
+false_friends:
+  - term: だけでなく
+    meaning: Not only… but also
+    kind: synonym
+    nuance: 「だけでなく」 focuses on adding more information without necessarily highlighting a starting point,
+      unlike 「をはじめ」. It simply indicates that something is true for A, and also true for B.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: はもちろん
+    meaning: Not only but also・Let alone・Not to mention・Of course
+    kind: synonym
+    nuance: 「はもちろん」 emphasizes the obviousness or given nature of the first item, suggesting it's natural
+      or expected, whereas 「をはじめ」 simply introduces it as a representative starting point without implying
+      obviousness.
+    grammar_point: はもちろん (not only... but also)
+  - term: ばかりでなく
+    meaning: Not only…but also・As well as
+    kind: synonym
+    nuance: 「ばかりでなく」 is a more formal way of saying "not only... but also," without the specific nuance
+      of a primary example or starting point found in 「をはじめ」. It often implies a broader scope than initially
+      expected.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: だけでなく(て)〜も
+    meaning: Not only ~ but ~ also・Not just ~ but ~ also
+    kind: similar expression
+    nuance: 「だけでなく(て)〜も」 is similar in meaning to 「だけでなく」 but does not emphasize a primary example or
+      starting point as 「をはじめ」 does. It simply adds items to a list.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: に加えて
+    meaning: In addition to・not only... but also・moreover・what's more
+    kind: synonym
+    nuance: 「に加えて」 focuses on adding something to what was already mentioned, emphasizing incrementality
+      or supplementation rather than specifying a primary example or starting point from which a broader
+      category originates.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: While 「をはじめ」 and the similar expressions above all add additional information
+  or examples, 「をはじめ」 specifically indicates a starting point or primary example in a series. It suggests
+  that the first item mentioned is the most prominent or representative of the group that follows. This
+  structure helps distinguish it from expressions that merely list additional items or emphasize inclusivity.
+examples:
+  - english: This company makes electrical products, starting with cars.
+    japanese:
+      - この 会社 は、車 {を はじめ}、電気 製品 も 作っ て い ます。
+      - この 会社 は 車 {を はじめ} と し て、電気 製品 も 作っ て い ます。
+      - 車 {を はじめ}、この 会社 は 電気 製品 も 作っ て い ます。
+    english_literally: This company, starting with cars, makes electrical products too.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 は、車 {だけ で なく}、電気 製品 も 作っ て い ます。
+        english: This company makes electrical products, not just cars.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that highlights cars
+          as a primary example from which other products stem.
+      - competing_japanese:
+          - この 会社 は、車 {は もちろん}、電気 製品 も 作っ て い ます。
+        english: This company, of course, makes cars, and also electrical products.
+        hint: 「はもちろん」 emphasizes that cars are an obvious product. We're looking for an expression that
+          treats cars as a representative starting point for other products.
+      - competing_japanese:
+          - この 会社 は、車 {ばかり で なく}、電気 製品 も 作っ て い ます。
+        english: This company makes electrical products, not merely cars.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that positions cars as the initial, representative product.
+      - competing_japanese:
+          - この 会社 は、車 {に 加え て}、電気 製品 も 作っ て い ます。
+        english: In addition to cars, this company makes electrical products.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates cars as
+          the primary product, from which other products originate.
+    scene: A tour guide explaining a versatile manufacturing company to visitors.
+    register: formal
+    setting: informative
+  - english: Many teachers cooperated with this event, starting with the principal.
+    japanese:
+      - 校長 先生 {を はじめ}、多く の 先生 方 が この イベント に 協力 し まし た。
+      - 校長 先生 {を はじめ} と し て、多く の 先生 方 が この イベント に 協力 し まし た。
+      - この イベント に は、校長 先生 {を はじめ}、多く の 先生 方 が 協力 し まし た。
+    english_literally: Starting with the principal teacher, many teachers cooperated with this event.
+    competing_grammar:
+      - competing_japanese:
+          - 校長 先生 {だけ で なく}、多く の 先生 方 が この イベント に 協力 し まし た。
+        english: Many teachers, not just the principal, cooperated with this event.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that highlights the
+          principal as a primary example whose cooperation set an example for others.
+      - competing_japanese:
+          - 校長 先生 {は もちろん}、多く の 先生 方 が この イベント に 協力 し まし た。
+        english: Of course, the principal, and many teachers cooperated with this event.
+        hint: 「はもちろん」 emphasizes that the principal's cooperation is obvious. We're looking for an expression
+          that treats the principal as a representative starting point for the cooperation of others.
+      - competing_japanese:
+          - 校長 先生 {ばかり で なく}、多く の 先生 方 が この イベント に 協力 し まし た。
+        english: Many teachers, not merely the principal, cooperated with this event.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that emphasizes the principal's leading role in the cooperation.
+      - competing_japanese:
+          - 校長 先生 {に 加え て}、多く の 先生 方 が この イベント に 協力 し まし た。
+        english: In addition to the principal, many teachers cooperated with this event.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates the principal's
+          involvement as the primary example that led to others' cooperation.
+      - competing_japanese:
+          - 校長 先生 {を 含め}、多く の 先生 方 が この イベント に 協力 し まし た。
+        english: Including the principal, many teachers cooperated with this event.
+        hint: 「を含め」 simply means 'including'. We're looking for an expression that suggests the principal's
+          involvement was a primary example or catalyst for others' cooperation.
+    scene: A committee member announcing the success of a school event.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「校長 先生 をはじめ」 implies that the principal's involvement was a significant starting
+      point or catalyst for the cooperation of others. The formal register and collective noun 「先生方」 are
+      typical of official announcements by an older male in a leadership role. The use of 「協力 し まし た」
+      maintains politeness suitable for a formal setting.
+  - english: This manga is loved all over the world, starting with Japan.
+    japanese:
+      - この 漫画 は 日本 {を はじめ}、世界 中 で 愛さ れ て い ます。
+      - 日本 {を はじめ}、この 漫画 は 世界 中 で 愛さ れ て い ます。
+      - この 漫画 は、日本 {を はじめ} と し て、世界 中 で 愛さ れ て い ます。
+    english_literally: This manga, starting with Japan, is loved all over the world.
+    competing_grammar:
+      - competing_japanese:
+          - この 漫画 は 日本 {だけ で なく}、世界 中 で 愛さ れ て い ます。
+        english: This manga is loved all over the world, not just in Japan.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that positions Japan
+          as the primary example of where the manga gained popularity before spreading globally.
+      - competing_japanese:
+          - この 漫画 は 日本 {は もちろん}、世界 中 で 愛さ れ て い ます。
+        english: Of course, this manga is loved in Japan, and also all over the world.
+        hint: 「はもちろん」 emphasizes that its popularity in Japan is obvious. We're looking for an expression
+          that treats Japan as a representative starting point for its global popularity.
+      - competing_japanese:
+          - この 漫画 は 日本 {ばかり で なく}、世界 中 で 愛さ れ て い ます。
+        english: This manga is loved all over the world, not merely in Japan.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights Japan as the initial, representative place of
+          its popularity.
+      - competing_japanese:
+          - この 漫画 は 日本 {に 加え て}、世界 中 で 愛さ れ て い ます。
+        english: In addition to Japan, this manga is loved all over the world.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates Japan as
+          the primary example of where the manga gained its initial widespread love.
+      - competing_japanese:
+          - この 漫画 は 日本 {から}、世界 中 で 愛さ れ て い ます。
+        english: This manga is loved all over the world, starting from Japan.
+        hint: 「から」 indicates a point of origin. We're looking for an expression that signifies Japan as
+          the primary place where it became popular, serving as a representative example for its global
+          reach.
+    scene: A fan discussing the global popularity of a Japanese manga.
+    register: casual
+    setting: friendly
+  - english: This product contains several allergens, starting with peanuts.
+    japanese:
+      - この 製品 に は、ピーナッツ {を はじめ} と する いく つ か の アレルギー 物質 が 含ま れ て い ます。
+      - ピーナッツ {を はじめ} と する アレルギー 物質 が、この 製品 に は いく つ か 含ま れ て い ます。
+      - この 製品 に は、ピーナッツ {を はじめ}、アレルギー 物質 が いく つ か 含ま れ て い ます。
+    english_literally: In this product, starting with peanuts, several allergy substances are contained.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 に は、ピーナッツ {だけ で なく}、いく つ か の アレルギー 物質 が 含ま れ て い ます。
+        english: This product contains several allergens, not just peanuts.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that emphasizes peanuts
+          as the most significant or primary allergen.
+      - competing_japanese:
+          - この 製品 に は、ピーナッツ {は もちろん}、いく つ か の アレルギー 物質 が 含ま れ て い ます。
+        english: Of course, this product, contains peanuts, and also several other allergens.
+        hint: 「はもちろん」 emphasizes that peanuts are an obvious allergen. We're looking for an expression
+          that treats peanuts as a representative starting point for other allergens.
+      - competing_japanese:
+          - この 製品 に は、ピーナッツ {ばかり で なく}、いく つ か の アレルギー 物質 が 含ま れ て い ます。
+        english: This product contains several allergens, not merely peanuts.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights peanuts as the initial, representative allergen.
+      - competing_japanese:
+          - この 製品 に は、ピーナッツ {に 加え て}、いく つ か の アレルギー 物質 が 含ま れ て い ます。
+        english: In addition to peanuts, this product contains several allergens.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates peanuts
+          as the primary allergen to be aware of.
+      - competing_japanese:
+          - この 製品 に は、ピーナッツ {など} の いく つ か の アレルギー 物質 が 含ま れ て い ます。
+        english: This product contains several allergens, such as peanuts.
+        hint: 「など」 indicates 'such as' or 'and so on'. We're looking for an expression that highlights
+          peanuts as the most prominent or primary allergen in the list.
+    scene: A food company issuing a warning about their product's ingredients.
+    register: formal
+    setting: informative
+  - english: He can speak Chinese and French too, starting with English.
+    japanese:
+      - 彼 は 英語 {を はじめ}、中国 語 や フランス 語 も 話せ ます。
+      - 英語 {を はじめ}、彼 は 中国 語 や フランス 語 も 話せ ます。
+      - 彼 は、英語 {を はじめ} と し て、中国 語 や フランス 語 も 話せ ます。
+    english_literally: He, starting with English, can speak Chinese and French too.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 英語 {だけ で なく}、中国 語 や フランス 語 も 話せ ます。
+        english: He can speak Chinese and French too, not just English.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that emphasizes English
+          as his primary or most proficient language.
+      - competing_japanese:
+          - 彼 は 英語 {は もちろん}、中国 語 や フランス 語 も 話せ ます。
+        english: Of course, he can speak English, and also Chinese and French.
+        hint: 「はもちろん」 emphasizes that his English ability is obvious. We're looking for an expression
+          that treats English as a representative starting point for his linguistic abilities.
+      - competing_japanese:
+          - 彼 は 英語 {ばかり で なく}、中国 語 や フランス 語 も 話せ ます。
+        english: He can speak Chinese and French too, not merely English.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights English as the foundational example of his linguistic
+          abilities.
+      - competing_japanese:
+          - 彼 は 英語 {に 加え て}、中国 語 や フランス 語 も 話せ ます。
+        english: In addition to English, he can speak Chinese and French.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates English
+          as the primary example of his language skills.
+    scene: A recruiter reviewing a candidate's language skills.
+    register: semi-formal
+    setting: professional
+  - english: I want to visit tourist spots in West Japan, starting with Kyushu.
+    japanese:
+      - 九州 {を はじめ}、西 日本 の 観光 地 を 回り たい です。
+      - 西 日本 の 観光 地 を 回り たい です。九州 {を はじめ}。
+      - 九州 {を はじめ} と し て、西 日本 の 観光 地 を 回り たい です。
+    english_literally: Starting with Kyushu, I want to go around tourist spots in West Japan.
+    competing_grammar:
+      - competing_japanese:
+          - 九州 {だけ で なく}、西 日本 の 観光 地 を 回り たい です。
+        english: I want to visit tourist spots in West Japan, not just Kyushu.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that emphasizes Kyushu
+          as a key, representative destination.
+      - competing_japanese:
+          - 九州 {は もちろん}、西 日本 の 観光 地 を 回り たい です。
+        english: Of course, I want to visit Kyushu, and also tourist spots in West Japan.
+        hint: 「はもちろん」 emphasizes that Kyushu is an obvious place to visit. We're looking for an expression
+          that treats Kyushu as a representative starting point for exploring West Japan.
+      - competing_japanese:
+          - 九州 {ばかり で なく}、西 日本 の 観光 地 を 回り たい です。
+        english: I want to visit tourist spots in West Japan, not merely Kyushu.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights Kyushu as the initial, representative destination.
+      - competing_japanese:
+          - 九州 {に 加え て}、西 日本 の 観光 地 を 回り たい です。
+        english: In addition to Kyushu, I want to visit tourist spots in West Japan.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates Kyushu as
+          the primary destination from which other explorations will stem.
+      - competing_japanese:
+          - 九州 {から}、西 日本 の 観光 地 を 回り たい です。
+        english: I want to visit tourist spots in West Japan, starting from Kyushu.
+        hint: 「から」 indicates a point of origin. We're looking for an expression that signifies Kyushu
+          as a key, representative destination, not just a simple origin of travel.
+    scene: A traveler planning their itinerary for a trip to Japan.
+    register: casual
+    setting: optimistic
+  - english: It is necessary to review unhealthy lifestyle habits, starting with lack of sleep.
+    japanese:
+      - 睡眠 不足 {を はじめ}、不 健康 な 生活 習慣 を 見直す 必要 が あり ます。
+      - 不 健康 な 生活 習慣 を 見直す 必要 が あり ます。睡眠 不足 {を はじめ}。
+      - 睡眠 不足 {を はじめ} と し て、不 健康 な 生活 習慣 を 見直す 必要 が あり ます。
+    english_literally: To Japanese learning, starting with kanji, many difficulties exist.
+    competing_grammar:
+      - competing_japanese:
+          - 睡眠 不足 {だけ で なく}、不 健康 な 生活 習慣 を 見直す 必要 が あり ます。
+        english: It is necessary to review unhealthy lifestyle habits, not just lack of sleep.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that emphasizes lack
+          of sleep as the most critical or primary unhealthy habit to address.
+      - competing_japanese:
+          - 睡眠 不足 {は もちろん}、不 健康 な 生活 習慣 を 見直す 必要 が あり ます。
+        english: Of course, lack of sleep, and also other unhealthy lifestyle habits need reviewing.
+        hint: 「はもちろん」 emphasizes that lack of sleep is an obvious unhealthy habit. We're looking for an
+          expression that treats lack of sleep as a representative starting point for reviewing unhealthy
+          habits.
+      - competing_japanese:
+          - 睡眠 不足 {ばかり で なく}、不 健康 な 生活 習慣 を 見直す 必要 が あり ます。
+        english: It is necessary to review unhealthy lifestyle habits, not merely lack of sleep.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights lack of sleep as the initial, representative
+          unhealthy habit.
+      - competing_japanese:
+          - 睡眠 不足 {に 加え て}、不 健康 な 生活 習慣 を 見直す 必要 が あり ます。
+        english: In addition to lack of sleep, it is necessary to review unhealthy lifestyle habits.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates lack of
+          sleep as the primary unhealthy habit to address first.
+      - competing_japanese:
+          - 睡眠 不足 {の よう な} 不 健康 な 生活 習慣 を 見直す 必要 が あり ます。
+        english: It is necessary to review unhealthy lifestyle habits, such as lack of sleep.
+        hint: 「のような」 indicates 'such as' or 'and so on'. We're looking for an expression that emphasizes
+          lack of sleep as the most prominent or primary difficulty in the list.
+    scene: A doctor advising a patient on improving their health.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「見直す 必要 が あります」 indicates a recommendation from a position of authority, suitable
+      for a doctor. The explicit mention of 「睡眠 不足」 as the starting point emphasizes its importance, a
+      nuance conveyed by an older male speaker advising a younger person on health matters.
+  - english: The introduction of the new system will affect the entire company, starting with the sales
+      department.
+    japanese:
+      - 新しい システム の 導入 は、営業 部門 {を はじめ}、全社 に 影響 し ます。
+      - 営業 部門 {を はじめ}、新しい システム の 導入 は 全社 に 影響 し ます。
+      - 新しい システム の 導入 は、営業 部門 {を はじめ} と し て、全社 に 影響 し ます。
+    english_literally: The introduction of the new system, starting with the sales department, affects
+      the entire company.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム の 導入 は、営業 部門 {だけ で なく}、全社 に 影響 し ます。
+        english: The introduction of the new system affects the entire company, not just the sales department.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that highlights the
+          sales department as the primary or initial point of impact.
+      - competing_japanese:
+          - 新しい システム の 導入 は、営業 部門 {は もちろん}、全社 に 影響 し ます。
+        english: The introduction of the new system, of course, affects the sales department, and also
+          the entire company.
+        hint: 「はもちろん」 emphasizes that the sales department's impact is obvious. We're looking for an expression
+          that treats the sales department as a representative starting point for company-wide impact.
+      - competing_japanese:
+          - 新しい システム の 導入 は、営業 部門 {ばかり で なく}、全社 に 影響 し ます。
+        english: The introduction of the new system affects the entire company, not merely the sales department.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights the sales department as the initial, representative
+          department affected.
+      - competing_japanese:
+          - 新しい システム の 導入 は、営業 部門 {に 加え て}、全社 に 影響 し ます。
+        english: In addition to the sales department, the introduction of the new system affects the entire
+          company.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates the sales
+          department as the primary area of impact for the new system.
+    scene: A manager explaining the impact of a new system roll-out to employees.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal tone and direct address to a group, along with the specific mention of 「営業 部門 をはじめ」
+      to highlight the primary impacted area, reflect the communication style of an older female manager
+      explaining a company-wide change to her team. The use of 「影響 し ます」 maintains politeness and professionalism.
+  - english: The project succeeded thanks to many people, starting with the department head.
+    japanese:
+      - 部 長 {を はじめ}、多く の 方々 の おかげ で、プロジェクト は 成功 し まし た。
+      - プロジェクト は、部長 {を はじめ}、多く の 方々 の おかげ で 成功 し まし た。
+      - 部 長 {を はじめ} と し て、多く の 方々 の おかげ で、プロジェクト は 成功 し まし た。
+    english_literally: Starting with the department head, thanks to many people, the project succeeded.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 {だけ で なく}、多く の 方々 の おかげ で、プロジェクト は 成功 し まし た。
+        english: Thanks to many people, not just the department head, the project succeeded.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that highlights the
+          department head as the primary example of those who contributed to the project's success.
+      - competing_japanese:
+          - 部 長 {は もちろん}、多く の 方々 の おかげ で、プロジェクト は 成功 し まし た。
+        english: Of course, thanks to the department head, and also many others, the project succeeded.
+        hint: 「はもちろん」 emphasizes that the department head's contribution is obvious. We're looking for
+          an expression that treats the department head as a representative starting point for acknowledging
+          contributions.
+      - competing_japanese:
+          - 部 長 {ばかり で なく}、多く の 方々 の おかげ で、プロジェクト は 成功 し まし た。
+        english: Thanks to many people, not merely the department head, the project succeeded.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights the department head as the initial, representative
+          contributor.
+      - competing_japanese:
+          - 部 長 {に 加え て}、多く の 方々 の おかげ で、プロジェクト は 成功 し まし た。
+        english: In addition to the department head, thanks to many people, the project succeeded.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates the department
+          head as the primary individual whose contribution led to success.
+      - competing_japanese:
+          - 部 長 の {おかげ で}、多く の 方々 の {おかげ で}、プロジェクト は 成功 し まし た。
+        english: Thanks to the department head and many others, the project succeeded.
+        hint: 「おかげで」 attributes success to someone. We're looking for an expression that highlights the
+          department head as the primary example of those who contributed, setting the stage for others.
+    scene: A project leader thanking the team after a successful completion.
+    register: formal
+    setting: supportive
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: The phrase 「部長 をはじめ」 emphasizes the department head's central role, likely as the initial
+      driving force or key supporter, even if others also contributed. A younger male project leader might
+      use this to formally acknowledge the hierarchical leadership in a professional setting. The use
+      of 「おかげ で」 is a polite way to express gratitude.
+  - english: Learning Japanese has many difficulties, starting with kanji.
+    japanese:
+      - 日本 語 の 学習 に は、漢字 {を はじめ}、多く の 困難 が あり ます。
+      - 漢字 {を はじめ}、日本 語 の 学習 に は 多く の 困難 が あり ます。
+      - 日本 語 の 学習 に は、漢字 {を はじめ} と し て、多く の 困難 が あり ます。
+    english_literally: To Japanese learning, starting with kanji, many difficulties exist.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 の 学習 に は、漢字 {だけ で なく}、多く の 困難 が あり ます。
+        english: Learning Japanese has many difficulties, not just kanji.
+        hint: 「だけでなく」 simply lists additional items. We're looking for an expression that highlights kanji
+          as the primary or initial difficulty encountered.
+      - competing_japanese:
+          - 日本 語 の 学習 に は、漢字 {は もちろん}、多く の 困難 が あり ます。
+        english: Of course, learning Japanese has kanji, but also many other difficulties.
+        hint: 「はもちろん」 emphasizes that kanji are an obvious difficulty. We're looking for an expression
+          that treats kanji as a representative starting point for other challenges in Japanese learning.
+      - competing_japanese:
+          - 日本 語 の 学習 に は、漢字 {ばかり で なく}、多く の 困難 が あり ます。
+        english: Learning Japanese has many difficulties, not merely kanji.
+        hint: 「ばかりでなく」 is a formal way to say 'not only... but also' without the nuance of a primary example.
+          We're looking for an expression that highlights kanji as the initial, representative difficulty.
+      - competing_japanese:
+          - 日本 語 の 学習 に は、漢字 {に 加え て}、多く の 困難 が あり ます。
+        english: In addition to kanji, learning Japanese has many difficulties.
+        hint: 「に加えて」 focuses on adding items. We're looking for an expression that designates kanji as
+          the primary challenge from which other difficulties stem.
+      - competing_japanese:
+          - 日本 語 の 学習 に は、漢字 {など} の 多く の 困難 が あり ます。
+        english: Learning Japanese has many difficulties, such as kanji.
+        hint: 「など」 indicates 'such as' or 'and so on'. We're looking for an expression that emphasizes
+          kanji as the most prominent or primary difficulty in the list.
+    scene: Two students discussing the challenges of their Japanese class.
+    register: casual
+    setting: reflective
+post_example_writeup: As these examples demonstrate, 「をはじめ」 is versatile and can be applied in various
+  contexts, from business and academic discussions to casual conversations about personal interests or
+  challenges. The key is to remember that the noun immediately preceding 「をはじめ」 is presented as the leading
+  or most representative item within a broader category or group. This structure helps guide the listener
+  or reader's understanding, setting the stage for the rest of the information.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/をはじめ

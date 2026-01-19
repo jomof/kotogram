@@ -1,0 +1,245 @@
+grammar_point: Verb[ない] (plain negative)
+learn_before:
+  - は (topic and contrast)
+meaning: This grammar point expresses the plain negative form of verbs, indicating that an action is not
+  performed or a state does not exist.
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: 〜ない
+    rarity: common
+    meaning: plain negative form of verbs
+pronunciation:
+  katakana: ナイ
+  romaji: nai
+formation:
+  Group 1 Verbs (五段動詞 Godan Dōshi): Replace the final う sound with its あ-column equivalent and add ない
+    (e.g., 飲む (nomu) -> 飲まない (nomanai); 買う (kau) -> 買わない (kawanai)). Note that verbs ending in う change
+    to わない.
+  Group 2 Verbs (一段動詞 Ichidan Dōshi): Drop る and add ない (e.g., 食べる (taberu) -> 食べない (tabenai)).
+  Irregular Verbs: する (suru) -> しない (shinai); 来る (kuru) -> 来ない (konai).
+jlpt: N5
+etymology: The negative auxiliary verb 「ない」is believed to have evolved from the classical Japanese negative
+  auxiliary suffix 「ぬ」which can be traced to forms like 「ざる」and 「ぬ + あり」. Its adjectival conjugation patterns
+  (e.g., 「ない」「なかった」「なくて」) reflect this historical linguistic development.
+writeup: |-
+  The plain negative form of Japanese verbs, commonly known as the 「ない」form, is a fundamental grammatical construction used to express that an action is not performed or a state does not exist. It is essential for building many other more complex grammatical patterns.
+
+  Unlike English, where "not" simply precedes the verb, Japanese verbs undergo a morphological change to become negative. This change depends on the verb group.
+
+  For **Group 1 verbs (五段動詞)**, which typically end in a う-sound before る (e.g., 読む (yomu), 買う (kau), 行く (iku)), the final kana is changed to its corresponding あ-column sound, and then 「ない」is attached. For example, 読む becomes 読まない (yomanai). A special case is verbs ending in う, which change to わない, such as 買う becoming 買わない (kawanai). The verb 行く (iku) is also a notable exception in Group 1, becoming 行かない (ikanai), not 行かない (ikunai).
+
+  For **Group 2 verbs (一段動詞)**, which always end in いる or える (e.g., 食べる (taberu), 見る (miru)), the final る is simply dropped and 「ない」is attached. So, 食べる becomes 食べない (tabenai).
+
+  There are also two **irregular verbs** to remember: する (suru, to do) becomes しない (shinai), and 来る (kuru, to come) becomes 来ない (konai).
+
+   The 「ない」form is used in casual conversations among friends and family, and it serves as the base for many other grammatical structures such as informal requests (〜ないで `naide`), stating intentions (〜ないつもりだ `nai tsumori da`), and various conditional forms. Understanding and mastering the 「ない」form is crucial for progressing in Japanese grammar.
+false_friends:
+  - term: Verb[ません] (polite negative)
+    meaning: polite negative form of verbs
+    kind: similar expression
+    nuance: While both express negation, 「ません」is the polite equivalent of 「ない」and is used in formal settings
+      or when speaking to superiors or strangers. 「ない」is strictly casual.
+    grammar_point: Verb[ません] (polite negative)
+  - term: な-Adjective[ではない・じゃない] (plain negative)
+    meaning: plain negative form of na-adjectives
+    kind: similar expression
+    nuance: This is the negative form for な-adjectives, not verbs. Although it uses 「ない」at the end, the
+      formation rule for the preceding part is different, and it applies to adjectives, not actions.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: い-Adjective[くない] (negative)
+    meaning: plain negative form of i-adjectives
+    kind: similar expression
+    nuance: This is the negative form for い-adjectives, not verbs. It directly attaches 「ない」to the stem
+      of the い-adjective after replacing the final い with く. For example, 良い (ii) becomes 良くない (yokunai).
+    grammar_point: い-Adjective[くない] (negative)
+  - term: 〜てはいけない・〜てはならない (must not)
+    meaning: must not do, prohibited
+    kind: similar expression
+    nuance: While this also expresses a negative action, it conveys prohibition or obligation not to do
+      something, which is a stronger nuance than simple non-performance expressed by 「ない」.
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+post_false_friends_writeup: It is important to distinguish the plain negative verb form 「ない」from other
+  negative expressions or forms that merely contain 「ない」. While 「ません」is its polite counterpart, 「ではない」and
+  「くない」are used for negating な-adjectives and い-adjectives, respectively, following different formation
+  rules. Furthermore, constructions like 「〜てはいけない」express prohibition, a much stronger directive than
+  a simple statement of non-action with the plain negative verb form. Pay close attention to the part
+  of speech and the specific function to avoid confusion.
+examples:
+  - english: I don't eat meat.
+    japanese:
+      - 私 は 肉 を {食べ ない}。
+      - 私 肉 を {食べ ない}。
+      - 私 は 肉 {食べ ない}。
+      - 肉 を {食べ ない}。
+    english_literally: As for me, meat, don't eat.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 肉 を 食べ ませ ん。
+        english: I don't eat meat (polite).
+        hint: The speaker is speaking casually with a friend. 「ません」is polite. We're looking for a plain
+          negative verb.
+    scene: A person explaining their dietary habits casually to a friend.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: The dog doesn't bite.
+    japanese:
+      - この 犬 は {噛ま ない}。
+      - この 犬 {噛ま ない}。
+      - 犬 は {噛ま ない}。
+    english_literally: This dog, doesn't bite.
+    competing_grammar:
+      - competing_japanese:
+          - この 犬 は 噛み ませ ん。
+        english: This dog doesn't bite (polite).
+        hint: The speaker is speaking casually to reassure someone. 「ません」is a polite form. We're looking
+          for a plain negative verb.
+    scene: A parent reassuring their child about a dog nearby.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+  - english: I don't do my homework on weekends.
+    japanese:
+      - 週末 は 宿題 を {し ない}。
+      - 週末 宿題 を {し ない}。
+      - 週末 は 宿題 {し ない}。
+      - 宿題 を {し ない}。
+    english_literally: Weekends, homework, don't do.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 は 宿題 を し ませ ん。
+        english: I don't do my homework on weekends (polite).
+        hint: The speaker is talking about a personal habit. 「しません」is a polite form. We're looking for
+          a plain negative verb.
+    scene: A male student casually discussing his habits with a classmate.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: The male speaker uses the plain form 「しない」to discuss personal habits with a peer, fitting
+      the casual register. Particle omissions are common in casual speech.
+  - english: He won't come to the party tonight.
+    japanese:
+      - 彼 は 今夜 の パーティー に {来 ない}。
+      - 彼 今夜 の パーティー に {来 ない}。
+      - 今夜 の パーティー に {来 ない}。
+    english_literally: He, tonight's party, won't come.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 今夜 の パーティー に 来 ませ ん。
+        english: He won't come to the party tonight (polite).
+        hint: The speaker is sharing information casually with a friend. 「来ません」is a polite form. We're
+          looking for a plain negative verb.
+    scene: Two female friends discussing who will attend a party.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: The female speaker uses the plain form 「来ない」which is common in casual conversation among friends,
+      maintaining a friendly tone. Particles like 「は」can be omitted.
+  - english: I won't drink alcohol anymore.
+    japanese:
+      - もう お 酒 を {飲ま ない}。
+      - もう お 酒 {飲ま ない}。
+      - お 酒 を {飲ま ない}。
+    english_literally: Anymore, alcohol, won't drink.
+    competing_grammar:
+      - competing_japanese:
+          - もう お 酒 を 飲み ませ ん。
+        english: I won't drink alcohol anymore (polite).
+        hint: The speaker is making a firm personal decision. 「飲みません」is a polite form. We're looking for
+          a plain negative verb.
+    scene: Someone making a firm personal decision to quit drinking.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: My friend doesn't understand Japanese.
+    japanese:
+      - 友達 は 日本 語 が {分から ない}。
+      - 友達 日本 語 が {分から ない}。
+      - 友達 は 日本 語 {分から ない}。
+      - 日本 語 が {分から ない}。
+    english_literally: Friend, Japanese, doesn't understand.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 は 日本 語 が 分かり ませ ん。
+        english: My friend doesn't understand Japanese (polite).
+        hint: This is a casual statement about a friend's ability. 「分かりません」is a polite form. We're looking
+          for a plain negative verb.
+    scene: Explaining a friend's language ability to another friend.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: Today, I won't watch TV.
+    japanese:
+      - 今日 は テレビ を {見 ない}。
+      - 今日 テレビ を {見 ない}。
+      - 今日 は テレビ {見 ない}。
+      - テレビ を {見 ない}。
+    english_literally: Today, TV, won't watch.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は テレビ を 見 ませ ん。
+        english: Today, I won't watch TV (polite).
+        hint: The speaker is making a casual decision for the day. 「見ません」is a polite form. We're looking
+          for a plain negative verb.
+    scene: A person deciding to skip watching TV for the day to focus on other tasks.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+  - english: Are you not going?
+    japanese:
+      - '{行か ない} の？'
+      - 君 {行か ない} の？
+    english_literally: Don't go, question?
+    competing_grammar:
+      - competing_japanese:
+          - 行き ませ ん か？
+          - 行か ない の です か？
+        english: Are you not going? (polite)
+        hint: The question is posed in a casual, direct manner. 「行きませんか」and 「行かないのですか」are more formal
+          ways to ask. We're looking for a casual question using the plain negative verb.
+    scene: A child asking their parent if they are not going somewhere they expected to go.
+    register: casual
+    setting: interrogative
+    conjugation: negative plain (～ない)
+    speaker_age: younger
+    nuance: The child uses the plain negative form 「行かない」followed by the casual question particle 「の」,
+      which is typical of younger speakers and close family relationships. A casual pronoun like 「君」could
+      be added.
+  - english: Don't forget your wallet.
+    japanese:
+      - 財布 を {忘れ ない} で。
+      - 財布 {忘れ ない} で。
+    english_literally: Wallet, don't forget.
+    competing_grammar:
+      - competing_japanese:
+          - 財布 を 忘れ ない で ください。
+        english: Please don't forget your wallet (polite).
+        hint: This is an informal request among friends. The addition of 「ください」makes the request polite.
+          We're looking for a casual negative request.
+    scene: A friend reminds another friend before they leave the house.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: I didn't think it would rain.
+    japanese:
+      - 雨 が {降ら ない} と 思っ た。
+      - 雨 {降ら ない} と 思っ た。
+    english_literally: Rain, doesn't fall, I thought.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降ら ない だろう と 思っ た。
+        english: I thought it probably wouldn't rain.
+        hint: The casual phrasing of 'I didn't think it would rain' implies simple negation. The inclusion
+          of 「だろう」adds a nuance of conjecture, which is not what we're demonstrating here.
+    scene: Someone expresses mild surprise after unexpected rain starts.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+post_example_writeup: As you can see from the examples, the 「ない」form is versatile and integrates directly
+  into everyday casual Japanese. It can be used to state facts, describe habits, express personal decisions,
+  or even form informal requests when combined with 「で」. Mastering its formation and usage across different
+  verb types is key to expressing simple negation fluently.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/2

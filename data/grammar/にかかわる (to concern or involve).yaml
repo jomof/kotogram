@@ -1,0 +1,374 @@
+grammar_point: にかかわる (to concern or involve)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]によって (cause・reason)'
+  - '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - ことなの (it is that)
+  - となると (when it comes to)
+  - の (nominalizer・question particle)
+  - もし・もしも (if, emphasis)
+  - を介して・介した (through an intermediary)
+  - 仮に (supposing that)
+meaning: To relate to, to have to do with, concerning, depends on
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: にかかわる
+    rarity: common
+    meaning: to relate to, to have to do with, concerning, depends on
+  - conjugation-type: negative plain (～ない)
+    form: にかかわらない
+    rarity: common
+    meaning: not to relate to, not to have to do with, not concerning, does not depend on
+  - conjugation-type: past plain (～た)
+    form: にかかわった
+    rarity: common
+    meaning: related to, had to do with, concerned, depended on
+  - conjugation-type: negative past plain (～なかった)
+    form: にかかわらなかった
+    rarity: common
+    meaning: did not relate to, did not have to do with, was not concerning, did not depend on
+  - conjugation-type: te-form (～て)
+    form: にかかわって
+    rarity: uncommon
+    meaning: relating to, having to do with, concerning, depending on (te-form)
+  - conjugation-type: conditional (～ば)
+    form: にかかわれば
+    rarity: rare
+    meaning: if it relates to, if it has to do with, if concerning, if it depends on
+  - conjugation-type: conditional (～たら)
+    form: にかかわったら
+    rarity: rare
+    meaning: if it related to, if it had to do with, if concerned, if it depended on (past conditional)
+pronunciation:
+  katakana: ニカカワル
+  romaji: ni kakawaru
+formation:
+  '[Noun] + に + かかわる': Indicates that something relates to, concerns, or depends on the noun. Often implies
+    importance or potential impact.
+jlpt: N2
+etymology: The grammar point 「にかかわる」 comes from the verb 「関わる (かかわる)」, meaning "to be involved," "to be
+  related to," or "to concern." The addition of 「に」 functions as a particle indicating direction, purpose,
+  or impact, highlighting that the preceding noun is the entity that something is related to or has an
+  impact on.
+writeup: The grammar point 「にかかわる」, often written in hiragana, indicates a profound relationship between
+  two entities. It signifies that one thing is intrinsically linked to, concerns, or depends on another,
+  often implying a critical or impactful connection. This pattern is commonly used to express that something
+  is a matter of significant importance, or that it has serious implications, potentially negative ones.
+  It is typically used after nouns. The structure can either stand alone as a verb describing the relationship
+  or be followed by another noun to modify it. For instance, 「人生にかかわる問題」 (a problem that concerns one's
+  life) directly modifies the noun 「問題」. While similar in meaning to 「に関する」, 「にかかわる」 conveys a **much
+  deeper and more crucial connection**. Think of it as indicating that the existence, outcome, or integrity
+  of one thing is at stake or directly tied to another. It often carries a nuance of gravity, emphasizing
+  that the matter at hand is one that cannot be taken lightly.
+false_friends:
+  - term: において・における
+    meaning: In, on, at, regarding, in terms of
+    kind: similar expression
+    nuance: Unlike 「にかかわる」, 「において・における」 primarily indicates a location, time, or specific context where
+      something occurs or is considered, rather than a direct relationship of impact or dependency.
+    grammar_point: において・における (formal context)
+  - term: について
+    meaning: Concerning, about, regarding
+    kind: similar expression
+    nuance: 「について」 is a general expression used to introduce the topic or subject of discussion. It lacks
+      the strong nuance of critical involvement or dependency that 「にかかわる」 conveys.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: に関する・に関して
+    meaning: Related to, about, regarding
+    kind: similar expression
+    nuance: While 「に関する」 also indicates a relationship, it is a more general or descriptive connection.
+      「にかかわる」 implies a deeper, more important, and often more impactful or consequential relationship
+      than 「に関する」.
+    grammar_point: 〜について・〜に関して (about・regarding)
+  - term: 関係がある
+    meaning: To be related to, to be connected with
+    kind: similar expression
+    nuance: 「関係がある」 indicates a general connection or association. 「にかかわる」, however, implies a more fundamental
+      dependency or critical involvement, suggesting that the state or outcome of one thing is directly
+      tied to the other.
+    grammar_point: 関係がある (to be related・to have a connection)
+  - term: 影響を与える
+    meaning: To influence, to affect
+    kind: similar expression
+    nuance: 「影響を与える」 describes an external action that causes a change or effect. In contrast, 「にかかわる」
+      implies a more intrinsic link, where one thing is inherently connected to, or dependent on, the
+      other's state or outcome, rather than just an external influence.
+    grammar_point: <strongly-suggest>:影響を与える (to influence・to affect)
+  - term: 次第
+    meaning: As soon as; dependent on
+    kind: often confused with
+    nuance: 「次第」 (shidai) can indicate a cause-and-effect or conditional relationship (e.g., "as soon
+      as X, then Y"), or that something "depends on" circumstances. However, its usage is quite distinct
+      from 「にかかわる」, which focuses on a fundamental, often critical, *relation* or *involvement*.
+    grammar_point: '[Noun]次第だ・[Noun]次第で(は) (depending on・as a result of)'
+  - term: にもかかわらず
+    meaning: Despite, in spite of, regardless, nevertheless
+    kind: often confused with
+    nuance: 「にもかかわらず」 introduces a contrast or concession, indicating that something occurs despite a
+      particular condition. This is fundamentally different from 「にかかわる」, which describes a direct relationship
+      or dependency.
+    grammar_point: にかかわらず (regardless of)
+post_false_friends_writeup: When differentiating 「にかかわる」 from other expressions, remember its emphasis
+  on a deep, significant, and often critical relationship or dependency. It goes beyond merely stating
+  a relationship, implying that one element's state or existence is dependent on or significantly impacted
+  by another. This inherent gravity often makes it suitable for serious or high-stakes contexts.
+examples:
+  - english: The success or failure of this plan is a very important matter that concerns our company's
+      future.
+    japanese:
+      - この 計画 の 成否 は、わが 社 の 将来 に {かかわる} 大事 な こと です。
+      - この 計画 の 成否 は、わが 社 の 将来 に {かかわる} 非常 に 大切 な 事柄 です。
+      - この 計画 の 成否 は、弊社 の 将来 に {かかわる} 極めて 重要 な 案件 です。
+    english_literally: The success or failure of this plan, to our company's future, is an important matter
+      that relates.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 成否 は、わが 社 の 将来 に 関係 {する} 大事 な こと です。
+        english: The success or failure of this plan is an important matter related to our company's future.
+        hint: The formal business setting and the CEO's serious tone emphasize the critical dependency
+          of the company's future on the plan's outcome, a deeper connection than merely 'being related
+          to' ({関係がある}). We're looking for an expression that signifies a deep, crucial connection.
+      - competing_japanese:
+          - この 計画 の 成否 は、わが 社 の 将来 に {に つい て} の 大事 な こと です。
+        english: The success or failure of this plan is an important matter about our company's future.
+        hint: 「{について}」 indicates the topic of discussion. We're looking for an expression that shows a
+          vital connection or dependency.
+    scene: At a formal board meeting, the CEO addresses the importance of a new project.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「わが社」(our company) and 「大事 な ことです」(is an important matter) combined with the formal
+      register and professional setting, reflects a CEO addressing a board. The phrasing is gender-neutral
+      and age-neutral for a CEO in a formal setting, but `かかわる` emphasizes the critical, impactful nature
+      that such a high-level discussion would entail, highlighting the deep dependency of the company's
+      future on the plan.
+  - english: High sugar intake is a problem that concerns one's health.
+    japanese:
+      - 高い 糖分 の 摂取 は、健康 に {かかわる} 問題 です。
+      - 多量 な 糖分 の 摂取 は、健康 に {かかわる} 問題 です。
+      - 過剰 な 糖分 摂取 は、健康 に {かかわる} 深刻 な 問題 と なり ます。
+    english_literally: High sugar intake, to health, is a problem that relates.
+    competing_grammar:
+      - competing_japanese:
+          - 高い 糖分 の 摂取 は、健康 に 大きな {影響 を 与える} 問題 です。
+        english: High sugar intake is a problem that affects one's health.
+        hint: The doctor's professional advice highlights that sugar intake isn't just an influence ({影響を与える})
+          but directly bears on the state of one's health, implying a more inherent and critical link.
+          We're looking for an expression that conveys a direct and critical connection to health.
+      - competing_japanese:
+          - 高い 糖分 の 摂取 は、健康 に {に つい て} の 問題 です。
+        english: High sugar intake is a problem about health.
+        hint: 「{について}」 indicates the topic of discussion. We're looking for an expression that conveys
+          a direct and critical connection.
+    scene: A doctor advises a patient during a check-up.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: His careless remark affected the team's trust.
+    japanese:
+      - 彼 の 軽率 な 発言 が、チーム の 信頼 に {かかわっ た}。
+      - 彼 の 軽率 な 発言 は、チーム の 信頼 に {かかわっ た} の だ。
+      - 彼 の 軽率 な 発言 に よっ て、チーム の 信頼 に {かかわる} 事態 と なっ た。
+    english_literally: His careless remark, to the team's trust, related.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 軽率 な 発言 が、チーム の 信頼 を {損なっ た}。
+        english: His careless remark damaged the team's trust.
+        hint: The discussion among senior colleagues about how a remark 'affected' trust, rather than
+          directly 'damaging' it (損なう), leans into the nuance of a matter that directly relates to the
+          trust itself, making it dependent on the remark. We're looking for an expression that indicates
+          a direct relationship or impact on trust.
+      - competing_japanese:
+          - 彼 の 軽率 な 発言 が、チーム の 信頼 に 関係 {し たら}。
+        english: His careless remark was related to the team's trust.
+        hint: 「{関係がある}」 indicates a general connection. We're looking for an expression that implies a
+          deeper, more impactful involvement.
+    scene: Two senior colleagues reflect on a past incident involving a junior team member.
+    register: semi-formal
+    setting: serious
+    conjugation: past plain (～た)
+  - english: That doesn't directly concern my work, so you don't need to worry about it.
+    japanese:
+      - それ は 私 の 仕事 に は 直接 {かかわら ない} の で、気 に し なく て いい です よ。
+      - それ は 私 の 仕事 に 直接 {かかわら ない} こと な の で、ご 心配 なく。
+      - それ は 私 の 職務 に は 直接 {かかわら ない} ため、お 気遣い なく どうぞ。
+    english_literally: That, to my work, does not directly relate, so you don't need to worry.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 私 の 仕事 に は 関係 {ない} の で、気 に し なく て いい です よ。
+        english: That is unrelated to my work, so you don't need to worry about it.
+        hint: The situation of a colleague explaining their limited scope of responsibility highlights
+          that the issue doesn't 'have to do with' or 'depend on' his direct work, implying a deeper separation
+          than merely 'being unrelated' ({関係がない}). We're looking for an expression that signifies a lack
+          of direct involvement or dependency.
+      - competing_japanese:
+          - それ は 私 の 仕事 に {に つい て} で は ない の で、気 に し なく て いい です よ。
+        english: That is not about my work, so you don't need to worry about it.
+        hint: 「{について}」 indicates the topic of discussion. We're looking for an expression that signifies
+          a lack of direct involvement.
+    scene: A man in a company offers help to a stressed colleague, who politely declines because the issue
+      is outside his scope.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: The phrase 「気にしなくていいですよ」 is a polite, common male expression to reassure or dismiss worry.
+      While not exclusively male, it's a common usage. The use of `かかわらない` here emphasizes that the matter
+      has no direct bearing on his responsibilities, reinforcing the separation.
+  - english: The change to this plan will likely face a significant effect on the budget.
+    japanese:
+      - この 計画 の 変更 は、予算 に 大きく {かかわっ て} くる だろう。
+      - この 計画 の 変更 は、予算 に 大きく {かかわっ て} くる でしょう。
+      - この 計画 の 変更 は、予算 に 非常 に 大きく {かかわっ て} くる こと が 予想 さ れ ます。
+    english_literally: This plan's change, to the budget, will likely come to greatly relate.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 変更 は、予算 に 大きな {影響 を 与える} だろう。
+        english: The change to this plan will likely have a big effect on the budget.
+        hint: The project manager's explanation about the budget emphasizes that the budget itself is
+          dependent on, or fundamentally tied to, the plan change, not just that the change will have
+          an 'effect' ({影響を与える}) on it. We're looking for an expression that implies a fundamental dependency
+          or intrinsic link.
+      - competing_japanese:
+          - この 計画 の 変更 は、予算 に 大きく 関係 {する} だろう。
+        english: The change to this plan will likely be greatly related to the budget.
+        hint: 「{関係がある}」 indicates a general connection. We're looking for an expression that implies a
+          fundamental dependency or intrinsic link.
+    scene: A project manager explains potential financial implications to their team during a meeting.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+    listener_gender: group
+  - english: If it concerns customer trust, it will be a huge loss for the company.
+    japanese:
+      - もし 顧客 の 信頼 に {かかわれ ば}、企業 に とっ て 大変 な 損失 と なる。
+      - 仮 に 顧客 の 信頼 に {かかわれ ば}、会社 に とっ て 計り知れ ない 損失 と なる だろう。
+      - もし 顧客 の 信用 に {かかわれ ば}、企業 は 甚大 な 損失 を 被る。
+    english_literally: If it relates to customer trust, for the company, it will be a huge loss.
+    competing_grammar:
+      - competing_japanese:
+          - もし 顧客 の 信頼 を {失え ば}、企業 に とっ て 大変 な 損失 と なる。
+        english: If it loses customer trust, it will be a huge loss for the company.
+        hint: The consultant's cautionary advice, focusing on what 'concerns' customer trust rather than
+          merely 'losing' it (失う), emphasizes that the company's actions directly bear on the foundation
+          of trust, leading to severe consequences. We're looking for an expression that conveys a critical
+          involvement with customer trust.
+      - competing_japanese:
+          - もし 顧客 の 信頼 に {に つい て} で は なく て、企業 に とっ て 大変 な 損失 と なる。
+        english: If it's not about customer trust, it will be a huge loss for the company.
+        hint: 「{について}」 indicates the topic. We're looking for an expression that conveys a critical involvement.
+    scene: A business consultant advises a company on ethical practices.
+    register: formal
+    setting: academic
+    conjugation: conditional (～ば)
+    listener_gender: group
+  - english: If that problem affected my family's safety, I couldn't overlook it.
+    japanese:
+      - その 問題 が 家族 の 安全 に {かかわっ たら}、見過ごす わけ に は いか ない。
+      - もし その 問題 が 家族 の 安全 に {かかわっ たら}、私 は 見過ごせ ない。
+      - その 問題 が 家族 の 安全 に {かかわる} こと で あれ ば、決して 放置 でき ませ ん。
+    english_literally: If that problem, to family's safety, related, overlooking is not possible.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 が 家族 の 安全 を {脅かし たら}、見過ごす わけ に は いか ない。
+        english: If that problem threatened my family's safety, I couldn't overlook it.
+        hint: The speaker's strong, protective sentiment highlights that her family's safety is directly
+          dependent on addressing the problem, rather than just 'threatening' it (脅かす), making it a matter
+          of utmost personal concern. We're looking for an expression that implies a direct, critical
+          link to safety.
+      - competing_japanese:
+          - その 問題 が 家族 の 安全 に 関係 {し たら}、見過ごす わけ に は いか ない。
+        english: If that problem was related to my family's safety, I couldn't overlook it.
+        hint: 「{関係がある}」 indicates a general connection. We're looking for an expression that implies a
+          direct and critical impact.
+    scene: A woman explains her firm stance to a friend about protecting her loved ones.
+    register: casual
+    setting: serious
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    nuance: The strong, protective tone is typical for a woman discussing family safety. The casual register
+      with 「見過ごす わけにはいかない」 (cannot overlook) emphasizes a personal, firm resolve, highlighting the critical
+      nature of the problem as it `かかわる` (concerns) directly with her family's safety.
+  - english: He does work that involves personal information.
+    japanese:
+      - 彼 は 個人 情報 に {かかわる} 仕事 を し て い ます。
+      - 彼 は 個人 情報 に {かかわる} 業務 を 行っ て い ます。
+      - 彼 は 個人 情報 に {かかわる} 専門 職 です。
+    english_literally: He, to personal information, does work that relates.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 個人 情報 を {扱う} 仕事 を し て い ます。
+        english: He does work that handles personal information.
+        hint: The casual description of someone's job implies that the work itself is intrinsically 'about'
+          or 'related to' personal information, not just 'handling' it (扱う) as a task. We're looking for
+          an expression that shows the work is intrinsically linked to personal information.
+      - competing_japanese:
+          - 彼 は 個人 情報 に {に つい て} の 仕事 を し て い ます。
+        english: He does work about personal information.
+        hint: 「{について}」 indicates the topic. We're looking for an expression that shows the work is intrinsically
+          linked to personal information.
+    scene: During a casual conversation, someone describes a mutual acquaintance's job.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: That decision will likely face a critical turning point that affects future international
+      relations.
+    japanese:
+      - その 決定 は、今後 の 国際 関係 に {かかわる} 重大 な 局面 を 迎える だろう。
+      - その 決定 は、今後 の 国際 関係 に {かかわる} 極めて 重要 な 局面 と なる でしょう。
+      - この 決断 は、将来 の 国際 関係 に {かかわる} 重大 な 局面 に 直面 する でしょう。
+    english_literally: That decision, to future international relations, will likely face a critical turning
+      point that relates.
+    competing_grammar:
+      - competing_japanese:
+          - その 決定 は、今後 の 国際 関係 に {影響 を 与える} 重大 な 局面 を 迎える だろう。
+        english: That decision will likely face a critical turning point that affects future international
+          relations.
+        hint: The high-stakes political discussion emphasizes that the decision is not just 'influencing'
+          ({影響を与える}) international relations, but is a fundamental factor upon which their future state
+          depends, marking a critical juncture. We're looking for an expression that conveys a fundamental
+          dependency.
+      - competing_japanese:
+          - その 決定 は、今後 の 国際 関係 に 関係 {する} 重大 な 局面 を 迎える だろう。
+        english: That decision will likely face a critical turning point related to future international
+          relations.
+        hint: 「{関係がある}」 generally indicates a descriptive relationship. We're looking for an expression
+          that implies a fundamental dependency or intrinsic link.
+    scene: A political analyst discusses global policy on a news program.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+  - english: Since it's a situation concerning human lives, a swift response is required.
+    japanese:
+      - 人命 に {かかわる} 状況 な の で、迅速 な 対応 が 求め られ ます。
+      - 人命 に {かかわる} 事態 な の で、速やか な 対応 が 求め られ ます。
+      - 人命 に {かかわる} 状況 です の で、迅速 な 対応 が 必要 と なり ます。
+    english_literally: Because it is a situation that relates to human lives, a swift response is required.
+    competing_grammar:
+      - competing_japanese:
+          - 人命 が {危機 に 瀕し て いる} 状況 な の で、迅速 な 対応 が 求め られ ます。
+        english: Since it's a situation where human lives are in danger, a swift response is required.
+        hint: The emergency briefing highlights that the situation is directly 'related to' human lives
+          in a critical way, implying that lives depend on the response, rather than merely 'being in
+          danger' (危機に瀕している). We're looking for an expression that implies a direct, critical link to
+          human lives.
+      - competing_japanese:
+          - 人命 に {に つい て} の 状況 な の で、迅速 な 対応 が 求め られ ます。
+        english: Since it's a situation about human lives, a swift response is required.
+        hint: 「{について}」 indicates the topic. We're looking for an expression that implies a direct, critical
+          link.
+    scene: A team leader instructs emergency responders during a crisis briefing.
+    register: formal
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+post_example_writeup: When using 「にかかわる」, recognize that it underscores a deep, often critical connection.
+  It goes beyond merely stating a relationship, implying that one element's state or existence is dependent
+  on or significantly impacted by another. This inherent gravity often makes it suitable for serious or
+  high-stakes contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/にかかわる

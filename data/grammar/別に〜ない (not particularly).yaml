@@ -1,0 +1,510 @@
+grammar_point: 別に〜ない (not particularly)
+learn_before:
+  - '[Verb-dictionary]ことはない (no need to・not necessary to)'
+  - 〜ようだ・〜みたいだ (seems・like)
+  - てもかまわない (no objection)
+  - 興味がある (to have an interest in)
+meaning: Not really, Not particularly, It's not like...
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: 〜ない
+    rarity: common
+    meaning: not ~
+  - conjugation-type: negative plain (～ない)
+    form: 〜じゃない
+    rarity: common
+    meaning: is not ~
+  - conjugation-type: negative plain (～ない)
+    form: 〜ではない
+    rarity: common
+    meaning: is not ~ (more formal plain)
+  - conjugation-type: negative plain (～ない)
+    form: 〜ていない
+    rarity: common
+    meaning: not ~ing
+  - conjugation-type: negative plain (～ない)
+    form: 〜たくない
+    rarity: common
+    meaning: do not want to ~
+  - conjugation-type: negative non-past polite (～ません)
+    form: 〜ません
+    rarity: common
+    meaning: do not ~ (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 〜じゃありません
+    rarity: common
+    meaning: is not ~ (polite alternative)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 〜ではありません
+    rarity: common
+    meaning: is not ~ (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 〜ていません
+    rarity: common
+    meaning: not ~ing (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 〜たくありません
+    rarity: common
+    meaning: do not want to ~ (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 〜なかった
+    rarity: common
+    meaning: did not ~
+  - conjugation-type: negative past plain (～なかった)
+    form: 〜じゃなかった
+    rarity: common
+    meaning: was not ~
+  - conjugation-type: negative past plain (～なかった)
+    form: 〜ではなかった
+    rarity: common
+    meaning: was not ~ (more formal plain past)
+  - conjugation-type: negative past plain (～なかった)
+    form: 〜ていなかった
+    rarity: common
+    meaning: was not ~ing
+  - conjugation-type: negative past plain (～なかった)
+    form: 〜たくなかった
+    rarity: common
+    meaning: did not want to ~
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 〜ませんでした
+    rarity: common
+    meaning: did not ~ (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 〜じゃありませんでした
+    rarity: common
+    meaning: was not ~ (polite alternative)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 〜ではありませんでした
+    rarity: common
+    meaning: was not ~ (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 〜ていませんでした
+    rarity: common
+    meaning: was not ~ing (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 〜たくありませんでした
+    rarity: common
+    meaning: did not want to ~ (polite)
+pronunciation:
+  katakana: ベツニナイ
+  romaji: betsu ni ~ nai
+formation:
+  別に + [Verb/Adjective] + ない: Indicates that something is "not particularly" or "not really" the case.
+jlpt: N3
+etymology: 「別に」 (betsu ni) literally means "separately" or "distinctly." When used with a negative verb,
+  it takes on the nuance of "not particularly" or "not especially." This nuance of "not particularly"
+  arises from the negation of "separately"; the literal meaning is akin to "cannot be separated/differentiated
+  (from other possibilities)." This conveys the idea that while something might partially exist, it cannot
+  be definitively categorized or stated as fully so. It implies that there's no specific or significant
+  reason for something to be considered as such.
+writeup: The adverb 「別に」 (betsu ni), meaning "separately" or "distinctly," when paired with a negative
+  form (〜ない), expresses the idea that something is "not really" or "not particularly" the case. This usage
+  implies that there is no specific or significant reason for something to be considered in a certain
+  way, offering a softer way of disagreeing or expressing indifference compared to a direct negation.
+  It often carries a slightly detached or cool tone, suggesting that the matter is not a big concern for
+  the speaker. While the general register is semi-formal, 「別に〜ない」 is very commonly used in casual conversations,
+  especially among younger speakers. It is important to note that 「別に」 is often paired with 「わけではない」 to
+  soften the nuance of uncertainty or to clarify a mild negation, but it should **never** be used with
+  「わけがない」, as that would unnaturally combine an expression of removed certainty with one of strong certainty.
+false_friends:
+  - term: あまり〜ない
+    meaning: Not very, Not much, Not really, Hardly
+    kind: synonym
+    nuance: Unlike 「別に〜ない」, 「あまり〜ない」 implies a lesser degree or quantity of something. It indicates that
+      something is not done often or to a significant extent.
+    grammar_point: あまり ない (not very or much)
+  - term: なかなか〜ない
+    meaning: Not easily, Hardly, Not at all
+    kind: synonym
+    nuance: 「なかなか〜ない」 suggests difficulty or infrequency. It implies that something is not easily achieved
+      or doesn't happen often.
+    grammar_point: なかなか〜ない (not easily)
+  - term: 全然
+    meaning: Not at all; totally
+    kind: similar expression
+    nuance: Unlike 「別に〜ない」 which suggests 'not particularly' or a subtle reservation, 「全然〜ない」 conveys
+      a complete and absolute negation, leaving no room for ambiguity.
+    grammar_point: 全然 (not at all; totally)
+  - term: わけではない
+    meaning: Not necessarily
+    kind: similar expression
+    nuance: While 「別に〜ない」 emphasizes an absence of *particular* reason or strong sentiment, 「わけではない」 more
+      broadly states that something is *not necessarily* true, allowing for exceptions or alternative
+      explanations without implying indifference.
+    grammar_point: (という)わけではない (it's not that...)
+post_false_friends_writeup: While 「別に〜ない」, 「あまり〜ない」, 「なかなか〜ない」, and 「わけではない」 all involve negation or qualification,
+  they carry distinct nuances. 「別に〜ない」 indicates a lack of particular reason or strong sentiment, often
+  implying indifference. 「あまり〜ない」 points to a low degree or quantity, meaning 'not very' or 'not much'.
+  「なかなか〜ない」 suggests difficulty or infrequency, meaning 'not easily' or 'hardly'. Lastly, 「わけではない」 generally
+  denies that something is *necessarily* true, allowing for exceptions or different interpretations without
+  implying indifference. Understanding these subtleties is key to choosing the most appropriate expression.
+examples:
+  - english: It's not particularly cold today.
+    japanese:
+      - 今日 は、{別 に} 寒く {ない} よ。
+      - 今日 は、{別 に} 寒く {ない} です よ。
+      - 今日 は、{別 に} 寒く {あり ませ ん} よ。
+      - 今日 は、{別 に} 寒く {ない} です。
+    english_literally: Today, it's not particularly cold, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {あまり} 寒く ない よ。
+        english: Today, it's not very cold.
+        hint: This expresses a low degree or quantity. We're looking for a sense of 'not particularly'
+          or 'not especially'.
+      - competing_japanese:
+          - 今日 は {全然} 寒く ない よ。
+        english: Today, it's not cold at all.
+        hint: This implies a complete negation, 'not at all'. We're looking for a softer, more nuanced
+          negation of 'not particularly'.
+    scene: A friend asks you if you should bring a jacket for the day.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    nuance: The casual tone is conveyed by the sentence-final particle 「よ」, which adds a sense of assertion
+      or confirmation. 「別に〜ない」 here indicates a mild lack of coldness, rather than a strong assertion
+      of warmth.
+  - english: That idea isn't particularly bad.
+    japanese:
+      - その アイデア は、{別 に} 悪く {ない} です。
+      - その アイデア は、{別 に} 悪く {ない}。
+      - その アイデア は、{別 に} 悪く {あり ませ ん}.
+    english_literally: As for that idea, it's not particularly bad.
+    competing_grammar:
+      - competing_japanese:
+          - その アイデア は {あまり} 悪く ない です。
+        english: That idea isn't very bad.
+        hint: This suggests a low degree of 'badness'. We're looking for an indication that the idea isn't
+          notably bad, but also not exceptionally good.
+      - competing_japanese:
+          - その アイデア は {全然} 悪く ない です。
+        english: That idea is not bad at all.
+        hint: This conveys absolute negation, 'not bad at all'. We're looking for a more measured and
+          understated assessment.
+    scene: A junior colleague presents an idea to a senior colleague.
+    register: semi-formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    nuance: The use of 「です」 makes the statement polite and suitable for a professional setting. 「別に〜ない」
+      implies that while the idea isn't bad, it's not necessarily groundbreaking or outstanding, giving
+      a nuanced, measured approval.
+  - english: It seems he's not particularly surprised.
+    japanese:
+      - 彼 は、{別 に} 驚い {て い ない} みたい だ。
+      - 彼 は、{別 に} 驚い {て い ない} みたい です。
+      - 彼 は、{別 に} 驚い {て い ませ ん} みたい です。
+    english_literally: As for him, it seems he is not particularly surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {あまり} 驚い て い ない みたい だ。
+        english: It seems he's not very surprised.
+        hint: This indicates a low degree of surprise. We're looking for the observation that someone
+          is not notably or distinctively surprised.
+      - competing_japanese:
+          - 彼 は {全然} 驚い て い ない みたい だ。
+        english: It seems he's not surprised at all.
+        hint: This implies an absolute lack of surprise. We're looking for a nuanced observation that
+          someone isn't particularly surprised.
+    scene: Observing someone's reaction to unexpected news.
+    register: casual
+    setting: reflective
+    conjugation: negative plain (～ない)
+    nuance: 「みたいだ」 softens the assertion, indicating that the speaker is expressing an observation or
+      conjecture. The progressive negative 「驚いていない」 shows his current state of un-surprise.
+  - english: I wasn't particularly troubled at that time.
+    japanese:
+      - あの 時 は、{別 に} 困ら {なかっ た} よ。
+      - あの 時 は、{別 に} 困り {ませ ん でし た} よ。
+      - あの 時 は、{別 に} 困ら {なかっ た}。
+      - あの 時 は、{別 に} 困り {ませ ん でし た}。
+    english_literally: At that time, I was not particularly troubled, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 は {あまり} 困ら なかっ た よ。
+        english: I wasn't very troubled at that time.
+        hint: This suggests that the trouble was not great in degree. We're looking for the sense that
+          the situation wasn't particularly burdensome or distinctive in its difficulty.
+      - competing_japanese:
+          - あの 時 は {全然} 困ら なかっ た よ。
+        english: I wasn't troubled at all at that time.
+        hint: This expresses an absolute lack of trouble. We're looking for a more understated reassurance
+          that the speaker wasn't particularly troubled.
+    scene: Reassuring a friend about a past difficult situation.
+    register: casual
+    setting: supportive
+    conjugation: negative past plain (～なかった)
+    nuance: The sentence-final particle 「よ」 gives a reassuring and friendly tone. 「別に困らなかった」 implies that
+      despite potential difficulties, the speaker didn't experience significant trouble.
+  - english: It seems she doesn't particularly want to go home.
+    japanese:
+      - 彼女 は、{別 に} 帰り {たく ない} よう だ。
+      - 彼女 は、{別 に} 帰り {たく ない} よう です。
+      - 彼女 は、{別 に} 帰り {たく あり ませ ん} よう です。
+    english_literally: As for her, it seems she doesn't particularly want to return home.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {あまり} 帰り たく ない よう だ。
+        english: It seems she doesn't really want to go home (to a low degree).
+        hint: This implies a low degree of not wanting to go home. We're looking for the observation that
+          there's no particular desire to leave.
+      - competing_japanese:
+          - 彼女 は {全然} 帰り たく ない よう だ。
+        english: It seems she doesn't want to go home at all.
+        hint: This conveys a complete unwillingness to go home. We're looking for a subtle inference that
+          the person isn't notably inclined to leave.
+    scene: Two friends noticing a third friend seems to be enjoying herself at a party.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    nuance: 「ようだ」 indicates a supposition based on external appearance or observation, suggesting the
+      speaker infers her desire to stay. The desiderative negative 「帰りたくない」 expresses a lack of desire
+      to return.
+  - english: I'm not particularly tired.
+    japanese:
+      - '{別 に} 疲れ {て い ませ ん}。'
+      - '{別 に} 疲れ {て い ない}。'
+      - '{別 に} 疲れ {て い ない} よ。'
+      - '{別 に} 疲れ {て い ない} です.'
+    english_literally: Separately, I am not tired.
+    competing_grammar:
+      - competing_japanese:
+          - '{あまり} 疲れ て い ませ ん。'
+        english: I'm not very tired.
+        hint: This expresses a low degree of fatigue. We're looking for the nuance of 'not particularly'
+          or 'not uniquely' tired.
+      - competing_japanese:
+          - '{全然} 疲れ て い ませ ん。'
+        english: I'm not tired at all.
+        hint: This indicates an absolute absence of tiredness. We're looking for a milder, more understated
+          negation.
+    scene: Your boss asks if you're exhausted after a busy week.
+    register: semi-formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: male
+    listener_gender: male
+    nuance: A male speaker might use 「別に疲れていません」 to downplay their fatigue, maintaining a composed image
+      in a professional setting. The polite form 「いません」 maintains respect towards the boss.
+  - english: It's not particularly a difficult problem.
+    japanese:
+      - これ は、{別 に} 難しい 問題 {で は あり ませ ん}。
+      - これ は、{別 に} 難しい 問題 {で は ない}。
+      - これ は、{別 に} 難しい 問題 {じゃ あり ませ ん}。
+      - これ は、{別 に} 難しい 問題 {じゃ ない}.
+    english_literally: This, separately, is not a difficult problem.
+    competing_grammar:
+      - competing_japanese:
+          - これ は {あまり} 難しい 問題 で は あり ませ ん。
+        english: This isn't a very difficult problem.
+        hint: This suggests a low degree of 'difficulty'. We're looking for an indication that the problem
+          isn't notably difficult, but also not exceptionally easy.
+      - competing_japanese:
+          - これ は {全然} 難しい 問題 で は あり ませ ん。
+        english: This isn't a difficult problem at all.
+        hint: This conveys absolute lack of difficulty. We're looking for a more measured and understated
+          assessment.
+    scene: A colleague is struggling with a task, and you try to encourage them.
+    register: semi-formal
+    setting: supportive
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female speaker might use 「別に難しい問題ではありません」 to offer gentle encouragement, emphasizing that
+      the problem isn't uniquely challenging. The 「ではありません」 maintains politeness and professionalism.
+  - english: I don't particularly have anything to say.
+    japanese:
+      - '{別 に} 言う こと は {ない}。'
+      - '{別 に} 言う こと は {あり ませ ん}。'
+      - '{別 に} 言う こと は {ない} です。'
+      - '{別 に} 言う こと は {ない} よ.'
+    english_literally: Separately, things to say, there are not.
+    competing_grammar:
+      - competing_japanese:
+          - '{あまり} 言う こと は ない。'
+        english: I don't have much to say.
+        hint: This implies a small quantity of things to say. We're looking for a sense of indifference
+          or lack of specific items to mention.
+      - competing_japanese:
+          - '{全然} 言う こと は ない。'
+        english: I don't have anything at all to say.
+        hint: This indicates an absolute lack of anything to say. We're looking for a more casual and
+          understated expression of not having anything in particular.
+    scene: A parent asks their quiet teenager if they have anything to tell them.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: A younger male might use 「別に言うことはない」 to express indifference or a lack of specific things
+      to share, common in casual family interactions. The blunt 「ない」 without です/ます is characteristic of
+      casual speech.
+  - english: I wasn't particularly interested in that story.
+    japanese:
+      - その 話 に は、{別 に} 興味 が あり {ませ ん でし た}。
+      - その 話 に は、{別 に} 興味 が {なかっ た}。
+      - その 話 に は、{別 に} 興味 が {なかっ た} よ。
+      - その 話 に は、{別 に} 興味 は {あり ませ ん でし た}.
+    english_literally: As for that story, separately, interest did not exist.
+    competing_grammar:
+      - competing_japanese:
+          - その 話 に は {あまり} 興味 が あり ませ ん でし た。
+        english: I wasn't very interested in that story.
+        hint: This indicates a low degree of interest. We're looking for the sense that the story didn't
+          capture a particular or unique interest.
+      - competing_japanese:
+          - その 話 に は {全然} 興味 が あり ませ ん でし た。
+        english: I wasn't interested in that story at all.
+        hint: This expresses an absolute lack of interest. We're looking for a more subtle expression
+          of not being particularly drawn in.
+    scene: At a social gathering, someone asks if you enjoyed a recent gossip session.
+    register: semi-formal
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female speaker might use 「別に興味がありませんでした」 to politely deflect engagement with gossip, suggesting
+      a lack of particular interest rather than outright disinterest. The polite past negative 「ありませんでした」
+      maintains social grace.
+  - english: It's not particularly a secret.
+    japanese:
+      - '{別 に} 秘密 {で も ない} よ。'
+      - '{別 に} 秘密 {で も ない}。'
+      - '{別 に} 秘密 {で も あり ませ ん}。'
+      - '{別 に} 秘密 {じゃ ない} よ。'
+      - '{別 に} 秘密 {じゃ あり ませ ん}.'
+    english_literally: Separately, it's not a secret, you know.
+    competing_grammar:
+      - competing_japanese:
+          - '{あまり} 秘密 で も ない よ。'
+        english: It's not much of a secret.
+        hint: This suggests a low degree of secrecy. We're looking for the nuance that there's no particular
+          reason for a secret.
+      - competing_japanese:
+          - '{全然} 秘密 で も ない よ。'
+        english: It's not a secret at all.
+        hint: This indicates an absolute lack of secrecy. We're looking for a more casual and understated
+          admission.
+    scene: Someone asks if something you mentioned is confidential.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male speaker might use 「別に秘密でもないよ」 to casually dismiss the idea of confidentiality, indicating
+      that there's no special reason to keep it quiet. The 「よ」 adds a friendly, assertive tone.
+  - english: I don't particularly mind if you come along.
+    japanese:
+      - '{別 に} 来 て も {構わ ない} よ。'
+      - '{別 に} 来 て も {構い ませ ん}。'
+      - '{別 に} 来 て も {構わ ない}。'
+      - '{別 に} 来 て も {構わ ない} です.'
+    english_literally: Separately, even if you come, it does not bother me, you know.
+    competing_grammar:
+      - competing_japanese:
+          - '{あまり} 来 て も 構わ ない よ。'
+        english: I don't really mind if you come along.
+        hint: This implies a low degree of caring. We're looking for the nuance that there's no particular
+          reason for an objection.
+      - competing_japanese:
+          - '{全然} 来 て も 構わ ない よ。'
+        english: I don't mind at all if you come along.
+        hint: This expresses absolute acceptance. We're looking for a more indifferent or mildly permissive
+          stance.
+    scene: A friend asks for permission to join a plan.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female speaker might use 「別に構わないよ」 to express a casual acceptance, implying that their presence
+      makes no particular difference to the speaker. The casual tone and slight indifference are conveyed
+      by 「別に」 and the sentence-final 「よ」.
+  - english: I wasn't particularly angry about that.
+    japanese:
+      - それ に は、{別 に} 怒っ {て い ませ ん でし た}。
+      - それ に は、{別 に} 怒っ {て い なかっ た}。
+      - それ に は、{別 に} 怒っ {て い なかっ た} よ。
+      - それ に は、{別 に} 怒っ {て は い ませ ん でし た}.
+    english_literally: As for that, separately, I was not angry.
+    competing_grammar:
+      - competing_japanese:
+          - それ に は {あまり} 怒っ て い ませ ん でし た。
+        english: I wasn't very angry about that.
+        hint: This indicates a low degree of anger. We're looking for the sense that there was no particular
+          reason for strong anger.
+      - competing_japanese:
+          - それ に は {全然} 怒っ て い ませ ん でし た。
+        english: I wasn't angry at all about that.
+        hint: This implies an absolute lack of anger. We're looking for a more understated expression
+          of not having been particularly upset.
+    scene: Explaining your reaction to a minor incident to a concerned friend.
+    register: semi-formal
+    setting: reflective
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male speaker might use 「別に怒っていませんでした」 to convey that a past event didn't provoke a significant
+      emotional response, maintaining a calm demeanor. The polite past negative 「いませんでした」 is suitable
+      for a semi-formal context.
+  - english: I don't particularly feel like eating anything right now.
+    japanese:
+      - 今 は、{別 に} 何 か 食べ {たい と 思わ ない}。
+      - 今 は、{別 に} 何 か 食べ {たい と 思い ませ ん}。
+      - 今 は、{別 に} 何 か 食べ {たい と 思わ ない} よ。
+      - 今 は、{別 に} 何 か 食べ {たい と 思わ ない} です.
+    english_literally: Now, separately, anything, I don't think I want to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は {あまり} 何 か 食べ たい と 思わ ない。
+        english: I don't really feel like eating much right now.
+        hint: This suggests a low degree of desire to eat. We're looking for a general lack of particular
+          appetite.
+      - competing_japanese:
+          - 今 は {全然} 何 か 食べ たい と 思わ ない。
+        english: I don't feel like eating anything at all right now.
+        hint: This indicates an absolute lack of desire to eat. We're looking for a milder expression
+          of not having a particular craving.
+    scene: Someone asks what you want for dinner, but you're not hungry.
+    register: casual
+    setting: casual slang
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female speaker might use 「別に食べたいと思わない」 to express a lack of specific cravings or general
+      indifference toward food at the moment. The plain form 「思わない」 makes the expression casual and direct.
+  - english: This doesn't particularly have a deep meaning.
+    japanese:
+      - これ は、{別 に} 深い 意味 が {ない}。
+      - これ は、{別 に} 深い 意味 が {あり ませ ん}。
+      - これ は、{別 に} 深い 意味 が {ない} よ。
+      - これ は、{別 に} 深い 意味 が {ない} です.
+    english_literally: This, separately, a deep meaning, there is not.
+    competing_grammar:
+      - competing_japanese:
+          - これ は {あまり} 深い 意味 が ない。
+        english: This doesn't really have much deep meaning.
+        hint: This suggests a low degree of deep meaning. We're looking for the nuance that there's no
+          particular profound significance.
+      - competing_japanese:
+          - これ は {全然} 深い 意味 が ない。
+        english: This doesn't have any deep meaning at all.
+        hint: This indicates an absolute absence of deep meaning. We're looking for a more casual or dismissive
+          statement about its lack of particular depth.
+    scene: An artist explains a simple drawing to a curious viewer.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male speaker might use 「別に深い意味がない」 to casually state that there's no hidden profound meaning
+      to something, often used to avoid over-interpretation. The plain form 「ない」 keeps the tone relaxed
+      and direct.
+post_example_writeup: Understanding the subtle differences in negative expressions is crucial for sounding
+  natural in Japanese. While 「別に〜ない」 implies a lack of particularity or strong sentiment, often with a
+  nuance of indifference, other negative forms such as 「あまり〜ない」, 「なかなか〜ない」, and 「全然〜ない」 convey degrees
+  of frequency, difficulty, or absolute negation. Pay close attention to the context and what specific
+  nuance you wish to convey when choosing among these expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/別に〜ない

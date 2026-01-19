@@ -1,0 +1,290 @@
+grammar_point: ては (inevitable negative outcome)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - こんな (this kind of)
+  - そんな (such)
+  - としては (as a standard or viewpoint)
+  - にしては (considering)
+  - に足りない (not worthy or sufficient)
+meaning: If, when, because (with a negative consequence)
+pronunciation:
+  katakana: テハ
+  romaji: te wa
+formation:
+  Verb Te-form + は: Indicates a negative consequence if the action continues or occurs.
+  い-Adjective stem + くては: Indicates a negative consequence if the state continues or occurs.
+  な-Adjective stem + では: Indicates a negative consequence if the state continues or occurs.
+  Noun + では: Indicates a negative consequence if the state of being that noun is present.
+jlpt: N2
+etymology: The grammar point 「ては」 is a combination of the 「て」-form of a verb (or adjective) and the particle
+  「は」. The 「て」-form indicates a reason or cause, and 「は」 adds a nuance of contrast or emphasis, highlighting
+  the negative consequence that follows. This combination effectively creates a conditional clause where
+  the condition inevitably leads to a problematic or undesirable outcome.
+writeup: |-
+  「ては」 expresses that if a certain condition is met, a negative result will follow. It can be translated as "if," "when," or "because," but it always carries a negative connotation. It indicates that the speaker believes the condition will lead to an undesirable outcome. This grammar point serves to highlight an inevitable negative consequence of a particular action or state.When 「ては」 follows a noun or a な-adjective, 「では」 is used instead. In casual speech, 「ては」 and 「では」 are frequently contracted to 「ちゃ」 and 「じゃ」, respectively. This informal usage maintains the same core meaning of negative consequence.
+
+  While 「ては」 can describe repeating actions, its primary use, especially in contexts implying judgment or assessment, is to warn against a potential situation due to its negative implications. It implies a sense of inevitability regarding the negative outcome if the condition described is met or continues. It's often used when expressing concerns or criticisms, linking an action or state directly to an undesirable result. For example, a parent might use it to warn a child about the consequences of their actions, or an expert might use it to point out a flaw in a plan.
+false_friends:
+  - term: たって
+    meaning: Even if, Even though, No matter how
+    kind: similar expression
+    nuance: Unlike 「ては」, which focuses on a conditional leading to a negative consequence, 「たって」 emphasizes
+      that a result holds true despite the condition. It highlights concession or a hypothetical situation
+      that doesn't prevent an outcome.
+    grammar_point: たって (even if)
+  - term: ようでは・ようじゃ
+    meaning: If it seems that; If it is true that (often implying a negative consequence)
+    kind: synonym
+    nuance: While both imply a negative outcome, 「ようでは」 carries a stronger nuance of a negative judgment
+      or assessment about the current state or tendency of something/someone, which then leads to the
+      undesirable result. It often suggests an inherent flaw or characteristic that is problematic.
+    grammar_point: ようでは・ようじゃ (if it seems that)
+  - term: ていては
+    meaning: If one keeps doing something; when; if something is...
+    kind: synonym
+    nuance: 「ていては」 is similar to 「ては」 but specifically emphasizes the continuation or repeated nature
+      of an action or state that is leading to a negative consequence. It implies an ongoing process that
+      is causing the problem.
+    grammar_point: ていては (if one keeps doing something)
+  - term: たら最後
+    meaning: Once, Now that, As soon as (leading to inevitable negative outcome)
+    kind: similar expression
+    nuance: 「たら最後」 emphasizes that once a certain action is taken or a condition is met, a specific, usually
+      irreversible and negative, consequence is guaranteed. It often implies a finality or point of no
+      return. 「ては」 can describe an ongoing state leading to problems, or a conditional where the consequence
+      is inevitable if the condition holds, but not necessarily a "point of no return" like 「たら最後」.
+    grammar_point: たら最後 (inevitable negative outcome)
+  - term: ものなら
+    meaning: If one were to (action), (negative consequence) would happen.
+    kind: similar expression
+    nuance: This form of 「ものなら」 implies a strong hypothetical, often warning of a significant negative
+      outcome if a particular (often undesirable) action were to be taken. It's used for situations where
+      one hopes the condition will not be met because of the severe consequences. 「ては」 is a more general
+      conditional that states an inevitable negative consequence for a given condition, whether hypothetical
+      or real, and doesn't always carry the strong "don't even try" warning.
+    grammar_point: '[Verb-volitional]ものなら (if one were to)'
+  - term: てはかなわない
+    meaning: It's unbearable when; It'd be unbearable if; I can't stand it when; I couldn’t stand it if
+    kind: similar expression
+    nuance: 「てはかなわない」 specifically expresses that a situation or action is unbearable or intolerable,
+      focusing on the speaker's negative emotional or physical reaction to the consequence. While 「ては」
+      indicates an inevitable negative consequence, 「てはかなわない」 specifies that consequence as being "unbearable."
+    grammar_point: てはかなわない (unbearable)
+post_false_friends_writeup: The key difference between 「ては」 and other similar expressions lies in the
+  emphasis on the negative result or consequence. While 「たって」 is more about hypothetical concessions and
+  「ようでは」 focuses on confirming a situation with an inherent negative judgment, 「ては」 specifically warns
+  against an action or state due to its potential negative outcome. 「ていては」 emphasizes the continuous nature
+  of an action leading to a negative consequence. 「たら最後」 implies an irreversible negative outcome once
+  a certain point is reached. 「ものなら」 conveys a strong hypothetical warning of dire consequences. 「てはかなわない」
+  expresses that a situation is unbearable due to its negative impact. Consider what nuance you wish to
+  express before choosing between these grammar points.
+examples:
+  - english: If you stay up so late, it will affect tomorrow's exam.
+    japanese:
+      - そんな に 夜更かし し {て は}、明日 の 試験 に 響き ます よ。
+      - そんな に 夜更かし し {ちゃ}、明日 の 試験 に 響い ちゃう よ。
+    english_literally: If you stay up late like that, it will echo/affect tomorrow's exam.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 夜更かし する {と}、明日 の 試験 に 響き ます よ。
+        english: If you stay up so late, it will affect tomorrow's exam.
+        hint: 「ては」 implies a negative consequence is inevitable due to the action, whereas 「と」 indicates
+          a general conditional relationship where one action naturally leads to another. We're looking
+          for an inevitable negative consequence.
+    scene: A parent cautioning their child about staying up too late before a test.
+    register: semi-formal
+    setting: cautious
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「～ますよ」 at the end of the sentence adds a gentle but firm warning tone, common when
+      an older person, such as a mother, advises a younger family member. The choice of 「響きます」 (will affect/resound)
+      subtly implies that the negative consequence will be noticeable.
+  - english: If such a high fever continues, you can't go to school, can you?
+    japanese:
+      - こんな に 高熱 が 続い {て は}、学校 に 行け ませ ん ね。
+      - こんな に 高熱 が 続い {ちゃ}、学校 に 行け ない ね。
+    english_literally: If such a high fever continues, you cannot go to school, can you?
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 高熱 が 続い {たら}、学校 に 行け ませ ん ね。
+        english: If such a high fever continues, you can't go to school, can you?
+        hint: 「ては」 emphasizes that the ongoing state of the fever is the direct cause of not being able
+          to go to school, implying an unavoidable negative outcome. 「たら」 is a more general conditional
+          that focuses on the completion of an action leading to a result. We're looking for an inevitable
+          consequence due to an ongoing condition.
+    scene: A doctor speaking to a patient who has a persistent fever.
+    register: formal
+    setting: serious
+    conjugation: te-form (～て)
+    nuance: The phrase 「行けませんね」 uses the polite negative potential form and adds 「ね」 at the end, suggesting
+      a shared understanding of the unfortunate situation. This register is appropriate for a medical
+      professional addressing a patient.
+  - english: If you're that clumsy, this delicate work is impossible.
+    japanese:
+      - そんな に 不 器用 {で は}、この 細かい 作業 は 無理 です よ。
+      - そんな に 不 器用 {じゃ}、この 細かい 作業 は 無理 だ よ。
+    english_literally: If you are that clumsy, this detailed work is impossible.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 不 器用 {なら}、この 細かい 作業 は 無理 です よ。
+        english: If you are that clumsy, this detailed work is impossible.
+        hint: 「では」 highlights that the inherent characteristic of clumsiness makes the work impossible,
+          emphasizing the reason for the negative outcome. 「なら」 is a conditional based on a premise or
+          assumption. We're looking for the inherent characteristic causing the negative outcome.
+    scene: A skilled artisan instructing an apprentice who is struggling with fine details.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The direct statement 「無理ですよ」 combined with 「では」 indicates a firm, almost exasperated assessment
+      of the situation. The speaker is an older, experienced artisan, hence the semi-formal but direct
+      tone.
+  - english: With this kind of weather, the excursion will probably be cancelled.
+    japanese:
+      - こんな 天気 {で は}、遠足 は 中止 でしょう。
+      - こんな 天気 {じゃ}、遠足 は 中止 だろう。
+    english_literally: With this kind of weather, the excursion will probably be cancelled.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 天気 な の {で}、遠足 は 中止 でしょう。
+        english: Because of this kind of weather, the excursion will probably be cancelled.
+        hint: 「では」 expresses that the current state of the weather is a condition leading to an inevitable
+          negative consequence (cancellation). 「ので」 simply states a reason. We're looking for a condition
+          that directly causes the negative outcome.
+    scene: Students discussing the weather forecast before a planned school trip.
+    register: casual
+    setting: melancholic
+    nuance: The use of 「でしょう」 expresses a strong probability or expectation. The casual register fits
+      the scenario of students discussing a shared disappointment among themselves. 「天気」 (weather) is
+      directly linked to the negative outcome (cancellation).
+  - english: If you just play games every day, your homework won't get done.
+    japanese:
+      - 毎日 ゲーム ばかり し {ちゃ}、宿題 が 終わら ない よ。
+      - 毎日 ゲーム ばかり し {て は}、宿題 が 終わら ない よ。
+    english_literally: If you just play games every day, homework will not finish.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 ゲーム ばかり する {と}、宿題 が 終わら ない よ。
+        english: If you just play games every day, your homework won't get done.
+        hint: 「しちゃ」 (contracted 「しては」) strongly implies that the continuous action of playing games will
+          inevitably lead to the homework not being finished, often carrying a mild reproaching nuance.
+          「すると」 indicates a general, often natural, consequence. We're looking for an unavoidable negative
+          outcome from a repeated action.
+    scene: A friend gently scolding another friend who is procrastinating.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The contraction 「しちゃ」 for 「しては」 gives the sentence a very casual and familiar feel, typical
+      of a friend giving advice or a mild warning. The final 「よ」 adds a touch of emphasis or assertion.
+  - english: If it rains this much, I don't want to go out, do I?
+    japanese:
+      - こんな に 雨 が 降っ {ちゃ}、出かけ たく ない ね。
+      - こんな に 雨 が 降っ {て は}、出かけ たく ない ね。
+    english_literally: If it rains this much, I don't want to go out, do I?
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 雨 が 降っ {たら}、出かけ たく ない ね。
+        english: If it rains this much, I don't want to go out, do I?
+        hint: 「降っちゃ」 (contracted 「降っては」) emphasizes that the current heavy rain is the direct, unchangeable
+          condition leading to the disinclination to go out. 「降ったら」 refers to a completed action as a
+          condition. We're looking for the current state as the immediate cause of the feeling.
+    scene: Two people looking out the window at heavy rain.
+    register: casual
+    setting: reflective
+    conjugation: te-form (～て)
+    nuance: The informal 「降っちゃ」 combined with 「～たくないね」 creates a casual and conversational tone, suitable
+      for two people sharing a feeling or observation. The 「ね」 seeks agreement from the listener, making
+      it a shared sentiment.
+  - english: With this quantity, there won't be enough for everyone.
+    japanese:
+      - この 量 {で は}、全員 分 は 足り ませ ん。
+      - この 量 {じゃ}、全員 分 は 足り ない。
+    english_literally: With this kind of quantity, everyone's portion will not be enough.
+    competing_grammar:
+      - competing_japanese:
+          - この 量 {なら}、全員 分 は 足り ませ ん。
+        english: If it's this quantity, there won't be enough for everyone.
+        hint: 「では」 specifically points to the existing quantity as the reason for the insufficiency, stating
+          it as an inherent problem. 「なら」 sets up a conditional statement based on a premise. We're looking
+          for the current amount being the direct cause of the lack.
+    scene: A chef realizing they have insufficient ingredients for a large party.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal 「足りません」 indicates a professional and serious tone, fitting for a situation where
+      a practical problem is being identified. The sentence structure clearly links the insufficient quantity
+      to the negative outcome.
+  - english: If you continue to work at that pace, you won't make the deadline.
+    japanese:
+      - その ペース で 仕事 を し {て は}、締め切り に 間に合い ませ ん よ。
+      - その ペース で 仕事 を し {ちゃ}、締め切り に 間に合わ ない よ。
+    english_literally: At that pace, if you do work, you will not make it to the deadline.
+    competing_grammar:
+      - competing_japanese:
+          - その ペース で 仕事 を する {と}、締め切り に 間に合い ませ ん よ。
+        english: If you work at that pace, you won't make the deadline.
+        hint: 「ては」 implies an unavoidable negative outcome from a current or ongoing action, whereas 「と」
+          indicates a general conditional or natural consequence. We're looking for an unavoidable negative
+          outcome from an ongoing action.
+    scene: A manager speaks to an employee who seems to be working too slowly.
+    register: formal
+    setting: serious
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「～ませんよ」 from a manager to an employee, especially in a professional context, conveys
+      a clear and somewhat stern warning. The male speaker's direct language emphasizes the critical nature
+      of the deadline.
+  - english: If you keep procrastinating like this, you'll never achieve your goals.
+    japanese:
+      - この よう に 先延ばし ばかり し {て は}、目標 を 達成 でき ませ ん よ。
+      - この よう に 先延ばし ばかり し {ちゃ}、目標 を 達成 でき ない よ。
+    english_literally: If you only keep procrastinating like this, you cannot achieve your goals.
+    competing_grammar:
+      - competing_japanese:
+          - この よう に 先延ばし ばかり し {たら}、目標 を 達成 でき ませ ん よ。
+        english: If you keep procrastinating like this, you'll never achieve your goals.
+        hint: 「ては」 highlights that the ongoing habit of procrastinating is the direct cause of not achieving
+          goals, implying an inevitable negative result. 「たら」 is a general conditional focusing on the
+          completion of the action. We're looking for a negative outcome from a continuous pattern.
+    scene: A mentor advises a mentee who struggles with procrastination.
+    register: semi-formal
+    setting: inspirational
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「達成できませんよ」 coupled with 「ては」 conveys a serious, yet supportive, warning. The female
+      speaker provides guidance, emphasizing the direct link between the continuous procrastination and
+      the inability to reach goals.
+  - english: If your attitude is so bad, you won't be able to get along with anyone.
+    japanese:
+      - そんな に 態度 が 悪い {で は}、誰 と も うまく やれ ませ ん よ。
+      - そんな に 態度 が 悪い {じゃ}、誰 と も うまく やれ ない よ。
+    english_literally: If your attitude is so bad, you cannot get along with anyone.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 態度 が 悪い {なら}、誰 と も うまく やれ ませ ん よ。
+        english: If your attitude is so bad, you won't be able to get along with anyone.
+        hint: 「では」 emphasizes that the inherent quality of a bad attitude is the direct cause of the negative
+          social outcome. 「なら」 sets a premise for a conditional statement. We're looking for an inherent
+          characteristic causing the negative result.
+    scene: An elder family member gives advice to a young person about their behavior.
+    register: casual
+    setting: cautious
+    speaker_age: older
+    nuance: The casual register and the direct statement 「うまくやれませんよ」 are appropriate for an older family
+      member offering candid advice to a younger one. The use of 「では」 pinpoints the "bad attitude" as
+      the core problem.
+post_example_writeup: As you can see from these examples, 「ては」 (or its contracted forms 「ちゃ」 and 「じゃ」)
+  is a versatile grammar point for expressing a conditional relationship that leads to an inevitable negative
+  outcome. It's often used to warn, lament, or assess a situation where a particular action or state is
+  problematic. Pay close attention to the nuance of inevitability and undesirability it carries, which
+  distinguishes it from other conditional forms.

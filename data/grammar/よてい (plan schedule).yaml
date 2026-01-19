@@ -1,0 +1,266 @@
+grammar_point: よてい (plan schedule)
+learn_before:
+  - いっぱい (full・a lot)
+  - じゃなかった (was not)
+  - で (for)
+  - な-Adjective[ではなかった・じゃなかった] (plain past negative)
+meaning: Plan to, intend to
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: よていだ
+    rarity: common
+    meaning: plan to / intend to
+  - conjugation-type: non-past polite (～ます)
+    form: よていです
+    rarity: common
+    meaning: plan to / intend to
+  - conjugation-type: negative plain (～ない)
+    form: よていではない
+    rarity: common
+    meaning: do not plan to / do not intend to
+  - conjugation-type: negative non-past polite (～ません)
+    form: よていではありません
+    rarity: common
+    meaning: do not plan to / do not intend to
+  - conjugation-type: past plain (～た)
+    form: よていだった
+    rarity: common
+    meaning: planned to / intended to
+  - conjugation-type: past polite (～ました)
+    form: よていでした
+    rarity: common
+    meaning: planned to / intended to
+  - conjugation-type: negative past plain (～なかった)
+    form: よていではなかった
+    rarity: common
+    meaning: did not plan to / did not intend to
+  - conjugation-type: negative past polite (～ませんでした)
+    form: よていではありませんでした
+    rarity: common
+    meaning: did not plan to / did not intend to
+  - conjugation-type: te-form (～て)
+    form: よていで
+    rarity: uncommon
+    meaning: planning and...
+  - conjugation-type: conditional (～ば)
+    form: よていならば
+    rarity: uncommon
+    meaning: if it is planned
+  - conjugation-type: conditional (～たら)
+    form: よていだったら
+    rarity: uncommon
+    meaning: if it was planned
+pronunciation:
+  katakana: ヨテイダ
+  romaji: yotei da
+formation:
+  Verb (dictionary form) + 予定だ: Indicates a plan or intention to do something.
+  Noun + の + 予定だ: Indicates a plan related to a noun.
+jlpt: N4
+etymology: The word 「予定 (yotei)」 itself is composed of 「予 (yo)」 meaning 'beforehand' or 'in advance' and
+  「定 (tei)」 meaning 'to decide' or 'determine'. So, 「予定」 literally means something that has been decided
+  in advance.
+writeup: 「予定だ」 functions similarly to 「つもりだ」 ('to intend to do'), but with a stronger emphasis on having
+  a **concrete plan** rather than a mere intention. Therefore, 「予定だ」 is often used for things that are
+  formally scheduled, such as appointments or organized events. To use 「予定だ」, attach it to the dictionary
+  form of a verb, or to a noun by adding 「の」. It's **essential** to include 「だ」 or 「です」 after 「予定」; otherwise,
+  it will be interpreted as simply modifying the preceding verb or noun, leading to unnatural phrasing.
+false_friends:
+  - term: つもりだ
+    meaning: To plan to, to intend to
+    kind: similar expression
+    nuance: While both express intentions, 「つもりだ」 emphasizes the speaker's personal intention or resolve,
+      whereas 「予定だ」 emphasizes that there is a concrete plan already in place.
+    grammar_point: '[Verb-dictionary]つもりだ (to intend to)'
+  - term: つもりで
+    meaning: With the intention of doing, Instead of..., Act as if or pretend, Believing that..., Thinking
+      that...
+    kind: often confused with
+    nuance: 「つもりで」 expresses an intention or pretense, whereas 「予定だ」 expresses a firm plan or schedule.
+    grammar_point: '[Noun・Adjective]のつもりだ (believe that one is・acting as if)'
+  - term: はずだ
+    meaning: Expected to be, supposed to be, it must be
+    kind: similar expression
+    nuance: While 「予定だ」 states a concrete, pre-decided plan, 「はずだ」 expresses an expectation or a logical
+      conclusion about what should happen, which might or might not align with a concrete plan.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: ことになっている
+    meaning: To be expected to, to be scheduled to
+    kind: similar expression
+    nuance: 「ことになっている」 implies a rule, custom, or established arrangement, often decided by someone else
+      or a system. 「予定だ」 simply states a plan, whether personal or group-decided, without necessarily
+      implying a rule or general consensus.
+    grammar_point: ことになっている (expected to; scheduled to)
+  - term: 〜ようと思う
+    meaning: I think I will, I think I shall, Going to, Gonna (Volitional + と思う)
+    kind: similar expression
+    nuance: 「〜ようと思う」 conveys a more tentative or newly formed intention, a thought about what one will
+      do. 「予定だ」 signifies a more solid, pre-established plan.
+    grammar_point: '[Verb-よう]思う (intend to)'
+post_false_friends_writeup: It is crucial to differentiate 「予定だ」 from other expressions of future events
+  or intentions, such as 「つもりだ」, 「はずだ」, and 「ことになっている」. While 「予定だ」 specifies a concrete, pre-decided
+  plan, 「つもりだ」 highlights the speaker's personal intention or resolve. 「はずだ」 conveys an expectation or
+  logical conclusion about what should happen, which may or may not align with a fixed plan. Lastly, 「ことになっている」
+  denotes a rule, custom, or established arrangement, often decided by an external system or group. Understanding
+  these nuances is key to accurately conveying the certainty, formality, and origin of a future action
+  or state.
+examples:
+  - english: I plan to travel with my family this weekend.
+    japanese:
+      - 週末 は 家族 と 旅行 する {予定 だ}。
+      - 週末 は 家族 と 旅行 する {予定 です}。
+    english_literally: Weekend, (I) travel with family, (it) is a plan.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 は 家族 と 旅行 する {つもり} だ。
+        english: I intend to travel with my family this weekend.
+        hint: 「つもりだ」 expresses the speaker's intention, but we are looking for a concrete plan.
+    scene: A student telling a friend about their weekend plans.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: The release is planned for next month.
+    japanese:
+      - 発売 は 来月 の {予定 です}。
+      - 発売 は 来月 の {予定 だ}。
+    english_literally: Release, (it) is next month's plan.
+    competing_grammar:
+      - competing_japanese:
+          - 発売 は 来月 {です}。
+        english: The release is next month.
+        hint: 「です」 simply states a fact, but we are emphasizing that it is a scheduled plan.
+    scene: A company representative announcing a product release date to the public.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: I don't plan to work overtime today.
+    japanese:
+      - 今日 は 残業 する {予定 で は ない}。
+      - 今日 は 残業 する {予定 じゃ ない}。
+    english_literally: Today, (I) work overtime, (it) is not a plan.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 残業 し ない {つもり} だ。
+        english: I don't intend to work overtime today.
+        hint: 「つもりだ」 indicates the speaker's intention not to do something, but we are stating a pre-existing
+          plan not to do so.
+    scene: An office worker declining an unexpected request from a colleague.
+    register: casual
+    setting: professional
+    conjugation: negative plain (～ない)
+  - english: That project was planned until last month.
+    japanese:
+      - その 計画 は 先月 まで の {予定 でし た}。
+      - その 計画 は 先月 まで の {予定 だっ た}。
+    english_literally: That plan, until last month's plan, it was.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 先月 まで {でし た}。
+        english: That project was until last month.
+        hint: 「でした」 states a simple past fact, but we are specifying that it was a planned timeline.
+    scene: A manager explaining a past project's timeline to a new team member.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: After returning from studying abroad, I plan to start a new job.
+    japanese:
+      - 留学 から 戻っ たら、新しい 仕事 を 始める {予定 です} わ。
+      - 留学 から 戻っ たら、新しい 仕事 を 始める {予定 です}。
+    english_literally: From study abroad, if (I) return, (I) start new job, (it) is a plan, you see.
+    competing_grammar:
+      - competing_japanese:
+          - 留学 から 戻っ たら、新しい 仕事 を 始める {つもり} です わ。
+        english: After returning from studying abroad, I intend to start a new job.
+        hint: 「つもりだ」 expresses a personal intention, but here we are talking about a firm, decided plan
+          for the future.
+    scene: A young woman discussing her post-study abroad career path with a friend.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    nuance: The use of 「わ」 by a female speaker adds a soft, somewhat emphatic nuance, common in polite
+      feminine speech, making her plan sound more definitive and personal.
+  - english: I plan to build my own house next year!
+    japanese:
+      - 来年 は マイ ホーム を 建てる {予定 だ} ぜ！
+      - 来年 は マイ ホーム を 建てる {予定 だ}。
+    english_literally: Next year, (I) build my home, (it) is a plan, hey!
+    competing_grammar:
+      - competing_japanese:
+          - 来年 は マイ ホーム を 建てる {つもり} だ ぜ！
+        english: I intend to build my own house next year!
+        hint: 「つもりだ」 indicates a personal intention, but 「予定だ」 is used for a more concrete and established
+          plan.
+    scene: A man excitedly telling his friends about his big future plans.
+    register: casual
+    setting: excited
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The particle 「ぜ」 is typically used by male speakers to express strong assertion or conviction,
+      reinforcing the speaker's firm commitment to the plan.
+  - english: When is the next meeting planned for?
+    japanese:
+      - 次 の 会議 は いつ {予定 です} か？
+      - 次 の 会議 は いつ {予定 だ}？
+    english_literally: Next meeting, when is (it) planned?
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 会議 は いつ {です} か？
+        english: When is the next meeting?
+        hint: 「いつ ですか」 is a general question about timing, but we are specifically asking about a pre-scheduled
+          or decided plan.
+    scene: A team member asking their manager about the schedule for an upcoming meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The interrogative form of 「予定です」 is commonly used in professional contexts to inquire about
+      established schedules or plans, indicating a desire for concrete information about a decided plan.
+  - english: It wasn't planned for the meeting to be cancelled.
+    japanese:
+      - 会議 が 中止 に なる {予定 で は なかっ た}。
+      - 会議 が 中止 に なる {予定 じゃ なかっ た}。
+    english_literally: Meeting become cancelled, (it) was not a plan.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 が 中止 に なる {つもり} は なかっ た。
+        english: It wasn't intended for the meeting to be cancelled.
+        hint: 「つもりはなかった」 indicates a personal intention that didn't materialize, but here we are stating
+          that a concrete plan for the meeting to happen was not in place.
+    scene: An event organizer explaining an unexpected cancellation to attendees.
+    register: casual
+    setting: informative
+    conjugation: negative past plain (～なかった)
+  - english: Today's schedule is completely packed.
+    japanese:
+      - 今日 の {予定 は いっぱい です}。
+      - 今日 の {予定 は いっぱい だ}。
+    english_literally: Today's plan is full.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の スケジュール は いっぱい {です}。
+        english: Today's schedule is full.
+        hint: While both indicate a full day, 「予定」 specifically highlights that it's the *planned* activities
+          that fill the day, emphasizing a pre-determined schedule rather than just a general busy state.
+    scene: A busy professional informing a colleague they have no free time.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: If the trip is planned for next week, please let me know.
+    japanese:
+      - 旅行 が 来週 の {予定 だっ たら}、教え て ください。
+      - 旅行 が 来週 の {予定 だっ たら}、教え て くれ。
+    english_literally: Trip, if (it) is next week's plan, please tell (me).
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 が 来週 {なら}、教え て ください。
+        english: If the trip is next week, please let me know.
+        hint: 「～なら」 simply states a condition based on a fact, but 「～予定だったら」 specifically asks for confirmation
+          if it is a *planned* event, implying a fixed schedule.
+    scene: A friend asking for confirmation about travel arrangements.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: conditional (～たら)
+post_example_writeup: Note that while 「予定」 implies a plan, it does not necessarily guarantee the plan
+  will be executed. Unforeseen circumstances may lead to changes.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/229-%E4%BA%88%E5%AE%9A

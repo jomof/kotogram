@@ -1,0 +1,437 @@
+grammar_point: のうち(で) (within・among)
+learn_before:
+  - と (and, connects nouns)
+  - ときいた (I heard that)
+  - のは (emphasis and identification)
+  - の中で一番 (the most among)
+  - は (topic and contrast)
+  - 側 (side or flank)
+  - 持っている (to be holding・to possess)
+  - 最も (most)
+meaning: Within, among
+pronunciation:
+  katakana: ノウチ(デ)
+  romaji: no uchi (de)
+formation:
+  Noun/Number + の + うち + で: Used to select, compare, or indicate a specific item/person within a defined
+    group or category.
+  Noun/Number + の + うち + の + Noun/Number: Used to specify a subset or quantity taken from a larger group
+    (e.g., 'X of Y').
+  Noun/Number + の + うち + から: Emphasizes selection 'from' or 'out of' a group, often when making a choice
+    or drawing from a set.
+jlpt: N2
+etymology: The grammar point 「のうち」 comes from the noun 「内(うち)」, meaning "inside" or "within". The 「の」
+  particle connects it to the preceding noun, specifying that the selection is being made from within
+  that noun's scope. The 「で」 particle is optional and indicates the location or context of the selection.
+  Over time, 「内」 in this context evolved to refer to a conceptual 'inside' or 'amongst' a group, rather
+  than just physical space.
+writeup: '「のうち(で)」 is a grammar pattern derived from the noun 「内(うち)」, meaning "inside" or "within". It
+  is used after nouns or numbers to indicate "amongst" or "from within a group," functioning similarly
+  to 「のなか(で)」. Key points regarding its usage: • **Placement**: It typically follows a noun or a number.
+  • **Particles**: • It is often followed by 「で」 to specify the context or location of the selection,
+  similar to 「のなかで」. • When directly preceding another number (e.g., "X out of Y"), it can also be followed
+  by 「の」, forming 「のうちの」. This emphasizes that a *part* is being taken *of* a whole. • It can also be
+  followed by 「から」 in place of 「で」, emphasizing selection "from" a group or origin of a choice. • **Scope**:
+  The noun or number preceding 「のうち」 can represent a range or a limit, and its use is not restricted to
+  numerical contexts. • **Frequency**: While grammatically correct, 「のうち(で)」 is generally less common
+  in natural speech than 「のなか(で)」, especially when simply meaning ''''among'''' or ''''within''''. It
+  tends to carry a slightly more formal or precise nuance, often used when explicitly selecting from a
+  defined group or when precise quantification is required. • **Kanji vs. Hiragana**: Although rooted
+  in the kanji 「内」, the hiragana form 「うち」 is far more frequently encountered in this grammar pattern.
+  This contributes to its slightly more colloquial feel compared to the more formal 「のなか」.'
+false_friends:
+  - term: 〜は〜の一つだ
+    meaning: 〜 is one of (many) 〜
+    kind: similar expression
+    nuance: 「〜は〜の一つだ」 emphasizes that something is *one* of many, stating its membership in a category,
+      while 「のうち」 focuses on selecting *from* a group or making a comparison within it.
+    grammar_point: <suggest>:[X]は[Y]の一つだ (one of)
+  - term: 同士
+    meaning: Fellow, With each other, Mutually, Between, Among, Together, With
+    kind: often confused with
+    nuance: 「同士」 implies a sense of mutual action or shared status among members of a group (e.g., 学生同士
+      'fellow students'), whereas 「のうち」 simply indicates being within a group for selection or comparison,
+      without implying mutuality.
+    grammar_point: <suggest>:同士 (fellow・mutual)
+  - term: のなかで
+    meaning: In, Among, Within
+    kind: synonym
+    nuance: 「のなかで」 is a more general and frequently used term for "in" or "among" a group. While often
+      interchangeable with 「のうちで」, 「のうちで」 can sometimes imply a more precise or deliberate selection from
+      a defined set, especially in formal or academic contexts.
+    grammar_point: のなかで (in・among)
+  - term: のなかで一番
+    meaning: Out of ~, ~ is the best/most ~
+    kind: similar expression
+    nuance: 「のなかで一番」 is a specific superlative form using 「のなかで」, and is generally more common. While
+      「のうち(で)」 can also be used in superlative comparisons, 「のなかで」 is often preferred for general comparisons.
+    grammar_point: <suggest>:のなかで一番 (the most among)
+  - term: そのうち
+    meaning: Eventually; before long; of those/them
+    kind: often confused with
+    nuance: 「そのうち」 has a temporal meaning ('eventually') and can also refer to 'of those/them' from a
+      previously mentioned group. While the 'of those/them' usage shares some concept with 「のうち」, 「のうち」
+      always precedes a group from which a selection is made, whereas 「そのうち」 often acts as a standalone
+      referential pronoun.
+    grammar_point: そのうち (eventually・before long)
+  - term: うち
+    meaning: Inside; within; while
+    kind: similar expression
+    nuance: The bare noun 「うち」 refers to physical or conceptual 'inside' or 'while' a state exists, but
+      it lacks the explicit 'of/among' selection mechanism provided by the particle 「の」 in 「のうち」.
+    grammar_point: うち (within or while)
+  - term: ばかり
+    meaning: Only, excessive
+    kind: similar expression
+    nuance: 「ばかり」 emphasizes exclusivity or excess of a single item or type, whereas 「のうち」 is used for
+      specifying a subset or element from a larger group. 「ばかり」 focuses on what *is*, 「のうち」 on what is
+      *selected from*.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: だけ
+    meaning: Only, just
+    kind: similar expression
+    nuance: Similar to 「ばかり」, 「だけ」 highlights exclusivity, often a limited quantity. 「のうち」 specifies a
+      selection from a group, not necessarily implying it's the *only* thing.
+    grammar_point: だけ (only・just)
+  - term: のみ
+    meaning: Only, just, nothing but
+    kind: similar expression
+    nuance: 「のみ」 is a more formal equivalent of 「だけ」, focusing on exclusivity. 「のうち」 selects a portion
+      from a collective, not emphasizing the exclusivity of the selection itself, but rather its origin.
+    grammar_point: のみ (only・just)
+  - term: 〜たりとも〜ない
+    meaning: Not even one; not a single.
+    kind: similar expression
+    nuance: Both involve quantities within a group, but 「のうち」 is about selecting a subset, while 「〜たりとも〜ない」
+      is a strong negation, emphasizing that *not even one* item exists or is permitted within a set.
+    grammar_point: 〜たりとも〜ない (not even a single)
+  - term: しか〜ない
+    meaning: Nothing but, only
+    kind: similar expression
+    nuance: 「しか〜ない」 emphasizes an exclusive limitation (only X, nothing else), often with a negative connotation,
+      whereas 「のうち」 focuses on selecting a specific part from a larger group, without necessarily implying
+      exclusivity.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: 数量・しか・ない
+    meaning: No more than, Not exceeding, As few as/as little as, Only
+    kind: similar expression
+    nuance: This specific form of 「しか〜ない」 directly quantifies the limitation, asserting that 'only X amount'
+      is available or possible. While 「のうち」 also deals with quantities from a group, it is used for selection,
+      not for emphasizing a strict, often surprisingly small, limit.
+    grammar_point: 数量・しか・ない (limited quantity)
+post_false_friends_writeup: While 「のうち」, 「のなかで」, 「〜は〜の一つだ」, 「同士」, 「そのうち」, and the base noun 「うち」 can all
+  express concepts related to "among" or "within," it's important to consider the nuance each conveys.
+  「のうち」 is typically used when specifically selecting or identifying something *from* a clearly defined,
+  often enumerable, group, or for making a precise comparison within it. In contrast, 「のなかで」 is a more
+  general and frequently used term for simply meaning "in" or "among." 「〜は〜の一つだ」 states that something
+  is merely a member of a larger category. 「同士」 emphasizes a mutual action or shared relationship between
+  members of a group. The temporal adverb 「そのうち」 (eventually) is distinct, though its referential usage
+  ('of those/them') can cause confusion; unlike 「のうち」, 「そのうち」 acts as a standalone reference to a previously
+  mentioned group. The bare noun 「うち」 refers to a general 'inside' or 'while' a state exists, lacking
+  the explicit selection nuance of 「のうち」. Furthermore, expressions like 「ばかり」, 「だけ」, 「のみ」, and 「しか〜ない」,
+  which convey a sense of "only" or "just," emphasize exclusivity or a strict limitation on quantity,
+  rather than merely selecting a subset from a larger collection. The specific 「数量・しか・ない」 form highlights
+  a surprisingly small or restrictive quantity. Lastly, 「〜たりとも〜ない」 uses a similar structural idea of a
+  quantity within a set, but serves as a strong negative assertion, meaning "not even one" or "not a single,"
+  highlighting absolute absence rather than partial selection. Choosing the correct expression depends
+  on the specific context and the intended emphasis.
+examples:
+  - english: Among the chapters in this book, I think the last chapter is the most interesting.
+    japanese:
+      - この 本 の {うち} で 一番 面白い の は、最後 の 章 だ と 思い ます。
+      - この 本 の {うち}、一番 面白い の は、最後 の 章 だ と 思い ます。
+      - この 本 の {うち} で 一番 面白い の は、最後 の 章 だ よ。
+      - この 本 の {うち}、最後 の 章 が 最も 面白い です。
+    english_literally: Among the chapters of this book, the most interesting one is the last chapter,
+      I think.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 の {中 で} 一番 面白い の は、最後 の 章 だ と 思い ます。
+        english: Within this book, I think the last chapter is the most interesting.
+        hint: 「のなかで」 is a more general term for 'within' or 'among' and is generally more common in everyday
+          speech. We are looking for a slightly more precise selection from a defined group.
+    scene: A book reviewer discussing a recent read.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「のうちで」 here is to emphasize the selection of a specific chapter from a defined
+      set of chapters in the book. The sentence ending 「だ と 思い ます」 is polite and expresses an opinion.
+      Omitting 「で」 (as in 「のうち、一番面白いのは」) is also common, especially when the selection context is clear.
+    etymology: The phrase 「一番 面白い」 meaning 'most interesting' uses 「一番」 (いちばん), which literally means
+      'number one' and is a common way to express superlatives in Japanese. This structure likely derives
+      from its concrete meaning of 'first place' in a ranking or comparison, generalizing to 'the most'
+      or 'the best'.
+  - english: Among the participants, he is the most experienced person.
+    japanese:
+      - 参加 者 の {うち} で、彼 が 最も 経験 豊富 な 人物 です。
+      - 参加 者 の {うち}、彼 が 最も 経験 豊富 な 人物 です。
+      - 参加 者 の {うち} で、彼 が 一番 経験 豊富 な 人物 だ よ。
+    english_literally: Among the participants, he is the most experienced person.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 の {中 で}、彼 が 最も 経験 豊富 な 人物 です。
+        english: Within the participants, he is the most experienced person.
+        hint: 「のなかで」 is a more general term for 'within' or 'among'. We are looking for an expression
+          that can imply a more precise selection or comparison from a group.
+    scene: A project manager introducing a team member.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: In this professional setting, 「のうちで」 lends a formal and precise nuance when singling out an
+      individual from a group of participants. The use of 「最も」 (もっとも) for 'most' further enhances the
+      formal tone. Omitting 「で」 is also possible and maintains the formal tone.
+    etymology: The word 「人物」 (じんぶつ) literally means 'person' or 'character'. It combines 「人」 (じん), meaning
+      'person', and 「物」 (ぶつ), meaning 'thing'. When referring to people, it often implies a person of
+      some standing or significance, hence its use in formal descriptions.
+  - english: Three types of the 10 types of wine in this store are domestically produced.
+    japanese:
+      - この 店 に ある １０ 種類 の ワイン の {うち} の ３ 種類 は 国産 です。
+      - この 店 に ある １０ 種類 の ワイン の {うち} ３ 種類 は 国産 です。
+    english_literally: Of the 10 types of wine in this store, 3 types are domestically produced.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 に ある １０ 種類 の ワイン の {中 で}、３ 種類 は 国産 です。
+        english: Among the 10 types of wine in this store, 3 types are domestically produced.
+        hint: While 「のなかで」 can also indicate a part of a whole, 「のうちの」 is more specific for stating a
+          numerical subset from a defined total. We are looking for a clear 'X out of Y' structure.
+    scene: A sommelier describing a wine collection to a customer.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The construction 「のうちの」 is used to explicitly state a part-to-whole relationship, indicating
+      that a specific quantity (３ 種類 'three types') is taken from the larger group (１０ 種類 の ワイン '10 types
+      of wine'). This is common in informative or descriptive contexts. The second 「の」 after 「うち」 can
+      often be omitted, especially in casual speech, while still conveying the part-to-whole meaning.
+    etymology: 「国産」 (こくさん) combines 「国」 (こく), meaning 'country' or 'nation', and 「産」 (さん), meaning 'produce'
+      or 'birth'. This straightforward combination indicates something 'produced in the country', reflecting
+      its direct meaning of 'domestically produced'.
+  - english: Half of the 20 students in the class were absent.
+    japanese:
+      - クラス の 生徒 ２０ 人 の {うち} の 半分 が 欠席 し まし た。
+      - クラス の 生徒 ２０ 人 の {うち} 半分 が 欠席 し まし た。
+    english_literally: Of the 20 students in the class, half were absent.
+    competing_grammar:
+      - competing_japanese:
+          - クラス の 生徒 ２０ 人 の {中 で}、半分 が 欠席 し まし た。
+        english: Among the 20 students in the class, half were absent.
+        hint: Similar to the wine example, while 「のなかで」 can imply a part of a whole, but 「のうちの」 is more
+          precise for denoting a specific portion or number from a larger group. We are looking for the
+          'X out of Y' structure.
+    scene: A teacher reporting student attendance.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: Here, 「のうちの」 clearly specifies a subset (半分 'half') of a total number (２０ 人 '20 people').
+      This is precise language suitable for reporting factual information in an academic context. Similar
+      to the previous example, the second 「の」 after 「うち」 is often optional.
+    etymology: 「欠席」 (けっせき) combines 「欠」 (けつ), meaning 'lack' or 'absence', and 「席」 (せき), meaning 'seat'.
+      Thus, literally 'lacking a seat' or 'absent from one's seat', which directly translates to 'absence'
+      or 'being absent'.
+  - english: Out of many options, we must choose the best path.
+    japanese:
+      - 多く の 選択 肢 の {うち} から、最善 の 道 を 選ば なけれ ば なら ない。
+      - 多く の 選択 肢 の {うち} から、最善 の 道 を 選ば なきゃ いけ ない。
+    english_literally: From among many options, we must choose the best path.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 選択 肢 の {中 から}、最善 の 道 を 選ば なけれ ば なら ない。
+        english: From within many options, we must choose the best path.
+        hint: 「のなかから」 is also used for selecting 'from' a group, but 「のうちから」 emphasizes the source of
+          a choice or drawing from a collection more formally. We are looking for an expression that highlights
+          selection out of clearly defined choices.
+    scene: A team leader addressing a challenging decision.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「のうちから」 emphasizes the act of selection or extraction 'from' a range of choices.
+      This is a common pattern for expressing necessity in decision-making contexts. The casual form of
+      「選ば なけれ ば なら ない」 is 「選ば なきゃ いけない」.
+    etymology: 「最善」 (さいぜん) means 'the very best' or 'optimal'. It combines 「最」 (さい), meaning 'most' or
+      'utmost', and 「善」 (ぜん), meaning 'good'. This straightforward combination highlights its superlative
+      meaning.
+  - english: From the 50 submitted entries, 3 excellent works will be selected.
+    japanese:
+      - 提出 さ れ た 応募 作品 ５０ 点 の {うち} から、優秀 作 を ３ 点 選考 し ます。
+      - 提出 さ れ た 応募 作品 ５０ 点 の {うち} から、優秀 作 を ３ 点 選考 する。
+    english_literally: From the 50 submitted entries, 3 excellent works will be selected.
+    competing_grammar:
+      - competing_japanese:
+          - 提出 さ れ た 応募 作品 ５０ 点 の {中 から}、優秀 作 を ３ 点 選考 し ます。
+        english: From within the 50 submitted entries, 3 excellent works will be selected.
+        hint: Similar to the previous example, while 「のなかから」 is also valid, 「のうちから」 is typically used
+          for formal processes of selection from a specific, enumerated pool. We are looking for language
+          suitable for official announcements about selection.
+    scene: An organizer announcing the results of a competition.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: This example uses 「のうちから」 to formally state that selections will be made 'from' a specific,
+      enumerated group of entries. This is typical language for official announcements or procedural descriptions.
+      The plain form 「選考 する」 is suitable for slightly less formal or internal communication.
+    etymology: 「選考」 (せんこう) means 'selection' or 'screening'. It comprises 「選」 (せん), meaning 'choose' or
+      'select', and 「考」 (こう), meaning 'consider' or 'examine'. Thus, it implies a process of careful selection
+      and examination.
+  - english: Among the Seven Wonders of the World, I like the pyramids the most.
+    japanese:
+      - 世界 の ７ 大 不思議 の {うち} で、私 は ピラミッド が 一番 好き だ な。
+      - 世界 の ７ 大 不思議 の {うち}、私 は ピラミッド が 一番 好き だ な。
+      - 世界 の ７ 大 不思議 の {うち} で、私 は ピラミッド が 一番 好き です。
+    english_literally: Among the Seven Wonders of the World, I like the pyramids the most.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 の ７ 大 不思議 の {中 で}、私 は ピラミッド が 一番 好き だ な。
+        english: Within the Seven Wonders of the World, I like the pyramids the most.
+        hint: 「のなかで」 is a perfectly acceptable, more casual way to express 'among'. We are looking for
+          an expression that can imply a more defined set for comparison.
+    scene: Two friends discussing historical sites.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The sentence ending particle 「な」 (na) is used here to express a personal feeling or gentle
+      assertion, often used by female speakers or in a more relaxed conversational context. 「のうちで」 is
+      used to select from a well-defined list. Omitting 「で」 is also common in casual speech.
+    etymology: 「不思議」 (ふしぎ) means 'mystery' or 'wonder'. It is composed of 「不」 (ふ), a negative prefix meaning
+      'not', and 「思議」 (しぎ), meaning 'thought' or 'consideration'. Thus, it literally means 'not thinkable'
+      or 'beyond comprehension', expressing wonder or mystery.
+  - english: Among all the toys I have, this robot is the most important to me.
+    japanese:
+      - 僕 の 持っ て いる おもちゃ の {うち} で、この ロボット が 一番 大事 な ん だ。
+      - 僕 の 持っ て いる おもちゃ の {うち}、この ロボット が 一番 大事 な ん だ。
+      - 私 の 持っ て いる おもちゃ の {うち} で、この ロボット が 一番 大事 です。
+    english_literally: Among the toys I have, this robot is the most important.
+    competing_grammar:
+      - competing_japanese:
+          - 僕 の 持っ て いる おもちゃ の {中 で}、この ロボット が 一番 大事 な ん だ。
+        english: Within the toys I have, this robot is the most important.
+        hint: 「のなかで」 is a more common and natural choice for general comparison within a group. We are
+          looking for an expression that can imply a more specific selection from a defined personal collection.
+    scene: A child showing their favorite toy to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of the casual personal pronoun 「僕」 (boku) and the sentence ending 「んだ」 (n da) indicates
+      a male, casual, and potentially younger speaker, emphasizing a personal feeling or explanation.
+      「のうちで」 is used to highlight a specific item from a personal collection. Omitting 「で」 is also very
+      natural in this casual context. The polite version uses 「私」 and 「です」.
+    etymology: The auxiliary verb 「ん だ」 (or 「の だ」) is a contraction of 「の である」 or 「の です」, which implies
+      explanation, emphasis, or confirmation. It adds a sense of explaining the reason or background,
+      often with a subtle emotional nuance. In casual speech, it's very common for explanations or assertions.
+  - english: Among all the challenges, this one was the most difficult.
+    japanese:
+      - すべて の 課題 の {うち} で、これ が 最も 難しかっ た。
+      - すべて の 課題 の {うち}、これ が 最も 難しかっ た。
+      - すべて の 課題 の {うち} で、これ が 最も 困難 でし た。
+    english_literally: Among all the challenges, this one was the most difficult.
+    competing_grammar:
+      - competing_japanese:
+          - すべて の 課題 の {中 で}、これ が 最も 難しかっ た。
+        english: Within all the challenges, this one was the most difficult.
+        hint: 「のなかで」 is a more general and common way to express 'among' or 'within' a group. We are looking
+          for an expression that can imply a more precise or deliberate selection from a defined set.
+    scene: A student reflecting on their past semester's workload.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The use of 「のうちで」 in this context, combined with 「最も 難しかっ た」, emphasizes a definitive ranking
+      or selection from a clearly defined set of "challenges." The self-reflective tone is conveyed by
+      the lack of a specific listener. Omitting 「で」 is also natural here. Using 「困難 でし た」 adds a slightly
+      more formal tone than 「難しかっ た」.
+    etymology: 「課題」 (かだい) means 'task' or 'challenge'. It combines 「課」 (か), meaning 'lesson' or 'charge',
+      and 「題」 (だい), meaning 'topic' or 'subject'. So, a 'set topic to be charged with' or a 'task/assignment'.
+  - english: Of the five senses, sight is the most developed.
+    japanese:
+      - 五感 の {うち} で、視覚 が 最も 発達 し て いる。
+      - 五感 の {うち}、視覚 が 最も 発達 し て いる。
+      - 五感 の {うち} で、視覚 が 最も 発達 し て い ます。
+    english_literally: Of the five senses, sight is the most developed.
+    competing_grammar:
+      - competing_japanese:
+          - 五感 の {中 で}、視覚 が 最も 発達 し て いる。
+        english: Within the five senses, sight is the most developed.
+        hint: 「のなかで」 is a more general term for 'within' or 'among'. We are looking for an expression
+          that specifies a comparison within a well-defined category.
+    scene: A biology professor explaining human physiology.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: This example uses 「のうちで」 to compare and select from a well-defined and universal category
+      ("the five senses"), highlighting a specific characteristic within that group. The academic register
+      suits the topic. Omitting 「で」 is also possible, especially when stating a general fact. Adding 「ます」
+      makes the sentence more polite.
+    etymology: 「五感」 (ごかん) literally means 'five senses'. It is composed of 「五」 (ご), meaning 'five', and
+      「感」 (かん), meaning 'sense' or 'feeling'. 「視覚」 (しかく) means 'sight' or 'visual sense', combining 「視」
+      (し), meaning 'to see', and 「覚」 (かく), meaning 'sense' or 'perception'.
+  - english: Out of 100 students, only 10 passed the difficult exam.
+    japanese:
+      - １００ 人 の 学生 の {うち}、１０ 人 だけ が 難しい 試験 に 合格 し まし た。
+      - １００ 人 の 学生 の {うち}、１０ 人 だけ が 難しい 試験 に 合格 し た。
+    english_literally: Of 100 students, only 10 people passed the difficult exam.
+    competing_grammar:
+      - competing_japanese:
+          - １００ 人 の 学生 の {中 で}、１０ 人 だけ が 難しい 試験 に 合格 し まし た。
+        english: Among 100 students, only 10 people passed the difficult exam.
+        hint: While 「のなかで」 can also describe a subset, 「のうち」 emphasizes selection from a precise, enumerable
+          total, making it suitable for presenting statistics or results.
+    scene: A professor discussing exam results with a colleague.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: This example uses 「のうち」 to denote a specific numerical subset (１０ 人 '10 people') from a clearly
+      defined total group (１００ 人 の 学生 '100 students'). This usage provides a precise, almost statistical,
+      report of the outcome. The plain form 「合格 し た」 is suitable for slightly less formal contexts.
+    etymology: 「合格」 (ごうかく) means 'passing (an exam)' or 'success'. It combines 「合」 (ごう), meaning 'to fit'
+      or 'to agree', and 「格」 (かく), meaning 'rank' or 'status'. Thus, it implies 'fitting the standard'
+      or 'meeting the requirements'.
+  - english: Among the four seasons, autumn is the most beautiful for its changing leaves.
+    japanese:
+      - 四季 の {うち} で、秋 が 紅葉 で 最も 美しい です。
+      - 四季 の {うち}、秋 が 紅葉 で 最も 美しい です。
+      - 四季 の {うち} で、秋 が 紅葉 で 一番 きれい だ よ。
+    english_literally: Among the four seasons, autumn is the most beautiful with its autumn leaves.
+    competing_grammar:
+      - competing_japanese:
+          - 四季 の {中 で}、秋 が 紅葉 で 最も 美しい です。
+        english: Within the four seasons, autumn is the most beautiful with its autumn leaves.
+        hint: 「のなかで」 is a general term for 'within' or 'among'. 「のうち」 highlights a selection or comparison
+          within a well-defined set, suitable for expressing a specific preference or characteristic.
+    scene: A nature enthusiast sharing their favorite season.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: Here, 「のうちで」 is used to select a specific season (秋 'autumn') as the most beautiful from the
+      well-defined category of 「四季」 ('four seasons'). The choice of 「美しい です」 (beautiful) adds a sense
+      of appreciation. The more casual 「一番 きれい だ よ」 is also natural, particularly when speaking to friends.
+      Omitting 「で」 is common in both polite and casual forms.
+    etymology: 「紅葉」 (こうよう or もみじ) refers to 'autumn leaves' or 'changing leaves'. It combines 「紅」 (こう),
+      meaning 'crimson' or 'red', and 「葉」 (よう), meaning 'leaf'. This word beautifully captures the essence
+      of autumn scenery in Japan.
+post_example_writeup: The examples illustrate how 「のうち(で/の/から)」 is used to specify a subset or selection
+  from a larger group, often emphasizing precision or a defined collection. While it can often be interchangeable
+  with 「のなか(で)」, 「のうち」 tends to be used when the boundaries of the group are clearly established, or when
+  a more formal or deliberate selection process is implied. Pay attention to the particles 「で」、「の」、and
+  「から」 as they slightly alter the nuance of the selection, indicating the context of selection, a part-to-whole
+  relationship, or the origin of a choice, respectively. Remember, for general expressions of 'among'
+  or 'within', 「のなか(で)」 is often the more common and natural choice in everyday conversation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のうち(で) (within, among)

@@ -1,0 +1,312 @@
+grammar_point: Verbて (uncontrollable consequence)
+learn_before:
+  - Verb[なくて] (negative te-form)
+  - '[Clause]から (because・so)'
+  - '[Clause]ので (because・so)'
+  - い-Adjective[かった] (past tense)
+  - い-Adjective[くない] (negative)
+  - い-adjective (sentence-ending)
+  - がある (possessed feature)
+  - ずいぶん (quite・considerably)
+  - たい (want to do)
+  - な-Adjective (predicate form)
+  - なくて (negative te-form)
+  - なくてもいい (no need to)
+  - なくなる (to cease to be)
+  - も (addition or emphasis particle)
+  - もう (already・anymore)
+  - んだけど・んですが (explanatory・softening)
+  - 心配する (to worry)
+  - 気分 (mood・disposition)
+meaning: Because of, due to, since; expresses a cause-and-effect relationship where the cause is often
+  beyond the speaker's control.
+meaning_warning: Notice that Verb[て]+すみません uses this version of て.
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: verb[て]
+    rarity: common
+    meaning: because of (verb), due to (verb)
+  - conjugation-type: negative plain (～ない)
+    form: verb[なくて]
+    rarity: common
+    meaning: because of (not verb), due to (not verb)
+pronunciation:
+  katakana: テ
+  romaji: te
+formation:
+  Verb[て] + Consequence: Indicates that the verb in て-form is the reason for the following consequence.
+  い-Adjective[て] + Consequence: Indicates that the い-adjective in て-form is the reason for the following
+    consequence.
+  Noun/な-Adjective[で] + Consequence: Indicates that the noun or な-adjective is the reason for the following
+    consequence.
+jlpt: N4
+etymology: The 「て」 form originally functioned as a conjunctive particle, linking clauses together. Over
+  time, it developed the nuance of indicating cause and effect, particularly when the result (the second
+  clause) is something less controllable by the speaker.
+writeup: The 「て」-form of a verb (or 「で」 for nouns and な-adjectives) can express the meaning of "because,"
+  "due to," or "since." This usage often implies that the speaker did not have control over the outcome
+  described in the second part of the sentence. The first part of the sentence (A) provides the reason
+  or cause, and the second part (B) describes the resulting situation or feeling. This grammar point emphasizes
+  the uncontrollable nature of the (B) statement, suggesting that (A) led to (B) in a way that the speaker
+  couldn't prevent or easily influence. It is useful for expressing feelings like being troubled, happy,
+  surprised, tired, or worried as a result of some preceding action or state. For nouns and な-adjectives,
+  the particle 「で」 is used instead of 「て」.
+false_friends:
+  - term: から (kara)
+    meaning: Because, so; indicates a direct and explicit reason.
+    kind: often confused with
+    nuance: 「から」 explicitly states a reason, often with a stronger emphasis or a more direct causal link,
+      and can be used for things within the speaker's control. 「て」, in this usage, highlights a cause-and-effect
+      relationship where the result is often uncontrollable by the speaker.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ので (node)
+    meaning: Because, so; indicates a softer, more objective or polite reason.
+    kind: often confused with
+    nuance: 「ので」 is generally softer and more polite than 「から」, presenting a reason as objective fact.
+      While it also indicates cause, it doesn't carry the same nuance of an uncontrollable or unavoidable
+      outcome as 「て」 in this context.
+    grammar_point: '[Clause]から (because・so)'
+  - term: なくて (nakute)
+    meaning: Not ~ and, Not so, Because not; indicates a negative state as the cause.
+    kind: similar expression
+    nuance: 「なくて」 is the negative form of 「て」, indicating that the *absence* of something is the cause,
+      whereas 「て」 (or 「で」) indicates the *presence* of something as the cause.
+    grammar_point: なくて (conjunction)
+post_false_friends_writeup: To differentiate between 「て」 in this usage and similar expressions, remember
+  that 「て」 emphasizes a direct cause-and-effect relationship where the consequence is often beyond the
+  speaker's control. 「から」 provides a more explicit and direct reason, applicable to both controllable
+  and uncontrollable outcomes. 「ので」 offers a softer, more objective reason. Finally, 「なくて」 is simply the
+  negative counterpart of 「て」, indicating an absence as the cause.
+examples:
+  - english: I studied a lot yesterday, so I'm sleepy today.
+    japanese:
+      - 昨日 たくさん 勉強 し {て}、今日 は 眠い です。
+      - 昨日 たくさん 勉強 し {て}、今日 は 眠い。
+      - 昨日 ずいぶん 勉強 し {て}、今日 は 眠く なっ て しまい まし た。
+    english_literally: Having studied a lot yesterday, today I am sleepy.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 たくさん 勉強 し た {から}、今日 は 眠い です。
+        english: Because I studied a lot yesterday, I'm sleepy today.
+        hint: While both convey cause and effect, 「から」 states a direct reason. The て-form here highlights
+          the uncontrollable consequence of being sleepy, often used when the outcome is a natural, unavoidable
+          result of the first action. We're looking for a natural, unavoidable result.
+    scene: A student explains their tiredness after an exam.
+    register: casual
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_age: younger
+    nuance: The uncontrollable state of being sleepy (「眠い」) is a direct consequence of the action of studying
+      (「勉強して」). This simple statement is common from a younger speaker who may not manage their study
+      habits effectively.
+    etymology: The conjunctive use of て-form to show cause-and-effect has been present in Japanese since
+      classical periods, emphasizing sequence and connection rather than explicit reasoning.
+  - english: Japan is hot, so my sweat won't stop.
+    japanese:
+      - 日本 が 熱く {て}、汗 が 止まり ませ ん。
+      - 日本 が 熱く {て}、汗 が 止まら ない。
+      - 日本 が 熱く {て}、もう 汗 が ダラダラ です。
+    english_literally: Japan being hot, sweat doesn't stop.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 が 熱い {から}、汗 が 止まり ませ ん。
+        english: Because Japan is hot, my sweat won't stop.
+        hint: 「から」 gives a direct reason. However, the て-form used here emphasizes the uncontrollable
+          nature of the sweating due to the heat, suggesting a natural and unavoidable reaction. We're
+          looking for an unavoidable physical reaction.
+    scene: A tourist complains about the intense summer heat in Japan.
+    register: casual
+    setting: pessimistic
+    conjugation: te-form (～て)
+    nuance: The uncontrollable heat (「熱くて」) in Japan directly leads to the uncontrollable sweating (「汗が止まりません」).
+      This expresses a physical reaction beyond the speaker's will. The use of 「熱くて」 (hot and...) as the
+      cause emphasizes the inherent quality leading to the effect.
+    etymology: The い-adjective + て construction for cause-and-effect highlights the state itself as the
+      direct reason, a usage deeply rooted in the grammatical evolution of adjectival forms.
+  - english: The room is clean, so I feel good.
+    japanese:
+      - 部屋 が きれい {で}、気持ち が いい です。
+      - 部屋 が きれい {で}、気持ち が いい。
+      - 部屋 が きれい {で}、気分 が 爽やか です。
+    english_literally: The room being clean, I feel good.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が きれい だ {から}、気持ち が いい です。
+        english: Because the room is clean, I feel good.
+        hint: 「から」 explains the reason. The で-form (from な-adjective/noun + て) here connects the state
+          of the room directly to the uncontrollable positive feeling, implying it's a natural consequence.
+          We're looking for a natural consequence of the room's state.
+    scene: Someone expresses satisfaction with their tidy living space.
+    register: teineigo (polite)
+    setting: optimistic
+    nuance: The clean state of the room (「きれいで」) directly causes the feeling of pleasantness (「気持ちがいいです」).
+      This is a polite expression of a positive and natural consequence. The な-adjective/Noun + で form
+      links a descriptive state to an emotion.
+    etymology: The particle 「で」 for nouns and な-adjectives, when indicating cause, evolved from its locative
+      and instrumental functions, extending to express the 'state' or 'condition' from which something
+      results.
+  - english: My head hurts because of a cold.
+    japanese:
+      - 風邪 {で}、頭 が 痛い。
+      - 風邪 {で}、頭 が 痛い です。
+      - 風邪 {で}、頭 が ズキズキ する。
+    english_literally: Because of a cold, my head is painful.
+    competing_grammar:
+      - competing_japanese:
+          - 風邪 だ {から}、頭 が 痛い。
+        english: Because it's a cold, my head hurts.
+        hint: While 「から」 provides a reason, the で-form (for nouns) here specifically points to the uncontrollable
+          cold as the direct cause of the headache, implying an unavoidable physical discomfort. We're
+          looking for the unavoidable cause of the headache.
+    scene: A person describes their cold symptoms to a friend.
+    register: casual
+    setting: serious
+    nuance: The cold (「風邪で」) is the direct, uncontrollable cause of the headache (「頭が痛い」). This is a straightforward
+      expression of an unavoidable physical discomfort. Using 「で」 with a noun like 「風邪」 points to the
+      noun itself as the source of the trouble.
+    etymology: This usage of 「で」 with nouns to denote cause is a natural extension of its function as
+      an instrumental particle, where the noun is the 'means' or 'agent' of the consequence.
+  - english: The bus didn't come, so I was late.
+    japanese:
+      - バス が 来 なく {て}、遅れ まし た。
+      - バス が 来 なく {て}、遅れ た。
+      - バス が 来 なく {て}、参っ た よ。
+    english_literally: The bus not coming, I was late.
+    competing_grammar:
+      - competing_japanese:
+          - バス が 来 なかっ た {から}、遅れ まし た。
+        english: Because the bus didn't come, I was late.
+        hint: 「から」 states a direct reason. The なくて-form emphasizes that the uncontrollable absence of
+          the bus was the unavoidable cause of being late. We're looking for an uncontrollable external
+          event causing the lateness.
+    scene: Someone explains their tardiness due to public transport.
+    register: casual
+    setting: apologetic
+    conjugation: negative plain (～ない)
+    nuance: The uncontrollable situation of the bus not arriving (「来なくて」) directly resulted in being late.
+      This demonstrates the use of the negative て-form to express cause and effect for an undesirable,
+      unavoidable situation. 「来なくて」 explicitly states the *absence* of the action as the cause.
+    etymology: The negative て-form 「～なくて」 for cause-and-effect similarly highlights the non-occurrence
+      or lack of something as the unavoidable preceding condition.
+  - english: I passed the exam, so I was happy.
+    japanese:
+      - 試験 に 受かっ {て}、嬉しかっ た です。
+      - 試験 に 受かっ {て}、嬉しかっ た。
+      - 試験 に 合格 し {て}、ホッ と し まし た。
+    english_literally: Having passed the exam, I was happy.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 受かっ た {から}、嬉しかっ た です。
+        english: Because I passed the exam, I was happy.
+        hint: 「から」 explains the reason. The て-form here connects the action of passing the exam to the
+          uncontrollable feeling of happiness, indicating a natural and unavoidable emotional response.
+          We're looking for a natural emotional response to passing.
+    scene: A student shares good news about their exam results with a friend.
+    register: casual
+    setting: excited
+    conjugation: te-form (～て)
+    nuance: The positive outcome of passing the exam (「試験に受かって」) leads to the uncontrollable feeling of
+      happiness (「嬉しかったです」). This is a common and natural expression of relief and joy. This shows that
+      the 'uncontrollable' outcome can also be positive.
+    etymology: The versatility of the て-form allows it to connect various types of causes to their effects,
+      including positive outcomes leading to positive emotions.
+  - english: It rained, so the game couldn't be played.
+    japanese:
+      - 雨 が 降っ {て}、試合 が でき なく なり まし た。
+      - 雨 が 降っ {て}、試合 が でき なく なっ た。
+      - 雨 が 降っ {て}、試合 は 中止 と なり まし た。
+    english_literally: Having rained, the game became unable to be played.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ た {から}、試合 が でき なく なり まし た。
+        english: Because it rained, the game couldn't be played.
+        hint: 「から」 provides a direct reason. The て-form highlights the uncontrollable natural event (rain)
+          as the unavoidable cause for the game's cancellation. We're looking for an uncontrollable natural
+          event causing the cancellation.
+    scene: A sports coach informs their team about a game cancellation.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: The rain (「降って」) is the direct, uncontrollable cause for the game becoming unable to be played
+      (「できなくなりました」). This formal phrasing is appropriate for conveying an important, unavoidable change.
+      The use of 「～て」 clearly indicates a factual, external cause leading to a state beyond control.
+    etymology: The use of the て-form to describe natural phenomena as causes (like rain) leading to consequences
+      (like game cancellation) is a core function, illustrating nature's 'uncontrollable' influence.
+  - english: My child has a fever, so I'm worried.
+    japanese:
+      - 子供 が 熱 を 出し {て}、心配 です。
+      - 子供 が 熱 を 出し {て}、心配 だ わ。
+      - 子供 が 熱 を 出し {て} おり、大変 心配 し て おり ます。
+    english_literally: My child having a fever, I am worried.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 熱 を 出し た {から}、心配 です。
+        english: Because my child has a fever, I'm worried.
+        hint: While 「から」 provides a direct reason, the て-form emphasizes the uncontrollable nature of
+          the child's fever leading to the worry, highlighting an unavoidable emotional response to an
+          external event. We're looking for an unavoidable emotional response.
+    scene: A parent talks to a friend about their child's health.
+    register: casual
+    setting: serious
+    conjugation: te-form (～て)
+    speaker_gender: female
+    nuance: The uncontrollable event of the child having a fever (「熱を出して」) causes the parent's uncontrollable
+      feeling of worry (「心配です」). This is a common and natural expression of parental concern, showing
+      an emotional consequence of an external situation. This kind of expression of concern for family
+      members is very common among female speakers.
+    etymology: The te-form's ability to express cause and effect for emotional states is a well-established
+      usage, reflecting the direct impact of external situations on one's feelings.
+  - english: The road was slippery, so I fell.
+    japanese:
+      - 道 が 滑り やすく {て}、転ん で しまい まし た。
+      - 道 が 滑り やすく {て}、転ん だ。
+      - 道 が ツルツル {で}、派手 に 転ん じゃっ た よ。
+    english_literally: The road being slippery, I fell.
+    competing_grammar:
+      - competing_japanese:
+          - 道 が 滑り やすかっ た {から}、転ん で しまい まし た。
+        english: Because the road was slippery, I fell.
+        hint: 「から」 explains the reason, but the て-form (from an い-adjective) here stresses that the slippery
+          condition of the road directly and unavoidably led to the fall. We're looking for an unavoidable
+          consequence of an environmental condition.
+    scene: Someone recounts an unexpected accident to a colleague.
+    register: semi-formal
+    setting: reflective
+    conjugation: te-form (～て)
+    speaker_gender: male
+    nuance: The uncontrollable condition of the slippery road (「滑りやすくて」) directly led to the unavoidable
+      action of falling (「転んでしまいました」). This emphasizes the external cause and the consequence that happened
+      despite the speaker's will. The phrase 「転んでしまいました」 is a common way for any speaker to express a
+      regrettable, completed action.
+    etymology: The combination of い-adjective + て as a conjunctive form for causality has been a stable
+      grammatical pattern, efficiently linking a quality to its unavoidable outcome.
+  - english: I haven't eaten anything all day, so I'm starving.
+    japanese:
+      - 今日 は 何 も 食べ {なく て}、お腹 が ペコペコ です。
+      - 今日 は 何 も 食べ {なく て}、お腹 が ペコペコ だ。
+      - 今日 何 も 食べ て {なく て}、腹 減っ たー！
+    english_literally: Today not having eaten anything, my stomach is very empty.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 何 も 食べ なかっ た {から}、お腹 が ペコペコ です。
+        english: Because I haven't eaten anything all day, I'm starving.
+        hint: While 「から」 states the reason directly, the なくて-form emphasizes the lack of action (not eating)
+          as the unavoidable cause of the hunger. We're looking for a state resulting from a lack of action.
+    scene: A friend complains about hunger after a busy day without meals.
+    register: casual
+    setting: humorous
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The uncontrollable state of not having eaten (「食べなくて」) results in the extreme hunger (「お腹がペコペコです」).
+      This uses the negative て-form to express a natural, albeit self-inflicted, uncontrollable physical
+      state. 「ペコペコ」 is a colloquial, onomatopoeic word for being very hungry, commonly used in casual
+      conversation by younger female speakers.
+    etymology: The negative te-form's causal function underscores the impact of non-occurrence, a linguistic
+      mechanism that allows for expressing consequences arising from an absence of action or state.
+post_example_writeup: As these examples demonstrate, the て-form (and で for nouns/な-adjectives) effectively
+  conveys a cause-and-effect relationship where the consequence is often a natural or unavoidable outcome
+  of the preceding cause. This grammatical construction is particularly useful for expressing feelings
+  or situations that arise spontaneously or beyond one's direct will.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verbて-b2

@@ -1,0 +1,200 @@
+grammar_point: どこも (nowhere・no place)
+learn_before:
+  - どこか (somewhere・some place)
+meaning: Nowhere; no place
+pronunciation:
+  katakana: ドコモ
+  romaji: dokomo
+formation:
+  '[Interrogative (どこ)] + も + [Negative form of Verb]': Used to express that an action does not occur
+    in any place.
+  '[Interrogative (どこ)] + も + [Negative form of Adjective]': Used to express that a state does not exist
+    in any place.
+  '[Interrogative (どこ)] + も + [Negative form of Noun + Copula]': Used to express that something is not
+    in any place.
+jlpt: N4
+etymology: The phrase 「どこも」 (dokomo) is formed by combining the interrogative pronoun 「どこ」 (doko, meaning
+  'where') with the particle 「も」 (mo). The particle 「も」, when used after an interrogative word in a negative
+  sentence, functions to emphasize total negation. Thus, 「どこも」 literally conveys the idea of 'not even
+  'where' (any place)', evolving to mean 'nowhere' or 'no place'. This construction is common across Japanese
+  interrogative pronouns followed by 「も」 and negation, such as 「誰も」 (daremo - no one) or 「何も」 (nanimo
+  - nothing).
+writeup: |-
+  「どこも」 (dokomo) is a common expression used in Japanese to mean "nowhere" or "no place." It is always used in conjunction with a negative predicate, such as a negative verb, adjective, or copula. This grammatical construction emphasizes the complete absence of something or an action in any location.
+
+  Think of 「どこ」 as "where?" and 「も」 as an intensifying particle that, when combined with a negative, results in a sweeping negation across all possibilities. For instance, if you say 「どこも行かない」 (dokomo ikanai), it means "I won't go anywhere" or "I won't go to any place."
+
+  While 「どこも」 is typically used for physical locations, it can also be used in more abstract senses, indicating a lack of something in any part of a system, plan, or situation.
+
+  It is important to remember that 「どこも」 **must** be followed by a negative form to convey the meaning of "nowhere." Without the negation, 「どこも」 in an affirmative context would mean "everywhere," though this usage is less common and often replaced by 「どこでも」 (dokodemo).
+false_friends:
+  - term: どこか (somewhere)
+    meaning: Somewhere; any place (affirmative)
+    kind: antonym
+    nuance: 「どこか」 is used when referring to an unspecified place where something exists or an action might
+      occur, often in affirmative sentences or questions, whereas 「どこも」 in a negative sentence denotes
+      the complete absence of a place.
+    grammar_point: <suggest>:どこか (somewhere)
+  - term: どこでも (anywhere・everywhere)
+    meaning: Anywhere; everywhere; no matter where
+    kind: similar expression
+    nuance: 「どこでも」 implies that any place is acceptable or that something exists in all places. In contrast,
+      「どこも」 paired with a negative signifies that something does not exist in *any* place.
+    grammar_point: <suggest>:どこでも (anywhere・everywhere)
+  - term: どこにも (nowhere・no place)
+    meaning: Nowhere; no place
+    kind: synonym
+    nuance: While 「どこにも」 and 「どこも」 are often interchangeable, 「どこも」 tends to emphasize the entire scope
+      or lack of options, implying 'not a single place', whereas 「どこにも」 focuses more on the non-existence
+      *at* any particular place. Functionally, they are very similar, but 「どこも」 can feel slightly more
+      exhaustive in its negation.
+    grammar_point: <suggest>:どこにも (nowhere・no place)
+post_false_friends_writeup: The distinction between 「どこも」 and 「どこにも」 is subtle and often negligible in
+  practical use, both translating to "nowhere" when followed by a negative. However, 「どこも」 emphasizes
+  a general lack across all potential locations, while 「どこにも」 highlights the absence at specific, individual
+  locations. When you want to express a lack of any specific place, 「どこも」 can be more fitting. When expressing
+  that something is not *at* a particular place, 「どこにも」 might feel slightly more natural, but both are
+  often acceptable. The key is to remember the negative predicate.
+examples:
+  - english: There's nowhere to hide.
+    japanese:
+      - 隠れる {どこ も} ない。
+      - 隠れる {どこ も} あり ませ ん。
+    english_literally: To hide, nowhere exists.
+    competing_grammar:
+      - competing_japanese:
+          - 隠れる 場所 が ない。
+        english: There is no place to hide.
+        hint: 「場所」 specifies a physical place. 「どこも」 generalizes the lack of *any* such place. We're looking
+          for a general expression of 'nowhere'.
+    scene: A child playing hide-and-seek feels frustrated as all the good spots are taken.
+    register: casual
+    setting: friendly
+  - english: I couldn't find my keys anywhere.
+    japanese:
+      - 鍵 が {どこ も} 見つから なかっ た。
+      - 鍵 が {どこ も} 見つかり ませ ん でし た。
+    english_literally: Keys, nowhere could be found.
+    competing_grammar:
+      - competing_japanese:
+          - 鍵 が どこ に も 見つから なかっ た。
+        english: My keys were not found anywhere.
+        hint: While very similar, 「どこにも」 tends to focus on the absence *at* any specific spot. We're looking
+          for an expression that broadly emphasizes 'not a single place' in a comprehensive search.
+    scene: Someone frantically searching their house before leaving for work.
+    register: casual
+    setting: serious
+  - english: During the holidays, there was nowhere quiet.
+    japanese:
+      - 連休 中 は {どこ も} 静か じゃ なかっ た。
+      - 連休 中 は {どこ も} 静か で は あり ませ ん でし た。
+    english_literally: During the consecutive holidays, nowhere was quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 連休 中 は どこ に も 静か な 場所 が なかっ た。
+        english: During the consecutive holidays, there was no quiet place anywhere.
+        hint: This phrase uses 「場所」 specifies a physical place. We're seeking a more generalized absence
+          of quietness across all locations during the period.
+    scene: A person reflecting on a noisy vacation.
+    register: casual
+    setting: reflective
+  - english: There isn't a single place where I can relax.
+    japanese:
+      - リラックス できる {どこ も} ない。
+      - リラックス できる {どこ も} あり ませ ん。
+    english_literally: To relax, nowhere exists.
+    competing_grammar:
+      - competing_japanese:
+          - リラックス できる 場所 が 全く ない。
+        english: There is absolutely no place where I can relax.
+        hint: This uses 「場所」 for a specific place and 「全く」 for emphasis. We're looking for a more concise
+          phrase using an interrogative for 'any place at all'.
+    scene: A stressed out student complaining about their busy schedule.
+    register: casual
+    setting: melancholic
+  - english: In this small village, there's nowhere to buy fresh vegetables.
+    japanese:
+      - この 小さな 村 に は 新鮮 な 野菜 を 買える {どこ も} ない。
+      - この 小さな 村 に は 新鮮 な 野菜 を 買える {どこ も} あり ませ ん。
+    english_literally: In this small village, to buy fresh vegetables, nowhere exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 小さな 村 に は 新鮮 な 野菜 を 売っ て いる 店 が どこ に も ない。
+        english: In this small village, there is no shop selling fresh vegetables anywhere.
+        hint: This example specifies 'shops' and uses 「どこにも」. We're looking for a more general statement
+          about the absence of 'any place' where vegetables can be bought, without specifying a type of
+          establishment.
+    scene: A new resident in a rural area discovering the lack of amenities.
+    register: casual
+    setting: informative
+  - english: He looked everywhere, but there was nowhere to store the large box.
+    japanese:
+      - 彼 は {どこ も} 探し た が、大きな 箱 を しまう 場所 は なかっ た。
+      - 彼 は {どこ も} 探し まし た が、大きな 箱 を しまう 場所 は あり ませ ん でし た。
+    english_literally: He searched everywhere, but to put away the large box, no place existed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は どこ を 探し て も、大きな 箱 を しまう 場所 が 見つから なかっ た。
+        english: He searched everywhere, but he couldn't find a place to store the large box.
+        hint: This uses 「どこを探しても」 to mean 'even if he searches anywhere'. We're focusing on the general
+          statement that 'nowhere' was suitable.
+    scene: A man trying to organize his cluttered apartment.
+    register: formal
+    setting: serious
+    speaker_gender: male
+  - english: After the earthquake, there was nowhere unaffected by the damage.
+    japanese:
+      - 地震 の 後、被害 を 受け て い ない {どこ も} なかっ た。
+      - 地震 の 後、被害 を 受け て い ない {どこ も} あり ませ ん でし た。
+    english_literally: After the earthquake, unaffected by damage, nowhere existed.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 の 後、被害 を 受け て い ない 地域 は なかっ た。
+        english: After the earthquake, there were no areas unaffected by the damage.
+        hint: This uses 「地域」 for specific areas. We're looking for a more comprehensive statement about
+          'not a single place' being unaffected, without specifying a region.
+    scene: A news report describing the aftermath of a natural disaster.
+    register: formal
+    setting: serious
+  - english: Even after checking all the documents, there was nowhere that stated the specific date.
+    japanese:
+      - 全て の 書類 を 確認 し て も、特定 の 日付 が 記載 さ れ て いる {どこ も} なかっ た。
+      - 全て の 書類 を 確認 し て も、特定 の 日付 が 記載 さ れ て いる {どこ も} あり ませ ん でし た。
+    english_literally: Even checking all documents, specific date was stated, nowhere existed.
+    competing_grammar:
+      - competing_japanese:
+          - 全て の 書類 を 確認 し て も、特定 の 日付 が どこ に も 記載 さ れ て い なかっ た。
+        english: Even checking all the documents, the specific date was not written anywhere.
+        hint: This uses the passive with 「どこにも」. We're focusing on the statement that 'nowhere' *was*
+          the place where the date was stated, emphasizing the complete absence.
+    scene: A researcher meticulously examining historical records.
+    register: formal
+    setting: informative
+  - english: I explored the whole city, but there was nowhere as lively as this area.
+    japanese:
+      - 街中 を 探索 し た が、この 地域 ほど 活気 が ある {どこ も} なかっ た。
+      - 街中 を 探索 し まし た が、この 地域 ほど 活気 が ある {どこ も} あり ませ ん でし た。
+    english_literally: Explored the whole city, but as lively as this area, nowhere existed.
+    competing_grammar:
+      - competing_japanese:
+          - 街中 を 探索 し た が、この 地域 ほど 活気 が ある 場所 は どこ に も なかっ た。
+        english: I explored the whole city, but there was no place as lively as this area anywhere.
+        hint: This includes 「場所」 and 「どこにも」. We're aiming for a more general statement that 'nowhere'
+          in the city matched the liveliness of this specific area.
+    scene: A traveler sharing their impressions of a city with a friend.
+    register: casual
+    setting: storytelling
+  - english: After the big sale, there was nowhere left with stock.
+    japanese:
+      - 大 セール の 後、在庫 が 残っ て いる {どこ も} なかっ た。
+      - 大 セール の 後、在庫 が 残っ て いる {どこ も} あり ませ ん でし た。
+    english_literally: After the big sale, stock was remaining, nowhere existed.
+    competing_grammar:
+      - competing_japanese:
+          - 大 セール の 後、在庫 が 残っ て いる 店 は どこ に も なかっ た。
+        english: After the big sale, there were no shops left with stock anywhere.
+        hint: This specifies 'shops' and uses 「どこにも」. We're looking for a more general statement about
+          the complete absence of remaining stock in 'any place' after the sale.
+    scene: A shopper looking for a specific item after a major discount event.
+    register: casual
+    setting: melancholic

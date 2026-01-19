@@ -1,0 +1,345 @@
+grammar_point: とは限らない (not necessarily)
+learn_before:
+  - 必ずしも (not necessarily)
+meaning: Not necessarily so, is not always true, there is no guarantee that
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: とは限らない
+    rarity: common
+    meaning: is not necessarily so
+  - conjugation-type: past plain (～た)
+    form: とは限らなかった
+    rarity: uncommon
+    meaning: was not necessarily so
+  - conjugation-type: non-past polite (～ます)
+    form: とは限りません
+    rarity: common
+    meaning: is not necessarily so (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: とは限りませんでした
+    rarity: uncommon
+    meaning: was not necessarily so (polite)
+pronunciation:
+  katakana: トワカギラナイ
+  romaji: towa kagiranai
+formation:
+  '[Phrase] + とは限らない': Indicates that something is not necessarily the case or that there is no guarantee
+    that something will happen.
+jlpt: N3
+etymology: The grammar point 「とは限らない」 is composed of 「と」 (a particle indicating content), 「は」 (a topic
+  marker), and 「限らない」 (the negative form of the verb 「限る」 to limit). Thus, it literally means "it is not
+  limited to saying that".
+writeup: The grammar point 「とは限らない」 is used to express that something is **not necessarily** the case
+  or that there is **no guarantee** that something will happen. It signifies that while a certain outcome
+  or state might seem expected or implied, it is not definitively true or always limited to that possibility.
+  This expression is formed by taking the negative plain form of the verb 「限る」(かぎる), meaning 'to limit'
+  or 'to be confined to', along with the particle 「と」, which introduces the content of what is being negated,
+  and the topic marker 「は」. It literally conveys the idea that 'it is not limited to (or confined by)
+  saying that...'. This structure can be appended to verbs, i-adjectives, na-adjectives, and nouns. When
+  preceding 「とは限らない」, na-adjectives and nouns require the copula 「だ」 (or 「であった」 for past tense) before
+  the 「と」 particle.
+false_friends:
+  - term: 限り
+    meaning: As long as, while… is the case, limited to
+    kind: antonym
+    nuance: Unlike 「とは限らない」, which expresses uncertainty, 「限り」 indicates a condition or limitation.
+    grammar_point: '[Verb-dictionary・Noun-の]限り (as long as・to the extent that)'
+  - term: ことにはならない
+    meaning: Just because… doesn't mean…
+    kind: synonym
+    nuance: 「ことにはならない」 is similar, but it focuses more on negating a direct cause-and-effect relationship.
+    grammar_point: ことにはならない (doesn't mean)
+  - term: というものでもない
+    meaning: There is no guarantee that…, not necessarily
+    kind: synonym
+    nuance: 「というものでもない」 is a softer way of expressing a similar idea, implying a lack of certainty.
+    grammar_point: というものでもない (not necessarily)
+  - term: というわけではない
+    meaning: It is not that, it doesn't mean that, it is not always the case
+    kind: synonym
+    nuance: 「というわけではない」 is very close in meaning but can also be used to correct a misunderstanding.
+    grammar_point: (という)わけではない (it's not that...)
+  - term: 必ずしも
+    meaning: Not always, not entirely, not necessarily
+    kind: synonym
+    nuance: 「必ずしも」 is an adverb that directly modifies the verb, while 「とは限らない」 is a more structural grammar
+      point.
+    grammar_point: 必ずしも (not necessarily)
+  - term: ないことはない
+    meaning: Is not impossible; It doesn't mean that it isn't
+    kind: synonym
+    nuance: 「ないことはない」 expresses possibility, while 「とは限らない」 expresses uncertainty.
+    grammar_point: ないことはない (not impossible)
+  - term: わけではない
+    meaning: It doesn't mean that, it is not the case, it's not like
+    kind: synonym
+    nuance: 「わけではない」 is similar to 「というわけではない」 and is used to negate a preceding statement or assumption.
+    grammar_point: (という)わけではない (it's not that...)
+  - term: とは言えない
+    meaning: Cannot say that
+    kind: similar expression
+    nuance: 「とは言えない」 directly states an inability to assert something, whereas 「とは限らない」 emphasizes that
+      something is not necessarily true or guaranteed, often implying a possibility beyond a common assumption.
+    grammar_point: <suggest>:とは言えない (cannot say that)
+post_false_friends_writeup: While many of these expressions share similar meanings, it's important to
+  note the nuances. 「とは限らない」 is a general statement of uncertainty, while others like 「ことにはならない」 and 「というわけではない」
+  are more specific in negating a direct relationship or assumption. Consider the context to choose the
+  most appropriate expression.
+examples:
+  - english: Just because you've lived in Japan for a long time doesn't necessarily mean you'll become
+      good at Japanese.
+    japanese:
+      - 日本 に 長く 住ん で いる から と いっ て、日本 語 が 上手 に なる と {は 限ら ない}。
+      - 日本 に 長く 住ん で いる から と いっ て、日本 語 が 上手 に なる と {は 限り ませ ん}。
+    english_literally: Even if you say you have lived in Japan for a long time, it is not limited to Japanese
+      becoming skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に 長く 住ん で いる から と いっ て、日本 語 が 上手 に {なら ない}。
+        english: Just because you've lived in Japan for a long time doesn't mean you'll become good at
+          Japanese (it won't).
+        hint: This simply states that you won't become good, rather than saying it's not necessarily the
+          case. We're looking for an an expression that implies it's not guaranteed, but still possible.
+    scene: A student thinking about moving to Japan to improve their Japanese.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The speaker's reflective tone, suitable for a young student contemplating a future move, is
+      conveyed by the simple plain form 「とは限らない」. This is a general statement of observation and does
+      not target any specific listener. The phrase 「日本 語 が 上手 に なる と は 限ら ない」 implies that becoming good
+      at Japanese is not guaranteed solely by living in Japan.
+    etymology: The phrase 「からといって」 used before 「とは限らない」 emphasizes the 'just because... doesn't mean...'
+      structure. 「から」 indicates reason, and 「といって」 is a contracted form of 「と言って」 meaning 'even if one
+      says'.
+  - english: Just because the weather is good doesn't necessarily mean it's warm.
+    japanese:
+      - 天気 が 良い から と いっ て、暖かい {と は 限ら ない}。
+      - 天気 が 良い から と いっ て、暖かい {と は 限り ませ ん}。
+    english_literally: Even if you say the weather is good, it is not limited to being warm.
+    competing_grammar:
+      - competing_japanese:
+          - 天気 が 良い から と いっ て、{暖かく ない}。
+        english: Just because the weather is good, it's not warm.
+        hint: This states a definite 'not warm'. We're looking for 'not necessarily warm', implying it
+          might not be, even if the weather is good.
+    scene: Two friends checking the weather forecast in early spring.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual tone and directness in 「とは限らない」 fit the friendly interaction between two younger
+      individuals. The speaker is simply stating a common observation without formality. The phrase 「暖かい
+      と は 限ら ない」 points out that the expected warmth despite good weather is not a certainty.
+    etymology: 「からといって」 acts as a conjunction here, linking the premise ('the weather is good') to the
+      nuanced negation. The phrase implies a counter-expectation.
+  - english: Living in the countryside isn't necessarily quiet.
+    japanese:
+      - 田舎暮らし が 静か {だ と は 限ら ない}。
+      - 田舎暮らし が 静か {だ と は 限り ませ ん}。
+    english_literally: Countryside living is not limited to being quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 田舎暮らし は 静か {で は ない}。
+        english: Countryside living is not quiet.
+        hint: This simply states that countryside living is not quiet. We need to express that it's 'not
+          necessarily quiet', suggesting there might be exceptions or it's not always the case.
+    scene: A city dweller is romanticizing country life, and a friend who lives there corrects them.
+    register: casual
+    setting: informative
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「だとは限らない」 emphasizes that the quietness of countryside living is not a given, directly
+      addressing and correcting the romanticized notion of the city dweller. The speaker's slightly older
+      age and experience lend authority to this informative correction. The particle 「が」 after 「田舎暮らし」
+      marks it as the subject of the statement, while 「静か だ と は 限ら ない」 negates the absolute assumption
+      of quietness.
+    etymology: 「だ」 is the plain form of the copula, necessary when 「とは限らない」 follows a noun or a na-adjective
+      like 「静か」 to connect it to the grammatical structure.
+  - english: Just because someone is a company president doesn't necessarily mean they necessarily drive
+      a luxury car.
+    japanese:
+      - 社長 だ から と いっ て、高級 車 に 乗る {と は 限ら ない}。
+      - 社長 だ から と いっ て、高級 車 に 乗る {と は 限り ませ ん}。
+    english_literally: Even if you say it's a company president, it is not limited to driving a luxury
+      car.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 だ から と いっ て、高級 車 に {乗ら ない}。
+        english: Just because someone is a company president, they don't drive a luxury car.
+        hint: This implies they definitely don't drive one. We're looking for 'not necessarily', which
+          leaves room for some presidents to drive one, but it's not a rule.
+    scene: Colleagues are discussing their new, surprisingly frugal CEO.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「とは限らない」 in a formal setting among colleagues is appropriate for a statement that
+      challenges a common assumption, especially when discussing a superior. The neutral form is common
+      in informative discourse, and an older male speaker might use it to convey a sense of experience
+      or wisdom. The phrase 「高級 車 に 乗る と は 限ら ない」 specifically negates the common assumption about presidents
+      and luxury cars.
+    etymology: 「社長 だからといって」 exemplifies a common pattern where 「だからといって」 (just because it's X, doesn't
+      mean Y) precedes 「とは限らない」, setting up the expectation that is then negated.
+  - english: It's not necessarily true that everyone can sing well.
+    japanese:
+      - 全員 が 上手 に 歌える {と は 限ら ない}。
+      - 全員 が 上手 に 歌える {と は 限り ませ ん}。
+    english_literally: It is not limited to all members being able to sing skillfully.
+    competing_grammar:
+      - competing_japanese:
+          - 全員 が 上手 に {歌え ない}。
+        english: It's true that everyone cannot sing well.
+        hint: This expresses a definite inability for everyone to sing well. We want to say it's 'not
+          necessarily true' that everyone can, implying some might not, but it's not a universal rule.
+    scene: A choir director addressing their new members.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The formal and instructional setting uses 「とは限らない」 to set a realistic expectation. The female
+      choir director, as an older figure, uses a direct but not overly harsh tone to address the new members,
+      implying a need for practice and effort rather than inherent talent. 「上手 に 歌える と は 限ら ない」 means
+      that the ability to sing well is not necessarily possessed by everyone.
+    etymology: The structure 「全員 が ～ とは限らない」 is a common way to express that a quality or ability is not
+      universally applicable to a group. It directly counteracts an assumption of uniformity.
+  - english: Last winter, it didn't necessarily snow.
+    japanese:
+      - 去年 の 冬 は、必ず しも 雪 が 降る {と は 限ら なかっ た}。
+      - 去年 の 冬 は、必ず しも 雪 が 降る {と は 限り ませ ん でし た}。
+    english_literally: Last year's winter, it was not necessarily limited to snow falling.
+    competing_grammar:
+      - competing_japanese:
+          - 去年 の 冬 は、雪 が {降ら なかっ た}。
+        english: Last winter, it didn't snow.
+        hint: This states definitively that it did not snow. We need to say it 'didn't necessarily snow',
+          meaning it might have snowed at some points, but it wasn't a consistent occurrence as might
+          be expected.
+    scene: Two people reminiscing about an unusually mild winter.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of the past tense 「とは限らなかった」 clearly indicates that the unexpected situation occurred
+      in the past. The addition of the adverb 「必ずしも」 reinforces the meaning 'not necessarily'. The casual
+      register and male-to-male interaction are common for reflective discussions. 「雪 が 降る と は 限ら なかっ
+      た」 signifies that snowfall was not a guaranteed occurrence, rather than a complete absence of snow.
+    etymology: The combination of 「必ずしも」 and 「とは限らない」 emphasizes the lack of certainty. 「必ずしも」 intensifies
+      the nuance of 'not necessarily' by explicitly stating that it was not always the case.
+  - english: Even if she says she likes me, it doesn't necessarily mean we'll always be together.
+    japanese:
+      - 彼女 が『好き』と 言っ て くれ て も、ずっと 一緒 に い られる {と は 限ら ない}。
+      - 彼女 が『好き』と 言っ て くれ て も、ずっと 一緒 に い られる {と は 限り ませ ん}。
+    english_literally: Even if she says she likes me, it is not limited to being able to be together forever.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が『好き』と 言っ て くれ て も、ずっと 一緒 に い {られ ない}。
+        english: Even if she says she likes me, we can't always be together.
+        hint: This implies a definite impossibility of always being together. We're looking for 'doesn't
+          necessarily mean', which expresses a lack of guarantee or certainty, but not a complete impossibility.
+    scene: A young man confiding in his older friend about relationship anxieties.
+    register: casual
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The male speaker's use of 「好き」 instead of 「愛している」 for 'like/love', combined with 「いられる」 (potential
+      form of 'to be'), conveys a more nuanced sense of romantic uncertainty common among younger males.
+      This expresses a personal anxiety about the future rather than a definitive statement. The casual
+      「とは限らない」 is appropriate for confiding in a close friend. The phrase 「ずっと 一緒 に い られる と は 限ら ない」 indicates
+      that long-term togetherness is not a guaranteed outcome.
+    etymology: The potential form 「いられる」 emphasizes the speaker's ability or capacity to be together,
+      which is then negated by 「とは限らない」, expressing that the ability to be together indefinitely is not
+      guaranteed.
+  - english: Even if you become rich, there's no guarantee you'll be happy.
+    japanese:
+      - お 金持ち に なっ て も、幸福 に なれる {と は 限ら ない}。
+      - お 金持ち に なっ て も、幸福 に なれる {と は 限り ませ ん}。
+    english_literally: Even if you become a rich person, it is not limited to being able to become happy.
+    competing_grammar:
+      - competing_japanese:
+          - お 金持ち に なっ て も、幸福 に {なれ ない}。
+        english: Even if you become rich, you cannot be happy.
+        hint: This states a definite inability to be happy. We need to express that there's 'no guarantee',
+          meaning it's not a sure thing, but it's not necessarily impossible either.
+    scene: A philosopher contemplating the true meaning of success.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The formal 「とは限らない」 aligns with the philosophical and reflective setting. An older speaker
+      contemplating life's deeper meanings would use this phrase to express a universal truth that defies
+      common assumptions. The neutral form is common for general observations. 「幸福 に なれる と は 限ら ない」 directly
+      questions the common belief that wealth guarantees happiness.
+    etymology: 「になっても」 acts as a concession, meaning 'even if it becomes X'. This sets up a contrast with
+      the subsequent statement, which is then negated by 「とは限らない」, indicating that the expected outcome
+      is not guaranteed.
+  - english: What you say isn't necessarily always right, is it?
+    japanese:
+      - あなた の 言う こと が いつ も 正しい {と は 限ら ない} でしょう？
+      - あなた の 言う こと が いつ も 正しい {と は 限り ませ ん} でしょう？
+    english_literally: Your words are not necessarily always correct, right?
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 言う こと は いつ も {正しく ない}。
+        english: What you say is always wrong.
+        hint: This is a direct contradiction, stating that what is said is always wrong. We are looking
+          for 'not necessarily always right', which means it might sometimes be wrong, but not every time.
+    scene: A manager gently correcting a confident subordinate's overconfidence.
+    register: semi-formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The addition of 「でしょう」 softens the assertion, making it a gentle suggestion rather than a
+      blunt correction. This indirect approach is appropriate for a semi-formal setting where the speaker
+      (a manager) wants to maintain good relations while addressing a subordinate's overconfidence. It
+      implies a seeking of agreement rather than a direct contradiction. The phrase 「いつ も 正しい」 is modified
+      by 「とは限らない」 to convey that correctness is not constant.
+    etymology: The combination with 「でしょう」 softens the assertion, making it more rhetorical or seeking
+      agreement, rather than a definitive statement. This is a common way to convey politeness and indirectness
+      in Japanese.
+  - english: Just because something is expensive doesn't necessarily mean it's good.
+    japanese:
+      - 高い から と いっ て、良い {と は 限ら ない}。
+      - 高い から と いっ て、良い {と は 限り ませ ん}。
+    english_literally: Even if you say it's expensive, it is not limited to being good.
+    competing_grammar:
+      - competing_japanese:
+          - 高い から と いっ て、{良く ない}。
+        english: Just because something is expensive, it is not good.
+        hint: This is a definitive statement that something expensive is not good. We are looking for
+          'not necessarily good', meaning it might not be good, but it's not a rule.
+    scene: Two friends shopping for a gift, looking at a pricey item.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The casual use of 「とは限らない」 expresses a common piece of wisdom or observation among friends.
+      The phrase 「高いからといって」 sets up the common assumption that higher price equals higher quality, which
+      is then countered by the grammar point, implying that price is not the sole determinant of quality.
+      「良い と は 限ら ない」 conveys that 'good' is not a necessary consequence of 'expensive'.
+    etymology: 「高いからといって」 functions as a common introductory phrase to present a commonly held belief
+      or situation that is then nuanced or contradicted by the main clause using 「とは限らない」. 「から」 indicates
+      reason, and 「といって」 serves to introduce the preceding statement.
+post_example_writeup: As seen in the examples, 「とは限らない」 can be used in various contexts, from casual conversation
+  to more formal discussions. Its conjugation depends on the tense of the sentence and the desired level
+  of politeness. Remember that the core meaning of 'not necessarily' or 'no guarantee' remains consistent.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とは限らない

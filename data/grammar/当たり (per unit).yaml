@@ -1,0 +1,390 @@
+grammar_point: 当たり (per unit)
+learn_before:
+  - '[Noun]をください (please give me)'
+  - で (for)
+  - にする (to decide or make)
+meaning: Per~, A~, Apiece, Each
+pronunciation:
+  katakana: アタリ
+  romaji: atari
+formation:
+  Number + Counter + 当たり: Indicates 'per' or 'each' unit.
+jlpt: N3
+etymology: 「当たり」 comes from the verb 「当たる」 (ataru), which means 'to hit' or 'to meet.' In this grammatical
+  context, it implies a relation or correspondence 'in relation to' or 'regarding'. Think of it as each
+  item 'hitting' or corresponding to a particular value.
+writeup: The grammatical expression **当たり** is formed by attaching the noun **当たり** (meaning 'to hit'
+  or 'to meet') as a suffix to numbers or counters. In this context, it functions to express a rate or
+  a uniform amount per unit. It is commonly translated as 'per (A)', 'each (A)', or 'apiece'. While the
+  literal meaning of the word **当たり** is 'to come into physical contact with' or 'to strike,' its function
+  as a suffix carries a nuance similar to **に対して** (ni taishite), which means 'in relation to' or 'regarding.'
+  This indicates a correspondence where, for a given unit (A), a certain quantity or value (B) is assigned.
+  Therefore, the structure `(A) 当たり (B)` can be understood as 'Regarding (A), (B) equates to it,' signifying
+  a direct proportional relationship or allocation.
+false_friends:
+  - term: それぞれ
+    meaning: Each, Respectively
+    kind: similar expression
+    nuance: Unlike 「当たり」, 「それぞれ」 implies that each item or person is being considered individually and
+      distinctly, often with different characteristics or actions. 「当たり」 indicates an average or rate
+      for each item.
+    grammar_point: それぞれ (each・respectively)
+  - term: につき
+    meaning: Per, Each, For each (with a reason)
+    kind: similar expression
+    nuance: 「につき」 is generally more formal and often used in official or written contexts. It can also
+      imply a reason or condition, like 'for each [unit], [this condition applies]'. 「当たり」 is more versatile
+      for expressing simple rates or allocations.
+    grammar_point: につき (due to or per)
+  - term: ごとに
+    meaning: Every, Each (time/group)
+    kind: similar expression
+    nuance: 「ごとに」 emphasizes regularity, recurrence, or that something happens for *every single* item
+      or interval. For example, 'every 10 minutes' or 'every person'. 「当たり」 focuses on the rate or allocation
+      *per unit* rather than the iterative nature.
+    grammar_point: ごとに (each・every)
+  - term: ずつ
+    meaning: Each, At a time, One by one
+    kind: similar expression
+    nuance: 「ずつ」 specifically denotes distribution, allocation, or progression in equal portions or increments.
+      For example, 'give two each' or 'advance one step at a time'. 「当たり」 expresses a rate or amount *per
+      unit*, not necessarily implying distribution.
+    grammar_point: ずつ (each; one at a time; little by little)
+post_false_friends_writeup: While 「当たり」 and 「それぞれ」 can both convey the sense of 'each,' their nuances
+  differ. 「当たり」 is used to state a uniform rate, amount, or allocation for each unit. For example, 「一人
+  当たり 三 個」 means '3 pieces per person' as a consistent quantity for everyone. In contrast, 「それぞれ」 emphasizes
+  the distinctness and individuality of items or people, often implying varied actions or outcomes. For
+  instance, 「それぞれ 三 個」 means 'each person has 3 distinct pieces' or 'they each have 3 pieces,' but it
+  does not necessarily imply a standard rate for everyone. It highlights that they are being considered
+  as separate entities. 「につき」 is more formal and specific to stating official rates or conditions. 「ごとに」
+  emphasizes the repetition or that something applies to every single instance. 「ずつ」 is used for distributing
+  things in equal portions or increments.
+examples:
+  - english: These apples are 150 yen each.
+    japanese:
+      - この りんご は 一 個 {当たり} １５０ 円 です。
+      - この りんご は 一 個 {当たり} １５０ 円 だ よ。
+      - りんご は 一 個 {当たり} １５０ 円 です。
+    english_literally: As for these apples, one piece per, 150 yen it is.
+    competing_grammar:
+      - competing_japanese:
+          - この りんご は {それぞれ} １５０ 円 です。
+        english: These apples are 150 yen, each one distinctively.
+        hint: 「それぞれ」 emphasizes individual distinctions rather than a uniform rate. We're looking for
+          a price per unit that applies uniformly.
+      - competing_japanese:
+          - この りんご は 一 個 {に つき} １５０ 円 です。
+        english: These apples are 150 yen per piece (formal).
+        hint: 「につき」 is more formal and can imply a condition or reason. We're looking for a general rate
+          per unit.
+      - competing_japanese:
+          - この りんご は 一 個 {ごと に} １５０ 円 です。
+        english: These apples are 150 yen for every single piece.
+        hint: 「ごとに」 highlights recurrence or applies to every single item. We're looking for a price per
+          unit, not emphasizing every single one.
+      - competing_japanese:
+          - この りんご は 一 個 {ずつ} １５０ 円 です。
+        english: This apples are 150 yen one by one.
+        hint: 「ずつ」 implies distribution or taking things one by one. We're looking for a standard rate
+          per unit.
+    scene: A customer asking a fruit vendor about the price of apples.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: This is a straightforward inquiry about price per item. The expression 「一 個 当たり」 clarifies
+      that the price applies to each individual apple, not the entire batch. The usage is common regardless
+      of speaker's gender or age.
+  - english: At the meeting, we will distribute up to three documents per person.
+    japanese:
+      - 会議 で は、一人 {当たり} 三 枚 まで 資料 を 配り ます。
+      - 会議 にて、一人 {当たり} 三 枚 まで 資料 を 配付 いたし ます。
+      - 会議 で は、一人 {当たり} 三 枚 まで 資料 配る ね。
+    english_literally: At the meeting, per person, up to three sheets of documents will be distributed.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 で は、一人 {に} 三 枚 まで 資料 を 配り ます。
+        english: At the meeting, we will distribute up to three documents *to* each person.
+        hint: The 「に」 particle indicates a recipient, not necessarily a rate of allocation that applies
+          uniformly. We're looking for 'per person'.
+      - competing_japanese:
+          - 会議 で は、{それぞれ} 三 枚 まで 資料 を 配り ます。
+        english: At the meeting, we will distribute up to three documents to each *individual*.
+        hint: 「それぞれ」 highlights individual distinctness. We're talking about a uniform allocation rate
+          for everyone.
+      - competing_japanese:
+          - 会議 で は、一人 {に つき} 三 枚 まで 資料 を 配り ます。
+        english: At the meeting, up to three documents will be distributed for each person (formal).
+        hint: 「につき」 is more formal and can imply a condition or reason. While acceptable, 「当たり」 is more
+          general for proportional rates.
+      - competing_japanese:
+          - 会議 で は、一人 {ごと に} 三 枚 まで 資料 を 配り ます。
+        english: At the meeting, for every person, up to three documents will be distributed.
+        hint: 「ごとに」 emphasizes that something is done for *every* single person or occurrence. While similar,
+          「当たり」 specifically conveys the rate or quota.
+      - competing_japanese:
+          - 会議 で は、一人 に 三 枚 {ずつ} 資料 を 配り ます。
+        english: At the meeting, we will distribute three documents *to each* person.
+        hint: 「ずつ」 indicates distribution in equal portions. While similar for allocation, 「当たり」 is broader
+          for defining a rate per unit.
+    scene: An office worker informing colleagues about document distribution rules.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「配ります」 (kubarimasu), a polite verb ending, fits the formal, instructional tone
+      typical of an office setting. The phrase 「一人 当たり」 clearly states the allocation rate for each individual
+      in the group. This phrasing is common in professional environments.
+  - english: This printer can print 50 pages per minute.
+    japanese:
+      - この プリンター は 一 分 {当たり} ５０ ページ 印刷 でき ます。
+      - この プリンター は 一 分 {当たり} ５０ ページ 印刷 可能 です。
+      - この プリンター、一 分 {当たり} ５０ ページ 刷れる ん だ。
+    english_literally: As for this printer, one minute per, 50 pages can be printed.
+    competing_grammar:
+      - competing_japanese:
+          - この プリンター は 一 分 {に} ５０ ページ 印刷 でき ます。
+        english: This printer can print 50 pages *in* one minute.
+        hint: The 「に」 particle indicates a duration or point in time, not necessarily a rate of performance.
+          We're looking for 'per minute'.
+      - competing_japanese:
+          - この プリンター は 一 分 {に つき} ５０ ページ 印刷 でき ます。
+        english: This printer can print 50 pages per minute (formal).
+        hint: 「につき」 is more formal and often used for specifications. While acceptable, 「当たり」 is a more
+          general term for rates.
+      - competing_japanese:
+          - この プリンター は 一 分 {ごと に} ５０ ページ 印刷 でき ます。
+        english: This printer prints 50 pages *every* minute.
+        hint: 「ごとに」 emphasizes recurrence or what happens for every interval. We're focusing on the output
+          *rate* per minute.
+    scene: A sales representative explaining the specifications of a new printer to a client.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「印刷 できます」 (insatsu dekimasu) clearly states the capability. The term 「一 分 当たり」 is precise,
+      indicating the throughput rate for each minute. This objective language is standard in technical
+      or sales explanations.
+  - english: This chocolate has as many as 150 kilocalories apiece.
+    japanese:
+      - この チョコレート は 一 個 {当たり} １５０ キロカロリー も あり ます。
+      - この チョコレート、一 個 {当たり} １５０ キロカロリー も ある ん だ。
+      - チョコレート は 一 個 {当たり} １５０ キロカロリー も あり ます ね。
+    english_literally: As for this chocolate, one piece per, 150 kilocalories also exist.
+    competing_grammar:
+      - competing_japanese:
+          - この チョコレート は 一 個 {で} １５０ キロカロリー も あり ます。
+        english: This chocolate has as many as 150 kilocalories *in one piece*.
+        hint: The 「で」 particle indicates the means or location, not explicitly the rate 'per unit'. We're
+          looking for 'per piece'.
+      - competing_japanese:
+          - この チョコレート は 一 個 {に つき} １５０ キロカロリー も あり ます。
+        english: This chocolate has as many as 150 kilocalories per piece (formal).
+        hint: 「につき」 is more formal and often used for official data. While acceptable, 「当たり」 is a more
+          general and natural choice here.
+      - competing_japanese:
+          - この チョコレート は 一 個 {ごと に} １５０ キロカロリー も あり ます。
+        english: This chocolate has as many as 150 kilocalories *for every single* piece.
+        hint: 「ごとに」 highlights that something applies to every single item. We're expressing the amount
+          *per* unit.
+    scene: A woman checking the nutritional information of a chocolate bar before buying it.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The phrase 「も あります」 (mo arimasu) expresses surprise or emphasis at the unexpectedly high calorie
+      count for a single item. This kind of self-reflection about food intake is a common scenario in
+      casual conversation, especially for a younger woman.
+  - english: My part-time job allows me to earn about 8,000 yen per day.
+    japanese:
+      - 私 の アルバイト は、一 日 {当たり} ８０００ 円 ぐらい 稼げ ます。
+      - 俺 の アルバイト、一 日 {当たり} ８０００ 円 ぐらい 稼げる ん だ。
+      - 私 の アルバイト で は、一 日 {当たり} ８０００ 円 程度 稼げ ます。
+    english_literally: As for my part-time job, one day per, about 8,000 yen can be earned.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の アルバイト は、一 日 {で} ８０００ 円 ぐらい 稼げ ます。
+        english: My part-time job allows me to earn about 8,000 yen *in* a day.
+        hint: The 「で」 particle indicates the period *within* which something occurs, not explicitly the
+          rate 'per day'. We're looking for 'per day' as a rate.
+      - competing_japanese:
+          - 私 の アルバイト は、一 日 {に つき} ８０００ 円 ぐらい 稼げ ます。
+        english: My part-time job allows me to earn about 8,000 yen per day (formal).
+        hint: 「につき」 is more formal and often used for official rates. While acceptable, 「当たり」 is a more
+          common and natural choice for everyday earning rates.
+      - competing_japanese:
+          - 私 の アルバイト は、一 日 {ごと に} ８０００ 円 ぐらい 稼げ ます。
+        english: My part-time job allows me to earn about 8,000 yen *every* day.
+        hint: 「ごとに」 emphasizes daily recurrence. We're focusing on the earning *rate* per day.
+    scene: A student telling a friend about their part-time job earnings.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual tone is set by the use of 「ぐらい」 (gurai, "about") and the informal verb 「稼げます」 (kasegemasu,
+      "can earn"). The phrase 「一日 当たり」 clearly states the daily earning rate, which is a practical detail
+      often discussed among friends about part-time jobs.
+  - english: For the new product, we need to suppress the production cost per item.
+    japanese:
+      - 新しい 製品 は、一 つ {当たり} の 生産 コスト を 抑える 必要 が あり ます。
+      - 新 製品 は、一 個 {当たり} の 生産 コスト を 抑える 必要 が ござい ます。
+      - 新しい 製品 は、一 つ {当たり} の 生産 コスト を 抑え なけれ ば なり ませ ん。
+    english_literally: As for the new product, one piece per's production cost, there is a need to suppress.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 製品 は、一 つ {の} 生産 コスト を 抑える 必要 が あり ます。
+        english: For the new product, we need to suppress the production cost *of one item*.
+        hint: The 「の」 particle indicates possession or modification, but doesn't explicitly convey 'per
+          unit' as a rate. We're looking for 'cost per item'.
+      - competing_japanese:
+          - 新しい 製品 は、一 つ {に つき} の 生産 コスト を 抑える 必要 が あり ます。
+        english: For the new product, we need to suppress the production cost per item (formal).
+        hint: 「につき」 is very formal and specific for official costs or ratios. While acceptable, 「当たり」
+          is more commonly used for general 'per unit' rates.
+      - competing_japanese:
+          - 新しい 製品 は、一 つ {ごと に} の 生産 コスト を 抑える 必要 が あり ます。
+        english: For the new product, we need to suppress the production cost *for every single* item.
+        hint: 「ごとに」 emphasizes the individual treatment of each item. We're discussing a uniform cost
+          rate per unit.
+    scene: Business meeting discussing cost reduction for a new product.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「必要 が あります」 (hitsuyou ga arimasu, "there is a need") conveys a sense of necessity in a formal
+      business context. The term 「一つ 当たり」 emphasizes the unit cost, which is crucial for financial discussions.
+      This language is appropriate for a female manager providing clear, precise information.
+  - english: Let's keep our smartphone data usage to up to 5 gigabytes per month.
+    japanese:
+      - スマート フォン の データ 使用 量 は、月 {当たり} ５ ギガバイト まで に 抑え ましょう。
+      - スマホ の データ 使用 量 は、一 ヶ月 {当たり} ５ ギガバイト まで に 抑えよう。
+      - データ 使用 量 は、月 {当たり} ５ ギガバイト まで に 抑え ましょう ね。
+    english_literally: As for smartphone data usage, month per, up to 5 gigabytes let's suppress.
+    competing_grammar:
+      - competing_japanese:
+          - スマート フォン の データ 使用 量 は、月 {に} ５ ギガバイト まで に 抑え ましょう。
+        english: Let's keep our smartphone data usage to up to 5 gigabytes *in* a month.
+        hint: The 「に」 particle indicates a period or point in time, not explicitly a recurring rate 'per
+          month'. We're setting a limit that applies each month.
+      - competing_japanese:
+          - スマート フォン の データ 使用 量 は、月 {に つき} ５ ギガバイト まで に 抑え ましょう。
+        english: Let's keep our smartphone data usage to up to 5 gigabytes per month (formal rule).
+        hint: 「につき」 is more formal and often used for official rules or limits. While acceptable, 「当たり」
+          is a more general choice for common usage limits.
+      - competing_japanese:
+          - スマート フォン の データ 使用 量 は、月 {ごと に} ５ ギガバイト まで に 抑え ましょう。
+        english: Let's keep our smartphone data usage to up to 5 gigabytes *every* month.
+        hint: 「ごとに」 emphasizes what happens every interval. We're focusing on the usage *rate* per month.
+    scene: A parent telling their child about data usage limits.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The volitional 「～ましょう」 (mashou) here functions as a gentle, yet firm, suggestion or instruction
+      from an older male parent to a younger male child. 「月 当たり」 specifies the monthly limit, a common
+      discussion point for family data plans.
+  - english: This truck can load up to 3 tons per vehicle.
+    japanese:
+      - この トラック は 一 台 {当たり} ３ トン まで 積載 でき ます。
+      - この トラック は 一 台 {当たり} ３ トン まで 積める。
+      - トラック は 一 台 {当たり} ３ トン まで 積載 可能 です。
+    english_literally: As for this truck, one vehicle per, up to 3 tons can be loaded.
+    competing_grammar:
+      - competing_japanese:
+          - この トラック は 一 台 {で} ３ トン まで 積載 でき ます。
+        english: This truck can load up to 3 tons *on one truck*.
+        hint: The 「で」 particle indicates the means or location, not explicitly the rate 'per vehicle'.
+          We're describing the capacity that applies to each vehicle.
+      - competing_japanese:
+          - この トラック は 一 台 {に つき} ３ トン まで 積載 でき ます。
+        english: This truck can load up to 3 tons per vehicle (formal specification).
+        hint: 「につき」 is very common for stating specifications and capacities. While similar, 「当たり」 is
+          a general term for rates or allocations.
+      - competing_japanese:
+          - この トラック は 一 台 {ごと に} ３ トン まで 積載 でき ます。
+        english: This truck can load up to 3 tons *for every single* vehicle.
+        hint: 「ごとに」 emphasizes each individual truck. We're describing the uniform loading capacity that
+          applies to each vehicle.
+    scene: A logistics manager explaining vehicle capacities.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「積載 できます」 (sekisai dekimasu, "can load") uses polite, formal language suitable
+      for a professional setting. 「一 台 当たり」 emphasizes the per-unit capacity, which is critical for logistics
+      and fleet management. This language is expected from a female manager providing clear, precise information.
+  - english: This medicine should be taken one capsule per dose.
+    japanese:
+      - この 薬 は 一 回 {当たり} 一 カプセル 飲ん で ください。
+      - この 薬 は 一 回 {当たり} 一 カプセル 飲む ん です よ。
+      - この 薬 は 一 回 {当たり} 一 カプセル 服用 です。
+    english_literally: As for this medicine, one time per, one capsule please take.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 は 一 回 {に} 一 カプセル 飲ん で ください。
+        english: This medicine, take one capsule *at* one time.
+        hint: The 「に」 particle indicates a time point or basis, not necessarily a rate or allocation 'per
+          dose'. We're specifying the amount for each administration.
+      - competing_japanese:
+          - この 薬 は 一 回 {に つき} 一 カプセル 飲ん で ください。
+        english: This medicine should be taken one capsule per dose (formal instruction).
+        hint: 「につき」 is more formal and often used for official instructions or specifications. While acceptable,
+          「当たり」 is a general term for 'per unit' allocation.
+      - competing_japanese:
+          - この 薬 は 一 回 一 カプセル {ずつ} 飲ん で ください。
+        english: Take one capsule *each time* for this medicine.
+        hint: 「ずつ」 emphasizes distribution or taking things one by one in equal increments. We're specifying
+          the standard amount *per* dose, not necessarily the manner of taking it.
+    scene: A pharmacist explaining medication instructions to a patient.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: This clearly states the prescribed dosage. The use of 「～てください」 is a polite instruction. 「服用です」
+      in the alternative shows a more formal way. This type of detailed instruction is typical from a
+      medical professional (often a woman) to a patient, ensuring clarity in healthcare settings.
+  - english: My new car gets about 25 kilometers per liter.
+    japanese:
+      - 私 の 新しい 車 は、一 リットル {当たり} ２５ キロメートル ぐらい 走り ます。
+      - 俺 の 新車 は、一 リットル {当たり} ２５ キロ ぐらい 走る よ。
+      - この 新車 は、一 リットル {当たり} ２５ キロメートル 走る ん です。
+    english_literally: As for my new car, one liter per, about 25 kilometers runs.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 新しい 車 は、一 リットル {に} ２５ キロメートル ぐらい 走り ます。
+        english: My new car runs about 25 kilometers *on* one liter.
+        hint: The 「に」 particle can indicate a basis or quantity, but 「当たり」 is more explicit for expressing
+          'per' a unit of measure like 'per liter'.
+      - competing_japanese:
+          - 私 の 新しい 車 は、一 リットル {に つき} ２５ キロメートル ぐらい 走り ます。
+        english: My new car gets about 25 kilometers per liter (formal specification).
+        hint: 「につき」 is more formal and often used for technical specifications or official figures. While
+          similar, 「当たり」 is a more general and natural choice for everyday conversations about performance.
+      - competing_japanese:
+          - 私 の 新しい 車 は、一 リットル {で} ２５ キロメートル ぐらい 走り ます。
+        english: My new car runs about 25 kilometers *with* one liter.
+        hint: The 「で」 particle indicates the means or instrument. While it can imply 'with' a certain
+          amount, 「当たり」 is more precise for 'per' unit.
+    scene: Friends discussing their cars' fuel efficiency.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual tone is set by the use of 「ぐらい」 (gurai, 'about') and the informal verb 「走る よ」 in
+      one variation. 「一 リットル 当たり」 is the standard way to express fuel efficiency in Japanese, indicating
+      the distance covered for each liter of fuel, a common topic among younger men discussing cars.
+post_example_writeup: As seen in these examples, 「当たり」 is a versatile expression used to denote a rate,
+  allocation, or amount per unit across various contexts, from pricing and resources to performance metrics.
+  It clearly establishes a proportional relationship between two quantities.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/当たり

@@ -1,0 +1,307 @@
+grammar_point: する (to have a characteristic)
+learn_before:
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - いつも (always・usually)
+  - がする (sense perception)
+  - ね (seeking agreement)
+  - わ (feminine sentence-ending particle)
+  - 使う (to use)
+  - 方をする (to behave in a certain way)
+  - 誰 (who)
+  - 風 (style・manner)
+meaning: To have (a characteristic, feature, or quality)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: する
+    rarity: common
+    meaning: to have (a characteristic)
+  - conjugation-type: non-past polite (～ます)
+    form: します
+    rarity: common
+    meaning: to have (a characteristic) (polite)
+  - conjugation-type: negative plain (～ない)
+    form: しない
+    rarity: common
+    meaning: not to have (a characteristic)
+  - conjugation-type: negative non-past polite (～ません)
+    form: しません
+    rarity: common
+    meaning: not to have (a characteristic) (polite)
+  - conjugation-type: past plain (～た)
+    form: した
+    rarity: common
+    meaning: had (a characteristic)
+  - conjugation-type: past polite (～ました)
+    form: しました
+    rarity: common
+    meaning: had (a characteristic) (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: しなかった
+    rarity: common
+    meaning: did not have (a characteristic)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: しませんでした
+    rarity: common
+    meaning: did not have (a characteristic) (polite)
+  - conjugation-type: te-form (～て)
+    form: して
+    rarity: common
+    meaning: having (a characteristic) (te-form)
+  - conjugation-type: conditional (～ば)
+    form: すれば
+    rarity: uncommon
+    meaning: if one has (a characteristic)
+  - conjugation-type: conditional (～たら)
+    form: したら
+    rarity: common
+    meaning: if/when one had (a characteristic)
+  - conjugation-type: progressive (～ている)
+    form: している
+    rarity: common
+    meaning: is having/has (a characteristic)
+pronunciation:
+  katakana: スル
+  romaji: suru
+formation:
+  Noun + を + する/している: Used to describe a (semi-)permanent characteristic or attribute of a person or object,
+    implying its active presence or manifestation.
+jlpt: N5
+etymology: 「する」 originally means "to do," but in this context, it takes on a more stative meaning, indicating
+  a state of 'being' or 'having.' It functions as an auxiliary verb, attaching to a noun to form a descriptive
+  meaning. This semantic extension from action to state is a common linguistic phenomenon.
+writeup: 'The verb 「する」, most commonly known for its meaning "to do," has another important usage: indicating
+  that someone or something possesses a certain characteristic or quality. This is distinct from its active
+  meaning and focuses on describing an inherent trait or attribute. It is often translated as "to have"
+  in English when describing physical features, shapes, or even abstract qualities. While 「～がある」 can also
+  express possession, 「～をしている」 often carries a nuance of active presence or manifestation of that attribute.
+  It implies that the characteristic is noticeable or actively presented by the subject. Common Applications:
+  Physical Features: Describing hair, eyes, body shape, etc. Expressions or Demeanor: Describing how someone
+  looks or carries themselves. Object Attributes: Describing the shape, texture, or other qualities of
+  inanimate objects. Abstract Qualities: Describing intrinsic traits or dispositions. In casual conversation,
+  「～している」 is often shortened to 「～してる」. When used in polite contexts, 「～しています」 is common. For very formal
+  or respectful speech, especially when talking about a superior''s characteristics or actions, the honorific
+  passive form 「～される」 (e.g., 「～されています」) can be used, as seen in business Japanese to describe a company''s
+  stance or policy.'
+false_friends:
+  - term: ある
+    meaning: to exist, to have (inanimate objects)
+    kind: similar expression
+    nuance: While 「～がある」 can also mean 'to have,' it is generally used for inanimate objects or to indicate
+      simple existence or location. 「～をしている」 is more focused on describing a quality or characteristic
+      possessed by someone or something, often implying a perceptible or visually active attribute, distinguishing
+      it from mere existence.
+    grammar_point: ある (to exist, inanimate・to have)
+post_false_friends_writeup: To avoid confusion, remember that 「～をしている」 (or 「～をする」) focuses on describing
+  a quality or characteristic someone or something possesses, often implying a visible or perceptible
+  attribute. On the other hand, 「ある」 generally indicates existence or possession in a broader, more general
+  sense, and is often used for inanimate objects or to state location.
+examples:
+  - english: This new radio has a good sound.
+    japanese:
+      - この 新しい ラジオ は 良い 音 を {する}
+      - この 新しい ラジオ は 良い 音 を {し ます}
+      - この 新しい ラジオ は 良い 音 を {し て いる}
+      - この 新しい ラジオ は 良い 音 を {し て い ます}
+    english_literally: This new radio does a good sound.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい ラジオ は 良い 音 が {ある}
+        english: This new radio has a good sound (implying mere existence).
+        hint: 「がある」 expresses simple existence or possession of a sound. 「をする」 emphasizes the radio producing
+          or making a good sound, implying an active manifestation of that quality. We're looking for
+          a grammar that implies the radio produces sound.
+    scene: Someone admiring a new electronic device.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「良い 音 を する」 describes an observable, characteristic sound. 「音」 (sound) is an N4 kanji, and
+      「新しい」 (new) uses an N3 kanji 「新」, commonly used for N5 grammar points.
+  - english: Our child has beautiful hair.
+    japanese:
+      - うち の 子 は きれい な 髪 を {し て い ます}
+      - うち の 子 は きれい な 髪 を {し て いる}
+      - うち の 子 は きれい な 髪 を {し まし た}
+      - うち の 子 は きれい な 髪 を {し た}
+    english_literally: Our child is doing beautiful hair.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 子 は きれい な 髪 が {あり ます}
+        english: Our child has beautiful hair (implying simple possession).
+        hint: 「があります」 states the simple existence or possession of beautiful hair. 「をしています」 describes
+          the visible characteristic or appearance of the hair, highlighting its quality. We're looking
+          for a grammar that describes the observable quality of the hair.
+    scene: A mother proudly describing her child to a friend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: 「きれいな 髪 を しています」 describes a physical characteristic of the child. The use of 「しています」 makes
+      the statement polite and emphasizes the ongoing state of having that attribute. 「髪」 (hair) is an
+      N3 kanji, which is acceptable in N5 contexts given its commonality. 「うちの子」 is a gender-neutral way
+      for parents to refer to their child.
+  - english: That job didn't offer a very good experience.
+    japanese:
+      - その 仕事 は あまり 良い 経験 を {し なかっ た}
+      - その 仕事 は あまり 良い 経験 を {し ませ ん でし た}
+    english_literally: That job didn't do a very good experience.
+    competing_grammar:
+      - competing_japanese:
+          - その 仕事 は あまり 良い 経験 が {なかっ た}
+        english: That job didn't have/wasn't a very good experience (simple lack of existence).
+        hint: While 「がなかった」 can imply the lack of an experience, 「をしなかった」 uses 「する」 as part of the idiomatic
+          phrase 「経験をする」 (to have/undergo an experience), implying a lack of undergoing or gaining the
+          experience. We're looking for a phrase that means "to not undergo an experience."
+    scene: Someone reflecting on a past employment.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    nuance: 「良い 経験 を しなかった」 uses 「する」 for the idiom "to have an experience." 「しなかった」 indicates the past
+      negative completion of this experience. 「仕事」 (job) is an N4 kanji, and 「経験」 (experience) is an N3
+      kanji, both commonly encountered.
+  - english: She has a very gentle voice.
+    japanese:
+      - 彼女 は とても 優しい 声 を {し て いる}
+      - 彼女 は とても 優しい 声 を {し て い ます}
+      - 彼女 は とても 優しい 声 を {する}
+      - 彼女 は とても 優しい 声 を {し ます}
+    english_literally: She is doing a very gentle voice.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は とても 優しい 声 が {ある}
+        english: She has a very gentle voice (simple existence of voice).
+        hint: 「がある」 states the simple existence of a gentle voice. 「をしている」 emphasizes the characteristic
+          quality or sound of her voice as it is produced or perceived. We're looking for a grammar that
+          describes the quality of her voice.
+    scene: Two friends discussing a new person they met.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: 「優しい 声 を している」 describes a person's vocal quality. 「している」 highlights the ongoing state of
+      having this attribute. 「優しい」 (gentle) is an N4 adjective, and 「声」 (voice) is an N3 kanji, which
+      is commonly used to describe human attributes.
+  - english: That person had a worried expression on their face the whole time.
+    japanese:
+      - あの 人 が ずっと 不安 そう な 顔 を {し て い まし た}
+      - あの 人 が ずっと 不安 そう な 顔 を {し て い た}
+    english_literally: That person was doing a worried-looking face the whole time.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 が ずっと 不安 そう な 顔 {でし た}
+        english: That person's face was worried-looking the whole time (simple state).
+        hint: 「でした」 describes the state of the face as being worried-looking. 「をしていました」 implies the active
+          display or maintenance of that expression throughout the time, as if the person was making or
+          wearing the expression. We're looking for a grammar that implies the person was displaying a
+          worried face.
+    scene: An employee observing their colleague in a meeting.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: progressive (～ている)
+    nuance: 「不安 そうな 顔 を していました」 describes an observable facial expression. The polite past progressive
+      form 「していました」 shows that the person continued to have that expression. 「不安」 (anxiety) and 「顔」 (face)
+      are N3 kanji, commonly used to describe expressions.
+  - english: This flower has a sweet smell.
+    japanese:
+      - この 花 は 甘い 匂い を {する}
+      - この 花 は 甘い 匂い を {し ます}
+      - この 花 は 甘い 匂い を {し て いる}
+      - この 花 は 甘い 匂い を {し て い ます}
+    english_literally: This flower does a sweet smell.
+    competing_grammar:
+      - competing_japanese:
+          - この 花 は 甘い 匂い が {ある}
+        english: This flower has a sweet smell (implying mere existence of the smell).
+        hint: 「がある」 states simple existence of the smell. 「をする」 describes the flower emitting or producing
+          the smell as an inherent characteristic. We're looking for a grammar that implies the flower
+          emits a sweet smell.
+    scene: Someone admiring a flower in a garden.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「甘い 匂い を する」 is a common idiom to describe something's characteristic scent. It emphasizes
+      the active presence of the smell.
+  - english: He always has a kind face.
+    japanese:
+      - 彼 は いつ も 優しい 顔 を {し て いる}
+      - 彼 は いつ も 優しい 顔 を {し て い ます}
+      - 彼 は いつ も 優しい 顔 を {する}
+      - 彼 は いつ も 優しい 顔 を {し ます}
+    english_literally: He always does a kind face.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 優しい 顔 {です}
+        english: He is always a kind face (describing a state).
+        hint: 「です」 describes a simple state or characteristic. 「をしている」 emphasizes the continuous display
+          or appearance of the kind face. We're looking for a grammar that describes the observable attribute
+          of his face.
+    scene: Two friends discussing a mutual acquaintance's personality.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: 「優しい 顔 を している」 emphasizes the continuous and observable characteristic of having a kind face.
+      「いつも」 reinforces the permanence of this trait.
+  - english: The new car has a sleek design.
+    japanese:
+      - 新しい 車 は 洗練 さ れ た デザイン を {し て いる}
+      - 新しい 車 は 洗練 さ れ た デザイン を {し て い ます}
+      - 新しい 車 は 洗練 さ れ た デザイン を {する}
+      - 新しい 車 は 洗練 さ れ た デザイン を {し ます}
+    english_literally: The new car does a sleek design.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 車 は 洗練 さ れ た デザイン が {ある}
+        english: The new car has a sleek design (simple existence).
+        hint: 「がある」 describes the simple existence of the design. 「をしている」 highlights the car possessing
+          and displaying this design as a key feature. We're looking for a grammar that describes the
+          visual attribute of the car.
+    scene: A car salesperson explaining features to a potential buyer.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: 「デザイン を している」 is used to describe the visual characteristic or style of an object. The progressive
+      form 「している」 emphasizes that this design is an ongoing, present feature of the car.
+  - english: That dog has long ears.
+    japanese:
+      - あの 犬 は 長い 耳 を {し て いる}
+      - あの 犬 は 長い 耳 を {し て い ます}
+      - あの 犬 は 長い 耳 を {し た}
+      - あの 犬 は 長い 耳 を {し まし た}
+    english_literally: That dog is doing long ears.
+    competing_grammar:
+      - competing_japanese:
+          - あの 犬 は 長い 耳 が {ある}
+        english: That dog has long ears (simple existence).
+        hint: 「がある」 simply states the existence of long ears. 「をしている」 specifically describes the physical
+          characteristic, often implying an observable trait. We're looking for a grammar that describes
+          a physical feature of the dog.
+    scene: A child pointing out a dog at the park to their parent.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: 「長い 耳 を している」 is a natural way to describe physical attributes of animals or people. The progressive
+      form emphasizes the continuous state of having that feature.
+  - english: This old desk has many scratches.
+    japanese:
+      - この 古い 机 は たくさん 傷 を {し て いる}
+      - この 古い 机 は たくさん 傷 を {し て い ます}
+      - この 古い 机 は たくさん 傷 を {し て い た}
+      - この 古い 机 は たくさん 傷 を {し て い まし た}
+    english_literally: This old desk is doing many scratches.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 机 は たくさん 傷 が {ある}
+        english: This old desk has many scratches (simple existence).
+        hint: 「がある」 states the simple existence of scratches. 「をしている」 describes the desk possessing or
+          bearing these scratches as an inherent characteristic or condition. We're looking for a grammar
+          that describes the physical condition of the desk.
+    scene: A person assessing an antique piece of furniture in a shop.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: 「傷 を している」 describes the state of having scratches. The progressive form indicates this is
+      an existing and observable condition of the desk.
+post_example_writeup: In all these examples, 「する」 or its conjugated forms are used to describe inherent
+  or observable characteristics and qualities, or to express the experience of a state, rather than just
+  simple existence. This emphasizes the active manifestation or display of the noun it modifies. Pay close
+  attention to the context and the type of noun it accompanies, as this will help distinguish it from
+  other uses of 「する」 or expressions like 「ある」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/する

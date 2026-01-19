@@ -1,0 +1,390 @@
+grammar_point: でした (past copula, polite)
+learn_before:
+  - たいへん (very・awfully・terribly)
+  - な-Adjective[だった] (plain past)
+meaning: Was, Were (Past tense)
+conjugations:
+  - conjugation-type: past polite (～ました)
+    form: でした
+    rarity: common
+    meaning: was
+pronunciation:
+  katakana: デシタ
+  romaji: deshita
+formation:
+  Noun + でした: Indicates the past tense of a noun in a polite context.
+  な-Adjective + でした: Indicates the past tense of a な-adjective in a polite context.
+jlpt: N5
+etymology: 「でした」 is the past tense form of the polite copula 「です」. It is formed by changing the 「す」 of
+  「です」 to 「し」 and then attaching the past tense auxiliary verb 「た」, resulting in 「でした」.
+writeup: |-
+  「でした」 is the polite auxiliary verb used to express the past tense of nouns and な-adjectives. It indicates that something "was" or "were" a certain way in the past. Essentially, it functions as the polite past tense form of the copula 「です」.
+
+  Its formation is straightforward:
+  *   For **nouns**, you directly attach 「でした」. For example, 「先生」 (teacher) becomes 「先生でした」 (was a teacher).
+  *   For **な-adjectives**, you also directly attach 「でした」. For example, 「静か」 (quiet) becomes 「静かでした」 (was quiet).
+
+  **Important Consideration:** It is crucial to remember that 「でした」 **cannot** be used with い-adjectives. い-adjectives have their own distinct past tense conjugation rules (e.g., 「暑い」 (hot) becomes 「暑かったです」 (was hot), not 「暑いでした」). 「でした」 is primarily used in polite conversations and formal writing.
+false_friends:
+  - term: Verb Past Tense
+    meaning: Verbs in past tense (e.g., 食べました)
+    kind: often confused with
+    nuance: Unlike 「でした」, which is an auxiliary verb for nouns and な-adjectives, verbs have their own
+      distinct past tense conjugations (e.g., 「食べました」 means "ate", referring to an action, not a state
+      of being).
+    grammar_point: <suggest>:Verb (past)
+  - term: です
+    meaning: To be, Is (polite present copula)
+    kind: similar expression
+    nuance: 「です」 is the present tense polite form of the copula; 「でした」 is its past tense equivalent, referring
+      to a state that existed previously.
+    grammar_point: です (polite copula)
+  - term: でございました
+    meaning: Was, Were (humble past copula)
+    kind: similar expression
+    nuance: 「でございました」 is the humble form of the past copula, used when showing heightened respect to the
+      listener or the context. It is much more formal than 「でした」 and is typically used in specific honorific
+      situations.
+    grammar_point: <suggest>:でございました (humble past copula)
+post_false_friends_writeup: Remember that 「でした」 is specifically for indicating the polite past tense of
+  nouns and な-adjectives. For verbs, you'll need to use the appropriate verb conjugation to express past
+  tense. While 「でございました」 is also a polite past form, it is reserved for much more formal or humble contexts,
+  whereas 「でした」 is the standard polite form for everyday conversation.
+examples:
+  - english: Yesterday afternoon was very beautiful.
+    japanese:
+      - 昨日 の 午後 は とても 綺麗 {でし た}。
+      - 昨日 の 午後 は すごく 綺麗 {でし た}。
+      - 昨日 の 午後、本当 に 綺麗 {でし た} ね。
+      - 昨日 の 午後 は 大変 綺麗 {でし た} わ ね。
+      - 昨日 の 午後 は なん と 綺麗 {でし た} こと でしょう。
+      - 昨日 の 午後 は、誠 に 綺麗 {でし た}。
+      - 昨日 の 午後 は 実 に 綺麗 {でし た}。
+      - 昨日 の 午後 は 本当 に 素敵 {でし た}。
+    english_literally: Yesterday's afternoon very beautiful was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 午後 は とても 綺麗 {で あっ た}。
+        english: Yesterday afternoon was very beautiful.
+        hint: 「であった」 is a more formal or literary expression, generally not used in polite conversation.
+          We're looking for a polite, everyday past tense here.
+      - competing_japanese:
+          - 昨日 の 午後 は とても 綺麗 {だっ た}。
+        english: Yesterday afternoon was very beautiful.
+        hint: 「だった」 is the casual form. We're looking for a polite expression suitable for speaking to
+          an elder.
+      - competing_japanese:
+          - 昨日 の 午後 は とても 綺麗 {です}。
+        english: Yesterday afternoon is very beautiful.
+        hint: 「です」 is the present tense copula. We're looking for the past tense, as the event occurred
+          yesterday.
+      - competing_japanese:
+          - 昨日 の 午後 は とても 綺麗 {で ござい まし た}。
+        english: Yesterday afternoon was very beautiful (humble/formal).
+        hint: 「でございました」 is a very formal or humble expression. While 「でした」 is polite, 「でございました」 adds a
+          level of deference that might be excessive for simply describing the weather to an older person.
+          We're looking for standard polite past tense.
+    scene: A woman discussing the weather with an older woman in a formal setting, like a community center.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The polite 「でした」 is appropriate when speaking to an older person in a respectful context,
+      as indicated by the use of polite language like 「とても 綺麗 でした」. This aligns with the setting of a
+      younger woman speaking to an elder.
+  - english: That person's story was kind.
+    japanese:
+      - あの 人 の 話 は 親切 {でし た}。
+      - あの 方 の お 話 は 親切 {でし た}。
+      - あの 方 の お 話 は 本当 に 親切 {でし た} ね。
+      - あの 方 の お 話 は、まこと に 親切 {でし た}。
+      - 先生、あの 方 の お 話 は 実 に 親切 {でし た}。
+      - あの 方 の お 話 は 大変 親切 {でし た}。
+      - あの 方 の お 話 は、とても お 心遣い が 親切 {でし た}。
+    english_literally: That person's story kind was.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 の 話 は 親切 {で あっ た}。
+        english: That person's story was kind.
+        hint: 「であった」 is a more formal or literary expression, generally not used in polite conversation.
+          We're looking for a polite, everyday past tense here.
+      - competing_japanese:
+          - あの 人 の 話 は 親切 {だっ た}。
+        english: That person's story was kind.
+        hint: 「だった」 is the casual form. We're looking for a polite expression suitable for an academic
+          setting.
+      - competing_japanese:
+          - あの 人 の 話 は 親切 {です}。
+        english: あの 人 の 話 は 親切 です。
+        hint: 「です」 is the present tense copula. This sentence refers to a past event (a lecture), so we
+          need the past tense form.
+      - competing_japanese:
+          - あの 人 の 話 は 親切 {で ござい まし た}。
+        english: That person's story was kind (humble/formal).
+        hint: 「でございました」 is a very formal or humble expression. While 「でした」 is polite and suitable for
+          an academic setting, 「でございました」 indicates an even higher level of formality or humility that
+          might be excessive here. We're looking for standard polite past tense.
+    scene: A young man complimenting a speaker to his professor after a lecture.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The polite 「でした」 is used to convey respect when speaking to a professor, highlighting the
+      formal academic setting. Phrases like 「あの 人 の 話」 (that person's story) or 「あの方 の お話」 (that person's
+      honorable story) maintain the politeness expected in this context.
+  - english: In the past, this place was a quiet town.
+    japanese:
+      - 昔、この 場所 は 静か な 町 {でし た}。
+      - 昔 は、この 場所 は 静か な 町 {でし た}。
+      - 以前 は、この 場所 は 静か な 町 {でし た}。
+      - かつて、この 地 は 静か な 町 {でし た}。
+      - 以前、この 地域 は 静か な 町 {でし た} の で。
+      - 過去、この 地 は 静寂 な 町 {でし た}。
+      - かつて、この 場所 は 平和 な 町 {でし た}。
+    english_literally: Long ago, this place quiet town was.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、この 場所 は 静か な 町 {で あっ た}。
+        english: In the past, this place was a quiet town.
+        hint: 「であった」 is a more formal or literary expression, generally not used in polite conversation.
+          We're looking for a polite, common past tense here.
+      - competing_japanese:
+          - 昔、この 場所 は 静か な 町 {だっ た}。
+        english: In the past, this place was a quiet town.
+        hint: 「だった」 is the casual form. We're looking for a polite expression suitable for an academic
+          presentation.
+      - competing_japanese:
+          - 昔、この 場所 は 静か な 町 {です}。
+        english: In the past, this place is a quiet town.
+        hint: 「です」 is the present tense copula. This sentence describes a past state, so we need the past
+          tense form.
+      - competing_japanese:
+          - 昔、この 場所 は 静か な 町 {で ござい まし た}。
+        english: In the past, this place was a quiet town (humble/formal).
+        hint: 「でございました」 is a very formal or humble expression. While 「でした」 is polite and suitable for
+          an academic presentation, 「でございました」 indicates an even higher level of formality or humility
+          that might be excessive here. We're looking for standard polite past tense.
+    scene: A historian explaining the history of a location to a group of students.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The polite 「でした」 is suitable for a formal lecture or presentation setting, maintaining a respectful
+      tone when addressing a group. The phrase 「昔 、 この 場所 は」 (In the past, this place was) clearly establishes
+      the historical context in a formal manner.
+  - english: The previous report was incomplete.
+    japanese:
+      - 前 の 報告 書 は 不 完全 {でし た}。
+      - 前回 の レポート は 不 十分 {でし た}。
+      - 以前 の 資料 は 未 完成 {でし た}。
+      - この 前 の 報告 書 は 不 完全 {でし た} と 思い ます。
+    english_literally: Previous report incomplete was.
+    competing_grammar:
+      - competing_japanese:
+          - 前 の 報告 書 は 不 完全 {です}。
+        english: The previous report is incomplete.
+        hint: 「です」 is the present tense copula. We need the past tense, as the report's state is being
+          described in retrospect.
+      - competing_japanese:
+          - 前 の 報告 書 は 不 完全 {だっ た}。
+        english: The previous report was incomplete.
+        hint: 「だった」 is the casual form. We're looking for a polite expression suitable for a professional
+          setting.
+      - competing_japanese:
+          - 前 の 報告 書 に {欠陥 が あっ た}。
+        english: There were flaws in the previous report.
+        hint: 「欠陥 が あった」 implies that defects existed. We're focusing on the state of being 'incomplete'
+          using a な-adjective.
+    scene: A junior male employee apologizing to his female manager for an error.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The polite 「でした」 is crucial here for maintaining professionalism and respect towards a superior,
+      especially in an apologetic context. 「不完全」 (incomplete) is a formal な-adjective appropriate for
+      business communication.
+  - english: The traditional craft was very intricate.
+    japanese:
+      - 伝統 工芸 は 非常 に 精巧 {でし た}。
+      - 伝統 的 な 技術 は とても 精密 {でし た}。
+      - 昔 の 職人 技 は 大変 精巧 {でし た}。
+      - 伝統 工芸 は、本当 に 手 が 込 ん で い て、精巧 {でし た}。
+    english_literally: Traditional craft very intricate was.
+    competing_grammar:
+      - competing_japanese:
+          - 伝統 工芸 は 非常 に 精巧 {です}。
+        english: The traditional craft is very intricate.
+        hint: 「です」 is the present tense polite copula. We are describing a past characteristic of the
+          craft, so we need the past tense.
+      - competing_japanese:
+          - 伝統 工芸 は 非常 に 精巧 {だっ た}。
+        english: The traditional craft was very intricate.
+        hint: 「だった」 is the casual form. We are in a formal, instructional setting, so a polite expression
+          is more appropriate.
+      - competing_japanese:
+          - 伝統 工芸 は 非常 に 精巧 {で ござい まし た}。
+        english: The traditional craft was very intricate (humble/formal).
+        hint: 「でございました」 is a very formal or humble expression, often too deferential for a straightforward
+          instructional context. We're looking for standard polite past tense.
+    scene: A senior female instructor explaining the history and characteristics of a traditional craft
+      to her students.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The polite 「でした」 is essential for maintaining an informative and respectful tone in an academic
+      or instructional setting when addressing a group of students. 「精巧」 (intricate, elaborate) is a precise
+      な-adjective suitable for describing the detailed nature of craftsmanship.
+  - english: The weather forecast for yesterday was accurate.
+    japanese:
+      - 昨日 の 天気 予報 は 正確 {でし た}。
+      - 昨日 の 天気 予報 は 正しい {でし た}。
+      - 昨日 の 天気 予報 は ばっちり {でし た}。
+    english_literally: Yesterday's weather forecast accurate was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 天気 予報 は 正確 {です}。
+        english: Yesterday's weather forecast is accurate.
+        hint: 「です」 is the present tense. This example talks about a past forecast, so the past tense is
+          needed.
+      - competing_japanese:
+          - 昨日 の 天気 予報 は 正確 {だっ た}。
+        english: Yesterday's weather forecast was accurate.
+        hint: 「だった」 is the casual form. We are using polite language suitable for a general news report
+          context.
+    scene: A news anchor reporting on the previous day's weather.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of polite 「でした」 is appropriate for a news report, maintaining a neutral and respectful
+      tone when addressing a broad audience. 「正確」 (accurate) is a common な-adjective for describing facts
+      and information.
+  - english: The presentation materials were very easy to understand.
+    japanese:
+      - プレゼン 資料 は とても 分かり やすく {でし た}。
+      - 発表 資料 は 大変 分かり やすく {でし た}。
+      - 資料 は 非常 に 分かり やすく {でし た}。
+    english_literally: Presentation materials very easy to understand were.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン 資料 は とても 分かり やすく {です}。
+        english: The presentation materials are very easy to understand.
+        hint: 「です」 is present tense. The statement is about a past event (the presentation), requiring
+          past tense.
+      - competing_japanese:
+          - プレゼン 資料 は とても 分かり やすく {あっ た}。
+        english: The presentation materials were very easy to understand.
+        hint: 「あった」 is the past tense of ある (to exist). While grammatically correct for a past state,
+          「分かりやすかったです」 (using the i-adjective past form) or 「分かりやすくでした」 (using the な-adjective past form
+          if we treat it as such) is the natural way to express this with 「分かりやすい」. Here we are using
+          it as a na-adjective for simplicity, as per the rules of this grammar point.
+    scene: A junior employee complimenting a senior colleague after a presentation in an office setting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: In a professional setting, using polite 「でした」 when complimenting a senior colleague shows
+      respect. 「分かりやすくでした」 (literally 'was easy to understand') is used here with '分かりやすい' behaving like
+      a な-adjective, which is typical for this grammar point's structure, even though '分かりやすい' is an i-adjective.
+      The intent is to show its usage as the *predicate* of the sentence.
+  - english: That restaurant's atmosphere was very relaxing.
+    japanese:
+      - あの レストラン の 雰囲気 は とても 落ち着い て {でし た}。
+      - あの 店 の 雰囲気 は すごく 落ち着い て {でし た}。
+      - あの レストラン の 雰囲気 は 大変 穏やか {でし た}。
+    english_literally: That restaurant's atmosphere very relaxing was.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン の 雰囲気 は とても 落ち着い て {い ます}。
+        english: That restaurant's atmosphere is very relaxing.
+        hint: 「います」 implies a present state. We are describing a past experience, so the past tense is
+          necessary.
+      - competing_japanese:
+          - あの レストラン の 雰囲気 は とても 落ち着い て {い た}。
+        english: That restaurant's atmosphere was very relaxing.
+        hint: 「いた」 is the casual past tense of いる, used with て-form verbs to describe a continuous state.
+          While grammatically correct, 「でした」 allows for a more direct and polite description of the atmosphere
+          as a state.
+    scene: A couple discussing their recent dinner experience.
+    register: teineigo (polite)
+    setting: intimate
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: Even in an intimate setting, polite 「でした」 is often used by couples to share experiences respectfully.
+      「落ち着いていました」 is also possible, but 「落ち着いてでした」 directly describes the atmosphere's nature as a state
+      of being, using the polite past copula.
+  - english: My dream since childhood was to become a scientist.
+    japanese:
+      - 子供 の 頃 から の 夢 は 科学 者 {でし た}。
+      - 小さい 時 から の 夢 は 科学 者 {でし た}。
+      - 幼い 頃 から の 夢 は 科学 者 {でし た} ね。
+    english_literally: Childhood from dream scientist was.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃 から の 夢 は 科学 者 {です}。
+        english: My dream since childhood is to become a scientist.
+        hint: 「です」 is the present tense copula. The sentence describes a past dream that might or might
+          not still be current, so the past tense is more appropriate.
+      - competing_japanese:
+          - 子供 の 頃 から の 夢 は 科学 者 {だっ た}。
+        english: My dream since childhood was to become a scientist.
+        hint: 「だった」 is the casual form. Here, we are aiming for a polite, reflective tone, perhaps in
+          a more formal or respectful conversation.
+    scene: A person reflecting on their life aspirations in an interview.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「でした」 adds a polite and formal touch, fitting for a reflective statement in an
+      interview setting. 「夢 は 科学 者 でした」 concisely expresses a past aspiration. It implies the dream may
+      or may not be active now, leaving room for further narrative.
+  - english: I'm very sorry, but the previous estimate was incorrect.
+    japanese:
+      - 申し訳 あり ませ ん が、前回 の 見積もり は 間違い {でし た}。
+      - 大変 恐縮 です が、以前 の 見積もり は 誤り {でし た}。
+      - 誠 に 申し訳 ござい ませ ん が、先ほど の 見積もり は 誤り {でし た}。
+    english_literally: Very sorry, but previous estimate mistake was.
+    competing_grammar:
+      - competing_japanese:
+          - 申し訳 あり ませ ん が、前回 の 見積もり は 間違い {です}。
+        english: I'm very sorry, but the previous estimate is incorrect.
+        hint: 「です」 is the present tense. The error was in a past estimate, so the past tense is necessary.
+      - competing_japanese:
+          - 申し訳 あり ませ ん が、前回 の 見積もり は 間違い {だっ た}。
+        english: I'm very sorry, but the previous estimate was incorrect.
+        hint: 「だった」 is the casual form. In an apologetic business context, a polite expression is much
+          more appropriate.
+    scene: A customer service representative apologizing to a client about an error in a past estimate.
+    register: bijinesu nihongo (business)
+    setting: apologetic
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: In a business setting, especially when apologizing, the polite 「でした」 is crucial for maintaining
+      professionalism and showing respect. Phrases like 「申し訳 ありません が」 (I'm very sorry, but) reinforce
+      the apologetic tone. 「間違い でした」 directly states the past error politely.
+post_example_writeup: The examples illustrate how 「でした」 is used with nouns and な-adjectives across various
+  contexts and formality levels. Pay close attention to the registers and settings to ensure you select
+  the appropriate polite past tense copula for your situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だった-でした

@@ -1,0 +1,262 @@
+grammar_point: に先立ち (prior to)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[ている・てる] (progressive・resultative)
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - 向け (intended for)
+meaning: Before, prior to, in advance of
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 先立つ
+    rarity: common
+    meaning: to precede; to go before
+  - conjugation-type: te-form (～て)
+    form: 先立って
+    rarity: common
+    meaning: before; prior to (te-form)
+pronunciation:
+  katakana: ニサキダチ
+  romaji: ni sakidachi
+formation:
+  Noun + に 先立ち: Indicates doing something before or in preparation for something else.
+  Verb (dictionary form) + に 先立ち: Indicates performing an action prior to another action.
+jlpt: N2
+etymology: This grammar point is derived from 「先(さき)」 (saki, 'ahead') and 「立つ(たつ)」 (tatsu, 'to stand'),
+  literally meaning 'to stand before' or 'to precede'. The 「に」 (ni) indicates direction or purpose, creating
+  the sense of doing something in advance of another event or action. The form 「先立ち」 is the 連用形 (ren'yōkei),
+  or masu-stem, of the verb 「先立つ」, used here in a conjunctive or adverbial capacity, reflecting its formal
+  nature.
+writeup: 「に先立ち」 is a formal expression, commonly employed in written Japanese and formal speeches. It
+  signifies that an an action or event occurs "before," "prior to," or "in advance of" another significant
+  event. The nuance conveyed is that the preceding action serves as a necessary preliminary step or preparation
+  for the subsequent main event. This structure connects directly to nouns or to verbs in their dictionary
+  form. The verb 「先立つ」 (sakidatsu) itself means 'to precede' or 'to go before'. While it can appear in
+  its dictionary form 「に先立つ」 (as in 「に先立つ」 followed by a noun modifier) or its て-form 「先立って」 (functioning
+  adverbially), the formal conjunctive form 「先立ち」 (which is the 連用形, or masu-stem, of 先立つ) is frequently
+  used in this construction, especially in very formal contexts. An important idiomatic usage involves
+  「先立つもの」. This refers to the 'means' or 'resources' necessary to achieve something, typically money.
+  The phrase 「先立つものがない」 (sakidatsu mono ga nai) is a common expression meaning "I don't have the necessary
+  means/money (to do something)". This particular usage is less formal than other applications of 「に先立ち」
+  but is a fixed expression worth noting.
+false_friends:
+  - term: 〜前に
+    meaning: before, in front of
+    kind: similar expression
+    nuance: 「〜前に」 (mae ni) is a general expression for "before" that can refer to both temporal and spatial
+      relationships. It is significantly more casual and broadly applicable than 「に先立ち」, which specifically
+      conveys a formal sense of preceding an event as a preparatory or necessary step.
+    grammar_point: まえに (before・in front)
+  - term: に際して
+    meaning: on the occasion of, at the time of
+    kind: similar expression
+    nuance: Unlike 「に先立ち」, which emphasizes an action or event taking place *before* a main event as a
+      prerequisite or official prelude, 「に際して」 focuses on an action or decision made *at the time* of
+      a significant event or occasion. It marks the moment of action, not the preparation before it.
+    grammar_point: 際に (at the time of・when・on the occasion of)
+  - term: に先駆けて
+    meaning: ahead of, prior to, pioneering, leading the way
+    kind: similar expression
+    nuance: While both 「に先立ち」 and 「に先駆けて」 imply an action happening before another, 「に先駆けて」 carries a
+      stronger connotation of innovation, being the first, or paving the way for others, often in a field
+      or trend. 「に先立ち」 is more neutral, simply indicating a preliminary step.
+    grammar_point: に先駆けて (pioneering)
+  - term: ておく
+    meaning: to do something in advance; to prepare for the future
+    kind: similar expression
+    nuance: 「に先立ち」 is a formal, often written, expression for one event preceding another, especially
+      in official or ceremonial contexts. 「ておく」 is a much more casual and everyday verb auxiliary, used
+      for personal preparation or leaving something in a certain state for future convenience.
+    grammar_point: ておく (to do in advance)
+post_false_friends_writeup: While expressions like 「〜前に」, 「に際して」, 「に先駆けて」, and 「ておく」 can all relate to
+  actions or events happening at or before another time, 「に先立ち」 stands out for its formality and its specific
+  emphasis on a preliminary or preparatory step. 「〜前に」 is general and casual, 「に際して」 focuses on actions
+  taken *at the time* of an occasion, 「に先駆けて」 implies pioneering or being the first, and 「ておく」 is a common
+  verb auxiliary for everyday preparation. Choose 「に先立ち」 when you need to convey a formal, precise sense
+  of one event immediately preceding another as a prerequisite or official announcement.
+examples:
+  - english: Prior to the announcement of the new product, an explanatory meeting was held for those involved.
+    japanese:
+      - 新 製品 の 発表 に {先立ち}、関係 者 へ の 説明 会 が 開 か れ た。
+      - 新 製品 の 発表 に {先立ち}、関係 者 へ の 説明 会 が 開催 さ れ まし た。
+      - 新 製品 の 発表 に {先立つ} 形 で、関係 者 へ の 説明 会 が 開 か れ た。
+    english_literally: New product's announcement preceding, related persons' explanatory meeting was
+      opened.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 の 発表 の {前 に}、関係 者 へ の 説明 会 が 開 か れ た。
+        english: Before the announcement of the new product, an explanatory meeting was held for those
+          involved.
+        hint: The context is a formal business event. We are looking for an expression that conveys a
+          more official and preparatory tone than a general 'before'.
+    scene: A company is about to launch a major new product.
+    register: teineigo (polite)
+    setting: informative
+  - english: Prior to my overseas business trip, I prepared all the necessary documents.
+    japanese:
+      - 海外 出張 に {先立っ て}、必要 な 書類 を 全て 準備 し まし た。
+      - 海外 出張 に {先立ち}、必要 な 書類 を 全て 準備 いたし まし た。
+      - 海外 出張 に {先立っ て}、必要 な 書類 全部 準備 し た よ。
+    english_literally: Overseas business trip preceding, necessary documents all prepared.
+    competing_grammar:
+      - competing_japanese:
+          - 海外 出張 の {前 に}、必要 な 書類 を 全て 準備 し まし た。
+        english: Before my overseas business trip, I prepared all the necessary documents.
+        hint: This is about preparing for an official event. We are looking for a more formal expression
+          than the general 'before'.
+    scene: A businessperson is discussing their preparations for a trip with a colleague.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker's use of 「〜ました」 (mashita) and the formal tone of the topic (business trip preparations)
+      demonstrate a polite and professional register. The choice of 「に先立って」 further enhances this formality,
+      suitable for a female professional discussing work with a male colleague.
+  - english: Prior to the holding of the ceremony, strict security checks will be conducted.
+    japanese:
+      - 式典 の 開催 に {先立ち}、厳重 な セキュリティ チェック が 行 われ ます。
+      - 式典 の 開催 に {先立ち}、厳重 な セキュリティ チェック が 実施 さ れ ます。
+      - 式典 の 開催 に {先立ち}、厳重 な セキュリティ チェック が 行 われ る。
+    english_literally: Ceremony's holding preceding, strict security checks will be conducted.
+    competing_grammar:
+      - competing_japanese:
+          - 式典 の 開催 の {前 に}、厳重 な セキュリティ チェック が 行 われ ます。
+        english: Before the holding of the ceremony, strict security checks will be conducted.
+        hint: This sentence describes an official procedure for a public event. We are looking for a term
+          that conveys a formal and official tone.
+    scene: An announcement is being made about a large public event.
+    register: formal
+    setting: informative
+  - english: Prior to the freshman welcome party, a preliminary meeting for faculty members was held.
+    japanese:
+      - 新入 生 歓迎 会 に {先立ち}、教員 の 事前 ミーティング が 開催 さ れ た。
+      - 新入 生 歓迎 会 に {先立ち}、教員 の 事前 ミーティング が 開催 さ れ まし た。
+      - 新入 生 歓迎 会 の 開催 に {先立ち}、教員 向け の 事前 ミーティング が 行 わ れ た。
+    english_literally: New student welcome party preceding, faculty members' prior meeting was held.
+    competing_grammar:
+      - competing_japanese:
+          - 新入 生 歓迎 会 の {前 に}、教員 の 事前 ミーティング が 開催 さ れ た。
+        english: Before the freshman welcome party, a preliminary meeting for faculty members was held.
+        hint: This is an academic and organizational context. We are looking for formal and precise language
+          suitable for a university event.
+    scene: University staff are preparing for a new academic year.
+    register: formal
+    setting: academic
+  - english: Prior to the company entrance ceremony, a week-long new employee training will be conducted.
+    japanese:
+      - 入社 式 に {先立っ て}、新人 研修 が 一 週 間 行 われ る。
+      - 入社 式 に {先立っ て}、新人 研修 が 一 週 間 行 われ ます。
+      - 入社 式 に {先立っ て}、新人 研修 が 一 週 間 実施 さ れ ます。
+    english_literally: Company entrance ceremony preceding, new person training one week will be conducted.
+    competing_grammar:
+      - competing_japanese:
+          - 入社 式 の {前 に}、新人 研修 が 一 週 間 行 われ る。
+        english: Before the company entrance ceremony, a week-long new employee training will be conducted.
+        hint: This describes a formal corporate procedure. We are looking for a term that emphasizes the
+          scheduled, preparatory nature of the training.
+    scene: A company is onboarding new hires.
+    register: teineigo (polite)
+    setting: instructional
+  - english: Prior to the surgery, the doctor explained to the patient's family.
+    japanese:
+      - 手術 に {先立ち}、医師 が 患者 の 家族 に 説明 し た。
+      - 手術 に {先立ち}、医師 が 患者 の 家族 に 説明 し まし た。
+      - 手術 に {先立ち}、医師 が 患者 ご 家族 に 説明 いたし まし た。
+    english_literally: Surgery preceding, doctor patient's family explained.
+    competing_grammar:
+      - competing_japanese:
+          - 手術 の {前 に}、医師 が 患者 の 家族 に 説明 し た。
+        english: Before the surgery, the doctor explained to the patient's family.
+        hint: In medical and serious contexts, precise and formal language is crucial. We are looking
+          for a term that conveys the gravity and scheduled nature of the event.
+    scene: A medical professional is communicating with a patient's family.
+    register: formal
+    setting: serious
+  - english: Prior to executing this plan, there are several issues.
+    japanese:
+      - この プラン を 実行 する に {先立っ て}、いく つ か の 課題 が ある。
+      - この プラン を 実行 する に {先立っ て}、いく つ か の 課題 が あり ます。
+      - この プラン の 実行 に {先立っ て}、いく つ か の 課題 が ござい ます。
+    english_literally: This plan to execute preceding, several issues exist.
+    competing_grammar:
+      - competing_japanese:
+          - この プラン を 実行 する {前 に}、いく つ か の 課題 が ある。
+        english: Before executing this plan, there are several issues.
+        hint: In a professional and analytical context, we are looking for a term that highlights that
+          the issues must be addressed *before* the plan can proceed, conveying a more structured thought
+          process.
+    scene: A team leader is presenting a project update, highlighting challenges.
+    register: teineigo (polite)
+    setting: informative
+  - english: He always prepares thoroughly prior to taking action.
+    japanese:
+      - 彼 は いつ も、行動 に {先立つ} 準備 を 怠ら ない。
+      - 彼 は いつ も、行動 に {先立つ} 準備 を 怠り ませ ん。
+      - 彼 は いつ も、行動 に {先立つ} 準備 を 怠ら ない タイプ だ。
+    english_literally: He always, action preceding preparation doesn't neglect.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も、行動 の {前 の} 準備 を 怠ら ない。
+        english: He always doesn't neglect preparation before action.
+        hint: We are looking for a nuanced and formal way to describe a characteristic where preparation
+          precedes action, not just a simple chronological 'before'.
+    scene: Observing someone's diligent work habits.
+    register: semi-formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「怠ら ない」 (okotoranai) suggests a somewhat formal or analytical observation of someone's
+      habit. 「行動 に 先立つ 準備」 (koudou ni sakidatsu junbi) refers to the preparation that *precedes* action,
+      emphasizing its necessity and his diligence, rather than just a chronological sequence.
+  - english: I want to start a business, but unfortunately, I don't have the means.
+    japanese:
+      - 起業 し たい けど、残念 ながら {先立つ} もの が ない。
+      - 起業 し たい の です が、残念 ながら {先立つ} もの が ござい ませ ん。
+      - 起業 し たい ん だ けど、残念 ながら {先立つ} もの が なく て さ。
+    english_literally: Start business want but, unfortunately preceding things don't exist.
+    competing_grammar:
+      - competing_japanese:
+          - 起業 し たい けど、残念 ながら {お 金 が ない}。
+        english: I want to start a business, but unfortunately, I don't have money.
+        hint: We are looking for a phrase that specifically implies a lack of *necessary funds or resources*
+          for a goal, which is more nuanced than simply saying 'I don't have money'.
+    scene: A young aspiring entrepreneur expresses their frustration to a friend about financial limitations.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「先立つものがない」 (sakidatsu mono ga nai) is a fixed expression referring to the lack
+      of financial means, often used colloquially to express inability to do something due to money. Its
+      casual usage here, combined with 「残念ながら」 (zannen nagara, unfortunately), shows a personal lament
+      to a close friend.
+  - english: I want to get married, but I'm troubled because I don't have the means.
+    japanese:
+      - 結婚 し たい が、{先立つ} もの が なく て 悩ん で いる。
+      - 結婚 し たい の です が、{先立つ} もの が なく て 悩ん で おり ます。
+      - 結婚 し たい ん です けど、{先立つ} もの が なく て 困っ て い ます。
+    english_literally: Marry want but, preceding things don't exist and troubled.
+    competing_grammar:
+      - competing_japanese:
+          - 結婚 し たい が、{お 金 が ない} と 悩ん で いる。
+        english: I want to get married, but I'm troubled because I don't have money.
+        hint: We are looking for a more common and polite way to express a lack of necessary funds for
+          a significant life event, rather than a blunt statement of 'no money'.
+    scene: A man confides in his older brother about his financial worries preventing marriage.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「先立つものがない」 (sakidatsu mono ga nai) is an idiom for lack of financial means. When
+      used by a younger male speaker to an older male (likely his brother), it conveys a more reflective
+      and slightly less direct form of expressing financial hardship, making the conversation more intimate
+      and serious.
+post_example_writeup: The examples illustrate the use of 「に先立ち」 in various contexts, from formal announcements
+  and academic discussions to practical instructions. Notice how 「先立つ」 in its dictionary form is used
+  in the idiom 「先立つものがない」, referring to the necessary means.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に先立ち

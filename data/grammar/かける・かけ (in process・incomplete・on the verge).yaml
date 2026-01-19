@@ -1,0 +1,280 @@
+grammar_point: かける・かけ (in process・incomplete・on the verge)
+learn_before:
+  - Verb[ました] (polite past)
+  - 〜まま(に) (as is・unchanged)
+  - と (with)
+  - にかけて (over a period or range)
+meaning: to be in the process of; to be incomplete; to be on the verge of
+pronunciation:
+  katakana: カケル・カケ
+  romaji: kakeru・kake
+formation:
+  Verb[stem]かける: Indicates an action is in the middle of being performed or is about to start.
+  Verb[stem]かけのNoun: Describes a noun that is in an incomplete state or an action applied to it is unfinished.
+  Verb[stem]かけだ: States that an action is incomplete or half-done.
+jlpt: N3
+etymology: The verb かける (kakeru) has many meanings, including "to hang," "to begin to do," "to apply,"
+  "to cover," etc. In this grammatical usage, its origin traces back to the meaning of "beginning to do"
+  or "being halfway through." The idea of "hanging" something or "being suspended" can also contribute
+  to the nuance of an action being "in progress" or "incomplete" and not yet "finished" or "brought down."
+  The noun form かけ (kake) further emphasizes this state, implying a partial or unfinished condition.
+writeup: 「かける」 and 「かけ」 are suffixes attached to the stem of a verb to indicate that an action is either
+  **in progress**, **incomplete**, or **on the verge** of happening. When used as 「Verb[stem]かける」, it
+  signifies that an action has begun and is still ongoing, or that it is about to begin. It often implies
+  a sense of being "half-done" or "about to do." For example, 食べかける (tabe-kakeru) means "to start eating"
+  or "to be in the middle of eating." This form can also suggest that the action was interrupted or left
+  unfinished. The noun form 「Verb[stem]かけ」 is typically used to modify a noun, as in 「Verb[stem]かけのNoun」,
+  or as a predicate 「Verb[stem]かけだ」. This form strongly emphasizes the **incompleteness** or **partial
+  state** of the action. For instance, 読みかけの本 (yomi-kake no hon) refers to "a book that has been started
+  but not finished." The nuance conveyed is often that of an action that has been initiated but not brought
+  to completion, or one that is on the brink of completion. It highlights the unfinished nature of something.
+false_friends:
+  - term: Verb[stem]はじめる
+    meaning: to start doing
+    kind: similar expression
+    nuance: 「はじめる」 indicates a simple beginning of an action, without the implication of incompleteness
+      or being on the verge that 「かける・かけ」 carries.
+    grammar_point: <suggest>:Verb[stem]はじめる (to start doing)
+  - term: Verb[stem]だす
+    meaning: to suddenly start doing
+    kind: similar expression
+    nuance: 「だす」 emphasizes a sudden, often outward, beginning of an action, while 「かける・かけ」 focuses on
+      the action being in progress or incomplete.
+    grammar_point: <suggest>:Verb[stem]だす (to suddenly start doing)
+  - term: ずじまい
+    meaning: ended up not doing
+    kind: antonym
+    nuance: 「ずじまい」 implies an action was ultimately not completed at all, whereas 「かける・かけ」 signifies an
+      action was initiated or on the verge of completion.
+    grammar_point: ずじまい (ended up not doing)
+  - term: たて
+    meaning: freshly done
+    kind: antonym
+    nuance: 「たて」 describes something that has just been completed, which is the opposite of the incomplete
+      state expressed by 「かける・かけ」.
+    grammar_point: たて (freshly done)
+  - term: Verb[て]いる
+    meaning: ongoing state, habitual action, resultant state
+    kind: similar expression
+    nuance: While 「Verb[て]いる」 indicates an ongoing action, it doesn't specifically convey the nuance of
+      incompleteness or being on the verge, unlike 「かける・かけ」.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - term: たばかり
+    meaning: just did
+    kind: antonym
+    nuance: 「たばかり」 means an action was completed very recently, directly contrasting with 「かける・かけ」 which
+      denotes an action that is unfinished or about to be.
+    grammar_point: たばかり (just did)
+post_false_friends_writeup: It's important to distinguish 「かける・かけ」 from other expressions of beginning
+  or completion. While 「 Verb[stem]はじめる 」 and 「 Verb[stem]だす 」 both indicate the start of an action, they
+  do not inherently suggest the action is unfinished or on the verge, as 「かける・かけ」 does. 「はじめる」 is a neutral
+  start, and 「だす」 implies a sudden, outward initiation. Conversely, 「 ずじまい 」 denotes an action that was
+  never completed, and 「 たて 」 signifies something freshly finished, both standing in direct contrast to
+  the incomplete or nascent state implied by 「かける・かけ」. 「 Verb[て]いる 」 indicates an ongoing action or a
+  resultant state but lacks the specific nuance of incompleteness or being on the verge that 「かける・かけ」
+  carries.
+examples:
+  - english: I saw a half-eaten apple on the table.
+    japanese:
+      - テーブル に {食べかけ} の リンゴ が あっ た。
+      - テーブル に {食べかけ} の リンゴ が あり まし た。
+      - 卓上 に {食べかけ} の リンゴ が あっ た。
+    english_literally: On the table, a half-eaten apple was.
+    competing_grammar:
+      - competing_japanese:
+          - テーブル に 食べ られ た リンゴ が あっ た。
+        english: There was an eaten apple on the table.
+        hint: 「食べられた」 means the apple was fully eaten. We're looking for an apple that was in the process
+          of being eaten but left unfinished.
+    scene: You are describing a mundane scene in a kitchen.
+    register: casual
+    setting: informative
+    nuance: 「食べかけ」 clearly indicates the apple was in the process of being eaten but left unfinished.
+  - english: I was just about to say something when the phone rang.
+    japanese:
+      - 電話 が 鳴っ た とき、何 か を {言いかけ た}。
+      - 電話 が 鳴っ た とき、何 か を {言いかけ まし た}。
+      - 電話 鳴っ た とき、何 か {言いかけ ちゃっ た}。
+    english_literally: When the phone rang, I was about to say something.
+    competing_grammar:
+      - competing_japanese:
+          - 電話 が 鳴っ た とき、何 か を 言い 始め た。
+        english: When the phone rang, I began to say something.
+        hint: 「言い始めた」 means you started speaking, but not necessarily that you were interrupted or left
+          the thought incomplete. We're looking for the nuance of being on the verge or having started
+          but not finished.
+    scene: Someone recounting a past event where they were interrupted.
+    register: casual
+    setting: reflective
+    nuance: 「言いかけた」 shows the action of speaking was initiated but interrupted, or was on the verge of
+      being said.
+  - english: He almost fell off the cliff.
+    japanese:
+      - 彼 は 崖 から {落ち かけ た}。
+      - 彼 は 崖 から {落ち かけ まし た}。
+      - 彼 は 崖 から {落ち かけ た} の です。
+    english_literally: He from the cliff almost fell.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 崖 から 落ち そう だっ た。
+        english: He looked like he was about to fall off the cliff.
+        hint: 「落ちそうだった」 implies a visual appearance of being about to fall. 「落ちかけた」 means the action of
+          falling actually began but was incomplete.
+    scene: A thrilling moment in a story, describing a close call.
+    register: casual
+    setting: storytelling
+    nuance: 「落ちかけた」 means he was "on the verge of falling" but implies he did not actually fall completely,
+      suggesting a close call.
+  - english: She went to bed with her homework unfinished.
+    japanese:
+      - 彼女 は 宿題 を {やりかけ} で 寝 た。
+      - 彼女 は 宿題 を {やりかけ} で 寝 まし た。
+      - 彼女 は 宿題 を {やりかけ} た まま 寝 た。
+    english_literally: She with homework half-done slept.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 宿題 が 終わっ て い なく て 寝 た。
+        english: She slept because her homework was not finished.
+        hint: 「終わっていなくて」 describes the state of not being finished. 「やりかけ」 specifically indicates the
+          homework was started but left incomplete.
+    scene: A parent talking about their child's habits.
+    register: casual
+    setting: friendly
+    nuance: 「やりかけ」 highlights the homework being incomplete or half-done.
+  - english: The company was on the verge of collapse.
+    japanese:
+      - その 会社 は 倒産 {し かけ た}。
+      - その 会社 は 倒産 {しかけ まし た}。
+      - その 会社 は 倒産 {しかけ て い た}。
+    english_literally: That company was on the verge of bankruptcy.
+    competing_grammar:
+      - competing_japanese:
+          - その 会社 は 倒産 し そう だっ た。
+        english: That company looked like it would go bankrupt.
+        hint: 「倒産しそうだった」 implies it appeared likely to collapse. 「倒産しかけた」 indicates the process of collapsing
+          had already begun or was imminent, suggesting a closer call or an actual attempt.
+    scene: A business report discussing a company's financial struggles.
+    register: formal
+    setting: professional
+    nuance: 「倒産しかけた」 indicates the company was close to bankruptcy but managed to avoid it or was in the
+      process of it.
+  - english: The painting is still half-finished.
+    japanese:
+      - 絵 は まだ {描きかけ} だ。
+      - 絵 は まだ {描きかけ} です。
+      - 絵 は まだ {描きかけ} の まま です。
+    english_literally: The painting is still half-drawn.
+    competing_grammar:
+      - competing_japanese:
+          - 絵 は まだ 完成 し て い ない。
+        english: The painting is still not completed.
+        hint: 「完成していない」 is a general statement of incompleteness. 「描きかけだ」 specifically implies the painting
+          was started but is currently in an unfinished state.
+    scene: An artist discussing the status of their current work.
+    register: semi-formal
+    setting: informative
+    nuance: 「描きかけだ」 directly states the painting is incomplete.
+  - english: There's a half-read book on the desk.
+    japanese:
+      - 机 の 上 に {読みかけ} の 本 が ある。
+      - 机 の 上 に {読みかけ} の 本 が あり ます。
+      - 机 の 上 に {読みかけ} の 本 が 置い て ある よ。
+    english_literally: On the desk, there is a half-read book.
+    competing_grammar:
+      - competing_japanese:
+          - 机 の 上 に 読み 終わっ て ない 本 が ある。
+        english: There is an unread book on the desk.
+        hint: 「読み終わってない」 means the book hasn't been finished. 「読みかけ」 implies it has been started but is
+          still in the process of being read.
+    scene: A student looking for something on a messy desk.
+    register: casual
+    setting: informative
+    nuance: 「読みかけ」 implies the book was started but not finished.
+  - english: He began to speak, but then hesitated.
+    japanese:
+      - 彼 は {話しかけ た} が、ためらっ た。
+      - 彼 は {話しかけ まし た} が、ためらい まし た。
+      - 彼 は {話しかけ た} けれど、ためらっ た。
+    english_literally: He began to speak, but hesitated.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 話し 始め た が、ためらっ た。
+        english: He started to speak, but hesitated.
+        hint: 「話し始めた」 implies the action simply began. 「話しかけた」 carries the nuance that the attempt to
+          speak was made but was interrupted or incomplete due to hesitation.
+    scene: Narrating a moment of uncertainty during a conversation.
+    register: casual
+    setting: storytelling
+    nuance: 「話しかけた」 indicates the action of speaking was initiated but not fully carried out due to hesitation.
+  - english: The child almost cried when his toy broke.
+    japanese:
+      - おもちゃ が 壊れ て、子供 は {泣き かけ た}。
+      - おもちゃ が 壊れ て、子供 は {泣き かけ まし た}。
+      - 玩具 が 壊れ、子供 は {泣き かけ た}。
+    english_literally: His toy broke, and the child almost cried.
+    competing_grammar:
+      - competing_japanese:
+          - おもちゃ が 壊れ て、子供 は 泣き そう に なっ た。
+        english: His toy broke, and the child looked like he was about to cry.
+        hint: 「泣きそうになった」 means they appeared as if they would cry. 「泣きかけた」 implies the crying action actually
+          began or was on the very verge of starting, but was stopped.
+    scene: A parent describing a child's emotional reaction to a broken toy.
+    register: casual
+    setting: friendly
+    nuance: 「泣きかけた」 means the child was on the verge of crying but implies they didn't fully break down.
+  - english: I almost forgot my umbrella.
+    japanese:
+      - 傘 を {忘れ かけ た}。
+      - 傘 を {忘れかけ まし た}。
+      - 傘 を {忘れ かけ た} ところ だっ た。
+    english_literally: I almost forgot my umbrella.
+    competing_grammar:
+      - competing_japanese:
+          - 傘 を 忘れる ところ だっ た。
+        english: I was about to forget my umbrella.
+        hint: 「忘れるところだった」 is more about being on the point of forgetting. 「忘れかけた」 emphasizes the process
+          of forgetting having already started, but then being interrupted or reversed.
+    scene: Someone realizing something at the last minute before leaving.
+    register: casual
+    setting: reflective
+    nuance: 「忘れかけた」 means the action of forgetting was almost completed but was prevented at the last
+      moment.
+  - english: I have some unfinished work at home.
+    japanese:
+      - 家 に {やりかけ} の 仕事 が ある。
+      - 家 に {やりかけ} の 仕事 が あり ます。
+      - 家 に {やりかけ} て いる 仕事 が ある。
+    english_literally: At home, I have work that is half-done.
+    competing_grammar:
+      - competing_japanese:
+          - 家 に まだ 終わっ て ない 仕事 が ある。
+        english: I have unfinished work at home.
+        hint: 「終わってない」 is a general term for 'not finished'. 「やりかけ」 specifically means the work was started
+          but left incomplete.
+    scene: A busy professional explaining why they need to go home.
+    register: casual
+    setting: informative
+    nuance: 「やりかけ」 implies the work was started but not completed.
+  - english: That old chair looks like it's about to break.
+    japanese:
+      - その 古い 椅子 は {壊れ かけ} に 見える。
+      - その 古い 椅子 は {壊れ かけ} に 見え ます。
+      - その 古い 椅子 は {壊れ かけ} の 状態 に 見える。
+    english_literally: That old chair looks like it's on the verge of breaking.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 椅子 は 壊れ そう だ。
+        english: That old chair looks like it will break.
+        hint: 「壊れそうだ」 indicates a likelihood based on appearance. 「壊れかけ」 specifically describes the chair
+          being in a state of partial decay, suggesting the process of breaking has already begun.
+    scene: Observing an old, worn-out piece of furniture.
+    register: casual
+    setting: informative
+    nuance: 「壊れかけ」 implies the chair is in a state of decay and close to breaking.
+post_example_writeup: As seen in these examples, 「かける」 as a verb suffix highlights an action that has
+  begun but is either interrupted, incomplete, or on the brink of completion. When used as 「かけ」, typically
+  modifying a noun or as a predicate, it emphasizes the unfinished state of the action or object. This
+  grammar point is highly versatile for expressing actions that are not fully realized, conveying a sense
+  of being in progress or half-done.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/128

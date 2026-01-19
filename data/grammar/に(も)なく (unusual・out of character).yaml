@@ -1,0 +1,317 @@
+grammar_point: に(も)なく (unusual・out of character)
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - にも〜ない (try but cannot)
+meaning: Unusually; more ~ than usual; unlike (someone/something)
+pronunciation:
+  katakana: ニモナク
+  romaji: nimonaku
+formation:
+  いつ + に(も)なく: Indicates that something is unusually different from the norm, often temporal (e.g., 'today,'
+    'this year').
+  Noun (e.g., 柄, 我) + に(も)なく: Used to describe someone exhibiting behavior that is out of character or
+    an action done unconsciously/involuntarily. Often seen with specific nouns like 「柄 (gara)」 meaning
+    'character/nature' or 「我 (ga)」 meaning 'self'.
+jlpt: N1
+etymology: The phrase 「に(も)なく」 combines 「に」 (a particle indicating state or condition or direction), 「も」
+  (an emphatic particle meaning 'even' or 'also'), and 「なく」 (the negative form of 「ある」, meaning 'to be/exist').
+  Syntactically, it implies 'not being in that usual state' or 'not existing in the expected manner for
+  X (e.g., いつ, 柄, 我)'. Over time, this evolved to convey the meaning of 'unusually' or 'more than usual',
+  pointing to a deviation from an established norm or character.
+writeup: The grammar point 「に(も)なく」 is used to express that something is unusual or out of the ordinary,
+  contrasting with the expected or typical state. It conveys a sense of surprise or unexpectedness regarding
+  a situation, a person's mood, or a person's actions. The 「も」 particle, though optional, is very often
+  included to add emphasis, highlighting the significant deviation from the norm. This expression is particularly
+  effective when describing something that deviates from an established pattern or an individual's usual
+  character or behavior. It is commonly used with nouns that indicate time, such as 「いつ」 (when/always)
+  to form 「いつにもなく」, meaning 'more than usual' or 'unusually'. It also frequently combines with abstract
+  nouns related to one's character or self, such as 「柄 (gara)」 (nature, character) to form 「柄にもなく」 (out
+  of character), or 「我 (ga)」 (self, ego) to form 「我にもなく」 (involuntarily, unconsciously). These specific
+  usages highlight actions or states that are surprising because they don't align with the subject's typical
+  disposition or are performed without conscious intent. While 「に(も)なく」 can be used in various registers,
+  it often appears in conversational or descriptive contexts where an observation of an unusual occurrence
+  is being made. It's suitable for expressing personal observations and feelings of surprise.
+false_friends:
+  - term: いつか
+    meaning: someday, sometime
+    kind: similar expression
+    nuance: Unlike 「に(も)なく」, 「いつか」 refers to an unspecified point in the future, not a deviation from
+      a current or usual state.
+    grammar_point: <suggest>:いつか (someday)
+  - term: いつものように
+    meaning: as usual, like always
+    kind: antonym
+    nuance: 「いつものように」 means something is happening in the usual way, which is the direct opposite of 「に(も)なく」,
+      which describes an unusual occurrence.
+    grammar_point: <suggest>:いつものように (as usual)
+  - term: 思わず
+    meaning: unintentionally, reflexively, involuntarily
+    kind: often confused with
+    nuance: While both imply an involuntary action, 「我にもなく」 (a specific usage of 「に(も)なく」) suggests a
+      more profound loss of self-control or consciousness, almost as if the 'self' momentarily disappeared,
+      whereas 「思わず」 simply means 'without thinking' or 'unintentionally'.
+    grammar_point: <suggest>:思わず (unintentionally)
+  - term: ～のに
+    meaning: despite, even though (conjunction)
+    kind: often confused with
+    nuance: 「～のに」 connects two clauses to express a contradiction or unexpected result (e.g., 'even though
+      X, Y happened'). It describes the relationship between events, not specifically that an action is
+      'out of character' for someone, which is the nuance conveyed by 「柄にもなく」 (a specific usage of 「に(も)なく」).
+    grammar_point: のに (unexpected result)
+  - term: とても
+    meaning: very, extremely
+    kind: often confused with
+    nuance: 「とても」 is an adverb that simply intensifies an adjective or adverb, indicating a high degree.
+      It does not carry the nuance of 'unusualness' or 'deviation from the norm' that 「に(も)なく」 does, which
+      implies a comparison to a typical state.
+    grammar_point: とても〜ない (cannot possibly ~)
+post_false_friends_writeup: When distinguishing 「に(も)なく」 from similar expressions, remember that 「に(も)なく」
+  emphasizes a deviation from the norm or an unusual state. For instance, while 「いつか」 talks about a future
+  point in time, and 「いつものように」 describes routine, 「に(も)なく」 specifically highlights something being 'more
+  than usual' or 'unlike' a typical situation or person. When describing an involuntary action, 「我にもなく」
+  conveys a stronger sense of losing conscious control than 「思わず」. Similarly, when describing an action
+  that goes against someone's nature, 「柄にもなく」 focuses on the 'out-of-character' aspect, which is distinct
+  from a simple contradiction expressed by 「～のに」. Furthermore, 「とても」 merely indicates a high degree and
+  lacks the comparative, 'unusual' nuance of 「に(も)なく」.
+examples:
+  - english: The sky is unusually clear today; it feels great.
+    japanese:
+      - 今日 は 空 が いつ {に も なく} 澄み 切っ て、気持ち が いい。
+      - 今日 は 空 が いつ {に なく} 澄み 切っ て、気持ち が いい。
+    english_literally: Today, the sky is unusually clear, and it feels good.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 空 が とても 澄み 切っ て、気持ち が いい。
+        english: The sky is very clear today; it feels great.
+        hint: 「とても」 simply means 'very' or 'extremely' and expresses a high degree, but it doesn't carry
+          the nuance of 'unusual' or 'more than usual' compared to the typical state. We're looking for
+          an expression that highlights the deviation from the norm.
+    scene: A person looks up at the sky and remarks on the weather, noticing that it's clearer than typical
+      for this time of year.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This example uses 「いつ{にもなく}」 or 「いつ{になく}」 to highlight that the sky's clarity is a noticeable
+      departure from its usual state. The speaker is making an observation about the environment being
+      'more than usual' in its clarity, emphasizing the pleasant surprise.
+    etymology: The use of 「いつ」 (always, usually) before 「に(も)なく」 establishes a clear baseline against
+      which the unusual clarity is being measured.
+  - english: Mr. Tanaka was unusually quiet in the meeting; I wonder if something is bothering him.
+    japanese:
+      - 田中 さん は、会議 で いつ {に も なく} 静か で、何 か 心配 事 が ある の だろう か。
+      - 田中 さん は、会議 で いつ {に なく} 静か で、何 か 心配 事 が ある の だろう か。
+    english_literally: Tanaka-san, in the meeting, was unusually quiet, I wonder if something troublesome
+      exists.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は、会議 で 普段 と 違っ て 静か で、何 か 心配 事 が ある の だろう か。
+        english: Mr. Tanaka was different from usual in the meeting and quiet; I wonder if something is
+          bothering him.
+        hint: 「普段 と 違っ て」 directly states a difference from the usual, but it doesn't carry the stronger
+          emphasis of 'more than usual' or 'unusually' that 「に(も)なく」 conveys when describing a notable
+          deviation from a norm. We're looking for an expression that highlights a surprising degree of
+          change.
+    scene: Two colleagues are discussing Mr. Tanaka's behavior in a meeting, as he is usually quite vocal.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker uses 「いつ{にもなく} 静か」 to point out Mr. Tanaka's unusual quietness, implying this
+      is a deviation from his normal behavior. The phrasing 「何か 心配事 が ある の だろうか」 expresses a mild concern
+      or speculation about the reason, fitting the observation made with 「いつ{にもなく}」.
+    etymology: The phrase 「いつ{に(も)なく}」 in this context implies a comparison to Mr. Tanaka's 'always' or
+      'usual' demeanor, indicating a noticeable shift from his typical conversational participation.
+  - english: Mr. Sato, who usually doesn't eat sweets, ordered cake, which is unlike him.
+    japanese:
+      - 普段 は 甘い もの を 食べ ない 佐藤 さん が、柄 {に も なく} ケーキ を 頼ん だ。
+      - 普段 は 甘い もの を 食べ ない 佐藤 さん が、柄 {に なく} ケーキ を 頼ん だ。
+    english_literally: Mr. Sato, who usually doesn't eat sweets, not even like his character, ordered
+      cake.
+    competing_grammar:
+      - competing_japanese:
+          - 普段 は 甘い もの を 食べ ない 佐藤 さん が、珍しく ケーキ を 頼ん だ。
+          - 普段 は 甘い もの を 食べ ない 佐藤 さん が、佐藤 さん らしく なく ケーキ を 頼ん だ。
+        english: Mr. Sato, who usually doesn't eat sweets, unusually ordered cake. / Mr. Sato, who usually
+          doesn't eat sweets, ordered cake, which is not typical of him.
+        hint: 「珍しく」 simply means 'unusually' or 'rarely' and 「～らしくない」 means 'not typical of~'. While these
+          are similar, 「柄にもなく」 implies a deeper deviation from one's inherent nature, character, or established
+          habits, suggesting a more surprising or 'out of character' action. We're looking for an expression
+          that highlights something being fundamentally against one's usual disposition.
+    scene: Friends are at a cafe, surprised by Mr. Sato's choice of dessert, as he is known for avoiding
+      sugary foods.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「柄{にもなく}」 specifically refers to the action being contrary to Mr. Sato's inherent
+      nature or usual habits. The speaker's observation of 'Mr. Sato, who usually doesn't eat sweets'
+      sets up this contrast clearly, highlighting the surprise at his 'out of character' action.
+    etymology: 「柄 (gara)」 refers to one's character or nature, so 「柄{に(も)なく}」 literally means 'not even
+      in one's character', emphasizing the deviation from one's established personality or habits.
+  - english: At the sudden loud noise, I instinctively gasped.
+    japanese:
+      - 突然 の 大きな 音 に、我 {に も なく} 息 を 飲ん で しまっ た。
+      - 突然 の 大きな 音 に、我 {に なく} 息 を 飲ん で しまっ た。
+    english_literally: At the sudden loud noise, not even being myself, I swallowed my breath.
+    competing_grammar:
+      - competing_japanese:
+          - 突然 の 大きな 音 に、思わ ず 息 を 飲ん で しまっ た。
+        english: At the sudden loud noise, I unintentionally gasped.
+        hint: While both 「我にもなく」 and 「思わず」 imply an involuntary action, 「我にもなく」 suggests a deeper sense
+          of losing conscious control or temporary self-awareness, as if the 'self' momentarily disappeared.
+          「思わず」 simply means 'without thinking' or 'unintentionally'. We're looking for an expression
+          that conveys a more profound loss of conscious will.
+    scene: A person recounts a moment of sudden surprise, where their reaction was entirely involuntary.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「我{にもなく}」 conveys that the action was performed without conscious thought or control, almost
+      as if one's 'self' was not present in that moment of reaction. It's a stronger expression of involuntariness
+      than just 「思わず」, emphasizing a temporary loss of self-awareness due to a sudden stimulus.
+    etymology: 「我 (ga)」 refers to the 'self' or 'ego', so 「我{に(も)なく}」 implies an action performed 'without
+      one's self' or 'unconsciously', highlighting a powerful, reflexive response.
+  - english: The CEO, who is usually very calm, was unusually agitated during today's press conference.
+    japanese:
+      - 普段 は 大変 穏やか な 社長 が、今日 の 記者 会見 で は いつ {に も なく} 狼狽 し て い た。
+      - 普段 は 大変 穏やか な 社長 が、今日 の 記者 会見 で は いつ {に なく} 狼狽 し て い た。
+    english_literally: The usually very calm CEO, in today's press conference, was unusually agitated.
+    competing_grammar:
+      - competing_japanese:
+          - 普段 と は 違う 社長 が、今日 の 記者 会見 で は 狼狽 し て い た。
+        english: The CEO, who was different from usual, was agitated during today's press conference.
+        hint: 「普段 と は 違う」 describes a change from the usual state, but 「いつ に も なく」 emphasizes the degree
+          of the unusualness, suggesting a stronger deviation than just being 'different'. We're looking
+          for an expression that highlights a surprising level of change.
+    scene: An executive observes their CEO during a public appearance, noting a significant change in
+      demeanor.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: This example uses 「いつ{にもなく}」 to highlight the CEO's unusual agitation, contrasting it with
+      his typical calm demeanor. The sentence structure focuses on observing this unexpected behavior
+      from a position of formality, appropriate for a business context.
+    etymology: The context of a 'press conference' and the use of 'CEO' reinforces the formality of the
+      observation of an unexpected behavior.
+  - english: My usually serious friend, for once, was laughing heartily.
+    japanese:
+      - 普段 は 真面目 な 友達 が、柄 {に も なく} 大声 で 笑っ て い た。
+      - 普段 は 真面目 な 友達 が、柄 {に なく} 大声 で 笑っ て い た。
+    english_literally: My usually serious friend, not even like his character, was laughing loudly.
+    competing_grammar:
+      - competing_japanese:
+          - 普段 は 真面目 な 友達 が、珍しく 大声 で 笑っ て い た。
+        english: My usually serious friend, unusually, was laughing heartily.
+        hint: While 「珍しく」 simply means 'unusually' or 'rarely', 「柄 に も なく」 emphasizes that the action
+          is deeply out of character for someone, implying a more significant and surprising deviation
+          from their intrinsic nature. We're looking for an expression that highlights something being
+          fundamentally against one's usual disposition.
+    scene: Witnessing a usually reserved friend burst into boisterous laughter.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「柄{にもなく}」 clearly states that the friend's loud laughter is contrary to their usual serious
+      nature. The casual register and setting of 'friendly' conversation are natural for such an observation
+      among friends.
+    etymology: 「柄」 (gara) implies one's inherent nature or characteristic demeanor, making this phrase
+      particularly apt for describing behavior that goes against that established character.
+  - english: The usually bustling Shibuya Crossing was unusually empty last night.
+    japanese:
+      - 普段 は 賑やか な 渋谷 の スクランブル 交差 点 が、昨夜 は いつ {に も なく} 人 が 少なかっ た。
+      - 普段 は 賑やか な 渋谷 の スクランブル 交差 点 が、昨夜 は いつ {に なく} 人 が 少なかっ た。
+    english_literally: The usually bustling Shibuya Scramble Crossing, last night, had unusually few people.
+    competing_grammar:
+      - competing_japanese:
+          - 普段 は 賑やか な 渋谷 の スクランブル 交差 点 が、昨夜 は 人 が とても 少なかっ た。
+        english: The usually bustling Shibuya Scramble Crossing, last night, had very few people.
+        hint: 「とても 少なかっ た」 means 'had very few people' but doesn't convey the sense of being 'unusually'
+          or 'more than usual' compared to the expected state. 「いつ に も なく」 highlights the surprising deviation
+          from the norm. We're looking for an expression that emphasizes the unexpected degree of emptiness.
+    scene: A person reflecting on how deserted a typically crowded place was.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: This example applies 「いつ{にもなく}」 to a situation rather than a person, indicating an environmental
+      condition (the number of people) that is a clear deviation from the norm. The reflection on 'last
+      night' adds a temporal context.
+    etymology: This usage extends 「いつ」 from referring to a person's constant behavior to the constant
+      state of a location, making the 'unusualness' more striking.
+  - english: I was so surprised by the news that I involuntarily gasped.
+    japanese:
+      - その 知らせ に 驚き すぎ て、我 {に も なく} 息 を 飲ん で しまっ た。
+      - その 知らせ に 驚き すぎ て、我 {に なく} 息 を 飲ん で しまっ た。
+    english_literally: Too surprised by that news, not even being myself, I swallowed my breath.
+    competing_grammar:
+      - competing_japanese:
+          - その 知らせ に 驚き すぎ て、思わ ず 息 を 飲ん で しまっ た。
+        english: I was so surprised by the news that I unintentionally gasped.
+        hint: While 「思わず」 (unintentionally) describes an action done without conscious thought, 「我 に も
+          なく」 implies a deeper, more fundamental loss of self-control or temporary self-awareness, as
+          if one's 'self' was momentarily absent. We're looking for an expression that conveys a profound,
+          almost primal, loss of conscious will.
+    scene: Recounting a moment of extreme surprise where the reaction was beyond conscious control.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「我{にもなく}」 signifies a reaction that is so profound it feels as if the 'self' momentarily ceased
+      to exert control, resulting in an involuntary gasp. This is a common phrase to describe strong,
+      unbidden emotional or physical responses.
+    etymology: 「我」 (ga) refers to the 'self' or one's conscious will, and thus the phrase literally implies
+      an action performed 'without the self's involvement'.
+  - english: She, who is usually composed, was unusually irritable today.
+    japanese:
+      - いつ も 落ち着い て いる 彼女 が、今日 は いつ {に も なく} イライラ し て い た。
+      - いつ も 落ち着い て いる 彼女 が、今日 は いつ {に なく} イライラ し て い た。
+    english_literally: The always composed girlfriend, today, was unusually irritable.
+    competing_grammar:
+      - competing_japanese:
+          - いつ も 落ち着い て いる 彼女 が、今日 は 気分 が 悪 そう だっ た。
+        english: The always composed girlfriend, today, seemed to be in a bad mood.
+        hint: 「気分 が 悪 そう だっ た」 means 'seemed to be in a bad mood' but doesn't convey the specific nuance
+          of being unusually irritable compared to her typical behavior. 「いつ に も なく」 emphasizes a noticeable
+          departure from her norm. We're looking for an expression that highlights a surprising change
+          from her usual temperament.
+    scene: Observing a friend or partner whose mood is uncharacteristically bad.
+    register: casual
+    setting: optimistic
+    speaker_gender: male
+    listener_gender: male
+    nuance: Here, 「いつ{にもなく}」 describes a temporary, strong negative emotional state that is a clear departure
+      from the person's usual composed demeanor. This highlights the unexpectedness of her irritability.
+    etymology: The phrase highlights the contrast with her 'always composed' (いつも落ち着いている) state, drawing
+      attention to the deviation.
+  - english: My brother, who is usually very careful, uncharacteristically made a careless mistake.
+    japanese:
+      - 普段 は 慎重 な 弟 が、柄 {に も なく} 不 注意 な ミス を し て しまっ た。
+      - 普段 は 慎重 な 弟 が、柄 {に なく} 不 注意 な ミス を し て しまっ た。
+    english_literally: My usually careful younger brother, not even like his character, made a careless
+      mistake.
+    competing_grammar:
+      - competing_japanese:
+          - 普段 は 慎重 な 弟 が、うっかり ミス を し て しまっ た。
+        english: My usually careful younger brother carelessly made a mistake.
+        hint: 「うっかり ミス を した」 simply states that a careless mistake was made. 「柄 に も なく」 adds the crucial
+          nuance that this specific mistake is entirely against the brother's usual careful character,
+          making it particularly surprising. We're looking for an expression that emphasizes the action
+          being 'out of character'.
+    scene: A sibling observes their younger brother making an uncharacteristic error.
+    register: casual
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This use of 「柄{にもなく}」 emphasizes that the brother's carelessness is a significant deviation
+      from his usual careful and cautious nature. The speaker expresses mild surprise and perhaps sympathy
+      for this unexpected error.
+    etymology: The word 「慎重」 (shinchō - careful, cautious) directly sets up the expectation against which
+      the 「不注意なミス」 (fuchūi na misu - careless mistake) is measured using 「柄にもなく」.
+post_example_writeup: As you can see from the examples, 「に(も)なく」 is versatile and can be used to describe
+  unexpected situations, behavioral changes, or involuntary reactions. Remember that including the particle
+  「も」 intensifies the meaning, emphasizing the degree of deviation from the norm, though both forms are
+  perfectly natural.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に(も)なく

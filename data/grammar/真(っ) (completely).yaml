@@ -1,0 +1,334 @@
+grammar_point: 真(っ) (completely)
+learn_before:
+  - だった (past copula, casual)
+meaning: Completely, Exactly, Right
+pronunciation:
+  katakana: マ(ッ)
+  romaji: ma(tto)
+formation:
+  真(っ) + ま/な column word: Becomes 真ん (mann-)
+  真(っ) + か/さ/しゃ column word: Becomes 真っ (matto-)
+  真(っ) + は column word: Becomes 真っ (matto-) + first kana becomes a 'P' sound
+  真(っ) + 青い: Becomes 真っ青
+  真(っ) + 赤い: Becomes 真っ赤
+jlpt: N4
+etymology: The prefix 真 (ma), originating from the kanji 真 (shin) meaning "true" or "genuine," is used
+  to emphasize the degree or trueness of a following word. It adds a sense of "completely," "exactly,"
+  or "genuinely" to the meaning. Its evolution reflects the human desire to express absolute qualities,
+  transforming a word for 'truth' into a intensifier for states and conditions.
+writeup: |-
+  The prefix 真 (ma), coming from the kanji 真 (true), is attached to words in Japanese to express that something is **completely**, **exactly**, or **genuinely**. Depending on the word that follows 真, different euphonic changes will occur to 真.
+
+  When linked with a ま column, or な column word, 真 will become 真ん (man). For instance, 丸 (maru) becomes 真ん丸 (manmaru).
+
+  When linked with a か column, さ column, or しゃ sound word, 真 will become 真っ (mat). Examples include 真っ直ぐ (massugu) and 真っ逆さま (massakasama).
+
+  When linked with a は column, 真 will become 真っ, and the first kana of the following word will change to a 'P' sound. For example, 裸 (hadaka) becomes 真っ裸 (mappadaka), and 昼間 (hiruma) becomes 真っ昼間 (mappiruma).
+
+  There are several exceptions to the standard changes that happen when using 真 as a prefix. For example, when linked with 青い (aoi), 真 will become 真っ, and 青い will become 真っ青 (massao). Similarly, when linked with 赤い (akai), 真 will become 真っ, and 赤い will become 真っ赤 (makka). These specific combinations are fixed expressions that you will encounter frequently.
+false_friends:
+  - term: とても
+    meaning: Very, extremely
+    kind: similar expression
+    nuance: Unlike 真(っ), とても is a general adverb for intensity that functions as a standalone word. It
+      does not cause euphonic changes or integrate directly into the modified word, and its usage is broader.
+    grammar_point: <strongly-suggest>:とても (very, extremely)
+  - term: 本当に
+    meaning: Really, truly
+    kind: similar expression
+    nuance: While 本当に emphasizes truthfulness or genuineness, it functions as an adverb and does not convey
+      the absolute 'completeness' or cause phonetic changes that 真(っ) does. It expresses conviction rather
+      than absolute state.
+    grammar_point: <strongly-suggest>:本当に (genuinely)
+  - term: すっかり
+    meaning: Completely, entirely
+    kind: similar expression
+    nuance: すっかり is an adverb that indicates an action or state is finished or absolute. Unlike 真(っ),
+      it is a standalone word, does not attach as a prefix, and does not cause euphonic changes. Its primary
+      use is with verbs or to describe a finished state.
+    grammar_point: <strongly-suggest>:すっかり (completely)
+  - term: まるっきり
+    meaning: Completely, utterly
+    kind: similar expression
+    nuance: まるっきりは an adverb meaning 'completely' or 'utterly,' often used for emphasis, particularly
+      with negative connotations. It functions like すっかり, as a standalone adverb, and does not exhibit
+      the prefix behavior or euphonic changes seen with 真(っ).
+    grammar_point: <strongly-suggest>:まるっきり (completely utterly)
+post_false_friends_writeup: This grammar point, 真(っ), functions as a unique prefix that attaches directly
+  to certain words to convey an absolute or perfect degree of a quality, often resulting in distinct phonetic
+  changes. This is a key differentiator from other adverbs like とても, 本当に, すっかり, or まるっきり, which also express
+  intensity or completeness. While these adverbs simply modify a word, 真(っ) forms a new, intensified compound
+  word. Understanding this morphological difference is crucial for proper usage and to appreciate the
+  nuance of absolute qualities in Japanese.
+examples:
+  - english: This perfectly round ball is very light.
+    japanese:
+      - この {真ん丸} の ボール は とても 軽い よ。
+      - この {真ん丸} の ボール は とても 軽い です。
+    english_literally: This completely round ball is very light.
+    competing_grammar:
+      - competing_japanese:
+          - この {丸い} ボール は とても 軽い よ。
+        english: This round ball is very light.
+        hint: 「真ん丸」 emphasizes a perfect, absolute roundness, more so than just 「丸い」. We're looking for
+          something perfectly round.
+    scene: A parent showing a new toy to a child.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: older
+    nuance: 「真ん丸」 (まんまる) emphasizes the absolute roundness of the ball, suggesting it is perfectly spherical.
+      The sentence ending 「よ」 (よ) is a gentle way for a parent to share information with a child, common
+      in casual, friendly contexts between family members. 「軽い」 (かるい) means light, referring to its weight.
+  - english: The red mark right in the middle of the map is our location.
+    japanese:
+      - 地図 の {真ん中} に ある 赤い 印 は 私 たち の 場所 です。
+      - 地図 の {真ん中} に ある 赤い 印 は 私 たち の 場所 だ。
+    english_literally: The red mark in the completely middle of the map is our location.
+    competing_grammar:
+      - competing_japanese:
+          - 地図 の {中} に ある 赤い 印 は 私 たち の 場所 です。
+          - 地図 の {中央} に ある 赤い 印 は 私 たち の 場所 です。
+        english: The red mark in the middle of the map is our location.
+        hint: 「真ん中」 specifies the exact center, providing more precision than a general 「中」 or 「中央」. We're
+          looking for the exact middle.
+    scene: Two hikers checking their position on a map.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「真ん中」 (まんなか) specifically denotes the exact center, highlighting the precise location on the
+      map. The use of 「です」 (です) maintains a polite but informal tone suitable for informative conversation.
+      「印」 (しるし) means mark or sign.
+  - english: My face turned completely red from the intense exercise.
+    japanese:
+      - 激しい 運動 で 顔 が {真っ赤} に なっ た。
+      - 激しい 運動 で 顔 が {真っ赤} に なり まし た。
+    english_literally: My face turned completely red from intense exercise.
+    competing_grammar:
+      - competing_japanese:
+          - 激しい 運動 で 顔 が {赤く} なっ た。
+        english: My face turned red from the intense exercise.
+        hint: 「真っ赤」 emphasizes the extreme intensity and completeness of the redness, more than simply
+          「赤い」. We're looking for completely red.
+    scene: Someone finishing a very strenuous workout.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「真っ赤」 (まっか) indicates the face became intensely and entirely red due to the exertion. The
+      phrase 「になった」 (に なった) describes a resulting state, common after physical activity. 「運動」 (うんどう) means
+      exercise.
+  - english: With the sudden brake, my drink fell completely upside down and spilled.
+    japanese:
+      - 突然 の ブレーキ で、飲み物 が {真っ 逆さま} に 落ち て こぼれ た。
+      - 突然 の ブレーキ で、飲み物 が {真っ 逆さま} に 落ち て こぼれ まし た。
+    english_literally: With the sudden brake, my drink fell completely upside down and spilled.
+    competing_grammar:
+      - competing_japanese:
+          - 突然 の ブレーキ で、飲み物 が {逆さま} に 落ち て こぼれ た。
+        english: With the sudden brake, my drink fell upside down and spilled.
+        hint: 「真っ逆さま」 emphasizes a forceful, complete overturning or falling headfirst, conveying a more
+          dramatic state than 「逆さま」. We're looking for completely upside down.
+    scene: Someone abruptly braking while driving.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「真っ逆さま」 (まっさかさま) emphasizes the complete overturning or falling headfirst of the drink, making
+      the mishap more vivid. The phrase 「こぼれた」 (こぼれた) indicates the spillage. 「突然」 (とつぜん) means sudden.
+  - english: The new shirt is pure white, so stains stand out easily.
+    japanese:
+      - 新しい シャツ は {真っ白} で、汚れ が 目立つ ね。
+      - 新しい シャツ は {真っ白} で、汚れ が 目立ち ます ね。
+    english_literally: The new shirt is completely white, so stains stand out easily.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい シャツ は {白く} て、汚れ が 目立つ ね。
+        english: The new shirt is white, so stains stand out easily.
+        hint: 「真っ白」 conveys a sense of absolute, pristine whiteness, emphasizing the shirt's unblemished
+          state more than just 「白い」. We're looking for pure white.
+    scene: A friend commenting on another's new clothing.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「真っ白」 (まっしろ) conveys a sense of absolute, pristine whiteness, highlighting the shirt's newness.
+      The sentence ends with 「ね」 (ね), inviting agreement from the listener, common in friendly casual
+      conversation. 「汚れ」 (よごれ) means stain.
+  - english: On hot days, children jump completely naked into the pool.
+    japanese:
+      - 暑い 日 に は、子供 たち は {真っ裸} で プール に 飛び込む。
+      - 暑い 日 に は、子供 たち は {真っ裸} で プール に 飛び込み ます。
+    english_literally: On hot days, children jump completely naked into the pool.
+    competing_grammar:
+      - competing_japanese:
+          - 暑い 日 に は、子供 たち は {裸} で プール に 飛び込む。
+        english: On hot days, children jump naked into the pool.
+        hint: 「真っ裸」 strongly conveys the sense of complete nudity, often used for playful or uninhibited
+          contexts, which is more emphatic than 「裸」. We're looking for completely naked.
+    scene: Describing children playing on a hot summer day.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    speaker_age: older
+    nuance: 「真っ裸」 (まっぱだか) strongly conveys the sense of complete nudity, often used for playful or uninhibited
+      contexts like children swimming. The phrase 「飛び込む」 (とびこむ) means to jump in. 「子供」 (こども) means child.
+  - english: It's broad daylight, but everyone's sleeping? I can't believe it.
+    japanese:
+      - '{真っ 昼間} な の に、みんな 寝 て いる なんて 信じ られ ない。'
+      - '{真っ 昼間} な の に、みんな 寝 て いる なんて 信じ られ ませ ん。'
+    english_literally: It's completely daytime, but everyone's sleeping? I can't believe it.
+    competing_grammar:
+      - competing_japanese:
+          - '{昼間} な の に、みんな 寝 て いる なんて 信じ られ ない。'
+        english: It's daytime, but everyone's sleeping? I can't believe it.
+        hint: 「真っ昼間」 emphasizes that it is literally the middle of the day, making the act of sleeping
+          seem more incongruous than just 「昼間」. We're looking for broad daylight.
+    scene: A parent discovering their children still asleep late in the morning.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    speaker_age: older
+    nuance: 「真っ昼間」 (まっぴるま) emphasizes that it is literally the middle of the day, making the act of sleeping
+      seem more incongruous. The phrase 「なんて信じられない」 (なんてしんじられない) expresses strong disbelief or exasperation,
+      fitting a parent's reaction. 「寝ている」 (ねている) means sleeping.
+  - english: The summer sea is deep blue, it makes me want to swim.
+    japanese:
+      - 夏 の 海 は {真っ青} で、泳ぎ たく なる。
+      - 夏 の 海 は {真っ青} で、泳ぎ たく なり ます。
+    english_literally: The summer sea is completely blue, it makes me want to swim.
+    competing_grammar:
+      - competing_japanese:
+          - 夏 の 海 は {青く} て、泳ぎ たく なる。
+        english: The summer sea is blue, it makes me want to swim.
+        hint: 「真っ青」 signifies a profound, vibrant blue, enhancing the beauty of the summer sea more vividly
+          than a simple 「青い」. We're looking for deep blue.
+    scene: Someone admiring the beautiful summer ocean.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「真っ青」 (まっさお) signifies a profound, vibrant blue, enhancing the beauty of the summer sea. The
+      phrase 「泳ぎたくなる」 (およぎたく なる) expresses a strong desire to swim, evoked by the inviting color. 「海」
+      (うみ) means sea.
+  - english: If I stayed outside on a cold day, my nose would turn completely red.
+    japanese:
+      - 寒い 日 に 外 に い たら、鼻 が {真っ赤} に なっ て しまっ た。
+      - 寒い 日 に 外 に い たら、鼻 が {真っ赤} に なり まし た。
+    english_literally: If I stayed outside on a cold day, my nose would turn completely red.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い 日 に 外 に い たら、鼻 が {赤く} なっ た。
+        english: If I stayed outside on a cold day, my nose would turn red.
+        hint: 「真っ赤」 clearly states the nose became thoroughly red due to the cold, indicating a strong,
+          complete reaction more than just 「赤い」. We're looking for completely red.
+    scene: A person complaining about the effects of cold weather.
+    register: casual
+    setting: pessimistic
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「真っ赤」 (まっか) clearly states the nose became thoroughly red due to the cold, indicating a strong
+      reaction. The auxiliary verb 「しまう」 (しまう) here expresses that the event happened regrettably or unintentionally.
+      「寒い」 (さむい) means cold.
+  - english: Please cut the cake from the very middle.
+    japanese:
+      - ケーキ を {真ん中} から 切っ て ください。
+      - ケーキ を {真ん中} から 切っ て。
+    english_literally: Please cut the cake from the completely middle.
+    competing_grammar:
+      - competing_japanese:
+          - ケーキ を {中央} から 切っ て ください。
+        english: Please cut the cake from the center.
+        hint: 「真ん中」 specifies the exact center point with greater emphasis than 「中央」, implying precision.
+          We're looking for the very middle.
+    scene: Instructing someone how to divide a cake precisely.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    speaker_age: older
+    nuance: 「真ん中」 (まんなか) specifically means the exact center point. The use of 「から」 (から) indicates the
+      starting point of the cut. 「切ってください」 (きって ください) is a polite request.
+  - english: If you go straight down this road, you'll see the station.
+    japanese:
+      - この 道 を {真っ直ぐ} 進め ば、駅 が 見え ます。
+      - この 道 を {真っ直ぐ} 進め ば、駅 が 見える。
+    english_literally: If you go completely straight down this road, you'll see the station.
+    competing_grammar:
+      - competing_japanese:
+          - この 道 を {直進} すれ ば、駅 が 見え ます。
+        english: If you go straight ahead down this road, you've seen the station.
+        hint: 「真っ直ぐ」 strongly emphasizes a perfectly straight path without turning, providing clearer
+          guidance than the more general 「直進」. We're looking for completely straight.
+    scene: Giving simple directions to a tourist.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「真っ直ぐ」 (まっすぐ) strongly emphasizes a perfectly straight path without turning. The conditional
+      「～ば」 (～ば) indicates that seeing the station is a direct consequence of following the directions.
+      「駅」 (えき) means station.
+  - english: The strong wind snapped the tree branch cleanly in two.
+    japanese:
+      - 強い 風 で 木 の 枝 が {真っ 二 つ} に 折れ た。
+      - 強い 風 で 木 の 枝 が {真っ 二 つ} に 折れ まし た。
+    english_literally: The strong wind snapped the tree branch completely in two.
+    competing_grammar:
+      - competing_japanese:
+          - 強い 風 で 木 の 枝 が {二 つ に} 折れ た。
+        english: The strong wind snapped the tree branch in two.
+        hint: 「真っ二つ」 highlights that the branch broke perfectly and cleanly into two pieces, emphasizing
+          the severity and precision of the break more than simply 「二つに」. We're looking for cleanly in
+          two.
+    scene: Describing damage caused by a strong wind.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「真っ二つ」 (まっぷたつ) highlights that the branch broke perfectly into two pieces, indicating the
+      severity of the damage. 「折れた」 (おれた) is the plain past form of "to break." 「枝」 (えだ) means branch.
+  - english: The power went out and the room went completely dark, I can't see anything.
+    japanese:
+      - 停電 で 部屋 が {真っ暗} に なっ て、何 も 見え ない。
+      - 停電 で 部屋 が {真っ暗} に なっ て、何 も 見え ませ ん。
+    english_literally: Due to the power outage, the room became completely dark, I can't see anything.
+    competing_grammar:
+      - competing_japanese:
+          - 停電 で 部屋 が {暗く} なっ て、何 も 見え ない。
+        english: Due to the power outage, the room became dark, I can't see anything.
+        hint: 「真っ暗」 emphasizes absolute darkness, the total absence of light, conveying a stronger sense
+          of no visibility than just 「暗い」. We're looking for completely dark.
+    scene: Someone trying to navigate a room during a power outage.
+    register: casual
+    setting: emergency/alarm
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「真っ暗」 (まっくら) highlights the absolute darkness, emphasizing the complete absence of light.
+      「何も見えない」 (なにもみえない) reinforces this, expressing the inability to see anything at all. 「停電」 (ていでん)
+      means power outage.
+  - english: Her face turned completely red when she received the present.
+    japanese:
+      - プレゼント を もらっ て、彼女 の 顔 が {真っ赤} に なっ た。
+      - プレゼント を もらっ て、彼女 の 顔 が {真っ赤} に なり まし た。
+    english_literally: Her face turned completely red when she received the present.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼント を もらっ て、彼女 の 顔 が {赤く} なっ た。
+        english: Her face turned red when she received the present.
+        hint: 「真っ赤」 clearly indicates intense blushing due to strong emotion like embarrassment or joy,
+          implying a more thorough redness than simply 「赤い」. We're looking for completely red (blushing).
+    scene: Observing someone's reaction to an unexpected gift.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「真っ赤」 (まっか) clearly indicates intense blushing, often associated with embarrassment or strong
+      emotion, which is a common reaction to receiving an unexpected present. 「彼女」 (かのじょ) means she or
+      girlfriend.
+post_example_writeup: As you can see from these examples, the prefix 真 (ma) is highly versatile in emphasizing
+  qualities. It often creates a more vivid and absolute image than simply using an adjective or adverb
+  alone. Pay close attention to the euphonic changes, as they are crucial for correct pronunciation and
+  natural usage. Recognizing these patterns will significantly enhance your understanding and fluency
+  in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/真(っ)

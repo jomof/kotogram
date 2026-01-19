@@ -1,0 +1,276 @@
+grammar_point: ですから (therefore)
+learn_before:
+  - '[Clause]から (because・so)'
+  - '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - よ (emphasis・information sharing)
+  - 変わる (to change)
+meaning: therefore; so; for that reason
+pronunciation:
+  katakana: デスカラ
+  romaji: desu kara
+formation:
+  '[Sentence A]. ですから, [Sentence B].': Sentence A is the formal reason or cause, and Sentence B is the
+    resulting consequence or conclusion. Used to connect sentences logically, emphasizing the reason.
+jlpt: N5
+etymology: The conjunction ですから (desu kara) is derived from the polite copula です (desu) and the particle
+  から (kara). The です adds a layer of politeness and formality to the causal relationship expressed by から.
+  This construction effectively conveys 'because it is [reason], therefore [result],' establishing a clear
+  and polite logical flow suitable for formal discourse or explanations. It emphasizes the preceding statement
+  as a given fact from which the following conclusion or action naturally follows.
+writeup: |-
+  The conjunction ですから (desu kara) is used to connect a reason or cause to a resulting consequence or conclusion in a formal and polite manner. It functions similarly to 'therefore,' 'so,' or 'for that reason' in English. It explicitly states the logical progression from a premise to a conclusion.
+
+  While から (kara) and ので (node) also express cause and effect, ですから offers a higher degree of formality and is often preferred in business settings, academic presentations, formal speeches, or when you wish to sound particularly clear and polite in your reasoning. It is frequently used when you are providing a justification for something, or explaining a situation where the logical connection between cause and effect needs to be clearly and respectfully articulated.
+
+  When using ですから, the reason always precedes it, and the consequence or conclusion follows. It is typically separated from the preceding sentence by a period or comma in written Japanese, reflecting its role as a sentence-connecting conjunction.
+
+  Keep in mind that ですから is a fixed expression and does not conjugate. It directly follows a sentence (often ending with です, ます, or a plain form) and introduces the result or conclusion.
+false_friends:
+  - term: から (because・so)
+    meaning: because; so
+    kind: similar expression
+    nuance: から is a casual particle used to express a direct reason or cause. Unlike ですから, it lacks formality
+      and is suitable for informal conversations.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ので (because・so)
+    meaning: because; so
+    kind: similar expression
+    nuance: ので is less formal than ですから but more polite than から. It is often used to give a reason in
+      a softer, more explanatory tone, or when making an excuse. ですから implies a more definitive, logical
+      consequence.
+    grammar_point: '[Clause]ので (because・so)'
+  - term: それで (and so・at that point・therefore)
+    meaning: and so; therefore; that's why
+    kind: similar expression
+    nuance: それで connects sentences where the preceding statement leads to the following one. It can indicate
+      a natural progression or a consequence, but the logical link is often less explicit and formal than
+      with ですから. It can simply mean 'then,' following a sequence of events.
+    grammar_point: <suggest>:それで (and so・at that point・therefore)
+  - term: したがって (therefore)
+    meaning: therefore; consequently; accordingly
+    kind: similar expression
+    nuance: したがって is more formal and academic than ですから, typically used in written contexts or formal
+      presentations for strict logical deduction or inference. ですから is also formal but more common in
+      spoken explanations.
+    grammar_point: したがって (therefore)
+  - term: そのため (for that reason)
+    meaning: for that reason; therefore
+    kind: similar expression
+    nuance: そのため explicitly states 'for that reason' and connects a cause with its result. It's slightly
+      less formal than したがって and can be used in both written and spoken contexts, often emphasizing the
+      *reason* rather than the *conclusion* as strongly as ですから.
+    grammar_point: そのため (for that reason)
+post_false_friends_writeup: While ですから, から, ので, それで, したがって, and そのため all express some form of cause-and-effect
+  or logical progression, their usage differs significantly in formality and nuance. ですから is ideal for
+  formal, polite explanations and clear logical connections. から is casual and direct. ので offers a softer,
+  more explanatory tone. それで is a general connector for consequences or sequential events. したがって is reserved
+  for highly formal, often academic, logical deductions. そのため clearly points to 'that reason' as the cause.
+  Choosing the correct one depends on the level of formality required and the specific nuance you wish
+  to convey.
+examples:
+  - english: It's raining outside. Therefore, we should probably take an umbrella.
+    japanese:
+      - 外 は 雨 です。{です から}、傘 を 持っ て いっ た ほう が いい でしょう。
+      - 外 は 雨 が 降っ て い ます。{です から}、傘 を 持っ て いっ た ほう が いい でしょう。
+    english_literally: Outside is rain. Therefore, an umbrella carrying is probably good.
+    competing_grammar:
+      - competing_japanese:
+          - 外 は 雨 な の で、傘 を 持っ て いっ た ほう が いい でしょう。
+        english: Since it's raining outside, we should probably take an umbrella.
+        hint: 「ので」 provides a reason in a softer, less assertive tone. We're looking for a formal, explicit
+          logical deduction here.
+      - competing_japanese:
+          - 外 は 雨 です。それ で、傘 を 持っ て いっ た ほう が いい でしょう。
+        english: It's raining outside. And so, we should probably take an umbrella.
+        hint: 「それで」 indicates a general sequence of events, not as strong a logical implication as a formal
+          'therefore'. We're looking for a formal, explicit logical deduction here.
+    scene: A colleague is about to leave the office, and you notice the weather.
+    register: formal
+    setting: professional
+  - english: This product is very popular. Therefore, it sells out quickly.
+    japanese:
+      - この 製品 は とても 人気 が あり ます。{です から}、すぐ に 売り切れ ます。
+      - この 製品 は とても 人気 が 高い です。{です から}、すぐ に 売り切れ ます。
+    english_literally: This product is very popular. Therefore, immediately sells out.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は とても 人気 が ある の で、すぐ に 売り切れ ます。
+        english: Since this product is very popular, it sells out quickly.
+        hint: 「ので」 expresses a reason in a slightly softer way. We're looking for a formal, explicit logical
+          deduction.
+      - competing_japanese:
+          - この 製品 は とても 人気 が あり ます。その ため、すぐ に 売り切れ ます。
+        english: This product is very popular. For that reason, it sells out quickly.
+        hint: 「そのため」 emphasizes the reason more directly. We're looking for a formal, explicit logical
+          deduction.
+    scene: During a business meeting, the sales manager is explaining a product's performance.
+    register: formal
+    setting: professional
+  - english: I have a cold. Therefore, I will rest today.
+    japanese:
+      - 風邪 を 引い て い ます。{です から}、今日 は 休み ます。
+      - 風邪 を 引い て おり ます。{です から}、本日 は 休み ます。
+    english_literally: Cold I have. Therefore, today I will rest.
+    competing_grammar:
+      - competing_japanese:
+          - 風邪 を 引い て いる の で、今日 は 休み ます。
+        english: Since I have a cold, I will rest today.
+        hint: 「ので」 expresses a reason with a softer nuance. We're looking for a formal, explicit logical
+          deduction.
+      - competing_japanese:
+          - 風邪 を 引い て い ます。それ で、今日 は 休み ます。
+        english: I have a cold. And so, I will rest today.
+        hint: 「それで」 indicates a general sequence of events, not as strong a logical implication as a formal
+          'therefore'. We're looking for a formal, explicit logical deduction.
+    scene: You are calling your boss to inform them you won't be coming to work.
+    register: formal
+    setting: professional
+  - english: The traffic is heavy. Therefore, we might be late.
+    japanese:
+      - 交通 量 が 多い です。{です から}、遅れる か も しれ ませ ん。
+      - 交通 量 が 多い 状況 です。{です から}、遅れる 可能 性 が あり ます。
+    english_literally: Traffic volume is much. Therefore, might be late.
+    competing_grammar:
+      - competing_japanese:
+          - 交通 量 が 多い の で、遅れる か も しれ ませ ん。
+        english: Since the traffic is heavy, we might be late.
+        hint: 「ので」 implies a slightly softer or more explanatory reason. We're looking for a formal, explicit
+          logical deduction.
+      - competing_japanese:
+          - 交通 量 が 多い です。その ため、遅れる か も しれ ませ ん。
+        english: The traffic is heavy. For that reason, we might be late.
+        hint: 「そのため」 emphasizes the specific reason. We're looking for a formal, explicit logical deduction.
+    scene: A taxi driver is talking to their passenger about the estimated arrival time.
+    register: formal
+    setting: casual slang
+  - english: The deadline is approaching. Therefore, we need to hurry.
+    japanese:
+      - 締め切り が 近い です。{です から}、急ぐ 必要 が あり ます。
+      - 締め切り が 迫っ て おり ます。{です から}、早急 に 取り組む 必要 が あり ます。
+    english_literally: Deadline is close. Therefore, hurry need is.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り が 近い の で、急ぐ 必要 が あり ます。
+        english: Since the deadline is approaching, we need to hurry.
+        hint: 「ので」 is a general reason. We're looking for a more formal and explicit 'therefore'.
+      - competing_japanese:
+          - 締め切り が 近い。したがっ て、急ぐ 必要 が あり ます。
+        english: The deadline is approaching. Therefore, it is necessary to hurry.
+        hint: 「したがって」 is a highly formal, often academic conjunction, slightly different from the general
+          formal explanation offered by ですから. We're looking for a formal, explicit logical deduction.
+    scene: A project manager is addressing their team about an upcoming project deadline.
+    register: formal
+    setting: professional
+  - english: He trained very hard. Therefore, he won the competition.
+    japanese:
+      - 彼 は 一生 懸命 練習 し まし た。{です から}、大会 で 優勝 し まし た。
+      - 彼 は 懸命 に 努力 し まし た。{です から}、大会 で 優勝 し まし た。
+    english_literally: He trained hard. Therefore, in the competition he won.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一生 懸命 練習 し た の で、大会 で 優勝 し まし た。
+        english: Since he trained very hard, he won the competition.
+        hint: 「ので」 provides a reason in a softer tone, less like a formal deduction. We're looking for
+          a formal, explicit logical deduction.
+      - competing_japanese:
+          - 彼 は 一生 懸命 練習 し まし た。その ため、大会 で 優勝 し まし た。
+        english: He trained very hard. For that reason, he won the competition.
+        hint: 「そのため」 focuses on the 'reason why'. We're looking for a formal, explicit logical deduction
+          leading to a conclusion.
+    scene: A sports commentator is discussing an athlete's victory.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of {ですから} here provides a clear, concise explanation of the cause-and-effect, typical
+      of a professional commentary. The Japanese sentence is gender-neutral.
+  - english: The museum is closed today. Therefore, we cannot enter.
+    japanese:
+      - 今日 は 博物 館 が 閉館 です。{です から}、入れ ませ ん。
+      - 本日 は 博物 館 が 閉館 と なっ て おり ます。{です から}、ご 入場 いただけ ませ ん。
+    english_literally: Today museum is closed. Therefore, cannot enter.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 博物 館 が 閉館 な の で、入れ ませ ん。
+        english: Since the museum is closed today, we cannot enter.
+        hint: 「ので」 softens the statement, often used when explaining an inconvenience. We're looking for
+          a formal, explicit logical deduction.
+      - competing_japanese:
+          - 今日 は 博物 館 が 閉館 です。その ため、入れ ませ ん。
+        english: The museum is closed today. For that reason, we cannot enter.
+        hint: 「そのため」 emphasizes the specific reason. We're looking for a formal, explicit logical deduction.
+    scene: A tour guide is informing a group of tourists about a change in their itinerary.
+    register: formal
+    setting: informative
+    listener_gender: group
+    nuance: This example uses ですから to give a polite and clear reason for an unfortunate circumstance.
+      It is straightforward and factual.
+  - english: The data is incomplete. Therefore, we cannot make a decision yet.
+    japanese:
+      - データ が 不 完全 です。{です から}、まだ 決定 でき ませ ん。
+      - データ が 不 完全 な 状態 です。{です から}、現 時点 で の 決定 は 困難 です。
+    english_literally: Data is incomplete. Therefore, yet cannot decide.
+    competing_grammar:
+      - competing_japanese:
+          - データ が 不 完全 な の で、まだ 決定 でき ませ ん。
+        english: Since the data is incomplete, we cannot make a decision yet.
+        hint: 「ので」 offers a less direct and formal reasoning. We're looking for a formal, explicit logical
+          deduction.
+      - competing_japanese:
+          - データ が 不 完全 です。したがっ て、まだ 決定 でき ませ ん。
+        english: The data is incomplete. Therefore, we cannot make a decision yet.
+        hint: 「したがって」 is very formal and academic, often used in reports or scientific contexts. We're
+          looking for a formal, explicit logical deduction that can be used in spoken language.
+    scene: During a research presentation, a scientist explains why further study is needed.
+    register: formal
+    setting: academic
+  - english: My flight was delayed. Therefore, I arrived late.
+    japanese:
+      - 私 の 飛行 機 が 遅れ まし た。{です から}、遅刻 し まし た。
+      - 私 の フライト が 遅延 し まし た。{です から}、到着 が 遅れ まし た。
+    english_literally: My flight delayed. Therefore, was late.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 飛行 機 が 遅れ た の で、遅刻 し まし た。
+        english: Since my flight was delayed, I arrived late.
+        hint: 「ので」 provides a reason in a softer, more explanatory manner. We're looking for a formal,
+          explicit logical deduction.
+      - competing_japanese:
+          - 私 の 飛行 機 が 遅れ まし た。それ で、遅刻 し まし た。
+        english: My flight was delayed. And so, I arrived late.
+        hint: 「それで」 indicates a general sequence of events, not emphasizing the logical conclusion as
+          strongly as 'therefore'. We're looking for a formal, explicit logical deduction.
+    scene: A person explains to their host why they are late for a dinner party.
+    register: formal
+    setting: apologetic
+    speaker_gender: female
+    nuance: Using {ですから} adds a formal and justifiable tone to the apology. The speaker is providing a
+      clear, undeniable reason for being late, common in Japanese culture when explaining tardiness.
+  - english: We respect individual opinions. Therefore, please feel free to express your thoughts.
+    japanese:
+      - 私 たち は 個人 の 意見 を 尊重 し ます。{です から}、ご 自由 に ご 意見 を おっしゃっ て ください。
+      - 当社 は 個々 の 意見 を 尊重 いたし ます。{です から}、ご 遠慮 なく ご 意見 を お 聞か せ ください。
+    english_literally: We individual opinions respect. Therefore, please freely opinions say.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 個人 の 意見 を 尊重 する の で、ご 自由 に ご 意見 を おっしゃっ て ください。
+        english: Since we respect individual opinions, please feel free to express your thoughts.
+        hint: 「ので」 is a softer reason. We're looking for a more direct, formal cause-and-effect relationship.
+      - competing_japanese:
+          - 私 たち は 個人 の 意見 を 尊重 し ます。したがっ て、ご 自由 に ご 意見 を おっしゃっ て ください。
+        english: We respect individual opinions. Therefore, please feel free to express your thoughts.
+        hint: 「したがって」 is a very formal, almost academic form of 'therefore', often implying a stricter
+          logical consequence than ですから. We're looking for a general formal, explicit logical deduction.
+    scene: A facilitator is addressing participants at a workshop, encouraging open discussion.
+    register: formal
+    setting: professional
+    listener_gender: group
+    nuance: The use of {ですから} here establishes a clear policy (respecting opinions) and then presents
+      a logical, polite invitation (speak freely). The humble form おっしゃって (from 言う) is used to show respect
+      to the listeners.
+post_example_writeup: As demonstrated in the examples, ですから consistently provides a clear, polite, and
+  logical link between a cause and its effect. It is a versatile conjunction used across various formal
+  contexts, from business to daily polite conversation, whenever a precise and respectful explanation
+  of causality is required.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ですから

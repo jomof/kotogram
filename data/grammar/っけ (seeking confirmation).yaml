@@ -1,0 +1,319 @@
+grammar_point: っけ (seeking confirmation)
+learn_before:
+  - Verb[imperative] (imperative)
+  - な (prohibitive particle)
+meaning: Expresses uncertainty or seeks confirmation, like "wasn't it?" or "didn't we?"
+meaning_warning: While Verb[る]+ん/の+だ/だった+っけ is grammatically correct, younger generations of Japanese
+  speakers often use Verb[る] +っke.
+pronunciation:
+  katakana: ッケ
+  romaji: kke
+formation:
+  Verb plain non-past + んだっけ: Used to confirm information or recall something forgotten, typically with
+    non-past verbs.
+  Verb plain past + (んだ)っke: Used to confirm information or recall something forgotten, typically with
+    past verbs.
+  い-Adjective plain non-past + んだっke: Used to confirm information or recall something forgotten, typically
+    with non-past い-adjectives.
+  い-Adjective plain past + (んだ)っke: Used to confirm information or recall something forgotten, typically
+    with past い-adjectives.
+  な-Adjective stem + (なん)だっke: Used to confirm information or recall something forgotten, typically with
+    non-past な-adjectives.
+  な-Adjective stem + だった(んだ)っke: Used to confirm information or recall something forgotten, typically
+    with past な-adjectives.
+  Noun + (なん)だっke: Used to confirm information or recall something forgotten, typically with non-past
+    nouns.
+  Noun + だった(んだ)っke: Used to confirm information or recall something forgotten, typically with past nouns.
+  Wh-word + (なん)だっke: Used to confirm information or recall something forgotten, typically with non-past
+    wh-words.
+  Wh-word + だった(んだ)っke: Used to confirm information or recall something forgotten, typically with past
+    wh-words.
+  Plain form + っke (informal): Used by younger generations, especially with verbs, as a more casual form
+    of the grammar point. While common, this usage is often considered grammatically informal and may
+    not be suitable for formal writing or speech.
+jlpt: N3
+etymology: The particle 「っけ」 is believed to have originated from 「か」, a question marker, combined with
+  a preceding particle or auxiliary verb that softened the inquiry, suggesting a seeking of confirmation
+  rather than a direct question.
+writeup: |-
+  The particle 「っけ」 is a sentence-ending particle used in casual Japanese speech. Its primary function is to allow the speaker to confirm information they are unsure about or to recall something they have forgotten. It carries a nuance similar to English phrases like "wasn't it?" or "again?" (as in, "What was your name again?").
+
+  Grammatically, 「っけ」 typically follows the plain past form of auxiliary verbs, most commonly 「だっけ」 or 「たっけ」. It can also follow auxiliary structures like 「のだ」 or 「んだ」, allowing it to attach to a broader range of verb tenses and plain forms (e.g., Verb plain non-past + 「んだっけ」, i-Adjective plain non-past + 「んだっke」, Noun/na-Adjective stem + 「なんだっke」).
+
+  It is important to note a common trend among younger generations: they often use 「っke」 directly after a plain verb form (e.g., 「行くっke」, 「食べたっke」) without the preceding 「んだ」 or 「のだ」. While this usage is widespread in informal conversation, it is not considered grammatically standard and should generally be avoided in formal writing or speech.
+
+  「っke」 can be used both when the speaker is asking a rhetorical question to themselves (e.g., trying to remember if they locked the door) or when directly asking another person for confirmation about something they have forgotten (e.g., asking a friend about their dog's name). Its casual nature makes it unsuitable for formal or polite contexts.
+false_friends:
+  - term: か (question)
+    meaning: Question marking particle
+    kind: similar expression
+    nuance: Unlike 「っけ」, 「か」 is a general question particle without the nuance of seeking confirmation
+      or recalling something forgotten. 「明日雨が降るか」 (Will it rain tomorrow?) is a direct question, whereas
+      「明日雨が降るんだっke」 (Will it rain tomorrow, or was I mistaken?) implies the speaker had previously heard
+      something about rain.
+    grammar_point: か (question)
+  - term: でしょう (conjecture and confirmation)
+    meaning: Right?, Probably, Isn't it?
+    kind: similar expression
+    nuance: 「でしょう」 seeks agreement or offers a polite conjecture, implying the speaker expects the listener
+      to agree. 「っke」, on the other hand, is a more personal query, indicating the speaker is trying to
+      recall something they think they know or verify information for their own benefit, without necessarily
+      expecting the listener's immediate agreement or confirmation of their own knowledge.
+    grammar_point: だろう・でしょう (probably・right?)
+post_false_friends_writeup: The key distinction between 「っke」 and 「か」 lies in the speaker's intent. Use
+  「か」 for direct inquiries seeking new information, while 「っke」 is employed when you are trying to confirm
+  something you think you know or to recall a piece of information that has momentarily slipped from your
+  mind. This nuance of memory recall or confirmation is what sets 「っke」 apart. Similarly, while 「でしょう」
+  seeks external agreement, 「っke」 is more about personal memory verification or a casual, softened inquiry.
+examples:
+  - english: Oh, what time does today's meeting start again?
+    japanese:
+      - あれ、今日 の 会議 って 何時 から 始まる ん だ {っけ}？
+      - あれ、今日 の 会議 って 何時 から 始まる {っke}？
+    english_literally: Oh, today's meeting, what time does it start, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あれ、今日 の 会議 は 何時 から 始まり {ます か}？
+        english: Oh, what time does today's meeting start?
+        hint: The use of 「あれ」 and the casual 「っke」 indicate an internal thought process or a casual query
+          to a peer, steering away from a direct, formal question. We're looking for a softer way to recall
+          information.
+    scene: A busy professional is preparing for their day and quickly checking their schedule.
+    register: casual
+    setting: informative
+  - english: Um, Mr. Yamada, was it that you own a dog?
+    japanese:
+      - あの、山田 さん って、犬 を 飼っ て いる ん だっ た {っke}？
+      - あの、山田 さん って、犬 を 飼っ て る ん だっ た {っke}？
+      - あの、山田 さん って、犬 を 飼っ て いる ん だ {っke}？
+      - あの、山田 さん って、犬 を 飼っ て る ん だ {っke}？
+      - あの、山田 さん って、犬 を 飼っ て いる {っke}？
+      - あの、山田 さん って、犬 を 飼っ て る {っke}？
+    english_literally: Um, Mr. Yamada, regarding owning a dog, was it that you own one, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 山田 さん は 犬 を 飼っ て い {ます か}？
+        english: Does Mr. Yamada own a dog?
+        hint: The polite interjection 「あの」 combined with 「んだったっke」 conveys an effort to recall information
+          previously known or assumed, rather than asking for the first time. We're looking for a way
+          to confirm a remembered detail.
+    scene: A colleague is trying to remember a personal detail about a new coworker to strike up a conversation.
+    register: semi-formal
+    setting: informative
+  - english: Does this ramen shop open on Sundays, again?
+    japanese:
+      - この ラーメン 屋 さん って、日曜 日 も 開い て いる ん だ {っke}？
+      - この ラーメン 屋 さん って、日曜 日 も 開い て る ん だ {っke}？
+      - この ラーメン 屋 さん って、日曜 日 も 開い て いる {っke}？
+      - この ラーメン 屋 さん って、日曜 日 も 開い て る {っke}？
+    english_literally: This ramen shop, does it open on Sundays too, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この ラーメン 屋 さん は 日曜 日 も 開い て い {ます か}？
+        english: Does this ramen shop open on Sundays as well?
+        hint: The casual 「～って」 and 「っke」 are typical in friendly conversation when confirming something
+          already believed to be true or trying to recall a detail. We're looking for a casual way to
+          confirm a memory.
+    scene: Two friends are making plans for the weekend and are trying to remember the opening hours of
+      a favorite ramen spot.
+    register: casual
+    setting: friendly
+  - english: If I remember correctly, was John a student?
+    japanese:
+      - 確か、ジョン さん は 学生 だっ た {っke}？
+      - 確か、ジョン さん は 学生 だっ た ん だ {っke}？
+      - 確か、ジョン さん は 学生 {っke}？
+    english_literally: If I remember correctly, John, was he a student, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - ジョン さん は 学生 {です か}？
+        english: Is John a student?
+        hint: The inclusion of 「確か」 explicitly signals that the speaker is attempting to recall information,
+          rather than posing a brand new question. We're looking for a way to confirm a remembered detail
+          about a past state.
+    scene: Someone is looking at an old photo and trying to confirm the past status of an acquaintance
+      they haven't seen in a while.
+    register: casual
+    setting: reflective
+  - english: If I press this button, will the door open, I wonder?
+    japanese:
+      - この ボタン を 押し たら、ドア が 開く ん だ {っke}？
+      - この ボタン を 押し たら、ドア が 開く {っke}？
+    english_literally: If I press this button, will the door open, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この ボタン を 押し たら、ドア が 開き {ます か}？
+        english: If I press this button, will the door open?
+        hint: The internal question expressed with 「っke」 indicates uncertainty and self-query, rather
+          than a direct inquiry to someone else. We're looking for an internal monologue or self-confirmation.
+    scene: A person is in an unfamiliar building, standing in front of a control panel, and is unsure
+      how a specific mechanism works.
+    register: casual
+    setting: cautious
+  - english: Mr. Tanaka's wife, was she a teacher, if I remember correctly?
+    japanese:
+      - 田中 さん の 奥 さん って、確か 先生 な ん だ {っke}？
+      - 田中 さん の 奥 さん って、確か 先生 {っke}？
+    english_literally: Mr. Tanaka's wife, if I remember correctly, was she a teacher, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん の 奥 さん は 先生 {です か}？
+        english: Is Mr. Tanaka's wife a teacher?
+        hint: The use of 「～って」 and 「確か」 with 「なんだっke」 frames the question as a memory check rather than
+          a simple factual inquiry. We're looking to confirm a detail about someone.
+    scene: A friend is catching up with another friend and trying to recall details about their mutual
+      acquaintances.
+    register: casual
+    setting: friendly
+  - english: The book I borrowed earlier, did I return it already?
+    japanese:
+      - この 前 借り た 本、もう 返し た {っke}？
+      - この 前 借り た 本、もう 返し た ん だ {っke}？
+      - この 前 借り た 本、もう 返し た ん だっ た {っke}？
+    english_literally: The book I borrowed earlier, did I already return it, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - もう 返し {まし た か}？
+        english: Have you already returned it?
+        hint: The informal 「っke」 without 「んだ」 or 「のだ」 is often used in internal monologues or when speaking
+          to oneself. We're looking for an internal thought about a completed action.
+    scene: A person is sitting at home, thinking about their errands, and suddenly wonders if they completed
+      a specific task.
+    register: casual
+    setting: reflective
+  - english: Where are we holding next week's party again?
+    japanese:
+      - 来週 の パーティー、どこ で やる ん だ {っke}？
+      - 来週 の パーティー、どこ で やる {っke}？
+    english_literally: Next week's party, where are we doing it, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 来週 の パーティー は どこ で やり {ます か}？
+        english: Where will next week's party be held?
+        hint: The direct question with 「～ますか」 implies a lack of prior knowledge, whereas 「っke」 suggests
+          a lapse in memory about something previously discussed. We're looking to recall a previously
+          known detail.
+    scene: A group of friends is chatting about upcoming plans, and one of them is trying to confirm a
+      detail about an event.
+    register: casual
+    setting: friendly
+  - english: The pizza I ordered yesterday, was it supposed to be without cheese?
+    japanese:
+      - 昨日 頼ん だ ピザ、チーズ 抜き だっ た {っke}？
+      - 昨日 頼ん だ ピザ、チーズ 抜き だっ た ん だ {っke}？
+    english_literally: The pizza I ordered yesterday, was it supposed to be without cheese, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 頼ん だ ピザ は チーズ 抜き {でし た か}？
+        english: Was the pizza I ordered yesterday without cheese?
+        hint: The use of 「っke」 makes the question sound like the speaker is confirming their own memory
+          rather than directly asking the listener for new information. We're looking for self-confirmation
+          about an order.
+    scene: A customer is about to eat a pizza they ordered and suddenly has a doubt about their special
+      request.
+    register: casual
+    setting: informative
+  - english: That cafe, was it okay to bring pets, if I remember correctly?
+    japanese:
+      - あの カフェ って、確か ペット 同伴 OK だっ た {っke}？
+      - あの カフェ って、確か ペット 同伴 OK だっ た ん だ {っke}？
+    english_literally: That cafe, if I remember correctly, was it pet-friendly, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あの カフェ は ペット 同伴 OK {です か}？
+        english: Is that cafe pet-friendly?
+        hint: The phrase 「確か」 and 「っke」 together create a sense of confirming a detail already believed
+          to be true, fitting a casual planning context. We're looking to confirm a prior understanding.
+    scene: Two friends are planning to visit a cafe and one is trying to remember if their pets are allowed.
+    register: casual
+    setting: friendly
+  - english: That new shop, have you been there already?
+    japanese:
+      - あの 新しい お 店、もう 行っ た ん だ {っke}？
+      - あの 新しい お 店、もう 行っ た {っke}？
+      - あの 新しい お 店、もう 行っ た ん だっ た {っke}?
+    english_literally: That new shop, have you already gone, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 新しい お 店、もう 行き {まし た か}？
+        english: Have you already gone to that new shop?
+        hint: The use of 「っke」 indicates that the speaker is recalling prior conversation or general knowledge
+          about the listener, making the question less abrupt and more conversational. We're looking to
+          confirm what was previously discussed.
+    scene: A friend is asking another about a new place in town, wondering if they've had a chance to
+      visit.
+    register: casual
+    setting: friendly
+  - english: Last week's meeting, did I send the materials by email?
+    japanese:
+      - 先週 の 打ち合わせ、資料 は メール で 送っ た ん だっ た {っke}？
+      - 先週 の 打ち合わせ、資料 は メール で 送っ た ん だ {っke}？
+      - 先週 の 打ち合わせ、資料 は メール で 送っ た {っke}？
+    english_literally: Last week's meeting, the materials, did I send them by email, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 先週 の 打ち合わせ の 資料 は メール で 送り {まし た か}？
+        english: Did you send the materials for last week's meeting by email?
+        hint: The use of 「んだったっke」 conveys an internal check or a soft confirmation, which is more natural
+          in a professional self-reflection than a direct question. We're looking for an internal check
+          of a past action.
+    scene: A professional is reviewing their tasks and trying to double-check if an important action was
+      completed.
+    register: semi-formal
+    setting: professional
+  - english: Tomorrow's homework, is the submission online?
+    japanese:
+      - 明日 の 宿題、提出 は オン ライン な ん だ {っke}？
+      - 明日 の 宿題、提出 は オン ライン {っke}？
+    english_literally: Tomorrow's homework, the submission, is it online, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 宿題 の 提出 は オン ライン {です か}？
+        english: Is tomorrow's homework submission online?
+        hint: The 「っke」 implies the speaker is checking their own memory or understanding of instructions,
+          making it a more natural expression of self-confirmation. We're looking for a way to confirm
+          instructions.
+    scene: A student is reviewing their assignments for the next day and is confirming the submission
+      method.
+    register: casual
+    setting: academic
+  - english: That restaurant, did I make a reservation?
+    japanese:
+      - あの レストラン、予約 し た ん だ {っke}？
+      - あの レストラン、予約 し た {っke}？
+      - あの レストラン、予約 し た ん だっ た {っke}？
+    english_literally: That restaurant, did I make a reservation, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン、予約 し {まし た か}？
+        english: Did you make a reservation for that restaurant?
+        hint: The more formal 「～ましたか」 implies asking a direct question to someone else for new information,
+          whereas 「っke」 is used for a personal memory check. We're looking for an internal memory check
+          about a reservation.
+    scene: Someone is preparing for dinner and suddenly questions whether they actually completed the
+      reservation they intended to make.
+    register: casual
+    setting: reflective
+  - english: The new department head, was she a woman, if I remember correctly?
+    japanese:
+      - 新しい 部長 は、確か 女性 な ん だ {っke}？
+      - 新しい 部長 は、確か 女性 {っke}？
+    english_literally: The new department head, if I remember correctly, was she a woman, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 部長 は 女性 {です か}？
+        english: Is the new department head a woman?
+        hint: 「確か」 combined with 「なんだっke」 signifies that the speaker is seeking confirmation for information
+          they believe they already know, fitting a conversational tone. We're looking to confirm a detail
+          about a new colleague.
+    scene: Colleagues are discussing a recent organizational change and one is trying to confirm a specific
+      detail about a new manager.
+    register: semi-formal
+    setting: professional
+post_example_writeup: As you can see from the examples, the placement of 「っke」 often varies depending
+  on the formality and the specific nuance of confirmation. The inclusion of 「んだ」 or 「んだった」 tends to make
+  the query slightly more explanatory or to seek a more specific confirmation, while simply attaching
+  「っke」 to the plain form can be more direct and informal, particularly common among younger speakers.
+  Pay attention to the subtle differences in context to choose the most natural expression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/っke

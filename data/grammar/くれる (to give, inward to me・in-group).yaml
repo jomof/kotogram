@@ -1,0 +1,296 @@
+grammar_point: くれる (to give, inward to me・in-group)
+learn_before:
+  - Verb[しました] (polite past)
+  - '[Verb-て]くれる (to do for me・in-group)'
+  - って (casual quotation・reason・topic)
+  - と (with)
+  - ないでください・ないで (please don't)
+  - へ (directional particle)
+  - 奥,手前 (depth・foreground spatial)
+  - 決して〜ない (emphatic never)
+  - 隣 (immediately next to)
+meaning: To give (something or a favor) to the speaker or someone in their in-group.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: くれる
+    rarity: common
+    meaning: to give (to me or in-group)
+  - conjugation-type: non-past polite (～ます)
+    form: くれます
+    rarity: common
+    meaning: to give (to me or in-group)
+  - conjugation-type: negative plain (～ない)
+    form: くれない
+    rarity: common
+    meaning: not to give (to me or in-group)
+  - conjugation-type: negative non-past polite (～ません)
+    form: くれません
+    rarity: common
+    meaning: not to give (to me or in-group)
+  - conjugation-type: past plain (～た)
+    form: くれた
+    rarity: common
+    meaning: gave (to me or in-group)
+  - conjugation-type: past polite (～ました)
+    form: くれました
+    rarity: common
+    meaning: gave (to me or in-group)
+  - conjugation-type: negative past plain (～なかった)
+    form: くれなかった
+    rarity: common
+    meaning: did not give (to me or in-group)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: くれませんでした
+    rarity: common
+    meaning: did not give (to me or in-group)
+  - conjugation-type: te-form (～て)
+    form: くれて
+    rarity: common
+    meaning: giving (to me or in-group) and...
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: くれ
+    rarity: common
+    meaning: Give (to me or in-group)!
+  - conjugation-type: imperative polite (～なさい)
+    form: くれなさい
+    rarity: less common
+    meaning: Please give (to me or in-group).
+pronunciation:
+  katakana: クレル
+  romaji: kureru
+formation:
+  Noun が くれる: Indicates that the Noun is the giver and gives something to the speaker or their in-group.
+  Noun に くれる: Indicates that the Noun receives something from someone (often implicitly the speaker or
+    someone else in the in-group) and the giver is omitted or understood.
+jlpt: N5
+etymology: 'The verb 「くれる」 is an ancient Japanese word, dating back to Old Japanese. Its original meaning
+  was simply ''to give,'' but over time, it developed the specific nuance of the direction of giving:
+  ''to give *to the speaker* or the speaker''s immediate circle.'' This directional aspect became distinct
+  from verbs like 「あげる」 which imply giving ''away from the speaker'' or to an outsider. This distinction
+  reflects a deep-seated cultural emphasis in Japanese on in-group/out-group relationships and the subtle
+  expressions of gratitude and obligation within those dynamics. The ''in-group'' concept itself is central
+  to understanding the historical development of these giving/receiving verbs.'
+writeup: |-
+  「くれる」 is a fundamental verb in Japanese that expresses the act of giving. However, unlike English 'to give,' Japanese has different verbs depending on the direction of the giving and the relationship between the giver and the receiver. 「くれる」 is specifically used when someone gives something **to the speaker** or **to someone within the speaker's close circle** (e.g., family, close friends). It always implies that the recipient is the speaker or a member of their in-group, and it often carries a nuance of gratitude, as the giving is perceived as a benefit received.
+
+  This verb is essential for understanding the intricate system of 'giving and receiving' verbs in Japanese, which also includes 「あげる」 (to give, away from the speaker/in-group) and 「もらう」 (to receive). The choice of verb reflects the speaker's perspective and the social context of the interaction.
+
+  While 「くれる」 can be used for tangible items, it is also frequently used in its `Verb[て]くれる` form to express that someone performs an action or favor for the speaker or their in-group. This structure emphasizes the benefit of that action.
+
+  It's important to remember that 「くれる」 cannot be used when the speaker is the one giving something to an outsider. For that, you would use 「あげる」 or 「差し上げる」 (humble).
+false_friends:
+  - term: あげる・やる (to give, outward)
+    meaning: to give (to someone outside one's in-group or to a lower-status person/animal)
+    kind: antonym
+    nuance: While 「くれる」 implies giving to one's in-group, 「あげる」 (and its more casual equivalent 「やる」)
+      implies giving something *away* from the speaker or their in-group, or to someone of equal or higher
+      status. The focus is on the giver's action.
+    grammar_point: あげる・やる (to give, outward)
+  - term: もらう (to receive)
+    meaning: to receive (from someone)
+    kind: similar expression
+    nuance: 「もらう」 expresses receiving from the recipient's perspective, whereas 「くれる」 expresses giving
+      from the giver's perspective, but with the speaker or in-group as the recipient. Both verbs describe
+      the same transfer, but from different viewpoints.
+    grammar_point: もらう (to receive)
+  - term: 差し上げる (to give, humble)
+    meaning: to humbly give (to a superior)
+    kind: similar expression
+    nuance: 「差し上げる」 is a humble form of 「あげる」, used when the speaker gives something to a person of higher
+      status. It does not carry the 'in-group receives' nuance of 「くれる」.
+    grammar_point: <suggest>:差し上げる (to give, humble)
+  - term: いただく (to receive, humble)
+    meaning: to humbly receive (from a superior)
+    kind: similar expression
+    nuance: 「いただく」 is a humble form of 「もらう」, used when the speaker receives something from a person of
+      higher status. Like 「もらう」, it focuses on the act of receiving, not the giving from an external party
+      to one's in-group as 「くれる」 does.
+    grammar_point: <suggest>:いただく (to receive, humble)
+post_false_friends_writeup: The core distinction between 「くれる」, 「あげる」, and 「もらう」 lies in the direction
+  of the action relative to the speaker and their in-group. 「くれる」 is always used when the action benefits
+  the speaker or their in-group. 「あげる」 is used when the action benefits someone outside the speaker's
+  in-group. 「もらう」 is used when the speaker or their in-group receives something, focusing on the act of
+  reception.
+examples:
+  - english: My friend gave me a present.
+    japanese:
+      - 友達 が プレゼント を {くれ た}。
+      - 友達 が プレゼント を {くれ まし た}。
+    english_literally: Friend, subject, present, object, gave to me.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が プレゼント を あげ た。
+        english: My friend gave a present (to someone else, not me).
+        hint: The verb 「あげる」 indicates giving something away from the speaker's perspective. We're looking
+          for an action that benefits the speaker.
+      - competing_japanese:
+          - 私 が 友達 に プレゼント を あげ た。
+        english: I gave a present to my friend.
+        hint: This sentence says 'I gave'. We're looking for the friend giving to 'me'.
+    scene: A student is telling a story about their birthday.
+    register: casual
+    setting: friendly
+  - english: My mom bought me a new bag.
+    japanese:
+      - 母 が 新しい カバン を {買っ て くれ た}。
+      - 母 が 新しい カバン を {買っ て くれ まし た}。
+    english_literally: Mother, subject, new bag, object, bought-gave-me.
+    competing_grammar:
+      - competing_japanese:
+          - 母 が 新しい カバン を 買っ た。
+        english: My mom bought a new bag.
+        hint: This just says 'bought', not explicitly 'bought for me'. We want to emphasize that the action
+          was done for the speaker.
+      - competing_japanese:
+          - 私 が 母 に 新しい カバン を 買っ て もらっ た。
+        english: I had my mom buy me a new bag.
+        hint: This sentence means 'I received the favor of my mom buying it'. We're focusing on the mother's
+          action of giving.
+    scene: A teenager shows off their new bag to a friend.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: The teacher explained it kindly.
+    japanese:
+      - 先生 が 親切 に 説明 し て {くれ まし た}。
+      - 先生 が 親切 に 説明 し て {くれ た}。
+    english_literally: Teacher, subject, kindly, explained-gave-me.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 親切 に 説明 し た。
+        english: The teacher kindly explained.
+        hint: This simply states that the teacher explained. We want to express that the explanation was
+          a favor benefiting the speaker.
+    scene: A student expressing gratitude after a class.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past polite (～ました)
+  - english: My little brother often makes me laugh.
+    japanese:
+      - 弟 が よく 私 を 笑わ せ て {くれる}。
+      - 弟 が よく 私 を 笑わ せ て {くれ ます}。
+    english_literally: Little brother, subject, often, me, object, made-laugh-gives-me.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 が よく 私 を 笑わ せる。
+        english: My little brother often makes me laugh (neutral statement).
+        hint: This just states a fact. We want to imply that making me laugh is a 'favor' from my brother.
+    scene: Someone describing their family.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: If you could give me a call later, I'd appreciate it.
+    japanese:
+      - 後 で 電話 {くれる} と 嬉しい です。
+      - 後 で 電話 {くれ ます} と 嬉しい です。
+    english_literally: Later, phone, give-me, if, happy is.
+    competing_grammar:
+      - competing_japanese:
+          - 後 で 電話 し て ほしい です。
+        english: I want you to call me later.
+        hint: 「〜てほしい」 directly expresses desire. This sentence is a more indirect, softer request by implying
+          it would make the speaker happy.
+    scene: A casual request between friends.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: My grandmother always sends me fruit from her garden.
+    japanese:
+      - 祖母 が いつ も 庭 の 果物 を 私 に 送っ て {くれ ます}。
+      - 祖母 が いつ も 庭 の 果物 を 私 に 送っ て {くれる}。
+    english_literally: Grandmother, subject, always, garden's fruit, object, to me, sends-gives-me.
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 が いつ も 庭 の 果物 を 送る。
+        english: My grandmother always sends fruit from her garden.
+        hint: This statement lacks the nuance of the action being a favor directed towards the speaker.
+    scene: A person fondly talking about their grandmother.
+    register: teineigo (polite)
+    setting: intimate
+    conjugation: non-past polite (～ます)
+  - english: Don't give up!
+    japanese:
+      - 諦め ない で {くれ}！
+      - 諦め ない で {くれ なさい}！
+    english_literally: Don't give up, give-me!
+    competing_grammar:
+      - competing_japanese:
+          - 諦める な！
+        english: Don't give up! (strong, direct imperative)
+        hint: 「諦めるな」 is a very direct and strong command. 「諦めないで くれ」 is a slightly softer, more pleading
+          request.
+    scene: A coach encouraging an athlete.
+    register: casual
+    setting: inspirational
+    conjugation: imperative plain (～ろ/～え)
+    nuance: The use of 「くれ」 as an imperative makes it a direct, sometimes strong, but often familiar request,
+      especially common among men or when addressing someone younger or of equal status. It implicitly
+      asks for the action to be done 'for me' or 'for us'.
+  - english: Could you perhaps explain it to me one more time?
+    japanese:
+      - もう 一 度 説明 し て {くれ ませ ん} か？
+      - もう 一 度 説明 し て {くれ ない} か？
+    english_literally: One more time, explain-do, give-me-not, question?
+    competing_grammar:
+      - competing_japanese:
+          - もう 一 度 説明 し て いただけ ませ ん か？
+        english: Could you humbly explain it to me one more time?
+        hint: 「〜ていただけませんか」 is a more polite and humble request. 「〜てくれませんか」 is a slightly more direct polite
+          request.
+    scene: A student asking a teacher for clarification.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: negative non-past polite (～ません)
+  - english: My boss didn't give me the raise I was hoping for.
+    japanese:
+      - 部 長 が 期待 し て い た 昇給 を {くれ ませ ん でし た}。
+      - 部 長 が 期待 し て い た 昇給 を {くれ なかっ た}。
+    english_literally: Department head, subject, expected, raise, object, didn't-give-me.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 が 昇給 を あげ ませ ん でし た。
+        english: The department head didn't give a raise (to someone else).
+        hint: 「あげませんでした」 implies giving to someone else. Here, the speaker is the one who didn't receive
+          the raise.
+    scene: A frustrated employee talking to a colleague.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+  - english: Our neighbor helps us with the gardening.
+    japanese:
+      - 隣 の 人 が 庭仕事 を 手伝っ て {くれ ます}。
+      - 隣 の 人 が 庭仕事 を 手伝っ て {くれる}。
+    english_literally: Neighboring person, subject, gardening, object, helps-gives-us.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 の 人 が 庭仕事 を 手伝う。
+        english: Our neighbor helps with gardening (neutral fact).
+        hint: The simple verb states a fact. We want to express that the neighbor's help is a favor for
+          the speaker's household.
+    scene: Someone describing a kind neighbor.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Please, just lend me five dollars!
+    japanese:
+      - 頼む から、五 ドル {くれ}！
+      - 頼む から、五 ドル {くれ なさい}！
+    english_literally: Begging, because, five dollars, give-me!
+    competing_grammar:
+      - competing_japanese:
+          - 頼む から、五 ドル 貸し て くれ！
+        english: Please, lend me five dollars!
+        hint: 「貸して くれ」 explicitly states 'lend me'. This example uses the more direct 'give me' implying
+          a loan.
+    scene: A person urgently asking a friend for money.
+    register: casual
+    setting: emergency/alarm
+    conjugation: imperative plain (～ろ/～え)
+    nuance: The direct imperative 「くれ」 in this context, combined with 「頼む から」 (Please!), conveys a sense
+      of urgency and desperation, typical in informal, high-stakes situations. It's a very direct plea
+      from the speaker for the listener to act for the speaker's benefit.
+post_example_writeup: As you can see from the examples, 「くれる」 is highly versatile and appears in various
+  conjugations and contexts. Its consistent core meaning is that of a benefit or item being provided to
+  the speaker or their inner circle. Pay close attention to the implied direction of the action when choosing
+  between 「くれる」, 「あげる」, and 「もらう」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/くれる

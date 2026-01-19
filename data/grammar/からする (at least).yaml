@@ -1,0 +1,294 @@
+grammar_point: からする (at least)
+learn_before:
+  - からすると・からすれば (judging from・from the standpoint of)
+  - それも (and what's more)
+  - やつ (informal thing or person)
+  - 何 (what)
+meaning: About, or more, over, starts at
+pronunciation:
+  katakana: カラ スル
+  romaji: kara suru
+formation:
+  '[Number/Counter] + からする': Indicates a minimum value or starting point, often with an estimated or approximate
+    sense.
+jlpt: N1
+etymology: The structure 「からする」 combines the particle 「から」, indicating a starting point, with the verb
+  「する」. Literally, it suggests something "originating from" a certain value, implying that the actual
+  amount is at least that much or possibly more.
+writeup: |-
+  「からする」 is a somewhat formal grammar pattern in Japanese, used after a number or counter to indicate a minimum value or starting point from which an estimation is being made. It is generally translated as "about (A)," "(A) or more," or "starting at (A)." This construction combines the particle 「から」 (from) and the verb 「する」 (to do), suggesting that a quantity or price originates from a certain point, implying an estimation rather than a precise figure. 「からする」 is often employed when the numerical value or amount is substantial, emphasizing that the exact figure is uncertain, but it is certainly no less than the stated amount. It is most frequently encountered when discussing money. Be mindful that using 「からする」 with small numbers can sound unnatural.
+
+  While 「からする」 is predominantly used with monetary values, related expressions exist for other contexts. For referring to measurements such as weight, size, or distance, the similar structure 「からある」 is typically used instead. Another related expression is 「からの」, which carries a similar meaning but must directly precede a noun, making its usage more limited compared to 「からする」. 「からの」 is often preferred when referring to people or other general quantities.
+false_friends:
+  - term: からある
+    meaning: At least; or more; not less than
+    kind: similar expression
+    nuance: Unlike 「からする」, which is typically used with money or abstract values, 「からある」 is specifically
+      used when referring to physical measurements such as height, weight, length, or area.
+    grammar_point: <suggest>:からある (at least)
+  - term: からの
+    meaning: About, or more, over, starts at (for general quantities/people)
+    kind: similar expression
+    nuance: Unlike 「からする」, which is typically used for monetary values, 「からの」 is often preferred for general
+      quantities, especially when directly preceding a noun (e.g., 人 (people), 距離 (distance)).
+    grammar_point: <suggest>:からの (about, or more)
+post_false_friends_writeup: 「からする」, 「からの」, and 「からある」 all indicate a minimum amount, but they are used
+  in distinct contexts. 「からする」 is commonly used for approximate monetary values. 「からの」 is preferred for
+  general quantities, especially when directly preceding a noun referring to people or a concept like
+  距離 (distance). 「からある」 is reserved for physical measurements like size, weight, or distance. For example,
+  you would say 「10 キロ からある 荷物」 (a package weighing at least 10 kg) or 「500 キロ から の 距離」 (a distance of
+  at least 500 km) but 「10 万 円 からする 時計」 (a watch costing at least 100,000 yen) and 「10 人 から の 人」 (at least
+  10 people).
+examples:
+  - english: You bought those shoes? Those are the ones that cost 150,000 yen or more, aren't they? That's
+      nuts.
+    japanese:
+      - その 靴 買っ た の？それ って 15 万 から {する} やつ でしょ？やばい ね。
+      - その 靴、買っ た の？あれ って 15 万 から {する} ん じゃ ない？やばい なあ。
+      - その 靴 を お 買い に なっ た の です か？それ は 15 万 から {する} もの でしょ う？大変 です ね。
+    english_literally: You bought those shoes? Those are the ones that start from 150,000 yen, right?
+      That's crazy.
+    competing_grammar:
+      - competing_japanese:
+          - 15 万 {以上} する
+        english: costing 150,000 yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 15 万 {くらい} する
+        english: costing about 150,000 yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+      - competing_japanese:
+          - 15 万 は {下ら ない} やつ
+        english: something that is at least 150,000 yen
+        hint: 「～は下らない」 emphasizes a firm minimum, suggesting it's definitely not less than that. We're
+          looking for an expression that suggests an estimated minimum or starting point.
+    scene: Two friends talking about an expensive purchase.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+  - english: Around here, rent costs 150,000 yen or more.
+    japanese:
+      - この 辺 だ と 家賃 は 15 万 から {する}。
+      - この 辺 だ と 家賃 って 15 万 から {する} ん だ よ。
+      - この 辺り で は 家賃 は 15 万 円 から {する} と 思わ れ ます。
+    english_literally: Around this area, rent starts from 150,000 yen.
+    competing_grammar:
+      - competing_japanese:
+          - 15 万 {以上} する
+        english: costing 150,000 yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 15 万 {くらい} する
+        english: costing about 150,000 yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+      - competing_japanese:
+          - 家賃 は 15 万 {から} です
+        english: rent is from 150,000 yen
+        hint: While 「～から」 simply indicates a starting point, 「からする」 implies an estimated minimum value,
+          often substantial. We're looking for an expression that suggests an approximate minimum value.
+    scene: A person asking about the general cost of housing in a new neighborhood.
+    register: semi-formal
+    setting: informative
+  - english: I received a watch that costs 3,000,000 yen or more from my father.
+    japanese:
+      - 父 から 300 万 円 から {する} 時計 を もらっ た。
+      - 親父 から 300 万 円 から {する} 時計 もらっ た ん だ よ。
+      - 父 より 300 万 円 から {する} 時計 を いただき まし た。
+    english_literally: I received a watch that starts from 3,000,000 yen from my father.
+    competing_grammar:
+      - competing_japanese:
+          - 300 万 円 {以上} の 時計
+        english: a watch of 3,000,000 yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 300 万 円 {くらい} の 時計
+        english: a watch of about 3,000,000 yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+    scene: Someone bragging about a gift from their father.
+    register: semi-formal
+    setting: storytelling
+  - english: This neighborhood is awfully expensive. The rent is around 100,000 yen or more.
+    japanese:
+      - この 辺り は とても 高い よ。家賃 は 10 万 円 から {する}。
+      - この 辺り は 本当 に 高い ん だ よ。家賃 は 10 万 円 から {する} から ね。
+      - この 辺り は 大変 高い です よ。家賃 は 10 万 円 から {する} よう です。
+    english_literally: This area is very expensive. Rent starts from 100,000 yen.
+    competing_grammar:
+      - competing_japanese:
+          - 10 万 円 {以上} する
+        english: costing 100,000 yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 10 万 円 {くらい} する
+        english: costing about 100,000 yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+    scene: Giving a warning to someone moving to a new city.
+    register: semi-formal
+    setting: informative
+  - english: The company just invested in new equipment that costs at least 50 million yen.
+    japanese:
+      - 会社 は 5000 万 円 から {する} 新しい 設備 に 投資 し た ばかり だ。
+      - 会社 は 5000 万 円 から {する} 新しい 設備 に 投資 し た ばかり です。
+      - 弊社 は 5000 万 円 から {する} 新しい 設備 に 投資 いたし まし た。
+    english_literally: The company just invested in new equipment that starts from 50 million yen.
+    competing_grammar:
+      - competing_japanese:
+          - 5000 万 円 {以上} の 設備
+        english: equipment costing 50 million yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 5000 万 円 {くらい} の 設備
+        english: equipment costing about 50 million yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+      - competing_japanese:
+          - 5000 万 円 {から} の 設備 に 投資 し た
+        english: invested in equipment costing from 50 million yen
+        hint: While 「からの」 can refer to general quantities, 「からする」 is specifically used for the cost or
+          value of items.
+    scene: A colleague informs you about a recent large purchase by the company.
+    register: semi-formal
+    setting: professional
+  - english: In order to manufacture this product, it will cost 100 million yen or more.
+    japanese:
+      - この 商品 を 製造 する に は、1 億 円 から {する} 費用 が かかる。
+      - 本 商品 の 製造 に は、1 億 円 から {する} 費用 が 必要 と なり ます。
+      - この 商品 を 製造 する に は、少なく とも 1 億 円 から {する} 費用 が 発生 し ます。
+    english_literally: In order to manufacture this product, money starting from 100 million yen will
+      be required.
+    competing_grammar:
+      - competing_japanese:
+          - 1 億 円 {以上} の お 金
+        english: money of 100 million yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 1 億 円 {くらい} の お 金
+        english: money of about 100 million yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+      - competing_japanese:
+          - 1 億 {から} の お 金 が かかる。
+        english: money from 100 million yen will be required
+        hint: While both convey a minimum, 「からの」 is often used for general quantities or when directly
+          modifying a noun like `お金`. We're looking for an expression typically used with monetary values
+          where the `する` implies the 'amounting to' or 'costing' action.
+    scene: A business person estimating the cost of a new product.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: I heard that Bill gave his girlfriend a car that is worth over 2 million dollars.
+    japanese:
+      - ビル さん は 彼女 に 200 万 ドル から {する} 車 を 買っ て あげ た らしい わ。
+      - ビル が 彼女 に 200 万 ドル から {する} 車 買っ て あげ た らしい よ。
+      - ビル さん、彼女 に 200 万 ドル から {する} 車 買っ て あげ たって 話 よ。
+    english_literally: I heard that Bill gave his girlfriend a car that starts from 2 million dollars.
+    competing_grammar:
+      - competing_japanese:
+          - 200 万 ドル {以上} の 車
+        english: a car of 2 million dollars or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 200 万 ドル {くらい} の 車
+        english: a car of about 2 million dollars
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+    scene: Gossip about someone's generous gift.
+    register: semi-formal
+    setting: humorous
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「らしいわ」 and the sentence-final particle 「わ」 (feminine speech) suggests the speaker
+      is sharing hearsay with a hint of surprise, expecting a similar reaction from the female listener.
+      The 「わ」 adds a softer, more emotive touch, common in casual gossip among women. The overall tone
+      conveys a sense of incredulity and shared social commentary on the extravagance of the gift.
+    etymology: The use of sentence-ending particles like 「わ」 has evolved from older forms of speech, often
+      associated with women's language. These particles serve to soften statements, add emotional nuance,
+      or invite agreement, creating a more intimate or consultative tone compared to plain forms.
+  - english: That brand's bags usually cost 300,000 yen or more.
+    japanese:
+      - あの ブランド の バッグ は 普通 30 万 円 から {する} よ。
+      - あの ブランド の バッグ は 普通 30 万 円 から {する}。
+      - あの ブランド の バッグ は 普通 30 万 円 から {する} と 思い ます。
+    english_literally: That brand's bags ordinarily start from 300,000 yen.
+    competing_grammar:
+      - competing_japanese:
+          - 30 万 円 {以上} する
+        english: costing 300,000 yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 30 万 円 {くらい} する
+        english: costing about 300,000 yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+    scene: Two friends discussing luxury items.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「よ」 as a sentence-ending particle here adds a sense of informing or asserting to
+      the listener, typical in casual conversation between friends.
+  - english: To build a custom house, you're looking at 50 million yen or more.
+    japanese:
+      - 注文 住宅 を 建てる と なる と、5000 万 円 から {する} ん だ。
+      - 注文 住宅 を 建てる と なる と、5000 万 円 から {する}。
+      - 注文 住宅 を 建てる と なり ます と、5000 万 円 から {する} の です。
+    english_literally: When it comes to building a custom house, it starts from 50 million yen.
+    competing_grammar:
+      - competing_japanese:
+          - 5000 万 円 {以上} する
+        english: costing 50 million yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 5000 万 円 {くらい} する
+        english: costing about 50 million yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+    scene: A couple discusses the cost of building a house.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「んだ」 at the end of the sentence adds an explanatory or emphatic tone, indicating
+      that this is a commonly known fact or a realization being shared, often used by male speakers in
+      casual settings.
+  - english: This painting is said to be worth 10 million yen or more.
+    japanese:
+      - この 絵画 は 1000 万 円 から {する} と 言わ れ て いる。
+      - この 絵画 は 1000 万 円 から {する} と さ れ て いる。
+    english_literally: This painting is said to start from 10 million yen.
+    competing_grammar:
+      - competing_japanese:
+          - 1000 万 円 {以上} する
+        english: worth 10 million yen or more
+        hint: 「～以上」 indicates a precise 'more than or equal to' figure. We're looking for an expression
+          that suggests an estimated minimum or starting point.
+      - competing_japanese:
+          - 1000 万 円 {くらい} する
+        english: worth about 10 million yen
+        hint: 「～くらい」 provides a general approximation. We're looking for an expression that emphasizes
+          a minimum starting point or estimated value.
+    scene: A museum guide describing an artwork to visitors.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: The formal tone of 「と言われている」 emphasizes that this is widely acknowledged information about
+      the painting's value, suitable for an academic or professional setting where facts are presented
+      objectively.
+post_example_writeup: The particle 「から」 (kara) is combined with the verb 「する」 (suru) to express an estimated
+  minimum cost or quantity. As demonstrated in these examples, 「からする」 is predominantly used with monetary
+  values, though it can also apply to other large quantities or values. Understanding its specific usage
+  helps in choosing the appropriate expression compared to other similar patterns.

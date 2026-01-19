@@ -1,0 +1,301 @@
+grammar_point: Verb[ば] (conditional)
+learn_before:
+  - であれ〜であれ (regardless of)
+meaning: if (A), then (B follows naturally or logically)
+pronunciation:
+  katakana: バ
+  romaji: ba
+formation:
+  Godan Verb: e-form + ば
+  Ichidan Verb: stem + れば
+  Irregular Verb (する): すれば
+  Irregular Verb (くる): 来れば
+  い-Adjective: い-stem + ければ
+  な-Adjective: な-adjective + であれば
+  Noun: Noun + であれば
+jlpt: N4
+etymology: The conditional 「ば」 stems from classical Japanese, where the particle 「は」 (ba) served to indicate
+  a condition or cause. Its original function was to set up a preceding clause as a condition for the
+  following clause, or to explain the reason for something. This historical usage contributes to its modern
+  sense of natural consequence and logical implication, distinct from other conditional forms that developed
+  later or from different linguistic roots.
+writeup: 'The 「ば」 conditional form is used to express "if" or "when" a certain condition is met, a natural
+  or logical consequence will follow. It implies that condition A is a prerequisite for outcome B, or
+  that B naturally occurs given A. This form is often used for: General truths or natural phenomena: Statements
+  that are always true under certain conditions. Habitual actions: What typically happens when a specific
+  condition is met. Advice or suggestions: Often combined with 「いい」 (good) or 「よい」 (good/better) to suggest
+  a course of action. Cause-and-effect relationships: Explaining a logical progression or outcome. Unlike
+  other conditional forms like 「〜たら」 or 「〜と」, 「ば」 often implies a more general or logical connection rather
+  than a specific, one-time event or an automatic, universal result. It sets up a condition under which
+  the following clause naturally holds true.'
+false_friends:
+  - term: たら (conditional, when・if A then B)
+    meaning: if; when (specific condition or sequential action)
+    kind: similar expression
+    nuance: 「たら」is more versatile and widely used for specific, one-time hypothetical conditions or for
+      actions that occur sequentially. It can connect a broader range of clauses. Unlike 「ば」, it can describe
+      a completed action that then leads to another.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: と (conditional, inevitable result)
+    meaning: when; if (automatic, inevitable result)
+    kind: similar expression
+    nuance: 「と」expresses an automatic or universal outcome when a condition is met. It implies that if
+      A happens, B *always* happens, with no exceptions. This is stronger and more definite than 「ば」,
+      which suggests a natural or logical consequence.
+    grammar_point: と (conditional, inevitable result)
+  - term: なら (conditional, if it's the case that A)
+    meaning: if (it's the case that); as for
+    kind: similar expression
+    nuance: 「なら」focuses on a specific assumption or a topic introduced by the speaker or listener. It's
+      often used when reacting to information or giving advice based on a specific situation. It doesn't
+      imply a direct cause-and-effect as strongly as 「ば」.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: 〜ても (concessive, even if)
+    meaning: even if; even though
+    kind: similar expression
+    nuance: 「〜ても」expresses a concessive condition, meaning "even if A, B will still happen" or "B happens
+      despite A." This is distinct from 「ば」 which implies B *follows* from A.
+    grammar_point: <suggest>:〜ても (even if・even though)
+post_false_friends_writeup: While 「ば」 (ba), 「たら」 (tara), 「と」 (to), and 「なら」 (nara) all express conditional
+  relationships, they carry distinct nuances. 「ば」 typically implies a natural or logical consequence or
+  a general truth, suggesting that if A occurs, B will naturally follow. 「たら」 is more broadly applicable,
+  used for specific hypothetical situations or sequential events, often translated as "if and when." 「と」
+  denotes an automatic and inevitable outcome, useful for universal truths or mechanical operations. 「なら」
+  focuses on a specific assumption or a given situation, often used to respond to a statement or offer
+  advice. It is crucial to understand these subtle differences to choose the most appropriate conditional
+  form in various contexts.
+examples:
+  - english: If you read this book, you will understand Japanese culture.
+    japanese:
+      - この 本 を {読め ば}、日本 の 文化 が 分かり ます。
+      - この 本 を {読め ば}、日本 の 文化 が 分かる。
+    english_literally: If you read this book, Japanese culture will be understood.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 を 読ん だら、日本 の 文化 が 分かり ます。
+        english: If you read this book, you will understand Japanese culture.
+        hint: 「たら」 is often used for specific, one-time hypothetical conditions or sequential actions.
+          We're looking for a general logical consequence.
+      - competing_japanese:
+          - この 本 を 読む と、日本 の 文化 が 分かり ます。
+        english: If you read this book, you will understand Japanese culture (implies a universal truth).
+        hint: 「と」 implies an automatic or universal outcome, stronger than the logical consequence implied
+          by 「ば」. We're looking for a natural, not necessarily universal, outcome.
+    scene: A teacher recommending a book to a student.
+    register: formal
+    setting: informative
+    nuance: This uses 「読めば」 for a logical consequence. It's a general statement that holds true. The use
+      of 「分かります」 indicates a polite and general outcome.
+  - english: If you eat vegetables, you will become healthy.
+    japanese:
+      - 野菜 を {食べれ ば}、健康 に なり ます。
+      - 野菜 を {食べれ ば}、健康 に なる。
+    english_literally: If you eat vegetables, you will become healthy.
+    competing_grammar:
+      - competing_japanese:
+          - 野菜 を 食べる と、健康 に なり ます。
+        english: If you eat vegetables, you *always* become healthy.
+        hint: 「と」 suggests an automatic, invariable result. We are looking for a natural consequence or
+          a general truth, not an absolute rule.
+      - competing_japanese:
+          - 野菜 を 食べ たら、健康 に なり ます。
+        english: If/when you eat vegetables, you become healthy.
+        hint: 「たら」 is more versatile for specific instances or sequential actions. We're emphasizing a
+          general logical outcome.
+    scene: A parent giving advice to their child.
+    register: casual
+    setting: friendly
+    nuance: 「食べれば」 indicates a natural, general consequence of an action. 「健康になります」 (will become healthy)
+      is a common and natural outcome.
+  - english: If the price is high, I won't buy it.
+    japanese:
+      - 値段 が {高けれ ば}、買い ませ ん。
+      - 値段 が {高けれ ば}、買わ ない。
+    english_literally: If price is high, I will not buy.
+    competing_grammar:
+      - competing_japanese:
+          - 値段 が 高かっ たら、買い ませ ん。
+        english: If the price *was* high / *is* high, I won't buy it.
+        hint: 「たら」 is often used for specific hypothetical situations or completed actions. We're looking
+          for a general conditional statement.
+      - competing_japanese:
+          - 値段 が 高い なら、買い ませ ん。
+        english: If it's the case that the price is high, then I won't buy it.
+        hint: 「なら」 focuses on a specific assumption or given information. We're looking for a direct conditional
+          relationship.
+    scene: A person shopping, considering a purchase.
+    register: casual
+    setting: cautious
+    nuance: 「高ければ」 shows a condition related to an i-adjective and a logical outcome. 「買いません」 (I won't
+      buy) is a direct consequence of the price.
+  - english: If it is convenient, please call me.
+    japanese:
+      - '{便利 で あれ ば}、電話 し て ください。'
+      - '{便利 で あれ ば}、電話 し て。'
+      - '{便利 なら}、電話 し て ください。'
+    english_literally: If it is convenient, please make a phone call.
+    competing_grammar:
+      - competing_japanese:
+          - 便利 だっ たら、電話 し て ください。
+        english: If it *is* convenient, please call me.
+        hint: 「たら」 refers to a specific instance of convenience. We're looking for a general condition
+          of convenience.
+      - competing_japanese:
+          - 便利 なら、電話 し て ください。
+        english: If it's the case that it's convenient, please call me.
+        hint: 「なら」 emphasizes the condition as a given fact. While similar, 「ば」 emphasizes the direct
+          consequence of the state.
+    scene: A colleague making a request.
+    register: formal
+    setting: professional
+    nuance: 「便利であれば」 forms a condition based on a state (convenience) using a na-adjective. 「電話してください」
+      is a polite request.
+  - english: If it's a student, there's a discount.
+    japanese:
+      - '{学生 で あれ ば}、割引 が あり ます。'
+      - '{学生 で あれ ば}、割引 が ある。'
+      - '{学生 なら}、割引 が あり ます。'
+    english_literally: If it is student, discount exists.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 だっ たら、割引 が あり ます。
+        english: If it *is* a student, there's a discount.
+        hint: 「たら」 is common for rules and specific instances. We're highlighting the logical condition
+          of being a student.
+      - competing_japanese:
+          - 学生 なら、割引 が あり ます。
+        english: If it's the case that it's a student, there's a discount.
+        hint: 「なら」 focuses on a specific assumption. 「ば」 emphasizes the direct consequence of the status.
+    scene: A cashier explaining a policy.
+    register: formal
+    setting: informative
+    nuance: 「学生であれば」 expresses a condition related to identity or status. 「割引があります」 indicates a policy
+      that naturally follows from the condition.
+  - english: If you want to improve your Japanese, it's good to study every day.
+    japanese:
+      - 日本 語 が 上手 に なり {たけれ ば}、毎日 勉強 すれ ば いい です。
+      - 日本 語 が 上手 に なり {たけれ ば}、毎日 勉強 すれ ば いい よ。
+    english_literally: If you want to become good at Japanese, if you study every day, it is good.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 上手 に なり たかっ たら、毎日 勉強 し た 方 が いい です。
+        english: If you wanted to improve your Japanese, it would be better to study every day.
+        hint: 「たら」 for desiderative can imply a slightly more specific or completed state of wanting.
+          「ば」 more directly expresses the condition of wanting.
+      - competing_japanese:
+          - 日本 語 が 上手 に なり たい なら、毎日 勉強 し た 方 が いい です。
+        english: If you want to improve your Japanese, it's better to study every day.
+        hint: 「なら」 often implies giving advice based on a specific, given desire. We're looking for a
+          general conditional relationship.
+    scene: A Japanese tutor giving advice.
+    register: semi-formal
+    setting: instructional
+    conjugation: desiderative (～たい)
+    nuance: 「なりたければ」 is the conditional form of the desiderative '〜たい' indicating a desire as a condition.
+      「勉強すればいい」 is a common construction for giving advice or suggesting a good course of action.
+  - english: If you press this button, the light will turn on.
+    japanese:
+      - この ボタン を {押せ ば}、電気 が つき ます。
+      - この ボタン を {押せ ば}、電気 が つく。
+    english_literally: If you push this button, electricity will turn on.
+    competing_grammar:
+      - competing_japanese:
+          - この ボタン を 押す と、電気 が つき ます。
+        english: If you press this button, the light *always* turns on (automatic result).
+        hint: 「と」 implies an automatic or universal result. 「ば」 suggests a logical consequence, though
+          in this case, the results are similar.
+      - competing_japanese:
+          - この ボタン を 押し たら、電気 が つき ます。
+        english: If you press this button, the light will turn on (specific action leading to result).
+        hint: 「たら」 can also be used here, often for specific actions. 「ば」 emphasizes the logical connection.
+    scene: Explaining how a machine works.
+    register: formal
+    setting: informative
+    nuance: 「押せば」 indicates a direct, logical cause-and-effect relationship between pressing the button
+      and the light turning on. This is a common usage for explaining functions.
+  - english: If you can understand Japanese, you can watch Japanese dramas.
+    japanese:
+      - 日本 語 が {分かれ ば}、日本 の ドラマ を 見 られ ます。
+      - 日本 語 が {分かれ ば}、日本 の ドラマ を 見 られる。
+    english_literally: If Japanese is understood, Japanese dramas can be watched.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 分かっ たら、日本 の ドラマ を 見 られ ます。
+        english: If you *were to* understand Japanese, you could watch Japanese dramas.
+        hint: 「たら」 can imply reaching a point of understanding. 「ば」 emphasizes the general condition or
+          ability.
+      - competing_japanese:
+          - 日本 語 が 分かる と、日本 の ドラマ が 見 られ ます。
+        english: If you understand Japanese, you *can* watch Japanese dramas (implies a general ability).
+        hint: 「と」 is used for general truths or automatic outcomes. In this case, it's also valid, but
+          「ば」 emphasizes the direct consequence of the ability.
+    scene: A friend discussing hobbies.
+    register: casual
+    setting: friendly
+    nuance: 「分かれば」 is the conditional of the potential verb 「分かる」 (to understand), showing that understanding
+      Japanese is a necessary condition to be able to watch Japanese dramas. 「見られます」 means 'can watch'.
+  - english: If you don't have time, you don't have to come.
+    japanese:
+      - 時間 が {なけれ ば}、来 なく て も いい です。
+      - 時間 が {なけれ ば}、来 なく て も いい。
+    english_literally: If time does not exist, not coming is fine.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 が なかっ たら、来 なく て も いい です。
+        english: If you *don't* have time, you don't have to come.
+        hint: 「たら」 is common for specific conditions, including negative ones. We're looking for a general
+          conditional statement.
+      - competing_japanese:
+          - 時間 が ない なら、来 なく て も いい です。
+        english: If it's the case that you don't have time, you don't have to come.
+        hint: 「なら」 emphasizes the condition as a given situation. 「ば」 focuses on the logical consequence.
+    scene: A person making an invitation, but understanding a potential constraint.
+    register: semi-formal
+    setting: supportive
+    nuance: 「なければ」 is the conditional form of 「ない」 (negative), expressing a negative condition. 「来なくてもいいです」
+      means 'you don't have to come' or 'it's okay if you don't come'.
+  - english: If you leave now, you will make it in time.
+    japanese:
+      - 今 {行け ば}、間に合う でしょう。
+      - 今 {行け ば}、間に合う だろう。
+    english_literally: If you go now, you will make it in time.
+    competing_grammar:
+      - competing_japanese:
+          - 今 行っ たら、間に合う でしょう。
+        english: If you go now, you will make it in time.
+        hint: 「たら」 often focuses on a specific, one-time condition leading to an outcome. 「ば」 emphasizes
+          the logical necessity or a general truth. We're looking for a more general logical consequence
+          or advice.
+    scene: A person advising another who is running late.
+    register: casual
+    setting: friendly
+    nuance: 「行けば」 is used here to give advice or state a logical consequence. It implies that 'going now'
+      is the necessary condition for 'making it in time'. 「でしょう」 softens the statement, making it a likely
+      outcome.
+  - english: The more you practice, the better you will become.
+    japanese:
+      - 練習 {すれ ば} する ほど、上手 に なり ます。
+      - 練習 {すれ ば} する ほど、上手 に なる。
+    english_literally: If you practice, the more you do, the better you become.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 練習 する と、上手 に なり ます。
+        english: If you practice a lot, you will become good.
+        hint: This uses the 「と」 conditional and loses the 'the more...the more' nuance of 「〜ば〜ほど」.
+      - competing_japanese:
+          - 練習 すれ ば 上手 に なり ます。
+        english: If you practice, you will become good.
+        hint: This uses 「ば」 but omits 「ほど」, losing the 'the more...the more' proportional meaning specific
+          to the 「〜ば〜ほど」 pattern.
+    scene: A coach encouraging an athlete.
+    register: casual
+    setting: inspirational
+    nuance: 「〜ば〜ほど」 (the more... the more...) is a common idiomatic use of 「ば」, showing a proportional
+      relationship where an increase in one leads to an increase in the other. 「上手になります」 (will become
+      good) is the natural progression.
+post_example_writeup: The versatility of the 「ば」 conditional allows it to convey various logical connections.
+  Pay particular attention to the specific context to grasp the precise nuance, whether it's a general
+  truth, advice, or a natural cause-and-effect. Remember that while other conditional forms might sound
+  similar, 「ば」 often highlights a stronger logical or natural progression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/204

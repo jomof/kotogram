@@ -1,0 +1,515 @@
+grammar_point: たるや (when it comes to)
+matcher: ⌈ˢたるᵖauxv:auxv-tari:attributiveᵇたりᵈたり-断定ʳタル⌉⌈ˢやᵖprt:adverbial_particleᵇやʳヤ⌉
+learn_before:
+  - たる (to be in a position of)
+meaning: When it comes to...; speaking of...
+pronunciation:
+  katakana: タルヤ
+  romaji: taruya
+formation:
+  Noun + たるや: Used to present a subtopic, introducing surprising or impressive information about it.
+  その [Noun] + たるや: When it comes to [the noun] in question, emphasizing its remarkable aspect.
+jlpt: N1
+etymology: The particle 「たる」 originates from the classical Japanese verb 「たり」, which signifies a state
+  of being or existence. 「や」 is an interrogative or emphatic particle, often used to introduce a topic
+  or express surprise. When combined, 「たるや」 evolved to frame a topic with a sense of 'as for that state/condition,'
+  leading to its modern function of introducing something noteworthy or remarkable about the subject at
+  hand.
+writeup: |-
+  「たるや」 is a compound particle used to introduce a specific aspect or subtopic, invariably followed by surprising or impressive information related to it. It conveys a nuance similar to "when it comes to..." or "speaking of..." but carries a more formal and emphatic tone, often bordering on astonishment or strong admiration. Its usage is primarily found in written Japanese, such as essays, reports, or literary works, and in highly formal speeches or presentations. It is rarely, if ever, used in casual conversation, where less formal alternatives like 「というと」 or 「といえば」 are preferred.
+
+  This grammar point functions to set apart a particular element of the discussion, drawing the listener's or reader's attention to its remarkable quality or extreme nature. The information that follows 「たるや」 is typically unexpected, exceptional, or carries significant impact, whether positive or negative. While it can introduce a negative aspect, the core nuance remains that of highlighting an extraordinary degree or outcome.
+
+  Consider 「たるや」 as a rhetorical device to underscore the profundity or extent of a given situation, making it stand out from the ordinary. Its formal nature lends itself to contexts where a sense of gravitas or elevated expression is desired.
+false_friends:
+  - term: と言うと
+    meaning: speaking of
+    kind: similar expression
+    nuance: Unlike 「たるや」, 「というと」 is less formal and does not necessarily imply surprising or impressive
+      information; it's often used to introduce a related topic or to elaborate on something previously
+      mentioned, without strong emphasis.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+  - term: と言えば
+    meaning: speaking of
+    kind: similar expression
+    nuance: Similar to 「というと」, 「といえば」 is a more common and often casual phrase used to bring up a topic
+      that reminds one of something else, or to provide a representative example. It lacks the strong
+      emphasis and formality of 「たるや」.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+  - term: は
+    meaning: as for
+    kind: similar expression
+    nuance: While 「は (topic and contrast)」 also marks a topic, it serves a much broader function as a
+      simple topic marker. It does not inherently carry the nuance of highlighting something surprising
+      or impressive to the degree that 「たるや」 does. 「たるや」 specifically implies a noteworthy aspect that
+      follows, whereas 「は (topic and contrast)」 merely introduces what the sentence is about.
+    grammar_point: は (topic and contrast)
+  - term: に至っては
+    meaning: when it comes to (a surprising extreme)
+    kind: similar expression
+    nuance: While 「たるや」 highlights a remarkable or astonishing quality, 「に至っては (when it comes to a surprising
+      extreme)」 is typically used to introduce an extreme, often negative or surprising, example or situation.
+      It can imply a sense of exasperation or the culmination of a difficult process, leading to an unfavorable
+      outcome.
+    grammar_point: に至っては (when it comes to a surprising extreme)
+  - term: まして(や)
+    meaning: even more so
+    kind: similar expression
+    nuance: While 「たるや」 introduces an impressive or surprising aspect of a noun, 「まして(や) (even more so)」
+      builds on an existing statement to emphasize something even more, or to point out an obvious conclusion.
+    grammar_point: まして(や) (even more so)
+  - term: こそ
+    meaning: emphasis
+    kind: similar expression
+    nuance: While 「たるや」 highlights an extraordinary characteristic of a noun, 「こそ (emphasis)」 emphasizes
+      the preceding word as the unique reason, source, or truth, often implying 'it is precisely X that...'
+    grammar_point: こそ (emphasis)
+post_false_friends_writeup: 'While 「というと」 and 「といえば」 can both be translated as "speaking of," and 「は」
+  can mark a topic, 「たるや」 conveys a significantly stronger emphasis and maintains a more formal tone.
+  It is specifically reserved for highlighting something remarkable or impressive about the topic at hand,
+  often eliciting a sense of astonishment or deep admiration. The particles 「まして(や)」 and 「こそ」 also provide
+  emphasis, but their functions differ: 「まして(や)」 adds further emphasis to an existing point, while 「こそ」
+  singles out a specific element for its unique significance. Additionally, 「に至っては」 is used for highlighting
+  extreme cases, often with a negative connotation, which distinguishes it from the more broadly applicable
+  impressive or astonishing nuance of 「たるや」. These distinctions are crucial for conveying the precise
+  tone and impact in Japanese.'
+examples:
+  - english: When it comes to that athlete's speed, it's truly astonishing.
+    japanese:
+      - あの 選手 の スピード {たる や}、まさに 驚異 的 だ。
+      - その 選手 の 俊足 {たる や}、誰 も が 舌 を 巻く ほど だ。
+      - 彼 の 走り の 速 さ {たる や}、他 の 追随 を 許さ ない ほど だ。
+      - あの 選手 の 瞬発 力 {たる や}、まさに 目 を 見張る もの が ある。
+      - あの 選手 の 足 の 速 さ {たる や}、まさに 神業 と 言える ほど だ。
+    english_literally: That athlete's speed, speaking of it, is truly astonishing.
+    competing_grammar:
+      - competing_japanese:
+          - あの 選手 の スピード {は}、まさに 驚異 的 だ。
+        english: The athlete's speed is truly astonishing.
+        hint: This uses the general topic marker 「は」. We're looking for a stronger emphasis on the astonishing
+          quality, as if stating something remarkable.
+      - competing_japanese:
+          - あの 選手 の スピード と {いえ ば}、まさに 驚異 的 だ。
+        english: Speaking of that athlete's speed, it's truly astonishing.
+        hint: 「といえば」 simply introduces a topic for discussion without necessarily implying a remarkable
+          or astonishing quality. We're looking for a phrase that specifically highlights the surprising
+          degree of the speed.
+      - competing_japanese:
+          - あの 選手 の スピード と {いう と}、まさに 驚異 的 だ。
+        english: Speaking of that athlete's speed, it's truly astonishing.
+        hint: 「というと」 introduces a topic that might be related to what was just said, but it doesn't carry
+          the strong emphasis on an astonishing or remarkable quality that 「たるや」 does. We're looking for
+          a phrase that highlights the surprising degree of the speed.
+    scene: A sports commentator is in awe of a runner's exceptional speed during a race, speaking to a
+      group.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「たるや」 here highlights the exceptional and astonishing nature of the athlete's speed.
+      The phrase 「まさに 驚異 的 だ」 reinforces the profound admiration. As an older male commentator, the formal
+      and emphatic tone conveyed by 「たるや」 suits the professional setting of sports commentary to address
+      a group of listeners.
+  - english: Regarding the preservation state of this ruin, it's to such an extent that one wouldn't think
+      it's from thousands of years ago.
+    japanese:
+      - この 遺跡 の 保存 状態 {たる や}、数 千 年 前 の もの と は 思え ない ほど だ。
+      - この 遺跡 の 保存 状態 {たる や}、驚く べき と しか 言い よう が ない。
+      - この 遺跡 の 残存 状況 {たる や}、まるで 時 が 止まっ た か の よう だ。
+      - この 遺跡 の 奇跡 的 な 保存 状態 {たる や}、歴史 家 も 驚き を 隠せ ない ほど だ。
+      - この 遺跡 の 良好 な 保存 状態 {たる や}、学者 たち を 驚か せ た。
+    english_literally: This ruin's preservation state, speaking of it, is to the extent that one wouldn't
+      think it is from thousands of years ago.
+    competing_grammar:
+      - competing_japanese:
+          - この 遺跡 の 保存 状態 と {いえ ば}、数 千 年 前 の もの と は 思え ない ほど だ。
+        english: Speaking of the preservation state of this ruin, it's to such an extent that one wouldn't
+          think it's from thousands of years ago.
+        hint: 「といえば」 is a more general phrase for bringing up a topic. We're looking for a way to express
+          strong wonder and emphasis in an academic context.
+      - competing_japanese:
+          - この 遺跡 の 保存 状態 {は}、数 千 年 前 の もの と は 思え ない ほど だ。
+        english: The preservation state of this ruin is such that one wouldn't think it's from thousands
+          of years ago.
+        hint: This uses the general topic marker 「は」, which simply states a fact. We're looking for a
+          way to emphasize the unexpected and remarkable degree of the preservation.
+      - competing_japanese:
+          - この 遺跡 の 保存 状態 と {いう と}、数 千 年 前 の もの と は 思え ない ほど だ。
+        english: Speaking of the preservation state of this ruin, it's to such an extent that one wouldn't
+          think it's from thousands of years ago.
+        hint: 「というと」 is a more general way to introduce a topic related to what was previously mentioned.
+          It doesn't carry the same sense of amazement or impressiveness as 「たるや」. We're looking for a
+          way to express strong wonder and emphasis in an academic context.
+    scene: An archaeologist is describing a newly discovered ancient ruin to a group of colleagues, expressing
+      amazement at its pristine condition.
+    register: formal
+    setting: academic
+    listener_gender: group
+    speaker_age: older
+    nuance: Here, 「たるや」 emphasizes the extraordinarily good preservation state of the ruin. The phrase
+      「数 千 年 前 の もの と は 思え ない ほど だ」 clearly conveys the speaker's astonishment at the degree of preservation,
+      underscoring that this quality is highly impressive and unexpected. This formal nuance is well-suited
+      for an academic discussion among older colleagues.
+  - english: When it comes to the sales figures of the new product, they are far below expectations, indicating
+      a critical situation.
+    japanese:
+      - 新 製品 の 販売 数 {たる や}、予想 を はるか に 下回っ て おり、危機 的 状況 だ。
+      - 新 製品 の 販売 実績 {たる や}、壊滅 的 と 言わ ざる を 得 ない。
+      - この 新 製品 の 販売 数 {たる や}、弊社 の 歴史 上 最悪 の 記録 だ。
+      - 新 製品 の 売上 {たる や}、会社 の 存亡 を 揺るがす ほど の もの だ。
+      - 新 製品 の 売り上げ {たる や}、会社 の 運命 を 左右 する ほど の もの だ。
+    english_literally: The new product's sales figures, speaking of them, are far below expectations,
+      and it is a critical situation.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 の 販売 数 {は}、予想 を はるか に 下回っ て おり、危機 的 状況 だ。
+        english: The sales figures of the new product are far below expectations, indicating a critical
+          situation.
+        hint: The neutral topic marker 「は」 does not convey the profound negative impact needed here. We're
+          looking for a way to strongly emphasize the critical nature of the situation.
+      - competing_japanese:
+          - 新 製品 の 販売 数 の こと と {なる と}、予想 を はるか に 下回っ て おり、危機 的 状況 だ。
+        english: When it comes to the new product's sales figures, they are far below expectations, indicating
+          a critical situation.
+        hint: 「のこと となると」 introduces a topic, but it doesn't carry the same strong emphasis on a surprising
+          or impactful degree as desired here. We're looking for a phrase that highlights the profoundness
+          of the situation.
+      - competing_japanese:
+          - 新 製品 の 販売 数 と {いえ ば}、予想 を はるか に 下回っ て おり、危機 的 状況 だ。
+        english: Speaking of the new product's sales figures, it is far below expectations, indicating
+          a critical situation.
+        hint: 「といえば」 introduces a topic, but it doesn't necessarily highlight the direness or unexpected
+          severity of the situation. We're looking for a phrase that strongly emphasizes the critical
+          nature.
+      - competing_japanese:
+          - 新 製品 の 販売 数 と {いう と}、予想 を はるか に 下回っ て おり、危機 的 状況 だ。
+        english: Speaking of the new product's sales figures, it is far below expectations, indicating
+          a critical situation.
+        hint: 「というと」 generally introduces a topic for discussion or clarification, but it lacks the strong,
+          alarming emphasis on the critical situation that 「たるや」 conveys. We're looking for a way to highlight
+          the profound, negative impact.
+    scene: A marketing executive is presenting dismal sales figures for a new product to the company's
+      board of directors, highlighting the severity of the situation.
+    register: bijinesu nihongo (business)
+    setting: serious
+    listener_gender: group
+    speaker_age: older
+    nuance: In this example, 「たるや」 is used to emphasize a severely negative outcome, suitable for a business
+      context. The phrases 「予想 を はるか に 下回っ て おり」 and 「危機 的 状況 だ」 collectively convey the surprising and
+      alarming extent of the sales failure. This formal and impactful usage of 「たるや」 is appropriate for
+      a serious business presentation to senior management.
+  - english: His presentation was splendid, but when it comes to its persuasive power, it completely captured
+      the audience's hearts.
+    japanese:
+      - 彼 の プレゼンテーション は 素晴らしかっ た が、その 説得 力 {たる や}、聴衆 の 心 を 完全 に 掴ん だ。
+      - 彼 の プレゼン の 影響 力 {たる や}、参加 者 全員 を 圧倒 し た。
+      - 彼 の 発表 の 説得 力 {たる や}、誰 も が 納得 せ ざる を 得 ない ほど だっ た。
+      - 彼 の プレゼンテーション は 素晴らしかっ た が、その 魅力 {たる や}、聴衆 を 釘付け に し た。
+      - 彼 の 話術 {たる や}、まさに 天下 一 品 だっ た。
+    english_literally: His presentation was splendid, but its persuasive power, speaking of it, completely
+      captured the audience's hearts.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の プレゼンテーション は 素晴らしかっ た が、その 説得 力 {は}、聴衆 の 心 を 完全 に 掴ん だ。
+        english: His presentation was splendid, but its persuasive power completely captured the audience's
+          hearts.
+        hint: Using 「は」 here would simply state a fact. We're looking to convey awe and strong admiration
+          for an exceptional quality.
+      - competing_japanese:
+          - 彼 の プレゼンテーション は 素晴らしかっ た が、その 説得 力 と {いっ たら}、聴衆 の 心 を 完全 に 掴ん だ。
+        english: His presentation was splendid, but speaking of its persuasive power, it completely captured
+          the audience's hearts.
+        hint: 「といったら」 is a less formal expression used to emphasize an astonishing quality, but it lacks
+          the specific formal and almost literary tone of the target grammar point. We're seeking a more
+          refined and impactful expression suitable for highlighting exceptional qualities.
+      - competing_japanese:
+          - 彼 の プレゼンテーション は 素晴らしかっ た が、その 説得 力 と {いえ ば}、聴衆 の 心 を 完全 に 掴ん だ。
+        english: His presentation was splendid, but speaking of its persuasive power, it completely captured
+          the audience's hint.We're looking for a more impactful expression.
+        hint: 「といえば」 introduces a topic, but it doesn't convey the strong sense of profound impact and
+          admiration for the exceptional persuasive power as 「たるや」 does.
+      - competing_japanese:
+          - 彼 の プレゼンテーション は 素晴らしかっ た が、その 説得 力 と {いう と}、聴衆 の 心 を 完全 に 掴ん だ。
+        english: His presentation was splendid, but speaking of its persuasive power, it completely captured
+          the audience's hearts.
+        hint: 「というと」 would introduce the topic of persuasive power in a more neutral way. We're looking
+          for a phrase that strongly emphasizes the extraordinary and impressive nature of the persuasive
+          power.
+    scene: A team leader is commending a colleague's presentation to a project manager, particularly highlighting
+      the exceptional effectiveness of their persuasion.
+    register: formal
+    setting: professional
+    speaker_age: older
+    nuance: The use of 「その 説得 力 {たるや}」 highlights the exceptional persuasive power as a distinct and impressive
+      aspect of the presentation. The phrase 「聴衆 の 心 を 完全 に 掴ん だ」 explicitly describes the remarkable
+      effect this power had, aligning with the emphatic and admiring tone characteristic of 「たるや」 in a
+      professional setting, suitable for an older team leader.
+  - english: When it comes to the beauty of the sunset I saw on my solo trip, it was so profound that
+      it was beyond words.
+    japanese:
+      - 一人 旅 で 見 た 夕焼け の 美し さ {たる や}、言葉 で は 表現 でき ない ほど だっ た。
+      - あの 時 の 夕焼け の 絶景 {たる や}、今 も 忘れ られ ない。
+      - 旅先 で 見 た 夕焼け の 壮大 さ {たる や}、人生 感 が 変わる ほど だっ た。
+      - あの 旅 で 出会っ た 夕焼け の 色彩 {たる や}、まさに 息 を 呑む ほど だっ た。
+      - 一人 旅 で 出会っ た 夕焼け の 感動 {たる や}、忘れ がたい 経験 と なっ た。
+    english_literally: The beauty of the sunset I saw on my solo trip, speaking of it, was to the extent
+      that it could not be expressed in words.
+    competing_grammar:
+      - competing_japanese:
+          - 一人 旅 で 見 た 夕焼け の 美し さ {は}、言葉 で は 表現 でき ない ほど だっ た。
+        english: The beauty of the sunset I saw on my solo trip was so profound that it was beyond words.
+        hint: While a neutral 「は」 is grammatically correct, it doesn't capture the intensity of the experience.
+          We're looking for a way to express profound, awe-inspiring beauty.
+      - competing_japanese:
+          - 一人 旅 で 見 た 夕焼け の 美し さ {ったら} ない、言葉 で は 表現 でき ない ほど だっ た。
+        english: The beauty of the sunset I saw on my solo trip was beyond words, it was something else.
+        hint: 「ったら ない」 emphasizes an extreme quality, often used in more casual, sometimes even slightly
+          negative, contexts. We're looking for a phrase that conveys deep admiration and a sense of the
+          sublime in a reflective manner.
+      - competing_japanese:
+          - 一人 旅 で 見 た 夕焼け の 美し さ と {いえ ば}、言葉 で は 表現 でき ない ほど だっ た。
+        english: Speaking of the beauty of the sunset I saw on my solo trip, it's so profound that it's
+          beyond words.
+        hint: 「といえば」 serves to introduce a topic, but it doesn't convey the same deep sense of awe and
+          ineffable beauty as 「たるや」. We're looking for an expression that emphasizes the profoundness
+          of the experience.
+      - competing_japanese:
+          - 一人 旅 で 見 た 夕焼け の 美し さ と {いう と}、言葉 で は 表現 でき ない ほど だっ た。
+        english: Speaking of the beauty of the sunset I saw on my solo trip, it's so profound that it's
+          beyond words.
+        hint: 「というと」 generally serves to introduce a topic. We're looking for an expression that conveys
+          a profound, awe-inspiring, and almost ineffable beauty.
+    scene: A traveler is recounting a deeply moving experience from their solo journey to a close friend,
+      trying to convey the overwhelming beauty of a sunset.
+    register: casual
+    setting: reflective
+    nuance: Even in a casual conversation, 「たるや」 is used here to convey the speaker's deep impression
+      and astonishment at the sunset's beauty. The phrase 「言葉 で は 表現 でき ない ほど だっ た」 emphasizes the ineffable
+      and overwhelming nature of this beauty, making it a truly remarkable and unforgettable experience
+      for any speaker.
+  - english: When it comes to the amount of pizza he ate at yesterday's party, it was enough to rival
+      two adults' portions!
+    japanese:
+      - 昨日 の パーティー で 彼 が 食べ た ピザ の 量 {たる や}、大人 二 人 分 に 匹敵 する ほど だっ た よ。
+      - 昨日 の 飲み 会 で の 彼 の 食欲 {たる や}、目 を 見張る もの が あっ た よ。
+      - あの 日 の 彼 の ピザ の 食べ っぷり {たる や}、見事 と しか 言い よう が ない ね。
+      - 昨日 の パーティー で 彼 が 食べ た ピザ の 尋常 じゃ ない 量 {たる や}、みんな が 唖然 と し た よ。
+      - 昨日 の パーティー で 彼 が 食べ た ピザ の 量 {たる や}、誰 も が 二 度 見 する ほど だっ た よ。
+    english_literally: The amount of pizza he ate at yesterday's party, speaking of it, was enough to
+      rival two adults' portions.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の パーティー で 彼 が 食べ た ピザ の 量 と {いえ ば}、大人 二 人 分 に 匹敵 する ほど だっ た よ。
+        english: Speaking of the amount of pizza he ate at yesterday's party, it was enough to rival two
+          adults' portions.
+        hint: While 「といえば」 can introduce a topic, it lacks the humorous exaggeration and emphasis on a
+          surprising quantity needed here. We're looking for a way to highlight an astonishing amount.
+      - competing_japanese:
+          - 昨日 の パーティー で 彼 が 食べ た ピザ の 量 に {は}、大人 二 人 分 に 匹敵 する ほど だっ た よ。
+        english: As for the amount of pizza he ate at yesterday's party, it was enough to rival two adults'
+          portions.
+        hint: Using 「〜には」 can add emphasis, but it doesn't convey the same level of astonishing or impressive
+          degree as the target grammar point, particularly in a humorous context. We're looking for a
+          phrase that strongly highlights the surprising quantity.
+      - competing_japanese:
+          - 昨日 の パーティー で 彼 が 食べ た ピザ の 量 {は}、大人 二 人 分 に 匹敵 する ほど だっ た よ。
+        english: The amount of pizza he ate at yesterday's party was enough to rival two adults' portions.
+        hint: The topic marker 「は」 is too neutral and doesn't convey the humorous astonishment at the
+          excessive amount. We're looking for a phrase that specifically emphasizes the shocking quantity.
+      - competing_japanese:
+          - 昨日 の パーティー で 彼 が 食べ た ピザ の 量 と {いう と}、大人 二 人 分 に 匹敵 する ほど だっ た よ。
+        english: Speaking of the amount of pizza he ate at yesterday's party, it was enough to rival two
+          adults' portions.
+        hint: 「というと」 introduces a topic but doesn't convey the same level of humorous exaggeration and
+          astonishment at the large quantity as 「たるや」. We're looking for a way to highlight an astonishing
+          amount in a casual, humorous tone.
+    scene: A friend is jokingly exaggerating about another friend's incredible appetite at a party last
+      night, expressing amusement and surprise.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    speaker_age: younger
+    nuance: In this humorous example, 「たるや」 highlights the surprisingly large quantity of pizza consumed,
+      creating an amusing emphasis. The phrase 「大人 二 人 分 に 匹敵 する ほど だっ た」 exaggerates the amount to an
+      astonishing degree, reinforcing the humorous and surprising nature of the statement. The casual
+      ending 「よ」 fits the lighthearted context, commonly used by younger male speakers to add emphasis
+      or a sense of sharing information.
+  - english: When it comes to the intricate details of that painting, it's truly breathtaking.
+    japanese:
+      - あの 絵画 の 精緻 な 描写 {たる や}、息 を 呑む ほど だ。
+      - その 絵画 の 繊細 な 筆遣い {たる や}、まさに 神業 だ。
+      - この 作品 の 微妙 な 色使い {たる や}、見る 者 を 惹きつけ て 離さ ない。
+      - あの 絵画 の 奥行き {たる や}、まるで その 世界 に 入り込ん だ よう だ。
+      - その 絵画 の 緻密 な 表現 {たる や}、何 度 見 て も 新しい 発見 が ある。
+    english_literally: That painting's intricate details, speaking of them, are truly breathtaking.
+    competing_grammar:
+      - competing_japanese:
+          - あの 絵画 の 精緻 な 描写 {は}、息 を 呑む ほど だ。
+        english: The intricate details of that painting are truly breathtaking.
+        hint: The topic marker 「は」 states a fact but doesn't convey the strong emphasis on the astonishing
+          quality that 「たるや」 does, especially when expressing admiration for art.
+      - competing_japanese:
+          - あの 絵画 の 精緻 な 描写 と {いえ ば}、息 を 呑む ほど だ。
+        english: Speaking of the intricate details of that painting, it's truly breathtaking.
+        hint: 「といえば」 is a general topic-shifting phrase. We need a form that expresses intense admiration
+          and surprise at the profoundness of the artistic detail.
+      - competing_japanese:
+          - あの 絵画 の 精緻 な 描写 と {いう と}、息 を 呑む ほど だ。
+        english: Speaking of the intricate details of that painting, it's truly breathtaking.
+        hint: 「というと」 introduces a topic but lacks the strong emphatic nuance of profound amazement in
+          an artistic context. We're looking for a way to express truly breathtaking detail.
+    scene: An art critic is discussing a masterpiece, emphasizing the stunning level of detail.
+    register: formal
+    setting: informative
+    nuance: The phrase 「息 を 呑む ほど だ」 (so breathtaking it makes you gasp) is used here to emphasize the
+      astonishing and profoundly impressive quality of the painting's intricate details. 「たるや」 sets up
+      this profound admiration, fitting the formal and analytical tone of an art critic.
+  - english: When it comes to her determination to overcome hardship, it inspires everyone around her.
+    japanese:
+      - 彼女 の 困難 に 立ち向かう 決意 {たる や}、周り の 人々 を 感動 さ せる もの が ある。
+      - 彼女 の 逆境 に 負け ない 精神 力 {たる や}、目 を 見張る もの が ある。
+      - あの 人 の どんな 苦難 に も 屈し ない 強 さ {たる や}、私 たち に 勇気 を 与える。
+      - 彼女 の 諦め ない 心 {たる や}、多く の 人々 に 影響 を 与え て いる。
+      - 彼女 の 困難 を 乗り越える 努力 {たる や}、称賛 に 値 する もの だ。
+    english_literally: Her determination to overcome hardship, speaking of it, is something that inspires
+      everyone around her.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 困難 に 立ち向かう 決意 {は}、周り の 人々 を 感動 さ せる もの が ある。
+        english: Her determination to overcome hardship is something that inspires everyone around her.
+        hint: Using 「は」 would simply state a characteristic. We need a phrase that emphasizes the extraordinary
+          and inspiring degree of her determination.
+      - competing_japanese:
+          - 彼女 の 困難 に 立ち向かう 決意 と {いえ ば}、周り の 人々 を 感動 さ せる もの が ある。
+        english: Speaking of her determination to overcome hardship, it inspires everyone around her.
+        hint: 「といえば」 is a general topic shifter. We're looking for an expression that highlights the deep
+          and profound impact of her determination on others.
+      - competing_japanese:
+          - 彼女 の 困難 に 立ち向かう 決意 と {いう と}、周り の 人々 を 感動 さ せる もの が ある。
+        english: Speaking of her determination to overcome hardship, it inspires everyone around her.
+        hint: 「というと」 introduces a topic but doesn't convey the same strong sense of admiration and inspiring
+          quality that 「たるや」 does. We need to emphasize how remarkable her determination is.
+    scene: A mentor is discussing a mentee's remarkable perseverance with a colleague, expressing admiration
+      for her strength.
+    register: semi-formal
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「たるや」 highlights the profound and inspiring nature of her determination. The phrase 「周り の
+      人々 を 感動 さ せる もの が ある」 explicitly states the powerful positive impact of her resolve. This conveys
+      admiration for a female's strength, suitable for a female mentor discussing a mentee with a male
+      colleague.
+  - english: When it comes to the destructive power of that typhoon, it was so immense that entire towns
+      were swept away.
+    japanese:
+      - あの 台風 の 破壊 力 {たる や}、町 全体 を 飲み込む ほど の 甚大 な もの だっ た。
+      - その 台風 の 猛威 {たる や}、想像 を 絶する ほど だっ た。
+      - あの 災害 の 影響 力 {たる や}、復興 まで に 長い 時間 を 要 する だろう。
+      - その 台風 が もたらし た 被害 {たる や}、歴史 に 残る 規模 だっ た。
+      - あの 台風 の 規模 {たる や}、まさに 未曾有 の 災害 だっ た。
+    english_literally: That typhoon's destructive power, speaking of it, was an immense thing to the extent
+      that it swept away entire towns.
+    competing_grammar:
+      - competing_japanese:
+          - あの 台風 の 破壊 力 {は}、町 全体 を 飲み込む ほど の 甚大 な もの だっ た。
+        english: The destructive power of that typhoon was so immense that entire towns were swept away.
+        hint: Using 「は」 simply states a fact. We're looking for a way to convey the shocking and overwhelming
+          scale of the typhoon's power.
+      - competing_japanese:
+          - あの 台風 の 破壊 力 と {いえ ば}、町 全体 を 飲み込む ほど の 甚大 な もの だっ た。
+        english: Speaking of the destructive power of that typhoon, it was so immense that entire towns
+          were swept away.
+        hint: 「といえば」 is a general phrase to introduce a topic. We need a stronger expression that conveys
+          the profound and devastating impact of the crisis.
+      - competing_japanese:
+          - あの 台風 の 破壊 力 と {いう と}、町 全体 を 飲み込む ほど の 甚大 な もの だっ た。
+        english: Speaking of the destructive power of that typhoon, it was so immense that entire towns
+          were swept away.
+        hint: 「というと」 introduces a topic but lacks the strong alarming emphasis on the immense destructive
+          power as 「たるや」 conveys. We need to highlight the profound, negative impact.
+    scene: A journalist is delivering a serious report on the devastating aftermath of a powerful typhoon,
+      emphasizing its immense destructive force.
+    register: formal
+    setting: serious
+    nuance: Here, 「たるや」 emphasizes the overwhelming and shocking destructive power of the typhoon. The
+      phrase 「町 全体 を 飲み込む ほど の 甚大 な もの だっ た」 underscores the catastrophic scale, fitting the grave and
+      formal tone of a journalistic report.
+  - english: When it comes to the amount of time it took to get this paperwork done, it was truly astonishingly
+      long.
+    japanese:
+      - この 手続き に かかっ た 時間 {たる や}、信じ られ ない ほど 長かっ た よ。
+      - 役所 で の 待ち 時間 {たる や}、うんざり する ほど 長かっ た ね。
+      - あの 書類 作成 の 手間 {たる や}、一 日 中 かかっ た よ。
+      - 引っ越し 作業 の 労力 {たる や}、もう 二 度 と し たく ない ほど だっ た よ。
+      - 手続き の 煩雑 さ {たる や}、もう 呆れる ばかり だっ た よ。
+    english_literally: This paperwork's time taken, speaking of it, was astonishingly long.
+    competing_grammar:
+      - competing_japanese:
+          - この 手続き に かかっ た 時間 {は}、信じ られ ない ほど 長かっ た よ。
+        english: The amount of time it took to get this paperwork done was truly astonishingly long.
+        hint: The topic marker 「は」 is too neutral and doesn't convey the exasperated astonishment at the
+          excessive duration. We're looking for a phrase that strongly emphasizes the shocking length
+          of time.
+      - competing_japanese:
+          - この 手続き に かかっ た 時間 と {いえ ば}、信じ られ ない ほど 長かっ た よ。
+        english: Speaking of the amount of time it took to get this paperwork done, it was truly astonishingly
+          long.
+        hint: 「といえば」 introduces a topic but doesn't carry the same casual, yet emphatic, sense of astonishment
+          or frustration as 「たるや」 in this context. We're looking for a way to highlight a surprisingly
+          long duration.
+      - competing_japanese:
+          - この 手続き に かかっ た 時間 と {いう と}、信じ られ ない ほど 長かっ た よ。
+        english: Speaking of the amount of time it took to get this paperwork done, it was truly astonishingly
+          long.
+        hint: 「というと」 introduces a topic but lacks the strong emphasis on the shocking length and frustration
+          that 「たるや」 conveys in a casual, complaining tone. We're looking for a phrase that highlights
+          a surprisingly long duration.
+    scene: A friend is complaining to another friend about the surprisingly long and frustrating process
+      of completing some administrative paperwork.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: male
+    nuance: This example uses 「たるや」 in a casual, almost exasperated tone to emphasize a surprisingly long
+      and frustrating duration. The phrase 「信じ られ ない ほど 長かっ た よ」 captures the speaker's astonishment at
+      the excessive time. The casual 「だよ」 ending is typical for friendly conversation, and the entire
+      expression fits a casual female speaker expressing exasperation.
+  - english: When it comes to the grandeur of that ancient castle, it still overwhelms visitors even today.
+    japanese:
+      - あの 古城 の 壮麗 さ {たる や}、今 も なお 訪れる 者 を 圧倒 する。
+      - その 古代 遺跡 の 規模 {たる や}、現代 の 技術 を もっ て し て も 驚異 的 だ。
+      - あそこ の 城 の 威容 {たる や}、見る 者 を 畏敬 の 念 に 打た せ ず に は いら れ ない。
+      - この 歴史 的 建造 物 の 存在 感 {たる や}、まるで 生き て いる か の よう だ。
+      - その 宮殿 の 豪華 さ {たる や}、かつて の 栄華 を 偲ば せる。
+    english_literally: That ancient castle's grandeur, speaking of it, still overwhelms visitors even
+      today.
+    competing_grammar:
+      - competing_japanese:
+          - あの 古城 の 壮麗 さ {は}、今 も なお 訪れる 者 を 圧倒 する。
+        english: The grandeur of that ancient castle still overwhelms visitors even today.
+        hint: The neutral topic marker 「は」 doesn't convey the strong sense of profound and enduring impact.
+          We're looking for a phrase that emphasizes the overwhelming and timeless grandeur.
+      - competing_japanese:
+          - あの 古城 の 壮麗 さ と {いえ ば}、今 も なお 訪れる 者 を 圧倒 する。
+        english: Speaking of the grandeur of that ancient castle, it still overwhelms visitors even today.
+        hint: 「といえば」 is a general topic-shifting phrase. We need a more impactful expression that conveys
+          the deep and lasting impression of the castle's grandeur.
+      - competing_japanese:
+          - あの 古城 の 壮麗 さ と {いう と}、今 も なお 訪れる 者 を 圧倒 する。
+        english: Speaking of the grandeur of that ancient castle, it still overwhelms visitors even today.
+        hint: 「というと」 introduces a topic but lacks the strong emphatic nuance of profound and enduring
+          awe in a historical context. We're looking for a way to express overwhelming grandeur.
+    scene: A historian is giving a guided tour of an ancient castle, highlighting its enduring magnificence.
+    register: formal
+    setting: informative
+    speaker_age: older
+    nuance: 「たるや」 is used here to highlight the timeless and overwhelming grandeur of the ancient castle.
+      The phrase 「今 も なお 訪れる 者 を 圧倒 する」 emphasizes its enduring and impressive impact. This formal and
+      informative usage is suitable for an older historian guiding visitors.
+post_example_writeup: As demonstrated in the examples, 「たるや」 consistently precedes information that highlights
+  an extreme, surprising, or remarkable quality of the noun it modifies. Whether describing a positive
+  attribute like speed or resilience, a negative one like project failure or bureaucratic delays, or an
+  awe-inspiring quality like artistic detail or historical grandeur, the core function remains to draw
+  attention to the exceptional degree of the characteristic. This formal construction sets a tone of gravitas
+  and often admiration or astonishment, distinguishing it from simpler topic markers.

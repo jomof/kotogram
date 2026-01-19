@@ -1,0 +1,270 @@
+grammar_point: '[Verb-よう]にする (to make an effort to establish a habit)'
+learn_before:
+  - こう (like this)
+  - できるだけ (as much as possible)
+  - にする (to decide or make)
+  - ようにする (make an effort to)
+  - を (emotion's object or cause)
+  - 毎・まい (every・per)
+  - 裏 (back side)
+meaning: to make an effort to establish a habit
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[volitional] にする
+    rarity: common
+    meaning: to make an effort to establish a habit
+  - conjugation-type: non-past polite (～ます)
+    form: Verb[volitional] にします
+    rarity: common
+    meaning: to make an effort to establish a habit (polite)
+  - conjugation-type: progressive (～ている)
+    form: Verb[volitional] にしている
+    rarity: common
+    meaning: to be making an effort to establish a habit
+  - conjugation-type: past plain (～た)
+    form: Verb[volitional] にした
+    rarity: common
+    meaning: made an effort to establish a habit
+  - conjugation-type: past polite (～ました)
+    form: Verb[volitional] にしました
+    rarity: common
+    meaning: made an effort to establish a habit (polite)
+  - conjugation-type: negative plain (～ない)
+    form: Verb[volitional] にしない
+    rarity: common
+    meaning: not to make an effort to establish a habit
+  - conjugation-type: negative non-past polite (～ません)
+    form: Verb[volitional] にしません
+    rarity: common
+    meaning: not to make an effort to establish a habit (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb[volitional] にしなかった
+    rarity: common
+    meaning: did not make an effort to establish a habit
+  - conjugation-type: negative past polite (～ませんでした)
+    form: Verb[volitional] にしませんでした
+    rarity: common
+    meaning: did not make an effort to establish a habit (polite)
+pronunciation:
+  katakana: ニ スル
+  romaji: ni suru
+formation:
+  Verb[volitional form] + にする: Expresses a conscious effort to make something a regular practice or habit.
+jlpt: N3
+etymology: The construction Verb[volitional] + にする combines the volitional form of a verb, which signifies
+  intention or "let's do," with the particle に indicating a state or result, and the verb する meaning "to
+  do" or "to make." Historically, にする implies "to make something into X" or "to decide on X." When paired
+  with the volitional form, it evolves to mean "to make an effort to achieve the state of [verb-volitional
+  action]" or "to decide to habitually perform [verb-volitional action]." This highlights a deliberate,
+  ongoing commitment to a particular behavior.
+writeup: |-
+  The grammar point 『Verb[volitional] にする』 is used to express a conscious and continuous effort to establish a habit or to make a particular action a regular part of one's routine. It signifies the speaker's resolve and ongoing self-discipline towards achieving a certain behavioral change or maintaining a routine.
+
+  This expression focuses on the *process* of habit formation, indicating that the speaker is actively working towards making something happen consistently. It implies a commitment over time, rather than a single instance or decision.
+
+  For example, if you say 「毎日運動しよう にする」(Mainichi undou shiyou ni suru), you are communicating that you are making a deliberate effort to exercise daily, aiming for it to become a fixed habit. This differs from simply stating an intention (e.g., 「運動するつもりだ」) or a one-time decision (e.g., 「運動することにした」). It's about building and maintaining a consistent practice.
+
+  This grammar point is versatile and can be applied to various aspects of life, from personal health and study habits to work efficiency and interpersonal behavior. It conveys a proactive stance towards self-improvement or routine management.
+false_friends:
+  - term: '[Verb-dictionary] ことにする'
+    meaning: to decide to do
+    kind: often confused with
+    nuance: 「〜ことにする」 expresses a one-time decision or resolution, whereas 「〜にする」 (with volitional form)
+      emphasizes an ongoing effort to establish a habit.
+    grammar_point: '[Verb-dictionary]ことにする (to decide to do)'
+  - term: '[Verb-dictionary] ようにする'
+    meaning: to make an effort to do
+    kind: similar expression
+    nuance: While very similar, 「〜ようにする」 often focuses on the general effort to achieve a state or outcome,
+      including negative efforts like 'try not to.' 「〜にする」 (with volitional form) specifically refers
+      to the ongoing effort to *make* an action a habit or routine, typically for positive habit formation.
+    grammar_point: <suggest>:ようにする (to make an effort to)
+post_false_friends_writeup: While 「Verb[volitional] にする」, 「〜ことにする」, and 「〜ようにする」 all involve decisions
+  or efforts, their nuances differ significantly. 「〜ことにする」 implies a single, concrete decision (e.g.,
+  "I decided to go tomorrow."). 「〜ようにする」 indicates a general effort to achieve a state or behave in a
+  certain way, including efforts to *avoid* doing something. In contrast, 「Verb[volitional] にする」 specifically
+  highlights the continuous, intentional process of adopting an action as a regular habit. Understanding
+  these distinctions is key to expressing precise intentions in Japanese.
+examples:
+  - english: I try to read a book every day.
+    japanese:
+      - 毎日 本 を {読もう に する}。
+      - 毎日 本 を {読もう に し て い ます}。
+    english_literally: Every day, a book, I try to read.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 本 を 読む こと に する。
+          - 毎日 本 を 読む こと に し まし た。
+        english: I decided to read a book every day.
+        hint: 「ことにする」 expresses a one-time decision or resolution, not an ongoing effort to establish
+          a habit. We're looking for an ongoing effort.
+    scene: A student discussing their new year's resolution to improve their reading habits.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The volitional 「読もう」 combined with 「にする」 shows a personal, active effort to establish reading
+      as a daily habit. This suggests a continuous, intentional commitment to the activity.
+  - english: I try to exercise for 30 minutes every morning.
+    japanese:
+      - 毎朝 30 分 運動 {しよう に する}。
+      - 毎朝 30 分 運動 {しよう に し て い ます}。
+    english_literally: Every morning, 30 minutes, exercise, I try to do.
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝 30 分 運動 する つもり だ。
+          - 毎朝 30 分 運動 する つもり です。
+        english: I intend to exercise for 30 minutes every morning.
+        hint: 「つもりだ」 expresses a plan or intention, but it doesn't necessarily convey the ongoing effort
+          to make it a habit. We're looking for the effort to establish a habit.
+    scene: Someone talking about their fitness routine and how they are trying to stick to it.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「しよう にする」 highlights the conscious and continuous effort to maintain a daily exercise routine.
+      This implies a deliberate attempt to build a consistent habit.
+  - english: I've been trying to go to bed early lately.
+    japanese:
+      - 最近、早く 寝 {よう に し て いる}。
+      - 最近、早く 寝 {よう に し て い ます}。
+    english_literally: Recently, early, sleep, I am trying to do.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、早く 寝る こと に し た。
+          - 最近、早く 寝る こと に し まし た。
+        english: I recently decided to go to bed early.
+        hint: 「ことにする」 indicates a decision made, not an ongoing process of trying to establish a habit.
+          We're looking for an ongoing effort.
+    scene: A person sharing their recent lifestyle changes to improve their sleep schedule.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: 「寝よう にしている」 implies an ongoing effort to make early bedtime a regular practice, even if not
+      perfectly successful yet. The progressive form emphasizes the continuous nature of the effort.
+  - english: I try to check my emails before starting work.
+    japanese:
+      - 仕事 を 始める 前 に メール を 確認 {しよう に し て いる}。
+      - 仕事 を 始める 前 に メール を 確認 {しよう に し ます}。
+    english_literally: Work to start before, emails, I am trying to check.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 を 始める 前 に メール を 確認 する。
+          - 仕事 を 始める 前 に メール を 確認 し ます。
+        english: I check my emails before starting work.
+        hint: This simply states a fact or a routine without emphasizing the *effort* to establish it
+          as a habit. We're looking for the effort to make it a habit.
+    scene: An office worker explaining their daily routine and self-management.
+    register: formal
+    setting: professional
+    conjugation: progressive (～ている)
+    nuance: 「確認しよう にしている」 emphasizes the diligent and continuous effort to establish checking emails as
+      a regular pre-work habit, indicating a professional discipline.
+  - english: I try to speak Japanese whenever possible.
+    japanese:
+      - できる だけ 日本 語 を {話そう に する}。
+      - できる だけ 日本 語 を {話そう に し て い ます}。
+    english_literally: As much as possible, Japanese, I try to speak.
+    competing_grammar:
+      - competing_japanese:
+          - できる だけ 日本 語 を 話す こと が できる。
+          - できる だけ 日本 語 を 話す こと が でき ます。
+        english: I can speak Japanese as much as possible.
+        hint: This indicates ability, not an ongoing effort to make speaking Japanese a habit. We're looking
+          for an active effort to form a habit.
+    scene: A language learner discussing their study methods and commitment.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「話そう にする」 shows a proactive and consistent effort to incorporate Japanese speaking into daily
+      life, reflecting a learner's dedication to habit formation.
+  - english: I'm trying to save money this year.
+    japanese:
+      - 今年 は お 金 を 貯め {よう に し て いる}。
+      - 今年 は お 金 を 貯め {よう に し て い ます}。
+    english_literally: This year, money, I am trying to save.
+    competing_grammar:
+      - competing_japanese:
+          - 今年 は お 金 を 貯める つもり だ。
+          - 今年 は お 金 を 貯める つもり です。
+        english: I intend to save money this year.
+        hint: 「つもりだ」 conveys intention or a plan, but not necessarily the continuous effort to establish
+          saving as a habit. We're looking for that ongoing effort.
+    scene: A friend discussing their financial goals and efforts to achieve them.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: 「貯めよう にしている」 expresses an ongoing, intentional effort to form a saving habit throughout the
+      year, implying sustained discipline.
+  - english: I try to practice the guitar for an hour every day.
+    japanese:
+      - 毎日 1 時間 ギター を 練習 {しよう に する}。
+      - 毎日 1 時間 ギター を 練習 {しよう に し て い ます}。
+    english_literally: Every day, one hour, guitar, I try to practice.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 1 時間 ギター を 練習 する こと に し た。
+          - 毎日 1 時間 ギター を 練習 する こと に し まし た。
+        english: I decided to practice the guitar for an hour every day.
+        hint: 「ことにする」 expresses a one-time decision, not an ongoing effort to establish a daily habit.
+          We're looking for the continuous effort.
+    scene: A musician talking about their practice schedule and commitment to their instrument.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: 「練習しよう にする」 conveys a deliberate, ongoing commitment to regular guitar practice, illustrating
+      the effort to make it a routine.
+  - english: We're trying to cook at home more often.
+    japanese:
+      - 私 たち は 家 で もっと 料理 を {作ろう に し て いる}。
+      - 私 たち は 家 で もっと 料理 を {作ろう に し て い ます}。
+    english_literally: We, at home, more, cooking, are trying to do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 家 で もっと 料理 を 作る よう に し て いる。
+          - 私 たち は 家 で もっと 料理 を 作る よう に し て い ます。
+        english: We are making an effort to cook at home more often.
+        hint: 「ようにする」 expresses a general effort to achieve a state, which can be similar, but 「volitional
+          にする」 specifically implies making it a *habit* or routine. We're looking for the specific nuance
+          of habit formation.
+    scene: A couple discussing their lifestyle changes and shared goals.
+    register: casual
+    setting: intimate
+    conjugation: progressive (～ている)
+    nuance: 「作ろう にしている」 expresses a shared, continuous effort to establish home cooking as a regular habit
+      for the couple, showing mutual commitment.
+  - english: Since I started this job, I try to arrive at work early.
+    japanese:
+      - この 仕事 を 始め て から、会社 に 早く 着 {こう に する}。
+      - この 仕事 を 始め て から、会社 に 早く 着 {こう に し て い ます}。
+    english_literally: This job having started from, to company, early, I try to arrive.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 を 始め て から、会社 に 早く 着く よう に 努力 し て いる。
+          - この 仕事 を 始め て から、会社 に 早く 着く よう に 努力 し て い ます。
+        english: Since I started this job, I am making an effort to arrive at work early.
+        hint: 「努力している」 (making an effort) is more general. 「volitional にする」 specifically implies making
+          it a *habit*. We're looking for the specific nuance of habit formation.
+    scene: An employee discussing their dedication to their new job and adapting to its demands.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: 「着こう にする」 signifies a conscious and sustained effort to be punctual as a new work habit, reflecting
+      a sense of responsibility and professionalism.
+  - english: I try to write in my journal every night before bed.
+    japanese:
+      - 毎晩 寝る 前 に、日記 を {書こう に する}。
+      - 毎晩 寝る 前 に、日記 を {書こう に し て い ます}。
+    english_literally: Every night, before sleeping, journal, I try to write.
+    competing_grammar:
+      - competing_japanese:
+          - 毎晩 寝る 前 に、日記 を 書く つもり だ。
+          - 毎晩 寝る 前 に、日記 を 書く つもり です。
+        english: I intend to write in my journal every night before bed.
+        hint: 「つもりだ」 indicates a plan or intention, but it doesn't emphasize the continuous effort to
+          make it a regular habit. We're looking for the habit-forming effort.
+    scene: Someone sharing a personal routine for self-reflection and habit-building.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: 「書こう にする」 conveys the deliberate establishment of journaling as a nightly habit, indicating
+      a structured and intentional personal routine.

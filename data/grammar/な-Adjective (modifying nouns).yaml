@@ -1,0 +1,503 @@
+grammar_point: な-Adjective (modifying nouns)
+learn_before:
+  - Question-phrase+か (embedded question)
+  - '[Clause]から (because・so)'
+  - '[Verb-(た・ている)]Noun (verb-modified noun)'
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - '[Verb-よう]思う (intend to)'
+  - 〜おかげで・〜せいで (because of, positive・negative result)
+  - 〜のだ・〜んだ (explanatory)
+  - 〜ようだ・〜みたいだ (seems・like)
+  - ある (to exist, inanimate・to have)
+  - が (subject marker)
+  - ことだから (given the nature of)
+  - たい (want to do)
+  - てみる (try and see)
+  - な-Adjective[だ] (plain present)
+  - なら〜で (if ~ then ~)
+  - は (topic and contrast)
+  - 任せる (to entrust or leave to)
+  - 周り・辺り・周辺 (surroundings)
+  - 唯一無二 (one of a kind・peerless)
+  - 持っている (to be holding・to possess)
+  - 風 (style・manner)
+meaning: Modifying a noun with a な-adjective.
+pronunciation:
+  katakana: ナケイヨウシ+メイシ
+  romaji: na-keiyoushi + meishi
+formation:
+  な-Adjective + な + Noun: Describes a noun by stating one of its qualities or characteristics.
+jlpt: N5
+etymology: The particle 「な」 originates from the noun 「殻」 (kara), meaning 'shell' or 'husk,' and later
+  evolved to signify 'from' or 'origin.' Its dual use for 'from (a starting point)' and 'because (a reason/origin)'
+  can be understood through this core concept of emergence or derivation. Something comes 'from' a physical
+  point, or a consequence arises 'from' a cause. The 「な」 particle is required to connect な-adjectives
+  (also known as adjectival nouns) to the nouns they modify. Without 「な」, the sentence would be grammatically
+  incorrect. The 「な」 essentially acts as a copula in this construction, similar to how 「だ」 links nouns
+  and な-adjectives at the end of a sentence.
+writeup: 'In Japanese, な-adjectives (also known as adjectival nouns) modify nouns by placing the particle
+  「な」 between the adjective and the noun. This construction is used to describe a quality or characteristic
+  of the noun. It is crucial to include 「な」; omitting it would result in grammatically incorrect Japanese.While
+  many types of words can modify nouns, な-adjectives specifically require 「な」 for this purpose. This sets
+  them apart from い-adjectives, which connect directly to nouns, and from nouns modifying other nouns,
+  which typically use 「の」.A key distinction to grasp is the nuance between な-adjective + 「な」 + Noun and
+  Noun + 「の」 + Noun, especially when a word can function as both. For instance, (A)な(B) generally means
+  (A) describes a quality or feature of (B), implying an inherent characteristic. Conversely, (A)の(B)
+  usually indicates that (A) is the type, purpose, or possession related to (B). Consider: 「幸せな日」 (a happy
+  day, describing the day''s quality) versus 「幸せの日」 (a day *of* happiness, meaning a day designated for
+  happiness or a day that exemplifies happiness). When in doubt, consider whether you are expressing a
+  quality or a type or purpose.'
+false_friends:
+  - term: Noun + の + Noun
+    meaning: Indicates possession, material, or type/purpose of a noun.
+    kind: often confused with
+    nuance: While な-adjective + な + Noun describes a quality inherent to the noun, Noun + の + Noun indicates
+      a relationship, possession, or the type/purpose of the noun. For instance, 「幸せな日」 (a happy day,
+      describing its quality) versus 「幸せの日」 (a day *of* happiness, meaning a day designated for happiness
+      or a day that exemplifies happiness).
+    grammar_point: の (possession)
+  - term: い-Adjective + Noun
+    meaning: Directly modifies a noun without a particle.
+    kind: often confused with
+    nuance: Unlike な-adjective + な + Noun, い-adjectives directly connect to the noun they modify, requiring
+      no intervening particle like 「な」. For example, 「大きい犬」 (a big dog) connects directly, whereas 「静かな場所」
+      (a quiet place) requires 「な」.
+    grammar_point: <suggest>:い-Adjectives (adjectives ending in い)
+  - term: な-Adjective (predicate form)
+    meaning: To be a な-adjective (when ending a sentence).
+    kind: often confused with
+    nuance: This grammar point describes how な-adjectives modify nouns within a phrase (e.g., 「静かな場所」,
+      'a quiet place'), requiring the particle 「な」. In contrast, the predicate form (e.g., 「その場所は静かだ」,
+      'That place is quiet.') uses 「だ」 at the end of a sentence to state a fact or describe a noun, without
+      directly modifying a subsequent noun. The confusion arises because both derive from the same root
+      (e.g., 静か).
+    grammar_point: な-Adjective (predicate form)
+  - term: な-Adjective + に (adverbial form)
+    meaning: Modifies a verb, describing how an action is performed (e.g., quietly).
+    kind: often confused with
+    nuance: The 「な」 in 「な-adjective + な + Noun」 is used to connect the adjective to a noun, describing
+      the noun itself. The adverbial form of a な-adjective ends in 「に」 (e.g., 「静かに」) and is used to modify
+      verbs, describing how an action is performed or the state of an action. For example, 「静かな部屋」 (a
+      quiet room) vs. 「静かに話す」 (to speak quietly).
+    grammar_point: <suggest>:な-Adjective[に] (adverbial form)
+post_false_friends_writeup: When describing a noun, remember that な-adjectives use 「な」 to connect, emphasizing
+  an inherent quality or characteristic. In contrast, 「の」 is used to link two nouns, often indicating
+  possession, material, or the type or purpose of the second noun. Furthermore, while the predicate form
+  of a な-adjective ends in 「だ」 (e.g., 「綺麗だ」), it serves to complete a sentence about a noun, not to modify
+  a subsequent noun directly. Finally, the adverbial form of a な-adjective uses 「に」 (e.g., 「綺麗に」) to modify
+  a verb, describing the manner of an action rather than the quality of a noun. Understanding these distinctions
+  is key to using な-adjectives correctly.
+examples:
+  - english: She's looking for a quiet place.
+    japanese:
+      - 彼女 は {静か な} 場所 を 探し て い ます。
+      - 彼女 は {静か な} 場所 を 探し て いる。
+      - 彼女 は {静か な} 場所 を 探し てる。
+      - 彼女、{静か な} とこ 探し てる らしい よ。
+      - 彼女、{静か な} ところ が いい って さ。
+      - 彼女 は {静か な} 場所 が 欲しい らしい。
+      - 彼女 は {静か な} 場所 を お 探し の よう です ね。
+      - あいつ、{静か な} とこ じゃ ない と ダメ らしい よ。
+    english_literally: She is looking for a quiet place.
+    competing_grammar:
+      - competing_japanese:
+          - '{静けさ の} 場所'
+        english: A place of silence.
+        hint: 「静けさ の 場所」 would imply 'a place of silence,' which is a noun-noun construction. We're looking
+          for a description of the *quality* of the place, not the *type* of place.
+      - competing_japanese:
+          - '{静か です} 場所'
+        english: This construction is incorrect.
+        hint: This construction is grammatically incorrect for modifying a noun. The particle 「な」 is necessary
+          for な-adjectives before nouns.
+      - competing_japanese:
+          - '{大きい} 場所'
+        english: A big place.
+        hint: 「大きい」 is an い-adjective and connects directly to the noun, whereas 「静か」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+      - competing_japanese:
+          - '{静か に} 場所'
+        english: Quietly place.
+        hint: 「静かに」 is the adverbial form of 「静かな」. It modifies verbs, not nouns directly. We're looking
+          for a form that describes the noun 'place'.
+    scene: A librarian is trying to find a study spot for a student who needs to concentrate.
+    register: teineigo (polite)
+    setting: informative
+  - english: Kyoto has many famous temples.
+    japanese:
+      - 京都 に は {有名 な} お 寺 が たくさん あり ます。
+      - 京都 に は {有名 な} お 寺 が たくさん ある。
+      - 京都 に {有名 な} お 寺 が いっぱい ある よ。
+      - 京都 って {有名 な} お 寺 多い よ ね。
+      - 京都 に は {有名 な} お 寺 が いっぱい ある ん です よ。
+      - 京都 に は 数々 の {有名 な} お 寺 が ござい ます。
+      - 京都 って {有名 な} お 寺 めっちゃ 多い よ。
+      - 京都 に は {有名 な} お 寺 が 多い です。
+    english_literally: In Kyoto, famous temples many exist.
+    competing_grammar:
+      - competing_japanese:
+          - '{名高い} お 寺'
+        english: Renowned temples.
+        hint: 「名高い」 means 'renowned' and carries a more formal or literary nuance than 'famous'. We're
+          looking for a more common and generally recognized term.
+      - competing_japanese:
+          - '{評判 の} お 寺'
+        english: Temples with a good reputation.
+        hint: 「評判」 focuses on reputation, whereas what we want to convey is general recognition. We're
+          looking for a more broadly recognized term for 'famous'.
+      - competing_japanese:
+          - '{有名 の} お 寺'
+        english: Temple of fame.
+        hint: 「有名」 is a な-adjective and requires 「な」 to modify a noun. 「有名 の お寺」 would be grammatically
+          incorrect for describing a 'famous temple' as a quality. We're looking for a な-adjective modifying
+          a noun.
+      - competing_japanese:
+          - '{古い} お 寺'
+        english: An old temple.
+        hint: 「古い」 is an い-adjective and connects directly to the noun, whereas 「有名」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+      - competing_japanese:
+          - '{有名 に} お 寺'
+        english: Famously temple.
+        hint: 「有名 に」 is the adverbial form of 「有名な」. It modifies verbs, not nouns directly. We're looking
+          for a form that describes the noun 'temple'.
+    scene: A tour guide is explaining attractions in Kyoto.
+    register: teineigo (polite)
+    setting: informative
+  - english: He always speaks kind words to me.
+    japanese:
+      - 彼 は いつ も {親切 な} 言葉 を かけ て くれ ます。
+      - 彼 は いつ も {親切 な} 言葉 を かけ て くれる。
+      - 彼 は いつ も {親切 な} 言葉 を かけ て くれる ん だ。
+      - あいつ は {親切 な} ことば ばかり 言う よ。
+      - あの 人 は {親切 な} 言葉 を よく くれる ね。
+      - 彼 って さ、いつ も {親切 な} 言葉 を くれる ん だ よ ね。
+      - 彼 から は いつ も {親切 な} 言葉 が 聞か れ ます。
+      - 彼 は {親切 な} 言葉 を 選ん で 話す 人 です。
+    english_literally: He always kind words casts to me.
+    competing_grammar:
+      - competing_japanese:
+          - '{優しい} 言葉'
+        english: Gentle words.
+        hint: While 'gentle' is close to 'kind,' 「親切な」 emphasizes being considerate and helpful, which
+          fits the context of interacting with a doctor better than just 'gentle'.
+      - competing_japanese:
+          - '{丁寧 な} 言葉'
+        english: Polite words.
+        hint: 「丁寧」 implies politeness in speech, but we are looking for the underlying kindness and consideration
+          in the action, not just the politeness.
+      - competing_japanese:
+          - '{親切 心 の} 言葉'
+        english: Words stemming from kindness.
+        hint: 「親切な 言葉」 describes the quality of the words as 'kind.' 「親切心 の 言葉」 implies words that originate
+          from a feeling of kindness, using a noun-noun construction. We're looking for a direct description
+          of the words' quality.
+      - competing_japanese:
+          - '{長い} 言葉'
+        english: Long words.
+        hint: 「長い」 is an い-adjective and connects directly to the noun, whereas 「親切」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+      - competing_japanese:
+          - '{親切 に} 言葉'
+        english: Kindly words.
+        hint: 「親切 に」 is the adverbial form of 「親切な」. It modifies verbs, not nouns directly. We're looking
+          for a form that describes the noun 'words'.
+    scene: A patient is describing their doctor to a friend, highlighting the doctor's compassionate nature.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「親切な」 modifies 「言葉」, emphasizing the nature of the words themselves as being kind, rather
+      than just polite. The phrase 「かけ て くれ ます」 shows that the action is done 「for」 the speaker.
+  - english: Beautiful roses are blooming in the garden.
+    japanese:
+      - 庭 に {綺麗 な} バラ が 咲い て い ます。
+      - 庭 に {綺麗 な} バラ が 咲い て いる。
+      - 庭 に {綺麗 な} バラ が 咲い てる ね。
+      - 庭 に {綺麗 な} バラ が たくさん 咲い てる ね。
+      - 見 て、庭 の バラ、{綺麗} だ よ！
+      - うわー、庭 の {綺麗 な} バラ、満開 だ ね！
+      - 庭 に は {綺麗 な} バラ が 多数 咲い て おり ます。
+      - この {綺麗 な} バラ を 見 て ください。
+    english_literally: In the garden, beautiful roses are blooming.
+    competing_grammar:
+      - competing_japanese:
+          - '{美しい} バラ'
+        english: Beautiful roses (more formal).
+        hint: 「美しい」 is an い-adjective and connects directly to the noun, whereas 「綺麗」 is a な-adjective
+          and requires 「な」 to modify a noun. While both mean 'beautiful,' 「綺麗」 is more commonly used in
+          everyday speech for things that are visually pleasing and clean, like flowers. We're looking
+          for the な-adjective usage.
+      - competing_japanese:
+          - '{麗しい} バラ'
+        english: Lovely/elegant roses (poetic).
+        hint: 「麗しい」 is a much more poetic and less common term, generally not used in casual conversation
+          about a garden. We are looking for a common descriptive term.
+      - competing_japanese:
+          - '{美し さ の} バラ'
+        english: Roses of beauty.
+        hint: 「綺麗な バラ」 describes the visual quality of the roses. 「美しさ の バラ」 uses a noun-noun construction,
+          which is more abstract and poetic, referring to roses associated with the concept of beauty.
+          We're looking for a direct description of the roses' appearance.
+      - competing_japanese:
+          - '{綺麗 に} バラ'
+        english: Beautifully roses.
+        hint: 「綺麗 に」 is the adverbial form of 「綺麗な」. It modifies verbs, not nouns directly. We're looking
+          for a form that describes the noun 'roses'.
+    scene: A person proudly shows their well-maintained garden to a guest.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Energetic children are playing on the school grounds.
+    japanese:
+      - '{元気 な} 子供 たち が 校庭 で 遊ん で い ます。'
+      - '{元気 な} 子供 たち が 校庭 で 遊ん で いる。'
+      - '{元気 な} 子供 たち が 校庭 で 遊ん で る。'
+      - '{元気 な} 子供 たち が 校庭 で 走り回っ てる よ。'
+      - 校庭 で {元気 な} 子供 たち が 楽し そう に 遊ん で い た よ。
+      - ほら、見 て。校庭 に {元気 な} 子供 たち が いっぱい！
+      - 校庭 に は いつ も {元気 な} 子供 たち の 声 が 響い て い ます。
+      - '{元気 な} 子供 たち が 校庭 を 駆け回る。'
+    english_literally: Energetic children on the school grounds are playing.
+    competing_grammar:
+      - competing_japanese:
+          - '{活発 な} 子供 たち'
+        english: Active children.
+        hint: While similar, 「元気な」 specifically conveys a sense of health and vigor, which is more directly
+          observed in children's play than just general 'activity.' We're looking for a term that emphasizes
+          vitality.
+      - competing_japanese:
+          - '{明るい} 子供 たち'
+        english: Cheerful children.
+        hint: 「明るい」 describes their disposition ('bright' or 'cheerful'), not their physical energy or
+          state. We're looking for a term that describes their physical energy.
+      - competing_japanese:
+          - '{元気 の} 子供 たち'
+        english: Children belonging to energy/health.
+        hint: 「元気な 子供 たち」 describes the children as having energy and health. 「元気 の 子供 たち」 is grammatically
+          incorrect for describing their state; it would imply ownership or origin, which doesn't fit
+          the meaning. We're looking for a な-adjective modifying a noun.
+      - competing_japanese:
+          - '{楽しい} 子供 たち'
+        english: Fun children.
+        hint: 「楽しい」 is an い-adjective and connects directly to the noun, whereas 「元気」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+      - competing_japanese:
+          - '{元気 に} 子供 たち'
+        english: Energetically children.
+        hint: 「元気 に」 is the adverbial form of 「元気な」. It modifies verbs, not nouns directly. We're looking
+          for a form that describes the noun 'children'.
+    scene: A teacher is observing students during recess.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「元気な」 describes the vitality and health of the children. 「校庭 で 遊ん で い ます」 sets the scene of
+      their energetic play.
+  - english: Because he is a sincere person, he is trusted by everyone.
+    japanese:
+      - 彼 は {誠実 な} 人間 な の で、誰 から も 信頼 さ れ て い ます。
+      - 彼 は {誠実 な} 人間 な の で、誰 から も 信頼 さ れ てる。
+      - 彼 は {誠実 な} 人間 だ から、みんな から 信頼 さ れ てる よ。
+      - 彼、{誠実 な} 人間 だ から、みんな から 信用 さ れ てる よ。
+      - あの 人 は {誠実 な} 人 だ から、みんな 信用 し てる よ。
+      - 彼 は {誠実 な} お 人柄 です の で、皆 様 から 信頼 を 得 て い ます。
+      - 彼 って {誠実 な} やつ だ から、誰 から も 信用 さ れ てる ん だ よ。
+      - 彼 は {誠実 な} 人間 です。だ から、誰 に も 疑わ れ ませ ん。
+    english_literally: He is a sincere human, therefore, by everyone is trusted.
+    competing_grammar:
+      - competing_japanese:
+          - '{真面目 な} 人間'
+        english: A serious/diligent person.
+        hint: 「真面目」 often implies seriousness or diligence, which doesn't fully capture the sense of honesty
+          and trustworthiness. We're looking for a term that implies deep trustworthiness.
+      - competing_japanese:
+          - '{率直 な} 人間'
+        english: A frank/direct person.
+        hint: 「率直」 refers to directness in communication, not necessarily sincerity or trustworthiness
+          in character. We're looking for a term that describes their inherent character and ability to
+          be trusted.
+      - competing_japanese:
+          - '{誠実 さ の} 人間'
+        english: Person of sincerity.
+        hint: 「誠実な 人間」 describes a person's quality as sincere. 「誠実さ の 人間」 is grammatically awkward for
+          describing a person's inherent quality; it would imply a person associated with the concept
+          of sincerity, not directly being sincere. We're looking for a な-adjective modifying a noun.
+      - competing_japanese:
+          - '{優しい} 人間'
+        english: A gentle person.
+        hint: 「優しい」 is an い-adjective and connects directly to the noun, whereas 「誠実」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+      - competing_japanese:
+          - '{誠実 に} 人間'
+        english: Sincerely person.
+        hint: 「誠実 に」 is the adverbial form of 「誠実な」. It modifies verbs, not nouns directly. We're looking
+          for a form that describes the noun 'person'.
+    scene: Colleagues discussing a highly respected team member.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「誠実な 人間」 establishes a positive character trait. 「な の で」 indicates the reason for
+      being trusted, and 「誰 から も 信頼 さ れ て い ます」 expresses universal trust.
+  - english: I want to take various photos with my new camera.
+    japanese:
+      - 新しい カメラ で {様々 な} 写真 を 撮り たい です。
+      - 新しい カメラ で {様々 な} 写真 を 撮り たい。
+      - 新しい カメラ で {様々 な} 写真 撮り たい な。
+      - 新しい カメラ で {様々 な} 写真 を 撮っ て みよう と 思っ てる ん だ。
+      - この カメラ なら {様々 な} 写真 が 撮れる はず だ。
+      - 早く 新しい カメラ で {様々 な} 写真 を 撮り に 行き たい な！
+      - この 新しい カメラ で {様々 な} シーン を 撮っ て み たい です。
+      - 新しい カメラ にて {様々 な} 写真 を 収め たく 存じ ます。
+    english_literally: New camera with various photos want to take.
+    competing_grammar:
+      - competing_japanese:
+          - '{いろいろ な} 写真'
+        english: Various/a lot of photos (more colloquial).
+        hint: While 「いろいろな」 is also correct and more colloquial, 「様々な」 is slightly more formal and precise,
+          emphasizing a *wide range* or *diversity*. We're looking for a term that fits a thoughtful plan
+          for diverse photos.
+      - competing_japanese:
+          - '{多様 性 の} 写真'
+        english: Photos representing diversity.
+        hint: 「様々な 写真」 describes the photos themselves as varied. 「多様性 の 写真」 uses a noun-noun construction
+          to imply photos that embody the concept of diversity, not directly that the photos are various.
+          We're looking for a な-adjective modifying a noun.
+      - competing_japanese:
+          - '{小さい} 写真'
+        english: Small photos.
+        hint: 「小さい」 is an い-adjective and connects directly to the noun, whereas 「様々」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+      - competing_japanese:
+          - '{様々 に} 写真'
+        english: Variously photos.
+        hint: 「様々 に」 is the adverbial form of 「様々な」. It modifies verbs, not nouns directly. We're looking
+          for a form that describes the noun 'photos'.
+    scene: A photography enthusiast planning their next outing.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「様々な」 modifies 「写真」 to emphasize the wide variety of photos the speaker intends to take. 「撮り
+      たい です」 expresses desire.
+  - english: This is a very important matter, so please handle it carefully.
+    japanese:
+      - これ は {重要 な} 問題 な の で、慎重 に 対処 し て ください。
+      - これ は {重要 な} 問題 だ から、慎重 に 対処 し て ね。
+      - これ、{重要 な} 問題 だ よ、気 を つけ て 処理 し て。
+      - '{重要 な} こと だ から、ちゃんと やっ て ほしい。'
+      - この 件 は {重要 な} 案件 です の で、ご 留意 ください。
+      - 大変 {重要 な} 問題 です から、丁寧 に お 願い し ます。
+      - とても {重要 な} 問題 です。取り扱い に は 十分 気 を つけ て ください。
+      - これ は {重要 な} 問題 と 認識 し て おり ます。
+    english_literally: This is an important matter, so carefully handle it please.
+    competing_grammar:
+      - competing_japanese:
+          - '{大切 な} 問題'
+        english: A precious/dear matter.
+        hint: While 「大切」 can mean important in a general sense, 「重要」 specifically emphasizes the gravity
+          or significance of an issue, making it more suitable for matters requiring careful handling.
+          We're looking for something that means 'of high significance'.
+      - competing_japanese:
+          - '{重大 な} 問題'
+        english: A serious/grave matter.
+        hint: 「重大」 implies extreme seriousness or gravity, often associated with negative consequences.
+          「重要」 simply means 'important' without necessarily implying negative implications. We're looking
+          for 'important' in a neutral sense.
+      - competing_japanese:
+          - '{重要 の} 問題'
+        english: Matter of importance.
+        hint: 「重要」 is a な-adjective and requires 「な」 to modify a noun. 「重要 の 問題」 is grammatically incorrect
+          for describing the quality of the problem. We're looking for a な-adjective modifying a noun.
+      - competing_japanese:
+          - '{細かい} 問題'
+        english: A detailed matter.
+        hint: 「細かい」 is an い-adjective and connects directly to the noun, whereas 「重要」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+    scene: A manager instructing an employee about a critical task.
+    register: formal
+    setting: professional
+  - english: The weather today is very pleasant.
+    japanese:
+      - 今日 の 天気 は とても {快適 な} 天気 です。
+      - 今日 は {快適 な} 天気 だ ね。
+      - 今日、すっごく {快適 な} 天気！
+      - '{快適 な} 天気 で よかっ た ね。'
+      - この {快適 な} 天候 の おかげ で、仕事 も はかどり ます。
+      - 本 日 は {快適 な} 天候 に 恵まれ て おり ます。
+      - 今日 みたい に {快適 な} 天気 なら 毎日 散歩 し たい な。
+      - 今日 は {快適 な} 天気 で 気持ち が いい です。
+    english_literally: Today's weather is very pleasant weather.
+    competing_grammar:
+      - competing_japanese:
+          - '{心地よい} 天気'
+        english: Pleasing weather (more literary/sensory).
+        hint: 「心地よい」 often emphasizes a sensory pleasure or comfort, while 「快適な」 is broader, covering
+          comfort and agreeableness in general, making it more common for describing weather conditions.
+          We're looking for a common term for 'pleasant'.
+      - competing_japanese:
+          - '{いい} 天気'
+        english: Good weather.
+        hint: 「いい 天気」 is correct and common, but 'pleasant' implies a specific degree of comfort beyond
+          just 'good'. 「いい」 is an い-adjective, whereas 「快適」 is a な-adjective, and we are focusing on the
+          な-adjective usage.
+      - competing_japanese:
+          - '{快適 の} 天気'
+        english: Weather of comfort.
+        hint: 「快適」 is a な-adjective and requires 「な」 to modify a noun. 「快適 の 天気」 is grammatically incorrect
+          for describing the quality of the weather. We're looking for a な-adjective modifying a noun.
+      - competing_japanese:
+          - '{暑い} 天気'
+        english: Hot weather.
+        hint: 「暑い」 is an い-adjective and connects directly to the noun, whereas 「快適」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+    scene: Two friends casually commenting on the weather while walking outside.
+    register: casual
+    setting: friendly
+  - english: He has a unique talent.
+    japanese:
+      - 彼 は {ユニーク な} 才能 を 持っ て い ます。
+      - 彼 は {ユニーク な} 才能 を 持っ て いる。
+      - 彼、{ユニーク な} 才能 ある よ ね。
+      - あの 人、{ユニーク な} 才能 が ある みたい だ よ。
+      - 彼 は 唯一 無二 の {ユニーク な} 才能 の 持ち主 です。
+      - 彼 の {ユニーク な} 才能 は 誰 も が 認め て い ます。
+      - 君 は {ユニーク な} 才能 を 秘め て いる。
+      - 彼 が 持っ て いる の は まさに {ユニーク な} 才能 です。
+    english_literally: He unique talent holds.
+    competing_grammar:
+      - competing_japanese:
+          - '{特別 な} 才能'
+        english: A special talent.
+        hint: While 'special' is similar, 「ユニーク」 specifically conveys a sense of being one-of-a-kind or
+          distinctive in an original way, which is stronger than just 'special'. We're looking for a term
+          that emphasizes individuality.
+      - competing_japanese:
+          - '{珍しい} 才能'
+        english: A rare talent.
+        hint: 「珍しい」 means 'rare' or 'unusual' but might not imply the originality or distinctiveness that
+          「ユニーク」 does. We're looking for a term that highlights the originality of the talent.
+      - competing_japanese:
+          - '{ユニーク の} 才能'
+        english: Talent of uniqueness.
+        hint: 「ユニーク」 is a な-adjective derived from English and requires 「な」 to modify a noun. 「ユニーク の
+          才能」 is grammatically incorrect for describing the quality of the talent. We're looking for a
+          な-adjective modifying a noun.
+      - competing_japanese:
+          - '{新しい} 才能'
+        english: A new talent.
+        hint: 「新しい」 is an い-adjective and connects directly to the noun, whereas 「ユニーク」 is a な-adjective
+          and requires 「な」 to modify a noun. We're looking for a な-adjective usage.
+    scene: A mentor praising a junior colleague's distinct capabilities.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「ユニークな」 is a common loanword な-adjective, indicating that the talent is distinct and original.
+      The use of 「持っ て い ます」 indicates possession of this characteristic. The context of a mentor speaking
+      to a group suggests a formal or semi-formal register.
+post_example_writeup: As these examples demonstrate, the `な-Adjective + Noun` construction is fundamental
+  for describing inherent qualities or characteristics in Japanese. Whether you are talking about quiet
+  places, famous landmarks, kind words, beautiful flowers, energetic children, sincere individuals, important
+  matters, pleasant weather, or unique talents, the consistent use of 「な」 before the noun ensures grammatical
+  correctness and clear communication of the adjective's role. Always consider if you are describing a
+  characteristic of the noun itself, or if you are indicating a relationship between two nouns, which
+  would typically call for 「の」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/な-adjective-noun

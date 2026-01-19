@@ -1,0 +1,293 @@
+grammar_point: も (addition or emphasis particle)
+learn_before:
+  - Verb[えば] (conditional)
+  - Verb[ても] (concessive)
+  - Verb[ませんでした] (polite past negative)
+  - 〜ても〜ても (repeated effort or state)
+  - い-Adjective[くても] (concessive)
+  - い-Adjective[ければ] (conditional)
+  - そこ (there)
+  - と (manner)
+  - と同じ (exact sameness)
+  - な-Adjective (predicate form)
+  - に従って・従い (in accordance with and proportional change)
+  - まだ～ていない (still uncompleted)
+  - よ (emphasis・information sharing)
+  - 何も〜ない (no reason to・no need to)
+  - 堪らない (unbearable・irresistible)
+  - 誰 (who)
+  - 誰でも (anyone・everyone)
+  - 誰も (no one・nobody)
+meaning: also; too; even; as many as; no one/nothing
+pronunciation:
+  katakana: モ
+  romaji: mo
+formation:
+  Noun + も: Indicates inclusion, meaning 'also' or 'too'.
+  Quantity/Number + も: Emphasizes a large or surprising quantity, meaning 'as many as' or 'as much as'.
+  Question word (e.g., 誰, 何, どこ) + も + Negative Verb/Adjective: Expresses universal negation, meaning
+    'no one', 'nothing', 'nowhere', etc.
+  Verb[て-form] + も: Forms a concessive clause, meaning 'even if' or 'even though'.
+  i-Adjective[くて-form] + も: Forms a concessive clause, meaning 'even if' or 'even though'.
+  na-Adjective[で-form] + も: Forms a concessive clause, meaning 'even if' or 'even though'.
+  Noun + でも: Indicates inclusion, meaning 'even' or 'any' (inclusive scope).
+jlpt: N5
+etymology: The particle 「も」, found in Old Japanese as well, originates from a sense of addition or inclusivity.
+  Its basic meaning of 'also' or 'too' naturally extended to 'even' when emphasizing an unexpected inclusion.
+  When combined with interrogative words (like 誰, 何) and a negative predicate, it evolved to express universal
+  negation ('no one', 'nothing'), implying 'not even [this specific thing]'. This inherent 'addition'
+  or 'extension' also underlies its use in concessive expressions like 「ても」, where an action or state
+  is included even under a challenging condition.
+writeup: |-
+  The particle 「も」 is a versatile particle in Japanese, primarily conveying a sense of 'addition,' 'emphasis,' or 'universality.' Its usage can be broadly categorized into several key patterns.
+
+  First, as an additive particle, 「も」 means 'also' or 'too,' indicating that something else possesses the same characteristic or is included in the same category. For example, 「私も行きます」 (I will go too). This is perhaps its most fundamental use and is crucial for conveying shared actions or traits.
+
+  Second, 「も」 can serve as an emphatic particle, often translating to 'even.' This emphasis can be placed on a surprising or unexpected element. For instance, 「子供も知っている」 (Even a child knows it) implies that the knowledge is widespread.
+
+  Third, when combined with a quantity or number, 「も」 can emphasize a large or surprising amount, conveying 'as many as' or 'as much as.' For example, 「五時間もかかった」 (It took as many as five hours) highlights the unexpectedly long duration.
+
+  Fourth, 「も」 plays a critical role in forming universal negations when paired with interrogative words (like 誰 'who,' 何 'what,' どこ 'where,' いつ 'when,' いくつ 'how many') and a negative verb or adjective. This construction translates to 'no one,' 'nothing,' 'nowhere,' 'never,' or 'not any.' For example, 「誰もいない」 (No one is here) or 「何も食べない」 (I don't eat anything). This structure implies an exhaustive negation across all possibilities.
+
+  Finally, 「も」 is a component of concessive expressions, most commonly seen in the 「ても」 (Verb[て-form] + も), 「くても」 (i-Adjective[くて-form] + も), and 「でも」 (na-Adjective[で-form] + も / Noun + でも) forms. These expressions mean 'even if,' 'even though,' or 'no matter what,' indicating that the main clause holds true regardless of the condition stated in the preceding clause. For example, 「雨が降っても行く」 (Even if it rains, I will go).
+
+  Understanding these distinct but related functions of 「も」 is key to mastering its use in Japanese. Its core concept of inclusion or universality extends across all these contexts, making it a powerful and frequently used particle.
+false_friends:
+  - term: だけ (only)
+    meaning: only; just
+    kind: antonym
+    nuance: While 「も」 implies inclusion and addition ('also,' 'even'), 「だけ」 expresses exclusivity or limitation
+      ('only,' 'just'). For example, 「私も行く」 means 'I also go,' but 「私だけ行く」 means 'Only I go'.
+    grammar_point: だけ (only・just)
+  - term: しか〜ない (only, nothing but)
+    meaning: only; nothing but (used with negative)
+    kind: similar expression
+    nuance: Both 「も」 with a negative (e.g., 「誰もいない」 'no one is here') and 「しか〜ない」 (e.g., 「一人しかいない」 'there
+      is only one person') convey a sense of limitation or exclusivity. However, 「しか〜ない」 *always* requires
+      a negative predicate and often carries a nuance of insufficiency or 'only (this much/many) and no
+      more.' In contrast, 「も」 with an interrogative + negative universally negates, meaning 'not a single
+      one of X'.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: と (and, connects nouns)
+    meaning: and (connects nouns exhaustively)
+    kind: often confused with
+    nuance: 「と」 connects nouns in an exhaustive list, implying 'A and B (and nothing else).' 「も」, when
+      connecting nouns, acts as an additive particle ('A, and B also'), indicating a non-exhaustive list
+      or simply adding another item to a previous statement. For example, 「ペンと鉛筆」 (a pen and a pencil)
+      lists two items, while 「ペンも鉛筆も」 (both a pen and a pencil/a pen, and a pencil too) emphasizes that
+      both are included.
+    grammar_point: と (and, connects nouns)
+post_false_friends_writeup: When distinguishing between 「も」, 「だけ」, and 「しか〜ない」, remember that 「も」 signifies
+  inclusion or universality, expanding the scope of a statement or negating it entirely when used with
+  question words. 「だけ」, conversely, narrows the scope to 'only' a specific item or quantity. 「しか〜ない」 is
+  also a limiter, but it always couples with a negative predicate and emphasizes that the quantity or
+  item is insufficient or merely 'only' that much, often with a slightly regretful or restrictive feeling.
+examples:
+  - english: I also like coffee.
+    japanese:
+      - 私 も コーヒー が {好き です}。
+      - 私 も コーヒー {好き} だ。
+      - コーヒー も {好き} だ よ、私 も。
+    english_literally: I also, coffee likes.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は コーヒー が {好き です}。
+        english: As for me, I like coffee.
+        hint: Using 「は」 indicates the topic, but it doesn't necessarily mean 'also' or imply sharing the
+          same preference with others. We're looking for 'also' or 'too'.
+      - competing_japanese:
+          - 私 も コーヒー が {好き}。
+        english: I like coffee too. (Casual)
+        hint: This is a correct casual version, but it still uses the target grammar point. We're looking
+          for a common mistake or an alternative way that changes the nuance.
+    scene: A casual conversation among friends about favorite drinks.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: The particle 「も」 here indicates 'also' or 'too', showing that the speaker shares the same
+      preference for coffee as someone else, or as another beverage already mentioned. The politeness
+      comes from 「です」.
+  - english: Even children know this.
+    japanese:
+      - 子供 {も} これ を 知っ て いる。
+      - 子供 {も} これ を 知っ て おり ます。
+      - 子供 {も} これ を ご 存じ です。
+    english_literally: Child even, this knows.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は これ を 知っ て いる。
+        english: Children know this. (Topic)
+        hint: Using 「は」 simply marks 'children' as the topic. It doesn't carry the emphatic nuance of
+          'even' that 「も」 provides, suggesting a surprising or unexpected extent of knowledge.
+    scene: A teacher explaining a very basic concept that everyone should grasp.
+    register: casual
+    setting: informative
+    nuance: In this sentence, 「も」 functions as an emphatic 'even,' highlighting that the information is
+      so common or simple that 'even' a child, who might be expected to know less, is aware of it. 「知っている」
+      is the plain form of the verb 'to know'.
+  - english: No one was there.
+    japanese:
+      - 誰 {も} そこ に {い ませ ん} でし た。
+      - 誰 {も} そこ に {い なかっ た}。
+    english_literally: Who also, there was not (polite past).
+    competing_grammar:
+      - competing_japanese:
+          - 誰 も そこ に い まし た か？
+        english: Was anyone there?
+        hint: This is a question asking if 'anyone' was present, rather than a statement affirming that
+          'no one' was there. The nuance is different due to the lack of negation in the main verb.
+      - competing_japanese:
+          - そこ に 人 が {い ませ ん} でし た。
+        english: There was no person there.
+        hint: This implies a lack of 'people' but doesn't have the sweeping, universal negation of 'no
+          one at all' that 「誰も」 provides.
+    scene: Someone returning home to an empty house.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: negative past polite (～ませんでした)
+    nuance: The combination of the interrogative word 「誰」 (who) with 「も」 and the negative verb 「いませんでした」
+      creates a universal negative, meaning 'no one.' This is a standard way to express universal negation
+      in Japanese.
+  - english: I didn't eat anything.
+    japanese:
+      - 何 {も} 食べ {なかっ た}。
+      - 何 {も} 食べ {ませ ん でし た}。
+      - 何 {も} 食 {わ なかっ た}。
+    english_literally: What also, ate not.
+    competing_grammar:
+      - competing_japanese:
+          - 何 も 食べ なかっ た。
+        english: I ate nothing.
+        hint: While technically correct, the absence of 'も' with '何' implies 'nothing in particular' rather
+          than a complete lack of eating. We're looking for emphasis on 'not a single thing'.
+    scene: A child being questioned by a parent about eating dinner.
+    register: casual
+    setting: interrogative
+    conjugation: negative past plain (～なかった)
+    nuance: Similar to the previous example, 「何」 (what) combined with 「も」 and the negative past verb 「食べなかった」
+      (didn't eat) expresses 'nothing' or 'not anything.' This construction emphasizes the complete absence
+      of eating.
+  - english: It took five hours.
+    japanese:
+      - 五 時間 {も} かかっ た。
+      - 五 時間 {も} かかり まし た。
+    english_literally: Five hours even, took.
+    competing_grammar:
+      - competing_japanese:
+          - 五 時間 だけ かかっ た。
+        english: It only took five hours.
+        hint: 「だけ」 expresses exclusivity or limitation, meaning 'only five hours,' which suggests it was
+          a short time or less than expected. We're looking for emphasis on a large or surprising quantity.
+      - competing_japanese:
+          - 五 時間 かかっ た。
+        english: It took five hours. (Neutral statement)
+        hint: This is a neutral statement of fact without the emphasis that 'も' provides, which highlights
+          a surprisingly long duration.
+    scene: A person recounting a surprisingly long journey or task.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: Here, 「も」 is used with a quantity (五時間 - five hours) to express emphasis, implying that 'as
+      many as' five hours were spent, suggesting it was a long time or more than expected. The plain past
+      form 「かかった」 (took) keeps the tone casual.
+  - english: Even if it rains, I will go.
+    japanese:
+      - 雨 が 降っ {て も}、{行き ます}。
+      - 雨 が 降っ {て も}、{行く}。
+    english_literally: Rain falls even if, will go (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降っ たら、行き ます。
+        english: If it rains, I will go.
+        hint: 「たら」 indicates a conditional 'if/when' relationship where the second clause happens *after*
+          the first. It doesn't carry the nuance of concession ('even if') like 「ても」 does.
+      - competing_japanese:
+          - 雨 が 降る けど、行き ます。
+        english: It will rain, but I will go.
+        hint: 「けど」 simply connects two clauses, indicating a contrast or a 'but.' It lacks the strong
+          concessive meaning of 'even if, regardless of' that 「ても」 conveys.
+    scene: Making plans with a friend for an outdoor event.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: concessive (～ても)
+    nuance: This example showcases the concessive use of 「ても」, which means 'even if' or 'even though.'
+      It indicates that the action of going will occur regardless of the rain. The polite 「行きます」 reinforces
+      a considerate tone.
+  - english: Even if it's hot, I will not take off my jacket.
+    japanese:
+      - 暑く {て も}、ジャケット を {脱ぎ ませ ん}。
+      - 暑く {て も}、ジャケット は {脱が ない}。
+    english_literally: Hot even if, jacket will not take off (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 暑い の で、ジャケット を 脱ぎ ませ ん。
+        english: Because it's hot, I won't take off my jacket.
+        hint: 「ので」 indicates a reason or cause, meaning 'because it's hot.' This implies a logical consequence,
+          not a concession where the action happens *despite* the condition.
+    scene: Someone explaining their fashion choice despite the weather.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: concessive (～ても)
+    nuance: This example uses the 「くても」 form for i-adjectives in a concessive clause. 「暑くても」 means 'even
+      if it's hot.' The negative polite form 「脱ぎません」 (will not take off) conveys a firm decision in a
+      polite manner.
+  - english: Even if it's convenient, I can't go.
+    japanese:
+      - 便利 {で も}、{行け ませ ん}。
+      - 便利 {で も}、{行け ない}。
+    english_literally: Convenient even if, cannot go (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 便利 だ けど、行け ませ ん。
+        english: It's convenient, but I can't go.
+        hint: Similar to 「ので」, 「けど」 serves as a simple conjunction, indicating a contrast without the
+          strong concessive meaning of 'even if' that 「でも」 implies.
+    scene: Declining an invitation, stating a reason.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: concessive (～ても)
+    nuance: Here, 「でも」 is used with a na-adjective (便利 - convenient) to form a concessive clause, meaning
+      'even if it's convenient.' The potential negative 「行けません」 (cannot go) indicates inability, while
+      the polite form softens the refusal.
+  - english: Anyone can do it.
+    japanese:
+      - 誰 {で も} {でき ます}。
+      - 誰 {で も} {できる}。
+    english_literally: Who even, can do (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 皆 が {でき ます}。
+        english: Everyone can do it.
+        hint: 「皆」 means 'everyone' but lacks the inclusive emphasis of 「誰でも」, which highlights that 'anyone
+          at all' or 'even someone unexpected' can do it. 「誰でも」 implies a broader, more universal possibility.
+    scene: An instructor encouraging students that a task is simple.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: non-past polite (～ます)
+    nuance: The combination of the interrogative 「誰」 (who) with 「でも」 indicates 'anyone' or 'everyone,'
+      expressing an inclusive scope. 「できます」 (can do) is the polite potential form. This structure asserts
+      that the ability is universal.
+  - english: I have two dogs and also a cat.
+    japanese:
+      - 犬 が 二 匹 い て、猫 {も} {い ます}。
+      - 犬 が 二 匹 い て、猫 {も} {いる}。
+    english_literally: Dogs two existing, cat also exists (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 犬 が 二 匹 と 猫 が い ます。
+        english: I have two dogs and a cat.
+        hint: Using 'と' simply lists items exhaustively. We're looking for a sentence that emphasizes
+          'in addition' or 'too', implying the cat is an addition to the existing dogs.
+    scene: Someone describing their pets to a new acquaintance.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: This example shows 「も」 in its additive sense, meaning 'also' or 'in addition.' The speaker
+      already has dogs, and is adding that they 'also' have a cat. 「います」 is the polite form of 'to exist'
+      for animate objects.
+post_example_writeup: 'The examples provided illustrate the primary functions of 「も」: expressing ''also''
+  or ''too'' for addition, adding emphasis to a quantity or an unexpected element (''even''), conveying
+  universal negation when combined with question words and negative verbs, and forming concessive clauses
+  (''even if''). Pay close attention to the context and the accompanying words (especially negative verbs
+  or interrogatives) to correctly interpret the nuance of 「も」.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/も

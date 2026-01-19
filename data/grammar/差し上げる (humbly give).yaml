@@ -1,0 +1,289 @@
+grammar_point: 差し上げる (humbly give)
+learn_before:
+  - Verb[ます] (polite present)
+  - お[Verb-stem]する・いたす (humble action - kenjougo)
+  - かける・かけ (in process・incomplete・on the verge)
+  - が (subject marker)
+  - ご (honorific prefix for Sino-Japanese words)
+  - で (means・method)
+  - ではない・じゃなくて (not A but B)
+  - より (from・extent・range)
+  - わ (feminine sentence-ending particle)
+  - 代わりに (instead of choosing)
+  - 代わりに (instead of in return for)
+  - 切る (do completely or thoroughly)
+  - 地面・天井 (ground・floor・ceiling)
+  - 超える (to exceed)
+meaning: to humbly give
+pronunciation:
+  katakana: サシアゲル
+  romaji: sashiageru
+formation:
+  私/私が] + [相手/目上の人 に] + [物/行為 を] + 差し上げる: Used when the speaker humbly gives an object or performs an
+    action for a person of higher status or someone they respect.
+jlpt: N3
+etymology: The verb 「差し上げる」(sashiageru) is a compound verb derived from 「差す」(sasu), which can mean 'to
+  offer' or 'to hold up', and 「上げる」(ageru), meaning 'to raise' or 'to give'. This combination literally
+  means 'to raise and offer', inherently conveying the humble act of presenting something to a superior
+  or someone of higher status. This etymology highlights the physical gesture of lifting something up
+  to a respected person, which evolved into the metaphorical sense of humbly giving.
+writeup: |-
+  「差し上げる」(sashiageru) is a humble verb used to express the act of 'giving' or 'doing something for' another person. It is the kenjōgo (humble language) equivalent of 「あげる」(ageru) or 「やる」(yaru). The key characteristic of 「差し上げる」is that it emphasizes the speaker's humility and respect towards the recipient. This makes it appropriate for situations where you are giving something to someone of higher status, such as a boss, a teacher, a client, or an elder.
+
+  When using 「差し上げる」, the speaker (the giver) is humbling themselves to elevate the receiver. This is a fundamental concept in Japanese honorifics, where the language reflects social hierarchy and respect. It is not typically used when giving to someone of equal or lower status, or to close family and friends, as it would sound overly formal or even condescending in such contexts.
+
+  While 「あげる」can be used for general giving (outward), 「差し上げる」specifically implies that the giving is done with reverence. It can be used for physical objects as well as for actions (e.g., offering help, sending an email). The nuance of humility is inherent in the verb itself, so it is crucial to use it in appropriate social contexts to avoid misunderstandings.
+false_friends:
+  - term: あげる (to give, outward)
+    meaning: to give (general)
+    kind: similar expression
+    nuance: 「あげる」 is a general verb for giving something to someone. Unlike 「差し上げる」, it does not carry
+      a humble nuance and can be used when giving to equals or subordinates, or simply when referring
+      to the act of giving without specific emphasis on the giver's humility towards the recipient.
+    grammar_point: あげる・やる (to give, outward)
+  - term: やる (to give, casual)
+    meaning: to give (casual)
+    kind: similar expression
+    nuance: 「やる」 is a very casual verb for giving, typically used for animals, plants, or people of much
+      lower status, or among very close friends in a rough manner. It stands in stark contrast to the
+      humble and formal nature of 「差し上げる」.
+    grammar_point: あげる・やる (to give, outward)
+  - term: くれる (to give, inward to me・in-group)
+    meaning: to give (inward to me/in-group)
+    kind: similar expression
+    nuance: '「くれる」 means someone gives something to the speaker or the speaker''s in-group. The direction
+      of the giving is different: 「くれる」 emphasizes the benefit received by the speaker/in-group, while
+      「差し上げる」 emphasizes the speaker''s humble act of giving to an out-group member or superior.'
+    grammar_point: くれる (to give, inward to me・in-group)
+  - term: いただく (humbly receive)
+    meaning: to humbly receive
+    kind: often confused with
+    nuance: Both 「差し上げる」 and 「いただく」 are humble verbs, but they describe opposite actions. 「差し上げる」 is about
+      humbly *giving*, while 「いただく」 is about humbly *receiving*. They both involve showing respect to
+      the other party but from different sides of the transaction.
+    grammar_point: いただく (humbly receive)
+post_false_friends_writeup: When distinguishing 「差し上げる」from similar expressions, remember that its core
+  lies in the speaker's humble attitude when giving to a superior. Think of it as 'I humbly offer this
+  to you.' In contrast, 「あげる」is a neutral 'to give' for peers or inferiors, and 「やる」is a highly casual
+  'to give'. 「くれる」is for someone giving *to you*. Finally, while 「いただく」is also humble language, it is
+  about *receiving*, not giving. Keeping the direction of the action and the relative social status in
+  mind is key.
+examples:
+  - english: I will humbly give this report to the section chief.
+    japanese:
+      - この レポート を 課長 に 差し上げ ます。
+      - この 書類 を 課長 に 差し上げ ます。
+      - この 資料 を 課長 に 差し上げ ます。
+    english_literally: This report, to section chief, I will humbly give.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート を 課長 に あげ ます。
+        english: I will give this report to the section chief.
+        hint: Using 「あげます」 is less humble. We're looking for a humble way to express giving to a superior.
+    scene: You are a new employee speaking to a colleague about submitting work.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「差し上げます」 explicitly shows the speaker's respect and humility towards the section
+      chief, acknowledging their higher position within the company. This is a common and appropriate
+      expression in a professional setting.
+  - english: I would like to humbly offer you some tea.
+    japanese:
+      - お 茶 を 差し上げ ましょう か。
+      - お 飲み物 を 差し上げ ましょう か。
+      - お 茶 で も 差し上げ ましょう か。
+    english_literally: Tea, shall I humbly offer?
+    competing_grammar:
+      - competing_japanese:
+          - お 茶 を あげ ましょう か。
+        english: Shall I give you some tea?
+        hint: 「あげましょうか」 is a standard offer, but lacks the humble nuance suitable for a guest. We're looking
+          for a polite and humble offer.
+    scene: You are a host speaking to a guest at your home.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: volitional polite (～ましょう)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「差し上げましょうか」is a very polite and humble way to offer something to a guest. It shows consideration
+      and respect, making the guest feel honored. The honorific 'お' attached to 'お茶' further enhances
+      the politeness.
+  - english: I humbly sent the documents to the client yesterday.
+    japanese:
+      - 昨日、お 客 様 に 書類 を 差し上げ まし た。
+      - 昨日、お 客 様 へ 書類 を 差し上げ まし た。
+      - 昨日、書類 を お 客 様 に 差し上げ まし た。
+    english_literally: Yesterday, to client, documents, I humbly sent.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、お 客 様 に 書類 を あげ まし た。
+        english: Yesterday, I sent the documents to the client.
+        hint: While 'あげました' is acceptable, '差し上げました' is more appropriate when dealing with clients to
+          show respect. We're looking for humble language.
+    scene: You are reporting to your manager about tasks completed.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: Using 「差し上げました」when referring to sending documents to a client (お客様) is standard business
+      etiquette. It implies that the action was performed with utmost respect and diligence towards the
+      client, who is considered a superior in this professional context.
+  - english: Please allow me to humbly carry your luggage.
+    japanese:
+      - お 荷物 を 差し上げ ます。
+      - お 荷物 でし たら、私 が 差し上げ ます。
+      - お 手伝い 差し上げ ます。
+    english_literally: Your luggage, I will humbly carry.
+    competing_grammar:
+      - competing_japanese:
+          - お 荷物 を 運び ましょう か。
+        english: Shall I carry your luggage?
+        hint: 「運びましょうか」 is an offer to carry, but 「差し上げます」 emphasizes humble service. We're looking for
+          a polite, humble offer to assist.
+    scene: You are helping an elderly person with heavy bags at the station.
+    register: semi-formal
+    setting: supportive
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    nuance: Here, 「差し上げます」 is used to humbly offer a service (carrying luggage) to someone deserving of
+      respect, like an elder. The 'お' prefix on '荷物' (お荷物) also adds a polite nuance, further indicating
+      consideration for the listener.
+  - english: I humbly contributed to that project.
+    japanese:
+      - その プロジェクト に 差し上げ まし た。
+      - その プロジェクト に 力 を 差し上げ まし た。
+      - その プロジェクト に 全力 を 差し上げ まし た。
+    english_literally: To that project, I humbly contributed.
+    competing_grammar:
+      - competing_japanese:
+          - その プロジェクト に 貢献 し まし た。
+        english: I contributed to that project.
+        hint: While 「貢献しました」 is correct, 「差し上げました」 is used when emphasizing the humble act of giving one's
+          effort or contribution to something, especially when speaking to a superior. We're looking for
+          a humble statement.
+    scene: You are a junior staff member reporting to a senior manager about team efforts.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: In this context, 「差し上げました」is used to humbly state one's contribution to a project, particularly
+      when speaking to a superior. It frames the contribution as an offering, emphasizing the speaker's
+      deference and commitment to the team's goals.
+  - english: I humbly wrote this letter to the professor.
+    japanese:
+      - 先生 に この 手紙 を 差し上げ まし た。
+      - 先生 へ この 手紙 を 差し上げ まし た。
+      - この 手紙 を 先生 に 差し上げ まし た。
+    english_literally: To professor, this letter, I humbly wrote.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 に この 手紙 を 書き まし た。
+        english: I wrote this letter to the professor.
+        hint: 「書きました」 is a neutral statement. We're looking for a humble way to express writing for a
+          respected person like a professor.
+    scene: A student explaining to a classmate how they addressed a formal letter.
+    register: semi-formal
+    setting: academic
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「差し上げました」when referring to writing a letter to a professor (先生) highlights the
+      student's humility and respect for the professor's authority and knowledge. It frames the action
+      of writing as a respectful offering to a superior.
+  - english: I will humbly send a thank-you gift to my host family.
+    japanese:
+      - ホスト ファミリー に お 礼 の 品 を 差し上げ ます。
+      - ホスト ファミリー に 感謝 の 品 を 差し上げ ます。
+      - ホスト ファミリー へ お 礼 の 品 を 差し上げ ます。
+    english_literally: To host family, thank-you gift, I will humbly send.
+    competing_grammar:
+      - competing_japanese:
+          - ホスト ファミリー に お 礼 の 品 を 送り ます。
+        english: I will send a thank-you gift to my host family.
+        hint: While 「送ります」 is 'send', 「差し上げます」 better conveys the respect and gratitude towards the host
+          family. We're looking for a humble expression.
+    scene: A foreign exchange student discussing their plans after staying with a host family.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: Using 「差し上げます」for a thank-you gift to a host family reflects the speaker's deep gratitude
+      and humble respect for their kindness and hospitality. It is a common expression of sincere appreciation
+      in such a context.
+  - english: May I humbly ask you a question?
+    japanese:
+      - 一 つ ご 質問 を 差し上げ て も よろしい でしょう か。
+      - ご 質問 を 一 つ 差し上げ て も よろしい でしょう か。
+      - 何 か 質問 を 差し上げ て も よろしい でしょう か。
+    english_literally: One question, may I humbly offer?
+    competing_grammar:
+      - competing_japanese:
+          - 一 つ ご 質問 を し て も よろしい でしょう か。
+        english: May I ask one question?
+        hint: 「してもよろしいでしょうか」 is polite, but 「差し上げても」 makes the act of asking a question more humble, suitable
+          for a formal setting. We're looking for a humble way to ask a question.
+    scene: You are a student asking a question to a panel of esteemed speakers.
+    register: formal
+    setting: academic
+    conjugation: concessive (～ても)
+    speaker_gender: female
+    listener_gender: group
+    nuance: In this context, 「ご質問を差し上げてもよろしいでしょうか」is an extremely polite and humble way to ask a question
+      to a group of esteemed individuals. It frames the question as an offering, demonstrating the speaker's
+      deference and respect to the panel.
+  - english: I humbly offered my best efforts.
+    japanese:
+      - 全力 を 差し上げ まし た。
+      - 私 の 全て を 差し上げ まし た。
+      - 私 の 全力 を 差し上げ まし た。
+    english_literally: All effort, I humbly offered.
+    competing_grammar:
+      - competing_japanese:
+          - 全力 を 尽くし まし た。
+        english: I put in my best efforts.
+        hint: 「尽くしました」 means 'did my best'. While similar, 「差し上げました」 emphasizes the humble offering of
+          one's efforts, often implying it was for a greater cause or entity. We're looking for a humble
+          expression of effort.
+    scene: An athlete speaking to their coach after a challenging competition.
+    register: semi-formal
+    setting: serious
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    nuance: When an athlete says 「全力を差し上げました」to a coach, it conveys that they humbly dedicated all their
+      effort and energy to the goal, respecting the coach's guidance and the team's mission. It frames
+      their performance as a respectful contribution.
+  - english: I will humbly offer my condolences.
+    japanese:
+      - お 悔やみ を 差し上げ ます。
+      - 心 より お 悔やみ を 差し上げ ます。
+      - 謹ん で お 悔やみ を 差し上げ ます。
+    english_literally: Condolences, I will humbly offer.
+    competing_grammar:
+      - competing_japanese:
+          - お 悔やみ を 申し上げ ます。
+        english: I will state my condolences.
+        hint: 「申し上げます」 (moushiagemasu) is also humble, but 「差し上げます」 (sashiagemasu) emphasizes the act
+          of 'offering' rather than 'stating'. We're looking for an expression that highlights the humble
+          act of giving condolences.
+    scene: At a funeral, speaking to a bereaved family member.
+    register: formal
+    setting: apologetic
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    nuance: In a solemn setting like a funeral, 「お悔やみを差し上げます」is an appropriate and humble expression of
+      condolences. It conveys deep respect and empathy to the bereaved, framing the condolences as a respectful
+      offering during a difficult time.
+post_example_writeup: The examples illustrate how 「差し上げる」is consistently used in situations where the
+  speaker wishes to express humility and respect towards the recipient. Notice how it seamlessly integrates
+  into various formal and semi-formal contexts, whether giving objects, services, or even abstract concepts
+  like condolences or efforts. The choice of 「差し上げる」over less humble verbs like 「あげる」or 「やる」is crucial
+  for maintaining appropriate social decorum in Japanese communication, particularly with those of higher
+  status or whom one wishes to honor.

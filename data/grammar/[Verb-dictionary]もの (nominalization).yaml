@@ -1,0 +1,347 @@
+grammar_point: '[Verb-dictionary]もの (nominalization)'
+learn_before:
+  - たものだ (nostalgic recollection)
+  - ものだ (general truth expectation)
+meaning: A grammatical auxiliary noun used for nominalization (turning a clause into a noun phrase), to
+  express a general truth or common sense, or to convey an expected or natural state.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[dictionary]もの
+    rarity: common
+    meaning: the thing/act of Verb-ing
+  - conjugation-type: past plain (～た)
+    form: Verb[た]もの
+    rarity: common
+    meaning: the thing/act of having Verb-ed
+  - conjugation-type: negative plain (～ない)
+    form: Verb[ない]もの
+    rarity: common
+    meaning: the thing/act of not Verb-ing
+pronunciation:
+  katakana: モノ
+  romaji: mono
+formation:
+  Verb[dictionary] + もの: Nominalization of a verb; expressing a general truth or natural tendency.
+  い-Adjective[dictionary] + もの: Nominalization of an い-adjective; expressing a general truth or natural
+    tendency related to the adjective.
+  な-Adjective + な + もの: Nominalization of a な-adjective; expressing a general truth or natural tendency
+    related to the adjective.
+  Noun + な + もの: Nominalization of a noun; expressing a general truth or natural tendency related to the
+    noun.
+jlpt: N3
+etymology: The grammatical auxiliary noun 「もの」 originates from the substantive noun 「物」 (mono), meaning
+  'thing' or 'object'. Over time, its usage extended beyond concrete objects to encompass abstract concepts,
+  actions, or states, transforming it into a grammatical particle for nominalization. This evolution allows
+  it to refer to a general 'matter' or 'state of affairs,' giving rise to its various functions like expressing
+  general truths, expectations, or emotional emphasis.
+writeup: "The grammatical auxiliary noun 「もの」 is a versatile expression in Japanese, primarily used for\
+  \ nominalization, which means turning a verb phrase, an adjective phrase, or even a noun phrase into\
+  \ a noun. It allows you to talk about **the act of** something, **a thing that is** a certain way, or\
+  \ **a matter of** something.\n\nBeyond simple nominalization, 「もの」 carries several distinct nuances,\
+  \ often expressing: \n\n*   **General Truths or Common Sense**: It states something that is widely accepted\
+  \ or naturally happens. This is similar to saying \"It's natural that...\" or \"It's just how things\
+  \ are.\"\n*   **Expected or Natural State**: It can describe something that is naturally or expectedly\
+  \ the case, without a strong sense of obligation.\n*   **Advice or Obligation (often with だ/です)**: When\
+  \ used as 「ものだ」, it can express a gentle form of advice, a recommendation, or what one \"should\" or\
+  \ \"ought to\" do, often based on common practice or wisdom. It can also express prohibition when used\
+  \ with a negative form, such as 「〜ものではない」 (\"one should not...\").\n*   **Nostalgic Recollection**:\
+  \ When used with the past tense verb and 「ものだ」 (e.g., 「〜たものだ」), it conveys a sense of reminiscing about\
+  \ something that used to happen frequently in the past, similar to \"I used to...\" or \"We would always...\"\
+  .\n*   **Emotional Emphasis**: It can also add an emotional emphasis, making a statement sound more\
+  \ heartfelt or as if expressing a natural, undeniable feeling. In this usage, it often appears with\
+  \ 「ね」 or 「なあ」.\n\nWhile 「もの」 can be used in formal contexts, its most common uses, especially when expressing\
+  \ general truths or advice, are often found in casual conversation. It attaches to the plain form of\
+  \ verbs, the dictionary form of い-adjectives, and to な-adjectives and nouns followed by 「な」."
+false_friends:
+  - term: '[Verb-dictionary]こと (nominalization)'
+    meaning: the act or fact of Verb-ing
+    kind: similar expression
+    nuance: 「こと」 emphasizes the action or fact itself as an abstract concept, often used for objective
+      statements, rules, or experiences. In contrast, 「もの」 often implies a general truth, natural tendency,
+      or carries an emotional tone.
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: '[Verb-dictionary]の (nominalization)'
+    meaning: the act or instance of Verb-ing
+    kind: similar expression
+    nuance: 「の」 often refers to a specific instance or a perceptible event, acting as a pronoun for an
+      specific action. For example, 「見るの」 often implies the specific 'seeing' happening, while 「見るもの」
+      might be 'the thing that is seen' or 'it is natural to see'.
+    grammar_point: の (noun omission)
+  - term: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+    meaning: expected to be; should be
+    kind: often confused with
+    nuance: 「はずだ」 indicates an expectation or certainty based on logical reasoning or information the
+      speaker possesses. It's about a concrete prediction. 「ものだ」, on the other hand, describes a general
+      truth, a natural characteristic, or what is commonly understood. It's about a general statement
+      rather than a specific expectation.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: '[Verb-dictionary]つもりだ (to intend to)'
+    meaning: intend to; plan to
+    kind: often confused with
+    nuance: While 「つもりだ」 expresses the speaker's intention or belief about something, 「ものだ」 conveys a
+      general truth or something that is naturally expected. One is about personal resolve, the other
+      about common understanding or observation.
+    grammar_point: '[Verb-dictionary]つもりだ (to intend to)'
+post_false_friends_writeup: The key to distinguishing 「もの」 from 「こと」 and 「の」 lies in their nuance. 「こと」
+  focuses on the abstract fact or event, making it suitable for expressing rules or experiences. 「の」 is
+  more specific, often referring to an observable action or a particular instance. 「もの」, however, emphasizes
+  something as a general truth, a natural characteristic, or adds an emotional layer to the statement.
+  Think of 「もの」 as conveying a sense of 'it's just the way it is' or 'it's natural/expected'. When comparing
+  to 「はずだ」, remember that 「はずだ」 is about a logical expectation based on specific information, whereas
+  「ものだ」 is about a general, inherent truth or tendency. Finally, 「つもりだ」 expresses a personal intention
+  or belief, not a general truth like 「ものだ」.
+examples:
+  - english: It is natural for people to make mistakes.
+    japanese:
+      - 人間 は 誰 で も 間違える {もの} だ。
+      - 人間 は 誰 で も 間違える {もの} です。
+      - 人 は 誰 で も 間違える {もの} だ。
+      - 誰 で も 間違える {もの} だ よ。
+    english_literally: Humans, everyone, make mistakes, it is a thing.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は 誰 で も 間違える はず だ。
+        english: It is expected that everyone makes mistakes.
+        hint: 「はずだ」 is more about logical expectation or deduction based on information, whereas 「ものだ」
+          is about a general truth or inherent nature.
+      - competing_japanese:
+          - 人間 は 誰 で も 間違える こと に なっ て いる。
+        english: It has been decided/is set that everyone makes mistakes.
+        hint: 「ことに なっている」 implies a rule, arrangement, or established custom. We're looking for an expression
+          that states a general truth.
+    scene: A teacher is explaining that making mistakes is part of the learning process.
+    register: formal
+    setting: academic
+    nuance: This sentence uses 「ものだ」 to express a general truth or common understanding about human nature.
+      It's an objective statement about what is natural for all humans.
+    etymology: The use of 「ものだ」 here emphasizes the inherent nature of humans to err, drawing on the 'thing'
+      or 'essence' implied by 「もの」.
+  - english: Children are always active.
+    japanese:
+      - 子供 は いつ も 元気 な {もの} だ。
+      - 子供 は いつ も 元気 な {もの} です。
+      - 子供 は いつ も 元気 な {もん だ} ね。
+    english_literally: Children are always energetic, it is a thing.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は いつ も 元気 だ。
+        english: Children are always active.
+        hint: This is a simple statement of fact, but 「ものだ」 emphasizes that being energetic is a natural
+          or expected characteristic of children.
+      - competing_japanese:
+          - 子供 は いつ も 元気 な はず だ。
+        english: Children should always be active.
+        hint: 「はずだ」 implies an expectation or a logical deduction. We're looking for an expression that
+          states an inherent characteristic.
+    scene: A parent is observing their energetic child at the park.
+    register: casual
+    setting: friendly
+    nuance: Here, 「元気なものだ」 expresses a natural, expected characteristic of children. It conveys a slight
+      sense of observation or slight amazement, fitting the casual context.
+    etymology: The particle 「な」 connects the な-adjective 「元気」 to 「もの」, nominalizing the phrase to describe
+      the inherent state of children.
+  - english: If you're a student, you should study hard.
+    japanese:
+      - 学生 なら、一生 懸命 勉強 する {もの} だ。
+      - 学生 なら、一生 懸命 勉強 する {もの} です。
+      - 学生 だっ たら、一生 懸命 勉強 する {もの} だ。
+      - 学生 だっ たら、一生 懸命 勉強 する {もん だ}。
+    english_literally: If student, hard study, it is a thing.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 なら、一生 懸命 勉強 す べき だ。
+        english: If you're a student, you must study hard.
+        hint: 「べきだ」 conveys a stronger sense of obligation or moral duty. We're looking for a softer,
+          more natural recommendation based on what's expected.
+      - competing_japanese:
+          - 学生 なら、一生 懸命 勉強 し なけれ ば なら ない。
+        english: If you're a student, you have to study hard.
+        hint: 「なければならない」 expresses a strict necessity or obligation. We're looking for a more general
+          statement about what's typical or advisable for students.
+    scene: An older sibling is giving advice to their younger sibling who just started high school.
+    register: casual
+    setting: instructional
+    nuance: This example uses 「ものだ」 to provide gentle advice or state what is generally expected of a
+      student. It implies 'it's only natural for a student to study hard'.
+    etymology: This usage reflects 「もの」's function in expressing common societal expectations or norms,
+      where 'what is' (fact) shades into 'what should be' (advice).
+  - english: You shouldn't tell lies.
+    japanese:
+      - 嘘 を つく {もの} で は ない。
+      - 嘘 を つく {もの} じゃ あり ませ ん。
+      - 嘘 を つく {もん で} は ない。
+      - 嘘 を つく {もん} じゃ あり ませ ん。
+    english_literally: Lies to tell, it is not a thing.
+    competing_grammar:
+      - competing_japanese:
+          - 嘘 を つい て は いけ ない。
+        english: You must not tell lies.
+        hint: 「〜ては いけない」 is a direct prohibition. We're looking for a softer, more general statement about
+          what one should not do.
+      - competing_japanese:
+          - 嘘 を つか ない ほう が いい。
+        english: It is better not to tell lies.
+        hint: 「〜ない ほうが いい」 is a suggestion about what is preferable. We're looking for an expression that
+          states something is inherently inappropriate.
+    scene: A parent is gently scolding their child after finding out they lied.
+    register: casual
+    setting: instructional
+    nuance: 「ものではない」 expresses a general prohibition or what is considered improper. It's a mild form
+      of admonition, suggesting it's not the 'way things are' for a good person.
+    etymology: The negative construction with 「もの」 reinforces a norm or a principle, implying that the
+      action is not part of the 'natural order' of appropriate behavior.
+  - english: I used to often visit my grandmother's house during summer vacation.
+    japanese:
+      - 夏休み に は、よく お ばあ ちゃん の 家 へ 遊び に 行っ た {もの} だ。
+      - 夏休み に は、よく お ばあ ちゃん の 家 へ 遊び に 行っ た {もの} です。
+      - 夏休み に は、よく お ばあ ちゃん の 家 へ 遊び に 行っ た {もん だ}。
+    english_literally: Summer vacation, often grandmother's house to play went, it is a thing.
+    competing_grammar:
+      - competing_japanese:
+          - 夏休み に は、よく お ばあ ちゃん の 家 へ 遊び に 行っ て い た。
+        english: During summer vacation, I often used to go play at my grandmother's house.
+        hint: This is simple past progressive, but 「ものだ」 adds a nuance of fond recollection or nostalgia
+          for a past habitual action.
+      - competing_japanese:
+          - 夏休み に は、よく お ばあ ちゃん の 家 へ 遊び に 行っ た こと が ある。
+        english: During summer vacation, I have gone to play at my grandmother's house often.
+        hint: 「〜た ことが ある」 expresses an experience of having done something at least once, not necessarily
+          a regular past habit. We're looking for a past habit or routine.
+    scene: An adult is fondly recalling childhood memories with a friend.
+    register: casual
+    setting: friendly
+    nuance: 「〜たものだ」 indicates nostalgic recollection of past habitual actions or states. It conveys a
+      warm, reminiscent feeling, like 'I remember how we used to...' or 'We would always...'.
+    etymology: This usage evolved from the sense of 'it was a thing that happened', expressing a common
+      occurrence in the past that is now being remembered fondly.
+  - english: I can't believe I lost my wallet right after getting paid. It's just so sad.
+    japanese:
+      - 給料 を もらっ た ばかり な の に、財布 を なくし た なんて、本当 に 悲しい {もの} です ね。
+      - 給料 を もらっ た ばかり な の に、財布 を なくし た なんて、本当 に 悲しい {もの} だ なあ。
+      - 給料 を もらっ た ばかり な の に、財布 を なくし た なんて、本当 に 悲しい {もの} だ よ。
+    english_literally: Salary received just now, but wallet lost, truly sad thing, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - 給料 を もらっ た ばかり な の に、財布 を なくし た なんて、本当 に 悲しい です ね。
+        english: I can't believe I lost my wallet right after getting paid. It's really sad, isn't it.
+        hint: Adding 「もの」 here emphasizes the inherent sadness or the natural state of feeling sad about
+          such an event, making it a more heartfelt expression than a simple adjective.
+      - competing_japanese:
+          - 給料 を もらっ た ばかり な の に、財布 を なくし た なんて、本当 に 悲しい なあ。
+        english: I can't believe I lost my wallet right after getting paid. How sad!
+        hint: 「なあ」 expresses emotion, but 「もの」 adds a sense of it being a naturally lamentable 'thing'
+          or situation, implying that such a situation is inherently sad.
+    scene: A person lamenting their misfortune to a sympathetic friend.
+    register: casual
+    setting: melancholic
+    nuance: 「悲しいものですね」 conveys strong emotional emphasis, expressing the speaker's genuine feeling about
+      the situation. The 「もの」 adds a sense of 'it's just such a sad thing, isn't it?'
+    etymology: In this context, 「もの」 intensifies the adjective, turning the emotion into a 'matter' or
+      'state of being' that the speaker finds deeply affecting.
+  - english: You really can't predict what will happen next.
+    japanese:
+      - 次 に 何 が 起こる か、本当 に 予測 でき ない {もの} だ。
+      - 次 に 何 が 起こる か、本当 に 予測 でき ない {もの} です。
+      - 次 に 何 が 起こる か、本当 に 予測 でき ない {もん だ}。
+    english_literally: Next what happens whether, truly predict cannot, it is a thing.
+    competing_grammar:
+      - competing_japanese:
+          - 次 に 何 が 起こる か、本当 に 予測 でき ない。
+        english: You really can't predict what will happen next.
+        hint: The plain statement conveys inability, but 「ものだ」 adds the nuance that this unpredictability
+          is a general, inherent truth about life or events, a recognized characteristic.
+      - competing_japanese:
+          - 次 に 何 が 起こる か、本当 に 予測 する はず が ない。
+        english: There's no way to predict what will happen next.
+        hint: 「はずが ない」 expresses a strong logical impossibility based on circumstances or knowledge. We're
+          looking for a general truth about unpredictability.
+    scene: Two colleagues discussing an unexpected turn of events at work.
+    register: semi-formal
+    setting: professional
+    nuance: This uses 「ものだ」 to express a general truth about unpredictability, conveying a sense of resignation
+      or contemplation about the nature of events.
+    etymology: The structure highlights the inherent 'nature' or 'characteristic' of events as being unpredictable,
+      a common philosophical sentiment.
+  - english: Even adults have things they don't know.
+    japanese:
+      - 大人 で も、知ら ない {もの} が ある。
+      - 大人 で も、知ら ない {もの} も あり ます。
+      - 大人 で も、知ら ない {こと} が ある。
+    english_literally: Even adults, unknown things exist.
+    competing_grammar:
+      - competing_japanese:
+          - 大人 で も、知ら ない こと が ある。
+        english: Even adults have things they don't know.
+        hint: While 「こと」 can also mean 'thing' or 'matter', 「もの」 here often emphasizes the concrete, tangible
+          'things' or specific pieces of knowledge that are unknown, rather than just abstract facts.
+      - competing_japanese:
+          - 大人 で も、知ら ない こと も あり ます。
+        english: Even adults also have things they don't know (polite).
+        hint: The nuance difference between 「もの」 and 「こと」 for nominalization can be subtle; 「もの」 often
+          implies a more inherent or personal 'thing', whereas 「こと」 is more abstract and general.
+    scene: A teacher explaining to students that learning is a lifelong process, regardless of age.
+    register: formal
+    setting: academic
+    nuance: Here, 「知らないもの」 refers to 'things that one does not know' in a general sense, nominalizing
+      the concept of 'not knowing'. This is a more direct nominalization rather than a general truth or
+      advice.
+    etymology: This directly applies 「もの」 in its meaning of 'thing' to nominalize the preceding clause
+      「知らない」, referring to 'things which are unknown'.
+  - english: I used to be very healthy, but not anymore.
+    japanese:
+      - 昔 は とても 健康 だっ た {もの} だ が、今 は そう で も ない。
+      - 昔 は とても 健康 だっ た {もの} です が、今 は そう で も あり ませ ん。
+      - 昔 は とても 健康 だっ た {もん だ} が、今 は そう で も ない。
+    english_literally: In the past, very healthy was a thing, but now it is not so.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 は とても 健康 だっ た けれど、今 は そう で も ない。
+        english: I used to be very healthy, but not anymore.
+        hint: While 「けれど」 connects clauses, 「ものだ」 adds a nuance of deep, often nostalgic, recollection
+          of a past state, suggesting 'I recall how I used to be' with a sense of sentimentality.
+      - competing_japanese:
+          - 昔 は とても 健康 だっ た と 思う が、今 は そう で も ない。
+        english: I think I used to be very healthy, but not anymore.
+        hint: 「と 思う」 expresses an opinion or belief, but 「ものだ」 conveys a more vivid and personal memory
+          of a past habitual state or condition, often with a touch of nostalgia.
+    scene: An elderly person reflecting on their youth and current health.
+    register: casual
+    setting: reflective
+    nuance: This is a nostalgic use of 「ものだ」, recalling a past state of being. The 「だが」 adds a contrasting
+      element to the present. The use of 「健康だったものだ」 evokes a feeling of 'I remember how healthy I used
+      to be'.
+    etymology: Combining the past tense with 「ものだ」 specifically highlights a state or habit that existed
+      in the past but no longer does, evoking nostalgia.
+  - english: It's annoying when people don't keep their promises.
+    japanese:
+      - 約束 を 守ら ない 人 は、本当 に 困る {もの} だ。
+      - 約束 を 守ら ない 人 は、本当 に 困る {もの} です。
+      - 約束 を 守ら ない 人 は、本当 に 困る {もん だ}。
+    english_literally: Promise not keep people, truly troublesome thing it is.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 を 守ら ない 人 は、本当 に 困る。
+        english: It's truly annoying when people don't keep their promises.
+        hint: The plain statement conveys annoyance, but 「ものだ」 adds the nuance that this is a generally
+          recognized and frustrating characteristic of such people, making it a common experience or an
+          inherent truth.
+      - competing_japanese:
+          - 約束 を 守ら ない 人 は、本当 に 困り ます。
+        english: It's truly annoying when people don't keep their promises (polite).
+        hint: Adding politeness, but still lacking the 'general truth' or 'common sense' emphasis that
+          「ものだ」 provides.
+    scene: Someone complaining to a friend about unreliable people.
+    register: casual
+    setting: friendly
+    nuance: Here, 「困るものだ」 expresses a general truth about a common frustrating experience. It suggests
+      that it's a 'natural consequence' or 'expected reaction' to find such people bothersome.
+    etymology: This usage signifies that certain behaviors inherently lead to certain consequences or
+      feelings, aligning with 「もの」 as expressing a natural or unavoidable outcome.
+post_example_writeup: As you can see from the examples, the core function of 「もの」 is to treat a concept
+  or a clause as a 'thing' or 'matter'. This allows it to express a range of nuances from straightforward
+  nominalization (as in "unknown things") to expressing general truths, gentle advice, or even deep emotional
+  reflection. Pay close attention to the context and the preceding verb or adjective form to grasp the
+  specific nuance intended. Remember that the nostalgic use of 「〜たものだ」 and the emotional emphasis with
+  「〜ものですね」 are particularly common and distinctive.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%82%E3%81%AE

@@ -1,0 +1,248 @@
+grammar_point: も~ば (even if... is enough)
+learn_before:
+  - とあれば (if emphatic)
+meaning: If ~ at least; if ~ as much/many as ~, it will be enough to; be enough to/for
+pronunciation:
+  katakana: モ バ
+  romaji: mo ba
+formation:
+  '[Quantity] + も + Verb (conditional ば-form)': Indicates that the given quantity is sufficient for the
+    action.
+jlpt: N3
+etymology: The particle 「も」 adds emphasis to the quantity, highlighting that even that much is enough.
+  The conditional 「ば」 form sets up the condition under which the sufficiency applies.
+writeup: |-
+  The grammar point 「も~ば」 indicates that a certain amount of something is sufficient to achieve a particular outcome. It combines 「も」, which emphasizes the quantity, with the conditional 「ば」 form of a verb to express that "if there is as much as X, then Y will be sufficient/possible."
+
+  It is often used with numbers and counters to specify a quantity. For example, 「３日もあれば」 means "if there are as many as 3 days."
+
+  This expression often carries a nuance of contentment or ease, suggesting that the specified amount, even if small, is perfectly adequate. The level of formality can vary based on the verb and overall sentence structure, making it a versatile expression for conveying adequacy.
+false_friends:
+  - term: さえ〜ば
+    meaning: only if; provided that; as long as
+    kind: similar expression
+    nuance: Unlike 「も~ば」 which emphasizes that "even this much is sufficient", 「さえ〜ば」 emphasizes that
+      "only this much is necessary" or "provided that". While both convey sufficiency, 「さえ〜ば」 focuses
+      on the minimum required condition, often implying nothing else is needed. 「も~ば」 highlights the extent
+      of what is available and that it is enough.
+    grammar_point: さえ〜ば (if only; as long as)
+  - term: しかない
+    meaning: Have no choice but, Only, Just
+    kind: similar expression
+    nuance: While 「も~ば」 emphasizes that a certain amount is sufficient for a positive outcome, 「しかない」
+      implies a lack of alternatives or a restriction, meaning "there is only this (option), so I must
+      do it." It highlights limitation, often with a resigned or reluctant tone.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: だけ
+    meaning: Only, Just
+    kind: similar expression
+    nuance: 「も~ば」 indicates that a quantity is sufficient, often with a positive or neutral connotation
+      of adequacy. 「だけ」 simply states a limitation or exclusivity without necessarily implying sufficiency
+      or necessity, just that something is restricted to a certain extent or amount.
+    grammar_point: だけ (only・just)
+  - term: のみ
+    meaning: Only・just・nothing but
+    kind: similar expression
+    nuance: Similar to 「だけ」, 「のみ」 is a more formal or literary way to express exclusivity or limitation.
+      It states that something is restricted to "just this," while 「も~ば」 expresses that "even this much
+      is sufficient" for a given purpose.
+    grammar_point: のみ (only・just)
+  - term: にすぎない
+    meaning: No more than, just, merely
+    kind: similar expression
+    nuance: 「も~ば」 suggests a quantity is sufficient for a desired outcome, often implying adequacy. In
+      contrast, 「にすぎない」 emphasizes that something is merely a certain level or quantity, often implying
+      it is insufficient, insignificant, or not as impressive as it might seem.
+    grammar_point: にすぎない (no more than)
+post_false_friends_writeup: The key distinction among these expressions lies in the speaker's emphasis
+  and nuance. 「も~ば」 highlights sufficiency—that a given amount or condition is enough, often leading to
+  a desired outcome. 「さえ~ば」 points to the minimum necessary condition for something to happen, implying
+  that if only this one condition is met, everything else will fall into place. Meanwhile, 「しかない」, 「だけ」,
+  and 「のみ」 (the latter being more formal than the first two) all convey limitation or exclusivity. 「しかない」
+  often carries a sense of resignation or lack of choice, while 「だけ」 and 「のみ」 simply state that something
+  is restricted to a certain quantity or condition. 「にすぎない」 goes further to imply insignificance or that
+  something is 'merely' what it is, contrasting with 「も~ば」's positive assessment of sufficiency.
+examples:
+  - english: If there are as many as three days, I can make travel plans.
+    japanese:
+      - ３ 日 {も あれ ば}、旅行 の 計画 を 立て られ ます。
+      - ３ 日 {も あれ ば}、旅行 の 計画 を 立て られる。
+      - ３ 日 {も あれ ば}、旅行 計画 が 立て られ ます。
+    english_literally: If there are even three days, travel plans can be made.
+    competing_grammar:
+      - competing_japanese:
+          - ３ 日 {あれ ば}、旅行 の 計画 を 立て られ ます。
+        english: If there are three days, I can make travel plans.
+        hint: This phrase simply states a condition. We are looking for an expression that implies 'even
+          just three days' is enough.
+    scene: Someone planning a short trip.
+    register: formal
+    setting: informative
+    nuance: 「３日もあれば」 implies that three days is sufficient time to plan a trip. 「立てられます」 uses the potential
+      form, making it a statement of ability. The speaker is using fairly polite speech in the context
+      of informing or explaining.
+  - english: If I have as much as one week, I can read that book.
+    japanese:
+      - 一 週間 {も あれ ば}、その 本 を 読め ます。
+      - 一 週間 {も あれ ば}、その 本 が 読め ます。
+      - 一 週間 {も あれ ば}、その 本 を 読める。
+    english_literally: If there is even one week, that book can be read.
+    competing_grammar:
+      - competing_japanese:
+          - 一 週間 {あれ ば}、その 本 を 読め ます。
+        english: If I have one week, I can read that book.
+        hint: This phrase states a simple condition. We are looking for an expression that conveys 'even
+          one week' is enough.
+    scene: Responding to someone asking how long a book would take to read.
+    register: formal
+    setting: informative
+    nuance: 「一週間もあれば」 means even a week is enough. 「読めます」 uses the potential form, which indicates the
+      ability to read a book, in polite form.
+  - english: If I have this, and if I have that, I don't need anything else.
+    japanese:
+      - これ {も あれ ば}、あれ {も あれ ば}、他 に 何 も いら ない。
+      - これ {も あれ ば}、あれ {も あれ ば}、他 に 何 も いり ませ ん。
+      - これ {も あれ ば}、あれ {も あれ ば}、もう 他 に 必要 ない。
+    english_literally: If there is even this, if there is even that, nothing else is needed.
+    competing_grammar:
+      - competing_japanese:
+          - これ が {あれ ば}、あれ が {あれ ば}、他 に 何 も いら ない。
+        english: If I have this, if I have that, nothing else is needed.
+        hint: This version just lists conditions. We want to emphasize that 'even this' and 'even that'
+          are sufficient, implying contentment.
+    scene: Expressing contentment with simple things.
+    register: casual
+    setting: reflective
+    nuance: The repetition of 「もあれば」 emphasizes contentment, and the casual 「いらない」 shows familiarity.
+      The speaker is suggesting that these few items are enough to satisfy them.
+  - english: If I have a lot of money, I probably won't need to work.
+    japanese:
+      - 大金 {も あれ ば}、働く 必要 は ない だろう。
+      - 大金 {も あれ ば}、働く 必要 は ない でしょう。
+      - 大金 {も あれ ば}、仕事 する 必要 は ない だろう。
+    english_literally: If there is even a large sum of money, there will probably be no need to work.
+    competing_grammar:
+      - competing_japanese:
+          - 大金 が {あれ ば}、働く 必要 は ない だろう。
+        english: If I have a lot of money, I probably won't need to work.
+        hint: This sentence simply states a condition. We are looking for an expression that emphasizes
+          'even such a large sum' would be enough.
+    scene: Daydreaming about winning the lottery.
+    register: casual
+    setting: humorous
+    nuance: The daydreaming of 「大金」 (a large sum) emphasizes that *such a significant amount* would be
+      sufficient to avoid working, aligning with the grammar point's use of 「も」.
+  - english: If she had kindness and if she had money, she would probably be happier.
+    japanese:
+      - 優し さ {も あれ ば}、お 金 {も あれ ば}、彼女 は もっと 幸せ に なる だろう。
+      - 優し さ {も あれ ば}、お 金 {も あれ ば}、彼女 は もっと 幸せ に なる でしょう。
+      - 優し さ {も あれ ば}、お 金 {も あれ ば}、彼女 は もっと 幸福 に なる だろう。
+    english_literally: If there is even kindness, if there is even money, she will probably become happier.
+    competing_grammar:
+      - competing_japanese:
+          - 優し さ が {あれ ば}、お 金 が {あれ ば}、彼女 は もっと 幸せ に なる だろう。
+        english: If she had kindness, if she had money, she would probably be happier.
+        hint: This version states conditions without emphasis. We want to imply that 'even kindness' and
+          'even money' would be sufficient for happiness.
+    scene: Reflecting on someone's life circumstances.
+    register: formal
+    setting: sympathetic
+    nuance: The use of 「優しさもあれば、お金もあれば」 highlights the hypothetical presence of these qualities and how
+      they might positively impact her life. Using 「だろう」 indicates uncertainty.
+  - english: If he has even a little bit, he'll be satisfied.
+    japanese:
+      - 少し {も あれ ば}、彼 は 満足 する。
+      - 少し {も あれ ば}、彼 は 満足 し ます。
+      - 少し {も あれ ば}、彼 は 満足 する でしょう。
+    english_literally: If there is even a little, he will be satisfied.
+    competing_grammar:
+      - competing_japanese:
+          - 少し {あれ ば}、彼 は 満足 する。
+        english: If he has a little bit, he'll be satisfied.
+        hint: This phrase implies a simple condition. We are looking for an an expression that highlights
+          'even a little bit' is enough for satisfaction.
+    scene: Describing someone who is easily pleased.
+    register: semi-formal
+    setting: informative
+    nuance: 「少しもあれば」 emphasizes that even a small amount is sufficient for him to be happy. The implication
+      is that he does not need much to be happy.
+  - english: If you have love, and if you have wealth, what more could you want?
+    japanese:
+      - 愛 {も あれ ば}、富 {も あれ ば}、それ 以上 何 を 望む の？
+      - 愛 {も あれ ば}、富 {も あれ ば}、それ 以上 何 を 望み ます か？
+      - 愛 {も あれ ば}、富 {も あれ ば}、それ 以上 何 を 望む の です か？
+    english_literally: If there is even love, if there is even wealth, what more do you desire?
+    competing_grammar:
+      - competing_japanese:
+          - 愛 が {あれ ば}、富 が {あれ ば}、それ 以上 何 を 望む の？
+        english: If you have love, if you have wealth, what more could you want?
+        hint: This phrasing presents the conditions plainly. We are looking for an expression that rhetorically
+          asks 'even with these two great things, what else could you possibly want?'
+    scene: A rhetorical question about life's desires.
+    register: casual
+    setting: reflective
+    nuance: The sentence expresses a philosophical perspective that love and wealth should be enough.
+      「それ以上何を望むの」 has a feeling of casual wonder.
+  - english: If you have talent and if you have effort, it will surely go well.
+    japanese:
+      - 才能 {も あれ ば}、努力 {も あれ ば}、きっと うまく いく。
+      - 才能 {も あれ ば}、努力 {も あれ ば}、きっと うまく いき ます。
+      - 才能 {も あれ ば}、努力 {も あれ ば}、きっと 成功 する。
+    english_literally: If there is even talent, if there is even effort, it will surely go well.
+    competing_grammar:
+      - competing_japanese:
+          - 才能 が {あれ ば}、努力 が {あれ ば}、きっと うまく いく。
+        english: If you have talent, if you have effort, it will surely go well.
+        hint: This phrase lists conditions. We are looking for an expression that emphasizes 'even a combination
+          of talent and effort' is a strong guarantee for success.
+    scene: An encouraging statement about achieving goals.
+    register: formal
+    setting: inspirational
+    nuance: The encouraging tone emphasizes that *even the combination* of 「才能」 (talent) and 「努力」 (effort)
+      is a powerful enough guarantee for success, justifying the use of 「も」.
+  - english: For me, even just an email from her is enough to make me completely satisfied.
+    japanese:
+      - 俺 は、彼女 から の メール {も あれ ば}、十分 満足 だ。
+      - 俺 は、彼女 から の メール {も あれ ば}、十分 満足 です。
+      - 俺 は、彼女 から の メール {も あれ ば}、もう 十分 満足 だ。
+    english_literally: As for me, if there is even an email from her, it is completely satisfactory.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 は、彼女 から の メール が {あれ ば}、十分 満足 だ。
+        english: As for me, if there is an email from her, I am completely satisfied.
+        hint: This version states a simple condition. We are looking for an expression that emphasizes
+          how 'even just an email' can bring great satisfaction.
+    scene: A man confessing his simple feelings to a friend about the woman he likes.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「俺」 is a casual male pronoun. 「彼女からのメールもあれば」 expresses that even such a small gesture is sufficient
+      for his satisfaction, highlighting the depth of his feelings with 「も」. 「十分満足だ」 conveys complete
+      contentment.
+  - english: As for my homework, one more hour is enough for me to finish it.
+    japanese:
+      - 宿題 は、あと １ 時間 {も あれ ば}、終わる わ。
+      - 宿題 は、あと １ 時間 {も あれ ば}、終わる よ。
+      - 宿題 は、あと １ 時間 {も あれ ば}、終わり ます。
+    english_literally: As for homework, if there is even one more hour, it will finish.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 は、あと １ 時間 {あれ ば}、終わる わ。
+        english: As for my homework, if I have one more hour, I'll finish it.
+        hint: This version states a simple condition. We are looking for an expression that emphasizes
+          'even one more hour' is sufficient time.
+    scene: A female student confidently telling her friend about her homework progress.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「わ」 at the end is a common sentence-ending particle used by female speakers to
+      add a soft, affirming tone. 「１時間もあれば」 emphasizes that even a single hour is ample time to complete
+      the task.
+post_example_writeup: Understanding the subtle difference between simply stating a condition with 「あれば」
+  and emphasizing sufficiency or even a surprising amount with 「もあれば」 is crucial. The nuance added by
+  「も」 allows for expressions of contentment, ease, or even a rhetorical flourish, showing that the specified
+  quantity or condition is more than adequate.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/も~ば

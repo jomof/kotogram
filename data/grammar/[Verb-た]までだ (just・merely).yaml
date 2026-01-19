@@ -1,0 +1,224 @@
+grammar_point: '[Verb-た]までだ (just・merely)'
+learn_before:
+  - ほかに ほかには (other besides)
+meaning: Just, Merely, Simply, Only
+pronunciation:
+  katakana: タ マデ ダ
+  romaji: ta made da
+formation:
+  Verb[た形] + までだ: Indicates that an action is nothing more than what is stated, implying it is the minimum
+    or only action taken.
+jlpt: N2
+etymology: The expression combines the past tense form of a verb (た形) with まで (until/to the extent) and
+  だ (copula), literally meaning 'it is only to the extent of having done X'. This construction emphasizes
+  that the action (X) is the absolute limit or only thing that occurred, hence 'just' or 'merely'.
+writeup: |-
+  The grammar point 「〜までだ」 is used to convey that an action or state is simply that and nothing more. It sets a limit or defines the extent of an action, implying that there are no further implications, deeper meanings, or additional actions involved. It can be used to downplay the significance of an action, to state a simple fact without elaboration, or to convey a sense of resignation or lack of alternative.
+
+  This expression is often found in situations where the speaker wants to emphasize that their action was minimal, sufficient, or purely functional, without any extra effort or hidden agenda. It can sometimes be perceived as a humble way of stating something, or as a way to avoid taking further responsibility or expressing stronger emotions.
+false_friends:
+  - term: だけ (only・just)
+    meaning: Only, just
+    kind: similar expression
+    nuance: 「だけ」 is a more general limiter, indicating 'only' or 'just' in a broader sense. 「〜までだ」 specifically
+      implies that the action mentioned is the *extent* of what was done, often with a nuance of resignation
+      or simplicity. 「だけ」 can apply to quantities, actions, or states without the same emphasis on the
+      action being the final or sole recourse.
+    grammar_point: だけ (only・just)
+  - term: しかない (no other option)
+    meaning: Have no choice but, only, just
+    kind: similar expression
+    nuance: While both indicate 'only', 「しかない」 expresses a lack of choice or an inevitability, implying
+      'there is no other option but to do X'. 「〜までだ」, on the other hand, means 'it was merely X', suggesting
+      that X was the simple, minimal, or sufficient action taken, not necessarily the only one possible
+      due to external constraints.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: でしかない (merely・nothing but)
+    meaning: Merely, nothing but, no more than
+    kind: similar expression
+    nuance: 「でしかない」 states that something is 'nothing more than' or 'merely' a certain thing, often devaluing
+      or limiting its importance. 「〜までだ」 focuses on the action itself being the sole or maximum extent,
+      rather than categorizing or devaluing the noun or concept.
+    grammar_point: でしかない (merely・nothing but)
+post_false_friends_writeup: When distinguishing between these similar expressions, remember that 「〜までだ」
+  typically follows a past tense verb and emphasizes that the action itself is the limited or sole extent
+  of what happened. It doesn't necessarily imply a lack of choice or a devaluation of a noun, but rather
+  defines the boundary of an action.
+examples:
+  - english: I just told him the truth, nothing more.
+    japanese:
+      - 彼 に は 事実 を {話し た まで だ}。
+      - 彼 に は 事実 を {話し た まで です}。
+    english_literally: To him, the truth was told, only to that extent.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に は 事実 を 話し た だけ だ。
+        english: I only told him the truth.
+        hint: 「だけだ」 can also mean 'only', but 「〜までだ」 specifically emphasizes that the action was the simple
+          or sole thing done, with no deeper intention. We're looking for the nuance of 'nothing more
+          than'.
+    scene: You are explaining your actions to a friend, downplaying any deeper involvement.
+    register: casual
+    setting: friendly
+  - english: I just asked a question, it's not a big deal.
+    japanese:
+      - 質問 を {し た まで だ}。大した こと で は ない。
+      - 質問 を {し た まで です}。大した こと で は ござい ませ ん。
+    english_literally: A question was asked, only to that extent. It's not a big deal.
+    competing_grammar:
+      - competing_japanese:
+          - 質問 する しか ない。
+        english: I have no choice but to ask a question.
+        hint: 「しかない」 implies inevitability or lack of choice. Here, the speaker is simply stating the
+          action's limited scope, not that it was their only option. We're looking for an expression that
+          suggests 'merely' or 'just this action'.
+    scene: Someone seems to be overreacting to your simple question.
+    register: casual
+    setting: serious
+  - english: I only tried my best, that's all I could do.
+    japanese:
+      - 全力 を {尽くし た まで だ}。それ 以上 は でき なかっ た。
+      - 全力 を {尽くし た まで です}。それ 以上 は でき ませ ん でし た。
+    english_literally: My full effort was exerted, only to that extent. More than that was not possible.
+    competing_grammar:
+      - competing_japanese:
+          - 全力 を 尽くす しか なかっ た。
+        english: I had no choice but to do my best.
+        hint: 「しかない」 implies compulsion. This sentence emphasizes that doing one's best was the *extent*
+          of what was done, not that it was the only forced option. We're looking for a statement about
+          the limit of effort, not the obligation.
+    scene: You reflect on a past challenge where you gave your all.
+    register: formal
+    setting: reflective
+  - english: I merely wrote down what I saw, without adding anything extra.
+    japanese:
+      - 見 た こと を {書い た まで だ}。余計 な こと は 一切 加え て い ない。
+      - 見 た こと を {書い た まで です}。余計 な こと は 一切 加え て おり ませ ん。
+    english_literally: What I saw was written, only to that extent. Nothing extra was added at all.
+    competing_grammar:
+      - competing_japanese:
+          - 見 た こと しか 書か なかっ た。
+        english: I only wrote what I saw (and nothing else).
+        hint: While also meaning 'only', 「しか〜ない」 often has a sense of restriction. 「〜までだ」 here implies
+          that writing down what was seen was the *simple action* taken, without further embellishment
+          or deeper meaning. We're looking for a neutral statement of limitation.
+    scene: A detective questioning a witness who insists they only reported facts.
+    register: semi-formal
+    setting: informative
+  - english: I only gave a warning, I didn't intend to scare them.
+    japanese:
+      - 警告 を {与え た まで だ}。脅す つもり は なかっ た。
+      - 警告 を {与え た まで です}。脅す つもり は ござい ませ ん でし た。
+    english_literally: A warning was given, only to that extent. There was no intention to threaten.
+    competing_grammar:
+      - competing_japanese:
+          - 警告 を 与える だけ だ。
+        english: I only give a warning.
+        hint: While close, 「〜までだ」 here clarifies that the action of warning was the *full extent* of the
+          interaction, dispelling any notion of further, more severe intentions. We need to convey that
+          the action was *just* a warning.
+    scene: A supervisor explaining their actions after a difficult conversation with an employee.
+    register: formal
+    setting: professional
+  - english: I just returned what was borrowed. There's nothing special about it.
+    japanese:
+      - 借り た もの を {返し た まで だ}。特別 な こと で は ない。
+      - 借り た もの を {返し た まで です}。特別 な こと で は ござい ませ ん。
+    english_literally: What was borrowed was returned, only to that extent. It's not a special thing.
+    competing_grammar:
+      - competing_japanese:
+          - 借り た もの を 返す しか ない。
+        english: I have no choice but to return what I borrowed.
+        hint: 「しかない」 emphasizes necessity. Here, the speaker is stating that the action was a simple and
+          complete task, not a forced one. We're looking for a phrase that limits the action's significance
+          to 'just' the act itself.
+    scene: Someone thanks you excessively for a simple favor, and you respond humbly.
+    register: casual
+    setting: friendly
+  - english: He simply observed the situation, without interfering.
+    japanese:
+      - 彼 は 状況 を {観察 し た まで だ}。干渉 は し なかっ た。
+      - 彼 は 状況 を {観察 し た まで です}。干渉 は し ませ ん でし た。
+    english_literally: He observed the situation, only to that extent. He did not interfere.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 状況 を 観察 する だけ だっ た。
+        english: He only observed the situation.
+        hint: While close, 「〜までだ」 suggests that observing was the *limit* of his action, implying a conscious
+          decision to do no more. We're looking for the nuance that the action was contained within this
+          scope.
+    scene: Discussing someone's passive role in a group activity.
+    register: formal
+    setting: informative
+  - english: I just delivered the message, the rest is up to them.
+    japanese:
+      - メッセージ を {伝え た まで だ}。後 は 彼 ら 次第 だ。
+      - メッセージ を {伝え た まで です}。後 は 彼 ら 次第 です。
+    english_literally: The message was conveyed, only to that extent. The rest is up to them.
+    competing_grammar:
+      - competing_japanese:
+          - メッセージ を 伝える しか なかっ た。
+        english: I had no choice but to convey the message.
+        hint: The focus here is on the speaker's limited responsibility, not on a lack of options. We
+          need to express that the action was *merely* conveying the message, nothing beyond that.
+    scene: You've passed on information and now consider your role complete.
+    register: semi-formal
+    setting: professional
+  - english: I only said what was on my mind, no hidden meaning.
+    japanese:
+      - 思っ た こと を {言っ た まで だ}。他意 は ない。
+      - 思っ た こと を {言っ た まで です}。他意 は ござい ませ ん。
+    english_literally: What I thought was said, only to that extent. There's no other intention.
+    competing_grammar:
+      - competing_japanese:
+          - 思っ た こと だけ 言っ た。
+        english: I only said what I thought.
+        hint: 「だけ」 is general 'only'. 「〜までだ」 explicitly states that 'what I thought' was the *full extent*
+          of the utterance, ensuring no misinterpretation of additional meaning. We're looking for emphasis
+          on the limitation of the spoken words.
+    scene: Clarifying a statement that might have been misinterpreted as having a hidden agenda.
+    register: casual
+    setting: serious
+    nuance: The use of 「言ったまでだ」 (itta made da) emphasizes that the speaker's words were *just* their thoughts,
+      nothing more, conveying sincerity and disavowing any ulterior motives. This casual expression is
+      typical in situations where one wants to be direct without implying deeper intent, and can be used
+      by both genders.
+  - english: She just arrived on time, nothing special about it.
+    japanese:
+      - 彼女 は 時間 に {来 た まで だ}。特に すごい こと じゃ ない。
+      - 彼女 は 時間 に {来 た まで です}。特に すごい こと で は あり ませ ん。
+    english_literally: She came on time, only to that extent. It's not particularly amazing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 時間 に 来る しか ない。
+        english: She has no choice but to come on time.
+        hint: 「しかない」 implies obligation. Here, the focus is on the action being simply 'on time', not
+          a forced action. We're looking for an expression that downplays the action's significance.
+    scene: Someone praises her for being on time, but you find it unremarkable.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「来たまでだ」 (kita made da) implies that her punctuality was a simple action, without any outstanding
+      merit. A male speaker might use this casually to temper an overly enthusiastic compliment, suggesting
+      it's merely the expected. This casual tone is suitable for friendly interaction.
+  - english: I just followed the instructions, that's all.
+    japanese:
+      - 指示 に {従っ た まで だ}。他 に は 何 も し て い ない。
+      - 指示 に {従っ た まで です}。他 に は 何 も し て おり ませ ん。
+    english_literally: The instructions were followed, only to that extent. Nothing else was done.
+    competing_grammar:
+      - competing_japanese:
+          - 指示 に 従う だけ だ。
+        english: I only follow the instructions.
+        hint: The use of 「〜までだ」 here stresses that following instructions was the *entirety* of the action,
+          excluding any personal initiative or additional steps. We need to convey a simple, completed
+          action without broader implications.
+    scene: A new employee explains their work process, emphasizing compliance rather than creativity.
+    register: formal
+    setting: professional
+post_example_writeup: The versatility of 「〜までだ」 lies in its ability to limit the scope of a verb. While
+  it often appears with a neutral or resigned tone, the specific nuance can shift based on context, from
+  simply stating a fact to humbly downplaying an action or even deflecting responsibility.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/までだ

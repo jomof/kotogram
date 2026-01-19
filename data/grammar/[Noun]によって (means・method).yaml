@@ -1,0 +1,281 @@
+grammar_point: '[Noun]によって (means・method)'
+learn_before:
+  - '[Noun]によって (cause・reason)'
+meaning: By means of
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: によって
+    rarity: common
+    meaning: By means of
+  - conjugation-type: dictionary (plain non-past)
+    form: による
+    rarity: common
+    meaning: By means of (attributive)
+  - conjugation-type: te-form (～て)
+    form: により
+    rarity: common
+    meaning: By means of (formal)
+pronunciation:
+  katakana: ニヨッテ・ニヨル
+  romaji: ni yotte / ni yoru
+formation:
+  Noun + によって / により / よる: Indicates the means or agent by which an action is performed.
+jlpt: N3
+etymology: The expressions 「によって」, 「による」, and 「により」 all stem from the verb 「よる」, which encompasses meanings
+  like 'to be based on,' 'to come from,' or 'to approach.' The particle 「に」 indicates the base or origin.
+  In the context of 'means/method,' this implies that an action or state originates 'by means of' or 'from'
+  a specific agent or tool. The various kanji for よし (拠る, 因る, 依る, 由る) reflect the broader semantic scope
+  of the root verb, including its role in indicating a source or instrument.
+writeup: |-
+  The grammar point 「によって・による」 is used to indicate the means, method, or agent by which an action is carried out. While 「によって」, 「による」, and 「により」 are variations derived from the verb 「よる」, their usage differs slightly in terms of grammatical function and formality when expressing means or agency.
+
+  *   **によって**: This form typically functions adverbially, connecting a preceding noun (the means, method, or agent) to the following clause. It is frequently followed by a comma, acting as a connective element between the means/agent and the action. It often translates to 'by means of,' 'through,' or 'by (agent).'
+
+  *   **による**: This form primarily functions as an attributive, modifying a noun that follows it. It specifies that the subsequent noun is defined or achieved by the preceding noun acting as a means or agent. It often translates to 'by,' 'through,' or 'resulting from (as a means).'
+
+  *   **により**: This is a more formal and somewhat literary variant, functioning similarly to 「によって」 as a connective. It often implies the means or agent and is commonly found in written documents, formal speeches, or official texts. It can translate as 'by' or 'by means of.'
+
+  These forms are widely used in general contexts and are standard in register. Mastery involves understanding their specific grammatical roles in a sentence and the subtle differences in formality and emphasis when indicating means or agency.
+false_friends:
+  - term: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+    meaning: For the purpose of, in order to
+    kind: similar expression
+    nuance: While によって specifies the means or agent used to perform an action, ために (for the purpose of)
+      focuses on the direct objective or intention behind the action.
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: によると・によれば (according to)
+    meaning: According to (a source)
+    kind: often confused with
+    nuance: Unlike によって (means/method), によると・によれば specifically indicates that information is sourced from
+      something or someone, not the means by which an action is performed.
+    grammar_point: によると・によれば (according to)
+  - term: で (by means of・method)
+    meaning: By, with (means, instrument)
+    kind: often confused with
+    nuance: While で generally marks a simple, direct means or tool, によって emphasizes a more significant,
+      formal, or indirect means, or the agent of a passive action. によって often implies a more abstract
+      or complex method, or a broader impact.
+    grammar_point: で (means・method)
+  - term: にもとづいて (based on)
+    meaning: Based on, in accordance with
+    kind: similar expression
+    nuance: While にもとづいて signifies performing an action 'based on' foundational principles, facts, or
+      rules, によって refers to the direct instrument, method, or agent by which an action is carried out.
+    grammar_point: にもとづいて (based on)
+  - term: '[Noun]によって (cause・reason)'
+    meaning: Due to, because of
+    kind: similar expression
+    nuance: This usage of によって indicates the direct cause or reason for an event or situation, focusing
+      on causality rather than the means or agent of an action.
+    grammar_point: '[Noun]によって (cause・reason)'
+  - term: '[Noun]によっては (depending on)'
+    meaning: Depending on (variability)
+    kind: similar expression
+    nuance: This usage emphasizes variability or conditional outcomes based on different circumstances
+      or individuals, focusing on contingency rather than the means by which something is done.
+    grammar_point: '[Noun]によっては (depending on)'
+post_false_friends_writeup: 'To effectively distinguish between these expressions, consider the precise
+  relationship you wish to convey. Use 「によって」 (means/method) when the preceding noun is the method, instrument,
+  or agent for an action. For simple tools, `で` is often sufficient. If you are stating the purpose of
+  an action, `ために` is more appropriate. For citing information sources, `によると・によれば` is used. When an action
+  follows a foundation of rules or facts, `にもとづいて` is suitable. Importantly, differentiate this usage
+  of 「によって」 from its other common meanings: when it indicates the cause or reason for an event, or when
+  「によっては」 signifies variability or dependency based on different circumstances.'
+examples:
+  - english: This paper was written by a young researcher.
+    japanese:
+      - この 論文 は、若い 研究 者 {に よっ て} 書か れ た。
+      - この 論文 は、若い 研究 者 {に よっ て} 書か れ まし た。
+      - この 論文 は、若い 研究 者 {に より} 書か れ た。
+      - この 論文 は、若い 研究 者 {に より} 書か れ まし た。
+    english_literally: This paper, by young researcher, was written.
+    competing_grammar:
+      - competing_japanese:
+          - この 論文 は、若い 研究 者 {に} 書か れ た。
+        english: This paper was written by a young researcher.
+        hint: While `に` is the general passive agent marker, `によって` emphasizes the specific, often notable,
+          agent or the means by which the action was performed. We're looking for an emphasis on the agent
+          here.
+    scene: A professor is introducing a new academic paper to their students.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「によって」 here clearly indicates the agent of the passive verb 「書かれた」 (kakareta), which is standard
+      in academic and formal writing.
+  - english: Through the Internet, information from all over the world can be obtained.
+    japanese:
+      - インターネット {に よっ て}、世界 中 の 情報 が 手 に 入る。
+      - インターネット {に よっ て}、世界 中 の 情報 が 手 に 入り ます。
+      - インターネット {に より}、世界 中 の 情報 が 手 に 入る。
+      - インターネット {に より}、世界 中 の 情報 が 手 に 入り ます。
+    english_literally: Internet by means of, world's information can be obtained.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット {で}、世界 中 の 情報 が 手 に 入る。
+        english: By means of the Internet, information from all over the world can be obtained.
+        hint: '`で` is a common particle for indicating means or tool. `によって` implies a more formal or
+          significant means, often with a broader impact or a specific process.'
+    scene: A high school teacher is giving a lecture on the benefits of modern technology.
+    register: formal
+    setting: instructional
+    conjugation: te-form (～て)
+    nuance: 「インターネットに よっ て」 highlights the Internet as the means through which one can access information.
+      This usage emphasizes the tool. Using 「に より」 makes the expression more formal, suitable for academic
+      or written contexts.
+  - english: Whether he was a student or not can be confirmed by his resume.
+    japanese:
+      - 彼 が 学生 だっ た か どう か は、履歴 書 {に よっ て} 確認 でき る。
+      - 彼 が 学生 だっ た か どう か は、履歴 書 {に よっ て} 確認 でき ます。
+      - 彼 が 学生 だっ た か どう か は、履歴 書 {に より} 確認 でき る。
+      - 彼 が 学生 だっ た か どう か は、履歴 書 {に より} 確認 でき ます。
+    english_literally: He student was or not, resume by, can confirm.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 学生 だっ た か どう か は、履歴 書 {で} 確認 でき る。
+        english: Whether he was a student or not can be confirmed by his resume.
+        hint: '`で` is a common particle to indicate the means or tool. `によって` emphasizes that the verification
+          process specifically relies on or uses the resume as its basis.'
+    scene: An HR manager is verifying an applicant's background.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「学生 だっ た か どう か は…に よっ て」 (gakusei datta ka dō ka wa…ni yotte) shows that confirmation relies
+      on the resume, implying the resume is the means for verification. Using 「に より」 makes the expression
+      more formal, typically used in official or written communications.
+  - english: Who becomes the leader will be decided based on the team's opinions.
+    japanese:
+      - 誰 が リーダー に なる か は、チーム の 意見 {に よっ て} 決まる。
+      - 誰 が リーダー に なる か は、チーム の 意見 {に よっ て} 決まり ます。
+      - 誰 が リーダー に なる か は、チーム の 意見 {に より} 決まる。
+      - 誰 が リーダー に なる か は、チーム の 意見 {に より} 決まり ます。
+    english_literally: Who leader becomes, team's opinions by, decided.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 が リーダー に なる か は、チーム の 意見 {に 基づい て} 決まる。
+        english: Who becomes the leader will be decided based on the team's opinions.
+        hint: '`に 基づい て` explicitly states that a decision or action is ''based on'' something. `によって`
+          signifies that the decision is determined *by* the team''s opinions, often implying agency or
+          cause.'
+    scene: A team discussing leadership roles.
+    register: semi-formal
+    setting: negotiating
+    conjugation: te-form (～て)
+    nuance: 「誰 が…か は…に よっ て 決まる」 (dare ga…ka wa…ni yotte kimaru) indicates that the choice of leader is
+      determined by the team's collective input. 「に より」 is a more formal alternative, suitable for official
+      or business discussions.
+  - english: This product is handmade.
+    japanese:
+      - この 製品 は 手 作業 {に よる} もの だ。
+      - この 製品 は 手 作業 {に よる} もの です。
+    english_literally: This product is handwork by means of thing.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は 手 作業 {で 作ら} れ た もの だ。
+        english: This product is something made by handwork.
+        hint: '`で作られる` indicates something is manufactured using a method. `による` is an attributive form
+          specifying what something is by means of.'
+    scene: A craftsman explaining their unique products at a market.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「手作業によるものだ」 (tesagyō ni yoru mono da) clearly defines the product as being made by hand, using
+      the attributive form 「による」 to specify the method of creation.
+  - english: The report was created using new software.
+    japanese:
+      - その 報告 書 は、新しい ソフトウェア {に よっ て} 作成 さ れ た。
+      - その 報告 書 は、新しい ソフトウェア {に よっ て} 作成 さ れ まし た。
+      - その 報告 書 は、新しい ソフトウェア {に より} 作成 さ れ た。
+      - その 報告 書 は、新しい ソフトウェア {に より} 作成 さ れ まし た。
+    english_literally: That report, new software by means of, created was.
+    competing_grammar:
+      - competing_japanese:
+          - その 報告 書 は、新しい ソフトウェア {で} 作成 さ れ た。
+        english: The report was created with new software.
+        hint: While `で` indicates a tool, `によって` emphasizes the software as the method or agent for the
+          report's creation in a more formal context.
+    scene: Colleagues discussing a project deliverable.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: 「新しいソフトウェアによって作成された」 (atarashii sofutouea ni yotte sakusei sareta) highlights the specific
+      software as the means of creation. 「により」 adds further formality.
+  - english: They resolved the problem through discussion.
+    japanese:
+      - 彼 ら は 話し合い {に よっ て} 問題 を 解決 し た。
+      - 彼 ら は 話し合い {に よっ て} 問題 を 解決 し まし た。
+      - 彼 ら は 話し合い {に より} 問題 を 解決 し た。
+      - 彼 ら は 話し合い {に より} 問題 を 解決 し まし た。
+    english_literally: They discussion by means of problem solved.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 話し合い {で} 問題 を 解決 し た。
+        english: They resolved the problem with discussion.
+        hint: '`で` can indicate means, but `によって` emphasizes a more involved process or method, such as
+          a negotiation or collaboration.'
+    scene: A team reflecting on a past challenge.
+    register: semi-formal
+    setting: reflective
+    conjugation: te-form (～て)
+    nuance: 「話し合いによって解決した」 (hanashiai ni yotte kaiketsu shita) emphasizes discussion as the specific method
+      used to solve the problem. 「により」 can be used for a slightly more formal tone.
+  - english: The door was opened by the wind.
+    japanese:
+      - ドア は 風 {に よっ て} 開い た。
+      - ドア は 風 {に よっ て} 開き まし た。
+      - ドア は 風 {に より} 開い た。
+      - ドア は 風 {に より} 開き まし た。
+    english_literally: Door wind by, opened.
+    competing_grammar:
+      - competing_japanese:
+          - ドア は 風 {で} 開い た。
+        english: The door opened because of the wind.
+        hint: While `で` can indicate cause, `によって` is specifically used to mark the agent in a passive
+          construction, even if it's a natural phenomenon like wind.
+    scene: Someone observing a sudden gust of wind opening a door.
+    register: casual
+    setting: reflective
+    conjugation: te-form (～て)
+    nuance: 「風によって開いた」 (kaze ni yotte aita) uses `によって` to clearly state the wind as the agent of the
+      action, which is a common usage for natural forces in passive sentences.
+  - english: This machine is operated by electricity.
+    japanese:
+      - この 機械 は 電気 {に よっ て} 動く。
+      - この 機械 は 電気 {に よっ て} 動き ます。
+      - この 機械 は 電気 {に より} 動く。
+      - この 機械 は 電気 {に より} 動き ます。
+    english_literally: This machine electricity by, moves.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は 電気 {で} 動く。
+        english: This machine moves with electricity.
+        hint: '`で` indicates the power source as a simple means. `によって` specifies electricity as the active
+          principle or fundamental means of operation for the machine.'
+    scene: An engineer explaining the power source of a device.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「電気によって動く」 (denki ni yotte ugoku) clarifies that electricity is the means by which the machine
+      functions. Using 「により」 makes the explanation more technical and formal.
+  - english: The project's success was due to the efforts of all members.
+    japanese:
+      - その プロジェクト の 成功 は、メンバー 全員 の 努力 {に よる} もの だ。
+      - その プロジェクト の 成功 は、メンバー 全員 の 努力 {に よる} もの です。
+    english_literally: That project's success, members all's effort by means of thing.
+    competing_grammar:
+      - competing_japanese:
+          - その プロジェクト の 成功 は、メンバー 全員 の 努力 {の おかげ} だ。
+        english: The project's success is thanks to the efforts of all members.
+        hint: '`のおかげ` implies gratitude and positive outcome due to someone''s help. `による` more neutrally
+          attributes the success to the efforts as its means or origin.'
+    scene: A team leader presenting project results.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「メンバー全員の努力によるものだ」 (menbā zen'in no doryoku ni yoru mono da) uses the attributive 「による」 to
+      state that the success is a direct result of or is attributed to the collective effort. This phrasing
+      is common in formal reporting.
+post_example_writeup: As you can see from these examples, 「によって」, 「による」, and 「により」 are quite flexible
+  in expressing means or agency. Remember to choose the correct form based on whether you need an adverbial
+  connector, an attributive modifier, or a predicate, and adjust for formality. Pay close attention to
+  the context and the nuance you wish to convey, especially when choosing between 「によって」 and the more
+  formal 「により」, or when 「に よる」 acts as a predicate.

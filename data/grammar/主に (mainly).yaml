@@ -1,0 +1,216 @@
+grammar_point: 主に (mainly)
+learn_before:
+  - 〜によるものだ (is due to)
+  - かたわら (while doing something else)
+  - 面 (aspect)
+meaning: mainly・primarily・principally
+pronunciation:
+  katakana: オモに
+  romaji: omoni
+formation:
+  主に + Verb: To mainly perform an action.
+  主に + Noun: Indicates that something is principally a certain noun (e.g., 'mainly Italian food').
+  主に + Clause: Explains that the primary reason or focus of a clause is as stated.
+jlpt: N3
+etymology: 「主に (omoni)」is derived from the noun 「主 (omo)」, meaning "main" or "principal," combined with
+  the particle 「に (ni)」. The word 「主」 originally referred to a "lord" or "master," and later evolved to
+  denote the "main" or "chief" aspect of something. The addition of 「に」 functions to adverbialize 「主」,
+  emphasizing the state of being "principally" or "mainly" so.
+writeup: |-
+  「主に (omoni)」is an adverb used to indicate that something is the main, primary, or principal element, reason, or focus. It highlights the most significant aspect, but it does not exclude the existence of other, less significant aspects. This implies a strong predominance rather than absolute exclusivity. For example, if you say a company "mainly produces cars," it suggests that while cars are their primary product, they might also produce other things in smaller quantities.
+
+  This nuance of "predominance but not exclusivity" is crucial for understanding its proper usage. 「主に」is versatile and can modify verbs, adjectives, or entire clauses, making it a flexible tool in Japanese. It is frequently employed in descriptive contexts, reports, and explanations to emphasize the core characteristic or activity. While common in more formal or informative speech and writing, it can also appear in casual conversation.
+false_friends:
+  - term: もっぱら
+    meaning: exclusively・solely
+    kind: similar expression
+    nuance: Unlike 「主に」, 「もっぱら」implies exclusivity or single-mindedness. If something is 「もっぱら」a certain
+      way, it means there are no other significant factors or activities.
+    grammar_point: <suggest>:もっぱら (exclusively)
+  - term: だけ
+    meaning: only・just
+    kind: similar expression
+    nuance: 「だけ」acts as an absolute limiter, meaning "nothing but" or "solely." In contrast, 「主に」implies
+      a main component but allows for other, less significant, elements.
+    grammar_point: だけ (only・just)
+  - term: ほとんど
+    meaning: almost all・hardly any
+    kind: similar expression
+    nuance: 「ほとんど」quantifies, focusing on "almost all" or "nearly none" (when used with a negative). 「主に」,
+      on the other hand, indicates the *primary* aspect or focus, which might be a majority but isn't
+      necessarily a precise "almost all." 「ほとんど」can express a near-zero quantity, a usage not applicable
+      to 「主に」.
+    grammar_point: ほとんど (almost all or hardly any)
+post_false_friends_writeup: When distinguishing between 「主に」, 「もっぱら」, 「だけ」, and 「ほとんど」, consider the degree
+  of exclusivity and the type of emphasis you wish to convey. 「主に」highlights the *main* or *primary* element,
+  allowing for other minor elements to exist. 「もっぱら」 signifies that an action or state is done *exclusively*
+  or *solely*, leaving virtually no room for other factors or activities. 「だけ」 functions as an absolute
+  limiter, conveying "only that and nothing else." 「ほとんど」 is used for quantification, meaning "almost
+  all" or, when paired with a negative verb, "hardly any," focusing on the quantity or degree rather than
+  the primary characteristic. Choose 「主に」when you want to indicate something is the primary thing among
+  several, 「もっぱら」or 「だけ」if it's the *only* thing, and 「ほとんど」if it's *almost all* of something.
+examples:
+  - english: This restaurant mainly serves Italian food.
+    japanese:
+      - この レストラン は {主に} イタリア 料理 を 出し て い ます。
+      - この レストラン は {主に} イタリア 料理 を 出し て いる。
+      - この レストラン は {主に} イタリア 料理 を 提供 し て い ます。
+    english_literally: This restaurant, as for, mainly Italian food puts out.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は もっぱら イタリア 料理 を 出し て い ます。
+        english: This restaurant exclusively serves Italian food.
+        hint: The nuance is 'exclusively' or 'solely', implying no other significant food types are served.
+          We're looking for 'mainly', suggesting a primary focus but not absolute exclusion.
+      - competing_japanese:
+          - この レストラン は イタリア 料理 だけ を 出し て い ます。
+        english: This restaurant only serves Italian food.
+        hint: This emphasizes 'only' Italian food, making it the sole offering. We're looking for 'mainly',
+          indicating a primary focus but allowing for other minor options.
+    scene: A food critic is reviewing a new restaurant known for its diverse menu, but with a clear specialty.
+    register: formal
+    setting: informative
+  - english: My work mainly involves data analysis.
+    japanese:
+      - 私 の 仕事 は {主に} データ 分析 です。
+      - 私 の 仕事 は {主に} データ 分析 だ。
+      - 私 の 業務 は {主に} データ 分析 で ござい ます。
+    english_literally: My work, as for, mainly data analysis is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 仕事 は ほとんど データ 分析 です。
+        english: My work is almost entirely data analysis.
+        hint: This implies a quantitative aspect of 'almost all' of the work. We're looking for 'mainly'
+          to describe the primary *type* of work, rather than its proportion.
+    scene: A professional is explaining their job responsibilities during a casual networking event.
+    register: formal
+    setting: professional
+  - english: He mainly studies Japanese history.
+    japanese:
+      - 彼 は {主に} 日本 史 を 研究 し て い ます。
+      - 彼 は {主に} 日本 史 を 研究 し て いる。
+      - 彼 は {主に} 日本 史 を 勉強 し て いる。
+    english_literally: He, as for, mainly Japanese history is researching.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 史 だけ を 研究 し て い ます。
+        english: He only studies Japanese history.
+        hint: This implies his studies are exclusively Japanese history. We're looking for 'mainly', suggesting
+          his primary academic focus, not his sole interest.
+    scene: A university student is discussing their major and research interests with a friend.
+    register: casual
+    setting: academic
+    speaker_gender: female
+    nuance: The use of 「主に」here suggests that while Japanese history is his primary academic focus, he
+      might have other, less central, research interests or areas of study. It doesn't imply exclusivity
+      like 「だけ」would.
+  - english: The problem is mainly due to lack of communication.
+    japanese:
+      - その 問題 は {主に} コミュニケーション 不足 に よる もの です。
+      - その 問題 は {主に} コミュニケーション 不足 に よる もの だ。
+      - その 問題 は {主に} コミュニケーション 不足 から 来 て い ます。
+    english_literally: That problem, as for, mainly communication lack due to is.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は コミュニケーション 不足 だけ に よる もの です。
+        english: That problem is only due to lack of communication.
+        hint: This suggests a single, exclusive cause. We're looking for 'mainly', which allows for other
+          minor contributing factors.
+    scene: A team leader is presenting a post-mortem analysis of a project issue to their colleagues.
+    register: formal
+    setting: professional
+  - english: This type of fish mainly lives in cold waters.
+    japanese:
+      - この 種類 の 魚 は {主に} 冷たい 水域 に 生息 し て い ます。
+      - この 種類 の 魚 は {主に} 冷たい 水域 に 生息 し て いる。
+      - この 種類 の 魚 は {主に} 冷たい 水域 に 住ん で い ます。
+    english_literally: This type of fish, as for, mainly cold water areas in is inhabiting.
+    competing_grammar:
+      - competing_japanese:
+          - この 種類 の 魚 は ほとんど 冷たい 水域 に 生息 し て い ます。
+        english: This type of fish almost entirely lives in cold waters.
+        hint: This emphasizes the quantitative aspect of their habitat. We're looking for 'mainly' to
+          describe their primary or characteristic habitat.
+    scene: A marine biologist is giving a lecture on various fish species and their habitats.
+    register: formal
+    setting: academic
+  - english: This product is mainly not for children.
+    japanese:
+      - この 製品 は {主に} 子供 向け で は あり ませ ん。
+      - この 製品 は {主に} 子供 向け で は ない。
+    english_literally: This product, as for, mainly child oriented is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は 全然 子供 向け で は あり ませ ん。
+        english: This product is not for children at all.
+        hint: This implies a complete lack of suitability for children. We're looking for 'mainly not',
+          suggesting it's primarily for adults but might have some minor incidental use by children.
+    scene: A product manager is clarifying the target audience for a new educational toy.
+    register: formal
+    setting: informative
+  - english: The participants were mainly women.
+    japanese:
+      - 参加 者 は {主に} 女性 でし た。
+      - 参加 者 は {主に} 女性 だっ た。
+    english_literally: Participants, as for, mainly women were.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 は もっぱら 女性 でし た。
+        english: The participants were exclusively women.
+        hint: This implies that *only* women participated. We're looking for 'mainly', indicating a predominant
+          gender composition but allowing for other genders to be present.
+    scene: A researcher is reporting on the demographic breakdown of attendees at a recent workshop.
+    register: semi-formal
+    setting: informative
+  - english: I mainly go to the library to read books.
+    japanese:
+      - 私 は 図書 館 へ {主に} 本 を 読み に 行き ます。
+      - 私 は 図書 館 へ {主に} 本 を 読み に 行く。
+      - 私 は 図書 館 に は {主に} 本 を 読み に 行っ て ます。
+    english_literally: I, as for, library to, mainly, books to read go.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 図書 館 へ 本 を 読み に 行く だけ です。
+        english: I only go to the library to read books.
+        hint: This implies that reading books is the *sole* purpose of visiting the library. We're looking
+          for 'mainly', which suggests it's the primary reason but other minor reasons might exist.
+    scene: A student is explaining their habits to a new friend they met on campus.
+    register: casual
+    setting: friendly
+  - english: His motivation mainly comes from a desire for recognition.
+    japanese:
+      - 彼 の 動機 は {主に} 承認 欲求 から 来 て い ます。
+      - 彼 の 動機 は {主に} 承認 欲求 から 来 て いる。
+      - 彼 の 動機 は {主に} 承認 欲求 に 起因 し て い ます。
+    english_literally: His motivation, as for, mainly desire for recognition from is coming.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 動機 は 承認 欲求 だけ から 来 て い ます。
+        english: His motivation only comes from a desire for recognition.
+        hint: This suggests a single, exclusive source of motivation. We're looking for 'mainly', indicating
+          the primary driving force but allowing for other lesser influences.
+    scene: A psychologist is discussing a case study during a peer consultation.
+    register: formal
+    setting: serious
+  - english: The discussion mainly revolved around environmental issues, but also touched upon economic
+      aspects.
+    japanese:
+      - 議論 は {主に} 環境 問題 に つい て でし た が、経済 面 に も 触れ られ まし た。
+      - 議論 は {主に} 環境 問題 に つい て だっ た が、経済 面 に も 触れ られ た。
+      - 議論 は {主に} 環境 問題 に つい て でし た けど、経済 面 に も 触れ られ まし た。
+    english_literally: Discussion, as for, mainly environmental issues about was, but economic aspects
+      also were touched upon.
+    competing_grammar:
+      - competing_japanese:
+          - 議論 は 環境 問題 だけ に つい て でし た が、経済 面 に も 触れ られ まし た。
+        english: The discussion was only about environmental issues, but also touched upon economic aspects.
+        hint: This creates a contradiction, implying exclusivity while also mentioning other aspects.
+          We're looking for 'mainly', which accurately describes the primary focus with secondary points.
+    scene: A journalist is summarizing the key points of a recent international conference.
+    register: formal
+    setting: informative
+post_example_writeup: As these examples demonstrate, 「主に」is flexible and can be applied in various contexts
+  to highlight the primary element or aspect. It's particularly useful when you want to emphasize the
+  main point without entirely negating the existence of secondary factors.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E4%B8%BB%E3%81%AB

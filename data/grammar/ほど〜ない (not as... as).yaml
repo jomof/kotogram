@@ -1,0 +1,276 @@
+grammar_point: ほど〜ない (not as... as)
+learn_before:
+  - な-Adjectives (adjectival nouns)
+meaning: not as... as
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: ほど〜ない
+    rarity: common
+    meaning: not as... as (plain non-past)
+  - conjugation-type: negative non-past polite (～ません)
+    form: ほど〜ありません
+    rarity: common
+    meaning: not as... as (polite non-past)
+  - conjugation-type: negative past plain (～なかった)
+    form: ほど〜なかった
+    rarity: common
+    meaning: not as... as (plain past)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ほど〜ありませんでした
+    rarity: common
+    meaning: not as... as (polite past)
+pronunciation:
+  katakana: ホド〜ナイ
+  romaji: hodo ~ nai
+formation:
+  '[Noun] + ほど〜ない': Used to compare a noun with something else, indicating that the noun does not reach
+    the level or extent of that comparison.
+  '[Verb plain form] + ほど〜ない': Used when the comparison is based on an action or state described by a
+    verb.
+  '[い-Adjective plain form] + ほど〜ない': Used to negate a comparison involving an い-adjective, meaning 'not
+    as (adjective) as'.
+  '[な-Adjective plain form] + ほど〜ない': Used to negate a comparison involving a な-adjective, meaning 'not
+    as (adjective) as'.
+jlpt: N3
+etymology: The etymology of 「ほど〜ない」 is straightforward, combining the particle 「ほど」, which conveys 'degree'
+  or 'extent,' with the negative auxiliary verb 「ない」. This combination directly translates to 'not reaching
+  the extent of,' providing a natural linguistic foundation for expressing comparative negation. It highlights
+  a common pattern in Japanese where particles defining scope or degree are directly negated to express
+  a lack of that scope or degree.
+writeup: |-
+  The grammar pattern 「ほど〜ない」 is used to express that something is **not as... as** something else. It functions as a negative comparison, indicating that the first element does not reach the degree, quality, or extent of the second element. The comparison can involve nouns, verbs, い-adjectives, or な-adjectives.
+
+  This structure is versatile and can be applied in various contexts, from describing physical attributes to abstract qualities or actions. The element preceding 「ほど」 serves as the standard or benchmark against which the primary subject is being compared.
+
+  When using 「ほど〜ない」, the nuance often implies a slight disappointment or a perception that something falls short of a certain expectation. It's a fundamental way to express relative inadequacy or a difference in degree between two things or concepts.
+false_friends:
+  - term: より
+    meaning: more than
+    kind: similar expression
+    nuance: 「より」 directly states that one thing is superior or greater in some quality. In contrast, 「ほど〜ない」
+      expresses that something *does not reach* the level of another, focusing on the deficit rather than
+      the excess. For example, 「XはYより大きい」 (X is bigger than Y) versus 「XはYほど大きくない」 (X is not as big as
+      Y).
+    grammar_point: より (comparative)
+  - term: ほど
+    meaning: to the extent of; about
+    kind: similar expression
+    nuance: While 「ほど」 indicates a degree or extent, often implying a high degree or comparison, it does
+      so in an affirmative or neutral sense. 「ほど〜ない」 specifically adds the negation, meaning something
+      *does not* reach that indicated extent or degree. It's the positive counterpart to this negative
+      comparative structure.
+    grammar_point: ほど (extent・approximation)
+  - term: 〜というほどではない
+    meaning: not to the extent that...
+    kind: synonym
+    nuance: 「〜というほどではない」 is very similar in meaning, also stating that something does not reach a certain
+      implied or stated extent. It often carries a nuance of tempering an exaggeration or clarifying that
+      something isn't as significant as might be suggested. Both express a lack of degree or intensity.
+    grammar_point: <suggest>:というほどではない (not to the extent that)
+post_false_friends_writeup: While 「より」 allows for a direct statement of one thing being *more* than another,
+  「ほど〜ない」 focuses on one thing being *less* or *not as much* as another. When comparing with just 「ほど」,
+  remember that 「ほど」 sets a standard or degree, but doesn't inherently negate it. For a direct statement
+  that something is not reaching a certain level, 「ほど〜ない」 is the appropriate choice, often implying a
+  slight falling short of expectations.
+examples:
+  - english: It's not as cold as yesterday.
+    japanese:
+      - 昨日 {ほど} 寒く {ない}。
+      - 昨日 {ほど} 寒く {あり ませ ん}。
+    english_literally: Yesterday's extent, not cold.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 より 暖かい。
+        english: It's warmer than yesterday.
+        hint: This indicates relative warmth, but doesn't explicitly state it's 'not as cold as' a specific
+          degree. We're looking for a comparison with a negative outcome.
+      - competing_japanese:
+          - 全然 寒く ない。
+        english: It's not cold at all.
+        hint: This is an absolute negation, not a comparison to a previous day. We're looking for a comparison.
+    scene: Discussing the weather with a friend in the morning.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: He doesn't study as much as I do.
+    japanese:
+      - 彼 は 私 が 勉強 する {ほど} 勉強 し {ない}。
+      - 彼 は 私 が 勉強 する {ほど} 勉強 し {ませ ん}。
+    english_literally: He, I study to the extent, does not study.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 より 勉強 し ない。
+        english: He studies less than I do.
+        hint: This is a direct comparison of who studies less. 「ほど〜ない」 emphasizes not reaching a certain
+          *level* of study, implied by the speaker's own effort. We're looking for the sense of 'not as
+          much as'.
+      - competing_japanese:
+          - 彼 は 全く 勉強 し ない。
+        english: He doesn't study at all.
+        hint: This is an absolute statement, not a comparison. We're looking for a comparative negative.
+    scene: Two students discussing their friend's study habits after a test.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: This book is not as interesting as that movie.
+    japanese:
+      - この 本 は あの 映画 {ほど} 面白く {ない}。
+      - この 本 は あの 映画 {ほど} 面白く {あり ませ ん}。
+    english_literally: This book, that movie to the extent, not interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は あの 映画 より 面白く ない。
+        english: This book is less interesting than that movie.
+        hint: While similar, this emphasizes the book's inferiority. 「ほど〜ない」 specifically means 'not as
+          much as', emphasizing a failure to meet the standard set by the movie.
+    scene: Friends discussing entertainment options for the weekend.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: This problem isn't as simple as it looks.
+    japanese:
+      - この 問題 は 見 た 目 {ほど} 簡単 じゃ {ない}。
+      - この 問題 は 見 た 目 {ほど} 簡単 で は {ない}。
+      - この 問題 は 見 た 目 {ほど} 簡単 じゃ {あり ませ ん}。
+      - この 問題 は 見 た 目 {ほど} 簡単 で は {あり ませ ん}。
+    english_literally: This problem, appearance to the extent, not simple.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 見 た 目 より 難しい。
+        english: This problem is harder than it looks.
+        hint: This focuses on the problem's difficulty. We're looking for an expression that states it's
+          'not as simple as' expected.
+    scene: A student struggling with a math problem that initially seemed easy.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: The difficulty of the test wasn't as high as I had imagined.
+    japanese:
+      - テスト の 難し さ は 思っ て い た {ほど} 高く {なかっ た}。
+      - テスト の 難し さ は 思っ て い た {ほど} 高く {あり ませ ん でし た}。
+    english_literally: Test's difficulty, thought to the extent, not high (past).
+    competing_grammar:
+      - competing_japanese:
+          - テスト は 思っ た より 簡単 だっ た。
+        english: The test was easier than I thought.
+        hint: This focuses on the test being easy. We're looking for a statement about the difficulty
+          not reaching a certain level, rather than it being easy.
+    scene: Students reflecting on an exam they just finished.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+  - english: My Japanese isn't improving as quickly as I'd hoped.
+    japanese:
+      - 私 の 日本 語 は 期待 し た {ほど} 速く 上達 し {て い ない}。
+      - 私 の 日本 語 は 期待 し た {ほど} 速く 上達 し {て い ませ ん}。
+    english_literally: My Japanese, expected to the extent, not quickly improving.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 日本 語 は 期待 より 上達 が 遅い。
+        english: My Japanese improvement is slower than expected.
+        hint: This compares the speed of improvement directly. 「ほど〜ない」 emphasizes not reaching the hoped-for
+          speed of improvement.
+    scene: A language learner confiding in their tutor about their progress.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+  - english: This restaurant's food isn't as good as the reviews said.
+    japanese:
+      - この レストラン の 料理 は レビュー {ほど} 美味しく {ない}。
+      - この レストラン の 料理 は レビュー {ほど} 美味しく {あり ませ ん}。
+    english_literally: This restaurant's food, reviews to the extent, not delicious.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン の 料理 は レビュー より まずい。
+        english: This restaurant's food is worse than the reviews.
+        hint: This is a harsher judgment focusing on being 'worse'. We're looking for 'not as good as'
+          the reviews suggested.
+    scene: Friends dining out at a new restaurant, expressing their disappointment.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: This box isn't as heavy as it looks.
+    japanese:
+      - この 箱 は 見 た 目 {ほど} 重く {ない}。
+      - この 箱 は 見 た 目 {ほど} 重く {あり ませ ん}。
+    english_literally: This box, appearance to the extent, not heavy.
+    competing_grammar:
+      - competing_japanese:
+          - この 箱 は 見 た 目 より 軽い。
+        english: This box is lighter than it looks.
+        hint: This directly states it's lighter. 「ほど〜ない」 expresses that the weight doesn't reach the level
+          indicated by its appearance.
+    scene: Someone trying to lift a seemingly large box and realizing it's light.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: Learning a foreign language isn't as easy as people say.
+    japanese:
+      - 外国 語 を 学ぶ の は みんな が 言う {ほど} 簡単 {で は ない}。
+      - 外国 語 を 学ぶ の は みんな が 言う {ほど} 簡単 {じゃ ない}。
+      - 外国 語 を 学ぶ の は みんな が 言う {ほど} 簡単 で は {あり ませ ん}。
+      - 外国 語 を 学ぶ の は みんな が 言う {ほど} 簡単 じゃ {あり ませ ん}。
+    english_literally: Learning foreign language, everyone says to the extent, not simple.
+    competing_grammar:
+      - competing_japanese:
+          - 外国 語 を 学ぶ の は みんな が 言う より 難しい。
+        english: Learning a foreign language is harder than people say.
+        hint: This emphasizes the difficulty. 「ほど〜ない」 expresses that the ease does not reach the level
+          people claim.
+    scene: A language teacher explaining the challenges of language acquisition to new students.
+    register: formal
+    setting: academic
+    conjugation: negative plain (～ない)
+  - english: He's not as good at cooking as he is at eating.
+    japanese:
+      - 彼 は 食べる {ほど} 料理 が 上手 じゃ {ない}。
+      - 彼 は 食べる {ほど} 料理 が 上手 で は {ない}。
+      - 彼 は 食べる {ほど} 料理 が 上手 じゃ {あり ませ ん}。
+      - 彼 は 食べる {ほど} 料理 が 上手 で は {あり ませ ん}。
+    english_literally: He, eating to the extent, cooking not skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 食べる の は 上手 だ が 料理 は 下手 だ。
+        english: He is good at eating, but bad at cooking.
+        hint: This contrasts two skills. 「ほど〜ない」 directly compares the *degree* of skill in cooking relative
+          to eating.
+    scene: Friends playfully gossiping about a mutual acquaintance's habits.
+    register: casual
+    setting: humorous
+    conjugation: negative plain (～ない)
+  - english: The summer wasn't as hot as last year.
+    japanese:
+      - 今年 の 夏 は 去年 {ほど} 暑く {なかっ た}。
+      - 今年 の 夏 は 去年 {ほど} 暑く {あり ませ ん でし た}。
+    english_literally: This year's summer, last year to the extent, not hot (past).
+    competing_grammar:
+      - competing_japanese:
+          - 今年 の 夏 は 去年 より 涼しかっ た。
+        english: This summer was cooler than last year.
+        hint: This directly states it was cooler. We're looking for an expression that states the heat
+          didn't reach the level of last year.
+    scene: People discussing the weather after a mild summer.
+    register: casual
+    setting: informative
+    conjugation: negative past plain (～なかった)
+  - english: This report is not as detailed as necessary.
+    japanese:
+      - この 報告 書 は 必要 {ほど} 詳しく {あり ませ ん}。
+      - この 報告 書 は 必要 {ほど} 詳しく {ない}。
+    english_literally: This report, necessity to the extent, not detailed (polite).
+    competing_grammar:
+      - competing_japanese:
+          - この 報告 書 は 必要 より 詳細 で は ない。
+        english: This report is not more detailed than necessary.
+        hint: This implies it's not excessively detailed. We're looking for an expression that states
+          it *lacks* the necessary level of detail.
+    scene: A manager giving feedback on a submitted report.
+    register: formal
+    setting: professional
+    conjugation: negative non-past polite (～ません)
+post_example_writeup: As seen in the examples, the structure preceding 「ほど」 sets the reference point for
+  the comparison. The key takeaway is that the subject of the sentence does not reach the standard or
+  degree implied by this reference. This grammar point is highly versatile for expressing unmet expectations
+  or simply noting a quantitative or qualitative difference.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%BB%E3%81%A9%EF%BD%9E%E3%81%AA%E3%81%84

@@ -1,0 +1,314 @@
+grammar_point: 際に (at the time of・when・on the occasion of)
+learn_before:
+  - 変わる (to change)
+meaning: At the time of; on the occasion of; when; in the event of.
+pronunciation:
+  katakana: サイニ
+  romaji: sai ni
+formation:
+  Verb[dictionary form] + 際に: Used to indicate the time or occasion of an action.
+  Verb[た form] + 際に: Used to indicate a specific past occasion (less common).
+  Noun + の + 際に: Used to indicate the time or occasion of an event or situation.
+jlpt: N2
+etymology: The kanji 際 (サイ) fundamentally means “edge,” “border,” or “verge.” When used with the particle
+  に, forming 際に, it literally translates to “at the edge of” or “at the verge of.” Over time, this evolved
+  to denote a specific “occasion” or “juncture in time” rather than a prolonged period. This origin highlights
+  its use for definite, often significant, moments or events, contrasting with more general temporal expressions
+  like 時 (とき), which implies a broader time frame or duration. The word captures the essence of being
+  “on the cusp” of something happening or during a particular event.
+writeup: |-
+  際に is a Japanese grammar point primarily used to indicate a specific time, occasion, or juncture when something occurs. It can be translated as “at the time of,” “when,” or “on the occasion of.” Its nuance is more formal and specific than the general とき (時), making it frequently used in written Japanese, official documents, announcements, and formal speeches.
+
+  One of the key distinctions of 際に is that it points to a single, definite event or moment, rather than an ongoing period. It describes the timing of an action or event itself. For instance, you might use it for “when signing a contract” or “at the time of an emergency.”
+
+  **Common uses**:
+  *   **With verbs**: It connects to the dictionary form or た form of a verb.
+      *   Verb[dictionary form] + 際に: Used for actions that are about to happen or actions that are typical/general occurrences.
+      *   Verb[た form] + 際に: Less common, but can be used to refer to a specific past occasion.
+  *   **With nouns**: It connects with nouns using の + 際に.
+      *   Noun + の + 際に: Used to specify the event or situation that serves as the occasion.
+
+  **Important Considerations**:
+  *   **Formality**: 際に carries a higher degree of formality compared to とき or 場合. While とき can be used in almost any context, 際に elevates the formality, making it suitable for business, official, or public announcements.
+  *   **Specificity**: 際に emphasizes the exact point or occasion of an. It is not typically used for indefinite or vague periods.
+  *   **Context**: Often implies a sense of preparation or a specific procedure associated with the event. For example, ご質問の際に (at the time of asking a question) implies a dedicated period for questions.
+false_friends:
+  - term: とき (時)
+    meaning: when; at the time
+    kind: similar expression
+    nuance: とき is a general-purpose temporal noun that can be used in both formal and informal contexts.
+      It's much broader than 際に and can refer to a period of time, a specific moment, or a general situation.
+      際に is more formal and specifically refers to a single, definite occasion or juncture.
+    grammar_point: とき (when)
+  - term: 場合 (ばあい)
+    meaning: in the case of; if; when (a certain situation occurs)
+    kind: similar expression
+    nuance: 場合 emphasizes a conditional or hypothetical situation rather than a concrete point in time.
+      It sets a scenario, often for "if X happens, then Y." 際に refers to the actual occurrence of an event.
+    grammar_point: ばあいは (in the event of)
+  - term: 折に (おりに)
+    meaning: on the occasion of; when; at the opportunity
+    kind: similar expression
+    nuance: 折に is also formal and similar to 際に, but often carries a nuance of an opportune or suitable
+      moment, or a chance occurrence. It can sometimes imply a personal or more specific "chance" or "opportunity"
+      rather than just the "time" of an event. 際に is more neutral and procedural regarding the timing.
+    grammar_point: <suggest>:折に (on the occasion of・opportunity)
+post_false_friends_writeup: While 際に, とき, 場合, and 折に can all be translated as “when” or “at the time of”
+  in English, their nuances are crucial for proper usage. 際に is formal and precise, pointing to the exact
+  juncture of an event. とき is the most versatile and can refer to any time, including durations. 場合 is
+  used for conditional scenarios. 折に is formal like 際に but often implies an opportune moment or a specific,
+  perhaps personal, occasion. Choosing the right one depends on the level of formality, the specificity
+  of the timing, and whether a conditional or opportune nuance is intended.
+examples:
+  - english: Please bring identification when registering.
+    japanese:
+      - 登録 {する 際 に} は、身分 証明 書 を お 持ち ください。
+      - ご 登録 {の 際 に} は、身分 証明 書 を お 持ち ください。
+      - ご 登録 {なさる 際 に} は、身分 証明 書 を お 持ち ください。
+    english_literally: At the time of registering, please bring identification.
+    competing_grammar:
+      - competing_japanese:
+          - 登録 {する 時} は、身分 証明 書 を お 持ち ください。
+        english: When registering, please bring identification.
+        hint: 時 is a general term for 'when' and is less formal than 際に. We're looking for a formal term
+          often used in instructions.
+      - competing_japanese:
+          - 登録 {する 場合} は、身分 証明 書 を お 持ち ください。
+        english: In the case of registering, please bring identification.
+        hint: 場合 implies a conditional 'if' or 'in the case of' rather than a specific time or occasion.
+          We're looking for a term for 'at the time of'.
+    scene: An official at a counter providing instructions.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+  - english: Please stay calm in the event of a disaster.
+    japanese:
+      - 災害 {の 際 に} は、落ち着い て 行動 し て ください。
+      - 災害 が 発生 {し た 際 に} は、落ち着い て 行動 し て ください。
+      - 緊急 時 {の 際 に} は、落ち着い て 行動 し て ください。
+    english_literally: At the time of disaster, please act calmly.
+    competing_grammar:
+      - competing_japanese:
+          - 災害 {の 時} は、落ち着い て 行動 し て ください。
+        english: When there is a disaster, please act calmly.
+        hint: 時 is a general term and doesn't carry the same formal and specific nuance as 際に. We're looking
+          for 'in the event of'.
+      - competing_japanese:
+          - 災害 {の 場合} は、落ち着い て 行動 し て ください。
+        english: In the case of a disaster, please act calmly.
+        hint: 場合 focuses on the conditional 'in case of' rather than the direct 'at the time of'. We're
+          looking for a term that points to a specific occasion.
+    scene: A public service announcement.
+    register: formal
+    setting: instructional
+    listener_gender: group
+  - english: When I visited Japan last year, I went to Kyoto.
+    japanese:
+      - 昨年 日本 を 訪問 {し た 際 に}、京都 へ 行き まし た。
+      - 昨年 日本 を 訪れ {た 際 に}、京都 へ 行き まし た。
+    english_literally: Last year, at the time of visiting Japan, I went to Kyoto.
+    competing_grammar:
+      - competing_japanese:
+          - 昨年 日本 を 訪問 {し た 時}、京都 へ 行き まし た。
+        english: Last year, when I visited Japan, I went to Kyoto.
+        hint: 時 is more general and less formal. 際に is often used for significant or memorable occasions.
+      - competing_japanese:
+          - 昨年 日本 を 訪問 {し た 折 に}、京都 へ 行き まし た。
+        english: Last year, on the occasion of visiting Japan, I went to Kyoto.
+        hint: 折に is formal but can imply an opportune or chance encounter. 際に is more neutral about the
+          reason for the occasion.
+    scene: A person sharing their travel experiences.
+    register: semi-formal
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: group
+  - english: Please confirm the content before making a call.
+    japanese:
+      - お 電話 {かける 際 に}、内容 を ご 確認 ください。
+      - お 電話 {を お かけ する 際 に}、内容 を ご 確認 ください。
+    english_literally: At the time of making a call, please confirm the content.
+    competing_grammar:
+      - competing_japanese:
+          - お 電話 {かける 時} に、内容 を ご 確認 ください。
+        english: When making a call, please confirm the content.
+        hint: 時 is a more casual and general way to say 'when'. We're looking for a more formal and specific
+          'at the time of'.
+      - competing_japanese:
+          - お 電話 {かける 場合} は、内容 を ご 確認 ください。
+        english: In the case of making a call, please confirm the content.
+        hint: 場合 implies a conditional 'if' or 'in the event that', not a direct 'at the moment of'.
+    scene: Instructions at a call center.
+    register: formal
+    setting: instructional
+    listener_gender: group
+  - english: During the interview, I tried to convey my enthusiasm.
+    japanese:
+      - 面接 {の 際 に}、熱意 を 伝えよう と し まし た。
+      - 面接 を 受ける {際 に}、熱意 を 伝えよう と し まし た。
+    english_literally: At the time of interview, I tried to convey enthusiasm.
+    competing_grammar:
+      - competing_japanese:
+          - 面接 {の 時} に、熱意 を 伝えよう と し まし た。
+        english: When interviewing, I tried to convey my enthusiasm.
+        hint: 時 is a general term for 'when', not necessarily highlighting a formal occasion like 際に.
+          We're looking for a specific, formal occasion.
+      - competing_japanese:
+          - 面接 {時} に、熱意 を 伝えよう と し まし た。
+        english: During the interview, I tried to convey my enthusiasm.
+        hint: 面接時 is a concise noun-form, common in written rules or schedules, but less natural for describing
+          one's personal experience of the event. We're looking for 'at the time of' an event.
+    scene: A job applicant reflecting on their interview.
+    register: formal
+    setting: reflective
+    speaker_gender: female
+  - english: When using this machine, please read the instructions carefully.
+    japanese:
+      - この 機械 を ご 使用 {に なる 際 に}、説明 書 を よく お 読み ください。
+      - この 機械 を {使う 際 に}、説明 書 を よく お 読み ください。
+    english_literally: At the time of using this machine, please read the instructions carefully.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 を ご 使用 {に なる 時} に、説明 書 を よく お 読み ください。
+        english: When using this machine, please read the instructions carefully.
+        hint: 時 is more general and can refer to any point in time. 際に specifically indicates a formal
+          or important juncture.
+      - competing_japanese:
+          - この 機械 を ご 使用 {に なる 場合} は、説明 書 を よく お 読み ください。
+        english: In the case of using this machine, please read the instructions carefully.
+        hint: 場合 implies a conditional scenario ('if you use it') rather than 'at the time of use'.
+    scene: Safety guidelines posted next to machinery.
+    register: formal
+    setting: instructional
+    nuance: The phrase 「ご使用になる」 is a respectful form, indicating that these instructions are directed
+      towards the user, emphasizing politeness in a formal or technical context.
+    etymology: 「使用」 (shiyou) means 'use,' and adding 「ご〜になる」 makes it a respectful way to say 'to use.'
+  - english: In case of emergency, please press the red button.
+    japanese:
+      - 緊急 時 {の 際 に} は、赤い ボタン を 押し て ください。
+      - 緊急 {の 際 に} は、赤い ボタン を 押し て ください。
+      - 緊急 事態 が 発生 {し た 際 に} は、赤い ボタン を 押し て ください。
+    english_literally: At the time of emergency, please press the red button.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 時 {の 時} は、赤い ボタン を 押し て ください。
+        english: When there is an emergency, please press the red button.
+        hint: 時 is a general term for 'when', lacking the formal and specific 'in the event of' nuance
+          of 際に.
+      - competing_japanese:
+          - 緊急 時 {の 場合} は、赤い ボタン を 押し て ください。
+        english: In the case of an emergency, please press the red button.
+        hint: 場合 expresses a conditional 'if' or 'in case of', which is subtly different from specifying
+          the exact 'time of' an emergency using 際に.
+    scene: Emergency instructions on a train or public building.
+    register: formal
+    setting: emergency/alarm
+    listener_gender: group
+  - english: At the time of delivery, please confirm the item.
+    japanese:
+      - 商品 の お 届け {する 際 に}、必ず ご 確認 ください。
+      - 商品 の お 届け {の 際 に}、必ず ご 確認 ください。
+    english_literally: At the time of delivering the product, please confirm it.
+    competing_grammar:
+      - competing_japanese:
+          - 商品 の お 届け {の 時} に、必ず ご 確認 ください。
+        english: When the product is delivered, please confirm it.
+        hint: 時 is a more casual and broad term for 'when'. We're looking for a more formal 'at the time
+          of' delivery.
+      - competing_japanese:
+          - 商品 の お 届け {の 場合} は、必ず ご 確認 ください。
+        english: In the case of product delivery, please confirm it.
+        hint: 場合 indicates a conditional 'if' or 'in the event of', which is less direct than specifying
+          the precise 'time of' delivery.
+    scene: Delivery instructions from a company.
+    register: semi-formal
+    setting: informative
+    listener_gender: group
+  - english: When the new emperor ascended the throne, the era name changed.
+    japanese:
+      - 新しい 天皇 が 即位 {する 際 に}、元号 が 変わり まし た。
+      - 新しい 天皇 が 即位 {さ れる 際 に}、元号 が 変わり まし た。
+    english_literally: At the time the new emperor ascended the throne, the era name changed.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 天皇 が 即位 {する 時} に、元号 が 変わり まし た。
+        english: When the new emperor ascended the throne, the era name changed.
+        hint: 時 is a general temporal marker, less formal than 際に and doesn't emphasize a specific, significant
+          occasion as much.
+      - competing_japanese:
+          - 新しい 天皇 が 即位 {し た 折 に}、元号 が 変わり まし た。
+        english: On the occasion of the new emperor's ascension, the era name changed.
+        hint: 折に is formal, but often implies a more personal or unique 'occasion' or 'opportunity'. 際に
+          is more broadly used for formal events or procedures.
+    scene: A historian recounting a significant event.
+    register: formal
+    setting: storytelling
+  - english: When applying for leave, please submit the form to your supervisor.
+    japanese:
+      - 休暇 を 申請 {する 際 に} は、上司 に 書類 を 提出 し て ください。
+      - 休暇 を ご 申請 {に なる 際 に} は、上司 に 書類 を 提出 し て ください。
+      - 休暇 の 申請 {の 際 に} は、上司 に 書類 を 提出 し て ください。
+    english_literally: At the time of applying for leave, please submit the document to your superior.
+    competing_grammar:
+      - competing_japanese:
+          - 休暇 を 申請 {する 時} は、上司 に 書類 を 提出 し て ください。
+        english: When applying for leave, please submit the form to your supervisor.
+        hint: 時 is a general term for 'when' and is more common in everyday speech. 際に is more formal
+          and procedural.
+      - competing_japanese:
+          - 休暇 を 申請 {する 場合} は、上司 に 書類 を 提出 し て ください。
+        english: In the case of applying for leave, please submit the form to your supervisor.
+        hint: 場合 emphasizes a conditional 'if' or 'in the case of' rather than the specific 'time of'
+          applying.
+    scene: Workplace policy announcement.
+    register: semi-formal
+    setting: instructional
+    listener_gender: group
+  - english: When conducting research, it is important to cite sources correctly.
+    japanese:
+      - 研究 {を 行う 際 に} は、出典 を 正しく 引用 する こと が 重要 です。
+      - 研究 {を する 際 に} は、出典 を 正しく 引用 する こと が 重要 です。
+      - 研究 実施 {の 際 に} は、出典 を 正しく 引用 する こと が 重要 です。
+    english_literally: At the time of conducting research, correctly citing sources is important.
+    competing_grammar:
+      - competing_japanese:
+          - 研究 {を 行う 時} は、出典 を 正しく 引用 する こと が 重要 です。
+        english: When conducting research, it is important to cite sources correctly.
+        hint: 時 is a general term, while 際に is more formal and suitable for academic or procedural contexts.
+      - competing_japanese:
+          - 研究 実施 {時} に は、出典 を 正しく 引用 する こと が 重要 です。
+        english: At the time of research implementation, it is important to cite sources correctly.
+        hint: 研究実施時 is a very concise, often written, technical phrasing that lacks the slightly broader
+          temporal sense of 際に.
+    scene: A professor giving advice to students.
+    register: formal
+    setting: academic
+    listener_gender: group
+  - english: When entering the building, please show your ID card.
+    japanese:
+      - 建物 に 入場 {する 際 に} は、身分 証明 書 を ご 提示 ください。
+      - 建物 に ご 入場 {に なる 際 に} は、身分 証明 書 を ご 提示 ください。
+      - 建物 へ ご 入場 {の 際 に} は、身分 証明 書 を ご 提示 ください。
+    english_literally: At the time of entering the building, please present identification.
+    competing_grammar:
+      - competing_japanese:
+          - 建物 に 入場 {する 時} は、身分 証明 書 を ご 提示 ください。
+        english: When entering the building, please show your ID card.
+        hint: 時 is a more common and general way to say 'when'. 際に emphasizes the specific occasion in
+          a formal context.
+      - competing_japanese:
+          - 建物 に 入場 {する 場合} は、身分 証明 書 を ご 提示 ください。
+        english: In the case of entering the building, please show your ID card.
+        hint: 場合 indicates a conditional 'if' or 'in the event of', rather than the precise 'at the time
+          of' entry.
+    scene: A security guard giving instructions to visitors.
+    register: formal
+    setting: commanding
+    listener_gender: group
+post_example_writeup: As demonstrated in these examples, 際に is typically used in situations requiring
+  precision and formality, often related to procedures, official announcements, or significant events.
+  It consistently denotes a specific juncture, rather than a prolonged period, and is frequently encountered
+  in instructional or business contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E9%9A%9B%E3%81%AB

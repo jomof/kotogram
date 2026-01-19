@@ -1,0 +1,271 @@
+grammar_point: 何といっても (unquestionably)
+learn_before:
+  - しかし (but・however)
+meaning: By any account, all the same, no doubt
+pronunciation:
+  katakana: ナントイッテモ
+  romaji: nanto ittemo
+formation:
+  何といっても + [Statement]: Highlights a key point or positive aspect, meaning 'no matter what is said' or
+    'by any account'.
+jlpt: N2
+etymology: The expression 何といっても is derived from 何 (nani, "what"), と (to, quotative particle), 言う (iu,
+  "to say"), and the particle も (mo, "even"). The literal breakdown translates to "even if one says what,"
+  implying that regardless of other considerations, the following statement holds true.
+writeup: '**何といっても (nanto ittemo)** is an expression that emphasizes a particular point or aspect as paramount,
+  conveying the sense of "no matter what else is said" or "by any account." Its construction combines
+  何 (what), と言う (to say), and the particle も (even), literally meaning "even if one says anything." This
+  phrase is predominantly used at the beginning of a sentence to highlight a key factor, often a positive
+  attribute. While its primary usage leans towards emphasizing positive aspects, it can, albeit less commonly,
+  introduce a negative nuance. It is generally used in standard discourse and is not restricted by specific
+  age groups, genders, or regions.'
+false_friends:
+  - term: 何しろ
+    meaning: No wonder, After all, In fact, Because, At any rate
+    kind: similar expression
+    nuance: While both expressions indicate a reason or emphasis, 何しろ often introduces an explanation
+      or justification, whereas 何といっても highlights a specific aspect as being the most important. 何しろ tends
+      to introduce a reason or justification, explaining the current situation, while 何といっても emphasizes
+      a singular, overriding point that stands out above all others.
+    grammar_point: 何しろ (anyway・after all)
+  - term: どうせ
+    meaning: Anyhow, At any rate, In any case, I have no doubt that, Probably
+    kind: similar expression
+    nuance: どうせ implies resignation or inevitability, while 何といっても emphasizes a particular point as being
+      undeniable. どうせ carries a nuance of resignation or inevitability, suggesting that something is bound
+      to happen regardless of efforts, whereas 何といっても emphasizes that a particular aspect is undeniably
+      the most significant or paramount, irrespective of other considerations.
+    grammar_point: どうせ (anyway・inevitably)
+  - term: 〜というのは事実だ
+    meaning: It is a fact that ~, There is no doubt that
+    kind: similar expression
+    nuance: 〜というのは事実だ directly states a fact, whereas 何といっても highlights a specific point as being the
+      most important, even among other facts. 〜というのは事実だ is a straightforward factual statement, confirming
+      something to be true, while 何といっても carries a stronger emphasis, asserting that a specific point
+      is the most important or definitive, often in contrast to other considerations.
+    grammar_point: という のは 事実だ (it is a fact that)
+  - term: とにかく
+    meaning: Anyway, at any rate, in any case, in short
+    kind: similar expression
+    nuance: とにかく is a general phrase used to change topics, summarize, or indicate that something is important.
+      何といっても specifically highlights a single, overriding point as the paramount consideration. とにかく has
+      a broader usage, often indicating a shift in topic or a general emphasis on a point. 何といっても, in
+      contrast, specifically highlights one particular aspect as the single, paramount, and undeniable
+      consideration among all others.
+    grammar_point: <suggest>:とにかく (anyway・at any rate)
+post_false_friends_writeup: When distinguishing between these expressions, consider the focus. 何といっても
+  emphasizes a single, overriding point that stands out regardless of other factors. 何しろ often provides
+  a reason or explanation for a situation. どうせ conveys resignation or an inevitable outcome. 〜というのは事実だ
+  simply states a fact without the additional emphasis or nuance of overriding importance. While とにかく
+  is used as a more general emphasis or discourse marker, 何といっても focuses on the ultimate, undeniable truth
+  or the most important aspect that surpasses all other considerations.
+examples:
+  - english: Without a doubt, that cafe is very popular because their coffee and ice cream are cheap.
+    japanese:
+      - あの カフェ は {何 と いっ て も} コーヒー と アイス クリーム が 安い から とても 人気 が ある。
+      - あの カフェ は {何 と いっ て も} コーヒー と アイス クリーム が 安い です から とても 人気 が あり ます。
+    english_literally: That cafe, by any account, coffee and ice cream are cheap, so it is very popular.
+    competing_grammar:
+      - competing_japanese:
+          - あの カフェ は コーヒー と アイス クリーム が 安い。だ から とても 人気 が ある {と いう の は 事実 だ}。
+        english: That cafe's coffee and ice cream are cheap. Therefore, it is a fact that it is very popular.
+        hint: This sentence states a factual conclusion. 「何といっても」 emphasizes the most important reason
+          for popularity, overriding other considerations.
+    scene: A person explaining why a particular cafe is popular.
+    register: casual
+    setting: informative
+  - english: He's honest and easy to talk to. But, by any account, he's kind to everyone, so everyone
+      likes him, you know?
+    japanese:
+      - 彼 は 正直 者 だ し、話し やすい。しかし、{何 と いっ て も} 誰 に 対し て も 優しい から、みんな に 好か れ て いる の よ。
+      - 彼 は 正直 者 だ し、話し やすい。しかし、{何 と いっ て も} 誰 に 対し て も 優しい から、みんな に 好か れ て いる。
+      - 彼 は 正直 者 です し、話し やすい です。しかし、{何 と いっ て も} 誰 に 対し て も 優しい です から、みんな に 好か れ て い ます。
+    english_literally: He is an honest person, and easy to talk to. However, by any account, he is kind
+      to everyone, so he is liked by everyone, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 正直 者 だ し、話し やすい。{何しろ} 誰 に 対し て も 優しい から、みんな に 好か れ て いる。
+        english: He's honest and easy to talk to. After all, he's kind to everyone, so everyone likes
+          him.
+        hint: 「何しろ」 introduces a reason or justification. 「何といっても」 highlights kindness as the most significant
+          and overriding trait, regardless of other qualities.
+    scene: A woman on a first date, sharing observations about a mutual acquaintance.
+    register: casual
+    setting: first-date
+    speaker_gender: female
+    listener_gender: male
+    nuance: The ending particle 「のよ」 (no yo) is used by female speakers to add a soft emphasis or explanation,
+      fitting for a casual first-date conversation where one is sharing personal insights. 「何といっても」 here
+      emphasizes the kindness as his most outstanding trait, which is a desirable quality to highlight
+      when discussing a person with a potential romantic partner. 「のよ」 softens the assertion, making it
+      more personal and less direct, suitable for the setting of a first date.
+  - english: My Japanese teacher is strict, but she's undeniably very good at teaching Japanese.
+    japanese:
+      - 私 の 日本 語 の 先生 は 厳しい です が、{何 と いっ て も} 日本 語 を 教える の が ものすごく 上手 です。
+      - 私 の 日本 語 の 先生 は 厳しい けど、{何 と いっ て も} 日本 語 を 教える の が ものすごく 上手 だ。
+    english_literally: My Japanese teacher is strict, but by any account, is tremendously good at teaching
+      Japanese.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 日本 語 の 先生 は 厳しい です が、日本 語 を 教える の が ものすごく 上手 {に 違い ない}。
+        english: My Japanese teacher is strict, but there's no doubt she's very good at teaching Japanese.
+        hint: 「に違いない」 expresses certainty or conviction. 「何といっても」 emphasizes a positive aspect that overrides
+          a negative one, highlighting it as the most important quality that makes the teacher stand out.
+    scene: A student discussing their teacher in a formal setting.
+    register: teineigo (polite)
+    setting: academic
+    speaker_age: younger
+    nuance: The use of 「です/ます」 endings indicates a polite register, appropriate for an academic setting
+      or when speaking to someone of higher status. 「何といっても」 maintains its emphatic meaning, highlighting
+      the teacher's skill despite their strictness. The polite forms are appropriate for discussing an
+      instructor in an academic context. 「何といっても」 emphasizes that the teacher's skill is the most notable
+      and overriding quality, despite their strictness.
+  - english: The worst thing about him is, by any account, that he's quick to lie.
+    japanese:
+      - 彼 の 悪い ところ は、{何 と いっ て も} すぐ に 嘘 を つく こと だ。
+      - 彼 の 悪い ところ は、{何 と いっ て も} すぐ に 嘘 を つく こと です。
+    english_literally: His bad point, by any account, is that he tells lies immediately.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 悪い ところ は、{一番 に} すぐ に 嘘 を つく こと だ。
+        english: His worst trait is, first and foremost, that he tells lies immediately.
+        hint: 「一番に」 emphasizes the primary issue. 「何といっても」 highlights the most prominent negative trait
+          that stands out above all others, making it the defining characteristic.
+    scene: A friend expressing their frustration about another friend's habit.
+    register: casual
+    setting: serious
+  - english: Beppu has clean air and a great atmosphere. The best part is, you can enjoy its variety of
+      hot springs.
+    japanese:
+      - 別 府 は 空気 や 雰囲気 が いい。{何 と いっ て も} いろんな 温泉 が 楽しめる こと じゃ。
+      - 別 府 は 空気 や 雰囲気 が いい。{何 と いっ て も} いろんな 温泉 が 楽しめる こと だ。
+      - 別 府 は 空気 や 雰囲気 が いい です。{何 と いっ て も} いろんな 温泉 が 楽しめる こと です。
+    english_literally: Beppu, its air and atmosphere are good. By any account, you can enjoy various hot
+      springs.
+    competing_grammar:
+      - competing_japanese:
+          - 別 府 は 空気 や 雰囲気 が いい。{一番} の お すすめ は、いろんな 温泉 が 楽しめる こと じゃ。
+        english: Beppu has clean air and a great atmosphere. The best recommendation is that you can enjoy
+          its variety of hot springs.
+        hint: This highlights the 'number one' recommendation. 「何といっても」 conveys the conclusive, overriding
+          highlight of the place, suggesting it's the ultimate undeniable appeal.
+    scene: An elderly person recommending a travel destination to a younger relative.
+    register: casual
+    setting: informative
+    speaker_age: older
+    nuance: The informal ending 「じゃ」 (ja) is often used by older male speakers in a casual context, giving
+      a slightly paternal or experienced tone when offering advice or information. 「何といっても」 highlights
+      the hot springs as the primary attraction, framed as wisdom shared from experience. The use of 「じゃ」
+      is typical of older male speech and implies a sense of seasoned advice. 「何といっても」 emphasizes the
+      hot springs as the undeniable best aspect, imparting a strong recommendation based on experience.
+  - english: The sushi toppings at this conveyor belt sushi restaurant are good and delicious. Most of
+      all, it's cheap, so I recommend it!
+    japanese:
+      - ここ の 回転 寿司 は ネタ が 良く て 美味しい。{何 と いっ て も} 安い から お すすめ だ よ。
+      - ここ の 回転 寿司 は ネタ が 良く て 美味しい です。{何 と いっ て も} 安い です から お すすめ です。
+    english_literally: The conveyor belt sushi here, the toppings are good and delicious. By any account,
+      because it is cheap, I recommend it, you know.
+    competing_grammar:
+      - competing_japanese:
+          - ここ の 回転 寿司 は ネタ が 良く て 美味しい。{とにかく} 安い から お すすめ だ よ。
+        english: The sushi toppings at this conveyor belt sushi restaurant are good and delicious. Anyway,
+          it's cheap, so I recommend it!
+        hint: 「とにかく」 is a general intensifier or summary. 「何といっても」 highlights the decisive factor and
+          overriding reason for the recommendation, making it the ultimate selling point.
+    scene: A friend recommending a restaurant to another friend.
+    register: casual
+    setting: friendly
+    nuance: The use of 「だよ」 (da yo) adds a casual, assertive, and slightly explanatory tone, typical between
+      friends. 「何といっても」 emphasizes the affordability as the key selling point. 「だよ」 conveys a friendly
+      and definitive tone. 「何といっても」 highlights the price as the undeniable, primary reason for the recommendation,
+      overriding other good qualities of the sushi.
+  - english: This train is new and clean, but the best thing is definitely how comfortable the seats are.
+    japanese:
+      - この 電車 は 新しく て 綺麗 です が、{何 と いっ て も} 客席 の すわり 心地 が 最高 です。
+      - この 電車 は 新しく て 綺麗 だ けど、{何 と いっ て も} 客席 の すわり 心地 が 最高 だ。
+    english_literally: This train is new and clean, but by any account, the seating comfort is the best.
+    competing_grammar:
+      - competing_japanese:
+          - この 電車 は 新しく て 綺麗 です が、座り 心地 が 最高 {な の は 事実 です}。
+        english: This train is new and clean, but it is a fact that the seating comfort is the best.
+        hint: This states a fact. 「何といっても」 highlights the most superior feature as the definitive and
+          paramount quality, implying it's the ultimate aspect worth noting.
+    scene: A professional discussing the features of a new train model.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The use of 「です/ます」 maintains politeness suitable for a professional or formal discussion.
+      「何といっても」 highlights the comfort as the definitive feature. The polite forms are appropriate for
+      discussing technical features in a professional environment. 「何といっても」 accentuates the seating comfort
+      as the paramount quality, setting it apart from other positive attributes of the train.
+  - english: This new smartphone has a great camera and long battery life. But above all, the design is
+      excellent.
+    japanese:
+      - この 新しい スマホ は カメラ も いい し、バッテリー も 長持ち する。{何 と いっ て も} デザイン が 素晴らしい。
+      - この 新しい スマホ は カメラ も いい です し、バッテリー も 長持ち し ます。{何 と いっ て も} デザイン が 素晴らしい です。
+    english_literally: This new smartphone, the camera is good, and the battery also lasts long. By any
+      account, the design is splendid.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい スマホ は カメラ も いい し、バッテリー も 長持ち する。{一番} は デザイン が 素晴らしい。
+        english: This new smartphone has a great camera and long battery life. The number one thing is
+          that the design is excellent.
+        hint: This highlights the 'number one' feature. 「何といっても」 emphasizes an overriding, undeniable
+          factor that stands out above all else, making it the supreme quality.
+    scene: Two friends discussing recent tech purchases.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「何といっても」 emphasizes the design as the absolute best feature, overriding the other good points
+      like camera and battery life. The casual 「〜し」 conjunction and plain verb forms are typical of conversation
+      between male friends, creating a relaxed and natural tone for sharing opinions.
+  - english: My daughter is good at sports and studies well. But her best quality, by far, is her kindness.
+    japanese:
+      - うち の 娘 は 運動 も できる し、勉強 も よく する。{何 と いっ て も} 優しい ところ が 一番 だ ね。
+      - うち の 娘 は 運動 も でき ます し、勉強 も よく し ます。{何 と いっ て も} 優しい ところ が 一番 です ね。
+    english_literally: My daughter, she can do sports, and studies well too. By any account, her gentle
+      side is the best, you know.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 娘 は 運動 も できる し、勉強 も よく する。{とにかく} 優しい ところ が 一番 だ ね。
+        english: My daughter is good at sports and studies well. Anyway, her kindness is her best quality.
+        hint: This uses 「とにかく」, which is more of a general intensifier or summary. 「何といっても」 points to
+          the singular, overriding reason or quality that defines her best aspect.
+    scene: A mother proudly talking about her daughter to a neighbor.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「何といっても」 emphasizes the daughter's kindness as her preeminent quality, surpassing other good
+      traits like athleticism or academic ability. The 「だ ね」 ending is a common casual expression, suitable
+      for a mother talking about her child, and the 「ね」 seeks agreement from the listener, making the
+      statement more engaging.
+  - english: Our new product has many innovative features, and the price point is competitive. However,
+      the most compelling aspect is its ease of use.
+    japanese:
+      - 弊社 の 新 製品 は 革新 的 な 機能 が 多く、価格 帯 も 競争 力 が あり ます。しかし、{何 と いっ て も} その 使い やす さ が 最大 の 魅力 です。
+      - 弊社 の 新 製品 は 革新 的 な 機能 が 多く、価格 帯 も 競争 力 が ある。しかし、{何 と いっ て も} その 使い やす さ が 最大 の 魅力 だ。
+    english_literally: Our company's new product has many innovative features, and the price range also
+      has competitiveness. However, by any account, its ease of use is the greatest appeal.
+    competing_grammar:
+      - competing_japanese:
+          - 弊社 の 新 製品 は 革新 的 な 機能 が 多く、価格 帯 も 競争 力 が あり ます。{一番} の 魅力 は その 使い やす さ です。
+        english: Our new product has many innovative features, and the price point is competitive. The
+          number one appealing aspect is its ease of use.
+        hint: This highlights the 'number one' appealing aspect. 「何といっても」 conveys that this particular
+          aspect is undeniably the most significant, even when other good points exist, positioning it
+          as the ultimate selling point.
+    scene: A sales representative presenting a new product to potential clients.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「何といっても」 is used here to powerfully assert the product's ease of use as the definitive, overriding
+      advantage that should convince the audience, even amidst other positive features. The polite 「です/ます」
+      forms and formal vocabulary like 「弊社」(heisha, "our company") and 「革新 的」(kakushin teki, "innovative")
+      are essential for a professional business presentation, conveying respect and professionalism to
+      the potential clients.
+post_example_writeup: As seen in the examples, 何といっても can be used in both casual and formal contexts,
+  making it a versatile phrase for emphasizing a paramount point. While often used for positive attributes,
+  it can also highlight a single, overriding negative aspect, demonstrating its flexibility in expressing
+  undeniable truths regardless of valence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/何といっても

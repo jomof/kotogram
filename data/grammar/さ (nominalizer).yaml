@@ -1,0 +1,255 @@
+grammar_point: さ (nominalizer)
+learn_before:
+  - い-Adjective[さ] (nominalizer)
+meaning: Converting adjectives to nouns (-ness, -ity)
+pronunciation:
+  katakana: サ
+  romaji: sa
+formation:
+  い-adjective stem + さ: Transforms an い-adjective into a noun indicating the degree or extent of that
+    quality.
+  な-adjective stem + さ: Transforms a な-adjective into a noun indicating the degree or extent of that quality.
+  Verb (dictionary form) + さ: (Poetic usage) Highlights a specific point in time when something happens.
+jlpt: N4
+etymology: The suffix 「さ」 is believed to have originated from the kanji 差 (sa), meaning "distinction."
+  It was initially used to emphasize the distinctive features of something. While less common in modern
+  Japanese, さ can also follow the dictionary form of verbs to highlight a specific point in time, a usage
+  primarily found in older, more poetic language.
+writeup: 'The suffix 「さ」 in Japanese is attached to the stem of い-adjectives and な-adjectives. This transforms
+  the adjective into a noun that represents the **degree** or **extent** of that quality. Think of it
+  as adding "-ness" or "-ity" in English: sweetness, tallness, beauty, etc. Although less frequent, 「さ」
+  can also follow the dictionary form of verbs in poetic contexts to pinpoint a specific moment or instance.
+  This use is primarily found in older, more literary Japanese.'
+false_friends:
+  - term: み
+    meaning: ~ness; Used to indicate conditions or nature
+    kind: synonym
+    nuance: While 「さ」 generally refers to the *degree* or *measurable extent* of a quality (e.g., 長さ for
+      length, 重さ for weight), 「み」 often describes the *nature*, *condition*, or *inherent quality* itself,
+      sometimes with a nuance of feeling or deeper implication (e.g., 深み for profoundness, 悲しみ for sadness).
+      For example, 「深さ」 (fukasa) means 'depth' as a measurement, while 「深み」 (fukami) means 'depth' as
+      in 'profoundness' or 'richness'.
+    grammar_point: な-Adjective[み] (abstract quality)
+post_false_friends_writeup: To differentiate between 「さ」 and 「み」, consider whether you are emphasizing
+  the quantifiable measure or extent of something versus its inherent quality or state. If you're talking
+  about the amount, size, or a measurable characteristic, use 「さ」. If you're describing an inherent condition,
+  a subjective feeling, or a deeper quality that isn't necessarily quantifiable, 「み」 is often more appropriate.
+examples:
+  - english: The height of that mountain is surprising.
+    japanese:
+      - あの 山 の {高 さ} に は 驚き ます。
+      - あの 山 の {高 さ} に は 驚い た よ。
+      - あの 山 の {高 さ} は 驚き だ ね。
+      - あの 山 の {高 さ} に は びっくり し た よ。
+    english_literally: That mountain's height, (I) am surprised by.
+    competing_grammar:
+      - competing_japanese:
+          - あの 山 は {高い} の で 驚き ます。
+        english: That mountain is tall, so I am surprised.
+        hint: This sentence describes the mountain as tall, but it doesn't create a noun for "height"
+          itself. We're looking for a way to nominalize the quality of "tallness".
+    scene: A hiker expressing awe at a mountain's scale while looking up.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: The use of 「高さ」 (takasa) here specifically refers to the measurable attribute of the mountain's
+      height, emphasizing its degree. This is a common and natural way to express a quantifiable quality.
+    etymology: 「高」 (taka) means 'high' or 'tall', combined with the suffix 「さ」 to form a noun meaning
+      'height' or 'tallness'.
+  - english: I was impressed by the cleanliness of this room.
+    japanese:
+      - この 部屋 の {きれい さ} に 感動 し まし た。
+      - この 部屋 の {きれい さ} に 感動 し た よ。
+      - この 部屋 の {きれい さ} に 感動 し た わ。
+      - この 部屋 の {きれい さ} は すごい ね！
+    english_literally: This room's cleanliness, (I) was impressed by.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は {きれい} で 感動 し まし た。
+        english: This room was clean, and I was impressed.
+        hint: This describes the room as clean, but doesn't make "cleanliness" a noun. We're looking for
+          a way to express the noun form of "cleanliness".
+    scene: A guest complimenting their host on the tidiness of the space after entering.
+    register: formal
+    setting: friendly
+    speaker_gender: female
+    nuance: 「きれいさ」 (kirei-sa) expresses the quality of 'cleanliness' as a specific characteristic that
+      evoked an impression. The use of 「～ました」 indicates politeness suitable for a formal setting.
+    etymology: 「きれい」 (kirei) is a な-adjective meaning 'clean' or 'beautiful', and 「さ」 converts it into
+      a noun meaning 'cleanliness' or 'beauty'.
+  - english: The difficulty of Japanese drives me to study.
+    japanese:
+      - 日本 語 の {難し さ} が、私 を 勉強 に 駆り立て ます。
+      - 日本 語 の {難し さ} が、私 を 勉強 に 駆り立てる。
+      - 日本 語 の {難し さ} が、俺 を 勉強 に 駆り立てる。
+      - 日本 語 の {難し さ} って、勉強 に 駆り立て られる よ ね。
+    english_literally: Japanese's difficulty, drives me to study.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が {難しい} の で、私 を 勉強 に 駆り立て ます。
+        english: Because Japanese is difficult, it drives me to study.
+        hint: This sentence states that Japanese is difficult, but it doesn't create a noun for "difficulty"
+          itself as a driving force. We're looking for a way to express the noun form of "difficulty".
+    scene: A university student explaining their motivation to learn Japanese despite its challenges.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「難しさ」 (muzukashisa) frames 'difficulty' as the driving force behind the action, treating it
+      as a concrete quality rather than a mere observation. This usage is common among students discussing
+      academic challenges.
+    etymology: 「難しい」 (muzukashii) is an い-adjective meaning 'difficult', which combines with 「さ」 to create
+      a noun meaning 'difficulty'.
+  - english: The quietness of the forest at night calms the mind.
+    japanese:
+      - 夜 の 森 の {静か さ} は、心 を 落ち着か せ ます。
+      - 夜 の 森 の {静か さ} は、心 を 落ち着か せる。
+      - 夜 の 森 の {静か さ} って、本当 に 癒さ れる よ ね。
+    english_literally: Night's forest's quietness, calms the mind.
+    competing_grammar:
+      - competing_japanese:
+          - 夜 の 森 は {静か} で、心 は 落ち着き ます。
+        english: The forest at night is quiet, and the mind calms.
+        hint: This describes the forest as quiet, but doesn't create a noun for "quietness" itself. We're
+          looking for a way to nominalize the quality of "quietness".
+    scene: Someone describing the tranquil effect of being in nature after dusk.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: 「静かさ」 (shizuka-sa) highlights the characteristic of 'quietness' itself as a calming attribute,
+      emphasizing its quality. This reflective statement might be made to oneself or in a general observation.
+    etymology: 「静か」 (shizuka) is a な-adjective meaning 'quiet' or 'calm', and 「さ」 turns it into a noun
+      meaning 'quietness' or 'stillness'.
+  - english: At the moment of leaving my hometown, tears overflowed.
+    japanese:
+      - 故郷 を 去る {さ}、涙 が 溢れ まし た。
+      - 故郷 を 去る {さ}、涙 が 溢れ た。
+    english_literally: Hometown leaving's moment, tears overflowed.
+    competing_grammar:
+      - competing_japanese:
+          - 故郷 を 去る {時}、涙 が 溢れ まし た。
+        english: When I left my hometown, tears overflowed.
+        hint: This uses a common word for "when" or "at the time of". We're looking for a more archaic
+          and poetic way to emphasize the precise moment of the action.
+    scene: An elderly woman recalling a poignant departure from her hometown many years ago.
+    register: bungo (literary)
+    setting: melancholic
+    speaker_gender: female
+    speaker_age: older
+    nuance: The use of 「去るさ」 (saru sa) here is an archaic and literary expression, typical of older texts
+      or very formal/poetic speech, emphasizing the precise, emotional moment of departure. It is not
+      common in modern everyday Japanese.
+    etymology: This usage of 「さ」 after a verb is a remnant of classical Japanese, where 「さ」 could function
+      as a nominalizing suffix, often indicating a point or instance, similar to 「ところ」 or 「とき」 but with
+      a more emphatic or emotional tone.
+  - english: The softness of this blanket is wonderful.
+    japanese:
+      - この 毛布 の {柔らか さ} が 素晴らしい です。
+      - この 毛布 の {柔らか さ} が 素晴らしい な。
+      - この 毛布 の {柔らか さ}、最高！
+      - この 毛布 の {柔らか さ} は 絶妙 だ ね。
+    english_literally: This blanket's softness is wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - この 毛布 は {柔らかく} て 素晴らしい です。
+        english: This blanket is soft and wonderful.
+        hint: This sentence describes the blanket as soft, but doesn't create a noun for "softness" itself.
+          We're looking for a way to nominalize the quality of "softness".
+    scene: A person feeling a new blanket on their sofa.
+    register: casual
+    setting: reflective
+    nuance: 「柔らかさ」 (yawarakasa) highlights the sensory quality of 'softness' as a wonderful attribute.
+      This is a common and natural way to express appreciation for a physical property.
+    etymology: 「柔らかい」 (yawarakai) is an い-adjective meaning 'soft', which combines with 「さ」 to create
+      a noun meaning 'softness'.
+  - english: I was surprised by the suddenness of his departure.
+    japanese:
+      - 彼 の 出発 の {突然 さ} に 驚き まし た。
+      - 彼 の 出発 の {突然 さ} に 驚い た よ。
+      - 彼 の 出発 の {突然 さ} に は びっくり し た な。
+      - 彼 の 出発 の {突然 さ} に は 目 を 見張る もの が あり まし た。
+    english_literally: His departure's suddenness, (I) was surprised by.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {突然} 出発 し て、私 は 驚き まし た。
+        english: He departed suddenly, and I was surprised.
+        hint: This sentence describes the action as sudden, but doesn't nominalize the quality of "suddenness."
+          We're looking for a way to express the noun form of "suddenness."
+    scene: A colleague discussing a sudden change in plans with a co-worker.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「突然さ」 (totsuzen-sa) emphasizes the unexpected and abrupt nature of the departure as a specific
+      attribute. The use of 「～ました」 maintains a polite and somewhat formal tone.
+    etymology: 「突然」 (totsuzen) is a な-adjective (or adverb) meaning 'sudden' or 'abrupt', and 「さ」 turns
+      it into a noun meaning 'suddenness' or 'abruptness'.
+  - english: The warmth of the sun felt so good.
+    japanese:
+      - 太陽 の {暖か さ} が とても 気持ち よかっ た です。
+      - 太陽 の {暖か さ} が とても 気持ち よかっ た。
+      - 太陽 の {暖か さ}、最高 に 気持ち いい な。
+      - 太陽 の {暖か さ} に、心 が 和み まし た。
+    english_literally: Sun's warmth felt very good.
+    competing_grammar:
+      - competing_japanese:
+          - 太陽 は {暖かく} て、とても 気持ち よかっ た です。
+        english: The sun was warm, and it felt very good.
+        hint: This sentence describes the sun as warm, but doesn't create a noun for "warmth" itself.
+          We're looking for a way to express the noun form of "warmth."
+    scene: A person enjoying a sunny day outdoors.
+    register: casual
+    setting: optimistic
+    nuance: 「暖かさ」 (atatakasa) captures the feeling of 'warmth' as a sensory experience, a quality that
+      is appreciated. This is a natural expression for describing pleasant sensations.
+    etymology: 「暖かい」 (atatakai) is an い-adjective meaning 'warm', which combines with 「さ」 to create a
+      noun meaning 'warmth'.
+  - english: The complexity of the human mind is endlessly fascinating.
+    japanese:
+      - 人間 の 心 の {複雑 さ} は 限り なく 魅力 的 です。
+      - 人間 の 心 の {複雑 さ} は 限り なく 魅力 的 だ。
+      - 人間 の 心 の {複雑 さ} って、本当 に 魅力 的 だ よ ね。
+      - 人間 の 心 の {複雑 さ} に は、尽き ない 魅力 が ある。
+    english_literally: Human mind's complexity is endlessly fascinating.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 の 心 は {複雑} で、限り なく 魅力 的 です。
+        english: The human mind is complex and endlessly fascinating.
+        hint: This sentence describes the mind as complex, but doesn't create a noun for "complexity"
+          itself. We're looking for a way to express the noun form of "complexity."
+    scene: A philosopher or psychologist musing on the nature of consciousness.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: male
+    nuance: 「複雑さ」 (fukuzatsusa) refers to the inherent quality of 'complexity' of the human mind. This
+      usage elevates the abstract quality to a subject of fascination, fitting an academic or philosophical
+      context.
+    etymology: 「複雑」 (fukuzatsu) is a な-adjective meaning 'complex', and 「さ」 converts it into a noun meaning
+      'complexity'.
+  - english: What is the depth of the ocean here?
+    japanese:
+      - ここ の 海 の {深 さ} は どれ くらい です か？
+      - ここ の 海 の {深 さ} は どれ くらい？
+      - ここ の 海 の {深 さ}、どれ くらい？
+      - 当 海域 の {深 さ} は 如何 ほど で ござい ます か？
+    english_literally: Here's ocean's depth is about how much?
+    competing_grammar:
+      - competing_japanese:
+          - ここ の 海 は どれ くらい {深い} です か？
+        english: How deep is the ocean here?
+        hint: This sentence asks about how deep the ocean is, but doesn't use the noun form for "depth."
+          We're looking for a way to ask about the noun "depth."
+    scene: A diver asking a boat captain about the water conditions before a dive.
+    register: semi-formal
+    setting: interrogative
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「深さ」 (fukasa) specifically refers to the measurable 'depth' of the ocean. This is a practical
+      question seeking a quantifiable attribute, typical in professional or technical contexts.
+    etymology: 「深い」 (fukai) is an い-adjective meaning 'deep', which combines with 「さ」 to create a noun
+      meaning 'depth' as a measurement.
+post_example_writeup: When using 「さ」, remember that you are creating a noun that refers to a quality or
+  state. This noun can then be used like any other noun in a sentence, often as the subject or object,
+  or with particles to describe its role.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/さ

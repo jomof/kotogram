@@ -1,0 +1,232 @@
+grammar_point: に (static location・time)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+  - 真上 (directly above)
+meaning: Indicates a specific time or a static location where something exists or happens.
+meaning_warning: This grammar point focuses specifically on the usage of the particle に for expressing
+  static location (where something exists or ends up) and specific points in time. Other uses of に, such
+  as indicating a destination of movement (e.g., 学校に行く), are covered in separate grammar points.
+pronunciation:
+  katakana: ニ
+  romaji: ni
+formation:
+  Noun (Time) + に: 'Indicates the specific time at which an action or event takes place. Examples: ３時
+    に (at 3 o''clock), 日曜日 に (on Sunday).'
+  Noun (Static Location) + に: Indicates the specific, static location where something exists or an action
+    occurs, often used with verbs like いる (to exist, animate), ある (to exist, inanimate), 住む (to live),
+    泊まる (to stay), 座る (to sit), 立つ (to stand).
+jlpt: N5
+etymology: The particle に is one of the most fundamental and ancient particles in Japanese, with roots
+  dating back to Old Japanese. Its original function is believed to have been to mark a point or a destination,
+  encompassing both spatial and temporal aspects. This core concept of 'at' or 'to a specific point' is
+  evident in its diverse modern uses, from indicating a precise time (三時に - at 3 o'clock) to marking a
+  static location (部屋に - in the room) or a recipient (友達に - to a friend). Its versatility stems from this
+  foundational meaning of 'arrival at' or 'being at' a specific state or point.
+writeup: |-
+  The particle **に** is a fundamental Japanese particle with multiple uses, primarily indicating specific time points or static locations where something exists or an action takes place. Unlike the particle **で** which marks the *place where an action occurs*, **に** specifies the *location where something is located* or *the location where an action results in a change of state or position*.
+
+  When used with time, **に** marks a precise moment or interval, such as a specific hour, day of the week, or year. For example, 「３時 に 会う」 (san-ji ni au - to meet at 3 o'clock) or 「日曜日 に 休みます」 (nichiyoubi ni yasumimasu - to rest on Sunday). It is generally not used with relative time expressions like 「今日」 (kyō - today), 「明日」 (ashita - tomorrow), 「来週」 (raishū - next week), unless they are part of a specific date or time phrase.
+
+  When used for static locations, **に** indicates where something *is*, *resides*, or *exists*. This is most commonly seen with verbs of existence like **いる** (iru - for animate objects) and **ある** (aru - for inanimate objects), as in 「本 が 机 の 上 に あります」 (hon ga tsukue no ue ni arimasu - The book is on the desk) or 「猫 が 部屋 に います」 (neko ga heya ni imasu - There is a cat in the room). It can also denote the place where an action results in a fixed position, such as sitting 「椅子 に 座る」 (isu ni suwaru - to sit on the chair) or standing 「駅 に 立つ」 (eki ni tatsu - to stand at the station).
+false_friends:
+  - term: で (location of action)
+    meaning: Place where an action occurs
+    kind: often confused with
+    nuance: While に indicates the static location where something exists or ends up, で indicates the location
+      where an action takes place.
+    grammar_point: で (location of action)
+post_false_friends_writeup: It is common for learners to confuse the particle **に** with **で**. The key
+  distinction lies in whether the verb describes *existence* or *the result of an action* (requiring **に**
+  for location) versus an *action being performed* (requiring **で** for location). If something **is**
+  somewhere, use **に**. If something **happens** somewhere, use **で**. For example, 「図書館 に 本 が ある」 (Toshokan
+  ni hon ga aru - There is a book in the library) uses に because it describes the *existence* of the book.
+  However, 「図書館 で 本 を 読む」 (Toshokan de hon o yomu - I read a book in the library) uses で because it describes
+  the *action of reading* taking place at that location.
+examples:
+  - english: I will meet you at the station at 3 o'clock.
+    japanese:
+      - ３ 時 に 駅 で 会い ます。
+      - ３ 時 に 駅 で 会う よ。
+      - ３ 時 に 駅 で 会い ましょう。
+    english_literally: At 3 o'clock, at the station, will meet.
+    competing_grammar:
+      - competing_japanese:
+          - ３ 時 ごろ 駅 で 会い ます。
+        english: I will meet you around 3 o'clock at the station.
+        hint: 「ごろ」 indicates 'around' or 'approximately', not a precise time. We're looking for a specific
+          time point.
+      - competing_japanese:
+          - ３ 時 まで 駅 で 待ち ます。
+        english: I will wait at the station until 3 o'clock.
+        hint: 「まで」 indicates 'until' a time, implying duration. We're looking for the exact time of an
+          event.
+    scene: You are making plans with a friend for a specific time and location.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The bag is in the room.
+    japanese:
+      - カバン は 部屋 に あり ます。
+      - カバン は 部屋 に ござい ます。
+      - カバン、部屋 に ある よ。
+    english_literally: As for bag, in room, exists (inanimate).
+    competing_grammar:
+      - competing_japanese:
+          - カバン は 部屋 で 作ら れ ます。
+        english: The bag is made in the room.
+        hint: 「で」 indicates the place where an action is performed. Here, we are stating the static existence
+          of the bag.
+    scene: Someone asks where a lost item is, and you are explaining its current, static location.
+    register: teineigo (polite)
+    setting: informative
+  - english: The teacher is in the classroom.
+    japanese:
+      - 先生 は 教室 に い ます。
+      - 先生 は 教室 に いらっしゃい ます。
+      - 先生、教室 に いる よ。
+    english_literally: As for teacher, in classroom, exists (animate).
+    competing_grammar:
+      - competing_japanese:
+          - 先生 は 教室 で 授業 を し て い ます。
+        english: The teacher is teaching a class in the classroom.
+        hint: 「で」 describes an action happening at a location. We are looking for the static location
+          of existence.
+    scene: A student asks about the teacher's whereabouts, and you are explaining where the teacher is
+      currently located.
+    register: teineigo (polite)
+    setting: informative
+  - english: The Tanabata festival is on July 7th.
+    japanese:
+      - ７ 月 ７ 日 に 七夕祭り が あり ます。
+      - ７ 月 ７ 日 に 七夕祭り が 行わ れ ます。
+      - 七夕祭り、７ 月 ７ 日 に ある よ。
+    english_literally: July 7th, at, Tanabata festival, exists.
+    competing_grammar:
+      - competing_japanese:
+          - ７ 月 ７ 日 ごろ 七夕祭り が あり ます。
+        english: The Tanabata festival is around July 7th.
+        hint: 「ごろ」 indicates approximation. We need to state the precise date.
+    scene: You are informing someone about the date of a traditional festival.
+    register: teineigo (polite)
+    setting: informative
+  - english: I live in Tokyo.
+    japanese:
+      - 私 は 東京 に 住ん で い ます。
+      - 私、東京 に 住ん でる。
+      - 東京 に 住ん でる ん だ。
+    english_literally: As for me, in Tokyo, live (continuous state).
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 東京 で 働い て い ます。
+        english: I work in Tokyo.
+        hint: 「で」 would be used to indicate the place of *action* (working). We are describing the *static
+          residence*.
+    scene: You are introducing yourself and mentioning where you reside.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+  - english: I study Japanese every Monday.
+    japanese:
+      - 毎週 月曜 日 に 日本 語 を 勉強 し ます。
+      - 毎週 月曜 日 に 日本 語 勉強 する よ。
+      - 毎週 月曜 日 に 日本 語 を 勉強 致し て おり ます。
+    english_literally: Every week, Monday, at, Japanese, study.
+    competing_grammar:
+      - competing_japanese:
+          - 毎週 月曜 日 日本 語 を 勉強 し ます。
+        english: I study Japanese every Monday. (omission of に)
+        hint: While に can sometimes be omitted with regularly occurring time expressions, its inclusion
+          here emphasizes the specific day. We are looking for the particle that marks the specific time.
+    scene: You are discussing your weekly schedule and language studies with a classmate.
+    register: teineigo (polite)
+    setting: academic
+  - english: Please sit on the chair.
+    japanese:
+      - 椅子 に 座っ て ください。
+      - 椅子 に お 座り ください。
+      - 椅子 に 座っ て ね。
+    english_literally: Chair, onto, please sit.
+    competing_grammar:
+      - competing_japanese:
+          - 椅子 で 食事 を し て ください。
+        english: Please eat your meal at the chair.
+        hint: 「で」 indicates the location where the action of eating happens. 「に」 indicates the surface
+          or object you sit *on*.
+    scene: You are politely asking someone to take a seat.
+    register: teineigo (polite)
+    setting: instructional
+  - english: I was born in 1995.
+    japanese:
+      - １９９５ 年 に 生まれ まし た。
+      - １９９５ 年 に 生まれ た。
+    english_literally: 1995 year, in, was born.
+    competing_grammar:
+      - competing_japanese:
+          - １９９５ 年 から 日本 に 住ん で い ます。
+        english: I have been living in Japan since 1995.
+        hint: 「から」 indicates a starting point in time. We are talking about a specific event that occurred
+          at a single point in time.
+    scene: You are sharing your birth year as part of an introduction or casual conversation.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+  - english: My father usually sleeps in the bed at night.
+    japanese:
+      - 父 は 夜、ベッド に 寝 ます。
+      - 父 は 夜、ベッド に 寝る。
+      - 父 は 夜、ベッド に 就寝 し ます。
+    english_literally: As for father, night, bed, onto, sleeps.
+    competing_grammar:
+      - competing_japanese:
+          - 父 は 夜、ベッド で 本 を 読み ます。
+        english: My father reads a book in bed at night.
+        hint: 「で」 is used for the location of an action (reading). 「に」 is used for where someone lies
+          down or settles.
+    scene: You are describing your father's nightly routine.
+    register: teineigo (polite)
+    setting: informative
+  - english: She is standing at the entrance.
+    japanese:
+      - 彼女 は 玄関 に 立っ て い ます。
+      - 彼女、玄関 に 立っ てる よ。
+      - 彼女 は 玄関 に お 立ち に なっ て い ます。
+    english_literally: As for her, entrance, at, is standing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 玄関 で 電話 を し て い ます。
+        english: She is making a phone call at the entrance.
+        hint: 「で」 indicates the location of an ongoing action. 「に」 describes the static position of standing.
+    scene: You are telling someone where a person is located in a house or building.
+    register: teineigo (polite)
+    setting: informative
+    listener_gender: group
+  - english: The appointment is at 10:00 AM.
+    japanese:
+      - 約束 は 午前 10 時 に なっ て い ます。
+      - 約束 は 午前 10 時 と なっ て おり ます。
+      - 約束、午前 10 時 だ よ。
+    english_literally: As for appointment, AM 10 o'clock, at, has become.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 は 午前 10 時 から です。
+        english: The appointment is from 10:00 AM.
+        hint: 「から」 indicates a starting point. 「に」 specifies the exact time of the appointment itself.
+    scene: You are confirming the exact time of a scheduled event.
+    register: semi-formal
+    setting: professional
+  - english: I put the flowers in the vase.
+    japanese:
+      - 花 を 花瓶 に 入れ ます。
+      - 花、花瓶 に 入れる ね。
+      - 花 を 花瓶 に 挿入 し ます。
+    english_literally: Flowers, vase, into, put.
+    competing_grammar:
+      - competing_japanese:
+          - 花 を 花瓶 で 育て ます。
+        english: I grow flowers in the vase.
+        hint: 「で」 would mean you are performing the action of growing *within* the vase. 「に」 indicates
+          the flowers *end up inside* the vase.
+    scene: You are describing the action of placing something into a container, resulting in its static
+      location.
+    register: teineigo (polite)
+    setting: instructional

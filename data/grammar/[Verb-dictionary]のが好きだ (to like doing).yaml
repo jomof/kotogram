@@ -1,0 +1,350 @@
+grammar_point: '[Verb-dictionary]のが好きだ (to like doing)'
+learn_before:
+  - '[Noun]が好きだ (to like)'
+meaning: to like doing
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 好きだ
+    rarity: common
+    meaning: is liked (plain, non-past)
+  - conjugation-type: non-past polite (～ます)
+    form: 好きです
+    rarity: common
+    meaning: is liked (polite, non-past)
+  - conjugation-type: past plain (～た)
+    form: 好きだった
+    rarity: common
+    meaning: was liked (plain, past)
+  - conjugation-type: past polite (～ました)
+    form: 好きでした
+    rarity: common
+    meaning: was liked (polite, past)
+  - conjugation-type: negative plain (～ない)
+    form: 好きじゃない
+    rarity: common
+    meaning: is not liked (plain, non-past negative)
+  - conjugation-type: negative plain (～ない)
+    form: 好きではない
+    rarity: less common
+    meaning: is not liked (plain, non-past negative, more formal)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 好きではありません
+    rarity: common
+    meaning: is not liked (polite, non-past negative)
+  - conjugation-type: negative past plain (～なかった)
+    form: 好きじゃなかった
+    rarity: common
+    meaning: was not liked (plain, past negative)
+  - conjugation-type: negative past plain (～なかった)
+    form: 好きではなかった
+    rarity: less common
+    meaning: was not liked (plain, past negative, more formal)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 好きではありませんでした
+    rarity: common
+    meaning: was not liked (polite, past negative)
+pronunciation:
+  katakana: ノ ガ スキ ダ
+  romaji: no ga suki da
+formation:
+  Verb[dictionary form] + の + が + 好きだ: Expresses liking an action or activity.
+jlpt: N5
+etymology: The particle の in this construction originates from its broader function as a nominalizer,
+  transforming a verb phrase into a noun-like entity. This allows the action to be treated as a direct
+  object or subject of liking, similar to how a noun would be. The concept of 'liking' (好き) itself is
+  rooted in the verb 好く (suku), meaning 'to like' or 'to love'. Thus, 'Verb + の が 好き だ' literally conveys
+  'the act of doing [Verb] is liked'. This evolution from a possessive-like particle to a nominalizer
+  is a key aspect of how Japanese constructs complex noun phrases.
+writeup: |-
+  This grammar point, Verb[dictionary form] + の + が + 好きだ, is used to express that someone likes to perform a certain action or activity. The particle の here acts as a nominalizer, transforming the verb phrase that precedes it into a noun. This newly formed noun-like phrase then becomes the subject of the liking, marked by the particle が, followed by 好きだ (to like).
+
+  It is crucial to understand that の in this construction is not the possessive の. Instead, it converts a verb or a verb phrase into a noun equivalent, allowing it to be treated grammatically as an object of affection or preference. For example, 読む (yomu - to read) becomes 読む の (yomu no - the act of reading). Then, 読む の が 好き だ means "I like the act of reading" or simply "I like reading."
+
+  This structure is versatile and can be used with various verbs to express hobbies, preferences, or general enjoyment of activities. While 好きだ is a な-adjective, it functions similar to an adjective that modifies a noun (the nominalized verb phrase).
+false_friends:
+  - term: '[Noun]が好きだ'
+    meaning: To like a noun (thing, person, place)
+    kind: similar expression
+    nuance: This expression is used for liking concrete nouns, while Verb[dictionary]のが好きだ is specifically
+      for liking actions or activities. For instance, 猫 が 好き だ means "I like cats," but 猫 を 撫でる の が 好き
+      だ means "I like petting cats."
+    grammar_point: '[Noun]が好きだ (to like)'
+  - term: Verb[たい]
+    meaning: To want to do (something)
+    kind: often confused with
+    nuance: While both express desire related to an action, Verb[dictionary]のが好きだ indicates a preference
+      or enjoyment of an activity (e.g., "I like playing tennis"), whereas Verb[たい] expresses a wish or
+      desire to perform an action at a specific moment or in the future (e.g., "I want to play tennis
+      now"). You might like playing tennis (好きだ), but not want to play it right now (〜たくない).
+    grammar_point: Verb[たい] (desiderative)
+  - term: '[Verb-dictionary]のが嫌いだ'
+    meaning: To dislike doing (something)
+    kind: antonym
+    nuance: This is the direct opposite. It uses 嫌いだ (to dislike) instead of 好きだ. The structure with の
+      nominalizing the verb is identical.
+    grammar_point: '[Verb-dictionary]のが嫌いだ (to dislike doing)'
+  - term: '[Verb-dictionary]ことが好きだ'
+    meaning: To like doing (something)
+    kind: similar expression
+    nuance: This is very similar in meaning and usage. の is generally preferred for informal, everyday
+      conversations and for concrete activities. こと is slightly more formal, can be used for abstract
+      concepts, and is often used in writing or more formal speech.
+    grammar_point: <strongly-suggest>:[Verb-dictionary]ことが好きだ (to like doing)
+post_false_friends_writeup: 'When expressing a preference for actions, Japanese uses a nominalizer, either
+  の or こと, before が 好き だ. While both Verb[dictionary]の が 好き だ and Verb[dictionary]こと が 好き だ convey a liking
+  for an action, の tends to be more common in casual, spoken Japanese and for describing more concrete
+  or sensory actions (like "eating" or "listening"). こと often carries a slightly more formal nuance and
+  a slightly broader usage, including abstract actions or concepts. Remember to differentiate 〜の が 好き
+  だ (liking an action) from 〜たい (wanting to perform an action), as the former is a general preference
+  while the latter is a current desire. Finally, ensure you use the correct particle: が is used with 好き
+  だ to mark the thing or action that is liked.'
+examples:
+  - english: I like reading books.
+    japanese:
+      - 私 は 本 を {読む の が 好き だ}。
+      - 本 を {読む の が 好き です}。
+      - 本 を {読書 する の が 好き です}。
+    english_literally: As for me, the act of reading books is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 本 を 読み たい です。
+        english: I want to read books.
+        hint: 「〜たい」 expresses a desire to do something at a specific moment. We're looking for a general
+          preference for an activity.
+      - competing_japanese:
+          - 私 は 本 が 好き です。
+        english: I like books.
+        hint: This phrase expresses a liking for the noun 'books' itself, not the action of 'reading books'.
+          We're looking for liking an action.
+    scene: A student casually talks about their hobby to a friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The sentence uses 私 は to introduce the speaker, followed by the action 本 を 読む (to read books)
+      nominalized by の. 好き だ expresses a general liking. だ indicates casual speech, typical between friends.
+      The variation using です provides a polite option, while 読書 する (to do reading) is a slightly more
+      formal way to express the same action.
+  - english: He likes playing soccer.
+    japanese:
+      - 彼 は サッカー を {する の が 好き です}。
+      - 彼 は サッカー {する の が 好き だ}。
+      - 彼 は サッカー を {やる の が 好き だ}。
+    english_literally: As for him, the act of playing soccer is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は サッカー を し たい です。
+        english: He wants to play soccer.
+        hint: This indicates a specific desire, not a general liking for the activity. We're looking for
+          a general preference.
+      - competing_japanese:
+          - 彼 は サッカー が 好き です。
+        english: He likes soccer.
+        hint: This expresses a liking for 'soccer' as a sport or object, not the action of 'playing soccer'.
+          We're looking for liking an action.
+    scene: Someone is talking about a third person's hobby in a polite setting, perhaps at a gathering.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: Uses です for politeness. する (to do/play) is nominalized. This is a neutral, informative statement
+      about someone's preference. The casual だ form and the use of やる (a more casual verb for 'to do')
+      are variations commonly heard in informal speech.
+  - english: Do you like cooking?
+    japanese:
+      - 料理 を {する の が 好き です か}。
+      - 料理 {する の 好き}？
+    english_literally: The act of cooking is liked?
+    competing_grammar:
+      - competing_japanese:
+          - 料理 を し たい です か。
+        english: Do you want to cook?
+        hint: This asks about a current desire to cook, not a general liking for the activity. We're looking
+          for a general preference.
+      - competing_japanese:
+          - 料理 が 好き です か。
+        english: Do you like the food (dish) called 'ryouri' / Do you like the concept of cooking?
+        hint: This could mean 'do you like the dish (food) called ryouri?' or 'do you like the concept
+          of cooking?', not specifically 'do you like doing cooking?'. We're looking for liking the action.
+    scene: You are asking a new acquaintance about their preferences during a casual conversation.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+    nuance: Adding か at the end makes it a question. No explicit subject like あなた は is needed in Japanese
+      when clear from context. The polite form です か is suitable for new acquaintances. The very casual
+      好き？ omits です and か, common in close conversations.
+  - english: I don't like waiting for people.
+    japanese:
+      - 私 は 人 を {待つ の が 好き じゃ ない}。
+      - 人 を {待つ の は 好き じゃ あり ませ ん}。
+      - 人 を {待つ の は 好き で は あり ませ ん}。
+    english_literally: As for me, the act of waiting for people is not liked.
+    competing_grammar:
+      - competing_japanese:
+          - 人 を 待ち たく ない です。
+        english: I don't want to wait for people.
+        hint: This expresses a current lack of desire to wait, not a general dislike for the act of waiting.
+          We're looking for a general preference.
+      - competing_japanese:
+          - 人 を 待つ の が 嫌い です。
+        english: I dislike waiting for people.
+        hint: This uses 「嫌い」, which is a direct antonym meaning 'dislike'. While close, the grammar point
+          focuses on the negative form of 'like'. We're looking for the negative form of 'to like'.
+    scene: Someone expressing a mild annoyance or a personal pet peeve to a close friend.
+    register: casual
+    setting: casual slang
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: Uses 好き じゃ ない (suki ja nai), the casual negative of 好き だ. 待つ の が nominalizes the action of
+      waiting. This casual negative form is appropriate for expressing personal feelings among peers.
+      The variations using 好き じゃ ありません and 好き では ありません provide polite and more formal negative options.
+  - english: My mother likes gardening.
+    japanese:
+      - 母 は 庭仕事 を {する の が 好き です}。
+      - 母 は 庭仕事 {する の が 好き だ}。
+    english_literally: As for my mother, the act of doing gardening is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 母 は 庭仕事 を し たい です。
+        english: My mother wants to do gardening.
+        hint: This expresses a current desire, not a general liking for the activity. We're looking for
+          a general preference.
+      - competing_japanese:
+          - 母 は 庭仕事 が 好き です。
+        english: My mother likes gardening (the concept/activity itself).
+        hint: This expresses a liking for 'gardening' as a general concept or hobby. While very similar,
+          the grammar point specifically nominalizes the verb 'to do gardening'. We're looking for liking
+          an action.
+    scene: A child is politely talking about their mother's hobby to an adult family friend.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: The subject is 母 (haha - mother), and the sentence uses the polite です. 庭仕事 を する (to do gardening)
+      is the nominalized action. This phrasing is common when referring to a family member in a polite
+      context. The casual だ form is used when speaking more informally about one's mother.
+  - english: I like listening to classical music in the morning.
+    japanese:
+      - 私 は 朝 に クラシック 音楽 を {聞く の が 好き です}。
+      - 朝 に クラシック 音楽 を {聞く の が 好き だ}。
+    english_literally: As for me, the act of listening to classical music in the morning is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 朝 に クラシック 音楽 を 聞き たい です。
+        english: I want to listen to classical music in the morning.
+        hint: This expresses a current desire, not a general liking for listening to classical music in
+          the morning. We're looking for a general preference.
+      - competing_japanese:
+          - 私 は クラシック 音楽 が 好き です。
+        english: I like classical music.
+        hint: This expresses a liking for 'classical music' as a genre, not the action of 'listening to
+          classical music'. We're looking for liking an action.
+    scene: Someone sharing their daily routine preference with a colleague during a coffee break.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The nominalized phrase can include adverbs and objects, 朝 に クラシック 音楽 を 聞く (to listen to classical
+      music in the morning). The use of です makes the statement polite and suitable for general conversation.
+      The casual だ form is suitable for closer relationships or informal settings.
+  - english: My younger brother loves playing video games.
+    japanese:
+      - 弟 は テレビ ゲーム を {する の が 大好き だ}。
+      - 弟 は テレビ ゲーム を {やる の が 大好き だ}。
+      - 弟 は テレビ ゲーム を {する の が 大好き です}。
+    english_literally: As for my younger brother, the act of playing video games is greatly liked.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は テレビ ゲーム を し たい です。
+        english: My younger brother wants to play video games.
+        hint: This expresses a current desire, not a strong general liking for playing video games. We're
+          looking for a general preference.
+      - competing_japanese:
+          - 弟 は テレビ ゲーム が 大好き です。
+        english: My younger brother loves video games.
+        hint: This expresses a strong liking for 'video games' as a noun, not the action of 'playing video
+          games'. We're looking for liking an action.
+    scene: An older sibling casually talks about their younger brother's strong preference to a friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: 大好き だ (daisuki da) expresses a stronger liking ('love') compared to 好き だ. 弟 は (otouto wa -
+      younger brother) is the subject. The casual だ ending is common when speaking about family members
+      to peers. Using やる adds a more casual tone, while the です form is suitable for polite, general conversation.
+  - english: I used to like drawing pictures.
+    japanese:
+      - 昔、絵 を {描く の が 好き だっ た}。
+      - 昔、絵 を {描く の が 好き でし た}。
+    english_literally: In the past, the act of drawing pictures was liked.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、絵 を 描き たかっ た です。
+        english: In the past, I wanted to draw pictures.
+        hint: This expresses a past desire, not a past general liking for the activity. We're looking
+          for a past general preference.
+      - competing_japanese:
+          - 昔、絵 を 描い て い まし た。
+        english: In the past, I was drawing pictures (or used to draw pictures).
+        hint: This describes a past action or habit itself, not the liking of that action. We're looking
+          for a past liking for an action.
+    scene: Someone reminiscing about a past hobby that they no longer pursue.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: 好き だっ た (suki datta) is the casual past tense of 好き だ. 昔 (mukashi) means 'in the past', setting
+      the temporal context for the past preference. The 好き でし た form is the polite past tense, suitable
+      for more formal or respectful reflection.
+  - english: Every day, he likes to walk his dog in the park.
+    japanese:
+      - 彼 は 毎日、公園 で 犬 を {散歩 さ せる の が 好き です}。
+      - 彼 は 毎日、公園 で 犬 を {散歩 さ せる の が 好き だ}。
+    english_literally: As for him, the act of making the dog walk in the park every day is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 毎日、公園 で 犬 を 散歩 さ せ たい です。
+        english: He wants to walk his dog in the park every day.
+        hint: This expresses a current desire to walk the dog, not a general liking for the activity.
+          We're looking for a general preference.
+      - competing_japanese:
+          - 彼 は 毎日、公園 で 犬 を 散歩 さ せ て い ます。
+        english: He walks his dog in the park every day.
+        hint: This describes a regular action, not that he enjoys or likes doing it. We're looking for
+          liking an action.
+    scene: Describing a neighbor's regular enjoyable activity to another neighbor.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: 毎日、公園 で 犬 を 散歩 させる (to walk the dog in the park every day) is the nominalized action. 散歩 させる
+      is the causative form, meaning 'to make the dog walk/take the dog for a walk'. This is a polite
+      description of a habitual preference. The casual だ form offers a more informal way to state the
+      same.
+  - english: I like to eat sushi.
+    japanese:
+      - 私 は 寿司 を {食べる の が 好き です}。
+      - 寿司 を {食べる の が 好き だ}。
+    english_literally: As for me, the act of eating sushi is liked.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 寿司 を 食べ たい です。
+        english: I want to eat sushi.
+        hint: 「〜たい」 expresses a desire to do something now or soon. We're looking for a general preference
+          for an activity.
+      - competing_japanese:
+          - 私 は 寿司 が 好き です。
+        english: I like sushi.
+        hint: This expresses a liking for 'sushi' as a food item, not the action of 'eating sushi'. We're
+          looking for liking an action.
+    scene: A person is asked about their food preferences at a restaurant with friends or colleagues.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: This sentence expresses a general liking for the activity of eating sushi. The 食べる の が 好き
+      です indicates a general preference rather than a specific craving. The casual だ form is appropriate
+      for informal contexts.
+post_example_writeup: Understanding the distinction between a general liking for an action (〜の が 好き だ)
+  and a present desire to perform an action (〜たい) is key to mastering Japanese expression of preference.
+  Pay close attention to the nominalizing particle の and the particle が that marks the nominalized verb
+  phrase as the subject of 好き だ. Consistent practice with various verbs will help solidify this fundamental
+  structure.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/Verb%5Bdictionary%5D%E3%81%AE%E3%81%8C%E5%A5%BD%E3%81%8D%E3%81%A0

@@ -1,0 +1,261 @@
+grammar_point: あげく (culmination of effort)
+learn_before:
+  - とうとう (finally・eventually)
+  - にわたって (throughout a range)
+  - 手に入れる (to obtain)
+  - 決める (to decide)
+meaning: After all, in the end, eventually (often with negative consequences)
+meaning_warning: 'Kanji Reading: 挙げ句 or 挙句'
+pronunciation:
+  katakana: アゲク
+  romaji: ageku
+formation:
+  Verb - past tense + あげく: Expresses a negative result after a long period of something.
+  Noun + の + あげく: Expresses a negative result after a long period related to the noun.
+jlpt: N2
+etymology: The term 「あげく」originally comes from the final line of a 「連歌(れんが)」 (renga, a form of early Japanese
+  poetry), and literally means "the tying up phrase" or "the concluding phrase."
+writeup: '「あげく」, also written as 「挙げ句」or 「挙句」, is a noun that expresses a negative result occurring after
+  a considerable amount of time, effort, or resources have been invested. It often implies that the preceding
+  events somehow caused or contributed to the negative outcome. It suggests a culmination of events leading
+  to an undesirable conclusion. It is used after the past-tense form of verbs or after nouns followed
+  by 「の」. While often written in hiragana, the kanji forms are also common. **Important Considerations**:
+  「あげく」 typically implies a negative or undesirable outcome. While it can be used when the outcome is
+  not inherently negative, it still suggests that the process leading to that result was somehow troublesome
+  or involved negative aspects.'
+false_friends:
+  - term: た末・の末
+    meaning: After, As a conclusion of
+    kind: similar expression
+    nuance: While both imply a conclusion after some time or effort, 「た末・の末」 doesn't necessarily carry
+      the negative connotation that 「あげく」 often does. 「た末・の末」 can be used for neutral or even positive
+      outcomes.
+    grammar_point: た末・の末・末に (culmination)
+  - term: とうとう
+    meaning: Finally, after all
+    kind: similar expression
+    nuance: While 「とうとう」 signifies a final outcome after a long process, it is neutral and can describe
+      both positive and negative results. 「あげく」 specifically emphasizes a negative or troublesome culmination.
+    grammar_point: とうとう (finally・eventually)
+post_false_friends_writeup: To avoid confusion, remember that 「あげく」 often implies a negative or undesirable
+  result. If the outcome is neutral or positive, consider using 「た末」 or 「の末」 instead, or the adverb 「とうとう」.
+examples:
+  - english: After weeks of discussions, the project was canceled.
+    japanese:
+      - 数 週間 の 議論 の {あげく}、その プロジェクト は 中止 と なっ た。
+      - 数 週間 の 議論 の {あげく}、その プロジェクト は 中止 と なっ て しまい まし た。
+      - 数 週間 の 議論 の {挙げ句}、その プロジェクト は 中止 と なっ た。
+      - 数 週間 の 議論 の {挙句}、その プロジェクト は 中止 と なっ て しまい まし た。
+    english_literally: After the end of weeks of discussions, that project became cancellation.
+    competing_grammar:
+      - competing_japanese:
+          - 数 週間 の 議論 の {末}、その プロジェクト は 中止 と なっ た。
+        english: At the end of weeks of discussions, the project was canceled.
+        hint: 「の末」 indicates a result after a long process, but it doesn't carry the strong negative nuance
+          that 「あげく」 does. We're looking for a grammar point that emphasizes the negative outcome of a
+          troublesome process.
+    scene: A team leader explaining the fate of a long-debated project to their team.
+    register: formal
+    setting: serious
+    speaker_age: older
+    nuance: The extended period of discussion (「数 週間 の 議論」) is explicitly stated, leading to the negative
+      outcome of cancellation (「中止 と なった」). This usage in a professional context emphasizes the difficulty
+      of the preceding process. The formal register and older speaker align with a team leader addressing
+      their team.
+  - english: After searching for so long, what I was looking for was in the corner of the room all along.
+    japanese:
+      - 探し物 を し て い た {あげく}、結局 は 部屋 の 隅 に あっ た。
+      - 探し物 を し て い た {挙げ句}、結局 は 部屋 の 隅 に あっ た。
+      - 探し物 を し て た {あげく}、結局 部屋 の 隅 に あっ た よ。
+      - 探し物 を し て い た {あげく}、結局 は 部屋 の 隅 に あっ た ん です。
+    english_literally: After the end of searching for a thing, in the end, it was in the corner of the
+      room.
+    competing_grammar:
+      - competing_japanese:
+          - 探し物 を し て い た {結果}、結局 は 部屋 の 隅 に あっ た。
+        english: As a result of searching for so long, what I was looking for was in the corner of the
+          room all along.
+        hint: 「結果」 indicates a neutral result of an action. 「あげく」 highlights the troublesome or frustrating
+          nature of the long search leading to this somewhat anticlimactic outcome. We're looking for
+          a grammar point that conveys the culmination of a tedious process.
+    scene: Someone tidying their room and realizing a misplaced item was in an obvious spot.
+    register: casual
+    setting: reflective
+    nuance: The speaker's extensive effort in searching (「探し物 を し て いた」) leads to an almost comical, slightly
+      frustrating realization that the item was in an obvious place (「部屋 の 隅 に あった」). This demonstrates
+      that the outcome is not necessarily catastrophic, but the preceding process was troublesome.
+  - english: After waiting for several hours, he didn't come in the end.
+    japanese:
+      - 数 時間 待ち 続け た {あげく}、結局 彼 は 来 なかっ た。
+      - 数 時間 待ち 続け た {あげく}、結局 彼 は 来 ませ ん でし た。
+      - 数 時間 待ち 続け た {挙げ句}、結局 彼 は 来 なかっ た。
+      - 何 時間 も 待っ て た {あげく}、結局 来 なかっ た。
+    english_literally: After the end of continuing to wait for several hours, in the end, he did not come.
+    competing_grammar:
+      - competing_japanese:
+          - 数 時間 待ち 続け た {の で}、結局 彼 は 来 なかっ た。
+        english: Because I kept waiting for several hours, he didn't come in the end.
+        hint: 「ので」 states a reason, but it doesn't emphasize the culmination of a prolonged, frustrating
+          action like 「あげく」 does. We're looking for a grammar point that suggests a long, arduous process
+          leading to a disappointing outcome.
+    scene: A friend recounting how they were stood up for a meeting.
+    register: casual
+    setting: melancholic
+    nuance: The phrase 「数 時間 待ち 続け た」 emphasizes the extensive effort, which results in the undesirable
+      and frustrating outcome of him not appearing. This shows the 'negative consequences' aspect of 「あげく」.
+  - english: After years of planning, the business venture ended in failure.
+    japanese:
+      - 長年 の 計画 の {あげく}、その 事業 は 失敗 に 終わっ た。
+      - 長年 の 計画 の {あげく}、その 事業 は 失敗 に 終わり まし た。
+      - 長年 の 計画 の {挙げ句}、その 事業 は 失敗 に 終わっ た。
+      - 長年 の 計画 の {挙句}、その 事業 は 失敗 に 終わる 結果 と なっ た。
+    english_literally: After the end of years of planning, that business ended in failure.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 計画 {の 後}、その 事業 は 失敗 に 終わっ た。
+        english: After years of planning, the business venture ended in failure.
+        hint: 「の 後 (no ato)」 simply means 'after' and is neutral. 「あげく」 emphasizes the extensive effort
+          and the negative culmination. We're looking for a grammar point that conveys a negative result
+          after a long process.
+    scene: A journalist reporting on a collapsed business.
+    register: formal
+    setting: informative
+    nuance: 「長年 の 計画」 signifies a tremendous investment of time and effort, making the ultimate failure
+      (「失敗 に 終わった」) particularly impactful and fitting for the negative connotation of 「あげく」. The formal
+      register fits a journalistic report.
+  - english: After agonizing for a long time, he decided to emigrate overseas.
+    japanese:
+      - 彼 は 散々 悩ん だ {あげく}、海外 移住 を 決め た。
+      - 彼 は 散々 悩ん だ {あげく}、海外 移住 を 決め まし た。
+      - 彼 は 散々 悩ん だ {挙げ句}、海外 移住 を 決め た。
+      - 彼 は 散々 悩ん だ {あげく}、とうとう 海外 移住 を 決め た。
+    english_literally: He, after the end of agonizing terribly, decided on overseas emigration.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 散々 悩ん だ {後 に}、海外 移住 を 決め た。
+        english: He decided to emigrate overseas after agonizing for a long time.
+        hint: 「後 に (ato ni)」 means 'after' and is a simple temporal connector. 「あげく」 highlights the prolonged,
+          difficult process and its eventual outcome, even if the outcome isn't strictly negative. We're
+          looking for a grammar point that indicates the culmination of an arduous deliberation.
+    scene: Two friends discussing a mutual acquaintance's big life decision.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「散々 悩ん だ」 highlights a significant, prolonged internal struggle, leading to a major
+      life decision. While not strictly negative, the process was clearly burdensome, making 「あげく」 appropriate.
+      The casual male speech is common between friends discussing serious topics.
+  - english: After hours of traffic, I ended up being late for the meeting.
+    japanese:
+      - 何 時間 も の 渋滞 の {あげく}、会議 に 遅刻 し て しまっ た。
+      - 何 時間 も の 渋滞 の {あげく}、会議 に 遅刻 し て しまい まし た。
+      - 何 時間 も の 渋滞 の {挙げ句}、会議 に 遅刻 し て しまっ た。
+      - 何 時間 も 渋滞 に はまっ て {あげく}、会議 に 遅刻 し た。
+    english_literally: After the end of hours of traffic, I ended up being late for the meeting.
+    competing_grammar:
+      - competing_japanese:
+          - 何 時間 も の 渋滞 {の せい で}、会議 に 遅刻 し て しまっ た。
+        english: Because of hours of traffic, I ended up being late for the meeting.
+        hint: 「の せい で (no sei de)」 indicates a negative cause. While traffic is negative, 「あげく」 emphasizes
+          the culmination of the long, frustrating experience. We're looking for a grammar point that
+          suggests a long, troublesome process led to a negative consequence.
+    scene: Someone arriving late and explaining why to their colleague.
+    register: semi-formal
+    setting: apologetic
+    nuance: The prolonged and frustrating experience of 「何時間 も の 渋滞」 culminates in the negative outcome
+      of being late (「遅刻 し て しまった」). This exemplifies 「あげく」's typical use with undesirable results following
+      a difficult process.
+  - english: After agonizing over it and buying the clothes, I ended up throwing them away without wearing
+      them even once.
+    japanese:
+      - 散々 悩ん で 買っ た 服 な の に、一 度 も 着る こと なく 捨て て しまっ た {あげく}。
+      - 散々 悩ん で 買っ た 服 を、結局 一 度 も 着 ず に 捨て て しまっ た {あげく}。
+      - 散々 悩ん で 買っ た 服 な の に、一 度 も 着る こと なく 捨て て しまい まし た {あげく}。
+      - 散々 悩ん で 買っ た 服 な の に、一 度 も 着る こと なく 捨て て しまっ た {挙げ句}。
+    english_literally: Even though it was clothes I agonizingly worried over and bought, after the end
+      of not wearing it even once, I threw it away.
+    competing_grammar:
+      - competing_japanese:
+          - 散々 悩ん で 買っ た 服 な の に、一 度 も 着る こと なく 捨て て しまっ た {結果} だ。
+        english: It is the result of agonizing over it and buying the clothes that I ended up throwing
+          them away without wearing them even once.
+        hint: 「結果 (kekka)」 is a general term for 'result'. 「あげく」 specifically highlights the negative
+          or futile culmination after a prolonged effort. We're looking for a grammar point that expresses
+          a regrettable outcome after a process of deliberation and purchase.
+    scene: A woman lamenting a shopping regret to her friend.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker's extensive deliberation (「散々 悩ん で」) and purchase (「買っ た」) result in the deeply
+      regrettable action of disposal (「捨て て しまった」) without ever using the item. This highlights the negative
+      or futile culmination aspect of 「あげく」, common in casual female conversation.
+  - english: After failing many times, he finally achieved success.
+    japanese:
+      - 何 度 も 失敗 し た {あげく}、ついに 彼 は 成功 を 収め た。
+      - 何 度 も 失敗 し た {あげく}、ついに 彼 は 成功 を 収め まし た。
+      - 何 度 も 失敗 し た {挙げ句}、ついに 彼 は 成功 を 収め た。
+      - 何 度 も 失敗 を 繰り返し た {あげく}、彼 は ついに 成功 を 手 に 入れ た。
+    english_literally: After the end of failing many times, finally he achieved success.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 も 失敗 し た {末 に}、ついに 彼 は 成功 を 収め た。
+        english: At the end of failing many times, he finally achieved success.
+        hint: 「た末 に」 can be used for a neutral or positive outcome after a long process, but 「あげく」 particularly
+          emphasizes the arduousness or difficulty of the preceding failures. We're looking for a grammar
+          point that suggests a hard-won success after a burdensome process.
+    scene: A motivational speaker sharing a success story.
+    register: formal
+    setting: inspirational
+    nuance: While 「あげく」 typically implies negative outcomes, it can also describe a difficult process
+      leading to a neutral or even positive (but hard-won) outcome. Here, 「何度も 失敗 し た」 highlights the
+      burdensome process, making the eventual success meaningful. The formal register suits a motivational
+      speech.
+  - english: After several days of investigation, the police identified the culprit.
+    japanese:
+      - 数 日間 の 調査 の {あげく}、警察 は 犯人 を 特定 し た。
+      - 数 日間 の 調査 の {あげく}、警察 は 犯人 を 特定 し まし た。
+      - 数 日間 の 調査 の {挙げ句}、警察 は 犯人 を 特定 し た。
+      - 数 日間 に わたる 調査 の {挙句}、警察 は 犯人 を 特定 し た。
+    english_literally: After the end of several days of investigation, the police identified the culprit.
+    competing_grammar:
+      - competing_japanese:
+          - 数 日間 の 調査 の {結果}、警察 は 犯人 を 特定 し た。
+        english: As a result of several days of investigation, the police identified the culprit.
+        hint: 「結果 (kekka)」 is a neutral way to state an outcome. 「あげく」 emphasizes the extensive and possibly
+          difficult nature of the investigation leading to this final result. We're looking for a grammar
+          point that implies a prolonged and thorough process culminating in an identification.
+    scene: A news reporter detailing a criminal investigation's outcome.
+    register: formal
+    setting: informative
+    nuance: The phrase 「数 日間 の 調査」 highlights a prolonged and detailed effort, which culminates in the
+      identification of the culprit (「犯人 を 特定 し た」). While the outcome is positive, the process itself
+      was extensive and challenging, fitting the 'troublesome process' aspect of 「あげく」. The formal register
+      suits a news report.
+  - english: After a long dispute, the relationship with my neighbor became the worst.
+    japanese:
+      - 長い 論争 の {あげく}、隣人 と の 関係 は 最悪 に なっ た。
+      - 長い 論争 の {あげく}、隣人 と の 関係 は 最悪 に なり まし た。
+      - 長い 論争 の {挙げ句}、隣人 と の 関係 は 最悪 に なっ た。
+      - 長い 論争 の {あげく}、隣 の 人 と の 関係 が 最悪 に なっ ちゃっ た。
+    english_literally: After the end of a long dispute, the relationship with the neighbor became the
+      worst.
+    competing_grammar:
+      - competing_japanese:
+          - 長い 論争 {の 後}、隣人 と の 関係 は 最悪 に なっ た。
+        english: After a long dispute, the relationship with my neighbor became the worst.
+        hint: 「の 後 (no ato)」 simply states a temporal sequence. 「あげく」 strongly conveys that the prolonged
+          dispute led to the negative culmination of the relationship. We're looking for a grammar point
+          that indicates a negative consequence after an extended troublesome event.
+    scene: Someone complaining to a friend about their neighbor.
+    register: casual
+    setting: melancholic
+    nuance: The extended and likely unpleasant dispute (「長い 論争」) leads to the highly negative outcome
+      of a ruined relationship (「最悪 に なった」). This is a classic example of 「あげく」 conveying negative consequences
+      after a prolonged troublesome event.
+post_example_writeup: As you can see from the examples, 「あげく」 is flexible enough to describe situations
+  where the culmination is not necessarily 'bad' in a catastrophic sense, but rather implies a long, arduous,
+  or frustrating process that reaches a certain final point. It's often used when expressing a sense of
+  futility, exhaustion, or an anti-climactic result after significant effort.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/あげく

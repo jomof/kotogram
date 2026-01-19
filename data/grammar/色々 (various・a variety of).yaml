@@ -1,0 +1,234 @@
+grammar_point: 色々 (various・a variety of)
+learn_before:
+  - Verb[た] (past tense)
+  - Verb[ました] (polite past)
+  - うち (within or while)
+  - と (with)
+  - わ (feminine sentence-ending particle)
+meaning: various; a variety of; diverse
+pronunciation:
+  katakana: イロイロ
+  romaji: iroiro
+formation:
+  色々 + Noun: Used to describe a multitude of different items or types. This often takes the form 色々な.
+  色々 + Verb: Used adverbially to indicate performing various actions or that various things happened.
+jlpt: N5
+etymology: The word 色々 is a reduplication of the kanji 色 (iro), meaning 'color'. Historically, this repetition
+  came to signify 'many colors' or 'a variety of colors', and from there, it broadened to mean 'various'
+  or 'diverse' in a general sense, encompassing not just colors but any kind of variety or multiplicity.
+writeup: |-
+  色々 (iroiro) is a versatile Japanese word that expresses the concept of 'various', 'a variety of', or 'diverse'. It functions in two primary ways: as an adjectival noun (often called a な-adjective) when directly modifying a noun, and as an adverb when modifying a verb.
+
+  When used as a な-adjective, it takes the form 色々な (iroiro na) before a noun, such as 色々な本 (iroiro na hon - various books) or 色々な人 (iroiro na hito - various people). This indicates that the noun refers to a collection of different kinds or types of that item.
+
+  When used as an adverb, 色々 (iroiro) directly precedes a verb without any particle. For example, 色々考える (iroiro kangaeru - to think about various things) or 色々あった (iroiro atta - various things happened). In this usage, it implies that the action or state encompasses a wide range of types or occurrences.
+
+  While 色々 is widely applicable, it tends to be more common in casual and semi-formal contexts. It conveys a rather simple and straightforward sense of variety. It does not carry the formal tone that some other words expressing variety might.
+false_friends:
+  - term: 様々 (samazama)
+    meaning: various; diverse; manifold
+    kind: similar expression
+    nuance: While similar in meaning to 色々, 様々 is more formal and emphasizes the distinctness and individuality
+      of each item within the variety. It suggests a more organized or considered diversity, often used
+      in written language or formal speech.
+    grammar_point: <suggest>:様々 (various・diverse)
+  - term: 多く (ooku)
+    meaning: many; a lot
+    kind: similar expression
+    nuance: 多く focuses on the quantity or number of things, indicating 'a lot' or 'many'. In contrast,
+      色々 emphasizes the *variety* or *diversity* of things, rather than just the large number.
+    grammar_point: <suggest>:多く (many・a lot)
+  - term: 多様な (tayou na)
+    meaning: diverse; varied
+    kind: similar expression
+    nuance: 多様な is a more academic or technical term, suggesting a broad and wide-ranging diversity, often
+      in a structured or systematic context. It implies a high degree of variation or multiplicity across
+      different categories, more so than the general sense of 'various' conveyed by 色々.
+    grammar_point: <suggest>:多様な (diverse・varied)
+post_false_friends_writeup: When distinguishing 色々 from similar expressions, remember that 色々 is quite
+  general and casual, focusing on a simple sense of 'a bunch of different kinds'. 様々 lends a more formal
+  tone and highlights the distinctness of each item. 多く simply indicates 'many' in number. 多様な is a more
+  specialized term, used in formal or academic contexts to describe a wide and complex range of differences.
+examples:
+  - english: There are various kinds of flowers blooming in the garden.
+    japanese:
+      - 庭 に {色々} な 花 が 咲い て い ます。
+      - 庭 に {色々} な 花 が 咲い て いる。
+    english_literally: In the garden, various flowers are blooming.
+    competing_grammar:
+      - competing_japanese:
+          - 庭 に 様々 な 花 が 咲い て い ます。
+        english: There are diverse kinds of flowers blooming in the garden.
+        hint: 「様々」is more formal and emphasizes the distinctness of each flower. We're looking for a more
+          general term for 'various'.
+    scene: A person is admiring a beautiful garden with many types of flowers.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I talked about various things with my friends.
+    japanese:
+      - 友達 と {色々} な こと を 話し まし た。
+      - 友達 と {色々} な こと を 話し た。
+      - 友達 と {色々} と 話し まし た。
+      - 友達 と {色々} と 話し た。
+    english_literally: With friends, various things I talked.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 と 多く の こと を 話し まし た。
+        english: I talked about many things with my friends.
+        hint: 「多く」emphasizes quantity, while we are looking for emphasis on the variety of topics.
+    scene: After a long time, a person catches up with their friends over coffee.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: Various things happened today, I'm tired.
+    japanese:
+      - 今日 は {色々} あっ た から、疲れ た よ。
+      - 今日 は {色々} あり まし た から、疲れ まし た。
+      - 今日 は {色々} と あっ た から、疲れ た よ。
+      - 今日 は {色々} と あり まし た から、疲れ まし た。
+    english_literally: Today, various things happened, so I'm tired.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は たくさん あっ た から、疲れ た よ。
+        english: Many things happened today, I'm tired.
+        hint: 「たくさん」emphasizes the amount, whereas 「色々」focuses on the diversity of events.
+    scene: A student complains to their roommate after a long day at school.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    nuance: The speaker uses the casual sentence-ending particle 「よ」 which is common among male speakers
+      and adds a sense of informing or asserting to the listener.
+  - english: I want to try various things while I'm young.
+    japanese:
+      - 若い うち に {色々} な こと に 挑戦 し たい です。
+      - 若い うち に {色々} な こと に 挑戦 し たい。
+      - 若い うち に {色々} と 挑戦 し たい です。
+      - 若い うち に {色々} と 挑戦 し たい。
+    english_literally: While young, various things to challenge I want.
+    competing_grammar:
+      - competing_japanese:
+          - 若い うち に 多く の こと に 挑戦 し たい です。
+        english: I want to try many things while I'm young.
+        hint: 「多く」focuses on the quantity of things, not necessarily the variety or different types of
+          experiences.
+    scene: A young professional is discussing their aspirations with a mentor.
+    register: teineigo (polite)
+    setting: professional
+  - english: There are various ways to solve this problem.
+    japanese:
+      - この 問題 を 解決 する 方法 は {色々} あり ます。
+      - この 問題 を 解決 する 方法 は {色々} ある。
+    english_literally: This problem to solve methods are various.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 を 解決 する 方法 は 多種 多様 です。
+        english: There are many diverse ways to solve this problem.
+        hint: 「多種多様」is a more formal and emphasized term for diversity. We're looking for a more common
+          and general way to say 'various'.
+    scene: A team leader is brainstorming solutions with their colleagues.
+    register: formal
+    setting: academic
+  - english: I'm looking for various ingredients for tonight's dinner.
+    japanese:
+      - 今晩 の 夕食 の ため に、{色々} な 食材 を 探し て い ます。
+      - 今晩 の 夕食 の ため に、{色々} な 食材 を 探し て いる。
+    english_literally: Tonight's dinner for, various ingredients am searching for.
+    competing_grammar:
+      - competing_japanese:
+          - 今晩 の 夕食 の ため に、沢山 の 食材 を 探し て い ます。
+        english: I'm looking for a lot of ingredients for tonight's dinner.
+        hint: 「沢山」emphasizes the quantity of ingredients, not their variety.
+    scene: A person is at the supermarket, trying to decide what to cook.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: He has various talents.
+    japanese:
+      - 彼 は {色々} な 才能 を 持っ て い ます。
+      - 彼 は {色々} な 才能 を 持っ て いる。
+    english_literally: He, various talents has.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 多く の 才能 を 持っ て い ます。
+        english: He has many talents.
+        hint: 「多く」focuses on the number of talents. We want to highlight the *variety* of his talents.
+    scene: Two friends are discussing a mutual acquaintance.
+    register: teineigo (polite)
+    setting: friendly
+  - english: She learns various things from her seniors.
+    japanese:
+      - 彼女 は 先輩 から {色々} な こと を 学ん で い ます。
+      - 彼女 は 先輩 から {色々} な こと を 学ん で いる。
+    english_literally: She, from seniors, various things is learning.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 先輩 から 多く の こと を 学ん で い ます。
+        english: She learns many things from her seniors.
+        hint: 「多く」emphasizes the quantity. We are looking for the diversity of things learned.
+    scene: A junior employee is diligently observing and learning from experienced colleagues.
+    register: teineigo (polite)
+    setting: professional
+  - english: There are various opinions on this matter.
+    japanese:
+      - この 件 に つい て は、{色々} な 意見 が あり ます。
+      - この 件 に つい て は、{色々} な 意見 が ある。
+    english_literally: Regarding this matter, various opinions exist.
+    competing_grammar:
+      - competing_japanese:
+          - この 件 に つい て は、様々 な 意見 が あり ます。
+        english: There are diverse opinions on this matter.
+        hint: 「様々」is more formal and emphasizes the distinctness and individuality of each opinion. We're
+          looking for a more general term for 'various'.
+    scene: During a debate, the moderator acknowledges the diversity of viewpoints.
+    register: formal
+    setting: academic
+  - english: I had various worries before the exam.
+    japanese:
+      - 試験 の 前 に {色々} と 心配 事 が あっ た ん だ。
+      - 試験 の 前 に {色々} と 心配 事 が あり まし た。
+      - 試験 の 前 に {色々} 心配 事 が あっ た ん だ。
+      - 試験 の 前 に {色々} 心配 事 が あり まし た。
+    english_literally: Exam before, various worries existed.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の 前 に たくさん 心配 事 が あっ た ん だ。
+        english: I had a lot of worries before the exam.
+        hint: 「たくさん」emphasizes the quantity of worries. We want to convey a variety of different worries.
+    scene: A student confides in a friend about their pre-exam anxiety.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    nuance: The use of 「んだ」 at the end, along with the casual tone, often conveys a sense of explanation
+      or shared feeling, common in intimate conversations, and used by female speakers to express a softer
+      tone.
+  - english: The museum exhibits various historical artifacts.
+    japanese:
+      - 博物 館 に は {色々} な 歴史 的 な 遺物 が 展示 さ れ て い ます。
+      - 博物 館 に は {色々} な 歴史 的 な 遺物 が 展示 さ れ て いる。
+    english_literally: In the museum, various historical artifacts are exhibited.
+    competing_grammar:
+      - competing_japanese:
+          - 博物 館 に は 多様 な 歴史 的 な 遺物 が 展示 さ れ て い ます。
+        english: The museum exhibits diverse historical artifacts.
+        hint: 「多様な」is a more formal or academic term, suggesting a broader, more systematic range of diversity.
+          We're looking for a more common term for 'various'.
+    scene: A tour guide is explaining the exhibits in a museum.
+    register: formal
+    setting: informative
+  - english: I'd like to try various local specialties when I travel.
+    japanese:
+      - 旅行 に 行っ たら、{色々} な ご 当地 グルメ を 試し て み たい です。
+      - 旅行 に 行っ たら、{色々} な ご 当地 グルメ を 試し て み たい。
+    english_literally: When traveling, various local gourmet foods I want to try.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 に 行っ たら、沢山 の ご 当地 グルメ を 試し て み たい です。
+        english: When traveling, I'd like to try a lot of local gourmet foods.
+        hint: 「沢山」emphasizes the quantity. We want to convey trying a variety of different types of local
+          foods.
+    scene: A person is planning their next trip and thinking about the food.
+    register: teineigo (polite)
+    setting: optimistic
+post_example_writeup: As you can see from the examples, 色々 can modify nouns by taking the form 色々な, or
+  it can directly precede verbs as an adverb to describe a variety of actions or occurrences. Its usage
+  is very flexible, making it a common and useful word in everyday Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/色々

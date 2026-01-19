@@ -1,0 +1,206 @@
+grammar_point: い-Adjective[くても] (concessive)
+learn_before:
+  - Verb[ても] (concessive)
+meaning: even if (adjective); even though (adjective)
+pronunciation:
+  katakana: イ・アジェクティブ・クテモ
+  romaji: i-adjective kutemo
+formation:
+  い-Adjective (remove い) + くても: Used to express 'even if' or 'even though' with an い-adjective.
+jlpt: N4
+etymology: The formation combines the い-adjective's conjunctive form (連用形 - ren'yōkei) ending in 「く」,
+  with the particle 「て」, which indicates connection or cause-and-effect, and the particle 「も」, which conveys
+  the meaning of 'even' or 'also'. Historically, 「て」 and 「も」 combined to form a concessive meaning across
+  various parts of speech, and this specific construction applies it to い-adjectives.
+writeup: |-
+  The grammar pattern 「い-Adjective[くても]」 is used to express a concessive condition, meaning "even if (adjective)" or "even though (adjective)." It indicates that despite the state or quality described by the い-adjective, the main clause still happens or holds true.
+
+  This form is created by taking an い-adjective, removing its final 「い」, and attaching 「くても」. For example, 「寒い」 (samui - cold) becomes 「寒くても」 (samukutemo - even if it's cold). The particle 「も」 (mo) in this construction signifies 'even' or 'also,' effectively creating the concessive meaning. This pattern is versatile and can be used in a variety of situations, from describing weather to personal feelings or the qualities of objects.
+
+  It is important to note that while 「い-Adjective[くても]」 expresses a counter-expectation, it generally does not carry the same strong nuance of surprise or dissatisfaction that 「のに」 does. It simply states a condition and an outcome that is not prevented by that condition.
+false_friends:
+  - term: Verb[て]も
+    meaning: even if (verb); even though (verb)
+    kind: similar expression
+    nuance: 「Verb[て]も」 applies the concessive meaning to verbs, whereas 「い-Adjective[くても]」 is specifically
+      for い-adjectives. The underlying 「ても」 structure is the same, but the part of speech it attaches
+      to differs. We're looking for an adjective.
+    grammar_point: ても (even if・even though)
+  - term: な-Adjectiveでも
+    meaning: even if (na-adjective); even though (na-adjective)
+    kind: similar expression
+    nuance: Similar to verbs, 「な-Adjectiveでも」 applies the concessive meaning to な-adjectives (by adding
+      「で」 before 「も」), not い-adjectives. We're looking for an adjective.
+    grammar_point: でも (even・any・no matter)
+  - term: Nounでも
+    meaning: even (noun); even if (noun)
+    kind: similar expression
+    nuance: 「Nounでも」 applies the concessive meaning to nouns. The basic principle of adding 「も」 remains,
+      but the connection to a noun is different from modifying an い-adjective. We're looking for an adjective.
+    grammar_point: でも (even・any・no matter)
+  - term: なのに
+    meaning: even though; despite (with unexpected or dissatisfied nuance)
+    kind: similar expression
+    nuance: While both express a concessive idea, 「なのに」 (which is 「な」 + 「のに」) implies surprise, disappointment,
+      or a sense of 'contrary to expectation.' 「い-Adjective[くても]」 is a more neutral statement of 'even
+      if,' without the strong emotional undertone. We're looking for an adjective.
+    grammar_point: のに (unexpected result)
+  - term: けれど・けど
+    meaning: but; although
+    kind: similar expression
+    nuance: 「けれど」 and 「けど」 are general conjunctions that connect two clauses, often indicating a contrast
+      or concession. They are broader in application and don't specifically attach to the く form of い-adjectives
+      to express 'even if'. We're looking for an adjective.
+    grammar_point: しかし (but・however)
+post_false_friends_writeup: While these expressions all convey some form of concession or contrast, 「い-Adjective[くても]」
+  is specifically structured for い-adjectives to mean 'even if/though [adjective]'. 「ても」 (general) and
+  「でも」 (for な-adjectives/nouns) use the same core particle 「も」 but attach to different parts of speech.
+  「なのに」 and 「けれど/けど」 are conjunctions that express concession or contrast, but they lack the direct 'even
+  if' structure that 「い-Adjective[くても]」 provides for adjectives and often carry different nuances, such
+  as strong unexpectedness or simply a mild contrast.
+examples:
+  - english: Even if it's hot, I want to eat hot pot.
+    japanese:
+      - 暑く て も、鍋 を 食べ たい です。
+      - 暑く て も、鍋 食べ たい。
+    english_literally: Even if hot, hot pot want to eat.
+    competing_grammar:
+      - competing_japanese:
+          - 暑い けれど、鍋 を 食べ たい です。
+        english: It's hot, but I want to eat hot pot.
+        hint: 「けれど」 is a general conjunction indicating contrast. The sentence is looking for a stronger
+          'even if' nuance for the adjective.
+    scene: A person expresses their desire for a particular dish despite the current weather conditions.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Even if it's difficult, I won't give up.
+    japanese:
+      - 難しく て も、諦め ませ ん。
+      - 難しく て も、諦め ない。
+    english_literally: Even if difficult, will not give up.
+    competing_grammar:
+      - competing_japanese:
+          - 難しい から、諦め ませ ん。
+        english: Because it's difficult, I won't give up. (implies difficulty as a *reason* not to give
+          up, which contradicts the example's meaning)
+        hint: 「から」 indicates a reason. The original sentence expresses a concession ('even if difficult'),
+          not a cause.
+    scene: A student is struggling with a problem but remains determined.
+    register: teineigo (polite)
+    setting: serious
+  - english: Even if it's cold, children play outside.
+    japanese:
+      - 寒く て も、子供 たち は 外 で 遊ぶ。
+      - 寒く て も、子供 たち は 外 で 遊び ます。
+    english_literally: Even if cold, children outside play.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い の に、子供 たち は 外 で 遊ぶ。
+        english: Even though it's cold, children play outside (with a sense of surprise).
+        hint: 「のに」 often implies surprise or an unexpected situation. The example is a more neutral statement
+          of fact.
+    scene: Observing children's resilience in winter.
+    register: casual
+    setting: informative
+  - english: Even if this price is cheap, I won't buy it.
+    japanese:
+      - この 値段 は 安く て も、買い ませ ん。
+      - この 値段 は 安く て も、買わ ない。
+    english_literally: This price even if cheap, will not buy.
+    competing_grammar:
+      - competing_japanese:
+          - この 値段 は 安い から、買い ませ ん。
+        english: Because this price is cheap, I won't buy it. (logically contradictory)
+        hint: 「から」 indicates a reason. The original sentence implies a concession, not a cause for not
+          buying.
+    scene: A person is window shopping and finds something they don't like, even at a low price.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: Even if it's dangerous, I have to go.
+    japanese:
+      - 危なく て も、行か なく て は なり ませ ん。
+      - 危なく て も、行か なく ちゃ いけ ない。
+    english_literally: Even if dangerous, must go.
+    competing_grammar:
+      - competing_japanese:
+          - 危ない けど、行か なく て は なり ませ ん。
+        english: It's dangerous, but I have to go.
+        hint: 「けど」 is a simple 'but'. The sentence implies a stronger 'even if' for the adjective.
+    scene: A character in a story faces a risky mission.
+    register: teineigo (polite)
+    setting: serious
+  - english: Even if the food is bad, I'll eat it all.
+    japanese:
+      - 料理 が まずく て も、全部 食べ ます。
+      - 料理 が まずく て も、全部 食べる。
+    english_literally: Food even if bad, all will eat.
+    competing_grammar:
+      - competing_japanese:
+          - 料理 が まずい の に、全部 食べ ます。
+        english: Even though the food is bad, I'll eat it all (with a sense of oddness).
+        hint: 「のに」 would imply surprise or a contradiction that's unusual. The sentence is a simple concession.
+    scene: A child at a family dinner is told to finish their meal.
+    register: teineigo (polite)
+    setting: commanding
+  - english: Even if it's narrow, it's enough for one person.
+    japanese:
+      - 狭く て も、一人 なら 十分 です。
+      - 狭く て も、一人 なら 十分 だ。
+    english_literally: Even if narrow, one person if enough is.
+    competing_grammar:
+      - competing_japanese:
+          - 狭い から、一人 なら 十分 です。
+        english: Because it's narrow, it's enough for one person. (This implies narrowness is the *reason*
+          for it being enough, which is a different meaning.)
+        hint: '「から」 gives a reason. The original sentence describes a concession: ''even if it''s narrow,
+          it''s still enough''.'
+    scene: Discussing small living spaces or single-occupancy rooms.
+    register: teineigo (polite)
+    setting: informative
+  - english: Even if it's busy, I always make time for my hobbies.
+    japanese:
+      - 忙しく て も、いつ も 趣味 の 時間 を 作り ます。
+      - 忙しく て も、いつ も 趣味 の 時間 を 作る よ。
+    english_literally: Even if busy, always hobbies' time make.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい けど、いつ も 趣味 の 時間 を 作り ます。
+        english: I'm busy, but I always make time for my hobbies.
+        hint: 「けど」 connects two facts. The example uses 「くても」 to highlight that busyness doesn't *prevent*
+          the action.
+    scene: A dedicated hobbyist talks about their routine.
+    register: teineigo (polite)
+    setting: reflective
+  - english: Even if the details are small, they are important.
+    japanese:
+      - 細かく て も、大事 な こと だ。
+      - 細かく て も、大事 な こと です。
+    english_literally: Even if fine, important thing is.
+    competing_grammar:
+      - competing_japanese:
+          - 細かい の に、大事 な こと だ。
+        english: Even though it's detailed, it's important (implying slight surprise or a mild contradiction).
+        hint: 「のに」 can imply a slight sense of surprise or irony. The sentence is a straightforward statement
+          that something is important despite being detailed.
+    scene: A teacher explains the significance of attention to detail.
+    register: casual
+    setting: academic
+  - english: Even if the mountain is high, we will climb it.
+    japanese:
+      - 山 が 高く て も、登り ます。
+      - 山 が 高く て も、登る よ。
+    english_literally: Mountain even if high, will climb.
+    competing_grammar:
+      - competing_japanese:
+          - 山 が 高い から、登り ませ ん。
+        english: Because the mountain is high, we won't climb it. (Direct opposite meaning)
+        hint: 「から」 indicates a reason. The original sentence expresses determination *despite* the height,
+          not because of it.
+    scene: Hikers discussing a challenging climb.
+    register: teineigo (polite)
+    setting: inspirational
+post_example_writeup: As you can see from these examples, 「い-Adjective[くても]」 is a fundamental way to express
+  a concessive idea, allowing you to acknowledge a quality or state while still proceeding with an action
+  or statement that might seem contrary to it. It is a very common and natural way to speak in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/い-Adjective[くても]

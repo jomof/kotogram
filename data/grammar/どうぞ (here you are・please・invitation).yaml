@@ -1,0 +1,223 @@
+grammar_point: どうぞ (here you are・please・invitation)
+matcher: ⌈ˢどうぞᵖadvᵇどうぞʳドーゾ⌉
+learn_before:
+  - '[Noun]をください (please give me)'
+meaning: here you are; please; go ahead
+pronunciation:
+  katakana: ドウゾ
+  romaji: dōzo
+formation:
+  単独で使用: Used alone to offer something or invite action.
+  Verb[te-form] + どうぞ: Softens a request or offers permission.
+jlpt: N5
+etymology: The word どうぞ (dōzo) is believed to have originated from どうする (dō suru), meaning "how to do"
+  or "what to do." Over time, it underwent a euphonic change and evolved into an adverb used to express
+  politeness, invitation, or encouragement. It implies a sense of "please do as you wish" or "please go
+  ahead," emphasizing the speaker's willingness for the listener to proceed comfortably.
+writeup: |-
+  どうぞ (dōzo) is a versatile and fundamental Japanese word that serves multiple functions, primarily expressing invitation, offering, or permission. It is inherently polite, making it suitable for a wide range of situations, from formal interactions to casual conversations with a polite nuance.
+
+  Its most common uses include:
+
+  *   **Offering something**: When handing an item to someone, saying 「{どうぞ}」 is akin to saying "here you are" or "please take this."
+  *   **Inviting an action**: It can be used to encourage someone to start an action, such as sitting down, entering a room, or eating. For example, 「{どうぞ}、お座りください」 (Please, sit down).
+  *   **Giving permission**: It grants permission to the listener, often in response to a request. If someone asks "Can I use this?", a simple 「{どうぞ}」 means "go ahead" or "yes, please do."
+
+  While 「{どうぞ}」 is polite on its own, it often appears with other polite forms, particularly the te-form of verbs followed by 「{どうぞ}」 or polite requests like 「〜ください」 to add an extra layer of deference and hospitality. Its use softens direct requests and makes interactions smoother and more agreeable.
+false_friends:
+  - term: ください (please give me)
+    meaning: please give me
+    kind: similar expression
+    nuance: 「{どうぞ}」 is an offering or an invitation from the speaker to the listener ("Here you are,"
+      "Please go ahead"). In contrast, 「{ください}」 is a direct request from the listener to the speaker,
+      asking for an object ("Please give me X").
+    grammar_point: <suggest>:Nounをください (please give me)
+  - term: Verb[て]ください (please do)
+    meaning: please do (a verb)
+    kind: similar expression
+    nuance: While both can involve an action, 「{どうぞ}」 (often with the te-form of a verb) is an invitation
+      or granting of permission to do something (e.g., 「座って{どうぞ}」 - "Please sit down, go ahead"). It emphasizes
+      the speaker's willingness. 「〜てください」 is a direct, polite command or request for an action (e.g.,
+      「座ってください」 - "Please sit down"). It emphasizes the action to be performed by the listener.
+    grammar_point: てください (polite request)
+post_false_friends_writeup: To differentiate, remember that 「{どうぞ}」 initiates an action or offering from
+  the speaker's side, suggesting "go ahead," while 「{ください}」 is a request, asking the listener to perform
+  an action or provide an item. Think of 「{どうぞ}」 as giving permission, and 「{ください}」 as asking for something.
+examples:
+  - english: Here's your coffee. Please.
+    japanese:
+      - コーヒー です。{どうぞ}。
+      - コーヒー、{どうぞ}。
+      - '{どうぞ}、コーヒー。'
+    english_literally: Coffee is. Please.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー です。
+        english: It's coffee.
+        hint: This just identifies the item, not an act of offering.
+    scene: A server is presenting a cup of coffee to a customer.
+    register: formal
+    setting: professional
+    nuance: This is a very common use of 「{どうぞ}」 when offering something to someone. The politeness is
+      conveyed through the serving gesture and the word itself.
+  - english: Please, go ahead.
+    japanese:
+      - お 先 に {どうぞ}。
+      - '{どうぞ}、お 先 に。'
+    english_literally: Ahead, please.
+    competing_grammar:
+      - competing_japanese:
+          - お 先 に。
+        english: You first.
+        hint: This is less of an invitation and more of a statement of yielding priority.
+      - competing_japanese:
+          - 先 に 行っ て ください。
+        english: Please go ahead (direct request).
+        hint: This is a direct command or request, not a gentle invitation.
+    scene: You are at a doorway, and you want to let someone else enter before you.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: Used to yield priority to someone, showing courtesy. 「お先に」 (osaki ni) literally means 'ahead'
+      or 'first', making the phrase 'Please go ahead first'.
+  - english: Please come inside.
+    japanese:
+      - 中 へ {どうぞ}。
+      - '{どうぞ}、中 へ。'
+      - 中 へ お 入り {どうぞ}。
+    english_literally: Inside, please.
+    competing_grammar:
+      - competing_japanese:
+          - 中 に 入っ て ください。
+        english: Please enter inside (direct request).
+        hint: This is a direct polite request to enter, not as much a welcoming invitation.
+    scene: Welcoming a guest into your home.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: A standard, polite invitation to enter a place. 「中へ」 (naka e) specifies the direction 'inside'.
+  - english: You must be tired, right? Please sit down.
+    japanese:
+      - 疲れ た でしょう？座っ て {どうぞ}。
+      - 疲れ た でしょう？お 座り {どうぞ}。
+      - 疲れ た でしょう？お 座り に なっ て {どうぞ}。
+    english_literally: Tired, right? Sit, please.
+    competing_grammar:
+      - competing_japanese:
+          - 座っ て ください。
+        english: Please sit down (direct request).
+        hint: We are looking for a softer, more inviting phrase. 「〜てください」 is a direct request, not an
+          invitation.
+    scene: You notice your friend looks tired and offer them a seat.
+    register: casual
+    setting: friendly
+    nuance: Here, 「{どうぞ}」 is combined with the te-form of the verb 座る (suwaru - to sit) to make a gentle,
+      inviting suggestion. The casual register is indicated by 「でしょう？」 used as a confirmation.
+  - english: This cake is delicious. Please have a lot.
+    japanese:
+      - この ケーキ、おいしい です よ。たくさん {どうぞ}。
+      - たくさん、{どうぞ}。
+      - この ケーキ、おいしい です よ。たくさん お 召し上がり {どうぞ}。
+    english_literally: This cake, delicious. A lot, please.
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 食べ て ください。
+        english: Please eat a lot (direct request).
+        hint: This is a direct polite request to eat a lot, not as much an encouraging invitation.
+    scene: You are offering cake to a guest and encouraging them to eat freely.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: Used to encourage someone to partake generously. 「たくさん」 (takusan) means 'a lot', emphasizing
+      the encouragement to eat as much as they like.
+  - english: The documents are over there. Please take as many as you like.
+    japanese:
+      - 資料 は そちら に あり ます。ご 自由 に お 取り {どうぞ}。
+      - 資料 は そちら に あり ます。{どうぞ} ご 自由 に お 取り ください。
+    english_literally: Documents are there. Freely take, please.
+    competing_grammar:
+      - competing_japanese:
+          - 資料 は そちら に あり ます。ご 自由 に お 取り ください。
+        english: The documents are over there. Please take them freely (direct request).
+        hint: While similar, the original emphasizes inviting freedom of action more than simply requesting
+          it. The nuance is subtly different in terms of encouragement vs. instruction.
+    scene: A presenter instructs the audience to take handouts.
+    register: formal
+    setting: professional
+    nuance: Combines with 「ご自由に」 (go jiyuu ni - freely) and 「お取り」 (o-tori - humble form of 'take') to
+      give polite permission for self-service. This use is very common in professional or public settings.
+  - english: Yes, please go ahead.
+    japanese:
+      - ええ、{どうぞ}。
+      - はい、{どうぞ}。
+    english_literally: Yes, please.
+    competing_grammar:
+      - competing_japanese:
+          - はい、いい です よ。
+        english: Yes, it's fine.
+        hint: This is a statement of permission, not an invitation to proceed with ease.
+    scene: 'One colleague asks another: "May I use this computer?"'
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「{どうぞ}」 is used as a simple, affirmative response granting permission. It's concise and polite.
+  - english: Don't hesitate, feel free to ask anything.
+    japanese:
+      - 遠慮 なく、何 で も 聞い て {どうぞ}。
+      - '{どうぞ}、遠慮 なく、何 で も 聞い て ください。'
+    english_literally: Without hesitation, anything ask, please.
+    competing_grammar:
+      - competing_japanese:
+          - 遠慮 なく、何 で も 聞い て ください。
+        english: Please ask anything without hesitation (direct request).
+        hint: This is a direct polite request to ask questions freely, whereas the original is more of
+          an encouraging invitation.
+    scene: A teacher encouraging students to ask questions.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: Combined with 「遠慮なく」 (enryo naku - without hesitation) and 「何でも」 (nan demo - anything) and
+      the te-form of 聞く (kiku - to ask), 「{どうぞ}」 emphasizes the freedom and welcome for the action.
+  - english: I'll treat you today. Please take your time and enjoy.
+    japanese:
+      - 今日 は 私 が ご 馳走 し ます。ゆっくり {どうぞ}。
+      - ゆっくり {どうぞ}。
+      - 今日 は 私 が ご 馳走 し ます。{どうぞ}、ゆっくり し て いっ て ください。
+    english_literally: Today I will treat. Slowly, please.
+    competing_grammar:
+      - competing_japanese:
+          - ゆっくり し て ください。
+        english: Please take your time (direct request).
+        hint: This is a polite request to take time, but the original with 「どうぞ」 adds a layer of encouragement
+          and welcome.
+    scene: A host treating a guest to a meal.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「{どうぞ}」 here encourages the listener to relax and enjoy the meal without rush. 「ゆっくり」 (yukkuri)
+      means 'slowly' or 'at leisure', reinforcing the invitation to take one's time.
+  - english: No, I'll carry this myself, please don't trouble yourself.
+    japanese:
+      - いえ、これ は 私 が 持ち ます の で、{どうぞ} お 構い なく。
+      - '{どうぞ}、お 構い なく。'
+    english_literally: No, this I will carry, so please don't trouble.
+    competing_grammar:
+      - competing_japanese:
+          - いえ、結構 です。
+        english: No, that's fine/I'm fine.
+        hint: This is a simple refusal, lacking the nuance of specifically asking someone not to go to
+          trouble.
+    scene: 'A younger person offers: "Shall I carry your luggage?"'
+    register: formal
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「{どうぞ}お構いなく」 (dōzo okamainaku) is a set phrase meaning "please don't trouble yourself" or
+      "please don't bother." It's a polite way to decline an offer of help, emphasizing the speaker's
+      desire for the other person not to go out of their way.
+post_example_writeup: As seen in the examples, 「{どうぞ}」 can stand alone or be combined with verbs (especially
+  in the te-form) and other expressions to convey a spectrum of invitations and permissions. Its core
+  function is to facilitate polite and hospitable interaction, making the listener feel welcome and at
+  ease.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/どうぞ

@@ -1,0 +1,240 @@
+grammar_point: 大きな・小さな (big・small)
+learn_before:
+  - (っ)たって (even if・even though)
+  - Verb[た] (past tense)
+  - Verb[ました] (polite past)
+  - ある (to exist, inanimate・to have)
+  - しかし (but・however)
+  - ても (even if・even though)
+  - と (manner)
+  - 持っている (to be holding・to possess)
+meaning: qualifiers for nouns, meaning 'big' and 'small'
+pronunciation:
+  katakana: オオキナ・チイサナ
+  romaji: ookina・chiisana
+formation:
+  大きな + Noun: Used to describe a noun as 'big', often implying a general or objective bigness, or as part
+    of a fixed expression.
+  小さな + Noun: Used to describe a noun as 'small', often implying a general or objective smallness, or
+    as part of a fixed expression.
+jlpt: N5
+etymology: The words 大きな (ookina) and 小さな (chiisana) are classified as 連体詞 (rentaishi), or pre-nominal
+  adjectives. Historically, they are thought to have evolved from older forms of adjectives that specifically
+  functioned to modify nouns directly. Unlike most contemporary adjectives (形容詞, keiyōshi) such as 大きい
+  (ookii) and 小さい (chiisai), which can stand alone as predicates or be conjugated, 連体詞 like 大きな and 小さな
+  maintain a fixed form and can only precede nouns. This reflects their ancient grammatical role of inherently
+  linking a quality directly to a noun, often implying a fundamental or typical characteristic rather
+  than a temporary state or subjective observation.
+writeup: |-
+  大きな (ookina) and 小さな (chiisana) are Japanese words used to describe something as 'big' or 'small,' respectively. While they share a similar meaning with the more common i-adjectives 大きい (ookii) and 小さい (chiisai), their grammatical function and nuance are distinct.
+
+  **Grammatical Distinction (連体詞 - Rentaishi):**
+  大きな and 小さな are classified as 連体詞 (rentaishi), which means they are words that *only* precede and modify nouns. They cannot:
+  *   Stand alone as a predicate (e.g., you cannot say 夢は大きな for 'The dream is big').
+  *   Be conjugated (e.g., they do not have negative, past, or adverbial forms like 大きくない, 小さかった, 大きく).
+
+  **Nuance and Usage Differences:**
+
+  **1. Objectivity vs. Subjectivity:**
+  *   **大きな / 小さな**: Tend to convey a more objective, fixed, or inherent quality. They describe what something *is* (its fundamental nature or type) rather than how it *feels* or *appears* to the speaker. They often sound more formal or literary.
+      *   Example: 大きな木 (a large tree, implying a certain type of tree or its inherent size).
+  *   **大きい / 小さい**: Can express both objective and subjective views. They are more versatile and commonly used in everyday conversation. They can describe how something *feels* or *appears* to the speaker, or a temporary state.
+      *   Example: 大きいりんご (a big apple, could be subjectively big to the speaker, or simply its current size).
+
+  **2. Formal / Literary Tone:**
+  大きな and 小さな often carry a slightly more formal or literary tone. They are frequently found in written Japanese, news reports, or more formal speech. They are also common in established phrases and idioms.
+
+  **3. Fixed Expressions and Abstract Nouns:**
+  These words are often preferred when modifying abstract nouns or as part of fixed expressions where the size is more about concept or inherent characteristic than physical measurement.
+  *   大きな声 (a loud voice, lit. big voice)
+  *   小さな声 (a quiet voice, lit. small voice)
+  *   大きな夢 (a big dream, an ambitious dream)
+  *   小さな幸せ (small joys)
+  *   大きな問題 (a big problem)
+
+  It is important to remember that while 大きい and 小さい can sometimes replace 大きな and 小さな (and vice versa) without changing the core meaning, the nuance, formality, and implication of inherent quality vs. subjective/temporary state will differ.
+false_friends:
+  - term: 大きい・小さい
+    meaning: big・small
+    kind: often confused with
+    nuance: Unlike 大きな・小さな, 大きい・小さい are i-adjectives that can be conjugated (e.g., 大きくない, 大きかった) and used
+      predicatively (e.g., その犬は大きい - The dog is big) as well as attributively (e.g., 大きい犬 - a big dog).
+      They are more commonly used in everyday speech and can convey subjective feelings.
+    grammar_point: い-Adjective[dictionary] (dictionary)
+  - term: でかい
+    meaning: huge・enormous
+    kind: similar expression
+    nuance: でかい is an informal, often masculine, and more emphatic way to say 'big' or 'huge,' conveying
+      a sense of imposing size.
+    grammar_point: <suggest>:でかい (huge・informal)
+  - term: ちっちゃい
+    meaning: tiny・little
+    kind: similar expression
+    nuance: ちっちゃい is an informal and more endearing or childlike way to say 'small' or 'tiny,' often conveying
+      cuteness or triviality.
+    grammar_point: <suggest>:ちっちゃい (tiny・informal)
+post_false_friends_writeup: The key distinction between 大きな/小さな and 大きい/小さい lies in their grammatical
+  classification and the nuance they convey. While both pairs denote size, 大きな/小さな are *rentaishi* (pre-nominal
+  adjectives) that only modify nouns and cannot be conjugated or stand alone. They often imply a more
+  objective, inherent quality and are used in more formal or literary contexts, or as part of set expressions.
+  In contrast, 大きい/小さい are *i-adjectives* that are highly versatile; they can modify nouns, function as
+  predicates, and undergo conjugation. They are the go-to choice for everyday conversation and can express
+  a speaker's subjective perception of size. Choosing between them often comes down to the desired level
+  of formality and the specific nuance of 'inherent quality' versus 'general description' you wish to
+  convey.
+examples:
+  - english: She has a big dream of becoming an astronaut.
+    japanese:
+      - 彼女 は 宇宙 飛行 士 に なる と いう {大きな} 夢 を 持っ て い ます。
+      - 彼女 は 宇宙 飛行 士 に なる と いう {大きな} 夢 を 持っ て いる。
+    english_literally: She has a big dream that she will become an astronaut.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 宇宙 飛行 士 に なる と いう 大きい 夢 を 持っ て い ます。
+        english: She has an objectively big dream of becoming an astronaut.
+        hint: While '大きい' is grammatically correct here, '大きな' is often preferred for abstract concepts
+          like 'dream' to emphasize an inherent quality or ambition. We're looking for the word that implies
+          an intrinsic or conceptual 'bigness'.
+    scene: A young woman is talking about her future aspirations.
+    register: formal
+    setting: inspirational
+  - english: The child spoke in a small voice.
+    japanese:
+      - 子供 は {小さな} 声 で 話し まし た。
+      - 子供 は {小さな} 声 で 話し た。
+    english_literally: The child spoke with a small voice.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 小さい 声 で 話し まし た。
+        english: The child spoke in a quiet voice (general adjective).
+        hint: '''小さな声'' is a common fixed expression meaning ''quiet voice'' or ''whisper''. While ''小さい声''
+          is understandable, ''小さな'' is the more natural and idiomatic choice in this context. We''re
+          looking for the more idiomatic phrase.'
+    scene: A teacher is trying to hear a shy student's answer.
+    register: teineigo (polite)
+    setting: academic
+  - english: There was a big tree in the middle of the park.
+    japanese:
+      - 公園 の 真ん中 に {大きな} 木 が あり まし た。
+      - 公園 の 真ん中 に {大きな} 木 が あっ た。
+    english_literally: In the park's middle, there was a big tree.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 の 真ん中 に 大きい 木 が あり まし た。
+        english: There was a large tree in the middle of the park (general description).
+        hint: '''大きな木'' often implies a stately or established tree, emphasizing its inherent size. ''大きい木''
+          is also fine but might just describe its current physical dimension. We''re looking for the
+          phrase that suggests an intrinsic characteristic.'
+    scene: A narrator describing a peaceful park setting.
+    register: formal
+    setting: storytelling
+  - english: This is a small but important step forward.
+    japanese:
+      - これ は {小さな}、しかし 重要 な 一 歩 です。
+      - これ は {小さな}、しかし 重要 な 一 歩 だ。
+    english_literally: This is a small, but important one step.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 小さい、しかし 重要 な 一 歩 です。
+        english: This is a small (in size), but important step.
+        hint: For abstract nouns like '一歩' (step), '小さな' is often chosen to emphasize the inherent nature
+          or significance despite its scale. We're looking for the more conceptual use of 'small'.
+    scene: A project manager addressing their team after a minor success.
+    register: semi-formal
+    setting: professional
+  - english: He faced a big problem that he couldn't solve alone.
+    japanese:
+      - 彼 は 一人 で は 解決 でき ない {大きな} 問題 に 直面 し まし た。
+      - 彼 は 一人 で は 解決 でき ない {大きな} 問題 に 直面 し た。
+    english_literally: He faced a big problem that he alone could not solve.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一人 で は 解決 でき ない 大きい 問題 に 直面 し まし た。
+        english: He faced a large-sized problem he couldn't solve alone.
+        hint: When referring to challenges or issues, '大きな問題' is commonly used to describe the gravity
+          or significance, implying a type of problem rather than just its physical size. We're looking
+          for the word that conveys the *magnitude* of the problem.
+    scene: A friend confiding in another about a difficult situation.
+    register: teineigo (polite)
+    setting: serious
+  - english: Even a small child understands that.
+    japanese:
+      - '{小さな} 子供 で も それ が 分かり ます。'
+      - '{小さな} 子供 で も それ が 分かる。'
+    english_literally: Even a small child understands that.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい 子供 で も それ が 分かり ます。
+        english: Even a small-sized child understands that.
+        hint: '''小さな子供'' is a common phrase often implying ''a young child'' or ''a child of tender years,''
+          focusing on their stage of development rather than just physical stature. We''re looking for
+          the phrase that highlights the child''s age/developmental stage.'
+    scene: Someone expressing surprise at another's lack of understanding.
+    register: casual
+    setting: informative
+  - english: A small error can lead to a big consequence.
+    japanese:
+      - '{小さな} 間違い が {大きな} 結果 に つながる こと が あり ます。'
+      - '{小さな} 間違い が {大きな} 結果 に つながる こと が ある。'
+    english_literally: A small mistake sometimes connects to a big result.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい 間違い が 大きい 結果 に つながる こと が あり ます。
+        english: A minor mistake can lead to a significant result.
+        hint: In formal or cautionary statements, '小さな' and '大きな' are preferred for conceptual 'mistakes'
+          and 'results' to emphasize the intrinsic nature of the cause and effect. We're looking for a
+          more formal and objective expression.
+    scene: A lecturer explaining the importance of attention to detail.
+    register: formal
+    setting: academic
+  - english: She makes a small effort every day.
+    japanese:
+      - 彼女 は 毎日 {小さな} 努力 を し て い ます。
+      - 彼女 は 毎日 {小さな} 努力 を し て いる。
+    english_literally: She is doing small efforts every day.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 毎日 小さい 努力 を し て い ます。
+        english: She is doing minor efforts every day.
+        hint: '''小さな努力'' implies consistent, perhaps subtle, efforts that accumulate. It''s often used
+          to encourage or describe a disciplined approach. We''re looking for the nuance of ''small, consistent''
+          effort.'
+    scene: A colleague describing a diligent team member.
+    register: teineigo (polite)
+    setting: professional
+  - english: He has a big heart.
+    japanese:
+      - 彼 は {大きな} 心 を 持っ て い ます。
+      - 彼 は {大きな} 心 を 持っ て いる。
+    english_literally: He has a big heart.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 大きい 心 を 持っ て い ます。
+        english: He has a large-sized heart.
+        hint: '''大きな心'' is an idiomatic expression for a generous, compassionate, or tolerant nature,
+          referring to a quality of character, not physical size. We''re looking for the idiomatic expression.'
+    scene: Someone praising a compassionate individual.
+    register: casual
+    setting: friendly
+  - english: The world feels smaller now with the internet.
+    japanese:
+      - インターネット の おかげ で、世界 が {小さな} もの に 感じ られ ます。
+      - インターネット の おかげ で、世界 が {小さな} もの に 感じ られる。
+    english_literally: Thanks to the internet, the world is felt as a small thing.
+    competing_grammar:
+      - competing_japanese:
+          - インターネット の おかげ で、世界 が 小さい もの に 感じ られ ます。
+        english: Thanks to the internet, the world is felt as a physically small thing.
+        hint: When referring to abstract concepts like 'the world' in a metaphorical sense, '小さな' is often
+          chosen to convey a conceptual or perceived 'smallness' rather than a physical one. We're looking
+          for the word that describes a conceptual transformation.
+    scene: A reflective discussion on the impact of technology.
+    register: formal
+    setting: reflective
+post_example_writeup: As demonstrated in these examples, 大きな and 小さな are frequently used to modify nouns
+  in a way that imbues them with a sense of inherent quality or a more formal, objective description of
+  size. They are particularly common with abstract concepts (like 夢 'dream' or 心 'heart') or in established
+  phrases (like 小さな声 'quiet voice'). Pay close attention to these contexts, as they often signal the appropriate
+  use of 大きな/小さな over the more general 大きい/小さい.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/大きな・小さな

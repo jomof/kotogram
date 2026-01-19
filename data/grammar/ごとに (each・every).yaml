@@ -1,0 +1,299 @@
+grammar_point: ごとに (each・every)
+learn_before:
+  - あげる・やる (to give, outward)
+  - いる (to exist, animate)
+  - どの (which)
+  - 少しずつ (little by little・a bit at a time)
+meaning: Each, Every
+pronunciation:
+  katakana: ゴトニ
+  romaji: gotoni
+formation:
+  Noun + ごとに: Indicates that something happens "every" or "at intervals of" the preceding noun, or distribution
+    per unit.
+  Verb (plain non-past form) + ごとに: Indicates something happens each time the verb's action occurs.
+  Noun + ごと の + Noun: Indicates something related to 'every' or 'each' instance of the preceding noun,
+    functioning as a noun modifier for the following noun.
+jlpt: N4
+etymology: 「ごとに」 is a combination of the noun 「ごと」 (meaning 'each' or 'every') and the particle 「に」. This
+  combination creates an adverbial phrase indicating frequency or intervals.
+writeup: 「ごとに」 indicates that something happens "each time" or "at intervals of" a specified noun or action.
+  It's similar to saying "for every" or "with every." While it can follow verbs (usually in the non-past
+  form), it's most commonly used with nouns or phrases ending in nouns. A common point of confusion is
+  with 「おきに」, which also means "every," but emphasizes intervals or gaps *between* occurrences. While
+  「ごとに」 focuses on *every instance* of something, 「ごと」 is the kun'yomi (Japanese reading) of the kanji
+  「毎」, meaning 'every'.
+false_friends:
+  - term: に (frequency)
+    meaning: Times (In each time period), Every, Frequency of
+    kind: synonym
+    nuance: While 「に」 can indicate frequency, 「ごとに」 emphasizes each specific instance or interval, highlighting
+      regularity more strongly than a simple statement of frequency with 「に」.
+    grammar_point: に (frequency)
+  - term: たびに
+    meaning: Each time, Every time, Whenever
+    kind: synonym
+    nuance: 「たびに」 focuses on the occasion triggering the event, often implying a result or reaction that
+      occurs *each time* that event happens. In contrast, 「ごとに」 highlights the regularity, distribution,
+      or consistent recurrence at specific intervals.
+    grammar_point: たびに (each time)
+  - term: おきに
+    meaning: Repeated at intervals, Every other, Every, At intervals of
+    kind: synonym
+    nuance: Unlike 「ごとに」 which refers to every instance without exception (e.g., "every Monday"), 「おきに」
+      indicates events happening with specific intervals or gaps (e.g., "every *other* Monday" or "every
+      two hours *apart*").
+    grammar_point: おきに (at intervals of)
+  - term: まい〜のように
+    meaning: Almost every ~, Nearly every ~, On a ~ basis
+    kind: often confused with
+    nuance: 「まい〜のように」 expresses a general tendency or that something happens almost every time, but not
+      necessarily literally *every* single instance. 「ごとに」 implies a literal, unexceptionable recurrence.
+    grammar_point: まい〜のように (almost every time)
+  - term: につけ
+    meaning: Whenever; Every time something happens
+    kind: often confused with
+    nuance: 「につけ」 typically describes a reaction or feeling that arises whenever a certain situation occurs,
+      often implying a strong emotional connection or consequence. 「ごとに」 simply states a regular occurrence
+      or distribution, without necessarily implying a strong emotional or consequential link.
+    grammar_point: につけ (natural emotional response)
+post_false_friends_writeup: The expressions 「に」, 「たびに」, 「おきに」, 「まい〜のように」, and 「につけ」 all share some similarities
+  with 「ごとに」 but have subtle differences in nuance. 「に」 is a general frequency marker, 「たびに」 emphasizes
+  the occasion triggering an event, and 「おきに」 focuses on the intervals between events. 「まい〜のように」 denotes
+  a general tendency rather than strict regularity, and 「につけ」 implies a reaction to an occurrence. To
+  avoid confusion, remember that 「ごとに」 is best used when you want to express that something happens in
+  every instance or at regular, unbroken intervals.
+examples:
+  - english: He writes a diary every day.
+    japanese:
+      - 彼 は 日 {ごと に} 日記 を 書き ます。
+      - 彼 は 日 {ごと に} 日記 を 書く。
+      - 彼 は 日 {ごと に} 日記 を 書い て い ます。
+      - 彼 は 日 {ごと}、日記 を 書き ます。
+    english_literally: He day each diary writes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {毎日} 日記 を 書き ます。
+        english: He writes a diary every day.
+        hint: Using just 「毎日」 is common for 'every day' without emphasizing the day-by-day progression
+          as much as 「日ごとに」. We're looking for emphasis on each specific instance.
+    scene: Describing a friend's consistent daily habit.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: The use of 「日 {ごとに} 」 emphasizes the unwavering consistency of writing the diary, highlighting
+      that it happens *each and every* day without fail, with a sense of progression over time.
+    etymology: The phrase 「日ごとに」 (hi gotoni) literally means 'each day' or 'day by day'. The use of 「ごと」
+      emphasizes the sequential nature of 'each' day, leading to a sense of gradual progression or repetition
+      for every single instance. This is contrasted with simple time markers like 「毎日」 (mainichi), which
+      just means 'every day'.
+  - english: Each class has a different teacher.
+    japanese:
+      - どの クラス {ごと に} も 違う 先生 が い ます。
+      - どの クラス {ごと に} も 違う 先生 が いる。
+      - クラス {ごと に} 違う 先生 が い ます。
+      - クラス {ごと} に 違う 先生 が いる。
+    english_literally: Which class each also different teacher is.
+    competing_grammar:
+      - competing_japanese:
+          - '{それぞれ} の クラス で 違う 先生 が い ます。'
+        english: There are different teachers in each respective class.
+        hint: 「それぞれ」 emphasizes the individual nature of each item, but does not carry the same 'per instance'
+          nuance as 「ごとに」. We're looking for the phrase that highlights distribution.
+    scene: A school administrator explaining the staffing structure to a new parent.
+    register: semi-formal
+    setting: informative
+    listener_gender: female
+    nuance: The phrase 「クラス {ごとに} 」 emphasizes that the teacher assigned is distinct for *each individual*
+      class, highlighting a distributed pattern that applies to every single class.
+    etymology: 「ごとに」, formed from 「ごと」 (each) and the particle 「に」, emphasizes the one-to-one correspondence
+      or distribution across every item in a set. In this context, it reinforces that for 'each class',
+      there is a 'different teacher', stressing the individual assignment rather than a general fact about
+      the school's teaching staff. This usage highlights the 'per unit' aspect that 「ごと」 inherently carries.
+  - english: Every day, my Japanese is improving little by little.
+    japanese:
+      - 日 {ごと に}、私 の 日本 語 は 少し ずつ 上達 し て いる。
+      - 日 {ごと に}、私 の 日本 語 は 少し ずつ 上達 し て いき ます。
+      - 日 {ごと} に、日本 語 は 少し ずつ 上達 する。
+      - 日 {ごと}、私 の 日本 語 は 少し ずつ 上達 し て い ます。
+    english_literally: Day each, my Japanese little by little is improving.
+    competing_grammar:
+      - competing_japanese:
+          - '{毎日}、私 の 日本 語 は 少し ずつ 上達 し て いる。'
+        english: Every day, my Japanese is improving little by little.
+        hint: While 「毎日」 works for 'every day', 「日ごとに」 highlights the progressive, day-by-day improvement
+          more distinctly. We're looking for a progressive sense of improvement.
+    scene: Someone reflecting on their language learning progress.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「日 {ごとに} 」 highlights a continuous, consistent progression of improvement that
+      occurs with each passing day. It emphasizes the step-by-step nature of the progress, implying that
+      the improvement is noticeable day after day. This differs from a simple statement of daily routine.
+    etymology: The combination of 「日ごと」 and 「に」 points to a consistent, day-by-day progression. This particular
+      nuance of 「ごと」 (each) paired with 「に」 (at/on) creates a sense of continuous or iterative occurrence,
+      making it suitable for describing gradual changes over time. It can be seen as focusing on the passage
+      of each individual unit of time and the corresponding change.
+  - english: In this town, you can enjoy different scenery every season.
+    japanese:
+      - この 町 で は、季節 {ごと に} 違う 景色 が 楽しめ ます。
+      - この 町 で は、季節 {ごと に} 違う 景色 が 楽しめる。
+      - 季節 {ごと に}、この 町 で は 違う 景色 が 楽しめ ます。
+      - この 町 で は、季節 {ごと の} 景色 を 楽しむ こと が でき ます。
+    english_literally: This town in, season each different scenery can enjoy.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 で は、{四季 折々} の 景色 が 楽しめ ます。
+        english: In this town, you can enjoy seasonal scenery.
+        hint: 「四季折々」 (しきおりおり) specifically refers to the changing scenery of the four seasons, often used
+          in a more poetic or descriptive way. We're looking for a general 'every season' phrase.
+    scene: A local guide promoting the seasonal beauty of their town to visitors.
+    register: semi-formal
+    setting: informative
+    listener_gender: female
+    nuance: 「季節 {ごとに} 」 emphasizes that the scenery changes with *each and every* season, implying a distinct
+      beauty or characteristic for spring, summer, autumn, and winter. It highlights the recurring pattern
+      of seasonal variety.
+    etymology: Similar to 「日ごとに」, 「季節ごとに」 uses 「ごと」 to mark each distinct season as a unit. This usage
+      highlights the cyclical nature of the changes, where with the advent of 'each' new season, a 'different
+      scenery' is presented. It points to a systematic, recurring pattern of change.
+  - english: With every new language I learn, there's the joy of discovering a new culture.
+    japanese:
+      - 新しい 言語 を 学ぶ {ごと に}、新しい 文化 を 発見 する 喜び が あり ます。
+      - 新しい 言語 を 学ぶ {ごと に}、新しい 文化 を 発見 する 喜び が ある。
+      - 新しい 言語 を 習得 する {ごと に}、新しい 文化 を 発見 する 喜び が あり ます。
+    english_literally: New language learn each, new culture discover joy there is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 言語 を 学ぶ {たび に}、新しい 文化 を 発見 する 喜び が あり ます。
+        english: Every time I learn a new language, there's the joy of discovering a new culture.
+        hint: 「たびに」 strongly emphasizes the 'each and every time' an event occurs, often implying a resulting
+          action or feeling. While similar, 「ごとに」 can be broader, indicating regularity or distribution.
+          We're looking for a general 'each time' without focusing on the resulting feeling.
+    scene: A polyglot reflecting on their experiences during a casual conversation with a friend.
+    register: casual
+    setting: reflective
+    nuance: The phrase 「学ぶ {ごとに} 」 conveys that the joy of discovery consistently accompanies *each instance*
+      of learning a new language. It emphasizes a one-to-one correlation between the act of learning a
+      language and the subsequent cultural discovery, highlighting a recurring positive outcome.
+    etymology: When 「ごとに」 follows a verb in its dictionary form, such as 「学ぶ」 (manabu, to learn), it signifies
+      that the subsequent action or state occurs 'each time' the verb's action is performed. This emphasizes
+      a consistent, repetitive outcome tied to the execution of the action. The original meaning of 'each'
+      or 'every' from 「ごと」 extends to 'each occasion' or 'each instance' when combined with a verb.
+  - english: We exercise in the park every single week.
+    japanese:
+      - 私 たち は 毎週 {ごと に}、公園 で 運動 し ます。
+      - 私 たち は 毎週 {ごと に}、公園 で 運動 する。
+      - 私 たち は 毎週 {ごと に}、公園 で 運動 し て いる。
+      - 私 たち は 毎週 {ごと}、公園 で 運動 し ます。
+    english_literally: We every week each, park in exercise do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は {毎週}、公園 で 運動 し ます。
+        english: We exercise in the park every week.
+        hint: 「毎週」 (まいしゅう) is a straightforward way to say 'every week'. 「ごとに」 adds emphasis on the regularity
+          without any gaps. We're looking for emphasis on the unwavering consistency.
+    scene: A person sharing their consistent weekly routine with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The scene implies an unbroken, consistent routine, emphasizing that 「毎週 {ごとに} 」 means "every
+      single week" without any gaps, which distinguishes it from 「毎週おきに」. The female speaker's tone might
+      convey a sense of dedication or pride in maintaining this routine.
+    etymology: The use of 「毎週ごとに」 emphasizes the strict adherence to a weekly schedule, implying that
+      not a single week is missed. The 「ごと」 element reinforces the 'each and every' aspect of the repetition,
+      making the regularity more explicit than simply saying 「毎週」 (every week).
+  - english: This train stops at every station.
+    japanese:
+      - この 電車 は 駅 {ごと に} 停車 し ます。
+      - この 電車 は 駅 {ごと に} 停車 する。
+      - この 電車 は 全て の 駅 {ごと に} 停車 し ます。
+    english_literally: This train station each stops.
+    competing_grammar:
+      - competing_japanese:
+          - この 電車 は ３ 駅 {おき に} 停車 し ます。
+        english: This train stops every three stations (with two stations in between).
+        hint: 「おきに」 implies intervals or gaps, meaning it skips certain points. 「ごとに」 means it stops at
+          *each and every* station without skipping. We're looking for a phrase that implies no skipping.
+    scene: A train conductor making an announcement about a local train service.
+    register: formal
+    setting: informative
+    listener_gender: group
+    nuance: The phrase 「駅 {ごとに} 」 clearly indicates that the train makes a stop at *each and every individual
+      station* along its route, implying no stations are skipped. This is a common phrase to distinguish
+      a local train (各駅停車 - 'stops at every station') from express services. The conductor's clear pronunciation
+      would underscore this point.
+    etymology: When used with a location noun like 「駅」 (eki, station), 「ごとに」 denotes that an action occurs
+      at 'each and every' specified location, with no omissions. This is a very common and practical application
+      of 「ごと」 to indicate a thorough and comprehensive coverage of points, as in a local train service.
+  - english: This picture book has cute animals drawn on every single page.
+    japanese:
+      - この 絵本 は、どの ページ {ごと に} も 可愛い 動物 が 描か れ て い ます。
+      - この 絵本 は、どの ページ {ごと に} も 可愛い 動物 が 描か れ て いる。
+      - この 絵本 は、ページ {ごと} に 可愛い 動物 が 描か れ て い ます。
+      - この 絵本 は、ページ {ごと に} 可愛い 動物 が 描い て あり ます。
+    english_literally: This picture book, which page each also cute animals are drawn.
+    competing_grammar:
+      - competing_japanese:
+          - この 絵本 は、{全て の ページ に} 可愛い 動物 が 描か れ て い ます。
+        english: This picture book has cute animals drawn on all pages.
+        hint: 「全てのページに」 means 'on all pages', which conveys a similar meaning but doesn't emphasize the
+          'per page' distribution as much as 「ごとに」. We're looking for emphasis on the individual page-by-page
+          presence.
+    scene: A parent showing an engaging children's book to their child.
+    register: casual
+    setting: friendly
+    speaker_age: older
+    nuance: The phrase 「ページ {ごとに} 」 emphasizes the consistent presence of cute animals on *each individual*
+      page throughout the book, highlighting the thoroughness of the illustrations. The `older` speaker
+      might use a slightly more explanatory tone, emphasizing the detail. This nuance conveys the deliberate
+      and complete nature of the artwork.
+    etymology: The use of 「ページごとに」 stresses that the presence of the cute animals is not just a general
+      feature of the book, but applies consistently to 'each and every' page. This highlights the comprehensive
+      design, a characteristic emphasized by the original meaning of 「ごと」 in marking individual units.
+  - english: We publish a new issue every quarter.
+    japanese:
+      - 私 たち は 四半 期 {ごと に} 新しい 号 を 発行 し ます。
+      - 私 たち は 四半 期 {ごと に} 新しい 号 を 発行 する。
+    english_literally: We quarter each new issue publish.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は {毎 四半 期}、新しい 号 を 発行 し ます。
+        english: We publish a new issue every quarter.
+        hint: 「毎四半期」 (まいしはんき) is a straightforward way to say 'every quarter' without the additional emphasis
+          of 「ごとに」. We're looking for emphasis on the strict adherence to the schedule.
+    scene: A publishing company representative explaining their release schedule during a business meeting.
+    register: formal
+    setting: professional
+    nuance: The phrase 「四半期 {ごとに} 」 highlights the strict adherence to a quarterly release schedule, indicating
+      that a new issue is published for *each* quarter without fail. The professional setting would emphasize
+      precision and consistency in reporting this fact. This conveys a reliable and systematic publication
+      process.
+    etymology: 「四半期ごとに」 (shihanki gotoni) demonstrates how 「ごとに」 attaches to time units to signify repetition
+      for 'each' and 'every' occurrence of that unit. This expresses a regular, unbroken cycle, common
+      in formal or business contexts to denote consistent scheduling.
+  - english: You need to water this plant every two days.
+    japanese:
+      - この 植物 は 二 日 {ごと に} 水 を やる 必要 が あり ます。
+      - この 植物 は 二 日 {ごと に} 水 を やる 必要 が ある。
+    english_literally: This plant two days each water give need there is.
+    competing_grammar:
+      - competing_japanese:
+          - この 植物 は 二 日 {おき に} 水 を やっ て ください。
+        english: Please water this plant every two days (skipping one day in between).
+        hint: 「二日おきに」 (ふつかおきに) implies an interval where one day is skipped between waterings. 「ごとに」 emphasizes
+          watering on *each* designated day without fail. We're looking for a precise, continuous routine
+          without skipping.
+    scene: A botanist providing specific care instructions for a delicate plant to a new caretaker.
+    register: semi-formal
+    setting: instructional
+    nuance: The phrase 「二 日 {ごとに} 」 specifies a precise, recurring interval for watering, emphasizing
+      that the action must be performed on *each* occasion after the two-day period, without deviation.
+      The instructional setting reinforces the need for strict adherence. This indicates a precise and
+      regular requirement.
+    etymology: 「二日ごとに」 (futsuka gotoni) explicitly states 'every two days'. Here, 「ごと」 combines with a
+      numerical count of days, indicating that the action recurs after each interval of two days. This
+      highlights the systematic and exact nature of the repetition.
+post_example_writeup: As demonstrated in the examples, 「ごとに」 can attach to both nouns (e.g., 「日ごとに」, 「毎週ごとに」,
+  「四半期ごとに」) and non-past verbs (e.g., 「学ぶごとに」) to indicate repetition or distribution. Pay close attention
+  to the context to distinguish it from similar expressions like 「たびに」, which focuses on the occasion,
+  or 「おきに」, which emphasizes specific intervals.

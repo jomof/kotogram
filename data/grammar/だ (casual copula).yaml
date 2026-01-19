@@ -1,0 +1,617 @@
+grammar_point: だ (casual copula)
+matcher: ⌈ˢだᵖ~auxv-da~ʳダ⌉
+matcher_enforce_examples: true
+learn_before:
+  - な-Adjective[だ] (plain present)
+meaning: is, to be (casual)
+meaning_warning: だ cannot be used with い-Adjectives
+pronunciation:
+  katakana: ダ
+  romaji: da
+formation:
+  Noun + だ: Indicates a statement of fact or definition.
+  な-Adjective + だ: Indicates a statement of quality or condition.
+jlpt: N5
+etymology: The origin of 「だ」 is thought to be a contraction of the phrase 「である」, which is the more formal
+  or literary form of the copula. 「で」 is the te-form of the copula 「です」, and 「ある」 means 'to be' (animate).
+  Over time, 「である」 became shortened to 「だ」, losing some of its formality in the process. This evolution
+  reflects a linguistic shift towards more casual and colloquial speech patterns.
+writeup: 「だ」 is the equivalent of "is" in English. It primarily expresses determination or assertion.
+  As a casual grammar structure, it is not used in polite sentences. Instead, you will encounter it in
+  informal conversations, personal diaries, or casual written communication. Technically, 「だ」 is classified
+  as an auxiliary verb, attaching itself to other words to provide them with meaning and serve as a predicate.
+  Its role is comparable to 「です」, but 「です」 is exclusively used in polite contexts and is often one of
+  the first grammatical patterns Japanese learners encounter. 「だ」 consistently follows nouns or words
+  that function similarly to nouns, such as な-adjectives. **Important Considerations:** * 「だ」 should **never**
+  be attached directly to the end of い-adjectives. Doing so is considered grammatically incorrect and
+  sounds highly unnatural. For い-adjectives, it is appropriate to use their plain form directly (e.g.,
+  「大きい」 for "is big") or to attach a polite equivalent like 「です」 (e.g., 「大きいです」 for "is big"). * While
+  「だ」 is often perceived as the "casual form" of 「です」, this is not entirely accurate. 「です」 is a polite
+  speech word, whereas the official "formal version" of 「だ」 is 「である」. 「である」 is typically found in academic
+  papers, official documents, and formal written texts, while 「です」 is prevalent in polite spoken Japanese.
+false_friends:
+  - term: じゃない
+    meaning: Is not, isn't
+    kind: antonym
+    nuance: Unlike 「だ」 which asserts something, 「じゃない」 negates it.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: です
+    meaning: To be, is
+    kind: synonym
+    nuance: 「です」 is a polite equivalent of 「だ」. Use 「です」 in formal situations.
+    grammar_point: です (polite copula)
+  - term: でございます
+    meaning: To be, polite copula
+    kind: synonym
+    nuance: 「でございます」 is a more formal and humble version of 「です」, used in very polite or formal settings.
+    grammar_point: でございます (polite copula, formal)
+  - term: がある
+    meaning: To be, there is
+    kind: often confused with
+    nuance: While 「だ」 indicates a state of being or identification, 「がある」 indicates existence or possession
+      of inanimate objects.
+    grammar_point: ある (to exist, inanimate・to have)
+  - term: である
+    meaning: Formal or literary だ, authoritative, copula
+    kind: synonym
+    nuance: 「である」 is a formal equivalent of 「だ」, often found in written texts, academic papers, and official
+      announcements, not typically in speech.
+    grammar_point: である (formal copula)
+  - term: だった・でした
+    meaning: Was, were (past tense)
+    kind: synonym
+    nuance: 「だった」 and 「でした」 indicate past tense, whereas 「だ」 is present tense.
+    grammar_point: だった (past copula, casual)
+  - term: がいる
+    meaning: To exist, to be (animate)
+    kind: similar expression
+    nuance: Similar to 「がある」, 「がいる」 indicates the existence of animate beings, whereas 「だ」 identifies
+      who or what someone/something is.
+    grammar_point: いる (to exist, animate)
+  - term: ではない
+    meaning: Is not (formal/written negative of だ)
+    kind: similar expression
+    nuance: 「ではない」 serves as a more formal or written negative form of 「だ」, emphasizing a definitive denial,
+      often used in explanations or formal contexts. Unlike the casual 「じゃない」, it carries a more assertive
+      and less conversational tone.
+    grammar_point: ではない (formal negative copula)
+  - term: でしょう
+    meaning: Probably is, it seems that (polite speculative)
+    kind: similar expression
+    nuance: 「でしょう」 adds a nuance of probability, conjecture, or seeking confirmation in polite speech,
+      indicating less certainty than the direct assertion of 「だ」.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: となる
+    meaning: To become; to result in
+    kind: often confused with
+    nuance: Unlike 「だ」 which indicates a current state of being, 「となる」 expresses a change into a new state
+      or a result.
+    grammar_point: となる (to become・result in)
+  - term: にすぎない
+    meaning: No more than, just, merely
+    kind: similar expression
+    nuance: While 「だ」 states what something is, 「にすぎない」 emphasizes that something is *only* that, implying
+      it is not as significant or complex as it might seem.
+    grammar_point: にすぎない (no more than)
+  - term: という
+    meaning: Called, Named, Known as, As much as
+    kind: often confused with
+    nuance: 「だ」 asserts a fact (e.g., 「これはペンだ」 - This is a pen), while 「という」 is used to state a definition
+      or name (e.g., 「ペンという道具」 - a tool called a pen).
+    grammar_point: という (naming and definition)
+post_false_friends_writeup: To avoid confusion, remember that 「だ」 is a casual copula for stating facts
+  about nouns and な-adjectives. 「です」 is the polite equivalent. Use 「である」 in formal writing. 「がある」 indicates
+  existence, while 「じゃない」 negates a statement. 「ではない」 is a more formal negative. 「がいる」 specifically indicates
+  the existence of animate beings. Finally, 「だった」 and 「でした」 indicate past tense, in contrast to the present
+  tense of 「だ」, and 「でしょう」 expresses probability or seeks confirmation. Additionally, 「となる」 signifies
+  a change of state, distinct from 「だ」's static assertion. 「にすぎない」 emphasizes that something is *merely*
+  something, adding a limiting nuance to what 「だ」 identifies. Lastly, 「という」 is for naming or defining,
+  whereas 「だ」 is for direct factual statements.
+examples:
+  - english: This is my book.
+    japanese:
+      - これ は 私 の 本 {だ}。
+      - これ が 私 の 本 {だ}。
+      - これ 私 の 本 {だ}。
+      - これ は 私 の 本 {だ} よ。
+      - これ 私 の 本 {だ} わ。
+      - これ 僕 の 本 {だ}。
+      - これ 俺 の 本 {だ}。
+      - これ は 私 の 本 {だ} ぜ。
+      - これ 俺 の 本 {だ} ぜ.
+    english_literally: This is my book.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 私 の 本 {です}。
+        english: This is my book (polite).
+        hint: The speaker is using a casual form of expression, common among family or close friends.
+      - competing_japanese:
+          - これ は 私 の 本 {で ある}。
+        english: This is my book (formal/literary).
+        hint: We are looking for a spoken casual statement, not a formal or literary one.
+      - competing_japanese:
+          - これ は 私 の 本 {じゃ ない}。
+        english: This is not my book.
+        hint: We are asserting that it *is* my book, not negating it.
+      - competing_japanese:
+          - これ は 私 の 本 {で ござい ます}。
+        english: This is my book (very polite).
+        hint: The speaker is being assertive and casual, not very polite or humble.
+      - competing_japanese:
+          - これ は 私 の 本 {だっ た}。
+        english: This was my book.
+        hint: The statement refers to the current situation, not the past.
+      - competing_japanese:
+          - これ は 私 の 本 {が ある}。
+        english: '''''''My book exists here (literally: As for this, my book exists).'''''''
+        hint: 「がある」 indicates the existence of something, not its identification. We are identifying the
+          object as 'my book'.
+      - competing_japanese:
+          - これ は 私 の 本 {で は ない}。
+        english: This is not my book (more formal/written).
+        hint: The speaker is making a direct assertion, not a more formal or written negative statement.
+      - competing_japanese:
+          - これ は 私 の 本 {でしょう}。
+        english: This is probably my book.
+        hint: The speaker is making a direct assertion, not expressing speculation or seeking confirmation.
+    scene: A child excitedly showing their new book to a parent.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+  - english: The room is clean.
+    japanese:
+      - 部屋 は きれい {だ}。
+      - 部屋 きれい {だ}。
+      - 部屋 が きれい {だ}。
+      - 部屋 は きれい {だ} ね。
+      - 部屋 は きれい {だ} よ。
+      - 部屋 は きれい {だ} わ。
+      - この 部屋 は きれい {だ}。
+      - すごく きれい {だ} よ.
+    english_literally: The room is clean.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 は きれい {です}。
+        english: The room is clean (polite).
+        hint: The speaker is having a casual conversation with a sibling, not a formal one.
+      - competing_japanese:
+          - 部屋 が きれい に {なっ た}。
+        english: The room became clean.
+        hint: We are describing the current state of the room, not a change in its state.
+      - competing_japanese:
+          - 部屋 は きれい {じゃ ない}。
+        english: The room is not clean.
+        hint: We are stating that the room *is* clean, not that it isn't.
+      - competing_japanese:
+          - 部屋 は きれい {で ござい ます}。
+        english: The room is clean (very polite).
+        hint: The speaker is making a casual observation, not a very polite statement.
+      - competing_japanese:
+          - 部屋 は きれい {で ある}。
+        english: The room is clean (formal/literary).
+        hint: We are looking for a casual observation, not a formal or literary description.
+      - competing_japanese:
+          - 部屋 は きれい {だっ た}。
+        english: The room was clean.
+        hint: The statement describes the current state of the room, not its past state.
+      - competing_japanese:
+          - 部屋 {が ある}。
+        english: There is a room.
+        hint: 「がある」 indicates existence, not a quality or state like 'clean'.
+      - competing_japanese:
+          - 部屋 は きれい {で は ない} よ。
+        english: The room is not very lovely, you then know.
+        hint: The speaker is expressing a positive impression, not a more formal negative.
+      - competing_japanese:
+          - 部屋 は きれい {でしょう} よ。
+        english: The room is probably clean, you know.
+        hint: The speaker is making a direct observation, not expressing speculation or seeking confirmation.
+    scene: A teenager commenting on their newly cleaned room to their sibling.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+  - english: It's my order!
+    japanese:
+      - 俺 が 注文 {だ}！
+      - 俺 の 注文 {だ}！
+      - 俺 が 注文 {だ} ぜ！
+      - 僕 が 注文 {だ}！
+      - 俺 注文 {だ}！
+      - これ 俺 が 注文 {だ}！
+      - 僕 の 注文 {だ}！
+      - これ 僕 が 注文 {だ} ぜ !
+    english_literally: I am the order!
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 注文 {です}！
+        english: It's my order! (polite).
+        hint: The speaker is making a strong, casual, masculine assertion among friends.
+      - competing_japanese:
+          - 俺 が 注文 {しろ}！
+        english: I should order!
+        hint: We are identifying who the order belongs to, not commanding someone to order.
+      - competing_japanese:
+          - 俺 が 注文 {じゃ ない}！
+        english: It's not my order!
+        hint: The speaker is asserting that it *is* their order, not denying it.
+      - competing_japanese:
+          - 私 が 注文 {で ござい ます}！
+        english: It's my order! (very polite).
+        hint: The speaker is being assertive and casual, not very polite or humble.
+      - competing_japanese:
+          - 私 が 注文 {で ある}！
+        english: It's my order! (formal/literary).
+        hint: We need a strong, casual assertion, not a formal or literary statement.
+      - competing_japanese:
+          - 俺 が 注文 {だっ た}！
+        english: It was my order!
+        hint: The statement asserts the current situation, not a past one.
+      - competing_japanese:
+          - 私 に 注文 {が ある}！
+        english: '''''''I have an order! (literally: To me, an order exists!).'''''''
+        hint: 「がある」 indicates possession or existence of an inanimate object. We are identifying *who*
+          the order belongs to, not stating that an order exists for someone.
+      - competing_japanese:
+          - 注文 {が ある}。
+        english: There is an order.
+        hint: 「がある」 indicates existence of an inanimate object. We are identifying who the order belongs
+          to, not just stating that an order exists.
+      - competing_japanese:
+          - 俺 が 注文 {で は ない}！
+        english: It's not my order! (more formal/written).
+        hint: The speaker is making a strong, casual assertion, not a more formal negative statement.
+      - competing_japanese:
+          - 俺 が 注文 {でしょう}！
+        english: It's probably my order!
+        hint: The speaker is making a direct, strong assertion, not expressing speculation or seeking
+          confirmation.
+    scene: A male friend, somewhat playfully, insisting on paying the bill for his friends at a restaurant.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「俺」 along with 「だ」 emphasizes a strong, direct, and slightly assertive declaration,
+      typical of casual male speech. 「だ」 in 「俺 が 注文 {だ}」 conveys a firm, almost definitive statement,
+      asserting the speaker's intention or status regarding the action.
+  - english: This cake is really lovely.
+    japanese:
+      - この ケーキ は とても 素敵 {だ} よ。
+      - この ケーキ とても 素敵 {だ} よ。
+      - この ケーキ は とても 素敵 {だ} ね。
+      - この ケーキ とても 素敵 {だ}。
+      - この ケーキ とっても 素敵 {だ} わ。
+      - この ケーキ 素敵 {だ} わ。
+      - とっても 素敵 {だ} ね.
+    english_literally: This cake is very lovely, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {です} よ。
+        english: This cake is really lovely (polite).
+        hint: The speaker is expressing an intimate, casual opinion to a close friend.
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {だろう}。
+        english: This cake is probably very lovely.
+        hint: The speaker is expressing a definite positive impression, not a speculative one.
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {じゃ ない}。
+        english: This cake is not very lovely.
+        hint: The speaker is expressing that the cake *is* lovely, not that it isn't.
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {で ござい ます}。
+        english: This cake is very lovely (very polite).
+        hint: The speaker is sharing an intimate opinion, not making a very polite statement.
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {で ある}。
+        english: This cake is very lovely (formal/literary).
+        hint: We are looking for a casual, intimate expression, not a formal or literary one.
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {だっ た}。
+        english: This cake was very lovely.
+        hint: The statement describes the current state of the cake, not its past state.
+      - competing_japanese:
+          - この ケーキ {が ある}。
+        english: There is this cake.
+        hint: 「がある」 indicates existence, not a quality or state like 'lovely'.
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {で は ない} よ。
+        english: This cake is not very lovely, you then know.
+        hint: The speaker is expressing a positive impression, not a more formal negative.
+      - competing_japanese:
+          - この ケーキ は とても 素敵 {でしょう} よ。
+        english: This cake is probably very lovely, you know.
+        hint: The speaker is expressing a direct positive opinion, not speculation or seeking confirmation.
+    scene: A woman sharing her positive impression of a cake with a close female friend.
+    register: shitashii kuchō (intimate)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The combination of 「だ」 and the feminine-leaning sentence-ending particle 「よ」 in 「この ケーキ は
+      とても 素敵 {だ} よ」 softens the assertion while still conveying a direct opinion, common in intimate female
+      conversations. The casualness of 「だ」 fits the intimate setting with a close friend.
+  - english: My teacher is Mr. Yamada.
+    japanese:
+      - 私 の 先生 は 山田 さん {だ}。
+      - 私 の 先生 山田 さん {だ}。
+      - うち の 先生 は 山田 さん {だ}。
+      - うち の 先生 山田 さん {だ}。
+      - 先生 は 山田 さん {だ}。
+      - 私 の 先生 は 山田 さん {だ} よ。
+      - 先生 山田 さん {だ} よ。
+      - 僕 の 先生 は 山田 さん {だ}。
+      - うち の 先生 山田 さん {だ} よ.
+    english_literally: My teacher is Yamada-san.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 先生 は 山田 さん {です}。
+        english: My teacher is Mr. Yamada (polite).
+        hint: The speaker is making a casual introduction among peers, not a formal one.
+      - competing_japanese:
+          - 私 の 先生 は 山田 さん {じゃ ない}。
+        english: The statement asserts that the teacher *is* Mr. Yamada, not that they aren't.
+        hint: The statement asserts that the teacher *is* Mr. Yamada, not that they aren't.
+      - competing_japanese:
+          - 私 の 先生 は 山田 さん {で ござい ます}。
+        english: My teacher is Mr. Yamada (very polite).
+        hint: The speaker is introducing casually, not with extreme politeness.
+      - competing_japanese:
+          - 私 の 先生 は 山田 さん {で ある}。
+        english: My teacher is Mr. Yamada (formal/literary).
+        hint: We are looking for a casual introduction, not a formal or literary statement.
+      - competing_japanese:
+          - 私 の 先生 は 山田 さん {だっ た}。
+        english: My teacher was Mr. Yamada.
+        hint: The statement indicates the teacher's current identity, not a past one.
+      - competing_japanese:
+          - 山田 さん {が いる}。
+        english: Mr. Yamada is present/exists.
+        hint: 「がいる」 indicates the presence or existence of an animate being. We are identifying *who*
+          the teacher is, not stating that Mr. Yamada is merely present.
+      - competing_japanese:
+          - 私 の 先生 は 山田 さん {で は ない}。
+        english: My teacher is not Mr. Yamada (more formal/written).
+        hint: This is a statement of fact, not a more formal negative.
+      - competing_japanese:
+          - 私 の 先生 は 山田 さん {でしょう}。
+        english: My teacher is probably Mr. Yamada.
+        hint: The speaker is making a direct introduction, not expressing speculation or seeking confirmation.
+    scene: A university student casually mentioning their professor's name to a fellow classmate.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+  - english: Health is the most important thing.
+    japanese:
+      - 健康 は 最も 大切 な もの {だ}。
+      - 健康 が 最も 大切 な もの {だ}。
+      - 健康 は 一番 大切 な もの {だ}。
+      - 健康 が 一番 大切 な もの {だ}。
+      - 健康 が 一番 大切 {だ}。
+      - 健康 は 一番 大切 {だ} よ。
+      - 健康 は 最も 大切 {だ}。
+      - 健康 は 宝物 {だ}。
+      - 一番 大切 な の は 健康 {だ}.
+    english_literally: Health is the most important thing.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 は 最も 大切 な もの {です}。
+        english: Health is the most important thing (polite).
+        hint: This is a profound statement often delivered plainly, emphasizing a fundamental truth.
+      - competing_japanese:
+          - 健康 は 最も 大切 な もの {じゃ ない}。
+        english: Health is not the most important thing.
+        hint: The statement asserts that health *is* the most important, not that it isn't.
+      - competing_japanese:
+          - 健康 は 最も 大切 な もの {で ござい ます}。
+        english: Health is the most important thing (very polite).
+        hint: The speaker is imparting wisdom directly, not with extreme politeness or humility.
+      - competing_japanese:
+          - 健康 は 最も 大切 な もの {で ある}。
+        english: Health is the most important thing (formal/literary).
+        hint: While 「である」 is possible, the plain 「だ」 is often used by older individuals for direct, impactful
+          wisdom.
+      - competing_japanese:
+          - 健康 は 最も 大切 な もの {だっ た}。
+        english: Health was the most important thing.
+        hint: The statement expresses a current, universal truth, not a past condition that may no longer
+          be true.
+      - competing_japanese:
+          - 健康 {が ある}。
+        english: There is health.
+        hint: 「がある」 indicates existence, not a universal truth or identification.
+      - competing_japanese:
+          - 健康 は 最も 大切 な もの {で は ない}。
+        english: Health is not the most important thing (more formal/written).
+        hint: This is a universal truth, not a more formal negative.
+      - competing_japanese:
+          - 健康 は 最も 大切 な もの {でしょう}。
+        english: Health is probably the most important thing.
+        hint: The speaker is imparting wisdom as a direct truth, not expressing speculation or seeking
+          confirmation.
+    scene: An elderly person imparting wisdom to a younger relative.
+    register: casual
+    setting: serious
+    speaker_age: older
+    nuance: This statement, using 「だ」 in 「健康 は 最も 大切 な もの {だ}」, expresses a firm, universally accepted
+      truth or belief, often used by older individuals when sharing life lessons, giving it a sense of
+      finality and authority. The plain form makes the advice feel grounded and universally applicable.
+  - english: It's already 10 PM.
+    japanese:
+      - もう １０ 時 {だ}。
+      - もう 十 時 {だ}。
+      - もう １０ 時 {だ} よ。
+      - もう １０ 時 {だ} ね.
+    english_literally: Already 10 o'clock is.
+    competing_grammar:
+      - competing_japanese:
+          - もう １０ 時 {です}。
+        english: It's already 10 PM (polite).
+        hint: The speaker is expressing a realization casually, not politely. We are looking for a direct,
+          informal statement.
+      - competing_japanese:
+          - もう １０ 時 {だっ た}。
+        english: It was already 10 PM.
+        hint: The statement refers to the current time, not a past time. We are looking for a present
+          tense assertion.
+      - competing_japanese:
+          - もう １０ 時 {じゃ ない}。
+        english: It's not already 10 PM.
+        hint: The speaker is asserting that it *is* 10 PM, not denying it.
+      - competing_japanese:
+          - もう １０ 時 {でしょう}。
+        english: It's probably 10 PM.
+        hint: The speaker is stating a fact with certainty, not expressing speculation.
+    scene: A person checks their watch and realizes how late it is.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: Using 「だ」 in 「もう １０時 {だ}」 conveys a direct, factual statement or a realization, often said
+      to oneself or in a very casual context. It implies a sense of immediacy and certainty.
+  - english: That's convenient.
+    japanese:
+      - それ は 便利 {だ}。
+      - それ 便利 {だ}。
+      - それ は 便利 {だ} ね。
+      - それ は 便利 {だ} よ.
+    english_literally: That is convenient.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 便利 {です}。
+        english: That's convenient (polite).
+        hint: The speaker is talking informally with a friend. We are looking for a casual observation.
+      - competing_japanese:
+          - それ は 便利 {じゃ ない}。
+        english: That's not convenient.
+        hint: The speaker is asserting that it *is* convenient, not negating it.
+      - competing_japanese:
+          - それ は 便利 {だっ た}。
+        english: That was convenient.
+        hint: The statement describes its current state, not a past one. We are looking for a present
+          tense assertion.
+      - competing_japanese:
+          - それ は 便利 {でしょう}。
+        english: That's probably convenient.
+        hint: The speaker is stating a fact based on their experience, not expressing speculation.
+    scene: Two friends are discussing a new app or tool they've just tried. One comments on its usefulness.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「だ」 with a な-adjective like 「便利」 (benri, convenient) in 「それ は 便利 {だ}」 emphasizes
+      a direct, casual observation or judgment. It's a straightforward statement of opinion between close
+      friends, without any added politeness or reservation.
+  - english: Yes, it's me.
+    japanese:
+      - はい、私 {だ}。
+      - うん、私 {だ}。
+      - ああ、私 {だ}。
+    english_literally: Yes, it's me.
+    competing_grammar:
+      - competing_japanese:
+          - はい、私 {です}。
+        english: Yes, it's me (polite).
+        hint: The speaker is responding in a casual, direct manner to someone they are familiar with,
+          not with politeness.
+      - competing_japanese:
+          - はい、私 {で は ない}。
+        english: No, it's not me (more formal negative).
+        hint: The speaker is confirming their identity, not denying it.
+      - competing_japanese:
+          - はい、私 {だっ た}。
+        english: Yes, it was me.
+        hint: The statement refers to the current identity, not a past one. We are looking for a present
+          tense identification.
+      - competing_japanese:
+          - はい、私 {で ある}。
+        english: Yes, it's me (formal/literary).
+        hint: We are looking for a quick, casual self-identification, not a formal statement.
+    scene: Someone knocks on the door and asks 'Who's there?'. The person inside replies.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: In 「はい、私 {だ}」, the 「だ」 offers a very direct and informal confirmation of identity. It implies
+      a close relationship with the person asking, or a situation where formality is not required, such
+      as answering to a family member or very close friend.
+  - english: Silence is golden.
+    japanese:
+      - 沈黙 は 金 {だ}。
+      - 沈黙 は 金 {だ} よ。
+      - 沈黙 は 金 {だ} ね。
+      - 沈黙 が 金 {だ}.
+    english_literally: Silence is gold.
+    competing_grammar:
+      - competing_japanese:
+          - 沈黙 は 金 {です}。
+        english: Silence is golden (polite).
+        hint: The speaker is imparting wisdom directly, without unnecessary politeness, which is common
+          in such contexts.
+      - competing_japanese:
+          - 沈黙 は 金 {で ある}。
+        english: Silence is golden (formal/literary).
+        hint: While 「である」 can be used for proverbs, 「だ」 here conveys a more direct, grounded wisdom often
+          used in casual advice.
+      - competing_japanese:
+          - 沈黙 は 金 {じゃ ない}。
+        english: Silence is not golden.
+        hint: The speaker is asserting a universal truth, not negating it.
+      - competing_japanese:
+          - 雄弁 は 銀、沈黙 は 金 {です}。
+        english: Eloquent speech is silver, silence is gold (polite).
+        hint: The statement is a general proverb delivered informally, emphasizing the wisdom itself rather
+          than formality.
+    scene: An older gentleman is giving advice to a younger person about when to speak and when to listen.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: older
+    nuance: Using 「だ」 in 「沈黙 は 金 {だ}」 for a proverb lends it a sense of established truth and directness.
+      When an older person uses this, it reflects a casual yet authoritative tone, imparting wisdom in
+      a straightforward, no-frills manner. The plain form makes the advice feel grounded and universally
+      applicable.
+  - english: This place is a secret base.
+    japanese:
+      - ここ は 秘密 基地 {だ}。
+      - ここ が 秘密 基地 {だ}。
+      - ここ 秘密 基地 {だ} よ。
+      - ここ 秘密 基地 {だ} ね。
+      - ここ が 秘密 基地 {だ} ぜ.
+    english_literally: This place is a secret base.
+    competing_grammar:
+      - competing_japanese:
+          - ここ は 秘密 基地 {です}。
+        english: This place is a secret base (polite).
+        hint: The children are playing, and their speech is casual, not polite. We are looking for a direct,
+          informal statement.
+      - competing_japanese:
+          - ここ は 秘密 基地 {じゃ ない}。
+        english: This place is not a secret base.
+        hint: The speaker is asserting that it *is* a secret base, not negating it.
+      - competing_japanese:
+          - ここ は 秘密 基地 {だっ た}。
+          - ここ が 秘密 基地 {だっ た}。
+        english: This place was a secret base.
+        hint: The statement refers to the current identity of the place, not a past one. We are looking
+          for a present tense assertion.
+      - competing_japanese:
+          - ここ に 秘密 基地 {が ある}。
+        english: There is a secret base here.
+        hint: 「がある」 indicates existence. We are identifying the place *as* a secret base, not merely stating
+          that one exists.
+    scene: Two children playing in a fort they built out of blankets and chairs.
+    register: casual
+    setting: creative
+    nuance: The use of 「だ」 in 「ここ は 秘密基地 {だ}」 makes the statement definitive and adds to the playful,
+      imaginative tone of creating a "secret base," firmly establishing the reality within their game.
+      It's a direct, declarative statement typical of children's speech when asserting a fact in their
+      world.
+post_example_writeup: As you can see, 「だ」 provides a direct and casual way to state facts and descriptions.
+  Its usage varies depending on the context, speaker, and desired nuance, often paired with particles
+  like 「よ」 or 「ね」 to soften or seek agreement, or used assertively without them. Mastering 「だ」 is key
+  to speaking Japanese naturally in informal settings.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だ

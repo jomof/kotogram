@@ -1,0 +1,229 @@
+grammar_point: '[Verb-dictionary]のが苦手だ (to be bad at doing)'
+learn_before:
+  - 苦手 (not good at)
+meaning: to be bad or poor at doing something; to dislike doing something due to lack of skill or aptitude.
+pronunciation:
+  katakana: ニガテダ
+  romaji: nigate da
+formation:
+  '[Verb-dictionary] + の + が + 苦手だ': Describes an action or activity that one is not good at or has an
+    aversion to.
+jlpt: N4
+etymology: The term 苦手 (nigate) literally combines 苦い (nigai, "bitter") and 手 (te, "hand"), metaphorically
+  meaning "a bitter hand" or "something one handles poorly." This contrasts with 得意 (tokui, "good at"),
+  which means "a gained hand" or "advantageous hand." The の particle nominalizes the verb phrase, transforming
+  the action into a concept, which then becomes the object of one's '苦手' (poorness/aversion).
+writeup: |-
+  The grammatical pattern **[Verb-dictionary]のが苦手だ** is used to express that someone is **bad at doing something**, or conversely, **dislikes doing something** because they lack skill or aptitude. This phrase highlights a personal weakness or aversion towards a particular action. It is often used when the speaker feels a sense of inadequacy or discomfort with the activity.
+
+  This structure uses the nominalizer の (no) to turn a verb phrase into a noun clause, which is then marked by the subject particle が (ga) as the object of 苦手だ (nigate da). The phrase can be used in both casual (苦手だ) and polite (苦手です) registers.
+
+  While often translated simply as 'to be bad at,' **苦手だ** carries a slightly different nuance than merely stating a lack of ability. It implies that one either genuinely dislikes the activity, or avoids it because they are not proficient, making it a more personal expression of inadequacy or dislike. It's not just that you *can't* do it, but perhaps you *don't like* to do it because you're not good at it, or it makes you uncomfortable.
+false_friends:
+  - term: '[Noun]が嫌いだ'
+    meaning: to dislike (something)
+    kind: similar expression
+    nuance: While 嫌いだ (kiraida) expresses general dislike, 苦手だ (nigate da) specifically implies dislike
+      due to a lack of skill or aptitude, or an aversion to performing a specific action. 嫌いだ is a broader
+      term for dislike without necessarily implying inability.
+    grammar_point: '[Noun]が嫌いだ (to dislike)'
+  - term: '[Verb-dictionary]のが嫌いだ'
+    meaning: to dislike doing (something)
+    kind: similar expression
+    nuance: Similar to [Noun]が嫌いだ, this expresses general dislike for an action. 苦手だ, however, specifically
+      links the dislike or aversion to a lack of skill or an unpleasant experience with the activity itself.
+      It implies a personal weakness.
+    grammar_point: '[Verb-dictionary]のが嫌いだ (to dislike doing)'
+  - term: '[Noun]が下手だ'
+    meaning: to be unskilled at (something)
+    kind: similar expression
+    nuance: 下手だ (heta da) strictly refers to a lack of skill or clumsiness in an objective sense. 苦手だ
+      (nigate da) can also convey lack of skill, but it adds the nuance of personal aversion or dislike,
+      making it more subjective and encompassing emotional discomfort. You can be 下手 at something without
+      being 苦手 if you still enjoy it.
+    grammar_point: <suggest>:[Noun]が下手だ (to be unskilled at)
+  - term: '[Verb-dictionary]ことができない'
+    meaning: cannot do (something)
+    kind: similar expression
+    nuance: This phrase simply states an inability to perform an action. 苦手だ goes beyond mere inability,
+      suggesting that the reason for being 'bad at' something might also involve an emotional aversion
+      or discomfort. You might be able to 'できない' (not able to do) something, but still not be '苦手' (have
+      an aversion to it), if you don't mind trying.
+    grammar_point: <suggest>:[Verb-dictionary]ことができない (cannot do)
+post_false_friends_writeup: "When differentiating between **苦手だ** and **嫌いだ**, remember that **苦手だ** often\
+  \ implies that the dislike or aversion stems from a lack of proficiency or comfort with the activity.\
+  \ For instance, if you say 歌うのが苦手です (Utatunoga nigate desu), it suggests you are not good at singing,\
+  \ and perhaps you dislike it for that reason. If you say 歌うのが嫌いです (Utatunoga kirai desu), it simply\
+  \ means you dislike singing, regardless of your skill level. \n\nSimilarly, while **下手だ** focuses purely\
+  \ on objective skill level (e.g., 彼は絵が下手だ - Kare wa e ga heta da, 'He is bad at drawing'), **苦手だ** adds\
+  \ a personal, subjective layer of aversion or discomfort (e.g., 彼は絵を描くのが苦手だ - Kare wa e o kaku noga\
+  \ nigate da, 'He dislikes drawing because he's not good at it, or finds it unpleasant'). \n\n**[Verb-dictionary]ことができない**\
+  \ is a direct statement of inability. While being 苦手 implies you *tend to be unable* or *find it hard*,\
+  \ it's not a definitive statement of absolute impossibility like できない. You might still be able to do\
+  \ something you're 苦手 at, but perhaps not well or willingly."
+examples:
+  - english: I am bad at singing.
+    japanese:
+      - 歌う の が {苦手 だ}。
+      - 歌う の が {苦手 です}。
+    english_literally: Of singing, I am bad.
+    competing_grammar:
+      - competing_japanese:
+          - 歌う の が 嫌い だ。
+        english: I dislike singing.
+        hint: This means you simply dislike singing, without implying anything about your skill. We're
+          looking for an expression that suggests a lack of aptitude.
+      - competing_japanese:
+          - 歌う の が 下手 だ。
+        english: I am unskilled at singing.
+        hint: This focuses purely on skill level, but doesn't necessarily imply a personal aversion. We're
+          looking for an expression that includes a nuance of dislike due to lack of skill.
+    scene: You are at a karaoke party and your friends ask you to sing.
+    register: casual
+    setting: friendly
+  - english: My father is not good with computers.
+    japanese:
+      - 父 は コンピューター を 使う の が {苦手 だ}。
+      - 父 は コンピューター を 使う の が {苦手 です}。
+    english_literally: As for father, of using computers, he is bad.
+    competing_grammar:
+      - competing_japanese:
+          - 父 は コンピューター を 使え ませ ん。
+        english: My father cannot use computers.
+        hint: This expresses a definite inability. We're looking for a phrase that implies a general difficulty
+          or aversion, not necessarily a complete inability.
+    scene: You are explaining why your father needs help with online tasks.
+    register: formal
+    setting: informative
+  - english: I am bad at social interactions.
+    japanese:
+      - 人 と 話す の が {苦手 だ}。
+      - 人 と 話す の が {苦手 です}。
+    english_literally: Of talking with people, I am bad.
+    competing_grammar:
+      - competing_japanese:
+          - 人 と 話す の は 嫌い です。
+        english: I dislike talking to people.
+        hint: This emphasizes dislike, but not necessarily a lack of skill in communication. We're looking
+          for an expression that can imply social awkwardness or discomfort.
+    scene: You are describing yourself to a new acquaintance.
+    register: semi-formal
+    setting: reflective
+    nuance: The use of 苦手です here conveys a personal struggle or discomfort with social interaction, rather
+      than just a simple dislike. It implies a sense of inadequacy in that area.
+  - english: She is not good at drawing.
+    japanese:
+      - 彼女 は 絵 を 描く の が {苦手 だ}。
+      - 彼女 は 絵 を 描く の が {苦手 です}。
+    english_literally: As for her, of drawing pictures, she is bad.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 絵 が 下手 だ。
+        english: She is unskilled at drawing.
+        hint: This focuses only on skill. We're looking for a phrase that can imply she avoids drawing
+          because she's not good at it or doesn't enjoy it due to lack of skill.
+    scene: You are discussing your friend's hobbies.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+  - english: I am not good at waking up early.
+    japanese:
+      - 朝 早く 起きる の が {苦手 だ}。
+      - 朝 早く 起きる の が {苦手 です}。
+    english_literally: Of waking up early in the morning, I am bad.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 早く 起きる の は 嫌い です。
+        english: I dislike waking up early.
+        hint: This expresses a general dislike. We're looking for a phrase that suggests it's difficult
+          or a personal struggle to do so.
+    scene: You are making an excuse for being late.
+    register: teineigo (polite)
+    setting: apologetic
+  - english: He is bad at remembering names.
+    japanese:
+      - 彼 は 名前 を 覚える の が {苦手 だ}。
+      - 彼 は 名前 を 覚える の が {苦手 です}。
+    english_literally: As for him, of remembering names, he is bad.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 名前 を 覚え られ ませ ん。
+        english: He cannot remember names.
+        hint: This directly states an inability. We're looking for a nuance that he struggles with or
+          has an aversion to remembering names.
+    scene: You are introducing someone who often forgets names.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+  - english: My dog is not good at going to the vet.
+    japanese:
+      - うち の 犬 は 病院 へ 行く の が {苦手 だ}。
+      - うち の 犬 は 病院 へ 行く の が {苦手 です}。
+    english_literally: As for our dog, of going to the hospital, he is bad.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 犬 は 病院 へ 行く の を 嫌 がり ます。
+        english: Our dog dislikes going to the vet.
+        hint: This focuses purely on the dog's dislike. We're looking for a nuance that the dog finds
+          it difficult or uncomfortable, implying a struggle.
+    scene: You are explaining why your dog is scared of the vet.
+    register: semi-formal
+    setting: informative
+    nuance: Even for animals, 苦手 can describe an aversion or discomfort towards an activity, implying
+      a 'difficulty' rather than just a 'dislike'. Here, it suggests the dog finds the experience unpleasant
+      or stressful.
+  - english: She is bad at dealing with difficult customers.
+    japanese:
+      - 彼女 は 難しい お 客 さん に 対応 する の が {苦手 だ}。
+      - 彼女 は 難しい お 客 さん に 対応 する の が {苦手 です}。
+    english_literally: As for her, of dealing with difficult customers, she is bad.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 難しい お 客 さん に 対応 でき ませ ん。
+        english: She cannot deal with difficult customers.
+        hint: This is a statement of absolute inability. We're looking for an expression that suggests
+          she finds it challenging or has an aversion to doing so, rather than being completely incapable.
+    scene: You are a manager discussing an employee's strengths and weaknesses.
+    register: teineigo (polite)
+    setting: serious
+    speaker_gender: male
+  - english: Many people are bad at public speaking.
+    japanese:
+      - 多く の 人 は 人前 で 話す の が {苦手 だ}。
+      - 多く の 人 は 人前 で 話す の が {苦手 です}。
+    english_literally: As for many people, of speaking in front of people, they are bad.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 人 は 人前 で 話す の を 嫌 がり ます。
+        english: Many people dislike public speaking.
+        hint: This implies general dislike. We're looking for a phrase that suggests a difficulty or discomfort
+          with the act itself, often due to perceived lack of skill.
+    scene: You are giving a presentation on common fears.
+    register: formal
+    setting: informative
+  - english: I'm really not good at sports.
+    japanese:
+      - 運動 する の が 本当 に {苦手 だ}。
+      - 運動 する の が 本当 に {苦手 です}。
+      - 運動 する の が 本当 に {苦手 な ん} です。
+    english_literally: Of doing exercise, it's that I am truly bad.
+    competing_grammar:
+      - competing_japanese:
+          - 運動 が 下手 な ん です。
+        english: I am unskilled at sports.
+        hint: This focuses only on skill level. We're looking for an expression that implies a deeper
+          personal aversion or discomfort with sports, possibly linked to poor performance.
+    scene: You are trying to decline an invitation to play sports.
+    register: casual
+    setting: apologetic
+    nuance: Adding 本当に (hontouni, 'really') and the explanatory のです (no desu / n desu) softens the statement
+      and emphasizes the personal feeling of inadequacy towards sports. It suggests not just a lack of
+      skill but a genuine personal struggle or dislike that makes participating difficult.
+post_example_writeup: Notice how **苦手だ** applies not just to physical skills but also to social interactions
+  or even abstract tasks like remembering names or dealing with certain situations. It always carries
+  that underlying feeling of personal discomfort or lack of aptitude towards the action described by the
+  verb.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/128

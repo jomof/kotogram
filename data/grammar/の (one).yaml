@@ -1,0 +1,428 @@
+grammar_point: の (one)
+learn_before:
+  - の (noun omission)
+  - の (that ~)
+meaning: Represents a thing or concept already mentioned or understood from context, similar to "one"
+  in English.
+meaning_warning: This 'no' functions as a pronoun substituting a noun, unlike the possessive particle
+  'no' or the nominalizer 'no' (that ~).
+pronunciation:
+  katakana: ノ
+  romaji: 'no'
+formation:
+  い-adjective (informal non-past) + の: Indicates a specific 'one' described by an い-adjective. For example,
+    『高い の』 (an expensive one)
+  な-adjective stem + な + の: Indicates a specific 'one' described by a な-adjective. For example, 『丈夫 な
+    の』 (a durable one)
+  Verb (plain form) + の: Indicates a specific 'one' related to an action. For example, 『昨日 買った の』 (the
+    one I bought yesterday)
+jlpt: N5
+etymology: The pronoun 「の」 is derived from the possessive particle 「の」, but in this context, it functions
+  as a substitute for a previously mentioned or contextually understood noun. It indicates something that
+  has already been established or is implied by both the speaker and the listener, allowing for concise
+  and natural expression.
+writeup: The pronoun 「の」 serves as a substitute for a noun that is already understood from the context
+  or has been previously mentioned. It is comparable to the English word "one" when it is used to replace
+  a noun. A crucial point to remember is that 「の」, in this usage, cannot stand alone; it must always be
+  modified by an adjective, a verb phrase, or another type of relative clause to clarify precisely which
+  "one" is being referred to. It functions as a nominalizer, effectively converting a modifying phrase
+  into an equivalent noun.
+false_friends:
+  - term: の (possession)
+    meaning: Possessive particle
+    kind: often confused with
+    nuance: Unlike the pronoun 「の」, the possessive 「の」 indicates ownership or association (e.g., 「私の 本」
+      - my book). The pronoun 「の」 replaces an explicit noun, while the possessive particle 「の」 connects
+      nouns or noun phrases, typically showing possession or a descriptive relationship.
+    grammar_point: の (possession)
+  - term: の (that ~)
+    meaning: Nominalizer for clauses (turning verbs/adjectives into noun phrases)
+    kind: often confused with
+    nuance: While both function to create noun-like phrases, the pronoun 「の」 replaces an explicit noun,
+      making a specific 'one' out of a modified noun. The nominalizer 「の」, on the other hand, converts
+      a verb or adjective clause into a noun phrase, referring to the act or state itself. For example,
+      「泳ぐのが 好き」 (I like swimming) versus 「あの 赤い の が 好き」 (I like that red one).
+    grammar_point: の (noun omission)
+  - term: もの
+    meaning: thing; abstract concept
+    kind: similar expression
+    nuance: 「もの」 is a general noun for 'thing' or 'object' and can also replace nouns. However, 「の」 is
+      more specific, always referring back to a concrete noun that has been omitted, often implying 'the
+      one' or 'this/that one' from a group. 「もの」 is often used for more abstract or general concepts,
+      or when the referent is less clear.
+    grammar_point: <suggest>:もの (general thing)
+  - term: こと
+    meaning: abstract thing; fact; event
+    kind: similar expression
+    nuance: 「こと」 typically refers to abstract matters, facts, or occurrences (e.g., 「大切なこと」 - an important
+      thing/matter). In contrast, the pronoun 「の」 specifically replaces a concrete noun, referring to
+      a tangible 'one' that fits a certain description.
+    grammar_point: <suggest>:こと (abstract thing)
+  - term: やつ
+    meaning: guy; fellow; thing (informal)
+    kind: similar expression
+    nuance: 「やつ」 is an informal term for 'thing' or 'person' and can replace nouns in casual speech. While
+      it can substitute for 'one' in some contexts (e.g., 「あの 大きい やつ」 - that big one), 「の」 is more widely
+      applicable across registers and is generally more neutral. 「やつ」 can sometimes carry a slightly dismissive
+      or very casual tone.
+    grammar_point: やつ (informal thing or person)
+post_false_friends_writeup: It's important to distinguish between 「の」 as a pronoun and 「の」 as a possessive
+  particle or nominalizer. Additionally, pronouns like 「もの」, 「こと」, and 「やつ」 can sometimes be used similarly,
+  but each carries distinct nuances in terms of formality, specificity, and the type of noun they can
+  replace. Paying close attention to context will help you choose the most appropriate expression.
+examples:
+  - english: Which one is the most expensive among these?
+    japanese:
+      - この 中 で 一番 高い {の} は どれ です か？
+      - この 中 で 一番 高い {の} は どちら です か？
+      - この 中 で 一番 高い {の}、どれ？
+    english_literally: Among these, the most expensive one, which is it?
+    competing_grammar:
+      - competing_japanese:
+          - この 中 で 一番 高い {物} は どれ です か？
+        english: Which expensive thing is the most expensive among these?
+        hint: 「物」 refers to a general 'thing'. We're looking for a pronoun that specifically replaces
+          the omitted noun for 'one' in this context.
+      - competing_japanese:
+          - この 中 で 一番 高い {やつ} は どれ です か？
+        english: Which expensive guy/thing is the most expensive among these?
+        hint: 「やつ」 is informal and can refer to a person or thing, but it might sound too casual or slightly
+          crude in a professional setting. We're looking for a neutral pronoun for 'one'.
+      - competing_japanese:
+          - この 中 で 一番 高い {商品} は どれ です か？
+        english: While grammatically correct, repeating the noun makes the sentence less natural in Japanese
+          when the referent is clear from context. We're looking for a pronoun that replaces it.
+        hint: While grammatically correct, repeating the noun makes the sentence less natural in Japanese
+          when the referent is clear from context. We're looking for a pronoun that replaces it.
+    scene: A customer is comparing several items at a shop, asking the salesperson.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: This statement uses 「高いの」 to refer to an expensive item without explicitly naming it, fitting
+      for a professional shopping context. The use of 「どれですか」 or 「どちらですか」 maintains politeness, appropriate
+      for a customer-salesperson interaction. The phrase 「この 中で」 implies a selection of items, making
+      the use of 「の」 clear.
+  - english: Please take any one you like freely.
+    japanese:
+      - 好き な {の} を 自由 に 取っ て ください。
+      - 好き な {の}、自由 に 取っ て いい よ。
+      - 好き な {の} なら 何 で も 自由 に 取っ て ください。
+      - 好き な {の}、取っ て ね。
+    english_literally: The one you like, freely take it please.
+    competing_grammar:
+      - competing_japanese:
+          - 好き な {物} を 自由 に 取っ て ください。
+        english: Please take any thing you like freely.
+        hint: 「物」 means 'thing'. While similar, 「の」 is often preferred here to imply 'the one [of these
+          options]' without explicitly stating 'thing'.
+      - competing_japanese:
+          - 好き な {やつ} を 自由 に 取っ て ください。
+        english: Please take any guy/thing you like freely.
+        hint: 「やつ」 is very informal and not always suitable for offering things, especially if you want
+          to maintain a polite or slightly respectful tone even in a casual setting. We're looking for
+          a natural, general pronoun for 'one'.
+      - competing_japanese:
+          - 好き な {お 菓子} を 自由 に 取っ て ください。
+        english: Repeating the specific noun can be redundant when the context makes the referent clear.
+          We're looking for a pronoun that can substitute it.
+        hint: Repeating the specific noun can be redundant when the context makes the referent clear.
+          We're looking for a pronoun that can substitute it.
+    scene: A host is offering snacks to guests at a casual gathering.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「好きなの」 is a very common way to offer choice in a relaxed setting, implying 'the
+      one you prefer'. 「自由に 取って ください」 reinforces the casual and welcoming atmosphere. Variations like
+      「好きなの、自由に 取っ て いいよ」 are even more casual and intimate, common among close friends or family.
+  - english: Won't you try eating the one I made?
+    japanese:
+      - 私 が 作っ た {の} を 食べ て み ませ ん か？
+      - 私 が 作っ た {の}、食べ て み ない？
+      - 私 が 作っ た {の} だ よ、食べ て み て。
+    english_literally: The one I made, won't you try eating it?
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 作っ た {こと} を 食べ て み ませ ん か？
+        english: Won't you try eating the fact that I made it?
+        hint: 「こと」 nominalizes actions or abstract ideas. Here, you're offering to eat a tangible item,
+          not the act of making it. We're looking for a pronoun that refers to the object created.
+      - competing_japanese:
+          - 私 が 作っ た {物} を 食べ て み ませ ん か？
+        english: Won't you try eating the thing I made?
+        hint: 「物」 refers to a general 'thing'. While similar, 「の」 is often more common and natural in
+          Japanese when referring to a specific item understood from context.
+      - competing_japanese:
+          - 私 が 作っ た {やつ} を 食べ て み ませ ん か？
+        english: Won't you try eating the thing/guy I made?
+        hint: 「やつ」 is highly informal and might not be appropriate when offering something you carefully
+          prepared, especially to a child. We're looking for a neutral pronoun for 'one'.
+      - competing_japanese:
+          - 私 が 作っ た {料理} を 食べ て み ませ ん か？
+        english: While accurate, Japanese often prefers to omit explicit nouns when they are understood
+          from context, using a pronoun like 「の」 instead to maintain natural flow.
+        hint: While accurate, Japanese often prefers to omit explicit nouns when they are understood from
+          context, using a pronoun like 「の」 instead to maintain natural flow.
+    scene: A mother offers a dish she just prepared to her child.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The structure 「〜したの」 (the one I made) is natural for referring to something created, like
+      a dish. The casual invitation 「〜ませんか」 or 「〜みない？」 is appropriate for a mother speaking to her child,
+      conveying warmth. The phrase 「私が 作ったのだよ」 adds a gentle, explanatory tone, typical in intimate family
+      settings.
+  - english: The ones that can't be continued must be discarded.
+    japanese:
+      - 続け られ ない {の} は 捨てる しか あり ませ ん。
+      - 続け られ ない {の} は 廃棄 する しか あり ませ ん。
+      - 続け られ ない {の} は、残念 です が 捨てる しか あり ませ ん。
+    english_literally: The ones that cannot be continued, there is no choice but to discard.
+    competing_grammar:
+      - competing_japanese:
+          - 続け られ ない {こと} は 捨てる しか あり ませ ん。
+        english: The fact that something cannot be continued must be discarded.
+        hint: 「こと」 refers to abstract facts or events. Here, you're referring to tangible 'things' or
+          'projects' that cannot be continued. We're looking for a pronoun that refers to an object.
+      - competing_japanese:
+          - 続け られ ない {物} は 捨てる しか あり ませ ん。
+        english: The things that can't be continued must be discarded.
+        hint: 「物」 means 'thing'. While similar, 「の」 is often preferred in formal contexts to replace a
+          previously understood noun or concept, making the expression more concise.
+      - competing_japanese:
+          - 続け られ ない {やつ} は 捨てる しか あり ませ ん。
+        english: The guys/things that can't be continued must be discarded.
+        hint: 「やつ」 is highly informal and unsuitable for a professional setting. We're looking for a more
+          neutral pronoun for 'one'.
+      - competing_japanese:
+          - 続け られ ない {プロジェクト} は 捨てる しか あり ませ ん。
+        english: In Japanese, it's often more natural to use a pronoun like 「の」 when the specific noun
+          (e.g., projects) is clearly understood from the context, especially in professional discourse.
+        hint: In Japanese, it's often more natural to use a pronoun like 「の」 when the specific noun (e.g.,
+          projects) is clearly understood from the context, especially in professional discourse.
+    scene: A project manager is telling his team about difficult decisions regarding failing projects.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「続けられないの」 refers to projects or initiatives that are no longer viable without explicitly naming
+      them. The phrase 「捨てるしかありません」 (there's no choice but to discard) conveys the gravity and finality
+      of the decision, fitting for a project manager's serious tone. Using 「廃棄するしかありません」 emphasizes the
+      professional and formal nature of the decision even further.
+  - english: I like the new ones more than the old ones.
+    japanese:
+      - 古い {の} より も 新しい {の} が 好き です。
+      - 古い {の} より、新しい {の} が 好き。
+      - 古い {の} より、新しい {の} の 方 が 好き です。
+    english_literally: Than the old ones, the new ones are liked.
+    competing_grammar:
+      - competing_japanese:
+          - 古い {物} より も 新しい {物} が 好き です。
+        english: I like new things more than old things.
+        hint: 「物」 (thing) is a general noun. While grammatically correct, 「の」 is often used for a more
+          specific 'one' or 'ones' when comparing items already implicitly understood in context.
+      - competing_japanese:
+          - 古い {やつ} より も 新しい {やつ} が 好き です。
+        english: I like new guys/things more than old guys/things.
+        hint: 「やつ」 is informal. While a child might use it, 「の」 is more broadly applicable and neutral,
+          especially when just referring to 'the old ones' versus 'the new ones' of something specific.
+      - competing_japanese:
+          - 古い {おもちゃ} より も 新しい {おもちゃ} が 好き です。
+        english: Repeating the noun is often redundant in Japanese when the context clearly indicates
+          what is being compared. 「の」 provides a concise substitute.
+        hint: Repeating the noun is often redundant in Japanese when the context clearly indicates what
+          is being compared. 「の」 provides a concise substitute.
+    scene: A young boy explaining his preference for new toys over old ones to his friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: This sentence uses 「の」 twice, highlighting a direct comparison. The simplicity of 「好きです」 combined
+      with 「よりも」 (more than) is characteristic of a child expressing a clear preference. The phrase 「古いの」
+      and 「新しいの」 refer to the items without explicit noun repetition. The variation 「古いのより、新しいのが 好き」 is
+      even more casual, typical of a young boy's speech.
+  - english: This method is impossible. Let's think of a different one.
+    japanese:
+      - この 方法 で は 無理 です。別 な {の} を 考え ましょう。
+      - この 方法 は 無理 だ。別 な {の} を 考えよう。
+      - この 方法 で は 無理 です。他 の {の} を 検討 し ましょう。
+      - この 方法 で は 無理 です。別 の {の} を 考え ましょう。
+    english_literally: With this method, it's impossible. Let's think of a different one.
+    competing_grammar:
+      - competing_japanese:
+          - この 方法 で は 無理 です。別 な {物} を 考え ましょう。
+        english: This method is impossible. Let's think of a different thing.
+        hint: 「物」 is a general 'thing'. While sometimes interchangeable, 「の」 is often preferred here to
+          refer to 'a different one' of the implied category (methods/solutions).
+      - competing_japanese:
+          - この 方法 で は 無理 です。別 な {こと} を 考え ましょう。
+        english: This method is impossible. Let's think of a different matter/event.
+        hint: 「こと」 typically refers to abstract matters or events. Here, you're looking for a different
+          *method* or *solution*, which is more concrete than an abstract 'matter'. We're looking for
+          a pronoun that refers to an alternative item in a set.
+      - competing_japanese:
+          - この 方法 で は 無理 です。別 な {やつ} を 考え ましょう。
+        english: This method is impossible. Let's think of a different guy/thing.
+        hint: 「やつ」 is highly informal and unsuitable for a professional setting. We're looking for a more
+          neutral pronoun for 'one'.
+      - competing_japanese:
+          - この 方法 で は 無理 です。別 な {方法} を 考え ましょう。
+        english: Repeating the noun 「方法」 is less natural when the context allows for the use of a general
+          pronoun like 「の」.
+        hint: Repeating the noun 「方法」 is less natural when 「の」 can concisely refer back to it. Japanese
+          speakers often prefer to avoid such redundancy.
+    scene: Colleagues are brainstorming solutions, and one suggests an alternative approach to solve a
+      problem.
+    register: semi-formal
+    setting: professional
+    nuance: 「別なの」 efficiently suggests an alternative 'method' or 'solution' without repetition. The direct
+      statement 「無理です」 (it's impossible) followed by the collaborative suggestion 「考えましょう」 (let's think)
+      is common in a professional problem-solving context. 「考えよう」 is a more casual volitional form, suitable
+      if the colleagues are peers.
+  - english: I want a small one, not a big one.
+    japanese:
+      - 大きい の じゃ なく て、小さい {の} が 欲しい です。
+      - 大きい の じゃ なく て、小さい {の} が 欲しい。
+      - 大きい の は いら ない、小さい {の} が いい。
+    english_literally: Not a big one, a small one is desired.
+    competing_grammar:
+      - competing_japanese:
+          - 大きい {物} じゃ なく て、小さい {物} が 欲しい です。
+        english: I want a small thing, not a big thing.
+        hint: 「物」 refers to a general 'thing'. While grammatically correct, 「の」 is more commonly used
+          to refer to a specific 'one' among options implied by context, making the sentence more concise.
+      - competing_japanese:
+          - 大きい {方} じゃ なく て、小さい {方} が 欲しい です。
+        english: I want the smaller one, not the bigger one.
+        hint: 「方」 (ほう) is used for comparing two items. While it conveys 'the one', 「の」 is more general
+          for substituting a noun with a preceding modifier. We're looking for a general pronoun for 'one'.
+    scene: A child is choosing a toy from a selection, telling their parent which one they prefer.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「小さいのが 欲しい」 is a very natural way for a child to express a preference for a specific
+      item without repeating the noun. The contrast 「大きい の じゃ なく て」 clearly establishes the comparison.
+      This usage is common in informal contexts when referring to items that can be described by size,
+      color, etc.
+  - english: This old plan is simple, but a more effective one is needed.
+    japanese:
+      - この 古い 計画 は 単純 です が、もっと 効果 的 な {の} が 必要 です。
+      - この 古い 計画 は 単純 だ が、もっと 効果 的 な {の} が 必要 だ。
+      - この 古い 計画 は 単純 です が、より 効果 的 な {の} を 求め て い ます。
+    english_literally: This old plan is simple, but a more effective one is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 計画 は 単純 です が、もっと 効果 的 な {物} が 必要 です。
+        english: This old plan is simple, but a more effective thing is needed.
+        hint: 「物」 is a general noun for 'thing'. While sometimes interchangeable, 「の」 is often used for
+          a more specific 'one' that belongs to a previously mentioned category, like 'plans' in this
+          context.
+      - competing_japanese:
+          - この 古い 計画 は 単純 です が、もっと 効果 的 な {案} が 必要 です。
+        english: Using a specific noun like 「案」 (あん) meaning 'plan' or 'proposal' is grammatically correct
+          but can be redundant when the context makes it clear what 'one' refers to. 「の」 provides conciseness.
+        hint: Using a specific noun like 「案」 (あん) meaning 'plan' or 'proposal' is grammatically correct
+          but can be redundant when the context makes it clear what 'one' refers to. 「の」 provides conciseness.
+    scene: A manager is leading a project meeting, discussing strategies with their team.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「効果的なの」 allows the speaker to refer to an 'effective plan' without repeating the
+      word 「計画」. This makes the speech flow more naturally in a professional setting where context is
+      often well-established. The phrase 「必要です」 conveys a clear requirement for an improved alternative.
+  - english: Where did I put the book I borrowed yesterday?
+    japanese:
+      - 昨日 借り た {の} を どこ に 置い た か な？
+      - 昨日 借り た {の}、どこ に 置い た っけ？
+      - 昨日 借り た {の} が 見つから ない な。
+    english_literally: The one I borrowed yesterday, where did I put it, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 借り た {本} を どこ に 置い た か な？
+        english: While explicitly stating 「本」 (book) is fine, 「の」 is very commonly used to refer to a
+          specific item understood from context, especially in casual speech, avoiding redundancy.
+        hint: While explicitly stating 「本」 (book) is fine, 「の」 is very commonly used to refer to a specific
+          item understood from context, especially in casual speech, avoiding redundancy.
+      - competing_japanese:
+          - 昨日 借り た {物} を どこ に 置い た か な？
+        english: Where did I put the thing I borrowed yesterday?
+        hint: 「物」 is a general 'thing'. While somewhat similar, 「の」 often implies a more specific, previously
+          mentioned item, whereas 「物」 can be vaguer. We're looking for a pronoun that refers to a specific,
+          understood item.
+    scene: Someone is talking to themselves while looking for an item they can't find.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The construction 「〜したの」 is typical for referring to an object that was subjected to an action,
+      here 'borrowed'. The ending 「〜かな？」 or 「〜っけ？」 indicates thinking aloud or trying to recall something,
+      which is characteristic of reflective, internal monologue. 「の」 is natural for referring to 'the
+      one' (the book) without needing to name it explicitly.
+  - english: The red one is sold out.
+    japanese:
+      - 赤い {の} は 完売 です。
+      - 赤い {の} は もう あり ませ ん。
+      - 赤い {の} は 売り切れ です。
+    english_literally: The red one is sold out.
+    competing_grammar:
+      - competing_japanese:
+          - 赤い {物} は 完売 です。
+        english: The red thing is sold out.
+        hint: 「物」 is a general 'thing'. While grammatically acceptable, 「の」 is often preferred in contexts
+          where specific items are being discussed, such as colors or sizes of products. We're looking
+          for a specific 'one'.
+      - competing_japanese:
+          - 赤い {商品} は 完売 です。
+        english: While using the specific noun 「商品」 (product) is clear, Japanese often uses 「の」 to refer
+          to an item already understood from context, making the sentence more concise and natural.
+        hint: While using the specific noun 「商品」 (product) is clear, Japanese often uses 「の」 to refer
+          to an item already understood from context, making the sentence more concise and natural.
+    scene: A store clerk is informing a customer that a specific color of an item is no longer available.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「赤いの」 is a concise and natural way to refer to 'the red one' (e.g., a red shirt, a red car,
+      etc.) in a sales context without explicitly naming the noun. The use of 「完売です」 or 「売り切れです」 is standard
+      polite language for informing a customer about stock availability, maintaining a professional demeanor.
+  - english: Is this the one you lost?
+    japanese:
+      - これ は あなた が 無くし た {の} です か？
+      - これ、無くし た {の}？
+    english_literally: This, the one you lost, is it?
+    competing_grammar:
+      - competing_japanese:
+          - これ は あなた が 無くし た {物} です か？
+        english: Is this the thing you lost?
+        hint: 「物」 refers to a general 'thing'. 「の」 is more commonly used to refer to a specific 'one'
+          that has been implicitly understood from context.
+      - competing_japanese:
+          - これ は あなた が 無くし た {やつ} です か？
+        english: Is this the guy/thing you lost?
+        hint: 「やつ」 is highly informal and may sound impolite depending on the relationship or item. We're
+          looking for a neutral pronoun for 'one'.
+      - competing_japanese:
+          - これ は あなた が 無くし た {鍵} です か？
+        english: Using a specific noun like 「鍵」 (key) is grammatically correct but less natural when the
+          context allows for the use of a general pronoun like 「の」.
+        hint: Using a specific noun like 「鍵」 (key) is grammatically correct but less natural when the
+          context allows for the use of a general pronoun like 「の」.
+    scene: One friend finds an item on the floor and asks another friend if it belongs to them, referring
+      to something specific they might have mentioned losing.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「無くしたの」 uses 「の」 to stand in for the lost item, which is clear from the context.
+      The question form 「〜ですか？」 (polite) or simple rising intonation for 「〜の？」 (casual) seeks confirmation
+      in a direct yet friendly manner. The explicit 「あなた が」 can be omitted in very close relationships
+      for even more natural flow.
+post_example_writeup: The versatility of 「の」 as a pronoun allows for concise and natural expression by
+  replacing nouns or even entire clauses. Pay close attention to the modifier that precedes 「の」, as it
+  defines the specific 'one' or 'thing' being referred to. The context will always clarify what 「の」 stands
+  for.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/の

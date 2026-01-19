@@ -1,0 +1,347 @@
+grammar_point: かろう (probably・right?)
+learn_before:
+  - とはいえ (though)
+meaning: Probably; I suppose; I imagine (archaic or formal)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: かろう
+    rarity: common
+    meaning: probably is / probably will be
+  - conjugation-type: negative plain (～ない)
+    form: なかろう
+    rarity: common
+    meaning: probably is not / probably will not be
+pronunciation:
+  katakana: カロウ
+  romaji: karou
+formation:
+  い-adjective stem + かろう: Expresses conjecture for い-adjectives, indicating something probably is or will
+    be a certain way.
+  い-adjective stem + くはなかろう: Expresses negative conjecture for い-adjectives, indicating something probably
+    is not or will not be a certain way. The particle は adds emphasis or contrast.
+  な-adjective stem + ではなかろう: Expresses negative conjecture for な-adjectives, indicating something probably
+    is not or will not be a certain way.
+  Noun + ではなかろう: Expresses negative conjecture for nouns, indicating someone/something probably is not
+    or will not be a certain thing.
+jlpt: N1
+etymology: The grammar point 「かろう」 is derived from the archaic indeterminate form 「かろ」 of an い-adjective,
+  combined with the auxiliary verb 「う」. This construction is reminiscent of older forms like 「よかろう」 which
+  is the predecessor of 「いいだろう」.
+writeup: '「かろう」 is an archaic grammar pattern used to express conjecture or presumption. While its modern
+  equivalents are 「だろう」 or 「でしょう」, 「かろう」 carries a distinct old-fashioned and literary nuance. It implies
+  a strong probability or a confident assertion from the speaker''s perspective, often rooted in their
+  experience or authority. This form is not typically encountered in everyday modern Japanese conversation.
+  You will primarily find it in: **Formal writing and speeches:** It lends an air of solemnity and erudition.
+  **Historical texts and classic literature:** Reflecting the language of past eras. **Fictional characters:**
+  Particularly older characters, figures of authority, or those speaking with a philosophical or profound
+  tone, to emphasize their wisdom, age, or status. To use 「かろう」, simply replace the final 「い」 of an い-adjective
+  with 「かろう」。 For negative conjectures involving い-adjectives, な-adjectives, or nouns, the form 「なかろう」
+  is淵 is derived from the negative auxiliary 「ない」 (which functions as an an い-adjective), forming 「ない」
+  + 「かろう」 = 「なかろう」。 Thus, for な-adjectives and nouns, it becomes 「〜ではなかろう」 (e.g., 「静かではなかろう」, 「医者ではなかろう」).
+  While this grammar point is generally gender-neutral in its formal usage, its appearance in modern media
+  often sees it employed by male characters or in contexts that evoke traditional masculinity or authority,
+  given its archaic feel. However, this is more of a stylistic association than a grammatical rule. Likewise,
+  its use by older characters is a common trope to convey age and experience, but not a strict limitation.'
+false_friends:
+  - term: だろう
+    meaning: Probably; I think; ..., right?
+    kind: similar expression
+    nuance: 「だろう」 is the standard, modern equivalent used for general conjecture in casual and informal
+      contexts. Unlike 「かろう」, it lacks the archaic or formal nuance.
+    grammar_point: だろう・でしょう (probably・right?)
+  - term: でしょう
+    meaning: Probably; I think; ..., right? (polite)
+    kind: similar expression
+    nuance: 「でしょう」 is the polite form of 「だろう」, suitable for formal or semi-formal situations. While polite,
+      it still lacks the deep archaic or authoritative nuance found in 「かろう」.
+    grammar_point: だろう・でしょう (probably・right?)
+post_false_friends_writeup: While 「だろう」 and 「でしょう」 are the common ways to express conjecture in modern
+  Japanese, 「かろう」 adds an antiquated flair to your speech or writing. Be mindful of your audience and
+  context when choosing which to use.
+examples:
+  - english: This ancient scroll is probably very valuable.
+    japanese:
+      - この 古い 巻物 は、非常 に 価値 が {高かろう}。
+      - この 古い 巻物、非常 に 価値 が {高かろう}。
+      - 非常 に 価値 が {高かろう}、この 古い 巻物 は。
+    english_literally: This old scroll, extremely value is high probably.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 巻物 は、非常 に 価値 が 高い {だろう}。
+        english: This ancient scroll is probably very valuable.
+        hint: The setting of archaeological discovery and the academic nature of the speaker's thoughts
+          lean towards a more formal and almost pronouncement-like conjecture, which 'かろう' provides, unlike
+          the more casual 'だろう'.
+      - competing_japanese:
+          - この 古い 巻物 は、非常 に 価値 が 高い {でしょう}。
+        english: This ancient scroll is probably very valuable.
+        hint: Similar to 'だろう', 'でしょう' is polite but lacks the archaic and authoritative weight that 'かろう'
+          brings to a statement about something of such historical importance.
+    scene: An archaeologist unearthing a dusty, ancient scroll in a newly discovered ruin, contemplating
+      its significance.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The speaker, an archaeologist, uses 「高かろう」 to convey a solemn, almost definitive judgment
+      about the scroll's value, fitting the formal and authoritative tone of academic discovery. The word
+      「巻物」 (scroll) itself adds to the ancient context.
+  - english: Any hardship will probably heal with time.
+    japanese:
+      - どんな 苦難 も、時 が 経て ば 癒さ れる もの {かろう}。
+      - どんな 苦難 も、時 が 経て ば {癒さ れる もの か ろう}。
+      - 時 が 経て ば、どんな 苦難 も 癒さ れる もの {かろう}。
+    english_literally: Any hardship, time passes if, healed thing probably.
+    competing_grammar:
+      - competing_japanese:
+          - どんな 苦難 も、時 が 経て ば 癒さ れる もの {だろう}。
+        english: Any hardship will probably heal with time.
+        hint: The grandmother's role as a source of timeless wisdom makes 'かろう' a more appropriate choice
+          than the informal 'だろう', as it implies a truth learned through life experience rather than simple
+          speculation.
+      - competing_japanese:
+          - どんな 苦難 も、時 が 経て ば 癒さ れる もの {でしょう}。
+        english: Any hardship will probably heal with time.
+        hint: While polite, 'でしょう' doesn't carry the same weight of established truth or the comforting,
+          slightly archaic wisdom that 'かろう' imparts in this reflective and empathetic context.
+    scene: A kindly old woman, sitting by a window overlooking a serene garden, offers words of solace
+      to her grieving granddaughter.
+    register: formal
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The grandmother's use of 「かろう」 here imbues her words with a gentle, timeless wisdom, suggesting
+      this is a universal truth derived from life experience. The phrase 「どんな 苦難 も」 (any hardship) further
+      emphasizes this broad, philosophical perspective.
+  - english: That new movie probably wouldn't be interesting for children.
+    japanese:
+      - あの 新しい 映画 は、子供 に とっ て、面白く は {なかろう}。
+      - あの 新しい 映画、子供 に とっ て、面白く は {なかろう}。
+      - 子供 に とっ て、あの 新しい 映画 は、面白く は {なかろう}。
+    english_literally: That new movie, for children, interesting probably is not.
+    competing_grammar:
+      - competing_japanese:
+          - あの 新しい 映画 は、子供 に とっ て、面白く は ない {だろう}。
+        english: That new movie probably wouldn't be interesting for children.
+        hint: The speaker's reflective tone, making a judgment for a child's entertainment, utilizes the
+          formal and slightly distanced 'なかろう' to express a confident prediction, unlike the more casual
+          'だろう'.
+      - competing_japanese:
+          - あの 新しい 映画 は、子供 に とっ て、面白く は ない {でしょう}。
+        english: That new movie probably wouldn't be interesting for children.
+        hint: While polite, 'でしょう' would imply a degree of seeking agreement or politeness that isn't
+          present in the speaker's internal, conclusive thought, which 'なかろう' better conveys.
+    scene: A parent looks at a movie poster, considering if it's suitable for their child's taste, and
+      concludes it's not.
+    register: formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The speaker's use of 「面白くは なかろう」 indicates a firm, internal conclusion about the movie's appeal
+      to children, reflecting a sense of certainty characteristic of 「かろう」. The inclusion of 「は」 emphasizes
+      the contrast with other movies that might be interesting.
+  - english: Although it's an emergency, this issue is probably not that important.
+    japanese:
+      - 緊急 事態 と は いえ、この 問題 は、それ ほど {重要 で は なかろう}。
+      - 緊急 事態 と は いえ、この 問題、それ ほど {重要 で は なかろう}。
+      - この 問題 は、緊急 事態 と は いえ、それ ほど {重要 で は なかろう}。
+    english_literally: Emergency situation even though, this problem, that much important probably is
+      not.
+    competing_grammar:
+      - competing_japanese:
+          - 緊急 事態 と は いえ、この 問題 は、それ ほど 重要 で は ない {だろう}。
+        english: Although it's an emergency, this issue is probably not that important.
+        hint: The leader's assertive, declarative tone, even in a crisis, requires the formal and confident
+          '重要ではなかろう' to convey a definitive assessment rather than the more uncertain 'だろう'.
+      - competing_japanese:
+          - 緊急 事態 と は いえ、この 問題 は、それ ほど 重要 で は ない {でしょう}。
+        english: Although it's an emergency, this issue is probably not that important.
+        hint: Using 'でしょう' would introduce politeness or a hint of tentativeness, which would undermine
+          the leader's decisive and reassuring posture in a serious situation, making 'なかろう' more appropriate.
+    scene: A calm leader assessing various concerns during a crisis, prioritizing by downplaying the significance
+      of a particular issue.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The leader's use of 「重要ではなかろう」 asserts a calm, confident assessment of the situation, even
+      amidst an emergency. This formal phrasing emphasizes their authority and rational judgment, suggesting
+      that the issue is truly not of high priority.
+  - english: He is certainly not a coward.
+    japanese:
+      - 彼 は 決して 卑怯 者 で は {なかろう}。
+      - 決して 彼 は 卑怯 者 で は {なかろう}。
+      - 卑怯 者 で は {なかろう}、彼 は 決して。
+    english_literally: He is absolutely not a coward.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 決して 卑怯 者 で は ない {だろう}。
+        english: He is certainly not a coward.
+        hint: The general's position of authority and the serious context of defending an officer's honor
+          demand a more resolute and less speculative tone than 'だろう' typically offers. 'なかろう' provides
+          that conviction.
+      - competing_japanese:
+          - 彼 は 決して 卑怯 者 で は ない {でしょう}。
+        english: He is certainly not a coward.
+        hint: Even with politeness, 'でしょう' can imply a degree of uncertainty or seeking agreement, which
+          would undermine the general's firm defense. 'なかろう' makes it a statement of strong belief.
+    scene: A military general, known for his stern demeanor, publicly defending the character of a subordinate
+      officer against accusations of cowardice.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「なかろう」 by a general emphasizes a strong, almost irrefutable assertion, reinforcing
+      the speaker's authority and conviction. 「決して」 (never/certainly not) further strengthens this definitive
+      nuance, making the statement an unwavering defense.
+  - english: This plan will certainly succeed. There are probably few who harbor doubts.
+    japanese:
+      - この 計画 は 成功 する に 違い ない。疑念 を 抱く 者 は {少なかろう}。
+      - 疑念 を 抱く 者 は {少なかろう}。この 計画 は 成功 する に 違い ない。
+      - この 計画 は 成功 する に 違い ない。{少なかろう}、疑念 を 抱く 者 は。
+    english_literally: This plan succeeds without doubt. Doubts hold people are few probably.
+    competing_grammar:
+      - competing_japanese:
+          - 疑念 を 抱く 者 は 少ない {だろう}。
+        english: There are probably few who harbor doubts.
+        hint: The CEO's persuasive and confident tone, aiming to instill belief, benefits from the slightly
+          more formal and declarative '少なかろう' over the more casual '少ない だろう', which could imply hesitation.
+      - competing_japanese:
+          - 疑念 を 抱く 者 は 少ない {でしょう}。
+        english: There are probably few who harbor doubts.
+        hint: While polite, 'でしょう' might still suggest a hint of questioning or politeness, whereas the
+          CEO here needs to convey an unwavering truth to motivate her team, a role '少なかろう' fills more
+          aptly.
+    scene: A charismatic CEO, standing before a large whiteboard filled with strategic diagrams, delivering
+      an inspiring speech to her team about an ambitious new project.
+    register: formal
+    setting: persuasive
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The CEO's use of 「少なかろう」 conveys a confident and almost self-evident truth, implying that
+      any doubt would be an anomaly. This tone is authoritative and persuasive, aiming to unite the team
+      behind the plan. 「成功 する に 違いない」 (will certainly succeed) sets up this expectation.
+  - english: A young person probably wouldn't understand the meaning of this tradition.
+    japanese:
+      - 若い 者 に は、この 伝統 の 意味 は {分から なかろう}。
+      - この 伝統 の 意味 は、若い 者 に は {分から なかろう}。
+      - 若い 者 に は、{分から なかろう}、この 伝統 の 意味 は。
+    english_literally: Young people to, this tradition's meaning is probably not understandable.
+    competing_grammar:
+      - competing_japanese:
+          - 若い 者 に は、この 伝統 の 意味 は 分から ない {だろう}。
+        english: A young person probably wouldn't understand the meaning of this tradition.
+        hint: The speaker's age and role as a master reflecting on 'tradition' suggests a statement born
+          of profound experience and a degree of inherent authority, which 'なかろう' captures more effectively
+          than the more common 'だろう'.
+      - competing_japanese:
+          - 若い 者 に は、この 伝統 の 意味 は 分から ない {でしょう}。
+        english: A young person probably wouldn't understand the meaning of this tradition.
+        hint: While polite, 'でしょう' would sound too conversational for the speaker's reflective and slightly
+          condescending tone, which emphasizes the gap in understanding between generations through the
+          use of archaic language.
+    scene: An elderly master craftsman, whose hands are gnarled from decades of work, observes his young
+      apprentice struggling with an intricate technique, musing about the deeper spiritual aspects of
+      their craft.
+    register: formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The speaker uses 「分からなかろう」 with an air of experienced wisdom, subtly emphasizing the generational
+      gap and the presumed lack of understanding from younger individuals. The phrase 「若い 者」 (young people)
+      and the overall context of a master imparting knowledge contribute to this nuance.
+  - english: Future generations will probably remember this peace treaty as a turning point.
+    japanese:
+      - この 平和 条約 は、後世 に 転換 点 と {記憶 さ れ かろう}。
+      - 後世 に 転換 点 と {記憶 さ れ かろう}、この 平和 条約 は。
+      - この 平和 条約 は、転換 点 と 後世 に {記憶 さ れ かろう}。
+    english_literally: This peace treaty, to future generations, as a turning point probably will be remembered.
+    competing_grammar:
+      - competing_japanese:
+          - この 平和 条約 は、後世 に 転換 点 と 記憶 さ れる {だろう}。
+        english: Future generations will probably remember this peace treaty as a turning point.
+        hint: The historical context and the speaker's academic stance lend themselves to the more formal
+          and authoritative 'かろう', which conveys a stronger sense of certainty than the more common 'だろう'.
+      - competing_japanese:
+          - この 平和 条約 は、後世 に 転換 点 と 記憶 さ れる {でしょう}。
+        english: Future generations will probably remember this peace treaty as a turning point.
+        hint: While polite, 'でしょう' would sound less definitive for a historical judgment. 'かろう' carries
+          the weight of a considered pronouncement, suitable for academic discourse.
+    scene: A historian presenting research on a significant historical event, emphasizing its lasting
+      impact.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The historian uses 「記憶されかろう」 to convey a confident historical projection, emphasizing the
+      lasting significance of the treaty. The phrase 「後世に」 (for future generations) adds to the solemn,
+      historical context, making the statement sound like an established truth.
+  - english: Such a betrayal would probably not be forgiven by anyone.
+    japanese:
+      - その よう な 裏切り は、誰 に も {許さ れ なかろう}。
+      - 誰 に も その よう な 裏切り は {許さ れ なかろう}。
+      - '{許さ れ なかろう}、その よう な 裏切り は、誰 に も。'
+    english_literally: Such betrayal, by anyone, probably would not be forgiven.
+    competing_grammar:
+      - competing_japanese:
+          - その よう な 裏切り は、誰 に も 許さ れ ない {だろう}。
+        english: Such a betrayal would probably not be forgiven by anyone.
+        hint: The philosophical reflection and the speaker's deep conviction about the unforgivable nature
+          of betrayal are better expressed with the strong, absolute tone of 'なかろう' rather than the more
+          common and less emphatic 'だろう'.
+      - competing_japanese:
+          - その よう な 裏切り は、誰 に も 許さ れ ない {でしょう}。
+        english: Such a betrayal would probably not be forgiven by anyone.
+        hint: Using 'でしょう' would introduce a polite or tentative nuance, which is unsuitable for the speaker's
+          firm, almost universal judgment on a severe ethical matter. 'なかろう' provides that resolute closure.
+    scene: A philosopher contemplating the nature of forgiveness and human morality after a profound act
+      of betrayal.
+    register: formal
+    setting: reflective
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker's use of 「許されなかろう」 reflects a profound, almost absolute judgment about the unforgivable
+      nature of the betrayal. The phrase 「誰にも」 (by anyone) underscores the universal application of this
+      severe judgment, fitting the philosophical context and lending an air of established truth.
+  - english: The true path of justice will probably always be a difficult one.
+    japanese:
+      - 正義 の 真 の 道 は、常 に 困難 な もの {かろう}。
+      - 常 に 困難 な もの {かろう}、正義 の 真 の 道 は。
+      - 正義 の 真 の 道、常 に 困難 な もの {かろう}。
+    english_literally: Justice's true path, always difficult thing probably will be.
+    competing_grammar:
+      - competing_japanese:
+          - 正義 の 真 の 道 は、常 に 困難 な もの {だろう}。
+        english: The true path of justice will probably always be a difficult one.
+        hint: The wise judge's solemn instruction to new apprentices benefits from the archaic and weighty
+          'かろう', which conveys a timeless truth, unlike the more casual and less impactful 'だろう'.
+      - competing_japanese:
+          - 正義 の 真 の 道 は、常 に 困難 な もの {でしょう}。
+        english: The true path of justice will probably always be a difficult one.
+        hint: While 'でしょう' is polite, it lacks the deep, authoritative wisdom and solemnity that an elder
+          conveying a fundamental principle would use, making 'かろう' the more appropriate choice.
+    scene: An old, respected judge addressing a group of new legal apprentices, imparting fundamental
+      wisdom about their future profession.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The judge's use of 「困難なものかろう」 conveys a solemn, established truth born from extensive experience.
+      The phrase 「正義の真の道」 (the true path of justice) emphasizes the profound and timeless nature of the
+      statement, fitting the mentor's role in conveying deep, historical wisdom.
+post_example_writeup: As you can see from the examples, 「かろう」 consistently lends a tone of solemnity,
+  authority, or timeless wisdom to the statement, whether it is an affirmative conjecture or a negative
+  one. Its usage often signals that the speaker is delivering a considered judgment or a reflection on
+  a profound truth, rather than just a casual guess.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かろう

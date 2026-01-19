@@ -1,0 +1,307 @@
+grammar_point: ないでもない (not impossible)
+learn_before:
+  - だが (but・however)
+  - なくはない (softened possibility)
+  - 別に〜ない (not particularly)
+meaning: It's not that (something) isn't (something); It's not entirely impossible that...
+pronunciation:
+  katakana: ナイデモナイ
+  romaji: nai demo nai
+formation:
+  Verb[negative form] + ないでもない: Expresses a hesitant affirmation or possibility, indicating that something
+    is 'a little (A)' or 'kinda (A)'.
+jlpt: N1
+etymology: The grammar point 「ないでもない」 is formed by negating a negative, literally meaning "not not be."
+  This double negative construction creates a nuance of hesitant affirmation or possibility, suggesting
+  that while something might not be entirely true or false, there is a degree of truth or possibility.
+  It's akin to saying 'it's not impossible' or 'it's not that I don't...'.
+writeup: |-
+  The grammar point 「ないでもない」, literally meaning "not not be," expresses a hesitant affirmation, possibility, or mild agreement. It indicates that something is "kind of," "might be," or "somewhat" true. Think of it as a way of saying you don't completely disagree, or that you see a possibility, however slight. This grammar point is often used in situations where the speaker can neither fully confirm nor deny something, or when they want to express a nuanced agreement without being overly direct. It is primarily used in casual settings.
+
+  It is formed by attaching 「ないでもない」 to the negative form of a verb (e.g., 行かない + ないでもない → 行かないでもない) or an adjective (e.g., できない + ないでもない → できないでもない). While it creates a double negative, the overall meaning leans towards a cautious positive. For instance, 「分からないでもない」 doesn't mean 'I don't understand' but rather 'I kind of understand' or 'it's not that I don't understand'.
+
+  「なくもない」 is an interchangeable variation, though it is less frequently used. Both structures are fundamentally similar in their nuanced expression of possibility or reluctant agreement.
+false_friends:
+  - term: といってもいい
+    meaning: You could say, You might say
+    kind: similar expression
+    nuance: Unlike 「ないでもない」 which conveys a hesitant or reluctant possibility, 「といってもいい」 suggests a stronger
+      degree of affirmation or justification. It proposes an alternative description that's reasonably
+      accurate and more confidently stated.
+    grammar_point: といってもいい (you could say)
+  - term: ないことはない
+    meaning: It's not that...doesn't happen; It's not impossible
+    kind: similar expression
+    nuance: 「ないことはない」 is used to state that something is not 100% impossible or that an event does occur,
+      perhaps infrequently. It implies a denial of complete absence or impossibility. In contrast, 「ないでもない」
+      is more commonly used to express a hesitant opinion or partial agreement, suggesting 'it's not that
+      I don't (agree/understand/etc.)' rather than just 'it's not impossible.'
+    grammar_point: ないことはない (not impossible)
+  - term: わけではない
+    meaning: It's not that..., It doesn't mean that...
+    kind: often confused with
+    nuance: 「わけではない」 explicitly denies a particular interpretation or assumption, stating that something
+      is not necessarily true or entirely the case. It is a direct negation of a presumed state. In contrast,
+      「ないでもない」 is a double negative that implies a hesitant affirmation or a mild, often reluctant, agreement
+      or possibility. It hints at a subtle presence or possibility rather than denying a broad assumption.
+    grammar_point: (という)わけではない (it's not that...)
+post_false_friends_writeup: 「ないでもない」 implies a subtle agreement or possibility, often with a hint of reservation.
+  「といってもいい」 is used to rephrase or suggest an alternative, reasonably accurate description. 「ないことはない」
+  means that something is not entirely impossible or doesn't occur, denying a complete absence. 「わけではない」
+  explicitly denies a complete interpretation or assumption, indicating something is not necessarily true
+  in all aspects.
+examples:
+  - english: This new restaurant, the taste isn't bad, but it's a bit expensive.
+    japanese:
+      - この 新しい レストラン、味 は 悪く {ない で も ない} けど、ちょっと 高い な。
+      - この 新しい レストラン、味 は 悪く {なく も ない} けど、ちょっと 高い な。
+    english_literally: This new restaurant, as for the taste, it's not not bad, but it's a bit expensive.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい レストラン、味 は {悪く ない} けど、ちょっと 高い な。
+        english: This new restaurant, the taste isn't bad, but it's a bit expensive.
+        hint: Using a direct negative like 「悪くない」 simply means 'not bad'. 「ないでもない」 adds a layer of hesitation
+          or reluctant agreement, implying 'it's not *not* bad', suggesting a more nuanced, understated
+          compliment. We're looking for that subtle reservation.
+    scene: Two friends are discussing a new restaurant they tried, balancing a positive comment with a
+      drawback.
+    register: casual
+    setting: friendly
+    nuance: Here, 「悪くないでもない」 implies 'it's not *not* bad', suggesting a reluctant or understated compliment
+      rather than a direct statement of 'not bad'. The speaker acknowledges a good point, but with reservation,
+      perhaps implying it's not *great* or that other factors (like cost) weigh on the overall impression.
+  - english: That proposal, I'm not entirely unable to understand it, but I think it'll be difficult to
+      implement.
+    japanese:
+      - その 提案、全く 理解 でき {ない で も ない} けど、実行 は 難しい と 思う。
+      - その 提案、全く 理解 でき {ない で も ない} が、実行 は 難しい と 思う。
+      - その 提案、全く 理解 でき {なく も ない} けど、実行 は 難しい と 思う。
+      - その 提案、全く 理解 でき {なく も ない} が、実行 は 難しい と 思う。
+    english_literally: That proposal, entirely to understand it, it's not not possible, but to implement
+      it, I think it is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - その 提案、全く {理解 できる} けど、実行 は 難しい と 思う。
+        english: That proposal, I can completely understand it, but I think it'll be difficult to implement.
+        hint: The core grammar here suggests a hesitant or partial understanding, not a full, direct one.
+          We're looking for the phrase that conveys 'it's not that I *can't* understand,' implying a degree
+          of reservation.
+    scene: A project manager is giving feedback on a team member's new proposal, acknowledging its theoretical
+      basis while highlighting practical challenges.
+    register: semi-formal
+    setting: professional
+    nuance: The phrase 「理解できないでもない」 conveys a hesitant understanding, meaning 'it's not that I *can't*
+      understand'. It's a polite way to acknowledge the idea's validity without fully endorsing it, which
+      is typical in professional settings when giving nuanced feedback. It softens what might otherwise
+      be perceived as a direct criticism of the proposal's feasibility.
+  - english: His new haircut isn't exactly strange, but his previous one suited him better.
+    japanese:
+      - 彼 の 新しい 髪型、別 に 変 じゃ {ない で も ない} けど、前 の ほう が 似合っ て い た な。
+      - 彼 の 新しい 髪型、別 に 変 じゃ {なく も ない} けど、前 の ほう が 似合っ て い た な。
+    english_literally: His new haircut, it's not not strange, but the previous one suited him more.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 新しい 髪型、別 に {変 じゃ ない} けど、前 の ほう が 似合っ て い た な。
+        english: His new haircut isn't particularly strange, but his previous one suited him better.
+        hint: While 「変じゃない」 directly states 'it's not strange,' the grammar point implies 'it's not *not*
+          strange,' suggesting a subtle hint of strangeness or a 'backhanded compliment.' We're looking
+          for that nuanced, indirect criticism.
+    scene: Two friends are gossiping about a mutual acquaintance's new look, offering a backhanded compliment.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「変じゃないでもない」 implies 'it's not *not* strange', which is a roundabout way of saying
+      'it's a little strange' or 'it's not entirely normal'. This is often used by female speakers in
+      casual conversation, especially when offering a subtle critique or backhanded compliment, avoiding
+      direct negative confrontation while still conveying a reserved opinion.
+  - english: His method is a bit rough, but since he's getting results, there's some truth to it.
+    japanese:
+      - 彼 の やり 方 は 少し 乱暴 だ けど、結果 を 出し て いる から、一理 {ない で も ない}。
+      - 彼 の やり 方 は 少し 乱暴 だ けど、結果 を 出し て いる から、一理 {ない で も ない} です。
+      - 彼 の やり 方 は 少し 乱暴 だ けど、結果 を 出し て いる から、一理 {なく も ない}。
+      - 彼 の やり 方 は 少し 乱暴 だ けど、結果 を 出し て いる から、一理 {なく も ない} です.
+    english_literally: His method is a bit rough, but since he's yielding results, one truth isn't not
+      present.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の やり 方 は 少し 乱暴 だ けど、結果 を 出し て いる から、{一理 ある}。
+        english: His method is a bit rough, but since he's getting results, there's a point to it.
+        hint: The grammar point expresses a hesitant or reluctant agreement ('there is *not not* a point'),
+          implying some reservation despite acknowledging a point. A direct 「一理ある」 would be a straightforward
+          agreement. We're looking for that nuanced, partial agreement.
+    scene: Colleagues are discussing an unconventional but successful team member, acknowledging their
+      effectiveness despite reservations about their style.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: For a male speaker in a professional setting, 「一理ないでもない」 is a sophisticated way to acknowledge
+      validity while still expressing reservations. It implies 'there is *not not* a point/truth to it,'
+      meaning 'there is some truth to it,' but the double negative hints at a reluctant or partial agreement.
+      This allows the speaker to maintain a balanced perspective, recognizing success despite a flawed
+      process.
+  - english: This plan isn't perfect, but there's a possibility it could succeed.
+    japanese:
+      - この 計画 は 完璧 で は ない けれど、成功 する 可能 性 は {ない で も ない} です。
+      - この 計画 は 完璧 で は ない けれど、成功 する 可能 性 は {なく も ない} です。
+    english_literally: This plan isn't perfect, but to succeed, the possibility is not not present.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 完璧 で は ない けれど、成功 する {可能 性 は ある}。
+        english: This plan isn't perfect, but there is a possibility it could succeed.
+        hint: The grammar point conveys a cautious optimism ('it's not *not* possible'), a softer assertion
+          of possibility than a direct 「可能性はある」. We're looking for the phrase that implies possibility
+          while acknowledging limitations or challenges.
+    scene: A team leader is trying to motivate their team despite challenges, offering a cautious but
+      hopeful assessment of a new project.
+    register: formal
+    setting: persuasive
+    speaker_gender: female
+    listener_gender: group
+    nuance: When a female team leader uses 「可能性はないでもない」, it implies 'it's not *not* possible,' conveying
+      a cautious optimism. This phrasing is less direct than stating 'there is a possibility' and allows
+      for a more nuanced expression of hope, acknowledging challenges while still providing motivation
+      without overpromising. It's a persuasive technique that manages expectations.
+  - english: There are some points in his new opinion that are worth listening to.
+    japanese:
+      - 彼 の 新しい 意見 に は、聞く べき ところ が {なく も ない}。
+      - 彼 の 新しい 意見 に は、聞く べき ところ が {なく も ない} です。
+      - 彼 の 新しい 意見 に は、聞く べき ところ が {ない で も ない}。
+      - 彼 の 新しい 意見 に は、聞く べき ところ が {ない で も ない} です。
+    english_literally: As for his new opinion, there isn't not a place that should be heard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 新しい 意見 に は、{聞く べき ところ が ある}。
+        english: There are some points in his new opinion that are worth listening to.
+        hint: The grammar point 「なくもない」 offers a reluctant concession or subtle acknowledgement ('it's
+          not *not* present'), implying merit despite overall reservations. A direct 「聞くべきところがある」 would
+          be a straightforward assertion. We're looking for the phrase that allows for subtle agreement
+          with reservation.
+    scene: Two colleagues are discussing a recent, controversial presentation, acknowledging some merit
+      despite overall skepticism.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「なくもない」 (a variant of 「ないでもない」) indicates 'it's not *not* present' or 'there isn't
+      *not* X'. Used by a male speaker, it conveys a subtle concession or reluctant acknowledgment of
+      value, especially in a serious discussion where direct agreement might be perceived as too strong
+      or uncritical. It suggests finding some merit despite overall reservations.
+  - english: It's not that I can't go to the party, but I'm really tired tonight.
+    japanese:
+      - パーティー に 行か {ない で も ない} ん だ けど、今日 は 本当 に 疲れ て て。
+      - パーティー に 行か {なく も ない} ん だ けど、今日 は 本当 に 疲れ て て。
+    english_literally: As for the party, it's not not going, but today I'm really tired.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー に {行け ない} けど、今日 は 本当 に 疲れ て て。
+        english: I can't go to the party, but I'm really tired tonight.
+        hint: 「行けない」 is a direct statement of inability to go. 「行かないでもない」 implies a slight possibility
+          or reluctance to say 'no' directly, conveying 'it's not that I *can't* go' or 'I wouldn't *not*
+          go'. We're looking for that subtle reluctance or indirectness.
+      - competing_japanese:
+          - パーティー に {行く 気 は ない} けど、今日 は 本当 に 疲れ て て。
+        english: I don't feel like going to the party, but I'm really tired tonight.
+        hint: 「行く気はない」 expresses a lack of willingness or desire. The grammar point implies a slight possibility
+          or reluctant acceptance, conveying 'it's not that I *can't* go' or 'I wouldn't *not* go' due
+          to external factors, not internal desire. We're looking for that subtle reluctance or indirectness
+          regarding ability/possibility.
+    scene: A friend asks you to a party, and you're contemplating whether to go, feeling torn between
+      social obligation and tiredness.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: In casual conversation, especially among friends, 「行かないでもない」 softens a potential refusal.
+      A female speaker might use this to express that while there's a reason not to go (tiredness), she's
+      not entirely dismissing the idea, making the response less abrupt or firm. This shows consideration
+      for the friend's invitation.
+  - english: It's not that I don't understand your frustration, but we need to find a solution.
+    japanese:
+      - 君 の 苛立ち が 分 から {ない で も ない} が、解決 策 を 見つけ なけれ ば なら ない。
+      - 君 の 苛立ち が 分 から {ない で も ない} です が、解決 策 を 見つけ なけれ ば なら ない。
+      - 君 の 苛立ち が 分 から {なく も ない} が、解決 策 を 見つけ なけれ ば なら ない。
+      - 君 の 苛立ち が 分 から {なく も ない} です が、解決 策 を 見つけ なけれ ば なら ない。
+    english_literally: As for your frustration, it's not not understanding, but a solution must be found.
+    competing_grammar:
+      - competing_japanese:
+          - 君 の 苛立ち は {よく 分かる} が、解決 策 を 見つけ なけれ ば なら ない。
+        english: I fully understand your frustration, but we need to find a solution.
+        hint: 「よく分かる」 indicates full understanding. The grammar point implies a partial or hesitant understanding,
+          meaning 'it's not that I *don't* understand' but with a nuance of 'I understand *somewhat*'
+          or 'I can see why you feel that way'. We're looking for that empathetic but slightly reserved
+          acknowledgement.
+    scene: A manager speaks to an upset employee, attempting to de-escalate the situation by acknowledging
+      their feelings while steering the conversation towards problem-solving.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: An older male speaker using 「分からないでもない」 towards a frustrated employee offers a delicate balance.
+      It implies 'it's not that I *don't* understand', showing empathy without fully agreeing with or
+      validating the frustration, which could be counterproductive. This nuanced phrasing allows for a
+      professional and empathetic approach while maintaining authority and focusing on solutions.
+  - english: It's not that he can't make mistakes, but he's usually very careful.
+    japanese:
+      - 彼 が 間違え {ない で も ない} が、普段 は とても 慎重 な ん です。
+      - 彼 が 間違え {ない で も ない} です が、普段 は とても 慎重 な ん です。
+      - 彼 が 間違え {なく も ない} が、普段 は とても 慎重 な ん です。
+      - 彼 が 間違え {なく も ない} です が、普段 は とても 慎重 な ん です。
+    english_literally: As for him, it's not not making mistakes, but usually he is very careful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 も {間違える こと は ある} が、普段 は とても 慎重 な ん です。
+        english: He can also make mistakes, but he's usually very careful.
+        hint: 「間違えることもあ る」 directly states the possibility of making mistakes. The grammar point means
+          'it's not that he *doesn't* make mistakes', acknowledging the universal human possibility of
+          error while emphasizing a strong tendency towards carefulness. We're looking for the phrase
+          that subtly concedes a possibility but highlights an opposing characteristic.
+      - competing_japanese:
+          - 彼 が {間違える はず は ない} が、普段 は とても 慎重 な ん です。
+        english: He shouldn't make mistakes, but he's usually very careful.
+        hint: 「間違えるはずはない」 indicates a strong belief that mistakes *should not* happen. The grammar point
+          acknowledges that mistakes are *not impossible*, offering a more nuanced and realistic perspective
+          on human fallibility. We're looking for the phrase that subtly concedes a possibility while
+          highlighting a strong tendency.
+    scene: Two colleagues are discussing a highly competent, but not infallible, team member's work ethic.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female speaker might use 「間違えないでもない」 in a professional setting to provide a balanced assessment
+      of a colleague. It acknowledges that even a careful person is not immune to error ('it's not that
+      he *doesn't* make mistakes'), while immediately following up with their usual diligence. This careful
+      phrasing avoids over-idealizing the colleague while still praising them.
+  - english: It's not that we don't have enough budget, but it will be a tight squeeze for this project.
+    japanese:
+      - 予算 が 足り {ない で も ない} ん です が、この プロジェクト に は かなり 厳しい です ね。
+      - 予算 が 足り {なく も ない} ん です が、この プロジェクト に は かなり 厳しい です ね。
+    english_literally: As for budget, it's not not enough, but for this project, it's quite tight, isn't
+      it?
+    competing_grammar:
+      - competing_japanese:
+          - 予算 は {足りる} ん です が、この プロジェクト に は かなり 厳しい です ね。
+        english: We have enough budget, but it will be quite tight for this project.
+        hint: 「予算は足りる」 implies a clear sufficiency of budget. The grammar point implies that the budget
+          *technically* exists, but with significant constraints, meaning 'it's not that there *isn't*
+          enough budget, but...' We're looking for the expression that conveys this delicate balance of
+          'just enough' with difficulty.
+    scene: During a project meeting, a team member explains the financial reality of an ambitious project,
+      confirming funds exist but with reservations.
+    register: semi-formal
+    setting: cautious
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male speaker in a professional setting might use 「足りないでもない」 to convey a cautious assessment
+      of resources. It implies 'it's not that we *don't* have enough budget', acknowledging the bare minimum
+      is met, but immediately qualifies it with the difficulty. This phrase is useful for managing expectations
+      and subtly suggesting potential challenges without directly stating a lack of resources.
+post_example_writeup: As you can see, 「ないでもない」 and its variant 「なくもない」 are incredibly versatile. They
+  allow speakers to convey subtle agreements, reluctant possibilities, or nuanced evaluations without
+  committing to an absolute positive or negative. Mastering this double-negative construction will significantly
+  enhance your ability to express complex thoughts and feelings in Japanese, particularly in situations
+  requiring diplomacy or careful phrasing.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ないでもない

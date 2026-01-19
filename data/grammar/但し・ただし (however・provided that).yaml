@@ -1,0 +1,293 @@
+grammar_point: 但し・ただし (however・provided that)
+learn_before:
+  - お[Verb-stem]する・いたす (humble action - kenjougo)
+  - がみられる (can be observed)
+  - に限る (nothing better than)
+  - を以て・をもって (by means of・with)
+  - 以内 (within)
+  - 南 (south)
+meaning: However; but; provided that; only
+pronunciation:
+  katakana: タダシ
+  romaji: tadashi
+formation:
+  Sentence A。但し、Sentence B.: Indicates a condition, restriction, or exception to the statement in Sentence
+    A. Equivalent to 'however,' 'but,' or 'provided that.'
+jlpt: N2
+etymology: 「但し」 comes from the verb 「但つ(tatsu)」, meaning "to add on" or "to supplement." It indicates
+  adding a condition or exception to what was previously stated. 「ただし」 is the hiragana form and is used
+  interchangeably with 「但し」.
+writeup: 「但し」 (tadashi) is a formal conjunction used to introduce a condition, exception, or restriction
+  to a preceding statement. It functions similarly to "however," "but," or "provided that" in English.
+  It is notably more formal and precise than simpler conjunctions like **しかし** (shikashi) or **でも** (demo).
+  While it can be used in spoken language, it typically appears in more formal or prepared speech, often
+  in settings such as business, legal, academic, or official announcements, rather than in casual conversation.
+  Its primary function is to add a proviso or a specific detail that limits the scope or application of
+  the general statement made previously, ensuring clarity and precision. The hiragana form 「ただし」 is often
+  used in less formal writing or when the writer wishes to soften the formal tone slightly, though it
+  still carries the meaning of introducing a condition or exception.
+false_friends:
+  - term: しかし
+    meaning: However, but
+    kind: similar expression
+    nuance: 「しかし」 is a more general conjunction for expressing contrast or opposition. It is commonly
+      used in everyday conversation and writing to link two contrasting ideas or statements. In contrast,
+      「但し」 specifically introduces conditions, provisos, or exceptions that limit or qualify the preceding
+      statement, often implying a rule or official clarification.
+    grammar_point: しかし (but・however)
+  - term: だが
+    meaning: But, however
+    kind: similar expression
+    nuance: 「だが」 is a direct and somewhat forceful conjunction for contrast, often used to introduce a
+      strong counterpoint or an unexpected turn. While it expresses opposition, it does not typically
+      introduce a precise condition or exception in the same way 「但し」 does. 「だが」 is more common in narrative
+      or argumentative contexts.
+    grammar_point: しかし (but・however)
+  - term: 一方
+    meaning: On the one hand; meanwhile
+    kind: similar expression
+    nuance: 「一方」 introduces a contrasting aspect or an alternative perspective, or indicates simultaneous
+      actions. It presents two sides of an argument or situation without necessarily stating a strict
+      condition or exception. 「但し」 is more about defining the boundaries of a previous statement.
+    grammar_point: 一方で (on the other hand・while)
+  - term: を前提に
+    meaning: On the premise of; assuming
+    kind: similar expression
+    nuance: While both involve conditions, 「〜を前提に」 establishes a foundational condition or assumption
+      upon which something else is based. It means 'assuming X, then Y'. 「但し」, however, introduces an
+      *exception* or *restriction* to a previously stated general rule or fact, rather than a prerequisite
+      for it.
+    grammar_point: を前提に (on the premise of)
+post_false_friends_writeup: To differentiate, remember that 「但し」 is employed when you need to state a
+  **specific condition, restriction, or exception** that applies to a preceding statement. Think of it
+  as a formal footnote or a clause in an agreement. 「しかし」 and 「だが」 are broader terms for general contrast.
+  「一方」 introduces a different perspective or simultaneous occurrence, not a limiting condition. 「〜を前提に」
+  sets up a prerequisite, a 'given' under which something operates, rather than an exception to it.
+examples:
+  - english: You can freely read books in this library; however, you cannot take them outside.
+    japanese:
+      - この 図書 館 の 本 は 自由 に 読め ます。{但し}、館外 へ は 持ち出せ ませ ん。
+      - この 図書 館 の 本 は 自由 に 読め ます。{但し}、館外 持ち出し は 禁止 です。
+    english_literally: These library's books freely can read. However, outside the library can't take
+      out.
+    competing_grammar:
+      - competing_japanese:
+          - この 図書 館 の 本 は 自由 に 読め ます。{しかし}、館外 へ は 持ち出せ ませ ん。
+        english: You can freely read books in this library, but you cannot take them outside.
+        hint: 「しかし」 indicates a simple contrast, while 「但し」 introduces a specific condition or exception
+          to a rule. We're looking for a formal proviso.
+    scene: A librarian is explaining the rules of the library to a new user.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    nuance: This example uses highly formal and somewhat stiff language, fitting for a librarian explaining
+      strict rules. The use of 「但し」 itself reinforces the authoritative tone. The speaker's gender is
+      not explicitly marked by specific language, but a female librarian's voice is common in this type
+      of setting.
+    etymology: The phrase 「館外へは 持ち出せません」 implies a prohibition against taking items outside the library.
+      「館外」 means 'outside the building/hall', and 「持ち出す」 means 'to take out'.
+  - english: This product will be sold at a discounted price; however, please understand that returns
+      cannot be accepted.
+    japanese:
+      - この 商品 は 割引 価格 で 販売 いたし ます。{但し}、返品 は 出来 かね ます の で ご 了承 ください。
+      - この 商品 は 割引 価格 で 販売 いたし ます。{但し}、返品 は ご 容赦 ください。
+    english_literally: This product discount price by selling do. However, returns cannot do so please
+      understand.
+    competing_grammar:
+      - competing_japanese:
+          - この 商品 は 割引 価格 で 販売 いたし ます。{その 代わり}、返品 は 出来 かね ます の で ご 了承 ください。
+        english: This product will be sold at a discounted price; in exchange, please understand that
+          returns cannot be accepted.
+        hint: 「その代わり」 implies a trade-off or compensation. We're looking for a formal conjunction that
+          states a specific condition or exception.
+    scene: A salesperson is informing a customer about the terms of a special offer.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    nuance: The use of humble language like 「販売 いたし ます 」 (hanbai itashimasu) and the polite request 「ご
+      了承 ください 」 (go ryōshō kudasai) combined with 「但し」 makes this a formal business announcement. The
+      salesperson's gender is not specifically marked by speech patterns, but a male salesperson is often
+      heard in such situations.
+    etymology: 「出来かね ます 」 (dekikane masu) is a polite and humble way to say something 'cannot be done',
+      often used in business contexts. 「ご 了承 ください 」 (go ryōshō kudasai) means 'please understand' or 'please
+      be aware'.
+  - english: Remote work is permitted for all employees; however, attendance at the office is mandatory
+      for important meetings.
+    japanese:
+      - 全 従業 員 に リモート ワーク を 許可 し ます。{但し}、重要 会議 の 際 は 出社 が 必須 です。
+      - 全 従業 員 に リモート ワーク を 許可 し ます。{但し}、重要 な 会議 の 際 は 出社 が 義務 付け られ ます。
+    english_literally: All employees to remote work permit. However, important meetings' time at office
+      attendance is essential.
+    competing_grammar:
+      - competing_japanese:
+          - 全 従業 員 に リモート ワーク を 許可 し ます。{しかし}、重要 会議 の 際 は 出社 が 必須 です。
+        english: Remote work is permitted for all employees, but attendance at the office is mandatory
+          for important meetings.
+        hint: 「しかし」 is a general contrast. 「但し」 is used for precise conditions or exceptions in formal
+          statements like policies. We're looking for a formal proviso.
+    scene: An HR manager is announcing a new company policy to all staff in a formal memo.
+    register: formal
+    setting: informative
+    listener_gender: group
+    speaker_age: older
+    nuance: This example is highly formal, typical of official announcements. The precise and strict nature
+      of the condition is highlighted by 「但し」. The HR manager, regardless of gender, would typically use
+      such formal language. The use of 「許可 し ます 」 (kyoka shimasu) and 「必須 です 」 (hissu desu) marks it as
+      an official directive.
+    etymology: 「義務付け られ ます 」 (gimuzukeraremasu) is the passive form of 「義務付ける」 (gimuzukeru), meaning 'to
+      obligate' or 'to mandate', emphasizing that something is formally required.
+  - english: Presentation time will be within 20 minutes; however, time for Q&A is not included.
+    japanese:
+      - 発表 時間 は 20 分 以内 と し ます。{但し}、質疑 応答 の 時間 は 含ま れ ませ ん。
+      - 発表 時間 は 20 分 以内 と し ます。{但し}、質疑 応答 の 時間 は これ に 含ま れ ませ ん。
+    english_literally: Presentation time 20 minutes within will be. However, Q&A's time is not included.
+    competing_grammar:
+      - competing_japanese:
+          - 発表 時間 は 20 分 以内 と し ます。{だ が}、質疑 応答 の 時間 は 含ま れ ませ ん。
+        english: Presentation time will be within 20 minutes; however, time for Q&A is not included.
+        hint: 「だが」 provides a direct contrast or a strong exception, but 「但し」 is more commonly used for
+          specifying conditions or provisos in formal guidelines. We're looking for a formal, precise
+          condition.
+    scene: A professor is outlining the guidelines for student presentations.
+    register: formal
+    setting: instructional
+    speaker_age: older
+    nuance: The use of 「と し ます 」 (to shimasu) followed by 「但し」 is typical for setting formal rules or
+      conditions, often by someone in an authoritative position like a professor to their students. The
+      grammar point itself is neutral to age and gender, but the overall sentence structure implies a
+      more formal, instructional tone.
+    etymology: 「質疑 応答 」 (shitsugi ōtō) is a compound noun meaning 'questions and answers' or 'Q&A'. 「含まれ
+      ませ ん 」 (fukumaremasen) is the negative passive form of 「含む」 (fukumu), meaning 'to include'.
+  - english: You can talk to him about anything. However, it might be better to avoid financial discussions.
+    japanese:
+      - 彼 に は 何 で も 相談 し て いい よ。{但し}、金銭 面 の 話 は 避け た 方 が いい か も ね。
+      - 彼 に は 何 で も 話し て いい よ。{但し}、金銭 面 の 話 は 避け た 方 が いい か も ね。
+    english_literally: To him anything consult is good. However, financial aspect's talk avoid better
+      maybe ne.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に は 何 で も 相談 し て いい よ。{もっとも}、金銭 面 の 話 は 避け た 方 が いい か も ね。
+        english: You can talk to him about anything. Although, it might be better to avoid financial discussions.
+        hint: 「もっとも」 introduces a minor correction or an additional relevant point. 「但し」 is used for a
+          more significant condition or exception that limits the preceding statement. We're looking for
+          a specific, important caveat.
+    scene: A friend is giving advice about a mutual acquaintance, adding a crucial caveat.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: Despite the casual endings like 「いい よ 」 (ii yo) and 「かも ね 」 (kamo ne), the use of 「但し」 here
+      still clearly sets a precise and firm condition or boundary. This combination demonstrates that
+      even in a casual setting, 「但し」 can be used when the proviso is significant and needs to be explicitly
+      stated. The choice of 「相談 し て いい よ 」 (sōdan shite ii yo) or 「話し て いい よ 」 (hanashi te ii yo) are
+      both natural for a casual female speaker.
+    etymology: 「金銭 面 の 話 」 (kinsen men no hanashi) means 'talk about financial aspects'. 「避けた 方 が いい 」
+      (saketa hō ga ii) is a common casual expression meaning 'it's better to avoid'.
+  - english: The new drug showed significant efficacy; however, it caused minor side effects in a small
+      percentage of patients.
+    japanese:
+      - 新薬 は 著しい 効果 を 示し た。{但し}、一部 の 患者 に 軽微 な 副 作用 が 見 られ た。
+      - 新薬 は 著しい 効果 を 示し た。{但し}、一部 の 患者 に 軽微 な 副 作用 が 認め られ た。
+    english_literally: New drug remarkable effect showed. However, some patients to minor side effects
+      were seen.
+    competing_grammar:
+      - competing_japanese:
+          - 新薬 は 著しい 効果 を 示し た。{しかし}、一部 の 患者 に 軽微 な 副 作用 が 見 られ た。
+        english: The new drug showed significant efficacy, but minor side effects were seen in a small
+          percentage of patients.
+        hint: 「しかし」 is a general conjunction for contrast. 「但し」 is used for precise conditions or exceptions,
+          especially in formal reports or scientific findings. We're looking for a formal, precise clarification.
+    scene: A medical researcher presents detailed clinical trial results at an international symposium,
+      emphasizing both positive outcomes and important caveats.
+    register: formal
+    setting: academic
+    nuance: The use of 「但し」 in this context is typical for academic or scientific reporting, where precision
+      and full disclosure of conditions or limitations are paramount. It maintains an objective and highly
+      formal tone.
+  - english: The concert will proceed as scheduled; however, admission will be denied to those without
+      reservations.
+    japanese:
+      - コンサート は 予定 通り 開催 さ れ ます。{但し}、予約 の ない 方 の ご 入場 は お 断り いたし ます。
+      - コンサート は 予定 通り 開催 さ れ ます。{但し}、予約 の ない 方 は ご 入場 いただけ ませ ん。
+    english_literally: Concert schedule as planned will be held. However, reservation without persons'
+      entrance politely refuse.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート は 予定 通り 開催 さ れ ます。{その ため}、予約 の ない 方 の ご 入場 は お 断り いたし ます。
+        english: The concert will proceed as scheduled. Therefore, admission will be denied to those without
+          reservations.
+        hint: 「そのため」 indicates a consequence. 「但し」 introduces a specific condition or restriction that
+          limits the general statement. We're looking for a clear, formal proviso.
+    scene: A notice board at a popular concert venue displays an update regarding an upcoming performance,
+      detailing an important entry requirement.
+    register: formal
+    setting: informative
+    nuance: This example demonstrates 「但し」's use in formal public announcements. 「ご 入場 は お断り いたし ます 」
+      (go nyūjō wa okotowari itashimasu) is a highly polite and formal way of stating a refusal, reinforcing
+      the official tone suitable for a public notice.
+  - english: All employees will receive a special bonus; however, it is only applicable to those who have
+      worked for more than one year.
+    japanese:
+      - 全 社員 に 特別 ボーナス が 支給 さ れ ます。{但し}、勤続 一 年 以上 の 方 に 限り ます。
+      - 全 社員 に 特別 ボーナス が 支給 さ れ ます。{但し}、勤続 一 年 以上 の 方 のみ 対象 と なり ます。
+    english_literally: All employees to special bonus will be paid. However, service one year more than
+      persons to is limited.
+    competing_grammar:
+      - competing_japanese:
+          - 全 社員 に 特別 ボーナス が 支給 さ れ ます。{それ で も}、勤続 一 年 以上 の 方 に 限り ます。
+        english: All employees will receive a special bonus. Even so, it is only applicable to those who
+          have worked for more than one year.
+        hint: 「それでも」 implies that something happens despite a previous statement. 「但し」 introduces a direct
+          condition or prerequisite. We're looking for a precise condition for eligibility.
+    scene: An HR manager sends an email to all staff, announcing a special bonus with clear eligibility
+      criteria.
+    register: semi-formal
+    setting: professional
+    nuance: In internal company communications, 「但し」 ensures that terms and conditions are precisely stated.
+      The phrase 「に 限り ます 」 (ni kagirimasu - limited to) further reinforces the limiting condition, providing
+      clarity in a professional context.
+  - english: This software is available for free use; however, commercial use is prohibited.
+    japanese:
+      - この ソフト は 無料 で ご 利用 いただけ ます。{但し}、商用 利用 は 禁止 さ れ て おり ます。
+      - この ソフト は 無料 で ご 利用 いただけ ます。{但し}、商用 利用 は ご 遠慮 ください。
+    english_literally: This software free for use can be done. However, commercial use is prohibited.
+    competing_grammar:
+      - competing_japanese:
+          - この ソフト は 無料 で ご 利用 いただけ ます。{一方 で}、商用 利用 は 禁止 さ れ て おり ます。
+        english: This software is available for free use. On the other hand, it is prohibited to use it
+          for commercial purposes.
+        hint: 「一方 で」 introduces a contrasting aspect. 「但し」 specifies a direct exception or restriction
+          to the preceding general statement, often seen in legal disclaimers or terms of service. We're
+          looking for a formal prohibition.
+    scene: A software company's website displays the terms of service for a free trial, clearly stating
+      limitations.
+    register: formal
+    setting: instructional
+    nuance: 「但し」 is frequently found in legal disclaimers, terms of service, and user agreements to outline
+      specific restrictions or conditions. The polite passive form 「禁止 さ れ て おり ます 」 (kinshi sarete orimasu)
+      maintains a formal and authoritative tone, common for legal or official warnings.
+  - english: This contract is valid for one year; however, it can be renewed upon mutual agreement.
+    japanese:
+      - 本 契約 は 一 年間 有効 と し ます。{但し}、双方 の 合意 にて 更新 可能 と し ます。
+      - 本 契約 は 一 年間 有効 と し ます。{但し}、双方 の 合意 が あれ ば 更新 が 可能 です。
+    english_literally: This contract one year valid will be. However, both sides' agreement by renewal
+      possible will be.
+    competing_grammar:
+      - competing_japanese:
+          - 本 契約 は 一 年間 有効 と し ます。{一方}、双方 の 合意 にて 更新 可能 と し ます。
+        english: This contract is valid for one year. On the other hand, it can be renewed upon mutual
+          agreement.
+        hint: 「一方」 contrasts two different aspects or perspectives. 「但し」 is used in legal contexts to
+          introduce a precise condition or exception to a primary clause, ensuring strict interpretation.
+          We're looking for a definitive condition.
+    scene: A lawyer reviews a draft contract with a client, explaining the terms and conditions in detail.
+    register: formal
+    setting: legal
+    nuance: This is a quintessential use of 「但し」 in legal and contractual language. It introduces a specific
+      condition or proviso that modifies the main clause. The formal terms like 「本 契約 」 (hon keiyaku -
+      this contract) and 「双方 の 合意 」 (sōhō no gōi - mutual agreement) underscore the precise and unambiguous
+      nature required in legal documents. The speaker's age might be older, fitting for an experienced
+      lawyer.
+post_example_writeup: As illustrated by the examples, 「但し」 is versatile in its application, from highly
+  formal settings to more casual conversations where a crucial exception or condition must be conveyed
+  with precision. Its consistent function is to introduce a proviso that narrows or qualifies the preceding
+  statement, regardless of the overall register.

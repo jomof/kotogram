@@ -1,0 +1,295 @@
+grammar_point: だから (so・therefore)
+learn_before:
+  - '[Clause]から (because・so)'
+  - '[Clause]ので (because・so)'
+  - いつも (always・usually)
+  - って (casual quotation・reason・topic)
+  - な-Adjective (modifying nouns)
+  - ましょう (polite volitional or suggestion)
+meaning: so, therefore, that's why
+pronunciation:
+  katakana: ダカラ
+  romaji: dakara
+formation:
+  '[Sentence/Clause (plain form)] + だから': Used after a plain form verb or i-adjective.
+  '[Noun] + だから': Used after a noun, retaining the copula だ.
+  '[な-Adjective (stem)] + だから': Used after a na-adjective, retaining the copula だ.
+  '[い-Adjective] + だから': Used after an i-adjective.
+jlpt: N5
+etymology: The term 「だから」 is a compound formed by the plain form of the copula 「だ」 and the particle 「から」,
+  which signifies origin or reason. Conceptually, it literally translates to “because it is (that reason/fact),”
+  clearly articulating that the following statement originates directly from the preceding one. This construction
+  emphasizes the direct and immediate consequence, drawing a clear line from cause to effect.
+writeup: |-
+  「だから」 is a common Japanese conjunction that establishes a direct cause-and-effect relationship between two statements, translating to “so,” “therefore,” or “that’s why.” It clearly links a preceding reason or cause to a subsequent result or conclusion.
+
+  Compared to more formal or subtle expressions like 「〜ので」 or 「〜ため(に)」, 「だから」 conveys a more direct and often assertive tone. While suitable for a range of contexts from casual conversations to semi-formal discussions, it is generally less common in highly formal or academic written Japanese, where a more objective tone might be preferred.
+
+  A distinctive nuance of 「だから」 is its immediacy and directness. When you use 「だから」, you are presenting the preceding information as an undeniable and straightforward reason for what follows. This can sometimes lend a slightly argumentative or insistent quality to your speech, akin to saying, “It’s obvious, and that’s why…” or “I explained it, so…” This directness makes 「だから」 particularly prevalent in everyday communication.
+
+  Grammatically, 「だから」 attaches directly to the plain form of verbs and i-adjectives. For nouns and na-adjectives, the plain copula 「だ」 is typically retained immediately before 「から」, reinforcing the factual basis of the reason.
+false_friends:
+  - term: 〜ので (because, since)
+    meaning: because, since, given that
+    kind: similar expression
+    nuance: 「ので」 is a softer and more polite way to state a reason, implying a logical consequence without
+      being assertive. 「だから」 is more direct and can sound stronger or more assertive.
+    grammar_point: <suggest>:ので (because・so)
+  - term: 〜から (because, since - particle)
+    meaning: because, since
+    kind: similar expression
+    nuance: When 「から」 is used as a standalone sentence-ending particle, it asserts a reason directly.
+      「だから」 combines this assertive 「から」 with the copula 「だ」, explicitly stating the reason and more strongly
+      leading to a conclusion. The difference is subtle, but 「だから」 emphasizes the consequence more clearly.
+    grammar_point: <suggest>:から (because・so)
+  - term: 〜ため(に) (for the sake of, because of)
+    meaning: for the sake of, because of, due to
+    kind: similar expression
+    nuance: 「〜ため(に)」 is more formal and objective, often emphasizing the cause or purpose. It is used
+      to describe actions taken *for* a reason or events occurring *due to* a cause, and lacks the direct,
+      assertive implication of consequence found in 「だから」.
+    grammar_point: '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+post_false_friends_writeup: While 「だから」 can be translated similarly to 「〜ので」 or 「〜ため(に)」, their nuances
+  in Japanese usage are distinct. 「だから」 creates a direct and often forceful link between a cause and its
+  effect, implying a clear logical progression, and sometimes conveying an assertive or an “I told you
+  so” tone. In contrast, 「〜ので」 is typically milder and more polite, making it suitable for objective explanations
+  or when you wish to avoid sounding overly direct. 「〜ため(に)」, on the other hand, focuses on the cause
+  or purpose in a formal and objective manner, less concerned with direct consequence and more with the
+  idea of “on account of” or “for the purpose of.” When you intend to highlight a strong, undeniable causal
+  relationship or to state a firm conclusion, particularly in conversational settings, 「だから」 is often
+  the most appropriate choice.
+examples:
+  - english: It's cold, so please close the window.
+    japanese:
+      - 寒い {だ から} 窓 を 閉め て ください。
+      - 寒い {だ から} 窓 を 閉め て くれ。
+    english_literally: It is cold, therefore window please close.
+    competing_grammar:
+      - competing_japanese:
+          - 寒い の で 窓 を 閉め て ください。
+        english: It's cold, so (mildly) please close the window.
+        hint: 「ので」 offers a softer reason, avoiding the directness of 「だから」. We're looking for a direct
+          and sometimes emphatic reason.
+    scene: A person asking someone to close a window because of the temperature inside the room.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: This phrasing uses 「だから」 to give a direct reason for the request. The choice between 「閉めてください」
+      (polite) and 「閉めてくれ」 (more casual, often used by male speakers to inferiors or close friends) depends
+      on the relationship and gender of the speaker.
+    etymology: The use of 「ください」 as a polite request ending became common in modern Japanese, evolving
+      from earlier forms. The plain imperative 「くれ」 is older and more direct.
+  - english: I was busy yesterday, so I couldn't finish the homework.
+    japanese:
+      - 昨日 は 忙しかっ た {だ から} 宿題 が 終わら なかっ た。
+      - 昨日 は 忙しかっ た {だ から} 宿題 が 終わり ませ ん でし た。
+    english_literally: Yesterday was busy, therefore homework could not be finished.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 忙しかっ た ため 宿題 が 終わら なかっ た。
+        english: Due to being busy yesterday, the homework wasn't finished.
+        hint: 「〜ため」 focuses on the cause in a more objective way, whereas 「だから」 states a direct consequence.
+          We're looking for a direct causal link.
+    scene: A student explaining to their teacher why their homework assignment wasn't completed on time.
+    register: semi-formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「だから」 states the reason directly. The variations show how the sentence can end
+      in plain form 「終わらなかった」 for a casual report, or in polite form 「終わりませんでした」 when speaking in a more
+      formal or polite context, such as to a teacher.
+    etymology: The negative past form 「〜なかった」 (for verbs and i-adjectives) is a straightforward combination
+      of the negative 「ない」 and past 「た」. The polite past negative 「〜ませんでした」 follows the 「〜ます」 form with
+      the addition of 「でした」.
+  - english: He's smart, so he must understand.
+    japanese:
+      - 彼 は 頭 が いい {だ から} 理解 する はず だ。
+      - 彼 は 頭 が いい {だ から} 理解 する はず です。
+    english_literally: He is smart, therefore understand is expected to.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 頭 が いい から 理解 する はず だ。
+        english: He is smart, so he must understand.
+        hint: While 「〜から」 also gives a reason, 「だから」 emphasizes the conclusion more strongly, often with
+          an assertive tone. We're looking for a clear, conclusive statement of cause and effect.
+    scene: Two friends discussing a mutual acquaintance's intelligence and ability to grasp complex topics.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「だから」 provides a logical deduction based on the preceding statement. The use of 「はずだ」 (plain)
+      or 「はずです」 (polite) indicates a strong expectation. This implies a confident assertion by the speaker
+      that a smart person would naturally understand.
+    etymology: 「はず」 originates from 「端 (はし)」 meaning 'end' or 'edge', and later evolved to mean 'reasonable
+      expectation' or 'logical conclusion'. The combination with the copula 「だ」 or 「です」 solidifies its
+      function as an assertion.
+  - english: Today is a national holiday, so the bank is closed.
+    japanese:
+      - 今日 は 祝日 だ {だ から} 銀行 は 閉まっ て い ます。
+      - 今日 は 祝日 だ {だ から} 銀行 は 閉まっ て いる。
+    english_literally: Today is a national holiday, therefore bank is closed.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は 祝日 な の で 銀行 は 閉まっ て い ます。
+        english: Since today is a national holiday, the bank is closed.
+        hint: 「〜ので」 is a neutral explanation, while 「だから」 can imply a more direct or sometimes slightly
+          assertive presentation of the reason. We're looking for a straightforward statement of cause
+          and effect.
+    scene: Explaining to a visitor why they cannot access banking services on a specific day.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「だから」 clearly states the reason. The polite form 「閉まっています」 is standard when providing information
+      to someone politely, while the plain form 「閉まっている」 is suitable for more casual conversation or internal
+      thought.
+    etymology: The verb 「閉まる」 (to close, intransitive) combined with 「〜ている」 indicates a resultant state
+      of being closed. This 「〜ている」 form is versatile, conveying ongoing action, repeated action, or a
+      current state.
+  - english: It was dangerous, so I stopped.
+    japanese:
+      - 危なかっ た {だ から} 止め た。
+      - 危なかっ た {だ から} 止め まし た。
+    english_literally: It was dangerous, therefore stopped.
+    competing_grammar:
+      - competing_japanese:
+          - 危なく て 止め た。
+        english: Being dangerous, I stopped.
+        hint: The 「〜て」 form can indicate a cause-and-effect relationship but often implies a more continuous
+          or inherent connection, not as explicitly stated as with 「だから」. We're looking for an explicit
+          'because of that, therefore' connection.
+    scene: Recalling a past situation where one had to make an immediate decision to cease an action due
+      to perceived danger.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: 「だから」 presents the reason for the action. The difference between 「止めた」 (plain past) and 「止めました」
+      (polite past) reflects the speaker's internal narration (plain) versus polite recount (polite),
+      respectively.
+    etymology: 「止める」 (to stop, transitive) as a verb expresses the direct action taken by the speaker.
+      The plain past 「止めた」 is formed by attaching 「た」 to the verb stem, a fundamental conjugation.
+  - english: I'm tired, so let's go home soon.
+    japanese:
+      - 疲れ た {だ から} 早く 帰ろう。
+      - 疲れ た {だ から} 早く 帰り ましょう。
+    english_literally: Became tired, therefore quickly let's go home.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ た から 早く 帰ろう。
+        english: Because I'm tired, let's go home soon.
+        hint: While 「〜から」 can be used, 「だから」 emphasizes the 'that's why' aspect, making the conclusion
+          more direct and sometimes more persuasive. We're looking for a strong direct reason for the
+          suggestion.
+    scene: A person suggests to a friend that they should depart and head home due to exhaustion after
+      a long day.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The initial 「疲れた」 (became tired) states the current state. 「だから」 then leads to a volitional
+      suggestion. 「帰ろう」 is the plain volitional, common in casual conversation, especially among friends.
+      「帰りましょう」 is the polite volitional, suitable for mixed company or slightly more formal suggestions.
+    etymology: The volitional form 「〜よう」 (for godan verbs) or 「〜ましょう」 (for polite ます-form verbs) indicates
+      a suggestion or intention. 「〜よう」 is the classical volitional ending, while 「〜ましょう」 developed as
+      its polite counterpart.
+  - english: I told you not to touch it! That's why it broke!
+    japanese:
+      - 触る な って 言っ た {だ から} 壊れ た ん だ！
+      - 触る な って 言っ た {だ から} 壊れ て しまっ た の です！
+    english_literally: Not touch said, therefore broke it is!
+    competing_grammar:
+      - competing_japanese:
+          - 触る な って 言っ た せい で 壊れ た ん だ！
+        english: Because I told you not to touch it, it broke! (with blame)
+        hint: 「〜せいで」 specifically implies a negative outcome due to someone's fault. 「だから」 is more neutral
+          in its causality, though the context makes it accusatory here. We're looking for a direct, emphatic
+          declaration of cause and effect.
+    scene: A parent scolding their child after an object was broken, despite prior warnings not to touch
+      it.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The speaker's use of 「だから」 combined with the emphatic 「壊れたんだ」 conveys frustration and a direct
+      accusation that the breakage is a direct result of the listener's disregard for the warning. The
+      second variation, 「壊れてしまったのです」, adds nuance of regret or completion (from 「しまう」) and slightly more
+      formal explanation (from 「のです」), while retaining the plain form before 「だから」.
+    etymology: 「〜んだ」 is a contraction of 「〜のだ」, used for explanation, emphasis, or seeking agreement.
+      「〜てしまう」 (contracted to 「〜ちゃう」) implies completion, or regret when an undesirable action has occurred.
+  - english: The deadline is tomorrow, so we have to finish it today.
+    japanese:
+      - 締め切り は 明日 です {だ から} 今日 中 に 終わら せ なけれ ば なり ませ ん。
+      - 締め切り は 明日 だ {だ から} 今日 中 に 終わら せ なけれ ば なら ない。
+    english_literally: Deadline is tomorrow, therefore within today must finish.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り は 明日 な の で 今日 中 に 終わら せ なけれ ば なり ませ ん。
+        english: Since the deadline is tomorrow, we must finish it today.
+        hint: 「〜ので」 is generally more polite and indirect than 「だから」, which states the reason more assertively.
+          We're looking for a direct, clear reason for the necessity.
+    scene: A team leader giving instructions to their team regarding an urgent project.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example uses 「だから」 to present a compelling reason in a professional context. The first
+      variation uses polite endings throughout, suitable for a team setting. The second variation, ending
+      in 「ならない」, is the plain form, which might be used in a less formal internal memo or direct instruction
+      among peers.
+    etymology: 「〜なければならない」 is a common way to express obligation, literally meaning 'if one does not do
+      X, it will not become'. This construction highlights necessity and duty.
+  - english: The lights are off, so no one is home.
+    japanese:
+      - 電気 が 消え て いる {だ から} 誰 も い ない はず だ。
+      - 電気 が 消え て いる {だ から} 誰 も い ない はず です。
+    english_literally: Light is off, therefore no one is expected to be.
+    competing_grammar:
+      - competing_japanese:
+          - 電気 が 消え て いる から 誰 も い ない はず だ。
+        english: Because the lights are off, no one is home.
+        hint: 「だから」 functions more as a conjunction connecting two complete thoughts, emphasizing the
+          direct logical deduction. 「〜から」 as a sentence-ending particle is also fine but can feel a bit
+          more like a simple reason. We're looking for a strong 'therefore' connection.
+    scene: Someone arriving at a house and deducing the absence of residents based on external observation.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「だから」 here serves to explain a logical conclusion based on an observation. The usage of 「はずだ」
+      (plain) or 「はずです」 (polite) reflects the speaker's internal thought process versus an explanation
+      to someone else. The plain form might be used when speaking to oneself.
+    etymology: 「消えている」 combines the verb 「消える」 (to disappear, to go out) with the resultative 「〜ている」,
+      indicating the state of the lights being off. This structure is crucial for describing existing
+      conditions based on a past event.
+  - english: Why are you always so energetic?” “Because I sleep a lot!
+    japanese:
+      - な ん で いつ も そんな に 元気 な の？』『たくさん 寝る {だ から}！
+      - どう し て いつ も そんな に 元気 な の？』『たくさん 寝る {だ から}！
+    english_literally: “Why always so energetic?” “Sleep a lot, therefore!”
+    competing_grammar:
+      - competing_japanese:
+          - たくさん 寝る ん だ！
+        english: '"It''s because I sleep a lot!"'
+        hint: 「〜んだ」 is an explanatory form, while 「だから」 explicitly states the reason that leads to the
+          conclusion given. We're looking for a direct answer stating the reason.
+    scene: A casual conversation between friends, where one asks about the other's constant high energy
+      level.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: In this conversational exchange, 「だから」 emphasizes the direct reason. The first example uses
+      「なんで」 for 'why', a casual form. The second uses 「どうして」, which is also common for 'why' and can be
+      slightly more formal than 「なんで」 but still perfectly natural in casual settings. Both convey the
+      same meaning in this context.
+    etymology: 「なんで」 is a contraction of 「何で」, literally 'with what' or 'by what means', which colloquially
+      evolved to mean 'why'. 「どうして」 comes from 「どう」 (how) and 「して」 (te-form of する, to do), forming 'how
+      come' or 'why'.
+post_example_writeup: As you can observe from the examples, 「だから」 consistently appears after a plain form
+  of the preceding clause. The level of politeness or formality in the overall sentence is then determined
+  by the conjugation or particle choice in the *second* clause. This highlights 「だから」's role as a direct
+  conjunction connecting plain statements, with the subsequent part of the sentence adjusting to the communicative
+  context.

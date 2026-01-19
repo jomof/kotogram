@@ -1,0 +1,224 @@
+grammar_point: ではない・じゃなくて (not A but B)
+learn_before:
+  - ではなくて・じゃなくて (not A but B)
+meaning: Used to negate one thing and affirm another, meaning "it's not A, it's B" or "not A, but B".
+pronunciation:
+  katakana: デワナイ・ジャナクテ
+  romaji: dewa nai・ja nakute
+formation:
+  Noun + ではない: Used for formal negation and affirmation
+  Noun + じゃなくて: Used for casual negation and affirmation
+jlpt: N3
+etymology: 'Both 「ではない」 and 「じゃなくて」 stem from the copula 「だ」/「です」. 「ではない」 is a more formal negation of
+  the copula 「です」 (or its plain form 「だ」) combined with the te-form of the negative auxiliary verb 「ない」,
+  indicating a state of ''not being X''. The 「で」 comes from the te-form of the copula 「だ」/「です」。 「じゃなくて」
+  is a contracted, more casual form of 「ではなくて」, where 「では」 contracts to 「じゃ」. The core function remains
+  the same: to explicitly state that something is ''not X'' and implicitly or explicitly imply ''but Y''
+  by connecting it to another affirmative statement.'
+writeup: This grammatical pattern, 「ではない」 or 「じゃなくて」, is used to clearly state that something is **not**
+  one thing, but rather **is** another. It is fundamental for making corrections, clarifications, or distinctions
+  in Japanese. It directly links the negation of the first item to the affirmation of the second. 「ではない」
+  is the more formal and standard form. It is often used in written language, formal speeches, or situations
+  where politeness and clarity are paramount. For instance, if someone assumes a fact incorrectly, you
+  might use 「そうではない」 (That's not it) to politely correct them. When modifying a noun, it often appears
+  as 「〜ではないA」 (e.g., 「学生ではない人」 - a person who is not a student), setting up a contrast. On the other hand,
+  「じゃなくて」 is a casual contraction of 「ではなくて」. It is commonly used in everyday conversations among friends,
+  family, or in informal settings. It provides a softer, more conversational tone when making corrections
+  or clarifications. It is frequently seen in direct speech. While both convey the same logical meaning
+  of "not A, but B," the choice between 「ではない」 and 「じゃなくて」 depends entirely on the formality of the situation
+  and the relationship with your interlocutor. Mastering this distinction is crucial for natural communication
+  in Japanese, as using the wrong register can sound awkward or even impolite.
+false_friends:
+  - term: じゃない (negation noun and na-adj)
+    meaning: is not
+    kind: similar expression
+    nuance: This simply negates a noun or な-adjective. It does not inherently carry the connective "but"
+      nuance to introduce a contrasting correct statement like 「ではない・じゃなくて」 does. It is merely a statement
+      of negation.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: 〜のだ・〜んだ (explanatory)
+    meaning: it's not that X, but that Y
+    kind: similar expression
+    nuance: While superficially similar in purpose, 「〜のではなく〜」 (using the explanatory のだ/んだ) specifically
+      negates the *reason* or *manner* of something, clarifying a misunderstanding about *why* something
+      is the case, rather than simply correcting what something *is*.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+  - term: 〜でない (not)
+    meaning: is not (literary/formal connective)
+    kind: similar expression
+    nuance: 「〜でない」 is a more formal or literary way to say "is not", often used when modifying a noun
+      (e.g., 「学生でない人」 - a person who is not a student) or as a formal connective. It doesn't always carry
+      the strong implication of correcting a previous statement or setting up a direct "but B" contrast
+      as explicitly as 「ではない・じゃなくて」 does in common usage.
+    grammar_point: <suggest>:でない (formal negative copula)
+post_false_friends_writeup: While 「ではない・じゃなくて」 directly establishes a contrast by negating one item and
+  affirming another, other negative forms like 「じゃない」 simply state a negation without necessarily introducing
+  an alternative. When using 「〜のではなく〜」, the focus shifts to correcting the underlying reason or circumstance,
+  not just the identity of something. Pay close attention to the full structure and context to convey
+  the precise nuance of correction or clarification.
+examples:
+  - english: This isn't coffee, it's tea.
+    japanese:
+      - これ、コーヒー 【 じゃ なく て 】 お 茶 だ よ。
+      - これ、コーヒー 【 で は ない 】、お 茶 だ。
+      - これ、コーヒー 【 で は あり ませ ん 】、お 茶 です。
+    english_literally: This, not coffee, but tea is.
+    competing_grammar:
+      - competing_japanese:
+          - これ、コーヒー じゃ ない よ。お 茶 だ よ。
+        english: This isn't coffee. It's tea.
+        hint: Using two separate sentences states the negation and affirmation independently. We're looking
+          for a single phrase that links the two ideas directly with 'not A, but B'.
+    scene: A friend mistakenly brings you the wrong drink.
+    register: casual
+    setting: friendly
+  - english: That is not a problem, it is an opportunity.
+    japanese:
+      - それ は 問題 【 で は なく 】 機会 です。
+      - それ は 問題 【 で は ない 】 機会 だ。
+      - それ は 問題 【 じゃ なく て 】 機会 です。
+    english_literally: That, not a problem, but an opportunity is.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 問題 で は あり ませ ん。機会 です。
+        english: That is not a problem. It is an opportunity.
+        hint: While correct, this uses two separate sentences. We're focusing on the single grammatical
+          pattern that explicitly states 'not A, but B'.
+    scene: A manager addresses their team during a challenging project.
+    register: formal
+    setting: professional
+  - english: I'm not tired, just a little sleepy.
+    japanese:
+      - 疲れ て いる 【 じゃ なく て 】、ちょっと 眠い だけ だ よ。
+      - 疲れ て いる 【 の で は ない 】、ちょっと 眠い だけ だ。
+      - 疲れ て いる 【 の で は なく 】、少し 眠い だけ です。
+    english_literally: Being tired not, just a little sleepy is.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ て い ない、ただ ちょっと 眠い だけ だ よ。
+        english: I'm not tired, just a little sleepy.
+        hint: This uses a simple negative form, but the nuance of 'じゃなくて' emphasizes correction of an
+          assumption, which is what we're looking for.
+    scene: A student explains why they're yawning to a classmate.
+    register: casual
+    setting: academic
+  - english: His intention was not to offend, but to explain.
+    japanese:
+      - 彼 の 意図 は、侮辱 する 【 の で は なく 】、説明 する こと でし た。
+      - 彼 の 意図 は、侮辱 する 【 で は ない 】、説明 する こと だっ た。
+      - 彼 の 意図 は、侮辱 する 【 の で は なく て 】、説明 する こと でし た。
+    english_literally: His intention, to insult not, but to explain was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 意図 は、侮辱 する つもり は あり ませ ん でし た。説明 する こと でし た。
+        english: His intention was not to insult. It was to explain.
+        hint: This splits the idea into two sentences. We're looking for the phrase that explicitly links
+          the negation and affirmation in a single thought.
+    scene: A spokesperson clarifies a public figure's remarks.
+    register: formal
+    setting: professional
+  - english: It's not that I don't like it, I just don't prefer it.
+    japanese:
+      - 嫌い な 【 じゃ なく て 】、ただ 好き じゃ ない だけ。
+      - 嫌い な 【 の で は ない 】、ただ 好き じゃ ない だけ だ。
+      - 嫌い な 【 の で は なく て 】、ただ 好き じゃ ない だけ です。
+    english_literally: Disliking not, just not liking only.
+    competing_grammar:
+      - competing_japanese:
+          - 嫌い じゃ ない けど、ただ 好き じゃ ない だけ。
+        english: It's not that I dislike it, but I just don't prefer it.
+        hint: 「けど」 connects two clauses but doesn't necessarily express a correction of A by stating B.
+          We're looking for a direct 'not A, but B' structure.
+    scene: Someone is offered food they don't particularly enjoy.
+    register: casual
+    setting: friendly
+  - english: That person isn't my brother, he's my cousin.
+    japanese:
+      - あの 人、兄 【 じゃ なく て 】 いとこ な ん だ。
+      - あの 人、兄 【 で は ない 】、いとこ だ。
+      - あの 人、兄 【 で は なく 】、いとこ です。
+    english_literally: That person, elder brother not, cousin is.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人、兄 じゃ ない。いとこ だ よ。
+        english: That person isn't my brother. He's my cousin.
+        hint: This uses two short sentences. The grammar point we're learning connects the negated and
+          affirmed parts directly.
+    scene: Introducing family members to a new acquaintance.
+    register: casual
+    setting: friendly
+  - english: The report concludes that it was not a mistake, but a deliberate act.
+    japanese:
+      - その 報告 書 は、それ が 間違い 【 で は なく 】、故意 の 行為 で あっ た と 結論 づけ て い ます。
+      - その 報告 書 は、それ が 間違い 【 で は ない 】、故意 の 行為 で あっ た と 結論 づけ て いる。
+      - その 報告 書 は、それ が 間違い 【 じゃ なく て 】、故意 の 行為 で あっ た と 結論 づけ て い ます。
+    english_literally: That report, it was a mistake not, but a deliberate act was concluded.
+    competing_grammar:
+      - competing_japanese:
+          - その 報告 書 は、それ が 間違い で は なかっ た。故意 の 行為 で あっ た と 結論 づけ て い ます。
+        english: The report concludes that it was not a mistake. It was a deliberate act.
+        hint: This separates the negation and affirmation. We're looking for the continuous phrase that
+          makes the direct 'not A, but B' connection.
+    scene: A legal team discusses findings.
+    register: formal
+    setting: legal
+  - english: It's not about winning, it's about participating.
+    japanese:
+      - 勝つ こと 【 じゃ なく て 】、参加 する こと に 意味 が ある ん だ。
+      - 勝つ こと 【 で は ない 】、参加 する こと に 意味 が ある。
+      - 勝つ こと 【 で は なく 】、参加 する こと に 意味 が あり ます。
+    english_literally: Winning not, participating has meaning.
+    competing_grammar:
+      - competing_japanese:
+          - 勝つ こと より、参加 する こと に 意味 が ある ん だ。
+        english: More than winning, participating has meaning.
+        hint: 「〜より」 expresses comparison ('more than'), not direct negation and correction of an assumption
+          like 'じゃなくて'.
+    scene: A coach talks to their sports team after a game.
+    register: casual
+    setting: inspirational
+  - english: True strength is not found in physical power, but in mental resilience.
+    japanese:
+      - 本当 の 強 さ は、肉体 的 な 力 【 で は なく 】、精神 的 な 回復 力 に 見出さ れ ます。
+      - 本当 の 強 さ は、肉体 的 な 力 【 で は ない 】、精神 的 な 回復 力 に 見出さ れる。
+      - 本当 の 強 さ は、肉体 的 な 力 【 じゃ なく て 】、精神 的 な 回復 力 に 見出さ れ ます。
+    english_literally: True strength, physical strength not, but mental resilience is found.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 の 強 さ は、肉体 的 な 力 で は なく て、精神 的 な 回復 力 に 見出さ れ ます。
+        english: True strength is not found in physical power, but in mental resilience.
+        hint: This uses the slightly less formal te-form connective. We're highlighting the more formal
+          and decisive 'ではなく' for this sentence's context.
+    scene: A philosopher delivers a lecture.
+    register: formal
+    setting: academic
+  - english: You mean it's not finished yet, but almost?
+    japanese:
+      - まだ 終わっ て い ない 【 じゃ なく て 】、もう すぐっ て こと？
+      - まだ 終わっ て い ない 【 の で は ない 】、もう すぐ と いう こと？
+      - まだ 終わっ て い ない 【 の で は なく て 】、もう すぐ と いう こと です か？
+    english_literally: Still not finished not, but almost means?
+    competing_grammar:
+      - competing_japanese:
+          - まだ 終わっ て い ない けど、もう すぐっ て こと？
+        english: It's not finished yet, but almost?
+        hint: 「けど」 (but) implies a contrast but doesn't necessarily correct a previous assumption. We're
+          focusing on the active correction with 'じゃなくて'.
+    scene: One friend checking understanding with another about a task's progress.
+    register: casual
+    setting: interrogative
+  - english: The issue is not the cost, but the quality.
+    japanese:
+      - 問題 は 費用 【 で は なく 】、品質 に あり ます。
+      - 問題 は 費用 【 で は ない 】、品質 に ある。
+      - 問題 は 費用 【 じゃ なく て 】、品質 に あり ます。
+    english_literally: The problem is cost not, but quality exists.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は 費用 より、品質 に あり ます。
+        english: The problem is more about quality than cost.
+        hint: 「〜より」 emphasizes one over the other in a comparison. We're looking for a direct negation
+          of the first part, stating it is NOT that, but the second part.
+    scene: A business negotiation.
+    register: formal
+    setting: professional

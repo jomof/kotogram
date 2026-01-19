@@ -1,0 +1,241 @@
+grammar_point: いつも (always・usually)
+learn_before:
+  - 〜任せ (leaving to or relying on)
+  - し〜し (and; listing reasons)
+  - そんなに (that much)
+  - で (location of action)
+  - な (prohibitive particle)
+  - な-Adjectives (adjectival nouns)
+  - ばかり (only・just, often with nuance of excess)
+  - 様・さま (honorific suffix)
+  - 端・縁 (edge・border)
+meaning: Always; usually; at all times
+pronunciation:
+  katakana: イツモ
+  romaji: itsumo
+formation:
+  いつも + Verb (plain/polite): Indicates an action or state that happens regularly or continuously.
+  いつも + い-Adjective: Describes an unchanging quality.
+  いつも + な-Adjective + な/だ: Describes a constant characteristic or state.
+  いつも + Noun + だ: Indicates a permanent identity or state.
+jlpt: N5
+etymology: The word いつも (itsumo) originates from いつ (itsu), meaning "when," combined with the particle
+  も (mo), meaning "also" or "even." The literal interpretation is "even when" or "at any time," which
+  naturally evolved to signify "always" or "at all times." This linguistic evolution highlights how a
+  concept of indefinite time (any point in time) can lead to the meaning of constant presence or occurrence.
+writeup: いつも is a versatile Japanese adverb that translates to "always," "usually," or "at all times,"
+  depending on the context. Its core meaning conveys a high degree of regularity or constancy. It is fundamental
+  for describing habits, recurring events, or unchanging states. When used with verbs, いつも indicates that
+  an action is performed habitually or continuously. For example, いつも本を読む (itsumo hon o yomu) means "I
+  always read books." It is frequently paired with the 〜ている form of verbs to emphasize an ongoing or habitual
+  action, such as いつも走っている (itsumo hashitteiru), "I am always running" or "I always run (as a habit)."
+  With adjectives and nouns, いつも describes a constant quality or state. For instance, いつも元気だ (itsumo genki
+  da) means "I am always well/energetic," describing a continuous state of being. While often translated
+  as "always," いつも can sometimes carry the nuance of "usually" or "generally," especially when talking
+  about personal habits or typical situations. The exact interpretation often depends on the speaker's
+  intent and the broader context. However, it generally implies a higher frequency or stronger consistency
+  than たいてい (usually) or よく (often). It is a neutral term that can be used across various registers, from
+  casual conversation to more formal settings.
+false_friends:
+  - term: たいてい
+    meaning: Usually; mostly.
+    kind: similar expression
+    nuance: While たいてい also expresses frequency, it suggests "most of the time" or "generally," implying
+      exceptions are more likely than with いつも. いつも implies higher regularity.
+    grammar_point: <suggest>:たいてい (usually)
+  - term: よく
+    meaning: Often; frequently.
+    kind: similar expression
+    nuance: よく indicates high frequency, but not necessarily "always." It can also mean "well" or "skillfully,"
+      unlike いつも. いつも focuses on constancy.
+    grammar_point: よく (frequently・often・well)
+  - term: 常に (tsune ni)
+    meaning: Always; constantly.
+    kind: synonym
+    nuance: 常に is more formal, literary, and emphasizes absolute constancy or unchanging nature. いつも is
+      more common in everyday speech.
+    grammar_point: <suggest>:常に (always・constantly)
+post_false_friends_writeup: While いつも, たいてい, よく, and 常に all relate to frequency, their nuances differ.
+  いつも indicates a very high degree of regularity, often meaning "always" or "at all times." たいてい implies
+  "most of the time," suggesting exceptions are possible. よく signifies "frequently" but does not necessarily
+  imply constancy, and can also mean "well." 常に is a more formal and absolute equivalent to いつも, emphasizing
+  unchanging constancy. Choose いつも when you mean something happens nearly without exception or as a consistent
+  habit.
+examples:
+  - english: I always drink coffee in the morning.
+    japanese:
+      - 私 は 朝、{いつ も} コーヒー を 飲む。
+      - 私 は 朝、{いつ も} コーヒー を 飲み ます。
+    english_literally: As for me, in the morning, always coffee drink.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 朝、たいてい コーヒー を 飲む。
+        english: I usually drink coffee in the morning.
+        hint: 「たいてい」 means "usually" or "most of the time," implying it doesn't happen *every* single
+          day. We're looking for "always."
+    scene: A person describing their daily routine.
+    register: casual
+    setting: informative
+  - english: My cat is always sleeping.
+    japanese:
+      - 私 の 猫 は {いつ も} 寝 て いる。
+      - 私 の 猫 は {いつ も} 寝 て い ます。
+    english_literally: My cat always is sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 猫 は たいてい 寝 て いる。
+        english: My cat is usually sleeping.
+        hint: 「たいてい」 means "usually" and suggests there are times when the cat is not sleeping. We're
+          looking for "always" sleeping.
+    scene: Someone observing their lazy cat.
+    register: casual
+    setting: humorous
+    conjugation: progressive (～ている)
+  - english: He's always cheerful.
+    japanese:
+      - 彼 は {いつ も} 元気 だ。
+      - 彼 は {いつ も} 元気 です。
+    english_literally: As for him, always cheerful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は たいてい 元気 だ。
+        english: He's usually cheerful.
+        hint: 「たいてい」 implies occasional exceptions. We're looking for a consistent state of being "always"
+          cheerful.
+    scene: Friends talking about a mutual friend.
+    register: casual
+    setting: friendly
+  - english: My younger brother is always playing video games.
+    japanese:
+      - 弟 は {いつ も} ゲーム を し て いる。
+      - 弟 は {いつ も} ゲーム を し て い ます。
+    english_literally: Younger brother always is playing games.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 は しょっちゅう ゲーム を し て いる。
+        english: My younger brother is constantly playing video games.
+        hint: 「しょっちゅう」 also indicates high frequency but often implies an annoying or excessive regularity,
+          a nuance slightly different from the more neutral 「いつも」.
+    scene: An older sibling complaining about their younger brother.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of いつも here, combined with the continuous 「〜ている」, emphasizes the repetitive, slightly
+      annoying habit. The speaker, a female, uses 「弟は」 to identify her younger brother.
+  - english: Thank you for always helping me.
+    japanese:
+      - '{いつ も} お 世話 に なっ て おり ます。'
+      - '{いつ も} お 世話 に なっ て い ます。'
+    english_literally: Always, being taken care of.
+    competing_grammar:
+      - competing_japanese:
+          - 助け て くださっ て ありがとう ござい ます。
+        english: Thank you for helping me.
+        hint: This expresses thanks for a single instance of help. We're looking for an expression that
+          conveys gratitude for ongoing support.
+    scene: A junior employee thanking a senior colleague.
+    register: teineigo (polite)
+    setting: professional
+  - english: The library is crowded as always.
+    japanese:
+      - 図書 館 は {いつ も} 混ん で いる。
+      - 図書 館 は {いつ も} 混ん で い ます。
+    english_literally: Library always is crowded.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 は 相 変わら ず 混ん で いる。
+        english: The library is crowded as usual.
+        hint: 「相変わらず」 means "as usual" or "as ever," emphasizing that a situation remains unchanged from
+          previous observations. While similar, 「いつも」 focuses more on the constancy itself.
+    scene: Someone arriving at a busy library.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+  - english: When I was a child, I always played outside.
+    japanese:
+      - 子供 の 頃、{いつ も} 外 で 遊ん で い た。
+      - 子供 の 頃、{いつ も} 外 で 遊ん で い まし た。
+    english_literally: Child's time, always outside was playing.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 頃、しょっちゅう 外 で 遊ん で い た。
+        english: When I was a child, I constantly played outside.
+        hint: 「しょっちゅう」 indicates very high frequency and can carry a stronger negative connotation of
+          annoyance or exasperation than 「いつも」.
+    scene: An adult reminiscing about their childhood.
+    register: casual
+    setting: storytelling
+    conjugation: progressive (～ている)
+  - english: Are you always so busy?
+    japanese:
+      - '{いつ も} そんな に 忙しい です か。'
+      - '{いつ も} そんな に 忙しい の？'
+    english_literally: Always such busy is it?
+    competing_grammar:
+      - competing_japanese:
+          - たい て い そんな に 忙しい です か。
+        english: Are you usually so busy?
+        hint: 「たいてい」 means "usually," asking if the business is typical. We are asking if they are "always"
+          busy, implying a higher degree of constancy.
+    scene: A friend asking another friend about their schedule.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: My grandmother is always kind.
+    japanese:
+      - お ばあ ちゃん は {いつ も} 優しい ね。
+      - お ばあ ちゃん は {いつ も} 優しい です。
+    english_literally: Grandma always kind, right?
+    competing_grammar:
+      - competing_japanese:
+          - お ばあ ちゃん は たいてい 優しい ね。
+        english: Grandma is usually kind, right?
+        hint: 「たいてい」 implies "usually," allowing for rare instances of not being kind. We're expressing
+          an unwavering characteristic of "always" being kind.
+    scene: A granddaughter talking affectionately about her grandmother.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The female speaker's use of 「ね」 at the end softens the assertion, making it sound more like
+      a warm observation or seeking gentle agreement about her grandmother's constant kindness.
+  - english: He's always complaining.
+    japanese:
+      - あいつ は {いつ も} 文句 ばかり 言っ て いる ん だ。
+      - 彼 は {いつ も} 文句 ばかり 言っ て い ます ね。
+    english_literally: That guy always complaints only is saying.
+    competing_grammar:
+      - competing_japanese:
+          - あいつ は しょっちゅう 文句 ばかり 言っ て いる ん だ。
+        english: That guy is constantly complaining.
+        hint: 「しょっちゅう」 indicates very high frequency and can carry a stronger negative connotation of
+          annoyance or exasperation than 「いつも」.
+    scene: A male colleague expressing frustration about another male colleague.
+    register: casual
+    setting: reflective
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker uses 「あいつ」 (a somewhat rough term for "that guy") and the sentence-ending
+      「んだ」 to assert his observation forcefully, emphasizing the other person's constant complaining.
+      The 「ばかり」 (only) further strengthens the complaint.
+  - english: I will always remember you.
+    japanese:
+      - あなた の こと は {いつ も} 忘れ ない。
+      - あなた の こと は {いつ も} 忘れ ませ ん。
+    english_literally: As for your matter, always will not forget.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の こと は 決して 忘れ ない。
+        english: I will never forget you.
+        hint: 「決して〜ない」 emphasizes absolute negation, whereas 「いつも〜ない」 focuses on a consistent state of
+          not forgetting. We're looking for an expression of enduring memory.
+    scene: A person expressing enduring feelings to someone they care about.
+    register: casual
+    setting: intimate
+post_example_writeup: Notice how いつも often appears with verbs in the progressive 〜ている form when describing
+  habitual actions, reinforcing the sense of continuity or constancy. When used with negative forms, it
+  means 'never' or 'not at all' in a consistent manner.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%84%E3%81%A4%E3%82%82

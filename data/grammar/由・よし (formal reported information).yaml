@@ -1,0 +1,249 @@
+grammar_point: 由・よし (formal reported information)
+learn_before:
+  - あそこ (over there)
+  - ちょっと (adverb)
+  - どこ (where)
+meaning: reported information (formal)
+pronunciation:
+  katakana: ヨシ
+  romaji: yoshi
+formation:
+  '[Plain form statement] + 由 (よし)': Indicates reported information, often formal or indirect.
+  '[Plain form statement] + 由 (よし) だ / である / とのことだ': More explicit forms of reporting, commonly used in
+    formal writing or official announcements.
+jlpt: N1
+etymology: The term 「由 (yoshi)」 originates from the noun 「由 (yoshi)」, meaning "reason," "cause," "circumstance,"
+  or "history." Its grammatical use to convey reported information stems from the idea of presenting "the
+  reason" or "the circumstances" of a situation as they have been communicated or understood. This makes
+  it a formal and somewhat older expression for relaying facts, emphasizing the underlying account or
+  background of the report.
+writeup: |-
+  The expression 「由 (よし)」 is used to convey information that has been received or heard, typically in formal or official contexts. It functions to relay facts or circumstances based on what has been communicated to the speaker or is understood to be the case, rather than expressing the speaker's direct observation or personal opinion.
+
+  This makes 「由 (よし)」 particularly suitable for written announcements, legal documents, and formal reports, where an objective and concise tone is desired. It can be thought of as akin to phrases like "it is understood that," "it is said that," or "the circumstances are that" in English.
+
+  While often standing alone after a plain form statement, 「由 (よし)」 can also be followed by copulas such as 「だ」, 「である」, or 「とのことだ」 to explicitly reinforce its reported nature. Its use signals a degree of formality and can sometimes lend a slightly archaic feel to the communication, setting it apart from more contemporary reporting expressions.
+false_friends:
+  - term: 〜そうだ
+    meaning: It is said that; I hear that
+    kind: similar expression
+    nuance: 「〜そうだ」 is a common and less formal way to report hearsay or direct sensory observations. It
+      can convey either 'I hear that...' (hearsay) or 'It looks like...' (visual inference). In contrast,
+      「〜由 (よし)」 is exclusively for reported information, used in formal or written contexts, and carries
+      a nuance of relaying established facts or circumstances.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: 〜らしい
+    meaning: It seems that; I hear that
+    kind: similar expression
+    nuance: 「〜らしい」 implies an inference or general impression based on indirect evidence, rumors, or what
+      one has heard, often with a sense of typicality. It can convey uncertainty. 「〜由 (よし)」, however,
+      is a formal and neutral statement of reported facts or circumstances, implying a more direct transmission
+      of information rather than an inference.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: 〜といわれている
+    meaning: It is said that; It is commonly said that
+    kind: similar expression
+    nuance: 「〜といわれている」 indicates widespread belief or common knowledge. It suggests that something is
+      generally accepted or a common rumor. While formal, its focus is on general consensus rather than
+      a specific reported 'circumstance' as conveyed by 「〜由 (よし)」, which is more suited for official or
+      specific factual reports.
+    grammar_point: といわれている (it is said that)
+  - term: 〜とされている
+    meaning: It is considered to be; It is regarded as
+    kind: similar expression
+    nuance: 「〜とされている」 suggests that something is officially or commonly accepted as true, often based
+      on formal decisions or general recognition. It's about how something is 'regarded.' 「〜由 (よし)」 merely
+      reports what the circumstances are or what has been stated, without necessarily implying a judgment
+      or widespread acceptance of the information itself.
+    grammar_point: とされている (is considered)
+  - term: 〜によると・〜によれば
+    meaning: According to
+    kind: similar expression
+    nuance: 「〜によると」 and 「〜によれば」 explicitly specify the source of information. While 「〜由 (よし)」 also implies
+      information from a source, it emphasizes the *nature* of the information as a reported circumstance,
+      rather than directly naming the source. 「〜由 (よし)」 can be used independently after a plain form statement,
+      whereas 「〜によると」 always requires a source before it.
+    grammar_point: によると・によれば (according to)
+post_false_friends_writeup: While all these expressions convey reported information, the key distinction
+  for 「由 (よし)」 lies in its formality and its focus on presenting information as established 'circumstances'
+  or 'reasons' from a source, often in official or written contexts. Unlike more common reporting forms
+  like 「〜そうだ」 or 「〜らしい」, 「由 (よし)」 maintains a higher degree of objectivity and is less about personal
+  inference or widespread rumor. 「〜によると」 specifies the source, but 「〜由 (よし)」 often implies a source without
+  stating it directly, emphasizing the *fact* of the report.
+examples:
+  - english: It has been notified that the train will be delayed.
+    japanese:
+      - 電車 が {遅れる 由} が 告知 さ れ た。
+      - 電車 が {遅れる 由} が 告知 さ れ まし た。
+      - 電車 が {遅れる 由} と 告知 さ れ た。
+      - 電車 が {遅れる 由} だ と 告知 さ れ た。
+      - 電車 が {遅れる 由} で ある と 告知 さ れ た。
+    english_literally: The train being delayed, it was notified.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 遅れる そう だ と 告知 さ れ た。
+        english: It was notified that the train will be delayed, I hear.
+        hint: 「〜そうだ」 implies hearsay or direct observation of the train's appearance. We're looking for
+          a formal notification of the fact.
+    scene: A station attendant makes a formal announcement.
+    register: formal
+    setting: informative
+  - english: I have been informed that the meeting has been postponed until next week.
+    japanese:
+      - 会議 は 来週 に {延期 と の 由}、承知 いたし まし た。
+      - 会議 は 来週 に {延期 の 由}、承知 いたし まし た。
+      - 会議 は 来週 に {延期 の 由} と 承知 いたし まし た。
+      - 会議 は 来週 に {延期 の 由} で ある と 承知 いたし まし た。
+    english_literally: The meeting being postponement to next week, I have acknowledged.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 来週 に 延期 だ そう です。
+        english: I heard that the meeting has been postponed until next week.
+        hint: While conveying similar information, 「〜だそうです」 is a general polite report. We're looking
+          for a formal acknowledgment of a received piece of information, implying understanding of the
+          'circumstances'.
+    scene: A business person confirming receipt of important information to a colleague via email.
+    register: formal
+    setting: professional
+  - english: The reason for the absence is said to be a sudden illness.
+    japanese:
+      - 欠席 の 理由 は {急病 の 由} です。
+      - 欠席 の 理由 は {急病 の 由} で ござい ます。
+      - 欠席 の 理由 は {急病 の 由} で ある。
+    english_literally: The reason for absence is sudden illness, it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 欠席 の 理由 は 急病 と 言わ れ て いる。
+        english: The reason for the absence is commonly said to be a sudden illness.
+        hint: 「〜と言われている」 implies it's common knowledge or a widespread rumor. We're looking for a formal
+          statement of the specific reason as reported.
+    scene: A school administrator explains a student's absence to a teacher.
+    register: formal
+    setting: informative
+  - english: According to the announcement, the event will be held indoors due to rain.
+    japanese:
+      - 雨 の ため、イベント は {屋内 で 開催 の 由} です。
+      - 雨 の ため、イベント は {屋内 で 開催 の 由} で ござい ます。
+      - 雨 の ため、イベント は {屋内 で 開催 の 由} で ある。
+    english_literally: Due to rain, the event is indoors holding, it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 の ため、イベント は 屋内 で 開催 らしい です。
+        english: Due to rain, it seems the event will be held indoors.
+        hint: 「〜らしい」 implies an inference based on evidence or a general impression. We're looking for
+          a direct report of an official decision or announcement.
+    scene: A staff member informs colleagues about a last-minute change to an event.
+    register: formal
+    setting: informative
+  - english: It is understood that the new policy will be implemented starting next month.
+    japanese:
+      - 新 方針 は {来月 から 実施 の 由} です。
+      - 新 方針 は {来月 から 実施 の 由} で ある。
+      - 新 方針 は {来月 から 実施 の 由} と の こと です。
+    english_literally: New policy is from next month implementation, it is understood.
+    competing_grammar:
+      - competing_japanese:
+          - 新 方針 は 来月 から 実施 さ れる と さ れ て いる。
+        english: The new policy is regarded as being implemented starting next month.
+        hint: 「〜とされている」 focuses on how something is 'regarded' or 'considered'. We're looking for a concise
+          statement of a reported fact or circumstance regarding implementation.
+    scene: A manager announces a change in company policy to their team.
+    register: formal
+    setting: professional
+  - english: I acknowledge that the necessary documents have arrived.
+    japanese:
+      - 必要 書類 が {到着 し た 由}、確か に 承知 いたし まし た。
+      - 必要 書類 が {到着 し た 由} で ある、確か に 承知 いたし まし た。
+      - 必要 書類 が {到着 し た 由} と の こと、確か に 承知 いたし まし た。
+    english_literally: Necessary documents arriving, it is understood, I have certainly acknowledged.
+    competing_grammar:
+      - competing_japanese:
+          - 必要 書類 が 到着 し た と 連絡 を もらい まし た。
+        english: I received contact that the necessary documents have arrived.
+        hint: This is a general way to say you were informed. We're looking for a more formal and concise
+          acknowledgment of the 'circumstance' of arrival.
+    scene: A secretary confirms receipt of important papers in a formal email.
+    register: formal
+    setting: professional
+  - english: The general manager will be away on a business trip next week, I hear.
+    japanese:
+      - 部 長 は {来週 出張 の 由} です。
+      - 部 長 は {来週 出張 の 由} で ある。
+      - 部 長 は {来週 出張 の 由} と の こと です。
+    english_literally: The general manager is next week business trip, it is heard.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は 来週 出張 する そう です。
+        english: I hear the general manager will go on a business trip next week.
+        hint: 「〜そうです」 is a common, general way to report hearsay. 「〜由 (よし)」 conveys the same information
+          but with a more formal, official tone, suitable for reporting established plans rather than
+          simple rumors.
+    scene: An office worker informally tells a colleague about their boss's schedule, but using a very
+      formal expression for emphasis or respect.
+    register: semi-formal
+    setting: professional
+  - english: It is recorded that the temple was built in the Nara period.
+    japanese:
+      - その 寺 は {奈良 時代 に 建立 さ れ た 由} で ある。
+      - その 寺 は {奈良 時代 に 建立 さ れ た 由} です。
+    english_literally: That temple is Nara period in built, it is recorded.
+    competing_grammar:
+      - competing_japanese:
+          - その 寺 は 奈良 時代 に 建立 さ れ た と 言わ れ て いる。
+        english: It is said that the temple was built in the Nara period.
+        hint: 「〜と言われている」 often implies common knowledge or a long-standing rumor. 「〜由 (よし) である」 is more
+          suitable for reporting information found in historical records or documents, emphasizing the
+          documented 'circumstance'.
+    scene: A historian describing the origin of an ancient temple.
+    register: formal
+    setting: academic
+  - english: The budget deficit is large, due to an unexpected increase in costs, it is understood.
+    japanese:
+      - 予算 赤字 は {予期 せ ぬ 費用 増大 の 由}、甚大 です。
+      - 予算 赤字 は {予期 せ ぬ 費用 増大 の 由} で ある、甚大 です。
+      - 予算 赤字 は {予期 せ ぬ 費用 増大 の 由} で ござい ます、甚大 です。
+    english_literally: Budget deficit is unexpected cost increase, it is understood, huge is.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 赤字 は 予期 せ ぬ 費用 増大 に よっ て 甚大 だ と さ れ て いる。
+        english: The budget deficit is regarded as huge due to an unexpected increase in costs.
+        hint: 「〜とされている」 highlights a common understanding or official recognition. 「〜由 (よし)」 concisely
+          states the reason for the deficit as a reported fact or circumstance.
+    scene: A financial report summarizes the cause of a budget deficit.
+    register: formal
+    setting: informative
+  - english: The reason for the low turnout is that the announcement was made too late.
+    japanese:
+      - 参加 者 が 少なかっ た の は {告知 が 遅れ た 由} です。
+      - 参加 者 が 少なかっ た の は {告知 が 遅れ た 由} で ある。
+      - 参加 者 が 少なかっ た の は {告知 が 遅れ た 由} で ござい ます。
+    english_literally: Participants being few is announcement delayed, it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 が 少なかっ た の は 告知 が 遅れ た ため です。
+        english: The reason participants were few is because the announcement was delayed.
+        hint: 「〜ため」 directly states the reason. 「〜由 (よし)」 reports the reason as a known 'circumstance'
+          or 'fact' that explains the low turnout, often used in more formal explanations.
+    scene: An event organizer explains the poor attendance in a post-event report.
+    register: formal
+    setting: informative
+  - english: It is understood that the new regulations will take effect next month.
+    japanese:
+      - 新しい 規定 は {来月 から 施行 さ れる 由} です。
+      - 新しい 規定 は {来月 から 施行 さ れる 由} で ある。
+      - 新しい 規定 は {来月 から 施行 さ れる 由} と の こと です。
+    english_literally: New regulations are from next month enforcement, it is understood.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 規定 は 来月 から 施行 さ れる と の こと です。
+        english: I was informed that the new regulations will take effect next month.
+        hint: 「〜とのことです」 is a common polite way to report information received. 「〜由 (よし)」 offers a more
+          concise and formal way to state a reported fact or circumstance, often implying it's an official
+          notification.
+    scene: A government official announces new regulations.
+    register: formal
+    setting: informative
+post_example_writeup: The usage of 「由 (よし)」 in these examples highlights its role in conveying information
+  with formality and objectivity. It allows for the precise relaying of facts, decisions, or circumstances,
+  often in situations where the speaker is acting as a conduit for official or established information,
+  rather than expressing a personal observation.

@@ -1,0 +1,374 @@
+grammar_point: 注意する (to pay attention・to warn・to caution)
+learn_before:
+  - いる (to exist, animate)
+  - でできる (made of)
+  - なるほど (i see)
+  - もっと (degree)
+  - を (direct object marker)
+  - を (path of movement)
+  - 中・外 (spatial and temporal reference)
+  - 二度と (never again)
+  - 命令形 (imperative form)
+  - 込み (including)
+meaning: to pay attention, to be careful, to warn, to caution
+meaning_warning: This grammar point encompasses several related meanings, from personal vigilance to admonishing
+  others.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 注意する
+    rarity: common
+    meaning: to pay attention, to warn, to caution
+  - conjugation-type: non-past polite (～ます)
+    form: 注意します
+    rarity: common
+    meaning: to pay attention, to warn, to caution (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 注意しない
+    rarity: common
+    meaning: not to pay attention, not to warn, not to caution
+  - conjugation-type: negative non-past polite (～ません)
+    form: 注意しません
+    rarity: common
+    meaning: not to pay attention, not to warn, not to caution (polite)
+  - conjugation-type: past plain (～た)
+    form: 注意した
+    rarity: common
+    meaning: paid attention, warned, cautioned
+  - conjugation-type: past polite (～ました)
+    form: 注意しました
+    rarity: common
+    meaning: paid attention, warned, cautioned (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: 注意しなかった
+    rarity: common
+    meaning: did not pay attention, did not warn, did not caution
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 注意しませんでした
+    rarity: common
+    meaning: did not pay attention, did not warn, did not caution (polite)
+  - conjugation-type: te-form (～て)
+    form: 注意して
+    rarity: common
+    meaning: paying attention, warning, cautioning (te-form)
+  - conjugation-type: potential (～られる/～える)
+    form: 注意できる
+    rarity: common
+    meaning: can pay attention, can warn, can caution
+  - conjugation-type: passive (～られる/～かれる)
+    form: 注意される
+    rarity: common
+    meaning: to be warned, to be cautioned
+  - conjugation-type: volitional (～よう)
+    form: 注意しよう
+    rarity: common
+    meaning: let's pay attention, let's warn, let's caution
+  - conjugation-type: volitional polite (～ましょう)
+    form: 注意しましょう
+    rarity: common
+    meaning: let's pay attention, let's warn, let's caution (polite)
+pronunciation:
+  katakana: チュウイスル
+  romaji: chūi suru
+formation:
+  Noun に + {注意する}: To pay attention to a specific noun or situation.
+  Verb[dictionary] ように + {注意する}: To warn or caution someone to do or not do something.
+  Noun を + {注意する}: To caution or scold someone regarding a specific noun (e.g., a behavior or person).
+jlpt: N4
+etymology: 'The term 注意 (chūi) is a compound of two kanji: 中 (chū), meaning ''middle'' or ''center'',
+  and 意 (i), meaning ''mind'' or ''thought''. Thus, literally, it implies ''placing one''s mind in the
+  center'' or ''focusing one''s mind''. This fundamental meaning has evolved to encompass ''paying attention'',
+  ''being careful'', and by extension, ''warning'' or ''cautioning'' others to also direct their attention.'
+writeup: |-
+  注意する is a versatile verb with several important meanings, primarily encompassing 'to pay attention' or 'to be careful', and 'to warn' or 'to caution'. The specific nuance depends heavily on the personal context and the particles used.
+
+  When used to mean **'to pay attention'** or **'to be careful'**, it often takes the particle 「に」 to indicate the object or situation one should be careful about. For instance, 「足元に注意する」 means 'to pay attention to one's step' or 'to be careful of one's footing'. This usage emphasizes vigilance and a proactive awareness of one's surroundings or actions. It implies a conscious effort to prevent mistakes or accidents.
+
+  When used to mean **'to warn'** or **'to caution'** someone else, it can also take 「に」 to indicate the person being warned (e.g., 「子供に注意する」 - 'to warn/caution the child'). Alternatively, to specify the action one is being warned about, the structure 「Verb[dictionary] ように 注意する」 is common (e.g., 「遅刻しないように注意する」 - 'to caution someone not to be late'). In this sense, 注意する implies giving advice or a reminder about potential issues or improper behavior.
+
+  Furthermore, 注意する can carry a nuance of **'to scold'** or **'to reprimand'** someone for a specific behavior. In this case, the particle 「を」 might be used to indicate the person or action being reprimanded (e.g., 「騒いでいる人を注意する」 - 'to scold the noisy person'). This usage is stronger than a mere reminder and implies correction of a wrongdoing.
+
+  It is important to understand these distinctions to use 注意する appropriately in various situations, from simple daily reminders to more serious admonitions.
+false_friends:
+  - term: 気を付ける
+    meaning: to be careful, to watch out
+    kind: similar expression
+    nuance: While both imply carefulness, 気を付ける emphasizes one's *own* internal vigilance or mental state
+      of being careful. 注意する can mean being careful oneself, but it also readily extends to actively warning
+      or scolding *others*. For example, you can say 「人に{注意する}」 (to warn a person), but not typically
+      「人に気を付ける」.
+    grammar_point: <suggest>:気を付ける (to be careful)
+  - term: 用心する
+    meaning: to be cautious, to be on guard, to take precautions
+    kind: similar expression
+    nuance: 用心する implies a stronger, more proactive sense of guarding against potential danger or misfortune,
+      often with a sense of preparation. 注意する is a more general term for paying attention or giving a
+      warning. You might 用心する against a thief, but you 注意する about a slippery floor.
+    grammar_point: <suggest>:用心する (to be cautious・on guard)
+  - term: 叱る
+    meaning: to scold, to reprimand, to lecture
+    kind: similar expression
+    nuance: 叱る specifically means to scold or reprimand someone for something they did wrong or inappropriately.
+      While 注意する can have the nuance of scolding, it is generally milder and can also refer to simply
+      drawing attention to something or being careful oneself. If someone made a severe mistake, you would
+      叱る them; if they just forgot something minor, you might 注意する them.
+    grammar_point: <suggest>:叱る (to scold)
+  - term: 忠告する
+    meaning: to advise, to counsel, to warn (as advice)
+    kind: similar expression
+    nuance: 忠告する means to give advice or counsel, often with the nuance of offering well-intentioned guidance,
+      sometimes unsolicited. 注意する, while also meaning to warn, often implies a more direct instruction
+      or a correction of behavior that is currently happening or might happen. 忠告 is advice; 注意 can be
+      a direct warning or correction.
+    grammar_point: <suggest>:忠告する (to advise)
+post_false_friends_writeup: When distinguishing 注意する from similar expressions, remember that 注意する covers
+  both the act of being careful yourself and the act of warning or correcting others. 気を付ける focuses primarily
+  on one's own carefulness. 用心する suggests a heightened state of caution against specific threats. 叱る is
+  a direct and often stern reprimand for wrongdoing. 忠告する is about giving advice for someone's benefit.
+  Understanding these subtle differences will help you choose the most appropriate verb for the situation.
+examples:
+  - english: Please be careful of your steps.
+    japanese:
+      - 足元 に {注意 し て} ください。
+      - 足元 に {注意 し て}。
+    english_literally: To your steps, please pay attention.
+    competing_grammar:
+      - competing_japanese:
+          - 足元 に 気 を 付け て ください。
+        english: Please watch your steps.
+        hint: While similar, 「気を付ける」 focuses more on the person's internal state of vigilance. We're looking
+          for a more general 'pay attention' that can also imply a warning.
+      - competing_japanese:
+          - 足元 に 気 を つけ なさい。
+        english: Be careful of your steps. (mild command)
+        hint: 「気をつけなさい」 is a polite imperative form of 気を付ける. We're looking for the more general 'pay
+          attention' that can also imply a warning.
+    scene: A staff member speaking to a customer entering a building where the floor might be wet.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: This example uses 「に」 to indicate the object of caution, which is common with 「注意する」. The
+      te-form with 「ください」 creates a polite request.
+  - english: I'll be careful not to make the same mistake again.
+    japanese:
+      - 二 度 と 同じ 間違い を し ない よう に {注意 し ます}。
+      - 二 度 と 同じ 間違い を し ない よう に {注意 する}。
+    english_literally: Twice again same mistake not to do, I will pay attention/be careful.
+    competing_grammar:
+      - competing_japanese:
+          - 二 度 と 同じ 間違い を し ない よう に 気 を 付け ます。
+        english: I'll be careful not to make the same mistake again.
+        hint: Both are acceptable, but 「注意する」 here implies a conscious effort to observe oneself or the
+          situation to prevent recurrence, which is slightly more active than just 'being careful' with
+          「気を付ける」.
+      - competing_japanese:
+          - 二 度 と 同じ 間違い を 繰り返さ ない よう に 気 を つけ ます。
+        english: I'll be careful not to repeat the same mistake.
+        hint: This emphasizes 'not repeating' the mistake. We're looking for the general 'be careful'
+          or 'pay attention' to prevent it.
+    scene: A student apologizes to their teacher after a repeated error.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: non-past polite (～ます)
+    nuance: Here, 「～ないように注意する」 indicates taking care not to perform an action. This is a common way to
+      express self-caution using 「注意する」.
+  - english: My mother always warns me about my posture.
+    japanese:
+      - 母 は いつ も 私 の 姿勢 に {注意 し ます}。
+      - 母 は いつ も 私 の 姿勢 に {注意 する}。
+    english_literally: Mother always my posture about warns.
+    competing_grammar:
+      - competing_japanese:
+          - 母 は いつ も 私 の 姿勢 の こと で {叱り ます}。
+        english: My mother always scolds me about my posture.
+        hint: 「叱る」 is a stronger, more direct reprimand for something done wrong. We're looking for the
+          more general 'warns' or 'cautions'.
+    scene: A child complaining to a friend about their mother's constant reminders.
+    register: casual
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: In this instance, 「注意する」 is used in its 'to warn/caution' sense, implying a repeated reminder
+      or gentle correction from the mother. The polite form 「注意します」 is used even in a casual conversation
+      to describe an ongoing action.
+  - english: He was warned by his boss about being late.
+    japanese:
+      - 彼 は 上司 に 遅刻 を {注意 さ れ まし た}。
+      - 彼 は 上司 に 遅刻 を {注意 さ れ た}。
+    english_literally: He by his boss lateness was warned.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 上司 に 遅刻 の こと で {叱ら れ まし た}。
+        english: He was scolded by his boss about lateness.
+        hint: 「叱る」 specifically means to scold or reprimand. We're looking for a more general 'warning'
+          or 'cautioning'.
+    scene: Colleagues discussing why a coworker seems down.
+    register: formal
+    setting: informative
+    conjugation: passive (～られる/～かれる)
+    speaker_gender: female
+    listener_gender: male
+    nuance: This example uses the passive voice 「注意される」, indicating that 'he' received a warning from
+      his boss. The nuance here is more towards being reprimanded or corrected for lateness. The particle
+      「に」 marks the agent of the passive action.
+  - english: Be careful when crossing the street!
+    japanese:
+      - 道 を 渡る 時 は {注意 し て}！
+      - 道 を 渡る 時 は {注意 し て ください}！
+    english_literally: Road crossing time, be careful!
+    competing_grammar:
+      - competing_japanese:
+          - 道 を 渡る 時 は {気 を 付け て}！
+        english: Be careful when crossing the street!
+        hint: 「気を付ける」 also means to be careful, but 「注意する」 is often used for direct warnings from one
+          person to another, emphasizing the active act of warning.
+    scene: A parent shouting a warning to their child from afar.
+    register: casual
+    setting: emergency/alarm
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: This is a direct, urgent warning. The shortened 「注意して！」 makes it sound more casual and immediate,
+      typical in a situation needing quick attention. No explicit listener gender for this kind of general
+      warning.
+  - english: Let's pay attention to the teacher's explanation.
+    japanese:
+      - 先生 の 説明 に {注意 し ましょう}。
+      - 先生 の 説明 に {注意 しよう}。
+    english_literally: Teacher's explanation to, let's pay attention.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 の 説明 を よく {聞き ましょう}。
+        english: Let's listen carefully to the teacher's explanation.
+        hint: While listening is part of it, we're looking for 'paying attention' or 'focusing one's mind',
+          which is a broader concept than just hearing.
+    scene: A student reminding their classmate to focus during class.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: volitional polite (～ましょう)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The volitional polite form 「注意しましょう」 is used to make a suggestion to collectively pay attention.
+      「に」 marks the target of the attention.
+  - english: I warned him about the danger, but he didn't listen.
+    japanese:
+      - 彼 に 危険 だ と {注意 し た} が、彼 は 聞か なかっ た。
+      - 彼 に 危険 だ と {注意 し まし た} が、彼 は 聞き ませ ん でし た。
+    english_literally: Him to danger is, I warned, but he did not listen.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 危険 だ と {忠告 し た} が、彼 は 聞か なかっ た。
+        english: I advised him of the danger, but he didn't listen.
+        hint: 「忠告する」 emphasizes giving advice or counsel, often well-intentioned. We're looking for the
+          more direct act of 'warning' or 'cautioning'.
+    scene: Two friends discussing a third friend's recklessness.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: male
+    nuance: This sentence uses 「注意した」 in the sense of giving a warning to someone else. The 「が」 indicates
+      a contrast, showing the warning was given but disregarded.
+  - english: I can pay more attention if I try.
+    japanese:
+      - やれ ば もっと {注意 でき ます}。
+      - やれ ば もっと {注意 できる}。
+    english_literally: If I do, more I can pay attention.
+    competing_grammar:
+      - competing_japanese:
+          - やれ ば もっと 集中 できる。
+        english: If I try, I can concentrate more.
+        hint: 「集中する」 specifically means to concentrate or focus intensely. We're looking for the broader
+          concept of 'paying attention' or being careful.
+    scene: Someone reflecting on their own capabilities after failing to notice something.
+    register: casual
+    setting: reflective
+    conjugation: potential (～られる/～える)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Here, the potential form 「注意できる」 expresses the ability to pay attention or be careful. This
+      implies a self-assessment of one's own capacity for vigilance.
+  - english: He often has to be warned about his loud voice.
+    japanese:
+      - 彼 は よく 大きな 声 を {注意 さ れ ます}。
+      - 彼 は よく 大きな 声 を {注意 さ れる}。
+    english_literally: He often loud voice about is warned.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は よく 大きな 声 の こと で {叱ら れ ます}。
+        english: He often gets scolded about his loud voice.
+        hint: 「叱る」 implies a stronger, more punitive scolding. We're looking for the more general sense
+          of being warned or cautioned, which might be milder.
+    scene: Two coworkers discussing a third coworker's habits.
+    register: formal
+    setting: professional
+    conjugation: passive (～られる/～かれる)
+    speaker_gender: female
+    listener_gender: female
+    nuance: This passive construction with 「注意される」 indicates that others frequently warn or remind him
+      about his loud voice, implying a corrective action from others rather than an internal vigilance.
+  - english: Don't you usually warn students not to run in the hallways?
+    japanese:
+      - 廊下 で 走ら ない よう に、生徒 に {注意 し ない} の です か？
+      - 廊下 で 走ら ない よう に、生徒 に {注意 し ない} の？
+    english_literally: In hallway not run so that, students to, do you not warn?
+    competing_grammar:
+      - competing_japanese:
+          - 廊下 で 走ら ない よう に、生徒 に {言わ ない} の です か？
+        english: Don't you usually tell students not to run in the hallways?
+        hint: 「言う」 is a general verb for 'to say' or 'to tell'. We're looking for the specific act of
+          'warning' or 'cautioning'.
+    scene: A senior teacher asking a junior teacher why they didn't intervene.
+    register: formal
+    setting: academic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The negative plain form 「注意しない」 combined with 「のですか」 forms a questioning tone, implying that
+      the speaker expects the listener to have given a warning. 「～ように」 specifies the action to be cautioned
+      against.
+  - english: Everyone must be very careful of their personal information.
+    japanese:
+      - 皆 さん は 個人 情報 に 大いに {注意 し なけれ ば なり ませ ん}。
+      - 皆 さん は 個人 情報 に 大いに {注意 し なけれ ば なら ない}。
+    english_literally: Everyone personal information to greatly must pay attention.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 さん は 個人 情報 に 大いに {気 を 付け なけれ ば なり ませ ん}。
+        english: Everyone must be very careful about their personal information.
+        hint: 「気を付ける」 is about personal vigilance or watching out. While very similar, 「注意する」 here implies
+          a more active and deliberate 'paying attention' or monitoring.
+    scene: A cybersecurity expert giving a public lecture.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: Using 「注意しなければなりません」 emphasizes a strong obligation or necessity to be careful, common in
+      warnings or advice related to security or safety. 「に」 marks the subject of caution.
+  - english: I paid attention to her subtle changes in expression.
+    japanese:
+      - 彼女 の 微妙 な 表情 の 変化 に {注意 し まし た}。
+      - 彼女 の 微妙 な 表情 の 変化 に {注意 し た}。
+    english_literally: Her subtle expression's change to I paid attention.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 微妙 な 表情 の 変化 に {気 が つき まし た}。
+        english: I noticed her subtle changes in expression.
+        hint: 「気がつく」 means to notice or become aware of something, often implying a sudden realization.
+          We're looking for a more sustained, active process of 'paying attention' or observing.
+    scene: A detective recounting observations during an interrogation.
+    register: formal
+    setting: serious
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    nuance: This emphasizes the act of 'paying close attention' or 'noticing' details, which is another
+      common usage of 「注意する」. The polite past tense indicates a completed action.
+post_example_writeup: These examples demonstrate the range of contexts in which 注意する can be used, from
+  personal mindfulness to direct communication of warnings or corrections. The appropriate particle usage
+  (such as に for the object of attention, ように for an action to be cautious about, or を for the person/thing
+  being scolded) is key to conveying the intended meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/注意する

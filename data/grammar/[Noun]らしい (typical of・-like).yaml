@@ -1,0 +1,351 @@
+grammar_point: '[Noun]らしい (typical of・-like)'
+learn_before:
+  - '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - らしい (it seems, based on evidence・I hear)
+meaning: Typical of; characteristic of; seems truly like; befitting of.
+pronunciation:
+  katakana: ラシイ
+  romaji: rashii
+formation:
+  Noun + らしい: Indicates that something seems or looks like a typical example of Noun, or possesses the
+    characteristics befitting Noun.
+jlpt: N3
+etymology: 「らしい」is derived from the classical Japanese 「あらはし」 (arawashi), which means "to reveal" or "to
+  show." Over time, this evolved to 「らし」, indicating "it appears that" or "it seems to be." The modern
+  「らしい」 retains this sense of appearance or seeming, but often with the added nuance of something being
+  "typical of" or "characteristic of" the noun it modifies, implying that the observation aligns with
+  what is naturally expected or inherently true about the noun. It signifies that the outward appearance
+  reflects an inner quality or typical nature.
+writeup: 「らしい」is an auxiliary adjective used after a noun to express that something or someone possesses
+  the characteristics, qualities, or traits typical of that noun. It conveys a sense of observation or
+  perception that aligns with what is generally expected or known about the noun. Unlike simply stating
+  a resemblance, 「らしい」often suggests that the subject genuinely embodies the essence or typical nature
+  of the noun. For example, when you say 子供らしい (kodomo rashii), it means "childlike" or "typical of a
+  child," implying that the person (even an adult) is behaving in a way that is characteristic of children.
+  It’s not just *like* a child, but genuinely *embodying* childish qualities. Similarly, 学生らしい (gakusei
+  rashii) means "student-like" or "befitting a student," suggesting that someone is acting in a way appropriate
+  for a student, such as being studious or responsible. This grammar point is versatile and can describe
+  both positive and negative attributes, depending on the context of the noun. It is widely used in daily
+  conversation and writing.
+false_friends:
+  - term: みたい
+    meaning: Similar to; looks like; seems like
+    kind: similar expression
+    nuance: 「みたい」is more casual and indicates a simpler, often superficial, likeness. It often means "looks
+      like" or "seems like" without necessarily implying that the thing *is* genuinely typical of the
+      noun.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: ようだ
+    meaning: It seems that; it appears that; like; similar to
+    kind: similar expression
+    nuance: More formal than 「みたい」 and also expresses resemblance or conjecture. 「ようだ」implies a stronger
+      basis for the resemblance, often based on concrete evidence or logical inference, rather than just
+      a casual observation of typicality. It can also mean "it seems that" in a broader sense, applying
+      to states or actions, not just typical characteristics of nouns.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: っぽい
+    meaning: Ish; -like; tending to; -y
+    kind: similar expression
+    nuance: A colloquial suffix similar to 「らしい」and 「みたい」, but 「っぽい」often carries a nuance of "tending
+      to be," "easily becoming," or "having the appearance of" (sometimes a negative or less refined connotation,
+      like "childish" in a negative sense, or "blackish"). It suggests a stronger tendency or a slightly
+      artificial/unrefined resemblance. It is generally more casual and subjective than 「らしい」.
+    grammar_point: っぽい (ish; characteristic of)
+  - term: いかにも
+    meaning: Truly; indeed; really; as expected
+    kind: similar expression
+    nuance: An adverb that means "truly," "indeed," or "as expected." It emphasizes that something is
+      exactly as one would expect based on its nature, often reinforcing the typicality. It doesn't directly
+      connect to a noun in the same way 「らしい」does, but rather modifies the entire statement or adjective
+      to suggest that something is very characteristic or predictable.
+    grammar_point: いかにも (as expected)
+post_false_friends_writeup: While 「らしい」, 「みたい」, 「ようだ」, and 「っぽい」all express some form of resemblance or
+  appearance, their nuances differ significantly. 「みたい」and 「ようだ」focus on general resemblance or conjecture,
+  with 「ようだ」being more formal. 「っぽい」leans towards a tendency or a somewhat superficial or even negative
+  resemblance. 「らしい」, on the other hand, specifically highlights that something embodies the *typical*
+  characteristics of the noun, often implying a natural or inherent quality that aligns with common understanding.
+  「いかにも」is an adverb emphasizing that something is *exactly* as expected, often reinforcing characteristics
+  implied by 「らしい」but not directly interchangeable.
+examples:
+  - english: He's very manly.
+    japanese:
+      - 彼 は とても 男 らしい。
+      - 彼 は とても 男 らしい です。
+      - 彼 は すごく 男 らしい。
+      - 彼 は すごく 男 らしい です。
+    english_literally: As for him, he is very manly-like.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 男 みたい だ。
+        english: He's like a man.
+        hint: 「みたい」implies external resemblance, while 「らしい」suggests an inherent, typical quality. We're
+          looking for genuine manliness here.
+      - competing_japanese:
+          - 彼 は とても 男 っぽい です。
+        english: He's somewhat manly/boyish.
+        hint: 「っぽい」can imply a superficial or sometimes negative resemblance, or a tendency. We're looking
+          for a strong, positive sense of manliness.
+    scene: Talking about a friend's admirable qualities.
+    register: casual
+    setting: friendly
+    nuance: 「男らしい」implies that he possesses qualities typically associated with men, such as strength,
+      courage, or reliability, in a positive sense.
+  - english: Even though she's an adult, her way of thinking is very childlike.
+    japanese:
+      - 彼女 は 大人 な の に 考え 方 が 子供 らしい。
+      - 彼女 は 大人 な の に 考え 方 が 子供 らしい です。
+      - 彼女 は 大人 な の に、考え 方 が 子供 らしい の です。
+      - 彼女 は 大人 な の に、考え 方 が 子供 らしい の です。
+    english_literally: As for her, despite being adult, way of thinking is child-like.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 大人 な の に 考え 方 が 子供 みたい だ。
+        english: Even though she's an adult, her way of thinking is like a child's.
+        hint: 「みたい」is a more general comparison, not necessarily implying typicality. We're looking for
+          behavior characteristic of children.
+      - competing_japanese:
+          - 彼女 は 大人 な の に 考え 方 が 子供 っぽい。
+        english: Even though she's an adult, her way of thinking is childish.
+        hint: 「っぽい」can carry a negative or slightly immature nuance. While similar, 「らしい」here is a neutral
+          observation of typicality.
+    scene: Observing a grown-up's naive behavior.
+    register: casual
+    setting: informative
+    nuance: 「子供らしい」here suggests she genuinely exhibits the typical thought patterns of a child, not just
+      superficially.
+  - english: It's finally become spring-like weather.
+    japanese:
+      - やっと 春 らしい 天気 に なっ た ね。
+      - やっと 春 らしい 天気 に なり まし た ね。
+      - やっと 春 らしい 天気 に なっ た。
+      - やっと 春 らしい 天気 に なり まし た。
+    english_literally: Finally spring-like weather has become, right?
+    competing_grammar:
+      - competing_japanese:
+          - やっと 春 みたい な 天気 に なっ た ね。
+        english: It's finally become weather like spring.
+        hint: 「みたい」suggests a simple resemblance. 「らしい」implies that the weather truly embodies the essence
+          of spring.
+      - competing_japanese:
+          - やっと 春 の よう に 暖かく なっ た ね。
+        english: It finally became warm like spring.
+        hint: 「ように」is a more direct comparison of an attribute (warmth) rather than the overall characteristic
+          of spring weather. We're looking for weather that *is* typical of spring.
+    scene: Commenting on the changing seasons.
+    register: casual
+    setting: friendly
+    nuance: 「春らしい」implies the weather truly embodies the typical characteristics of spring, like mildness
+      and pleasantness, not just a hint of it.
+  - english: As a student, you should have a more student-like attitude.
+    japanese:
+      - 学生 な ん だ から、もっと 学生 らしい 態度 を 取り なさい。
+      - 学生 な ん だ から、もっと 学生 らしい 態度 を 取り ましょう。
+      - 学生 な ん だ から、もっと 学生 らしい 態度 を 取る べき だ。
+      - 学生 な ん だ から、もっと 学生 らしい 態度 を 取る べき です。
+    english_literally: Because you are a student, more student-like attitude please take.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 な ん だ から、もっと 学生 みたい な 態度 を 取り なさい。
+        english: As a student, you should have an attitude like a student.
+        hint: 「みたい」just states resemblance, while 「らしい」implies the expected, proper attitude of a student.
+          We're looking for behavior befitting a student.
+      - competing_japanese:
+          - 学生 な ん だ から、もっと 学生 と し て の 態度 を 取り なさい。
+        english: While grammatically correct, this simply states origin. 「らしい」implies it has the *characteristics*
+          of a Japanese garden. We're looking for its typical nature.
+        hint: 「として」emphasizes the role, but 「らしい」focuses on the characteristic behavior expected of that
+          role. We're looking for a natural, typical attitude.
+    scene: A teacher advising a student.
+    register: formal
+    setting: instructional
+    nuance: 「学生らしい」is a mild command, suggesting that the student's attitude should align with the expected
+      behavior and responsibilities of a typical student. The use of 「なさい」makes it a polite imperative.
+  - english: This is a very Japanese garden, isn't it?
+    japanese:
+      - これ は とても 日本 らしい 庭 です ね。
+      - これ は とても 日本 らしい 庭 だ ね。
+      - これ は まさに 日本 らしい 庭 です ね。
+      - これ は まさに 日本 らしい 庭 だ ね。
+    english_literally: This is very Japan-like garden, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - これ は とても 日本 みたい な 庭 です ね。
+        english: This is a garden like Japan, isn't it?
+        hint: 「みたい」is a more general, perhaps superficial comparison. 「らしい」suggests it truly embodies
+          the aesthetic of a Japanese garden.
+      - competing_japanese:
+          - これ は とても 日本 の 庭 です ね。
+        english: This is a Japanese garden, isn't it?
+        hint: While grammatically correct, this simply states origin. 「らしい」implies it has the *characteristics*
+          of a Japanese garden. We're looking for its typical nature.
+    scene: Admiring a traditional garden.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「日本らしい」conveys that the garden embodies the quintessential characteristics of a Japanese garden,
+      rather than just being Japanese in origin.
+  - english: That new teacher is very teacher-like.
+    japanese:
+      - あの 新しい 先生 は とても 先生 らしい。
+      - あの 新しい 先生 は とても 先生 らしい です。
+      - あの 新しい 先生 は すごく 先生 らしい。
+      - あの 新しい 先生 は すごく 先生 らしい です。
+    english_literally: That new teacher is very teacher-like.
+    competing_grammar:
+      - competing_japanese:
+          - あの 新しい 先生 は とても 先生 みたい だ。
+        english: That new teacher is very much like a teacher.
+        hint: 「みたい」expresses external resemblance. 「らしい」suggests embodying the core qualities of a teacher.
+          We're looking for someone who *is* typical of a teacher.
+      - competing_japanese:
+          - あの 新しい 先生 は とても 先生 っぽい。
+        english: That new teacher is somewhat teacher-y.
+        hint: 「っぽい」can imply a less refined or sometimes superficial impression. 「らしい」is a more complete
+          and positive description of typicality.
+    scene: Two colleagues discussing a new hire.
+    register: casual
+    setting: professional
+    nuance: 「先生らしい」indicates the new teacher possesses the inherent qualities and demeanor typically associated
+      with a good teacher, such as being knowledgeable, patient, and good at explaining.
+  - english: That was a very human reaction.
+    japanese:
+      - それ は とても 人間 らしい 反応 だっ た。
+      - それ は とても 人間 らしい 反応 でし た。
+      - それ は すごく 人間 らしい 反応 だっ た。
+      - それ は すごく 人間 らしい 反応 でし た。
+    english_literally: That was a very human-like reaction.
+    competing_grammar:
+      - competing_japanese:
+          - それ は とても 人間 みたい な 反応 だっ た。
+        english: That was a reaction like a human.
+        hint: 「みたい」simply compares. 「らしい」implies that the reaction was inherently and characteristically
+          human. We're looking for a reaction true to human nature.
+      - competing_japanese:
+          - それ は とても 人間 的 な 反応 だっ た。
+        english: That was a very human reaction.
+        hint: 「人間的な」(-teki) emphasizes that something is *related* to humans, but 「らしい」captures the essence
+          of what is *typical* of human reactions.
+    scene: Observing someone's emotional response.
+    register: casual
+    setting: reflective
+    nuance: 「人間らしい」emphasizes that the reaction was genuine and characteristic of human nature, perhaps
+      showing empathy or vulnerability.
+  - english: That rumor seems quite true.
+    japanese:
+      - その 噂 は かなり 本当 らしい よ。
+      - その 噂 は かなり 本当 らしい です よ。
+      - その 噂 は かなり 本当 らしい。
+      - その 噂 は かなり 本当 らしい です。
+    english_literally: That rumor is quite true-like, you know.
+    competing_grammar:
+      - competing_japanese:
+          - その 噂 は かなり 本当 みたい だ よ。
+        english: That rumor is quite like the truth, you know.
+        hint: 「みたい」suggests superficial similarity. 「らしい」implies the rumor has qualities that make it
+          genuinely seem true. We're looking for a rumor that *appears* to be fact.
+      - competing_japanese:
+          - その 噂 は かなり 本当 だ と 思わ れる よ。
+        english: That rumor is quite thought to be true, you know.
+        hint: 「思われる」is a more general passive statement of belief. 「らしい」directly conveys the appearance
+          of truth.
+    scene: Sharing gossip with a friend.
+    register: casual
+    setting: friendly
+    nuance: 「本当らしい」implies that the rumor has qualities that make it *seem* genuinely true, aligning with
+      expectations or existing information, rather than just a baseless rumor. 「よ」adds a slight emphasis
+      or conviction.
+  - english: I heard a very characteristic voice from next door.
+    japanese:
+      - 隣 から 彼女 らしい 声 が 聞こえ た。
+      - 隣 から 彼女 らしい 声 が 聞こえ まし た。
+      - 隣 から 彼女 らしい 声 が 聞こえ て き た。
+      - 隣 から 彼女 らしい 声 が 聞こえ て き まし た。
+    english_literally: From next door, her-like voice was heard.
+    competing_grammar:
+      - competing_japanese:
+          - 隣 から 彼女 みたい な 声 が 聞こえ た。
+        english: I heard a voice like hers from next door.
+        hint: 「みたい」could mean it sounded similar but might not be her. 「らしい」means it was distinctly and
+          typically her voice. We're looking for her specific, typical voice.
+      - competing_japanese:
+          - 隣 から 彼女 の 声 が 聞こえ た。
+        english: I heard her voice from next door.
+        hint: This simply states it *was* her voice. 「らしい」describes the *quality* and *typicality* of
+          the voice.
+    scene: Recognizing a voice from another room.
+    register: casual
+    setting: casual slang
+    nuance: 「彼女らしい声」means a voice that is typical of her, easily identifiable as hers, embodying her unique
+      vocal qualities.
+  - english: As expected of a professional, it was a truly professional job.
+    japanese:
+      - さすが プロ だ ね、プロ らしい 仕事 だっ た。
+      - さすが プロ です ね、プロ らしい 仕事 でし た。
+      - さすが プロ です ね、まさしく プロ らしい 仕事 でし た。
+      - さすが プロ だ ね、まさしく プロ らしい 仕事 だっ た。
+    english_literally: As expected professional, it was professional-like work.
+    competing_grammar:
+      - competing_japanese:
+          - さすが プロ だ ね、プロ みたい な 仕事 だっ た。
+        english: As expected of a professional, it was work like a professional.
+        hint: 「みたい」is a general comparison. 「らしい」means it embodied the high standards typical of a professional.
+          We're looking for work that *is* typical of a professional.
+      - competing_japanese:
+          - さすが プロ だ ね、プロ の 仕事 だっ た。
+        english: As expected of a professional, it was a professional's work.
+        hint: This states ownership. 「らしい」describes the *quality* and *typicality* of the work as being
+          professional.
+    scene: Appreciating someone's high-quality work.
+    register: casual
+    setting: supportive
+    nuance: 「プロらしい仕事」means the work genuinely reflects the high standards and expertise typical of a professional.
+  - english: You're an adult, so you should act like one.
+    japanese:
+      - 大人 な ん だ から、もっと 大人 らしい 行動 を し なさい。
+      - 大人 な ん だ から、もっと 大人 らしい 行動 を し ましょう。
+      - 大人 な ん だ から、もっと 大人 らしい 行動 を する べき だ。
+      - 大人 な ん だ から、もっと 大人 らしい 行動 を する べき です。
+    english_literally: Since you are an adult, more adult-like behavior please do.
+    competing_grammar:
+      - competing_japanese:
+          - 大人 な ん だ から、もっと 大人 みたい な 行動 を し なさい。
+        english: You're an adult, so you should act like an adult.
+        hint: 「みたい」is a weaker comparison. 「らしい」implies acting in a manner truly befitting an adult. We're
+          looking for expected adult behavior.
+      - competing_japanese:
+          - 大人 な ん だ から、もっと 大人 っぽい 行動 を し なさい。
+        english: You're an adult, so you should act adult-ish.
+        hint: 「っぽい」can sometimes imply an immature or superficial imitation of adult behavior. 「らしい」emphasizes
+          genuine maturity.
+    scene: A parent scolding a grown child.
+    register: semi-formal
+    setting: serious
+    nuance: 「大人らしい行動」implies behavior that is mature, responsible, and befitting of an adult, based on
+      societal expectations.
+  - english: I heard a truly painful cry.
+    japanese:
+      - 本当 に 痛い らしい 叫び声 が 聞こえ た。
+      - 本当 に 痛い らしい 叫び声 が 聞こえ まし た。
+      - 本当 に 痛い らしい 叫び声 だっ た。
+      - 本当 に 痛い らしい 叫び声 でし た。
+    english_literally: A truly painful-like scream was heard.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に 痛い よう な 叫び声 が 聞こえ た。
+        english: I heard a scream that seemed truly painful.
+        hint: 「ような」is more about sensory impression. 「らしい」implies the scream had the typical characteristics
+          of one caused by genuine pain. We're looking for a scream that sounds *genuinely* painful.
+      - competing_japanese:
+          - 本当 に 痛 そう な 叫び声 が 聞こえ た。
+        english: I heard a scream that looked painful.
+        hint: 「そう」is based on direct appearance. 「らしい」is based on the sound itself conveying genuine pain.
+          We're looking for a cry that *sounds* painful.
+    scene: Witnessing an accident.
+    register: casual
+    setting: serious
+    nuance: 「痛いらしい」implies that the scream sounded genuinely indicative of pain, fitting the typical expression
+      of someone in agony.
+post_example_writeup: Understanding the subtle differences between 「らしい」and similar expressions like 「みたい」,
+  「ようだ」, and 「っぽい」is key to accurate and natural Japanese. While all can convey resemblance, 「らしい」is specifically
+  about embodying the characteristic qualities of the noun it follows, making it a powerful tool for nuanced
+  descriptions. Pay close attention to context and the specific qualities you want to emphasize to choose
+  the most appropriate expression.

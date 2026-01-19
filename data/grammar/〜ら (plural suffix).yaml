@@ -1,0 +1,269 @@
+grammar_point: 〜ら (plural suffix)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Verb-dictionary]べき・べきではない (should・should not)'
+  - '[Verb-stem]なさい (polite imperative)'
+  - 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - ある (to exist, inanimate・to have)
+  - かける・かけ (in process・incomplete・on the verge)
+  - から (from)
+  - ちゃんと・きちんと (properly・neatly)
+  - どこ (where)
+  - もうすぐ (very soon・almost there)
+  - ものと思っていた (was under the impression that)
+  - 上 (from the standpoint of)
+  - 久しぶりに (for the first time in a long time・after a long absence)
+  - 最初 (first・beginning)
+  - 活用する (to make practical use of)
+meaning: We, Them, They, These, Those
+meaning_warning: Spoken casual; may be considered rude, especially when referring to people.
+pronunciation:
+  katakana: プロナウン+ラ
+  romaji: puronaun+ra
+formation:
+  Pronoun + ら: Indicates a plural form of the pronoun. Can sometimes imply dismissal or casualness.
+jlpt: N4
+etymology: The suffix 「ら」 comes from the kanji 「等」, which means "etc." or "and so on." This origin gives
+  「ら」 the nuance of indicating 'more than one' of something, similar to a pluralizing suffix.
+writeup: The suffix 「ら」 is attached to pronouns to indicate plurality. It originates from the kanji 「等」,
+  carrying a meaning similar to "etc." or "and so on." Because of this etymology, 「ら」 suggests that there
+  is more than one of the pronoun being referred to. For example, 「彼ら」 (karera) means "they" (masculine
+  or mixed group), 「彼女ら」 (kanojora) means "they" (feminine), 「これら」 (korera) means "these", and 「それら」 (sorera)
+  means "those". However, it's crucial to be aware that 「ら」 can sometimes be perceived as rude or dismissive,
+  especially when used to refer to people. This is because its literal meaning of "etc." or "and so on"
+  can imply a lack of individual attention or respect for the people being referred to. For this reason,
+  it is generally recommended to avoid using 「ら」 for people unless the context is very casual or informal,
+  or if a slightly dismissive tone is intended. In many situations, especially when referring to people,
+  「達」 (tachi) is a more appropriate and polite alternative. 「達」 is commonly used with pronouns like 「私」
+  (watashi) to form 「私達」 (watashitachi - we), or with names like 「田中さん」 (Tanaka-san) to form 「田中さん達」 (Tanaka-san-tachi
+  - Mr./Ms. Tanaka and others). 「ら」 is more commonly encountered with pronouns like 「彼」 (kare - he/they),
+  「彼女」 (kanojo - she/they), 「俺」 (ore - I, masculine casual), 「君」 (kimi - you, casual), and 「奴」 (yatsu
+  - guy/thing, derogatory/very casual). It is also frequently used with demonstratives like 「これ」 (kore
+  - this), 「それ」 (sore - that), and 「あれ」 (are - that over there) to form 「これら」, 「それら」, 「あれら」, which refer
+  to plural objects or concepts.
+false_friends:
+  - term: 達
+    meaning: Plural suffix, indicates people
+    kind: similar expression
+    nuance: 「達」 is generally considered more polite and appropriate for referring to groups of people
+      than 「ら」.
+    grammar_point: <suggest>:〜達 (plural suffix)
+  - term: ども
+    meaning: Plural suffix (humble or derogatory)
+    kind: similar expression
+    nuance: Unlike 「ら」, 「ども」 is used to denote humility (e.g., 私ども - 'we,' humble) or, more commonly,
+      to express contempt or a derogatory view of a group of people (e.g., 子供ども - 'kids,' often with a
+      slight negative connotation; 奴ども - 'those guys,' derogatory).
+    grammar_point: <suggest>:〜ども (plural suffix)
+post_false_friends_writeup: While both 「ら」 and 「達」 indicate plurality, 「達」 is generally preferred when
+  referring to people, especially in more formal contexts. 「ら」 can sometimes sound dismissive or overly
+  casual, so it's best to use it with caution. Furthermore, 「ども」 is another plural suffix that carries
+  strong contextual and social nuances, either of humility when referring to oneself or one's group (e.g.,
+  私ども) or a highly derogatory tone when referring to others (e.g., 奴ども). Understanding these nuances is
+  crucial for appropriate usage.
+examples:
+  - english: I've already read all of these books on the desk.
+    japanese:
+      - 机 の 上 に ある {これ ら} の 本 は 全て 読ん で しまっ た。
+      - 机 の 上 に ある {これ ら} の 本 は 全て 読ん で しまい まし た。
+      - 机 上 の {これ ら} の 本 は 全て 読了 し まし た。
+    english_literally: Books that are on top of the desk, all of these, I have already finished reading.
+    competing_grammar:
+      - competing_japanese:
+          - 机 の 上 に ある {この} 本 は 全て 読ん で しまっ た。
+        english: I've already read all of this book on the desk.
+        hint: The original sentence explicitly refers to 'these books' (plural). This competing example
+          uses 'this book' (singular). We're looking for a plural reference.
+    scene: A student tells their friend about their reading progress.
+    register: casual
+    setting: informative
+    nuance: 「これら」 explicitly pluralizes the objects (books) on the desk, indicating a collection. The
+      overall tone is casual, suitable for a conversation between friends.
+  - english: They didn't do their work.
+    japanese:
+      - '{彼 ら} は 自分 たち の 仕事 を し なかっ た。'
+      - '{彼 ら} は 自分 たち の 仕事 を し ませ ん でし た。'
+      - '{彼 ら} は 自己 の 業務 を 怠っ た。'
+    english_literally: As for them, they did not do their own work.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 {達} は 自分 {たち} の 仕事 を し なかっ た。
+        english: Those people didn't do their work.
+        hint: While 「あの人達」 is a valid way to refer to 'they', 「彼ら」 specifically uses the third-person
+          pronoun for 'they', which is often used in a slightly less formal but still generally acceptable
+          context. We're looking for the more direct pronoun usage.
+    scene: A colleague is complaining to another colleague about a group of coworkers.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: 「彼ら」 is a standard plural form for third-person male or mixed groups. The use of 「自分たち」 (their
+      own) further emphasizes the responsibility lying with that group.
+  - english: Hey, you guys, straighten up!
+    japanese:
+      - おい、{君 ら}、もっと しっかり し なさい。
+      - おい、{君 ら}、しっかり しろ よ！
+      - おい、{君 ら}、もっと しっかり し て くれ よ。
+    english_literally: Hey, you guys, straighten up more.
+    competing_grammar:
+      - competing_japanese:
+          - おい、君 {たち}、もっと しっかり し なさい。
+        english: Hey, you guys, straighten up!
+        hint: 「君ら」 is a more direct or rough way to address a group of subordinates or peers compared
+          to 「君たち」, fitting a coach's direct instruction during practice. We're looking for the more forceful
+          'you guys'.
+    scene: A coach is speaking to their team during practice.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「君ら」 is a very casual, often male-used form for "you all" or "you guys," implying familiarity
+      or slight exasperation. 「しなさい」 is an imperative form often used by someone in a position of authority
+      towards those below them.
+  - english: I thought their plan would fail from the start.
+    japanese:
+      - '{奴 ら} の 計画 は 初め から 失敗 する と 思っ て い た。'
+      - '{奴 ら} の 計画 は 初め から 失敗 する と 思っ て おり まし た。'
+      - '{奴 ら} の 計画 は 最初 から ダメ だ と 思っ て た ぜ。'
+    english_literally: As for their plan, I thought it would fail from the beginning.
+    competing_grammar:
+      - competing_japanese:
+          - '{彼 ら} の 計画 は 初め から 失敗 する と 思っ て い た。'
+        english: I thought their plan would fail from the start.
+        hint: 「奴ら」 conveys a strong sense of disdain or contempt for the group, which aligns with a cynical
+          detective's view of criminals. 「彼ら」 would be too neutral. We're looking for the more dismissive
+          tone.
+    scene: A cynical detective discussing a criminal group's latest scheme.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: 「奴ら」 (yatsura) is a derogatory or highly informal plural pronoun, implying contempt or a dismissive
+      attitude. It is used here to express the speaker's negative view of "their" plan.
+  - english: We should learn from past failures and make use of them in the future.
+    japanese:
+      - 過去 の 失敗 から 学び、{それ ら} を 将来 に 生かす べき だ。
+      - 過去 の 失敗 から 学び、{それ ら} を 将来 に 生かす べき です。
+      - 過去 の 失敗 より 訓戒 を 得、{それ ら} を 将来 へ と 活用 す べし。
+    english_literally: We should learn from past failures and make use of those in the future.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 の 失敗 から 学び、{その 失敗} を 将来 に 生かす べき だ。
+        english: We should learn from past failures and make use of those failures in the future.
+        hint: 「それら」 efficiently refers back to "past failures" as a plural concept without repeating the
+          noun, making the sentence more concise. We're looking for a concise, pronoun-based reference.
+    scene: A business consultant advising a company on strategy.
+    register: formal
+    setting: professional
+    nuance: 「それら」 is used here to refer to abstract concepts (past failures) in a plural sense, emphasizing
+      the comprehensive nature of learning from all such instances. The formal tone of the sentence is
+      established by 「べきだ」 (should).
+  - english: Those old buildings will all be demolished soon.
+    japanese:
+      - 古い 建物、{あれ ら} は もう すぐ 全部 取り壊さ れる だろ う。
+      - 古い 建物、{あれ ら} は もう すぐ 全部 取り壊さ れる でしょ う。
+      - 古い 建物、{あれ ら} は もう すぐ 全て 取り壊さ れ ます。
+    english_literally: Old buildings, those will all be demolished soon.
+    competing_grammar:
+      - competing_japanese:
+          - 古い 建物、{それ ら} は もう すぐ 全部 取り壊さ れる だろ う。
+        english: Those old buildings (near you/me) will all be demolished soon.
+        hint: 「あれら」 refers to things conceptually or physically distant from both speaker and listener,
+          while 「それら」 refers to things closer to the listener or speaker's topic. We're looking for distant
+          objects.
+    scene: A city planner discussing urban redevelopment plans for a distant part of the city.
+    register: semi-formal
+    setting: informative
+    nuance: 「あれら」 points to a group of buildings visually distant or conceptually set apart from the immediate
+      context of the conversation. The sentence implies a professional, slightly detached observation
+      typical of someone in urban planning.
+  - english: All of those facts support our hypothesis.
+    japanese:
+      - '{それ ら} の 事実 は 全て 我々 の 仮説 を 裏付け て い ます。'
+      - '{それ ら} の 事実 は 全て 我々 の 仮説 を 裏付ける もの です。'
+      - '{それ ら} の 事実 が 全て 我々 の 仮説 を 裏付け て いる。'
+    english_literally: Those facts, all of them, support our hypothesis.
+    competing_grammar:
+      - competing_japanese:
+          - '{これ ら} の 事実 は 全て 我々 の 仮説 を 裏付け て い ます。'
+        english: All of these facts support our hypothesis.
+        hint: 「それら」 refers to facts that have already been mentioned or are conceptually removed from
+          the immediate present, often used when referring to evidence gathered or presented by others.
+          「これら」 would refer to facts immediately at hand or about to be introduced by the speaker. We're
+          looking for facts previously discussed.
+    scene: A researcher presenting findings at an academic conference, referring to data discussed in
+      previous slides.
+    register: formal
+    setting: academic
+    nuance: 「それら」 refers to a collection of previously mentioned facts, typically in a formal, academic
+      discussion. The use of 「裏付けています」 (supports) and the polite 「ます」 ending reinforce the formal academic
+      setting.
+  - english: I just met them yesterday after a long time.
+    japanese:
+      - 彼女 {ら} と は 昨日 久し ぶり に 会っ た ばかり な の。
+      - 彼女 {ら} と は 昨日 久し ぶり に 会い まし た ばかり な の。
+      - 彼女 {ら} と は 昨日 久々 に 会っ た ばかり な ん だ。
+    english_literally: As for them (female), just yesterday after a long time, I met them.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 {たち} と は 昨日 久し ぶり に 会っ た ばかり な の。
+        english: I just met them yesterday after a long time.
+        hint: While 「彼女たち」 is common, 「彼女ら」 can be used by female speakers in a very casual, intimate
+          context to refer to a group of other females, implying a close relationship or a slightly more
+          informal tone. We're looking for the slightly more informal option.
+    scene: A woman casually telling her friend about reuniting with her female colleagues.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: 「彼女ら」 is a casual way for a female speaker to refer to a group of females. The sentence-final
+      particle 「なの」 further reinforces the casual, explanatory tone common among friends.
+  - english: You guys, did you do your homework properly?
+    japanese:
+      - '{お前 ら}、ちゃんと 宿題 やっ た の か？'
+      - '{お前 ら}、ちゃんと 宿題 やれ よ！'
+      - '{お前 ら}、宿題 ちゃん と やっ た か？'
+    english_literally: You guys, did you properly do your homework?
+    competing_grammar:
+      - competing_japanese:
+          - お前 {たち}、ちゃんと 宿題 やっ た の か？
+        english: You guys, did you do your homework properly?
+        hint: 「お前ら」 is a more direct, sometimes stern or condescending way for an older male to address
+          younger people, fitting a father's tone when questioning his children about homework, compared
+          to the slightly softer 「お前たち」. We're looking for the more impactful, stern address.
+    scene: A strict father addressing his children after school.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「お前ら」 is a highly informal, often stern or condescending male speech form for "you all." The
+      direct questioning with 「やったのか？」 emphasizes the father's expectation and scrutiny.
+  - english: We've got to support each other and do our best.
+    japanese:
+      - '{僕 ら} は 互い に 支え合っ て、頑張る しか ない よ。'
+      - '{僕 ら} は 互い に 支え合っ て 頑張る しか ない な。'
+      - '{僕 ら} は 互い に 支え合っ て、頑張る ぜ！'
+    english_literally: As for us, supporting each other, we have no choice but to do our best.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {たち} は 互い に 支え合っ て、頑張る しか ない です よ。
+        english: We (more general) have to support each other and do our best.
+        hint: 「僕ら」 is a masculine and informal way to say 'we,' emphasizing camaraderie among male peers.
+          「私たち」 is a more general and polite 'we'. We're looking for a casual masculine group address.
+      - competing_japanese:
+          - 俺 {たち} は 互い に 支え合っ て、頑張る しか ない ぜ。
+        english: We (rougher) have to support each other and do our best!
+        hint: 「僕ら」 is casual masculine, but 「俺たち」 is even rougher and more assertive. We're looking for
+          a friendly, encouraging male tone, not a rougher one.
+    scene: Two male teammates encouraging each other before a big game, emphasizing their shared effort.
+    register: casual
+    setting: inspirational
+    speaker_gender: male
+    nuance: 「僕ら」 highlights camaraderie among male peers, common in sports or close friendships. The phrase
+      「頑張るしかないよ」 with the sentence-ending particle 「よ」 reinforces the shared determination and encouragement
+      in a masculine, casual tone.
+post_example_writeup: When using 「ら」, always consider the context and your relationship with the people
+  you're talking about or to. In many cases, especially when referring to people, 「達」 is a safer and more
+  respectful option. Remember that suffixes like 「ら」 and 「ども」 carry strong contextual and social nuances,
+  requiring careful consideration of your audience and the desired tone.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ら

@@ -1,0 +1,503 @@
+grammar_point: どうせ (anyway・inevitably)
+learn_before:
+  - てくれない・てもらえない (indirect request)
+meaning: Anyhow, at any rate, in any case, I have no doubt that, probably
+pronunciation:
+  katakana: ドウセ
+  romaji: dōse
+formation:
+  どうせ + [statement about an inevitable outcome]: Expresses the speaker's feeling that a certain outcome
+    is unavoidable, regardless of actions taken.
+  どうせ + [conditional (e.g., なら, ならば)] + [statement of resignation or 'might as well' action]: Suggests
+    that since an outcome is inevitable, one might as well act in a certain way, often implying a resigned
+    acceptance and making the best of a situation.
+  どうせ + [negative statement]: Emphasizes the speaker's strong conviction that something will not happen,
+    often with a dismissive or pessimistic tone.
+  どうせ + [question form or speculative statement]: Used rhetorically to question the point of something,
+    implying a predetermined negative outcome or futility.
+jlpt: N2
+etymology: The grammar structure 「どうせ」 comes from a combination of 「どう」 (how) and the imperative form
+  of 「する」, which is 「せよ」. In this way, it emphasizes that no matter "how" something is done, the result
+  cannot be changed, conveying a sense of futility or inevitability.
+writeup: 「どうせ」 is an adverb used in Japanese to express that a particular state or condition (A) will
+  result in (B). Usually, there is no way to stop (B) from happening, and it is considered a natural consequence
+  of (A). In English, this translates closely with phrases like "at any rate" or "in any case."Being an
+  adverb, 「どうせ」 most often appears at the beginning of sentences, before going on to describe the inevitable
+  situation. 「どうせ」 often carries a nuance of frustration or resignation that (A) cannot be changed. In
+  these cases, it is often paired with other grammar structures such as 「なら」 or 「だから」. This shows that
+  if (A) cannot be changed, then (B) is a good idea. This usage translates similarly to "if (A), you might
+  as well (B)."While often conveying a pessimistic outlook, 「どうせ」 can also be used in a more neutral or
+  even practical sense, indicating that since something is inevitable, one might as well proceed in a
+  certain way. The nuance largely depends on the context and the speaker's tone.
+false_friends:
+  - term: 何しろ
+    meaning: no wonder, after all, in fact, because, at any rate
+    kind: similar expression
+    nuance: Unlike 「どうせ」, 「何しろ」 often provides a reason or explanation for a situation, rather than an
+      acceptance of an inevitable, often negative, outcome. It suggests 'for this reason, naturally...'
+    grammar_point: 何しろ (anyway・after all)
+  - term: 何といっても
+    meaning: by any account, all the same, no doubt
+    kind: similar expression
+    nuance: 「何といっても」 emphasizes a particular quality or fact as being the most important or undeniable,
+      while 「どうせ」 focuses on the futility of changing a situation or the inevitability of an outcome.
+      It's more about 'after all, the most important thing is...'
+    grammar_point: 何といっても (unquestionably)
+  - term: という のは 事実だ
+    meaning: It is a fact that ~, There is no doubt that
+    kind: similar expression
+    nuance: While both express certainty, 「〜というのは事実だ」 states a verifiable fact objectively. 「どうせ」, however,
+      carries a subjective nuance of resignation or a strong, often pessimistic, conviction about an unchangeable
+      situation, rather than a mere factual statement.
+    grammar_point: という のは 事実だ (it is a fact that)
+  - term: どうにも〜ない
+    meaning: Cannot ~ by any means; no matter how hard ~ try, ~ cannot ~; there is no way to ~; cannot
+      do ~ at all
+    kind: similar expression
+    nuance: While both express a sense of impossibility or futility, 「どうにも〜ない」 emphasizes an inability
+      to change a situation despite effort or desire, often focusing on the lack of means or recourse.
+      「どうせ」, however, conveys a resigned acceptance that an outcome will inevitably occur regardless of
+      what is done, often implying that effort is pointless from the outset.
+    grammar_point: どうにも〜ない (no way to ~)
+  - term: に決まっている
+    meaning: It is surely the case; It is bound to be; It is certainly true.
+    kind: similar expression
+    nuance: 「に決まっている」 expresses a strong, objective certainty that something is true or will happen. In
+      contrast, 「どうせ」 conveys a subjective, often pessimistic, inevitability, suggesting resignation rather
+      than objective fact. With 「どうせ」, the speaker might still act, but without hope.
+    grammar_point: に決まっている (surely is)
+post_false_friends_writeup: While 「どうせ」, 「何しろ」, 「何といっても」, 「～というのは事実だ」, and 「に決まっている」 can all convey certainty
+  or a conclusion, their nuances differ significantly. 「どうせ」 expresses a sense of inevitability and often
+  resignation, particularly when the outcome is undesirable, implying futility of effort. 「何しろ」 provides
+  a reason or context that explains a situation, often with a sense of 'no wonder'. 「何といっても」 highlights
+  an undeniable or most significant aspect. 「～というのは事実だ」 is a straightforward statement of objective fact.
+  Finally, 「に決まっている」 asserts a strong, objective certainty about an outcome, without necessarily implying
+  the futility or resignation found in 「どうせ」.
+examples:
+  - english: He's going to be late again anyway.
+    japanese:
+      - '{どうせ} また 遅刻 する ん だろう。'
+      - '{どうせ} また 遅刻 だ よ。'
+      - '{どうせ} また 遅刻 する でしょう。'
+      - '{どうせ} また 遅刻 する に 決まっ て いる。'
+    english_literally: Anyway, again, (he) will be late, it's likely.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は また 遅刻 する {だろう}。
+        english: He will probably be late again.
+        hint: This is a simple prediction. We're looking for an expression that conveys a sense of resignation
+          or inevitability that he will be late again.
+      - competing_japanese:
+          - '{何しろ} また 遅刻 する ん だろう。'
+        english: After all, he'll be late again.
+        hint: 「何しろ」 provides a reason or explanation, implying 'no wonder'. We're looking for a word that
+          expresses an inevitable, often resigned, outcome.
+      - competing_japanese:
+          - 彼 が また 遅刻 する {と いう の は 事実 だ}。
+        english: It is a fact that he will be late again.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for an subjective sense of inevitability
+          or resignation.
+      - competing_japanese:
+          - 彼 は また 遅刻 する {に 決まっ て いる}。
+        english: He is surely going to be late again.
+        hint: 「に決まっている」 states strong objective certainty. We're looking for an expression that conveys
+          a subjective feeling of resignation about an inevitable, often negative, outcome.
+    scene: A colleague commenting on another colleague's recurring lack of punctuality.
+    register: casual
+    setting: serious
+    nuance: The use of 「どうせ」 here expresses the speaker's resignation and certainty that the person will
+      be late again, indicating a pattern of behavior that they view as unavoidable. The phrase 「～だろう」
+      reinforces this assumption. This is an example of 'どうせ + [statement about an inevitable outcome]'
+      formation, implying a resigned acceptance of a negative pattern that is likely to continue, making
+      efforts to change it feel pointless from the speaker's perspective. It often carries a shade of
+      mild frustration or cynicism about the situation being beyond one's influence, leading to a predetermined
+      unfavorable outcome. This nuance sets it apart from simple predictions or factual statements, as
+      it conveys a more personal and often negative expectation of inevitability. The choice of 「だろう」
+      rather than a stronger assertion hints at a prediction colored by past experiences and a lack of
+      belief in change. The addition of 「だよ」 in another Japanese variant further emphasizes this personal,
+      slightly weary conviction. The context of a colleague commenting on another's punctuality typically
+      suggests a recurring, annoying behavior, which aligns well with the resigned nuance of 「どうせ」. The
+      speaker is not just stating a fact but expressing their expectation that the pattern will persist.
+      The multiple Japanese translations show varying degrees of politeness and assertiveness for this
+      type of resigned prediction.
+    etymology: The phrase 「遅刻 する」 (chikoku suru) meaning "to be late" is a common compound verb in Japanese,
+      combining the noun for "lateness" with the verb "to do."
+  - english: Anyway, no one is going to pay attention to someone like me.
+    japanese:
+      - '{どうせ} 私 なんて 誰 に も 相手 に さ れ ない よ。'
+      - '{どうせ} 私 なんて 誰 に も 相手 に さ れ っこ ない よ。'
+      - '{どうせ} 私 は 誰 に も 相手 に さ れ ない よ。'
+      - '{どうせ} 誰 も 相手 に し て くれ ない。'
+    english_literally: Anyway, someone like me, by anyone, will not be paid attention to, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {なんて} 誰 に も 相手 に さ れ ない よ。
+        english: No one is going to pay attention to someone like me.
+        hint: This sentence is a statement of fact or strong belief. We're looking for an expression that
+          emphasizes a resigned feeling of inevitable self-insignificance.
+      - competing_japanese:
+          - '{何しろ} 私 なんて 誰 に も 相手 に さ れ ない よ。'
+        english: After all, no one pays attention to someone like me.
+        hint: 「何しろ」 gives a reason or context for the situation. We're looking for an expression that
+          signifies a resigned belief in an inevitable, often negative, outcome.
+      - competing_japanese:
+          - 私 なんて 誰 に も 相手 に さ れ {ない と いう の は 事実 だ} よ。
+        english: It is a fact that no one pays attention to someone like me.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for a subjective feeling of inevitability
+          and self-deprecation.
+      - competing_japanese:
+          - 私 なんて 誰 に も 相手 に さ れ {ない に 決まっ て いる}。
+        english: No one is surely going to pay attention to someone like me.
+        hint: 「に決まっている」 expresses objective certainty. We're looking for an expression that conveys a
+          subjective feeling of resignation about being ignored.
+    scene: A person feeling ignored and expressing self-deprecating thoughts at a social gathering.
+    register: casual
+    setting: melancholic
+    nuance: 「どうせ」 emphasizes a deep-seated feeling of inevitability regarding one's own perceived insignificance.
+      The addition of 「なんて」 after 「私」 (watashi) further amplifies this self-deprecating sentiment, suggesting
+      that the speaker views themselves as unworthy of attention. This is an example of 'どうせ + [statement
+      about an inevitable outcome]' formation, where the inevitable outcome is a personal feeling of being
+      ignored. The phrase 「相手 に されない」 (aite ni sarenai) is a passive form, literally "not being made an
+      opponent/partner of," which effectively means "to be ignored" or "not paid attention to." The combination
+      with 「なんて」 adds a sense of dismissal or self-deprecation, intensifying the feeling of resignation
+      that one is simply not worth anyone's attention, regardless of what they do. This usage is highly
+      subjective and emotionally charged, indicating a deeply ingrained pessimism or low self-esteem.
+    etymology: The expression 「相手 に される」 (aite ni sareru) means "to be treated as a counterpart/opponent/partner"
+      or "to be attended to." Its negative form 「相手 に されない」 (aite ni sarenai) means "to be ignored" or
+      "not paid attention to."
+  - english: If we're going to buy it anyway, let's go with a well-regarded brand.
+    japanese:
+      - '{どうせ} 買う なら、評判 の いい ブランド に しよう よ。'
+      - '{どうせ} 買う の でし たら、評判 の いい ブランド に し ましょう。'
+      - '{どうせ} 買う ん だ から、評判 の いい ブランド に しよう。'
+      - '{どうせ} 買う こと に なる の なら、評判 の いい ブランド に しよう よ。'
+    english_literally: Anyway, if we buy, let's choose a well-regarded brand, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 買う {なら}、評判 の いい ブランド に しよう よ。
+        english: If we're buying, let's go with a well-regarded brand.
+        hint: This is a simple conditional. We're looking for an expression that implies the action of
+          buying is already inevitable, leading to a 'might as well' decision.
+    scene: Friends discussing a purchase, with one suggesting investing in a better quality item since
+      they're already spending money.
+    register: casual
+    setting: friendly
+    nuance: This usage of 「どうせ」, often combined with 「～なら」, suggests a 'might as well' attitude. Since
+      the action (buying) is inevitable, the speaker proposes making the best of the situation by choosing
+      a high-quality option, here 「評判 の いい ブランド」 (hyōban no ii burando - a well-regarded brand). This
+      example perfectly illustrates the 'どうせ + [conditional (e.g., なら, ならば)] + [statement of resignation
+      or 'might as well' action]' formation. The initial inevitability, 「買う」 (kau - to buy), is accepted,
+      and then the focus shifts to making the most of that accepted situation. The speaker isn't resigned
+      in a pessimistic way, but rather in a pragmatic, forward-looking way. The phrase 「評判 の いい」 (hyōban
+      no ii) means "well-regarded" or "reputable," emphasizing the choice of quality once the decision
+      to buy is made. This practical application of 「どうせ」 often occurs in informal settings among friends
+      or family, where shared circumstances lead to a common-sense resolution. The use of 「～しよう よ」 (shiyou
+      yo) makes it a friendly suggestion, despite the underlying inevitability.
+    etymology: The phrase 「評判 の いい」 (hyōban no ii) is a common way to describe something that has a good
+      reputation, combining the noun for "reputation" (評判) with the particle "no" (の) and the adjective
+      "good" (いい).
+  - english: It won't be resolved in the end anyway, so let's just give up.
+    japanese:
+      - '{どうせ} 最後 まで 解決 し ない ん だ から、もう 諦めよう。'
+      - '{どうせ} 解決 し ない、諦めよう。'
+      - '{どうせ} 最後 まで 解決 する こと は ない の だ から、もう 諦め ましょう。'
+      - '{どうせ} 最後 まで 解決 し ない。もう 諦める しか ない。'
+    english_literally: Anyway, until the end, it won't be resolved, that's why, already, let's give up.
+    competing_grammar:
+      - competing_japanese:
+          - 最後 まで 解決 し {ない ん だ から}、もう 諦めよう。
+        english: Since it won't be resolved in the end, let's just give up.
+        hint: This states a reason and a conclusion. We're looking for an expression that conveys a stronger
+          sense of resignation that the problem is inherently and unavoidably destined to fail.
+      - competing_japanese:
+          - '{何しろ} 最後 まで 解決 し ない ん だ から、もう 諦めよう。'
+        english: After all, it's not resolved in the end, so let's just give up.
+        hint: 「何しろ」 gives a reason for the conclusion. We're looking for an expression that conveys a
+          sense of resignation that the outcome is already predetermined, regardless of effort.
+      - competing_japanese:
+          - 最後 まで 解決 し {ない と いう の は 事実 だ} から、もう 諦めよう。
+        english: It is a fact that it won't be resolved in the end, so let's just give up.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for a subjective, often pessimistic,
+          conviction about an unchangeable situation.
+      - competing_japanese:
+          - 最後 まで 解決 し {ない に 決まっ て いる} から、もう 諦めよう。
+        english: Since it is surely not going to be resolved in the end, let's just give up.
+        hint: 「に決まっている」 implies objective certainty. We're looking for an expression that conveys a subjective
+          feeling of futility and resignation about an outcome.
+    scene: Team members facing a seemingly insurmountable problem, leading to a sense of defeat.
+    register: casual
+    setting: pessimistic
+    nuance: This sentence conveys a strong sense of resignation and futility. 「どうせ」 here implies that
+      no matter what efforts are made, the problem 「解決 しない」 (kaiketsu shinai - won't be resolved), leading
+      to the conclusion that it's better to 「諦めよう」 (akirameyou - give up). This falls under the 'どうせ +
+      [statement about an inevitable outcome]' formation, specifically highlighting a negative and irreversible
+      outcome. The phrase 「最後 まで 解決 しない」 (saigo made kaiketsu shinai) implies a problem that will remain
+      unsolved to the very end, intensifying the feeling of futility. The causal connector 「ん だ から」 (n
+      dakara) strengthens the link between the inevitable negative outcome and the proposed action of
+      giving up. This usage often reflects a sense of exhaustion or powerlessness in the face of a persistent
+      challenge, making any further effort seem pointless. The various Japanese forms offer different
+      levels of casualness and emphasis, with 「諦める しか ない」 (akirameru shika nai) expressing a strong sense
+      of having "no choice but to give up."
+    etymology: The verb 「諦める」 (akirameru) means "to give up," "to abandon," or "to resign oneself." It
+      combines the kanji for "clarify" (諦) and "see" (め), suggesting the act of seeing clearly that something
+      is beyond one's control and letting go.
+  - english: This plan will probably fail anyway.
+    japanese:
+      - この 計画 は、{どうせ} 失敗 する だろう。
+      - '{どうせ} この 計画 は 失敗 する よ。'
+      - '{どうせ} この 計画 は 失敗 する に 違い ない。'
+      - '{どうせ} 失敗 する だろう、この 計画 は。'
+    english_literally: This plan, anyway, will probably fail.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は 失敗 する {だろう}。
+        english: This plan will probably fail.
+        hint: This is a simple prediction. We're looking for an expression that conveys a strong, resigned
+          conviction about the inevitable failure of the plan.
+      - competing_japanese:
+          - '{何しろ} この 計画 は 失敗 する だろう。'
+        english: After all, this plan will probably fail.
+        hint: 「何しろ」 provides a reason or explanation. We're looking for an expression that suggests an
+          inevitable, often negative, outcome without necessarily providing a concrete reason.
+      - competing_japanese:
+          - この 計画 が 失敗 する {と いう の は 事実 だ} ろう。
+        english: It is probably a fact that this plan will fail.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for a subjective, resigned conviction
+          about the outcome.
+      - competing_japanese:
+          - この 計画 は 失敗 する {に 決まっ て いる}。
+        english: This plan is surely going to fail.
+        hint: 「に決まっている」 states strong objective certainty. We're looking for an expression that conveys
+          a subjective, resigned conviction about the inevitability of failure.
+    scene: Colleagues discussing a risky project with low chances of success, and one expressing a fatalistic
+      view.
+    register: semi-formal
+    setting: serious
+    nuance: Here, 「どうせ」 signals a strong belief in the inevitable failure of the plan 「失敗 する」 (shippai
+      suru), implying that the speaker sees any effort as pointless. The use of 「だろう」 softens the statement
+      slightly to a strong conjecture rather than an absolute fact. This is another instance of the 'どうせ
+      + [statement about an inevitable outcome]' formation. The speaker's use of 「どうせ」 communicates a
+      deep-seated pessimism regarding the project's success, suggesting that they view any effort as futile,
+      as failure is preordained. While the phrase 「だろう」 indicates probability, the preceding 「どうせ」 elevates
+      this from a mere prediction to a resigned conviction. The phrase 「に 違い ない」 (ni chigai nai) further
+      strengthens this sense of inevitability, sometimes used interchangeably with 「だろう」 after 「どうせ」 to
+      convey absolute certainty from the speaker's perspective. The scene in a professional setting adds
+      a layer of quiet cynicism often found when individuals feel powerless over outcomes. The varied
+      Japanese options provide different degrees of certainty and casualness, but all retain the core
+      nuance of resigned inevitability.
+    etymology: The term 「計画」 (keikaku) meaning "plan" or "project" is a common noun in business and daily
+      life, combining kanji for "measure/gauge" (計) and "to make/draw" (画).
+  - english: No matter what I say, he probably won't listen anyway.
+    japanese:
+      - 私 が 何 を 言っ て も、{どうせ} 聞く 耳 を 持た ない だろう。
+      - 私 が 何 を 言っ て も、{どうせ} 聞か ない よ。
+      - 私 が 何 を 申し上げ て も、{どうせ} お 聞き いただけ ない でしょう。
+      - 私 が 何 を 言っ た ところ で、{どうせ} 無駄 だ。
+    english_literally: Even if I say anything, anyway, he probably won't have ears to listen.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 何 を 言っ {て も}、聞く 耳 を 持た {ない} {だろう}。
+        english: No matter what I say, he probably won't listen.
+        hint: This indicates a lack of receptiveness. We're looking for an expression that conveys a sense
+          of resignation about the futility of one's efforts.
+      - competing_japanese:
+          - '{何しろ} 私 が 何 を 言っ て も、聞く 耳 を 持た ない だろう。'
+        english: After all, no matter what I say, he probably won't listen.
+        hint: 「何しろ」 explains the reason why something is the case. We're looking for a term that expresses
+          the speaker's resignation to an unavoidable, futile outcome.
+      - competing_japanese:
+          - 私 が 何 を 言っ {て も}、彼 が 聞く 耳 を 持た {ない と いう の は 事実 だ} ろう。
+        english: It is probably a fact that no matter what I say, he won't listen.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for a subjective, pessimistic conviction
+          about a lack of receptiveness.
+      - competing_japanese:
+          - 私 が 何 を 言っ {て も}、彼 は 聞く 耳 を 持た {ない に 決まっ て いる}。
+        english: No matter what I say, he is surely not going to listen.
+        hint: 「に決まっている」 states strong objective certainty. We're looking for an expression that conveys
+          a subjective, resigned conviction about a lack of receptiveness.
+    scene: A parent expressing frustration about their rebellious child's unwillingness to heed advice.
+    register: semi-formal
+    setting: melancholic
+    nuance: 「どうせ」 highlights the speaker's resignation to the fact that their words will be ignored, regardless
+      of what they say. The phrase 「聞く 耳 を 持たない」 (kiku mimi o motanai) literally means 'doesn't have ears
+      to listen', a common Japanese idiom for someone who refuses to listen or is unresponsive to advice.
+      This exemplifies the 'どうせ + [statement about an inevitable outcome]' formation, conveying a deep,
+      personal sense of futility when facing an unyielding recipient. The speaker's frustration is palpable,
+      as they anticipate their words being disregarded no matter how they are delivered. The idiom 「聞く
+      耳 を 持たない」 perfectly captures this state of imperviousness. The varying politeness levels in the
+      Japanese translations (from casual 「聞かない よ」 to humble 「お 聞き いただけ ない でしょう」) show how 「どうせ」 can be
+      adapted to different social contexts while retaining its core meaning of resigned certainty about
+      a negative outcome. The final variant 「どうせ 無駄 だ」 (dōse muda da) explicitly states the futility of
+      the effort.
+    etymology: The idiom 「聞く 耳 を 持たない」 (kiku mimi o motanai) literally translates to "does not possess
+      listening ears," emphasizing an intentional refusal or inability to listen or be receptive.
+  - english: Anyway, no one will believe what I say.
+    japanese:
+      - '{どうせ} 私 の 言う こと なんて、誰 も 信じ て くれ ない だろう。'
+      - '{どうせ} 私 の 話 なんか、誰 も 信じ ない。'
+      - 私 の 言う こと なんて、誰 も 信じ て くれ ない よ、{どうせ}。
+      - '{どうせ} 私 の 意見 は、誰 に も 信用 さ れ ない でしょう。'
+    english_literally: Anyway, things I say, no one will believe, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 言う こと {なんて}、誰 も 信じ {て くれ ない} {だろう}。
+        english: No one will believe what I say.
+        hint: This is a statement of belief or expectation. We're looking for an expression that conveys
+          a resigned and fatalistic acceptance of being disbelieved.
+      - competing_japanese:
+          - '{何しろ} 私 の 言う こと なんて、誰 も 信じ て くれ ない だろう。'
+        english: After all, no one will believe what I say.
+        hint: 「何しろ」 gives a reason for the situation. We're looking for an expression that indicates a
+          resigned certainty about an undesirable, inevitable outcome.
+      - competing_japanese:
+          - 私 の 言う こと {なんて}、誰 も 信じ {て くれ ない と いう の は 事実 だ} ろう。
+        english: It is probably a fact that no one will believe what I say.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for a subjective, fatalistic acceptance
+          of an unchangeable situation.
+      - competing_japanese:
+          - 私 の 言う こと {なんて}、誰 も 信じ {て くれ ない に 決まっ て いる}。
+        english: No one is surely going to believe what I say.
+        hint: 「に決まっている」 states strong objective certainty. We're looking for an expression that conveys
+          a subjective, fatalistic acceptance of being disbelieved.
+    scene: A person who has a history of making questionable statements or being doubted by others, expressing
+      their resignation.
+    register: casual
+    setting: pessimistic
+    nuance: Similar to previous examples, 「どうせ」 here expresses a fatalistic acceptance that the speaker's
+      words 「信じて くれない」 (shinjite kurenai - won't be believed). The 「なんて」 after 「言う こと」 (iu koto - what
+      I say) subtly devalues their own statements, reinforcing the sense of inevitable disbelief. This
+      continues the pattern of 'どうせ + [statement about an inevitable outcome],' where the outcome is a
+      deeply personal and negative perception of one's own credibility. The use of 「なんて」 after 「言う こと」
+      or 「話」 (hanashi - story/talk) adds a tone of self-deprecation or dismissiveness, as if the speaker
+      views their own contributions as inherently worthless or unbelievable to others. This reflects a
+      profound sense of resignation, possibly stemming from past experiences of being doubted. The combination
+      of 「どうせ」 with phrases like 「信じて くれない だろう」 (shinjite kurenai darou - probably won't believe me) or
+      「信用 されない でしょう」 (shinyou sarenai deshou - probably won't be trusted) underscores the speaker's expectation
+      that this negative pattern will continue, despite any efforts to gain trust. This nuance highlights
+      a sense of being perpetually misunderstood or disbelieved.
+    etymology: The verb 「信じる」 (shinjiru) means "to believe," and when paired with 「くれる」 (kureru) in 「信じて
+      くれない」, it means "(someone) does not believe (for my benefit)," implying a lack of trust or credibility
+      from others towards the speaker. 「信用 する」 (shinyou suru) means "to trust" or "to have confidence
+      in."
+  - english: Anyway, there's no way I'll win the lottery.
+    japanese:
+      - '{どうせ} 宝くじ なんて 当たる わけ ない よ。'
+      - '{どうせ} 宝くじ は 当たら ない。'
+      - '{どうせ} 宝くじ なんて 当たん ない って。'
+      - '{どうせ} 宝くじ は 無駄 な ん だ よ。'
+    english_literally: Anyway, lottery, there's no way it will hit, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 宝くじ {なんて} 当たる {わけ ない} よ。
+        english: There's no way I'll win the lottery.
+        hint: This is a direct statement of impossibility. We're looking for an expression that shows
+          a resigned acceptance of this impossibility, despite engagement (e.g., buying a ticket).
+      - competing_japanese:
+          - '{何しろ} 宝くじ なんて 当たる わけ ない よ。'
+        english: After all, there's no way I'll win the lottery.
+        hint: 「何しろ」 provides a reason or explanation. We're looking for an expression that shows a resigned
+          certainty about an inevitable, often negative, outcome without requiring a concrete reason.
+      - competing_japanese:
+          - 宝くじ {なんて} 当たる {わけ ない と いう の は 事実 だ} よ。
+        english: It is a fact that there's no way I'll win the lottery.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for a subjective, fatalistic belief
+          about the impossibility of winning.
+      - competing_japanese:
+          - 宝くじ {なんて} 当たる {わけ ない に 決まっ て いる} よ。
+        english: It is surely the case that I won't win the lottery.
+        hint: 「に決まっている」 states strong objective certainty. We're looking for an expression that conveys
+          a subjective, fatalistic belief about the impossibility of winning.
+    scene: Someone buying a lottery ticket while simultaneously expressing a complete lack of hope or
+      expectation of winning.
+    register: casual
+    setting: pessimistic
+    nuance: This example uses 「どうせ」 to convey a strong sense of resignation regarding a desirable but
+      highly improbable outcome, such as winning the lottery 「当たる わけない」 (ataru wakenai - there's no way
+      it will hit/win). It implies that the speaker accepts the low probability as an immutable fact.
+      This is another example of 'どうせ + [statement about an inevitable outcome],' where the speaker's
+      engagement with the action (buying a lottery ticket) is ironically paired with their profound belief
+      in its futility. The phrase 「当たる わけ ない」 (ataru wake nai) is a strong negation, meaning "there's
+      no way it will hit/win." The addition of 「なんて」 after 「宝くじ」 (takarakuji - lottery) adds a touch of
+      disdain or dismissal towards the lottery itself, further emphasizing the speaker's conviction that
+      it's a lost cause. This particular usage of 「どうせ」 captures a common human experience of engaging
+      in an activity while fully expecting a negative or unlikely outcome, highlighting a detached resignation.
+    etymology: The phrase 「当たる わけない」 (ataru wake nai) means "there's no way it will hit" or "it can't
+      possibly be right." 「当たる」 (ataru) can mean "to hit" or "to win (a lottery)," while 「わけない」 (wake
+      nai) is a common way to express impossibility or unlikelihood.
+  - english: Even if I study, I'll fail the exam anyway.
+    japanese:
+      - '{どうせ} 勉強 し て も、試験 は 落ちる。'
+      - '{どうせ} 試験 に 落ちる ん だ から、今更 勉強 し て も 無駄 だ。'
+      - '{どうせ} 落ちる なら、無理 に 勉強 する 必要 ない よ。'
+    english_literally: Anyway, even if I study, the exam will be failed.
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 し {て も}、試験 は 落ちる。
+        english: Even if I study, I'll fail the exam.
+        hint: This is a simple conditional statement about a potential outcome. We're looking for an expression
+          that conveys a sense of resignation that the outcome is inevitable, rendering effort pointless.
+      - competing_japanese:
+          - '{何しろ} 勉強 し て も、試験 は 落ちる。'
+        english: After all, even if I study, I'll fail the exam.
+        hint: 「何しろ」 provides a reason or explanation for a situation. We're looking for an expression
+          that signifies a resigned belief in an inevitable, often negative, outcome without a specific
+          reason.
+      - competing_japanese:
+          - 勉強 し {て も}、試験 は 落ちる {と いう の は 事実 だ}。
+        english: It is a fact that even if I study, I will fail the exam.
+        hint: 「～というのは事実だ」 states an objective fact. We're looking for a subjective feeling of inevitability
+          and futility regarding one's efforts.
+      - competing_japanese:
+          - 勉強 し {て も}、試験 は 落ちる {に 決まっ て いる}。
+        english: Even if I study, the exam is surely going to be failed.
+        hint: 「に決まっている」 states strong objective certainty. We're looking for an expression that conveys
+          a subjective feeling of inevitability and futility regarding one's efforts.
+    scene: A student feeling demotivated before an exam, convinced that studying won't change the outcome.
+    register: casual
+    setting: pessimistic
+    nuance: This example emphasizes the futility of effort when the outcome is perceived as inevitable.
+      The phrase 「勉強 し て も」 (benkyou shite mo - even if I study) highlights the resignation despite potential
+      effort, reinforcing that the speaker believes their efforts will be 「無駄」 (muda - pointless). This
+      is another clear example of 'どうせ + [statement about an inevitable outcome],' specifically conveying
+      a strong sense of futility regarding effort. The structure 「～て も」 (te mo - even if) preceding 「どうせ」
+      reinforces the idea that even applying effort will not change the preordained negative outcome.
+      This nuance is particularly common among students facing difficult exams, where past failures or
+      perceived inability lead to a resigned outlook. The phrase 「無駄 だ」 (muda da - it's useless/pointless)
+      explicitly states the futility, making the speaker's resignation very clear. This expression captures
+      the essence of giving up before even trying, or trying without hope, because the outcome is seen
+      as sealed.
+    etymology: The word 「無駄」 (muda) means "useless," "futile," or "wasteful." It's a common な-adjective/noun
+      used to describe something that produces no benefit or is an unproductive effort.
+  - english: Anyway, if I clean up, it'll just get messy again soon.
+    japanese:
+      - '{どうせ} 片付け て も、すぐ 散らかる から。'
+      - '{どうせ} 片付け て も、すぐ 散らかる でしょう。'
+    english_literally: Anyway, even if I clean up, it will scatter soon, so.
+    competing_grammar:
+      - competing_japanese:
+          - 片付け {て も}、すぐ 散らかる {から}。
+        english: Even if I clean up, it'll just get messy again soon.
+        hint: This is a simple conditional statement about a potential outcome. We're looking for an expression
+          that conveys a sense of resignation that the effort is futile because the mess will inevitably
+          return.
+      - competing_japanese:
+          - きっと 片付け {て も}、すぐ 散らかる {から}。
+        english: Surely even if I clean up, it'll just get messy again soon.
+        hint: 「きっと」 expresses strong certainty. We're looking for an expression that also implies a sense
+          of resignation or futility about the inevitable outcome.
+    scene: A person sighs, looking at their perpetually messy room.
+    register: casual
+    setting: pessimistic
+    nuance: This usage of 「どうせ」 conveys the speaker's resignation and belief in the futility of cleaning,
+      as messiness is seen as an inevitable outcome. The structure 「～ても」 (te mo - even if) further emphasizes
+      that even with effort, the situation won't change. It's a common expression of passive acceptance
+      towards a recurring, undesirable state.
+    etymology: The verb 「散らかる」 (chirakaru) means "to be scattered; to be in disorder; to be messy." It
+      describes the state of things being untidily spread around.
+post_example_writeup: As these examples demonstrate, 「どうせ」 is a versatile adverb for expressing resignation
+  to an inevitable outcome, whether it's an undesired event, a perceived personal failing, or a pragmatic
+  'might as well' scenario. Its distinct nuance lies in its implication that the outcome is predetermined,
+  often rendering further effort pointless from the speaker's perspective. It effectively conveys a sense
+  of futility, acceptance, or cynical prediction across various contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/どうせ

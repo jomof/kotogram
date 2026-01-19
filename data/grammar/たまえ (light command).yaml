@@ -1,0 +1,390 @@
+grammar_point: たまえ (light command)
+learn_before:
+  - こちら (this way, formal)
+  - さ (interjection)
+meaning: To order or firmly request (someone of lower status to do something).
+meaning_warning: This is a commanding expression.
+pronunciation:
+  katakana: タマエ
+  romaji: tamae
+formation:
+  Verb[ます-stem] + たまえ: Creates a light order or command, primarily used by men to someone of lower status.
+jlpt: N2
+etymology: The grammar point 「たまえ」 originates from the verb 「給う」 (tamau), an honorific verb meaning "to
+  give" or "to bestow". Over time, its imperative form evolved into a way to issue commands or requests,
+  primarily from a superior to a subordinate.
+writeup: 'The imperative form 「たまえ」 is derived from the classical verb 「給う」 (tamau), which means "to give"
+  or "to bestow". When attached to the ます-stem of a verb, 「たまえ」 forms a command or a firm request. Although
+  it can sometimes be translated as "please do (A)", it is crucial to understand its specific usage and
+  nuance. Usage Context and Register: 「たまえ」 is a highly formal and somewhat stiff expression. It is almost
+  exclusively used by men when addressing someone of visibly lower status or rank. This hierarchical relationship
+  is typically clear, such as a boss speaking to an employee, a teacher to a student, or an older man
+  to a younger one. While it conveys a command, it is generally less harsh than the plain imperative form
+  (e.g., 「～しろ」 or 「～せよ」) and maintains a certain level of traditional formality. Historical and Literary
+  Use: Historically, 「たまえ」 was also used in more solemn contexts, such as prayers or formal pleas to a
+  higher power or a deity. In modern Japanese, this usage is largely confined to classical literature,
+  religious texts, or dramatic performances, giving it an archaic or literary feel in such instances.'
+false_friends:
+  - term: な
+    meaning: Don't, Do not (Prohibitive)
+    kind: antonym
+    nuance: Unlike 「たまえ」, which is an imperative urging action, 「な」 is a prohibitive expression, telling
+      someone not to do something.
+    grammar_point: な (prohibitive particle)
+  - term: なさい
+    meaning: Do (polite command)
+    kind: similar expression
+    nuance: While both 「たまえ」 and 「～なさい」 are commands given by a superior to a subordinate, 「たまえ」 is generally
+      more formal, often used by older men, and can carry a slightly more authoritative or traditional
+      nuance. 「～なさい」 is generally softer and more common across genders and ages.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: 命令形
+    meaning: Do (plain imperative)
+    kind: similar expression
+    nuance: The plain imperative forms (e.g., 「～しろ」 or 「～せよ」) are much harsher and more direct than 「たまえ」.
+      While 「たまえ」 retains a degree of formality or traditional authority, plain imperatives can sound
+      rude or abrupt if not used in appropriate contexts (e.g., military commands, very angry speech).
+    grammar_point: 命令形 (imperative form)
+  - term: てください
+    meaning: Please do (Polite request)
+    kind: similar expression
+    nuance: 「～てください」 is a polite request that can be used by anyone to anyone, regardless of status, and
+      lacks the authoritative or male-centric nuance of 「たまえ」. It is a general-purpose request form.
+    grammar_point: てください (polite request)
+post_false_friends_writeup: When giving commands or making requests, it is important to choose the appropriate
+  expression based on the speaker's gender, status relative to the listener, and the desired level of
+  formality or directness. 「たまえ」 offers a distinct nuance of male-centric, authoritative instruction,
+  contrasting with the softer 「～なさい」, the prohibitive 「な」, or the very direct plain imperative forms.
+examples:
+  - english: Well then, please step in here.
+    japanese:
+      - さあ まあ、どうぞ こちら へ お 入り {たまえ}。
+      - さあ、どうぞ こちら へ お 入り {たまえ}。
+      - どうぞ、こちら へ お 入り {たまえ}。
+    english_literally: Come, please enter here.
+    competing_grammar:
+      - competing_japanese:
+          - さあ まあ、どうぞ こちら へ お 入り {なさい}。
+        english: Well then, please step in here.
+        hint: While both are commands, 「たまえ」 has a more traditional, male-centric, and slightly more authoritative
+          feel, often implying a clear status difference. 「お入りなさい」 is a general polite command that can
+          be used by anyone to a subordinate or younger person, without the same strong historical nuance.
+          We're looking for a command with a traditional male-centric authority.
+    scene: A male senior executive welcoming a junior employee into his office.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    speaker_age: older
+    nuance: The use of 「お入りたまえ」 by an older male executive to a junior employee indicates a polite but
+      firm instruction, typical of male-centric superior-subordinate interactions. The phrase 「さあ まあ、どうぞ」
+      softens the command, making it sound more inviting than a direct order.
+    etymology: The honorific prefix 「お」 (o-) before 「入り」 (iri, entering) adds politeness, indicating respect
+      for the action or the person to whom the action pertains, despite the commanding nature of 「たまえ」
+      itself. This combination is common in formal directions or invitations where both respect and clear
+      instruction are needed. 「さあ まあ、どうぞ」 is an interjection used to gently urge or invite someone, often
+      implying a slight pause or consideration before action, originating from a combination of the urging
+      particle 「さあ」 and the softening particle 「まあ」, followed by the polite invitation 「どうぞ」 (please).
+  - english: You seem to be hesitating. Please state your frank opinion.
+    japanese:
+      - 何 か 迷っ て いる よう だ ね。率直 な 意見 を 述べ {たまえ}。
+      - 何 か 迷っ て いる よう です ね。率直 な 意見 を 述べ {たまえ}。
+      - 率直 な 意見 を 述べ {たまえ}。
+    english_literally: You seem to be lost. Express your frank opinion.
+    competing_grammar:
+      - competing_japanese:
+          - 何 か 迷っ て いる よう だ ね。率直 な 意見 を {述べろ}。
+        english: You seem to be hesitating. State your frank opinion!
+        hint: The plain imperative 「述べろ」 is much harsher and more direct, almost demanding. 「たまえ」 carries
+          an authoritative tone but with a nuance of guidance or encouragement from a superior, suitable
+          for a professor. We're looking for an authoritative yet encouraging command.
+    scene: A professor addressing a hesitant student during a seminar.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「述べたまえ」 is used by the male professor to encourage the student to speak their mind. While
+      it's an imperative, the context implies an encouragement rather than a harsh command, reflecting
+      the professor's role in guiding discussion.
+    etymology: 「率直」 (socchoku) means 'frank' or 'candid', stemming from 「率」 (sotsu/ritsu, leading/rate)
+      and 「直」 (choku/jiki, straight/direct). Its usage here highlights the desire for unadulterated truth.
+      「意見」 (iken) means 'opinion', formed from 「意」 (i, meaning/mind) and 「見」 (ken, view/look). The combination
+      「率直な意見」 is a common collocation to express a direct and honest viewpoint. The phrase 「～ようだな」 (you
+      da na) implies 'it seems that ~', with 「よう」 indicating appearance or state, 「だ」 being the copula,
+      and 「な」 acting as a sentence-final particle to express mild assertion or agreement-seeking, common
+      in conversational Japanese to soften a direct statement or prompt a response. This combination of
+      particles and verb forms creates a nuanced tone of observation followed by encouragement.
+  - english: Don't hold back, come on, drink more!
+    japanese:
+      - 遠慮 せ ず、さあ、もっと 飲み {たまえ}！
+      - 遠慮 せ ず、もっと 飲み {たまえ}！
+      - もっと 飲み {たまえ}！
+    english_literally: Without reserve, come on, drink more!
+    competing_grammar:
+      - competing_japanese:
+          - 遠慮 せ ず、さあ、もっと 飲み {なさい}！
+        english: Don't hold back, come on, drink more!
+        hint: While both are invitations, 「飲みたまえ」 implies a more traditional, sometimes slightly old-fashioned,
+          male-centric authority in offering hospitality. 「飲みなさい」 is a more general polite command often
+          used with younger individuals but lacks the specific 'senior male host' nuance. We're looking
+          for a warm, authoritative invitation from an older male host.
+    scene: An older man hosting a younger guest at his home, offering drinks.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: male
+    speaker_age: older
+    nuance: Used by an older male host, 「飲みたまえ」 acts as a warm, authoritative invitation to drink, typical
+      of a superior offering hospitality. The phrase 「遠慮せず」 (without holding back) further emphasizes
+      the encouraging nature.
+    etymology: 「遠慮」 (enryo) means 'reserve' or 'holding back', combining 「遠」 (en, far) and 「慮」 (ryo, consider/thought).
+      The expression 「遠慮せず」 (enryo sezu) literally means 'without holding back consideration', urging
+      the listener to act freely without hesitation. This phrase often appears in hospitality settings,
+      as seen here. 「もっと」 (motto) means 'more', derived from an older form of 'to hold' or 'to possess',
+      indicating an increase. Its use here reinforces the idea of encouraging the guest to take more.
+      「さあ」 is an interjection used to urge or prompt action, often with a sense of encouragement or invitation.
+      This example's use of 「遠慮せず」 along with 「さあ」 and 「たまえ」 creates a strong, yet benevolent, push for
+      the guest to feel comfortable and enjoy themselves. The classical particle 「ず」 at the end of 「遠慮せず」
+      (the negative form of a verb/adjective) is a remnant of classical Japanese and contributes to the
+      slightly formal or literary feel of the expression.
+  - english: Lord, save this soul.
+    japanese:
+      - 主 よ、この 魂 を 救い {たまえ}。
+      - 主 よ、この 魂 を お 救い {たまえ}。
+    english_literally: Lord, save this soul.
+    competing_grammar:
+      - competing_japanese:
+          - 主 よ、この 魂 を {救え}。
+        english: Lord, save this soul!
+        hint: 「救え」 is the plain imperative form, which is very direct and lacks the solemn, traditional,
+          or literary tone found in 「たまえ」, which is derived from classical Japanese and suited for formal
+          entreaties to a higher power. We're looking for a solemn, archaic plea.
+    scene: A character in an ancient text praying for salvation.
+    register: bungo (literary)
+    setting: religious
+    nuance: 「救いたまえ」 is a classical, archaic usage, often found in religious texts or formal pleas to a
+      higher power. It conveys a solemn request or wish.
+    etymology: 「主」 (shu) meaning 'Lord' or 'master' is often used in religious contexts to refer to a
+      deity. The particle 「よ」 (yo) after 「主」 is a vocative particle, used to call out to someone or something,
+      similar to 'O' or 'Thou' in archaic English. This usage is common in prayers, poetry, and classical
+      texts. 「魂」 (tamashii) means 'soul' or 'spirit', often having spiritual or philosophical connotations.
+      The verb 「救う」 (sukuu) means 'to save' or 'to rescue', and in this context, it refers to spiritual
+      salvation. This example demonstrates 「たまえ」 in its most archaic and solemn usage, highlighting its
+      historical role in formal entreaties to a higher power, far removed from everyday conversation.
+  - english: You, what are you doing! Get to that work immediately!
+    japanese:
+      - 君、何 を し て いる！すぐ に その 仕事 に 取りかかり {たまえ}！
+      - 君、何 を し てる ん だ！すぐ に その 仕事 に 取りかかり {たまえ}！
+      - すぐ に その 仕事 に 取りかかり {たまえ}！
+    english_literally: You, what are you doing! Immediately begin that work!
+    competing_grammar:
+      - competing_japanese:
+          - 君、何 を し て いる！すぐ に その 仕事 に {取りかかれ}！
+        english: You, what are you doing! Immediately begin that work!
+        hint: While 「取りかかれ」 is a direct command, 「たまえ」 maintains a level of formality and traditional
+          authority, often used by a superior in a way that is firm but not necessarily rude. The plain
+          imperative 「取りかかれ」 can sound much harsher and less refined in a professional setting. We're
+          looking for a firm, authoritative command from a boss that retains some formality.
+    scene: A strict male boss finding an employee slacking off.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「取りかかりたまえ」 is a sharp, commanding imperative from an older male boss to a subordinate, suitable
+      for expressing displeasure and demanding immediate action. The use of 「君」 (you) also underscores
+      the direct and hierarchical address.
+    etymology: 「君」 (kimi) is a second-person pronoun that implies a relationship of superiority (speaker
+      to listener) or familiarity. In this context, it's used by a superior addressing a subordinate,
+      reinforcing the hierarchical relationship. 「取りかかる」 (torikakaru) means 'to set about', 'to begin',
+      or 'to start (work)', combining 「取る」 (toru, to take) and 「かかる」 (kakaru, to hang/to be about to do).
+      The phrasing 「何をしている！」 (nani wo shite iru!) is an interrogative exclamation, literally 'What are
+      you doing!', used to express strong disapproval or surprise at someone's actions. 「すぐに」 (sugu ni)
+      means 'immediately' or 'right away', emphasizing the urgency of the command. This combination of
+      direct address, rhetorical question, and an urgent command creates a very strong and authoritative
+      tone typical of a strict boss.
+  - english: What about your homework? Start right now.
+    japanese:
+      - 宿題 は どう し た？今 すぐ 始め {たまえ}。
+      - 宿題 は どう なっ て いる？今 すぐ 始め {たまえ}。
+      - 今 すぐ 始め {たまえ}。
+    english_literally: Homework, how is it? Now immediately begin.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 は どう し た？今 すぐ 始め {なさい}。
+        english: What about your homework? Start right now.
+        hint: 「たまえ」 in this familial context conveys a more traditional and perhaps stern authority from
+          a male parent, lending a slightly old-fashioned feel. 「始めなさい」 is a common, polite command used
+          by parents to children, without the same degree of traditional authority. We're looking for
+          a firm instruction from a male parent with a traditional tone.
+    scene: A father discovering his son hasn't started his homework, giving a firm instruction.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「始めたまえ」 is a clear, firm command from a male parent to his child. The slightly archaic feel
+      of 「たまえ」 might make it sound somewhat old-fashioned or particularly stern in a modern family setting,
+      emphasizing the father's authority.
+    etymology: 「宿題」 (shukudai) means 'homework', composed of 「宿」 (shuku, lodging/inn) and 「題」 (dai, topic/title),
+      referring to a task given to be completed at one's 'lodging'. 「どうした」 (dou shita) is a casual phrase
+      asking 'What happened?' or 'What did you do?', used here to inquire about the status of the homework.
+      「今すぐ」 (ima sugu) means 'right now' or 'immediately', with 「今」 (ima, now) and 「すぐ」 (sugu, immediately).
+      The verb 「始める」 (hajimeru) means 'to begin' or 'to start'. The use of 「たまえ」 in this parent-child
+      context lends a slightly old-fashioned or particularly stern tone, emphasizing the father's authority
+      in a way that is less harsh than a plain imperative like 「始めろ」 but more firm than a polite request.
+  - english: Alright, next person, please proceed this way.
+    japanese:
+      - はい、次 の 方、こちら へ お 進み {たまえ}。
+      - はい、次 の 方、お 進み {たまえ}。
+      - 次 の 方、こちら へ お 進み {たまえ}。
+    english_literally: Yes, next person, this way, please advance.
+    competing_grammar:
+      - competing_japanese:
+          - はい、次 の 方、こちら へ お 進み {ください}。
+        english: Alright, next person, please proceed this way.
+        hint: 「お進みたまえ」 is a formal directive used by male staff that carries a sense of clear instruction
+          with traditional authority. 「お進みください」 is a standard polite request that is universally applicable
+          and less directive. We're looking for a formal, directive instruction from male staff.
+    scene: A male reception staff calling the next patient in a hospital waiting room.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    nuance: 「お進みたまえ」 in this context functions as a formal, almost official instruction from a male staff
+      member in a service setting. It's directive but maintains a level of polite formality, distinct
+      from a simple request.
+    etymology: 「次の方」 (tsugi no kata) literally means 'the next person', where 「方」 (kata) is a polite and
+      respectful term for 'person'. 「こちらへ」 (kochira e) means 'this way', with 「こちら」 (kochira) being the
+      polite form of 「ここ」 (koko, here). 「お進み」 (osusumi) is the honorific form of the verb 「進む」 (susumu,
+      to proceed/advance), indicating respect. The combined expression 「お進みたまえ」 is a formal and directive
+      instruction often used in professional or service settings where clear, polite guidance is necessary,
+      demonstrating the staff's authority while maintaining decorum. This reflects the nuance of 「たまえ」
+      being a formal command that can also be used in service contexts.
+  - english: Pay close attention to this. Master the basics thoroughly.
+    japanese:
+      - これ を よく 見 {たまえ}。基本 を しっかり 身 に つけ {たまえ}。
+      - これ を よく 見 {たまえ}。基本 を 身 に つけ {たまえ}。
+      - 基本 を しっかり 身 に つけ {たまえ}。
+    english_literally: This, well look. Basics, firmly acquire.
+    competing_grammar:
+      - competing_japanese:
+          - これ を よく 見 {なさい}。基本 を しっかり 身 に つけ {なさい}。
+        english: Pay close attention to this. Master the basics thoroughly.
+        hint: 「～なさい」 is a general polite command often used for instruction, but 「たまえ」 carries a more
+          traditional, authoritative, and often male-centric nuance, particularly in master-apprentice
+          settings. We're looking for a traditional master's instruction.
+    scene: An old artisan (male) instructing his young male apprentice in a traditional craft workshop.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    speaker_age: older
+    nuance: This example uses 「たまえ」 used by a master instructing an apprentice, emphasizing the importance
+      of foundational skills. The tone is instructive and authoritative but also benevolent, typical of
+      a mentor-mentee relationship.
+  - english: Don't give up! Fight to the very end!
+    japanese:
+      - 諦める な！最後 まで 戦い {たまえ}！
+      - 最後 まで 戦い {たまえ}！
+      - 最後 まで しっかり 戦い {たまえ}！
+    english_literally: Don't give up! To the very end, fight!
+    competing_grammar:
+      - competing_japanese:
+          - 諦める な！最後 まで {戦え}！
+        english: Don't give up! Fight to the very end!
+        hint: The plain imperative 「戦え」 is very direct and forceful. While effective, 「たまえ」 adds a layer
+          of solemn authority and exhortation, often used in more traditional or dramatic calls to action
+          by a male leader. We're looking for an inspiring, yet authoritative, command from a male coach.
+    scene: A male coach giving a pep talk to his male soccer team during a difficult match.
+    register: casual
+    setting: commanding
+    speaker_gender: male
+    speaker_age: older
+    nuance: Here, 「たまえ」 is used to inspire and command a team to persevere. It's direct but carries a
+      motivational weight, fitting for a coach. It's less about strict hierarchy and more about leading
+      by example or encouragement in a tense situation. The phrase 「諦めるな」 is a plain imperative, but 「戦いたまえ」
+      softens the direct command while maintaining strong encouragement.
+    etymology: 「諦める」 (akirameru) means 'to give up'. 「戦う」 (tatakau) means 'to fight'. The imperative 「諦めるな」
+      (akirameru na) uses the prohibitive particle 「な」 to forbid an action. This combination of a direct
+      prohibition and an authoritative command using 「たまえ」 creates a strong motivational statement, common
+      in sports or military contexts.
+  - english: Do not be swayed by fleeting trends. Look ahead to the distant future.
+    japanese:
+      - 一時 の 流行 に 流さ れる な。遥か な 未来 を 見 {たまえ}。
+      - 遥か な 未来 を 見 {たまえ}。
+      - 一時 の 流行 に 流さ れる こと なく、遥か な 未来 を 見 {たまえ}。
+    english_literally: One moment's trends, don't be swayed by. Distant future, look at.
+    competing_grammar:
+      - competing_japanese:
+          - 一時 の 流行 に 流さ れる な。遥か な 未来 を 見 {なさい}。
+        english: Do not be swayed by fleeting trends. Look ahead to the distant future.
+        hint: When giving life advice or profound guidance, 「たまえ」 lends a more venerable and authoritative
+          tone, common from older male figures conveying wisdom. 「見なさい」 is a general instruction lacking
+          this specific gravitas. We're looking for a wise elder's profound advice.
+    scene: A respected male elder sharing wisdom with a younger person or group, perhaps in a reflective
+      setting.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: male
+    speaker_age: older
+    nuance: This example uses 「たまえ」 in a context of giving life advice or wisdom, emphasizing foresight
+      and stability. It shows 「たまえ」 can be used for profound, guiding statements, not just immediate commands.
+      It implies a sense of experience and authority from the speaker.
+    etymology: 「一時」 (ichiji) means 'for a short time' or 'temporary', and 「流行」 (ryuukou) means 'trend'
+      or 'fashion'. 「流さ れる」 (nagasareru) is the passive form of 「流す」 (nagasu, to let flow), meaning 'to
+      be swayed' or 'to be carried away'. 「遥か な」 (haruka na) means 'distant' or 'far-off'. 「未来」 (mirai)
+      means 'future'. This phrasing creates a profound, reflective tone suitable for imparting wisdom.
+  - english: You, child, come over here quickly.
+    japanese:
+      - 子 ども よ、早く こちら へ 来 {たまえ}。
+      - 早く こちら へ 来 {たまえ}。
+      - 子 ども よ、来 {たまえ}。
+    english_literally: Child, quickly this way come.
+    competing_grammar:
+      - competing_japanese:
+          - 子 ども よ、早く こちら へ 来 {なさい}。
+        english: You, child, come over here quickly.
+        hint: While 「来なさい」 is a common parental command, 「来たまえ」 carries a more traditional, slightly formal,
+          and authoritative tone often used by an elder. We are looking for a command from an elder to
+          a child that conveys a sense of tradition and authority.
+    scene: An older male teacher calling a child over in a traditional setting.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    speaker_age: older
+    nuance: This usage emphasizes the male speaker's position of authority and care over a child. The
+      vocative particle 「よ」 after 「子 ども」 (kodomo, child) further highlights the direct address in a traditional
+      or slightly literary manner. The usage of 「たまえ」 maintains decorum while giving a direct instruction.
+    etymology: The term 「子 ども」 (kodomo) itself implies a generational difference. 「早く」 (hayaku) means
+      'quickly'. The use of 「来たまえ」 is a classic example of an elder speaking to a younger individual,
+      particularly common in older forms of Japanese or in specific formal settings. The combination of
+      「早く」 and 「来たまえ」 demonstrates a firm but not harsh directive.
+  - english: Pay attention! Everyone, focus your gaze here.
+    japanese:
+      - 皆、注意 し {たまえ}！
+      - 皆、注意 し {たまえ}！こちら に 目 を 向け {たまえ}。
+      - 皆、こちら に 目 を 向け {たまえ}。
+    english_literally: Everyone, pay attention! Turn your eyes here.
+    competing_grammar:
+      - competing_japanese:
+          - 皆、注意 し {なさい}！
+        english: Everyone, pay attention!
+        hint: 「～なさい」 is a common instruction, but 「たまえ」 delivers a more commanding and authoritative tone
+          suitable for addressing a group, typically by a male figure of authority. We're looking for
+          a strong, formal command to a group.
+    scene: A male lecturer addressing a potentially distracted audience or a military commander addressing
+      troops.
+    register: formal
+    setting: commanding
+    speaker_gender: male
+    speaker_age: older
+    nuance: Used to command a group, this emphasizes the speaker's authority and expectation of immediate
+      compliance. The direct address to 「皆」 (mina, everyone) with 「たまえ」 carries a formal and serious tone,
+      suitable for a speaker in a position of leadership or instruction.
+    etymology: 「皆」 (mina) means 'everyone' or 'all'. 「注意する」 (chūi suru) means 'to pay attention' or 'to
+      be careful'. The phrase 「注意したまえ」 is a direct and forceful call for attention, often used in public
+      speaking or instructional settings where the speaker needs to assert control. This reflects the
+      use of 「たまえ」 in a context of commanding a collective rather than just an individual.
+post_example_writeup: The examples illustrate the versatile application of 「たまえ」 across various contexts,
+  from professional settings and academic discussions to familial interactions and archaic pleas. While
+  consistently conveying an authoritative tone, the level of formality and the specific nuance can shift
+  based on the speaker's and listener's relationship, the setting, and the presence of other softening
+  or intensifying linguistic elements. It is primarily used by male speakers and often conveys a sense
+  of traditional authority or a benevolent but firm instruction.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たまえ

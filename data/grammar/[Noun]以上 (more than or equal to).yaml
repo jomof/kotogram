@@ -1,0 +1,249 @@
+grammar_point: '[Noun]以上 (more than or equal to)'
+learn_before:
+  - 以上 (more than or equal to・numerical)
+meaning: more than or above
+pronunciation:
+  katakana: イジョウ
+  romaji: ijō
+formation:
+  '[Noun] + 以上': Indicates a quantity or degree equal to or greater than the specified noun/number.
+jlpt: N3
+etymology: The kanji 以 (i) means "by means of, because, taking as", and 上 (jō) means "above, up, top".
+  Combined, 以上 literally means "taking as above/up", signifying "from this point upwards" or "this and
+  beyond". This explains its use for "more than or equal to" a certain point or quantity, as well as "beyond"
+  a certain expectation or standard.
+writeup: |-
+  以上 (ijō) is a versatile expression in Japanese, primarily used to indicate a quantity or degree that is "more than or equal to" a specified amount or level. It establishes a lower bound or a threshold that is met or surpassed. While its most straightforward application is with numbers and concrete quantities, it can also extend to abstract concepts, signifying a state or quality that is "beyond" a certain point or expectation.
+
+  When used with numerical figures or specific quantities, 以上 indicates that the actual amount includes the stated number and any amount greater than it. For instance, 「100円{以上}」 (hyaku en ijō) means "100 yen or more." This is a crucial distinction for precision in numerical contexts.
+
+  Beyond simple quantities, 以上 can also be attached to nouns to express that something is "beyond" a certain state, level, or expectation. For example, 「プロ{以上}の腕前」 (puro ijō no udemae) would describe a skill level "beyond that of a professional," implying an exceptional ability. This usage shifts from strict quantity to a qualitative assessment, suggesting a higher degree or superior characteristic.
+
+  It is important to differentiate this 以上 from another usage that indicates "now that" or "since" a certain condition is met, which creates a logical consequence. That particular usage, [Clause]以上(は), functions differently and implies obligation or certainty based on a premise. The [Noun]以上 discussed here specifically refers to quantitative or qualitative "more than or equal to" or "above and beyond" scenarios.
+false_friends:
+  - term: 〜以下 (ika)
+    meaning: less than or equal to
+    kind: antonym
+    nuance: This is the direct opposite of 以上, indicating a quantity or degree that is "equal to or less
+      than" a specified amount. While 以上 sets a minimum, 以下 sets a maximum.
+    grammar_point: 〜以下 (less than or equal to・the following)
+  - term: 〜超 (chō) or 〜を超える (o koeru)
+    meaning: exceeding, over
+    kind: similar expression
+    nuance: 〜超 (or 〜を超える) strictly means "exceeding" the specified amount, excluding the stated number
+      itself. For example, 「100円超」 means "over 100 yen" (e.g., 101 yen, but not 100 yen). In contrast,
+      以上 *includes* the specified number.
+    grammar_point: <suggest>:〜超える (to exceed)
+  - term: 〜未満 (miman)
+    meaning: less than, below
+    kind: similar expression
+    nuance: 〜未満 indicates "less than" the specified amount, strictly excluding the stated number. This
+      is similar to 以下 but *does not* include the stated number. For example, 「100円未満」 means "less than
+      100 yen" (e.g., 99 yen, but not 100 yen).
+    grammar_point: 未満 (strictly less than)
+  - term: '[Clause]以上(は) (ijō wa)'
+    meaning: now that; since
+    kind: often confused with
+    nuance: This 以上 functions as a conjunction, indicating a logical consequence or obligation based on
+      a premise. For example, 「やると以上は、最後までやるべきだ」(Yaru to ijō wa, saigo made yaru beki da - "Now that you're
+      going to do it, you should do it to the end."). It shares the same kanji but has a completely different
+      grammatical function and meaning from the quantitative/degree 以上.
+    grammar_point: '[Clause]以上(は)・上は (since・now that)'
+post_false_friends_writeup: It's common to confuse 以上 with expressions like 超える or 未満 because they all
+  deal with numerical thresholds. The key distinction lies in whether the stated number itself is included
+  in the range. 以上 (and its counterpart 以下) *includes* the specified number, while 超える (or 超) and 未満 *exclude*
+  it. Furthermore, be careful not to mix up the quantitative 以上 with the entirely different grammatical
+  pattern [Clause]以上(は), which indicates "now that" or "since." Always consider the context to determine
+  which meaning of 以上 is intended.
+examples:
+  - english: Please prepare more than or equal to 5 copies.
+    japanese:
+      - ５ 部 {以上} 用意 し て ください。
+      - ５ 部 {以上} 用意 し て くれ。
+      - ５ 部 {以上} 必要 です。
+    english_literally: Please prepare 5 copies or more.
+    competing_grammar:
+      - competing_japanese:
+          - ５ 部 {超} 用意 し て ください。
+        english: Please prepare over 5 copies.
+        hint: 「超える」means "to exceed," strictly indicating *more than* the number, not including the number
+          itself. We're looking for "five or more."
+    scene: A busy office worker giving instructions.
+    register: formal
+    setting: professional
+  - english: You must be 18 or older to enter.
+    japanese:
+      - 入場 に は １８ 歳 {以上} の 年齢 が 必要 です。
+      - 入場 は １８ 歳 {以上} で なけれ ば なり ませ ん。
+      - １８ 歳 {以上} じゃ ない と 入れ ない よ。
+    english_literally: For entrance, an age of 18 years or more is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 入場 に は １８ 歳 {未満} の 年齢 は 許可 さ れ ませ ん。
+        english: For entrance, an age of less than 18 years is not permitted.
+        hint: 「未満」 means "less than," strictly excluding the number. We're looking for "18 or older."
+    scene: A sign at the entrance of a venue.
+    register: formal
+    setting: informative
+  - english: To pass the exam, you need a score of 70 points or higher.
+    japanese:
+      - 試験 に 合格 する に は、７０ 点 {以上} の 点数 が 必要 です。
+      - 試験 に 合格 する に は ７０ 点 {以上} 取ら ない と だめ です。
+      - テスト で ７０ 点 {以上} ない と 合格 でき ない よ。
+    english_literally: To pass the exam, a score of 70 points or more is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 合格 する に は、７０ 点 {以下} の 点数 は 認め られ ませ ん。
+        english: To pass the exam, a score of 70 points or less is not acceptable.
+        hint: 「以下」 means "less than or equal to". We're looking for "70 points or higher" not a limit
+          on what's unacceptable.
+    scene: A teacher explaining grading criteria to students.
+    register: formal
+    setting: academic
+  - english: This package weighs 2 kg or more.
+    japanese:
+      - この 荷物 は ２ キロ {以上} あり ます。
+      - この 荷物 は ２ キロ {以上} だ。
+      - この 荷物 の 重 さ は ２ キロ {以上} です。
+    english_literally: This package has 2 kilograms or more.
+    competing_grammar:
+      - competing_japanese:
+          - この 荷物 は ２ キロ {未満} です。
+        english: This package weighs less than 2 kg.
+        hint: 「未満」 means "less than," strictly excluding the number. We're looking for "2 kg or more."
+    scene: A postal worker assessing a package.
+    register: formal
+    setting: technical
+  - english: We've been waiting for over an hour.
+    japanese:
+      - １ 時間 {以上} 待っ て い ます。
+      - １ 時間 {以上} 待っ てる よ。
+      - １ 時間 {以上} も 待たさ れ て いる。
+    english_literally: We are waiting for 1 hour or more.
+    competing_grammar:
+      - competing_japanese:
+          - １ 時間 {以内} に 到着 し ます。
+        english: We will arrive within 1 hour.
+        hint: 「以内」 means "within" a certain amount of time. We're looking for a duration that has already
+          exceeded an hour.
+    scene: Someone complaining about a delay.
+    register: casual
+    setting: pessimistic
+  - english: His performance was more than excellent.
+    japanese:
+      - 彼 の 演技 は 素晴らしい {以上} でし た。
+      - 彼 の 演技 は 素晴らしい {以上} だっ た。
+      - 彼 の 演技 は 素晴らし さ を {超える} もの だっ た。
+    english_literally: His performance was above wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 演技 は 良く も 悪く も なかっ た。
+        english: His performance was neither good nor bad.
+        hint: This phrase suggests a neutral or mediocre performance. We are looking to express that the
+          performance *exceeded* excellence.
+    scene: Two friends discussing a play they just watched.
+    register: casual
+    setting: excited
+    nuance: Here, 「以上」 is attached to an abstract concept (「素晴らしい」, excellent) to mean "beyond" or "surpassing,"
+      indicating a higher degree of quality.
+  - english: This project requires more than just technical skills.
+    japanese:
+      - この プロジェクト に は、技術 力 {以上} の もの が 必要 です。
+      - この プロジェクト に は 技術 力 {以上} の もの が 求め られる。
+      - 技術 力 {以上} の もの が、この プロジェクト に はいる。
+    english_literally: For this project, something more than technical skills is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト に は、技術 力 だけ が 必要 です。
+        english: This project only requires technical skills.
+        hint: 「だけ」 means "only" or "just." We're looking to express that *more than just* technical skills
+          are required.
+    scene: A team leader explaining the demands of a new project.
+    register: formal
+    setting: informative
+    nuance: 「以上」 here signifies "beyond" or "more than just," indicating that additional, non-technical
+      qualities are also required.
+  - english: You need at least two years of experience for this position.
+    japanese:
+      - この ポジション に は ２ 年 {以上} の 経験 が 必要 です。
+      - この ポジション に は ２ 年 {以上} の 経験 が 求め られ ます。
+      - この 仕事 に は 経験 が ２ 年 {以上} いる よ。
+    english_literally: For this position, 2 years or more of experience is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この ポジション に は ２ 年 {未満} の 経験 で は だめ です。
+        english: For this position, less than two years of experience is not acceptable.
+        hint: 「未満」 means "less than," strictly excluding the number. We're looking for "at least two years,"
+          which includes two years.
+    scene: An HR representative explaining job requirements.
+    register: formal
+    setting: professional
+  - english: The temperature today is above 30 degrees Celsius.
+    japanese:
+      - 今日 の 気温 は ３０ 度 {以上} です。
+      - 今日 の 気温 は ３０ 度 {以上} ある。
+      - 今日 は ３０ 度 {以上} に なっ てる よ。
+    english_literally: Today's temperature is 30 degrees or more.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 気温 は ３０ 度 {以下} です。
+        english: Today's temperature is 30 degrees Celsius or below.
+        hint: 「以下」 means "less than or equal to." We're looking for a temperature that is "above 30 degrees."
+    scene: A weather report.
+    register: formal
+    setting: informative
+  - english: The donation received was over 1 million yen.
+    japanese:
+      - 寄付 金 は １００ 万 円 {以上} 集まり まし た。
+      - 寄付 金 は １００ 万 円 {以上} 集まっ た。
+      - １００ 万 円 {以上} の 寄付 が 集まっ た そう です。
+    english_literally: The donation collected was 1 million yen or more.
+    competing_grammar:
+      - competing_japanese:
+          - 寄付 金 は １００ 万 円 {に 達し ませ ん でし た}。
+        english: The donation did not reach 1 million yen.
+        hint: This expresses that the amount *failed to reach* the target. We're looking for an amount
+          that *exceeded* the target.
+    scene: A charity event organizer announcing results.
+    register: formal
+    setting: informative
+  - english: His kindness was beyond words.
+    japanese:
+      - 彼 の 優し さ は 言葉 {以上} の もの でし た。
+      - 彼 の 優し さ は 言葉 {以上} だっ た。
+      - 彼 の 優し さ は 言葉 で は 言い表せ ない ほど だっ た。
+    english_literally: His kindness was something more than words.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 優し さ は 普通 だっ た。
+        english: His kindness was ordinary.
+        hint: This implies a standard or unremarkable level of kindness. We are looking to express that
+          his kindness *surpassed* typical description.
+    scene: Reflecting on someone's character.
+    register: casual
+    setting: reflective
+    nuance: 「以上」 applied to an abstract noun (「言葉」, words) to convey a level or quality that transcends
+      typical description.
+  - english: She put in more than the necessary effort.
+    japanese:
+      - 彼女 は 必要 な 努力 {以上} を し まし た。
+      - 彼女 は 必要 な 努力 {以上} の もの を し た。
+      - 彼女 は 必要 な 努力 {以上} を 払っ た。
+    english_literally: She did effort more than necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 必要 な 努力 {しか} し なかっ た。
+        english: She only put in the necessary effort.
+        hint: 「しか〜ない」 means "only" or "nothing but." We're looking to express that she put in *more than*
+          the required effort, not just the minimum.
+    scene: A manager praising an employee.
+    register: formal
+    setting: supportive
+    nuance: Indicates exceeding a standard or expectation, implying extra effort or quality.
+post_example_writeup: The examples illustrate how 以上 can be used across various contexts, from concrete
+  quantities like age, score, and weight, to more abstract concepts such as effort, kindness, and quality.
+  Pay attention to how 以上 always sets a minimum threshold or indicates a state that goes beyond a defined
+  point, distinguishing it from related expressions that either exclude the threshold or carry a different
+  logical implication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/以上

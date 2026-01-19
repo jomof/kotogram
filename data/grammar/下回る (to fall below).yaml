@@ -1,0 +1,226 @@
+grammar_point: 下回る (to fall below)
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - '[Verb-stem][Place noun] (location where action occurs)'
+  - あそこ (over there)
+  - い-Adjective[ければ] (conditional)
+  - どこ (where)
+  - もらう (to receive)
+  - 切る (do completely or thoroughly)
+  - 各 (each or every)
+meaning: to fall below; to be less than
+pronunciation:
+  katakana: シタマワル
+  romaji: shitamawaru
+formation:
+  '[数量・基準] を 下回る': Indicates a value or quantity falling below a specific level or standard.
+  '[予想・期待] を 下回る': Refers to a result being lower than anticipation or expectation.
+jlpt: N2
+etymology: The verb 下回る is composed of 下 (shita), meaning 'down' or 'below', and 回る (mawaru), which typically
+  means 'to turn' or 'to go around'. In this context, 回る takes on a meaning closer to 'surpass' or 'go
+  beyond' (as seen in 上回る meaning 'to exceed'). Thus, 下回る literally conveys the idea of 'turning' or 'going'
+  below a certain point or standard, signifying a deficit or a failure to meet a level. This combination
+  highlights a dynamic action of falling short, rather than just a static state of being less.
+writeup: The verb 下回る (したまわる) means 'to fall below,' 'to be less than,' or 'to underperform.' It is primarily
+  used when a quantity, value, or performance does not meet a certain standard, expectation, or previous
+  level. This verb carries a nuance of a shortfall or an unmet target, making it common in formal contexts
+  such as business reports, economic news, or statistical analyses. While 〜より少ない (less than) or 〜未満 (less
+  than) simply state a quantitative comparison, 下回る implies a more active falling short of a benchmark.
+  It is frequently seen with numerical data, prices, sales figures, or expectations. The object being
+  下回るed is marked by the particle を. For example, 目標を下回る means 'to fall below the target,' implying that
+  the target was not met.
+false_friends:
+  - term: 以下
+    meaning: less than or equal to
+    kind: similar expression
+    nuance: 以下 is a noun or adverb indicating a range up to and including a certain value. 下回る is a verb
+      describing an action of falling short. 以下 is often used for inclusive limits, whereas 下回る strictly
+      implies less than.
+    grammar_point: <suggest>:以下 (less than or equal to・the following)
+  - term: 未満
+    meaning: less than
+    kind: similar expression
+    nuance: 未満 is a noun that expresses a strict 'less than' relationship, similar to 下回る's numerical
+      meaning. However, 未満 is a static description of a quantity, while 下回る describes the action of falling
+      below something, often implying a dynamic process or an outcome that did not meet expectations.
+    grammar_point: 未満 (strictly less than)
+  - term: 上回る
+    meaning: to exceed; to be more than
+    kind: antonym
+    nuance: 上回る is the direct opposite of 下回る. It means to surpass or go above a certain quantity or standard,
+      often implying a positive outcome or over-performance.
+    grammar_point: <suggest>:上回る (to exceed)
+  - term: 足りない
+    meaning: not enough; insufficient
+    kind: similar expression
+    nuance: 足りない simply states that something is insufficient or not enough. 下回る specifically means falling
+      below a set benchmark or expectation, often in a comparative or quantitative context. While related,
+      足りない is more general.
+    grammar_point: <suggest>:足りない (not enough)
+post_false_friends_writeup: 下回る describes an active movement of falling below a benchmark, often carrying
+  a negative connotation of failing to meet a standard. In contrast, 以下 and 未満 are static descriptors
+  of quantity, indicating a limit or a strict numerical comparison. 以下 includes the specified value, while
+  未満 does not. 上回る is its direct opposite, signifying exceeding a benchmark. 足りない refers to a general
+  lack of sufficiency, which can sometimes be expressed with 下回る if there's an implicit standard, but
+  下回る always requires a specific point of comparison.
+examples:
+  - english: The company's sales fell below the target for the first quarter.
+    japanese:
+      - 四半 期 の 売上 が {目標 を 下回っ た}。
+      - 四半 期 の 売上 が 目標 を {下回り まし た}。
+    english_literally: Quarter's sales (as for) target (object) fell below.
+    competing_grammar:
+      - competing_japanese:
+          - 四半 期 の 売上 が 目標 より 少ない。
+        english: The company's sales are less than the target for the first quarter.
+        hint: より少ない describes a static comparison. We're looking for a verb that describes the action
+          of falling below a benchmark.
+    scene: A manager is reviewing sales performance during a quarterly business meeting.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+  - english: The temperature is expected to drop below freezing tonight.
+    japanese:
+      - 今夜 の 気温 は {氷点 下 を 下回る} 予想 です。
+      - 今夜 の 気温 は 氷点 下 を {下回る} 予想 だ。
+      - 今夜 の 気温 は 氷点 下 を {下回り ます} 予想 です。
+    english_literally: Tonight's temperature (as for) freezing point (object) fall below expected is.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 の 気温 は 氷点 下 未満 の 予想 です。
+        english: Tonight's temperature is expected to be less than freezing.
+        hint: 未満 describes a static state of being 'less than'. We're looking for a verb that describes
+          the action of 'dropping below' or 'falling below'.
+    scene: A meteorologist is giving the evening weather forecast on TV.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: His test score was lower than his usual average.
+    japanese:
+      - 彼 の テスト の 点数 は いつ も の {平均 を 下回っ た}。
+      - 彼 の テスト の 点数 は いつ も の 平均 を {下回り まし た}。
+    english_literally: His test's score (as for) usual's average (object) fell below.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の テスト の 点数 は いつ も の 平均 より 低かっ た。
+        english: His test score was lower than his usual average.
+        hint: より低かった is a direct adjective comparison. We're looking for a verb that shows the score 'falling
+          below' the average, implying a performance evaluation.
+    scene: A teacher is discussing a student's academic performance with a colleague.
+    register: semi-formal
+    setting: academic
+    conjugation: past plain (～た)
+    speaker_gender: male
+  - english: The unemployment rate has consistently fallen below 3% for the past year.
+    japanese:
+      - 過去 一 年 の 失業 率 は 3 % を {下回っ て} 推移 し て い ます。
+      - 過去 一 年 の 失業 率 は 3 % を {下回っ て} 推移 し て いる。
+      - 過去 一 年 の 失業 率 は 3 % を {下回り} 推移 し て おり ます。
+    english_literally: Past one year's unemployment rate (as for) 3% (object) falling below has been trending.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 一 年 の 失業 率 は 3 % 未満 で 推移 し て い ます。
+        english: The unemployment rate has been trending at less than 3% for the past year.
+        hint: 未満 describes a quantitative state. We're looking for a verb that emphasizes the dynamic
+          action of 'falling below' and staying there, often implying a positive trend for unemployment.
+    scene: An economist is presenting a quarterly economic report to investors.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+  - english: We managed to keep the project costs below the initial budget.
+    japanese:
+      - プロジェクト の 費用 を 当初 の {予算 を 下回る} こと に 成功 し まし た。
+      - プロジェクト の 費用 を 当初 の 予算 を {下回る} こと に 成功 し た。
+    english_literally: Project's costs (object) initial's budget (object) fall below fact (to) succeeded.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト の 費用 を 当初 の 予算 以内 に 抑える こと に 成功 し まし た。
+        english: We managed to keep the project costs within the initial budget.
+        hint: 以内 に 抑える focuses on keeping something within a limit. We're looking for a phrase that specifically
+          states the costs 'fell below' the budget.
+    scene: A team meeting discussing project finances, celebrating a successful outcome.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: This product's quality falls below our internal standards.
+    japanese:
+      - この 製品 の 品質 は 我々 の {社内 基準 を 下回っ て} い ます。
+      - この 製品 の 品質 は 我々 の 社内 基準 を {下回っ て} いる。
+      - この 製品 の 品質 は 我々 の 社内 基準 を {下回っ て} おり ます。
+    english_literally: This product's quality (as for) our internal standards (object) falling below is.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 の 品質 は 我々 の 社内 基準 を 満たし て い ませ ん。
+        english: This product's quality does not meet our internal standards.
+        hint: 満たしていない means 'does not meet' or 'is not satisfied'. We're looking for a phrase that specifies
+          the quality 'falls below' the standard.
+    scene: A quality control manager is reporting a deficiency in a product during an inspection.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: The city's population has fallen below 100,000 for the first time.
+    japanese:
+      - 市 の 人口 が 初めて 10 万 人 を {下回り まし た}。
+      - 市 の 人口 が 初めて 10 万 人 を {下回っ た}。
+    english_literally: City's population (subject) first time 100,000 people (object) fell below (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 市 の 人口 が 初めて 10 万 人 を 切り まし た。
+        english: The city's population has gone below 100,000 for the first time.
+        hint: 切る can mean 'to cut below' or 'go below' a certain number, especially for round numbers.
+          We're looking for a more general verb for 'falling below' a benchmark.
+    scene: A local government official is delivering news about demographic changes in a public address.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: The athlete's time in the race fell short of his personal best.
+    japanese:
+      - 選手 の レース タイム は 自己 {ベスト を 下回っ て} しまい まし た。
+      - 選手 の レース タイム は 自己 ベスト を {下回っ て} しまっ た。
+    english_literally: Athlete's race time (as for) personal best (object) falling below ended up (polite).
+    competing_grammar:
+      - competing_japanese:
+          - 選手 の レース タイム は 自己 ベスト に 届き ませ ん でし た。
+        english: The athlete's race time did not reach his personal best.
+        hint: 届きませんでした means 'did not reach' or 'did not attain'. We're looking for a phrase that expresses
+          the time 'falling below' the personal best.
+    scene: A sports commentator is discussing an athlete's performance during a live broadcast.
+    register: semi-formal
+    setting: informative
+    conjugation: te-form (～て)
+  - english: If the water level drops below this line, we need to take action.
+    japanese:
+      - 水位 が この {線 を 下回る} なら ば、対策 を 取る 必要 が あり ます。
+      - 水位 が この 線 を {下回る} なら、対策 を 取る 必要 が ある。
+    english_literally: Water level (subject) this line (object) drops below if, counter-measures (object)
+      take necessity is.
+    competing_grammar:
+      - competing_japanese:
+          - 水位 が この 線 より 低い なら ば、対策 を 取る 必要 が あり ます。
+        english: If the water level is lower than this line, we need to take action.
+        hint: より低い describes a static state. We're looking for a verb that describes the action of the
+          water level 'dropping below' the line.
+    scene: Two engineers are inspecting water levels at a dam and discussing emergency protocols.
+    register: formal
+    setting: technical
+    conjugation: dictionary (plain non-past)
+  - english: Unfortunately, this month's profits fell below last month's.
+    japanese:
+      - 残念 ながら、今月 の 利益 は 先月 {を 下回っ た}。
+      - 残念 ながら、今月 の 利益 は 先月 を {下回り まし た}。
+    english_literally: Unfortunately, this month's profit (as for) last month's (object) fell below.
+    competing_grammar:
+      - competing_japanese:
+          - 残念 ながら、今月 の 利益 は 先月 より 少なかっ た。
+        english: Unfortunately, this month's profits were less than last month's.
+        hint: より少なかった simply states a lesser quantity. We're looking for a verb that expresses the profits
+          'falling below' a previous benchmark.
+    scene: A small business owner is reviewing their financial statements and notes a decline in profits.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+post_example_writeup: As you can see from the examples, 下回る is typically used in more formal or factual
+  contexts where a specific numerical value, standard, or expectation is not met. It carries a sense of
+  an active shortfall, distinguishing it from simple quantitative comparisons.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/下回る

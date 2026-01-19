@@ -1,0 +1,368 @@
+grammar_point: 少ない (few・little)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+  - に対して (towards; in contrast)
+  - は (topic and contrast)
+  - 下回る (to fall below)
+  - 側 (side or flank)
+  - 向け (intended for)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: Few, little, a small number/quantity of something.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 少ない
+    rarity: common
+    meaning: few, little
+  - conjugation-type: negative plain (～ない)
+    form: 少なくない
+    rarity: common
+    meaning: not few, quite a lot
+  - conjugation-type: past plain (～た)
+    form: 少なかった
+    rarity: common
+    meaning: was few, was little
+  - conjugation-type: negative past plain (～なかった)
+    form: 少なくなかった
+    rarity: common
+    meaning: was not few, was not little
+  - conjugation-type: te-form (～て)
+    form: 少なくて
+    rarity: common
+    meaning: being few; because it is few
+  - conjugation-type: conditional (～ば)
+    form: 少なければ
+    rarity: common
+    meaning: if it is few
+  - conjugation-type: conditional (～たら)
+    form: 少なかったら
+    rarity: common
+    meaning: if it were few; if it was few
+pronunciation:
+  katakana: スクナイ
+  romaji: sukunai
+formation:
+  '[Noun が] + 少ない': Indicates that the quantity or number of something is small or few.
+  '[Noun が] + 少ない + Noun': Describes a noun as having a small quantity or number of something in a relative
+    clause, e.g., 「猫が少ない町」 (a town with few cats).
+jlpt: N4
+etymology: The word 「少ない」 (sukunai) comes from the verb 「すくす」 (sukusu, now obsolete) meaning "to diminish"
+  or "to reduce." Over time, it evolved to describe a state where something is diminished in quantity
+  or number.
+writeup: 「少ない・すくない」 is an い-adjective that means "few," "little," or "a small number/quantity of something."
+  It indicates that the amount or number of something is not abundant. It is important to note that 「少ない」
+  is generally **not** used directly before a noun. However, it can be used in relative clauses where
+  「少ない」 is the predicate of the subject of the relative clause. For example, 「いいレストランが{少ない}町」 (ii resutoran
+  ga {sukunai} machi - a town with few good restaurants) is an acceptable usage.
+false_friends:
+  - term: 多い (many・a lot・much)
+    meaning: many, much
+    kind: antonym
+    nuance: The direct opposite of 「少ない」, indicating a large number or quantity, while 「少ない」 denotes a
+      small number or quantity. They are used in contrasting statements regarding abundance versus scarcity
+      of something specified by 「が」 or implied by context, e.g., 人が多い (many people) vs. 人が少ない (few people).
+    grammar_point: 多い (many・a lot・much)
+  - term: 少し
+    meaning: a little, a bit
+    kind: similar expression
+    nuance: Unlike 「少ない」, 「少し」 can be used directly before a noun to modify it (e.g., 少し水がある - there is
+      a little water). It primarily functions as an adverb meaning "a little" or "a bit," affecting the
+      degree or amount of something. 「少ない」 is an adjective describing the inherent quantity or number
+      itself as being small or few, typically used as a predicate (e.g., 水が少ない - there is little water).
+    grammar_point: 少し (a little)
+  - term: 僅か (wazuka)
+    meaning: only, merely, just (a small amount)
+    kind: similar expression
+    nuance: 「僅か」 is a more formal expression than 「少ない」 and implies a very small amount, often with a
+      sense of insignificance or inadequacy, or used to emphasize that the amount is 'only' that much.
+      「少ない」 is a more general term for 'few' or 'little' without necessarily carrying the strong emphasis
+      on insufficiency or limitation that 「僅か」 does. For example, 僅かな水 (only a little water) emphasizes
+      the scarcity, whereas 少ない水 (little water) is a neutral description of quantity.
+    grammar_point: 僅かに (only・slightly)
+  - term: 小さい
+    meaning: small (in size, extent, or scale)
+    kind: often confused with
+    nuance: While 「少ない」 refers to a small *quantity* or *number* that is countable or measurable in amount,
+      「小さい」 refers to a small *physical size*, *dimension*, or *scale*. For example, 「人口が少ない」 means a
+      small *number* of people, but 「人口が小さい」 would be incorrect as population refers to quantity, not
+      physical size. Similarly, 「水が少ない」 means a small *amount* of water, whereas 「水が小さい」 would mean the
+      water itself is physically small, which doesn't make sense in most contexts.
+    grammar_point: <suggest>:小さい (small)
+post_false_friends_writeup: To avoid mixing up 「少ない」 with similar expressions, remember that 「少ない」 (sukunai)
+  is an い-adjective used to describe something's quantity or number as inherently small or few, usually
+  as a predicate. 「少し」 (sukoshi) is primarily an adverb that means "a little" or "a bit," and can modify
+  verbs or nouns (when used with の). 「僅か」 (wazuka) is also an adverb or な-adjective that emphasizes an
+  extremely small, often insufficient, amount, conveying a sense of 'only' or 'merely.' Finally, 「小さい」
+  (chiisai) describes physical size or dimension. Focus on whether you're describing the inherent quantity
+  as small (少ない), quantifying an action or noun (少し), emphasizing the insignificance of a small amount
+  (僅か), or describing physical size (小さい).
+examples:
+  - english: There are few cats in this town.
+    japanese:
+      - この 町 に は、猫 が {少ない}。
+      - この 町 に は、猫 が {少ない} です。
+      - この 町 に は、猫 の 数 が {少ない}。
+      - 猫 が {少ない} 町 です。
+    english_literally: In this town, cats are few.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 に は、猫 が {多い} です。
+        english: In this town, there are many cats.
+        hint: 「多い」 means "many", the opposite of "few". We're looking for a grammar point that means "few".
+      - competing_japanese:
+          - この 町 に は、猫 が 少し {しか い ない}。
+        english: There are only a few cats in this town.
+        hint: 「しか い ない」 emphasizes "only a little" or "hardly any". We're looking for a general description
+          of "few".
+      - competing_japanese:
+          - この 町 に は、猫 が 僅か {しか い ない}。
+        english: There are merely a few cats in this town.
+        hint: 「しか い ない」 implies a very small, often insufficient amount with a sense of "merely". We're
+          looking for a general description of "few".
+      - competing_japanese:
+          - この 町 に は、猫 が {小さい}。
+        english: The cats in this town are small.
+        hint: 「小さい」 refers to physical size. We're looking for a grammar point that indicates a small
+          *number* of cats.
+      - competing_japanese:
+          - この 町 に は、猫 が {ほとんど い ない}。
+        english: There are almost no cats in this town.
+        hint: 「ほとんど い ない」 means "almost none" or "hardly any". We're looking for "few", which suggests
+          a low number, but not necessarily near zero.
+    scene: A cat lover is disappointed with the local feline population.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+  - english: There are few children playing in the park.
+    japanese:
+      - 公園 で 遊ぶ 子供 が {少ない} です。
+      - 公園 で 遊ぶ 子供 が {少ない}。
+      - 公園 で 遊ん で いる 子供 が {少ない} です ね。
+    english_literally: Children who play in the park are few.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 で 遊ぶ 子供 が {多い} です。
+        english: There are many children playing in the park.
+        hint: 「多い」 means "many". We're looking for a grammar point that means "few".
+      - competing_japanese:
+          - 公園 で 遊ぶ 子供 が 少し {しか 遊ん で い ない} です。
+        english: There are only a few children playing in the park.
+        hint: 「しか い ない」 emphasizes "only a little" or "hardly any". We're looking for a general description
+          of "few".
+      - competing_japanese:
+          - 公園 で 遊ぶ 子供 が {僅か} です。
+        english: There are merely a few children playing in the park.
+        hint: 「僅か」 implies a very small, often insufficient amount with a sense of "merely". We're looking
+          for a general description of "few".
+      - competing_japanese:
+          - 公園 で 遊ぶ 子供 が {小さい} です。
+        english: The children playing in the park are small (in stature).
+        hint: 「小さい」 refers to physical size. We're looking for a grammar point that indicates a small
+          *number* of children.
+    scene: An elderly neighbor is observing the changes in their community.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: She runs a school for foreigners who have little Japanese.
+    japanese:
+      - 彼女 は、日本 語 が {少ない} 外国 人 の ため の 学校 を 経営 し て いる。
+      - 彼女 は、日本 語 の 習熟 度 が {少ない} 外国 人 向け の 学校 を 経営 し て い ます。
+      - 彼女 は、日本 語 が {少ない} 外国 人 の ため の 学校 を やっ て い ます。
+    english_literally: She runs a school for foreigners for whom Japanese is little.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は、日本 語 が {多い} 外国 人 の ため の 学校 を 経営 し て いる。
+        english: She runs a school for foreigners who have a lot of Japanese.
+        hint: 「多い」 means "many" or "a lot". We're looking for a grammar point that means "little" or "few".
+      - competing_japanese:
+          - 彼女 は、{少し} 日本 語 が できる 外国 人 の ため の 学校 を 経営 し て いる。
+        english: She runs a school for foreigners who can speak a little Japanese.
+        hint: 「少し」 here describes the ability to speak a little, while the grammar point describes the
+          quantity of their Japanese knowledge as limited.
+      - competing_japanese:
+          - 彼女 は、日本 語 が {僅か} な 外国 人 の ため の 学校 を 経営 し て いる。
+        english: She runs a school for foreigners who have merely a little Japanese.
+        hint: 「僅か」 emphasizes a very small, often inadequate amount. We're looking for a more neutral
+          description of "little".
+      - competing_japanese:
+          - 彼女 は、日本 語 が {小さい} 外国 人 の ため の 学校 を 経営 し て いる。
+        english: She runs a school for foreigners whose Japanese is small.
+        hint: 「小さい」 refers to physical size, not the amount of proficiency. We're looking for a grammar
+          point that indicates a small *quantity* of Japanese.
+      - competing_japanese:
+          - 彼女 は、日本 語 が {下手} な 外国 人 の ため の 学校 を 経営 し て いる。
+        english: She runs a school for foreigners who are bad at Japanese.
+        hint: 「下手な」 means "bad at something". We're looking for a grammar point that describes the quantity
+          of their Japanese knowledge as limited, not their skill level.
+    scene: A man is describing his friend's unique business venture to a female colleague.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: This sentence uses neutral and informative language, suitable for a male official addressing
+      a group on a serious topic. The focus is on the factual description of the school's purpose, using
+      「少ない」 (sukunai) to describe the limited Japanese proficiency of the target students in a formal
+      setting, without any gendered markers in the speech itself. The formality is maintained through
+      the use of standard verb endings like 「〜している」 (shiteiru) and generally objective vocabulary, which
+      is common in business or informative discussions regardless of the speaker's gender or the listener's
+      gender.
+  - english: I have little time.
+    japanese:
+      - 時間 が {少ない}。
+      - 時間 が {少ない} です。
+    english_literally: Time is little.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 が {多い}。
+        english: Time is much/plenty.
+        hint: 「多い」 means "much" or "plenty". We're looking for a grammar point that means "little".
+      - competing_japanese:
+          - 時間 が 少し {しか ない}。
+        english: I only have a little time.
+        hint: 「しか ない」 emphasizes "only a little" or "hardly any", often implying a sense of limitation.
+          We're looking for a general description of "little".
+      - competing_japanese:
+          - 時間 が 僅か {しか ない}。
+        english: I merely have a little time.
+        hint: 「しか ない」 emphasizes a very small, often insufficient amount. We're looking for a general
+          description of "little".
+    scene: A busy student rushing to finish homework.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: I have little experience in this field.
+    japanese:
+      - この 分野 で の 経験 が {少ない} です。
+      - この 分野 で の 経験 が {少ない}。
+    english_literally: Experience in this field is little.
+    competing_grammar:
+      - competing_japanese:
+          - この 分野 で の 経験 が {多い} です。
+        english: I have much experience in this field.
+        hint: 「多い」 means "much". We're looking for a grammar point that means "little".
+      - competing_japanese:
+          - この 分野 で の 経験 が 少し {しか ない} です。
+        english: I only have a little experience in this field.
+        hint: 「しか ない」 emphasizes "only a little" or "hardly any". We're looking for a general description
+          of "little".
+      - competing_japanese:
+          - この 分野 で の 知識 が {浅い} です。
+        english: My knowledge in this field is shallow.
+        hint: 「浅い」 means "shallow" (for knowledge) and describes depth, not quantity. We're looking for
+          a grammar point that indicates a small *amount* of experience.
+    scene: A job applicant admitting their limitations in an interview.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: There was little snow this winter.
+    japanese:
+      - この 冬 は 雪 が {少なかっ た}。
+      - この 冬 は 雪 が {少なかっ た} です。
+    english_literally: This winter, snow was little.
+    competing_grammar:
+      - competing_japanese:
+          - この 冬 は 雪 が {多かっ た}。
+        english: This winter, there was much snow.
+        hint: 「多かった」 means "much" (past tense). We're looking for a grammar point that means "little".
+      - competing_japanese:
+          - この 冬 は 雪 が {あまり 降ら なかっ た}。
+        english: This winter, it didn't snow much.
+        hint: 「あまり 降らなかった」 focuses on the action of snowing not being much, rather than the state of snow
+          being little. We're looking for a grammar point describing the *quantity* of snow.
+    scene: Two friends discussing the mild winter weather.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: The company's profits were few last quarter.
+    japanese:
+      - 先 四半 期 の 会社 の 利益 は {少なかっ た} です。
+      - 先 四半 期 の 会社 の 利益 は {少なかっ た}。
+    english_literally: Last quarter's company's profits were few.
+    competing_grammar:
+      - competing_japanese:
+          - 先 四半 期 の 会社 の 利益 は {多かっ た} です。
+        english: The company's profits were much last quarter.
+        hint: 「多かった」 means "much" (past tense). We're looking for a grammar point that means "few".
+      - competing_japanese:
+          - 先 四半 期 の 会社 の 利益 は {わずか} でし た。
+        english: The company's profits were merely meager last quarter.
+        hint: 「わずか でした」 emphasizes a very small, often insufficient amount, implying 'meager' or 'merely'.
+          We're looking for a more neutral description of "few".
+    scene: Executives reviewing financial results.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+  - english: Opportunities for promotion are few.
+    japanese:
+      - 昇進 の 機会 は {少ない}。
+      - 昇進 の 機会 は {少ない} です。
+    english_literally: Opportunities for promotion are few.
+    competing_grammar:
+      - competing_japanese:
+          - 昇進 の 機会 は {多い}。
+        english: Opportunities for promotion are many.
+        hint: 「多い」 means "many". We're looking for a grammar point that means "few".
+      - competing_japanese:
+          - 昇進 の 機会 は {ほとんど ない}。
+        english: There are almost no opportunities for promotion.
+        hint: 「ほとんど ない」 means "almost none" or "hardly any". We're looking for "few", which suggests a
+          low number, but not necessarily near zero.
+    scene: A frustrated employee talking to a colleague.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+  - english: There was little interest in the new proposal.
+    japanese:
+      - 新しい 提案 に 対する 関心 が {少なかっ た}。
+      - 新しい 提案 に 対する 関心 が {少なかっ た} です。
+    english_literally: Interest towards the new proposal was little.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 提案 に 対する 関心 が {多かっ た}。
+        english: There was much interest in the new proposal.
+        hint: 「多かった」 means "much" (past tense). We're looking for a grammar point that means "little".
+      - competing_japanese:
+          - 新しい 提案 に 対する 関心 が {あまり なかっ た}。
+        english: There wasn't much interest in the new proposal.
+        hint: 「あまり なかった」 means "there wasn't much", focusing on the lack rather than the inherent small
+          quantity. We're looking for a grammar point describing the *quantity* of interest.
+    scene: A project manager reporting to a team.
+    register: semi-formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: There is little hope left.
+    japanese:
+      - 残さ れ た 希望 は {少ない}。
+      - 残さ れ た 希望 は {少ない} です。
+    english_literally: The remaining hope is little.
+    competing_grammar:
+      - competing_japanese:
+          - 残さ れ た 希望 は {多い}。
+        english: There is much hope left.
+        hint: 「多い」 means "much". We're looking for a grammar point that means "little".
+      - competing_japanese:
+          - 残さ れ た 希望 は {ほとんど ない}。
+        english: There is almost no hope left.
+        hint: 「ほとんど ない」 means "almost none" or "hardly any". We're looking for "little", which implies
+          a small amount, but not necessarily near zero.
+    scene: A character reflecting on a dire situation.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+post_example_writeup: The examples provided illustrate how 「少ない」 is used in various contexts to denote
+  a small quantity or number, whether referring to tangible items like cats or intangible concepts like
+  opportunities and profits. Pay attention to how it functions as an い-adjective, often predicating a
+  noun that is the subject of the sentence, or modifying a noun in a relative clause. The double negative
+  form 「少なくない」 (not few) is particularly useful for subtly implying a significant number or amount without
+  directly stating 'many,' as seen in various contexts from resources to interest. It is crucial to remember
+  that while 「少ない」 describes inherent small quantity or number, it contrasts with words like 「少し」 which
+  quantifies an action or noun, and 「僅か」 which emphasizes insufficiency. These examples collectively demonstrate
+  the versatility of 「少ない」 in describing scarcity across different domains.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/少ない

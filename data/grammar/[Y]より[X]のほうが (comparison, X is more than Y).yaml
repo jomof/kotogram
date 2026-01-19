@@ -1,0 +1,439 @@
+grammar_point: '[Y]より[X]のほうが (comparison, X is more than Y)'
+learn_before:
+  - '[Noun]が欲しい (to want something)'
+  - '[Verb-た]が早いか (as soon as・no sooner than)'
+  - '[Verb-た]ほうがいい (it is better to do)'
+  - ところで (by the way)
+  - な-Adjective[である] (formal present)
+  - の (nominalizer・question particle)
+  - 風 (style・manner)
+meaning: X is more [quality/action] than Y; X is preferred over Y.
+pronunciation:
+  katakana: ヨリ ホウ ガ
+  romaji: yori hou ga
+formation:
+  ? '[Item Y (Noun, Verb plain form, etc.)] + より + [Item X (Noun, Verb plain form, etc.)] + のほうが + [Predicate
+    (Adjective, な-Adjective, etc.)]'
+  : States that X possesses the quality of the predicate to a greater degree than Y, or X is preferred
+    over Y.
+  ? '[Item Y (Noun, Verb plain form, etc.)] + より + [Item X (Noun, Verb plain form, etc.)] + のほうを + [Verb
+    expressing desire/preference (e.g., ほしい, したい)]'
+  : Emphasizes X as the preferred object/action over Y.
+jlpt: N5
+etymology: The particle 「より」 (yori) means 'than' or 'from,' signifying a point of comparison or origin.
+  The term 「ほう」 (方), originally meaning 'side' or 'direction,' evolved in this grammatical context to
+  denote 'the side of X.' When combined as `[Y]より[X]のほうが`, this structure explicitly highlights X as being
+  superior, or different, 'from' Y, thereby establishing a direct comparative relationship. This allows
+  Japanese to express comparative degrees, akin to English '-er' or 'more,' without relying on adjective
+  inflection.
+writeup: The grammar pattern `[Y]より[X]のほうが` is fundamental for making comparisons in Japanese. Unlike
+  English, which uses inflected forms like "bigger" or "faster," Japanese employs this explicit structure
+  to indicate that one entity, action, or quality (X) is 'more' of something than another (Y), or that
+  X is preferred over Y. The particle 「より」 (yori) is affixed to the item or action that is being compared
+  *against* (Y, the lesser or less preferred item). Following this, 「のほうが」 (no hou ga) points to the item
+  or action (X) that is greater in quality or the one that is preferred. For comparing two nouns (X and
+  Y), the structure is `[Noun Y] + より + [Noun X] + のほうが + [Adjective/な-adjective]` (e.g., `リンゴよりミカンのほうが美味しい`
+  - Mikan is more delicious than apples). For comparing two actions or situations (X and Y), it is `[Verb
+  (Plain) Y] + より + [Verb (Plain) X] + のほうが + [Adjective/な-adjective]` (e.g., `本を読むより映画を見るほうが楽しい` - Watching
+  movies is more enjoyable than reading books). When expressing desire or preference with verbs like `したい`
+  (want to do) or `ほしい` (want/desire), both 「が」 and 「を」 can follow 「のほう」. Using `のほうが` (`[Noun Y] + より
+  + [Noun X] + のほうが + ほしい/したい`) emphasizes the overall statement of preference or the desire itself. Using
+  `のほうを` (`[Noun Y] + より + [Noun X] + のほうを + ほしい/したい`) emphasizes the object or action being preferred.
+  The 「を」 marks the preferred item as the direct object of the verb of desire. Both are natural, with
+  subtle emphasis differences. The `より` part can often be omitted if the context makes the comparison
+  clear. For instance, if the comparison point is already understood, one might simply say `Xのほうがいい` (X
+  is better) without explicitly stating Y. The explicit inclusion of 「ほうが」 makes the comparison more assertive
+  and can convey the speaker's personal preference or a strong factual statement. Without 「ほうが」, a sentence
+  like `XはYより[Predicate]` can still express a comparison, but it's often more neutral, simply stating
+  a difference rather than highlighting one side's superiority or choice.
+false_friends:
+  - term: ほど〜ない
+    meaning: Is not as…as, Isn't... like..., Not to the extent of...
+    kind: often confused with
+    nuance: Unlike `[Y]より[X]のほうが`, which states that X is *more* of a quality than Y or X is preferred,
+      `ほど〜ない` indicates that something is *less* than something else, or not to the same extent.
+    grammar_point: ほど〜ない (not as... as)
+  - term: に比べて
+    meaning: compared to
+    kind: similar expression
+    nuance: While `[Y]より[X]のほうが` emphasizes the superiority or preference of one item, `に比べて` is used
+      for a more neutral comparison, simply stating a difference or similarity without necessarily implying
+      one is 'better' or 'more' than the other in a subjective sense.
+    grammar_point: に比べて (compared to)
+  - term: たほうがいい
+    meaning: It'd be better to, Should do
+    kind: often confused with
+    nuance: While both express a 'better' option, `たほうがいい` is used to give advice or suggestions, whereas
+      `[Y]より[X]のほうが` is used to state a fact about a comparison or a personal preference.
+    grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+  - term: より
+    meaning: More than, Over
+    kind: similar expression
+    nuance: While `より` can appear alone to indicate a comparison, it often appears in more formal contexts
+      or implies that `のほうが` is omitted for brevity. It lacks the explicit emphasis on the preferred 'side'
+      that `[Y]より[X]のほうが` provides, making it a more neutral factual comparison.
+    grammar_point: より (comparative)
+  - term: よりむしろ
+    meaning: rather than, more than
+    kind: similar expression
+    nuance: While `[Y]より[X]のほうが` makes a direct comparison stating X is more of something than Y, `よりむしろ`
+      implies a choice or preference for X *instead* of Y, often when X is unexpected or preferred contrary
+      to initial thought.
+    grammar_point: よりむしろ (rather than)
+  - term: と〜と・どちらが
+    meaning: between A and B, which is?
+    kind: similar expression
+    nuance: '`と〜と・どちらが` is a question format used to ask for a comparative choice between two options,
+      whereas `[Y]より[X]のほうが` provides the answer, stating which of the two is preferred or superior.'
+    grammar_point: と〜と・どちらが (between A and B)
+  - term: とは比べものにならない
+    meaning: incomparable
+    kind: antonym
+    nuance: While `[Y]より[X]のほうが` establishes a comparative relationship by stating one is better than
+      the other, `とは比べものにならない` asserts that a comparison cannot even be made because one item is vastly
+      superior or inferior, making any direct comparison meaningless.
+    grammar_point: とは比べものにならない (incomparable)
+  - term: 一番
+    meaning: the most, number one
+    kind: similar expression
+    nuance: While `[Y]より[X]のほうが` directly compares two items to indicate one's superiority or preference
+      over the other, `一番` is used to state that something is the absolute best, worst, or most extreme
+      among three or more items or a group.
+    grammar_point: 一番 (superlative)
+post_false_friends_writeup: When making comparisons, `[Y]より[X]のほうが` explicitly highlights X as being superior,
+  preferred, or 'more' of a certain quality than Y. In contrast, `ほど〜ない` indicates that something is *not
+  as much* as something else. `に比べて` offers a neutral comparison, simply stating a difference without
+  implying superiority. `たほうがいい` is specifically used for giving advice or suggestions, not for direct
+  factual comparisons. `より` when used alone tends to be a more neutral factual comparison, lacking the
+  strong emphasis on the preferred 'side' that `のほうが` provides. `よりむしろ` implies a choice for X *instead*
+  of Y. `と〜と・どちらが` is a question asking for a comparative choice, whereas `[Y]より[X]のほうが` provides the
+  answer. Lastly, `とは比べものにならない` asserts that no meaningful comparison can be made, as one item is vastly
+  superior or inferior, and `一番` is used for superlatives among three or more items, not just two.
+examples:
+  - english: I like cats more than dogs.
+    japanese:
+      - 犬 {より} 猫 {の ほう が} 好き です。
+      - 犬 {より} 猫 {の ほう が} 好き だ わ。
+      - 犬 {より} 猫 {の ほう が} 好き だ よ。
+      - 犬 {より} 猫 {の ほう が} 好き っす。
+      - 犬 {より} 猫 {の ほう が} 好き です わ。
+      - 犬 {より} 猫 {の ほう が} 好き。
+    english_literally: Than dogs, as for cats, prefer.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 と 猫、どちら が 好き です か？
+        english: Between dogs and cats, which do you like?
+        hint: This is a question asking for a choice. We're looking for a direct statement of preference
+          in comparison.
+      - competing_japanese:
+          - 猫 が 好き です、犬 は 好き じゃ ない です。
+        english: I like cats, I don't like dogs.
+        hint: This expresses two separate statements of liking/disliking. We're looking for a single comparative
+          statement.
+      - competing_japanese:
+          - 犬 は 猫 ほど 好き じゃ ない です。
+        english: I don't like dogs as much as cats.
+        hint: This phrasing indicates a lesser degree or extent. We're looking for a direct comparison
+          stating one is 'more' preferred.
+      - competing_japanese:
+          - 猫 は 犬 {より} 好き です。
+        english: Cats are liked more than dogs.
+        hint: This implies a general comparison but doesn't emphasize the preference as strongly as the
+          original. We're looking for an explicit statement of preference.
+      - competing_japanese:
+          - 犬 を 飼う {より} 猫 を 飼っ た {ほう が} いい です。
+        english: It's better to keep a cat than a dog.
+        hint: This provides advice about keeping pets. We're looking for a direct comparison of liking
+          between the two animals.
+    scene: A friend asks about pet preferences during a casual chat.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「です」 (desu) at the end of the sentence indicates a polite register suitable for
+      a friendly conversation. The comparison is straightforward, expressing a personal preference. The
+      addition of 「わ」 (wa) or 「よ」 (yo) can add a feminine or general emphatic nuance respectively, commonly
+      used in casual speech. 「っす」 (ssu) is a very casual, masculine contracted form of 「です」 (desu).
+  - english: Writing is more difficult than reading.
+    japanese:
+      - 読む {より} 書く {の ほう が} 難しい です。
+      - 読む {より} 書く {の ほう が} 難しい。
+      - 読む {より} 書く {の ほう が} 難しい よ。
+      - 読む {より} 書く {の ほう が} 難しい わ ね。
+      - 読む {より} 書く {の ほう が} 難しい か な。
+    english_literally: Than reading, as for writing, it is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 書く こと は 読む こと {より} 難しい です。
+        english: Writing is more difficult than reading.
+        hint: This is a factual statement using 'より' alone, which is grammatically correct but lacks the
+          explicit emphasis on 'which side' of the comparison is greater, as 'のほうが' provides. We are looking
+          for the emphasized comparison.
+      - competing_japanese:
+          - 読む の は 書く ほど 難しく ない です。
+        english: Reading isn't as difficult as writing.
+        hint: This phrasing indicates a lesser degree or extent. We're looking for a direct comparison
+          stating one is 'more' difficult.
+      - competing_japanese:
+          - 読む {より} 書い た {ほう が} いい です。
+        english: It's better to write than to read.
+        hint: This gives advice on which action to take. We're looking for a statement about the relative
+          difficulty of two actions.
+    scene: A language learner discusses the challenges of their studies with their teacher.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「です」 (desu) maintains politeness, fitting for a student speaking to a teacher.
+      Comparing actions by their dictionary forms followed by 「のほうが」 is a standard way to express relative
+      difficulty. Omitting 「です」 makes it casual. Adding 「よ」 (yo) adds a general assertive nuance, while
+      「わね」 (wane) adds a feminine, slightly contemplative or agreement-seeking nuance.
+  - english: I want the old tablet more than this new computer.
+    japanese:
+      - この 新しい パソコン {より} 古い タブレット {の ほう を} ほしい です。
+      - この 新しい パソコン {より} 古い タブレット {の ほう を} ほしい な。
+      - この 新しい パソコン {より} 古い タブレット {の ほう を} 欲しい ん です けど。
+      - この 新しい パソコン {より} 古い タブレット {の ほう を} ほしい。
+    english_literally: Than this new computer, as for the old tablet, want.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい パソコン じゃ なく て 古い タブレット が 欲しい です。
+        english: I want the old tablet, not this new computer.
+        hint: This simply states what is desired and what is not. We're looking for an explicit comparison
+          and preference between two items.
+      - competing_japanese:
+          - この 新しい パソコン {より} 古い タブレット {の ほう が} 欲しい です。
+        english: I want the old tablet more than this new computer (using 'no hou ga').
+        hint: While similar, this uses 'のほうが' which tends to emphasize the overall preference. We're looking
+          for 'のほうを' which specifically highlights the object of desire.
+      - competing_japanese:
+          - この 新しい パソコン は 古い タブレット ほど ほしく ない です。
+        english: This new computer isn't wanted as much as the old tablet.
+        hint: This expresses a lesser degree of desire. We're looking for a positive statement about a
+          stronger desire for one item over another.
+      - competing_japanese:
+          - 古い タブレット が この 新しい パソコン {より} ほしい です。
+        english: The old tablet is wanted more than this new computer.
+        hint: This expresses desire but lacks the strong emphasis on the preferred *item* that the original
+          conveys. We're looking for a phrase that specifically highlights the object of desire in a comparison.
+      - competing_japanese:
+          - この 新しい パソコン を 買う {より} 古い タブレット を 買っ た {ほう が} いい です。
+        english: It's better to buy the old tablet than this new computer.
+        hint: This gives advice on what to buy. We're looking for a statement of personal desire for a
+          specific item.
+    scene: A tech-savvy person, preferring a specific older model, explains their unusual choice to a
+      puzzled friend.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「のほうをほしい」 (no hou o hoshii) with 「です」 (desu) emphasizes the direct object (the
+      tablet) of desire, making the preference for this specific item clear and polite, especially when
+      it might seem counter-intuitive to the listener. Adding 「な」 (na) expresses contemplation, while
+      「ん です けど」 (n desu kedo) provides a softer, explanatory tone, possibly seeking understanding.
+  - english: My mother is kinder than my teacher.
+    japanese:
+      - 先生 {より} 母 {の ほう が} 優しい です。
+      - 先生 {より} 母 {の ほう が} 優しい。
+      - 先生 {より} 母 {の ほう が} 優しい なあ。
+      - 先生 {より} 母 {の ほう が} 優しい です ね。
+    english_literally: Than teacher, as for mother, is kind.
+    competing_grammar:
+      - competing_japanese:
+          - お 母 さん は 先生 {より} 優しい です。
+        english: Mother is kinder than teacher.
+        hint: This is a simple factual statement. We're looking for a phrase that uses 'より' to introduce
+          the lesser item first, setting up the comparison with greater emphasis on the preferred item.
+      - competing_japanese:
+          - 先生 は 母 ほど 優しく ない です。
+        english: Teacher isn't as kind as mother.
+        hint: This expresses a lesser degree of kindness. We're looking for a positive statement about
+          one person being 'more' kind.
+      - competing_japanese:
+          - 母 は 先生 {より} 優しい です。
+        english: Mother is kinder than teacher.
+        hint: This states a fact about kindness but doesn't necessarily convey the subjective feeling
+          or comparison as strongly as the original. We're looking for a comparison that emphasizes the
+          'more' aspect.
+      - competing_japanese:
+          - 先生 に 優しく する {より} 母 に 優しく し た {ほう が} いい です。
+        english: It's better to be kind to mother than to teacher.
+        hint: This is about giving advice on how to treat people. We're looking for a comparison of kindness
+          between two individuals.
+    scene: A child confiding in a grandparent about their feelings regarding their teacher.
+    register: semi-formal
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「です」 (desu) shows politeness, appropriate for a younger person speaking to an older
+      relative like a grandparent, even when discussing personal feelings. 「優しい」 (yasashii) directly expresses
+      the comparative quality. Omitting 「です」 makes it casual, appropriate for a child. Adding 「なあ」 (naa)
+      expresses a reflective or empathetic feeling common in casual speech, especially from a younger
+      speaker confiding a sentiment.
+  - english: Kyoto is more peaceful than Tokyo.
+    japanese:
+      - 東京 {より} 京都 {の ほう が} 静か です。
+      - 東京 {より} 京都 {の ほう が} 静か だ。
+      - 東京 {より} 京都 {の ほう が} 静か だ よ。
+      - 東京 {より} 京都 {の ほう が} 静か です よ。
+    english_literally: Than Tokyo, as for Kyoto, it is quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 京都 は 東京 {より} 静か です。
+        english: Kyoto is quieter than Tokyo.
+        hint: This is a simple factual statement. We're looking for an explicit comparison that places
+          the less peaceful item first for emphasis.
+      - competing_japanese:
+          - 東京 は 京都 ほど 静か じゃ ない です。
+        english: Tokyo isn't as quiet as Kyoto.
+        hint: This expresses a negative comparison or a lesser extent. We're looking for a positive statement
+          about a greater degree of quietness.
+      - competing_japanese:
+          - 東京 に 住む {より} 京都 に 住ん だ {ほう が} いい です。
+        english: It's better to live in Kyoto than Tokyo.
+        hint: This gives advice on living locations. We're looking for a factual comparison about the
+          atmosphere of two cities.
+    scene: Two friends are discussing their favorite Japanese cities.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「です」 (desu) maintains politeness appropriate for a friendly conversation. 「静か」
+      (shizuka) is a な-adjective meaning "quiet" or "peaceful." This sentence directly compares the atmospheres
+      of two cities. Adding 「よ」 (yo) can add a gentle emphasis or confirmation.
+  - english: Studying in a quiet place is more efficient than doing it in a noisy one.
+    japanese:
+      - 静か な 場所 で 勉強 する {ほう が} 騒がしい 場所 で する {より} 効率 的 です。
+      - 静か な ところ で 勉強 する {ほう が} うるさい ところ で する {より} いい です。
+      - 静か な 場所 で の 勉強 {の ほう が} 騒がしい 場所 で の 勉強 {より} 効率 が いい です。
+    english_literally: The side of studying in a quiet place is more efficient than doing it in a noisy
+      place.
+    competing_grammar:
+      - competing_japanese:
+          - 静か な 場所 で の 勉強 は、うるさい 場所 で する {より} 効率 的 です。
+        english: Studying in a quiet place is more efficient than doing it in a noisy one.
+        hint: This structure is a neutral statement of fact. We're looking for one that emphasizes the
+          preference for studying in quiet places.
+    scene: A student struggling to concentrate asks a senior student for advice.
+    register: semi-formal
+    setting: instructional
+    nuance: The advice given is a strong recommendation based on experience, making 「ほうが」 appropriate
+      to emphasize the beneficial 'side' of quiet study. The polite 「です」 maintains the academic register
+      appropriate for a teacher.
+  - english: Doing it yourself is faster than waiting for help.
+    japanese:
+      - 助け を 待つ {より} 自分 で やる {ほう が} 早い です。
+      - 助け 待つ {より} 自分 で やっ た {ほう が} 早い よ。
+      - 助け を 待つ {より} 自分 で やっ た {方 が} 早い です。
+    english_literally: The side of doing it by oneself is faster than waiting for help.
+    competing_grammar:
+      - competing_japanese:
+          - 助け を 待つ の は、自分 で やる の {に 比べ て} 時間 が かかり ます。
+        english: Waiting for help takes more time compared to doing it yourself.
+        hint: 「〜に比べて」 just compares two situations. We're looking for an assertion that one action is
+          faster and preferred.
+    scene: A project team is behind schedule, and a team member offers a quick solution.
+    register: semi-formal
+    setting: serious
+    nuance: The urgency of the situation and the suggestion of a proactive solution emphasize the preferred
+      action with 「ほうが」. The use of 「〜よ」 in a more casual variant indicates a slight emphasis or a call
+      for agreement, common in informal settings.
+  - english: Being a student is more liberating than being an adult.
+    japanese:
+      - 学生 で ある {ほう が} 大人 で ある {より} 自由 です。
+      - 学生 {の ほう が} 大人 {より} 自由 だ よ ね。
+      - 学生 で ある {方 が} 大人 で ある {より} 自由 です。
+    english_literally: The side of being a student is freer than being an adult.
+    competing_grammar:
+      - competing_japanese:
+          - 学生 は 大人 ほど 自由 で は ない。
+        english: Students are not as free as adults.
+        hint: 「〜ほど〜ない」 indicates a lesser degree or lack of equality. We're looking for a phrase that
+          highlights one side as having more of a quality.
+    scene: A university student talks to a recent graduate about their life stages.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The reflective and somewhat wistful tone about life stages, particularly the contrast between
+      student and adult freedom, can be common among younger female speakers reflecting on their experiences.
+      The use of 「であるほうが」 emphasizes the state of 'being a student' as the preferred side. 「〜だよね」 is a
+      casual sentence-ending particle used to seek agreement, often by younger speakers.
+  - english: My personality is such that I prefer thinking alone to speaking in front of people.
+    japanese:
+      - 人前 で 話す {より}、一人 で 考える {の ほう が} 好き な 性格 です。
+      - 人前 で 話す {より}、一人 で 考える {の ほう が} 好き な 性格 だ。
+      - 人前 で 話す {より}、一人 で 考える {の ほう が} 好き な 性格 な ん だ よ ね。
+      - 人前 で 話す {より}、一人 で 考える {の ほう が} 好き な 性格 な の。
+      - 人前 で 話す {より}、一人 で 考える {の ほう が} 好き な 性格 な の です。
+    english_literally: Than speaking in front of people, as for thinking alone, it is a personality that
+      I like.
+    competing_grammar:
+      - competing_japanese:
+          - 人前 で 話す の は 好き じゃ ない けど、一人 で 考える の は 好き です。
+        english: I don't like speaking in front of people, but I like thinking alone.
+        hint: This separates two preferences. We're looking for a single statement describing a comparative
+          personality trait.
+      - competing_japanese:
+          - 人前 で 話す {より} 一人 で 考える {方 が} 好き です。
+        english: I prefer thinking alone to speaking in front of people.
+        hint: This is a direct comparison but doesn't explicitly link the preference to one's personality
+          or nature as strongly as the original. We're looking for a statement that defines a personality
+          trait.
+      - competing_japanese:
+          - 人前 で 話す こと は 一人 で 考える こと ほど 好き じゃ ない です。
+        english: Speaking in front of people isn't as much liked as thinking alone.
+        hint: This expresses a lesser degree of liking. We're looking for a positive statement about one's
+          stronger preference as a personality trait.
+      - competing_japanese:
+          - 一人 で 考える の が 人前 で 話す こと {より} 好き な 性格 です。
+        english: Thinking alone is a more liked personality trait than speaking in front of people.
+        hint: This is a factual statement about one's personality, but the original emphasizes the *preference*
+          for thinking alone. We're looking for a comparison that highlights this intrinsic preference.
+      - competing_japanese:
+          - 人前 で 話す {より} 一人 で 考え た {ほう が} いい。
+        english: It's better to think alone than speak in front of people.
+        hint: This gives advice on how one should behave. We're looking for a statement about a personal
+          inherent preference regarding one's personality.
+    scene: An introverted person describes their nature in a casual conversation with a close friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: While the sentence ends politely with 「です」 (desu), the overall tone is casual due to the personal
+      nature of the discussion between close friends. 「好きな性格です」 (suki na seikaku desu) makes this a descriptive
+      statement about one's disposition, clearly indicating a preferred way of being. Omitting 「です」 makes
+      it more casual. Adding 「ん だ よ ね」 (n da yo ne) makes it an explanatory, seeking-agreement phrase,
+      common in casual conversation. 「な の」 (na no) also provides a softer, explanatory nuance.
+  - english: Taking the train is more convenient than driving in the city.
+    japanese:
+      - 都心 で は 電車 に 乗る {ほう が} 車 を 運転 する {より} 便利 です わ よ。
+      - 都心 で は 電車 に 乗る {ほう が} 車 {より} 便利 だ よ。
+      - 電車 に 乗る {方 が} 車 を 運転 する {より} 便利 だ と 思い ます。
+    english_literally: In the city center, the side of taking the train is more convenient than the side
+      of driving a car.
+    competing_grammar:
+      - competing_japanese:
+          - 都心 で は 電車 は 車 {より} 便利 です。
+        english: In the city center, the train is more convenient than a car.
+        hint: This is a more direct and neutral comparison. We're looking for a structure that emphasizes
+          the choice or 'side' of taking the train as being better.
+    scene: An older female colleague offering advice to a younger male colleague about city commuting.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 'The use of 「わよ」 by an older female speaker adds a gentle but firm assertion, common when
+      offering seasoned advice. It softens the statement slightly while still emphasizing the speaker''s
+      experience-based preference. The comparison is between two actions: 「電車に乗る」 (taking the train) and
+      「車を運転する」 (driving a car).'
+post_example_writeup: As shown in these examples, `[Y]より[X]のほうが` is a highly versatile and essential grammar
+  pattern for expressing comparisons and preferences. Mastering it allows for nuanced statements about
+  what is better, preferred, or possesses a quality to a higher degree. Always ensure the item being compared
+  against (Y) is marked by `より`, and the preferred or 'more' item (X) is followed by `のほうが` or `のほうを`.
+  Pay close attention to the particles used with `ほうが`—it's often `の` for nouns and the plain form for
+  verbs and adjectives. Remember that the `より` part can sometimes be omitted if the context of comparison
+  is already clear, which often happens in natural conversation.

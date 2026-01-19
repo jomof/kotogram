@@ -1,0 +1,444 @@
+grammar_point: ぎみ (slight tendency or feeling)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - ~なくてはいけない・なくちゃ (must do・have to)
+  - い-Adjective[み] (abstract quality)
+  - ちょっと (adverb)
+  - の無さ・のなさ (lack of)
+meaning: looking, feeling a little, touch of, tending to, slightly
+pronunciation:
+  katakana: ギミ
+  romaji: gimi
+formation:
+  Noun + ぎみ: Indicates a slight tendency or feeling associated with the noun.
+  Verb stem (masu-form) + ぎみ: Indicates a slight tendency towards the action or state of the verb.
+  い-Adjective (adverbial form) + ぎみ: Indicates a slight tendency towards the state described by the adjective.
+jlpt: N3
+etymology: The suffix 「ぎみ」 originates from the noun 「気味 (きみ)」, meaning "sensation" or "feeling." The sound
+  change from the initial 「き」 to 「ぎ」 (濁音化 - dakuon-ka, voicing) when used as a suffix serves to distinguish
+  it from the standalone noun. This linguistic evolution highlights how grammatical particles and suffixes
+  can adapt their phonology to signal a shift in their function, from a standalone word to a grammatical
+  marker indicating a nuance of "tendency" or "slightness."
+writeup: 'The suffix 「ぎみ」 is used to convey a slight tendency, feeling, or sign of something. It is typically
+  attached to nouns or the conjunctive (ます-form) of verbs. Common translations include "looking (a little)",
+  "feeling a little", "a touch of", or "slightly". 「ぎみ」 primarily refers to the subjective sensations
+  or tendencies experienced by the speaker or observed by them. It can describe both one''s own physical
+  or emotional state (e.g., 疲れぎみ - feeling a little tired) and observations about others (e.g., 太りぎみ -
+  looking a bit plump). A key characteristic of 「ぎみ」 is its ability to soften a statement. By indicating
+  a *slight* degree or a *tendency* rather than a definitive state, the speaker avoids sounding overly
+  assertive or direct. This nuance is particularly useful in Japanese communication, which often values
+  indirectness and subtlety. For example, saying 「風邪ぎみ」 (feeling a bit sick) is softer than 「風邪だ」 (I have
+  a cold). Important Note: Although it derives from the noun 「気味 (きみ)」, the suffix is always pronounced
+  and written with a voiced sound, 「ぎみ」. This sound change is crucial for differentiating the grammatical
+  suffix from the original noun.'
+false_friends:
+  - term: 的
+    meaning: ~ly・~like・~al, Typical
+    kind: similar expression
+    nuance: 「的」 is used to create adjectives from nouns, indicating something "-like" or "-al", while
+      「ぎみ」 indicates a slight tendency or feeling. 「ぎみ」 indicates a sensation, whereas 「的」 does not.
+    grammar_point: 的 (adjectivizer)
+  - term: ような気がする
+    meaning: Have a feeling that
+    kind: similar expression
+    nuance: 「ような気がする」 expresses a general feeling or impression, while 「ぎみ」 describes a specific, often
+      physical, sensation. 「ぎみ」 is more definitive and immediate.
+    grammar_point: ような気がする (to have a feeling or hunch)
+  - term: っぽい
+    meaning: ish; characteristic of
+    kind: similar expression
+    nuance: 「っぽい」 indicates a general resemblance or characteristic, while 「ぎみ」 specifically denotes a
+      slight feeling or tendency towards something. 「っぽい」 can also suggest imitation or artificiality.
+    grammar_point: っぽい (ish; characteristic of)
+  - term: げ
+    meaning: Seemingly, giving the appearance of [expresses emotions or feelings]
+    kind: similar expression
+    nuance: 「げ」 expresses someone's emotions that are visible to others, whereas 「ぎみ」 describes an internal
+      feeling or tendency that may not be visible. 「げ」 focuses on outward appearance.
+    grammar_point: げ (seeming・appearance)
+  - term: がち
+    meaning: prone to, tend to, often
+    kind: similar expression
+    nuance: While 「ぎみ」 suggests a slight, often temporary, tendency or feeling, 「がち」 indicates a stronger,
+      more frequent, and often undesirable habit or inclination. 「がち」 implies a recurring pattern.
+    grammar_point: がち (tend to)
+  - term: かけ
+    meaning: Half-, Not yet finished, About to, Begin to
+    kind: similar expression
+    nuance: 「ぎみ」 describes a state or tendency that is subtly present or emerging. 「～かける」, on the other
+      hand, describes an action that is in its initial phase, about to begin, or left incomplete, focusing
+      on the progression of an action rather than a subtle characteristic.
+    grammar_point: かける・かけ (in process・incomplete・on the verge)
+post_false_friends_writeup: 「ぎみ」, 「的」, 「ような気がする」, 「っぽい」, 「げ」, 「がち」, and 「～かける」 all add nuance to a word,
+  but in different ways. 「ぎみ」 suggests a slight feeling or tendency. 「的」 creates an adjective. 「ような気がする」
+  describes a vague feeling. 「っぽい」 indicates resemblance or characteristic. 「げ」 describes visible emotions.
+  「がち」 indicates a strong, often negative, habit. 「～かける」 indicates an action about to start or half-finished.
+examples:
+  - english: Lately, I've been working a bit too much, and I feel like I'm going to get sick.
+    japanese:
+      - 最近、ちょっと 働き {ぎみ} で、体調 を 崩し そう。
+      - 最近、少し 働き {ぎみ} で、体調 を 崩し そう です。
+    english_literally: Recently, a little work-tendency, and body-condition might break.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、ちょっと 働き {すぎ} で、体調 を 崩し そう。
+          - 最近、少し 働き {すぎ} で、体調 を 崩し そう です。
+        english: Lately, I've been working too much, and I feel like I'm going to get sick.
+        hint: 「～すぎる」 directly states that one is doing something excessively, while 「ぎみ」 softens it to
+          a subtle tendency. We're looking for a softer nuance here.
+      - competing_japanese:
+          - 最近、ちょっと 働き {がち} で、体調 を 崩し そう。
+          - 最近、少し 働き {がち} で、体調 を 崩し そう です。
+        english: Lately, I tend to work too much, and I feel like I'm going to get sick.
+        hint: 「～がち」 implies a stronger, more habitual or frequent tendency, often with a negative connotation.
+          We're looking for a slight, emerging tendency.
+    scene: A busy professional talking to a friend about their demanding schedule and feeling unwell.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker, a female professional, uses 「働きぎみ」 to express a slight, emergent feeling of overworking
+      without being overly dramatic. The casual register with 「崩しそう」 (likely to get sick) emphasizes her
+      current state to a friend. The politeness level can be slightly increased to 「崩しそうです」 for a semi-casual
+      conversation.
+    etymology: The verb stem 「働き」 comes from 「働く」 (hataraku), meaning to work. The construction 「働きぎみ」
+      describes a tendency related to this action.
+  - english: This morning, I'm feeling a bit sleep-deprived, and my head feels fuzzy.
+    japanese:
+      - 今朝 は 少し 寝 不足 {ぎみ} で、頭 が ぼーっと し て いる。
+      - 今朝 は ちょっと 寝 不足 {ぎみ} な の で、頭 が ぼーっと し て い ます。
+    english_literally: This morning, a little sleep-deprivation-tendency, and head is fuzzy.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝 は 少し 寝 不足 {だ} から、頭 が ぼーっと し て いる。
+          - 今朝 は ちょっと 寝 不足 {な の で}、頭 が ぼーっと し て い ます。
+        english: This morning, because I'm sleep-deprived, my head feels fuzzy.
+        hint: 「～だ/なので」 makes a direct statement about being sleep-deprived, lacking the nuance of a subtle
+          or emerging feeling. We're looking for a phrase that implies a slight feeling rather than a
+          definite state.
+      - competing_japanese:
+          - 今朝 は 少し 寝 不足 {がち} で、頭 が ぼーっと し て いる。
+          - 今朝 は ちょっと 寝 不足 {がち} な の で、頭 が ぼーっと し て い ます。
+        english: This morning, I tend to be sleep-deprived, and my head feels fuzzy.
+        hint: 「～がち」 suggests a more habitual or frequent tendency to lack sleep, rather than a specific,
+          possibly temporary feeling for this morning. We're looking for a slight, present feeling.
+    scene: Someone waking up and preparing for the day, feeling groggy and not fully alert.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker, reflecting on his own state, uses 「寝不足ぎみ」 to describe a subtle feeling of being
+      sleep-deprived. The use of 「ぼーっとしている」 (feeling fuzzy) is a common, casual expression. The alternative
+      uses 「なので」 for a slightly more formal causal connection and 「しています」 for politeness.
+    etymology: 「寝不足」 (nebusoku) means lack of sleep. Attaching 「ぎみ」 to this noun emphasizes the feeling
+      of being slightly under-slept.
+  - english: His presentation seemed to lack confidence a bit, so I'm a little worried.
+    japanese:
+      - 彼 の プレゼン は 自信 な さ {ぎみ} だっ た の で、少し 心配 だ。
+      - 彼 の プレゼン は 自信 な さ {ぎみ} でし た の で、少し 心配 し て い ます。
+    english_literally: His presentation confidence-lacking-tendency, so a little worried.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の プレゼン は 自信 な さ {そう} だっ た の で、少し 心配 だ。
+          - 彼 の プレゼン は 自信 な さ {そう} でし た の で、少し 心配 し て い ます。
+        english: His presentation looked like it lacked confidence, so I'm a little worried.
+        hint: 「～そうだ」 indicates a direct visual impression or appearance. 「ぎみ」 suggests a more subtle,
+          internal feeling or tendency that isn't as outwardly obvious. We're looking for a slight, perhaps
+          underlying, lack of confidence.
+      - competing_japanese:
+          - 彼 の プレゼン は 自信 が ない {よう に 見え た} の で、少し 心配 だ。
+          - 彼 の プレゼン は 自信 が ない {よう に 見え た} の で、少し 心配 し て い ます。
+        english: His presentation appeared as if he lacked confidence, so I'm a little worried.
+        hint: 「～ように見えた」 means "appeared as if" and focuses on how something struck the observer. 「ぎみ」
+          describes a more inherent, albeit slight, state or tendency. We're looking for a subtle, internal
+          tendency.
+    scene: Two colleagues discussing a coworker's performance after observing their presentation.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female colleague uses 「自信なさぎみ」 to gently express an observation about her male coworker's
+      presentation, softening the criticism by implying a subtle tendency rather than a complete lack
+      of confidence. The use of 「心配だ」 (worried) is a direct, yet appropriate, expression in a semi-formal
+      setting. The polite alternative uses 「でしたので」 and 「しています」.
+    etymology: 「自信なさ」 (jishinnasa) is a colloquial contraction of 「自信がない」 (jishin ga nai), meaning 'to
+      lack confidence'. Adding 「ぎみ」 describes a slight appearance of this lack.
+  - english: My legs are feeling a bit swollen from the long flight.
+    japanese:
+      - 長 時間 の フライト で、足 が むくみ {ぎみ} だ。
+      - 長 時間 の フライト で、足 が むくみ {ぎみ} です。
+    english_literally: Long-time flight by, legs swelling-tendency.
+    competing_grammar:
+      - competing_japanese:
+          - 長 時間 の フライト で、足 が {むく ん で いる}。
+          - 長 時間 の フライト で、足 が {むく ん で い ます}。
+        english: My legs are swollen from the long flight.
+        hint: 「～ている」 describes a current, established state of being swollen. 「ぎみ」 implies a slight or
+          emerging tendency to be swollen, not yet a full state. We're looking for a nuance of slight
+          or beginning swelling.
+      - competing_japanese:
+          - 長 時間 の フライト で、足 が むくみ {やすい}。
+          - 長 時間 の フライト で、足 が むくみ {やすい} です。
+        english: My legs tend to swell easily from long flights.
+        hint: 「～やすい」 indicates a general susceptibility to becoming hard of hearing. 「ぎみ」 refers to a
+          current, slight condition rather than a general tendency. We're looking for a current, subtle
+          state.
+    scene: A traveler arriving at their destination after a transatlantic flight, noticing physical discomfort.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The male speaker, possibly tired from travel, describes his physical discomfort using 「むくみぎみ」,
+      indicating a subtle, incipient swelling. This is a common, casual way to express such a symptom.
+      The use of 「だ」 is casual, while 「です」 offers a polite alternative for general conversation.
+    etymology: 「むくみ」 (mukumi) is the noun form of the verb 「むくむ」, meaning to swell. 「むくみぎみ」 conveys a
+      slight or emerging swelling.
+  - english: Lately, the atmosphere of the shop feels a little gloomy, and I feel like customers are staying
+      away.
+    japanese:
+      - 最近、お 店 の 雰囲気 が 暗く {ぎみ} で、客足 が 遠のい て いる 気 が する。
+      - 最近、お 店 の 雰囲気 が 暗く {ぎみ} な の で、客足 が 遠のい て いる 気 が いたし ます。
+    english_literally: Recently, shop's atmosphere dark-tendency, and customer-traffic is distancing-feeling.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、お 店 の 雰囲気 が {暗い の で}、客足 が 遠のい て いる 気 が する。
+          - 最近、お 店 の 雰囲気 が {暗い の で}、客足 が 遠のい て いる 気 が いたし ます。
+        english: Recently, because the shop's atmosphere is gloomy, I feel like customers are staying
+          away.
+        hint: 「暗い」 is a direct statement that the atmosphere is gloomy. 「ぎみ」 implies a more subtle or
+          emerging gloominess, not a definite, established state. We're looking for a slight nuance of
+          gloominess.
+      - competing_japanese:
+          - 最近、お 店 の 雰囲気 が 暗く なり {がち} で、客足 が 遠のい て いる 気 が する。
+          - 最近、お 店 の 雰囲気 が 暗く なり {がち} な の で、客足 が 遠のい て いる 気 が いたし ます。
+        english: Recently, the atmosphere of the shop tends to get gloomy, and I feel like customers are
+          staying away.
+        hint: 「～がち」 suggests a stronger, more habitual tendency for the atmosphere to become gloomy. 「ぎみ」
+          refers to a current, subtle state rather than a recurring pattern. We're looking for an emerging
+          gloominess.
+    scene: A shop owner discussing declining business with a manager, speculating on the cause.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The shop owner, a male, uses 「暗くぎみ」 to describe a subtle, observed gloominess in the shop's
+      atmosphere, which is less accusatory than a direct statement. The use of 「気がする」 (have a feeling)
+      further softens the observation. The second version uses 「なので」 and 「いたします」 for a more formal and
+      humble tone, suitable for business discussions.
+    etymology: 「暗く」 is the adverbial form of the i-adjective 「暗い」 (kurai), meaning dark or gloomy. 「暗くぎみ」
+      suggests a subtle inclination towards gloominess.
+  - english: That new employee seems to be a little lacking in proactiveness, and needs more guidance.
+    japanese:
+      - あの 新入 社員 は 積極 性 不足 {ぎみ} で、もっと 指導 が 必要 だ。
+      - あの 新入 社員 は 積極 性 不足 {ぎみ} な の で、もっと 指導 が 必要 です。
+    english_literally: That new employee proactiveness-lack-tendency, and more guidance is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - あの 新入 社員 は 積極 性 が {不足 し て いる} の で、もっと 指導 が 必要 だ。
+          - あの 新入 社員 は 積極 性 が {不足 し て い ます} の で、もっと 指導 が 必要 です。
+        english: That new employee lacks proactiveness, so more guidance is necessary.
+        hint: 「不足している」 is a direct statement about lacking something. 「ぎみ」 softens this to imply a slight
+          or emerging tendency to lack something, not a complete deficiency. We're looking for a gentle,
+          subtle assessment.
+      - competing_japanese:
+          - あの 新入 社員 は 積極 性 に {欠ける} の で、もっと 指導 が 必要 だ。
+          - あの 新入 社員 は 積極 性 に {欠ける} の で、もっと 指導 が 必要 です。
+        english: That new employee is lacking in proactiveness, so more guidance is necessary.
+        hint: 「～に欠ける」 means to be lacking in something, presenting it as a clear deficiency. 「ぎみ」 adds
+          a nuance of a slight or developing lack, making the observation less definitive. We're looking
+          for a nuanced, softer description.
+    scene: A manager discussing a new employee's developmental areas with a team leader during a performance
+      review.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male manager uses 「積極性不足ぎみ」 to mildly critique a new employee's proactiveness. This phrasing
+      softens the assessment, suggesting a slight tendency rather than a complete deficiency, making it
+      more constructive. The use of 「必要だ」 is formal, while 「必要です」 provides a polite option.
+    etymology: 「積極性不足」 (sekkyokusei fusoku) means lack of proactiveness. Adding 「ぎみ」 softens this direct
+      assessment, implying a slight or emerging lack.
+  - english: I'm a bit nervous about tomorrow's presentation.
+    japanese:
+      - 明日 の プレゼン、緊張 {ぎみ} だ。
+      - 明日 の プレゼン、緊張 {ぎみ} です。
+    english_literally: Tomorrow's presentation, nervousness-tendency.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の プレゼン、{緊張 し て いる}。
+          - 明日 の プレゼン、{緊張 し て い ます}。
+        english: I am nervous about tomorrow's presentation.
+        hint: 「～している」 describes a current, definite state of being nervous. 「ぎみ」 implies a slight or emerging
+          feeling of nervousness, softening the statement. We're looking for a subtle nuance of nervousness.
+      - competing_japanese:
+          - 明日 の プレゼン、緊張 {がち} だ。
+          - 明日 の プレゼン、緊張 {がち} です。
+        english: I tend to get nervous about tomorrow's presentation.
+        hint: 「～がち」 suggests a stronger, more habitual tendency to be nervous. We're looking for a specific,
+          slight feeling for this particular event.
+    scene: A student talking to a friend about an upcoming presentation.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker, a female student, uses 「緊張ぎみ」 to convey a slight, emergent feeling of nervousness
+      about the presentation, which is a common and relatable way to express it among friends. The casual
+      「だ」 can be made polite with 「です」.
+    etymology: 「緊張」 (kinchō) means tension or nervousness. Adding 「ぎみ」 describes a subtle inclination
+      towards this state.
+  - english: Lately, I'm a bit on the heavy side, so I need to exercise.
+    japanese:
+      - 最近、太り {ぎみ} な の で、運動 し なく て は。
+      - 最近、太り {ぎみ} な の で、運動 し なく て は いけ ませ ん。
+    english_literally: Recently, overweight-tendency, so exercise must do.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、{太っ て いる} の で、運動 し なく て は。
+          - 最近、{太っ て い ます} の で、運動 し なく て は いけ ませ ん。
+        english: Lately, I am fat, so I need to exercise.
+        hint: 「太っている」 is a direct statement that one is fat. 「ぎみ」 implies a slight weight gain or tendency,
+          which is a softer way to describe it. We're looking for a gentle, not definitive, observation
+          about weight.
+      - competing_japanese:
+          - 最近、太り {やすい} の で、運動 し なく て は。
+          - 最近、太り {やすい} の で、運動 し なく て は いけ ませ ん。
+        english: Lately, I tend to gain weight easily, so I need to exercise.
+        hint: 「～やすい」 indicates a general susceptibility to gaining weight. 「ぎみ」 refers to a current, slight
+          tendency rather than a habitual characteristic. We're looking for a current, subtle state.
+    scene: A person talking to themselves or a friend about their health and weight management.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker, a male, uses 「太りぎみ」 to gently acknowledge a slight weight gain, indicating a
+      subtle observation rather than a strong statement of being overweight. The phrase 「運動しなくては」 (must
+      exercise) shows personal resolve. The polite alternative uses 「いけません」.
+    etymology: 「太り」 is the verb stem of 「太る」 (futoru), meaning to gain weight. 「太りぎみ」 conveys a slight
+      tendency towards gaining weight.
+  - english: It's a bit cloudy, but it probably won't rain.
+    japanese:
+      - 曇り {ぎみ} だ けど、雨 は 降ら ない だろ う。
+      - 曇り {ぎみ} です が、雨 は 降ら ない でしょ う。
+    english_literally: Cloudy-tendency, but rain will not fall probably.
+    competing_grammar:
+      - competing_japanese:
+          - '{曇っ て いる} けど、雨 は 降ら ない だろ う。'
+          - '{曇っ て い ます} が、雨 は 降ら ない でしょ う。'
+        english: It's cloudy, but it probably won't rain.
+        hint: 「曇っている」 describes a definite state of being cloudy. 「ぎみ」 suggests a slight or emerging cloudiness,
+          not a full overcast condition. We're looking for a subtle nuance of cloudiness.
+      - competing_japanese:
+          - 曇り {そう} だ けど、雨 は 降ら ない だろ う。
+          - 曇り {そう} です が、雨 は 降ら ない でしょ う。
+        english: It looks like it will be cloudy, focusing on a future appearance, but it probably won't
+          rain.
+        hint: 「～そうだ」 indicates that it looks like it's going to be cloudy, focusing on a future appearance.
+          「ぎみ」 describes a current, subtle state of partial cloudiness. We're looking for a present, slight
+          condition.
+    scene: Someone looking out the window, commenting on the weather to their family.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The speaker, a female, uses 「曇りぎみ」 to describe a sky that is somewhat cloudy but not completely
+      overcast, indicating a subtle observation. The use of 「だろ う」 expresses a casual prediction. The
+      polite alternative uses 「です が」 and 「でしょ う」.
+    etymology: 「曇り」 (kumori) is the noun form of the verb 「曇る」 (kumoru), meaning to become cloudy. 「曇りぎみ」
+      describes a slight tendency towards being cloudy.
+  - english: The economic outlook seems a bit sluggish these days, doesn't it?
+    japanese:
+      - 最近、景気 は 下がり {ぎみ} です ね。
+      - 最近、景気 は 下がり {ぎみ} でしょ う か。
+    english_literally: Recently, economy falling-tendency, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 最近、景気 は {下がっ て い ます} ね。
+          - 最近、景気 は {下がっ て い ます} ね。
+        english: Recently, the economy is falling, isn't it?
+        hint: 「下がっている」 is a direct statement that the economy is falling. 「ぎみ」 implies a subtle, emerging
+          or slight downward trend, softening the observation. We're looking for a nuanced, less definitive
+          description of economic conditions.
+      - competing_japanese:
+          - 最近、景気 は 下がり {がち} です ね。
+          - 最近、景気 は 下がり {がち} です ね。
+        english: Recently, the economy tends to fall, isn't it?
+        hint: 「下がりがち」 suggests a stronger, more habitual tendency for the economy to decline. 「ぎみ」 refers
+          to a current, slight observation rather than a recurring pattern. We're looking for a present,
+          subtle trend.
+    scene: Two business professionals discussing the current economic situation during a meeting.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: A male speaker uses 「下がりぎみ」 to describe a subtle, observed tendency for the economy to be
+      sluggish or decline, which is a polite and cautious way to discuss sensitive business matters. The
+      use of 「ですね」 or 「でしょう か」 seeks agreement or confirms understanding in a formal context.
+    etymology: 「下がり」 is the verb stem of 「下がる」 (sagaru), meaning to go down or decline. 「下がりぎみ」 indicates
+      a slight tendency towards decline.
+  - english: My grandfather is a bit hard of hearing, so please speak clearly.
+    japanese:
+      - 祖父 は 耳 が 遠く {ぎみ} な の で、はっきり 話し て ください。
+      - 祖父 は 耳 が 遠く {ぎみ} で、はっきり 話し て ください ます。
+    english_literally: Grandfather ears far-tendency, so clearly speak please.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 耳 が {遠い} の で、はっきり 話し て ください。
+          - 祖父 は 耳 が {遠い} の で、はっきり 話し て ください ます。
+        english: My grandfather is hard of hearing, so please speak clearly.
+        hint: 「耳が遠い」 is a direct statement of being hard of hearing. 「ぎみ」 implies a slight or emerging
+          tendency, softening the observation about his hearing. We're looking for a gentle, polite way
+          to phrase it.
+      - competing_japanese:
+          - 祖父 は 耳 が 遠く なり {やすい} の で、はっきり 話し て ください。
+          - 祖父 は 耳 が 遠く なり {やすい} の で、はっきり 話し て ください ます。
+        english: My grandfather tends to become hard of hearing easily, so please speak clearly.
+        hint: 「～やすい」 indicates a general susceptibility to becoming hard of hearing. 「ぎみ」 refers to a
+          current, slight condition rather than a general tendency. We're looking for a current, subtle
+          state.
+    scene: A family member instructing a visitor on how to communicate with their elderly grandfather.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The younger female speaker uses 「耳が遠くぎみ」 to politely inform the male listener about her grandfather's
+      slight hearing impairment. This use of 「ぎみ」 softens the statement, making it less blunt than a direct
+      declaration like 「耳が遠い」. 「はっきり話してください」 is a polite request.
+    etymology: 「耳が遠い」 (mimi ga tōi) literally means 'ears are far', a common idiom for being hard of hearing.
+      「遠く」 is the adverbial form. Adding 「ぎみ」 indicates a slight tendency towards this condition.
+  - english: He's been neglecting his studies a bit lately, so I'm worried about his grades.
+    japanese:
+      - 彼 は 最近、勉強 を 怠け {ぎみ} な の で、成績 が 心配 だ。
+      - 彼 は 最近、勉強 を 怠け {ぎみ} な の で、成績 が 心配 です。
+    english_literally: He recently, studies neglecting-tendency, so grades worried.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 最近、勉強 を {怠け て いる} の で、成績 が 心配 だ。
+          - 彼 は 最近、勉強 を {怠け て い ます} の で、成績 が 心配 です。
+        english: He's been neglecting his studies, so I'm worried about his grades.
+        hint: 「怠けている」 is a direct statement that he is neglecting his studies. 「ぎみ」 implies a slight or
+          emerging tendency to neglect, making the observation less harsh. We're looking for a subtle,
+          less accusatory tone.
+      - competing_japanese:
+          - 彼 は 最近、勉強 を 怠け {がち} な の で、成績 が 心配 だ。
+          - 彼 は 最近、勉強 を 怠け {がち} な の で、成績 が 心配 です。
+        english: He tends to neglect his studies lately, so I'm worried about his grades.
+        hint: 「怠けがち」 suggests a stronger, more habitual tendency to be lazy. 「ぎみ」 refers to a current,
+          slight observation rather than a recurring pattern. We're looking for an emerging, subtle tendency.
+    scene: A parent or teacher discussing a student's academic performance with another adult.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    nuance: The male speaker uses 「怠けぎみ」 to describe a student's slight tendency to neglect studies, softening
+      the criticism by implying it's not a severe or constant issue. This provides a more tactful way
+      to address the concern. The use of 「心配だ」 or 「心配です」 expresses the speaker's worry.
+    etymology: 「怠け」 is the verb stem of 「怠ける」 (namakeru), meaning to neglect or be lazy. 「怠けぎみ」 suggests
+      a slight inclination towards neglecting something.
+post_example_writeup: As illustrated in these examples, 「ぎみ」 allows speakers to express conditions or
+  tendencies with a delicate nuance, often softening the observation or self-assessment. It is particularly
+  useful when you want to convey that something is not yet fully established but is subtly present or
+  emerging.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ぎみ

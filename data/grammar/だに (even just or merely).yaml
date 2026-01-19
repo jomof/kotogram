@@ -1,0 +1,586 @@
+grammar_point: だに (even just or merely)
+learn_before:
+  - '[Noun]だに(~しない) (even・not even)'
+meaning: Just, Even just, Even merely
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb-dictionary + だに
+    rarity: common
+    meaning: Just doing (verb), even just doing (verb), even merely doing (verb)
+  - conjugation-type: negative plain (～ない)
+    form: Verb-ない + だに
+    rarity: uncommon
+    meaning: Cannot even just (verb), not even merely (verb)
+  - conjugation-type: past plain (～た)
+    form: Verb-ta + だに
+    rarity: uncommon
+    meaning: Just having (verb)ed, even just having (verb)ed
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb-nakatta + だに
+    rarity: very rare
+    meaning: Even though one didn't just (verb), not even having (verb)ed
+pronunciation:
+  katakana: ダニ
+  romaji: dani
+formation:
+  Verb in dictionary form + だに: Emphasizes that merely doing something is enough to evoke a strong emotion
+    or reaction, often overwhelming or negative.
+  Verb in negative plain form + だに: Emphasizes the impossibility or extreme difficulty of even a minimal
+    action.
+  Verb in past plain form + だに: Emphasizes that merely having done something (in the past) had a significant
+    impact or consequence.
+  Verb in negative past plain form + だに: Conveys a concessive meaning, implying that even the minimal
+    act of not doing something was insufficient to prevent a negative outcome.
+jlpt: N1
+etymology: The particle 「だに」 is believed to originate from the classical Japanese word 「のみ」 (nomi), meaning
+  "only" or "just." Over time, 「のみ」 evolved into 「だに」, taking on a more nuanced meaning that emphasizes
+  the minimal action needed to trigger a strong reaction. It is often found in older texts and formal
+  speech.
+writeup: The adverbial particle 「だに」 shares a similar meaning to 「さえ」 and 「すら」 ("even"), but is more common
+  in classical literature and formal speech. It presents something as a minimum example, implying that
+  anything greater would be overwhelming. It is often translated as "just (A)" or "merely (A)." 「だに」 follows
+  verbs in their dictionary form. This structure is formal, appearing more often in literature than in
+  spoken language. However, it is relatively common in anime and manga when characters are being dramatic.
+  Because it presents a minimum, it is often used with words expressing the difference between reality
+  and fantasy, such as **想像するだに** ("even in my imagination").
+false_friends:
+  - term: さえ
+    meaning: even
+    kind: similar expression
+    nuance: While both 「さえ」 and 「だに」 indicate "even", 「だに」 is more formal and often emphasizes a minimal
+      action evoking a strong reaction. 「さえ」 is more versatile and can be used in a wider range of contexts.
+    grammar_point: さえ (even・if only)
+  - term: すら
+    meaning: even
+    kind: similar expression
+    nuance: Like 「さえ」, 「すら」 also means "even", but 「だに」 is more literary and emphasizes the minimal action
+      causing a strong emotion. 「すら」 can feel more emphatic than 「さえ」.
+    grammar_point: すら (even)
+post_false_friends_writeup: 「だに」, 「さえ」, and 「すら」 all translate to "even", but have different nuances and
+  levels of formality. Use 「だに」 in formal writing or when you want to emphasize that even the slightest
+  action is enough to cause a reaction. 「さえ」 and 「すら」 are more common in everyday speech, with 「すら」 often
+  being slightly more emphatic.
+examples:
+  - english: Just thinking about the pressure of the new workplace makes my stomach hurt.
+    japanese:
+      - 新しい 職場 の プレッシャー を 考える {だに}、胃 が 痛く なる。
+      - 新 しき 職場 の 重圧 を 慮る {だに}、胃痛 に 襲わ れる。
+      - 新 しき 職場 の プレッシャー を 考える {だに}、胃 が 痛み 出す。
+    english_literally: Thinking about the pressure of the new workplace, just that, my stomach becomes
+      painful.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 職場 の プレッシャー を 考える こと {さえ}、胃 が 痛く なる。
+        english: Even just thinking about the pressure of the new workplace makes my stomach hurt.
+        hint: 「さえ」 can mean "even," but 「だに」 is more literary and emphasizes that the mere action is enough
+          to cause a strong, often overwhelming, reaction. We're looking for a formal expression that
+          highlights the minimal action triggering a strong response.
+      - competing_japanese:
+          - 新しい 職場 の プレッシャー を 考える こと {すら}、胃 が 痛く なる。
+        english: Even just thinking about the pressure of the new workplace makes my stomach hurt.
+        hint: 「すら」 also means "even," but it often implies a negative or impossible situation. 「だに」 is
+          used here to emphasize that the *mere* thought is enough to cause distress, without necessarily
+          implying impossibility.
+      - competing_japanese:
+          - 考える {だけ で} 胃 が 痛く なる
+        english: Just by thinking, my stomach hurts.
+        hint: 「だに」 emphasizes the *minimal* act of thinking causing a disproportionately strong physical
+          reaction, conveying a deeper sense of dread than a simple "just by" which might imply a more
+          direct causal link.
+      - competing_japanese:
+          - 考える {と} 胃 が 痛く なる
+        english: When I think about it, my stomach hurts.
+        hint: 「だに」 is more emphatic than 「考えると」, highlighting the mere thought as the trigger for an intense
+          physical symptom, underscoring the severity of the anxiety.
+    scene: A new hire is preparing for their first day at a demanding company, already feeling overwhelmed
+      by the expectations.
+    register: casual
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    nuance: The use of `だに` with 「考える」 (to think) strongly emphasizes that even the **mere thought** of
+      the workplace pressure is enough to cause physical distress (「胃が痛くなる」), highlighting an extreme
+      level of anxiety or dread.
+  - english: Just reflecting on our past prosperity fills me with deep emotion.
+    japanese:
+      - かつて の 繁栄 を 顧みる {だに}、感慨 無量 で ある。
+      - 往時 の 繁栄 を 回顧 する {だに}、万感 胸 に 迫る。
+    english_literally: Reflecting on the past prosperity, just that, I am filled with deep emotion.
+    competing_grammar:
+      - competing_japanese:
+          - かつて の 繁栄 を 顧みる こと {さえ}、感慨 無量 で ある。
+        english: Even just reflecting on our past prosperity fills me with deep emotion.
+        hint: 「さえ」 expresses "even" but 「だに」 carries a more profound, literary weight, emphasizing that
+          the sheer act of reflection alone is enough to evoke such a powerful emotion. We're looking
+          for a formal expression that highlights the inherent emotional weight.
+      - competing_japanese:
+          - かつて の 繁栄 を 顧みる こと {すら}、感慨 無量 で ある。
+        english: Even just reflecting on our past prosperity fills me with deep emotion.
+        hint: 「すら」 conveys "even" but often with a nuance of impossibility or negativity. 「だに」 here emphasizes
+          the strong emotional impact from the minimal act of reflection, making it more suitable for
+          conveying profound sentiment.
+      - competing_japanese:
+          - 顧みる {と} 感慨 無量 で ある
+        english: When reflecting, I am filled with deep emotion.
+        hint: 「だに」 imbues the reflection with a sense of inevitability and profundity, suggesting that
+          the mere act of recalling *itself* is sufficient to evoke such a powerful, almost overwhelming,
+          emotion, fitting the solemn context.
+      - competing_japanese:
+          - 顧みる {だけ で} 感慨 無量 で ある
+        english: Just by reflecting, I am filled with deep emotion.
+        hint: While similar, 「だに」 elevates the expression to a more classical and literary level, emphasizing
+          the *inherent* emotional weight of the memory itself, rather than just the act of reflecting.
+    scene: An elderly male historian, known for his somber reflections on history, reviews ancient texts,
+      lost in thought about a bygone era.
+    register: bungo (literary)
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The use of `だに` with 「顧みる」 (to reflect upon) in this context, coupled with the literary expression
+      「感慨無量である」, emphasizes the profound and overwhelming emotional impact that comes from even the **slightest
+      act of recalling** the past prosperity. This register is typical of older, formal male speech in
+      historical or academic contexts.
+  - english: I can't even just forget that tragic accident, no, I don't even try to forget it.
+    japanese:
+      - あの 悲惨 な 事故 を 忘れる {だに} でき ない、いや、忘れよう と すら 思わ ない。
+      - あの 悲惨 な 出来事 を 忘れる {だに} 叶わ ない、否、忘れ去ろう と さえ 思わ ぬ。
+    english_literally: That tragic accident, just forgetting it is not possible, no, even trying to forget
+      it, I don't think.
+    competing_grammar:
+      - competing_japanese:
+          - あの 悲惨 な 事故 を 忘れる こと {さえ} でき ない、いや、忘れよう {と すら} 思わ ない。
+        english: I can't even just forget that tragic accident, no, I don't even try to forget it.
+        hint: While 「さえ」 can express "even" or "not even," 「だに」 is more formal and emphasizes the minimal
+          action's impossibility or difficulty in an emotionally charged context. We're looking for a
+          literary expression of profound inability.
+      - competing_japanese:
+          - あの 悲惨 な 事故 を 忘れる こと {すら} でき ない、いや、忘れよう {と すら} 思わ ない。
+        english: I can't even just forget that tragic accident, no, I don't even try to forget it.
+        hint: 「すら」 implies "not even" and often highlights an extreme negative. 「だに」 carries a similar
+          formal nuance but focuses more on the sheer impossibility of the minimal action.
+      - competing_japanese:
+          - あの 悲惨 な 事故 を {忘れ られ ない}
+        english: That tragic accident cannot be forgotten.
+        hint: 「だに」 adds intensity, indicating that even the **minimal effort** of forgetting is impossible,
+          suggesting a deep, unshakeable psychological impact beyond simple inability.
+      - competing_japanese:
+          - あの 悲惨 な 事故 は {忘れ にくい}
+        english: That tragic accident is hard to forget.
+        hint: 「だに」 conveys a more direct and personal inability driven by overwhelming emotion, rather
+          than mere difficulty.
+      - competing_japanese:
+          - あの 悲惨 な 事故 を 忘れる こと は {到底 でき ない}。
+        english: It is absolutely impossible to forget that tragic accident.
+        hint: 「到底できない」 expresses absolute impossibility. While strong, 「だに」 emphasizes that *even the
+          minimal act* of forgetting is out of reach, highlighting the speaker's profound emotional state.
+    scene: A witness to a devastating car crash struggles with the lingering trauma, unable to move past
+      the horrifying images.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    nuance: The usage of `だに` with the verb 「忘れる」 (to forget), followed by 「できない」, emphasizes that even
+      the **minimal act of forgetting** is utterly beyond the speaker's capacity. This conveys profound
+      emotional distress. The additional phrase 「忘れようとすら思わない」 further reinforces the speaker's emotional
+      state, indicating a deliberate refusal to forget due to the trauma.
+  - english: Just having heard my deceased son's voice, I couldn't stop crying.
+    japanese:
+      - 亡くなっ た 息子 の 声 を 聞い た {だに}、涙 が 止まら なかっ た。
+      - 逝去 し た 息子 の 声 を 耳 に し た {だに}、涙腺 が 決壊 し た。
+    english_literally: My deceased son's voice, having heard it, just that, tears did not stop.
+    competing_grammar:
+      - competing_japanese:
+          - 亡くなっ た 息子 の 声 を 聞く {さえ}、涙 が 止まら なかっ た。
+        english: Even just hearing my deceased son's voice, I couldn't stop crying.
+        hint: 「さえ」 generally connects to nouns or particles to mean "even." While it can follow a plain
+          verb form, 「だに」 is more natural and literary here to emphasize the profound, immediate emotional
+          impact of the mere act of hearing. We're looking for an expression that highlights the overwhelming
+          effect of a minimal stimulus.
+      - competing_japanese:
+          - 亡くなっ た 息子 の 声 を 聞く {すら}、涙 が 止まら なかっ た。
+        english: Even just hearing my deceased son's voice, I couldn't stop crying.
+        hint: 「すら」 often implies an extreme case, sometimes implying impossibility or negativity. 「だに」
+          is more suitable here to convey the powerful, uncontrollable emotional reaction to the *mere*
+          stimulus, rather than an extreme or unlikely one.
+      - competing_japanese:
+          - 声 を 聞い {たら} 涙 が 止まら なかっ た
+        english: When I heard his voice, I couldn't stop crying.
+        hint: 「だに」 suggests an instantaneous and overwhelming emotional flood from the *mere* sound, making
+          the reaction feel more profound and less a simple conditional consequence.
+      - competing_japanese:
+          - 声 を 聞い た {だけ で} 涙 が 止まら なかっ た
+        english: Just by hearing his voice, I couldn't stop crying.
+        hint: 「だに」 carries a more literary and emotionally charged tone, emphasizing the inherent emotional
+          weight of the sound itself as the trigger for an uncontrollable reaction.
+    scene: A woman stands at her son's grave, and a familiar melody from a nearby speaker brings back
+      a vivid memory of his voice.
+    register: formal
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The use of `だに` after the past tense 「聞いた」 (heard) strongly emphasizes that the **mere act
+      of hearing** her deceased son's voice, even indirectly or in memory, was enough to trigger an uncontrollable
+      outpouring of tears (「涙が止まらなかった」). This highlights the deep grief and the powerful impact of the
+      memory. This tone is common in formal expressions of profound emotion, often associated with women
+      in such contexts.
+  - english: Even though he didn't just tolerate that immoral act, he was still condemned by society.
+    japanese:
+      - その 不 道徳 な 行為 を 許さ なかっ た {だに}、彼 は 世間 から 糾弾 さ れ た。
+      - か の 不 道徳 な 行為 を 容認 し なかっ た {だに}、彼 は 公衆 の 面前 で 弾劾 さ れ た。
+    english_literally: That immoral act, even if he didn't just tolerate it, he was criticized by society.
+    competing_grammar:
+      - competing_japanese:
+          - その 不 道徳 な 行為 を 許さ なかっ た {さえ}、彼 は 世間 から 糾弾 さ れ た。
+        english: Even if he didn't tolerate that immoral act, he was still condemned by society.
+        hint: While 「さえ」 can express a similar "even if" nuance, 「だに」 is more formal and specific to indicating
+          that a minimal non-action was still insufficient to prevent a strong negative outcome, emphasizing
+          a harsh judgment.
+      - competing_japanese:
+          - その 不 道徳 な 行為 を 許さ なかっ た {すら}、彼 は 世間 から 糾弾 さ れ た。
+        english: Even if he didn't tolerate that immoral act, he was still condemned by society.
+        hint: 「すら」 often implies an extreme, sometimes negative, example. While it can convey "even if,"
+          「だに」 in this concessive sense is more archaic and emphasizes the harshness of the societal condemnation
+          despite the minimal non-action.
+      - competing_japanese:
+          - 許さ なかっ た {けれど}、彼 は 世間 から 糾弾 さ れ た
+        english: He didn't tolerate it, but he was still condemned by society.
+        hint: 「だに」 adds a layer of emphasis, implying that even the **minimal action of not tolerating**
+          was not enough to escape condemnation, thus highlighting the harshness or inevitability of the
+          social judgment.
+      - competing_japanese:
+          - 許さ なかっ た {の に}、彼 は 世間 から 糾弾 さ れ た
+        english: Even though he didn't tolerate it, he was still condemned by society.
+        hint: 「だに」 here conveys a stronger sense of irony or injustice, emphasizing that even his minimal
+          'good' behavior did not exempt him from the consequences.
+      - competing_japanese:
+          - その 不 道徳 な 行為 を 許さ なかっ た {に も かかわら ず}、彼 は 世間 から 糾弾 さ れ た。
+        english: Despite not tolerating that immoral act, he was still condemned by society.
+        hint: 「にもかかわらず」 means "despite" or "nevertheless." While it conveys concession, 「だに」 in this context
+          implies a stronger, more literary sense of "even though" or "even if it's just that X wasn't
+          done," highlighting the injustice or severity of the outcome.
+    scene: A news report discusses a public figure who, despite not directly engaging in corrupt activities,
+      faced severe public backlash for simply not condemning them earlier.
+    register: formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+    nuance: Used in the negative past tense, `だに` with 「許さなかった」 (didn't allow/tolerated) highlights that
+      even the **minimal stance of non-tolerance** was insufficient to protect him from societal condemnation
+      (「糾弾された」). It underscores a situation where even slight deviation from the norm or association with
+      wrongdoing leads to severe repercussions, implying a harsh or unforgiving judgment.
+  - english: Just imagining the universe's vastness makes one feel insignificant.
+    japanese:
+      - 宇宙 の 広大 さ を 想像 する {だに}、人 は 自分 の 存在 の 小さ さ を 感じる。
+      - 宇宙 の 広大 さ を 想像 する {だに}、己 の 渺 たる 存在 を 痛感 する。
+    english_literally: The universe's vastness, just imagining it, a person feels the smallness of their
+      own existence.
+    competing_grammar:
+      - competing_japanese:
+          - 宇宙 の 広大 さ を 想像 する こと {さえ}、自分 の 存在 の 小さ さ を 感じる。
+        english: Even just imagining the universe's vastness, one feels insignificant.
+        hint: 「さえ」 can mean "even," but 「だに」 here emphasizes that the *mere act of imagination* is enough
+          to trigger a profound, almost overwhelming sense of insignificance. We're looking for a formal,
+          reflective tone.
+      - competing_japanese:
+          - 宇宙 の 広大 さ を 想像 する {と}、自分 の 存在 の 小さ さ を 感じる。
+        english: When one imagines the universe's vastness, one feels insignificant.
+        hint: 「だに」 is more emphatic than a simple conditional 「と」, conveying that the thought itself is
+          so powerful it instantly brings about a deep realization, not just a casual consequence.
+      - competing_japanese:
+          - 宇宙 の 広大 さ を 想像 する {だけ で}、自分 の 存在 の 小さ さ を 感じる。
+        english: Just by imagining the universe's vastness, one feels insignificant.
+        hint: While similar, 「だに」 adds a more literary and profound tone, emphasizing the inherent power
+          of the mental image itself to evoke such a significant existential feeling.
+    scene: A lone astronomer looks up at the night sky, contemplating the immense scale of the cosmos.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: Using `だに` with 「想像する」 (to imagine) highlights that even the **simple act of conceiving**
+      the universe's vastness is sufficient to evoke a deep, almost humbling realization of one's own
+      smallness (「自分の存在の小ささを感じる」). This emphasizes the profound impact of the concept itself.
+  - english: The thought of losing this job, even for a moment, is unbearable.
+    japanese:
+      - この 仕事 を 失う こと を 想像 する {だに}、耐え 難い。
+      - この 職 を 失う を 想像 する {だに}、堪え 難い。
+    english_literally: This job, losing it, just imagining it, is unbearable.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 を 失う こと を 想像 する の {さえ}、耐え 難い。
+        english: Even just imagining losing this job is unbearable.
+        hint: 「さえ」 can convey "even just," but 「だに」 adds a more intense and formal emphasis on the minimal
+          thought itself being the direct cause of profound distress, rather than a mere addition to it.
+          We're looking for an expression that highlights overwhelming dread from a minimal trigger.
+      - competing_japanese:
+          - この 仕事 を 失う {と} 想像 する {と}、耐え 難い。
+        english: When I imagine losing this job, it's unbearable.
+        hint: 「だに」 elevates the expression, implying that the mere *existence* of the thought is enough
+          to cause unbearable pain, emphasizing its immediate and overwhelming impact, rather than a conditional
+          relationship.
+      - competing_japanese:
+          - この 仕事 を 失う こと を 想像 する {だけ で}、耐え 難い。
+        english: Just by imagining losing this job, it's unbearable.
+        hint: 「だに」 lends a more literary and emotionally charged tone, conveying a deeper sense of dread
+          that stems from the internal contemplation itself, making the suffering more profound than a
+          simple consequence of thought.
+    scene: A young professional, struggling with financial worries, anxiously considers the possibility
+      of unemployment.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+    nuance: Using `だに` with 「想像する」 (to imagine) emphasizes that even the **minimal contemplation** of
+      losing the job is enough to cause unbearable distress (「耐え難い」). This highlights the speaker's extreme
+      anxiety and the profound negative impact a hypothetical situation has on their emotional state.
+  - english: I couldn't even just utter a word in the face of such beauty.
+    japanese:
+      - その 美し さ を 前 に し て は、言葉 を 発する {だに} でき なかっ た。
+      - その 麗し さ を 目の当たり に し て は、言葉 を 紡ぐ {だに} 叶わ なかっ た。
+    english_literally: That beauty, facing it, just uttering words, I couldn't.
+    competing_grammar:
+      - competing_japanese:
+          - その 美し さ を 前 に し て は、言葉 を 発する こと {さえ} でき なかっ た。
+        english: I couldn't even just utter a word in the face of such beauty.
+        hint: 「さえ」 indicates "even" but 「だに」 here places a stronger emphasis on the sheer *impossibility*
+          of even a minimal action (uttering a word) due to the overwhelming nature of the beauty. We're
+          looking for a profound expression of being silenced by awe.
+      - competing_japanese:
+          - その 美し さ を 前 に し て は、{言葉 が 出 なかっ た}。
+        english: Words didn't come out in the face of such beauty.
+        hint: 「だに」 emphasizes that the act of *trying* to utter even a single word was beyond capability,
+          highlighting a deeper sense of being stunned or overwhelmed, rather than simply being speechless.
+      - competing_japanese:
+          - その 美し さ を 前 に し て は、言葉 を 発する {の が 難しかっ た}。
+        english: It was difficult to utter words in the face of such beauty.
+        hint: 「だに」 conveys a complete inability to perform even the most basic action, implying an almost
+          paralyzing effect of the beauty, which is stronger than merely being difficult.
+    scene: A traveler stands before a breathtaking natural wonder, completely mesmerized.
+    register: formal
+    setting: apologetic
+    conjugation: dictionary (plain non-past)
+    nuance: The use of `だに` with 「発する」 (to utter) followed by 「できない」 emphasizes that even the **minimal
+      act of producing sound** was impossible due to the overwhelming effect of the beauty. This conveys
+      a profound sense of awe and being utterly speechless.
+  - english: Just having seen the ancient ruins, I felt the weight of history.
+    japanese:
+      - その 古代 遺跡 を 見 た {だに}、歴史 の 重み を 感じ た。
+      - か の 古代 遺跡 を 垣間見 た {だに}、歴史 の 深遠 なる 重み を 痛感 し た。
+    english_literally: Those ancient ruins, just having seen them, I felt the weight of history.
+    competing_grammar:
+      - competing_japanese:
+          - その 古代 遺跡 を 見 た こと {さえ}、歴史 の 重み を 感じ た。
+        english: Even just having seen the ancient ruins, I felt the weight of history.
+        hint: 「さえ」 can indicate "even," but 「だに」 carries a more classical and profound weight, emphasizing
+          that the *mere act of witnessing* was enough to evoke such a deep historical awareness. We're
+          looking for a literary expression of profound impact.
+      - competing_japanese:
+          - その 古代 遺跡 を 見 {たら}、歴史 の 重み を 感じ た。
+        english: When I saw the ancient ruins, I felt the weight of history.
+        hint: 「だに」 suggests an immediate and profound emotional or intellectual realization from the *minimal*
+          act of seeing, making the experience feel more impactful and less a simple conditional consequence.
+      - competing_japanese:
+          - その 古代 遺跡 を 見 た {だけ で}、歴史 の 重み を 感じ た。
+        english: Just by seeing the ancient ruins, I felt the weight of history.
+        hint: While similar, 「だに」 elevates the expression to a more solemn and literary level, emphasizing
+          the inherent power of the visual encounter itself to convey the profound significance of history.
+    scene: An archaeologist stands amidst the overgrown remnants of an ancient civilization, pondering
+      their past.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: Using `だに` after the past tense 「見た」 (saw) emphasizes that the **mere act of witnessing**
+      the ancient ruins was enough to immediately evoke a profound sense of historical weight (「歴史の重みを感じた」).
+      This conveys a deep, almost spiritual connection to the past evoked by a minimal sensory input.
+  - english: The thought of that intense training, even now, makes me tremble.
+    japanese:
+      - あの 厳しい 訓練 を 思い出す {だに}、今 も 震え が 止まら ない。
+      - あの 苛烈 なる 訓練 を 回想 する {だに}、未だ 震顫 を 禁じ 得 ない。
+    english_literally: That intense training, just remembering it, even now, trembling does not stop.
+    competing_grammar:
+      - competing_japanese:
+          - あの 厳しい 訓練 を 思い出す こと {さえ}、今 も 震え が 止まら ない。
+        english: Even just remembering that intense training, I'm still trembling.
+        hint: 「さえ」 indicates "even," but 「だに」 emphasizes that the *minimal act of remembering* is enough
+          to trigger a strong, ongoing physical reaction, highlighting a deep-seated trauma or aversion.
+          We're looking for a profound physiological response to a mere memory.
+      - competing_japanese:
+          - あの 厳しい 訓練 を 思い出す {と}、今 も 震え が 止まら ない。
+        english: When I remember that intense training, I'm still trembling.
+        hint: 「だに」 is more emphatic than a simple conditional 「と」, conveying that the mere recall of the
+          training immediately induces an uncontrollable physical reaction, showcasing the profound impact
+          of the past experience.
+      - competing_japanese:
+          - あの 厳しい 訓練 を 思い出す {だけ で}、今 も 震え が 止まら ない。
+        english: Just by remembering that intense training, I'm still trembling.
+        hint: 「だに」 provides a more literary and emotionally charged tone, emphasizing that the internal
+          act of remembering *itself* is sufficient to cause a strong, involuntary physical response,
+          suggesting a lasting psychological effect.
+    scene: A veteran, years after their service, recounts a particularly grueling period of military training.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    nuance: Using `だに` with 「思い出す」 (to remember) emphasizes that even the **mere act of recalling** the
+      intense training is enough to cause a strong, involuntary physical reaction (「震えが止まらない」). This conveys
+      the lingering trauma or profound impact of the past experience, making the memory itself a source
+      of continued distress.
+  - english: Just imagining how much suffering they endured makes my heart ache.
+    japanese:
+      - 彼 ら が どれ ほど の 苦難 に 耐え た か を 想像 する {だに}、胸 が 締め付け られる。
+      - 彼 ら が どれ ほど の 苦痛 を 嘗め た か を 想像 する {だに}、胸 塞がる 思い が する。
+    english_literally: How much suffering they endured, just imagining that, my chest is squeezed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら が どれ ほど の 苦難 に 耐え た か を 想像 する こと {さえ}、胸 が 締め付け られる。
+        english: Even just imagining how much suffering they endured makes my heart ache.
+        hint: 「さえ」 implies "even," but 「だに」 in this context more profoundly emphasizes that the *minimal
+          act of imagining* is enough to induce a strong, empathetic physical reaction, highlighting the
+          overwhelming nature of the suffering being contemplated. We're looking for a deep emotional
+          resonance.
+      - competing_japanese:
+          - 彼 ら が どれ ほど の 苦難 に 耐え た か を 想像 する {と}、胸 が 締め付け られる。
+        english: When I imagine how much suffering they endured, my heart aches.
+        hint: 「だに」 is more intense than a simple conditional 「と」, conveying that the mere thought instantly
+          evokes a profound empathetic response, suggesting an immediate and powerful emotional impact.
+      - competing_japanese:
+          - 彼 ら が どれ ほど の 苦難 に 耐え た か を 想像 する {だけ で}、胸 が 締め付け られる。
+        english: Just by imagining how much suffering they endured, my heart aches.
+        hint: While similar, 「だに」 provides a more literary and poignant tone, emphasizing that the internal
+          act of imagination *itself* is sufficient to cause a deep, empathetic ache, suggesting a profound
+          connection to their plight.
+    scene: A humanitarian worker reads reports of distant suffering, feeling the emotional weight of the
+      stories.
+    register: formal
+    setting: sympathetic
+    conjugation: dictionary (plain non-past)
+    nuance: Using `だに` with 「想像する」 (to imagine) powerfully conveys that even the **minimal act of conceiving**
+      the suffering of others is enough to cause a deep, visceral emotional response (「胸が締め付けられる」 - my
+      heart aches/is squeezed). This emphasizes a profound sense of empathy and distress caused by the
+      mere thought.
+  - english: He couldn't even just touch the cursed sword.
+    japanese:
+      - 彼 は その 呪わ れ し 剣 に 触れる {だに} でき なかっ た。
+      - 彼 は その 呪わ れ し 剣 に 触れる {だに} 叶わ なかっ た。
+    english_literally: He, that cursed sword, just touching it, he couldn't.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は その 呪わ れ し 剣 に 触れる こと {さえ} でき なかっ た。
+        english: He couldn't even just touch the cursed sword.
+        hint: 「さえ」 can mean "even," but 「だに」 here highlights the profound inability or fear preventing
+          even the *minimal action* of touching, often due to a sense of dread or supernatural influence.
+          We're looking for a strong emphasis on total inhibition.
+      - competing_japanese:
+          - 彼 は その 呪わ れ し 剣 に {触れ られ なかっ た}。
+        english: He couldn't touch the cursed sword.
+        hint: 「だに」 adds a layer of intensity, indicating that even the *mere attempt* or thought of touching
+          was impossible, implying a deeper, more profound block than simple inability.
+      - competing_japanese:
+          - 彼 は その 呪わ れ し 剣 に 触れる こと が {怖かっ た}。
+        english: He was scared to touch the cursed sword.
+        hint: While fear might be the underlying cause, 「だに」 focuses on the *resultant inability* to perform
+          even the most minimal action, emphasizing the overwhelming nature of the object's power or curse.
+    scene: A knight stands before a legendary, ominous sword, unable to bring himself to grasp its hilt.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    nuance: The use of `だに` with 「触れる」 (to touch) followed by 「できなかった」 emphasizes that even the **minimal
+      act of making physical contact** with the cursed sword was utterly beyond the character's capacity.
+      This powerfully conveys the ominous nature of the sword and the profound fear or inhibition it instilled.
+  - english: Just having dreamt of that night, she woke up in a cold sweat.
+    japanese:
+      - あの 夜 の こと を 夢見 た {だに}、彼女 は 冷や汗 を かい て 目 が 覚め た。
+      - か の 宵 の こと を 夢 に 見 た {だに}、彼女 は 冷汗 を 掻き て 目覚め た。
+    english_literally: That night's thing, just having dreamt it, she woke up, having cold sweat.
+    competing_grammar:
+      - competing_japanese:
+          - あの 夜 の こと を 夢見 た こと {さえ}、彼女 は 冷や汗 を かい て 目 が 覚め た。
+        english: Even just having dreamt of that night, she woke up in a cold sweat.
+        hint: 「さえ」 can mean "even," but 「だに」 in this context more dramatically highlights that the *minimal
+          occurrence of dreaming* was enough to trigger a severe physiological reaction, emphasizing the
+          traumatic nature of the memory. We're looking for a profound emotional and physical response.
+      - competing_japanese:
+          - あの 夜 の こと を 夢見 {たら}、彼女 は 冷や汗 を かい て 目 が 覚め た。
+        english: When she dreamt of that night, she woke up in a cold sweat.
+        hint: 「だに」 suggests an immediate, involuntary and profound physiological response to the *mere
+          act of dreaming*, making the experience feel more impactful and less a simple conditional event.
+      - competing_japanese:
+          - あの 夜 の こと を 夢見 た {だけ で}、彼女 は 冷や汗 を かい て 目 が 覚め た。
+        english: Just by dreaming of that night, she woke up in a cold sweat.
+        hint: While similar, 「だに」 lends a more literary and dramatic tone, emphasizing the inherent power
+          of the dream itself to cause such a strong and distressing reaction, suggesting a deep-seated
+          trauma.
+    scene: A young woman, haunted by a past traumatic event, is suddenly jolted awake from a nightmare.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The use of `だに` after the past tense 「夢見た」 (dreamt) emphasizes that the **mere act of dreaming**
+      about that specific night was enough to trigger a severe physiological reaction (「冷や汗をかいて目が覚めた」
+      - woke up in a cold sweat). This conveys the profound and persistent psychological impact of the
+      past trauma, even in a subconscious state.
+  - english: I couldn't even just bear to look at the devastation caused by the earthquake.
+    japanese:
+      - 地震 に よる 甚大 な 被害 を 見る {だに}、耐え られ なかっ た。
+      - 地震 が もたらし た 甚大 なる 被災 を 目 に する {だに}、堪え 難かっ た。
+    english_literally: Earthquake by huge damage, just seeing it, I couldn't bear.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 に よる 甚大 な 被害 を 見る こと {さえ}、耐え られ なかっ た。
+        english: Even just seeing the devastation caused by the earthquake, I couldn't bear it.
+        hint: 「さえ」 can mean "even," but 「だに」 here places a stronger, more profound emphasis on the *minimal
+          act of seeing* being enough to cause unbearable distress, highlighting the overwhelming nature
+          of the devastation. We're looking for a strong emotional response to a minimal visual input.
+      - competing_japanese:
+          - 地震 に よる 甚大 な 被害 を 見る {と}、耐え られ なかっ た。
+        english: When I saw the devastation caused by the earthquake, I couldn't bear it.
+        hint: 「だに」 suggests an immediate and profound emotional overwhelm from the *mere act of seeing*,
+          making the experience feel more impactful and less a simple conditional consequence.
+      - competing_japanese:
+          - 地震 に よる 甚大 な 被害 を 見る {だけ で}、耐え られ なかっ た。
+        english: Just by seeing the devastation caused by the earthquake, I couldn't bear it.
+        hint: While similar, 「だに」 lends a more literary and emotionally charged tone, emphasizing the
+          inherent power of the visual scene itself to cause such profound and unbearable suffering, suggesting
+          a traumatic impact.
+    scene: A disaster relief worker surveys a scene of widespread destruction after a major earthquake.
+    register: formal
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    nuance: Using `だに` with 「見る」 (to see) followed by 「耐えられなかった」 (couldn't bear) emphasizes that even
+      the **minimal act of observing** the earthquake's devastation was enough to cause unbearable emotional
+      pain. This conveys the overwhelming and traumatic nature of the scene, highlighting the profound
+      impact of minimal exposure.
+  - english: She couldn't even just imagine a future without him.
+    japanese:
+      - 彼女 は 彼 の い ない 未来 を 想像 する {だに} でき なかっ た。
+      - 彼女 は 彼 なき 未来 を 想像 する {だに} 叶わ なかっ た。
+    english_literally: She, his absent future, just imagining it, she couldn't.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 彼 の い ない 未来 を 想像 する こと {さえ} でき なかっ た。
+        english: She couldn't even just imagine a future without him.
+        hint: 「さえ」 can mean "even," but 「だに」 here implies a deeper, more profound inability to perform
+          even the *minimal act of imagination*, suggesting an emotional block so strong that the thought
+          itself is impossible. We're looking for an overwhelming emotional state preventing even abstract
+          thought.
+      - competing_japanese:
+          - 彼女 は 彼 の い ない 未来 を {想像 でき なかっ た}。
+        english: She couldn't imagine a future without him.
+        hint: 「だに」 adds emphasis, indicating that even the *mere attempt* to imagine was beyond her capacity,
+          highlighting a profound emotional dependency or grief that prevented any such mental construction.
+      - competing_japanese:
+          - 彼女 は 彼 の い ない 未来 を 想像 する {の が 難しかっ た}。
+        english: It was difficult for her to imagine a future without him.
+        hint: 「だに」 conveys a complete and utter inability, implying an emotional barrier that makes the
+          mental act entirely impossible, rather than just difficult or challenging.
+    scene: A grieving widow struggles to cope with her loss, finding it impossible to envision her life
+      without her late husband.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: Using `だに` with 「想像する」 (to imagine) followed by 「できなかった」 emphasizes that even the **minimal
+      act of mentally conceiving** a future without him was utterly impossible for her. This conveys the
+      depth of her grief and emotional dependency, suggesting her world felt unimaginable without his
+      presence.
+post_example_writeup: The examples illustrate how 「だに」 emphasizes that a very small or minimal action,
+  thought, or perception can lead to a significant and often overwhelming emotional or physical reaction.
+  It is frequently used in contexts where the speaker wants to convey the intensity of their feelings
+  or the profound impact of a situation, sometimes highlighting an unexpected or even unfair consequence.
+  The literary and somewhat archaic nature of 「だに」 lends a dramatic and serious tone to these expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だに

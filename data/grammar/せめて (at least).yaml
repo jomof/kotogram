@@ -1,0 +1,428 @@
+grammar_point: せめて (at least)
+learn_before:
+  - Verb[ておく・とく] (preparation・advance action)
+  - '[Verb-て]もいい (it''s okay to)'
+  - '[Verb-て]もらう (to have someone do, receive an action)'
+  - そば (near・nearby・close by)
+  - たった (only・just)
+  - だけでも (at least・even just)
+  - 別に〜ない (not particularly)
+  - 隣 (immediately next to)
+meaning: At least
+pronunciation:
+  katakana: セメテ
+  romaji: semete
+formation:
+  せめて: Indicates a minimum level of something the speaker desires or considers acceptable.
+  せめて + [quantity] + [counter] + くらい: At least [quantity] [counter]
+  せめて + [noun] + くらい/だけでも: At least [noun]
+  せめて + [noun] + に: At least to [noun]
+jlpt: N2
+etymology: 「せめて」 originates from the verb 「責める (せめる)」, meaning "to blame" or "to press". This connection,
+  though seemingly indirect, implies that the nuance of せめて is about 'pressing' or 'demanding' a minimum
+  standard. This linguistic evolution highlights how a sense of obligation, insistence, or a baseline
+  requirement has been integrated into the adverb's meaning.
+writeup: |-
+  「せめて」 is an adverb that expresses the speaker's strong desire for, or expectation of, the **minimum** acceptable level of something. It is commonly translated as "at least". Unlike more neutral terms, 「せめて」 carries an emotional weight, often implying that while a desired ideal might be unattainable, a certain minimal condition **must** or **should** be met. This can convey a sense of urgency, plea, or slight exasperation regarding this minimum.
+
+  「せめて」 typically appears at the beginning of a sentence or clause, emphasizing the crucial nature of the minimum requirement for a desired outcome. It is frequently paired with expressions of desire, opinion, or obligation, such as 「～たい」 (tai, 'want to'), 「～ほしい」 (hoshii, 'want something'), 「～てほしい」 (te-hoshii, 'want someone to do something'), and 「～べき」 (beki, 'should' or 'ought to'). Its usage highlights a speaker's personal investment in the outcome, even if it's only the bare minimum.
+false_friends:
+  - term: 少なくとも
+    meaning: at least
+    kind: similar expression
+    nuance: While both 「せめて」 and 「少なくとも」 mean "at least," 「少なくとも」 is more neutral and factual. In contrast,
+      「せめて」 carries an emotional weight of desire, expectation, or concession from an ideal, often implying
+      a plea or strong emphasis on the minimum.
+    grammar_point: <suggest>:少なくとも (at least)
+  - term: せいぜい
+    meaning: at most; at best
+    kind: antonym
+    nuance: 「せいぜい」 expresses an upper limit or a perceived maximum, often with a nuance of inadequacy
+      or disappointment, implying that something is 'only' or 'just' so much. This is the opposite of
+      「せめて」, which focuses on a desired minimum.
+    grammar_point: 精々 (at most)
+  - term: 最低限
+    meaning: minimum; bare minimum
+    kind: similar expression
+    nuance: 「最低限」 refers to the lowest necessary level or amount, similar to 「少なくとも」 in its factual and
+      objective nature. Unlike 「せめて」, it does not carry the emotional nuance of a strong desire or plea
+      for that minimum.
+    grammar_point: <strongly-suggest>:最低限 (minimum・bare minimum)
+post_false_friends_writeup: |-
+  To differentiate between 「せめて」 and 「少なくとも」, consider the underlying nuance.
+  If the situation calls for a bare minimum requirement or a simple, objective statement of fact, 「少なくとも」
+  is appropriate. For example, 「少なくとも三時間は寝た」 (I slept at least three hours). If, however, the speaker
+  is expressing a strong desire, hope, or feeling about a minimum expectation—perhaps with a sense of
+  urgency, plea, or even resignation from a higher ideal—then 「せめて」 is more fitting. For example, 「せめて三時間は寝たい」
+  (I want to sleep at least three hours, implying I wish I could sleep more).
+examples:
+  - english: You can leave the rice, but at least finish all the sashimi.
+    japanese:
+      - ご飯 は 残し て も 良い から、{せめて} 刺身 だけ は 全部 食べ て。
+      - ご飯 は 残し て いい から、{せめて} 刺身 だけ は 全部 食べ なさい。
+      - ご飯 は 残し て も いい から、{せめて} 刺身 だけ は 全部 食べ て もらい たい な。
+    english_literally: Even if you leave the rice, {at least} please eat all of the sashimi.
+    competing_grammar:
+      - competing_japanese:
+          - ご飯 は 残し て も 良い から、{少なく と も} 刺身 だけ は 全部 食べ て。
+        english: You can leave the rice, but at least finish all the sashimi.
+        hint: The scene, depicting a mother's gentle but firm insistence to her child, highlights the
+          emotional plea and minimum expectation conveyed by 「せめて」, rather than a neutral factual statement
+          which 「少なくとも」 would imply. We're looking for an expression that carries emotional weight.
+      - competing_japanese:
+          - ご飯 は 残し て も 良い から、{せいぜい} 刺身 だけ は 全部 食べ て。
+        english: You can leave the rice, but at most finish all the sashimi.
+        hint: 「せいぜい」 expresses an upper limit or a perceived maximum, often with a nuance of inadequacy.
+          Here, it implies 'at most' or 'at best,' which contradicts the original meaning of wanting a
+          minimum, essential action. We're looking for an expression that conveys a strong desire for
+          a minimum.
+      - competing_japanese:
+          - ご飯 は 残し て も 良い から、{最低 限} 刺身 だけ は 全部 食べ て。
+        english: You can leave the rice, but the bare minimum is to finish all the sashimi.
+        hint: 「最低限」 refers to a factual, objective minimum. While grammatically possible, it lacks the
+          emotional nuance of a strong desire or plea for that minimum, which 「せめて」 provides. We're looking
+          for an expression that conveys a strong desire for a minimum.
+    scene: A mother trying to get her child to eat something healthy.
+    register: casual
+    setting: supportive
+  - english: At least finish your Japanese homework in advance.
+    japanese:
+      - '{せめて} 国語 の 宿題 は やっ て おき なさい。'
+      - '{せめて} 国語 の 宿題 だけ で も やっ て おき なさい ね。'
+      - '{せめて} 国語 の 宿題 は やっ て おい て くれ。'
+    english_literally: '{At least} prepare by doing your Japanese homework.'
+    competing_grammar:
+      - competing_japanese:
+          - '{少なく と も} 国語 の 宿題 は やっ て おき なさい。'
+        english: At least do your Japanese homework.
+        hint: The context of a parent instructing their child suggests a clear minimum expectation or
+          responsibility, which 「せめて」 emphasizes more directly than the neutral 「少なくとも」. We're looking
+          for an expression that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{せいぜい} 国語 の 宿題 は やっ て おき なさい。'
+        english: At most, do your Japanese homework.
+        hint: 「せいぜい」 expresses an upper limit, suggesting 'at best' or 'only this much.' This contradicts
+          the idea of setting a minimum expectation or command. We're looking for an expression that conveys
+          a strong desire for a minimum.
+      - competing_japanese:
+          - '{最低 限} 国語 の 宿題 は やっ て おき なさい。'
+        english: Do your Japanese homework as a bare minimum.
+        hint: 「最低限」 conveys a factual minimum, but it lacks the emotional implication of a strong insistence
+          or desire for that minimum, which 「せめて」 provides. We're looking for an expression that conveys
+          a strong desire for a minimum.
+    scene: A parent giving instructions to their child.
+    register: casual
+    setting: instructional
+  - english: I want to be able to play this song, at least.
+    japanese:
+      - '{せめて} この 曲 だけ で も 弾ける よう に なり たい。'
+      - '{せめて} この 曲 だけ で も 弾ける よう に なり たい ん だ。'
+      - '{せめて} この 曲 だけ で も 弾ける よう に なり たい もの だ。'
+    english_literally: '{At least} I want to become able to play this song.'
+    competing_grammar:
+      - competing_japanese:
+          - '{少なく と も} この 曲 だけ で も 弾ける よう に なり たい。'
+        english: I want to be able to play at least this song.
+        hint: The expression of a personal desire (indicated by 「～たい」) for a minimum skill makes 「せめて」
+          more fitting than the more factual 「少なくとも」, as 「せめて」 conveys a personal longing for the minimum.
+          We're looking for an expression that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{せいぜい} この 曲 だけ で も 弾ける よう に なり たい。'
+        english: I want to be able to play at most this song.
+        hint: 「せいぜい」 indicates an upper limit or a maximum achievement, often implying it's not much.
+          This contradicts the speaker's aspiration to achieve at least a certain level. We're looking
+          for an expression that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{最低 限} この 曲 だけ で も 弾ける よう に なり たい。'
+        english: I want to be able to play this song as a bare minimum.
+        hint: 「最低限」 expresses a factual minimum. While acceptable, it diminishes the personal emotional
+          investment and strong desire for that minimum which 「せめて」 emphasizes. We're looking for an expression
+          that conveys a strong desire for a minimum.
+    scene: Someone expressing their musical aspirations.
+    register: casual
+    setting: reflective
+  - english: What…only five-thousand yen? I want at least ten-thousand yen.
+    japanese:
+      - えっ...たった の 5千 円 だけ？{せめて} 1 万 は 欲しい よ。
+      - えっ...たった の 5千 円 だけ？{せめて} 1 万 は 欲しい ん だ けど。
+      - えっ...たった の 5千 円 だけ？{せめて} 1 万 は 欲しい ぜ。
+    english_literally: What... only 5,000 yen? I want {at least} 10,000.
+    competing_grammar:
+      - competing_japanese:
+          - えっ...たった の 5千 円 だけ？{少なく と も} 1 万 は 欲しい よ。
+        english: What... only 5,000 yen? I want at least 10,000.
+        hint: The emotional reaction (「えっ...」) and the context of negotiation highlight a strong demand
+          for a minimum, a nuance best captured by 「せめて」 because it implies a personal expectation or
+          frustration. We're looking for an expression that carries emotional weight.
+      - competing_japanese:
+          - えっ...たった の 5千 円 だけ？{せいぜい} 1 万 は 欲しい よ。
+        english: What... only 5,000 yen? I want at most 10,000.
+        hint: 「せいぜい」 expresses an upper limit or maximum, often with a sense of inadequacy. This directly
+          contradicts the speaker's strong desire for a higher minimum amount. We're looking for an expression
+          that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - えっ...たった の 5千 円 だけ？{最低 限} 1 万 は 欲しい よ。
+        english: What... only 5,000 yen? I want 10,000 as a bare minimum.
+        hint: 「最低限」 states a factual minimum, but it lacks the emotional emphasis and slight exasperation
+          present in the negotiation context, which 「せめて」 conveys. We're looking for an expression that
+          conveys a strong desire for a minimum.
+    scene: Someone negotiating a price.
+    register: casual
+    setting: negotiating
+  - english: I'm not telling you to do laundry every day, but I want you to at least make dinner every
+      night.
+    japanese:
+      - 別 に 毎日 洗濯 を しろっ て は 言わ ない けど、{せめて} 晩御飯 だけ は 毎日 作っ て ほしい。
+      - 別 に 毎日 洗濯 を しろ と は 言わ ない けど、{せめて} 晩御飯 だけ は 毎日 作っ て ほしい ん だ。
+      - 別 に 毎日 洗濯 しろ って 言っ てる わけ じゃ ない けど、{せめて} 晩御飯 だけ は 毎日 作っ て ほしい ん だ よ。
+    english_literally: I'm not saying do laundry every day, but {at least} I want you to make dinner every
+      night.
+    competing_grammar:
+      - competing_japanese:
+          - 別 に 毎日 洗濯 を しろっ て は 言わ ない けど、{少なく と も} 晩御飯 だけ は 毎日 作っ て ほしい。
+        english: I'm not saying do laundry every day, but at least I want you to make dinner every night.
+        hint: The speaker is making a concession before stating a strong desire for a minimum contribution.
+          「せめて」 conveys this emphasis more effectively than the more neutral 「少なくとも」, especially in an
+          intimate setting where expectations are personally felt. We're looking for an expression that
+          carries emotional weight.
+      - competing_japanese:
+          - 別 に 毎日 洗濯 を しろっ て は 言わ ない けど、{せいぜい} 晩御飯 だけ は 毎日 作っ て ほしい。
+        english: I'm not saying do laundry every day, but at most I want you to make dinner every night.
+        hint: 「せいぜい」 sets an upper limit or a maximum expectation, which contradicts the speaker's desire
+          for a minimum contribution. We're looking for an expression that conveys a strong desire for
+          a minimum.
+      - competing_japanese:
+          - 別 に 毎日 洗濯 を しろっ て は 言わ ない けど、{最低 限} 晩御飯 だけ は 毎日 作っ て ほしい。
+        english: I'm not saying do laundry every day, but the bare minimum I want you to do is make dinner
+          every night.
+        hint: 「最低限」 offers a factual statement of a minimum, but it lacks the emotional plea and personal
+          insistence that 「せめて」 conveys in this intimate context. We're looking for an expression that
+          carries emotional weight.
+    scene: A couple discussing household chores.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「～てほしい」 expresses a desire for someone to do something. The nuance of 「せめて」 here
+      suggests a strong, perhaps slightly exasperated, plea for a minimum contribution in an intimate
+      setting. The speaker's choice of words implies a feeling of being burdened and an expectation of
+      at least this much from the listener, as conveyed by 「晩御飯だけは毎日作ってほしい」.
+  - english: You should drink at least 1 liter of water a day.
+    japanese:
+      - 1日 に {せめて} 1 リットル の 水 を 飲む べき だ。
+      - 1日 に {せめて} 1 リットル の 水 は 飲む べき だ ね。
+      - 1日 に {せめて} 1 リットル の 水 は 飲む べき でしょう。
+    english_literally: You should drink {at least} 1 liter of water a day.
+    competing_grammar:
+      - competing_japanese:
+          - 1日 に {少なく と も} 1 リットル の 水 を 飲む べき だ。
+        english: You should drink at least 1 liter of water a day.
+        hint: While 「少なくとも」 is also possible, the combination of 「せめて」 with 「べきだ」 in an informative and
+          advisory context emphasizes that this is the absolute minimum requirement or recommendation
+          from the speaker's perspective, highlighting its importance. We're looking for an expression
+          that carries emotional weight.
+      - competing_japanese:
+          - 1日 に {せいぜい} 1 リットル の 水 を 飲む べき だ。
+        english: You should drink at most 1 liter of water a day.
+        hint: 「せいぜい」 indicates an upper limit, meaning 'at most' or 'only up to this much.' This contradicts
+          the advisory tone that recommends a minimum intake. We're looking for an expression that conveys
+          a strong desire for a minimum.
+      - competing_japanese:
+          - 1日 に {最低 限} 1 リットル の 水 を 飲む べき だ。
+        english: As a bare minimum, you should drink 1 liter of water a day.
+        hint: 「最低限」 expresses a factual minimum requirement. While grammatically correct, it is more objective
+          and lacks the persuasive, insistent tone that 「せめて」 provides when emphasizing a crucial minimum.
+          We're looking for an expression that carries emotional weight.
+    scene: A doctor giving health advice.
+    register: formal
+    setting: informative
+  - english: It's impossible to win the marathon, but I want to at least finish it...
+    japanese:
+      - マラソン で 勝つ の は 無理 だ けど、{せめて}、完走 し たい...
+      - マラソン で 勝つ の は 無理 だ けど、{せめて} 完走 は し たい な。
+      - マラソン で 勝つ の は 無理 だ けど、{せめて} 完走 だけ は し たい。
+    english_literally: Winning the marathon is impossible, but {at least} I want to finish it...
+    competing_grammar:
+      - competing_japanese:
+          - マラソン で 勝つ の は 無理 だ けど、{少なく と も}、完走 し たい。
+        english: Winning the marathon is impossible, but at least I want to finish it.
+        hint: The 「～たい」 (tai) form indicates a personal desire, and 「せめて」 emphasizes that this is the
+          speaker's deeply held minimum aspiration given the challenging circumstances, aligning with
+          the `optimistic` setting and personal commitment. We're looking for an expression that carries
+          emotional weight.
+      - competing_japanese:
+          - '{せいぜい}、完走 し たい...'
+        english: Winning the marathon is impossible, but at most, I want to finish it...
+        hint: 「せいぜい」 signifies an upper limit or a perceived maximum, often implying inadequacy. This
+          clashes with the speaker's aspiration to achieve at least the minimum goal. We're looking for
+          an expression that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{最低 限}、完走 し たい...'
+        english: Winning the marathon is impossible, but as a bare minimum, I want to finish it.
+        hint: 「最低限」 denotes a factual minimum. While acceptable, it is more objective and lacks the emotional
+          depth and personal investment that 「せめて」 emphasizes in this reflective context. We're looking
+          for an expression that carries emotional weight.
+    scene: A runner setting a realistic goal.
+    register: casual
+    setting: optimistic
+  - english: He seems busy, but he should at least send a message.
+    japanese:
+      - 彼 は 忙しい みたい だ けど、{せめて} メッセージ ぐらい は 送る べき だ よ。
+      - 彼、忙しい みたい だ けど、{せめて} メッセージ ぐらい は 送る べき だ よ な。
+      - 彼 は 忙し そう だ けど、{せめて} メッセージ くらい は 送る べき だ よ ね。
+    english_literally: He seems busy, but {at least} he should send a message.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 忙しい みたい だ けど、{少なく と も} メッセージ ぐらい は 送る べき だ よ。
+        english: He seems busy, but at least he should send a message.
+        hint: The slightly critical tone and the emphasis on what *should* be done, even as a bare minimum,
+          is better conveyed by 「せめて」, highlighting a specific expectation and a feeling of disappointment.
+          We're looking for an expression that carries emotional weight.
+      - competing_japanese:
+          - 彼 は 忙しい みたい だ けど、{せいぜい} メッセージ ぐらい は 送る べき だ よ。
+        english: He seems busy, but at most he should send a message.
+        hint: 「せいぜい」 implies an upper bound, implying that 'at best' or 'only this much' should be done.
+          This contradicts the speaker's expectation of a minimum action. We're looking for an expression
+          that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{最低 限} メッセージ ぐらい は 送る べき だ よ。'
+        english: He seems busy, but he should send a message as a bare minimum.
+        hint: 「最低限」 refers to a factual minimum obligation. While it can be used here, it does not carry
+          the strong emotional emphasis and slight disappointment that 「せめて」 implies regarding the lack
+          of communication. We're looking for an expression that carries emotional weight.
+    scene: A friend commenting on another friend's lack of communication.
+    register: casual
+    setting: serious
+  - english: You are a freeloader, so at least you should cook your own food!
+    japanese:
+      - 君 は 居候 だ から、{せめて} 自分 の 料理 は 自分 で する べき だ よ。
+      - 君 は 居候 な ん だ から、{せめて} 自分 の 料理 は 自分 で 作る べき だ よ。
+      - お前、居候 な ん だ から、{せめて} 自分 の 料理 は 自分 で 作れよ。
+    english_literally: Since you are a freeloader, {at least} you should do your own cooking yourself.
+    competing_grammar:
+      - competing_japanese:
+          - 君 は 居候 だ から、{少なく と も} 自分 の 料理 は 自分 で する べき だ よ。
+        english: Since you are a freeloader, at least you should do your own cooking yourself.
+        hint: The strong, opinionated tone of the speaker, amplified by 「べきだ」, creates a sense of minimum
+          obligation that 「せめて」 emphasizes effectively, unlike the more neutral 「少なくとも」. We're looking
+          for an expression that carries emotional weight.
+      - competing_japanese:
+          - 君 は 居候 だ から、{せいぜい} 自分 の 料理 は 自分 で する べき だ よ。
+        english: Since you are a freeloader, at most you should do your own cooking yourself.
+        hint: 「せいぜい」 indicates an upper limit, implying 'at best' or 'only this much' should be done.
+          This contradicts the speaker's demand for a minimum responsibility. We're looking for an expression
+          that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - 君 は 居候 だ から、{最低 限} 自分 の 料理 は 自分 で する べき だ よ。
+        english: Since you are a freeloader, as a bare minimum, you should do your own cooking yourself.
+        hint: 「最低限」 conveys a factual minimum responsibility. While grammatically correct, it lacks the
+          assertive and emotionally charged demand for a basic contribution that 「せめて」 provides in this
+          context. We're looking for an expression that carries emotional weight.
+    scene: A character in a light novel expressing their opinion.
+    register: casual
+    setting: serious
+  - english: I can't reach the level of power I had before, but I hope I can attain at least half of it.
+    japanese:
+      - かつて の よう な パワー に 達せ ない けど、{せめて} 半分 に 達せ れ ば いい ん だ けど。
+      - かつて の よう な パワー に は 達せ ない けど、{せめて} 半分 に は 達せ れ ば いい ん だ けど。
+      - かつて の よう な パワー に は 達せ ない けど、{せめて} 半分 くらい は 達せ れ ば いい ん だ けど ね。
+    english_literally: I can't reach the power like before, but I hope {at least} to reach half.
+    competing_grammar:
+      - competing_japanese:
+          - かつて の よう な パワー に 達せ ない けど、{少なく と も} 半分 に 達せ れ ば いい ん だ けど。
+        english: I can't reach the level of power I had before, but at least I hope I can attain half
+          of it.
+        hint: The 「～ばいいんだけど」 (I hope... if only...) construction combined with 「せめて」 strongly conveys
+          a personal, desired minimum outcome in a reflective context, making it more expressive and emotionally
+          charged than 「少なくとも」. We're looking for an expression that carries emotional weight.
+      - competing_japanese:
+          - かつて の よう な パワー に 達せ ない けど、{せいぜい} 半分 に 達せ れ ば いい ん だ けど。
+        english: I can't reach the level of power I had before, but at most I hope I can attain half of
+          it.
+        hint: 「せいぜい」 denotes an upper limit or a maximum, often implying it's not much. This contradicts
+          the speaker's aspiration to achieve at least the minimum goal. We're looking for an expression
+          that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{最低 限} 半分 に 達せ れ ば いい ん だ けど。'
+        english: I can't reach the level of power I had before, but as a bare minimum, I hope I can attain
+          half of it.
+        hint: 「最低限」 indicates a factual minimum. While grammatically plausible, it loses the emotional
+          longing and personal desire for that minimum that 「せめて」 emphasizes in this reflective context.
+          We're looking for an expression that carries emotional weight.
+    scene: Someone reflecting on their past abilities.
+    register: casual
+    setting: optimistic
+  - english: Couldn't you at least let me stay by your side just for tonight?
+    japanese:
+      - '{せめて} 今夜 だけ で も、君 の そば に い させ て くれ ない か？'
+      - '{せめて} 今夜 だけ で も、君 の そば に 居 させ て くれ ない？'
+      - '{せめて} 今夜 だけ で も、君 の 隣 に い させ て くれ ない か な？'
+    english_literally: '{At least} just for tonight, won''t you let me stay by your side?'
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 だけ で も、君 の そば に い させ て くれ ない か？
+        english: Just for tonight, won't you let me stay by your side?
+        hint: Without 「せめて」, the nuance of 'just this minimum' is lost, making the request less urgent
+          and less emotionally charged in this `flirty` and `persuasive` context. We're looking for an
+          expression that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{少なく と も} 今夜 だけ で も、君 の そば に い させ て くれ ない か？'
+        english: At least just for tonight, won't you let me stay by your side?
+        hint: Using 「少なくとも」 would make the request more factual and less emotionally compelling or desperate,
+          which is not suitable for a `flirty` and `persuasive` setting. We're looking for an for an expression
+          that carries emotional weight.
+      - competing_japanese:
+          - '{せいぜい} 今夜 だけ で も、君 の そば に い させ て くれ ない か？'
+        english: At most just for tonight, won't you let me stay by your side?
+        hint: 「せいぜい」 implies an upper limit or a maximum. This contradicts the speaker's fervent request
+          for a minimum, essential allowance. We're looking for an expression that conveys a strong desire
+          for a minimum.
+      - competing_japanese:
+          - '{最低 限} 今夜 だけ で も、君 の そば に い させ て くれ ない か？'
+        english: As a bare minimum just for tonight, won't you let me stay by your side?
+        hint: 「最低限」 expresses a factual minimum. While grammatically possible, it lacks the emotional
+          plea and desperate nuance that 「せめて」 provides in this `flirty` and `persuasive` context. We're
+          looking for an expression that carries emotional weight.
+    scene: A man trying to persuade a woman on a first date.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The phrase 「～てくれないか」 is a request, and with the informal 「君」 (kimi) and 「～か」 (ka) ending,
+      it suggests a masculine, slightly demanding but also pleading tone. The words 「今夜だけ」 and 「君のそば」
+      convey a romantic, intimate context, especially when used in a "flirty" setting. 「せめて」 emphasizes
+      that this is the absolute minimum the speaker hopes for, adding a desperate or hopeful nuance to
+      the plea.
+  - english: The report isn't finished yet, but please submit at least the progress report.
+    japanese:
+      - 報告 書 は まだ 完成 し て い ない が、{せめて} 途中 経過 だけ は 提出 し て ください。
+      - 報告 書 は まだ 完成 し て い ませ ん が、{せめて} 途中 経過 だけ は 提出 し て ください。
+      - 報告 書 は まだ 完成 し て おり ませ ん が、{せめて} 途中 経過 だけ で も 提出 を お 願い し ます。
+    english_literally: The report isn't finished yet, but {at least} please submit the progress report.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 は まだ 完成 し て い ない が、{少なく と も} 途中 経過 だけ は 提出 し て ください。
+        english: The report isn't finished yet, but at least please submit the progress report.
+        hint: In a professional setting, 「せめて」 emphasizes the manager's expectation of a non-negotiable
+          minimum, conveying a stronger sense of requirement or a firm demand than the more factual 「少なくとも」.
+          We're looking for an expression that carries emotional weight.
+      - competing_japanese:
+          - 報告 書 は まだ 完成 し て い ない が、{せいぜい} 途中 経過 だけ は 提出 し て ください。
+        english: The report isn't finished yet, but at most please submit the progress report.
+        hint: 「せいぜい」 denotes an upper limit or maximum. This contradicts the manager's expectation of
+          a minimum submission. We're looking for an expression that conveys a strong desire for a minimum.
+      - competing_japanese:
+          - '{最低 限} 途中 経過 だけ は 提出 し て ください。'
+        english: The report isn't finished yet, but as a bare minimum, please submit the progress report.
+        hint: 「最低限」 expresses a factual minimum requirement. While acceptable, it does not carry the same
+          forceful emphasis or implied urgency that 「せめて」 provides when demanding a non-negotiable minimum.
+          We're looking for an expression that carries emotional weight.
+    scene: A manager instructing an employee about a project deadline.
+    register: formal
+    setting: professional
+post_example_writeup: In all these examples, notice how 「せめて」 adds a layer of personal sentiment—whether
+  it's a plea, a firm expectation, a resignation, or an earnest hope—that a simple objective statement
+  like 「少なくとも」 or 「最低限」 would lack. It conveys that the speaker has considered the situation and settled
+  for a minimum, but it's a minimum they feel strongly about.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/せめて

@@ -1,0 +1,217 @@
+grammar_point: ことで (because of)
+learn_before:
+  - ことで (by means of)
+meaning: indicates the cause or reason for a result or state
+pronunciation:
+  katakana: コトデ
+  romaji: koto de
+formation:
+  動詞 (普通形) + ことで: Expresses that the action of the verb is the cause.
+  イ形容詞 (普通形) + ことで: Expresses that the state of the adjective is the cause.
+  ナ形容詞 (語幹 + な) + ことで: Expresses that the state of the adjective is the cause.
+  名詞 + である + ことで: Expresses that the noun's existence or state is the cause (more formal).
+jlpt: N3
+etymology: The phrase 「ことで」 is formed from 「こと」 (koto), which refers to an abstract 'thing', 'fact', or
+  'matter', and the particle 「で」 (de), indicating cause or means. Conceptually, it conveys 'by means of
+  the fact that...' or 'due to the event of...'. This construction emphasizes the preceding clause as
+  a concrete reason or contributing factor to the subsequent outcome.
+writeup: |-
+  The grammatical structure 「ことで」 is used to clearly state the cause or reason behind a particular outcome or situation. It emphasizes the preceding clause as the factual, objective reason for the ensuing result. This makes it particularly suitable for explanations, analytical statements, or when describing a chain of events where the cause is a concrete fact.
+
+  While other particles like 「から」 and 「ので」 also express cause, 「ことで」 carries a more formal and objective nuance. 「から」 is often used for subjective reasons, personal judgments, or direct motivations. 「ので」 is slightly more objective than 「から」, often used for logical or factual explanations, but can still carry a softer, more personal tone, or be used to state a reason to set up a request or mild command.
+
+  In contrast, 「ことで」 is neutral regarding positive or negative outcomes and focuses squarely on the specific 'fact' or 'action' as the direct, verifiable cause. It's less about the speaker's feeling or a simple logical flow, and more about presenting an established cause-and-effect relationship.
+false_friends:
+  - term: から (because・so)
+    meaning: indicates cause or reason
+    kind: similar expression
+    nuance: 「から」 often expresses subjective reasons, personal judgments, or direct motivations, leading
+      to a conclusion or action. For example, 「眠いから寝る」 (I'm going to sleep because I'm sleepy) is a personal
+      reason. We're looking for an objective cause.
+    grammar_point: <suggest>:から (because・so)
+  - term: ので (because・so)
+    meaning: indicates cause or reason
+    kind: similar expression
+    nuance: 「ので」 provides a logical or factual reason. It's generally more objective than 「から」, making
+      it suitable for polite explanations, but it can still be used for personal reasons. For example,
+      「雨が降ったので、試合は中止になった」 (The game was cancelled because it rained). While factual, 「ことで」 emphasizes
+      the *fact* itself as the cause more strongly. We're looking for a direct, factual cause for a result.
+    grammar_point: <suggest>:ので (because・so)
+  - term: 〜おかげで (because of, positive result)
+    meaning: thanks to; owing to (positive outcome)
+    kind: similar expression
+    nuance: 「おかげで」 explicitly attributes a positive outcome to the preceding cause. For instance, 「先生のおかげで合格できた」
+      (I passed thanks to the teacher). 「ことで」 is neutral and does not imply a positive or negative result.
+      We're looking for a neutral statement of cause.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: 〜せいで (because of, negative result)
+    meaning: due to; because of (negative outcome)
+    kind: similar expression
+    nuance: 「せいで」 explicitly attributes a negative outcome to the preceding cause, often implying blame
+      or misfortune. For example, 「寝坊したせいで遅刻した」 (I was late because I overslept). 「ことで」 does not carry
+      this negative connotation. We're looking for a neutral statement of cause.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: によって (cause・reason)
+    meaning: by means of; due to; depending on
+    kind: similar expression
+    nuance: 「によって」 is a very formal way to express cause, often indicating the agent or means by which
+      something occurs, or stating a general rule or principle. For example, 「地震によって建物が倒れた」 (The building
+      collapsed due to the earthquake). While both are objective, 「ことで」 focuses on a specific 'fact' or
+      'event' as the cause, whereas 「によって」 can also point to a general influence or active agent. We're
+      looking for a cause that stems from a specific fact.
+    grammar_point: '[Noun]によって (cause・reason)'
+post_false_friends_writeup: When choosing between these expressions, consider the nuance you wish to convey.
+  「ことで」 provides a neutral, objective, and factual explanation of cause, emphasizing that 'the fact of
+  X' led to 'Y'. This contrasts with 「から」 (more subjective or direct reason), 「ので」 (logical explanation),
+  and the explicitly evaluative 「おかげで」 (positive) or 「せいで」 (negative). 「によって」 shares objectivity with
+  「ことで」 but often implies a more formal context, a general principle, or an active agent responsible for
+  the outcome. Understanding these subtle differences is key to natural and precise expression.
+examples:
+  - english: By raising the price, sales decreased.
+    japanese:
+      - 値段 を 上げ た {こと で}、売り上げ が 減少 し た。
+      - 値段 を 上げ た {こと で}、売り上げ が 減少 し まし た。
+    english_literally: By the fact that the price was raised, sales decreased.
+    competing_grammar:
+      - competing_japanese:
+          - 値段 を 上げ た から、売り上げ が 減少 し た。
+        english: Sales decreased because the price was raised (speaker's personal opinion/reason).
+        hint: 「から」 often expresses subjective reasons or personal judgments. We're looking for a neutral,
+          factual explanation of cause.
+    scene: A business analyst explains a market trend.
+    register: formal
+    setting: informative
+  - english: Because the new system was introduced, work efficiency greatly improved.
+    japanese:
+      - 新しい システム を 導入 し た {こと で}、作業 効率 が 大幅 に 向上 し た。
+      - 新しい システム を 導入 し た {こと で}、作業 効率 が 大幅 に 向上 し まし た。
+    english_literally: By the fact that the new system was introduced, work efficiency greatly improved.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい システム の 導入 の おかげ で、作業 効率 が 大幅 に 向上 し た。
+        english: Thanks to the introduction of the new system, work efficiency greatly improved (positive
+          nuance).
+        hint: 「おかげで」 explicitly indicates a positive outcome due to the preceding cause. We're looking
+          for a neutral statement of cause.
+    scene: A project manager reports on the success of a new initiative.
+    register: formal
+    setting: professional
+  - english: By practicing every day, he was able to win the competition.
+    japanese:
+      - 毎日 練習 し た {こと で}、彼 は 大会 で 優勝 でき た。
+      - 毎日 練習 し た {こと で}、彼 は 大会 で 優勝 でき まし た。
+    english_literally: By the fact that he practiced every day, he was able to win the competition.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 練習 し た の で、彼 は 大会 で 優勝 でき た。
+        english: Because he practiced every day, he was able to win the competition (logical explanation).
+        hint: 「ので」 provides a logical or factual reason but can be softer. We're emphasizing the direct,
+          factual cause for the achievement.
+    scene: A coach describes the reason for an athlete's success.
+    register: semi-formal
+    setting: informative
+  - english: Due to the typhoon, the train service was suspended.
+    japanese:
+      - 台風 の 影響 が あっ た {こと で}、電車 が 運行 を 見合わせ た。
+      - 台風 の 影響 が あっ た {こと で}、電車 が 運行 を 見合わせ まし た。
+    english_literally: By the fact that there was an influence of the typhoon, the train suspended operation.
+    competing_grammar:
+      - competing_japanese:
+          - 台風 の せい で、電車 が 運行 を 見合わせ た。
+        english: The train service was suspended due to the typhoon (negative nuance, blaming the typhoon).
+        hint: 「せいで」 attributes a negative outcome, often with blame. We're looking for a neutral, factual
+          cause.
+    scene: A news report explains disruptions to public transportation.
+    register: formal
+    setting: informative
+  - english: Because the rules were made clear, misunderstandings decreased.
+    japanese:
+      - ルール を 明確 に し た {こと で}、誤解 が 減っ た。
+      - ルール を 明確 に し た {こと で}、誤解 が 減り まし た。
+    english_literally: By the fact that the rules were made clear, misunderstandings decreased.
+    competing_grammar:
+      - competing_japanese:
+          - ルール を 明確 に し た から、誤解 が 減っ た。
+        english: Misunderstandings decreased because the rules were made clear (speaker's personal conclusion).
+        hint: 「から」 is often used for subjective reasons or personal conclusions. We're looking for a more
+          objective, factual cause.
+    scene: An office manager reviews a change in policy.
+    register: formal
+    setting: professional
+  - english: The company's rapid growth was possible because of its innovative product development.
+    japanese:
+      - その 会社 の 急 成長 は、革新 的 な 製品 開発 で ある {こと で} 可能 に なっ た。
+      - その 会社 の 急 成長 は、革新 的 な 製品 開発 で ある {こと で} 可能 に なり まし た。
+    english_literally: The rapid growth of that company became possible by the fact that it was innovative
+      product development.
+    competing_grammar:
+      - competing_japanese:
+          - その 会社 の 急 成長 は、革新 的 な 製品 開発 に よっ て 可能 に なっ た。
+        english: The company's rapid growth was made possible by means of innovative product development
+          (more formal, often indicating means or agent).
+        hint: 「によって」 is very formal and often emphasizes the means or an agent. We're focusing on the
+          fact of the development as the cause.
+    scene: An economist analyzes a successful company's strategy.
+    register: formal
+    setting: academic
+  - english: Because the feedback was honest, we were able to improve the service.
+    japanese:
+      - 正直 な フィードバック が あっ た {こと で}、サービス の 改善 が でき た。
+      - 正直 な フィードバック が あっ た {こと で}、サービス の 改善 が でき まし た。
+    english_literally: By the fact that there was honest feedback, improvement of the service was possible.
+    competing_grammar:
+      - competing_japanese:
+          - 正直 な フィードバック が あっ た の で、サービス の 改善 が でき た。
+        english: Because there was honest feedback, we were able to improve the service (logical explanation).
+        hint: 「ので」 provides a logical reason, but 「ことで」 specifically highlights the *fact* of the feedback
+          as the cause for improvement.
+    scene: A team leader explains a successful project outcome.
+    register: semi-formal
+    setting: professional
+  - english: Due to his sincerity, he gained the trust of many people.
+    japanese:
+      - 彼 の 誠実 な 人柄 で ある {こと で}、多く の 人 の 信頼 を 得 た。
+      - 彼 の 誠実 な 人柄 で ある {こと で}、多く の 人 の 信頼 を 得 まし た。
+    english_literally: By the fact that his personality was sincere, he gained the trust of many people.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 誠実 な 人柄 の おかげ で、多く の 人 の 信頼 を 得 た。
+        english: Thanks to his sincere personality, he gained the trust of many people (positive attribution).
+        hint: 「おかげで」 explicitly attributes a positive outcome. We're looking for a neutral, factual cause.
+    scene: A biographer describes a historical figure's rise to prominence.
+    register: formal
+    setting: academic
+  - english: Because the schedule was tight, the team had to work overtime.
+    japanese:
+      - スケジュール が 厳しかっ た {こと で}、チーム は 残業 する 必要 が あっ た。
+      - スケジュール が 厳しかっ た {こと で}、チーム は 残業 する 必要 が あり まし た。
+    english_literally: By the fact that the schedule was tight, the team had the necessity to do overtime.
+    competing_grammar:
+      - competing_japanese:
+          - スケジュール が 厳しかっ た から、チーム は 残業 する 必要 が あっ た。
+        english: The team had to work overtime because the schedule was tight (speaker's personal justification).
+        hint: 「から」 is often used for personal justifications. We're looking for an objective, factual
+          cause.
+    scene: A manager explains a period of heavy workload.
+    register: formal
+    setting: professional
+  - english: By thoroughly analyzing the data, they discovered a new trend.
+    japanese:
+      - データ を 徹底 的 に 分析 し た {こと で}、新しい トレンド を 発見 し た。
+      - データ を 徹底 的 に 分析 し た {こと で}、新しい トレンド を 発見 し まし た。
+    english_literally: By the fact that the data was thoroughly analyzed, a new trend was discovered.
+    competing_grammar:
+      - competing_japanese:
+          - データ を 徹底 的 に 分析 し た の で、新しい トレンド を 発見 し た。
+        english: Because they thoroughly analyzed the data, they discovered a new trend (logical explanation).
+        hint: 「ので」 gives a logical reason. We're highlighting the *fact* of the thorough analysis as the
+          specific cause for the discovery.
+    scene: Researchers present findings from their study.
+    register: formal
+    setting: academic
+post_example_writeup: As illustrated in these examples, 「ことで」 consistently links an action, state, or
+  fact directly to its objective outcome. It is a valuable expression for providing clear, unambiguous
+  reasons, particularly in formal or informative contexts, without imposing the speaker's subjective opinion
+  or emotional tone on the cause-and-effect relationship.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ことで

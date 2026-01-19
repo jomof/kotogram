@@ -1,0 +1,294 @@
+grammar_point: ては〜ては (alternating actions)
+learn_before:
+  - さ (filler)
+  - ては (inevitable negative outcome)
+  - なくて (conjunction)
+  - に至っては (when it comes to a surprising extreme)
+  - ばかり (only・just, often with nuance of excess)
+  - を (point of departure)
+  - 切れない (unable to finish fully)
+  - 込む (entering deeply)
+meaning: Repeating or alternating actions
+pronunciation:
+  katakana: テワ テワ
+  romaji: tewa tewa
+formation:
+  Verb[て-form] + は + Verb[て-form] + は: Indicates the continuous repetition of actions (A) and (B).
+jlpt: N2
+etymology: The grammar point 「ては〜ては」 is derived from the combination of the 「て」-form of a verb, indicating
+  sequential actions, and the particle 「は」, which, in this context, emphasizes the repetition or contrast
+  between the actions. The repeated use of 「ては」 highlights the cyclical nature of the actions described.
+writeup: |-
+  The structure 「{ては〜ては}」 highlights the continuous repetition of two distinct actions, (A) and (B). It signifies a back-and-forth cycle, meaning 'doing (A) and then (B) repeatedly.' These actions, (A) and (B), frequently represent contrasting states or movements, such as connecting and disconnecting, or advancing and retreating.
+
+  This pattern exclusively employs verbs in their 「て」-form. Consequently, depending on the verb, it may appear as 「では〜では」 (e.g., from verbs ending in -む, -ぶ, -ぬ). Additionally, more casual, contracted forms like 「〜ちゃ〜ちゃ」 or 「〜じゃ〜じゃ」 can be used (e.g., 「食べちゃ寝ちゃ」 for 「食べては寝て」). However, it is crucial to maintain a consistent level of formality throughout the phrase; mixing formal 「ては」 with casual contractions like 「ちゃ」 within the same 「{ては〜ては}」 construction would sound unnatural.
+
+  It is important to note that the single 「〜ては」 can also convey repetition, particularly when the context or the remainder of the sentence clearly indicates an ongoing, repeated action. In such cases, the second 「ては」 can be omitted without changing the repetitive meaning.
+false_friends:
+  - term: 〜たり〜たりする
+    meaning: to do things like A and B, among others
+    kind: often confused with
+    nuance: While `〜たり〜たりする` lists non-exhaustive examples of actions, `ては〜ては` emphasizes a direct, continuous,
+      and often contrasting alternation between two specific actions, indicating a cycle rather than a
+      simple list.
+    grammar_point: Verb[たり] (representative listing)
+  - term: 〜ごとに
+    meaning: every time / each time
+    kind: similar expression
+    nuance: '`〜ごとに` focuses on regularity or frequency at specific intervals, indicating ''each time''
+      a certain condition or period occurs. In contrast, `ては〜ては` describes a continuous, alternating back-and-forth
+      or repeating cycle between two specific actions.'
+    grammar_point: ごとに (each・every)
+  - term: 〜して、〜して
+    meaning: doing A, then doing B (sequential actions)
+    kind: similar expression
+    nuance: A simple `て-form` sequence (e.g., `AしてBして`) denotes sequential actions. `ては〜ては`, however,
+      specifically highlights the *repetition* or *alternation* of those actions, often implying a cycle
+      or a state of continuous movement between the two rather than a one-time sequence.
+    grammar_point: Verb[て] (and then)
+post_false_friends_writeup: While `ては〜ては` indicates a specific, often immediate, repetition or alternation
+  between two actions, other grammatical structures offer similar but distinct meanings. `〜たり〜たりする` can
+  describe multiple actions, but it usually implies a non-exhaustive list of varied activities rather
+  than a strict back-and-forth cycle. `〜ごとに` focuses on actions that happen at regular intervals or each
+  time a certain event occurs. Simple `て-form` sequences like `〜して、〜して` denote one-time sequential actions
+  without emphasizing ongoing repetition. Understanding these distinctions is key to using `ては〜ては` accurately
+  to express continuous, often cyclical, actions.
+examples:
+  - english: Recently, I've just been eating and sleeping, eating and sleeping, so I've gained a bit of
+      weight.
+    japanese:
+      - 最近、{食べ て は 寝 て}、食べ て は 寝 て ばかり いる から、ちょっと 太っ た よ。
+      - 最近、{食べ ちゃ 寝 ちゃ}、食べ ちゃ 寝 ちゃ ばかり いる から、ちょっと 太っ た よ。
+      - 最近、{食べ て は 寝 て} ばかり いる から、ちょっと 太っ た よ。
+    english_literally: Recently, eating and then sleeping, eating and then sleeping, because I'm only
+      doing that, I've become a little fat.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、{食べ たり 寝 たり} ばかり し て いる から、ちょっと 太っ た よ。
+        english: Recently, I've just been doing things like eating and sleeping, so I've gained a bit
+          of weight.
+        hint: 「〜たり〜たりする」 lists non-exhaustive examples of actions. We're looking for a continuous, alternating
+          cycle of specific actions here.
+    scene: A student confiding in a friend about their habits during summer break.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The casual tone is set by the final particle 「よ」 and the plain form verb 「太った」 (got fat).
+      The repetition of 「食べ て は 寝 て」 emphasizes the monotonous and somewhat unproductive nature of the
+      actions during a lazy period. The contracted form 「食べ ちゃ 寝 ちゃ」 is even more casual, reinforcing
+      the relaxed and perhaps unmotivated state of the speaker.
+  - english: When I was new, it was a cycle of making mistakes and getting scolded, then getting scolded
+      and making mistakes again.
+    japanese:
+      - 新人 の 頃 は、{ミス し て は 怒ら れ}、怒ら れ て は また ミス する の 繰り返し だっ た。
+      - 新人 の 頃 は、{ミス し ちゃ 怒ら れ ちゃ}、怒ら れ ちゃ また ミス する の 繰り返し だっ た。
+      - 新人 の 頃 は、{ミス し て は 怒ら れ}、また ミス する の 繰り返し だっ た。
+    english_literally: When I was a new employee, making mistakes and then getting scolded, getting scolded
+      and then making mistakes again, it was a repetition of that.
+    competing_grammar:
+      - competing_japanese:
+          - 新人 の 頃 は、ミス {し て} 怒ら れ、また ミス する の 繰り返し だっ た。
+        english: When I was new, it was a cycle of making mistakes and getting scolded, and making mistakes
+          again.
+        hint: A simple て-form sequence indicates sequential actions. We're looking for a pattern that
+          emphasizes the *repetition* or *alternation* of those actions, implying a cycle.
+    scene: An experienced colleague recalling their early days to a struggling new hire.
+    register: semi-formal
+    setting: supportive
+    speaker_gender: female
+    speaker_age: older
+    nuance: The use of 「新人 の 頃 は」 sets a reflective tone, while 「〜の繰り返しだった」 highlights the cyclical nature
+      of the experience. The passive voice 「怒られ」 indicates the speaker was on the receiving end of the
+      scolding, reinforcing the frustrating repetition. The alternating structure 「ミス し て は 怒ら れ、怒ら れ
+      て は また ミス する」 vividly portrays the endless loop.
+  - english: Recently, this Wi-Fi keeps connecting and disconnecting, connecting and disconnecting; it's
+      not stable at all.
+    japanese:
+      - 最近、この Wi-Fi は {繋がっ て は 切れ}、繋がっ て は 切れ、全然 安定 し ない ん だ。
+      - 最近、この Wi-Fi は {繋がっ ちゃ 切れ ちゃ}、繋がっ ちゃ 切れ ちゃ、全然 安定 し ない ん だ。
+      - 最近、この Wi-Fi は {繋がっ て は 切れ}、全然 安定 し ない ん だ。
+    english_literally: Recently, this Wi-Fi connects and then disconnects, connects and then disconnects;
+      it doesn't stabilize at all.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、この Wi-Fi は {繋がっ たり 切れ たり} し て、全然 安定 し ない ん だ。
+        english: Recently, this Wi-Fi keeps doing things like connecting and disconnecting; it's not stable
+          at all.
+        hint: 「〜たり〜たりする」 implies a general list of varying activities. We're looking for a phrase that
+          specifically describes a continuous, alternating back-and-forth between two actions.
+    scene: Someone complaining to a family member about their unreliable home internet.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    speaker_age: older
+    nuance: The phrase 「全然 安定 し ない ん だ」 emphasizes the frustration with the Wi-Fi's instability. The repetition
+      of 「繋がっ て は 切れ」 vividly describes the irritating on-and-off cycle of the connection. The casual
+      contracted form 「繋がっ ちゃ 切れ ちゃ」 adds to the sense of exasperation.
+  - english: For marathon training, I'm repeatedly running then resting, running then resting.
+    japanese:
+      - マラソン の トレーニング で、{走っ て は 休み}、走っ て は 休み を 繰り返し て いる。
+      - マラソン の トレーニング で、{走っ て は 休み} を 繰り返し て いる。
+    english_literally: For marathon training, running and then resting, running and then resting, I am
+      repeating that.
+    competing_grammar:
+      - competing_japanese:
+          - マラソン の トレーニング で、{走っ て 休ん で} を 繰り返し て いる。
+        english: For marathon training, I'm repeatedly running and resting.
+        hint: A simple て-form sequence describes sequential actions. We're looking for a pattern that
+          emphasizes the *repetition* and *alternation* of actions as part of a structured cycle.
+    scene: An athlete describing their training regimen to a coach.
+    register: formal
+    setting: instructional
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The setting is professional, indicated by the topic of 「トレーニング」 (training) and a serious tone.
+      The clear alternation of 「走っ て は 休み」 is central to explaining a structured training method, suggesting
+      a deliberate and controlled repetition. The formal register aligns with addressing a coach.
+  - english: He reads a difficult book and forgets it, reads it and forgets it repeatedly, so it seems
+      he can't get it into his head.
+    japanese:
+      - 彼 は 難しい 本 を {読ん で は 忘れ}、読ん で は 忘れ の 繰り返し で、なかなか 頭 に 入ら ない らしい。
+      - 彼 は 難しい 本 を {読ん じゃ 忘れ ちゃ}、読ん じゃ 忘れ ちゃ の 繰り返し で、なかなか 頭 に 入ら ない らしい。
+      - 彼 は 難しい 本 を {読ん で は 忘れ} の 繰り返し で、なかなか 頭 に 入ら ない らしい。
+    english_literally: He reads a difficult book and then forgets, reads and then forgets, it's a repetition
+      of that, so it seems it doesn't easily enter his head.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 難しい 本 を {読ん で も} 忘れ て しまい、なかなか 頭 に 入ら ない らしい。
+        english: Even if he reads a difficult book, he forgets it, so it seems he can't get it into his
+          head.
+        hint: 「〜ても」 indicates a concessive condition ('even if' or 'even though'). We're looking for a
+          structure that highlights a continuous, frustrating cycle where one action is repeatedly undone
+          by another.
+    scene: Two students discussing a classmate's study struggles.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The phrase 「なかなか 頭 に 入ら ない らしい」 conveys the speaker's observation about the difficulty in
+      retaining information. 「読ん で は 忘れ」 highlights the frustrating cycle where effort is repeatedly negated
+      by forgetting. The contracted form 「読ん じゃ 忘れ ちゃ」 further emphasizes the casual, conversational nature
+      of the discussion between students.
+  - english: That drama was a continuous series of crying then laughing, crying then laughing, so my emotions
+      were all over the place.
+    japanese:
+      - あの ドラマ は、{泣い て は 笑い}、泣い て は 笑い の 連続 で、感情 が 忙しかっ た。
+      - あの ドラマ は、{泣い ちゃ 笑っ ちゃ}、泣い ちゃ 笑っ ちゃ の 連続 で、感情 が 忙しかっ た。
+      - あの ドラマ は、{泣い て は 笑い} の 連続 で、感情 が 忙しかっ た。
+    english_literally: That drama, crying and then laughing, crying and then laughing, was a continuous
+      sequence, so emotions were busy.
+    competing_grammar:
+      - competing_japanese:
+          - あの ドラマ は、{泣い たり 笑っ たり} し て、感情 が 忙しかっ た。
+        english: That drama had me doing things like crying and laughing, so my emotions were all over
+          the place.
+        hint: 「〜たり〜たりする」 lists non-exhaustive examples of actions. We're looking for a phrase that emphasizes
+          the rapid, immediate, and continuous alternation between two specific, contrasting emotional
+          states.
+    scene: Friends discussing an emotionally intense TV drama they watched.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The expression 「感情 が 忙しかっ た」 humorously describes the rapid shifts in emotion. The contrasting
+      actions of 「泣い て は 笑い」 perfectly illustrate the emotional rollercoaster induced by the drama. The
+      contracted form 「泣い ちゃ 笑っ ちゃ」 adds a sense of playfulness to the description of the emotional turmoil.
+  - english: Every morning, it's a constant struggle of being pushed then pulling, pushed then pulling,
+      just trying to get on the packed train.
+    japanese:
+      - 毎朝、満員 電車 で {押し て は 引か れ}、押し て は 引か れ、なん と か 乗り込ん で いる。
+      - 毎朝、満員 電車 で {押し ちゃ 引か れ ちゃ}、押し ちゃ 引か れ ちゃ、なん と か 乗り込ん で いる。
+      - 毎朝、満員 電車 で {押し て は 引か れ}、なん と か 乗り込ん で いる。
+    english_literally: Every morning, on the packed train, pushed and then pulled, pushed and then pulled,
+      somehow I am getting on.
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝、満員 電車 で {押さ れ たり 引っ張ら れ たり} し て、なん と か 乗り込ん で いる。
+        english: Every morning, on the packed train, I'm pushed and pulled, and somehow I am getting on.
+        hint: 「〜たり〜たりする」 indicates a non-exhaustive list of actions or states. We're looking for a structure
+          that emphasizes a continuous, immediate, and often frustrating back-and-forth between two specific
+          actions.
+    scene: A student or young professional lamenting their daily commute during rush hour.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The phrase 「なんとか 乗り込ん で いる」 conveys a sense of barely managing the situation. 「押し て は 引か れ」
+      clearly depicts the chaotic and repetitive struggle of being jostled on a crowded train, a common
+      experience in urban Japan. The passive form 「引か れ」 highlights the speaker's lack of control.
+  - english: The child keeps opening the door then closing it, opening it then closing it; it's quite
+      bothersome.
+    japanese:
+      - 子供 が ドア を {開け て は 閉め}、開け て は 閉め て、かなり 面倒 だ。
+      - 子供 が ドア を {開け ちゃ 閉め ちゃ}、開け ちゃ 閉め ちゃ で、かなり 面倒 だ。
+      - 子供 が ドア を {開け て は 閉め} て、かなり 面倒 だ。
+    english_literally: The child, the door, opening and then closing, opening and then closing, it is
+      quite bothersome.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が ドア を {開け たり 閉め たり} し て、かなり 面倒 だ。
+        english: The child keeps doing things like opening and closing the door; it's quite bothersome.
+        hint: 「〜たり〜たりする」 implies a general list of varying actions. We're looking for a pattern that emphasizes
+          a continuous, repetitive cycle of two specific actions, indicating annoyance.
+    scene: A parent or guardian expressing slight exasperation about a child's repetitive behavior.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    speaker_age: older
+    nuance: The final phrase 「かなり 面倒 だ」 conveys the speaker's annoyance. The simple repetition of 「開け
+      て は 閉め」 clearly illustrates the child's playful yet bothersome actions. The casual tone is suitable
+      for a comment within the family.
+  - english: This week, it's been raining and clearing up, raining and clearing up, so the laundry never
+      dries.
+    japanese:
+      - 今週 は 雨 が {降っ て は 止み}、降っ て は 止み で、洗濯 物 が 全然 乾か ない。
+      - 今週 は 雨 が {降っ ちゃ 止ん じゃ}、降っ ちゃ 止ん じゃ で、洗濯 物 が 全然 乾か ない。
+      - 今週 は 雨 が {降っ て は 止み} で、洗濯 物 が 全然 乾か ない。
+    english_literally: This week, rain falls and then stops, falls and then stops, so laundry does not
+      dry at all.
+    competing_grammar:
+      - competing_japanese:
+          - 今週 は 雨 が {降っ たり 止ん だり} し て、洗濯 物 が 全然 乾か ない。
+        english: This week, it's been doing things like raining and clearing up, so the laundry never
+          dries.
+        hint: 「〜たり〜たりする」 describes non-exhaustive actions. We need a phrase that conveys a continuous,
+          alternating pattern of weather conditions directly impacting a daily chore.
+    scene: Someone complaining about the weather's impact on household chores.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    speaker_age: older
+    nuance: The phrase 「洗濯 物 が 全然 乾か ない」 articulates the frustration. 「降っ て は 止み」 beautifully captures
+      the unstable weather pattern, which is a common complaint related to laundry in Japan, especially
+      during the rainy season. The casual register is fitting for an everyday grievance.
+  - english: They're always fighting then making up, fighting then making up; I wonder if their relationship
+      will ever stabilize.
+    japanese:
+      - 彼 ら は いつ も {喧嘩 し て は 仲直り し}、喧嘩 し て は 仲直り し て、いつ 安定 する ん だろう。
+      - 彼 ら は いつ も {喧嘩 し ちゃ 仲直り し ちゃ}、喧嘩 し ちゃ 仲直り し ちゃ で、いつ 安定 する ん だろう。
+      - 彼 ら は いつ も {喧嘩 し て は 仲直り し} て、いつ 安定 する ん だろう。
+    english_literally: As for them, always fighting and then making up, fighting and then making up, I
+      wonder when it will stabilize.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は いつ も {喧嘩 し たり 仲直り し たり} し て、いつ 安定 する ん だろう。
+        english: They are always doing things like fighting and making up; I wonder if their relationship
+          will ever stabilize.
+        hint: 「〜たり〜たりする」 lists non-exhaustive actions. This pattern emphasizes a continuous, cyclical
+          back-and-forth between two specific, contrasting actions in a relationship.
+    scene: Friends observing a couple's tumultuous relationship.
+    register: casual
+    setting: cautious
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The question 「いつ 安定 する ん だろう」 expresses concern or bewilderment. 「喧嘩 し て は 仲直り し」 vividly
+      describes the seesaw nature of their relationship, implying a lack of genuine resolution. The repetition
+      emphasizes the ongoing, unresolved dynamic.
+post_example_writeup: As you can see from the examples, 「ては〜ては」 often conveys a sense of continuous repetition,
+  whether it's a tiresome cycle, an intentional training regimen, or a natural phenomenon. The choice
+  between explicitly repeating the phrase like 「AてはB、AてはB」 and implying the repetition with a single 「AてはB」
+  largely depends on the desired emphasis and flow of the sentence. The casual contracted forms 「〜ちゃ〜ちゃ」
+  add a colloquial touch, making the expression feel more immediate and informal.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ては-ては

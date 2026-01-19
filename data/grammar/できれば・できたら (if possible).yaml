@@ -1,0 +1,339 @@
+grammar_point: できれば・できたら (if possible)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[たら] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - '[Verb-stem]おわる (to finish doing)'
+  - '[Verb-て]ほしい (to want someone to do)'
+  - 〜如し・〜ごとし (like・as if)
+  - あそこ (over there)
+  - あとで (after・later)
+  - すぐ (immediately・easily)
+  - たい (want to do)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: If possible
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: できる
+    rarity: common
+    meaning: to be able to do, can do
+  - conjugation-type: conditional (～ば)
+    form: できれば
+    rarity: common
+    meaning: if one can, if possible
+  - conjugation-type: conditional (～たら)
+    form: できたら
+    rarity: common
+    meaning: if one can, if possible
+pronunciation:
+  katakana: デキレバ・デキタラ
+  romaji: dekireba, dekitara
+formation:
+  出来る (dictionary form) + ば: Indicates a condition of possibility.
+  出来る (dictionary form) + たら: Indicates a condition of possibility.
+jlpt: N3
+etymology: 「できれば」 and 「できたら」 both come from the potential form of the verb 「できる」 (dekiru), meaning "to
+  be able to do" or "can do." The 「-ば」 form (provisional conditional) and 「-たら」 form (たら conditional)
+  then add the nuance of "if it is possible."
+writeup: 'The grammar points 「できれば」 and 「できたら」 both convey the meaning of "if possible" or "if feasible."
+  They are formed from the potential form of the verb する, which is 「できる」 (dekiru), meaning "to be able
+  to do" or "can do." The conditional particles 「ば」 and 「たら」 are then attached to 「できる」 to form these
+  expressions. These phrases are used to express a desire, preference, or a polite request, indicating
+  that something is wished for if it is within the realm of possibility. They commonly appear at the beginning
+  of a sentence, followed by the desired outcome or request. While 「できれば」 and 「できたら」 are largely interchangeable
+  in everyday conversation, 「できたら」 can sometimes imply a slightly stronger emphasis on the possibility
+  of something being realized. However, this nuance is subtle, and they are generally used equivalently.
+  Important Considerations: These expressions specifically combine the potential form 「できる」 with conditional
+  particles to convey "if it is possible." Using other conditional forms like 「〜と」 (to) or 「〜なら」 (nara)
+  would not be appropriate in this context, as they carry different nuances: * 「〜できると」: This structure
+  indicates a natural or inevitable consequence (e.g., "if you can do X, then Y will definitely happen").
+  It does not express a hopeful or conditional possibility as 「できれば・できたら」 do. * 「〜できるなら」: The particle
+  「なら」 is used to give advice or an opinion based on a hypothetical or assumed situation. For example,
+  「そこ に 行ける なら、早く 行け」 ("If you can go there, go quickly") takes the ability to go as a premise. In contrast,
+  「できれば・できたら」 directly pose the condition of possibility itself, making them more natural for expressing
+  a pure "if possible" scenario.'
+false_friends:
+  - term: なるべく
+    meaning: As ~ as possible, Wherever practicable
+    kind: often confused with
+    nuance: 「なるべく」 emphasizes making an effort to achieve something to the fullest extent, while 「できれば・できたら」
+      simply express a preference or desire *if* something is possible, without necessarily implying maximum
+      effort.
+    grammar_point: なるべく (as much as possible)
+  - term: ものなら
+    meaning: If, If one could, If something would be possible
+    kind: often confused with
+    nuance: 「ものなら」 expresses a hypothetical wish or desire for something that may be difficult or even
+      impossible to achieve, often implying a challenge or a strong but unlikely desire. In contrast,
+      「できれば・できたら」 suggest something that is potentially within reach and are used for more practical,
+      feasible conditions or requests.
+    grammar_point: '[Verb-potential]ものなら (if one could)'
+post_false_friends_writeup: While 「なるべく」 and 「ものなら」 might appear similar to 「できれば・できたら」, their core functions
+  differ. 「なるべく」 focuses on achieving the maximum possible outcome within a given condition, encouraging
+  effort. 「ものなら」 often describes a hypothetical, sometimes impossible, scenario to express a strong desire
+  or a challenge. 「できれば・できたら」, however, are straightforward conditional phrases that simply state a preference
+  or request based on the general feasibility of a situation, without the additional implications of effort
+  or impossibility.
+examples:
+  - english: If possible, I hope it's sunny tomorrow.
+    japanese:
+      - '{できれ ば}、明日 は 晴れ て ほしい な。'
+      - '{でき たら}、明日 は 晴れ て ほしい な。'
+      - '{できれ ば}、明日 は 晴れ て ほしい です。'
+      - '{でき たら}、明日 は 晴れ て ほしい です。'
+      - '{できれ ば}、明日 は 晴れ て ほしい。'
+      - '{でき たら}、明日 は 晴れ て ほしい。'
+    english_literally: If able, tomorrow it is sunny I want.
+    competing_grammar:
+      - competing_japanese:
+          - もし 明日 晴れ {たら}、良い の に な。
+        english: If tomorrow is sunny, it would be good.
+        hint: This is a general conditional. We are looking for an expression that specifically means
+          'if it is possible' or 'if feasible'.
+    scene: A friend expressing their wish for good weather for an outdoor event.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    nuance: The sentence-ending particle 「な」 adds a personal, slightly wistful or hopeful nuance, commonly
+      used by female speakers to express desires or feelings, making the wish for sunshine more personal.
+      This use is common in relaxed, friendly conversations.
+  - english: A new smartphone, if possible, I want to buy it right now.
+    japanese:
+      - 新しい スマホ、{でき たら} 今 すぐ 買い たい な。
+      - 新しい スマホ、{できれ ば} 今 すぐ 買い たい な。
+      - 新しい スマホ、{でき たら} 今 すぐ 買い たい ぜ。
+      - 新しい スマホ、{できれ ば} 今 すぐ 買い たい です。
+      - 新しい スマホ、{でき たら} 今 すぐ 買い たい です.
+    english_literally: New smartphone, if able, right now buy want.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい スマホ、今 すぐ 買い {たい} な。
+        english: A new smartphone, I want to buy it right now.
+        hint: This phrase states a direct desire without the 'if possible' condition. We are looking for
+          an expression that conveys a desire contingent on its feasibility.
+    scene: A young person talking to a friend about a recently released product.
+    register: casual
+    setting: informative
+    conjugation: conditional (～たら)
+    speaker_age: younger
+    nuance: The informal phrase 「買い たい な」 expresses a strong, personal desire, often used by younger speakers
+      in casual conversation. The final 「な」 adds a sense of longing or personal feeling. The use of 「ぜ」
+      in one of the alternatives is a more masculine and emphatic casual particle, sometimes used by younger
+      males to express strong feelings.
+  - english: If possible, I'd like to complete this project by the end of next month.
+    japanese:
+      - '{できれ ば}、この プロジェクト を 来 月末 まで に 完了 さ せ たい。'
+      - '{でき たら}、この プロジェクト を 来 月末 まで に 完了 さ せ たい。'
+      - '{できれ ば}、この プロジェクト を 来 月末 まで に 完了 さ せ たい と 思っ て い ます。'
+      - '{できれ ば}、この プロジェクト を 来 月末 まで に 完了 さ せ たい です。'
+      - '{でき たら}、この プロジェクト を 来 月末 まで に 完了 さ せ たい です.'
+    english_literally: If able, this project next month end by complete want to make.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト を 来 月末 まで に 完了 さ せ {ます}。
+        english: I will complete this project by the end of next month.
+        hint: This is a firm statement of intent, not a desire contingent on possibility. We are looking
+          for an expression that implies a desired outcome 'if it is feasible'.
+    scene: A project manager discussing a deadline with their team.
+    register: formal
+    setting: serious
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    nuance: This sentence uses formal and direct language appropriate for a professional setting. The
+      phrase 「完了 させ たい」 expresses a strong intention to achieve completion, typical of a project manager
+      taking responsibility for a task. The choice of 「できれば」 emphasizes that this is a desired outcome,
+      contingent on feasibility. The inclusion of 「と 思って い ます」 further reinforces the speaker's personal
+      intention and thought process, adding a layer of polite assertion common in formal business communication.
+    etymology: 「完了 させ たい」 uses the causative form 「させる」 followed by the desiderative 「たい」, indicating
+      a desire to *make* something complete, reflecting the project manager's active role in guiding the
+      project to its finish.
+  - english: If there's someone in trouble, if possible, I'd like to help them.
+    japanese:
+      - 困っ て いる 人 が い たら、{でき たら} 助け て あげ たい です。
+      - 困っ て いる 人 が い たら、{できれ ば} 助け て あげ たい です。
+      - 困っ て いる 人 が い たら、{でき たら} 助け て あげ たい。
+      - 困っ て いる 人 が い たら、{できれ ば} 助け て あげ たい。
+      - 困っ て いる 人 が い たら、{でき たら} お 力 に なり たい です。
+    english_literally: Troubled person if there is, if able, help want to give.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ て いる 人 が い {たら}、助け て あげ たい です。
+        english: If there's someone in trouble, I'd like to help them.
+        hint: This expresses a general desire to help without specifically mentioning the condition of
+          personal possibility. We are looking for a phrase that implies the desire to help 'if it is
+          feasible for me'.
+    scene: A compassionate individual expressing their general desire to help others.
+    register: teineigo (polite)
+    setting: sympathetic
+    conjugation: conditional (～たら)
+    listener_gender: no one
+    nuance: The use of 「～て あげ たい です」 conveys a strong desire to offer assistance to someone, combined
+      with the polite 「です」, indicating a sincere and considerate sentiment suitable for a general statement
+      of empathy. This phrasing reflects a compassionate personality rather than a specific interaction.
+      The phrase 「お 力 に なり たい です」 (I want to be of help/strength) is a more formal and humble way to express
+      a desire to assist, particularly appropriate in polite contexts.
+    etymology: The expression 「助けて あげ たい」 combines the te-form of 「助ける」 (to help) with 「あげる」 (to give),
+      which when combined with 「たい」 expresses a desire to provide help or favor to someone. This common
+      construction signifies an an active intent to render assistance.
+  - english: If possible, please send the document by tomorrow.
+    japanese:
+      - '{できれ ば} 明日 まで に 書類 を 送っ て ください。'
+      - '{でき たら} 明日 まで に 書類 を 送っ て ください。'
+      - '{できれ ば} 明日 まで に 書類 を お 送り いただけ ます か。'
+    english_literally: If able, by tomorrow document please send.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 まで に 書類 を 送っ て {ください}。
+        english: Please send the document by tomorrow.
+        hint: This is a direct command or request without the 'if possible' condition. We are looking
+          for an expression that adds a condition of feasibility.
+    scene: A team leader assigning a task to a colleague, showing consideration for their workload.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「できれば」 softens the request, making it polite and considerate in a business context,
+      implying that the speaker understands potential constraints. The formal 「お送り いただけます か」 emphasizes
+      humility and respect when making a request.
+    etymology: The phrase 「送って ください」 (please send) is a standard polite request. Adding 「できれば」 before
+      it introduces a layer of consideration, acknowledging potential limitations or difficulties for
+      the recipient.
+  - english: If possible, I'll cook dinner tonight.
+    japanese:
+      - '{でき たら} 今夜、夕食 を 作る よ。'
+      - '{できれ ば} 今夜、夕食 を 作る よ。'
+      - '{でき たら} 今夜、ご飯 作る ね。'
+    english_literally: If able, tonight dinner will make I tell you.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜、夕食 を 作る {よ}。
+        english: I'll cook dinner tonight.
+        hint: This states a definite plan. We are looking for an expression that suggests it's a possibility
+          or depends on circumstances.
+    scene: A wife or partner discussing evening plans with their spouse after a long day.
+    register: casual
+    setting: intimate
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The casual 「作る よ」 is a direct and somewhat assertive statement. When combined with 「できたら」,
+      it softens the assertion, making it an offer contingent on circumstances. The final 「よ」 adds a gentle,
+      informative touch, typical in intimate conversations. The alternative 「ご飯 作る ね」 is even more casual
+      and affectionate, often used among family.
+    etymology: 「夕食 を 作る」 (to make dinner) is a straightforward action. By prepending 「できたら」, the speaker
+      indicates a willingness or intention that is contingent on their ability, perhaps due to tiredness
+      or other commitments.
+  - english: If possible, I want to travel around the world someday.
+    japanese:
+      - いつ か、{でき たら} 世界 一 周 旅行 が し たい な。
+      - いつ か、{できれ ば} 世界 一 周 旅行 が し たい な。
+      - いつ か、{でき たら} 世界 一 周 し たい もん だ な。
+    english_literally: Someday, if able, world around trip do want I tell you.
+    competing_grammar:
+      - competing_japanese:
+          - いつ か 世界 一 周 旅行 が し {たい} な。
+        english: Someday I want to travel around the world.
+        hint: This expresses a wish without explicitly acknowledging the difficulty or feasibility. We
+          are looking for an expression that highlights the 'if possible' aspect of the dream.
+    scene: Someone reflecting on their life goals while looking out a window.
+    register: casual
+    setting: reflective
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The phrase 「したい な」 conveys a personal, slightly wistful desire. The inclusion of 「できたら」 emphasizes
+      the aspirational nature of the goal, acknowledging it might be challenging but still a cherished
+      dream. The casual 「な」 adds a sense of personal reflection. 「したい もん だ な」 is a more emphatic way to
+      express a strong, somewhat wistful desire, often used by male speakers.
+    etymology: The combination of 「いつか」 (someday) with 「できたら」 strengthens the sense of a long-term, possibly
+      challenging, but desired future event. 「世界 一周 旅行 が し たい」 (want to travel around the world) is the
+      core desire.
+  - english: If possible, try to include more detailed explanations.
+    japanese:
+      - '{できれ ば}、もっと 詳しい 説明 を 加え て み て ください。'
+      - '{でき たら}、もっと 詳しい 説明 を 加え て み て ください。'
+      - '{できれ ば}、より 詳細 な 説明 を お 願い し ます。'
+    english_literally: If able, more detailed explanation please try adding.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 詳しい 説明 を 加え て み て {ください}。
+        english: Please try to include more detailed explanations.
+        hint: This is a direct suggestion. We are looking for an expression that adds a polite condition
+          of 'if it's feasible' for the student.
+    scene: A university professor providing constructive feedback on a student's report.
+    register: semi-formal
+    setting: academic
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「〜て み て ください」 is a polite suggestion to try doing something. Adding 「できれば」 makes
+      the feedback even gentler and less prescriptive, showing consideration for the student's effort
+      and time. The alternative 「より 詳細 な 説明 を お 願い し ます」 is a more concise and formal way to request more
+      detailed explanations, suitable for academic or professional contexts.
+    etymology: The verb 「加える」 (to add) combined with 「て みる」 (to try doing) and the polite imperative 「ください」
+      forms a common request. 「できれば」 serves as a polite preface, indicating that the request is made with
+      an
+  - english: If possible, let's meet as soon as we arrive.
+    japanese:
+      - 到着 し たら、{できれ ば} すぐ に 会い ましょう。
+      - 到着 し たら、{でき たら} すぐ に 会い ましょう。
+      - 着い たら、{できれ ば} すぐ 集合 しよう。
+    english_literally: Arriving if, if able, immediately let's meet.
+    competing_grammar:
+      - competing_japanese:
+          - 到着 し {たら}、すぐ に 会い ましょう。
+        english: Let's meet immediately upon arrival.
+        hint: This states a firm plan upon arrival. We are looking for an expression that suggests it's
+          a possibility or depends on circumstances.
+    scene: Two friends coordinating their plans after traveling separately to a destination.
+    register: semi-formal
+    setting: informative
+    conjugation: conditional (～ば)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The volitional 「会い ましょう」 expresses a suggestion or a joint plan. By adding 「できれば」, it introduces
+      flexibility, acknowledging that immediate meeting might depend on unforeseen circumstances. The
+      more casual 「着いたら、すぐ 集合 しよう」 is a common way for friends to make a flexible plan for immediate action.
+    etymology: The initial 「到着 したら」 (if we arrive) sets a conditional premise. The subsequent 「できれば すぐ
+      に 会い ましょう」 (if possible, let's meet immediately) then specifies an ideal action within that premise,
+      highlighting the flexibility.
+  - english: If possible, I'd like to extend my stay for another day.
+    japanese:
+      - '{でき たら}、あと 一 日 滞在 を 延長 し たい の です が。'
+      - '{できれ ば}、あと 一 日 滞在 を 延長 し たい の です が。'
+      - '{でき たら}、もう 一 泊 さ せ て いただけ ます か。'
+    english_literally: If able, one more day stay extend want to, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - あと 一 日 滞在 を 延長 し たい の です {が}。
+        english: I'd like to extend my stay for another day, but...
+        hint: This is a direct, albeit polite, request. We are looking for an expression that explicitly
+          adds the condition of 'if it is possible' from the hotel's side.
+    scene: A hotel guest politely inquiring at the front desk about extending their stay.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「〜たい の です が」 is a common polite way to make a request, softening it by adding a
+      tentative 「が」 (but). 「できたら」 further enhances the politeness by acknowledging the request's feasibility
+      from the listener's perspective. The alternative 「もう 一 泊 させて いただけます か」 is a more common and extremely
+      polite way to request an extension, literally "Could you let me stay one more night?".
+    etymology: The noun 「滞在」 (stay) combined with 「延長 する」 (to extend) and the desiderative form 「〜たい」
+      forms the core request. The entire phrase is made more deferential and conditional by starting with
+      「できたら」 and ending with 「の です が」.
+post_example_writeup: The usage of 「できれば」 and 「できたら」 extends beyond simple conditional statements. They
+  can also subtly express a hope or desire for a certain situation to be possible, or for a request to
+  be feasible, adding a layer of nuance that other conditional forms might not convey.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/できれば-できたら

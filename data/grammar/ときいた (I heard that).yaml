@@ -1,0 +1,220 @@
+grammar_point: ときいた (I heard that)
+learn_before:
+  - Verb[(ら)れる] (adversative passive)
+  - '[Verb-dictionary]だけだ (all one has to do)'
+  - と (quotation marker)
+  - 徐々に (gradually・slowly)
+meaning: I heard that / It is said that
+pronunciation:
+  katakana: トキイタ
+  romaji: tokiita
+formation:
+  '[Plain form of sentence/clause] と聞いた': Indicates that something was heard from a specific person or
+    source.
+  '[Plain form of sentence/clause] と聞きました': Polite form indicating that something was heard from a specific
+    person or source.
+  '[Plain form of sentence/clause] と伺いました': Humble form indicating that something was heard, typically
+    when the speaker is referring to a superior or in a formal context.
+jlpt: N3
+etymology: The expression combines the quotation particle 「と」 (to), which marks the preceding clause as
+  a direct or indirect quote, and the past tense of the verb 「聞く」 (kiku), meaning 'to hear' or 'to ask'.
+  Thus, 「と聞いた」 literally translates to 'heard that [clause]', directly reflecting its function of reporting
+  information acquired aurally.
+writeup: |-
+  「と聞いた」 is a fundamental expression used to report information that the speaker has heard. It is a straightforward way to attribute a piece of information to a source, whether it be a specific person or a general rumor. Unlike some other hearsay expressions, 「と聞いた」 often implies a more direct acquisition of the information, as if you personally heard it from someone or read it in a specific report.
+
+  This phrase is versatile and can follow various plain forms of verbs, adjectives, and nouns. It directly states that 'I heard (that)...' and is useful in both casual and more formal settings, depending on the politeness level of the verb 聞く (e.g., 聞きました for polite, 聞いた for casual). In highly formal or humble contexts, the humble form 「伺いました」 (ukagaimashita) can be used.
+false_friends:
+  - term: '[Sentence]そうだ (i heard・it is said)'
+    meaning: I heard that / It is said that (general hearsay)
+    kind: similar expression
+    nuance: 「そうだ」 is used for general hearsay, often implying that the information is widely known or
+      reported, such as in news or weather forecasts, without specifying a direct source. It can also
+      indicate appearance.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: 〜らしい (it seems, based on evidence・I hear)
+    meaning: It seems that / I hear that (based on evidence or impression)
+    kind: similar expression
+    nuance: 「らしい」 suggests that the speaker is conveying information based on indirect evidence, strong
+      inference, or a general impression, rather than a direct statement heard from someone. It carries
+      a nuance of 'it appears to be the case.'
+    grammar_point: <suggest>:〜らしい (it seems, based on evidence・I hear)
+  - term: って (quotation marker, casual)
+    meaning: I heard that (casual quotation)
+    kind: similar expression
+    nuance: 「って」 is a very casual equivalent of 「と」, often used in spoken Japanese to relay information
+      that was heard. It doesn't imply a formal or specific source, and can also be used for direct quotes.
+    grammar_point: って (quotation marker, casual)
+  - term: んだって (I heard, casual)
+    meaning: I heard that (casual, often seeking confirmation)
+    kind: similar expression
+    nuance: 「んだって」 is an even more casual form, often used when relaying something recently heard, and
+      can carry a nuance of surprise or seeking confirmation, like 'Oh, I heard that, is that true?'
+    grammar_point: んだって (I heard, casual)
+post_false_friends_writeup: While all these expressions relate to conveying information that has been
+  heard, 「と聞いた」 is unique in its directness, often implying a personal act of hearing or receiving information
+  from a specific, albeit sometimes unnamed, source. 「そうだ」 (for hearsay) and 「らしい」 are more about general
+  reports or impressions. 「って」 and 「んだって」 are casual spoken forms, with 「んだって」 often conveying a sense
+  of fresh information or a request for confirmation.
+examples:
+  - english: I heard that the concert tickets are already sold out.
+    japanese:
+      - コンサート の チケット は もう {売り切れ た と 聞い た}。
+      - コンサート の チケット は もう {売り切れ た と 聞き まし た}。
+    english_literally: Regarding concert tickets, already sold out, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート の チケット は もう 売り切れ た そう だ。
+        english: It is said that the concert tickets are already sold out.
+        hint: 「そうだ」 (hearsay) indicates general information or reports, not necessarily something you
+          personally heard from a specific person. We're looking for something you heard directly.
+      - competing_japanese:
+          - コンサート の チケット は もう 売り切れ た らしい。
+        english: It seems the concert tickets are already sold out (based on evidence).
+        hint: 「らしい」 suggests an impression or inference based on indirect evidence. We're looking for
+          a direct report of what was heard.
+    scene: You are talking to a friend about an upcoming concert.
+    register: casual
+    setting: friendly
+  - english: My mother said that she might be late for dinner tonight.
+    japanese:
+      - 母 が 今晩 の 夕食 に 遅れる か も しれ ない {と 聞き まし た}。
+      - 母 が 今晩 の 夕食 に 遅れる か も しれ ない {と 聞い た}。
+      - 母 が 今晩 の 夕食 に 遅れる か も しれ ない と {伺い まし た}。
+    english_literally: Mother said that she might be late for tonight's dinner, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 母 が 今晩 の 夕食 に 遅れる か も しれ ない そう です。
+        english: It seems Mom might be late for dinner tonight.
+        hint: 「そうです」 implies a general report or appearance, not a direct message from your mother. We're
+          looking for something you were told by her.
+      - competing_japanese:
+          - 母 が 今晩 の 夕食 に 遅れる か も しれ ない って 言っ て た。
+        english: Mom said she might be late for dinner tonight (casual).
+        hint: While 「って 言ってた」 is also for reporting, it's more casual. We're looking for a slightly more
+          polite way to say 'I heard'.
+    scene: You are explaining your mother's whereabouts to your sibling.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I heard from a colleague that the new project meeting has been postponed.
+    japanese:
+      - 同僚 から 新しい プロジェクト の 会議 が 延期 さ れ た {と 聞き まし た}。
+      - 同僚 から 新しい プロジェクト の 会議 が 延期 さ れ た {と 聞い た}。
+      - 同僚 から 新しい プロジェクト の 会議 が 延期 さ れ た と {伺い まし た}。
+    english_literally: From a colleague, new project's meeting was postponed, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト の 会議 は 延期 さ れ た らしい です。
+        english: It seems the new project meeting has been postponed.
+        hint: 「らしいです」 suggests an inference or impression, not necessarily a direct report from a colleague.
+          We're looking for a direct report.
+    scene: You are updating your boss on the project schedule.
+    register: teineigo (polite)
+    setting: professional
+  - english: Apparently, the train was delayed due to a power outage, I heard.
+    japanese:
+      - 電車 が 停電 で 遅れ た {と 聞い た}。
+      - 電車 が 停電 で 遅れ た {と 聞き まし た}。
+    english_literally: Train, by power outage, was delayed, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 が 停電 で 遅れ た そう だ。
+        english: They say the train was delayed due to a power outage.
+        hint: 「そうだ」 (hearsay) is often for general reports or news, not specifically something you heard
+          from a person. We're looking for something you personally heard.
+    scene: You are explaining why you arrived late to a casual gathering.
+    register: casual
+    setting: casual slang
+  - english: The teacher told us that tomorrow's class will be cancelled.
+    japanese:
+      - 先生 が 明日 の 授業 は 中止 に なる {と 聞き まし た}。
+      - 先生 が 明日 の 授業 は 中止 に なる {と 聞い た}。
+    english_literally: Teacher said tomorrow's class will be canceled, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 授業 は 中止 に なる らしい です。
+        english: It seems tomorrow's class will be canceled.
+        hint: 「らしいです」 suggests an impression or inference based on indirect evidence. We're looking for
+          a direct announcement from the teacher.
+    scene: You are relaying important information to a classmate.
+    register: teineigo (polite)
+    setting: academic
+  - english: I heard that our grandmother is doing very well.
+    japanese:
+      - 祖母 は とても 元気 だ {と 聞き まし た}。
+      - 祖母 は とても 元気 だ {と 聞い た}。
+      - 祖母 は とても 元気 だ と {伺い まし た}。
+    english_literally: Grandmother is very well, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 は とても 元気 そう です。
+        english: Grandmother seems very well.
+        hint: 「そうです」 (appearance) refers to what something looks like, not what you heard. We're looking
+          for confirmation of information.
+    scene: You are talking to your sibling about your grandmother's health.
+    register: teineigo (polite)
+    setting: intimate
+  - english: I heard that he successfully passed the difficult exam.
+    japanese:
+      - 彼 は 難しい 試験 に 合格 し た {と 聞い た}。
+      - 彼 は 難しい 試験 に 合格 し た {と 聞き まし た}。
+      - 彼 は 難しい 試験 に 合格 し た と {伺い まし た}。
+    english_literally: He, difficult exam, passed, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 難しい 試験 に 合格 し たって。
+        english: I heard he passed the difficult exam (casual).
+        hint: 「って」 is a casual particle. We're looking for a slightly more direct and formal reporting.
+    scene: You are sharing news with a friend about a mutual acquaintance.
+    register: casual
+    setting: friendly
+  - english: I heard from the news that the economy is gradually recovering.
+    japanese:
+      - ニュース で 経済 が 徐々 に 回復 し て いる {と 聞き まし た}。
+      - ニュース で 経済 が 徐々 に 回復 し て いる {と 聞い た}。
+      - ニュース で 経済 が 徐々 に 回復 し て いる と {伺い まし た}。
+    english_literally: On the news, the economy is gradually recovering, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - ニュース に よる と 経済 が 徐々 に 回復 し て いる そう です。
+        english: According to the news, the economy is gradually recovering.
+        hint: 「〜によると〜そうです」 is a common phrase for reporting news, but 「と聞きました」 focuses on the act of *hearing*
+          the information yourself from the news.
+    scene: You are discussing current events with a colleague.
+    register: teineigo (polite)
+    setting: professional
+  - english: I heard that the restaurant's popular dish is only available today.
+    japanese:
+      - その レストラン の 人気 メニュー は 今日 だけ だ {と 聞き まし た}。
+      - その レストラン の 人気 メニュー は 今日 だけ だ {と 聞い た}。
+      - その レストラン の 人気 メニュー は 今日 だけ だ と {伺い まし た}。
+    english_literally: That restaurant's popular menu item is only for today, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - その レストラン の 人気 メニュー は 今日 だけ らしい です。
+        english: It seems that restaurant's popular dish is only available today.
+        hint: 「らしいです」 implies an inference based on general information, not a direct confirmation that
+          you heard. We're looking for something you were told.
+    scene: You are telling your friend about a special offer at a restaurant.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The doctor told me that I need to rest for a week.
+    japanese:
+      - 医者 に 一 週間 休む 必要 が ある {と 聞き まし た}。
+      - 医者 に 一 週間 休む 必要 が ある {と 聞い た}。
+      - 医者 に 一 週間 休む 必要 が ある と {伺い まし た}。
+    english_literally: From the doctor, rest for one week is necessary, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 医者 に 一 週間 休む 必要 が ある と 言わ れ まし た。
+        english: I was told by the doctor that I need to rest for a week.
+        hint: 「と 言われました」 means 'I was told', which is very similar but 「と聞きました」 emphasizes the act of
+          hearing the information. We're looking for the phrase that highlights you received the information
+          by listening.
+    scene: You are explaining your medical situation to a family member.
+    register: teineigo (polite)
+    setting: serious
+post_example_writeup: As you can see from the examples, the politeness of 「と聞いた」 can be adjusted by conjugating
+  「聞く」 to 「聞きました」 for polite speech, or even using the humble form 「伺いました」 when speaking to a superior
+  or in more formal situations. The core meaning of relaying heard information remains consistent across
+  these variations.

@@ -1,0 +1,313 @@
+grammar_point: の無さ・のなさ (lack of)
+learn_before:
+  - な-Adjective[さ] (nominalizer)
+  - なく (not and or but)
+  - につれて (as・in proportion to)
+  - によると・によれば (according to)
+  - に対して (towards; in contrast)
+meaning: Lack of; absence of
+pronunciation:
+  katakana: ノナサ
+  romaji: no nasa
+formation:
+  Noun + の + 無さ: Indicates the lack of something; absence of.
+jlpt: N2
+etymology: The grammar point is constructed from 「の」, a possessive particle, and 「無さ」 (nasa), the noun
+  form of the adjective 「無い」 (nai), meaning "nothing" or "not existing."
+writeup: |-
+  This grammar point, 「の無さ」 or 「のなさ」, expresses the **lack or absence of something**. It is commonly used to point out a deficiency or the absence of a particular quality or characteristic. The nuance is often negative, implying that the lack is undesirable or problematic. Note that 「無さ」 is the noun form of the adjective 「無い」.
+
+  It's important to note that while 「なさ」 is a valid reading, 「の無さ」 is more commonly seen in written form. 「のなさ」 tends to sound a bit softer and more casual, suitable for spoken language.
+false_friends:
+  - term: 無い (nai)
+    meaning: To not exist; to lack
+    kind: similar expression
+    nuance: While 「の無さ」 refers to the noun form indicating the absence of something, 「無い」 is the adjectival
+      form used to state that something does not exist or is lacking. For example, 「お金が無い」 (okane ga nai)
+      means "I have no money."
+    grammar_point: <suggest>:無い (to not exist)
+  - term: 不足
+    meaning: insufficiency, shortage
+    kind: similar expression
+    nuance: 「不足」 implies that something is 'not enough' or 'inadequate' from a required or desired amount,
+      often quantifiable or specific. 「の無さ」 is broader, referring to a general absence or non-existence
+      of a quality or abstract concept, not necessarily a quantifiable shortage.
+    grammar_point: <suggest>:不足 (insufficiency)
+  - term: 欠如
+    meaning: lack, deficiency
+    kind: similar expression
+    nuance: 「欠如」 is a formal and academic term for 'lack' or 'deficiency', often used for abstract concepts
+      like morality or awareness. While similar to 「の無さ」, it implies a more complete or critical absence,
+      often in intellectual or moral domains, and is generally more formal.
+    grammar_point: <suggest>:欠如 (deficiency)
+post_false_friends_writeup: The difference between 「の無さ」 and 「無い」 lies in their grammatical function.
+  Use 「の無さ」 when you need a noun to describe the lack of something, and use 「無い」 to state that something
+  is absent or non-existent. Furthermore, 「不足」 specifically denotes a 'shortage' from a required amount,
+  whereas 「の無さ」 indicates a more general 'absence' of a quality. 「欠如」 is similar to 「不足」 but often implies
+  a more critical or complete absence in formal contexts.
+examples:
+  - english: I am appalled by his lack of common sense.
+    japanese:
+      - 私 は 彼 の 常識 {の 無 さ} に あきれ て いる。
+      - 私 は 彼 の 常識 {の 無 さ} に 呆れ て い ます。
+      - 彼 の 常識 {の 無 さ} に あきれ た よ。
+    english_literally: As for me, at his common sense's lack, I am appalled.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 常識 が ない の で、私 は 呆れ て い ます。
+        english: He has no common sense, so I am appalled.
+        hint: This sentence describes a cause and effect. We are looking for a noun expressing the absence
+          of something.
+      - competing_japanese:
+          - 彼 の 常識 の 欠如 に 呆れ て いる。
+        english: I am appalled by his deficiency of common sense.
+        hint: While similar, this uses a more formal noun for 'lack' that is often found in academic or
+          official contexts.
+    scene: Expressing frustration about someone's behavior.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The use of 「あきれた よ」 suggests a male speaker speaking casually, expressing frustration. The
+      speaker is referring to 「常識 の 無さ」 (lack of common sense) as the specific cause for their dismay.
+  - english: I wanted to jump, but I couldn't. I became painfully aware of my lack of physical and muscular
+      strength.
+    japanese:
+      - 飛び たい と 思っ て も 飛べ ない。体力、筋力 {の 無 さ} を 痛感 し まし た。
+      - 飛び たい と 思っ て も 飛べ ない。体力 と 筋力 {の 無 さ} を 痛感 し た。
+      - 飛び たい と 思っ て も 飛べ ない。自分 の 体力 や 筋力 {の な さ} を 痛感 し まし た。
+    english_literally: Even if I wanted to jump, I couldn't. Physical strength, muscular strength's lack,
+      I painfully felt.
+    competing_grammar:
+      - competing_japanese:
+          - 体力 と 筋力 が 足り ない こと を 痛感 し まし た。
+        english: I painfully realized that my physical and muscular strength were insufficient.
+        hint: This phrase describes something being 'insufficient' or 'not enough.' We are looking for
+          a noun expressing the absence of something.
+      - competing_japanese:
+          - 体力 と 筋力 の 不足 を 痛感 し まし た。
+        english: I painfully realized the shortage of physical and muscular strength.
+        hint: This uses '不足' (shortage) to express a lack, which is similar but differs slightly in nuance
+          from the general 'absence' implied by 'の無さ'.
+    scene: Reflecting on one's physical limitations.
+    register: formal
+    setting: reflective
+    nuance: 「痛感 しました」 shows the speaker is realizing their physical weakness in a serious and deeply felt
+      way. The use of 「体力、筋力 の 無さ」 packages this realization into a specific noun.
+  - english: We cannot accept your company's response to this situation, and we are filled with anger
+      at your company's lack of sincerity.
+    japanese:
+      - 今回 の 一連 の 貴社 の 対応 は、私 たち に は 全く 納得 できる もの で は なく、貴社 の 誠意 {の 無 さ} に 大変 な 憤り を 感じ ます。
+      - 貴社 の 誠意 {の 無 さ} に は、大変 遺憾 に 感じ て おり ます。
+      - 貴社 の 誠意 {の 無 さ} に 対し て、大変 な 憤り を 感じ て おり ます。
+    english_literally: This time's series of your company's response, for us, is completely unacceptable,
+      and at your company's sincerity's lack, we feel great indignation.
+    competing_grammar:
+      - competing_japanese:
+          - 貴社 に 誠意 が ない こと に、大変 な 憤り を 感じ ます。
+        english: We feel great indignation because your company has no sincerity.
+        hint: This phrase describes something directly as 'not existing' or 'not having.' We are looking
+          for a noun that represents the concept of 'lack'.
+      - competing_japanese:
+          - 貴社 の 誠意 の 欠如 に 大変 な 憤り を 感じ ます。
+        english: We feel great indignation at your company's deficiency of sincerity.
+        hint: This uses '欠如' (deficiency), a more formal and academic term for 'lack', rather than the
+          general 'absence' implied by 'の無さ'.
+    scene: Expressing dissatisfaction with a company's handling of a situation.
+    register: bijinesu nihongo (business)
+    setting: serious
+    nuance: The use of 「貴社」 (kisha) indicates a formal business setting, addressing a company directly.
+      「憤り を 感じます」 clearly expresses strong dissatisfaction. 「誠意 の 無さ」 highlights the absence of sincerity
+      as a specific quality.
+  - english: Although I was allowed to use a dictionary, because of the time constraint there were parts
+      I couldn't answer, and I felt depressed about my lack of English proficiency.
+    japanese:
+      - 辞書 の 使用 を 許可 し て もらっ た もの の、時間 不足 で 思っ た よう に 答え られ ない 問題 が あり、自分 の 英語 力 {の 無 さ} に 落ち込み まし た。
+      - 辞書 の 使用 を 許可 し て もらっ た もの の、時間 不足 で 思っ た よう に 答え られ ない 問題 が あり、自分 の 英語 力 {の な さ} に 落ち込み まし た。
+      - 辞書 を 使わ せ て もらっ た が、時間 が 足り ず、自分 の 英語 力 {の 無 さ} に 落ち込ん だ。
+    english_literally: Although dictionary's use I was permitted, due to time shortage, as I thought,
+      there were problems I couldn't answer, and at my English ability's lack, I got depressed.
+    competing_grammar:
+      - competing_japanese:
+          - 英語 力 が 足り ない こと を 痛感 し、落ち込み まし た。
+        english: I painfully realized that my English proficiency was insufficient, and got depressed.
+        hint: This phrase describes something being 'insufficient.' We are looking for a phrase that forms
+          a noun from the state of 'not having'.
+      - competing_japanese:
+          - 英語 力 の 不足 を 痛感 し、落ち込み まし た。
+        english: I painfully realized the shortage of English proficiency, and got depressed.
+        hint: This uses '不足' (shortage), a formal noun but not derived from the adjectival 'ない'.
+    scene: Reflecting on one's language skills after a test.
+    register: formal
+    setting: melancholic
+    nuance: 「落ち込みました」 indicates the speaker's feeling of sadness and disappointment with their English
+      ability. 「英語 力 の 無さ」 precisely pinpoints the *absence* of proficiency as the cause of depression.
+  - english: Friendliness, warmth and a lack of affectation are what makes Saya so absolutely charming.
+    japanese:
+      - 親しみ やす さ と、温か さ と、飾り 気 {の 無 さ} が、さや の 絶対 的 な 魅力 で ある。
+      - 親しみ やす さ と、温か さ、それ に 飾り 気 {の な さ} が、さや の 魅力 です。
+      - 親しみ やす さ、温か さ、飾り 気 {の 無 さ}。これ ら が さや の 魅力 です。
+    english_literally: Friendliness, and warmth, and affectation's lack, are Saya's absolute charm.
+    competing_grammar:
+      - competing_japanese:
+          - 飾り気 が ない こと が、さや の 絶対 的 な 魅力 で ある。
+        english: The fact that she has no affectation is Saya's absolute charm.
+        hint: This phrase describes a state or condition. We are looking for a noun that encapsulates
+          the quality of 'lack'.
+      - competing_japanese:
+          - 飾り気 が ない と いう 特徴 が、さや の 魅力 だ。
+        english: This focuses on a 'characteristic' rather than directly expressing the 'lack' as a nominalized
+          concept.
+        hint: This focuses on a 'characteristic' rather than directly expressing the 'lack' as a nominalized
+          concept.
+    scene: Describing someone's appealing personality.
+    register: formal
+    setting: informative
+    nuance: 「飾り気 の 無さ」 describes Saya's natural and unpretentious charm. It specifically highlights the
+      *absence* of affectation as a positive trait.
+  - english: I am disappointed with recent movies and dramas because of their lack of content.
+    japanese:
+      - 最近 の 映画 や ドラマ は、その 内容 {の 無 さ} に がっかり さ せ られる。
+      - 最近 の 映画 や ドラマ は、内容 {の 無 さ} に がっかり する。
+      - 最近 の 映画 や ドラマ は、その 内容 {の な さ} に がっかり さ せ られる。
+    english_literally: Recent movies and dramas, as for their content's lack, I am made disappointed.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 の 映画 や ドラマ は、内容 が ない の で がっかり する。
+        english: Recent movies and dramas have no content, so I am disappointed.
+        hint: This states that content 'does not exist' as a reason. We are looking for a noun form representing
+          the 'absence' of content.
+      - competing_japanese:
+          - 最近 の 映画 や ドラマ は、内容 の 薄 さ に がっかり さ せ られる。
+        english: Recent movies and dramas, at the thinness of their content, make me disappointed.
+        hint: This uses '薄さ' (thinness/shallowness), implying a lack of depth, rather than the general
+          'absence' conveyed by 'の無さ'.
+    scene: Expressing disappointment with current entertainment.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: 「がっかりさせられる」 expresses the feeling of being let down by the poor quality of recent movies and
+      dramas. 「内容 の 無さ」 specifically targets the emptiness or absence of substance. The use of 「られる」 implies
+      a passive voice, indicating the feeling is imposed on the speaker.
+  - english: According to a survey, Japanese children are the least self-confident in the world.
+    japanese:
+      - 調査 に よる と 日本 の 子供 の 自信 {の 無 さ} は 世界 一 だ そう で ある。
+      - 調査 に よる と 日本 の 子供 の 自信 {の な さ} は 世界 一 だ そう です。
+      - 日本 の 子供 たち の 自信 {の 無 さ} が 世界 一 だ と 調査 で 判明 し た。
+    english_literally: According to a survey, Japanese children's self-confidence's lack is the world's
+      number one, it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 調査 に よる と 日本 の 子供 は 自信 が ない 子 が 世界 一 だ そう で ある。
+        english: According to a survey, Japanese children who lack confidence are the world's number one.
+        hint: This describes 'children who are not confident.' We are looking for a noun that abstracts
+          the concept of 'lack of confidence'.
+      - competing_japanese:
+          - 調査 に よる と 日本 の 子供 の 自信 の 欠如 は 世界 一 だ そう で ある。
+        english: According to a survey, Japanese children's deficiency of self-confidence is the world's
+          number one.
+        hint: This uses '欠如' (deficiency), a formal noun, which is similar but not the direct nominalization
+          of 'ない' in the same way as 'の無さ'.
+    scene: Stating a statistic based on a survey.
+    register: formal
+    setting: informative
+    nuance: 「〜そう で ある」 is used to convey information obtained from a secondary source (in this case, a
+      survey). 「自信 の 無さ」 allows the 'lack of self-confidence' to be treated as a quantifiable noun, which
+      can then be ranked as 「世界 一」 (world's number one).
+  - english: This comic had an interesting plot, but as the story went on, it became so exaggerated that
+      I couldn't take the lack of reality.
+    japanese:
+      - この マンガ は 設定 は 面白かっ た が、物語 が 進む に つれ て 話 が 大きく なり、リアリティ {の 無 さ} に つい て いけ なく なっ て しまっ た。
+      - この マンガ は 設定 は 面白かっ た が、物語 が 進む に つれ て 話 が 大きく なり、リアリティ {の な さ} に つい て いけ なく なっ て しまっ た。
+      - この マンガ、リアリティ {の 無 さ} に もう つい て いけ なかっ た よ。
+    english_literally: This manga, its setting was interesting, but as the story progressed, the scale
+      of the story grew, and at its reality's lack, I couldn't keep up anymore.
+    competing_grammar:
+      - competing_japanese:
+          - この マンガ は、リアリティ が ない の で つい て いけ なく なっ て しまっ た。
+        english: This manga, because it has no reality, I couldn't keep up with it anymore.
+        hint: This states that reality 'does not exist' as a reason. We are looking for a noun form representing
+          the 'absence' of reality.
+      - competing_japanese:
+          - この マンガ は、リアリティ が 欠け て いる の で つい て いけ なく なっ て しまっ た。
+        english: This describes reality as being 'lacking' or 'missing.' We are looking for a nominalized
+          form of 'lack'.
+        hint: This describes reality as being 'lacking' or 'missing.' We are looking for a nominalized
+          form of 'lack'.
+    scene: Describing a manga that lost its appeal due to unrealistic plot developments.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: 「〜についていけなくなった」 expresses the speaker's inability to accept or enjoy the increasingly unrealistic
+      elements of the manga. 「リアリティ の 無さ」 specifically identifies the *absence* of realism as the reason
+      for this inability to continue. The casual ending 「よ」 is common among female speakers.
+  - english: His lack of effort in his studies is concerning.
+    japanese:
+      - 彼 の 勉強 へ の 努力 {の 無 さ} が 心配 だ。
+      - 彼 の 勉強 へ の 努力 {の 無 さ} が 心配 です。
+      - 彼 の 勉強 へ の 努力 {の な さ} が 気掛かり です。
+    english_literally: His study-towards effort's lack is worrying.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 勉強 に 努力 し ない こと が 心配 だ。
+        english: The fact that he doesn't make an effort in his studies is concerning.
+        hint: This phrase describes the direct action of 'not making an effort.' We are looking for a
+          noun that expresses the 'lack' of effort.
+      - competing_japanese:
+          - 彼 の 勉強 へ の 努力 不足 が 心配 だ。
+        english: His insufficient effort towards studies is concerning.
+        hint: This uses '不足' (insufficiency/shortage), a formal noun, which is similar but not the direct
+          nominalization of 'ない' in the same way as 'の無さ'.
+    scene: A teacher discussing a student's academic performance with a colleague.
+    register: formal
+    setting: serious
+    nuance: 「心配 だ」 expresses concern about the student's situation. 「努力 の 無さ」 highlights the specific
+      absence of effort as the cause of this concern, treating 'lack of effort' as a noun.
+  - english: The incident was caused by a lack of communication within the team.
+    japanese:
+      - その 問題 は チーム 内 の 意思 疎通 {の 無 さ} が 原因 でし た。
+      - その 問題 は チーム 内 の 意思 疎通 {の 無 さ} に よる もの です。
+      - チーム 内 の 意思 疎通 {の な さ} が、今回 の 問題 の 原因 だ。
+    english_literally: That problem was team inside communication's lack as cause.
+    competing_grammar:
+      - competing_japanese:
+          - チーム 内 で 意思 疎通 が なかっ た こと が その 問題 の 原因 でし た。
+        english: The fact that there was no communication within the team was the cause of that problem.
+        hint: This phrase directly states that communication 'did not exist.' We are looking for a noun
+          that represents the abstract concept of 'lack of communication'.
+      - competing_japanese:
+          - チーム 内 の 意思 疎通 不足 が その 問題 の 原因 でし た。
+        english: Insufficient communication within the team was the cause of that problem.
+        hint: This uses '不足' (insufficiency/shortage), a different formal noun, to describe the lack,
+          rather than the nominalized form of 'ない'.
+    scene: A project manager explaining the root cause of a recent project setback during a team meeting.
+    register: formal
+    setting: informative
+    nuance: 「原因 でし た」 clearly states the cause of the problem. 「意思 疎通 の 無さ」 precisely identifies the *absence*
+      of smooth communication as the underlying reason for the incident, functioning as a noun phrase.
+  - english: He makes up for his lack of talent with hard work.
+    japanese:
+      - 彼 は 才能 {の 無 さ} を 努力 で 補っ て いる。
+      - 彼 は 才能 {の 無 さ} を 努力 で カバー し て いる。
+      - 彼 は 才能 {の な さ} を 努力 で 補う タイプ だ。
+    english_literally: As for him, talent's lack, with effort, he is making up for.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 才能 が ない けれど、努力 家 だ。
+        english: He doesn't have talent, but he's a hard worker.
+        hint: This sentence describes two distinct qualities with a conjunction. We are looking for a
+          noun that directly expresses the 'lack' of talent.
+      - competing_japanese:
+          - 彼 は 才能 が 不足 し て いる が、努力 で 補っ て いる。
+        english: He is lacking in talent, but he makes up for it with hard work.
+        hint: This uses the verb '不足 する' (to lack, be insufficient) rather than the nominalized 'の無さ'.
+    scene: Two colleagues discussing a junior employee's potential.
+    register: semi-formal
+    setting: supportive
+    nuance: 「才能 の 無さ」 treats the absence of talent as a concrete concept, which can then be 'compensated
+      for' (補う). This construction allows for a direct contrast between the deficiency and the compensatory
+      action.
+post_example_writeup: As you can see from these examples, 「の無さ」 or 「のなさ」 is a versatile way to express
+  the absence or deficiency of a quality, turning it into a noun that can then be the subject or object
+  of a sentence. It's often used when discussing shortcomings or undesirable characteristics.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/の無さ・のなさ

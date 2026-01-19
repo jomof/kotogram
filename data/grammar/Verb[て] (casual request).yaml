@@ -1,0 +1,265 @@
+grammar_point: Verb[て] (casual request)
+learn_before:
+  - Verb[imperative] (imperative)
+  - 真上 (directly above)
+meaning: Please do for me (Casual request)
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: Verb[て]
+    rarity: common
+    meaning: Please (do something)
+  - conjugation-type: te-form (～て)
+    form: Verb[ないで]
+    rarity: common
+    meaning: Please don't (do something)
+pronunciation:
+  katakana: ベルブテ
+  romaji: berubu te
+formation:
+  Verb[て]: Casual request, similar to 「ってください」 but more informal.
+  Verb[ないで]: Casual negative request, similar to 「ないでください」 but more informal.
+jlpt: N4
+etymology: This grammar point is a shortened, casual form of the 「〜てください」 construction. 「〜て」 is the te-form
+  of the verb, which is used in a variety of grammatical constructions, but in this case it functions
+  as a softened imperative.
+writeup: |-
+  The grammatical construction **Verb[て]** serves as a casual request or a mild command in Japanese. It is a shortened form of the more polite **Verb[て]ください**. While often friendly, its directness means it is best used among close friends, family members, or towards individuals of lower status. The nuance of **Verb[て]** as a request is typically identifiable when it appears at the end of the sentence.
+
+  For negative requests, the form **Verb[ないで]** is used, which is the te-form of the negative plain form of the verb (Verb[ない]). Similar to its positive counterpart, **Verb[ないで]** is a casual way to say "please don't (verb)" or "don't (verb)".
+
+  **Important Considerations:**
+  *   **Context is Key**: While generally casual, the tone and specific context can significantly alter the perceived politeness. A direct **Verb[て]** can sound demanding if used inappropriately with someone of higher status or a stranger.
+  *   **Distinguishing from Other Te-forms**: It is crucial to differentiate this request form from other uses of the te-form. For example, the te-form is also used to connect clauses (e.g., 「走って、止まる」 - "run and stop"), to indicate an ongoing action (e.g., 「食べている」 - "is eating"), or to express a reason (e.g., 「遅くなって、ごめん」 - "Sorry for being late"). When used for a casual request, the te-form stands alone at the end of the sentence.
+  *   **Hesitation/Thinking**: Sometimes, the te-form might appear at the end of a sentence when the speaker has not finished their thought or is pausing. In such cases, the pronunciation of the **て** is often extended to signal a pause for thought, rather than a request.
+false_friends:
+  - term: てください
+    meaning: Please do (Polite request)
+    kind: synonym
+    nuance: Unlike **Verb[て]**, **てください** is a polite request form and is suitable for use with superiors
+      or people you don't know well.
+    grammar_point: てください (polite request)
+  - term: ないでください
+    meaning: Please don't do (polite request)
+    kind: synonym
+    nuance: This is the polite equivalent of **Verb[ないで]**, suitable for more formal contexts.
+    grammar_point: ないでください・ないで (please don't)
+  - term: Verb[て] (and then)
+    meaning: And, Then (Linking events)
+    kind: often confused with
+    nuance: Unlike **Verb[て]** (casual request), the **て**-form to link events does not appear at the
+      end of the sentence. Instead, it connects two or more clauses together.
+    grammar_point: Verb[て] (and then)
+  - term: Imperative (command form)
+    meaning: Command or strong request.
+    kind: similar expression
+    nuance: The imperative form is a much stronger and often harsher direct command, whereas **Verb[て]**
+      offers a softer, more casual request.
+    grammar_point: 命令形 (imperative form)
+  - term: なさい (polite imperative)
+    meaning: Do (something)! (Polite imperative)
+    kind: similar expression
+    nuance: 「なさい」 is a command often used by those in authority (e.g., parents to children) with a polite
+      tone, implying expectation or instruction. **Verb[て]** is a request that relies on relationship
+      rather than authority.
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: Verb[て] + ごらん
+    meaning: Gentle suggestion ("Why don't you try...")
+    kind: similar expression
+    nuance: Adding 「ごらん」 softens the command, turning it into a gentle suggestion or invitation to 'try
+      and see' something, rather than a direct request for the action itself.
+    grammar_point: '[Verb-て]ごらん (gentle suggestion)'
+post_false_friends_writeup: It's important to differentiate between **Verb[て]** as a casual request and
+  its other uses. When used to connect clauses, it will not be at the end of the sentence. While 「ってください」
+  and 「ないでください」 are more polite, they can sound overly formal in casual situations with close friends.
+  On the other hand, using **Verb[て]** with people you don't know well or those in positions of authority
+  can come across as rude or presumptuous. The direct imperative forms like 「なさい」 or the plain command
+  form are much stronger and should be used with care, as they convey a sense of authority or urgency
+  that **Verb[て]** lacks. The use of 「ごらん」 with the te-form is distinct as it provides a gentler suggestion,
+  inviting action rather than commanding it.
+examples:
+  - english: Come quickly.
+    japanese:
+      - 早く {来 て}。
+      - 早く {来 て} よ。
+      - 早く {来 て} ね。
+    english_literally: Quickly come.
+    competing_grammar:
+      - competing_japanese:
+          - 早く {来 て ください}。
+        english: Please come quickly.
+        hint: This phrase is polite, but the scene describes a casual interaction between close friends.
+          We're looking for a more informal request.
+    scene: A friend calls out to another who is lagging behind.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+  - english: Please sit here.
+    japanese:
+      - こちら に {座っ て}。
+      - こちら に {座っ て} よ。
+      - こちら に {座っ て} ね。
+      - こちら に {座っ て} くれ。
+    english_literally: Here sit.
+    competing_grammar:
+      - competing_japanese:
+          - こちら に {座っ て ください}。
+        english: Please sit here.
+        hint: This phrase is polite, but the setting for this example is a relaxed, gentle invitation,
+          making a less formal request more fitting. We're looking for a softer, slightly informal invitation.
+    scene: A hostess gently invites a guest to a seat in a relaxed setting.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    nuance: While 「座って」 can be very casual, in this context of a hostess and guest, it's a polite yet
+      informal invitation. The lack of 「ください」 softens it slightly, making it less direct than a full polite
+      request but still respectful due to the tone and setting.
+  - english: Hey, lend me that.
+    japanese:
+      - おい、それ {貸し て}。
+      - おい、それ {貸し て} よ。
+      - おい、それ {貸し て} くれ。
+    english_literally: Hey, that lend.
+    competing_grammar:
+      - competing_japanese:
+          - それ {貸し て ください}。
+        english: Please lend me that.
+        hint: This phrase is polite, but the scene describes a casual interaction between young boys.
+          We're looking for a more informal request.
+    scene: A young boy asks his friend to borrow a game controller.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The interjection 「おい」 is a common, casual masculine expression used among close friends or
+      inferiors. 「貸して」 is a direct, casual request.
+  - english: Somebody help!
+    japanese:
+      - 誰 か {助け て}！
+      - 誰 か {助け て} よ！
+    english_literally: Someone help!
+    competing_grammar:
+      - competing_japanese:
+          - 誰 か {助け て ください}！
+        english: Somebody, please help!
+        hint: This phrase is polite, but in an emergency situation, direct and urgent language is used.
+          We're looking for an immediate plea for help, not a formal request.
+    scene: A person cries out for help in a sudden emergency.
+    register: casual
+    setting: emergency/alarm
+    conjugation: te-form (～て)
+    nuance: In urgent situations, the 「て」-form acts as a direct, imperative plea. The missing particle
+      「を」 before 「誰か」 and the brevity emphasize the urgency.
+  - english: Tidy up your room, okay?
+    japanese:
+      - 部屋 を {片付け て} ね。
+      - 部屋 を {片付け て}。
+      - 部屋 を {片付け て} よ.
+    english_literally: Room tidy up, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 を {片付け なさい}。
+        english: Tidy up your room!
+        hint: This phrase is a stronger instruction, but the particle 「ね」 softens the request in the example,
+          making it a gentle reminder from a parent. We're looking for a softer, more suggestive tone.
+    scene: A mother reminds her child to clean their room.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The 「ね」 particle at the end softens the request 「片付けて」, making it sound less like a strict
+      command and more like a gentle reminder or suggestion.
+  - english: Be gentler.
+    japanese:
+      - もっと 優しく {し て}。
+      - もっと 優しく {し て} よ。
+      - もっと 優しく {し て} くれ。
+    english_literally: More gently do.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 優しく {し て ください}。
+        english: Please be gentler.
+        hint: This phrase is polite, but in an intimate setting, politeness markers can create distance.
+          We're looking for a direct, personal request that feels natural in a close relationship.
+    scene: A woman asks her boyfriend to be more gentle during an intimate moment.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The 「て」-form 「して」 is used here for a direct, personal request within a very close relationship.
+      「もっと優しく」 means "more gently."
+  - english: Think carefully!
+    japanese:
+      - ちゃんと {考え て}！
+      - ちゃんと {考え て} よ！
+    english_literally: Properly think!
+    competing_grammar:
+      - competing_japanese:
+          - ちゃんと {考え て ください}！
+        english: Please think carefully!
+        hint: This phrase is polite, but the scene implies frustration and a direct instruction from a
+          parent to a child. We're looking for a direct, emphatic request, not a formal one.
+    scene: A frustrated parent tells their impulsive child to think before acting.
+    register: casual
+    setting: serious
+    speaker_age: older
+    nuance: 「ちゃんと」 means "properly" or "carefully." The 「て」-form 「考えて」 is a direct, emphatic request or
+      command in a moment of frustration. The lack of 「ください」 makes it stark.
+  - english: Don't wait here.
+    japanese:
+      - ここ で {待た ない で}。
+      - ここ で {待た ない で} よ。
+      - ここ で {待た ない で} ね。
+    english_literally: Here not wait.
+    competing_grammar:
+      - competing_japanese:
+          - ここ で {待た ない で ください}。
+        english: Please don't wait here.
+        hint: This phrase is polite, but for a security guard giving an instruction, directness is often
+          preferred for compliance. We're looking for a clear, unsoftened command.
+    scene: A security guard tells a person not to loiter in a specific area.
+    register: semi-formal
+    setting: commanding
+    conjugation: te-form (～て)
+    nuance: The 「ないで」 construction is the casual negative request or prohibition. The lack of 「ください」 makes
+      it a direct, unsoftened command, appropriate for a security guard.
+  - english: Let me hear for a bit.
+    japanese:
+      - ちょっと {聞か せ て}。
+      - ちょっと {聞か せ て} よ。
+      - ちょっと {聞か せ て} くれ。
+    english_literally: A little let hear.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと {聞か せ て ください}。
+        english: Please let me hear for a bit.
+        hint: This phrase is polite, but the scene describes a casual interaction between friends. We're
+          looking for a less formal request that sounds natural among peers.
+    scene: A friend asks another to play a song or tell them something interesting.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: 「聞かせて」 is the causative 「聞く」 (to hear) in the 「て」-form, meaning "make (me) hear" or "let (me)
+      hear." It's a casual request for someone to play music or share information.
+  - english: Go over there.
+    japanese:
+      - あっち に {行っ て}。
+      - あっち に {行っ て} よ。
+      - あっち に {行っ て} くれ。
+    english_literally: That way go.
+    competing_grammar:
+      - competing_japanese:
+          - あっち に {行っ て ください}。
+        english: Please go over there.
+        hint: This phrase is polite, but a coach instructing a child typically uses direct, casual language
+          for efficiency and to build rapport. We're looking for a straightforward instruction.
+    scene: A coach directs a child during a sports practice.
+    register: casual
+    setting: instructional
+    speaker_age: older
+    nuance: 「行って」 is the 「て」-form of 「行く」 (to go). Used here as a direct, casual instruction from an older
+      person (coach) to a younger person (child).
+post_example_writeup: While the **Verb[て]** form can sound demanding depending on the tone and context,
+  it's generally considered more casual and friendly than **Verb[て]ください**. The speaker's relationship
+  with the listener plays a significant role in how the request is perceived.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verbて-request

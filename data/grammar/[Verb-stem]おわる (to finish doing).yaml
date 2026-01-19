@@ -1,0 +1,304 @@
+grammar_point: '[Verb-stem]おわる (to finish doing)'
+learn_before:
+  - '[Verb-stem]なさい (polite imperative)'
+  - たら (conditional, when・if A then B)
+  - てある (resultant state)
+  - できない (cannot do・unable to do)
+  - まで (limit extent)
+  - 以上です (that's all・conclusion)
+  - 多くても (at most)
+meaning: to finish doing
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: おわる
+    rarity: common
+    meaning: to finish doing
+  - conjugation-type: non-past polite (～ます)
+    form: おわります
+    rarity: common
+    meaning: to finish doing (polite)
+  - conjugation-type: past plain (～た)
+    form: おわった
+    rarity: common
+    meaning: finished doing
+  - conjugation-type: past polite (～ました)
+    form: おわりました
+    rarity: common
+    meaning: finished doing (polite)
+  - conjugation-type: negative plain (～ない)
+    form: おわらない
+    rarity: common
+    meaning: not finish doing
+  - conjugation-type: negative non-past polite (～ません)
+    form: おわりません
+    rarity: common
+    meaning: not finish doing (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: おわらなかった
+    rarity: common
+    meaning: did not finish doing
+  - conjugation-type: negative past polite (～ませんでした)
+    form: おわりませんでした
+    rarity: common
+    meaning: did not finish doing (polite)
+  - conjugation-type: te-form (～て)
+    form: おわって
+    rarity: common
+    meaning: finishing and then; finished (te-form)
+  - conjugation-type: conditional (～たら)
+    form: おわったら
+    rarity: common
+    meaning: if/when finished doing
+  - conjugation-type: conditional (～ば)
+    form: おわれば
+    rarity: common
+    meaning: if finished doing
+  - conjugation-type: volitional (～よう)
+    form: おわろう
+    rarity: common
+    meaning: let's finish doing
+  - conjugation-type: potential (～られる/～える)
+    form: おわれる
+    rarity: less common
+    meaning: can finish doing
+  - conjugation-type: progressive (～ている)
+    form: おわっている
+    rarity: common
+    meaning: is in the state of having finished doing
+pronunciation:
+  katakana: オワル
+  romaji: owaru
+formation:
+  Verb[ます-stem] + おわる: Indicates the completion of the action described by the verb.
+jlpt: N4
+etymology: The grammar point combines the ます-stem of a verb, which represents the core action, with the
+  verb おわる (終わる), meaning "to finish" or "to come to an end" (intransitive). This combination literally
+  translates to "the action comes to an end," signifying the completion of the verb's action. The ます-stem
+  serves as a connective form, linking the action to the auxiliary verb おわる, thus forming a compound verb
+  that denotes finality.
+writeup: |-
+  The expression 「〜おわる」 is an auxiliary verb construction used to indicate that an action has been completed. It attaches to the ます-stem of a verb. While similar to simply stating that an action has concluded, 「〜おわる」 emphasizes the *completion* of the entire action or process. It suggests that the task or activity has been brought to a definitive close, leaving nothing further to be done regarding that specific action.
+
+  This construction is commonly used when discussing tasks, studies, work, or any activity that has a clear beginning and end. It's often used in contrast to actions that are ongoing or partially finished. For instance, 「読みおわる」 means "to finish reading," implying the entire book or text has been read.
+
+  「〜おわる」 can be used in various tenses and politeness levels, as the conjugation applies to the auxiliary verb おわる. For example, 「書きおわった」 (finished writing - plain past) or 「食べおわります」 (will finish eating - polite non-past).
+false_friends:
+  - term: Verb[てしまう] (completion・regret)
+    meaning: to finish doing (with nuance of regret, completion, or suddenness)
+    kind: similar expression
+    nuance: While both indicate completion, 「〜てしまう」 can carry additional nuances of regret, unexpectedness,
+      or doing something completely/thoroughly. 「〜おわる」 is neutral, simply stating completion.
+    grammar_point: Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - term: Verb[終える] (to finish something - transitive)
+    meaning: to finish something (transitive)
+    kind: often confused with
+    nuance: 「〜おわる」 (終わる) is an *intransitive* verb, meaning the action finishes *by itself* or the subject
+      completes the action. 「終える」 (おえる) is a *transitive* verb, meaning one *finishes something*. For
+      example, 「仕事 が {終わった}」 (The work finished) vs. 「仕事 を {終えた}」 (I finished the work). When used as
+      an auxiliary, 「〜おわる」 focuses on the completion of the *process* of the main verb, which is often
+      an action performed by the subject. However, its core is tied to the intransitive "ending."
+    grammar_point: <suggest>:Verb[終える] (to finish something)
+  - term: Verb[切る] (do completely or thoroughly)
+    meaning: to do something completely; to finish entirely
+    kind: similar expression
+    nuance: 「〜切る」 emphasizes that an action has been done *completely* and *thoroughly*, often implying
+      exhaustion or using everything up. 「〜おわる」 simply states the completion without this strong emphasis
+      on thoroughness or exhaustive effort.
+    grammar_point: 切る (do completely or thoroughly)
+post_false_friends_writeup: It is important to distinguish 「〜おわる」 from other expressions of completion.
+  While 「〜てしまう」 also signifies completion, it adds nuances such as regret or thoroughness, which are absent
+  in the neutral 「〜おわる」. The transitive verb 「終える」(おえる) is used when the speaker directly completes an
+  action on an object, whereas 「おわる」(おわる) as an auxiliary is about the *action itself* coming to an end.
+  「〜切る」 implies a thorough or exhaustive completion, which is a stronger emphasis than just finishing
+  an action.
+examples:
+  - english: I finished reading the book.
+    japanese:
+      - 本 を {読み おわっ た}。
+      - 本 を {読み おわり まし た}。
+    english_literally: Book object marker, read-finish-past.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を 読ん だ。
+        english: I read the book.
+        hint: 「読んだ」 simply states a past action. 「読みおわった」 emphasizes the *completion* of the entire act
+          of reading the book. We're looking for the sense of having brought the reading to a close.
+      - competing_japanese:
+          - 本 を 読み きっ た。
+        english: I finished reading the book thoroughly.
+        hint: 「読みきった」 implies reading *every last bit* or reading to exhaustion. We're just looking for
+          simple completion.
+    scene: A person talking about their hobby.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker has completed reading the entire book. 「読みおわった」 simply states the completion of
+      the reading action.
+  - english: I will finish writing the report by tomorrow.
+    japanese:
+      - 明日 まで に レポート を {書き おわり ます}。
+      - 明日 まで に レポート を {書き おわる}。
+    english_literally: By tomorrow, report object marker, write-finish-polite non-past.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 まで に レポート を 書き ます。
+        english: I will write the report by tomorrow.
+        hint: 「書きます」 just states future action. 「書きおわります」 specifies that the writing will be *completed*.
+          We're looking for the sense of completion.
+      - competing_japanese:
+          - 明日 まで に レポート を 終え ます。
+        english: I will finish the report by tomorrow.
+        hint: 「終える」 is a transitive verb, meaning *I finish the report*. While similar, 「書きおわる」 specifically
+          emphasizes the completion of the *act of writing*. We're looking for the nuance of the *writing
+          process* being finished.
+    scene: A colleague reassuring their manager.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker commits to completing the report. 「書きおわります」 is a polite way to state the definite
+      completion of the writing task.
+  - english: When you finish eating, please put your dishes in the sink.
+    japanese:
+      - '{食べ おわっ たら}、お 皿 を 流し に 入れ て ください。'
+      - '{食べ おわっ たら}、お 皿 を 流し に 入れ て ね。'
+      - '{食べ おわっ たら}、お 皿 を 流し に 入れ て。'
+    english_literally: If you finish eating, dishes object marker, sink into, please put.
+    competing_grammar:
+      - competing_japanese:
+          - 食べ た 後、お 皿 を 流し に 入れ て ください。
+        english: After you eat, please put your dishes in the sink.
+        hint: 「〜た後」 (after) states a temporal sequence. 「食べおわったら」 specifically means "after the *act of
+          eating has finished*". We're looking for the completion of the action as a prerequisite.
+    scene: A parent speaking to their child after dinner.
+    register: casual
+    setting: instructional
+    conjugation: conditional (～たら)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「食べおわったら」 indicates the completion of the meal, after which the next action is requested.
+  - english: I couldn't finish watching the movie last night.
+    japanese:
+      - 昨夜、映画 を {見 おわる こと が でき なかっ た}。
+      - 昨夜、映画 を {見 おわる こと が でき ませ ん でし た}。
+    english_literally: Last night, movie object marker, see-finish-noun-able-past negative.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜、映画 を 見 られ なかっ た。
+        english: I couldn't watch the movie last night.
+        hint: 「見られなかった」 implies an inability to watch the movie *at all*. 「見おわることができなかった」 means you started
+          but couldn't *complete* watching it. We're looking for the specific inability to *complete*
+          the action.
+    scene: Two friends discussing movies.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    nuance: The inability to complete the action of watching the movie. The noun-modifying form of the
+      verb + 終わる is used here.
+  - english: Let's finish our homework before playing.
+    japanese:
+      - 遊ぶ 前 に 宿題 を {し おわろう}。
+      - 遊ぶ 前 に 宿題 を {し おわり ましょう}。
+    english_literally: Before playing, homework object marker, do-finish-volitional.
+    competing_grammar:
+      - competing_japanese:
+          - 遊ぶ 前 に 宿題 を しまおう。
+        english: Let's finish our homework (with sense of urgency/thoroughness) before playing.
+        hint: 「しまおう」 can imply finishing something thoroughly or getting it out of the way. 「しおわろう」 is
+          more neutral about simply completing the task. We're looking for a simple proposal to complete
+          the homework.
+    scene: A sibling suggesting a plan to their younger sibling.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「しおわろう」 is a casual volitional form, proposing that they complete the homework first.
+  - english: He finished explaining the new system.
+    japanese:
+      - 彼 は 新しい システム を {説明 し おわっ た}。
+      - 彼 は 新しい システム を {説明 し おわり まし た}。
+    english_literally: He topic marker, new system object marker, explain-finish-past.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 新しい システム を 説明 し 終え た。
+        english: He finished explaining the new system (transitive).
+        hint: 「説明し終えた」 means he finished the *task* of explaining. While very close, 「説明しおわった」 focuses
+          slightly more on the *action* of explaining reaching its conclusion. We're focusing on the completion
+          of the act of explaining.
+    scene: Colleagues updating each other on a project.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: The explanation has concluded. 「説明しおわった」 indicates the entire explanation process is over.
+  - english: I want to finish preparing dinner quickly.
+    japanese:
+      - 早く 夕食 を {準備 し おわり たい} です。
+      - 早く 夕食 を {準備 し おわり たい}。
+    english_literally: Quickly, dinner object marker, prepare-finish-desiderative-polite.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 夕食 を 作り 終え たい です。
+        english: I want to finish making dinner quickly.
+        hint: 「作り終えたい」 refers to finishing the *act of making* the dinner. 「準備しおわりたい」 refers to finishing
+          the *act of preparing* the dinner. The nuance is subtle, but we are looking for the completion
+          of the *preparation process*.
+    scene: A busy person talking to themselves or a close family member.
+    register: teineigo (polite)
+    setting: intimate
+    conjugation: desiderative (～たい)
+    nuance: The speaker expresses a desire to complete the dinner preparation soon.
+  - english: Have you finished writing your essay yet?
+    japanese:
+      - もう 小 論文 を {書き おわり まし た か}？
+      - もう 小 論文 を {書き おわっ た か}？
+      - もう 小 論文 を {書き おわっ た}？
+    english_literally: Already, essay object marker, write-finish-polite past question.
+    competing_grammar:
+      - competing_japanese:
+          - もう 小 論文 を 書き まし た か？
+        english: Have you written your essay yet?
+        hint: 「書きましたか」 just asks if the essay has been written. 「書きおわりましたか」 specifically asks if the *writing
+          process* has been completed. We're looking for the completion of the task.
+    scene: A teacher asking a student about their progress.
+    register: formal
+    setting: academic
+    conjugation: past polite (～ました)
+    nuance: A direct question inquiring about the completion of the essay.
+  - english: Once the cleaning is finished, we can go out.
+    japanese:
+      - 掃除 が {し おわれ ば}、出かけ られ ます。
+      - 掃除 が {し おわれ ば}、出かけ られる。
+    english_literally: Cleaning subject marker, do-finish-conditional, can go out.
+    competing_grammar:
+      - competing_japanese:
+          - 掃除 が 終われ ば、出かけ られ ます。
+        english: Once the cleaning ends, we can go out.
+        hint: 「終わる」 (intransitive) means the cleaning *comes to an end*. 「しおわる」 specifically means the
+          *act of doing the cleaning* is completed. We're looking for the active completion.
+    scene: Friends planning an outing.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～ば)
+    nuance: The condition for going out is the completion of cleaning.
+  - english: The painting is finished and hanging on the wall.
+    japanese:
+      - 絵 は {描き おわっ て いる} の で、壁 に 掛け て あり ます。
+      - 絵 は {描き おわっ て い ます} の で、壁 に 掛け て あり ます。
+    english_literally: Painting topic marker, draw-finish-progressive, because, wall on, is hung.
+    competing_grammar:
+      - competing_japanese:
+          - 絵 は 完成 し て いる の で、壁 に 掛け て あり ます。
+        english: The painting is completed, so it is hanging on the wall.
+        hint: 「完成する」 means "to be completed" as a state of being. 「描きおわっている」 specifically refers to the
+          *action of drawing* having been completed, resulting in its current state. We're emphasizing
+          the completion of the creative process.
+    scene: Someone admiring a completed artwork.
+    register: semi-formal
+    setting: creative
+    conjugation: progressive (～ている)
+    nuance: 「描きおわっている」 indicates the state of the painting having been completed, focusing on the result
+      of the action.

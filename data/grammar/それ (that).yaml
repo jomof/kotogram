@@ -1,0 +1,241 @@
+grammar_point: それ (that)
+matcher: |-
+    ⌈ˢそれᵖpronᵇそれᵈ其れʳソレ⌉
+matcher_enforce_examples: true
+meaning: that
+pronunciation:
+  katakana: ソレ
+  romaji: Sore
+formation:
+  それ: Used as a demonstrative pronoun, referring to something near the listener or something previously
+    mentioned/understood.
+  それ + は / が / を / に etc.: Followed by a particle to indicate its grammatical function in the sentence.
+jlpt: N5
+etymology: 「それ」is part of the fundamental Japanese demonstrative series, often referred to as the こ・そ・あ・ど
+  (ko-so-a-do) series. This series categorizes items or concepts based on their proximity to the speaker
+  and listener. 「そ-」words like 「それ」and「そちら」refer to things near the listener or within the listener's
+  sphere of influence, distinct from the speaker's immediate vicinity (こ-words) and things distant from
+  both (あ-words). Historically, this system developed to clearly delineate spatial and conceptual relationships
+  in communication.
+writeup: The demonstrative pronoun 「それ」is a core component of Japanese communication, crucial for referring
+  to objects, ideas, or situations. It belongs to the こ・そ・あ・ど (ko-so-a-do) series, which systematically
+  indicates proximity relative to the speaker and listener. Specifically, 「それ」refers to something that
+  is physically close to the listener but not the speaker, or something that has just been mentioned in
+  the conversation and is thus conceptually shared between the speaker and listener. In everyday conversation,
+  「それ」is used very frequently. For instance, if you are pointing to an object that is closer to your friend
+  than to yourself, you would use 「それ」. If you are discussing a topic that was just brought up, 「それ」can
+  refer back to that topic without needing to repeat the noun. Understanding the subtle distinctions between
+  「これ」,「それ」, and 「あれ」is essential. While 「これ」refers to something near the speaker and 「あれ」to something
+  distant from both, 「それ」bridges the gap by focusing on the listener's proximity or shared conversational
+  context. This makes 「それ」invaluable for collaborative discussions, clarifications, and building upon
+  previously established points.
+false_friends:
+  - term: これ (this)
+    meaning: This (near the speaker)
+    kind: similar expression
+    nuance: 「これ」refers to something physically close to the speaker or an idea currently being expressed
+      by the speaker, whereas 「それ」refers to something near the listener or a topic already introduced.
+    grammar_point: これ (this)
+  - term: あれ (that, over there)
+    meaning: That (over there, distant from both speaker and listener)
+    kind: similar expression
+    nuance: 「あれ」refers to something far away from both the speaker and the listener, often something neither
+      can immediately touch, while 「それ」is within the listener's reach or shared context.
+    grammar_point: あれ (that over there)
+  - term: その (that・near listener)
+    meaning: That (near the listener, modifying a noun)
+    kind: similar expression
+    nuance: 「その」is a demonstrative determiner that *modifies* a noun (e.g., その 本 - that book), indicating
+      the noun is near the listener or conceptually understood. 「それ」is a demonstrative *pronoun* that
+      *replaces* a noun (e.g., それは本です - That is a book).
+    grammar_point: この (this)
+  - term: こんな・そんな・あんな・どんな (such a・kind of)
+    meaning: Such a, like that (describing quality)
+    kind: similar expression
+    nuance: While derived from 「それ」, 「そんな」describes the *quality* or *type* of something (e.g., そんな人 -
+      such a person), rather than referring to a specific item or concept like 「それ」does.
+    grammar_point: そんな (such)
+  - term: そちら (that way, polite)
+    meaning: That way, there (polite direction/place)
+    kind: similar expression
+    nuance: 「そちら」is a polite demonstrative for directions or places near the listener. While related to
+      「それ」in its 'so-' prefix, 「それ」is a general pronoun for objects/concepts, whereas 「そちら」is specifically
+      for locations, directions, or can politely refer to a person/group.
+    grammar_point: こっち (this way・this direction)
+post_false_friends_writeup: 'When distinguishing between 「これ」, 「それ」, and 「あれ」, remember the simple rule:
+  「これ」is for things near *me* (the speaker), 「それ」is for things near *you* (the listener), and 「あれ」is for
+  things far from *both* of us. This spatial relationship also extends to conversational context: 「これ」for
+  what I''m talking about, 「それ」for what you just mentioned, and 「あれ」for something we both know but isn''t
+  immediately present. For 「その」, just think of it as 「それ」''s adjective form; it needs a noun after it.
+  Lastly, while 「そんな」and 「そちら」share the ''so-'' sound, they express ''such a quality'' and ''that direction/way''
+  respectively, rather than directly pointing to an item like 「それ」.'
+examples:
+  - english: What is that?
+    japanese:
+      - それ は 何 です か。
+      - それ 何？
+    english_literally: That, what is it?
+    competing_grammar:
+      - competing_japanese:
+          - これ は 何 です か。
+        english: What is this (near me)?
+        hint: Use 「これ」when the item you are asking about is close to you, the speaker. We're asking about
+          something near the listener.
+      - competing_japanese:
+          - あれ は 何 です か。
+        english: What is that (over there, far from both)?
+        hint: Use 「あれ」when the item is far from both the speaker and the listener. We're asking about
+          something near the listener.
+    scene: You are talking to a friend, and they are holding something new.
+    register: teineigo (polite)
+    setting: friendly
+  - english: That's a good idea!
+    japanese:
+      - それ は いい アイデア です ね。
+      - それ いい アイデア だ ね！
+    english_literally: That is a good idea, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - これ は いい アイデア です ね。
+        english: This (idea I just had) is a good idea, isn't it.
+        hint: 「これ」would refer to an idea you just conceived or are presenting. We're agreeing with something
+          the other person said.
+    scene: Your colleague just proposed a solution to a problem.
+    register: teineigo (polite)
+    setting: professional
+    nuance: Using 「それ」here refers to the idea that the listener (colleague) has just expressed, showing
+      that it has now become a shared concept in the conversation.
+  - english: I'll take that.
+    japanese:
+      - それ を ください。
+      - それ、ちょうだい。
+      - それ を お 願い し ます。
+    english_literally: That, please give me.
+    competing_grammar:
+      - competing_japanese:
+          - これ を ください。
+        english: I'll take this (one near me).
+        hint: 「これ」is used when the item is close to the speaker. We want to indicate the item near the
+          listener.
+    scene: You are at a shop, pointing to an item on the counter that the shopkeeper is holding or standing
+      near.
+    register: teineigo (polite)
+    setting: professional
+  - english: Is that true?
+    japanese:
+      - それ は 本当 です か。
+      - それ 本当？
+    english_literally: That is true?
+    competing_grammar:
+      - competing_japanese:
+          - これ は 本当 です か。
+        english: Is this (story I'm telling) true?
+        hint: 「これ」would question the truth of something the speaker just said. We're asking about something
+          the listener mentioned.
+    scene: Someone tells you something surprising.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: That's a bit much, isn't it?
+    japanese:
+      - それ は ちょっと 厳しい ね。
+      - それ ちょっと 厳しい よ。
+      - それ は 少々 厳しい です ね。
+    english_literally: That is a little harsh, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - これ は ちょっと 厳しい ね。
+        english: This (situation I'm describing) is a bit much, isn't it.
+        hint: 「これ」would refer to the speaker's own current situation or feeling. We are commenting on
+          the listener's statement or action.
+    scene: Your friend suggests an unreasonable plan or makes a harsh comment.
+    register: casual
+    setting: friendly
+    nuance: The use of 「それ」in 「それはちょっと厳しいね」points to the listener's previous statement or action, implying
+      a response to their words or behavior. The casual ending 「ね」seeks agreement from the listener, softening
+      the criticism.
+  - english: Don't worry about that.
+    japanese:
+      - それ は 心配 し なく て いい よ。
+      - それ、気 に すん な。
+      - それ なら 大丈夫 だ よ。
+    english_literally: That, no need to worry.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 心配 し なく て いい よ。
+        english: Don't worry about this (issue I'm bringing up).
+        hint: 「これ」would refer to something the speaker is currently concerned about. We're reassuring
+          about something the listener might be worried about.
+    scene: A friend expresses concern about something you both discussed earlier.
+    register: casual
+    setting: supportive
+    nuance: Here, 「それ」refers back to the topic or concern previously mentioned by the listener, making
+      it a reassuring response that directly addresses their specific worry. The sentence-final particle
+      「よ」adds a sense of assurance.
+  - english: That's exactly what I wanted.
+    japanese:
+      - それ が 欲しかっ た ん です。
+      - それ が 欲しかっ た ん だ。
+      - それ、欲しかっ た やつ！
+    english_literally: That is what I wanted.
+    competing_grammar:
+      - competing_japanese:
+          - これ が 欲しかっ た ん です。
+        english: This (thing I'm holding) is exactly what I wanted.
+        hint: 「これ」is used if the item is in the speaker's hand or very close. We're talking about something
+          the listener has or pointed out.
+    scene: Someone hands you an item you were looking for.
+    register: teineigo (polite)
+    setting: excited
+  - english: That's enough.
+    japanese:
+      - それ で いい です。
+      - それ で いい よ。
+      - それ で 結構 です。
+    english_literally: With that, it is good.
+    competing_grammar:
+      - competing_japanese:
+          - これ で いい です。
+        english: This (solution/amount I have) is enough.
+        hint: 「これ」would refer to the current state or solution from the speaker's perspective. We're indicating
+          satisfaction with something provided by the listener.
+    scene: A server asks if you need anything else after bringing your order.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: What was that story again?
+    japanese:
+      - それ、何 の 話 だっ た っけ？
+      - それ は 何 の 話 でし た っけ？
+      - それ、何 の 話？
+    english_literally: That, what story was it?
+    competing_grammar:
+      - competing_japanese:
+          - これ、何 の 話 だっ た っけ？
+        english: This (story I'm thinking of), what was it again?
+        hint: 「これ」would refer to a story the speaker is trying to recall. We're asking about something
+          previously mentioned by the listener.
+    scene: You are talking to a friend, and they were telling a story earlier, but you've forgotten some
+      details.
+    register: casual
+    setting: friendly
+    nuance: The use of 「それ」in 「それ、何の話しだったっけ？」points back to a topic that was previously introduced by
+      the listener, indicating that the speaker is trying to recall details from a shared conversation.
+      The casual tone and 「っけ」suffix imply the speaker is seeking confirmation or a reminder from the
+      listener, characteristic of informal, friendly discourse.
+  - english: I heard that's happening tomorrow.
+    japanese:
+      - それ、明日 ある って 聞い た よ。
+      - それ は 明日 ある と 聞き まし た よ。
+    english_literally: That, tomorrow happens I heard.
+    competing_grammar:
+      - competing_japanese:
+          - これ、明日 ある って 聞い た よ。
+        english: I heard this (thing I'm talking about) is happening tomorrow.
+        hint: 「これ」would refer to something the speaker just initiated talking about. We're referring to
+          something mutually known or mentioned by the listener.
+    scene: You're discussing an event with a friend, and you're adding information about it.
+    register: casual
+    setting: informative
+    nuance: In 「それ、明日あるって聞いたよ」, 「それ」refers to an event or topic that the listener (or both) are already
+      aware of or have previously discussed. The use of 「って聞いたよ」is a casual way of conveying secondhand
+      information, common in informal conversations. The speaker's use of 「よ」adds a sense of sharing new
+      information or confirming something for the listener.

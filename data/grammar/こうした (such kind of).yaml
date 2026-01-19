@@ -1,0 +1,383 @@
+grammar_point: こうした (such kind of)
+learn_before:
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - この上ない (unbeatable)
+  - つきましては (in connection with that)
+  - と共に (together with)
+  - な-Adjective (modifying nouns)
+  - を踏まえて (based on)
+  - 且つ (and・moreover)
+  - 二度と (never again)
+  - 活かす (to make good use of)
+  - 生かす (to keep alive・to make good use of)
+  - 興味がある (to have an interest in)
+meaning: Like this; Such
+pronunciation:
+  katakana: コウシタ
+  romaji: koushita
+formation:
+  こうした + Noun: Directly modifies a noun, referring to something of 'this kind' or 'such a' nature, based
+    on prior context or shared understanding.
+jlpt: N2
+etymology: 「こう」 (kou) means "this way" or "like this". 「した」 (shita) is the past tense form of the verb
+  「する」 (suru), which means "to do". Therefore, 「こうした」 literally means "did like this" or "happened like
+  this", implying a preceding action or example that sets the context for the current reference.
+writeup: |-
+  「こうした」 is a demonstrative adjective that means "like this" or "such". It is primarily used to refer to a specific type, kind, or example that has already been mentioned, demonstrated, or is clearly understood within the context of the conversation or text. It acts as a direct reference to something previously established, emphasizing its similarity to the current topic.
+
+  While 「こうした」 is often encountered in formal or semi-formal settings, such as academic papers, news reports, or business discussions, it can also appear in casual conversations when the speaker wishes to refer precisely to a shared context. It is generally more formal than 「こういう」 or 「こんな」, and its usage often implies a degree of deliberation or specificity.
+false_friends:
+  - term: こういう
+    meaning: This kind of; like this
+    kind: similar expression
+    nuance: While `こうした` refers back to something already mentioned, `こういう` can introduce something new
+      or exemplify a general category. `こうした` is generally more formal and refers to specific, previously
+      established contexts, whereas `こういう` is more versatile and can be used in a broader range of contexts,
+      including introducing new examples.
+    grammar_point: <suggest>:こういう (this kind of)
+  - term: こんな
+    meaning: This kind of; like this (informal)
+    kind: similar expression
+    nuance: '`こんな` is a more casual equivalent to `こうした`, used to describe something similar in a less
+      formal setting. `こんな` refers to things nearby or general types without necessarily implying a prior
+      discussion, making it less specific than `こうした`.'
+    grammar_point: そんな (such)
+  - term: そのような
+    meaning: Such; like that
+    kind: similar expression
+    nuance: '`そのような` refers to something already known or mentioned, similar to `こうした`, but it often has
+      a slightly more detached tone. `このような` implies a higher degree of formality or distance compared
+      to `こうした`, which is more direct in its reference to the immediate context.'
+    grammar_point: <suggest>:そのような (such)
+post_false_friends_writeup: When distinguishing between `こうした`, `こういう`, `こんな`, and `そのような`, consider the
+  level of formality and the specificity of the reference. `こうした` is best used in more formal or semi-formal
+  contexts to refer back to something specific that has just been discussed or presented. `こういう` can be
+  used more generally and informally to introduce new types or examples. `こんな` is the most casual and
+  typically refers to things perceived directly or without much prior context. `そのような` is formal and refers
+  to something known but not necessarily immediately present or discussed, often implying a greater psychological
+  distance.
+examples:
+  - english: I used to drive this type of car, but I ended up selling it.
+    japanese:
+      - 以前 {こう し た} タイプ の 車 に 乗っ て い まし た が、手放し て しまい まし た。
+      - 以前 {こう し た} タイプ の 車 に 乗っ て た ん だ けど、手放し ちゃっ た ん だ。
+      - 以前、{こう し た} タイプ の 車 に 乗っ て おり まし た が、手放し て しまい まし た。
+    english_literally: Before, this kind of car, I was riding, but ended up letting go of it.
+    competing_grammar:
+      - competing_japanese:
+          - 以前 {こう いう} タイプ の 車 に 乗っ て い まし た が、手放し て しまい まし た。
+        english: I used to drive this kind of car, but I ended up selling it.
+        hint: While `こういう` is also 'this kind of', `こうした` is more formal and refers specifically to something
+          already demonstrated or mentioned.
+    scene: Two friends discussing their past vehicles after one points out a specific car model on the
+      street.
+    register: casual
+    setting: storytelling
+    nuance: The 「～てしまいました」 conveys a sense of regret or completion, adding nuance to the storytelling.
+      This is a casual register appropriate between friends. The casual variation 「手放しちゃったんだ」 emphasizes
+      the completion with a touch of informality.
+    etymology: The `～てしまいました` ending often implies regret or an action completed entirely, with a sense
+      of finality. It can also simply express completion in a casual way. Its nuance here highlights the
+      finality of selling the car, possibly with a hint of reluctance or wistfulness.
+  - english: This kind of design is popular among young people.
+    japanese:
+      - '{こう し た} デザイン は、若者 に 人気 が あり ます。'
+      - '{こう し た} デザイン は、若年 層 から 高い 人気 が あり ます。'
+      - '{こう し た} デザイン は、若い 人 たち に 人気 です ね。'
+    english_literally: Such designs, among young people, are popular.
+    competing_grammar:
+      - competing_japanese:
+          - この {よう な} デザイン は、若者 に 人気 が あり ます。
+        english: This kind of design is popular among young people.
+        hint: '`このような` is also formal and means ''this kind of'', but `こうした` is often used when directly
+          referencing a specific example that has just been presented or observed.'
+    scene: A marketing analyst presenting a slideshow of recent design trends and then making a general
+      statement.
+    register: semi-formal
+    setting: informative
+    nuance: The use of `あります` indicates a polite but direct and informative statement, suitable for a
+      professional setting. The variation using 「若年層」 and 「高い人気」 adds a more analytical and formal tone.
+    etymology: The term `人気` (ninki) combines `人` (nin, hito) meaning 'person' and `気` (ki) meaning 'spirit,
+      mind, atmosphere'. Together, it literally means 'popular spirit' or 'popular atmosphere,' evolving
+      to denote popularity or favorability among people.
+  - english: If you like this sort of thing, I'm sure we'll get along.
+    japanese:
+      - もし {こう し た} こと が 好き なら、きっと 私 と 気 が 合う でしょう ね。
+      - もし {こう し た} こと が お 好き でし たら、きっと 私 と 気 が 合う と 思い ます よ。
+      - もし {こう し た} こと が 好き なら、オレ と 気 が 合う と 思う ぜ。
+      - もし {こう し た} こと が 好き なら、あたし と 気 が 合う と 思う わ。
+    english_literally: If this sort of thing is liked, surely with me, our feelings will match, right?
+    competing_grammar:
+      - competing_japanese:
+          - もし {こんな} こと が 好き なら、きっと 私 と 気 が 合う でしょう ね。
+        english: If you like this kind of thing, I'm sure we'll get along.
+        hint: '`こんな` is a more casual way to say ''this kind of'', often implying something immediately
+          present or broadly generalized. `こうした` refers to a specific type or instance that has been discussed
+          or presented.'
+    scene: Two people on a first date have just discussed a shared hobby or interest.
+    register: semi-formal
+    setting: first-date
+    nuance: The speaker is testing the waters, hoping for a positive response. The `～でしょうね` adds a touch
+      of anticipation to the question, making the tone tentative and engaging. The male casual 「オレ と 気
+      が 合う と 思う ぜ」 uses `オレ` (male-specific pronoun) and `～ぜ` (male-specific particle for emphasis). The
+      female casual 「あたし と 気 が 合う と 思う わ」 uses `あたし` (female-specific pronoun) and `～わ` (female-specific
+      particle for emphasis/soft assertion).
+    etymology: '`気が合う` (ki ga au) literally means ''spirits/feelings match'' or ''minds meet.'' `気` (ki)
+      encompasses a broad range of meanings including spirit, energy, mood, and mind, while `合う` (au)
+      means ''to fit'' or ''to match.'' This phrase effectively describes a compatibility of personalities
+      or interests.'
+  - english: I want to use this kind of experience to take on the next project.
+    japanese:
+      - '{こう し た} 経験 を 活かし て、次 の プロジェクト に 挑戦 し たい と 思い ます。'
+      - '{こう し た} 経験 を 踏まえ、次期 プロジェクト に 挑戦 し たい 所存 です。'
+      - '{こう し た} 経験 を 生かし て、次 の プロジェクト に 取り組み たい です。'
+    english_literally: Such experience, utilizing it, to the next project, I want to challenge.
+    competing_grammar:
+      - competing_japanese:
+          - この {よう な} 経験 を 活かし て、次 の プロジェクト に 挑戦 し たい と 思い ます。
+        english: I want to use this kind of experience to take on the next project.
+        hint: Both `こうした` and `このような` are formal, but `こうした` specifically refers back to the *manner*
+          or *way* something was done, emphasizing the specific details of the experience.
+    scene: An employee is outlining their career goals and discussing their past achievements with a manager.
+    register: formal
+    setting: professional
+    nuance: The phrase `～たいと思います` expresses a desire in a polite and formal way, suitable for an employee
+      expressing their ambitions to a manager. The variation 「挑戦 したい 所存 です」 uses `所存です` for a higher level
+      of humility and formality, typical in very formal business settings. 「取り組み たい です」 is a slightly
+      softer and more common polite expression.
+    etymology: '`活かす` (ikasu) means ''to make good use of'' or ''to bring to life.'' Its kanji `活` means
+      ''lively'' or ''active,'' implying that one is taking something (like experience) and making it
+      active or effective in a new context. This phrase indicates the intention to actively apply past
+      learnings.'
+  - english: Let's work hard, believing that such efforts will bear fruit.
+    japanese:
+      - '{こう し た} 努力 が 実 を 結ぶ と 信じ て、頑張り ましょう。'
+      - '{こう し た} 努力 は 必ず 実 を 結ぶ と 信じ て、共 に 頑張ろう。'
+      - '{こう し た} 努力 が 実る と 信じ て、引き続き 頑張り ましょう。'
+    english_literally: Such efforts, believing they will bear fruit, let's work hard.
+    competing_grammar:
+      - competing_japanese:
+          - '{そう いう} 努力 が 実 を 結ぶ と 信じ て、頑張り ましょう。'
+        english: Let's work hard, believing that such efforts will bear fruit.
+        hint: '`そういう` means ''that kind of'' and refers to something generally understood or previously
+          mentioned. `こうした` is more precise, referring to efforts in the specific way they''ve just been
+          described or demonstrated.'
+    scene: A motivational speaker has just detailed the specific steps and dedication required for success,
+      then offers encouragement.
+    register: formal
+    setting: inspirational
+    nuance: The use of `～ましょう` indicates a suggestion or encouragement, fitting the inspirational tone
+      of a motivational speaker. The formal register emphasizes the gravity and importance of the message.
+      The variation 「共に 頑張ろう」 is a strong, slightly more direct encouragement to a group, while 「引き続き
+      頑張り ましょう」 suggests continued effort in a polite manner.
+    etymology: '`実を結ぶ` (mi o musubu) literally translates to ''to tie/bear fruit.'' `実` (mi) refers to
+      a fruit or, metaphorically, results. `結ぶ` (musubu) means ''to tie,'' ''to connect,'' or ''to form.''
+      This idiom visually represents efforts leading to concrete, positive outcomes, much like a plant
+      bearing fruit.'
+  - english: We must take measures to prevent such incidents from happening again.
+    japanese:
+      - '{こう し た} 事件 が 二 度 と 起こら ない よう に、対策 を 講じ なけれ ば なり ませ ん。'
+      - '{こう し た} 事件 は 再発 さ せ ない よう、厳重 な 対策 を 講じる べき です。'
+      - '{こう し た} 出来事 が 二 度 と ない よう、しっかり 対策 を 立てる 必要 が あり ます。'
+    english_literally: Such incidents, so that they don't happen again, measures must be taken.
+    competing_grammar:
+      - competing_japanese:
+          - '{ああ いう} 事件 が 二 度 と 起こら ない よう に、対策 を 講じ なけれ ば なり ませ ん。'
+        english: We must take measures to prevent those kinds of incidents from happening again.
+        hint: '`ああいう` is a more general and less formal way to refer to ''those kinds of'' things. `こうした`
+          specifically emphasizes ''these kinds'' of incidents that are currently at hand or have just
+          occurred.'
+    scene: A government official addressing the public after a recent, specific incident that caused widespread
+      concern.
+    register: formal
+    setting: serious
+    nuance: The phrase `～なけれ ば なり ませ ん` expresses a strong obligation or necessity, appropriate for a
+      serious official statement. The variation 「講じる べき です」 conveys a strong recommendation or duty. 「しっかり
+      対策 を 立てる 必要があります」 is a slightly softer, yet still firm, way of expressing the need for action. The
+      phrase `二度と` (nidoto) literally means 'a second time' or 'twice,' and when combined with a negative
+      verb, it strongly emphasizes 'never again,' implying a firm resolve to prevent recurrence. This
+      reinforces the serious and resolute tone of the statement.
+    etymology: The verb `講じる` (kōjiru) literally means 'to lecture' or 'to expound upon,' but in this
+      context, it takes on the meaning of 'to devise' or 'to take (measures),' stemming from its association
+      with planning and implementing solutions, much like a detailed explanation of a policy. It is a
+      more formal equivalent of `する` (suru) when discussing plans or actions related to policy or strategy.
+      The character `講` (kō) means 'lecture' or 'public reading,' while `じる` is an inflectional ending,
+      showing how the act of 'explaining' or 'expounding' came to mean 'to take action' in formal discourse,
+      implying a well-thought-out approach. In Japanese, it is still used in this meaning of 'to devise
+      measures' for example, `対策を講じる` (taisaku o kōjiru).
+  - english: If this kind of situation continues, our future will be in danger.
+    japanese:
+      - '{こう し た} 状況 が 続い たら、私 たち の 未来 は 危うい でしょう。'
+      - '{こう し た} 事態 が 継続 する なら ば、我が 社 の 将来 は 危機 に 瀕 する でしょ う。'
+      - '{こう し た} 状況 が 続け ば、今後 の 展望 は 厳しく なる はず です。'
+    english_literally: Such a situation, if it continues, our future, perhaps will be dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - この {よう な} 状況 が 続い たら、私 たち の 未来 は 危うい でしょう。
+        english: If this kind of situation continues, our future will be in danger.
+        hint: '`このような` is generally formal, but `こうした` emphasizes the specific, current nature of the
+          unfolding situation, implying a more immediate and pressing concern.'
+    scene: A political analyst warning about the consequences of current policies.
+    register: formal
+    setting: serious
+    nuance: The use of `～でしょう` and `危うい` conveys a serious warning, typical of an analyst making a prediction.
+      The term `状況` (jōkyō - situation) is precise. The variant using `事態` (jitai - state of affairs)
+      and `危機 に 瀕 する` (kiki ni hinsuru - to be on the brink of crisis) elevates the sense of urgency and
+      formality, suitable for a formal analysis. `厳しく なる はず です` implies a logical expectation of harshness.
+    etymology: '`危うい` (ayaui) is an い-adjective meaning ''dangerous'' or ''perilous'', often used to describe
+      a precarious state. Its root implies being on the verge of something bad. `状況` (jōkyō) combines
+      `状` (jō) meaning ''condition, state'' and `況` (kyō) meaning ''situation, moreover''. Together, it
+      means ''state of affairs'' or ''situation''.'
+  - english: I'm not interested in such trivial matters.
+    japanese:
+      - '{こう し た} 些細 な 事 に は 興味 が あり ませ ん。'
+      - '{こう し た} 些細 な 事柄 に は 関心 を 抱き ませ ん。'
+      - '{こう し た} 些細 な 問題 は、私 に は 関係 あり ませ ん。'
+    english_literally: Such trivial matters, to them, interest does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - '{あんな} 些細 な 事 に は 興味 が あり ませ ん。'
+        english: I'm not interested in those trivial matters.
+        hint: '`あんな` refers to something distant or disliked. `こうした` here refers to a type of matter that
+          has likely just been discussed or presented, allowing for a direct, somewhat dismissive tone
+          towards its specific nature.'
+    scene: A busy executive dismissing a minor complaint brought to their attention.
+    register: formal
+    setting: professional
+    nuance: The phrase `興味 が あり ませ ん` is a direct, formal way to express disinterest. The choice of `こう
+      し た` emphasizes the 'type' of matter being dismissed, often implying that the speaker views such
+      matters as beneath their attention. The variant 「関心 を 抱き ませ ん」 adds a slightly more sophisticated
+      and detached tone. The use of `私 に は 関係 あり ませ ん` indicates a complete disassociation.
+    etymology: '`些細` (sasai) means ''trivial'' or ''insignificant'', combining `些` (sa) meaning ''small,
+      trifling'' and `細` (sai) meaning ''fine, minute''. `興味` (kyōmi) means ''interest'', combining `興`
+      (kyō) ''excitement'' and `味` (mi) ''taste'', literally ''taste for excitement''.'
+  - english: Such beautiful scenery moves people's hearts.
+    japanese:
+      - '{こう し た} 美しい 景色 は、人 の 心 を 感動 さ せ ます。'
+      - まこと に、{こう し た} 美しい 景色 は、訪れる 者 の 心 を 深く 感動 さ せる もの です。
+      - '{こう し た} 素晴らしい 景色 を 見る と、誰 で も 心 が 動かさ れ ます ね。'
+    english_literally: Such beautiful scenery, people's hearts, it causes to be moved.
+    competing_grammar:
+      - competing_japanese:
+          - '{こんな} 美しい 景色 は、人 の 心 を 感動 さ せ ます。'
+        english: This beautiful scenery moves people's hearts.
+        hint: '`こんな` is a more casual way to say ''this kind of'' or ''such'', often referring to something
+          immediately present and generally perceived. `こうした` is more formal and points to a specific,
+          perhaps previously described or implied, quality or characteristic of the scenery.'
+    scene: A tour guide explaining the significance of a scenic spot to a group of tourists.
+    register: semi-formal
+    setting: informative
+    listener_gender: group
+    nuance: The phrase `感動 さ せ ます` (causative of 感動する) means 'causes people to be moved/impressed', which
+      is a common way to express how something impacts people. The semi-formal register is suitable for
+      a tour guide addressing a group, maintaining politeness while conveying appreciation. The variant
+      starting with `まことに` (`truly/indeed`) and using 「訪れる 者」 (visitors) adds a more poetic and formal
+      flair. The phrase 「素晴らしい 景色」 is a common, slightly less formal way to say 'wonderful scenery', making
+      the tone more engaging.
+    etymology: '`景色` (keshiki) combines `景` (kei) meaning ''view'' or ''scenery'' and `色` (shiki) meaning
+      ''color'' or ''appearance''. Together, it refers to the visual appearance of a landscape. `感動` (kandō)
+      means ''deep emotion'' or ''being moved'', combining `感` (kan) ''feeling'' and `動` (dō) ''movement'',
+      literally ''moving feeling''.'
+  - english: This kind of complex and important task must be handled with utmost care.
+    japanese:
+      - '{こう し た} 複雑 かつ 重要 な 職務 は、細心 の 注意 を 払っ て 取り組む べき です。'
+      - '{こう し た} 複雑 かつ 重要 な 職務 に は、細心 の 注意 が 必要 不可欠 です。'
+      - '{こう し た} 複雑 かつ 重要 な 職務 に つき まし て は、細心 の ご 配慮 を お 願い 申し上げ ます。'
+    english_literally: Such complex and important duties, with utmost care, should be handled.
+    competing_grammar:
+      - competing_japanese:
+          - この {よう な} 複雑 かつ 重要 な 職務 は、細心 の 注意 を 払っ て 取り組む べき です。
+        english: This kind of complex and important task must be handled with utmost care.
+        hint: '`このような` is generally a formal demonstrative, but `こうした` is used here to refer to a specific,
+          previously mentioned or implied type of complex task, giving it a more immediate and focused
+          emphasis.'
+    scene: A manager giving instructions to a team member regarding a sensitive project.
+    register: formal
+    setting: professional
+    nuance: The phrase `細心の 注意 を 払っ て 取り組む べき です` conveys a strong sense of duty and caution, suitable
+      for a professional instructing on a sensitive task. The use of `職務` (shokumu - duties) instead of
+      `仕事` (shigoto - work) adds formality. The variant 「必要 不可欠 です」 emphasizes indispensability. 「お 願い
+      申し上げ ます」 is a very polite, humble request, suitable for a higher level of formality or deference.
+    etymology: '`職務` (shokumu) combines `職` (shoku) meaning ''employment, post, duty'' and `務` (mu) meaning
+      ''duty, service''. It denotes official duties or responsibilities. `細心` (saishin) means ''meticulous''
+      or ''utmost care'', combining `細` (sai) ''fine, minute'' and `心` (shin) ''heart, mind''.'
+  - english: I've seen this kind of pattern many times in my research.
+    japanese:
+      - 私 の 研究 で は、{こう し た} パターン を 度々 目 に し て き まし た。
+      - 私 の 研究 に おい て、{こう し た} パターン は 頻繁 に 観察 さ れ ます。
+      - 私 が これ まで 研究 し て き た 中 で、{こう し た} パターン を よく 見 て き まし た。
+    english_literally: In my research, such patterns, repeatedly, I have come to see.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 研究 で は、{この よう な} パターン を 度々 目 に し て き まし た。
+        english: In my research, I have frequently observed these types of patterns.
+        hint: '`このような` is also a formal way to say ''this kind of'', but `こうした` is often preferred when
+          referring to specific examples that have been observed or discussed in the context of the speaker''s
+          experience.'
+    scene: A professor giving a lecture or presenting findings at a conference.
+    register: bijinesu nihongo (business)
+    setting: informative
+    listener_gender: group
+    nuance: The phrase `度々 目 に し て き ました` implies repeated observation over time, typical for research
+      findings. The academic register and the clear, factual presentation are suited for explaining research
+      patterns to an audience. The use of `私 の 研究 で は` grounds the observation in the speaker's personal
+      experience and authority. The variant 「頻繁 に 観察 さ れ ます」 uses a more objective and scientific phrasing.
+    etymology: '`度々` (tabitabi) means ''repeatedly'' or ''often''. It is formed by reduplication of `度`
+      (tabi) meaning ''time'' or ''occasion'', reinforcing the sense of frequency.'
+  - english: I believe that this kind of unique talent is essential for our team.
+    japanese:
+      - '{こう し た} 独自 の 才能 は、私 達 の チーム に とっ て 不可欠 だ と 信じ て い ます。'
+      - '{こう し た} 独自 の 才能 こそ、我々 の チーム に とっ て 必須 で ある と 確信 いたし ます。'
+      - '{こう し た} ユニーク な 才能 は、チーム に とっ て とても 大切 だ と 思い ます。'
+    english_literally: Such unique talent, for our team, is indispensable, I believe.
+    competing_grammar:
+      - competing_japanese:
+          - '{こう いう} 独自 の 才能 は、私 達 の チーム に とっ て 不可欠 だ と 信じ て い ます。'
+        english: I believe this kind of unique talent is essential for our team.
+        hint: '`こう いう` is more general, referring to a type of talent. `こうした` is used when a specific
+          example of such talent has been observed or discussed, emphasizing the particular quality of
+          that talent.'
+    scene: A team leader praising a particular individual's skills during a performance review.
+    register: semi-formal
+    setting: professional
+    nuance: The phrase `不可欠 だ と 信じ て い ます` is a strong, yet polite, expression of belief in a professional
+      context. `こう し た` here points to the specific talent observed in the individual, rather than just
+      any unique talent. The variant 「必須 で ある と 確信 いたし ます」 uses `確信` (kakushin - conviction) and `いたします`
+      (itashimasu - humble form of suru), conveying a higher degree of certainty and humility. `とても 大切
+      だ と 思い ます` is a more casual, but still polite, way to express importance.
+    etymology: '`不可欠` (fukaketsu) means ''indispensable'' or ''essential'', combining `不` (fu) ''not'',
+      `可` (ka) ''possible'', and `欠` (ketsu) ''lack''. Thus, ''not possible to lack''. `独自` (dokuji) means
+      ''original'' or ''unique'', combining `独` (doku) ''alone'' and `自` (ji) ''self''.'
+  - english: Such widespread recognition is a true honor for an artist.
+    japanese:
+      - '{こう し た} 広く 認め られる 事 は、芸術 家 に とっ て 本当 に 光栄 な 事 です。'
+      - '{こう し た} 幅広い 認知 は、芸術 家 に とっ て この 上 ない 光栄 と 存じ ます。'
+      - '{こう し た} 評価 を いただける の は、アーティスト と し て 大変 嬉しい こと です。'
+    english_literally: Such widely recognized matters, for an artist, are truly honorable matters.
+    competing_grammar:
+      - competing_japanese:
+          - '{そう いう} 広く 認め られる 事 は、芸術 家 に とっ て 本当 に 光栄 な 事 です。'
+        english: Such widely recognized matters are truly an honor for an artist.
+        hint: '`そう いう` refers to ''that kind of'' recognition in a general sense. `こうした` is used here
+          to refer to a specific instance of recognition, implying a concrete achievement that has just
+          been mentioned or is being observed.'
+    scene: An art critic commenting on a particular artist's recent success and acclaim.
+    register: formal
+    setting: academic
+    nuance: The use of `本当 に 光栄 な 事 です` expresses genuine honor in a formal, appreciative manner. `こう
+      し た` refers to the specific kind of widespread recognition that the artist has achieved, as exemplified
+      in the immediate context. The variant 「この上ない 光栄 と 存じ ます」 emphasizes that it's the 'highest honor'
+      with humble formality. 「大変 嬉しい こと です」 is a more direct, but still polite, expression of happiness.
+      `広く 認め られる` emphasizes the breadth of the recognition.
+    etymology: '`光栄` (kōei) means ''honor'' or ''glory'', combining `光` (kō) ''light, radiance'' and `栄`
+      (ei) ''flourish, glory''. It literally suggests shining glory. `芸術 家` (geijutsuka) means ''artist'',
+      combining `芸術` (geijutsu) ''art'' and `家` (ka) ''specialist, professional''.'
+post_example_writeup: The examples illustrate how 「こうした」 functions as a demonstrative adjective, always
+  modifying a noun, and always referring back to something specific that has been established in the immediate
+  context. Whether it's a type of car, a design, a shared hobby, a professional experience, efforts, an
+  incident, a complex problem, a research pattern, or beautiful scenery, 「こうした」 points to a concrete,
+  previously mentioned example, rather than a general category. This specificity often lends a more formal
+  or precise tone compared to its counterparts. Pay close attention to the context and what has been discussed
+  just before 「こうした」 is used.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/こうした

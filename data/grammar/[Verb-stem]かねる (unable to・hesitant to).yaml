@@ -1,0 +1,330 @@
+grammar_point: '[Verb-stem]かねる (unable to・hesitant to)'
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]に応える (to respond to)'
+  - することができる (can・be able to)
+  - そんな (such)
+  - つきましては (in connection with that)
+meaning: Cannot, be unable to, hard to, hesitant to
+meaning_warning: Should be used only with transitive verbs with the exception of わかる and できる.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: かねる
+    rarity: common
+    meaning: cannot, be unable to, hard to, hesitant to
+  - conjugation-type: non-past polite (～ます)
+    form: かねます
+    rarity: common
+    meaning: cannot, be unable to, hard to, hesitant to
+  - conjugation-type: past plain (～た)
+    form: かねた
+    rarity: uncommon
+    meaning: could not, was unable to, was hard to, was hesitant to
+  - conjugation-type: past polite (～ました)
+    form: かねました
+    rarity: uncommon
+    meaning: could not, was unable to, was hard to, was hesitant to
+  - conjugation-type: te-form (～て)
+    form: かねて
+    rarity: uncommon
+    meaning: being unable to, being hard to, being hesitant to
+  - conjugation-type: conditional (～ば)
+    form: かねれば
+    rarity: rare
+    meaning: if one cannot, if one is unable to, if it is hard to, if one is hesitant to
+  - conjugation-type: conditional (～たら)
+    form: かねたら
+    rarity: rare
+    meaning: if one cannot, if one is unable to, if it is hard to, if one is hesitant to
+pronunciation:
+  katakana: カネル
+  romaji: kaneru
+formation:
+  Verb (ます-stem) + かねる: Expresses difficulty or inability to do something, or hesitation in doing so.
+    Often used when a person hesitates to do something beyond their own abilities or position.
+jlpt: N2
+etymology: The verb 「兼ねる」 (kaneru) means "to combine," "to do two things at once," or "to serve two purposes."
+  When used as a suffix, it implies that doing something is difficult because it interferes with another
+  obligation or conflicts with one's desires.
+writeup: 「かねる」, typically written in kana, attaches to the ます-stem of a verb. It indicates that it is
+  **difficult, impossible, or one is hesitant to do something**, often due to external circumstances or
+  conflicting desires. While 「できない」 also means "cannot", 「かねる」 is more formal and implies a sense of regret
+  or reluctance. It suggests that performing the action would be "a stretch" of one's ability or capacity.
+  This grammar point is commonly used in formal or stiff contexts where a direct refusal might be considered
+  too strong.
+false_friends:
+  - term: かねない
+    meaning: Might, could be, capable of, possible
+    kind: antonym
+    nuance: Unlike 「かねる」, 「かねない」 indicates a possibility or potential, often with negative implications.
+    grammar_point: '[Verb-stem]かねない (might・could)'
+  - term: 得ない
+    meaning: Unable to, cannot
+    kind: synonym
+    nuance: 「〜得ない」 (enai) emphasizes logical impossibility or complete inability, whereas 「かねる」 highlights
+      difficulty or reluctance.
+    grammar_point: 得る (to be able to・to be possible)
+  - term: わけにはいかない
+    meaning: Cannot afford to, no way, impossible to do
+    kind: synonym
+    nuance: 「わけにはいかない」 implies a stronger sense of obligation or social pressure preventing an action,
+      unlike the milder reluctance suggested by 「かねる」.
+    grammar_point: '[Verb-dictionary・Verb-ない]わけにはいかない (cannot・must)'
+  - term: 切れない
+    meaning: Unable to finish or complete
+    kind: synonym
+    nuance: 「切れない」 refers specifically to the inability to finish something due to exhaustion or capacity,
+      while 「かねる」 expresses a broader difficulty or reluctance.
+    grammar_point: 切れない (unable to finish fully)
+  - term: を兼ねて
+    meaning: To serve multiple purposes
+    kind: often confused with
+    nuance: 「を兼ねて」 describes something serving multiple purposes, unlike 「かねる」 which expresses inability
+      or reluctance.
+    grammar_point: を兼ねて (to serve multiple purposes)
+  - term: できない
+    meaning: Cannot; unable to do
+    kind: similar expression
+    nuance: 「かねる」 is more formal and implies difficulty or hesitation due to circumstances or internal
+      conflict, whereas 「できない」 is a straightforward statement of inability.
+    grammar_point: <strongly-suggest>:できない (cannot do)
+  - term: がたい
+    meaning: Hard to, difficult to
+    kind: similar expression
+    nuance: While both convey difficulty, 「かねる」 often implies a nuance of personal hesitation or a formal
+      refusal due to external circumstances, whereas 「がたい」 generally signifies inherent difficulty in
+      performing the action.
+    grammar_point: がたい (hard to do)
+  - term: まい
+    meaning: Won't, intend not to, probably not
+    kind: similar expression
+    nuance: 「まい」 expresses strong negative intent or a high probability of not doing something, often
+      due to personal decision, contrasting with 「かねる」's nuance of difficulty or reluctance driven by
+      external factors or conflict.
+    grammar_point: Verb[まい] (negative volitional)
+  - term: ずにはいられない
+    meaning: Cannot help doing something, cannot resist doing something
+    kind: antonym
+    nuance: While 「かねる」 implies inability or reluctance to perform an action, 「ずにはいられない」 expresses an
+      uncontrollable compulsion to perform an action, presenting an opposite dynamic.
+    grammar_point: '[Verb-ない form]ずにはいられない・ないではいられない (cannot help but do)'
+post_false_friends_writeup: The key to differentiating 「かねる」 from similar expressions lies in understanding
+  the nuance of reluctance and difficulty it conveys. While other phrases may express inability or impossibility,
+  「かねる」 subtly suggests a desire or willingness that is overridden by circumstance. The important thing
+  to remember about 「かねる」 is that it expresses reluctance, and that it is a formal construction. Pay attention
+  to the surrounding context to understand the underlying reasons behind the inability and the degree
+  of formality required.
+examples:
+  - english: I am terribly sorry, but I cannot meet that request.
+    japanese:
+      - 申し訳 ござい ませ ん が、その ご 要望 に は お 応え し {かね ます}。
+      - 申し訳 ござい ませ ん が、その ご 要望 に は 応え {かね ます}。
+    english_literally: There is no excuse, but to that request, I am unable to respond.
+    competing_grammar:
+      - competing_japanese:
+          - 申し訳 ござい ませ ん が、その ご 要望 に は お 応え {でき ませ ん}。
+        english: I am terribly sorry, but I cannot meet that request.
+        hint: While 「できません」 means 'cannot do', 「かねます」 conveys a sense of reluctance or difficulty in performing
+          the action due to circumstances, rather than a simple inability.
+    scene: A customer service representative addressing a customer with an unusual request.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The phrase 「申し訳ございませんが」 combined with the business Japanese honorific 「お応えし」 and 「かねます」 creates
+      a highly formal and polite refusal. The older female speaker emphasizes the professional and experienced
+      demeanor, using language that demonstrates deference while delivering a firm "no."
+  - english: In this situation, it is difficult to make a calm judgment.
+    japanese:
+      - この 状況 で は、冷静 な 判断 を 下す こと は でき {かねる}。
+      - この 状況 で は、冷静 な 判断 を 下し {かねる}。
+    english_literally: This situation in, calm judgment to make, unable to.
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 で は、冷静 な 判断 を 下す こと は {でき ない}。
+        english: In this situation, it is not possible to make a calm judgment.
+        hint: While 「できない」 states a simple impossibility, 「かねる」 emphasizes the inherent difficulty and
+          reluctance involved in performing the action, suggesting a struggle.
+    scene: A senior executive grappling with a complex, high-pressure business decision.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The phrase 「できかねる」 here expresses a personal struggle to maintain objectivity. The older male
+      speaker, likely in a position of responsibility, uses a formal tone to convey the gravity of the
+      situation and his own internal difficulty, suggesting it's not a simple lack of ability but a challenge
+      to overcome.
+  - english: I'm unable to gauge his true intentions.
+    japanese:
+      - 彼 の 真意 は 量り {かね ます}。
+      - 彼 の 真意 を 量る こと は でき {かね ます}。
+    english_literally: His true intentions, to measure, I am unable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 真意 は {量れ ませ ん}。
+        english: I cannot gauge his true intentions.
+        hint: 「量れません」 is a direct statement of inability. 「量りかねます」 adds a nuance of deep intellectual
+          difficulty or hesitation in fully comprehending, implying a complex situation.
+    scene: A detective discussing a suspect's motives with a colleague.
+    register: semi-formal
+    setting: serious
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The use of 「量りかねます」 implies a thoughtful and deliberate attempt to understand that has met
+      with difficulty, rather than a simple inability. The younger male detective uses this slightly more
+      formal phrase to convey his careful consideration and the complexity of the task, showing his dedication
+      to precision.
+  - english: Due to the sudden change, I'm finding it difficult to adjust the plan immediately.
+    japanese:
+      - 急 な 変更 で、すぐ に 計画 を 調整 し {かねて} い ます。
+      - 急 な 変更 で、すぐ に 計画 を 調整 する こと は でき {かねて} い ます。
+    english_literally: Sudden change by, immediately plan to adjust, being unable to.
+    competing_grammar:
+      - competing_japanese:
+          - 急 な 変更 で、すぐ に 計画 を 調整 {でき ませ ん}。
+        english: Due to the sudden change, I cannot adjust the plan immediately.
+        hint: 「調整できません」 states a direct inability. 「調整し{かねて}います」 highlights an ongoing struggle and difficulty
+          in the process of adjusting, conveying a sense of effort that is not yet yielding results.
+    scene: A project manager updating their team on unexpected hurdles.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    speaker_age: older
+    nuance: An older female project manager might use 「かねています」 to convey that she is actively working
+      on the problem but it presents a considerable challenge, inviting understanding rather than simply
+      stating inability.
+  - english: Unfortunately, I cannot discuss those details.
+    japanese:
+      - 残念 ながら、その 詳細 に つい て は お 話し {かね ます}。
+      - 残念 ながら、その 詳細 に つい て は 話し {かね ます}。
+    english_literally: Regrettably, those details concerning, I am unable to speak.
+    competing_grammar:
+      - competing_japanese:
+          - 残念 ながら、その 詳細 に つい て は お 話し {でき ませ ん}。
+        english: Unfortunately, I cannot discuss those details.
+        hint: 「お話しできません」 is a direct refusal. 「お話し{かねます}」 implies a polite but firm refusal based on external
+          constraints or policy, conveying reluctance rather than personal unwillingness.
+    scene: A company spokesperson addressing reporters about a sensitive internal matter.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    speaker_age: younger
+    nuance: A younger female spokesperson might use 「お話ししかねます」 to assert authority and professionalism
+      while maintaining politeness. This phrasing, combining honorifics with 「かねます」, signifies that the
+      refusal is based on formal procedure or confidentiality rather than personal unwillingness, which
+      is crucial in a professional setting.
+  - english: Why he took such action, I simply cannot understand.
+    japanese:
+      - 彼 が なぜ そんな 行動 を とっ た の か、私 に は 理解 し {かね ます}。
+      - 彼 が なぜ そんな 行動 を とっ た の か、私 に は 理解 する こと は でき {かね ます}。
+    english_literally: He why such action took, me to, unable to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が なぜ そんな 行動 を とっ た の か、私 に は 理解 {でき ませ ん}。
+        english: Why he took such action, I simply do not understand.
+        hint: 「理解できません」 is a straightforward statement of not understanding. 「理解し{かねます}」 expresses a deeper
+          intellectual struggle and frustration at the inability to grasp the reasoning, implying the
+          action is truly baffling.
+    scene: A friend trying to comprehend another friend's bewildering behavior.
+    register: casual
+    setting: serious
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: Even in a casual context, 「理解し{かねます}」 conveys a strong sense of personal difficulty in understanding,
+      implying that the action is so baffling it's beyond reasonable comprehension. A younger male might
+      use this to express deep bewilderment or disbelief in a slightly more formal way than `できない` to
+      emphasize the sheer irrationality of the situation.
+  - english: Regarding that matter, I regret to say I cannot comment at this time.
+    japanese:
+      - その 件 に つき まし て は、現 時点 で は コメント し {かね ます}。
+      - その 件 に つき まし て は、現 時点 で は コメント する こと は でき {かね ます}。
+    english_literally: That matter concerning, at this point in time, comment to, I am unable.
+    competing_grammar:
+      - competing_japanese:
+          - その 件 に つき まし て は、現 時点 で は コメント {でき ませ ん}。
+        english: Regarding that matter, I cannot comment at this time.
+        hint: 「コメントできません」 is a simple statement of inability. 「コメントし{かねます}」 conveys a polite refusal or
+          reluctance to comment, often implying policy or discretion, rather than a lack of ability to
+          speak.
+    scene: A CEO responding to a journalist's probing question during a press conference.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    speaker_age: older
+    nuance: An older male CEO uses 「コメントし{かねます}」 to politely but firmly decline to answer. This is a common
+      phrase in business settings, indicating that the speaker is hesitant to speak on a sensitive topic,
+      not that they are literally incapable of forming words. It suggests a professional boundary or policy.
+  - english: Given the current data, it's difficult to draw a definitive conclusion.
+    japanese:
+      - 現状 の データ から は、断定 的 な 結論 を 導き 出し {かねる}。
+      - 現状 の データ から は、断定 的 な 結論 を 導き 出す こと は でき {かねる}。
+    english_literally: Current data from, definitive conclusion to derive, difficult to.
+    competing_grammar:
+      - competing_japanese:
+          - 現状 の データ から は、断定 的 な 結論 を 導き 出す こと は {でき ない}。
+        english: Given the current data, it is not possible to draw a definitive conclusion.
+        hint: 「できない」 states a factual impossibility. 「かねる」 emphasizes the inherent difficulty or the reluctance
+          to make a definitive statement due to the insufficient or complex nature of the data, suggesting
+          caution and thoroughness.
+    scene: A lead researcher presenting preliminary findings to a scientific committee.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    speaker_age: older
+    nuance: A female lead researcher uses 「かねる」 in an academic setting to convey prudence and intellectual
+      honesty. It implies that while a conclusion might eventually be possible, it is currently difficult
+      due to the complexity of the data, reflecting a careful and rigorous approach to research.
+  - english: Due to company policy, we cannot accept returns after 30 days.
+    japanese:
+      - 会社 の 規定 に より、30 日 を 過ぎ た 商品 の 返品 は 承り {かね ます}。
+      - 会社 の 規定 に より、30 日 を 過ぎ た 商品 の 返品 は 承る こと は でき {かね ます}。
+    english_literally: Company policy by, 30 days passed goods' returns, to accept, I am unable.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の 規定 に より、30 日 を 過ぎ た 商品 の 返品 は {でき ませ ん}。
+        english: Due to company policy, returns for goods past 30 days are not possible.
+        hint: 「できません」 is a direct statement of impossibility. 「承り{かねます}」 (using the humble form of 'accept')
+          adds a layer of polite regret and formality, indicating that the refusal is based on an unfortunate
+          policy rather than a lack of willingness.
+    scene: A customer service representative at a department store explains return policy to a customer.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    speaker_age: younger
+    nuance: A younger female customer service representative would use 「承り{かねます}」 to maintain politeness
+      and professionalism while enforcing a company rule. The humble form 「承る」 emphasizes respect for
+      the customer, even when delivering an unfavorable message, making the refusal sound more empathetic.
+  - english: I truly tried to understand his feelings, but I simply couldn't.
+    japanese:
+      - 彼 の 気持ち を 理解 し よう と 努め た の です が、私 に は 理解 し {かね た}。
+      - 彼 の 気持ち を 理解 し よう と 努め た の です が、私 に は 理解 する こと は でき {かね た}。
+    english_literally: His feelings to understand, tried to, but, me to, understood, was unable to.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 気持ち を 理解 し よう と 努め た の です が、私 に は 理解 {でき なかっ た}。
+        english: I truly tried to understand his feelings, but I simply didn't understand.
+        hint: 「理解できなかった」 states a simple failure to understand. 「理解し{かねた}」 conveys that despite genuine
+          effort or desire, understanding was difficult or impossible due to some inherent complexity
+          or resistance.
+    scene: A friend confiding in another about a misunderstanding they had with a mutual acquaintance.
+    register: semi-formal
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: A younger male speaker might use 「理解し{かねた}」 when reflecting on a past interaction, emphasizing
+      the struggle and intellectual difficulty he faced in empathizing or comprehending someone's emotions,
+      rather than just stating a simple failure to understand. This adds a layer of sincerity and effort
+      to his statement.
+post_example_writeup: Remember that 「かねる」 always attaches to the ます-stem of the verb.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かねる

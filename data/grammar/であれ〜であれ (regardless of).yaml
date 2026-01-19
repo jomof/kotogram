@@ -1,0 +1,333 @@
+grammar_point: であれ〜であれ (regardless of)
+learn_before:
+  - 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+meaning: Whether X or Y; be it X or Y; or
+pronunciation:
+  katakana: デアレ〜デアレ
+  romaji: de are ~ de are
+formation:
+  Noun1 + であれ + Noun2 + であれ: Indicates that something applies regardless of which of the nouns is the
+    case; "whether X or Y"
+  な-Adjective (stem) + であれ + な-Adjective (stem) + であれ: Indicates that something applies regardless of
+    which of the adjectives is the case; "whether X or Y"
+jlpt: N1
+etymology: The 「であれ」 is a conditional form of the copula 「だ」 (to be). The repetition emphasizes that the
+  statement holds true regardless of which option is chosen.
+writeup: |-
+  The grammar point 「Noun+であれ+Noun+であれ」 is used to express that something is true or applicable regardless of which option is chosen from a pair of nouns or na-adjectives. It translates to "whether X or Y" or "be it X or Y." It's generally employed in formal writing and speech.
+
+  Key points:
+
+  *   It presents two options, suggesting the outcome is the same for both.
+  *   It can connect two nouns or two na-adjectives, or even a series of three or more, though two is most common.
+  *   It is predominantly found in formal contexts, lending a sense of universality and gravitas to the statement.
+false_friends:
+  - term: であろうと〜であろうと
+    meaning: Whether...or...
+    kind: similar expression
+    nuance: 「であろうと〜であろうと」 often expresses stronger hypothetical situations or conditions than 「であれ〜であれ」.
+      It also tends to be used with verbs or predicative adjectives that describe actions or states that
+      might occur, rather than simply presenting two nouns or na-adjectives as options.
+    grammar_point: <suggest>:であろうと〜であろうと (whether... or...)
+  - term: でも〜でも
+    meaning: Whether...or...
+    kind: similar expression
+    nuance: 「でも〜でも」 is considerably less formal and typically used in casual conversation. 「であれ〜であれ」 is
+      preferred in writing and more formal speech to convey a more authoritative or universally applicable
+      statement.
+    grammar_point: でも〜でも (whether x or y)
+  - term: と言わず〜と言わず
+    meaning: Not only...but also...
+    kind: similar expression
+    nuance: 「と言わず〜と言わず」 emphasizes a range or totality, often implying that something applies comprehensively
+      throughout a given scope (e.g., 'morning and night,' 'hands and feet'). In contrast, 「であれ〜であれ」 focuses
+      on two distinct, specific options, suggesting the statement holds true for either.
+    grammar_point: 〜と言わず〜と言わず (without exception)
+post_false_friends_writeup: While 「であろうと〜であろうと」, 「でも〜でも」, and 「と言わず〜と言わず」 share the function of presenting
+  alternatives or ranges, they differ significantly in formality and nuance. Use 「であれ〜であれ」 in formal settings
+  when presenting two distinct options where the outcome remains the same. 「であろうと〜であろうと」 works for more
+  hypothetical verbal situations, 「でも〜でも」 for casual options, and 「と言わず〜と言わず」 for emphasizing a comprehensive
+  range rather than two distinct choices. Selecting the correct expression improves the clarity and appropriateness
+  of your communication.
+examples:
+  - english: Whether it's sushi or sashimi, he loves raw fish.
+    japanese:
+      - 寿司 {で あれ} 刺身 {で あれ}、彼 は 生魚 が 大好き だ。
+      - 寿司 {で あれ} 刺身 {で あれ}、彼 は 生魚 が 大好き です。
+      - 彼 は 寿司 {で あれ} 刺身 {で あれ}、生魚 が 大好き だ。
+    english_literally: Sushi or sashimi, he raw fish very much likes.
+    competing_grammar:
+      - competing_japanese:
+          - 寿司 {で も} 刺身 {で も}、彼 は 生魚 が 大好き だ。
+        english: Whether it's sushi or sashimi, he loves raw fish.
+        hint: 「でも〜でも」 is less formal. We're looking for a more formal and universal statement, common
+          in written or highly polite spoken Japanese.
+      - competing_japanese:
+          - 寿司 {で あろう と} 刺身 {で あろう と}、彼 は 生魚 が 大好き だ。
+        english: Whether it's sushi or sashimi, he loves raw fish.
+        hint: 「であろうと〜であろうと」 often implies a stronger hypothetical or 'even if it is' situation and is
+          more commonly used with verbs or predicative adjectives. We are seeking a more direct 'be it
+          X or Y' structure for specific nouns.
+    scene: A friend describing another friend's eating habits, emphasizing their broad preference for
+      raw fish.
+    register: semi-formal
+    setting: friendly
+    nuance: The phrase 「生魚 が 大好き だ」 expresses a strong liking for raw fish. The use of 「であれ」 linking 「寿司」と「刺身」
+      emphasizes that his love for raw fish is so strong it encompasses both categories without distinction,
+      highlighting a definitive preference. Although the sentence ends informally with 「だ」, the use of
+      「であれ」 elevates the expression to a semi-formal level, adding emphasis suitable for a strong declaration.
+    etymology: The word 「寿司」 (sushi) originates from the concept of fermented fish and rice, evolving
+      over centuries from a preservation method to the culinary art we know today. 「刺身」 (sashimi) literally
+      means 'pierced body' and refers to thinly sliced raw fish, a traditional Japanese delicacy.
+  - english: Whether it's the past or the future, living in the present is most important.
+    japanese:
+      - 過去 {で あれ} 未来 {で あれ}、現在 を 生きる こと が 最も 重要 だ。
+      - 過去 {で あれ} 未来 {で あれ}、現在 を 生きる こと が 最も 重要 です。
+      - 現在 を 生きる こと が 最も 重要 だ。過去 {で あれ} 未来 {で あれ}。
+    english_literally: Past or future, present to live thing most important is.
+    competing_grammar:
+      - competing_japanese:
+          - 過去 {で も} 未来 {で も}、現在 を 生きる こと が 最も 重要 だ。
+        english: Whether it's the past or the future, living in the present is most important.
+        hint: 「でも〜でも」 is a more informal expression. We're looking for a formal, universal statement often
+          found in philosophical or academic contexts.
+      - competing_japanese:
+          - 過去 {で あろう と} 未来 {で あろう と}、現在 を 生きる こと が 最も 重要 だ。
+        english: Whether it's the past or the future, living in the present is most important.
+        hint: While 'であろうと〜であろうと' can also mean 'whether... or...', it often implies a stronger hypothetical
+          or 'even if it is' situation, and is more commonly used with verbs or predicative adjectives.
+          We are seeking a more direct 'be it X or Y' structure for specific nouns.
+    scene: A philosopher delivering a lecture on mindfulness and the importance of living in the moment.
+    register: formal
+    setting: serious
+    nuance: The sentence 「現在 を 生きる こと が 最も 重要 だ」 underscores the central philosophical idea. The construction
+      「過去 であれ 未来 であれ」 elevates the statement to a universal truth, asserting that this principle holds
+      true irrespective of one's temporal focus, fitting the serious and academic context.
+    etymology: 「過去」 (kako) and 「未来」 (mirai) are philosophical concepts central to discussions of time.
+      「過去」 refers to what has passed, while 「未来」 indicates what is yet to come, both essential for articulating
+      a temporal scope in profound statements.
+  - english: Whether the situation is difficult or easy, we should do our best.
+    japanese:
+      - 状況 が 困難 {で あれ} 容易 {で あれ}、我々 は 最善 を 尽くす べき だ。
+      - 状況 が 困難 {で あれ} 容易 {で あれ}、我々 は 最善 を 尽くす べき です。
+      - 状況 が 困難 {で あれ} 容易 {で あれ}、我々 は 最善 を 尽くさ なけれ ば なり ませ ん。
+    english_literally: Situation difficult or easy, we best to do should.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 が 困難 {で も} 容易 {で も}、我々 は 最善 を 尽くす べき だ。
+        english: Whether the situation is difficult or easy, we should do our best.
+        hint: 「でも〜でも」 is a more informal expression. We're looking for a formal, authoritative statement
+          suitable for a leader addressing a group.
+      - competing_japanese:
+          - 状況 が 困難 {で あろう と} 容易 {で あろう と}、我々 は 最善 を 尽くす べき だ。
+        english: Whether it's a difficult or easy situation, we should do our best.
+        hint: While 'であろうと〜であろうと' can also mean 'whether... or...', it often implies a stronger hypothetical
+          or 'even if it is' situation, and is more commonly used with verbs or predicative adjectives.
+          We are seeking a more direct 'be it X or Y' structure for specific adjectives.
+    scene: A CEO addressing employees during a challenging quarter, emphasizing resilience and commitment.
+    register: formal
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: group
+    nuance: The phrase 「最善 を 尽くす べき だ」 is a direct and forceful call to action. The speaker's use of 「困難
+      であれ 容易 であれ」 emphasizes that the expectation for optimal performance is absolute, applying universally
+      to any challenge, reinforcing the male CEO's leadership and determination.
+    etymology: 「困難」 (konnan) means difficulty or hardship, while 「容易」 (yōi) means ease or simplicity.
+      These contrasting na-adjectives are often paired to describe a spectrum of challenges or conditions,
+      making them suitable for universal statements like this.
+  - english: Whether the service is free or paid, the protection of personal information should be thorough.
+    japanese:
+      - サービス が 無料 {で あれ} 有料 {で あれ}、個人 情報 の 保護 は 徹底 す べき だ。
+      - サービス が 無料 {で あれ} 有料 {で あれ}、個人 情報 の 保護 は 徹底 す べき です。
+      - 無料 {で あれ} 有料 {で あれ}、サービス の 個人 情報 保護 は 徹底 す べき だ。
+    english_literally: Service free or paid, personal information's protection should be thorough.
+    competing_grammar:
+      - competing_japanese:
+          - サービス が 無料 {で も} 有料 {で も}、個人 情報 の 保護 は 徹底 す べき だ。
+        english: Whether the service is free or paid, the protection of personal information should be
+          thorough.
+        hint: 「でも〜でも」 is a more informal expression. We're looking for a formal statement of principle,
+          suitable for an expert in a professional context.
+      - competing_japanese:
+          - サービス が 無料 {で あろう と} 有料 {で あろう と}、個人 情報 の 保護 は 徹底 す べき だ。
+        english: Whether it's free or paid, the protection of personal information should be thorough.
+        hint: While 'であろうと〜であろうと' can also mean 'whether... or...', it often implies a stronger hypothetical
+          or 'even if it is' situation, emphasizing the contingency. Here, we are stating a clear, consistent
+          policy regardless of the nature of the news.
+    scene: A cybersecurity expert explaining data privacy principles during a public seminar.
+    register: formal
+    setting: informative
+    nuance: The statement 「個人 情報 の 保護 は 徹底 すべき だ」 highlights a critical principle in cybersecurity. By
+      stating 「無料 であれ 有料 であれ」, the speaker emphasizes that this fundamental rule applies without exception
+      to all types of services, demonstrating the expert's rigorous adherence to best practices.
+    etymology: 「無料」 (muryō) means free of charge, and 「有料」 (yūryō) means paid. These terms describe the
+      payment status of a service or item, often used in contrast to establish broad applicability across
+      different commercial models.
+  - english: Whether it's success or failure, the process itself is important.
+    japanese:
+      - 成功 {で あれ} 失敗 {で あれ}、過程 その もの が 重要 だ。
+      - 成功 {で あれ} 失敗 {で あれ}、過程 その もの が 重要 です。
+      - 過程 その もの が 重要 だ。成功 {で あれ} 失敗 {で あれ}。
+    english_literally: Success or failure, process itself important is.
+    competing_grammar:
+      - competing_japanese:
+          - 成功 {で も} 失敗 {で も}、過程 その もの が 重要 だ。
+        english: Whether it's success or failure, the process itself is important.
+        hint: 「でも〜でも」 is a more informal and generally used in casual conversation. We're looking for
+          a statement that applies more broadly and with a more formal tone, often used in speeches or
+          written works.
+      - competing_japanese:
+          - 成功 {で あろう と} 失敗 {で あろう と}、過程 その もの が 重要 だ。
+        english: Whether it's success or failure, the process itself is important.
+        hint: While 'であろうと〜であろうと' can also mean 'whether... or...', it often implies a stronger hypothetical
+          or 'even if it is' situation, and is more commonly used with verbs or predicative adjectives.
+          We are seeking a more direct 'be it X or Y' structure for specific nouns.
+      - competing_japanese:
+          - 成功 {か} 失敗 {か}、過程 その もの が 重要 だ。
+        english: Is it success or failure? The process itself is important.
+        hint: 「か〜か」 typically implies a choice or a question between options, not a statement that something
+          holds true for all presented options. We're looking for 'regardless of X or Y'.
+    scene: A university professor giving advice to students during a graduation ceremony, reflecting on
+      life's journey.
+    register: formal
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「成功 であれ 失敗 であれ」 in this inspirational context emphasizes that the value lies not
+      in the outcome, but in the journey. The female professor's use of this formal structure adds weight
+      and wisdom to her message, encouraging students to embrace every experience.
+    etymology: 「成功」 (seikō) means success or achievement, while 「失敗」 (shippai) means failure or mistake.
+      These antonyms are often paired to represent the two possible outcomes of an endeavor, underscoring
+      that the lesson applies to both. The choice of these terms reinforces the theme of life's journey.
+  - english: Whether it's a small detail or a large concept, understanding the basics is crucial.
+    japanese:
+      - 細部 {で あれ} 全体 像 {で あれ}、基本 を 理解 する こと が 重要 です。
+      - 細部 {で あれ} 全体 像 {で あれ}、基本 を 理解 する こと が 重要 だ。
+    english_literally: Small detail or large concept, basics to understand thing important is.
+    competing_grammar:
+      - competing_japanese:
+          - 細部 {で も} 全体 像 {で も}、基本 を 理解 する こと が 重要 です。
+        english: Whether it's a small detail or a large concept, understanding the basics is crucial.
+        hint: 「でも〜でも」 is a more casual choice. This context calls for a formal tone emphasizing a universal
+          principle in academics.
+      - competing_japanese:
+          - 細部 {で あろう と} 全体 像 {で あろう と}、基本 を 理解 する こと が 重要 です。
+        english: Whether it's a small detail or a large concept, understanding the basics is crucial.
+        hint: 「であろうと〜であろうと」 often implies a stronger hypothetical or 'even if' scenario. We are emphasizing
+          that the principle holds true for both stated items without a strong hypothetical element.
+    scene: A professor lecturing to university students about the importance of foundational knowledge
+      in any field of study.
+    register: formal
+    setting: academic
+    nuance: The phrase 「基本 を 理解 する こと が 重要 です」 states the core message. The use of 「細部 であれ 全体像 であれ」 highlights
+      that this fundamental requirement applies across the entire spectrum of understanding, from the
+      most intricate details 「細部」 to the broadest overview 「全体像」. This universal applicability lends authority
+      to the professor's instruction.
+  - english: Whether it's good news or bad news, we must convey it promptly.
+    japanese:
+      - 良い 知らせ {で あれ} 悪い 知らせ {で あれ}、速やか に 伝える べき です。
+      - 良い 知らせ {で あれ} 悪い 知らせ {で あれ}、速やか に 伝える べき だ。
+    english_literally: Good news or bad news, promptly to convey should.
+    competing_grammar:
+      - competing_japanese:
+          - 良い 知らせ {で も} 悪い 知らせ {で も}、速やか に 伝える べき です。
+        english: Whether it's good news or bad news, we must convey it promptly.
+        hint: 「でも〜でも」 is less formal. In a professional setting discussing policy, a more formal and definitive
+          expression is appropriate.
+      - competing_japanese:
+          - 良い 知らせ {で あろう と} 悪い 知らせ {で あろう と}、速やか に 伝える べき です。
+        english: Whether it's good news or bad news, we must convey it promptly.
+        hint: 「であろうと〜であろうと」 can imply a stronger hypothetical or 'even if' scenario, emphasizing the contingency.
+          Here, we are stating a clear, consistent policy regardless of the nature of the news.
+    scene: A female manager addressing her team during a weekly meeting, discussing internal communication
+      protocols.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    nuance: The manager's direct phrasing 「速やか に 伝える べき です」 conveys a firm directive. The use of 「良い 知らせ
+      であれ 悪い 知らせ であれ」 underscores that this policy of prompt communication is absolute and applies equally
+      to all types of information, reinforcing the female manager's expectation for transparency and efficiency
+      within her team.
+  - english: Whether it's summer or winter, this region always attracts tourists.
+    japanese:
+      - 夏 {で あれ} 冬 {で あれ}、この 地域 は 常 に 観光 客 を 惹きつける。
+      - 夏 {で あれ} 冬 {で あれ}、この 地域 は 常 に 観光 客 を 惹きつけ ます。
+    english_literally: Summer or winter, this region always tourists attracts.
+    competing_grammar:
+      - competing_japanese:
+          - 夏 {で も} 冬 {で も}、この 地域 は 常 に 観光 客 を 惹きつける。
+        english: Whether it's summer or winter, this region always attracts tourists.
+        hint: 「でも〜でも」 is a more casual choice. We're looking for an expression that sounds more informative
+          and descriptive, suitable for a formal presentation or guide.
+      - competing_japanese:
+          - 夏 {で あろう と} 冬 {で あろう と}、この 地域 は 常 に 観光 客 を 惹きつける。
+        english: Whether it's summer or winter, this region always attracts tourists.
+        hint: 「であろうと〜であろうと」 can sound more hypothetical or emphasize a strong 'even if' condition. Here,
+          we are simply stating a factual, consistent characteristic of the region across seasons.
+    scene: A tour guide explaining the year-round appeal of a popular tourist destination to a group of
+      visitors.
+    register: semi-formal
+    setting: informative
+    nuance: The phrase 「常に 観光客 を 惹きつける」 describes the region's consistent appeal. By stating 「夏 であれ 冬
+      であれ」, the speaker emphasizes that the attraction is not limited to a single season, conveying a
+      sense of enduring popularity and solidifying the region's reputation as a year-round destination.
+      The semi-formal register is appropriate for an informative guide speaking to a group.
+  - english: Whether it's theory or practice, both are indispensable for true understanding.
+    japanese:
+      - 理論 {で あれ} 実践 {で あれ}、真 の 理解 に は どちら も 不可欠 だ。
+      - 理論 {で あれ} 実践 {で あれ}、真 の 理解 に は どちら も 不可欠 です。
+    english_literally: Theory or practice, true understanding for both indispensable is.
+    competing_grammar:
+      - competing_japanese:
+          - 理論 {で も} 実践 {で も}、真 の 理解 に は どちら も 不可欠 だ。
+        english: Whether it's theory or practice, both are indispensable for true understanding.
+        hint: 「でも〜でも」 is a more casual expression. This context, advising on deep understanding, warrants
+          a formal and authoritative tone.
+      - competing_japanese:
+          - 理論 {で あろう と} 実践 {で あろう と}、真 の 理解 に は どちら も 不可欠 だ。
+        english: Whether it's theory or practice, both are indispensable for true understanding.
+        hint: 「であろうと〜であろうと」 often implies a stronger hypothetical or 'even if' scenario. Here, we are
+          stating a fundamental truth about the necessity of both elements for understanding.
+    scene: An older male professor advising a younger male student on how to truly master a subject, emphasizing
+      the combination of academic study and practical application.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The professor's advice, 「真 の 理解 に は どちら も 不可欠 だ」, stresses the essential nature of both components.
+      The use of 「理論 であれ 実践 であれ」 by an older male speaker to a younger male listener provides a strong,
+      almost philosophical directive, indicating that true mastery transcends mere academic knowledge
+      or hands-on experience alone, requiring the integration of both. This formal framing lends gravity
+      to the advice given by an elder mentor.
+  - english: Whether it's a compliment or criticism, I accept it sincerely.
+    japanese:
+      - 称賛 {で あれ} 批判 {で あれ}、私 は 真摯 に 受け止め ます。
+      - 称賛 {で あれ} 批判 {で あれ}、私 は 真摯 に 受け止める。
+    english_literally: Compliment or criticism, I sincerely accept.
+    competing_grammar:
+      - competing_japanese:
+          - 称賛 {で も} 批判 {で も}、私 は 真摯 に 受け止め ます。
+        english: Whether it's a compliment or criticism, I accept it sincerely.
+        hint: 「でも〜でも」 is a more casual expression. In a professional context, especially when discussing
+          feedback, a formal and respectful tone is more suitable.
+      - competing_japanese:
+          - 称賛 {で あろう と} 批判 {で あろう と}、私 は 真摯 に 受け止め ます。
+        english: Whether it's a compliment or criticism, I accept it sincerely.
+        hint: 「であろうと〜であろうと」 can imply a stronger hypothetical or 'even if' scenario. Here, the speaker
+          is expressing a consistent attitude towards all types of feedback, not just a conditional acceptance.
+    scene: A professional responding to feedback after a presentation or project, showing an open and
+      receptive attitude.
+    register: formal
+    setting: professional
+    nuance: The core statement 「私 は 真摯 に 受け止め ます」 emphasizes the speaker's professionalism and willingness
+      to learn. The inclusion of 「称賛 であれ 批判 であれ」 highlights that their open-minded approach applies universally
+      to all forms of feedback, demonstrating maturity and a strong commitment to self-improvement in
+      a professional setting. The polite 「ます」 ending further reinforces the formal and respectful register.
+post_example_writeup: As seen in the examples, 「であれ〜であれ」 is a powerful tool to convey that a statement
+  holds true regardless of the specific option from a presented pair. While it is inherently formal, its
+  flexibility allows it to be used in various contexts, from philosophical discussions to business presentations,
+  maintaining its core meaning of universality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/であれ-であれ

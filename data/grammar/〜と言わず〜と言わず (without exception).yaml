@@ -1,0 +1,258 @@
+grammar_point: 〜と言わず〜と言わず (without exception)
+learn_before:
+  - '[Noun]だらけ (full of, negative nuance)'
+  - 前・後ろ (front and back spatial orientation)
+meaning: without exception; regardless of; both A and B (and everything in between/like them)
+pronunciation:
+  katakana: トイワズ トイワズ
+  romaji: to iwazu to iwazu
+formation:
+  Noun A + と言わず + Noun B + と言わず: Indicates that something applies to both Noun A and Noun B, and implies
+    it applies to everything similar or within that range, leaving no exceptions.
+jlpt: N1
+etymology: The phrase literally means 'without saying (it's) A, without saying (it's) B'. This construction
+  emphasizes the idea of not making distinctions between A and B, thereby extending the implication to
+  everything similar or related. It conveys that no matter what specific instance one refers to within
+  a category, the stated condition applies universally.
+writeup: |-
+  The grammar pattern **〜と言わず〜と言わず** is used to emphatically state that a certain condition, action, or phenomenon applies comprehensively and without exception to all items or individuals within a specified category. It often presents two representative or contrasting examples (Noun A and Noun B) to illustrate the universality, implying that everything else similar to or falling between these two points is also included.
+
+  This expression carries a strong nuance of comprehensiveness and often implies that the extent is surprising or noteworthy. It is typically found in more formal or literary contexts, though it can be used in spoken Japanese for strong emphasis. Unlike simple listing particles like **〜や〜や** or **〜と〜と**, **〜と言わず〜と言わず** actively negates any distinction between the listed items, thereby generalizing the statement to a broader scope.
+
+  It is frequently used to describe situations where a particular state or action is prevalent everywhere, affecting all aspects or people, such as 'from children to adults,' 'from morning to night,' or 'from mountains to the sea.'
+false_friends:
+  - term: '[Noun]を問わず'
+    meaning: regardless of; irrespective of
+    kind: similar expression
+    nuance: While both express a lack of distinction, **〜と言わず〜と言わず** explicitly names two (or more) items
+      to show the breadth, implying 'everything like these and in between,' whereas **〜を問わず** states directly
+      that a certain condition or category is irrelevant.
+    grammar_point: '[Noun]を問わず (regardless of)'
+  - term: も〜も
+    meaning: both A and B; neither A nor B
+    kind: similar expression
+    nuance: '**も〜も** simply lists two items that share a characteristic, but it doesn''t necessarily imply
+      the universality of a phenomenon across *all* similar items. **〜と言わず〜と言わず** suggests a comprehensive
+      inclusion that extends beyond just the two listed examples.'
+    grammar_point: も (addition or emphasis particle)
+  - term: 〜だけでなく
+    meaning: not only... but also
+    kind: similar expression
+    nuance: '**〜だけでなく** is an additive pattern, indicating that something applies to A *and additionally*
+      to B. In contrast, **〜と言わず〜と言わず** is exhaustive, implying that something applies universally to
+      a range or category, exemplified by A and B, and leaving no exceptions.'
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+post_false_friends_writeup: 'To differentiate **〜と言わず〜と言わず** from similar expressions, remember its core
+  meaning: it emphasizes that something applies universally, to *all* instances within a broad scope,
+  often using two illustrative examples. Think of it as ''not just A, not just B, but everything related.''
+  For example, while **も子供も大人も** means ''both children and adults,'' **子供と言わず大人と言わず** emphasizes that
+  it applies to ''everyone, from children to adults, without distinction.'' **〜を問わず** directly states
+  that something is not a factor (e.g., ''regardless of age''), while **〜だけでなく** simply adds more elements
+  to a list without necessarily implying complete universality.'
+examples:
+  - english: In this company, from managers to new hires, everyone works hard.
+    japanese:
+      - この 会社 で は、{部長 と 言わ ず 新入 社員 と 言わ ず}、皆 よく 働き ます。
+      - この 会社 で は、{部長 と 言わ ず 新入 社員 と 言わ ず}、皆 よく 働く。
+    english_literally: In this company, without saying manager, without saying new employee, everyone
+      works well.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 で は、部長 だけ で なく 新入 社員 も、皆 よく 働き ます。
+        english: In this company, not only managers but also new hires work hard.
+        hint: This suggests an addition, but we want to emphasize that *everyone* works hard, without
+          exception. We're looking for a comprehensive inclusion.
+      - competing_japanese:
+          - この 会社 で は、部長 も 新入 社員 も、皆 よく 働き ます。
+        english: In this company, both managers and new hires work hard.
+        hint: This lists two specific groups, but we want to imply a universal characteristic for all
+          roles. We're looking for a pattern that covers a broad range without distinction.
+    scene: Observing the diligent work ethic at a new company.
+    register: formal
+    setting: professional
+    nuance: This example uses 「部長 と 言わず 新入社員 と 言わず」 to emphasize that the hard work ethic is universal
+      across all levels of the company, from the highest-ranking managers to the newest employees. It
+      implies there are no exceptions.
+  - english: At the festival, from adults to children, everyone was enjoying the traditional dance.
+    japanese:
+      - 祭り で は、{大人 と 言わ ず 子供 と 言わ ず}、皆 伝統 的 な 踊り を 楽しん で い まし た。
+      - 祭り で は、{大人 と 言わ ず 子供 と 言わ ず}、皆 伝統 的 な 踊り を 楽しん で い た。
+    english_literally: At the festival, without saying adult, without saying child, everyone was enjoying
+      the traditional dance.
+    competing_grammar:
+      - competing_japanese:
+          - 祭り で は、年齢 を 問わ ず、皆 伝統 的 な 踊り を 楽しん で い まし た。
+        english: At the festival, regardless of age, everyone was enjoying the traditional dance.
+        hint: This is more direct about 'age,' but we want to show it's 'from adults to children' specifically,
+          implying a full spectrum. We're looking for a pattern that uses representative examples to show
+          universality.
+      - competing_japanese:
+          - 祭り で は、大人 や 子供 が、伝統 的 な 踊り を 楽しん で い まし た。
+        english: At the festival, adults and children, among others, were enjoying the traditional dance.
+        hint: This is a non-exhaustive list, but we want to convey that *all* age groups, without exception,
+          were enjoying it. We're looking for an emphatic, all-encompassing expression.
+    scene: Describing a lively local festival where people of all ages participated enthusiastically.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「大人 と 言わず 子供 と 言わず」 conveys that the enjoyment of the dance was universal, extending
+      to all age groups present at the festival. It paints a picture of complete participation.
+  - english: In times of war, from the strong to the weak, everyone suffers.
+    japanese:
+      - 戦時 中 は、{強い 者 と 言わ ず 弱い 者 と 言わ ず}、誰 も が 苦しむ もの です。
+      - 戦時 中 は、{強い 者 と 言わ ず 弱い 者 と 言わ ず}、誰 も が 苦しむ もの だ。
+    english_literally: During wartime, without saying strong person, without saying weak person, anyone
+      suffers.
+    competing_grammar:
+      - competing_japanese:
+          - 戦時 中 は、強い 弱い に 関係 なく、誰 も が 苦しむ もの です。
+        english: During wartime, regardless of strong or weak, everyone suffers.
+        hint: This covers 'regardless of,' but we're looking for a phrasing that explicitly uses two opposing
+          examples to show the comprehensive scope. We're looking for a pattern that emphasizes this contrast.
+    scene: A historical documentary explaining the indiscriminate suffering caused by conflict.
+    register: formal
+    setting: serious
+    nuance: Here, 「強い 者 と 言わず 弱い 者 と 言わず」 highlights the indiscriminate nature of suffering during war,
+      affecting everyone regardless of their physical or social strength. It conveys a somber universality.
+  - english: From morning to evening, he worked tirelessly.
+    japanese:
+      - '{朝 と 言わ ず 晩 と 言わ ず}、彼 は 休み なく 働い た。'
+      - '{朝 と 言わ ず 晩 と 言わ ず}、彼 は 休み なく 働き まし た。'
+    english_literally: Without saying morning, without saying evening, he worked without rest.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一 日 中 休み なく 働い た。
+        english: He worked tirelessly all day long.
+        hint: This is a common way to say 'all day,' but we're looking for a phrasing that emphasizes
+          the continuous nature from 'morning to evening' without breaks, specifically using two time
+          points. We're looking for a pattern that highlights both extremes of a period.
+    scene: A narrative describing someone's incredible dedication and relentless work ethic.
+    register: bungo (literary)
+    setting: reflective
+    nuance: 「朝 と 言わず 晩 と 言わず」 emphasizes that his work extended throughout the entire day, without differentiating
+      between morning or evening, conveying a continuous and exhaustive effort. This is often used in
+      more literary or descriptive contexts.
+  - english: From land to sea, the plastic pollution has spread everywhere.
+    japanese:
+      - '{陸 と 言わ ず 海 と 言わ ず}、プラスチック 汚染 は いたる 所 に 広がっ て いる。'
+      - '{陸 と 言わ ず 海 と 言わ ず}、プラスチック 汚染 は いたる 所 に 広がっ て い ます。'
+    english_literally: Without saying land, without saying sea, plastic pollution has spread everywhere.
+    competing_grammar:
+      - competing_japanese:
+          - プラスチック 汚染 は 陸 も 海 も 至る所 に 広がっ て いる。
+        english: Plastic pollution has spread everywhere, on land and sea.
+        hint: This covers 'everywhere,' but we want to specifically emphasize the breadth from 'land to
+          sea' without exception. We're looking for a pattern that uses two distinct locations to illustrate
+          universal spread.
+    scene: Discussing the global environmental crisis of plastic waste.
+    register: formal
+    setting: informative
+    nuance: This sentence uses 「陸 と 言わず 海 と 言わず」 to stress the pervasive nature of plastic pollution,
+      affecting every part of the environment, both terrestrial and aquatic.
+  - english: From front to back, the car was completely covered in mud.
+    japanese:
+      - '{前 と 言わ ず 後ろ と 言わ ず}、車 は 泥 だらけ だっ た。'
+      - '{前 と 言わ ず 後ろ と 言わ ず}、車 は 泥 だらけ でし た。'
+    english_literally: Without saying front, without saying back, the car was covered in mud.
+    competing_grammar:
+      - competing_japanese:
+          - 車 の 全体 が 泥 だらけ だっ た。
+        english: The entire car was covered in mud.
+        hint: This is a general term for 'entirely,' but we're looking for a phrasing that highlights
+          the coverage from 'front to back' specifically. We're looking for a pattern that uses directional
+          extremes to show complete coverage.
+    scene: Describing a car after driving through a very muddy off-road trail.
+    register: casual
+    setting: humorous
+    nuance: 「前 と 言わず 後ろ と 言わず」 highlights that the mud covered the entire car, from one end to the other,
+      making no distinction.
+  - english: During the sales period, from weekdays to weekends, the store was bustling with customers.
+    japanese:
+      - セール 期間 中 は、{平日 と 言わ ず 週末 と 言わ ず}、店 は 客 で 賑わっ て い た。
+      - セール 期間 中 は、{平日 と 言わ ず 週末 と 言わ ず}、店 は 客 で 賑わっ て い まし た。
+    english_literally: During the sale period, without saying weekday, without saying weekend, the store
+      was bustling with customers.
+    competing_grammar:
+      - competing_japanese:
+          - セール 期間 中 は、曜日 を 問わ ず、店 は 客 で 賑わっ て い た。
+        english: During the sales period, regardless of the day of the week, the store was bustling with
+          customers.
+        hint: This directly addresses 'days of the week,' but we want to show the range from 'weekdays
+          to weekends.' We're looking for a pattern that uses representative time periods to show continuous
+          activity.
+    scene: Observing the constant stream of customers during a big store sale.
+    register: formal
+    setting: informative
+    nuance: 「平日 と 言わず 週末 と 言わず」 emphasizes that the store was busy throughout the entire sales period,
+      regardless of the day of the week, indicating continuous high traffic.
+  - english: In this region, from rivers to lakes, the water is crystal clear.
+    japanese:
+      - この 地域 で は、{川 と 言わ ず 湖 と 言わ ず}、水 が 透き通っ て いる。
+      - この 地域 で は、{川 と 言わ ず 湖 と 言わ ず}、水 が 透き通っ て い ます。
+    english_literally: In this region, without saying river, without saying lake, the water is transparent.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 で は、あらゆる 水源 で 水 が 透き通っ て いる。
+        english: In this region, the water is crystal clear in all water sources.
+        hint: This is more general, but we want to specify 'rivers to lakes' to exemplify the range. We're
+          looking for a pattern that highlights two types of water bodies to demonstrate widespread clarity.
+    scene: Describing the pristine natural environment of a certain region.
+    register: formal
+    setting: informative
+    nuance: 「川 と 言わず 湖 と 言わず」 highlights that the clear water quality is a consistent characteristic across
+      all bodies of water in the region.
+  - english: From young to old, everyone loved his music.
+    japanese:
+      - '{老若 男女 と 言わ ず}、彼 の 音楽 は みんな に 愛さ れ て い た。'
+      - '{老若 男女 と 言わ ず}、彼 の 音楽 は みんな に 愛さ れ て い まし た。'
+    english_literally: Without saying old or young, his music was loved by everyone.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 音楽 は 誰 も が 愛し て い た。
+        english: Everyone loved his music.
+        hint: This is a general 'everyone,' but we want to specifically emphasize the 'young to old' aspect
+          without exception. We're looking for a pattern that covers all demographic ranges.
+    scene: Reflecting on the broad appeal of a musician's work.
+    register: casual
+    setting: friendly
+    nuance: While often used with two specific nouns, 「老若男女」 itself implies a comprehensive range of ages
+      and genders. This usage of **〜と言わず** still emphasizes the universality, meaning 'without distinction
+      of age or gender'.
+  - english: From beginners to experts, everyone can enjoy this game.
+    japanese:
+      - '{初心 者 と 言わ ず 上級 者 と 言わ ず}、誰 で も この ゲーム を 楽しめる。'
+      - '{初心 者 と 言わ ず 上級 者 と 言わ ず}、誰 で も この ゲーム を 楽しめ ます。'
+    english_literally: Without saying beginner, without saying expert, anyone can enjoy this game.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 で も この ゲーム を 楽しめる。
+        english: Anyone can enjoy this game.
+        hint: This is a direct 'anyone,' but we want to highlight the skill range specifically from 'beginners
+          to experts.' We're looking for a pattern that uses skill levels to demonstrate universal accessibility.
+    scene: Explaining the accessibility and broad appeal of a newly released video game.
+    register: casual
+    setting: informative
+    nuance: 「初心者 と 言わず 上級者 と 言わず」 indicates that the game's enjoyment spans the entire spectrum of skill
+      levels, from novices to seasoned players, making it truly inclusive.
+  - english: From Hokkaido to Okinawa, sushi is popular all over Japan.
+    japanese:
+      - '{北海道 と 言わ ず 沖縄 と 言わ ず}、寿司 は 日本 中 で 人気 が ある。'
+      - '{北海道 と 言わ ず 沖縄 と 言わ ず}、寿司 は 日本 中 で 人気 が あり ます。'
+    english_literally: Without saying Hokkaido, without saying Okinawa, sushi is popular throughout Japan.
+    competing_grammar:
+      - competing_japanese:
+          - 寿司 は 全国 で 人気 が ある。
+        english: Sushi is popular nationwide.
+        hint: This is a general term for 'nationwide,' but we're looking for a phrasing that highlights
+          the geographic spread by citing two extreme points. We're looking for a pattern that exemplifies
+          universal popularity through geographical boundaries.
+    scene: Discussing the widespread popularity of sushi across the Japanese archipelago.
+    register: formal
+    setting: informative
+    nuance: This example uses the two extreme geographical points of Japan, Hokkaido and Okinawa, with
+      「北海道 と 言わず 沖縄 と 言わず」 to emphasize that sushi's popularity covers the entire country without exception.
+post_example_writeup: As illustrated by the examples, **〜と言わず〜と言わず** is a powerful tool to express comprehensiveness.
+  It often appears in formal contexts but can be used casually to add emphasis. The two nouns used with
+  the pattern often represent the two ends of a spectrum or category, highlighting that everything within
+  that spectrum is included.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%80%9C%E8%A8%80%E3%82%8F%E3%81%9A%E3%80%9C%E8%A8%80%E3%82%8F%E3%81%9A

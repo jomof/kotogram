@@ -1,0 +1,343 @@
+grammar_point: あまりに (excessively・too much)
+learn_before:
+  - い-Adjective[dictionary] (dictionary)
+  - なん・Counter・か (some・several・a few)
+meaning: So much...that, (Way) too...
+pronunciation:
+  katakana: アマリニ
+  romaji: amari ni
+formation:
+  Verb + あまりに: Used adverbially to modify a verb, indicating excessive action, often leading to a negative
+    or surprising result.
+  Adjective + あまりに: Used adverbially to modify an adjective, indicating an excessive degree, often leading
+    to a negative or surprising result.
+  あまりの + Noun: Used adjectivally to modify a noun, indicating an excessive state or quantity of that noun,
+    leading to a result.
+  あまりにも + Verb/Adjective/Noun: Adds stronger emphasis to the excessive nature, implying a more pronounced
+    or extreme outcome.
+jlpt: N3
+etymology: Derived from 余る (amaru), meaning "to remain" or "to be in excess." あまりに (amari ni) thus conveys
+  the sense of something exceeding a normal or acceptable limit.
+writeup: |-
+  **あまりに (amari ni)** is an adverbial expression used to convey that something is "too much" or "excessive," which then leads to a particular result. It is frequently employed when expressing surprise or shock regarding the intensity or degree of something. While it can be translated simply as "so much (A) that (B)" or "way too much (A)," its core meaning is closer to "excessively." Therefore, thinking of it as "it is excessively (A), so (B)" can often capture its full nuance.
+
+  This grammar point can modify verbs and adjectives directly, or nouns when followed by の or にも. The inclusion of も (forming **あまりにも**), while optional, adds further emphasis to the "excess" of the preceding element, highlighting an even more pronounced or extreme outcome.
+
+  It is important to note that あんまり (anmari) is a colloquial variant of あまり. While commonly used in spoken Japanese, it should generally be avoided in formal or official writing due to its informal nature.
+false_friends:
+  - term: すぎる (too much・excessive)
+    meaning: Too much, excessive
+    kind: similar expression
+    nuance: While すぎる indicates something is "too much," it doesn't necessarily imply a surprising or
+      shocking outcome as あまりに often does. すぎる can also be attached to verbs, which あまりに cannot.
+    grammar_point: すぎる (too much・excessive)
+  - term: なかなか (quite not easily)
+    meaning: Very, quite, considerably; (with negative form) not easily or readily.
+    kind: often confused with
+    nuance: なかなか expresses a degree of something but lacks the excessive nuance and resulting consequence
+      that あまりに conveys.
+    grammar_point: なかなか (quite not easily)
+  - term: あまり (so much that)
+    meaning: So much...that
+    kind: similar expression
+    nuance: あまり alone can also mean "so much that," but あまりに emphasizes the excessive nature even more
+      strongly.
+    grammar_point: '[Verb-dict・Nounの]あまり (so much... that)'
+  - term: とても (very)
+    meaning: Very, extremely, terribly
+    kind: similar expression
+    nuance: とても is a general intensifier that means 'very' or 'extremely,' but unlike あまりに, it describes
+      a high degree without inherently implying an excessive amount that leads to a specific, often surprising
+      or undesirable, outcome.
+    grammar_point: <suggest>:とても (very)
+  - term: どんなに〜ても (no matter how much)
+    meaning: No matter how
+    kind: similar expression
+    nuance: While どんなに〜ても expresses an idea of extreme degree, it focuses on the conditional aspect (even
+      if it's extremely X, Y happens/doesn't happen) rather than the direct cause-and-effect of an excessive
+      state leading to a consequence.
+    grammar_point: どんなに〜ても (no matter how much)
+post_false_friends_writeup: While すぎる, なかなか, あまり, とても, and どんなに〜ても can sometimes be used in similar contexts,
+  it's important to remember that あまりに specifically indicates an excessive degree leading to a surprising
+  or impactful outcome. すぎる is a more general expression and can be attached to verbs. なかなか, on the other
+  hand, shows a degree of something without implying the element of excess or an unexpected consequence
+  that あまりに conveys. とても is a direct intensifier that simply means "very" or "extremely" without the implication
+  of an excessive quantity or degree leading to a specific result. どんなに〜ても emphasizes a conditional outcome
+  regardless of the degree, rather than a direct consequence of an excessive state.
+examples:
+  - english: The test was so easy that everyone finished early.
+    japanese:
+      - テスト が {あまり に} 簡単 すぎ て、みんな 早く 終わっ た。
+      - テスト が {あまり に も} 簡単 すぎ て、みんな 早く 終わっ た。
+    english_literally: As for the test, it was too easy to such an extent, everyone finished early.
+    competing_grammar:
+      - competing_japanese:
+          - テスト が {とても} 簡単 だっ た の で
+        english: The test was very easy, so...
+        hint: The scene indicates an unexpected and widespread consequence (everyone finishing early)
+          due to the test's ease, which あまりに highlights more than a simple intensifier like とても. We're
+          looking for an expression that emphasizes the excessive degree of something leading to a surprising
+          outcome.
+      - competing_japanese:
+          - テスト が 簡単 {すぎ た} から
+        english: Because the test was too easy...
+        hint: While 「簡単 すぎた」 expresses being 'too easy,' あまりに emphasizes the degree of easiness that led
+          to the specific result, making the excessive nature the primary cause. We're looking for an
+          expression that links an excessive quality to a clear consequence.
+    scene: Students are leaving the exam room much earlier than expected, looking relieved.
+    register: casual
+    setting: informative
+  - english: I overslept so badly that I was late for an important meeting.
+    japanese:
+      - 朝 寝坊 が {あまり に} ひどく て、大事 な 会議 に 遅刻 し た。
+      - 朝 寝坊 が {あまり に も} ひどく て、大事 な 会議 に 遅刻 し た。
+    english_literally: My oversleeping was so bad that I was late for an important meeting.
+    competing_grammar:
+      - competing_japanese:
+          - 朝 寝坊 が {とても} ひどかっ た の で
+        english: My oversleeping was very bad, so...
+        hint: The scene (missing an important meeting) stresses that the oversleeping was excessive and
+          caused a significant negative consequence, a key nuance of あまりに. We're looking for a phrase
+          that implies an extreme degree leading to a negative result.
+      - competing_japanese:
+          - 朝 寝坊 し {すぎ た} から
+        english: Because I overslept too much...
+        hint: While 「しすぎた」 conveys 'overslept too much', あまりに emphasizes the extreme degree of oversleeping
+          and its direct, impactful result (lateness to a crucial event). We're looking for a verb that
+          connects excessive action to a specific negative consequence.
+    scene: A person rushing into the office, looking flustered and apologetic, well after the meeting
+      has started.
+    register: casual
+    setting: apologetic
+  - english: The sound of the thunder was so frightening that the child started crying.
+    japanese:
+      - 雷 の 音 が {あまり に} も 怖く て、子供 が 泣き 出し た。
+      - 雷 の 音 が {あまり に} 怖く て、子供 が 泣き 出し た。
+    english_literally: The sound of the thunder was so frightening that the child started crying.
+    competing_grammar:
+      - competing_japanese:
+          - 雷 の 音 が {とても} 怖かっ た の で
+        english: Because the sound of the thunder was very scary...
+        hint: The scene highlights the overwhelming nature of the fear, leading to an immediate, involuntary
+          reaction (crying), which あまりにも captures more intensely than とても. We're looking for a phrase
+          that indicates an overwhelming emotion leading to a clear reaction.
+      - competing_japanese:
+          - 雷 の 音 が 怖 {すぎ た} から
+        english: Because the sound of the thunder was too scary...
+        hint: 「怖すぎた」 indicates 'too scary,' but あまりにも emphasizes the extreme degree of fear that caused
+          a specific, emotional outburst. We're looking for an expression that stresses an excessive quality
+          leading to an involuntary response.
+    scene: A child is visibly distressed, clinging to a parent, while a loud thunderstorm rages outside.
+    register: casual
+    setting: serious
+  - english: That lecture was so dull that some students fell asleep.
+    japanese:
+      - その 講演 は {あまり に} も 退屈 で、何 人 か の 学生 が 寝 て しまっ た。
+      - その 講演 は {あまり に} 退屈 で、何 人 か の 学生 が 寝 て しまっ た。
+    english_literally: That lecture was so boring that some students fell asleep.
+    competing_grammar:
+      - competing_japanese:
+          - その 講演 は {とても} 退屈 だっ た の で
+        english: That lecture was very boring, so...
+        hint: The scene (students falling asleep) indicates an excessive level of boredom that caused
+          a specific, noticeable result, which あまりにも emphasizes more than a simple intensifier like とても.
+          We're looking for an expression that signifies an extreme degree leading to an unexpected consequence.
+      - competing_japanese:
+          - その 講演 は 退屈 {すぎ た} から
+        english: Because that lecture was too boring...
+        hint: 「退屈すぎた」 conveys 'too boring,' but あまりにも stresses the extreme degree of dullness that led
+          to an involuntary physiological response (falling asleep). We're looking for a phrase that links
+          an excessive quality to a clear, often undesirable, outcome.
+    scene: In a university lecture hall, several students are slumped in their seats, eyes closed, seemingly
+      dozing off during the presentation.
+    register: casual
+    setting: informative
+  - english: The old photos were so nostalgic that I became sentimental remembering the past.
+    japanese:
+      - 古 い 写真 は {あまり に} も 懐かしく、昔 を 思い出し て 感傷 的 に なっ た。
+      - 古 い 写真 は {あまり に} 懐かしく、昔 を 思い出し て 感傷 的 に なっ た。
+    english_literally: Old photos were so nostalgic, remembering the past I became sentimental.
+    competing_grammar:
+      - competing_japanese:
+          - 古 い 写真 は {とても} 懐かしかっ た の で
+        english: Because the old photos were very nostalgic...
+        hint: The scene (becoming sentimental) shows an overwhelming sense of nostalgia, which あまりにも captures
+          more effectively than とても, emphasizing the profound emotional impact. We're looking for an expression
+          that conveys an overwhelming emotion leading to a deep emotional state.
+      - competing_japanese:
+          - 古 い 写真 は 懐かし {すぎ た} から
+        english: Because the old photos were too nostalgic...
+        hint: 「懐かしすぎた」 indicates 'too nostalgic,' but あまりにも conveys that the nostalgia was excessive to
+          the point of deeply moving one's emotions. We're looking for a phrase that implies an excessive
+          emotion leading to a significant internal change.
+    scene: A person is quietly sitting alone, looking through an old photo album, a wistful expression
+      on their face.
+    register: casual
+    setting: reflective
+  - english: That popular band's concert was so crowded that tickets sold out on the same day.
+    japanese:
+      - その 人気 バンド の コンサート は {あまり に} も 人 が 多く て、チケット が 即日 完売 し た。
+      - その 人気 バンド の コンサート は {あまり に} 人 が 多く て、チケット が 即日 完売 し た。
+    english_literally: That popular band's concert had so many people that tickets sold out on the same
+      day.
+    competing_grammar:
+      - competing_japanese:
+          - その 人気 バンド の コンサート は {とても} 人気 が あっ た の で
+        english: Because that popular band's concert was very popular...
+        hint: The scene (tickets selling out immediately) highlights the excessive popularity that led
+          to a specific, immediate consequence, which あまりにも emphasizes more than とても. We're looking for
+          an expression that stresses an extreme condition leading to a rapid, definitive outcome.
+      - competing_japanese:
+          - その 人気 バンド の コンサート は 人気 {すぎ た} から
+        english: Because that popular band's concert was too popular...
+        hint: 「人気すぎた」 conveys 'too popular,' but あまりにも stresses that the popularity was so extreme that
+          it resulted in all tickets being sold out instantly. We're looking for a phrase that implies
+          an excessive attribute leading to an immediate, impactful result.
+    scene: A news report shows a long line of fans outside a venue, with a 'Sold Out' sign displayed prominently.
+    register: casual
+    setting: informative
+  - english: My dog is so cute that I end up hugging it every day.
+    japanese:
+      - うち の 犬 は {あまり に} も 可愛く て、毎日 抱きしめ て しまう。
+      - うち の 犬 は {あまり に} 可愛く て、毎日 抱きしめ て しまう。
+    english_literally: My dog is so cute that I end up hugging it every day.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 犬 は {とても} 可愛い の で
+        english: Because my dog is very cute...
+        hint: The scene (daily hugging) indicates an overwhelming level of cuteness that leads to an involuntary,
+          habitual action, which あまりにも expresses more intensely. We're looking for an expression that
+          conveys an overwhelming quality leading to an uncontrollable action.
+      - competing_japanese:
+          - うち の 犬 は 可愛 {すぎる} から
+        english: Because my dog is too cute...
+        hint: 「可愛すぎる」 conveys 'too cute,' but あまりにも emphasizes that the cuteness is excessive to the point
+          of dominating one's actions, showing an uncontrollable affection. We're looking for a phrase
+          that implies an excessive trait leading to an involuntary, habitual behavior.
+    scene: A person is on the floor, surrounded by dog toys, with their dog playfully nipping at their
+      fingers, clearly adored.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「～てしまう」 indicates an involuntary action, suggesting the speaker cannot help but
+      hug the dog due to its overwhelming cuteness. This casual expression is common for expressing strong,
+      uncontrollable affection.
+  - english: This car is so expensive that I can't afford it.
+    japanese:
+      - この 車 は {あまり に} も 値段 が 高く て、手 が 出せ ない。
+      - この 車 は {あまり に} 値段 が 高く て、手 が 出せ ない。
+    english_literally: This car's price is so high that I cannot reach out (to buy it).
+    competing_grammar:
+      - competing_japanese:
+          - この 車 は {とても} 値段 が 高い の で
+        english: Because this car is very expensive...
+        hint: The scene (checking wallet, inability to afford) shows the price is excessive to the degree
+          that it prevents purchase, highlighting the negative consequence of the excessive cost. We're
+          looking for an expression that signifies an excessive cost leading to an inability to purchase.
+      - competing_japanese:
+          - この 車 は 値段 が 高 {すぎる} から
+        english: Because this car is too expensive...
+        hint: 「高すぎる」 indicates 'too expensive,' but あまりにも stresses that the cost is exorbitant to the
+          point of making the purchase impossible, implying a prohibitive amount. We're looking for a
+          phrase that connects an excessive price to a prohibitive consequence.
+    scene: A man is looking at a luxury car in a showroom, then sighs and checks his wallet, indicating
+      the price is prohibitive.
+    register: casual
+    setting: serious
+    speaker_gender: male
+  - english: The present I received was so big that I couldn't carry it by myself.
+    japanese:
+      - もらっ た プレゼント が {あまり に} も 大きく て、一人 で 運べ なかっ た。
+      - もらっ た プレゼント が {あまり に} 大きく て、一人 で 運べ なかっ た。
+    english_literally: The present I received was so big that I couldn't carry it by myself.
+    competing_grammar:
+      - competing_japanese:
+          - もらっ た プレゼント が {とても} 大きかっ た の で
+        english: Because the present I received was very big...
+        hint: The scene (struggling to carry) conveys that the size is excessive to the point of being
+          unmanageable, a direct and perhaps humorous consequence of the 'too much' size. We're looking
+          for an expression that signifies an excessive size leading to a physical limitation.
+      - competing_japanese:
+          - もらっ た プレゼント が 大き {すぎ た} から
+        english: Because the present I received was too big...
+        hint: 「大きすぎた」 conveys 'too big,' but あまりにも emphasizes that the size is ridiculously large to the
+          point of making it impractical or impossible to carry alone. We're looking for a phrase that
+          links an excessive dimension to an impractical outcome.
+    scene: A person is standing next to a comically large gift box, struggling to even budge it.
+    register: casual
+    setting: humorous
+  - english: The view from the mountain was so beautiful that it took my breath away.
+    japanese:
+      - 山 から の 景色 が {あまり に} も 美しく て、息 を 飲む ほど だっ た。
+      - 山 から の 景色 が {あまり に} 美しく て、息 を 飲む ほど だっ た。
+    english_literally: The view from the mountain was so beautiful that it was to the extent of taking
+      my breath.
+    competing_grammar:
+      - competing_japanese:
+          - 山 から の 景色 が {とても} 美しかっ た の で
+        english: Because the view from the mountain was very beautiful...
+        hint: The scene (being speechless with awe) highlights the overwhelming intensity of the beauty,
+          causing an immediate, strong reaction, which あまりにも captures more powerfully. We're looking for
+          an expression that conveys an overwhelming beauty leading to a profound emotional or physical
+          reaction.
+      - competing_japanese:
+          - 山 から の 景色 が 美し {すぎ た} から
+        english: Because the view from the mountain was too beautiful...
+        hint: 「美しすぎた」 indicates 'too beautiful,' but あまりにも conveys that the beauty was exceptionally dazzling
+          to the extent that it prompted a physical response (taking one's breath away). We're looking
+          for a phrase that implies an excessive beauty leading to an intense, breathtaking experience.
+    scene: A hiker stands at a mountain summit, gazing at a breathtaking panoramic view, momentarily speechless
+      with awe.
+    register: casual
+    setting: inspirational
+  - english: That horror novel was so scary that I couldn't read it alone at night.
+    japanese:
+      - あの ホラー 小説 は {あまり に} も 怖く て、夜 一人 で 読め なかっ た。
+      - あの ホラー 小説 は {あまり に} 怖く て、夜 一人 で 読め なかっ た。
+    english_literally: That horror novel was so scary that I couldn't read it alone at night.
+    competing_grammar:
+      - competing_japanese:
+          - あの ホラー 小説 は {とても} 怖かっ た の で
+        english: Because that horror novel was very scary...
+        hint: The scene (unable to read alone) emphasizes the excessive fear that prevented reading in
+          certain conditions, underscoring the strong psychological impact. We're looking for an expression
+          that signifies an excessive fear leading to a behavioral inhibition.
+      - competing_japanese:
+          - あの ホラー 小説 は 怖 {すぎ た} から
+        english: Because that horror novel was too scary...
+        hint: 「怖すぎた」 conveys 'too scary,' but あまりにも indicates that the fear was overwhelming to the point
+          where one simply could not continue reading under specific circumstances. We're looking for
+          a phrase that links an excessive scare factor to an inability to perform an action.
+    scene: A person is trying to read a horror novel at night, but keeps looking over their shoulder nervously,
+      eventually closing the book.
+    register: casual
+    setting: cautious
+  - english: That game was so fun that I lost all my study time.
+    japanese:
+      - その ゲーム が {あまり に} も 面白く て、勉強 する 時間 が なくなっ た。
+      - その ゲーム が {あまり に} 面白く て、勉強 する 時間 が なくなっ た。
+    english_literally: That game was so fun that my study time disappeared.
+    competing_grammar:
+      - competing_japanese:
+          - その ゲーム が {とても} 面白かっ た の で
+        english: Because that game was very fun...
+        hint: The scene (losing study time) highlights the excessive and addictive nature of the game,
+          leading to a negative consequence for their responsibilities. We're looking for an expression
+          that implies an overwhelming enjoyment leading to a negative impact on other duties.
+      - competing_japanese:
+          - その ゲーム が 面白 {すぎ た} から
+        english: Because that game was too fun...
+        hint: 「面白すぎた」 implies 'too fun,' but あまりにも stresses that the fun was so extreme that it regularly
+          resulted in neglecting other important activities. We're looking for a phrase that connects
+          an excessive enjoyment to the neglect of responsibilities.
+    scene: A teenager is deeply engrossed in a video game, surrounded by untouched textbooks and notes.
+    register: casual
+    setting: storytelling
+    speaker_age: younger
+post_example_writeup: The examples illustrate how あまりに is used to emphasize an extreme degree, quantity,
+  or condition, which directly leads to a significant and often unexpected or undesirable outcome. Notice
+  how the nuance of a surprising or impactful result is consistently present. The optional 「にも」 further
+  intensifies this meaning, making the excessive nature even more pronounced.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/428

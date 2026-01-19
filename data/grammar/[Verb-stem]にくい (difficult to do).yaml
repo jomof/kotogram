@@ -1,0 +1,272 @@
+grammar_point: '[Verb-stem]にくい (difficult to do)'
+learn_before:
+  - '[Verb-stem]やすい (easy to do)'
+meaning: difficult to do
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: にくい
+    rarity: common
+    meaning: difficult to do
+  - conjugation-type: negative plain (～ない)
+    form: にくくない
+    rarity: common
+    meaning: not difficult to do
+  - conjugation-type: past plain (～た)
+    form: にくかった
+    rarity: common
+    meaning: was difficult to do
+  - conjugation-type: negative past plain (～なかった)
+    form: にくくなかった
+    rarity: common
+    meaning: was not difficult to do
+  - conjugation-type: te-form (～て)
+    form: にくくて
+    rarity: common
+    meaning: being difficult to do
+  - conjugation-type: non-past polite (～ます)
+    form: にくいです
+    rarity: common
+    meaning: is difficult to do (polite)
+pronunciation:
+  katakana: ニクイ
+  romaji: nikui
+formation:
+  Verb-stem + にくい: Expresses difficulty in performing an action.
+jlpt: N3
+etymology: The ~にくい suffix is believed to originate from the classical Japanese verb にくし (nikushi), meaning
+  "unpleasant" or "hard to bear." This underlying meaning of unpleasantness or difficulty connects to
+  its modern usage of expressing inherent difficulty or a negative quality of an action, making something
+  "hard to deal with" or "unpleasant to do."
+writeup: |-
+  The suffix ~にくい attaches to the stem of a verb to express that an action is "difficult to do" or "hard to do." It functions grammatically like an い-adjective.
+
+  This construction indicates an inherent difficulty or a negative quality associated with performing the action. It's not merely about the speaker's personal inability or subjective feeling, but rather that the nature of the action itself, or the circumstances surrounding it, makes it generally hard. For example, if a road is 歩きにくい (aruki-nikui - hard to walk on), it implies the road's condition (e.g., bumpy, steep) makes walking difficult for anyone, not just the speaker.
+
+  ~にくい can also carry a nuance of something being "unpleasant" or "undesirable" to do, echoing its etymological roots in words like 憎い (nikui - hateful/detestable). For instance, 言いにくい (ii-nikui - hard to say) can mean it's difficult to articulate, but it can also imply it's an unpleasant or awkward thing to say.
+false_friends:
+  - term: '[Verb-stem]がたい (hard to do)'
+    meaning: difficult to do, hard to bring oneself to do
+    kind: similar expression
+    nuance: がたい implies a strong mental or emotional barrier, or something being almost impossible due
+      to its nature. にくい is more about objective difficulty.
+    grammar_point: <suggest>:[Verb-stem]がたい (hard to do)
+  - term: '[Verb-stem]づらい (hard to do)'
+    meaning: difficult to do, unpleasant to do
+    kind: similar expression
+    nuance: づらい emphasizes the unpleasantness or personal burden associated with the action, whereas にくい
+      focuses more on the inherent difficulty of the action itself.
+    grammar_point: <suggest>:[Verb-stem]づらい (hard to do)
+  - term: '[Verb-stem]かねる (unable to・hesitant to)'
+    meaning: unable to do, hesitant to do
+    kind: similar expression
+    nuance: かねる indicates the speaker's own inability or reluctance, often politeness, while にくい describes
+      the objective difficulty of the action.
+    grammar_point: '[Verb-stem]かねる (unable to・hesitant to)'
+post_false_friends_writeup: While ~にくい, ~がたい, and ~づらい can all translate to "difficult to do," their nuances
+  differ. ~にくい describes an inherent, objective difficulty. ~がたい conveys a strong emotional or mental
+  barrier, making an action almost impossible to bring oneself to do. ~づらい often implies a personal, subjective
+  difficulty, or that the action is unpleasant or painful for the performer. ~かねる expresses the speaker's
+  polite hesitation or inability to perform an action, rather than an inherent difficulty of the action
+  itself. Choose carefully based on the specific nuance you wish to convey.
+examples:
+  - english: This chair is hard to sit on.
+    japanese:
+      - この 椅子 は {座り にくい}。
+      - この 椅子 は {座り にくい です}。
+    english_literally: This chair is difficult to sit on.
+    competing_grammar:
+      - competing_japanese:
+          - この 椅子 は 座れ なかっ た。
+        english: I couldn't sit on this chair.
+        hint: This phrase indicates a personal inability or impossibility to sit, not the inherent difficulty
+          of the chair itself. We're looking for an expression that describes the chair as inherently
+          difficult to sit on.
+    scene: A friend complains about uncomfortable furniture in a cafe.
+    register: casual
+    setting: friendly
+    nuance: The use of 「座りにくい」 emphasizes the physical discomfort or poor design of the chair that makes
+      the act of sitting difficult for anyone.
+  - english: That kind of thing is hard to say.
+    japanese:
+      - そう いう こと は {言い にくい}。
+      - そう いう こと は {言い にくい です}。
+    english_literally: That kind of thing is difficult to say.
+    competing_grammar:
+      - competing_japanese:
+          - そう いう こと は 言う べき で は ない。
+        english: That kind of thing should not be said.
+        hint: This phrase suggests a moral obligation or a rule against saying something. We're looking
+          for an expression that indicates the difficulty or awkwardness in verbalizing it.
+    scene: Two colleagues discussing a sensitive topic at work.
+    register: semi-formal
+    setting: professional
+    nuance: Here, 「言いにくい」 implies that the difficulty stems from social implications or awkwardness, making
+      it an uncomfortable or sensitive topic to discuss, rather than merely being difficult to articulate.
+      This highlights a common social nuance of ~にくい.
+  - english: This pen is hard to write with.
+    japanese:
+      - この ペン は {書き にくい}。
+      - この ペン は {書き にくい です}。
+    english_literally: This pen is difficult to write with.
+    competing_grammar:
+      - competing_japanese:
+          - この ペン は 書け なかっ た。
+        english: I couldn't write with this pen.
+        hint: This implies a personal failure or inability on a single occasion. We're looking for an
+          expression that describes the pen's inherent quality making writing difficult.
+    scene: A student trying out a new pen during class, finding it scratchy or unreliable.
+    register: casual
+    setting: academic
+    nuance: The phrase 「書きにくい」 indicates that the pen itself possesses a characteristic (e.g., poor ink
+      flow, uncomfortable grip) that makes the act of writing difficult, affecting anyone who uses it.
+  - english: It's hard to see in this dark room.
+    japanese:
+      - この 暗い 部屋 は {見え にくい}。
+      - この 暗い 部屋 は {見え にくい です}。
+    english_literally: This dark room is difficult to see in.
+    competing_grammar:
+      - competing_japanese:
+          - この 暗い 部屋 で は よく 見え ない。
+        english: I can't see well in this dark room.
+        hint: This is a statement of personal inability to see clearly. We're looking for an expression
+          about the room's condition making visibility generally difficult.
+    scene: Someone trying to find a lost item in a dimly lit room.
+    register: casual
+    setting: casual slang
+    nuance: By using 「見えにくい」 with the passive potential form of `見る` (`見える`), the sentence indicates that
+      the environment (darkness) inherently makes the act of seeing difficult, rather than a personal
+      visual impairment.
+  - english: These shoes are hard to walk in.
+    japanese:
+      - この 靴 は {歩き にくい}。
+      - この 靴 は {歩き にくい です}。
+    english_literally: These shoes are difficult to walk in.
+    competing_grammar:
+      - competing_japanese:
+          - この 靴 で は 歩け ない。
+        english: I cannot walk in these shoes.
+        hint: This implies a complete inability to walk. We're looking for an expression that describes
+          the shoes as making walking difficult, but not necessarily impossible.
+    scene: A person trying on new, fashionable but uncomfortable shoes before going out.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「歩きにくい」 specifically points out that the design or fit of the shoes makes the action
+      of walking difficult, suggesting a flaw in the footwear itself.
+  - english: This meat is hard to chew.
+    japanese:
+      - この 肉 は {噛み にくい}。
+      - この 肉 は {噛み にくい です}。
+    english_literally: This meat is difficult to chew.
+    competing_grammar:
+      - competing_japanese:
+          - この 肉 は 硬い。
+        english: This meat is tough/hard.
+        hint: This describes the texture of the meat as 'hard' but doesn't explicitly state the difficulty
+          in chewing it. We're looking for a phrase that directly expresses the difficulty of the action.
+    scene: A family having dinner, commenting on the quality of the meal.
+    register: casual
+    setting: friendly
+    nuance: The use of 「噛みにくい」 directly attributes the difficulty of chewing to the inherent quality of
+      the meat, implying it's tough or stringy.
+  - english: This smartphone is hard to use.
+    japanese:
+      - この スマホ は {使い にくい}。
+      - この スマホ は {使い にくい です}。
+    english_literally: This smartphone is difficult to use.
+    competing_grammar:
+      - competing_japanese:
+          - この スマホ は 操作 が 難しい。
+        english: This smartphone's operation is difficult.
+        hint: This phrasing is slightly more formal and emphasizes the 'operation' specifically. We're
+          looking for a simpler, more direct statement about the overall usability.
+    scene: An elderly person struggling with a new, complicated smartphone.
+    register: casual
+    setting: informative
+    nuance: 「使いにくい」 implies that the smartphone's user interface or design is inherently complex or unintuitive,
+      making it difficult for the user (or generally) to operate effectively.
+  - english: Her Japanese is hard to understand because she speaks so fast.
+    japanese:
+      - 彼女 は 話す の が 早い から、日本 語 が {聞き にくい}。
+      - 彼女 は 話す の が 早い から、日本 語 が {聞き にくい です}。
+    english_literally: Because she speaks fast, her Japanese is difficult to listen to.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 日本 語 は 理解 する の が 難しい。
+        english: Her Japanese is difficult to comprehend.
+        hint: This focuses on the intellectual difficulty of comprehension. We're looking for an expression
+          that highlights the difficulty in the act of listening itself due to external factors.
+    scene: Two language learners discussing their Japanese teachers.
+    register: casual
+    setting: academic
+    nuance: The phrase 「聞きにくい」 specifies that the difficulty lies in the act of listening and processing
+      the spoken Japanese, attributing it to the speaker's fast pace rather than a lack of vocabulary
+      or grammar knowledge.
+  - english: This stain is hard to remove.
+    japanese:
+      - この 染み は {取り にくい}。
+      - この 染み は {取り にくい です}。
+    english_literally: This stain is difficult to take off/remove.
+    competing_grammar:
+      - competing_japanese:
+          - この 染み は 取れ ない。
+        english: This stain cannot be removed.
+        hint: This implies a complete impossibility of removal. We're looking for an expression that indicates
+          it's difficult to remove, but not necessarily impossible.
+    scene: A homeowner trying to clean a stubborn stain on a carpet.
+    register: casual
+    setting: casual slang
+    nuance: 「取りにくい」 indicates that the inherent nature of the stain (e.g., its type, how long it's been
+      there) makes the process of removing it challenging.
+  - english: It's hard to reach the top shelf.
+    japanese:
+      - 一番 上 の 棚 は {届き にくい}。
+      - 一番 上 の 棚 は {届き にくい です}。
+    english_literally: The top shelf is difficult to reach.
+    competing_grammar:
+      - competing_japanese:
+          - 一番 上 の 棚 に は 手 が 届か ない。
+        english: My hand doesn't reach the top shelf.
+        hint: This explicitly states the speaker's personal inability to reach due to arm length. We're
+          looking for a phrase that describes the shelf as inherently difficult to reach for most people.
+    scene: A shorter person trying to get something from a high shelf in a supermarket.
+    register: casual
+    setting: friendly
+    nuance: 「届きにくい」 suggests that the height of the shelf itself (a characteristic of the object) makes
+      the action of reaching difficult for a typical person, not just the speaker's individual limitation.
+  - english: This machine is hard to repair.
+    japanese:
+      - この 機械 は {直し にくい}。
+      - この 機械 は {直し にくい です}。
+    english_literally: This machine is difficult to repair.
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 は 修理 する の が 難しい。
+        english: Repairing this machine is difficult.
+        hint: This phrasing is slightly more formal and highlights the 'act of repairing' as difficult.
+          We're looking for a simpler, direct statement about the machine's inherent repair difficulty.
+    scene: A technician explaining the difficulties of fixing a complex device to a client.
+    register: formal
+    setting: technical
+    nuance: By using 「直しにくい」, the technician implies that the machine's design or complexity makes repairs
+      inherently challenging, suggesting a systemic difficulty rather than merely a personal lack of skill.
+  - english: This kanji is hard to remember.
+    japanese:
+      - この 漢字 は {覚え にくい}。
+      - この 漢字 は {覚え にくい です}。
+    english_literally: This kanji is difficult to remember.
+    competing_grammar:
+      - competing_japanese:
+          - この 漢字 は 忘れ やすい。
+        english: This kanji is easy to forget.
+        hint: This describes the ease of forgetting, not the difficulty of the initial memorization. We're
+          looking for an expression about the challenge of learning it in the first place.
+    scene: A student studying for a Japanese test, struggling with a particular kanji.
+    register: casual
+    setting: academic
+    nuance: 「覚えにくい」 indicates that the complexity, irregular strokes, or similar appearance to other kanji
+      inherently make the memorization process difficult for learners.
+post_example_writeup: The examples demonstrate that ~にくい can apply to a wide range of situations, from
+  physical actions like sitting and walking, to cognitive tasks like understanding and remembering, and
+  even social interactions like speaking. In each case, it highlights an inherent or situational characteristic
+  that makes the verb's action difficult to perform or experience. The speaker's personal feeling is less
+  emphasized than the objective nature of the difficulty.

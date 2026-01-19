@@ -1,0 +1,368 @@
+grammar_point: まえに (before・in front)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[ました] (polite past)
+  - '[Noun]をください (please give me)'
+  - '[な-Adjective]に (adverbial form)'
+  - ある (to exist, inanimate・to have)
+  - い-Adjective[み] (abstract quality)
+  - と (and, connects nouns)
+  - と (with)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - にしてからが (even in surprising cases)
+  - にする (to decide or make)
+  - へ (directional particle)
+  - 側 (side or flank)
+  - 大きな・小さな (big・small)
+  - 背面 (back surface spatial)
+meaning: Before, In front of
+pronunciation:
+  katakana: マエニ
+  romaji: maeni
+formation:
+  Verb (dictionary form) + 前に: Indicates an action happening prior to another action.
+  Noun + の + 前に: Indicates a time or event before which something occurs.
+  Location Noun + の + 前に: Indicates a position in front of a location or object.
+jlpt: N5
+etymology: 「前 (mae)」 means "front" or "before." に (ni) is a particle indicating location or time. Thus,
+  「まえに」 literally combines these meanings to indicate a position in front of something or a point in time
+  before something else.
+writeup: "「まえに」 is a versatile phrase that indicates either **temporal precedence** (before an action\
+  \ or event) or **spatial position** (in front of something). Its meaning depends entirely on the context\
+  \ and the type of word it follows. For example, it does not mean \"the past\" or \"previously.\"\n\n\
+  When used with **verbs**, the verb must be in its plain, non-past (dictionary) form. This construction\
+  \ signifies that the action described by 「まえに」 occurs prior to the action of the main verb in the sentence.\
+  \ For example, 「食べる前に」 means \"before eating,\" indicating that a certain action will be performed before\
+  \ the act of eating.\n\nWhen used with **nouns**, the particle 「の」 is required between the noun and\
+  \ 「まえに」. If the noun refers to an an event or a point in time (e.g., 「会議」 'meeting', 「試験」 'exam'), 「まえに」\
+  \ denotes temporal precedence, meaning \"before the meeting\" or \"before the exam.\" If the noun refers\
+  \ to a physical object or location (e.g., 「駅」 'station', 「家」 'house'), 「まえに」 denotes spatial position,\
+  \ meaning \"in front of the station\" or \"in front of the house.\" \n\nThis grammar point is fundamental\
+  \ for describing order in both time and space in Japanese."
+false_friends:
+  - term: あとで
+    meaning: After, Later
+    kind: antonym
+    nuance: Unlike 「まえに」, 「あとで」 indicates something that happens *after* a specific time or event.
+    grammar_point: あとで (after・later)
+  - term: 手前
+    meaning: Before, In front of, From one's standpoint or side
+    kind: similar expression
+    nuance: While both can mean "in front of," 「手前」 often refers to the immediate area directly in front
+      of oneself or a specific viewpoint, whereas 「まえに」 is more general and can refer to any 'front' position.
+      「手前」 also has nuanced meanings related to 'duty' or 'one's position'.
+    grammar_point: 手前 (before; in front of; on account of)
+  - term: ないうちに
+    meaning: Before it becomes, Before ~ occurs, Without
+    kind: similar expression
+    nuance: 「ないうちに」 emphasizes preventing something *before it happens*, often implying a sense of urgency
+      or proactiveness to avoid a negative state or situation, while 「まえに」 simply states something occurs
+      before.
+    grammar_point: '[Verb-ない]うちに (before something changes)'
+  - term: 時
+    meaning: When
+    kind: often confused with
+    nuance: While 「まえに」 indicates an action or event that occurs *before* another, 「時」 refers to an action
+      or state that occurs *at the same time as* or *during* another event.
+    grammar_point: とき (when)
+  - term: 以前
+    meaning: Before, Previously, Former times
+    kind: similar expression
+    nuance: 「以前」 refers to a general time period in the past, or 'prior to now', without necessarily implying
+      a specific action happening *before* another action, unlike 「まえに」 which connects to an action or
+      specific noun phrase.
+    grammar_point: 以前 (before)
+  - term: までに
+    meaning: By the time, Before a deadline
+    kind: similar expression
+    nuance: While 「まえに」 simply indicates an action or event occurs before another, 「までに」 specifies a deadline,
+      meaning an action *must be completed by* a certain time or event.
+    grammar_point: までに (by the time)
+post_false_friends_writeup: It's important to distinguish 「まえに」 from similar temporal expressions. While
+  「まえに」 indicates a simple order of events (something happens before something else), 「時」 refers to an
+  action occurring *at the same time*. 「ないうちに」 implies taking action to prevent a state or event from
+  occurring, suggesting a more proactive purpose. 「以前」 refers to a general time in the past, rather than
+  a specific action preceding another. Finally, 「までに」 indicates an action that must be completed *by*
+  a specific deadline, adding a sense of completion by a certain point.
+examples:
+  - english: A large tree stands in front of the company.
+    japanese:
+      - 会社 の {まえ に}、大きな 木 が 立っ て い ます。
+      - 会社 の {まえ に}、大きな 木 が あり ます。
+      - 会社 の {まえ に}、でかい 木 が 立っ てる よ。
+    competing_grammar:
+      - competing_japanese:
+          - 会社 の {手前 に}、大きな 木 が 立っ て い ます。
+        english: A large tree stands right in front of the company (from my viewpoint).
+        hint: 「手前」 often refers to the immediate area directly in front of oneself or a specific viewpoint,
+          whereas we're looking for a general spatial description for a landmark.
+    scene: A man is giving directions to a new employee, describing the landmark outside the building.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    nuance: The use of 「立って います」 (tatte imasu) for a tree is natural and implies a permanent fixture,
+      suitable for giving directions. The formal register (ます form) fits a professional setting between
+      a manager and a new employee.
+  - english: Let's review thoroughly before the exam.
+    japanese:
+      - 試験 の {まえ に}、しっかり 復習 しよう。
+      - 試験 の {まえ に}、しっかり 復習 しよっ か。
+      - 試験 の {まえ に}、よく 勉強 しよう。
+    competing_grammar:
+      - competing_japanese:
+          - 試験 の {あと で}、しっかり 復習 しよう。
+        english: Let's review thoroughly after the exam.
+        hint: 「あとで」 indicates something that happens *after* a specific time or event. We're looking for
+          an action that happens *before* the exam.
+      - competing_japanese:
+          - 試験 が 始まら {ない うち に}、しっかり 復習 しよう。
+        english: Let's review thoroughly while the exam hasn't started yet.
+        hint: 「ないうちに」 emphasizes doing something *while* a condition is still in effect or *before* a
+          certain state begins. We're looking for a simple action occurring *before* the exam.
+      - competing_japanese:
+          - 試験 {時 に}、しっかり 復習 しよう。
+        english: Let's thoroughly review at the time of the exam.
+        hint: 「時 に」 refers to actions happening *during* an event. We're looking for a preparatory action
+          *before* the exam.
+      - competing_japanese:
+          - 試験 {まで に}、しっかり 復習 しよう。
+        english: Let's thoroughly review by the exam.
+        hint: 「～まで に」 indicates a deadline, meaning something should be completed by that point. We're
+          simply looking for an action that occurs 'before' the exam, not necessarily by a strict deadline.
+    scene: Two students are preparing for an upcoming test, discussing their study plans.
+    register: casual
+    setting: academic
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The volitional form 「復習 しよう」 (fukushuu shiyou) indicates a suggestion or mutual agreement
+      to review, common among students. 「しっかり」 (shikkari) emphasizes the thoroughness of the review, reflecting
+      the importance of preparation for an exam.
+  - english: Before meeting my friend, I changed my clothes.
+    japanese:
+      - 友達 と 会う {まえ に}、服 を 着替え まし た。
+      - 友達 と 会う {まえ に}、服 着替え た。
+      - 友達 と 会う {まえ に}、シャワー を 浴び まし た。
+      - 友達 と 会う {まえ に}、服 を 着替え とい た。
+    competing_grammar:
+      - competing_japanese:
+          - 友達 と 会っ た {あと で}、服 を 着替え まし た。
+        english: After meeting my friend, I changed my clothes.
+        hint: 「あとで」 indicates something that happens *after* a specific time or event. We're looking for
+          a preparatory action *before* the meeting.
+      - competing_japanese:
+          - 遅刻 し {ない うち に}、服 を 着替え まし た。
+        english: I changed my clothes before being late.
+        hint: 「ないうちに」 implies taking action to prevent a negative state or situation (like being late).
+          We're looking for a simple action that occurs *before* meeting a friend.
+      - competing_japanese:
+          - 友達 に 会い そう に なる {時 に}、服 を 着替え まし た。
+        english: When I was about to meet my friend, I changed my clothes.
+        hint: This implies the action happened *just as* the meeting was about to occur. We're looking
+          for a conscious preparation that happened *prior* to the meeting.
+      - competing_japanese:
+          - '{以前}、服 を 着替え まし た。'
+        english: I changed my clothes previously.
+        hint: 「以前」 refers to a general time in the past. We're looking for an action that happened specifically
+          before meeting a friend.
+    scene: A woman explains why she was running late for a casual outing.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    nuance: The phrase 「服 を 着替えました」 (fuku o kigaemashita) directly states the action of changing clothes,
+      a common preparatory step before social engagements, especially for a female speaker to appear presentable.
+  - english: Something has fallen in front of the refrigerator.
+    japanese:
+      - 冷蔵 庫 の {まえ に}、何 か 落ち て い ます。
+      - 冷蔵 庫 の {まえ に}、何 か 落ち てる。
+      - 冷蔵 庫 の {まえ に}、ほこり が たまっ て い ます。
+      - 冷蔵 庫 の {まえ に}、何 か 落ち てる よ。
+    competing_grammar:
+      - competing_japanese:
+          - 冷蔵 庫 の {手前 に}、何 か 落ち て い ます。
+        english: Something has fallen right in front of the refrigerator (from my viewpoint).
+        hint: 「手前」 refers to the immediate area directly in front of oneself or a specific viewpoint.
+          We're looking for a general spatial description *in front of* the refrigerator.
+    scene: A man notices a mess on the kitchen floor and points it out to his family.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: The phrase 「何か 落ちて います」 (nani ka ochite imasu) indicates an observation of something dropped.
+      The casual register (ます form in this context) is typical for a family setting where politeness is
+      present but not overly formal.
+  - english: Before going out, I will check the locks.
+    japanese:
+      - 出かける {まえ に}、戸締まり を 確認 し ます。
+      - 出かける {まえ に}、鍵 を かけ ます。
+      - 出かける {まえ に}、戸締まり 確認 する ね。
+    competing_grammar:
+      - competing_japanese:
+          - 出かけ た {あと で}、戸締まり を 確認 し ます。
+        english: After going out, I will check the locks.
+        hint: 「あとで」 indicates something that happens *after* a specific time or event. We're looking for
+          a preparatory action *before* leaving the house.
+      - competing_japanese:
+          - 忘れ {ない うち に}、戸締まり を 確認 し ます。
+        english: I will check the locks before I forget.
+        hint: 「ないうちに」 implies taking action to prevent a negative state or situation (like forgetting).
+          We're looking for a simple action that occurs *before* going out.
+      - competing_japanese:
+          - 出かける {時 に}、戸締まり を 確認 し ます。
+        english: When you leave the room, I will check the locks.
+        hint: 「時 に」 implies checking *during* the act of going out or at the moment of departure. We're
+          looking for a preparatory action *before* leaving the house.
+      - competing_japanese:
+          - 出かける {際 に}、戸締まり を 確認 し ます。
+        english: At the time of going out, I will check the locks.
+        hint: 「際 に」 is a more formal expression for 'at the time of'. We're looking for a simple temporal
+          relationship indicating 'before going out'.
+    scene: A person explains their routine security check before leaving home.
+    register: teineigo (polite)
+    setting: cautious
+    nuance: The use of 「戸締まり を 確認 します」 (tojishimari o kakunin shimasu) suggests a diligent and responsible
+      habit. The polite 「ます」 form is generally used when speaking about one's routine in a general context,
+      conveying a sense of conscientiousness.
+  - english: The person sitting in front of me is very tall.
+    japanese:
+      - 私 の {まえ に} 座っ て いる 人 は、とても 背 が 高い。
+      - 私 の {まえ に} 座っ てる 人、めっちゃ 背 が 高い。
+      - 私 の {まえ に}、背 が 高い 人 が 座っ て い ます。
+    competing_grammar:
+      - competing_japanese:
+          - 私 の {手前 に} 座っ て いる 人 は、とても 背 が 高い。
+        english: The person sitting right in front of me (from my immediate viewpoint) is very tall.
+        hint: 「手前」 often refers to the immediate area directly in front of oneself with a sense of personal
+          space or viewpoint. We're looking for a more general 'in front of' relationship.
+    scene: A young girl at a concert complains to her friend about her view being obstructed.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The expression 「とても 背 が 高い」 (totemo se ga takai) conveys a sense of frustration, typical for
+      a younger speaker whose view is blocked. The casual register is appropriate for a conversation between
+      friends.
+  - english: I always brush my teeth before going to bed.
+    japanese:
+      - 寝る {まえ に}、いつ も 歯 を 磨き ます。
+      - 寝る {まえ に}、いつ も 歯 を 磨く よ。
+    competing_grammar:
+      - competing_japanese:
+          - 寝る {時 に}、いつ も 歯 を 磨き ます。
+        english: When I go to bed, I always brush my teeth.
+        hint: 「時 に」 refers to an action that happens *at the time* of an event, not necessarily *before*
+          it. We're looking for an action that consistently precedes going to bed.
+    scene: A person describing their daily routine to a friend.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「磨き ます」 (migakimasu) is the polite form of "to brush," indicating a general routine or habit
+      explained in a polite manner. This example uses the verb + 「まえに」 formation.
+  - english: Please make sure to turn off the lights before leaving the room.
+    japanese:
+      - 部屋 を 出る {まえ に}、電気 を 消し て ください。
+      - 部屋 を 出る {まえ に}、電気 消し て ね。
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 を 出 た {あと で}、電気 を 消し て ください。
+        english: Please turn off the lights after leaving the room.
+        hint: 「あとで」 implies an action occurring *after* the main event. We need the action to happen *before*
+          leaving.
+      - competing_japanese:
+          - 部屋 を 出る {とき に}、電気 を 消し て ください。
+        english: When you leave the room, please turn off the lights.
+        hint: 「とき に」 suggests simultaneous action or action happening *at the moment of* leaving, whereas
+          we want the action to happen *prior* to leaving.
+    scene: A parent reminds their child about energy conservation.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The request 「消し て ください」 (keshite kudasai) is a polite command. The use of 「まえに」 here emphasizes
+      a necessary action that *must* precede leaving the room.
+  - english: There's a small park in front of the library.
+    japanese:
+      - 図書 館 の {まえ に}、小さい 公園 が あり ます。
+      - 図書 館 の {まえ に}、小さい 公園 が ある よ。
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 の {後ろ に}、小さい 公園 が あり ます。
+        english: There's a small park behind the library.
+        hint: 「後ろ に」 means 'behind'. We need to describe something *in front of* the library.
+    scene: Giving directions to a friend who is new to the neighborhood.
+    register: casual
+    setting: informative
+    listener_gender: female
+    nuance: 「小さい 公園 が あります」 (chiisai kouen ga arimasu) is a simple description of existence. The casual
+      register with 「ある よ」 is natural when giving directions to a friend. This example demonstrates the
+      spatial use with a noun + の + 「まえに」.
+  - english: We had a short break before the presentation started.
+    japanese:
+      - プレゼンテーション の {まえ に}、短い 休憩 が あり まし た。
+      - プレゼン の {まえ に}、短い 休憩 が あり まし た。
+    competing_grammar:
+      - competing_japanese:
+          - プレゼンテーション の {あと で}、短い 休憩 が あり まし た。
+        english: We had a short break after the presentation started.
+        hint: 「あとで」 indicates an event happening *after*. We need an event happening *before* the presentation.
+      - competing_japanese:
+          - プレゼンテーション の {最中 に}、短い 休憩 が あり まし た。
+        english: During the presentation, we had a short break.
+        hint: 「最中 に」 means 'in the middle of' or 'during'. We're looking for a break that happened *before*
+          the presentation began.
+    scene: A colleague is summarizing the agenda of a conference.
+    register: formal
+    setting: storytelling
+    nuance: 「短い 休憩」 (mijikai kyuukei) means "short break." The use of 「まえに」 with the noun 「プレゼンテーション」
+      (presentation) clearly sets the temporal order of events. The polite past tense 「あり まし た」 (arimashita)
+      fits a formal summary.
+  - english: He bowed politely before giving his speech.
+    japanese:
+      - 彼 は スピーチ する {まえ に}、丁寧 に お 辞儀 し まし た。
+      - 彼 は スピーチ する {まえ に}、お 辞儀 し て から 話し まし た。
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は スピーチ し た {あと で}、丁寧 に お 辞儀 し まし た。
+        english: He bowed politely after giving his speech.
+        hint: 「あとで」 indicates an action happening *after* another. We need an action that happened *before*
+          the speech.
+      - competing_japanese:
+          - 彼 は スピーチ する {時 に}、丁寧 に お 辞儀 し まし た。
+        english: He bowed politely when giving his speech.
+        hint: 「時 に」 suggests a simultaneous action. We are looking for an action that precedes the speech.
+    scene: A reporter describes a politician's behavior at a press conference.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    nuance: The phrase 「丁寧 に お辞儀 し まし た」 (teinei ni ojigi shimashita) emphasizes the politeness and formality
+      of the action, common in public speaking. This example uses the verb + 「まえに」 formation, showing
+      a customary action before a main event.
+  - english: Please wash your hands before eating.
+    japanese:
+      - 食べる {まえ に}、手 を 洗っ て ください。
+      - 食べる {まえ に}、手 洗っ て ね。
+    competing_grammar:
+      - competing_japanese:
+          - 食べ た {あと で}、手 を 洗っ て ください。
+        english: Please wash your hands after eating.
+        hint: 「あとで」 implies an action occurring *after* the main event. We need hands washed *before*
+          eating.
+      - competing_japanese:
+          - 食 事 {中 に}、手 を 洗っ て ください。
+        english: Please wash your hands during the meal.
+        hint: 「中 に」 indicates something happening *during* an event. We are looking for a preparatory
+          action *before* the meal.
+    scene: A parent instructs a child during mealtime preparations.
+    register: teineigo (polite)
+    setting: instructional
+    listener_gender: group
+    nuance: 「手 を 洗っ て ください」 (te o aratte kudasai) is a common, polite instruction. This simple, everyday
+      example effectively demonstrates the use of 「まえに」 with a verb in its dictionary form to indicate
+      a necessary preceding action.
+post_example_writeup: When using 「まえに」 in a temporal sense, it focuses on the period leading up to an
+  event or action. This contrasts with other expressions that might describe actions happening during
+  or after an event.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/まえに

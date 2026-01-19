@@ -1,0 +1,351 @@
+grammar_point: に至って・に至り (finally reached)
+learn_before:
+  - 切れない (unable to finish fully)
+  - 無視する (to ignore)
+meaning: When it came to, Only when, Only after, Go as far as
+meaning_warning: When following time expressions or location it often simply means “at”
+pronunciation:
+  katakana: ニイタッテ・ニイタリ
+  romaji: ni itatte / ni itari
+formation:
+  '[Noun] + に至って': Used to express that an extreme or critical situation has been reached, often implying
+    a belated action or realization.
+  '[Verb (dictionary form)] + に至って': Used to express that an action has been taken to an extreme degree,
+    or a situation has progressed to a critical point, often implying a belated action or realization.
+  '[Noun] + に至り': A more formal version of に至って, often used in written language or formal speeches, carrying
+    the same nuance of reaching an extreme point.
+  '[Verb (dictionary form)] + に至り': A more formal version of に至って, often used in written language or formal
+    speeches, carrying the same nuance of reaching an extreme point.
+jlpt: N1
+etymology: The grammar point derives from the verb 至る (itaru), meaning "to arrive," "to reach," or "to
+  lead to." The に particle indicates the point or situation that is reached, emphasizing that a certain
+  outcome or realization occurs only upon reaching that specific stage.
+writeup: 'The grammar point **に至って** (ni itatte) and its more formal counterpart **に至り** (ni itari) signify
+  that a situation has progressed to an **extreme or critical point**, which then leads to a subsequent
+  event or realization. It often implies that something has been allowed to reach an undesirable state,
+  and action or understanding only occurs at this extreme juncture. This structure strongly conveys a
+  sense of **belatedness or a critical turning point**. Consequently, it is frequently employed when criticizing
+  a lack of timely action, suggesting that necessary steps were taken *only after* a situation had become
+  severe. Common translations include ''only when (A), did (B) occur,'' ''only after (A), (B) occurred,''
+  or ''going as far as to (A), (B).'' **に至り** is the conjunctive (masu-stem) form of the verb **至る** (itaru),
+  and it serves as a more formal or literary alternative to the standard te-form **に至って**. You will typically
+  encounter **に至り** in written contexts, news reports, or formal speeches. **Important Distinction: に至って
+  vs. に至っても** While grammatically similar, **に至って** and **に至っても** carry opposite meanings. Understanding
+  this difference is crucial: *   **(A)に至って(B)**: This means ''Only when/after reaching the extreme of
+  (A), did (B) occur.'' It implies a consequence or realization *because* (A) reached a critical point.
+  *   **(A)に至っても(B)**: This means ''Even if reaching the extreme of (A), (B) won''t occur.'' It implies
+  a lack of consequence or realization *despite* (A) reaching a critical point. This grammar point is
+  covered separately.'
+false_friends:
+  - term: に至っても
+    meaning: Even if it comes to, Even after
+    kind: often confused with
+    nuance: Unlike に至って/に至り which signifies that an event occurred *because* a critical point was reached,
+      に至っても signifies that an event *did not* occur *despite* a critical point being reached.
+    grammar_point: に至っても (even when reaching)
+  - term: あげく
+    meaning: After all, in the end, eventually (often with negative consequences)
+    kind: similar expression
+    nuance: While both に至って and あげく can indicate reaching a final, often undesirable, stage after a process,
+      あげく specifically emphasizes that this result is the culmination of a long, often negative or difficult,
+      process, typically implying a negative outcome due to lack of foresight or a series of failures.
+      に至って simply marks the point at which an extreme or critical state is reached, triggering a subsequent
+      event or realization, without necessarily implying a cumulative effort or specifically negative
+      culmination.
+    grammar_point: あげく (culmination of effort)
+  - term: た末・の末
+    meaning: After, As a conclusion of
+    kind: similar expression
+    nuance: Both に至って and た末・の末 indicate a result after a process. However, た末・の末 specifically implies
+      a result that comes after much deliberation, struggle, or a long process, similar to "after much
+      thought," or "after a long struggle." に至って emphasizes the critical point being reached that leads
+      to a consequence, often suggesting belatedness or an extreme state, rather than the conclusion of
+      a thought process or struggle.
+    grammar_point: た末・の末・末に (culmination)
+post_false_friends_writeup: 'The primary difference lies in the outcome: **に至って・に至り** indicates a delayed
+  action or realization *due to* reaching an extreme state, while **に至っても** indicates a lack of action
+  or realization *despite* reaching an extreme state. Think of **に至って** as ''X happened, *then* Y'' (Y
+  is a result of X reaching an extreme) and **に至っても** as ''X happened, *still* no Y'' (Y doesn''t happen
+  despite X reaching an extreme). あげく implies a negative culmination from a prolonged, often unfortunate,
+  process, focusing on the inevitable bad outcome. た末・の末 points to a result after a period of struggle
+  or deliberation, often implying a logical conclusion rather than a sudden critical turning point.'
+examples:
+  - english: Only when the problem became serious did countermeasures finally begin to be taken.
+    japanese:
+      - 問題 が 深刻 化 する に {至っ て}、ようやく 対策 が 講じ られ 始め た。
+      - 問題 が 深刻 化 する 事態 に {至り}、ようやく 対策 が 講じ られ 始め た。
+    english_literally: To the point where the problem became serious, finally countermeasures began to
+      be taken.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 が 深刻 化 する に 至っ て も、対策 が 講じ られ なかっ た。
+        english: Even though the problem became serious, countermeasures were not taken.
+        hint: This means that despite the problem becoming serious, no action was taken. We're looking
+          for when action *was* taken because of the seriousness.
+      - competing_japanese:
+          - 問題 が 深刻 化 し て から、ようやく 対策 が 講じ られ 始め た。
+        english: After the problem became serious, countermeasures finally began to be taken.
+        hint: This simply states a sequence of events. We're looking for the sense that action was delayed
+          until an extreme point was reached.
+    scene: A government official explaining why action was delayed on a public issue.
+    register: formal
+    setting: informative
+    nuance: The use of に至って emphasizes that the action was taken too late, only after the situation reached
+      an extreme point of seriousness. This implies criticism of delayed action. The plain form of the
+      verb 『する』 in 『深刻化する』 maintains a neutral, objective tone appropriate for an informative report.
+  - english: Only when the doctor recommended hospitalization did I seriously think about my health for
+      the first time.
+    japanese:
+      - 医者 に 入院 を 勧め られる に {至っ て}、初めて 自分 の 健康 を 真剣 に 考え た。
+      - 医者 に 入院 を 勧め られる に {至り}、初めて 自分 の 健康 を 真剣 に 考え まし た。
+    english_literally: To the point where the doctor recommended hospitalization, for the first time I
+      seriously thought about my health.
+    competing_grammar:
+      - competing_japanese:
+          - 医者 に 入院 を 勧め られる に 至っ て も、自分 の 健康 を 真剣 に 考え なかっ た。
+        english: Even though the doctor recommended hospitalization, I did not seriously think about my
+          health.
+        hint: This implies that despite the recommendation, there was no change in thought. We're looking
+          for a realization that happened because of the recommendation.
+      - competing_japanese:
+          - 医者 に 入院 を 勧め られ た とき、初めて 自分 の 健康 を 真剣 に 考え た。
+        english: When the doctor recommended hospitalization, I thought seriously about my health for
+          the first time.
+        hint: This simply states 'when' something happened. We're looking for the nuance of realizing
+          something only after a critical situation was reached.
+    scene: A female student talking to a friend about a recent health scare.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: This sentence highlights a belated realization about personal health, brought about by the
+      extreme situation of being advised hospitalization. The use of plain form 「考えた」 is suitable for
+      a casual conversation between friends. The speaker being a female student adds to the naturalness
+      of this reflective, intimate setting. The passive form 「勧められる」 is also common in casual speech.
+  - english: Only when the budget reached a state of depletion did the government finally announce emergency
+      aid.
+    japanese:
+      - 予算 が 枯渇 する 事態 に {至り}、政府 は やっと 緊急 援助 を 発表 し た。
+      - 予算 が 枯渇 する 事態 に {至っ て}、政府 は やっと 緊急 援助 を 発表 し た。
+    english_literally: To the point where the budget reached a state of depletion, the government finally
+      announced emergency aid.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 が 枯渇 する 事態 に 至っ て も、政府 は 緊急 援助 を 発表 し なかっ た。
+        english: Even though the budget reached a state of depletion, the government did not announce
+          emergency aid.
+        hint: This implies that despite the critical budget situation, no aid was announced. We're looking
+          for aid that was announced because of the situation.
+      - competing_japanese:
+          - 予算 が 枯渇 し た 後 で、政府 は やっと 緊急 援助 を 発表 し た。
+        english: After the budget was depleted, the government finally announced emergency aid.
+        hint: This simply states a sequence of events. We're looking for the nuance that action was delayed
+          until an extreme, critical point was reached.
+    scene: A news reporter describing a delayed government response to a crisis.
+    register: formal
+    setting: informative
+    nuance: The use of に至り, the formal variant, suits the formal context of a news report. It criticizes
+      the government for waiting until the budget was completely depleted before taking action, emphasizing
+      the extreme state reached. The formal word 『枯渇』 (こかつ) and the plain past form 『発表 した』 contribute
+      to the objective, informative tone.
+  - english: In order to protect his family, he went as far as to abandon his home and flee.
+    japanese:
+      - 彼 は 家族 を 守る ため、家 を 捨て て 逃亡 する に {至っ て} しまっ た。
+      - 彼 は 家族 を 守る ため、家 を 捨て て 逃亡 する に {至っ た}。
+    english_literally: To the point of abandoning his home and fleeing, he went for the sake of protecting
+      his family.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 家族 を 守る ため、家 を 捨て て 逃亡 する に 至っ て も、家族 を 守れ なかっ た。
+        english: Even though he went as far as to abandon his home and flee to protect his family, he
+          could not protect them.
+        hint: This implies that despite taking extreme measures, he failed. We're looking for the extreme
+          action *itself* as a result of the situation.
+      - competing_japanese:
+          - 彼 は 家族 を 守る ため、家 を 捨て て 逃亡 する こと に なっ た。
+        english: To protect his family, it came to be that he abandoned his home and fled.
+        hint: This is a more general statement about a decision being made. We're looking for an action
+          taken *to the extreme* or *as a last resort*.
+    scene: Someone recounting a desperate decision made by a male friend to protect his family.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: This sentence emphasizes the extreme measure taken (abandoning home and fleeing) as a result
+      of a critical situation, underscoring the gravity of his decision. The use of 「～てしまった」 adds a sense
+      of regret or an undesirable outcome, often used by male speakers when describing serious, unavoidable
+      circumstances. The phrase 『逃亡する』 (とうぼうする) emphasizes the drastic nature of the action.
+  - english: Years of neglect led to the collapse of this building.
+    japanese:
+      - 長年 の 無視 が、この 建物 の 倒壊 を 招く に {至っ た}。
+      - 長年 の 無視 が、この 建物 の 倒壊 を 招く 事態 に {至っ た}。
+    english_literally: Years of neglect reached the point of inviting the collapse of this building.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 無視 に 至っ て も、この 建物 は 倒壊 し なかっ た。
+        english: Even though there were years of neglect, this building did not collapse.
+        hint: This implies that despite the neglect, the building remained standing. We're looking for
+          the neglect *leading* to the collapse.
+      - competing_japanese:
+          - 長年 の 無視 で、この 建物 は 倒壊 し た。
+        english: This building collapsed due to years of neglect.
+        hint: This states a simple cause and effect. We're looking for the culmination of events leading
+          to a critical outcome.
+    scene: An architect explaining the cause of a building's destruction in a professional report.
+    register: formal
+    setting: informative
+    nuance: Here, に至った (the past tense of 至る, used as part of the phrase to indicate past completion)
+      is used to show that continuous neglect finally 'reached the point of' causing the collapse. This
+      implies a critical, unavoidable outcome due to prior inaction, fitting a professional, informative
+      context. The formal noun 『倒壊』 (とうかい) reinforces the academic tone.
+  - english: Only after enduring countless failures did he finally achieve success in his research.
+    japanese:
+      - 数え 切れ ない 失敗 を 経験 する に {至っ て}、彼 は ようやく 研究 で 成功 を 収め た。
+      - 数え 切れ ない 失敗 を 経験 する 事態 に {至り}、彼 は ようやく 研究 で 成功 を 収め まし た。
+    english_literally: To the point of experiencing countless failures, he finally achieved success in
+      his research.
+    competing_grammar:
+      - competing_japanese:
+          - 数え 切れ ない 失敗 を 経験 する に 至っ て も、彼 は 研究 で 成功 を 収め なかっ た。
+        english: Even after experiencing countless failures, he did not achieve success in his research.
+        hint: This implies that despite experiencing many failures, success was never achieved. We're
+          looking for success that *was* achieved only after many failures.
+      - competing_japanese:
+          - 数え 切れ ない 失敗 を 経験 し て から、彼 は ようやく 研究 で 成功 を 収め た。
+        english: After experiencing countless failures, he finally achieved success in his research.
+        hint: This simply states a sequence of events. We're looking for the sense that success came only
+          after reaching a critical extreme of difficulties.
+    scene: A university professor reflecting on the perseverance of a renowned male scientist during a
+      seminar.
+    register: formal
+    setting: reflective
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The phrase 「数え切れない失敗を経験するに至って」 emphasizes the extreme and prolonged struggle that was necessary
+      before the breakthrough. The formal register of a professor speaking to a group of students, combined
+      with the use of 「成功を収めた」 (seikou wo osameta - achieved success), a somewhat formal expression, lends
+      gravity to the achievement. The use of 「ようやく」 further underscores the long-awaited nature of the
+      success.
+  - english: The trial continued for five years, only concluding when the supreme court made its final
+      decision.
+    japanese:
+      - 裁判 は 5 年間 続 き、最高 裁 の 最終 判決 が 下さ れる に {至り}、ようやく 決着 し た。
+      - 裁判 は 5 年間 続 き、最高 裁 の 最終 判決 が 下さ れる に {至っ て}、ようやく 決着 し た。
+    english_literally: The trial continued for five years, to the point where the Supreme Court's final
+      verdict was handed down, it finally concluded.
+    competing_grammar:
+      - competing_japanese:
+          - 最高 裁 の 最終 判決 が 下さ れる に 至っ て も、裁判 は 決着 し なかっ た。
+        english: Even after the Supreme Court's final decision, the trial did not conclude.
+        hint: This means the trial continued despite the decision. We're looking for the trial concluding
+          *because* of the final decision.
+      - competing_japanese:
+          - 最高 裁 の 最終 判決 が 下さ れ た 時 に、裁判 は ようやく 決着 し た。
+        english: When the Supreme Court's final decision was handed down, the trial finally concluded.
+        hint: This simply states 'when' something happened. We're looking for the nuance of the trial
+          reaching a definitive end only after this extreme, final legal step.
+    scene: A legal expert, a middle-aged woman, providing commentary on a significant and lengthy court
+      case for a TV news special.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「に至り」 (ni itari) is fitting for a formal, informative setting like a TV news report,
+      conveying that the long, drawn-out trial finally reached its definitive conclusion only upon the
+      highest court's ruling. The passive form 「下される」 (kudasaresu - to be handed down), typical for official
+      judgments, reinforces the formal tone suitable for an expert's commentary.
+  - english: It was only when society became completely stagnant that a movement for reform finally arose.
+    japanese:
+      - 社会 が 完全 に 停滞 する に {至っ て}、ようやく 改革 の 動き が 生まれ た。
+      - 社会 が 完全 に 停滞 する 事態 に {至り}、ようやく 改革 の 動き が 生まれ た。
+    english_literally: To the point where society became completely stagnant, finally a reform movement
+      was born.
+    competing_grammar:
+      - competing_japanese:
+          - 社会 が 完全 に 停滞 する に 至っ て も、改革 の 動き は 生まれ なかっ た。
+        english: Even when society became completely stagnant, a movement for reform did not arise.
+        hint: This implies that no reform movement emerged despite extreme stagnation. We're looking for
+          a movement that *did* arise because of the stagnation.
+      - competing_japanese:
+          - 社会 が 完全 に 停滞 し た の で、ようやく 改革 の 動き が 生まれ た。
+        english: Because society became completely stagnant, a movement for reform finally arose.
+        hint: This is a simple cause and effect. We're looking for the nuance that a critical threshold
+          of stagnation had to be reached before the movement appeared.
+    scene: A history professor, a senior male, lecturing his students about the causes of major societal
+      changes.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「完全 に 停滞 する に 至って」 signifies that the society reached an absolute, critical low point of stagnation,
+      and only then did the reform movement emerge. This nuance of 'only when things got this bad' is
+      captured by に至って, fitting the academic analysis of societal tipping points. The authoritative tone
+      of an older male professor delivering a lecture is well-suited to this formal expression of historical
+      causality.
+  - english: The patient's condition worsened to the point where emergency surgery became necessary.
+    japanese:
+      - 患者 の 容体 は、緊急 手術 が 必要 と なる に {至っ て} しまっ た。
+      - 患者 の 容体 は、緊急 手術 が 必要 と なる 事態 に {至り} まし た。
+    english_literally: The patient's condition, to the point where emergency surgery became necessary,
+      ended up becoming so.
+    competing_grammar:
+      - competing_japanese:
+          - 患者 の 容体 は、緊急 手術 が 必要 と なる に 至っ て も、改善 し なかっ た。
+        english: Even though the patient's condition worsened to the point where emergency surgery became
+          necessary, it did not improve.
+        hint: This implies no improvement despite the critical state. We're looking for the necessity
+          of the surgery *because* the condition reached this extreme point.
+      - competing_japanese:
+          - 患者 の 容体 が 悪化 し た 結果、緊急 手術 が 必要 と なっ た。
+        english: As a result of the patient's condition worsening, emergency surgery became necessary.
+        hint: This states a direct result. We're looking for the nuance that the condition reached a critical
+          threshold, making the surgery unavoidable.
+    scene: A female doctor speaking to the family of a critically ill patient in a hospital waiting room.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The phrase 「緊急手術が必要となるに至ってしまった」 emphasizes that the patient's condition deteriorated to such
+      a severe extent that a drastic measure like emergency surgery became unavoidable. The use of 「～てしまった」
+      conveys a sense of regret or an undesirable outcome, which is appropriate for a doctor explaining
+      a difficult situation to a patient's family. A female doctor often uses slightly softer language
+      or expressions of empathy, fitting the overall tone.
+  - english: Only when they accumulated immense debt did the company finally consider bankruptcy.
+    japanese:
+      - 莫大 な 借金 を 抱える に {至っ て}、その 会社 は ようやく 倒産 を 検討 し 始め た。
+      - 莫大 な 借金 を 抱える 事態 に {至り}、その 会社 は ようやく 倒産 を 検討 し 始め まし た。
+    english_literally: To the point of accumulating immense debt, that company finally began considering
+      bankruptcy.
+    competing_grammar:
+      - competing_japanese:
+          - 莫大 な 借金 を 抱える に 至っ て も、その 会社 は 倒産 を 検討 し なかっ た。
+        english: Even after accumulating immense debt, the company did not consider bankruptcy.
+        hint: This implies the company ignored its debt problem. We're looking for the company *did* consider
+          bankruptcy due to the extreme debt.
+      - competing_japanese:
+          - 莫大 な 借金 を 抱え た 後 で、その 会社 は ようやく 倒産 を 検討 し 始め た。
+        english: After accumulating immense debt, the company finally began considering bankruptcy.
+        hint: This simply states a temporal sequence. We're looking for the nuance that the debt reached
+          such a critical point that bankruptcy became an inevitable consideration.
+    scene: A male financial analyst presenting a report on a struggling corporation to his colleagues.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「莫大な借金を抱えるに至って」 highlights that the company procrastinated until the situation reached the
+      critical extreme of 'immense debt' before taking drastic action like considering bankruptcy. This
+      implies belatedness and the severity of the circumstances, suitable for a formal business report.
+      The precise and somewhat detached language often used by male financial analysts in professional
+      settings fits this usage.
+post_example_writeup: Remember that に至って often carries a sense of belated realization or criticism of
+  inaction. It indicates that something should have been addressed sooner and that only a significant
+  event prompted action or awareness.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に至って-に至り

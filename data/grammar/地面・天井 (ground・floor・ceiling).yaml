@@ -1,0 +1,248 @@
+grammar_point: 地面・天井 (ground・floor・ceiling)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[しました] (polite past)
+  - Verb[ました] (polite past)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - '[Verb-stem]おわる (to finish doing)'
+  - 〜如し・〜ごとし (like・as if)
+  - あそこ (over there)
+  - い-Adjective[かった] (past tense)
+  - い-Adjective[み] (abstract quality)
+  - い-adjective (sentence-ending)
+  - かける・かけ (in process・incomplete・on the verge)
+  - が (subject marker)
+  - そこ (there)
+  - ちょっと (adverb)
+  - てください (polite request)
+  - で (means・method)
+  - と (with)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+  - に伴って・に伴い (along with・as a result of)
+  - に気をつける (to be careful of)
+  - 代わりに (instead of choosing)
+  - 代わりに (instead of in return for)
+  - 任せる (to entrust or leave to)
+  - 側 (side or flank)
+  - 切る (do completely or thoroughly)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+  - 超える (to exceed)
+meaning: on the ground; on the floor / on the ceiling
+meaning_warning: While both refer to horizontal surfaces, 地面 is typically the 'ground' outdoors or a general
+  'floor,' while 天井 is specifically the 'ceiling.'
+pronunciation:
+  katakana: ジメン, テンジョウ
+  romaji: jimen, tenjou
+formation:
+  地面: Refers to the ground outdoors or the floor surface in general.
+  天井: Refers to the ceiling.
+jlpt: N3
+etymology: 「地面」(jimen) combines 地 (chi/ji), meaning 'earth' or 'ground,' and 面 (men), meaning 'surface'
+  or 'face.' So, 'ground surface.' 「天井」(tenjou) combines 天 (ten), meaning 'heaven' or 'sky,' and 井 (jou),
+  which here refers to 'top' or 'well-like structure.' Historically, ceilings, especially those with coffers
+  or beams, might have resembled the pattern of a well, or the term simply evokes the 'top' or 'sky-like'
+  surface above.
+writeup: Both **地面** (jimen) and **天井** (tenjou) are nouns that specify spatial locations, referring to
+  the 'ground' or 'floor' and the 'ceiling' respectively. While they both denote horizontal surfaces,
+  their usage contexts are distinct. **地面** typically refers to the **earth's surface outdoors** or a
+  **general ground-level area**, such as a stadium floor. It can also refer to the **floor inside a building**
+  in a more general sense, but often when discussing the material or the broad expanse of it.On the other
+  hand, **天井** refers exclusively to the **ceiling of a room or building**. It's important to differentiate
+  them carefully to avoid misunderstanding.When using these nouns, you will typically pair them with particles
+  like **に** (ni) to indicate existence or location, **で** (de) to indicate the location of an action,
+  or **から** (kara) to indicate movement *from* that surface. The choice of particle depends on the verb
+  and the specific nuance you wish to convey.
+false_friends:
+  - term: 床 (yuka)
+    meaning: floor (inside a room or building)
+    kind: similar expression
+    nuance: Unlike **地面** (jimen), which refers to the ground or a general floor surface, **床** (yuka)
+      specifically refers to the *indoor floor* of a room or building.
+    grammar_point: <suggest>:床 (indoor floor)
+  - term: 屋根 (yane)
+    meaning: roof
+    kind: often confused with
+    nuance: While **天井** (tenjou) is the *inside* surface above you, **屋根** (yane) is the *outside* covering
+      of a building.
+    grammar_point: <suggest>:屋根 (roof)
+  - term: 壁 (kabe)
+    meaning: wall
+    kind: similar expression
+    nuance: While **地面** and **天井** refer to horizontal surfaces, **壁** (kabe) refers to a vertical surface.
+    grammar_point: <suggest>:壁 (wall)
+post_false_friends_writeup: Understanding the subtle differences between **地面**, **床**, **天井**, and **壁**
+  is crucial for precise communication. Think of **地面** as the broader, often outdoor, surface, **床**
+  as the specific indoor floor you walk on, **天井** as the overhead surface inside, and **壁** as the vertical
+  boundary. Similarly, do not confuse **天井** with **屋根**; one is internal, the other external.
+examples:
+  - english: There's a spider on the ceiling.
+    japanese:
+      - '{天井} に 蜘蛛 が いる。'
+      - '{天井} に 蜘蛛 が い ます。'
+      - '{天井} に クモ が いる よ。'
+      - '{天井} に クモ が い ます よ。'
+    english_literally: On the ceiling, a spider exists.
+    competing_grammar:
+      - competing_japanese:
+          - '{屋根} に 蜘蛛 が いる。'
+        english: There's a spider on the roof.
+        hint: This sentence places the spider on the outside of the building. We're looking for where
+          the spider is *inside*.
+    scene: You are pointing out a spider inside a room.
+    register: casual
+    setting: informative
+    nuance: The use of 「天井 に」 clearly indicates the spider's location on the inside ceiling, rather than
+      the outside roof.
+  - english: The child drew a picture on the ground with chalk.
+    japanese:
+      - 子供 が {地面} に チョーク で 絵 を 描い た。
+      - 子供 が {地面} に チョーク で 絵 を 描き まし た。
+      - 子供 が {地面} に チョーク で 絵 を 描い た よ。
+      - 子供 が {地面} に チョーク で 絵 を 描い た ん だ。
+    english_literally: Child on the ground with chalk drew a picture.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が {床} に チョーク で 絵 を 描い た。
+        english: The child drew a picture on the indoor floor with chalk.
+        hint: This refers to the indoor floor. We're looking for a drawing done outside on the ground.
+    scene: A child is playing outdoors.
+    register: casual
+    setting: storytelling
+    nuance: 「地面 に」 specifies that the drawing was done on the outdoor ground surface, not an indoor floor.
+  - english: Please put your bags on the floor there.
+    japanese:
+      - そこ に 鞄 を {地面} に 置い て ください。
+      - そこ に 鞄 を {地面} に 置い て ください。
+      - そこ に 鞄 を {地面} に 置い て ね。
+      - そこ に 鞄 を {地面} に 置い て ください な。
+    english_literally: There bags on the ground please put.
+    competing_grammar:
+      - competing_japanese:
+          - そこ に 鞄 を {床} に 置い て ください。
+        english: Please put your bags on the indoor floor there.
+        hint: This implies an indoor floor. We're instructing someone to put bags on the general ground
+          surface.
+    scene: You are guiding someone to place their luggage in a large, open area, perhaps a station or
+      an airport waiting area.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: While this is an indoor setting, 「地面 に」 is used here to refer to the general floor space,
+      often implying a less formal setting than a private room. The use of 「ください」 makes it a polite request.
+      「置いてくださいな」 adds a softer, slightly older or more feminine nuance to the polite request.
+  - english: Be careful, the ceiling is very low here.
+    japanese:
+      - 気 を つけ て、ここ は {天井} が とても 低い です。
+      - 気 を つけ て ください、ここ は {天井} が とても 低い です。
+      - 気 を つけ なさい、ここ は {天井} が とても 低い よ。
+      - 気 を つけ て ね、ここ は {天井} が 低い から。
+    english_literally: Be careful, here ceiling is very low.
+    competing_grammar:
+      - competing_japanese:
+          - 気 を つけ て、ここ は {屋根} が とても 低い です。
+        english: Be careful, the roof is very low here.
+        hint: This refers to the external roof. We're talking about the height of the internal ceiling.
+    scene: You are entering an old Japanese house or a traditional tea room with a low ceiling.
+    register: formal
+    setting: cautious
+    nuance: 「天井 が 低い」 is the natural way to describe a low ceiling. The formal 「です」 ending adds politeness
+      appropriate for an informative warning. 「気をつけなさい」 is a polite imperative, while 「気をつけてね」 adds a
+      softer, more advisory tone often used with close acquaintances or those younger than oneself, sometimes
+      implying a reason with 「から」.
+  - english: The ball rolled across the ground.
+    japanese:
+      - ボール は {地面} を 転がっ た。
+      - ボール は {地面} を 転がり まし た。
+    english_literally: Ball the ground rolled.
+    competing_grammar:
+      - competing_japanese:
+          - ボール は {床} を 転がっ た。
+        english: The ball rolled across the indoor floor.
+        hint: This implies the ball rolled on an indoor floor. We're looking for it rolling on an outdoor
+          ground surface.
+    scene: You are watching a ball roll across an open field.
+    register: casual
+    setting: informative
+  - english: Something fell from the ceiling.
+    japanese:
+      - '{天井} から 何 か 落ち て き た。'
+      - '{天井} から 何 か 落ち て き まし た。'
+      - '{天井} から 何 か 落ち て き た よ。'
+    english_literally: From ceiling something came falling.
+    competing_grammar:
+      - competing_japanese:
+          - '{屋根} から 何 か 落ち て き た。'
+        english: Something fell from the roof.
+        hint: This refers to something falling from the external roof. We're talking about something falling
+          from the *inside* ceiling.
+    scene: You hear a sudden noise in your room and look up.
+    register: casual
+    setting: cautious
+  - english: We need to clean the stains on the ceiling.
+    japanese:
+      - '{天井} の 汚れ を 掃除 する 必要 が ある。'
+      - '{天井} の 汚れ を 掃除 する 必要 が あり ます。'
+    english_literally: Ceiling's stains cleaning necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - '{壁} の 汚れ を 掃除 する 必要 が ある。'
+        english: We need to clean the stains on the wall.
+        hint: This indicates stains on a wall. We're specifically referring to stains on the overhead
+          surface of a room.
+    scene: You are discussing household chores with someone.
+    register: semi-formal
+    setting: professional
+  - english: The cat is digging a hole in the ground.
+    japanese:
+      - 猫 が {地面} に 穴 を 掘っ て いる。
+      - 猫 が {地面} に 穴 を 掘っ て い ます。
+    english_literally: Cat on the ground hole digging is.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が {庭} に 穴 を 掘っ て いる。
+        english: The cat is digging a hole in the garden.
+        hint: This specifies digging in a garden. We're talking about the general ground surface.
+    scene: You see your pet cat outdoors.
+    register: casual
+    setting: informative
+  - english: The earthquake made the ground shake violently.
+    japanese:
+      - 地震 で {地面} が 激しく 揺れ た。
+      - 地震 で {地面} が 激しく 揺れ まし た。
+    english_literally: By earthquake ground violently shook.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 で {家} が 激しく 揺れ た。
+        english: The earthquake made the house shake violently.
+        hint: This refers to a house shaking. We're specifically talking about the earth's surface itself
+          moving.
+    scene: You are describing the effects of an earthquake.
+    register: formal
+    setting: serious
+  - english: They hung a beautiful chandelier from the center of the ceiling.
+    japanese:
+      - '{天井} の 真ん中 から 美しい シャンデリア を 吊るし た。'
+      - '{天井} の 真ん中 から 美しい シャンデリア を 吊るし まし た。'
+    english_literally: Ceiling's center from beautiful chandelier hung.
+    competing_grammar:
+      - competing_japanese:
+          - '{壁} に 美しい 絵 を 吊るし た。'
+        english: They hung a beautiful painting on the wall.
+        hint: This refers to hanging something on a wall. We're talking about hanging from the overhead
+          ceiling.
+    scene: You are describing the interior design of a grand hall.
+    register: formal
+    setting: informative
+post_example_writeup: These examples illustrate how 「地面」 and 「天井」 are used with various particles (に,
+  で, から) to precisely indicate location, origin, or the surface on which an action occurs. Pay close attention
+  to the context, especially whether the location is indoor or outdoor, and if it refers to the ground,
+  an indoor floor, or the ceiling. The choice of particle and the verb used will further define the meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/地面,天井 (floor・ceiling spatial)

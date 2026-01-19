@@ -1,0 +1,367 @@
+grammar_point: にする (to decide or make)
+matcher: '{ni}{noun}?{suru}|({mo}|{ni}){shinai}'
+meaning: to decide on or make into
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: にする
+    rarity: common
+    meaning: to decide on; to make into
+  - conjugation-type: non-past polite (～ます)
+    form: にします
+    rarity: common
+    meaning: will decide on; will make into
+  - conjugation-type: negative plain (～ない)
+    form: にしない
+    rarity: common
+    meaning: not to decide on; not to make into
+  - conjugation-type: negative non-past polite (～ません)
+    form: にしません
+    rarity: common
+    meaning: will not decide on; will not make into
+  - conjugation-type: past plain (～た)
+    form: にした
+    rarity: common
+    meaning: decided on; made into
+  - conjugation-type: past polite (～ました)
+    form: にしました
+    rarity: common
+    meaning: decided on; made into
+  - conjugation-type: negative past plain (～なかった)
+    form: にしなかった
+    rarity: common
+    meaning: did not decide on; did not make into
+  - conjugation-type: negative past polite (～ませんでした)
+    form: にしませんでした
+    rarity: common
+    meaning: did not decide on; did not make into
+  - conjugation-type: te-form (～て)
+    form: にして
+    rarity: common
+    meaning: deciding on and; making into and
+  - conjugation-type: potential (～られる/～える)
+    form: にできる
+    rarity: common
+    meaning: can decide on; can make into
+  - conjugation-type: volitional (～よう)
+    form: にしよう
+    rarity: common
+    meaning: let's decide on; let's make into
+  - conjugation-type: volitional polite (～ましょう)
+    form: にしましょう
+    rarity: common
+    meaning: let's decide on; let's make into
+  - conjugation-type: causative (～させる)
+    form: にさせる
+    rarity: common
+    meaning: to make someone decide; to have someone make into
+  - conjugation-type: passive (～られる/～かれる)
+    form: にされる
+    rarity: common
+    meaning: to be decided on; to be made into
+  - conjugation-type: causative-passive (～させられる)
+    form: にさせられる
+    rarity: less common
+    meaning: to be made to decide; to be forced to make into
+pronunciation:
+  katakana: ニ スル
+  romaji: ni suru
+formation:
+  Noun + にする: Used to express the act of deciding on something or choosing an option, often from a set
+    of possibilities, or to make something into a specific thing or state.
+  な-Adjective (stem) + にする: Used to express the act of changing something to have a certain quality or
+    state (for な-adjectives only).
+  Verb[dictionary] + ことにする: Used to express the act of making a personal decision or resolution to perform
+    a specific action.
+  Verb[dictionary] + ようにする: Used to express the act of making an effort to do something or to make something
+    come about (to ensure something happens).
+jlpt: N5
+etymology: The particle 「に」 often indicates a target, destination, or result. When combined with the verb
+  「する」 (to do/make), it literally means "to do towards (a target)" or "to make into (a result)." This
+  fundamental concept underlies both its usage for making decisions (deciding *on* a choice) and causing
+  transformations (making something *into* a new state).
+writeup: |-
+  The grammar pattern 「にする」 is a versatile expression in Japanese, primarily used in two distinct but related ways: to express **making a decision or choice** and to express **transforming something into a new state or quality**. It implies a volitional action on the part of the subject.
+
+  When used to express **decisions**, 「にする」 indicates that the speaker or subject has chosen a particular option among others. This choice can be about anything from what to eat, which color to pick, or what course of action to take. For example, 「コーヒーにする」 means "I'll go with coffee" or "I'll choose coffee."
+
+  When used to express **transformation**, 「にする」 means to actively make something become a different state or quality. This is often seen with **nouns or な-adjectives**, where the noun or adjectival stem is followed by 「にする」. For example, 「部屋をきれいにする」 means "to make the room clean." It highlights the active effort to bring about a change.
+
+  It is important to understand that 「にする」 always implies a conscious effort or decision by an actor. This contrasts with similar grammatical patterns that describe changes occurring naturally or impersonally. It is crucial to distinguish this from transformations involving **い-adjectives**. For い-adjectives, the structure used is `い-adjective[stem] + く + する` (e.g., 「部屋を明るくする」 - to make the room brighter), which does not involve the particle 「に」 and is therefore a grammatically distinct pattern. While both express causing a change, `にする` specifically applies to nouns and な-adjectives when indicating a transformation.
+false_friends:
+  - term: になる (to become)
+    meaning: to become; to turn into
+    kind: similar expression
+    nuance: 「になる」 is intransitive and indicates a natural or unprompted change, or a change that simply
+      occurs. In contrast, 「にする」 is transitive and expresses a volitional action of causing a change or
+      making a decision. We're looking for a grammar point that focuses on the *act of causing change
+      or making a decision*.
+    grammar_point: <suggest>:になる (to become)
+  - term: と決める (to decide)
+    meaning: to decide firmly; to determine
+    kind: similar expression
+    nuance: 「と決める」 emphasizes a firm determination or resolution, often implying a rule or outcome that
+      has been definitively set. 「にする」, especially when referring to choices, often implies selecting
+      one option from a set of possibilities. We're looking for a grammar point that focuses on *making
+      a choice or transforming something*.
+    grammar_point: 決める (to decide)
+post_false_friends_writeup: While 「になる」 and 「にする」 both describe change, the key distinction is agency.
+  「になる」 is for changes that happen *to* something or *by itself*, whereas 「にする」 is for changes that someone
+  *makes* happen. For example, 「医者になる」 means "to become a doctor" (a personal goal, but the becoming is
+  a natural process over time), while 「医者にする」 would mean "to make someone a doctor" (you are actively
+  causing them to become one, perhaps by educating them).
+examples:
+  - english: I chose this design.
+    japanese:
+      - この デザイン {に する}。
+      - この デザイン {に し ます}。
+      - この デザイン {に し まし た}。
+    english_literally: This design I choose.
+    competing_grammar:
+      - competing_japanese:
+          - この デザイン に 決める。
+        english: I will firmly decide on this design.
+        hint: 「と決める」 expresses a firm determination or resolution. We're looking for a grammar point that
+          simply states a choice or selection.
+      - competing_japanese:
+          - この デザイン を 選ぶ。
+        english: I will choose this design.
+        hint: 「選ぶ」 directly means to choose or select. We're looking for a more general expression of
+          making a decision.
+    scene: You are at a store, picking out a pattern for a new shirt. You point to a pattern.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Let's make the room clean.
+    japanese:
+      - 部屋 を きれい {に しよう}。
+      - 部屋 を きれい {に し ましょう}。
+    english_literally: Room clean make.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が きれい に なる。
+        english: The room becomes clean.
+        hint: 「になる」 describes a change that happens naturally or to something, not a change someone actively
+          makes. We're looking for a grammar point that expresses actively causing a change.
+      - competing_japanese:
+          - 部屋 を 明るく する。
+        english: To make the room brighter.
+        hint: While this also describes making a change, 「明るくする」 uses an い-adjective with 「する」, which
+          is a different grammatical pattern than the core 「にする」 pattern we are focusing on for nouns
+          and な-adjectives.
+      - competing_japanese:
+          - 部屋 を 明るく しよう。
+        english: Let's make the room brighter.
+        hint: This uses an い-adjective with 「する」, which is a different grammatical pattern from 「にする」
+          (used with nouns or な-adjectives).
+    scene: You are redecorating your living room with a friend.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+  - english: I decided to study abroad next year.
+    japanese:
+      - 来年、留学 {する こと に し た}。
+      - 来年、留学 {する こと に し まし た}。
+      - 来年、留学 {する こと に し ます}。
+      - 来年、留学 {する こと に する}。
+    english_literally: Next year, studying abroad to do decided.
+    competing_grammar:
+      - competing_japanese:
+          - 来年、留学 を 決め た。
+        english: I decided about studying abroad next year.
+        hint: 「と決める」 emphasizes a strong determination or resolution. We're looking for a grammar point
+          that states a personal decision to undertake an action.
+      - competing_japanese:
+          - 来年、留学 の 予定 だ。
+        english: I have plans for studying abroad next year.
+        hint: 「予定だ」 states a plan or schedule. We're looking for a grammar point that indicates a personal
+          decision.
+    scene: You are telling your family about your future plans.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+  - english: Which one should I choose?
+    japanese:
+      - どれ {に し ます} か。
+      - どちら {に し ます} か。
+    english_literally: Which one will make it?
+    competing_grammar:
+      - competing_japanese:
+          - どれ を 選ぶ か。
+        english: Which one will I choose?
+        hint: 「選ぶ」 means to select. We're looking for a polite way to ask for a choice.
+      - competing_japanese:
+          - どれ が いい です か。
+        english: Which one is good?
+        hint: 「どれがいいですか」 asks for a preference. We're looking for a grammar point that asks for a decision
+          or choice.
+    scene: You are a waiter asking a customer for their order.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: Please make the volume maximal.
+    japanese:
+      - 音量 を 最大 {に し て ください}。
+      - 音量 を 最大 {に し て もらい ます か}。
+      - 音量 を 最大 {に し て くれる}？
+    english_literally: Volume maximal make please.
+    competing_grammar:
+      - competing_japanese:
+          - 音 を もう 少し 大きく し て ください。
+        english: Please make the sound a little louder.
+        hint: This uses an い-adjective with 「する」, which is a different grammatical pattern from 「にする」
+          (used with nouns or な-adjectives).
+      - competing_japanese:
+          - 音量 を 上げ て ください。
+        english: Please raise the volume.
+        hint: 「音量を上げる」 is a direct command to increase volume. We're looking for a more general expression
+          of causing a transformation using 「にする」.
+    scene: You are watching TV with your friend and can't hear well.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: te-form (～て)
+  - english: I decided not to make it simple.
+    japanese:
+      - 単純 {に し ない こと に し た}。
+      - 単純 {に し ない こと に し まし た}。
+      - 単純 {に し ない こと に し ます}。
+      - 単純 {に し ない こと に する}。
+    english_literally: Simple not to do decided.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 自分 で 決して し ない。
+        english: He never decides for himself.
+        hint: The grammar point 「にする」 implies choosing a noun or a state (using な-adjectives), or deciding
+          on an action (with 「ことにする」). The original sentence simply uses 「する」 in its basic sense of 'to
+          do', implying decision through context, which is a different pattern from 「にする」.
+      - competing_japanese:
+          - 彼 は 自分 で 決め ない。
+        english: He doesn't decide by himself.
+        hint: 「決めない」 directly means not to decide. We're looking for a more general expression of not
+          making a choice or not causing a change using 「にする」.
+    scene: You're explaining a complex situation and decide against oversimplifying it.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: If you make this document into a PDF, it will be easier to read.
+    japanese:
+      - この 書類 を PDF {に すれ ば}、読み やすく なる。
+      - この 書類 を PDF {に し たら}、読み やすく なる。
+      - この 書類 を PDF {に する と}、読み やすく なる。
+    english_literally: This document PDF if you make, easy to read will become.
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 が PDF に なれ ば、読み やすく なる。
+        english: If this document becomes a PDF, it will be easier to read.
+        hint: 「になれば」 implies the document naturally transforming, not someone actively converting it.
+          We're looking for a grammar point that expresses an active transformation.
+      - competing_japanese:
+          - この 書類 を PDF 化 すれ ば、読み やすく なる。
+        english: If you convert this document to PDF, it will be easier to read.
+        hint: 「化する」 means to 'make into' something by adding a suffix, which is different from the direct
+          object particle 「に」 used with 「にする」 for transformation. We're looking for an active transformation
+          using 「にする」.
+    scene: You are advising a colleague on document management.
+    register: formal
+    setting: professional
+    conjugation: conditional (～ば)
+  - english: I will make this my last chance!
+    japanese:
+      - これ を 最後 の チャンス {に し ます}！
+      - これ を 最後 の チャンス {に する}！
+      - これ を 最後 の チャンス {に し て やる}！
+    english_literally: This last chance I will make!
+    competing_grammar:
+      - competing_japanese:
+          - これ を 最後 の チャンス と 決める！
+        english: I will firmly decide this as the last chance!
+        hint: 「と決める」 emphasizes a strong resolution. We're looking for a grammar point that expresses
+          actively declaring or treating something as a particular state.
+    scene: You are an athlete giving yourself a pep talk before a competition.
+    register: casual
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The use of 「にします」 here conveys a strong personal commitment or declaration, transforming the
+      current situation or item into a designated status. It's an active mental "making" or designation.
+    etymology: The phrase emphasizes the subjective act of designation or decision, rather than a mere
+      selection.
+  - english: The company decided to implement new regulations.
+    japanese:
+      - 会社 は 新しい 規則 を 導入 {する こと に し まし た}。
+      - 会社 は 新しい 規則 を 導入 {する こと に し た}。
+    english_literally: Company new regulations to introduce decided to do.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 は 新しい 規則 を 導入 する と 決定 し た。
+        english: The company decided to introduce new regulations.
+        hint: 「決定した」 is a more formal term for decision. We're looking for a common expression for a company's
+          decision or resolution.
+    scene: You are reading a business report about recent corporate changes.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: Why don't you make your hair colorful?
+    japanese:
+      - 髪 を カラフル {に し たら どう} です か。
+      - 髪 を カラフル {に し たら}？
+      - 髪 を カラフル {に し て み たら どう} です か。
+    english_literally: Hair colorful if you make how is it?
+    competing_grammar:
+      - competing_japanese:
+          - 髪 を 短く し たら どう です か。
+        english: Why don't you make your hair shorter?
+        hint: This uses an い-adjective with 「する」, which is a different grammatical pattern from 「にする」
+          (used with nouns or な-adjectives).
+      - competing_japanese:
+          - 髪 を 短く 切っ たら どう です か。
+        english: Why don't you cut your hair shorter?
+        hint: 「切る」 specifically means to cut. We're looking for a more general suggestion to cause a change
+          in color using 「にする」.
+    scene: You are suggesting a new hairstyle to a friend.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The construction 「したらどうですか」 is a polite suggestion. The phrase 「カラフルにする」 means "to make (something)
+      colorful," directly applying the transformation meaning of 「にする」.
+    etymology: The usage highlights the active effort one would put into coloring their hair, not a natural
+      process.
+  - english: We'll make the meeting 30 minutes.
+    japanese:
+      - 会議 を 30 分 {に し ます}。
+      - 会議 を 30 分 {に する}。
+    english_literally: Meeting 30 minutes will make.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 時間 を 30 分 と 定める。
+        english: We will stipulate the meeting time as 30 minutes.
+        hint: 「と定める」 is a more formal way to establish a rule or decision. We're looking for a grammar
+          point that expresses simply deciding on a duration using 「にする」.
+    scene: You are the organizer informing participants about the meeting's length.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: From now on, I will make an effort not to be late.
+    japanese:
+      - これ から は、遅刻 {し ない よう に し ます}。
+      - これ から は、遅刻 {し ない よう に する}。
+    english_literally: From now, being late not to do will make.
+    competing_grammar:
+      - competing_japanese:
+          - これ から は、遅刻 し ない と 決め ます。
+        english: From now on, I will decide not to be late.
+        hint: 「と決める」 is a strong, one-time decision. We're looking for a grammar point that expresses
+          a continuous effort or resolution.
+      - competing_japanese:
+          - これ から は、遅刻 を し ない つもり です。
+        english: From now on, I intend not to be late.
+        hint: 「つもりです」 expresses intent. We're looking for a grammar point that indicates a conscious effort
+          to establish a habit or bring about a state, using 「にする」.
+    scene: You are apologizing to your boss for often being late.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: non-past polite (～ます)
+post_example_writeup: The examples illustrate how 「にする」 is used for both choosing an option (e.g., a design,
+  a menu item, a meeting duration) and actively causing a transformation **when the object becomes a noun
+  or な-adjective** (e.g., making a room clean, making the volume maximal, making hair colorful). It consistently
+  conveys an intentional action or decision on the part of the subject.

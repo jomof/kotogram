@@ -1,0 +1,286 @@
+grammar_point: あり (possibility・with)
+matcher: |-
+  ⌈ˢありᵖn:common_nounᵇありᵈ有りʳアリ⌉|
+  ⌈ˢありᵖv:non_self_reliant:godan-ra:conjunctiveᵇあるᵈ有るʳアリ⌉
+learn_before:
+  - じゃないか (isn't it?)
+meaning: Possibility, To have, With
+pronunciation:
+  katakana: アリ
+  romaji: ari
+formation:
+  Noun + も + {あり} + (だ / じゃない / です): Used to indicate that Noun is also a possible option among others.
+  Noun + {あり} + の + Noun: Used to indicate that the second Noun possesses the feature of the first Noun.
+  Noun + {あり} + で: Used to indicate that an action is performed with the presence of Noun.
+jlpt: N3
+etymology: The term 「あり」 originates from the literary form of the verb 「有る (ある)」, meaning 'to be' or 'to
+  exist'. It functions similarly to 「なし (nashi)」, but instead of indicating the absence of something,
+  it highlights the presence or possibility of something within a broader context. It is important to
+  note that the kanji 「有り」 emphasizes 'inclusiveness as part of a whole', while the kanji 「在り」 focuses
+  more on 'stand-alone existence'.
+writeup: |-
+  「あり」, while literally the literary form of 「有る」 ('to be'), functions in modern Japanese to indicate that something **is** an option or possibility. It suggests that the mentioned item or feature is present or could be considered among other options. It is similar to 「なし」, but with the opposite meaning; instead of indicating something is 'without (A)', it implies something is 'with (A)'.
+
+  **Key Usage**:
+
+  *   **Indicating Possibility**: Used to suggest something as a possible option. Often seen with 「～もいい」 or 「～じゃない」 patterns.
+  *   **Describing Features**: Indicates that something has a particular feature or amenity. For example, 「駐車場あり」 means 'with parking'.
+
+  **Important Considerations**:
+
+  *   The implication is always that it is one of multiple possibilities.
+  *   The kanji 「有り」 indicates 'inclusiveness as part of a whole', while 「在り」 focuses more on 'stand-alone existence'.
+  *   While its core register is casual, 「あり」 can be used in semi-formal or professional contexts when combined with polite endings like 「です」, making it quite versatile.
+false_friends:
+  - term: ある
+    meaning: to exist (inanimate objects); to have
+    kind: similar expression
+    nuance: 「ある」 indicates the general existence or possession of something, whereas 「あり」 specifies something
+      as one of several possibilities or features.
+    grammar_point: ある (to exist, inanimate・to have)
+  - term: いい
+    meaning: good; acceptable
+    kind: similar expression
+    nuance: While 「いい」 broadly means 'good' or 'acceptable', 「あり」 specifically suggests something is a
+      valid possibility or acceptable option among a range of choices, often implying a less formal or
+      more open-ended consideration.
+    grammar_point: いい (good)
+  - term: 選択肢
+    meaning: choice; option
+    kind: similar expression
+    nuance: 「選択肢」 is a formal noun meaning 'choice' or 'option', whereas 「あり」 is a more casual and concise
+      way to state that something is a valid possibility or acceptable option.
+    grammar_point: <suggest>:選択肢 (choice)
+  - term: 有り難う
+    meaning: Thank you
+    kind: often confused with
+    nuance: 「有り難う」 is a fixed expression of gratitude, and despite containing the character 「有」, it is
+      phonetically and semantically unrelated to the use of 「あり」 for possibility or presence.
+    grammar_point: <suggest>:有り難う (thank you)
+post_false_friends_writeup: It is important to distinguish between 「あり」 and 「ある」. 「ある」 is a basic verb
+  meaning "to exist" or "to have," while 「あり」, when used as a modifier, indicates a possibility or a feature
+  among others. Similarly, while 「有り難う」 contains the kanji 「有」, it is a fixed expression for gratitude
+  and not related to the grammar point's meaning. Additionally, while expressions using 「いい」 or 「選択肢」
+  can convey similar ideas of acceptability or option, 「あり」 specifically focuses on something being a
+  *valid possibility among others*, often with a more colloquial nuance than the formal 「選択肢」.
+examples:
+  - english: A movie is also an option, don't you think?
+    japanese:
+      - 映画 も {あり} じゃ ない です か？
+      - 映画 も {あり} で は ない です か？
+      - 映画 も {あり} じゃ ない？
+    english_literally: Isn't a movie also a possibility?
+    competing_grammar:
+      - competing_japanese:
+          - 映画 も {いい} ん じゃ ない です か？
+        english: A movie is also good, don't you think?
+        hint: 「いい」 can mean good, but 「あり」 specifically suggests something is a valid possibility or acceptable
+          option among others. We're looking for a phrase that suggests a movie is a viable option among
+          several choices.
+      - competing_japanese:
+          - 映画 も {選択 肢} じゃ ない です か？
+        english: Isn't a movie also a choice?
+        hint: While 「選択肢」 explicitly means choice, 「あり」 offers a more colloquial and less formal way to
+          suggest something as a valid possibility. We're looking for a more natural, everyday expression
+          for a possibility.
+    scene: Friends deciding on an activity for the evening.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The use of 「～じゃないですか？」 is a casual way to suggest something or seek agreement. The female
+      speaker proposes a movie as a possible activity, indicating openness to other suggestions.
+  - english: I am looking for a cafe with free Wi-Fi.
+    japanese:
+      - 無料 Wi-Fi {あり} の カフェ を 探し て い ます。
+      - 無料 Wi-Fi {あり} の カフェ を 探し て おり ます。
+      - 無料 Wi-Fi {あり} の カフェ 探し てる。
+    english_literally: I am looking for a cafe with free Wi-Fi existing.
+    competing_grammar:
+      - competing_japanese:
+          - 無料 Wi-Fi が {ある} カフェ を 探し て い ます。
+        english: I am looking for a cafe that has free Wi-Fi.
+        hint: 「ありの」 is a more common and concise way to describe a feature or amenity of something, especially
+          in daily conversational context, compared to the more descriptive 「がある」. We're looking for a
+          concise way to state a cafe's feature.
+    scene: A person talking to a local guide about finding a place to work.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    speaker_age: older
+    nuance: The phrase 「～を探しています」 is polite and common when making a request or inquiry. The speaker specifies
+      a desired feature 「無料 Wi-Fi {あり} の」, indicating a clear requirement to the listener.
+  - english: I want to pay with cash, so can we stop by an ATM?
+    japanese:
+      - 現金 {あり} で 支払い たい の で、ATM に 寄っ て も いい です か？
+      - 現金 {あり} で お 支払い し たい の で、ATM に 寄っ て も よろしい です か？
+      - 現金 {あり} で 支払い たい から、ATM に 寄っ て も いい？
+    english_literally: Because I want to pay with cash being present, can we stop by an ATM?
+    competing_grammar:
+      - competing_japanese:
+          - 現金 が {ある} の で 支払い たい。
+        english: I want to pay because I have cash.
+        hint: 「ありで」 functions as a compact expression indicating 'with the presence of X' (here, cash
+          on hand), which is commonly used for specifying a mode of payment or a condition, rather than
+          the more literal 「がある」. We're looking for a phrase that clearly states the payment condition.
+    scene: A person realizing they don't have enough cash while out with a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「～ので」 provides a reason, and 「～てもいいですか？」 is a polite way to ask for permission or a suggestion.
+      The speaker is indicating their preference to pay with cash, using 「現金 {あり} で」 to express this condition.
+  - english: Hiking is also a possibility, isn't it?
+    japanese:
+      - ハイキング も {あり} です よ ね？
+      - ハイキング も {あり} だ よ ね？
+      - ハイキング も {あり} じゃ ない？
+    english_literally: Hiking is also a possibility, right?
+    competing_grammar:
+      - competing_japanese:
+          - ハイキング も {いい} です よ ね？
+        english: Hiking is also good, isn
+        hint: 「あり」 specifically denotes 'a possibility' or 'an acceptable option' among multiple choices,
+          emphasizing its viability in a broader discussion, rather than just being 'good'. We're looking
+          for a phrase that suggests hiking as a viable option among several choices.
+    scene: Colleagues brainstorming ideas for a team-building event.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    speaker_age: older
+    nuance: 「～です よ ね？」 is a polite way to suggest something or seek agreement in a professional context,
+      inviting consensus. The male speaker proposes hiking as a potential activity for the team.
+  - english: Yes, it's totally possible.
+    japanese:
+      - そう です ね！{あり} です。
+      - うん、{あり}！
+      - そう だ ね！{あり} だ。
+      - ぜんぜん {あり}！
+    english_literally: That is right! It is possible.
+    competing_grammar:
+      - competing_japanese:
+          - めっちゃ {いい} です。
+        english: That's super good.
+        hint: While 「いい」 (good) can be used, 「あり」 offers a more enthusiastic and less formal way to express
+          that something is a valid possibility, especially when combined with the simple agreement 「そう
+          です ね！」. We're looking for an enthusiastic confirmation that something is possible.
+    scene: A junior colleague enthusiastically agreeing to a senior's suggestion.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「そう です ね！」 expresses polite agreement. 「{あり} です」 is a concise and direct way to confirm something
+      is a valid option or idea, indicating strong approval in a respectful manner.
+  - english: For the weekend, the park is also an option.
+    japanese:
+      - 週末 は 公園 も {あり} だ な。
+      - 週末 は 公園 も {あり} だ ぞ。
+      - 週末 は 公園 も {あり} だ ね。
+    english_literally: As for the weekend, the park is also possible, I suppose.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 で も {いい} な。
+        english: The park is fine too.
+        hint: 「いい」 implies 'acceptable', but 「ありだ」 suggests that the park is one of the valid options
+          when considering 'where to go on the weekend', implying a wider range of possibilities. We're
+          looking for a phrase that implies the park is a strong option among others.
+    scene: A person reflecting on various outdoor activities for the weekend.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The casual 「～だな」 marks a self-reflection or mild assertion. The speaker is contemplating different
+      options for the weekend, considering the park as a suitable choice.
+  - english: I want a new smartphone. This model is also an option.
+    japanese:
+      - 新しい スマホ が 欲しい。この モデル も {あり} だ。
+      - 新しい スマホ が 欲しい。この モデル も {あり} だ ぞ。
+      - 新しい スマホ が 欲しい。この モデル も {あり} だ な。
+    english_literally: I want a new smartphone. This model is also possible.
+    competing_grammar:
+      - competing_japanese:
+          - この モデル で も {いい}。
+        english: This model is fine too.
+        hint: 「いい」 implies 'fine' or 'acceptable', but 「ありだ」 suggests that this specific phone model is
+          one of the valid options when considering 'what kind of phone to get', implying a wider range
+          of possibilities. We're looking for a phrase that implies this model is a strong option among
+          others.
+    scene: A person browsing phones, considering different models.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    speaker_age: older
+    nuance: The casual 「～だ」 marks a personal conclusion. The speaker is weighing various smartphone options,
+      indicating that a particular model is a strong contender among others.
+  - english: For the next trip, Kyoto is also a possibility, right?
+    japanese:
+      - 次 の 旅行 は 京都 も {あり} じゃ ない か？
+      - 次 の 旅行 は 京都 も {あり} で は ない です か？
+      - 次 の 旅行 は 京都 も {あり} だ ろ？
+      - 次 の 旅行 は 京都 も {あり} じゃ ない？
+    english_literally: Next trip, isn't Kyoto also possible?
+    competing_grammar:
+      - competing_japanese:
+          - 京都 も {いい} ん じゃ ない か？
+        english: Isn't Kyoto also good?
+        hint: 「いい」 implies general approval, but 「あり」 frames Kyoto as one of several potential options
+          for the trip, inviting consideration rather than just a simple 'good idea'. We're looking for
+          a phrase that specifically suggests Kyoto as a viable option.
+      - competing_japanese:
+          - 京都 も {選択 肢} の 一 つ だ ね。
+        english: Kyoto is also one of the choices, isn't it?
+        hint: Using 「選択肢」 would make the statement too formal and direct for a casual discussion among
+          friends. 「ありじゃないか？」 keeps it light and conversational. We're looking for a more casual way to
+          suggest an option.
+    scene: Friends planning their next vacation destination.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「～じゃないか？」 is a casual way for a male speaker to suggest something or seek agreement. The speaker
+      proposes Kyoto as a potential travel destination, inviting discussion from friends.
+  - english: A store with parking is convenient.
+    japanese:
+      - 駐車 場 {あり} の お 店 が 便利 だ。
+      - 駐車 場 {あり} の お 店 が 便利 です。
+      - 駐車 場 {あり} の お 店 が 便利 だ よ ね。
+    english_literally: A store with parking existing is convenient.
+    competing_grammar:
+      - competing_japanese:
+          - 駐車 場 が {ある} お 店 が 便利 だ。
+        english: A store that has parking is convenient.
+        hint: 「ありの」 is a concise and commonly used way to describe a feature of a place, especially when
+          discussing convenience, more succinct than the fuller 「がある」. We're looking for a concise way
+          to describe a store's feature.
+    scene: A person explaining their preference for shopping locations.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    speaker_age: older
+    nuance: The use of 「{あり} の」 describes a specific attribute. The female speaker states a general preference
+      for stores that offer parking, highlighting convenience.
+  - english: For dinner, I think sushi is also a possibility.
+    japanese:
+      - 晩ご飯 は 寿司 も {あり} だ と 思う。
+      - 晩ご飯 は 寿司 も {あり} だ と 思い ます。
+      - 晩ご飯 は 寿司 も {あり} だ と 思う よ。
+      - 晩ご飯 は 寿司 も {あり} だ と 思う ぞ。
+    english_literally: As for dinner, I think sushi is also possible.
+    competing_grammar:
+      - competing_japanese:
+          - 晩ご飯 は 寿司 で も {いい} と 思う。
+        english: I think sushi is fine for dinner too.
+        hint: 「いい」 (good) implies acceptability, but 「あり」 suggests that sushi is one of the valid options
+          when considering 'what to eat for dinner', implying a wider range of possibilities. We're looking
+          for a phrase that implies sushi is a strong option among others.
+    scene: A person deciding what to have for dinner, considering multiple options.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    speaker_age: older
+    nuance: 「～と思う」 indicates a personal thought or opinion. The speaker is mulling over dinner choices,
+      listing sushi as a viable option among others.
+post_example_writeup: As you can see from these examples, 「あり」 is quite flexible. It can be used as a
+  standalone phrase, as a modifier with 「の」, or in conjunction with 「で」 to indicate a condition or presence.
+  Pay close attention to the particles used around 「あり」, as they significantly influence its nuance within
+  the sentence. Remember, the core meaning revolves around something being a valid or present option.

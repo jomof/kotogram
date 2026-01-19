@@ -1,0 +1,266 @@
+grammar_point: によると・によれば (according to)
+learn_before:
+  - '[Sentence]らしい (it seems, based on evidence・I hear)'
+meaning: According to
+meaning_warning: ことによると is a set expression meaning "perhaps", which is distinct from this grammar point.
+pronunciation:
+  katakana: ニヨルト・ニヨレバ
+  romaji: ni yoru to / ni yoreba
+formation:
+  Noun + によると/によれば: Indicates that something is according to the stated source or based on the stated
+    source.
+  聞く ところ + によると/によれば: Indicates that information is based on what one has heard or gathered, often used
+    for rumors or informal information, softening the directness of the statement. The phrase is often
+    followed by 「〜らしい」 (it seems) or 「〜とのこと」 (I heard).
+jlpt: N3
+etymology: 「によると」 is formed from 「に」 (case marking particle), 「よる」 (the verb meaning "to depend on" or
+  "to be based on"), and 「と」 (quotation particle). 「によれば」 uses the same 「に」 and 「よる」, but replaces 「と」
+  with 「ば」, the conditional form conjunction particle. The verb 「よる」 is almost always written in hiragana
+  alone, but it can be written with several kanji (依る, 拠る, 因る, 由る), each carrying slightly different nuances
+  while broadly conveying the idea of 'based on' or 'originating from'. The conditional form 「～ば」 implies
+  'if it is based on...', leading to the stated information.
+writeup: |-
+  「によると」 and 「によれば」 are fixed phrases used to introduce information by stating its source. The phrases translate to "according to" or "based on." This structure is fundamental for citing information from various sources, ranging from official reports to casual hearsay.
+
+  The particle 「に」 in this construction points to the source. The verb 「よる」, while literally meaning "to depend on" or "to be based on," functions here to connect the source to the reported information. The final particles, 「と」 and 「ば」, dictate the nuance.
+
+  **「によると」** typically implies a higher degree of certainty or reliability regarding the source. It is frequently used when citing formal or authoritative sources, such as news reports, official statements, or research findings. For instance, when quoting the police or a weather forecast, 「によると」 is commonly preferred.
+
+  **「によれば」**, while also meaning "according to," is generally considered slightly less formal than 「によると」. It can be used more broadly for a variety of sources, including informal ones like friends or rumors. Although largely interchangeable with 「によると」 in many contexts, 「によれば」 carries a slightly softer implication, suggesting the information is simply relayed rather than officially verified.
+
+  **「によりますと」** is a more polite and formal variation of 「によると」, often used in professional settings, public announcements, or formal presentations to show respect to the audience or the source.
+
+  When introducing information, the source (a noun or a clause ending in 「ところ」) precedes the grammar point. The information itself then follows, often with forms indicating hearsay or inference, such as 「～そうです」 or 「～らしいです」. It is crucial to remember that these grammar points are for reporting *what is said or known by a source*, not for stating one's own direct observation or knowledge.
+false_friends:
+  - term: にしたがって
+    meaning: As, Following, As then, According to, In accordance with
+    kind: similar expression
+    nuance: 「にしたがって」 is used to describe something that happens in accordance with a rule or standard,
+      often implying a sequential or proportional relationship, while 「によると」/「によれば」 simply state the source
+      of information for a statement.
+    grammar_point: に従って・従い (in accordance with and proportional change)
+  - term: によって・による
+    meaning: By means of, According to, Depending on, Because of, Due to
+    kind: similar expression
+    nuance: 「によって」/「による」 has a broader range of meanings, including "by means of" or "due to," or indicating
+      a changing outcome based on something. In contrast, 「によると」/「によれば」 specifically indicate the source
+      from which information was obtained.
+    grammar_point: '[Noun]によって (means・method)'
+  - term: をもとに
+    meaning: Based on, From, According to
+    kind: similar expression
+    nuance: 「をもとに」 means "based on" as in using something as a foundation or material from which something
+      else is created or derived. This differs from 「によると」/「によれば」, which simply refer to where the information
+      came from without implying a creative or foundational process.
+    grammar_point: をもとに (based on)
+  - term: にもとづいて
+    meaning: Based on, In accordance with
+    kind: similar expression
+    nuance: 「にもとづいて」 indicates that something is done based on a specific standard, principle, or pre-existing
+      fact, often implying legal or logical adherence. This is more about adherence to a rule or foundation,
+      while 「によると」/「によれば」 refers to the origin of stated information.
+    grammar_point: にもとづいて (based on)
+  - term: からすると・からすれば
+    meaning: Judging from, Considering
+    kind: similar expression
+    nuance: 「からすると」 and 「からすれば」 express a judgment or inference based on a certain viewpoint or information.
+      While they also use a source, they imply a conclusion drawn *from* that source rather than just
+      relaying information *from* it. 「によると」/「によれば」 are more about pure attribution.
+    grammar_point: からすると・からすれば (judging from・from the standpoint of)
+  - term: から言って
+    meaning: In terms of; judging from; from the viewpoint of
+    kind: similar expression
+    nuance: Similar to 「からすると」, 「から言って」 is used to express an opinion or judgment based on a certain piece
+      of information or perspective. It emphasizes the basis for one's statement, but again, it's more
+      about forming an opinion than simply reporting facts from a source.
+    grammar_point: からすると・からすれば (judging from・from the standpoint of)
+post_false_friends_writeup: Distinguishing between these expressions involves understanding the specific
+  nuance each conveys. The key difference is that 「によると」 and 「によれば」 are used specifically to attribute
+  information to a source. Other expressions like 「にしたがって」 imply adherence or a sequential relationship,
+  「によって」 suggests means or cause, 「をもとに」 indicates a foundation for creation, and 「にもとづいて」 refers to adherence
+  to rules or established facts. Expressions like 「からすると」 or 「から言って」 indicate that a judgment or conclusion
+  is being *made* based on a source, rather than just relaying information *from* a source. Always consider
+  whether the purpose is to simply state the origin of information or to convey a more complex relationship.
+examples:
+  - english: According to the weather forecast, it seems it will be sunny tomorrow.
+    japanese:
+      - 天気 予報 {に よる と}、明日 は 晴れる そう です。
+      - 天気 予報 {に よれ ば}、明日 は 晴れる そう です。
+      - 天気 予報 {に より ます と}、明日 は 晴れる そう です。
+    english_literally: Weather forecast according to, tomorrow seems to be sunny.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 晴れる {そう です}。
+        english: It seems it will be sunny tomorrow.
+        hint: This directly uses the hearsay expression. We're looking for a phrase that indicates the
+          specific source of this information.
+    scene: Two friends are making plans for a picnic, checking the weather.
+    register: casual
+    setting: informative
+  - english: According to the police announcement, the suspect in the incident has been arrested.
+    japanese:
+      - 警察 の 発表 {に よる と}、事件 の 容疑 者 は 逮捕 さ れ た と の こと です。
+      - 警察 の 発表 {に よれ ば}、事件 の 容疑 者 は 逮捕 さ れ た と の こと です。
+      - 警察 の 発表 {に より ます と}、事件 の 容疑 者 は 逮捕 さ れ た と の こと です。
+    english_literally: Police's announcement according to, incident's suspect was arrested it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 警察 が 発表 し まし た。事件 の 容疑 者 は 逮捕 さ れ た {と の こと です}。
+        english: The police announced. The suspect in the incident was arrested.
+        hint: This directly states what was announced using a common reporting phrase. We're looking for
+          a way to attribute the announcement to its specific source.
+    scene: A television news anchor reporting breaking news.
+    register: formal
+    setting: informative
+  - english: According to my friend, that new cafe seems to be very delicious.
+    japanese:
+      - 友人 {に よれ ば}、あの 新しい カフェ は とても 美味しい らしい です よ。
+      - 友人 {に よる と}、あの 新しい カフェ は とても 美味しい らしい です よ。
+      - 友人 {に より ます と}、あの 新しい カフェ は とても 美味しい らしい です。
+    english_literally: Friend according to, that new cafe seems very delicious.
+    competing_grammar:
+      - competing_japanese:
+          - 友人 が 言っ て い まし た。あの 新しい カフェ は とても 美味しい {らしい です} よ。
+        english: My friend said. That new cafe seems very delicious.
+        hint: This directly states what your friend said and that it's apparently true. We're looking
+          for a phrase that attributes the information to your friend as the original source.
+    scene: Two college students chatting between classes about where to get lunch.
+    register: casual
+    setting: friendly
+  - english: According to the Ministry of Education, Culture, Sports, Science and Technology, a new curriculum
+      is scheduled to be introduced from next fiscal year.
+    japanese:
+      - 文部 科学 省 {に より ます と}、来 年度 から 新しい 教育 課程 が 導入 さ れる 予定 です。
+      - 文部 科学 省 {に よる と}、来 年度 から 新しい 教育 課程 が 導入 さ れる 予定 です。
+      - 文部 科学 省 {に よれ ば}、来 年度 から 新しい 教育 課程 が 導入 さ れる 予定 です。
+    english_literally: Ministry of Education, Culture, Sports, Science and Technology according to, next
+      fiscal year from new curriculum is introduced plan.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 教育 課程 が 導入 さ れる {と さ れ て い ます}。
+        english: A new curriculum is said to be introduced.
+        hint: This indicates something is generally said or considered. We're looking for a phrase that
+          attributes the information to a specific, formal source like a ministry.
+    scene: A school principal addressing parents at a PTA meeting.
+    register: formal
+    setting: informative
+  - english: According to my mother, sleeping early and waking early is best for health.
+    japanese:
+      - 母 {に よる と}、健康 の ため に は 早寝 早起き が 一番 だ そう です。
+      - 母 {に よれ ば}、健康 の ため に は 早寝 早起き が 一番 だ そう です。
+      - 母 {に より ます と}、健康 の ため に は 早寝 早起き が 一番 だ そう です。
+    english_literally: Mother according to, for health, early sleep early wake is best it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 母 が 言っ て い まし た。健康 の ため に は 早寝 早起き が 一番 だ {そう です}。
+        english: My mother said. For health, early sleep early wake is best it is said.
+        hint: This directly states what your mother said and that it is hearsay. We're looking for a way
+          to attribute this common wisdom to her as the original source.
+    scene: A high school girl is giving health advice to her younger brother who often stays up late.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual register and the specific advice about 「早寝 早起き」 (early to bed, early to rise) are
+      common parental exhortations, reinforcing the use of 「によると」 to convey family advice, especially
+      when speaking to a younger sibling.
+  - english: From what I hear, our section chief is apparently transferring next month.
+    japanese:
+      - 聞く {ところ に よる と}、うち の 課長 は 来月 異動 する らしい よ。
+      - 聞く {ところ に よれ ば}、うち の 課長 は 来月 異動 する らしい よ。
+      - 聞く {ところ に より ます と}、うち の 課長 は 来月 異動 する らしい です。
+    english_literally: Hearing place according to, our section chief next month transfers it seems.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 課長 は 来月 異動 する {らしい よ}。
+        english: Our section chief is apparently transferring next month.
+        hint: This directly states that it's apparently true. We're looking for a phrase that explicitly
+          indicates the information is based on what you heard.
+    scene: Two colleagues are having a quick coffee break, exchanging office gossip.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「聞く ところによると」, combined with 「らしいよ」 at the end, typically sets a tone of casual
+      office gossip or unconfirmed information between male colleagues. This emphasizes that the information
+      is secondhand and not directly observed by the speaker. The use of 「うち の 課長」 (our section chief)
+      and 「らしいよ」 are characteristic of informal workplace conversations, common among colleagues of similar
+      status or close relationship. This construction is useful when the speaker wishes to distance themselves
+      from the information's certainty, presenting it as something they've merely heard.
+  - english: According to ancient documents, it is said that there was once a large lake in this area.
+    japanese:
+      - 古い 文献 {に よれ ば}、この 地域 に は かつて 大きな 湖 が あっ た と さ れ て い ます。
+      - 古い 文献 {に よる と}、この 地域 に は かつて 大きな 湖 が あっ た と さ れ て い ます。
+      - 古い 文献 {に より ます と}、この 地域 に は かつて 大きな 湖 が あっ た と さ れ て い ます。
+    english_literally: Old documents according to, this region in once large lake existed it is said.
+    competing_grammar:
+      - competing_japanese:
+          - 古い 文献 に 書い て あり ます。この 地域 に は かつて 大きな 湖 が あっ た {と さ れ て い ます}。
+        english: It is written in old documents. There was once a large lake in this area, it is said.
+        hint: This indicates that something is generally said or considered based on sources. We're looking
+          for a phrase that attributes the information to the specific source of old documents.
+    scene: A university professor lecturing a class on local history.
+    register: formal
+    setting: informative
+  - english: According to a recent survey, over 70% of people are concerned about environmental issues.
+    japanese:
+      - 最新 の 調査 {に よる と}、70 % 以上 の 人々 が 環境 問題 に 関心 が ある そう です。
+      - 最新 の 調査 {に よれ ば}、70 % 以上 の 人々 が 環境 問題 に 関心 が ある そう です。
+      - 最新 の 調査 {に より ます と}、70 % 以上 の 人々 が 環境 問題 に 関心 が ある そう です。
+    english_literally: Recent survey according to, 70% or more of people environmental problems concerning
+      seems to be.
+    competing_grammar:
+      - competing_japanese:
+          - 70 % 以上 の 人々 が 環境 問題 に 関心 が ある {と いわ れ て い ます}。
+        english: Over 70% of people are said to be concerned about environmental issues.
+        hint: This indicates that something is generally said or believed. We're looking for a phrase
+          that attributes this information to a specific source, like a recent survey.
+    scene: A researcher is presenting findings at a conference.
+    register: formal
+    setting: informative
+    nuance: Using 「によると」 in this context highlights that the information comes from a formal and credible
+      source, such as a survey, emphasizing the objectivity of the data. 「によれ ば」 or 「によります と」 would also
+      be formal, with 「によります と」 being the most formal and 「によれ ば」 being slightly softer than 「によると」.
+  - english: According to rumors, that new teacher is quite strict.
+    japanese:
+      - 噂 {に よれ ば}、あの 新しい 先生 は かなり 厳しい らしい よ。
+      - 噂 {に よる と}、あの 新しい 先生 は かなり 厳しい らしい よ。
+    english_literally: Rumors according to, that new teacher quite strict seems.
+    competing_grammar:
+      - competing_japanese:
+          - あの 新しい 先生 は かなり 厳しい {らしい よ}。
+        english: That new teacher seems quite strict.
+        hint: This states that the new teacher is apparently strict. We're looking for a way to explicitly
+          state that the information comes from rumors.
+    scene: Two students are talking in the hallway during a break.
+    register: casual
+    setting: friendly
+    nuance: The use of 「に よれ ば」 with 「噂」 (rumor) and the casual 「らしいよ」 at the end indicates that the information
+      is based on informal hearsay, not a verified source. 「に よる と」 could also be used here, but 「に よれ
+      ば」 often feels slightly softer when referring to less certain information.
+  - english: According to company regulations, employees must wear uniforms.
+    japanese:
+      - 会社 の 規定 {に より ます と}、従業 員 は 制服 を 着用 し なけれ ば なり ませ ん。
+      - 会社 の 規定 {に よる と}、従業 員 は 制服 を 着用 し なけれ ば なり ませ ん。
+      - 会社 の 規定 {に よれ ば}、従業 員 は 制服 を 着用 し なけれ ば なり ませ ん。
+    english_literally: Company's regulations according to, employees uniforms must wear.
+    competing_grammar:
+      - competing_japanese:
+          - 従業 員 は 制服 を 着用 する {こと に なっ て い ます}。
+        english: Employees are required to wear uniforms.
+        hint: This indicates that something has been decided or is a rule. We're looking for a phrase
+          that explicitly attributes this rule to company regulations as its source.
+    scene: A manager is explaining new rules to their team.
+    register: formal
+    setting: professional
+    nuance: Using 「に よります と」 is highly appropriate here as it signals formal, official information, showing
+      politeness and respect for the regulations. 「に よる と」 would also be formal, but 「に よります と」 adds an
+      extra layer of deference, suitable for a manager addressing their team about company rules.
+post_example_writeup: As demonstrated in these examples, 「によると」、「によれば」、 and 「によりますと」 are versatile phrases
+  for attributing information to various sources, from formal reports to casual rumors. The choice between
+  them often depends on the formality of the context and the perceived reliability of the source, with
+  「によると」 for more authoritative sources, 「によれば」 for broader contexts including less formal ones, and 「によりますと」
+  for the highest level of politeness and formality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/によると-によれば

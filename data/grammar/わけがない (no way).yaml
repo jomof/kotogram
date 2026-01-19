@@ -1,0 +1,303 @@
+grammar_point: わけがない (no way)
+learn_before:
+  - い-Adjective[くありません] (polite negative form)
+  - わけだ (logical conclusion)
+meaning: no way
+pronunciation:
+  katakana: ワケ ガ ナイ
+  romaji: wake ga nai
+formation:
+  Verb[dictionary form] + わけがない: Indicates there is no logical reason for a verb to occur.
+  い-Adjective[dictionary form] + わけがない: Indicates there is no logical reason for an i-adjective's quality
+    to be true.
+  な-Adjective + な + わけがない: Indicates there is no logical reason for a na-adjective's state to be true.
+  Noun + の + わけがない: Indicates there is no logical reason for a noun's identity or state to be true.
+jlpt: N3
+etymology: The expression わけがない (訳がない) literally means "there is no わけ," where わけ (訳) signifies "reason,"
+  "circumstance," "meaning," or "logical explanation." Thus, わけがない conveys the idea that "there is no
+  logical reason or circumstance for something to be true," leading to the meaning of "no way," "impossible,"
+  or "cannot be." This underlying concept of logical impossibility or lack of justification is central
+  to its usage.
+writeup: |-
+  The grammar pattern わけがない (wake ga nai) is used to express a strong denial or certainty that something is impossible, unthinkable, or simply "no way." It asserts that there is no logical reason or circumstance for the statement to be true. This makes it a powerful expression of disbelief, strong conviction, or a decisive refutation.
+
+  You can attach わけがない to verbs, adjectives, and nouns.
+  * For verbs, use the plain form (dictionary, ない, た, なかった).
+  * For い-adjectives, use the plain form (dictionary, くない, かった, くなかった).
+  * For な-adjectives, attach な before わけがない (e.g., 便利なわけがない).
+  * For nouns, attach の before わけがない (e.g., 学生のわけがない).
+
+  わけがない implies a logical conclusion. It's often used when the speaker believes something is fundamentally unreasonable or contradictory to known facts or common sense. For instance, if someone tells you a child has finished a difficult university exam in five minutes, you might say 「そんなわけがない！」 (Sonna wake ga nai! - No way!). This isn't just a guess; it's based on the logical impossibility of a child completing such an exam so quickly.
+
+  While わけがない can be used in both polite (わけがありません) and casual (わけがない) speech, its core meaning of strong logical denial remains consistent. It's generally a more direct and assertive negation than other similar expressions, highlighting the speaker's firm belief in the impossibility of the situation.
+false_friends:
+  - term: はずがない (cannot be)
+    meaning: It's impossible / It cannot be (based on expectation or likelihood)
+    kind: similar expression
+    nuance: はずがない conveys a strong certainty that something is not true because it goes against what is
+      expected or what seems probable. It's about expectation not being met. For example, 「彼が嘘をつくはずがない」(Kare
+      ga uso o tsuku hazu ga nai - He couldn't possibly lie) suggests that lying is out of character for
+      him.
+    grammar_point: <suggest>:はずだ・はずがない (is expected to be・cannot be)
+  - term: っこない (no chance of)
+    meaning: No chance; impossible (colloquial, strong impossibility)
+    kind: similar expression
+    nuance: っこない is a more colloquial and often more emphatic way to say "no way" or "impossible." It
+      suggests that something is inherently difficult or truly impossible for someone to do. It carries
+      a strong sense of inevitability of failure or impossibility. For example, 「そんなこと、私にはできっこない」(Sonna
+      koto, watashi ni wa dekっこない - There's no way I can do that).
+    grammar_point: っこない (no chance of)
+  - term: ものではない (shouldn't・cannot)
+    meaning: One shouldn't do something; It's not the kind of thing one does.
+    kind: similar expression
+    nuance: ものではない implies impossibility or undesirability based on social norms, general common sense,
+      or what is considered appropriate. It's prescriptive, suggesting how things "should" or "shouldn't"
+      be. For example, 「夜中に大声で話すものではない」(Yonaka ni oogoe de hanasu mono de wa nai - One shouldn't talk
+      loudly in the middle of the night). It's not logically impossible, but socially inappropriate.
+    grammar_point: ものではない (shouldn't・cannot)
+  - term: ものか・もんか (strong negation・absolutely not)
+    meaning: Absolutely not! No way! (strong emotional denial)
+    kind: similar expression
+    nuance: ものか (or its casual version もんか) expresses the speaker's strong, often emotional, denial or
+      determination not to do something. It's a rhetorical question implying a strong negative. For example,
+      「二度とあんな店に行くものか！」(Nidoto anna mise ni iku mono ka! - I'd never go to that kind of shop again!). It
+      emphasizes personal will or strong negative feeling.
+    grammar_point: ものか・もんか (strong negation・absolutely not)
+post_false_friends_writeup: While わけがない, はずがない, っこない, ものではない, and ものか all convey senses of impossibility
+  or strong denial, their underlying nuances differ significantly. わけがない emphasizes logical impossibility
+  or the absence of a reason for something to be true. はずがない focuses on a strong certainty based on expectation.
+  っこない is a colloquial, emphatic "no way" often used for inherent impossibility or inability. ものではない suggests
+  impropriety or something that goes against common practice or sense. Finally, ものか is a more emotional
+  and personal expression of absolute refusal or disbelief. Choosing the right expression depends on whether
+  the impossibility is due to logic, expectation, inherent ability, social norms, or personal conviction.
+examples:
+  - english: That can't be true.
+    japanese:
+      - そんな {わけ が ない}。
+      - そんな {わけ が あり ませ ん}。
+      - そんな {わけ ない} だろ。
+      - そんな {わけ ある か}！
+    english_literally: Such a reason is not there.
+    competing_grammar:
+      - competing_japanese:
+          - そんな {はず が ない}。
+        english: That shouldn't be the case.
+        hint: はずがない suggests it goes against expectation or probability, while わけがない implies a lack of
+          logical reason. We're looking for a statement of logical impossibility.
+      - competing_japanese:
+          - そんな こと は {あり っこ ない}。
+        english: That kind of thing is impossible.
+        hint: っこない is more colloquial and emphasizes inherent impossibility or difficulty. We're looking
+          for a strong denial based on logical reason.
+    scene: Someone just told you a ridiculous rumor about a celebrity.
+    register: casual
+    setting: friendly
+  - english: There's no way I can finish this work by tomorrow.
+    japanese:
+      - 明日 まで に この 仕事 を {終われる わけ が ない}。
+      - 明日 まで に この 仕事 を {終われる わけ が あり ませ ん}。
+      - 明日 まで に この 仕事 {終われる わけ ない} よ ね。
+      - 明日 まで に この 仕事 {終わる わけ ない} だろ！
+    english_literally: By tomorrow, this work can be finished, there is no reason.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 まで に この 仕事 を {終え られる はず が ない}。
+        english: I shouldn't be able to finish this work by tomorrow.
+        hint: はずがない indicates it's unlikely based on expectation. わけがない focuses on the logical impossibility.
+          We're looking for a statement about the logical impossibility of completing the work.
+      - competing_japanese:
+          - 明日 まで に この 仕事 を {終われ っこ ない}。
+        english: There's no way I can finish this work by tomorrow.
+        hint: っこない is more colloquial and emphasizes a personal inability or impossibility. We're looking
+          for a denial based on logical reasoning.
+    scene: A student is complaining to a friend about an unrealistic deadline for an assignment.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: It's impossible for that movie to be interesting.
+    japanese:
+      - あの 映画 が {面白い わけ が ない}。
+      - あの 映画 が {面白い わけ が あり ませ ん}。
+      - あの 映画 が {面白い わけ ない} じゃん。
+      - あの 映画 が {面白い わけ ある か}！
+    english_literally: That movie is interesting, there is no reason.
+    competing_grammar:
+      - competing_japanese:
+          - あの 映画 が {面白い はず が ない}。
+        english: That movie shouldn't be interesting.
+        hint: はずがない suggests it goes against expectation. わけがない implies there's no logical reason for
+          it to be interesting. We're looking for a statement based on logical reasoning.
+      - competing_japanese:
+          - あの 映画 なんて、{面白く ある もん か}。
+        english: That movie? No way it's interesting!
+        hint: ものか is a strong, emotional, rhetorical denial, often implying disdain. We're looking for
+          a statement of logical impossibility.
+    scene: Two friends are discussing a critically panned movie they heard about.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: There's no way he's that smart.
+    japanese:
+      - 彼 が {そんな に 頭 が いい わけ が ない}。
+      - 彼 が {そんな に 頭 が いい わけ が あり ませ ん}。
+      - 彼 が {そんな に 頭 が いい わけ ない} でしょ。
+      - 彼 が {そんな に 頭 が いい わけ ねー} だろ。
+    english_literally: He is so smart, there is no reason.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が {そんな に 頭 が いい はず が ない}。
+        english: He shouldn't be that smart.
+        hint: はずがない indicates it goes against what is expected of him. わけがない implies logical inconsistency
+          with known facts. We're looking for a statement of logical impossibility.
+      - competing_japanese:
+          - 彼 が そんな に 頭 が いい なんて、{あり っこ ない}。
+        english: No way he's that smart.
+        hint: っこない is a more colloquial and absolute denial of possibility. We're looking for a denial
+          based on logical reasoning.
+    scene: Someone is boasting about their friend's intelligence, but you have doubts based on your own
+      observations.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: That person can't be a student.
+    japanese:
+      - あの 人 が {学生 の わけ が ない}。
+      - あの 人 が {学生 の わけ が あり ませ ん}。
+      - あの 人 が {学生 の わけ ない} よ ね。
+      - あの 人 が {学生 な わけ ない} だろ。
+    english_literally: That person is a student, there is no reason.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 が {学生 の はず が ない}。
+        english: That person shouldn't be a student.
+        hint: はずがない suggests it goes against what is expected for a student. わけがない implies it's logically
+          impossible. We're looking for a statement of logical impossibility.
+      - competing_japanese:
+          - あの 人 が {学生 で ある もの か}。
+        english: That person a student? Absolutely not!
+        hint: ものか is a strong, emotional rejection of the idea. We're looking for a logical denial.
+    scene: You see someone who looks significantly older than typical students walking around a university
+      campus.
+    register: casual
+    setting: friendly
+  - english: There's no way she said such a thing.
+    japanese:
+      - 彼女 が {そんな こと を 言っ た わけ が ない}。
+      - 彼女 が {そんな こと を 言っ た わけ が あり ませ ん}。
+      - 彼女 が {そんな こと を 言っ た わけ ない} って。
+      - 彼女 が {そんな こと を 言う わけ が ない}。
+    english_literally: She said such a thing, there is no reason.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が {そんな こと を 言っ た はず が ない}。
+        english: She shouldn't have said such a thing.
+        hint: はずがない implies it contradicts her character or typical behavior. わけがない implies it's logically
+          impossible she said it. We're looking for a denial based on logical reason.
+      - competing_japanese:
+          - 彼女 が {そんな こと を 言う はず が ない}。
+        english: She couldn't possibly say such a thing.
+        hint: 言うはずがない implies it's against her nature to say such a thing. We're looking for a statement
+          of logical impossibility.
+    scene: A friend is recounting a conversation where someone you know well supposedly said something
+      completely out of character.
+    register: casual
+    setting: serious
+    conjugation: past plain (～た)
+  - english: That could not possibly be the answer.
+    japanese:
+      - それ が {答え で ある わけ が あり ませ ん}。
+      - それ が {答え で ある わけ が ない}。
+      - それ が {答え の わけ が あり ませ ん}。
+      - それ が {答え で ある わけ が ない} です。
+    english_literally: That is the answer, there is no reason.
+    competing_grammar:
+      - competing_japanese:
+          - それ が {答え で ある はず が あり ませ ん}。
+        english: That shouldn't be the answer.
+        hint: はずがありません implies it's not the expected answer. わけがありません stresses the logical impossibility.
+          We're looking for a formal statement of logical impossibility.
+      - competing_japanese:
+          - それ が 答え で ある こと は {あり え ませ ん}。
+        english: It is impossible for that to be the answer.
+        hint: ありえません is a general expression of impossibility, while わけがありません specifically implies a lack
+          of logical reason. We're looking for a denial based on logical reasoning.
+    scene: A teacher is reviewing exam answers with students and finds a completely incorrect but commonly
+      given response.
+    register: formal
+    setting: academic
+  - english: How could I possibly know?
+    japanese:
+      - 私 に {分かる わけ が ない} でしょう？
+      - 私 に {分かる わけ ない} じゃん？
+      - 私 に {分かる わけ が あり ませ ん} でしょう？
+      - 私 に {分かる わけ ない} だろ！
+    english_literally: For me to know, there is no reason, right?
+    competing_grammar:
+      - competing_japanese:
+          - 私 に {分かる はず が ない} でしょう？
+        english: I couldn't possibly know, right?
+        hint: はずがない relates to expectation of knowledge. わけがない is about the logical impossibility of knowing.
+          We're looking for a rhetorical question asserting logical impossibility.
+      - competing_japanese:
+          - 私 に {分かり っこ ない} でしょう？
+        english: No way I could know, right?
+        hint: っこない is a casual, strong assertion of inability. We're looking for a rhetorical question
+          emphasizing logical impossibility.
+    scene: Someone asks you a question that is clearly outside your area of expertise or general knowledge.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: There's no way he'd betray his friends.
+    japanese:
+      - 彼 が 友達 を {裏切る わけ が ない}。
+      - 彼 が 友達 を {裏切る わけ が あり ませ ん}。
+      - 彼 が 友達 を {裏切る わけ ない} よ。
+      - 彼 が 友達 を {裏切る わけ が ない} さ。
+    english_literally: He betrays friends, there is no reason.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 友達 を {裏切る はず が ない}。
+        english: He wouldn't betray his friends.
+        hint: はずがない implies it's against his nature or what you expect from him. わけがない suggests there's
+          no logical reason for him to do so. We're looking for a denial based on logical reasoning.
+      - competing_japanese:
+          - 彼 が 友達 を {裏切る もの か}。
+        english: He'd never betray his friends!
+        hint: ものか expresses strong emotional conviction or indignation. We're looking for a denial based
+          on logical impossibility.
+    scene: You are defending a loyal friend against accusations of disloyalty.
+    register: casual
+    setting: serious
+    nuance: 「裏切るわけがない」conveys that there is absolutely no logical reason or basis for the friend to betray
+      others, emphasizing their trustworthy character.
+  - english: It's not that I don't understand, it's just difficult.
+    japanese:
+      - '{分から ない わけ で は ない} が、ちょっと 難しい。'
+      - '{分から ない わけ で は あり ませ ん} が、ちょっと 難しい です。'
+      - '{分から なく ない わけ じゃ ない} けど、ちょっと 難しい。'
+      - '{分から ない わけ じゃ ない} ん だ けど、ちょっと 難しい。'
+    english_literally: It's not that there is no reason to understand, but it's a bit difficult.
+    competing_grammar:
+      - competing_japanese:
+          - '{分から ない はず で は ない} が、ちょっと 難しい。'
+        english: It's not that I shouldn't understand, but it's a bit difficult.
+        hint: はずではない means "it's not that it's unexpected not to understand." わけではない means "it's not that
+          there's no logical reason to understand." We're looking for a statement about logical reason.
+      - competing_japanese:
+          - '{分から ない こと は ない} が、ちょっと 難しい。'
+        english: It's not that I don't understand, but it's a bit difficult.
+        hint: ないことはない is a double negative implying "it is possible," which is similar in effect but doesn't
+          carry the "logical reason" nuance of わけ. We're looking for a statement about logical reason.
+    scene: A student explaining their struggle with a complex topic to their study partner.
+    register: casual
+    setting: academic
+    conjugation: negative plain (～ない)
+    nuance: 「分からないわけではない」uses the double negative to mean "it's not that it's impossible to understand,"
+      implying "I do understand to some extent," but then adds a nuance of difficulty. This highlights
+      the flexibility of the わけ structure in nuanced expressions.
+post_example_writeup: As seen in the examples, わけがない can be adapted to various parts of speech and tenses,
+  consistently conveying a strong sense of logical impossibility or certainty that something is untrue.
+  Its use effectively communicates the speaker's firm conviction or disbelief, making it a versatile and
+  impactful grammatical tool.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%8F%E3%81%91%E3%81%8C%E3%81%AA%E3%81%84

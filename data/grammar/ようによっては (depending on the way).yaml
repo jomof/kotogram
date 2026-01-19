@@ -1,0 +1,324 @@
+grammar_point: ようによっては (depending on the way)
+learn_before:
+  - どのように (in what way)
+meaning: Depending on the way, depending on how
+pronunciation:
+  katakana: ヨウニヨッテハ
+  romaji: yō ni yotte wa
+formation:
+  Verb[ます-stem] + ようによっては: Indicates that the outcome or interpretation depends on the specific way, method,
+    or manner of the verb's action.
+jlpt: N1
+etymology: The grammar point 「ようによっては」 is derived from 「様 (yō)」, meaning 'manner' or 'way,' combined with
+  the case-marking particle 「に (ni)」, the te-form of the verb 「よる (yoru)」 meaning 'to depend on' or 'to
+  be due to,' and the adverbial particle 「は (wa)」. Historically, 「様」 has been used to denote various states
+  or conditions. Its combination with 「よる」 and 「は」 evolved to articulate how outcomes are contingent upon
+  the specific approach or perspective taken. This construction highlights the direct causal link between
+  *how* something is done or perceived and the resulting consequence, embodying the concept of 'consequence
+  originating from a particular manner'.
+writeup: |-
+  The grammar point **ようによっては** indicates that the outcome of a situation or the interpretation of something is contingent on the method or manner in which it is done or perceived. It implies that different approaches can lead to significantly different results, highlighting the variability of outcomes based on one's specific actions or perspective.
+
+  This phrase is constructed by attaching to the **ます-stem** (or 連用形 - ren'youkei) of a verb. For example, from the verb `見る (miru)`, the ます-stem is `見 (mi)`, so it becomes `見ようによっては (mi-yō ni yotte wa)`. Similarly, `する (suru)` becomes `し (shi)` as in `しようによっては (shi-yō ni yotte wa)`.
+
+  **ようによっては** is typically used in formal or semi-formal contexts. It conveys a nuance of critical observation, where the specific details of 'how' something is handled or interpreted are crucial. While often interchangeable with the more general suffix **〜方 (かた)** (e.g., `見方` vs. `見よう`), **ようによっては** tends to emphasize the *contingency* and *potential for varying results* more strongly, often suggesting a wide spectrum of possibilities that depend on a particular approach. It prompts consideration of alternative perspectives or methods that might lead to different conclusions.
+false_friends:
+  - term: 〜方 (かた)
+    meaning: way, method, how to do something
+    kind: similar expression
+    nuance: While both 「ようによっては」 and 「〜方」 can express 'depending on the way', 「〜方」 is a more general suffix
+      indicating 'the method of doing something' (e.g., 使い方 - how to use, 読み方 - how to read). It describes
+      the general technique or procedure without necessarily emphasizing the strong contingency of results
+      based on *nuanced execution*, which is a key aspect of 「ようによっては」.
+    grammar_point: かた (way of doing)
+  - term: 〜次第 (しだい)
+    meaning: depending on, as soon as
+    kind: similar expression
+    nuance: 「〜次第」 signifies a direct dependency on a specific condition or event, or a consequence that
+      immediately follows a condition (e.g., 結果次第 - depending on the results, 天気次第 - depending on the
+      weather). Unlike 「ようによっては」, it focuses on external conditions or decisive factors rather than the
+      *manner* or *approach* of an action being the variable influencing the outcome. 「ようによっては」 specifically
+      emphasizes the subjective 'how' that can lead to diverse results.
+    grammar_point: '[Noun]次第だ・[Noun]次第で(は) (depending on・as a result of)'
+  - term: いかん〜ず
+    meaning: Regardless of how/what
+    kind: similar expression
+    nuance: While 「ようによっては」 emphasizes that the outcome *changes depending on the manner*, 「いかん〜ず」 stresses
+      that the outcome *remains the same regardless of the manner* or circumstance. It implies a fixed
+      or inevitable result despite variations.
+    grammar_point: にかかわらず (regardless of)
+post_false_friends_writeup: To avoid confusion, remember that 「ようによっては」 places strong emphasis on the
+  *manner* or *specific approach* taken, highlighting how different methods can lead to vastly different
+  outcomes. In contrast, 「〜方」 refers to a general 'way of doing something' without the same emphasis on
+  contingency, and 「〜次第」 points to a direct dependency on a specific condition or event. Furthermore,
+  unlike 「いかん〜ず」 which emphasizes that a result is fixed *regardless* of conditions, 「ようによっては」 always
+  implies that the outcome *varied* based on the method. If the nuance is about *how* something is executed
+  or perceived leading to *variable* outcomes, use 「ようによっては」. If it's simply a 'way' or a direct 'dependency',
+  consider 「〜方」 or 「〜次第」 respectively. If the outcome is *fixed regardless* of circumstance, consider
+  「いかん〜ず」.
+examples:
+  - english: This dish, depending on how it's prepared, can turn out either delicious or terrible.
+    japanese:
+      - この 料理 は 調理 し {よう に よっ て は} 美味しく も 不味く も なる。
+      - この 料理 は 調理 の し {よう に よっ て は} 美味しく も 不味く も なる よ。
+      - この 料理 は 調理 し {よう に よっ て は} 美味しく も 不味く も なり ます。
+      - この 料理 は、どう 調理 する か {よう に よっ て は}、美味しく も 不味く も なり 得る。
+    english_literally: This dish, depending on the way of preparing, becomes delicious or terrible.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は 材料 {次第} で 美味しく も 不味く も なる。
+        english: This dish, depending on the ingredients, can turn out either delicious or terrible.
+        hint: While ingredients are important, we're looking for how the *method* of preparation influences
+          the outcome, not just the raw materials.
+    scene: A chef instructing a novice cook, emphasizing the importance of technique and meticulous preparation
+      to achieve desired results.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The chef, in a formal and instructional setting, uses the plain non-past form to state a general
+      truth about cooking outcomes. The focus is on the specific *manner* of preparation, indicated by
+      「調理しようによっては」, which implies that meticulous execution is key to achieving a good result, rather
+      than just the general method.
+    etymology: 「調理 (chōri)」 refers to the process of preparing food, from ancient practices to modern
+      culinary arts. The `する` verb stem `し` combined with `ようによっては` emphasizes the criticality of the
+      execution phase.
+  - english: That project, depending on how you proceed, could finish quickly.
+    japanese:
+      - その 計画 は 進め {よう に よっ て は} 早く 終わる こと も ある。
+      - その 計画 は 進め {よう に よっ て は} 早く 終わる こと も あり ます。
+      - その 計画 は 進め 方 {よう に よっ て は}、迅速 に 完了 し ます。
+      - その 計画 は、進め 方 {よう に よっ て は} すぐ に 終わら せ られる。
+    english_literally: That project, depending on the way of proceeding, might finish quickly.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 努力 {次第} で 早く 終わる こと も ある。
+        english: This talks about effort, but we want to emphasize that the *manner* of proceeding, not
+          just general effort, affects the speed.
+        hint: This talks about effort, but we want to emphasize that the *manner* of proceeding, not just
+          general effort, affects the speed.
+    scene: A team leader talks to their staff about a new project, encouraging efficient methods and strategic
+      approaches to meet deadlines.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: In a professional context, the team leader uses this phrase to suggest that the *method* or
+      *approach* taken in proceeding with the project is critical to its completion speed. 「進めようによっては」
+      highlights that strategic decisions and efficient execution can significantly alter the timeline.
+    etymology: 「進める (susumeru)」 means 'to advance' or 'to promote'. Its ます-stem `進め` combines with `ようによっては`
+      to emphasize how the specific *manner* of advancement is crucial to the project's progress.
+  - english: His jokes, depending on how you hear them, might be perceived as funny or boring.
+    japanese:
+      - 彼 の 冗談 は、聞き {よう に よっ て は} 面白い と も つまら ない と も 感じる だろう。
+      - 彼 の 冗談 は、聞き {よう に よっ て は} 面白い と も つまら ない と も 感じ られる でしょう。
+      - 彼 の 冗談 は 聞き {よう に よっ て は}、面白い か つまら ない か だ よ ね。
+      - 彼 の 冗談 は、どう 聞く か {よう に よっ て は}、面白く も つまら なく も 感じる だろう。
+    english_literally: His jokes, depending on the way of hearing, probably feel funny or boring.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 冗談 は、聞く 人 {に よっ て} 面白い と も つまら ない と も 感じる だろう。
+        english: His jokes, depending on the person hearing them, might be perceived as funny or boring.
+        hint: We're focusing on the *way* someone hears the jokes, implying a subjective interpretation,
+          rather than just *who* hears them.
+    scene: Two male friends discuss a comedian's recent performance, noting how different people reacted
+      to the same material based on their individual sense of humor.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male speaker's use of 「だろう」 indicates a mild conjecture or expectation, a common way to
+      express a subjective opinion or observation among male friends in casual conversation. 「聞きようによっては」
+      conveys that the *listener's subjective perception* or *manner of interpreting* the jokes is the
+      variable influencing their reaction.
+    etymology: 「聞く (kiku)」 means 'to hear' or 'to listen'. The ます-stem `聞き` paired with `ようによっては` emphasizes
+      that the specific *manner* of listening or perceiving significantly alters the subjective outcome,
+      highlighting varying interpretations based on perspective.
+  - english: This story, depending on how it's read, can be suitable for children or adults.
+    japanese:
+      - この 物語 は 読み {よう に よっ て は} 子供 向け に も 大人 向け に も なる。
+      - この 物語 は 読み {よう に よっ て は} 子供 向け に も 大人 向け に も なり ます。
+      - この 物語 は 読み {よう に よっ て は}、子供 向け に も 大人 向け に も なり 得 ます。
+      - この 物語 は 読み 方 {よう に よっ て は}、子供 向け に も 大人 向け に も 受け入れ られる。
+    english_literally: This story, depending on the way of reading, becomes for children or for adults.
+    competing_grammar:
+      - competing_japanese:
+          - この 物語 は 読む 人 {に よっ て} 子供 向け に も 大人 向け に も なる。
+        english: This story, depending on the person reading it, can be suitable for children or adults.
+        hint: We're interested in how the *manner* of reading changes the story's suitability, not just
+          who the reader is.
+    scene: A librarian recommends a book to a parent, explaining its dual appeal to different age groups
+      based on how the reader interprets its layers.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The librarian, speaking formally, emphasizes that the *manner* or *approach* to reading the
+      story, rather than just the general act of reading, determines its suitability for different audiences.
+      「読みようによっては」 conveys this idea of varied interpretation based on reading style.
+    etymology: 「読む (yomu)」 means 'to read'. The ます-stem `読み` combines with `ようによっては` to indicate that
+      the specific *manner* or *approach* of reading is crucial in determining the story's interpretation
+      or target audience.
+  - english: Her smile, depending on how you perceive it, can appear either kind or cruel.
+    japanese:
+      - 彼女 の 微笑 み は、捉え {よう に よっ て は} 親切 に も 冷酷 に も 見える。
+      - 彼女 の 微笑 み は、捉え {よう に よっ て は} 親切 に も 冷酷 に も 見え ます。
+      - 彼女 の 微笑 み は、どう 捉える か {よう に よっ て は}、親切 に も 冷酷 に も 見える もの だ。
+      - 彼女 の 微笑 み は、捉え {よう に よっ て は}、親切 に も 冷酷 に も 見え ます。
+    english_literally: Her smile, depending on the way of perceiving, appears kind or cruel.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 微笑 み は、見る 人 {に よっ て} 親切 に も 冷酷 に も 見える。
+        english: Her smile, depending on the person seeing it, can appear either kind or cruel.
+        hint: This isn't just about *who* sees it, but the *way* they perceive it, implying a subjective
+          interpretation based on their perspective.
+    scene: A novelist describing a mysterious character in their book, whose expressions are deliberately
+      ambiguous and open to various interpretations by other characters.
+    register: formal
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: no one
+    nuance: In a storytelling context, the novelist uses this phrase to highlight the ambiguous nature
+      of the character's smile. 「捉えようによっては」 indicates that the *perceiver's subjective interpretation*
+      or *manner of viewing* is paramount in defining the smile's meaning, emphasizing how different perspectives
+      lead to varied conclusions.
+    etymology: 「捉える (toraeru)」 means 'to grasp', 'to capture', or 'to perceive'. The ます-stem `捉え` combined
+      with `ようによっては` stresses that the *manner* or *perspective* of receiving something significantly
+      impacts its subjective perception or emotional effect.
+  - english: Even the most expensive wine can lose its value depending on how you drink it.
+    japanese:
+      - どんな に 高価 な ワイン も、飲み {よう に よっ て は} その 価値 を 損なう。
+      - どんな に 高価 な ワイン も、飲み {よう に よっ て は} その 価値 を 損ない ます。
+      - どんな に 高価 な ワイン も、飲み 方 {よう に よっ て は} 駄目 に なっ て しまい ます よ。
+      - どんな に 高価 な ワイン も、飲み {よう に よっ て は}、その 魅力 が 半減 する こと も ある。
+    english_literally: Even how expensive wine, depending on the way of drinking, loses its value.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 高価 な ワイン も、保存 状態 {次第} で その 価値 を 損なう。
+        english: Even the most expensive wine can lose its value depending on its storage condition.
+        hint: The focus here is on the *act* of drinking and how that specific *manner* affects its value,
+          not just how it's stored.
+    scene: A female sommelier advises a customer on the proper way to appreciate fine wine, highlighting
+      how mishandling or incorrect consumption can ruin the experience and waste its potential.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The professional female sommelier would use precise and slightly cautious language, and 「損なう」
+      (to impair/damage) implies a subtle but significant negative consequence. 「飲みようによっては」 emphasizes
+      that the *specific ritual* or *manner* of consumption affects the appreciation of the wine, where
+      precise technique is vital.
+    etymology: 「飲む (nomu)」 means 'to drink'. The ます-stem `飲み` when combined with `ようによっては` highlights
+      the critical impact of the *manner* of drinking on the experience or outcome, particularly in contexts
+      like appreciating fine beverages.
+  - english: Today's meeting, depending on how we discuss things, we can expect significant progress.
+    japanese:
+      - 今日 の 会議 は、話し {よう に よっ て は} 大きな 進展 が 期待 できる。
+      - 本日 の 会議 は、話し {よう に よっ て は} 大きな 進展 が 期待 でき ます。
+      - 今日 の 会議 は、話し 方 {よう に よっ て は}、飛躍 的 な 進展 を 促せ ます。
+      - 今日 の 会議 は、どの よう に 話し合う か {よう に よっ て は}、素晴らしい 進展 が 見込め ます。
+    english_literally: Today's meeting, depending on the way of discussing, significant progress can be
+      expected.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 会議 は、うまく 議論 すれ {ば} 大きな 進展 が 期待 できる。
+        english: This emphasizes the *way* of discussing, implying strategic communication, rather than
+          just the act of discussing well.
+        hint: This emphasizes the *way* of discussing, implying strategic communication, rather than just
+          the act of discussing well.
+    scene: A manager briefing their team before a crucial client meeting, stressing the importance of
+      effective communication strategies to ensure a positive outcome.
+    register: bijinesu nihongo (business)
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: In a business setting, the manager uses this phrase to stress the importance of *how* the
+      discussion unfolds. 「話しようによっては」 implies that the *quality and strategy* of the discussion will directly
+      impact the outcome, making the manner of speaking crucial for progress.
+    etymology: 「話す (hanasu)」 means 'to speak' or 'to talk'. The ます-stem `話し` coupled with `ようによっては` emphasizes
+      that the specific *manner* or *approach* of discussion is pivotal in determining the outcome of
+      the meeting.
+  - english: His stubbornness, depending on how you view it, could also be called strength of character.
+    japanese:
+      - 彼 の 頑固 さ は、見 {よう に よっ て は} 芯 の 強 さ と も 言える。
+      - 彼 の 頑固 さ は、見 {よう に よっ て は} 芯 の 強 さ と も 言え ます。
+      - 彼 の 頑固 さ は、捉え 方 {よう に よっ て は}、芯 の 強 さ と 捉える こと も できる。
+      - 彼 の 頑固 さ も、見 方 {よう に よっ て は}、立派 な 芯 の 強 さ だ よ。
+    english_literally: His stubbornness, depending on the way of seeing it, can also be called strength
+      of core.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 頑固 さ は、状況 {に よっ て} 芯 の 強 さ と も 言える。
+        english: His stubbornness, depending on the situation, could also be called strength of character.
+        hint: We are looking at how the *manner* of viewing someone's stubbornness changes its interpretation,
+          not the external situation.
+    scene: An older friend shares wisdom with a younger relative, suggesting that seemingly negative traits
+      can be reinterpreted positively with a different perspective.
+    register: casual
+    setting: supportive
+    speaker_age: older
+    nuance: An older speaker might offer a more nuanced, reflective perspective on personality traits,
+      using 「〜とも言える」 (can also be said) to suggest an alternative interpretation rather than a definitive
+      statement, reflecting wisdom gained from experience. 「見ようによっては」 indicates that the *subjective lens*
+      or *manner of viewing* the trait determines its interpretation.
+    etymology: 「見る (miru)」 means 'to see' or 'to look'. The ます-stem `見` combined with `ようによっては` conveys
+      that the *manner* or *perspective* from which something is viewed significantly alters its interpretation
+      or perceived nature.
+  - english: This data, depending on how you analyze it, can lead to entirely different conclusions.
+    japanese:
+      - この データ は、分析 し {よう に よっ て は} まったく 異なる 結論 を 導き出す。
+      - この データ は、分析 し {よう に よっ て は} まったく 異なる 結論 を 導き出し ます。
+      - この データ は、分析 の 仕方 {よう に よっ て は}、全く 別 の 結論 に 至る こと が ある。
+      - この データ は、分析 方法 {よう に よっ て は}、全く 違う 結論 が 出る こと に なり ます。
+    english_literally: This data, depending on the way of analyzing, entirely different conclusions draws
+      out.
+    competing_grammar:
+      - competing_japanese:
+          - この データ は、分析 結果 {に よっ て} まったく 異なる 結論 を 導き出す。
+        english: This data, depending on the analysis results, can lead to entirely different conclusions.
+        hint: This grammar point emphasizes that the *methodology* or *approach* of analysis is the variable,
+          not just the outcome of the analysis.
+    scene: A data scientist explains to a junior analyst that the specific methodology and approach to
+      data analysis significantly impacts the findings and resulting interpretations.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: group
+    nuance: In an academic or professional setting, the data scientist emphasizes that the *methodology*
+      and *approach* of analysis are critical. 「分析しようによっては」 highlights that subtle changes in technique
+      yield vastly different results, underscoring the importance of analytical precision.
+    etymology: 「分析 (bunseki)」 refers to analysis. The `する` verb stem `し` with `ようによっては` emphasizes that
+      the *method* or *approach* of analysis is the key variable influencing the conclusions drawn from
+      data.
+  - english: That person's behavior, depending on how you receive it, can be very unpleasant.
+    japanese:
+      - あの 人 の 振る舞い は、受け取り {よう に よっ て は} とても 不快 だ。
+      - あの 人 の 振る舞い は、受け取り {よう に よっ て は} とても 不快 です。
+      - あの 人 の 振る舞い は、受け取り {よう に よっ て は}、マジ で 不快 だ よ。
+      - あの 人 の 振る舞い は、どう 受け止める か {よう に よっ て は}、非常 に 不快 に 感じる こと も ある。
+    english_literally: That person's behavior, depending on the way of receiving, is very unpleasant.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 の 振る舞い は、その 人 の 性格 {に よっ て は} とても 不快 だ。
+        english: That person's behavior, depending on their personality, can be very unpleasant.
+        hint: We are focusing on *how* one perceives or processes the behavior, rather than the intrinsic
+          nature of the person or their personality.
+    scene: A female friend confides in another female friend about a mutual acquaintance's actions, emphasizing
+      the subjective nature of what causes offense.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: female
+    nuance: When a female speaker discusses someone's behavior with a close female friend, using 「とても不快だ」
+      conveys a strong personal negative reaction, often expressed in a confiding tone to seek empathy
+      or validation. 「受け取りようによっては」 focuses on the *personal interpretation* and emotional processing of
+      the behavior, suggesting that the 'how' of receiving it is key to feeling offended.
+    etymology: 「受け取る (uketoru)」 means 'to receive' or 'to accept'. The ます-stem `受け取り` combined with `ようによっては`
+      stresses that the *manner* or *perspective* of receiving something significantly impacts its subjective
+      perception or emotional effect.
+post_example_writeup: These examples demonstrate how 「ようによっては」 is used across various situations to convey
+  that an outcome or interpretation is highly conditional on the specific manner or perspective involved.
+  From culinary preparation to personal perception, the grammar point highlights the significant impact
+  of 'how' something is done or viewed, underscoring its versatility in expressing nuanced contingencies.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ようによっては

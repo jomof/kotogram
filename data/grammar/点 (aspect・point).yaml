@@ -1,0 +1,210 @@
+grammar_point: 点 (aspect・point)
+learn_before:
+  - から見ると (from the viewpoint of・looking from)
+  - つきましては (in connection with that)
+  - という点から考えると (from the viewpoint of)
+  - どの (which)
+  - な-Adjectives (adjectival nouns)
+  - 一つは (one of them is)
+  - 唯一 (only・unique)
+  - 思うに (in my opinion)
+  - 最も (most)
+  - 点 (specific aspect)
+  - 真上 (directly above)
+  - 面 (aspect)
+meaning: aspect or point of consideration
+pronunciation:
+  katakana: テン
+  romaji: ten
+formation:
+  Noun + の + {点}: To highlight a specific point or aspect related to a noun.
+  い-Adjective + {点}: To refer to an aspect described by an い-adjective.
+  な-Adjective + な + {点}: To refer to an aspect described by a な-adjective.
+  Verb[dictionary] + {点}: To refer to a point concerning an action or state.
+jlpt: N2
+etymology: The kanji 「点」 originally depicted a small mark or a spot. From this basic meaning of a "point"
+  or "dot," its usage expanded to denote a specific "point" of consideration, an "aspect," or an "item"
+  within a larger context. This evolution reflects how one isolates and focuses on discrete elements for
+  analysis or discussion.
+writeup: |-
+  「点」 (ten) is a noun used to refer to a specific "aspect," "point," or "respect" when discussing or evaluating something. It allows the speaker to hone in on a particular characteristic or detail, often in contexts of comparison, analysis, or critique.
+
+  When used to describe qualities, it typically follows adjectives or nouns. For example, 「良い 点」 (yoi ten) means "good points," and 「悪い 点」 (warui ten) means "bad points." It can also follow verbs to specify an action or state as the point of discussion.
+
+  This usage of 「点」 is common in formal or semi-formal discourse, such as academic discussions, business meetings, or detailed personal evaluations. It provides a structured way to break down complex subjects into manageable elements.
+false_friends:
+  - term: 面 (aspect・side)
+    meaning: aspect; side; surface; face
+    kind: similar expression
+    nuance: While both 「点」 and 「面」 can refer to "aspects," 「点」 often implies a more specific, sometimes
+      countable, distinct point or characteristic. 「面」 suggests a broader "side" or "facet" of something,
+      a general area rather than a precise detail. 「面」 can also be used in physical contexts (a surface),
+      which 「点」 typically is not.
+    grammar_point: <suggest>:面 (aspect side)
+  - term: ところ (place・point)
+    meaning: place; point; aspect; part; situation
+    kind: similar expression
+    nuance: 「ところ」 can also mean "point" or "aspect," but it often carries a nuance of a specific part
+      of something, a state or situation, or a moment in time. 「点」 is more focused on a distinct characteristic
+      or a logical point in an argument or description.
+    grammar_point: ところだ (location by travel time)
+post_false_friends_writeup: Understanding the distinction between 「点」, 「面」, and 「ところ」 is key. 「点」 specifies
+  a particular, often enumerable, characteristic or detail. 「面」 refers to a broader facet or side of something.
+  「ところ」 can denote a specific part, a moment in time, or a situation, making it more versatile but less
+  precisely focused on an "aspect" as 「点」 is. Choose 「点」 when you want to highlight a distinct, often
+  analytical, point.
+examples:
+  - english: This product's strongest point is its ease of use.
+    japanese:
+      - この 製品 の {良い 点} は 使い やす さ です。
+      - この 製品 の {良い 点} は 使い やす さ だ。
+      - この 製品 の {良い 点} と し て は、使い やす さ が 挙げ られ ます。
+    english_literally: This product's good point is its ease of use.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 の 良い ところ は 使い やす さ です。
+        english: The good part about this product is its ease of use.
+        hint: 「ところ」 often refers to a specific place, part, or general characteristic. We're looking for
+          a more precise, enumerable 'point' in an evaluation.
+    scene: A product reviewer is presenting their findings on a new gadget.
+    register: formal
+    setting: informative
+  - english: The only bad point about this plan is the high cost.
+    japanese:
+      - この 計画 の 唯一 の {悪い 点} は 費用 が 高い こと です。
+      - この 計画 の 唯一 の {悪い 点} は 費用 が 高い こと だ。
+      - この 計画 で 懸念 さ れる {点} は 費用 です。
+    english_literally: This plan's only bad point is that the cost is high.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 唯一 の 悪い ところ は 費用 が 高い こと です。
+        english: The only bad part about this plan is the high cost.
+        hint: 「ところ」 is more general. Here, we're singling out a specific 'point' of criticism.
+    scene: A team is discussing a new project plan and identifying potential issues.
+    register: semi-formal
+    setting: professional
+  - english: From the perspective of safety, this design has some issues.
+    japanese:
+      - 安全 の {点} から 見る と、この デザイン に は 問題 が あり ます。
+      - 安全 の {点} に おい て は、この デザイン に 問題 が ござい ます。
+      - 安全 面 で {問題 点} が あり ます。
+    english_literally: From the point of safety, if one looks, this design has problems.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 の 面 から 見る と、この デザイン に は 問題 が あり ます。
+        english: From the side of safety, this design has some issues.
+        hint: 「面」 refers to a broader facet or side. We are focusing on a specific 'point' or aspect for
+          analysis.
+    scene: Engineers are evaluating a new product design during a safety review meeting.
+    register: formal
+    setting: technical
+  - english: Although it's convenient, it also has a troublesome point.
+    japanese:
+      - 便利 な {点} も あり ます が、面倒 な {点} も あり ます。
+      - 便利 な {点} も ある けど、面倒 な {点} も ある よ。
+      - '{便利 な 点} と {不便 な 点} が あり ます。'
+    english_literally: There are convenient points, but there are also troublesome points.
+    competing_grammar:
+      - competing_japanese:
+          - 便利 な ところ も あり ます が、面倒 な ところ も あり ます。
+        english: Although it's convenient, it also has a troublesome part.
+        hint: 「ところ」 can be used, but 「点」 more clearly identifies distinct, evaluable characteristics.
+    scene: Someone is giving informal feedback on a new online system to a friend.
+    register: casual
+    setting: friendly
+  - english: What specific points are you referring to?
+    japanese:
+      - 具体 的 に どの {点} を 指し て いる の です か？
+      - 具体 的 に どの {点} を 指し て いる の？
+      - 具体 的 に どの {点} を おっしゃっ て いらっしゃい ます か？
+    english_literally: Specifically which point are you pointing to?
+    competing_grammar:
+      - competing_japanese:
+          - 具体 的 に どの ところ を 指し て いる の です か？
+        english: What specific parts are you referring to?
+        hint: 「ところ」 is more general, referring to a part or aspect. 「点」 requests a more precise and focused
+          'point' in the discussion.
+    scene: A manager is seeking clarification from an employee during a project update meeting.
+    register: formal
+    setting: professional
+  - english: There are still points that need improvement.
+    japanese:
+      - まだ 改善 する {点} が いく つ か あり ます。
+      - まだ 改善 する {点} が いく つ か ある よ。
+      - まだ 改善 す べき {点} が いく つ か ござい ます。
+    english_literally: There are still several points to improve.
+    competing_grammar:
+      - competing_japanese:
+          - まだ 改善 する ところ が いく つ か あり ます。
+        english: There are still some parts that need improvement.
+        hint: 「ところ」 can imply a general area. 「点」 here specifies distinct, actionable 'points' for improvement.
+    scene: A supervisor reviews a draft report and provides feedback to their subordinate.
+    register: formal
+    setting: professional
+  - english: Regarding these two points, I would like to discuss them further.
+    japanese:
+      - これ ら 二 つ の {点} に つい て、さらに 議論 し たい と 思い ます。
+      - これ ら 二 つ の {点} に つき まし て、さらに 議論 さ せ て いただき たい と 存じ ます。
+      - この 二 つ の {点} は、もっと 議論 が 必要 だ。
+    english_literally: Regarding these two points, I think I want to discuss further.
+    competing_grammar:
+      - competing_japanese:
+          - これ ら 二 つ の 項目 に つい て、さらに 議論 し たい と 思い ます。
+        english: Regarding these two items, I would like to discuss them further.
+        hint: 「項目」 refers to an item on a list. 「点」 refers to an 'aspect' or 'point' of consideration
+          within a discussion.
+    scene: During a panel discussion, a speaker refers to specific topics they want to elaborate on.
+    register: formal
+    setting: academic
+  - english: This is an important point in understanding the culture.
+    japanese:
+      - これ は 文化 を 理解 する 上 で 重要 な {点} です。
+      - これ は 文化 を 理解 する 上 で 重要 な {点} だ よ。
+      - これ こそ が 文化 を 理解 する 上 で 肝心 な {点} だ。
+    english_literally: This is an important point in understanding culture.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 文化 を 理解 する 上 で 重要 な 事柄 です。
+        english: This is an important matter in understanding the culture.
+        hint: 「事柄」 means a matter or affair, which is broader. 「点」 highlights a specific 'point' of significance
+          for comprehension.
+    scene: A university professor explains a critical concept during a lecture on cultural studies.
+    register: formal
+    setting: academic
+  - english: I agree with that point.
+    japanese:
+      - その {点} に は 同意 し ます。
+      - その {点} に は 同意 する よ。
+      - その {点} に つき まし て は、異論 ござい ませ ん。
+    english_literally: Regarding that point, I agree.
+    competing_grammar:
+      - competing_japanese:
+          - その 意見 に は 同意 し ます。
+        english: I agree with that opinion.
+        hint: 「意見」 refers to an opinion, which is a broader concept. 「点」 specifically refers to a particular
+          'point' or aspect within an argument or statement.
+    scene: Two friends are casually discussing a movie they both watched, sharing their opinions.
+    register: casual
+    setting: friendly
+  - english: There is a problematic point with the schedule.
+    japanese:
+      - スケジュール の {点} で 問題 が あり ます。
+      - スケジュール の {点} で 問題 が ある ね。
+      - スケジュール の {点} に つき まし て、問題 が 生じ て おり ます。
+    english_literally: Regarding the point of the schedule, there is a problem.
+    competing_grammar:
+      - competing_japanese:
+          - スケジュール の 面 で 問題 が あり ます。
+        english: There is a problem on the side of the schedule.
+        hint: 「面」 might imply a general area of concern, but 「点」 pinpoints a specific 'point' or issue
+          within the schedule.
+    scene: A project manager is informing the team about a specific issue that has arisen with the project
+      timeline.
+    register: semi-formal
+    setting: professional
+post_example_writeup: As illustrated by these examples, 「点」 is a versatile noun for isolating and discussing
+  specific characteristics, issues, or aspects of a subject. Its precise nature makes it invaluable for
+  detailed analysis and evaluation in both formal and informal contexts. Pay attention to the modifying
+  word before 「点」 to understand which specific aspect is being highlighted.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/点

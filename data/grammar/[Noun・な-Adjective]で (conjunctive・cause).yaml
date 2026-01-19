@@ -1,0 +1,307 @@
+grammar_point: '[Noun・な-Adjective]で (conjunctive・cause)'
+learn_before:
+  - Verb[(ら)れる] (potential)
+  - Verb[dictionary] (dictionary form)
+  - '[Noun]をください (please give me)'
+  - あそこ (over there)
+  - い (friendly particle)
+  - い-Adjective[かった] (past tense)
+  - い-Adjective[み] (abstract quality)
+  - い-adjective (sentence-ending)
+  - かける・かけ (in process・incomplete・on the verge)
+  - が (subject marker)
+  - し〜し (and; listing reasons)
+  - で (cause・reason)
+  - で (means・method)
+  - と (with)
+  - のみならず (not only・let alone)
+  - の中で一番 (the most among)
+  - はもとより (not only・let alone)
+  - 代わりに (instead of choosing)
+  - 代わりに (instead of in return for)
+  - 任せる (to entrust or leave to)
+  - 切る (do completely or thoroughly)
+  - 地面・天井 (ground・floor・ceiling)
+  - 豊富 (abundant・rich)
+  - 超える (to exceed)
+meaning: Used to connect nouns or な-adjectives, often to list characteristics or states, or to indicate
+  a cause or reason for something.
+pronunciation:
+  katakana: デ
+  romaji: de
+formation:
+  Noun + で + Noun/な-Adjective/Verb: Connects nouns or な-adjectives, indicating an attribute or a state
+    leading to another state/action.
+  な-Adjective (stem) + で + Noun/な-Adjective/Verb: Connects な-adjectives, indicating an attribute or a
+    state leading to another state/action.
+  Noun + で + Clause: Indicates the cause or reason for the state or action described in the following
+    clause.
+  な-Adjective (stem) + で + Clause: Indicates the cause or reason for the state or action described in
+    the following clause.
+jlpt: N5
+etymology: The particle で has a rich history, evolving from the Old Japanese particle にて (ni te). にて was
+  a combination of に (ni), indicating location or state, and て (te), a conjunctive particle. Over time,
+  にて contracted to で. This evolution explains で's various uses, including the conjunctive and causal functions
+  seen with nouns and な-adjectives. The conjunctive sense arose from connecting nominals, expressing a
+  state or quality that leads to another, much like 'being X, and then...'. The causal sense developed
+  from indicating a state or condition from which something results, implying 'due to X, Y happened'.
+  This deep connection to にて highlights how で links a preceding noun or な-adjective to a subsequent clause,
+  either as a descriptive connection or a direct cause, often implying a non-volitional reason.
+writeup: 'The Japanese particle で, when used with nouns and な-adjectives, serves two primary functions:
+  as a conjunctive particle to link descriptive elements, and as a causal particle to express a reason
+  or cause. Understanding these distinct uses is crucial for accurate comprehension and natural expression
+  in Japanese. When functioning as a conjunctive, で connects nouns or な-adjectives, allowing you to list
+  multiple characteristics or states related to a single subject or situation. It acts similarly to "and"
+  in English when describing attributes. For example, you might say someone is "kind and beautiful" by
+  linking the な-adjective stems. This usage creates a smooth flow between descriptive elements, often
+  preceding a verb or another descriptor. When で indicates a cause or reason, it signifies that the preceding
+  noun or な-adjective is the direct cause of the event or state described in the following clause. This
+  causal で often implies a non-volitional reason, meaning the event happened due to circumstances rather
+  than intent. It''s frequently used to explain why someone is absent, why a situation occurred, or the
+  reason behind a feeling. For instance, you would use it to state that a delay was "due to traffic" or
+  that someone was "tired from work". While both functions use the same particle で, their contexts and
+  the types of words they follow (nouns or な-adjective stems) help differentiate their meanings. Pay close
+  attention to the surrounding words to grasp the intended nuance.'
+false_friends:
+  - term: で (location of action)
+    meaning: Indicates the location where an action takes place.
+    kind: similar expression
+    nuance: This で specifies the 'where' of an action, not a characteristic or cause. For example, 「レストラン
+      で 食べる」 (eat at a restaurant). We're looking for a connecting or causal 'で'.
+    grammar_point: で (location of action)
+  - term: で (means・method)
+    meaning: Indicates the means or instrument used to perform an action.
+    kind: similar expression
+    nuance: This で specifies 'how' an action is done. For example, 「電車 で 行く」 (go by train). We're looking
+      for a connecting or causal 'で'.
+    grammar_point: で (means・method)
+  - term: Verb[て] (and then)
+    meaning: The te-form of verbs, used to connect sequential actions or states.
+    kind: similar expression
+    nuance: While て-form also connects, it's used for verbs and い-adjectives, not nouns or な-adjectives.
+      For example, 「ご飯を 食べて 映画を見た」 (ate rice and then watched a movie). We're looking for a way to connect
+      nouns/な-adjectives or express a cause with them.
+    grammar_point: Verb[て] (and then)
+  - term: い-Adjective[くて] (te-form)
+    meaning: The te-form of い-adjectives, used to connect them to other clauses.
+    kind: similar expression
+    nuance: This is the conjunctive form for い-adjectives. For example, 「この本は面白 くて 勉強になる」 (This book is
+      interesting and educational). Our grammar point applies to nouns and な-adjectives.
+    grammar_point: い-Adjective[くて] (te-form)
+  - term: '[Clause]から (because・so)'
+    meaning: Connects a preceding clause as a reason or cause to a following statement.
+    kind: similar expression
+    nuance: から functions as a causal conjunction for full clauses, indicating a direct reason or cause.
+      For example, 「雨が降った から 外に出なかった」 (Because it rained, I didn't go outside). Our で follows nouns or
+      な-adjective stems, not full clauses, and often implies a non-volitional reason.
+    grammar_point: '[Clause]から (because・so)'
+  - term: '[Clause]ので (because・so)'
+    meaning: Connects a preceding clause as a reason or cause to a following statement, often with a softer
+      nuance than から.
+    kind: similar expression
+    nuance: ので also functions as a causal conjunction for full clauses, usually for more objective or
+      polite reasons. For example, 「具合が悪い ので 帰ります」 (Since I'm not feeling well, I'm going home). Our で
+      is for nouns and な-adjective stems and often for more direct, non-volitional causes.
+    grammar_point: '[Clause]ので (because・so)'
+  - term: し〜し (and; listing reasons)
+    meaning: Used to list multiple reasons or states, often implying there are more.
+    kind: similar expression
+    nuance: し can connect verbs, adjectives, and nouns to list reasons, often with a subtle implication
+      of dissatisfaction or added emphasis. For example, 「今日は寒い し 風も強い」 (It's cold today, and the wind
+      is strong too). Our で connects attributes of a single item or a direct, non-volitional cause.
+    grammar_point: し〜し (and; listing reasons)
+post_false_friends_writeup: The particle で has multiple functions in Japanese, which can lead to confusion.
+  When で indicates a location or means, it answers the questions 'where?' or 'how?'. For instance, in
+  「図書館で本を読みます」 (I read books at the library), で specifies the location. In 「バスで学校へ行きます」 (I go to school
+  by bus), で indicates the means of transportation. These are distinct from the conjunctive or causal
+  で, which links attributes or explains a reason. Additionally, while other particles like 「から」 or 「ので」
+  explain reasons for entire clauses, 「で」 explains reasons that are nouns or な-adjectives themselves,
+  providing a concise and common way to express why something happened.
+examples:
+  - english: My older sister is a teacher and a kind person.
+    japanese:
+      - 私 の 姉 は 先生 {で} 親切 な 人 です。
+      - 私 の 姉 は 先生 {で} 親切 な 人 だ。
+      - うち の 姉 は 先生 {で} 優しい 人 だ よ。
+    english_literally: My older sister is a teacher and a kind person.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 姉 は 先生 です。そして 親切 な 人 です。
+        english: My older sister is a teacher. And she is a kind person.
+        hint: Using 「そして」 (and then) separates the sentences, making the connection less smooth. We're
+          looking for a single flow of description.
+      - competing_japanese:
+          - 私 の 姉 は 先生 で 親切 な 人 です。
+        english: My older sister is a teacher, and a kind person.
+        hint: This is a correct usage of 「で」. We are practicing the usage of 「で」 to connect characteristics.
+    scene: A student is describing their older sister to a friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The library is quiet and very spacious.
+    japanese:
+      - 図書 館 は 静か {で} とても 広い です。
+      - 図書 館 は 静か {で} とても 広い。
+      - 図書 館 は 静か {で} めっちゃ 広い よ。
+    english_literally: The library is quiet and very spacious.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 は 静か です。とても 広い です。
+        english: The library is quiet. It is very spacious.
+        hint: Separating into two sentences loses the direct connection of attributes. We're looking for
+          a smooth connection of descriptive qualities.
+      - competing_japanese:
+          - 図書 館 は 静か で とても 広い です。
+        english: The library is quiet and very spacious.
+        hint: This is a correct usage of 「で」. We are practicing the usage of 「で」 to connect characteristics.
+    scene: Two students are discussing a place to study.
+    register: teineigo (polite)
+    setting: academic
+  - english: I was late due to the heavy rain.
+    japanese:
+      - 大雨 {で} 遅刻 し まし た。
+      - 大雨 {で} 遅刻 し た。
+      - 大雨 {で} 遅れ た。
+    english_literally: By heavy rain, I was late.
+    competing_grammar:
+      - competing_japanese:
+          - 大雨 だっ た {から} 遅刻 し まし た。
+        english: Because it was heavy rain, I was late.
+        hint: 「から」 is used after a full clause. Here, 'heavy rain' is a noun acting as a direct cause,
+          which is where で is used effectively.
+      - competing_japanese:
+          - 大雨 {の ため に} 遅刻 し まし た。
+        english: I was late because of heavy rain.
+        hint: 「のために」 (for the purpose of / because of) is correct, but 「で」 is a more direct and common
+          way to express a simple, non-volitional cause with a noun.
+    scene: A student explains to their teacher why they were late for class.
+    register: teineigo (polite)
+    setting: apologetic
+    nuance: Here, 「で」 indicates a non-volitional cause; the heavy rain (大雨) was the direct, uncontrollable
+      reason for being late. This is a very common and natural way to express such reasons.
+  - english: I'm tired from work.
+    japanese:
+      - 仕事 {で} 疲れ まし た。
+      - 仕事 {で} 疲れ た。
+      - バイト {で} 疲れ た よ。
+    english_literally: By work, I got tired.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 が あっ た {の で} 疲れ まし た。
+        english: Because I had work, I got tired.
+        hint: 「ので」 is for explaining reasons with full clauses. Here, 'work' is the direct noun cause
+          for being tired, where で is more concise.
+    scene: Someone is explaining why they look exhausted after a long day.
+    register: casual
+    setting: casual slang
+    nuance: 「で」 clearly shows that 'work' (仕事) is the direct cause of the speaker's tiredness. It's a
+      concise and natural way to express this causal relationship in daily conversation.
+  - english: He is serious and reliable.
+    japanese:
+      - 彼 は 真面目 {で} 頼り に なり ます。
+      - 彼 は 真面目 {で} 頼り に なる。
+      - あいつ 真面目 {で} 頼り に なる ん だ。
+    english_literally: He is serious and becomes reliable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 真面目 です。そして 頼り に なり ます。
+        english: He is serious. And he is reliable.
+        hint: Splitting the sentence with 「です。そして」 makes the description less cohesive. We're looking
+          for a smooth connection of attributes.
+    scene: Colleagues are discussing a new team member.
+    register: formal
+    setting: professional
+    nuance: 「で」 connects the な-adjective stem 「真面目」 (serious) to the phrase 「頼りになります」 (reliable), creating
+      a compound description of the person's character.
+  - english: Due to unforeseen circumstances, the event was canceled.
+    japanese:
+      - 都合 {で} イベント は 中止 に なり まし た。
+      - 都合 {で} イベント は 中止 に なっ た。
+      - 急 な 都合 {で} イベント は 中止 に なっ た ん だ。
+    english_literally: By circumstances, the event became canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 都合 が 悪かっ た {ため} イベント は 中止 に なり まし た。
+        english: Because circumstances were bad, the event was canceled.
+        hint: While 「ため」 also expresses cause, 「都合で」 (due to circumstances) is a very common, concise,
+          and almost idiomatic way to state a vague, non-specific reason for cancellation or change.
+    scene: An announcement is being made about a canceled event.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「都合で」 (due to circumstances/for personal reasons) is a polite and somewhat vague way to express
+      a reason without going into detail. 「で」 here serves as a causal link to the cancellation (中止になりました).
+  - english: This dish is simple and delicious.
+    japanese:
+      - この 料理 は シンプル {で} 美味しい です。
+      - この 料理 は シンプル {で} 美味しい。
+      - これ シンプル {で} うまい よ。
+    english_literally: This dish is simple and delicious.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は シンプル です。そして 美味しい です。
+        english: This dish is simple. And it is delicious.
+        hint: Using separate sentences sounds less natural for listing attributes of the same item. We're
+          looking for a smooth flow.
+    scene: A chef describes a popular dish on the menu.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The particle 「で」 links the な-adjective stem 「シンプル」 (simple) with the い-adjective 「美味しい」 (delicious),
+      providing a dual description of the dish.
+  - english: I couldn't sleep because of the noise.
+    japanese:
+      - 騒音 {で} 眠れ ませ ん でし た。
+      - 騒音 {で} 眠れ なかっ た。
+      - あの 騒音 {で} 全然 眠れ なかっ た よ。
+    english_literally: By noise, I could not sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 騒音 が うるさかっ た {の で} 眠れ ませ ん でし た。
+        english: Because the noise was loud, I couldn't sleep.
+        hint: 「ので」 requires a full clause (e.g., 「うるさかったので」). When the cause is a simple noun like 'noise',
+          で is more direct and appropriate.
+    scene: Someone is complaining to a friend about a bad night's sleep.
+    register: casual
+    setting: friendly
+    nuance: 「で」 explicitly states 'noise' (騒音) as the direct, involuntary cause of not being able to sleep,
+      a common use for negative outcomes.
+  - english: That restaurant is famous and popular.
+    japanese:
+      - あの レストラン は 有名 {で} 人気 が あり ます。
+      - あの レストラン は 有名 {で} 人気 が ある。
+      - あそこ 有名 {で} 人気 ある よ。
+    english_literally: That restaurant is famous and has popularity.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 有名 です。そして 人気 が あり ます。
+        english: That restaurant is famous. And it is popular.
+        hint: This sounds a bit choppy. 「で」 is used to combine descriptive elements more fluidly.
+    scene: Tourists are discussing places to eat.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「で」 connects the な-adjective stem 「有名」 (famous) to the phrase 「人気があります」 (is popular), providing
+      a concise summary of the restaurant's characteristics.
+  - english: Due to a sudden illness, he was absent from school.
+    japanese:
+      - 急 な 病気 {で} 学校 を 休み まし た。
+      - 急 な 病気 {で} 学校 を 休ん だ。
+      - 急 な 病気 {で} 学校 休ん だ ん だ。
+    english_literally: By sudden illness, he was absent from school.
+    competing_grammar:
+      - competing_japanese:
+          - 急 な 病気 に なっ た {から} 学校 を 休み まし た。
+        english: Because he became suddenly ill, he was absent from school.
+        hint: While correct, the use of 「から」 after a full clause is less concise than simply stating the
+          noun cause with 「で」.
+    scene: A teacher is explaining a student's absence.
+    register: teineigo (polite)
+    setting: academic
+    nuance: This usage of 「で」 indicates a direct, non-volitional cause, 'sudden illness' (急な病気), leading
+      to the action of being absent from school (学校を休みました).
+post_example_writeup: 'The examples illustrate how 「で」 effectively links attributes of nouns and な-adjectives,
+  and specifies direct causes. When linking, notice how 「で」 creates a single descriptive unit, allowing
+  for a more natural flow than separate sentences. For instance, combining "teacher" and "kind person"
+  into one description. In its causal role, 「で」 is often used for non-volitional reasons, such as illnesses,
+  weather conditions, or work. This distinction is subtle but important: while other particles like 「から」
+  or 「ので」 explain reasons for entire clauses, 「で」 explains reasons that are nouns or な-adjectives themselves,
+  providing a concise and common way to express why something happened.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/432

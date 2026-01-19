@@ -1,0 +1,220 @@
+grammar_point: い-Adjective[かった] (past tense)
+matcher: '{i-adjective-past}'
+meaning: Plain past tense form of i-adjectives
+pronunciation:
+  katakana: カッタ
+  romaji: katta
+formation:
+  い-Adjective (stem) + かった: Forms the plain past tense for i-adjectives. For example, 嬉しい (ureshii) becomes
+    嬉しかった (ureshikatta).
+  い-Adjective (stem) + くなかった: Forms the plain negative past tense for i-adjectives. For example, 寒い (samui)
+    becomes 寒くなかった (samukunakatta).
+  'Irregular い-Adjective: いい/良い (ii/yoi) + かった': Forms the irregular past tense 良かった (yokatta).
+jlpt: N5
+etymology: The past tense suffix 「かった」 has evolved from older Japanese forms. The 「か」 component is often
+  linked to an ancient auxiliary verb 「けり」 which served as a past tense marker, and the 「た」 part is the
+  more modern plain past tense suffix, originating from the auxiliary verb 「たり」. This combination formed
+  the common past tense ending for i-adjectives, consolidating over centuries. The irregular conjugation
+  of 「いい」 to 「よかった」 is a remnant of an older form 「よい」, which was the more common pronunciation of 「良い」
+  in classical Japanese.
+writeup: The suffix 「かった」 is used to form the plain past tense of い-adjectives. It directly replaces the
+  final 「い」 of the adjective. This form is casual and commonly used in conversations among friends, family,
+  or when speaking to oneself. For formal or polite contexts, 「かったです」 is appended after the 「かった」 form.
+  A notable exception to this rule is the i-adjective 「いい」 (good), which irregularly conjugates to 「よかった」
+  (yokatta) in the plain past tense, not 「いかった」. This irregularity comes from the historical form 「よい」
+  (yoi) which was the standard form of 'good' before 「いい」 became more prevalent. Understanding this basic
+  conjugation is crucial for expressing past states or qualities in Japanese.
+false_friends:
+  - term: な-Adjective[だった]
+    meaning: Plain past tense of na-adjectives
+    kind: similar expression
+    nuance: Unlike 「い-Adjective[かった]」 which replaces the final 「い」, 「な-Adjective[だった]」 attaches to the
+      stem of a na-adjective (e.g., 「きれいだった」 for 'was clean') to form its plain past tense.
+    grammar_point: な-Adjective[だった] (plain past)
+  - term: Verb[た]
+    meaning: Plain past tense of verbs
+    kind: similar expression
+    nuance: While 「い-Adjective[かった]」 is the plain past tense for adjectives, 「Verb[た]」 is the plain past
+      tense ending for verbs. Verbs undergo different conjugation rules to form their 「た」 form (e.g.,
+      「食べた」 'ate', 「行った」 'went').
+    grammar_point: Verb[た] (past tense)
+  - term: い-Adjective[くなかった]
+    meaning: Plain negative past tense of i-adjectives
+    kind: similar expression
+    nuance: This form indicates that an i-adjective was *not* the case in the past. It is formed by replacing
+      the final 「い」 with 「くなかった」 (e.g., 「忙しくなかった」 'was not busy').
+    grammar_point: い-Adjective (past negative)
+post_false_friends_writeup: While these forms all indicate past tense, paying close attention to whether
+  the word is an i-adjective, na-adjective, or verb is essential. Each word type follows distinct rules
+  for its past tense formation. The negative past forms, like 「い-Adjective[くなかった]」, simply combine the
+  negative and past concepts specific to i-adjectives.
+examples:
+  - english: The weather was good yesterday.
+    japanese:
+      - 昨日 の 天気 は {よかっ た}。
+      - 昨日 の 天気 は {よかっ た} です。
+      - 昨日 の 天気、{よかっ た} ね。
+    english_literally: Yesterday's weather good was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 天気 は {いい} です。
+        english: The weather is good yesterday.
+        hint: The sentence describes something that happened yesterday, so a past tense form is needed.
+          We're looking for the plain past tense of an i-adjective.
+    scene: You are talking to a friend about the weather from the previous day.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+  - english: That movie was very interesting.
+    japanese:
+      - あの 映画 は とても {面白かっ た}。
+      - あの 映画 は とても {面白かっ た です}。
+      - あの 映画、すごく {面白かっ た}！
+    english_literally: That movie very interesting was.
+    competing_grammar:
+      - competing_japanese:
+          - あの 映画 は とても {面白い}。
+        english: That movie is very interesting.
+        hint: The context implies a past event, requiring the past tense. We're looking for the plain
+          past tense of an i-adjective.
+    scene: You and a friend are reminiscing about a movie you watched together some time ago.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: My room was not hot.
+    japanese:
+      - 私 の 部屋 は {暑く なかっ た}。
+      - 私 の 部屋 は {暑く なかっ た} です。
+      - 俺 の 部屋、{暑く なかっ た} な。
+    english_literally: My room hot was-not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 部屋 は {暑く ない}。
+        english: My room is not hot.
+        hint: The sentence implies a past state. We're looking for the plain negative past tense of an
+          i-adjective.
+    scene: You are explaining to a family member why you were comfortable in your room despite the weather
+      outside.
+    register: casual
+    setting: informative
+    conjugation: negative past plain (～なかった)
+  - english: The exam was difficult.
+    japanese:
+      - 試験 は {難しかっ た} です。
+      - 試験 は {難しかっ た}。
+      - 試験、{難しかっ た} よ。
+    english_literally: Exam difficult was polite.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は {難しい} です。
+        english: The exam is difficult.
+        hint: The exam already happened. We're looking for the polite past tense of an i-adjective.
+    scene: A student is discussing a recently completed exam with their teacher after class.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: past polite (～ました)
+  - english: This shirt was cheap.
+    japanese:
+      - この シャツ は {安かっ た} よ。
+      - この シャツ は {安かっ た}。
+      - この シャツ は {安かっ た} です。
+    english_literally: This shirt cheap was, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この シャツ は {安い} よ。
+        english: This shirt is cheap.
+        hint: You're referring to a purchase made in the past. We're looking for the plain past tense
+          of an i-adjective.
+    scene: You are showing a recently purchased shirt to a friend, proud of the bargain you found.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The use of 「よ」 at the end adds a soft, informative tone, suggesting that the speaker is sharing
+      new or confirming information with the listener. This casual particle is often used by female speakers.
+  - english: Last night's dinner was delicious.
+    japanese:
+      - 昨夜 の 夕食 は {美味しかっ た}。
+      - 昨夜 の 夕食 は {美味しかっ た です}。
+      - 昨夜 の 夕食、まじ {美味しかっ た}！
+    english_literally: Last night's dinner delicious was.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜 の 夕食 は {美味しい}。
+        english: Last night's dinner is delicious.
+        hint: The event happened last night, indicating a past state. We're looking for the plain past
+          tense of an i-adjective.
+    scene: You are sitting alone, fondly recalling a wonderful dinner you had the previous evening.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    listener_gender: no one
+  - english: The trip was not boring.
+    japanese:
+      - 旅行 は {つまら なく なかっ た} です。
+      - 旅行 は {つまら なく なかっ た}。
+    english_literally: Trip boring was-not polite.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 は {つまら なく ない} です。
+        english: The trip is not boring.
+        hint: The trip is already over, so it requires a past tense form. We're looking for the polite
+          negative past tense of an i-adjective.
+    scene: You are giving a formal report on a business trip to your supervisor.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+  - english: That cat was cute, wasn't it?
+    japanese:
+      - あの 猫 は {可愛かっ た} なあ。
+      - あの 猫 は {可愛かっ た}。
+      - あの 猫 は {可愛かっ た} です。
+    english_literally: That cat cute was, indeed.
+    competing_grammar:
+      - competing_japanese:
+          - あの 猫 は {可愛い} なあ。
+        english: That cat is cute, isn't it?
+        hint: You're recalling a cat from the past. We're looking for the plain past tense of an i-adjective.
+    scene: You are looking at an old photo of a pet you used to have, feeling nostalgic.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    nuance: The particle 「なあ」 conveys a sense of fond recollection and can imply a soft, almost wistful
+      agreement-seeking, making the phrase 「可愛かったなあ」 feel very natural when reminiscing. This form is
+      suitable for both male and female speakers.
+  - english: The old Japanese house was very beautiful.
+    japanese:
+      - 古い 日本 家屋 は とても {美しかっ た}。
+      - 古い 日本 家屋 は とても {美しかっ た です}。
+      - 古い 日本 家屋 は 実 に {美しかっ た}。
+    english_literally: Old Japanese house very beautiful was.
+    competing_grammar:
+      - competing_japanese:
+          - 古い 日本 家屋 は とても {美しい}。
+        english: The old Japanese house is very beautiful.
+        hint: The house is being described as it was in the past. We're looking for the plain past tense
+          of an i-adjective, used in a formal descriptive context.
+    scene: An architect is presenting a historical overview of traditional Japanese housing to a group
+      of students.
+    register: formal
+    setting: academic
+    conjugation: past plain (～た)
+  - english: I was busy yesterday, so I couldn't meet.
+    japanese:
+      - 昨日 は {忙しかっ た} の で、会え ませ ん でし た。
+      - 昨日 は {忙しかっ た} から、会え なかっ た。
+      - 昨日 は {忙しかっ た です} の で、会え ませ ん でし た。
+    english_literally: Yesterday busy was, so, could-not-meet.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は {忙しい} の で、会え ませ ん でし た。
+        english: I am busy yesterday, so I couldn't meet.
+        hint: The busyness occurred yesterday, requiring the past tense. We're looking for the plain past
+          tense of an i-adjective.
+    scene: You are politely explaining to a friend why you missed a planned meeting the day before.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: past plain (～た)
+post_example_writeup: Observe how the 「かった」 ending consistently expresses a past state for i-adjectives
+  across various situations and politeness levels. The choice between plain and polite forms depends on
+  your relationship with the listener and the context, but the core past tense formation remains the same.

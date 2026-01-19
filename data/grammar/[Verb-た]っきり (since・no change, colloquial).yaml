@@ -1,0 +1,296 @@
+grammar_point: '[Verb-た]っきり (since・no change, colloquial)'
+learn_before:
+  - '[Clause]から (because・so)'
+  - ずっと (continuous state or action)
+  - それから (and then・after that)
+  - たばかり (just did)
+  - は〜が (topic's attribute)
+  - 何 (what)
+meaning: since (doing something), (nothing has changed/not done anything else); only (that one thing)
+pronunciation:
+  katakana: っきり
+  romaji: kkiri
+  pronunciation_warning: The small っ indicates a sokuon, a glottal stop or doubled consonant, making the
+    'k' sound held before the 'kiri'.
+formation:
+  Verb[た-form] + っきり: Indicates that nothing has changed or happened since the action took place.
+  Noun + っきり: Indicates a limitation, meaning 'only' or 'just' that noun.
+jlpt: N3
+etymology: The colloquial suffix 「っきり」 is a shortened and somewhat emphatic form of 「きり」. Both trace back
+  to the concept of 「切る」 (kiru), meaning 'to cut' or 'to finish completely'. This origin suggests a 'cutting
+  off' or 'limiting' of subsequent actions or quantities. Therefore, when you say 「〜たっきり」, it's as if
+  the action 'cuts off' any further developments, leaving the situation as it is. Similarly, 「〜っきり」 with
+  a noun 'cuts off' any other possibilities, leaving only that specific item or quantity.
+writeup: |-
+  The grammar point 「〜っきり」 is a versatile, colloquial expression primarily used to convey two main ideas: **that a state has remained unchanged since a particular action**, or **that something is limited to 'only' a certain amount or instance.**
+
+  When attached to the **past tense (た-form) of a verb**, 「〜たっきり」 signifies that an action occurred, and ever since, nothing else has happened, or the situation has remained as it was right after that action. This often carries a subtle nuance of surprise, disappointment, or a simple factual statement that contrasts with what one might expect. For example, if someone says 「彼は行ってきりだ」 (Kare wa itta kkiri da), it means "He went and hasn't come back since." This implies a sustained state of absence following his departure.
+
+  When attached to a **noun**, 「〜っきり」 functions similarly to 「だけ」 (dake) or 「きり」 (kiri), meaning "only" or "just." It emphasizes the exclusivity or limitation of something. For instance, 「一人っきり」 (hitori kkiri) means "just one person" or "all alone." This usage highlights that there is nothing else beyond the specified noun.
+
+  It's important to remember that 「〜っきり」 is quite **casual and colloquial**, making it suitable for informal conversations but less appropriate for formal writing or speech. Its usage can sometimes imply a certain level of familiarity or intimacy between speakers.
+false_friends:
+  - term: 〜きり (only・just)
+    meaning: only; just
+    kind: similar expression
+    nuance: 「〜きり」 is a slightly more formal or less emphatic version of 「〜っきり」 when used with nouns. When
+      used with verbs (e.g., Verb[た-form] + きり), it conveys a similar 'since... and nothing else' meaning,
+      but 「〜っきり」 often carries a stronger sense of colloquialism or personal feeling.
+    grammar_point: 〜きり (only・just)
+  - term: ばかり (only・just, often with nuance of excess)
+    meaning: only; just; nothing but; (just) finished doing
+    kind: often confused with
+    nuance: While both can mean 'only,' 「〜ばかり」 often implies a larger quantity or an excessive amount,
+      or that something *just* happened. For example, 「ご飯ばかり食べる」 (gohan bakari taberu) means 'eats nothing
+      but rice' (implying excess), whereas 「ご飯っきり食べる」 is less natural and would imply 'only ate rice (and
+      nothing else since)'. We're looking for an expression that signifies a sustained state or strict
+      limitation.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: だけ (only・just)
+    meaning: only; just; as much as
+    kind: similar expression
+    nuance: 「〜だけ」 is a neutral and common way to express 'only' or 'just'. It lacks the subtle implications
+      of 'since then, nothing else' found in 「〜たっきり」, or the colloquial emphasis of 「〜っきり」 with nouns.
+      It simply states a limitation without additional nuance. We're looking for an expression with a
+      more specific, sometimes emotional, nuance of limitation or sustained state.
+    grammar_point: だけ (only・just)
+  - term: 以来 (since・ever since)
+    meaning: since; ever since
+    kind: similar expression
+    nuance: 「以来」 is a more formal expression indicating 'since' a certain point in time, often used for
+      longer periods or more significant events. It focuses purely on the temporal aspect of 'since' and
+      doesn't carry the colloquial or 'nothing else has happened' nuance as strongly as 「〜たっきり」. We're
+      looking for a colloquial way to say 'since, and still in that state'.
+    grammar_point: 以来 (since・ever since)
+post_false_friends_writeup: When distinguishing 「〜っきり」 from similar expressions like 「〜きり」, 「〜ばかり」, and
+  「〜だけ」, consider the specific nuance. 「〜っきり」 has a strong colloquial flavor and often implies a lack
+  of subsequent action or a definitive, sometimes surprising, limitation. 「〜きり」 is very close but can
+  be slightly less emphatic or colloquial. 「〜ばかり」 can also mean 'only', but often suggests an excessive
+  amount or a recently completed action. 「〜だけ」 is the most neutral and straightforward way to say 'only'.
+  For 'since' contexts, 「以来」 is more formal and primarily temporal, while 「〜たっきり」 adds the nuance of an
+  unchanged state.
+examples:
+  - english: He went to the convenience store and hasn't come back since.
+    japanese:
+      - 彼 は コンビニ へ {行っ た っきり}、戻っ て き て ない ね。
+      - 彼 は コンビニ へ {行っ た っきり}、帰っ て 来 ませ ん よ。
+    english_literally: As for him, he went to the convenience store and hasn't returned.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は コンビニ へ 行っ た まま だ ね。
+          - 彼 は コンビニ へ 行っ た まま で いる よ。
+        english: He went to the convenience store and is still in that state.
+        hint: 「〜まま」 indicates 'as is' or 'in that state,' but doesn't necessarily imply a lack of further
+          action or a 'since then, nothing else' nuance. We're looking for 'since then, nothing has changed'.
+      - competing_japanese:
+          - 彼 は コンビニ へ 行っ た きり だ よ。
+          - 彼 は コンビニ へ 行っ た きり 帰っ て 来 ない よ。
+        english: He went to the convenience store and hasn't come back.
+        hint: 「〜きり」 is very similar, but 「〜っきり」 adds a stronger colloquial tone and sometimes a nuance
+          of slight surprise or disappointment. We're looking for the more casual and possibly emphatic
+          form.
+    scene: A mother is wondering where her son has gone.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The mother uses 「行ったっきり」 to express her slight frustration or worry that her son left for
+      the convenience store and has not returned, implying a continuous state of absence. The casual tone
+      is reinforced by 「〜ね」.
+  - english: She only said goodbye once and left.
+    japanese:
+      - 彼女 は さよなら を {言っ た っきり}、行っ て しまっ た。
+      - 彼女 は さよなら {言っ た っきり} で、行っ ちゃっ た。
+      - 彼女 は 一言 {言っ た っきり}、立ち去っ た。
+    english_literally: As for her, she only said goodbye once and went away.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は さよなら を 一 度 だけ 言っ て、行っ て しまっ た。
+        english: She only said goodbye once and left.
+        hint: 「だけ」 is a neutral 'only'. Here, we want to convey that the act of saying goodbye was the
+          *only* thing done before leaving, implying a quick, perhaps abrupt, departure. We're looking
+          for a nuance of a singular action followed by departure.
+    scene: Narrating a somewhat sad or abrupt departure.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: 「言ったっきり」 emphasizes that her saying goodbye was the sole action before leaving, suggesting
+      an abrupt or minimal interaction. This highlights the finality of the action and the immediate subsequent
+      departure without further interaction.
+  - english: I heard he moved to Hokkaido, but I haven't heard from him since then.
+    japanese:
+      - 彼、北海道 へ 引っ越し た って 聞い た けど、それ から は {連絡 ない っきり} だ よ。
+      - 彼、北海道 へ 引っ越し た って 聞い た けど、それ から は {連絡 ない っきり} な ん です。
+      - 彼、北海道 に {行っ た っきり}、全然 連絡 し て こ ない よ ね。
+    english_literally: Him, I heard he moved to Hokkaido, but since then, there has been no contact.
+    competing_grammar:
+      - competing_japanese:
+          - 彼、北海道 へ 引っ越し た って 聞い た けど、それ から は 連絡 が ない まま だ よ。
+          - 彼、北海道 へ 引っ越し た って 聞い た けど、それ から は 連絡 が ない です。
+        english: I heard he moved to Hokkaido, but since then, there has been no contact.
+        hint: While 「〜まま」 can express a continued state, 「〜っきり」 is more suited to expressing that a specific
+          situation (lack of contact) has persisted since a past event. We're looking for a colloquial
+          'since then, nothing'.
+      - competing_japanese:
+          - 彼、北海道 へ 引っ越し た って 聞い た けど、それ 以来 連絡 が ない よ。
+        english: I heard he moved to Hokkaido, but since then, there has been no contact.
+        hint: 「以来」 is a more formal 'since then', primarily focusing on the passage of time from an event.
+          「〜っきり」 provides a more casual and personal 'since then, and nothing else has changed' nuance.
+          We're looking for a casual way to express a continued lack of contact.
+    scene: Two friends catching up and discussing a mutual acquaintance.
+    register: casual
+    setting: friendly
+    nuance: 「連絡ないっきり」 (renraku nai kkiri) explicitly states that contact ceased after he moved and has
+      not resumed, conveying a sense of being cut off. The casual 'って' and 'だよ' reinforce the informal
+      setting.
+  - english: I only ate a piece of bread this morning, and I'm already hungry.
+    japanese:
+      - 今朝 は パン {一 つ っきり} 食べ た だけ だ から、もう お腹 ぺこぺこ だ よ。
+      - 今朝 は パン {一 つ っきり} だっ た から、もう お腹 空い た な。
+      - 今朝、パン {一 つ っきり} しか 食べ て ない から、もう 腹 減っ た よ。
+    english_literally: This morning, because I only ate one piece of bread, my stomach is already rumbling.
+    competing_grammar:
+      - competing_japanese:
+          - 今朝 は パン 一 つ だけ 食べ た だけ だ から、もう お腹 ぺこぺこ だ よ。
+          - 今朝 は パン 一 つ しか 食べ なかっ た から、もう お腹 ぺこぺこ だ よ。
+        english: This morning, because I only ate one piece of bread, my stomach is already rumbling.
+        hint: 「だけ」 is neutral. 「しか〜ない」 emphasizes scarcity. 「〜っきり」 here emphasizes the *minimal* amount,
+          often with a slight implication of 'that's all there was/that's all I managed' before something
+          else happened (like getting hungry). We're looking for a specific emphasis on the small quantity.
+    scene: Someone complaining about being hungry after a meager breakfast.
+    register: casual
+    setting: humorous
+    nuance: 「一つっきり」 emphasizes the mere single piece of bread eaten, making the hunger seem more profound
+      or humorous due to the minimal intake. 「ぺこぺこだよ」 reinforces the casual and slightly exaggerated complaint.
+  - english: My grandfather passed away 20 years ago, and my grandmother has been living alone since then.
+    japanese:
+      - 祖父 が ２０ 年 前 に 亡くなっ た っきり、祖母 は ずっと 一人暮らし です。
+      - 祖父 が ２０ 年 前 に 亡くなっ た っきり、祖母 は ずっと 一人暮らし を し て い ます。
+      - お じい ちゃん が ２０ 年 前 に 亡くなっ ちゃっ た っきり、お ばあ ちゃん は ずっと 一人暮らし な ん だ。
+    english_literally: My grandfather passed away 20 years ago, and my grandmother has been living alone
+      since then.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 が ２０ 年 前 に 亡くなっ て 以来、祖母 は ずっと 一人暮らし です。
+        english: My grandfather passed away 20 years ago, and my grandmother has been living alone ever
+          since.
+        hint: 「以来」 is suitable here for a long-term 'since'. However, 「〜たっきり」 specifically highlights
+          the continuous state (living alone) that began at that point and has remained unchanged, with
+          a slightly more personal or empathetic nuance. We're looking for an expression that emphasizes
+          the unchanged state since an event.
+    scene: Discussing family history.
+    register: formal
+    setting: serious
+    conjugation: past plain (～た)
+    nuance: While the overall sentence is formal due to 「〜です」, 「亡くなったっきり」 maintains a direct connection
+      to the event of death as the point from which her grandmother's solitary life continuously stems,
+      conveying a sustained, poignant state. The grammar is used in a slightly more formal context here,
+      showing its flexibility though its core meaning remains colloquial.
+  - english: The cat jumped onto the roof and hasn't come down since.
+    japanese:
+      - 猫 が 屋根 に {上がっ た っきり}、下り て こ ない。
+      - 猫 が 屋根 に {上がっ た っきり} で、降り て こ ない よ。
+      - 猫 が 屋根 に {上がっ た っきり} で、その まま 居る。
+    english_literally: The cat jumped onto the roof and hasn't come down.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が 屋根 に 上がっ て いる よ。
+          - 猫 が 屋根 に 上がっ た まま だ よ。
+        english: The cat is on the roof / The cat went onto the roof and is still there.
+        hint: 「〜ている」 indicates a continuous state. 「〜まま」 means 'as is'. 「〜たっきり」 specifically means 'since
+          it went up, it hasn't come down', emphasizing the continued absence of the cat returning from
+          the roof. We're looking for the nuance of 'it went up and stayed up there'.
+    scene: Observing a mischievous cat.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: 「上がったっきり」 succinctly describes the cat's single action of going onto the roof and the subsequent
+      uninterrupted state of remaining there, evoking a slight sense of mischief or stubbornness from
+      the cat.
+  - english: He just arrived in Japan and has no money.
+    japanese:
+      - 彼 は 日本 に {来 た っきり}、お 金 が ない らしい です。
+      - 彼 は 日本 に {来 た っきり}、金 が 無い らしい よ。
+      - 彼 は 日本 に {来 た っきり} で、お 金 が ない そう です。
+    english_literally: As for him, he just arrived in Japan, and seems to have no money.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 に 来 て から、お 金 が ない らしい です。
+        english: As for him, since he came to Japan, he seems to have no money.
+        hint: 「来てから」 simply states 'since coming'. 「来たっきり」 implies that *after* arriving, the state of
+          'having no money' has persisted, often highlighting a sudden or unexpected lack of funds upon
+          arrival. We're looking for the specific nuance that the lack of money is a continuous state
+          since his arrival.
+    scene: Gossiping about a new arrival.
+    register: semi-formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: 「来たっきり」 suggests a continuous state of pennilessness since his arrival, possibly implying
+      a surprising or unfortunate turn of events. The addition of 「〜らしいです」 maintains a semi-formal, reported
+      speech register.
+  - english: I've been working ever since I got home, and I haven't eaten anything.
+    japanese:
+      - 家 に {帰っ た っきり}、ずっと 仕事 し て て、何 も 食べ られ ない ん だ。
+      - 家 帰っ た っきり、ずっと 仕事 し て て、飯 食っ て ない ん だ。
+      - 家 に {帰っ た っきり}、仕事 ばっかり で、何 も 食べ て ない よ。
+    english_literally: Since I came home, I've been working continuously, and I can't eat anything.
+    competing_grammar:
+      - competing_japanese:
+          - 家 に 帰っ て から ずっと 仕事 し て て、何 も 食べ られ ない ん だ。
+        english: Since I came home, I've been working continuously, and I can't eat anything.
+        hint: 「〜てから」 focuses on the sequential order. 「〜たっきり」 emphasizes that the state of 'working continuously
+          and not eating' has been uninterrupted *since* coming home, often implying a demanding situation.
+          We're looking for an expression that signifies a sustained activity without interruption since
+          a past point.
+    scene: A person feeling overwhelmed by work after returning home.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    nuance: 「帰ったっきり」 conveys the uninterrupted nature of working since returning home, leaving no time
+      for eating. This emphasizes the continuous, demanding nature of their work.
+  - english: He's the only child, so he's a bit spoiled.
+    japanese:
+      - 彼 は {一人 っきり} だ から、少し 甘えん坊 な ん です。
+      - 彼 は {一人 っきり} だ から、ちょっと 甘えん坊 な ん だ よ ね。
+      - '{一人 っきり} の 子 だ から、彼 は 少し 甘えん坊 な ん です。'
+    english_literally: As for him, because he is only one person, he is a bit of a spoiled child.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一人 だけ だ から、少し 甘えん坊 な ん です。
+        english: As for him, because he is only one person, he is a bit of a spoiled child.
+        hint: 「だけ」 is a neutral 'only'. 「一人っきり」 (hitori kkiri) specifically highlights the state of being
+          'all alone' or 'the only one', often carrying a slightly empathetic or explanatory nuance for
+          their personality trait. We're looking for a specific emphasis on being 'the only one'.
+    scene: Explaining someone's personality trait due to family structure.
+    register: semi-formal
+    setting: informative
+    nuance: 「一人っきり」 emphasizes his status as an only child, implying that his 'spoiled' nature is a direct
+      consequence of this singular upbringing. The phrasing is explanatory rather than judgmental.
+  - english: I bought this one and nothing else.
+    japanese:
+      - これ {一 個 っきり} 買い まし た。
+      - これ {一 個 っきり} 買っ た よ。
+      - 買え た の は {一 個 っきり} でし た。
+    english_literally: I bought only this one piece.
+    competing_grammar:
+      - competing_japanese:
+          - これ 一 個 だけ 買い まし た。
+          - これ 一 個 しか 買い ませ ん でし た。
+        english: I bought only this one piece.
+        hint: 「だけ」 is neutral, 「しか〜ない」 emphasizes scarcity. 「一個っきり」 emphasizes that *only* this single
+          item was purchased, cutting off any other purchases. We're looking for an emphatic statement
+          of buying only one item.
+    scene: Showing a single purchase to someone.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「一個っきり」 highlights that only one item was bought, leaving no room for other purchases. The
+      polite 「買いました」 maintains the formal setting despite the casual feel of 「〜っきり」, showing how it can
+      be integrated.
+post_example_writeup: The examples illustrate how 「〜っきり」 functions in both its 'since... no change' verbal
+  form and its 'only' nominal form. Notice how it often carries an implicit sense of a state having been
+  fixed since a certain point, or a quantity being strictly limited. Its colloquial nature makes it a
+  natural fit for everyday conversations, adding a touch of casual emphasis or subtle emotion that more
+  formal equivalents might lack.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たっきり

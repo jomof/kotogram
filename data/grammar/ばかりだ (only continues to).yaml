@@ -1,0 +1,384 @@
+grammar_point: ばかりだ (only continues to)
+learn_before:
+  - たばかり (just did)
+  - たらいい・といい (hope・suggestion)
+  - もうすぐ (very soon・almost there)
+meaning: Only continue to, Keep on -ing, More and more
+meaning_warning: ばっかり, ばっか, ばかし, and ばっかし are all fairly common casual variations of ばかり
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ばかりだ
+    rarity: common
+    meaning: only continues to (non-past plain)
+  - conjugation-type: non-past polite (～ます)
+    form: ばかりです
+    rarity: common
+    meaning: only continues to (non-past polite)
+  - conjugation-type: past plain (～た)
+    form: ばかりだった
+    rarity: common
+    meaning: only continued to (past plain)
+  - conjugation-type: past polite (～ました)
+    form: ばかりでした
+    rarity: common
+    meaning: only continued to (past polite)
+  - conjugation-type: te-form (～て)
+    form: ばかりで
+    rarity: common
+    meaning: only continuing to (te-form)
+pronunciation:
+  katakana: バカリダ
+  romaji: bakari da
+formation:
+  '[Verb in dictionary form] + ばかりだ': Indicates a continuous trend or action that is only increasing or
+    decreasing, often implying a negative consequence.
+  '[Verb in dictionary form] + ばかりで': Indicates a continuous trend or action that is only increasing or
+    decreasing, connecting clauses or providing a reason/cause.
+  '[Verb in dictionary form] + ばかりだった': Indicates a continuous trend or action that was only increasing
+    or decreasing in the past, often implying a negative consequence.
+  '[Verb in dictionary form] + ばかりでした': Indicates a continuous trend or action that was only increasing
+    or decreasing in the past, with polite nuance, often implying a negative consequence.
+jlpt: N3
+etymology: The adverbial particle 「ばかり」 (bakari) originally meant 'only' or 'just'. When combined with
+  a verb and the copula 「だ」, it expresses the idea that something is continuously moving in one direction,
+  typically emphasizing a trend or gradual change. The 「だ」 functions as a declarative copula, indicating
+  a state of being or truth. The underlying sense of 'only' or 'just' carries over, implying that the
+  action or state is exclusively progressing in a single direction.
+writeup: |-
+  The grammar point 「ばかりだ」 (bakari da) is used to express that something continues to move in one direction, or that one action is exclusively happening, often suggesting a negative or undesirable trend. It's similar to saying "only continues to" or "keeps on -ing" in English. It typically attaches to the **dictionary form** of a verb. It can also be used in the polite form 「ばかりです」.
+
+  This grammar is most commonly used with verbs that describe some form of change, such as increasing or decreasing, getting better or worse, becoming faster or slower, etc. It implies that the situation is solely progressing in that specific direction. While often associated with negative trends, 「ばかりだ」 can also describe positive trends, although this usage is less common. The nuance of exclusivity or singular focus on that trend is key.
+
+  If the speaker wishes to extend the sentence with additional information after 「ばかりだ」, the copula 「だ」 will change to its conjunctive te-form 「で」, becoming 「ばかりで」. This allows the phrase to connect to subsequent clauses, often to express a consequence or further observation regarding the continuous trend.
+false_friends:
+  - term: つづける
+    meaning: To continue
+    kind: synonym
+    nuance: 「つづける」 (tsuzukeru) simply means to continue an action, without necessarily implying a trend
+      or continuous change in one direction like 「ばかりだ」. It focuses on the duration or persistence of
+      an action.
+    grammar_point: '[Verb-stem]つづける (to continue doing)'
+  - term: ばかり
+    meaning: Just, Only, Nothing but
+    kind: similar expression
+    nuance: 「ばかり」 (bakari) by itself means 'only' or 'just' and emphasizes exclusivity or approximation,
+      but not necessarily a continuous trend in itself. 「ばかりだ」 emphasizes a continuing, often exclusive,
+      trend.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: てくる
+    meaning: To come to, To become, To continue, To be starting to, Has been ~ing
+    kind: similar expression
+    nuance: 「てくる」 (te kuru) indicates the start of a change or the development of a situation over time,
+      focusing on movement towards the speaker or present, while 「ばかりだ」 emphasizes the continuous progression
+      of the trend in one specific direction.
+    grammar_point: 〜てくる (change toward present・movement toward speaker)
+  - term: 一方だ
+    meaning: More and more, Continue to, Keep on, -er and -er
+    kind: synonym
+    nuance: 「一方だ」 (ippō da) is similar to 「ばかりだ」 in indicating a trend, but it often emphasizes an even
+      stronger, more definite, and often irreversible directional trend. It focuses on the relentless
+      progression.
+    grammar_point: '[Verb-dictionary]一方だ (more and more・continuous change)'
+post_false_friends_writeup: 「ばかりだ」, 「つづける」, 「てくる」, and 「一方だ」 all relate to continuation but have different
+  nuances. Use 「ばかりだ」 when you want to emphasize a continuous directional trend, especially when it's
+  undesirable or when something is *only* happening. Use 「つづける」 for simple continuation of an action.
+  Opt for 「てくる」 when describing the gradual development of something or a change leading to the present.
+  Choose 「一方だ」 for a stronger emphasis on an irreversible and often increasingly significant trend. While
+  「ばかりだ」 highlights the exclusive nature of the movement, 「一方だ」 stresses the accelerating or relentless
+  nature of it.
+examples:
+  - english: Recently, the price of vegetables keeps going up.
+    japanese:
+      - 最近、野菜 の 値段 は 上がる {ばかり だ}。
+      - 最近、野菜 の 値段 は 上がる {ばかり です}。
+      - 最近、野菜 の 値段 は 上がる {ばっかり だ}。
+      - 最近、野菜 の 値段 は 上がる {ばっか だ}。
+    english_literally: Recently, vegetables' price only goes up.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、野菜 の 値段 は {上がる 一方 だ}。
+        english: Recently, the price of vegetables is just going up and up.
+        hint: 「一方だ」 (ippō da) emphasizes a very strong, often irreversible trend. 「ばかりだ」 (bakari da) implies
+          a continuous negative trend, often with a nuance of helplessness or disappointment, where the
+          price *only* keeps going up. We're looking for an expression that implies the price *only* keeps
+          going up, suggesting a concerning trend, and is not necessarily as strong as 「一方だ」. This is
+          why 「ばかりだ」 is the better choice for this example.
+    scene: A homemaker discussing recent grocery prices with a neighbor.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual tone and observation about daily household expenses are typical for a female speaker
+      to a female listener in a friendly conversation. 「上がるばかりだ」 emphasizes that the price does *nothing
+      but* go up, implying frustration.
+  - english: Because I'm busy and can't exercise, my weight just keeps going up.
+    japanese:
+      - 忙しく て 運動 でき ない から、体重 が 増える {ばかり だ}。
+      - 忙しく て 運動 でき ない から、体重 が 増える {ばかり です}。
+      - 忙しく て 運動 でき ない から、体重 が 増える {ばっかり だ}。
+      - 忙しく て 運動 でき ない から、体重 が 増える {ばっか だ}。
+    english_literally: Because I'm busy and cannot exercise, my weight only increases.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しく て 運動 でき ない から、体重 が {増え て いく}。
+        english: Because I'm busy and can't exercise, my weight will keep increasing.
+        hint: 「～ていく」 (te iku) indicates a change that progresses into the future or continues from a point.
+          「ばかりだ」 (bakari da) emphasizes that weight *only* continues to increase, often with a negative
+          implication, highlighting the exclusive nature of the increase. We're looking for an expression
+          that suggests the weight gain is an exclusive, continuous development.
+    scene: A student complaining to a friend about their busy schedule and lack of exercise.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: This complaint about the difficulty of maintaining physical health due to a busy schedule
+      is a common casual conversation topic for men. 「増えるばかりだ」 conveys a sense of resignation, emphasizing
+      that the weight increase is the *sole* trend.
+  - english: The economy of this region continues to decline.
+    japanese:
+      - この 地域 の 経済 は 悪く なる {ばかり です}。
+      - この 地域 の 経済 は 悪く なる {ばかり だ}。
+    english_literally: This region's economy only gets worse.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 の 経済 は 悪く {なっ て い ます}。
+        english: The economy of this region is getting worse.
+        hint: 「～なっています」 (natte imasu) indicates a state of change. 「ばかりです」 (bakari desu) emphasizes that
+          the economy *only* continues to decline, implying a sustained, often undesirable trend, and
+          highlighting the exclusive nature of this decline. We're looking for an expression that highlights
+          this continuous, unidirectional decline, emphasizing that it's the *only* thing happening.
+    scene: A local government official presenting a report on economic trends to the council.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: Over the past few years, air pollution in this city has only gotten worse.
+    japanese:
+      - ここ 数 年、この 都市 の 空気 は 悪く なる {ばかり です}。
+      - ここ 数 年、この 都市 の 空気 は 悪く なる {ばかり だ}。
+    english_literally: Over the past few years, this city's air only gets worse.
+    competing_grammar:
+      - competing_japanese:
+          - ここ 数 年、この 都市 の 空気 は {悪く なる 一方 です}。
+        english: Over the past few years, air pollution in this city has only gotten worse and worse.
+        hint: 「一方です」 (ippō desu) suggests a strong, often irreversible trend. 「ばかりです」 (bakari desu) emphasizes
+          that the air pollution *only* continues to worsen, often implying a regrettable or unchecked
+          trend, and highlighting the exclusive nature of this deterioration. We're looking for an expression
+          that indicates this exclusive and continuous worsening.
+    scene: An environmental activist discussing pollution levels in a public forum.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: non-past polite (～ます)
+  - english: My debt only continues to increase, and I don't know what to do anymore.
+    japanese:
+      - 借金 が 増える {ばかり で}、もう どう し たら いい か 分から ない。
+      - 借金 が 増える {ばっかり で}、もう どう し たら いい か 分から ない。
+      - 借金 が 増える {ばっか で}、もう どう し たら いい か 分から ない。
+    english_literally: Debt only increases, and what to do anymore I don't know.
+    competing_grammar:
+      - competing_japanese:
+          - 借金 が {増え て い て}、もう どう し たら いい か 分から ない。
+        english: My debt is increasing, and I don't know what to do anymore.
+        hint: 「～ていて」 (te ite) indicates an ongoing state. 「ばかりで」 (bakari de) emphasizes that the debt
+          *only* continues to increase, creating a sense of inevitability and distress, and it can connect
+          clauses like a te-form. We're looking for an expression that highlights this continuous, exclusive
+          increase and connects to the following clause.
+    scene: A person confiding in a close friend about their overwhelming financial struggles.
+    register: casual
+    setting: melancholic
+    conjugation: te-form (～て)
+  - english: Customers only continue to stay away from this shop, and it looks like it will close soon.
+    japanese:
+      - この 店 は 客 が 減る {ばかり で}、もう すぐ 閉まり そう だ。
+      - この 店 は 客 が 減る {ばっかり で}、もう すぐ 閉まり そう だ。
+    english_literally: This shop, customers only decrease, and soon it seems to close.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 は 客 が {減っ て い て}、もう すぐ 閉まり そう だ。
+        english: Customers are decreasing at this shop, and it looks like it will close soon.
+        hint: 「～ていて」 (te ite) indicates a continuing action or state. 「ばかりで」 (bakari de) emphasizes that
+          customers *only* continue to decrease, suggesting a continuous, exclusive decline, and it allows
+          for direct clause connection. We're looking for an expression that implies this exclusive trend
+          and links the sentences.
+    scene: A shop owner lamenting the decline of their business.
+    register: semi-formal
+    setting: informative
+    conjugation: te-form (～て)
+  - english: Because I work until late every day, my stress only continues to accumulate.
+    japanese:
+      - 毎日 遅く まで 働く から、ストレス が 溜まる {ばかり だ}。
+      - 毎日 遅く まで 働く から、ストレス が 溜まる {ばかり です}。
+      - 毎日 遅く まで 働く から、ストレス が 溜まる {ばっかり だ}。
+      - 毎日 遅く まで 働く から、ストレス が 溜まる {ばっか だ}。
+    english_literally: Because I work until late every day, stress only accumulates.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 遅く まで 働く から、ストレス が {溜まる 一方 だ}。
+        english: Because I work until late every day, my stress is just accumulating more and more.
+        hint: 「一方だ」 (ippō da) indicates a strong, often inevitable trend. 「ばかりだ」 (bakari da) emphasizes
+          that stress *only* continues to accumulate, focusing on the singular, continuous development.
+          We're looking for an expression that means stress *exclusively* keeps accumulating.
+    scene: An office worker complaining to a colleague about their demanding work schedule.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+  - english: Since starting the new medicine, my condition has just been improving.
+    japanese:
+      - 新しい 薬 を 飲ん で から、体調 は 良く なる {ばかり だ}。
+      - 新しい 薬 を 飲ん で から、体調 は 良く なる {ばかり です}。
+      - 新しい 薬 を 飲ん で から、体調 は 良く なる {ばっかり だ}。
+    english_literally: Since taking new medicine, condition only gets better.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 薬 を 飲ん で から、体調 は {良く なっ て いく}。
+        english: Since starting the new medicine, my condition has been improving.
+        hint: 「～ていく」 (te iku) indicates a change that progresses. 「ばかりだ」 (bakari da) emphasizes that the
+          condition *only* continues to improve, highlighting its consistent and exclusive upward trend.
+          We're looking for an expression that implies an exclusive continuous improvement.
+    scene: A patient happily informing their family about the positive progress of their medical treatment.
+    register: semi-formal
+    setting: optimistic
+    conjugation: dictionary (plain non-past)
+  - english: Due to global economic uncertainty, the value of money only continues to fall.
+    japanese:
+      - 世界 経済 の 不安 から、お 金 の 価値 が 下がる {ばかり だ}。
+      - 世界 経済 の 不安 から、お 金 の 価値 が 下がる {ばかり です}。
+      - 世界 経済 の 不安 から、お 金 の 価値 が 下がる {ばっかり だ}。
+    english_literally: From global economic uncertainty, money's value only falls.
+    competing_grammar:
+      - competing_japanese:
+          - 世界 経済 の 不安 から、お 金 の 価値 が {下がっ て いる}。
+        english: Due to global economic uncertainty, the value of money is falling.
+        hint: 「～ている」 (te iru) indicates an ongoing state. 「ばかりだ」 (bakari da) emphasizes that the value
+          *only* continues to fall, pointing to a continuous, exclusive decline. We're looking for an
+          expression that stresses this exclusive and consistent downward trend.
+    scene: A financial analyst giving a gloomy market forecast on a business news channel.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Because of my chronic illness, my physical strength only continues to decline.
+    japanese:
+      - 長い 病気 の せい で、体力 が 落ちる {ばかり です}。
+      - 長い 病気 の せい で、体力 が 落ちる {ばかり だ}。
+    english_literally: Because of long illness, physical strength only declines.
+    competing_grammar:
+      - competing_japanese:
+          - 長い 病気 の せい で、体力 が {落ちる 一方 です}。
+        english: Because of my chronic illness, my physical strength is just declining more and more.
+        hint: 「一方です」 (ippō desu) indicates a strong, often irreversible trend. 「ばかりです」 (bakari desu) emphasizes
+          that physical strength *only* continues to decline, highlighting a continuous and exclusive
+          worsening. We're looking for an expression that implies this continuous and exclusive decline.
+    scene: A doctor explaining the progressive nature of a chronic illness to a patient's family.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: non-past polite (～ます)
+  - english: If I don't practice, my guitar skills will only continue to decline, won't they?
+    japanese:
+      - 練習 し ない と、ギター の 技術 は 落ちる {ばかり だ} ね。
+      - 練習 し ない と、ギター の 技術 は 落ちる {ばかり です} ね。
+      - 練習 し ない と、ギター の 技術 は 落ちる {ばっかり だ} ね。
+      - 練習 し ない と、ギター の 技術 は 落ちる {ばっか だ} ね。
+    english_literally: If I don't practice, guitar skills only decline, right?
+    competing_grammar:
+      - competing_japanese:
+          - 練習 し ない と、ギター の 技術 は {落ちる だろう} ね。
+        english: If I don't practice, my guitar skills will probably decline, won't they?
+        hint: 「～だろう」 (darō) expresses probability. 「ばかりだ」 (bakari da) emphasizes that the skills *only*
+          continue to decline, pointing to an exclusive and continuous deterioration. We're looking for
+          an expression that suggests this continuous, exclusive decline.
+    scene: A musician talking to a bandmate about the importance of consistent practice.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: My savings just keep decreasing, and I'm getting worried.
+    japanese:
+      - 貯金 が 減る {ばかり で}、不安 に なる。
+      - 貯金 が 減る {ばっかり で}、不安 に なる。
+      - 貯金 が 減る {ばっか で}、不安 に なる。
+    english_literally: Savings only decrease, and I become worried.
+    competing_grammar:
+      - competing_japanese:
+          - 貯金 が {減っ て い て}、不安 に なる。
+        english: My savings are decreasing, and I'm getting worried.
+        hint: 「～ていて」 (te ite) indicates an ongoing state. 「ばかりで」 (bakari de) emphasizes that savings *only*
+          continue to decrease, highlighting a continuous, exclusive decline that connects to the following
+          clause. We're looking for an expression that implies this exclusive trend and links the sentences.
+    scene: A young adult complaining to their roommate about their decreasing savings.
+    register: casual
+    setting: serious
+    conjugation: te-form (～て)
+  - english: If we do nothing, the situation will only continue to worsen.
+    japanese:
+      - 何 も し ない と、状況 は 悪く なる {ばかり だ}。
+      - 何 も し ない と、状況 は 悪く なる {ばかり です}。
+      - 何 も し ない と、状況 は 悪く なる {ばっかり だ}。
+    english_literally: If we do nothing, the situation only gets worse.
+    competing_grammar:
+      - competing_japanese:
+          - 何 も し ない と、状況 は {悪く なっ て いく}。
+        english: If we do nothing, the situation will get worse.
+        hint: 「～ていく」 (te iku) indicates a change that progresses into the future. 「ばかりだ」 (bakari da) emphasizes
+          that the situation *only* continues to worsen, implying a continuous, exclusive deterioration.
+          We're looking for an expression that implies this exclusive and continuous worsening.
+    scene: A project manager urgently warning their team about the consequences of inaction.
+    register: semi-formal
+    setting: persuasive
+    conjugation: dictionary (plain non-past)
+  - english: My daughter just keeps growing so fast every day!
+    japanese:
+      - うち の 娘 は 毎日 どんどん 成長 する {ばかり だ} わ。
+      - うち の 娘 は 毎日 どんどん 成長 する {ばかり です} わ。
+      - うち の 娘 は 毎日 どんどん 成長 する {ばっかり だ} わ。
+      - うち の 娘 は 毎日 どんどん 成長 する {ばっか だ} わ。
+    english_literally: Our daughter every day steadily only grows.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 娘 は 毎日 どんどん {成長 し て いく} わ。
+        english: My daughter is steadily growing every day!
+        hint: 「～ていく」 (te iku) indicates a change that progresses. 「ばかりだ」 (bakari da) emphasizes that the
+          daughter *only* continues to grow, highlighting her exclusive and continuous development. We're
+          looking for an expression that implies this exclusive and continuous growth.
+    scene: A mother chatting with her friend about her child's rapid development, expressing a mix of
+      joy and amazement.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「どんどん成長するばかりだわ」 (don don seichou suru bakari dawa) uses the feminine sentence-ending
+      particle 「わ」 (wa) to express a soft exclamation or personal reflection, common among female speakers.
+      The repetition of 「どんどん」 emphasizes the rapid pace of growth, and 「ばかりだ」 highlights that this growth
+      is the *only* thing that seems to be happening.
+  - english: Recently, I'm so busy with work, when I get home, all I do is eat, you know?
+    japanese:
+      - 最近 は 仕事 で 忙しく て、家 に 帰っ たら 食べる {ばかり だ} よ。
+      - 最近 は 仕事 で 忙しく て、家 に 帰っ たら 食べる {ばかり です} よ。
+      - 最近 は 仕事 で 忙しく て、家 に 帰っ たら 食べる {ばっかり だ} よ。
+      - 最近 は 仕事 で 忙しく て、家 に 帰っ たら 食べる {ばっか だ} よ。
+    english_literally: Recently, with work I'm busy, when I return home, only eat, you know?
+    competing_grammar:
+      - competing_japanese:
+          - 最近 は 仕事 で 忙しく て、家 に 帰っ たら {食べ ます} よ。
+        english: Recently, I'm so busy with work, when I get home, I eat, you know?
+        hint: 「食べます」 (tabemasu) simply states the action. 「食べるばかりだ」 (taberu bakari da) emphasizes that
+          eating is *all* the speaker does, highlighting the exclusivity of the action due to circumstances.
+          We're looking for an expression that means eating is the *only* thing done.
+    scene: A man casually telling a female friend about his hectic work-life balance and how it affects
+      his routine.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「よ」 (yo) at the end of the sentence adds a sense of assertion or informing the
+      listener. The speaker, a male, is sharing his current situation with a female friend, which is a
+      common casual interaction. The phrase 「食べるばかりだよ」 (taberu bakari da yo) emphasizes that eating is
+      the *only* activity he manages to do, highlighting the exhaustion from work and the exclusive nature
+      of his post-work routine.
+post_example_writeup: As you can see from these examples, 「ばかりだ」 and its variations emphasize a continuous,
+  often exclusive, trend or action. The choice between plain and polite forms, as well as the casual variations
+  like 「ばっかり」 and 「ばっか」, depends heavily on the social context and your relationship with the listener.
+  Pay close attention to these nuances as you integrate 「ばかりだ」 into your Japanese. It’s particularly effective
+  when you want to highlight that a situation is progressing *only* in a certain way, often implying a
+  lack of control or an undesirable outcome.

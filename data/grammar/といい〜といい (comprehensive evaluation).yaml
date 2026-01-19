@@ -1,0 +1,383 @@
+grammar_point: といい〜といい (comprehensive evaluation)
+learn_before:
+  - Verb[させられる] (causative-passive)
+  - '[Noun]に応える (to respond to)'
+  - '[Verb-dictionary]ことはない (no need to・not necessary to)'
+  - い-Adjective (past negative)
+  - か (question)
+  - 点 (aspect・point)
+meaning: In terms of both ~ and ~; in terms of ~ as well as ~; from the perspective of both ~ and ~
+pronunciation:
+  katakana: トイイトイイ
+  romaji: to ii to ii
+formation:
+  Noun1 + といい + Noun2 + といい: Used to list two distinct nouns or aspects that contribute to an overall
+    evaluation or impression.
+jlpt: N2
+etymology: The origin of 「〜といい〜といい」 combines the conjunctive particle 「と」 (meaning 'and' or 'with') and
+  「いい」, the dictionary form of the adjective 「良い (yoi)」, meaning 'good' or 'well'. Thus, literally translating
+  to 'this is good and that is good,' the phrase evolved to express that multiple aspects contribute to
+  a comprehensive judgment or impression, whether positive or negative. The repetition emphasizes the
+  consideration of each element.
+writeup: The grammar pattern 「Noun + といい〜といい」 is used to articulate an overall impression or judgment
+  by highlighting two or more specific aspects or qualities. It functions to say, "considering both X
+  and Y," implying that the evaluation is thorough and takes these factors into account. This construction
+  is typically used in more formal or reflective contexts where a comprehensive assessment is being made.
+  While it often appears in situations where the overall judgment is positive, it can also be used for
+  negative evaluations, as long as the listed aspects uniformly contribute to that negative conclusion.
+false_friends:
+  - term: も~も
+    meaning: both ~ and ~
+    kind: similar expression
+    nuance: Unlike 「〜といい〜といい」, 「〜も〜も」 simply lists multiple items without necessarily implying an evaluation
+      or judgment across those aspects. It focuses on inclusion rather than comprehensive assessment,
+      and can be used in a wider variety of contexts.
+    grammar_point: も~も (both neither ~ nor)
+  - term: ばかりでなく
+    meaning: not only ~ but also ~
+    kind: similar expression
+    nuance: While 「〜ばかりでなく」 also connects multiple elements, it emphasizes the additive nature of the
+      information, meaning 'in addition to X, Y is also true'. In contrast, 「〜といい〜といい」 focuses on a comprehensive
+      evaluation where both X and Y contribute to a single, overarching judgment.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+post_false_friends_writeup: While 「〜も〜も」 can also list multiple items (e.g., 「味もサービスも」 - both taste and
+  service), it lacks the evaluative nuance inherent in 「〜といい〜といい」. Use 「〜といい〜といい」 when you want to convey
+  that an overall assessment is being made because of (or in consideration of) the listed aspects, implying
+  a judgment based on these specific points. Use 「〜も〜も」 when you simply want to state that multiple things
+  are true or apply, without necessarily tying them to a singular overarching evaluation. 「〜ばかりでなく」 highlights
+  that something is true in addition to something else, whereas 「〜といい〜といい」 indicates that an overall assessment
+  is derived from multiple contributing factors.
+examples:
+  - english: This restaurant, in terms of both taste and service, never disappoints.
+    japanese:
+      - この レストラン は {味 と いい} {サービス と いい}、いつ も 期待 を 裏切ら ない。
+      - この レストラン は {味 と いい} {サービス と いい}、常 に 期待 を 裏切る こと が あり ませ ん。
+    english_literally: This restaurant, both its taste and its service, always does not betray expectations.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は 味 も サービス も、いつ も 期待 を 裏切ら ない。
+        english: This restaurant, both its taste and its service, always does not betray expectations.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - この レストラン は 味 ばかり で なく、サービス も、いつ も 期待 を 裏切ら ない。
+        english: This restaurant, not only its taste but also its service, always does not betray expectations.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - この レストラン は 味 と サービス が、いつ も 期待 を 裏切ら ない。
+        english: This restaurant's taste and service always do not betray expectations.
+        hint: Simply connecting with 「と」 indicates a conjunction, but doesn't convey the "in terms of
+          both" evaluative nuance of 「〜といい〜といい」.
+    scene: A person enthusiastically recommending a restaurant to a friend, emphasizing its consistent
+      quality.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: This sentence is suitable for any gender or age. The use of 「〜といい〜といい」 emphasizes a comprehensive
+      positive evaluation of the restaurant, implying that multiple factors (taste and service) contribute
+      to its consistent quality. 「期待を裏切らない」 is a common expression for reliably meeting expectations,
+      applicable in various contexts.
+  - english: These new shoes, in terms of both design and comfort, are truly ideal.
+    japanese:
+      - この 新しい 靴 は {デザイン と いい} {快適 さ と いい}、まさに 理想 的 だ。
+      - この 新しい 靴 は {デザイン と いい} {快適 さ と いい}、まこと に 理想 的 です ね。
+    english_literally: These new shoes, both their design and their comfort, are truly ideal.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい 靴 は デザイン も 快適 さ も、まさに 理想 的 だ。
+        english: These new shoes, both their design and their comfort, are truly ideal.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - この 新しい 靴 は デザイン ばかり で なく、快適 さ も、まさに 理想 的 だ。
+        english: These new shoes, not only their design but also their comfort, are truly ideal.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - この 新しい 靴 は デザイン も 快適 さ も よく て、まさに 理想 的 だ。
+        english: These new shoes are good in both design and comfort, and are truly ideal.
+        hint: While 「〜も〜も」 can list positive attributes, 「〜といい〜といい」 specifically emphasizes that the overall
+          ideal quality is derived from the combination of design and comfort.
+    scene: A person excitedly shows off a newly purchased pair of shoes to a family member.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「まさに 理想的 だ」 (truly ideal) conveys strong enthusiasm and satisfaction, fitting for someone
+      excited about a new purchase. By using 「〜といい〜といい」, the speaker highlights that both the aesthetic
+      (design) and practical (comfort) aspects contribute to the overall ideal quality of the shoes.
+  - english: That novel, in terms of both its story and its characters, was deeply moving.
+    japanese:
+      - あの 小説 は {物語 と いい} {登場 人物 と いい}、深く 感動 さ せ られ まし た。
+      - あの 小説 は {物語 と いい} {登場 人物 と いい}、非常 に 心 を 打た れ まし た。
+    english_literally: That novel, both its story and its characters, deeply caused to be moved.
+    competing_grammar:
+      - competing_japanese:
+          - あの 小説 は 物語 も 登場 人物 も、深く 感動 さ せ られ まし た。
+        english: That novel, both its story and its characters, was deeply moving.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - あの 小説 は 物語 ばかり で なく、登場 人物 も 深く 感動 さ せ られ まし た。
+        english: That novel, not only its story but also its characters, was deeply moving.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - あの 小説 は 物語 の 点 で も 登場 人物 の 点 で も、深く 感動 さ せ られ まし た。
+        english: That novel, in terms of its story and in terms of its characters, was deeply moving.
+        hint: 「〜の点でも」 also expresses "in terms of", but 「〜といい〜といい」 offers a more idiomatic and concise
+          way to convey this comprehensive assessment.
+    scene: A person enthusiastically recommending a novel to a friend.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of polite form 「〜ました」 and the phrase 「深く 感動させられました」 (I was deeply moved) conveys a
+      sincere and somewhat formal reflection on a literary work, suitable for discussing books. This can
+      be used by any gender.
+  - english: She, in terms of both her way of speaking and her smile, attracts those around her.
+    japanese:
+      - 彼女 は {話し 方 と いい} {笑顔 と いい}、周り の 人 を 引きつける。
+      - 彼女 は {話し 方 と いい} {笑顔 と いい}、周囲 の 人 を 惹きつけ ます。
+    english_literally: She, both her way of speaking and her smile, attracts surrounding people.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 話し 方 も 笑顔 も、周り の 人 を 引きつける。
+        english: She, both her way of speaking and her smile, attracts those around her.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - 彼女 は 話し 方 ばかり で なく、笑顔 も、周り の 人 を 引きつける。
+        english: She, not only her way of speaking but also her smile, attracts those around her.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - 彼女 は 話し 方 も いい し、笑顔 も いい から、周り の 人 を 引きつける。
+        english: Because her way of speaking is good and her smile is good, she attracts those around
+          her.
+        hint: Using 「〜もいいし」 emphasizes individual positive points, but doesn't compactly express a single
+          comprehensive evaluation like 「〜といい〜といい」.
+    scene: Two friends are discussing a mutual acquaintance, admiring her positive qualities.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The informal tone created by the lack of polite endings and the direct reference to her positive
+      attributes makes this suitable for a casual conversation between friends. 「引きつける」 (to attract) is
+      a neutral verb often used to describe someone's captivating presence, and fits well in this context
+      of admiration.
+  - english: She, in terms of both her intelligence and her personality, is truly outstanding.
+    japanese:
+      - 彼女 は {頭 の 良 さ と いい} {性格 と いい}、本当 に 素晴らしい。
+      - 彼女 は {頭 の 良 さ と いい} {性格 と いい}、実 に 素晴らしい です ね。
+    english_literally: She, both her intelligence and her personality, truly is wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 頭 の 良 さ も 性格 も、本当 に 素晴らしい。
+        english: She, both her intelligence and her personality, is truly wonderful.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - 彼女 は 頭 の 良 さ ばかり で なく、性格 も、本当 に 素晴らしい。
+        english: She, not only her intelligence but also her personality, is truly wonderful.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - 彼女 は 頭 が よく て、性格 も 素晴らしい。
+        english: She is intelligent, and her personality is also wonderful.
+        hint: This simply lists two separate positive traits. 「〜といい〜といい」 implies that the overall outstanding
+          quality is derived from the combination of these two aspects.
+    scene: Two friends admiring a new acquaintance.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「本当に素晴らしい」 conveys strong positive admiration. By applying 「〜といい〜といい」 to intelligence
+      (頭の良さ) and personality (性格), the speaker highlights that both core aspects contribute to her being
+      truly outstanding, reflecting a comprehensive and integrated evaluation of her character.
+  - english: His presentation, in terms of both content and structure, was very easy to understand.
+    japanese:
+      - 彼 の 発表 は {内容 と いい} {構成 と いい}、非常 に 理解 し やすかっ た です。
+      - 彼 の 発表 は {内容 と いい} {構成 と いい}、誠 に 分かり やすかっ た です。
+    english_literally: His presentation, both its content and its structure, was very easy to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 発表 は 内容 も 構成 も、非常 に 理解 し やすかっ た です。
+        english: His presentation, both its content and its structure, was very easy to understand.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - 彼 の 発表 は 内容 ばかり で なく、構成 も、非常 に 理解 し やすかっ た です。
+        english: His presentation, not only its content but also its structure, was very easy to understand.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - 彼 の 発表 は 内容 だけ で なく、構成 も 非常 に 理解 し やすかっ た です。
+        english: His presentation, not only its content, but also its structure was very easy to understand.
+        hint: 「〜だけでなく」 emphasizes an additional point. 「〜といい〜といい」 is used for a comprehensive evaluation
+          based on the listed items.
+    scene: After a seminar, a student is providing feedback to a professor about a peer's presentation.
+    register: semi-formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「理解しやすかった です」 (it was easy to understand) is a polite and appropriate way to give
+      feedback in an academic setting. The use of 「〜といい〜といい」 frames the positive evaluation of the presentation
+      as a result of its well-structured content and logical organization, making the compliment more
+      precise and impactful.
+  - english: This new project, in terms of both its timeline and its budget, has significant challenges.
+    japanese:
+      - この 新しい プロジェクト は {期間 と いい} {予算 と いい}、かなり 課題 が 多い です。
+      - この 新しい プロジェクト は {期間 と いい} {予算 と いい}、非常 に 困難 が 多い です。
+    english_literally: This new project, both its timeline and its budget, has quite many challenges.
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい プロジェクト は 期間 も 予算 も、かなり 課題 が 多い です。
+        english: This new project, both its timeline and its budget, has significant challenges.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - この 新しい プロジェクト は 期間 ばかり で なく、予算 も、かなり 課題 が 多い です。
+        english: This new project, not only its timeline but also its budget, has significant challenges.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - この 新しい プロジェクト は 期間 や 予算 の 面 で 課題 が 多い です。
+        english: This new project has many challenges in terms of its timeline and budget.
+        hint: While 「〜の面で」 (in terms of) is similar, 「〜といい〜といい」 specifically emphasizes that both aspects
+          contribute to the overall problematic nature of the project.
+    scene: A project manager discussing difficulties with a colleague.
+    register: bijinesu nihongo (business)
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「かなり課題が多いです」 (has quite a lot of challenges) is a professional way to express difficulties.
+      Using 「〜といい〜といい」 for 「期間」 (timeline) and 「予算」 (budget) precisely pinpoints the dual source of the
+      challenges, indicating a comprehensive assessment of the project's difficulties. This phrasing is
+      neutral and can be used by any speaker in a business context.
+  - english: This weather, in terms of both the humidity and the heat, is unbearable.
+    japanese:
+      - この 天気 は {湿度 と いい} {暑 さ と いい}、我慢 でき ない。
+      - この 天気 は {湿度 と いい} {暑 さ と いい}、我慢 でき ませ ん。
+    english_literally: This weather, both its humidity and its heat, cannot be endured.
+    competing_grammar:
+      - competing_japanese:
+          - この 天気 は 湿度 も 暑 さ も、我慢 でき ない。
+        english: This weather, both its humidity and its heat, is unbearable.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - この 天気 は 湿度 ばかり で なく、暑 さ も、我慢 でき ない。
+        english: This weather, not only its humidity but also its heat, is unbearable.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - この 天気 は 湿度 が 高く て 暑い から、我慢 でき ない。
+        english: Because this weather is humid and hot, it is unbearable.
+        hint: This explains the reason with 「〜て」 and 「から」 but doesn't compactly convey the combined impact
+          of the two listed factors leading to a single strong feeling. We're looking for a pattern that
+          implies a judgment based on multiple aspects.
+    scene: Two coworkers stepping outside and immediately feeling the oppressive summer heat.
+    register: casual
+    setting: pessimistic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The direct and informal 「我慢 でき ない」 (cannot stand it) is a common, exasperated complaint about
+      unpleasant conditions. This expression is widely used by both genders and all ages in casual settings,
+      but the overall tone might be more frequently heard from male speakers expressing frustration.
+  - english: That team, in terms of both teamwork and focus, has been absolutely terrible recently.
+    japanese:
+      - あの チーム は {チームワーク と いい} {集中 力 と いい}、最近 全く ダメ だ。
+      - あの チーム は {チームワーク と いい} {集中 力 と いい}、この 頃 まったく 酷い もん だ。
+    english_literally: That team, both its teamwork and its focus, recently is completely useless.
+    competing_grammar:
+      - competing_japanese:
+          - あの チーム は チームワーク も 集中 力 も、最近 全く ダメ だ。
+        english: That team, both its teamwork and its focus, has been absolutely terrible recently.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - あの チーム は チームワーク ばかり で なく、集中 力 も、最近 全く ダメ だ。
+        english: That team, not only its teamwork but also its focus, has been absolutely terrible recently.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - あの チーム は チームワーク に 関し て 言え ば、集中 力 に 関し て 言え ば、最近 全く ダメ だ。
+        english: As for that team's teamwork, and as for its focus, it has been absolutely terrible recently.
+        hint: 「〜に関して言えば」 means "as for X," making separate statements. 「〜といい〜といい」 creates a unified evaluation
+          based on multiple factors.
+    scene: A man is complaining to his friend about the poor performance of his favorite sports team.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: 'The phrase 「全く ダメ だ」 is a blunt, casual expression indicating complete failure, commonly
+      used by male speakers in informal settings to express frustration or strong negative opinions. This
+      sentence uses 「〜といい〜といい」 to explain that the team''s poor performance is attributable to multiple
+      contributing factors: their lack of teamwork and focus.'
+  - english: This new system, in terms of both its cost and its ease of use, presents many issues.
+    japanese:
+      - この 新しい システム は {コスト と いい} {使い やす さ と いい}、問題 が 多い です ね。
+      - この 新しい システム は {コスト と いい} {使い やす さ と いい}、多く の 問題 が あり ます。
+    english_literally: This new system, both its cost and its ease of use, has many problems, hasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 新しい システム は コスト も 使い やす さ も、問題 が 多い です ね。
+        english: This new system, both its cost and its ease of use, presents many issues.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - この 新しい システム は コスト ばかり で なく、使い やす さ も 問題 が 多い です ね。
+        english: This new system, not only its cost but also its ease of use, presents many issues.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - この 新しい システム は コスト や 使い やす さ に 関し て、問題 が 多い です ね。
+        english: This new system has many problems regarding its cost and ease of use.
+        hint: Using 「〜に関して」 for "regarding" is different from making an overall assessment based on multiple
+          factors. We're looking for a pattern that implies a judgment based on multiple aspects.
+    scene: Colleagues discussing a problematic new office system during a break.
+    register: bijinesu nihongo (business)
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: The phrase 「問題 が 多い です ね」 with the sentence-final particle 「ね」 softens the complaint while
+      seeking agreement, which is common in business discussions. This expression is neutral and can be
+      used by any speaker.
+  - english: The party venue, in terms of both its atmosphere and its location, was truly fantastic.
+    japanese:
+      - パーティー 会場 は {雰囲気 と いい} {ロケーション と いい}、本当 に 素晴らしかっ た です。
+      - パーティー 会場 は {雰囲気 と いい} {ロケーション と いい}、実 に 申し分 なかっ た です。
+    english_literally: The party venue, both its atmosphere and its location, truly was wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - パーティー 会場 は 雰囲気 も ロケーション も、本当 に 素晴らしかっ た です。
+        english: The party venue, both its atmosphere and its location, was truly fantastic.
+        hint: 「〜も〜も」 simply lists without the comprehensive evaluative nuance of 「〜といい〜といい」. We're looking
+          for a pattern that implies a judgment based on multiple aspects.
+      - competing_japanese:
+          - パーティー 会場 は 雰囲気 ばかり で なく、ロケーション も、本当 に 素晴らしかっ た です。
+        english: The party venue, not only its atmosphere but also its location, was truly fantastic.
+        hint: 「〜ばかりでなく」 means 'not only X but also Y', focusing on addition. We're looking for a pattern
+          that combines aspects for an overall evaluation.
+      - competing_japanese:
+          - パーティー 会場 は 雰囲気 が よく、ロケーション も 素晴らしかっ た です。
+        english: The party venue's atmosphere was good, and its location was also fantastic.
+        hint: Simply listing individual good points with 「〜がよく」 doesn't convey the sense of a combined,
+          comprehensive assessment. We're looking for a pattern that implies a judgment based on multiple
+          aspects.
+    scene: Friends chatting on the phone, one describing a party they attended.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The enthusiastic 「本当 に 素晴らしかった です」 (it was truly wonderful) expresses strong positive feelings
+      in a polite manner. 「雰囲気」 (atmosphere) and 「ロケーション」 (location) are key factors in evaluating venues,
+      and the use of 「〜といい〜といい」 highlights their combined positive impact. This phrase is gender-neutral.
+post_example_writeup: The core of 「〜といい〜といい」 lies in its ability to combine two distinct (often contrasting
+  but consistently contributing) aspects into a single, cohesive evaluation. It allows for a nuanced judgment,
+  indicating that the overall conclusion is supported by a comprehensive consideration of the listed elements.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/1118

@@ -1,0 +1,318 @@
+grammar_point: Verb[ておく・とく] (preparation・advance action)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Clause]から (because・so)'
+  - '[Noun]をください (please give me)'
+  - 〜如し・〜ごとし (like・as if)
+  - あげる・やる (to give, outward)
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - すでに (already・too late)
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - どこ (where)
+  - な (prohibitive particle)
+  - ないといけない (must do・have to)
+  - にする (to decide or make)
+  - 万が一 (in the unlikely event)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: To perform an action in advance, to leave something in a certain state, or to complete an action
+  for future benefit.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ておく
+    rarity: common
+    meaning: to do in advance/to leave as is
+  - conjugation-type: non-past polite (～ます)
+    form: ておきます
+    rarity: common
+    meaning: to do in advance/to leave as is (polite)
+  - conjugation-type: past plain (～た)
+    form: ておいた
+    rarity: common
+    meaning: did in advance/left as is
+  - conjugation-type: past polite (～ました)
+    form: ておきました
+    rarity: common
+    meaning: did in advance/left as is (polite)
+  - conjugation-type: negative plain (～ない)
+    form: ておかない
+    rarity: common
+    meaning: not do in advance/not leave as is
+  - conjugation-type: negative non-past polite (～ません)
+    form: ておきません
+    rarity: common
+    meaning: not do in advance/not leave as is (polite)
+  - conjugation-type: te-form (～て)
+    form: ておいて
+    rarity: common
+    meaning: doing in advance/leaving as is (as a conjunction or request)
+pronunciation:
+  katakana: テオク・トク
+  romaji: te oku・toku
+formation:
+  Verb[て形] + おく: Indicates a preparatory action, leaving something in a certain state, or completing an
+    action.
+  Verb[て形] + とく (casual contraction): A casual form of おく, often used in spoken Japanese. Verbs ending
+    in て (te) contract to とく (toku), and verbs ending in で (de) contract to どく (doku).
+jlpt: N4
+etymology: The auxiliary verb 「ておく」 originates from the verb 「置く」 (oku), meaning "to place" or "to put."
+  This auxiliary use evolved from the idea of "placing" an action, either by performing it and leaving
+  the result, or by doing it ahead of time for a future event. This fundamental meaning of "setting something
+  aside" or "leaving it as is" underpins all its nuances, from preparation to maintaining a state.
+writeup: |-
+  「ておく」 is an extremely versatile auxiliary verb in Japanese, indicating an action performed with a specific purpose in mind, often for the future. It conveys three primary nuances:
+
+  1.  **Preparation**: This is the most common use. It signifies doing something in advance for a future event or purpose. For example, preparing food for a party or studying for a test.
+  2.  **Leaving something in a state**: It can mean to perform an action and then leave the result as it is, without further change. This is often seen with things like leaving a window open or keeping a door locked.
+  3.  **Completion/Completion for later**: Sometimes, it implies completing an action and leaving it for a future occasion or just getting it out of the way. This nuance can overlap with 「〜てしまう」 in some contexts, but 「ておく」 emphasizes the intention of leaving it ready or finished.
+
+  The casual contractions 「とく」 (from 「ておく」) and 「どく」 (from 「でしておく」 or 「んでおく」, etc.) are very frequently used in spoken Japanese. For example, 「見ておく」 becomes 「見とく」, and 「読んでおく」 becomes 「読んどく」. These contractions are informal and unsuitable for formal settings.
+false_friends:
+  - term: てしまう
+    meaning: To completely do something; to do something unintentionally or regretfully.
+    kind: often confused with
+    nuance: 「てしまう」 focuses on the completion of an action, often with a sense of finality, regret, or
+      accidentalness. While 「ておく」 can also imply completion, its primary focus is on performing an action
+      **for a future purpose** or **leaving something in a state**, without the nuance of regret or accident.
+      For example, 「食べておいた」 means "I ate it (in preparation/for later)," while 「食べてしまった」 means "I ate
+      it all (and it's gone/I regret it)."
+    grammar_point: <suggest>:てしまう (completion or regret)
+  - term: てある
+    meaning: To be in a certain state as a result of someone's action.
+    kind: similar expression
+    nuance: 「てある」 describes a **state** that exists as a result of a prior, often intentional, action.
+      「ておく」 describes the **action** itself, emphasizing the purpose of preparing or leaving something.
+      For instance, 「窓が閉めてある」 (The window is closed, having been closed by someone) describes the state,
+      whereas 「窓を閉めておく」 (I'll close the window for some purpose) describes the action.
+    grammar_point: てある (resultant state)
+  - term: てみる
+    meaning: To try doing something.
+    kind: similar expression
+    nuance: While both involve a prior action, 「ておく」 is about performing an action with a future intention
+      or to leave something in a state. 「てみる」 is about attempting an action to see what happens, implying
+      experimentation. They are distinct in their core meanings.
+    grammar_point: てみる (try and see)
+post_false_friends_writeup: When distinguishing between 「ておく」 and 「てしまう」, remember that 「ておく」 often has
+  a forward-looking purpose or denotes leaving something as is, while 「てしまう」 typically conveys completion,
+  regret, or an unintentional outcome. For 「てある」, the key difference is that it describes the **state**
+  of an object or situation as a result of a past action, rather than the act of performing that action
+  for a future purpose like 「ておく」. 「てみる」, on the other hand, implies an experimental attempt, which is
+  quite different from preparing or leaving something.
+examples:
+  - english: I'll study in advance for tomorrow's test.
+    japanese:
+      - 明日 の テスト の ため に、勉強 し て おく。
+      - 明日 の テスト の ため に、勉強 し て おき ます。
+      - 明日 の テスト の ため に、勉強 し とく。
+      - 明日 の テスト の ため に、勉強 し とき ます。
+    english_literally: For tomorrow's test, I will study and leave it.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の テスト の ため に、勉強 する。
+        english: I will study for tomorrow's test.
+        hint: This is a simple statement of future action. We're looking for an action done with a preparatory
+          purpose for something in the future.
+    scene: A student talking to a friend about their plans.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: This sentence clearly shows the "preparation" nuance of 「ておく」. The action of studying is done
+      proactively for a future event (tomorrow's test). The use of 「勉強しておく」 emphasizes that the studying
+      is being done now to be ready later.
+  - english: I have already reserved the meeting room for the meeting tomorrow.
+    japanese:
+      - 明日 の 会議 の ため に、会議 室 を すでに 予約 し て おき まし た。
+      - 明日 の 会議 の ため に、会議 室 を すでに 予約 し て おい た。
+      - 明日 の 会議 の ため に、会議 室 を すでに 予約 し とい た。
+    english_literally: For tomorrow's meeting, the meeting room already I reserved and left.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 会議 の ため に、会議 室 を すでに 予約 し まし た。
+        english: I have already reserved the meeting room for tomorrow's meeting.
+        hint: While correct, this simply states a past action. We're looking for an action done in preparation
+          for a future event, emphasizing that it's set.
+    scene: A colleague informing their superior about preparations.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+    nuance: This example demonstrates the preparatory use of 「ておく」 in a formal context, using the polite
+      past form 「予約しておきました」. It conveys that the reservation was done in advance and is now set and ready
+      for the future meeting.
+  - english: It's hot, so leave the window open.
+    japanese:
+      - 暑い から、窓 を あけ とい て。
+      - 暑い から、窓 を あけ て おい て ください。
+      - 暑い から、窓 を あけ て おく。
+      - 暑い から、窓 を あけ て おき ます。
+    english_literally: Because it's hot, the window, open and leave it.
+    competing_grammar:
+      - competing_japanese:
+          - 暑い から、窓 を 開け て ください。
+        english: It's hot, so please open the window.
+        hint: This is a simple request to open the window. We're looking for an instruction to open it
+          AND leave it open.
+    scene: A family member telling another to open the window.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    nuance: This example uses the casual contracted form 「開けといて」 (from 「開けておいて」). It illustrates the nuance
+      of performing an action (opening the window) and then leaving it in that resulting state (open).
+      The 「て」 form here functions as a casual request.
+  - english: Please keep the documents stored here.
+    japanese:
+      - 書類 は ここ に しまっ て おい て ください。
+      - 書類 は ここ に しまっ て おい て。
+      - 書類 は ここ に しまっ て おく。
+      - 書類 は ここ に しまっ とい て。
+    english_literally: Documents here please store and leave.
+    competing_grammar:
+      - competing_japanese:
+          - 書類 は ここ に しまっ て ください。
+        english: Please store the documents here.
+        hint: This is a request to store. We are looking for a request to store something and keep it
+          in that stored state.
+      - competing_japanese:
+          - 書類 は ここ に しまっ て あり ます。
+        english: The documents are stored here.
+        hint: This describes the existing state of the documents. We're looking for an action to be performed
+          with the intent of maintaining that state.
+    scene: An office worker instructing another on where to store files.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: This shows the nuance of performing an action (storing documents) and ensuring they remain
+      in that state for future access. The polite request form 「〜てください」 is used.
+  - english: I'll finish my homework first.
+    japanese:
+      - 宿題 を {やっつけ とく} か。
+      - 宿題 を やっつけ て おき ます か。
+      - 宿題 を やっつけ て おく か。
+      - 宿題 を やっつけ て おき ましょう か。
+    english_literally: Homework, I'll finish and leave it, maybe?
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 を やっ て しまう か。
+        english: I'll finish my homework (with a sense of completion/getting it over with).
+        hint: This emphasizes completion, possibly with a sense of relief or finality. We're looking for
+          the nuance of getting it done proactively to clear the way or leave it ready.
+    scene: A student thinking aloud about finishing tasks.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: This uses 「やっつけとく」, a very casual contraction of 「やっつけておく」, meaning to quickly finish something
+      or get it out of the way. The ending 「か」 adds a self-directed, slightly reflective tone, often heard
+      in male casual speech.
+  - english: I will complete the report before the deadline.
+    japanese:
+      - 締め切り まで に、報告 書 を 書い て おく こと に し ます。
+      - 締め切り まで に、報告 書 を 書い て おく こと に する。
+      - 締め切り まで に、報告 書 を 書い て おき ます。
+      - 締め切り まで に、報告 書 を 書き とく こと に する。
+    english_literally: By the deadline, the report, I will write and leave it (as a decision).
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り まで に、報告 書 を 書く こと に し ます。
+        english: I will decide to write the report by the deadline.
+        hint: This simply states the decision to write it. We're looking for the nuance of getting it
+          written and ready in advance.
+    scene: A project manager deciding their work schedule.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「〜ことにします」 indicates a decision. Here, the decision is to write the report in advance
+      of the deadline, emphasizing the "preparation/completion for later" aspect of 「書いておく」.
+  - english: I'll buy tickets in advance.
+    japanese:
+      - チケット、買っ とく ね。
+      - チケット、買っ て おき ます ね。
+      - チケット、買っ て おく ね。
+      - チケット を、買っ て おき ます。
+    english_literally: Tickets, I'll buy and leave it, right?
+    competing_grammar:
+      - competing_japanese:
+          - チケット、買う ね。
+        english: I'll buy tickets, okay?
+        hint: This is a simple statement of intent to buy. We're looking for the nuance of buying them
+          ahead of time for a future purpose.
+    scene: Friends planning to go to a concert.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: This is a clear example of the casual 「とく」 contraction from 「買っておく」. The 「ね」 particle seeks
+      agreement or confirmation from the listener, common in informal speech, especially for female speakers,
+      and reinforces the preparatory nuance.
+  - english: I'll read this book later.
+    japanese:
+      - この 本、読ん どく わ。
+      - この 本、読ん で おき ます わ。
+      - この 本、読ん で おく わ。
+      - この 本、読ん どく。
+    english_literally: This book, I'll read and leave it, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 本、読む わ。
+        english: I'll read this book, you know.
+        hint: This is a simple statement of future action. We're looking for the nuance of reading it
+          and completing it for later, perhaps to get it out of the way.
+    scene: Someone picking up a book, deciding to read it later.
+    register: casual
+    setting: casual slang
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: This uses the contracted form 「読んどく」 (from 「読んでおく」). The 「わ」 particle here adds a soft, declarative,
+      often female-associated nuance, indicating a personal decision or information shared, implying that
+      the reading will be done and then set aside.
+  - english: You should save up some money just in case.
+    japanese:
+      - 万が一 の ため に、お 金 を 少し 貯め て おい た 方 が いい よ。
+      - 万が一 の ため に、お 金 を 少し 貯め て おい た 方 が いい です よ。
+      - 万が一 の ため に、お 金 を 少し 貯め て おく 方 が いい よ。
+      - 万が一 の ため に、お 金 を 少し 貯め とい た 方 が いい よ。
+    english_literally: For a one-in-ten-thousand chance, money a little, it is better to save and leave.
+    competing_grammar:
+      - competing_japanese:
+          - 万が一 の ため に、お 金 を 少し 貯め た 方 が いい よ。
+        english: You should save some money just in case.
+        hint: This is an advice about saving. We're looking for an advice that implies saving in advance,
+          setting it aside for a future contingency.
+    scene: An older relative giving advice to a younger one.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_age: older
+    nuance: 「〜ておいた方がいい」 is a common advisory phrase, meaning "you should do X in advance." The use of
+      「おいた」 here emphasizes the proactive nature of saving money for future unforeseen circumstances,
+      suggesting that the action of saving should be completed and the money left in that state. The tone
+      is kindly advice, often from an older person to a younger one.
+  - english: You shouldn't leave things undone.
+    japanese:
+      - やる べき こと を やら ない で おく の は、よく ない よ。
+      - やる べき こと を やら ない で おく の は、よく ない です。
+      - やる べき こと を やら ない で おく こと は、良く あり ませ ん。
+    english_literally: Things that should be done, to not do them and leave them, is not good.
+    competing_grammar:
+      - competing_japanese:
+          - やる べき こと を やら ない の は、よく ない よ。
+        english: Not doing things you should do is not good.
+        hint: This simply states that not doing things is bad. We're looking for the nuance of explicitly
+          leaving things undone, or purposefully not preparing.
+    scene: A mentor giving advice to a student.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: This example uses the negative form 「やらないでおく」, which means "to not do something and leave
+      it undone." It highlights the nuance of neglecting a preparatory action or intentionally leaving
+      something in an incomplete state. The advice given here implies that such an attitude is not beneficial.
+post_example_writeup: Understanding the core concept of "doing something and setting it aside" or "leaving
+  something in a particular state" is crucial for mastering 「ておく」. Pay close attention to the context
+  to discern whether it implies preparation, maintaining a state, or simply getting something finished
+  for later.

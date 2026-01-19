@@ -1,0 +1,262 @@
+grammar_point: を限りに (as of)
+learn_before:
+  - を旨とする (to make it one's principle)
+meaning: As of (the end of), (Starting) from, (No longer) after, By (the), Ending with
+pronunciation:
+  katakana: ヲカギリニ
+  romaji: o kagiri ni
+formation:
+  Noun + を限りに: Indicates a time limit or a point of termination for a continuing action or state.
+jlpt: N1
+etymology: The grammar point 「を限りに」 is derived from the particle 「を」, the noun 「限り (かぎり)」 (limit, extent),
+  and the particle 「に」. The combination signifies using a certain point as the limit or boundary for something.
+  Historically, 「限り」 referred to physical boundaries or ends, which then extended to temporal limits,
+  embodying the idea of 'making something the ultimate boundary or final point.'
+writeup: '「を限りに」 is a structure that follows nouns, typically indicating a specific time or event, to
+  express a definitive deadline or termination point for a continuing action or state. It conveys the
+  meaning of "ending with (A), (B)" or "no longer than (A), (B)." This grammar pattern combines the adverbial
+  particle 「を」, the noun 「限り」 meaning "limit," and the case-marking particle 「に」. This expression is often
+  used in formal announcements or proclamations, making it more formal and definitive than similar structures
+  like 「限りで」. It is primarily used for stating a final date or event after which something will cease,
+  or expressing a decision or change that takes effect from a specific point in time. Although 「を限りに」
+  almost always follows words indicating a specific time or place that is being viewed temporally, there
+  is a notable exception: the set expression 「声を限りに」, which means "to the limit of one''s voice" or "with
+  all one''s might." This idiom refers to using one''s voice to its maximum extent, breaking the usual
+  rule of temporal or spatial limits.'
+false_friends:
+  - term: 限り
+    meaning: as far as; while; until; unless; as long as; the end; the limit
+    kind: similar expression
+    nuance: 「限り」 is much broader and more versatile, covering conditions, extents, and limits. 「を限りに」
+      specifically denotes a clear and often formally declared point of termination for an ongoing action
+      or state, emphasizing the finality.
+    grammar_point: <strongly-suggest>:限り (limit・extent)
+  - term: 限りで
+    meaning: until; as far as; only; as long as
+    kind: similar expression
+    nuance: 「限りで」 is less formal and often implies a condition or limitation, or a casual end point. 「を限りに」,
+      in contrast, expresses a more formal, definitive, and often publicly announced cutoff or starting
+      point for a new state, without implying a condition.
+    grammar_point: <strongly-suggest>:限りで (casual endpoint・limitation)
+  - term: をもって
+    meaning: As of, With, Effective from
+    kind: similar expression
+    nuance: While both 「を限りに」 and 「をもって」 can mark a point in time from which something becomes effective,
+      「を限りに」 strongly emphasizes the termination of a continuous state or activity. 「をもって」 is broader,
+      also meaning 'by means of' or 'with,' and can mark the initiation of a new state.
+    grammar_point: を以て・をもって (by means of・with)
+post_false_friends_writeup: While 「限り」, 「限りで」, and 「をもって」 share some overlap in meaning, 「を限りに」 is distinct
+  in its usage. It is crucial to remember that 「を限りに」 emphasizes a definitive end or a firm starting point,
+  typically announced in formal settings or when making a clear declaration. In contrast, 「限り」 and 「限りで」
+  have broader uses, including indicating conditions, limits, or durations without the same sense of finality.
+  「をもって」 can also mark a point in time, but it also carries the nuance of 'by means of' and is generally
+  used for both initiation and termination, making 「を限りに」 more specific to termination.
+examples:
+  - english: The manager announced that this store will close as of next week. We sincerely thank you
+      for your long-standing patronage.
+    japanese:
+      - 店長 は、来週 {を 限り に} この 店 を 閉める こと を 発表 し まし た。長年 の ご 愛顧、心 より 感謝 申し上げ ます。
+      - 来週 {を 限り に}、当店 は 閉店 いたし ます。皆 様 の 長年 に わたる ご 愛顧 に 深く 御 礼 申し上げ ます。
+      - 来週 {を 限り に}、この 店舗 は 閉鎖 と なり ます。これ まで の ご 愛顧 に 厚く 御 礼 申し上げ ます。
+    english_literally: Manager, next week as a limit, this store to close the matter announced. Long years'
+      patronage, from heart thank you.
+    competing_grammar:
+      - competing_japanese:
+          - 店長 は、来週 {で} この 店 を 閉める こと を 発表 し まし た。長年 の ご 愛顧、心 より 感謝 申し上げ ます。
+        english: The manager announced that this store will close next week. We sincerely thank you for
+          your long-standing patronage.
+        hint: While 「で」 can indicate a time limit, 「を限りに」 emphasizes a formal, definitive announcement
+          of cessation. We're looking for a formal, publicly declared end.
+    scene: A beloved local shop is closing down. The manager is making an announcement to the community.
+    register: formal
+    setting: informative
+  - english: As of the end of this month, my family and I will be moving overseas. I am deeply grateful
+      for all your help.
+    japanese:
+      - 私 は 今月 末 {を 限り に}、家族 と 海外 へ 移住 する こと に なり まし た。皆 様 に は 大変 お 世話 に なり まし た。
+      - 今月 末 {を 限り に}、私 ども 家族 は 海外 へ 転居 いたし ます。皆 様 に は 多大 なる ご 支援 を 賜り、厚く 御 礼 申し上げ ます。
+      - 今月 末 {を 限り に}、海外 へ 転居 する こと と なり まし た。皆 様 に は、本当 に お 世話 に なり まし た。
+    english_literally: I, this month's end as a limit, family and overseas to immigrate to became. Everyone
+      to, greatly indebted became.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 今月 末 {で}、家族 と 海外 へ 移住 する こと に なり まし た。皆 様 に は 大変 お 世話 に なり まし た。
+        english: As of the end of this month, my family and I will be moving overseas. I am deeply grateful
+          for all your help.
+        hint: While 「で」 indicates a time point, 「を限りに」 implies a more formal and definitive cutoff, often
+          for a significant life change. We're looking for a formal declaration of an end point.
+    scene: A colleague is announcing their departure and thanking co-workers during a farewell gathering.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The polite expression 「皆様 には 大変 お 世話 に なりました」 (I am deeply grateful for all your help) is
+      a standard farewell phrase, appropriate for a formal group setting regardless of gender, but it's
+      particularly common when a female speaker addresses colleagues in a semi-formal context.
+  - english: The popular band 'Red Wolf' announced that they would suspend activities as of their final
+      performance on the national tour.
+    japanese:
+      - 人気 バンド の『レッド ウルフ』は、全国 ツアー の 最終 公演 {を 限り に} 活動 を 休止 する と 発表 し まし た。
+      - 人気 バンド『レッド ウルフ』が、全国 ツアー 最終 公演 {を 限り に} 活動 休止 を 発表 し た。
+      - 『レッド ウルフ』は、全国 ツアー の ラスト 公演 {を 限り に}、バンド 活動 を 一時 休止 する 旨 を 発表 し まし た。
+    english_literally: Popular band 'Red Wolf', national tour's final performance as a limit, activities
+      to suspend, announced.
+    competing_grammar:
+      - competing_japanese:
+          - 人気 バンド の『レッド ウルフ』は、全国 ツアー の 最終 公演 {の 後 で} 活動 を 休止 する と 発表 し まし た。
+        english: The popular band 'Red Wolf' announced that they would suspend activities after their
+          final performance on the national tour.
+        hint: 「～の後で」 simply states something happens after an event. 「を限りに」 conveys a formal, declared
+          cessation of activities from that point onward. We're looking for a definitive and official
+          announcement.
+    scene: A news reporter is delivering a breaking story about a band.
+    register: formal
+    setting: informative
+  - english: My daughter cried out with all her might like a storm last night, and I barely slept.
+    japanese:
+      - 私 の 娘 は、昨日 の 夜、まるで 嵐 の よう に 声 {を 限り に} 泣き叫び、私 も ほとんど 眠れ ませ ん でし た。
+      - うち の 娘 が ね、昨日 の 晩、嵐 みたい に 声 {を 限り に} 泣き叫ん で さ、全然 眠れ なかっ た の よ。
+      - 昨日 の 夜 は さ、うち の 子 が 嵐 みたい に 声 {を 限り に} 泣きわめい て、私 も ほとんど 寝 て ない ん だ よ。
+    english_literally: My daughter, yesterday night, as if storm, voice to the limit cried out, I also
+      almost couldn't sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 娘 は、昨日 の 夜、まるで 嵐 の よう に {大声 で} 泣き叫び、私 も ほとんど 眠れ ませ ん でし た。
+        english: My daughter cried out loudly like a storm last night, and I barely slept.
+        hint: 「大声で」 means 'in a loud voice.' 「声を限りに」 is a fixed idiom meaning 'to the limit of one's voice,'
+          conveying maximum effort or intensity, which is stronger and more dramatic. We're looking for
+          an idiomatic expression that implies crying with utmost intensity.
+    scene: A mother is confiding in a friend about her difficult night with her child.
+    register: casual
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「娘」 (daughter) indicates the speaker is a parent, and the casual sharing of a personal
+      struggle about a child with a friend is a common interaction. The specific details of sharing about
+      a child's cries are often seen in more intimate conversations, common between female friends.
+  - english: It has been decided that this facility will be closed as of the end of this week due to deterioration.
+    japanese:
+      - この 施設 は、今週 末 {を 限り に}、老朽 化 の ため 閉鎖 さ れる こと が 決定 し まし た。
+      - 今週 末 {を 限り に}、当 施設 は 老朽 化 に つき 閉鎖 と なり ます。
+      - 老朽 化 の 理由 に より、当 施設 は 今週 末 {を 限り に}、閉鎖 する こと が 決定 いたし まし た。
+    english_literally: This facility, this weekend as a limit, deterioration for closed to be decided
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - この 施設 は、今週 末 {で}、老朽 化 の ため 閉鎖 さ れる こと が 決定 し まし た。
+        english: It has been decided that this facility will be closed at the end of this week due to
+          deterioration.
+        hint: While 「で」 indicates a time point, 「を限りに」 stresses a definitive, often official, termination.
+          We're looking for a formal, decided closure.
+    scene: A public announcement board informs citizens about the closure of an old community facility.
+    register: formal
+    setting: informative
+  - english: The department head announced that he would retire from his long-held duties as of next month.
+    japanese:
+      - 部 長 は、来月 {を 限り に}、長年 務め た 職務 から 退任 する こと を 発表 し まし た。
+      - 部 長 は、来月 {を 限り に}、長年 の 職務 を 退任 する 旨 を 発表 いたし まし た。
+      - 部 長 が、来月 {を 限り に}、これ まで の 役職 から 身 を 引く と 発表 さ れ まし た。
+    english_literally: Department head, next month as a limit, long years served duties from retire to
+      announced.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は、来月 {で}、長年 務め た 職務 から 退任 する こと を 発表 し まし た。
+        english: The department head announced that he would retire from his long-held duties next month.
+        hint: 「で」 can mark a time, but 「を限りに」 emphasizes a formal announcement of an end to a long-standing
+          role. We're looking for a definitive retirement announcement.
+    scene: A company executive is making a formal announcement about a senior staff member's retirement.
+    register: bijinesu nihongo (business)
+    setting: informative
+    speaker_gender: male
+    speaker_age: older
+    nuance: The subject 「部長」 (department head) and the formal phrase 「退任 する こと を 発表 しました」 (announced that
+      he would retire) are common in business Japanese, where senior male figures often make such declarations.
+  - english: The president stated in an internal meeting that he would step down from all management positions
+      as of this month.
+    japanese:
+      - 社長 は、今月 {を 限り に}、全て の 経営 職 から 身 を 引く と、社内 会議 で 述べ まし た。
+      - 社長 は、今月 {を 限り に}、経営 職 から 全て 身 を 引か れる と、社内 会議 にて 述べ られ まし た。
+      - 今月 {を 限り に}、社長 が 全 経営 職 から 退く 旨 を、社内 会議 で 発表 し た。
+    english_literally: President, this month as a limit, all management positions from step down, internal
+      meeting at stated.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 は、今月 {で}、全て の 経営 職 から 身 を 引く と、社内 会議 で 述べ まし た。
+        english: The president stated in an internal meeting that he would step down from all management
+          positions this month.
+        hint: Using 「で」 would simply state the month. 「を限りに」 adds the nuance of a formal declaration of
+          cessation from that point. We're looking for a formal declaration of stepping down.
+    scene: An employee is relaying important news heard in a company meeting to a colleague.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    nuance: The context of a 「社長」 (president) making a statement in a 「社内 会議」 (internal meeting) using
+      formal language like 「述べました」 (stated) is typical of a male business leader announcing a significant
+      decision.
+  - english: The pianist Yamada announced that she would no longer perform in public after this concert.
+    japanese:
+      - この 演奏 会 {を 限り に}、ピアニスト の 山田 さん は 公 の 場 で 演奏 する こと は ない と 発表 し まし た。
+      - ピアニスト の 山田 さん は、この 演奏 会 {を 限り に}、公衆 の 前 で の 演奏 活動 を 終了 する こと を 発表 いたし まし た。
+      - この コンサート {を 限り に}、山田 ピアニスト は 今後 一切、公 の 場 で 演奏 し ない と 発表 し まし た。
+    english_literally: This concert as a limit, pianist Yamada-san public place in perform to not will,
+      announced.
+    competing_grammar:
+      - competing_japanese:
+          - この 演奏 会 {の 後 で}、ピアニスト の 山田 さん は 公 の 場 で 演奏 する こと は ない と 発表 し まし た。
+        english: The pianist Yamada announced that she would no longer perform in public after this concert.
+        hint: 「～の後で」 indicates a sequential event. 「を限りに」 conveys a formal, definitive decision to stop
+          performing from that event onward. We're looking for a formal, absolute end to public performances.
+    scene: An acclaimed musician makes a significant career announcement.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    nuance: The example refers to 「ピアニスト の 山田 さん」 as female, indicating that the announcement is about
+      her. The formal language 「発表 しました」 (announced) is gender-neutral but applies to the female artist.
+  - english: Starting today, I will stop wasting money and begin saving.
+    japanese:
+      - 今日 {を 限り に}、私 は 無駄遣い を やめ て、貯金 を 始め ます。
+      - 今日 {を 限り に}、もう 無駄遣い は し ませ ん。貯金 を 始め ます！
+      - 今日 {を 限り に}、wasteful spending は 終わり！今日 から 貯金 始める よ。
+    english_literally: Today as a limit, I, wasteful spending to stop, savings to begin.
+    competing_grammar:
+      - competing_japanese:
+          - '{今日 から}、私 は 無駄遣い を やめ て、貯金 を 始め ます。'
+        english: Starting today, I will stop wasting money and begin saving.
+        hint: While 「今日 から」 means 'from today onwards,' 「を限りに」 emphasizes a firm, resolute cutoff from
+          past habits, marking a definitive end rather than just a beginning. We're looking for a strong
+          resolution to cease an action.
+    scene: Someone is making a personal resolution to change a habit.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: Making a personal resolution like 「無駄遣い を やめて、貯金 を 始めます」 (stop wasting money and begin saving)
+      is a universal action. The choice of a female speaker here is simply an arbitrary assignment for
+      diversity in examples, as the Japanese itself is not gender-specific.
+  - english: As of today, I am ending all relations with you.
+    japanese:
+      - 今日 {を 限り に}、あなた と の 関係 は 全て 終わり に し ます。
+      - 今日 {を 限り に}、あなた と は 全て 縁 を 切る。
+      - 今日 {を 限り に}、私 と あなた の 関係 は 終わり です。
+    english_literally: Today as a limit, you and's relationship all to end will do.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 {で}、あなた と の 関係 は 全て 終わり に し ます。
+        english: As of today, I am ending all relations with you.
+        hint: Using 「で」 would state the termination date. 「を限りに」 emphasizes a strong, definitive break
+          and a clear declaration of ending all relations. We're looking for an emphatic statement of
+          finality.
+    scene: A character is definitively ending a relationship.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+    nuance: The strong, definitive language 「全て 終わり に します」 (I am ending everything) is intense and dramatic,
+      reflecting a powerful decision. While not inherently gendered, this kind of firm declaration is
+      often portrayed in media as being delivered by a male character in this specific type of serious
+      interaction.
+post_example_writeup: When using 「を限りに」, pay close attention to the noun it modifies. It usually precedes
+  words denoting a specific time (e.g., 来週 'next week', 今月末 'end of this month', 今日 'today') or a specific
+  event (e.g., 最終公演 'final performance', この演奏会 'this concert') that marks the absolute end or beginning
+  of something. Its formal nature makes it particularly suitable for official declarations and significant
+  life changes.

@@ -1,0 +1,241 @@
+grammar_point: '[Verb-dictionary]ことはない (no need to・not necessary to)'
+learn_before:
+  - 何もすることがない (nothing to do)
+meaning: no need to; not necessary to
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb[dictionary]ことはない
+    rarity: common
+    meaning: no need to; not necessary to
+  - conjugation-type: negative past plain (～なかった)
+    form: Verb[dictionary]ことはなかった
+    rarity: common
+    meaning: there was no need to; did not need to
+pronunciation:
+  katakana: コトワナイ
+  romaji: kotowanai
+formation:
+  Verb[dictionary form] + ことは ない: Expresses that there is no need to perform the action of the verb.
+jlpt: N3
+etymology: The phrase ことはない is a combination of こと (koto, an abstract noun indicating "fact," "thing,"
+  or "matter"), the topic particle は (wa), and the negative form of ある (aru, "to exist"), ない (nai). Literally,
+  it translates to "there is no such thing as [doing X]" or "the matter of [doing X] does not exist."
+  Over time, this evolved to convey the meaning of "there is no need to do X" or "it is not necessary
+  to do X." The こと nominalizes the preceding verb, turning the action into a concept or fact, which is
+  then negated by はない. This construction emphasizes the non-existence of the necessity or reason for the
+  action.
+writeup: |-
+  The grammar pattern [Verb-dictionary form]ことはない is used to express that an action is unnecessary or that there is no need to do something. It implies that the action in question is not required, either because it's not essential, or because the situation doesn't call for it. This can be a gentle reassurance, a practical piece of advice, or, in some contexts, a dismissive statement.
+
+  The こと in this pattern acts as a nominalizer, turning the preceding verb into a noun phrase. For example, 行くこと (iku koto) means "the act of going" or "going." When combined with はない (the negative of ある, meaning "there is not"), 行くことはない literally translates to "there is no such thing as going" or "the act of going does not exist." This literal meaning has evolved into the more common usage of "there is no need to go."
+
+  It's important to understand the nuance conveyed by the は particle. While ない simply means "not existing," the は adds a touch of emphasis or contrast. It can highlight the lack of necessity, sometimes implicitly contrasting it with a perceived or assumed need. For instance, if someone expects you to do something, you might use ことはない to politely or firmly state that it's unnecessary.
+
+  This expression can be used in a variety of situations:
+  *   **Reassurance**: To tell someone they don't have to worry or exert themselves.
+  *   **Advice**: To suggest that an action is redundant or not beneficial.
+  *   **Dismissal**: In some cases, it can sound slightly dismissive, implying that an action would be pointless or overly dramatic. The tone often depends on the context and the speaker's intonation.
+
+  Compared to 〜なくてもいい (nakute mo ii), ことはない tends to be a stronger statement of non-necessity. While 〜なくてもいい means "it's okay if you don't do it" (leaving the option open), ことはない suggests "there is no need to do it at all."
+false_friends:
+  - term: なくてもいい
+    meaning: it's okay if you don't do; you don't have to
+    kind: similar expression
+    nuance: This phrase offers a choice, indicating that an action is permissible to omit. It's a gentler
+      statement than ことはない, which more directly asserts the lack of necessity.
+    grammar_point: なくてもいい (no need to)
+  - term: 必要がない
+    meaning: there is no necessity; no need
+    kind: similar expression
+    nuance: 必要がない directly states the absence of necessity using the noun 必要 (necessity). While similar
+      in meaning to ことはない, ことはない often implies a broader range of reasons for the lack of necessity (e.g.,
+      it's futile, it's overthinking, it's not required by the situation), whereas 必要がない is a more direct
+      and formal statement about the absence of a 'need'.
+    grammar_point: 必要がある (it is necessary to)
+post_false_friends_writeup: While [Verb-dictionary]ことはない and [Verb-て form]なくてもいい both convey that an action
+  is unnecessary, their nuances differ. ことはない makes a more definitive statement that an action is not
+  required or is pointless. For instance, 心配することはない (shinpai suru koto wa nai) means "There is no need
+  to worry (it's completely unnecessary)." In contrast, 心配しなくてもいい (shinpai shinakute mo ii) means "You
+  don't have to worry (it's okay if you don't worry)," implying a choice. 必要がない is a more direct and formal
+  way to state the absence of a need, using the noun 必要 (necessity). [Verb-dictionary]ことはない uses a more
+  grammatical construction (こと + は + ない) to achieve a similar meaning but often carries a more idiomatic
+  feel, sometimes subtly implying futility or an overreaction.
+examples:
+  - english: You don't have to hurry.
+    japanese:
+      - 急ぐ こと は ない。
+      - 急ぐ こと は あり ませ ん。
+    english_literally: To hurry, there is no such thing.
+    competing_grammar:
+      - competing_japanese:
+          - 急が なく て も いい。
+        english: It's okay if you don't hurry.
+        hint: This implies that rushing is permissible to omit, but doesn't necessarily state it's unnecessary.
+          We're looking for an expression that indicates there's no need to hurry at all.
+      - competing_japanese:
+          - 急ぐ 必要 は ない。
+        english: There is no necessity to hurry.
+        hint: This is a direct statement about lack of necessity, but ことはない often implies a broader reason,
+          such as the action being pointless. We're looking for an idiomatic way to say there's no need.
+    scene: A friend is rushing.
+    register: casual
+    setting: friendly
+  - english: You don't need to apologize for something like this.
+    japanese:
+      - こんな こと で 謝る こと は ない よ。
+      - こんな こと で 謝る こと は あり ませ ん よ。
+    english_literally: For such a thing, to apologize, there is no such thing, you know.
+    competing_grammar:
+      - competing_japanese:
+          - こんな こと で 謝ら なく て も いい よ。
+        english: It's okay if you don't apologize for something like this.
+        hint: This phrasing gives a choice, whereas ことはない states the apology is truly unnecessary. We're
+          looking for a more definitive statement that no apology is needed.
+    scene: Someone apologizes for a minor mistake.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The よ particle adds a sense of conviction and directness. The male speaker's use of よ makes
+      it sound more assertive, suggesting the apology is truly unwarranted.
+  - english: You don't need to cry about something so trivial.
+    japanese:
+      - そんな 些細 な こと で 泣く こと は ない。
+      - そんな 些細 な こと で 泣く こと は あり ませ ん。
+    english_literally: For such a trivial thing, to cry, there is no such thing.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 些細 な こと で 泣か なく て も いい。
+        english: It's okay if you don't cry about something so trivial.
+        hint: This is a softer suggestion that crying is optional, not an assertion that it's unnecessary.
+          We're looking for a phrase implying that the crying is an overreaction or unwarranted.
+    scene: A child is crying over a small issue.
+    register: casual
+    setting: serious
+  - english: You don't need to worry about the results so much.
+    japanese:
+      - 結果 を それ ほど 心配 する こと は ない と 思い ます。
+      - 結果 を それ ほど 心配 する こと は あり ませ ん と 思い ます。
+    english_literally: Results, that much to worry about, there is no such thing, I think.
+    competing_grammar:
+      - competing_japanese:
+          - 結果 を それ ほど 心配 し なく て も いい と 思い ます。
+        english: I think it's okay if you don't worry about the results so much.
+        hint: This is a softer phrasing that leaves the choice to the listener. We're looking for a more
+          direct statement of non-necessity, even if softened by 'I think'.
+    scene: A senior colleague offering advice to a junior colleague.
+    register: formal
+    setting: professional
+    speaker_age: older
+    nuance: The と思います softens the statement, making it polite advice rather than a direct command. It's
+      a reassuring tone from an older, more experienced person.
+  - english: There is no need to think about difficult things.
+    japanese:
+      - 難しい こと を 考える こと は ない。
+      - 難しい こと を 考える こと は あり ませ ん。
+    english_literally: Difficult things, to think about, there is no such thing.
+    competing_grammar:
+      - competing_japanese:
+          - 難しい こと を 考える 必要 は ない。
+        english: There is no necessity to think about difficult things.
+        hint: While similar, this is a more formal and direct statement of lack of necessity. ことはない often
+          implies broader reasons for non-necessity, such as futility or overthinking. We're looking for
+          a phrase that implies it's simply unwarranted.
+    scene: A teacher speaking to students struggling with a concept.
+    register: semi-formal
+    setting: academic
+  - english: You don't need to tell him.
+    japanese:
+      - 彼 に 伝える こと は ない。
+      - 彼 に 伝える こと は あり ませ ん。
+    english_literally: To him, to tell, there is no such thing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 伝え なく て も いい。
+        english: It's okay if you don't tell him.
+        hint: This implies permission to not tell, rather than a definitive statement that telling is
+          unnecessary. We're looking for a more direct assertion of non-necessity.
+    scene: Two people discussing whether to inform a third person.
+    register: casual
+    setting: serious
+  - english: You didn't need to bring anything.
+    japanese:
+      - 何 も 持っ て くる こと は なかっ た。
+      - 何 も 持っ て くる こと は あり ませ ん でし た。
+    english_literally: Anything, to bring, there was no such thing.
+    competing_grammar:
+      - competing_japanese:
+          - 何 も 持っ て こ なく て も よかっ た。
+        english: It would have been okay if you hadn't brought anything.
+        hint: This implies it was fine not to bring something, but not necessarily that bringing it was
+          unnecessary. We're looking for an expression that states the action was not needed in retrospect.
+    scene: A guest arrives with a gift, but the host didn't expect it.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+  - english: You don't need to go to such trouble.
+    japanese:
+      - そんな に 気 を 使う こと は ない です よ。
+      - そんな に 気 を 使う こと は ない よ。
+    english_literally: To that extent, to be considerate, there is no such thing, you know.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 気 を 使わ なく て も いい です よ。
+        english: It's okay if you don't go to such trouble.
+        hint: This is a polite way to say it's permissible to not be so considerate, not that it's entirely
+          unnecessary. We're looking for a phrase that suggests the effort is uncalled for.
+    scene: A host telling a guest not to be overly considerate.
+    register: teineigo (polite)
+    setting: intimate
+    nuance: The です よ makes it polite and emphasizes the lack of need for excessive consideration. The
+      phrase 気を使う (to be considerate/worry) often comes with this grammar, politely pushing back on perceived
+      over-effort.
+  - english: Even if you make a mistake, there's no need to give up.
+    japanese:
+      - た と え 失敗 し て も、諦める こと は ない。
+      - た と え 失敗 し て も、諦める こと は あり ませ ん。
+    english_literally: Even if you fail, to give up, there is no such thing.
+    competing_grammar:
+      - competing_japanese:
+          - た と え 失敗 し て も、諦める 必要 は ない。
+        english: Even if you make a mistake, there's no necessity to give up.
+        hint: This is a direct statement about lack of necessity, but ことはない often implies a broader range
+          of reasons for non-necessity, such as it being futile or overthinking. We're looking for a phrase
+          that implies giving up is unwarranted.
+    scene: A coach encouraging an athlete after a setback.
+    register: casual
+    setting: inspirational
+  - english: There's no need to ask anyone; you can do it yourself.
+    japanese:
+      - 誰 に も 聞く こと は ない、自分 で できる から。
+      - 誰 に も 聞く こと は あり ませ ん、自分 で できる から。
+    english_literally: To anyone, to ask, there is no such thing, because you can do it yourself.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 に も 聞か なく て も いい、自分 で できる から。
+        english: It's okay if you don't ask anyone; you can do it yourself.
+        hint: This implies permission to not ask, not that asking is unnecessary due to capability. We're
+          looking for an expression emphasizing that seeking help is uncalled for.
+    scene: A parent teaching a child independence.
+    register: casual
+    setting: instructional
+  - english: I didn't need to say that.
+    japanese:
+      - あんな こと 言う こと は なかっ た な。
+      - あんな こと 言う こと は あり ませ ん でし た な。
+    english_literally: Such a thing, to say, there was no such thing, huh.
+    competing_grammar:
+      - competing_japanese:
+          - あんな こと 言わ なく て も よかっ た な。
+        english: It would have been okay if I hadn't said that, huh.
+        hint: This implies it was fine not to say it, but doesn't explicitly convey the feeling that saying
+          it was unnecessary or regrettable. We're looking for a phrase expressing hindsight that an action
+          was unneeded.
+    scene: Someone reflecting on a past conversation, regretting what they said.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    listener_gender: no one
+    nuance: The な particle adds a soft, reflective tone, typically used when talking to oneself or expressing
+      a sentiment that doesn't demand a response. It signifies regret over an unnecessary past action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verb-dictionary%E3%81%93%E3%81%A8%E3%81%AF%E3%81%AA%E3%81%84

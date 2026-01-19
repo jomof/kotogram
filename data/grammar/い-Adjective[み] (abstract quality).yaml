@@ -1,0 +1,215 @@
+grammar_point: い-Adjective[み] (abstract quality)
+learn_before:
+  - Verb[えば] (conditional)
+meaning: The quality or state of being [い-adjective]
+pronunciation:
+  katakana: ミ
+  romaji: mi
+formation:
+  い-Adjective (stem form) + み: Forms a noun indicating an abstract quality or inherent state.
+jlpt: N3
+etymology: The suffix 「み」 (mi) derives from the classical Japanese nominalizing suffix 「み」. It attaches
+  to the stem of adjectives to create nouns that denote an abstract quality or state, similar to English
+  suffixes like "-ness" or "-ity." For example, 「悲しい」 (kanashii, sad) becomes 「悲しみ」 (kanashimi, sadness).
+  This usage emphasizes the inherent attribute or characteristic of something, rather than merely describing
+  it.
+writeup: |-
+  The suffix 「み」 attaches to the stem of い-adjectives to form nouns. These nouns represent an abstract quality, state, or condition associated with the adjective. It's often compared to English suffixes like "-ness" or "-ity."
+
+  A key distinction to make is with the suffix 「さ」 (sa). While both 「み」 and 「さ」 can nominalize adjectives, they carry different nuances:
+  *   「さ」 (sa) is very general and can attach to almost any い-adjective (and some な-adjectives when used adjectivally) to indicate the *degree* or *extent* of a quality, or simply to nominalize it for general reference. It often refers to measurable qualities. Examples: 高さ (takasa, height), 大きさ (ookisa, size), 難しさ (muzukashisa, difficulty).
+  *   「み」 (mi) is more restrictive and typically attaches to a smaller set of い-adjectives. It tends to denote an inherent, abstract, or qualitative *feeling* or *state* rather than a measurable degree. Examples: 悲しみ (kanashimi, sadness), 痛み (itami, pain), 苦しみ (kurushimi, suffering), 暖かみ (atatakami, warmth, feeling of). It often relates to sensory or emotional perceptions.
+false_friends:
+  - term: 〜さ
+    meaning: The degree or extent of a quality; nominalizer
+    kind: similar expression
+    nuance: While both 「〜み」 and 「〜さ」 nominalize adjectives, 「〜さ」 generally indicates a measurable *degree*
+      or *extent* of a quality (e.g., 「高さ」 height, 「大きさ」 size), whereas 「〜み」 often refers to an inherent,
+      abstract, or qualitative *feeling* or *state* (e.g., 「悲しみ」 sadness, 「痛み」 pain).
+    grammar_point: さ (nominalizer)
+post_false_friends_writeup: The choice between 「〜み」 and 「〜さ」 is often subtle and depends on whether you
+  want to emphasize the quantifiable aspect of a quality (「〜さ」) or the inherent, often sensory or emotional,
+  nature of that quality (「〜み」). For instance, 「甘さ」 refers to the *degree* of sweetness (how sweet something
+  is), while 「甘み」 refers to the *taste* or *flavor* of sweetness itself. Similarly, 「重さ」 is the *weight*
+  (a measurable quantity), whereas 「重み」 can be the *heaviness* in a more qualitative, often metaphorical,
+  sense (e.g., the weight of responsibility).
+examples:
+  - english: This room has warmth.
+    japanese:
+      - この 部屋 に は {暖かみ} が ある。
+      - この 部屋 に {暖かみ} が あり ます ね。
+    english_literally: As for this room, warmth exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 の 暖か さ は ちょうど いい。
+        english: The warmth of this room is just right.
+        hint: 「暖かさ」 refers to the measurable degree of warmth. We're looking for the inherent feeling
+          of warmth in the room.
+    scene: A person walks into a room that feels welcoming and cozy.
+    register: casual
+    setting: friendly
+    nuance: 「暖かみ」 (atatakami) refers to the *feeling* of warmth, often implying a cozy or inviting atmosphere,
+      rather than just the measurable temperature. It emphasizes the subjective, qualitative aspect of
+      warmth.
+  - english: I feel a throbbing pain.
+    japanese:
+      - ズキズキ と {痛み} を 感じる。
+      - '{痛み} を 感じ ます。'
+    english_literally: Throbbingly, pain I feel.
+    competing_grammar:
+      - competing_japanese:
+          - この 痛み の 程度 は どの くらい です か？
+        english: How severe is this pain?
+        hint: This sentence refers to the specific sensation of pain itself, not its severity. We're looking
+          for the feeling of pain.
+    scene: Someone has a headache and is describing the sensation.
+    register: casual
+    setting: informative
+    nuance: 「痛み」 (itami) is the physical sensation of pain. This usage is direct and descriptive of a
+      bodily experience.
+  - english: There was a deep sadness in her eyes.
+    japanese:
+      - 彼女 の 目 に は 深い {悲しみ} が あっ た。
+      - 彼女 の 目 に は 深い {悲しみ} が 感じ られ た。
+    english_literally: In her eyes, deep sadness existed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は とても 悲しかっ た。
+        english: She was very sad.
+        hint: This sentence expresses the emotion of sadness as a noun. We're looking for a noun that
+          represents the abstract quality of sadness.
+    scene: Observing someone who has recently experienced a loss.
+    register: formal
+    setting: serious
+    nuance: 「悲しみ」 (kanashimi) refers to the emotion of sadness as an abstract concept or feeling, rather
+      than directly describing someone as 'sad'.
+  - english: That medicine has a bitter taste.
+    japanese:
+      - その 薬 に は {苦み} が ある。
+      - この 薬 に は {苦み} が あり ます よ。
+    english_literally: As for that medicine, bitterness exists.
+    competing_grammar:
+      - competing_japanese:
+          - その 薬 は 苦い です。
+        english: That medicine is bitter.
+        hint: The sentence focuses on the inherent taste quality, bitterness, as a noun. We're looking
+          for the abstract taste attribute.
+    scene: A patient describes the flavor of their prescription.
+    register: casual
+    setting: informative
+    nuance: 「苦み」 (nigami) refers to the specific taste sensation of bitterness. It denotes the flavor
+      characteristic itself.
+  - english: I wonder how deep this pond is.
+    japanese:
+      - この 池 の {深み} は どれ くらい だろう？
+      - この 池 の {深み} は どの くらい でしょう か？
+    english_literally: This pond's depth, about how much, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - この 池 は どの くらい 深い だろう？
+        english: I wonder how deep this pond is?
+        hint: This example uses the noun form of 'deep'. We're looking for the noun expressing the characteristic
+          of depth.
+    scene: Two friends are looking at a pond, curious about its characteristics.
+    register: casual
+    setting: interrogative
+    nuance: 「深み」 (fukami) refers to the *depth* of the pond, a measurable quality, but can also refer
+      to the 'depth' of thought or character, carrying a more abstract or profound connotation than simply
+      'deep'.
+  - english: This fruit has a natural sweetness.
+    japanese:
+      - この 果物 に は 自然 な {甘み} が ある。
+      - この 果物 の {甘み} は 自然 で 良い ね。
+    english_literally: As for this fruit, natural sweetness exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 果物 は 自然 な 甘 さ です。
+        english: This fruit is naturally sweet.
+        hint: 「甘さ」 often indicates the measurable degree of sweetness. We're looking for the inherent
+          taste of sweetness as a quality.
+    scene: Someone tastes a freshly picked fruit and comments on its flavor.
+    register: casual
+    setting: informative
+    nuance: 「甘み」 (amami) refers to the *taste* or *flavor* of sweetness, emphasizing the sensory characteristic
+      rather than just the degree or amount of sugar.
+  - english: This dish is full of umami.
+    japanese:
+      - この 料理 は {うまみ} が たっぷり だ。
+      - この 料理 に は {うまみ} が 豊富 です。
+    english_literally: This dish, umami is plentiful.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は とても 美味しい です。
+        english: This dish is very delicious.
+        hint: 「うまみ」 is a specific taste quality, the savory flavor, not just general deliciousness. We're
+          looking for the noun representing this specific flavor.
+    scene: A chef is proudly presenting a meticulously prepared dish.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「うまみ」 (umami) is the specific savory taste, one of the five basic tastes. It highlights a
+      particular aspect of flavor.
+  - english: His words carried weight.
+    japanese:
+      - 彼 の 言葉 に は {重み} が あっ た。
+      - 彼 の 言葉 に は {重み} が 感じ られ た。
+    english_literally: As for his words, weight existed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言葉 は とても 重要 だっ た。
+        english: His words were very important.
+        hint: 「重み」 here is metaphorical, indicating importance or significance. We're looking for the
+          abstract noun 'weight' in this context.
+    scene: A group of colleagues reflecting on a powerful speech given by their leader.
+    register: formal
+    setting: reflective
+    nuance: 「重み」 (omomi) here is metaphorical, indicating importance, significance, or impact, not literal
+      physical weight. It conveys the gravity or depth of the words.
+  - english: To find the pleasures of life.
+    japanese:
+      - 人生 の {楽しみ} を 見つける。
+      - 人生 の {楽しみ} を 探す。
+    english_literally: Life's pleasures to find.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 を 楽しむ こと が 大切 です。
+        english: It is important to enjoy life.
+        hint: 「楽しみ」 refers to the state or feeling of enjoyment as a noun. We're looking for the abstract
+          noun 'pleasure' or 'enjoyment'.
+    scene: A person is reflecting on their priorities and what brings them joy.
+    register: casual
+    setting: reflective
+    nuance: 「楽しみ」 (tanoshimi) refers to the state or feeling of enjoyment, or specific things that bring
+      enjoyment, as an abstract concept. It encapsulates the 'fun' or 'pleasure' aspect.
+  - english: This soup lacks spiciness.
+    japanese:
+      - この スープ に は {辛み} が 足り ない。
+      - この スープ は {辛み} が 不足 し て いる。
+    english_literally: As for this soup, spiciness is insufficient.
+    competing_grammar:
+      - competing_japanese:
+          - この スープ は 辛く ない です。
+        english: This soup is not spicy.
+        hint: This sentence specifies a particular taste quality, spiciness, as a noun. We're looking
+          for the abstract taste attribute.
+    scene: A chef tastes a soup and identifies a missing flavor.
+    register: casual
+    setting: informative
+    nuance: 「辛み」 (karami) refers to the taste sensation of spiciness or hotness. It pinpoints the specific
+      flavor characteristic.
+  - english: To thicken the sauce.
+    japanese:
+      - ソース に {とろみ} を つける。
+      - ソース に {とろみ} を 加える。
+    english_literally: To sauce, thickness to add.
+    competing_grammar:
+      - competing_japanese:
+          - ソース を 濃く する。
+        english: To make the sauce thick.
+        hint: 「とろみ」 specifically refers to a viscous, thick consistency, often achieved through a thickening
+          agent, rather than just general 'thickness'. We're looking for the noun referring to this specific
+          texture.
+    scene: A cooking instructor demonstrates how to achieve a desired consistency for a sauce.
+    register: formal
+    setting: instructional
+    nuance: 「とろみ」 (toromi) refers to the thick, viscous quality of a liquid, especially one that has been
+      deliberately thickened (e.g., with starch). It describes a specific texture.

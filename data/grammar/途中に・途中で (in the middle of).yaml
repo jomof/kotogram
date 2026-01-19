@@ -1,0 +1,346 @@
+grammar_point: 途中に・途中で (in the middle of)
+learn_before:
+  - か (question)
+  - すっかり (completely)
+  - 何 (what)
+  - 何[Counter]も (many of something)
+  - 又〜も (additionally)
+meaning: On the way, Partway, In the middle of
+pronunciation:
+  katakana: トチュウニ・トチュウデ
+  romaji: tochuu ni / tochuu de
+formation:
+  Noun + の + 途中に/途中で: Indicates being in the middle of a noun-defined activity or event.
+  Verb (dictionary form) + 途中に/途中で: Indicates being in the middle of doing something (verb).
+jlpt: N2
+etymology: '「途中(とちゅう)」 literally means ''on the way'' or ''midway''. The addition of 「に」 or 「で」 specifies
+  the context: 「に」 emphasizes the location or time *on the way*, while 「で」 emphasizes the action or process
+  happening *in the middle of*.'
+writeup: The grammar point 「途中(とちゅう)に・途中(とちゅう)で」 employs the noun 「途中(とちゅう)」, meaning 'on the way' or
+  'midway'. This construction indicates an action or event occurring while something else is in progress.
+  The choice between the particles 「に」 and 「で」 introduces a subtle yet crucial distinction in nuance.
+  When paired with 「に」, the focus is often on the **point in time** or **location** during the duration
+  of the action or event. It signifies that something occurs *at a certain stage* on the way or in the
+  middle of something, often when the activity is considered a mere temporal or spatial backdrop. Conversely,
+  「で」 emphasizes the **process** or **action** itself as the context for something else to happen. It
+  often implies that the preceding action provides the **opportunity** or **cause** for the subsequent
+  event, or that the event is a natural consequence of being in that ongoing process. While there is indeed
+  overlap in their usage, and both can often be used interchangeably without creating semantic ambiguity,
+  understanding these subtle differences enhances one's grasp of natural Japanese. Immersion through extensive
+  example exposure is key to discerning their most appropriate application.
+false_friends:
+  - term: 最中に
+    meaning: In the middle of; at the height of
+    kind: similar expression
+    nuance: 「最中に」 emphasizes being at the peak or a crucial moment of an activity when something happens,
+      suggesting a more intense or disruptive interruption. 「途中に/途中で」 is more general, simply indicating
+      something occurred during the course of an activity, without implying peak intensity.
+    grammar_point: 最中に (in the middle of)
+  - term: がけに
+    meaning: Just as one is about to; on the verge of
+    kind: similar expression
+    nuance: 「～がけに」 specifically refers to something happening just as one is beginning or on the verge
+      of doing something. It implies a moment near the start or end of an action, rather than an event
+      occurring at any point within the broader duration of an activity like 「途中に/途中で」.
+    grammar_point: がけに (on the way)
+  - term: ているところ
+    meaning: In the process of doing ~ right now/at this moment
+    kind: similar expression
+    nuance: 「～ているところだ」 indicates that an action is currently in progress at the immediate moment of speaking,
+      implying a very specific, ongoing action. 「途中に/途中で」 describes something happening at some point
+      *during* an activity, which may not necessarily be happening at the exact moment of speech.
+    grammar_point: '[Verb-て]いるところだ (in the process of doing)'
+post_false_friends_writeup: While 「最中に」, 「～がけに」, and 「～ているところだ」 share similar notions of 'being in the
+  middle of' or 'during', they each carry distinct nuances. 「最中に」 suggests a critical or peak moment of
+  an activity. 「～がけに」 focuses on the very beginning or end of an action. 「～ているところだ」 emphasizes the immediate,
+  ongoing process. Understanding these distinctions helps select the most precise expression for a given
+  situation.
+examples:
+  - english: On the way to the office, I bought lunch at the convenience store.
+    japanese:
+      - 会社 へ 行く {途中 に}、コンビニ で 昼ご飯 を 買っ た。
+      - 会社 へ 行く {途中 で}、コンビニ で 昼ご飯 を 買っ た。
+    english_literally: To company go, on the way, at convenience store lunch bought.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 へ 行く {時 に}、コンビニ で 昼ご飯 を 買っ た。
+        english: When going to the company, I bought lunch at the convenience store.
+        hint: 「～時に」 simply indicates 'at the time when' something happens. We are looking for something
+          that emphasizes an action occurring *during the journey*.
+      - competing_japanese:
+          - 会社 へ 行く {がけ に}、コンビニ で 昼ご飯 を 買っ た。
+        english: Just as I was about to go to the office, I bought lunch at the convenience store.
+        hint: 「～がけに」 suggests an action happening at the very beginning or end of another action. We are
+          looking for something happening *during* the journey.
+      - competing_japanese:
+          - 会社 へ 行っ て いる {ところ に}、コンビニ で 昼ご飯 を 買っ た。
+        english: While I was currently going to the office, I bought lunch at the convenience store.
+        hint: 「～ているところに」 emphasizes an action happening at the precise moment something else occurs. 「途中に」
+          indicates something happening at some point along the way.
+    scene: A person reflecting on their morning commute.
+    register: casual
+    setting: reflective
+  - english: In the middle of the meeting, important documents were found, so everyone confirmed them
+      together.
+    japanese:
+      - 会議 の {途中 で}、重要 な 資料 が 見つかっ た の で、皆 で 確認 し まし た。
+      - 会議 の {途中 に}、重要 な 資料 が 見つかっ た の で、皆 で 確認 し まし た。
+    english_literally: Meeting's in the middle, important documents were found, so everyone confirmed.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 {中 に}、重要 な 資料 が 見つかっ た の で、皆 で 確認 し まし た。
+        english: During the meeting, important documents were found, so everyone confirmed them together.
+        hint: 「～中に」 is a more general term for 'during' an event. We are looking for something that implies
+          the discovery happened *mid-process* and led to an immediate action.
+      - competing_japanese:
+          - 会議 の {最中 に}、重要 な 資料 が 見つかっ た の で、皆 で 確認 し まし た。
+        english: At the height of the meeting, important documents were found, so everyone confirmed them
+          together.
+        hint: 「最中 に」 suggests something happening at a peak or critical moment, often implying disruption.
+          「途中で」 means simply 'during' or 'partway through'.
+    scene: A team leader explaining an unexpected discovery during a meeting.
+    register: formal
+    setting: informative
+  - english: On my way home, it suddenly started raining, which was troublesome.
+    japanese:
+      - 家 へ 帰っ て いる {途中 で}、急 に 雨 が 降り 出し て 困り まし た。
+      - 家 へ 帰っ て いる {途中 に}、急 に 雨 が 降り 出し て 困り まし た。
+    english_literally: Home to returning, on the way, suddenly rain began to fall, was troubled.
+    competing_grammar:
+      - competing_japanese:
+          - 家 へ 帰っ て いる {時 に}、急 に 雨 が 降り 出し て 困り まし た。
+        english: When returning home, it suddenly started raining, which was troublesome.
+        hint: 「～時に」 indicates 'at the time when' something occurs. We are looking for something that emphasizes
+          the rain started *while she was actively walking home*.
+      - competing_japanese:
+          - 家 へ 帰っ て いる {最中 に}、急 に 雨 が 降り 出し て 困り まし た。
+        english: At the height of my journey home, it suddenly started raining, which was troublesome.
+        hint: 「最中 に」 implies a peak or critical moment of an activity. 「途中で」 describes something happening
+          at some point during an ongoing action.
+      - competing_japanese:
+          - 家 へ 帰り {がけ に}、急 に 雨 が 降り 出し て 困り まし た。
+        english: Just as I was about to go home, it suddenly started raining, which was troublesome.
+        hint: 「～がけに」 indicates an action occurring at the very beginning or end of another action. We
+          are looking for something happening *during* the journey.
+      - competing_japanese:
+          - 家 へ 帰っ て いる {ところ に}、急 に 雨 が 降り 出し て 困り まし た。
+        english: While I was currently returning home, I bought lunch at the convenience store.
+        hint: 「～ているところに」 emphasizes an action happening at the precise moment something else occurs. 「途中に」
+          indicates something happening at some point along the way.
+    scene: A young woman telling her roommate about getting caught in the rain.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The casual expression 「困りました」 indicates a mild complaint or annoyance, common in intimate
+      settings. The use of 「途中で」 clearly places the sudden rain during the ongoing process of returning
+      home.
+  - english: In the middle of the presentation, the microphone malfunctioned, and I panicked for a moment.
+    japanese:
+      - 発表 の {途中 に}、マイク の 調子 が 悪く なっ て 一瞬 焦り まし た。
+      - 発表 の {途中 で}、マイク の 調子 が 悪く なっ て 一瞬 焦り まし た。
+    english_literally: Presentation's on the way, microphone's condition became bad, for a moment panicked.
+    competing_grammar:
+      - competing_japanese:
+          - 発表 {中 に}、マイク の 調子 が 悪く なっ て 一瞬 焦り まし た。
+        english: During the presentation, the microphone malfunctioned, and I panicked for a moment.
+        hint: 「～中に」 is a more general term for 'during' an event. We are looking for something that highlights
+          the malfunction occurred *mid-flow* of the presentation, causing a disruption during the ongoing
+          act of speaking.
+      - competing_japanese:
+          - 発表 の {最中 に}、マイク の 調子 が 悪く なっ て 一瞬 焦り まし た。
+        english: At the height of the presentation, the microphone malfunctioned, and I panicked for a
+          moment.
+        hint: 「最中 に」 suggests something happening at a peak or critical moment, often implying disruption.
+          「途中に」 means simply 'during' or 'partway through'.
+    scene: A male speaker recounting a stressful moment during a public speaking event.
+    register: teineigo (polite)
+    setting: serious
+    speaker_gender: male
+    nuance: The phrase 「焦りました」 conveys the speaker's momentary panic in a polite manner. 「途中に」 pinpoints
+      the exact moment of malfunction during the ongoing presentation. This polite register is suitable
+      for recounting a professional experience.
+  - english: Partway through life, I had to make several big decisions.
+    japanese:
+      - 人生 の {途中 で}、何 度 か 大きな 決断 を し なけれ ば なら なかっ た。
+      - 人生 の {途中 に}、何 度 か 大きな 決断 を し なけれ ば なら なかっ た。
+    english_literally: Life's in the middle, several times big decisions had to make.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 の {期間 に}、何 度 か 大きな 決断 を し なけれ ば なら なかっ た。
+        english: During the period of my life, I had to make several big decisions.
+        hint: 「～期間に」 indicates a general time period. We are looking for something that emphasizes making
+          decisions *at various points along the journey of life*.
+    scene: An older person reflecting on significant moments in their life.
+    register: casual
+    setting: reflective
+    speaker_age: older
+    nuance: This sentence reflects on life's journey using 「人生の途中で」, indicating 'at various points' or
+      'mid-journey'. The phrase 「大きな決断」 (big decisions) and the necessity expressed by 「～なければならなかった」 add
+      to the thoughtful tone of someone reflecting on their experiences.
+  - english: On my way to take a walk in the park, I found beautiful flowers blooming.
+    japanese:
+      - 公園 へ 散歩 に 行く {途中 に}、美しい 花 が 咲い て いる の を 見つけ まし た。
+      - 公園 へ 散歩 に 行く {途中 で}、美しい 花 が 咲い て いる の を 見つけ まし た。
+    english_literally: Park to walk go, on the way, beautiful flowers blooming, found.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 に 散歩 に 行く {時 に}、美しい 花 が 咲い て いる の を 見つけ まし た。
+        english: When going for a walk in the park, I found beautiful flowers blooming.
+        hint: 「～時に」 indicates 'at the time when' something occurs. We are looking for something that highlights
+          the discovery happened *during the walk to the park*.
+      - competing_japanese:
+          - 公園 へ 散歩 に 行き {がけ に}、美しい 花 が 咲い て いる の を 見つけ まし た。
+        english: Just as I was about to go for a walk in the park, I found beautiful flowers blooming.
+        hint: 「～がけに」 suggests an action happening at the very beginning or end of another action. We are
+          looking for something happening *during* the journey.
+      - competing_japanese:
+          - 公園 へ 散歩 に 行っ て いる {ところ に}、美しい 花 が 咲い て いる の を 見つけ まし た。
+        english: While I was currently going for a walk in the park, I found beautiful flowers blooming.
+        hint: 「～ているところに」 emphasizes an action happening at the precise moment something else occurs. 「途中に」
+          indicates something happening at some point along the way.
+    scene: A young child excitedly telling their parent about a discovery.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+    nuance: The informal 「～のを見つけました」 with 「～ました」 indicates a child speaking politely to a parent. The
+      use of 「途中に」 clearly places the discovery of the flowers along the path to the park.
+  - english: It seems I fell asleep in the middle of watching the movie and missed the ending.
+    japanese:
+      - 映画 を 見 て いる {途中 で}、眠っ て しまっ た らしく、最後 の 部分 を 見逃し た。
+      - 映画 を 見 て いる {途中 に}、眠っ て しまっ た らしく、最後 の 部分 を 見逃し た。
+    english_literally: Movie watching in the middle, fell asleep it seems, last part missed.
+    competing_grammar:
+      - competing_japanese:
+          - 映画 を 見 て いる {時 に}、眠っ て しまっ た らしく、最後 の 部分 を 見逃し た。
+        english: When watching the movie, it seems I fell asleep and missed the ending.
+        hint: 「～時に」 indicates 'at the time when' something occurs. We are looking for something that implies
+          the sleep happened *during the active viewing process*.
+      - competing_japanese:
+          - 映画 を 見 て いる {最中 に}、眠っ て しまっ た らしく、最後 の 部分 を 見逃し た。
+        english: At the height of watching the movie, it seems I fell asleep and missed the ending.
+        hint: 「最中 に」 suggests something happening at a peak or critical moment, often implying disruption.
+          「途中で」 describes something happening at some point during an ongoing action.
+      - competing_japanese:
+          - 映画 を 見 て いる {ところ に}、眠っ て しまっ た らしく、最後 の 部分 を 見逃し た。
+        english: While I was currently watching the movie, I bought lunch at the convenience store.
+        hint: 「～ているところに」 emphasizes an action happening at the precise moment something else occurs. 「途中で」
+          indicates something happening at some point during the process.
+    scene: Someone humorously admitting they slept through a movie to a friend.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    nuance: The phrase 「眠ってしまったらしく」 indicates a casual admission of an unintentional action. The use of
+      「途中で」 specifies that the falling asleep occurred during the ongoing process of watching the movie,
+      leading to the consequence of missing the ending.
+  - english: During the surgery, an unexpected complication occurred, requiring an emergency response.
+    japanese:
+      - 手術 の {途中 で}、予期 せ ぬ 合併 症 が 発生 し、緊急 の 対応 が 必要 と なっ た。
+      - 手術 の {途中 に}、予期 せ ぬ 合併 症 が 発生 し、緊急 の 対応 が 必要 と なっ た。
+    english_literally: Surgery's in the middle, unexpected complication occurred, emergency response became
+      necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 手術 {中 に}、予期 せ ぬ 合併 症 が 発生 し、緊急 の 対応 が 必要 と なっ た。
+        english: During the surgery, an unexpected complication occurred, requiring an emergency response.
+        hint: 「～中に」 is a more general term for 'during' an event. We are looking for something that emphasizes
+          the critical nature of the event happening *mid-procedure*.
+      - competing_japanese:
+          - 手術 の {最中 に}、予期 せ ぬ 合併 症 が 発生 し、緊急 の 対応 が 必要 と なっ た。
+        english: At the height of the surgery, an unexpected complication occurred, requiring an emergency
+          response.
+        hint: 「最中 に」 suggests something happening at a peak or critical moment, often implying disruption.
+          「途中で」 means simply 'during' or 'partway through'.
+    scene: A surgeon briefing a medical team on a critical incident.
+    register: teineigo (polite)
+    setting: technical
+    nuance: This example uses precise, formal medical terminology like 「予期せぬ合併症」 (unexpected complication)
+      and 「緊急の対応」 (emergency response). 「途中で」 conveys that the complication arose during the operation
+      itself, demanding an immediate shift in procedure.
+  - english: During my travels, I had an unexpected encounter, which became an unforgettable experience.
+    japanese:
+      - 旅 の {途中 に}、思いがけ ない 出会い が あり、忘れ られ ない 経験 と なっ た。
+      - 旅 の {途中 で}、思いがけ ない 出会い が あり、忘れ られ ない 経験 と なっ た。
+    english_literally: Journey's on the way, unexpected encounter existed, unforgettable experience became.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 {中 に}、思いがけ ない 出会い が あり、忘れ られ ない 経験 と なっ た。
+        english: During my travels, I had an unexpected encounter, which became an unforgettable experience.
+        hint: 「～中に」 is a more general term for 'during' an event. We are looking for something that suggests
+          the encounter happened *somewhere along the journey*.
+    scene: A person sharing a cherished travel memory with friends.
+    register: casual
+    setting: storytelling
+    nuance: The phrase 「思いがけない出会い」 (unexpected encounter) adds a sense of serendipity. 「忘れられない経験となった」
+      conveys the lasting impact of the experience. 「途中に」 highlights that this special encounter occurred
+      during the course of the journey.
+  - english: In the middle of the project, it was discovered that the budget was insufficient, requiring
+      a revision of the plan.
+    japanese:
+      - プロジェクト の {途中 で}、予算 が 不足 し て いる こと が 判明 し、計画 の 見直し が 必要 に なっ た。
+      - プロジェクト の {途中 に}、予算 が 不足 し て いる こと が 判明 し、計画 の 見直し が 必要 に なっ た。
+    english_literally: Project's in the middle, budget lacking fact became clear, plan's revision became
+      necessary.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト {中 に}、予算 が 不足 し て いる こと が 判明 し、計画 の 見直し が 必要 に なっ た。
+        english: During the project, it was discovered that the budget was insufficient, requiring a revision
+          of the plan.
+        hint: 「～中に」 is a more general term for 'during' an event. We are looking for something that points
+          to the budget issue being revealed *during the ongoing execution* of the project.
+      - competing_japanese:
+          - プロジェクト の {最中 に}、予算 が 不足 し て いる こと が 判明 し、計画 の 見直し が 必要 に なっ た。
+        english: At the height of the project, it was discovered that the budget was insufficient, requiring
+          a revision of the plan.
+        hint: 「最中 に」 suggests something happening at a peak or critical moment, often implying disruption.
+          「途中で」 means simply 'during' or 'partway through'.
+      - competing_japanese:
+          - プロジェクト を 進め て いる {ところ に}、予算 が 不足 し て いる こと が 判明 し、計画 の 見直し が 必要 に なっ た。
+        english: While we were currently proceeding with the project, it was discovered that the budget
+          was insufficient, requiring a revision of the plan.
+        hint: 「～ているところに」 emphasizes an action happening at the precise moment something else occurs. 「途中で」
+          indicates something happening at some point during the process.
+    scene: A manager informing a team about a financial setback in a project.
+    register: teineigo (polite)
+    setting: serious
+    nuance: This example uses business terminology like 「予算が不足」 (insufficient budget) and 「計画の見直し」 (plan
+      revision). 「途中で」 clearly indicates that the financial issue emerged during the active phase of the
+      project, leading to a necessary change in strategy.
+  - english: Somewhere during our date yesterday, your smile completely captivated me.
+    japanese:
+      - 昨日 の デート の {途中 に}、君 の 笑顔 に すっかり 魅了 さ れ て しまっ た よ。
+      - 昨日 の デート の {途中 で}、君 の 笑顔 に すっかり 魅了 さ れ て しまっ た よ。
+    english_literally: Yesterday's date's on the way, your smile by completely captivated became.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の デート {中 に}、君 の 笑顔 に すっかり 魅了 さ れ て しまっ た よ。
+        english: During yesterday's date, your smile completely captivated me.
+        hint: 「～中に」 is a more general term for 'during' an event. We are looking for something that suggests
+          the feeling developed *at some point during the ongoing date*.
+      - competing_japanese:
+          - 昨日 の デート の {最中 に}、君 の 笑顔 に すっかり 魅了 さ れ て しまっ た よ。
+        english: At the height of our date yesterday, your smile completely captivated me.
+        hint: 「最中 に」 suggests something happening at a peak or critical moment. 「途中に」 means simply 'during'
+          or 'partway through'.
+      - competing_japanese:
+          - 昨日 の デート を し て いる {ところ に}、君 の 笑顔 に すっかり 魅了 さ れ て しまっ た よ。
+        english: While we were currently on our date yesterday, your smile completely captivated me.
+        hint: 「～ているところに」 emphasizes an action happening at the precise moment something else occurs. 「途中に」
+          indicates something happening at some point during the process.
+    scene: A young man expressing romantic feelings to a woman after a date.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The phrase 「すっかり魅了されてしまった」 (completely captivated) expresses strong romantic feelings, typical
+      in a flirty context. The informal 「～よ」 at the end, coupled with the intimate context, makes the
+      expression sound natural from a younger male speaker to a female listener. 「途中に」 implies that the
+      captivation happened at an unspecified point during the date.
+post_example_writeup: Understanding the subtle differences between 「途中に」 and 「途中で」 often comes with practice
+  and exposure to various contexts. While both generally mean 'in the middle of' or 'on the way,' 「に」
+  tends to pinpoint a specific moment or location *during* an activity, whereas 「で」 often emphasizes the
+  ongoing nature of the activity itself as the backdrop for something else. Pay attention to how native
+  speakers use them in different scenarios.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/途中に・途中で

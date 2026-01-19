@@ -1,0 +1,261 @@
+grammar_point: つ〜つ (alternating actions)
+learn_before:
+  - '[Verb-stem]ながら・つつ (while doing)'
+  - '[Verb-stem・Adj・Noun]ながら (although・despite)'
+  - かのようだ・かのように (as if)
+  - げ (seeming・appearance)
+  - 様子 (state・situation・appearance)
+meaning: two contrasting actions
+pronunciation:
+  katakana: ツーツー
+  romaji: tsu tsu
+formation:
+  Verb[masu-stem] + つ + Verb[masu-stem]: Connects two verbs (often contrasting or indicating a reciprocal
+    relationship) to describe continuous, alternating actions or states. The second verb may be in passive
+    form to indicate an action being done to oneself.
+jlpt: N1
+etymology: The particle 「つ」 originates from the classical Japanese particle 「つ」, which served as a conjunction
+  or a possessive particle. In this grammar point, it connects verbs to indicate repeated, alternating
+  actions.
+writeup: |-
+  The 「つ〜つ」 structure highlights **contrasting verbs**, often translated as "to be doing (A) and (B) over and over," where actions happen repeatedly in sequence. 「つ」 connects to the masu-stem of verbs, with (A) and (B) usually in direct order. It is also common to see the same verb repeated, with the (A) verb in active form and the (B) verb in passive form, translating as "to do (A) and to have (A) done to oneself." This grammar pattern is used with a limited set of words. Some standard combinations include:
+
+  *   行きつ戻りつ - To go back and forth.
+  *   浮きつ沈みつ - To surface and submerge (to bob).
+  *   見えつ隠れつ - To go in and out of sight.
+  *   とつおいつ (from 取りつ置きつ) - To waver between.
+  *   矯めつ眇めつ - To take a good look.
+  *   組んず解れつ - To intertwine and release (to grapple).
+  *   抜きつ抜かれつ - To pull away and be pulled away from (to be neck and neck).
+  *   持ちつ持たれつ - To have and to be held (to give and take).
+  *   押しつ押されつ - To press and be pressed.
+  *   追いつ追われつ - To overtake and be overtaken.
+  *   差しつ差されつ - To pour and be poured (to take turns exchanging drinks).
+false_friends:
+  - term: たり〜たりする
+    meaning: to do A and do B (alternating actions)
+    kind: similar expression
+    nuance: 「～たり～たりする」 is a general pattern for listing alternating or various actions. In contrast, 「つ〜つ」
+      is a more archaic and fixed expression that specifically emphasizes continuous, repetitive, and
+      often contrasting movements or states.
+    grammar_point: Verb[たり] (representative listing)
+  - term: 助け合う
+    meaning: to help each other
+    kind: similar expression
+    nuance: 「助け合う」 simply means to mutually help. 「持ちつ持たれつ」, while implying mutual help, specifically
+      emphasizes a give-and-take relationship where there is shared support and reliance, often implying
+      shared burdens or benefits beyond simple assistance.
+    grammar_point: 合う (mutual action)
+  - term: 交互に〜する
+    meaning: to do something alternately
+    kind: similar expression
+    nuance: 「交互に〜する」 is a general adverbial phrase to describe actions performed in turn or alternately.
+      「つ〜つ」 is a more traditional and idiomatic expression, usually used for a continuous, integrated,
+      and often contrasting sequence of two actions, frequently implying a natural or unavoidable dynamic.
+    grammar_point: <suggest>:交互に〜する (do alternately)
+  - term: つつある
+    meaning: to be in the process of; to be gradually changing
+    kind: often confused with
+    nuance: While both use `つつ`, `つつある` describes a gradual, ongoing change or process that is happening
+      over time, typically with a single action. In contrast, `つ〜つ` describes two distinct actions or
+      states that alternate continuously, often implying a back-and-forth motion or a reciprocal relationship.
+    grammar_point: つつある (gradual process)
+post_false_friends_writeup: While 「～たり～たりする」 and 「交互に〜する」 can express alternating actions, 「つ〜つ」 is a
+  more traditional and idiomatic expression often used for specific contrasting pairs of verbs, conveying
+  a sense of continuous or repetitive movement. 「助け合う」 broadly means to help each other, but 「持ちつ持たれつ」
+  carries the specific nuance of a reciprocal, interdependent relationship. Lastly, do not confuse 「つ〜つ」
+  with 「つつある」; the former describes alternating actions, while the latter indicates a single, gradual
+  ongoing process.
+examples:
+  - english: He was pacing anxiously back and forth in the hallway before the presentation.
+    japanese:
+      - 彼 は 発表 の 前 に 廊下 を 不安 げ に {行き つ 戻り つ} し て い た。
+      - 彼 は 発表 の 前 に 廊下 を 不安 げ に {行き つ 戻り つ} し て た。
+      - 彼 は 発表 の 前 に 廊下 を 不安 げ に {行き つ 戻り つ} する 様子 だっ た。
+    english_literally: He presentation of front in hallway anxiously pacing was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 発表 の 前 に 廊下 を 不安 げ に {行っ たり 来 たり} し て い た。
+        english: He was anxiously going back and forth in the hallway before the presentation.
+        hint: 「行ったり来たりする」 is a more general expression for moving back and forth. We're looking for a
+          more formal and idiomatic way to describe continuous, repetitive action.
+    scene: A tense moment before a public speaking event.
+    register: casual
+    setting: serious
+    nuance: The phrase 「不安げに」 (anxiously) combined with 「{行きつ戻りつ} し て いた」 effectively portrays the speaker's
+      nervous pacing, which is often an indicator of internal turmoil. The use of plain past tense 「し
+      て いた」 fits a casual, observational tone.
+  - english: We have supported each other in a give-and-take relationship for many years.
+    japanese:
+      - 私 たち は 長年 {持ち つ 持た れ つ} の 関係 で 支え 合っ て き た。
+      - 私 たち は 長年 {持ち つ 持た れ つ} で 支え 合っ て き た。
+      - 私 たち は 長年 {持ち つ 持た れ つ} の 間柄 で 助け 合い まし た。
+    english_literally: We long years give-and-take of relationship in support mutually come.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 長年 {互い に 助け合っ て} き た。
+        english: We have mutually helped each other for many years.
+        hint: 「互い に 助け合う」 emphasizes simple mutual help. We're looking for an expression that highlights
+          a deeper, interdependent give-and-take relationship, often implying shared burdens or benefits.
+    scene: Two old friends reflecting on their relationship.
+    register: formal
+    setting: reflective
+    nuance: The phrase 「{持ちつ持たれつ} の 関係」 highlights the reciprocal nature of the relationship, implying
+      mutual support and reliance, which fits the reflective tone. The use of polite form 「支え 合っ て き た」
+      is appropriate for discussing a deep, lasting bond between two friends.
+  - english: In the fog, the distant mountain was appearing and disappearing.
+    japanese:
+      - 霧 の 中 で、遠く の 山 が {見え つ 隠れ つ} し て い た。
+      - 霧 の 中 で、遠く の 山 が {見え つ 隠れ つ} し て た。
+      - 霧 の 中 で、遠く の 山 が {見え つ 隠れ つ} する 状態 だっ た。
+    english_literally: Fog of inside, distant mountain was appearing-disappearing.
+    competing_grammar:
+      - competing_japanese:
+          - 霧 の 中 で、遠く の 山 が {見え たり 隠れ たり} し て い た。
+        english: In the fog, the distant mountain was appearing and disappearing sometimes.
+        hint: 「見えたり隠れたりする」 describes intermittent floating and sinking. We're looking for a more continuous
+          and integrated description of something repeatedly coming into and out of view.
+    scene: Observing a landscape obscured by fog.
+    register: semi-formal
+    setting: reflective
+    nuance: The use of 「霧 の 中 で」 (in the fog) sets a specific atmospheric scene, emphasizing the partial
+      and intermittent visibility. 「{見えつ隠れつ}」 perfectly describes the effect of the mountain intermittently
+      emerging from and receding into the fog, creating a somewhat ethereal image.
+  - english: In the final stage of the marathon, the two runners engaged in a fierce neck-and-neck competition.
+    japanese:
+      - マラソン の 終盤、二人 の 選手 は {抜き つ 抜か れ つ} の 激しい 競争 を 繰り広げ た。
+      - マラソン の 終盤、二人 の 選手 は {抜き つ 抜か れ つ} の 激しい 競争 を 繰り広げ まし た。
+      - マラソン の 終盤、二人 の 選手 は {抜き つ 抜か れ つ}、激しい 競争 を し た。
+    english_literally: Marathon of final stage, two runners were pulling-being-pulled of fierce competition
+      unfolded.
+    competing_grammar:
+      - competing_japanese:
+          - マラソン の 終盤、二人 の 選手 は {交互 に 抜い たり 抜か れ たり する} 激しい 競争 を 繰り広げ た。
+        english: In the final stage of the marathon, the two runners unfolded a fierce competition, alternately
+          overtaking and being overtaken.
+        hint: 「交互 に 〜 たり 〜 たり する」 is a general way to express alternating actions. We're looking for a
+          specific, idiomatic expression for a close, back-and-forth race where competitors frequently
+          overtake each other.
+    scene: Announcing the thrilling climax of a race.
+    register: formal
+    setting: informative
+    nuance: The phrase 「激しい 競争 を 繰り広げた」 emphasizes the intensity of the competition. 「{抜きつ抜かれつ}」 is a
+      highly idiomatic expression in sports contexts for describing a close, back-and-back race where
+      competitors frequently overtake each other.
+  - english: In the stormy sea, the small boat moved forward, bobbing up and down on the waves.
+    japanese:
+      - 嵐 の 海 で、小さな ボート は 波 に {浮き つ 沈 みつ} し ながら 進ん だ。
+      - 嵐 の 海 で、小さな ボート は 波 に {浮き つ 沈 みつ} し ながら 進み まし た。
+      - 嵐 の 海 で、小さな ボート は 波 に {浮き つ 沈 みつ} する か の よう に 進ん だ。
+    english_literally: Storm of sea in, small boat waves on bobbing-up-down while advanced.
+    competing_grammar:
+      - competing_japanese:
+          - 嵐 の 海 で、小さな ボート は 波 に {浮い たり 沈ん だり} し ながら 進ん だ。
+        english: In the stormy sea, the small boat advanced while alternately floating and sinking on
+          the waves.
+        hint: 「浮い たり 沈ん だり する」 describes intermittent floating and sinking. We're looking for a more continuous
+          and integrated description of repetitive up-and-down motion on water.
+    scene: Describing a precarious journey on rough waters.
+    register: semi-formal
+    setting: serious
+    nuance: 「嵐 の 海 で」 (in the stormy sea) and 「小さな ボート」 (small boat) highlight the perilous situation.
+      「{浮きつ沈みつ}」 vividly describes the boat's struggle against the waves, emphasizing its precarious movement.
+  - english: He wavered between the two difficult choices, unable to decide.
+    japanese:
+      - 彼 は 二 つ の 難しい 選択 肢 の 間 で {とつおいつ} し て い た。
+      - 彼 は 二 つ の 難しい 選択 肢 の 間 で {とつおいつ} し て た。
+      - 彼 は 二 つ の 難しい 選択 肢 の 間 で {とつおいつ} する ばかり だっ た。
+    english_literally: He two difficult choices of between wavering doing was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 二 つ の 難しい 選択 肢 の 間 で {迷っ て} い た。
+        english: He was hesitating between the two difficult choices.
+        hint: 「迷う」 is a general verb for 'to hesitate' or 'to be undecided.' We're looking for a more
+          specific, idiomatic expression that conveys a state of constant wavering between options.
+    scene: A person is facing a tough decision.
+    register: semi-formal
+    setting: serious
+    nuance: 「とつおいつ」 succinctly captures the state of indecision and wavering between options, often used
+      in a slightly formal or literary context. The phrase 「二つ の 難しい 選択 肢 の 間 で」 clarifies the specific
+      dilemma, portraying a serious internal conflict.
+  - english: In the crowded train, people were pushing and being pushed.
+    japanese:
+      - 満員 電車 の 中 で、人々 は {押し つ 押さ れ つ} し て い た。
+      - 満員 電車 の 中 で、人々 は {押し つ 押さ れ つ} し て た。
+      - 満員 電車 の 中 で、人々 は {押し つ 押さ れ つ}、混沌 と し て い た。
+    english_literally: Crowded train of inside in, people were pushing-being-pushed doing.
+    competing_grammar:
+      - competing_japanese:
+          - 満員 電車 の 中 で、人々 は {押し たり 押さ れ たり} し て い た。
+        english: In the crowded train, people were pushing and being pushed back and forth.
+        hint: 「押し たり 押さ れ たり する」 describes alternating actions of pushing and being pushed. We're looking
+          for a more continuous and integrated description of the chaotic movement within a crowd.
+    scene: Describing a packed morning commuter train.
+    register: casual
+    setting: informative
+    nuance: 「満員 電車 の 中 で」 sets the common, relatable scene of a packed train. 「{押しつ押されつ}」 vividly conveys
+      the constant motion and jostling within the crowd, a common experience for commuters.
+  - english: The two rivals were in a fierce neck-and-neck chase throughout the race.
+    japanese:
+      - 二人 の ライバル は レース を 通し て {追 いつ 追わ れ つ} の 激しい 競争 だっ た。
+      - 二人 の ライバル は レース を 通し て {追 いつ 追わ れ つ} の 激しい 競争 でし た。
+      - 二人 の ライバル は レース を 通し て {追 いつ 追わ れ つ} し て 激しい 競争 だっ た。
+    english_literally: Two rivals race through chasing-being-chased of fierce competition was.
+    competing_grammar:
+      - competing_japanese:
+          - 二人 の ライバル は レース を 通し て {追いかけ たり 追いかけ られ たり する} 激しい 競争 だっ た。
+        english: The two rivals were in a fierce competition, chasing and being chased throughout the
+          race.
+        hint: 「追いかけ たり 追いかけ られ たり する」 describes alternating actions of chasing and being chased. We're
+          looking for a more idiomatic and concise expression for a continuous, intense back-and-forth
+          struggle in a race.
+    scene: A sports commentator describes a close race.
+    register: formal
+    setting: informative
+    nuance: 「激しい 競争」 emphasizes the intensity of the competition. 「{追いつ追われつ}」 is a classic idiom used
+      to describe a continuous back-and-forth struggle where competitors are constantly gaining on and
+      falling behind each other, fitting for an experienced commentator addressing a general audience.
+  - english: The art appraiser carefully examined the antique vase, scrutinizing every detail.
+    japanese:
+      - 美術 鑑定 士 は 古い 花瓶 を {矯め つ 眇め つ}、細部 を じっくり 調べ た。
+      - 美術 鑑定 士 は 古い 花瓶 を {矯め つ 眇め つ}、細部 を じっくり 調べ まし た。
+      - 美術 鑑定 士 は 古い 花瓶 を {矯め つ 眇め つ} し ながら、細部 を じっくり と 調べ た。
+    english_literally: Art appraiser old vase scrutinizing, details carefully examined.
+    competing_grammar:
+      - competing_japanese:
+          - 美術 鑑定 士 は 古い 花瓶 を {隅々 まで じっくり 調べ た}。
+        english: The art appraiser carefully examined the antique vase down to every corner.
+        hint: 「隅々 まで じっくり 調べる」 means to examine carefully to every corner. We're looking for a more descriptive
+          and somewhat classical expression for the specific action of scrutinizing an object by turning
+          it around.
+    scene: An expert inspecting a valuable artifact.
+    register: formal
+    setting: professional
+    nuance: 「美術鑑定士」 (art appraiser) establishes a professional and academic context, often associated
+      with experienced individuals. 「{矯めつ眇めつ}」 perfectly describes the act of meticulously examining an
+      object from all angles, suggesting a very careful and thorough inspection typical of an expert.
+  - english: At the year-end party, everyone was taking turns pouring drinks for each other, and the atmosphere
+      was lively.
+    japanese:
+      - 忘年 会 で は、皆 が {差 しつ 差さ れ つ} 酒 を 酌み 交わし、和やか な 雰囲気 だっ た。
+      - 忘年 会 で は、皆 が {差 しつ 差さ れ つ} 酒 を 酌み 交わし、和やか な 雰囲気 でし た。
+      - 忘年 会 で は、皆 が {差 しつ 差さ れ つ} 酒 を 酌み 交わし、場 は 和やか な 雰囲気 だっ た。
+    english_literally: Year-end party at, everyone pouring-being-poured sake exchanging, lively atmosphere
+      was.
+    competing_grammar:
+      - competing_japanese:
+          - 忘年 会 で は、皆 が お 酒 を {注ぎ 合っ て}、和やか な 雰囲気 だっ た。
+        english: At the year-end party, everyone was pouring sake for each other, and the atmosphere was
+          lively.
+        hint: 「注ぎ合う」 means to pour for each other. We're looking for a more traditional and idiomatic
+          expression that specifically implies the exchange of drinks in a social setting, particularly
+          with sake.
+    scene: A lively social gathering.
+    register: semi-formal
+    setting: friendly
+    nuance: 「忘年会」 (year-end party) sets a common Japanese social context. 「{差しつ差されつ}」 specifically describes
+      the tradition of pouring drinks for others and having them pour for you, fostering camaraderie.
+      「和やか な 雰囲気 だっ た」 describes the warm atmosphere created by this interaction.
+post_example_writeup: The examples showcase how 「つ〜つ」 is used to describe continuous, alternating actions
+  or states, often implying a natural, unavoidable back-and-forth. This pattern is particularly effective
+  in creating vivid imagery and conveying a sense of ongoing dynamic change.

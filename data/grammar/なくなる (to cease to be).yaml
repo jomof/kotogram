@@ -1,0 +1,399 @@
+grammar_point: なくなる (to cease to be)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Clause]から (because・so)'
+  - '[Clause]ので (because・so)'
+  - '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - けれど (but・however)
+  - そのうち (eventually・before long)
+  - 間もなく (shortly・in a moment・very soon)
+meaning: to cease to be; to be lost; to disappear; to run out of; to no longer be
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: なくなる
+    rarity: common
+    meaning: to cease to be; to disappear; to run out of; to no longer be
+  - conjugation-type: non-past polite (～ます)
+    form: なくなります
+    rarity: common
+    meaning: to cease to be; to disappear; to run out of; to no longer be (polite)
+  - conjugation-type: negative plain (～ない)
+    form: なくならない
+    rarity: uncommon
+    meaning: does not cease to be; does not disappear; does not run out of; is no longer
+  - conjugation-type: negative non-past polite (～ません)
+    form: なくなりません
+    rarity: uncommon
+    meaning: does not cease to be; does not disappear; does not run out of; is no longer (polite)
+  - conjugation-type: past plain (～た)
+    form: なくなった
+    rarity: common
+    meaning: ceased to be; disappeared; ran out of; was no longer
+  - conjugation-type: past polite (～ました)
+    form: なくなりました
+    rarity: common
+    meaning: ceased to be; disappeared; ran out of; was no longer (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: なくならなかった
+    rarity: rare
+    meaning: did not cease to be; did not disappear; did not run out of; was no longer
+  - conjugation-type: negative past polite (～ませんでした)
+    form: なくなりませんでした
+    rarity: rare
+    meaning: did not cease to be; did not disappear; did not run out of; was no longer (polite)
+  - conjugation-type: te-form (～て)
+    form: なくなって
+    rarity: common
+    meaning: ceasing to be; disappearing; running out of; no longer being (and...)
+  - conjugation-type: conditional (～ば)
+    form: なくなれば
+    rarity: uncommon
+    meaning: if it ceases to be; if it disappears; if it runs out of; if it is no longer
+  - conjugation-type: conditional (～たら)
+    form: なくなったら
+    rarity: uncommon
+    meaning: if/when it ceases to be; if/when it disappears; if/when it runs out of; if/when it is no
+      longer
+  - conjugation-type: volitional (～よう)
+    form: なくなろう
+    rarity: very rare
+    meaning: let's cease to be; it will probably cease to be
+  - conjugation-type: volitional polite (～ましょう)
+    form: なくなりましょう
+    rarity: very rare
+    meaning: let's cease to be (polite); it will probably cease to be (polite)
+pronunciation:
+  katakana: ナクナル
+  romaji: nakunaru
+formation:
+  Verb (plain negative form) + なる: Indicates that an action or state expressed by a verb has stopped occurring
+    or that one has ceased doing something. (e.g., 食べる (to eat) -> 食べない (not eat) -> 食べなくなる (to stop eating))
+  い-Adjective (stem) + くなくなる: Indicates a change where an い-adjective state is no longer true. (e.g.,
+    難しい (difficult) -> 難しくなくなる (to no longer be difficult))
+  な-Adjective (stem) + (では/じゃ)なくなる: Indicates that a な-adjective state is no longer true. (e.g., 静か (quiet)
+    -> 静かでは/じゃなくなる (to no longer be quiet))
+  Noun + (では/じゃ)なくなる: Indicates that something is no longer identified as a certain noun. (e.g., 学生 (student)
+    -> 学生では/じゃなくなる (to no longer be a student))
+jlpt: N3
+etymology: The grammar point 「なくなる」 is derived from the verb 「なくなる」 (nakunaru), meaning "to disappear"
+  or "to be lost." In this grammatical construction, it retains the sense of something ceasing to exist
+  or occur, but it's applied more broadly to states and actions, indicating a change from a previous condition.
+writeup: |-
+  The grammar point 「なくなる」 expresses that a certain state or action has ceased to exist or is no longer the case. It is a fundamental expression used to describe transitions where something that previously held true or occurred frequently has now stopped. This grammatical pattern emphasizes the **change** that led to the cessation.
+
+  There are several ways to form 「なくなる」, depending on the type of word it follows:
+
+  *   **Verb (plain negative form) + なる**: This indicates that an action or a state expressed by a verb has stopped occurring. For example, 「食べる」 (taberu) means "to eat" while 「食べなくなる」 (tabe naku naru) means "to stop eating" or "to no longer eat." It's often used with potential verbs, such as 「話せなくなる」 (hanase naku naru), meaning "to become unable to speak" or "to lose the ability to speak."
+  *   **い-Adjective (stem) + くなくなる**: For い-adjectives, the final い is dropped, and 「くなくなる」 is appended. This signifies that the quality described by the adjective is no longer present. For instance, 「高くなくなる」 (takaku naku naru) means "to no longer be expensive."
+  *   **な-Adjective (stem) + (では/じゃ)なくなる**: For な-adjectives, 「ではなくなる」 (or the more casual 「じゃなくなる」) is added. This indicates that the state described by the な-adjective is no longer true. For example, 「静かじゃなくなる」 (shizuka ja naku naru) means "to no longer be quiet."
+  *   **Noun + (では/じゃ)なくなる**: Similarly, for nouns, 「ではなくなる」 (or 「じゃなくなる」) is used to express that someone or something is no longer identified as that noun. For example, 「学生じゃなくなる」 (gakusei ja naku naru) means "to no longer be a student."
+
+  「なくなる」 implies a process or a gradual shift over time, leading to the current state of cessation. It's distinct from simply stating that something *is not* the case, as it highlights the **change** from a previous state of being or doing.
+false_friends:
+  - term: もう～ない
+    meaning: not anymore
+    kind: similar expression
+    nuance: While 「なくなる」 implies a change of state resulting in something no longer being the case, 「もう～ない」
+      simply states that something is not the case anymore without necessarily implying a process of change.
+    grammar_point: <strongly-suggest>:もう～ない (not anymore)
+  - term: ようになる
+    meaning: to become able to; to reach the point where
+    kind: antonym
+    nuance: Unlike 「なくなる」, which describes the cessation of an action or state, 「ようになる」 describes the
+      beginning or attainment of an ability or state.
+    grammar_point: ようになる (to come to be)
+  - term: ～ない
+    meaning: not (plain negative)
+    kind: often confused with
+    nuance: 「～ない」 simply states a current negative condition or absence, while 「～なくなる」 indicates a *change*
+      from a state of being or doing to a state of not being or doing.
+    grammar_point: Verb[ない] (plain negative)
+  - term: ～ていない
+    meaning: not doing; not in a state of
+    kind: often confused with
+    nuance: 「～ていない」 describes a current state of not performing an action or not being in a certain condition,
+      whereas 「～なくなる」 emphasizes the process of *coming to be* in that state of non-action or non-existence.
+    grammar_point: <strongly-suggest>:Verb[ていない] (not doing or not in a state of)
+post_false_friends_writeup: 「なくなる」 focuses on the process or transition of something stopping, whereas
+  「もう～ない」 is a direct statement about the current situation without emphasizing the change. 「ようになる」 indicates
+  a gradual shift toward gaining the ability or condition to do something, in contrast to 「なくなる」, which
+  signifies a shift away from a certain state. Simple negative forms like 「～ない」 or 「～ていない」 merely describe
+  a present negative state or ongoing non-action, lacking the inherent meaning of transformation found
+  in 「なくなる」.
+examples:
+  - english: Recently, I no longer stay up late at night.
+    japanese:
+      - 最近、夜 遅く まで 起き て いる こと が {なくなっ た}。
+      - 最近、夜 遅く まで 起き て いる こと が {なくなり まし た}。
+      - 最近、夜 遅く まで 起き {なくなっ た}。
+      - 最近、夜更かし し {なくなっ た}。
+    english_literally: Recently, the matter of staying up late at night has ceased to be.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、夜 遅く まで 起き {て い ない}。
+        english: Recently, I am not staying up late at night.
+        hint: 「～ていない」 describes a current state of not performing an action. We're looking for an expression
+          that indicates a *change* from habitually doing something to not doing it.
+      - competing_japanese:
+          - 最近、夜 遅く まで もう 起き {ない}。
+        english: Recently, I no longer stay up late at night (simple statement).
+        hint: 「もう～ない」 simply states that something is not the case anymore, without emphasizing a process
+          of change. We're looking for a change in habit over time.
+    scene: A person reflecting on their improved sleep habits.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The phrase 「こと が なくなった」 is used here to emphasize the *occurrence* of an action ceasing, rather
+      than the action itself. The speaker's reflection on a personal habit makes the casual register and
+      younger age appropriate for a personal thought or diary entry. The speaker's gender isn't specifically
+      marked but is a common neutral choice for such reflective statements.
+  - english: Although this apartment was old, it's no longer dirty because it was renovated.
+    japanese:
+      - この アパート は 古い けれど、リフォーム し た の で 汚く {なくなり まし た}。
+      - この アパート は 古い けど、リフォーム し た から 汚く {なくなっ た}。
+      - この アパート は 古い けれど、改装 し た の で 汚く {なくなり まし た}。
+    english_literally: This apartment is old, but because it was reformed, it ceased to be dirty (polite).
+    competing_grammar:
+      - competing_japanese:
+          - この アパート は 古い けれど、リフォーム し た の で 汚く {ない} です。
+        english: Although this apartment was old, it is not dirty because it was renovated.
+        hint: 「～ない」 simply states a current negative condition. We're looking for an expression that emphasizes
+          the *change* from a previous state to the current state.
+      - competing_japanese:
+          - この アパート は 古い けれど、リフォーム し た の で もう 汚く {ない} です。
+        english: Although this apartment was old, it's not dirty anymore because it was renovated.
+        hint: 「もう～ない」 states a current negative condition. We're looking for an expression that emphasizes
+          the *change* from a previous state to the current state.
+      - competing_japanese:
+          - この アパート は 古い けれど、リフォーム し た の で 汚く なっ {て い ませ ん}。
+        english: Although this apartment was old, it is not in a dirty state because it was renovated.
+        hint: 「～ていない」 describes a current state of not being in a certain condition. We're looking for
+          an expression that indicates a *process* of coming to be in that state of non-existence.
+    scene: A real estate agent showing a renovated apartment to a potential renter.
+    register: semi-formal
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「なくなりました」 here clearly indicates a change from a previous state (being dirty) to
+      the current state (not dirty) due to the renovation. The semi-formal register and polite verb ending
+      (～ました) are appropriate for an older male real estate agent addressing potential renters.
+  - english: Japanese is no longer difficult, so daily studying has become enjoyable.
+    japanese:
+      - 日本 語 が 難しく {なくなっ て}、毎日 の 勉強 が 楽しく なり まし た。
+      - 日本 語 が 難しく {なくなっ た}、毎日 の 勉強 が 楽しく なっ た。
+      - 日本 語 の 勉強 が 難しく {なくなり まし た}、日々 が 楽しく なり まし た。
+    english_literally: Japanese became not difficult, and daily studying became enjoyable.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が 難しく {ない} の で、毎日 の 勉強 が 楽しく なり まし た。
+        english: Since Japanese is not difficult, daily studying has become enjoyable.
+        hint: 「～ない」 simply states a current negative condition. We're looking for an expression that highlights
+          the *transformation* from a difficult state to an easy state.
+      - competing_japanese:
+          - 日本 語 が もう 難しく {ない} の で、毎日 の 勉強 が 楽しく なり まし た。
+        english: Since Japanese is no longer difficult, daily studying has become enjoyable.
+        hint: 「もう～ない」 states a current negative condition. We're looking for an expression that highlights
+          the *transformation* from a difficult state to an easy state.
+    scene: A language student sharing their progress and newfound enjoyment with their study group.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The 「て-form」 of なくなる connects the cessation of difficulty directly to the enjoyment of studying.
+      The casual register and friendly setting reflect a student sharing personal progress with peers.
+      This usage implicitly conveys that Japanese *was* difficult, but now it's no longer the case, marking
+      a significant positive change.
+  - english: I used to often go eat ramen, but recently I stopped going.
+    japanese:
+      - 以前 は よく ラーメン を 食べ に 行っ た けど、最近 は 行か {なくなり まし た}。
+      - 昔 は よく ラーメン 食べ に 行っ た けど、最近 は 行か {なくなっ た}。
+      - 以前 は よく ラーメン を 食べ に 参り まし た が、最近 は 行か {なくなり まし た}。
+    english_literally: Before, I often went to eat ramen, but recently, I no longer go.
+    competing_grammar:
+      - competing_japanese:
+          - 以前 は よく ラーメン を 食べ に 行っ た けど、最近 は 行き {ませ ん}。
+        english: I used to often go eat ramen, but recently I don't go.
+        hint: 「～ない」 simply states a current negative condition. We're looking for an expression that emphasizes
+          the *process of ceasing* an action.
+      - competing_japanese:
+          - 以前 は よく ラーメン を 食べ に 行っ た けど、最近 は もう 行き {ませ ん}。
+        english: I used to often go eat ramen, but recently I don't go anymore.
+        hint: 「もう～ない」 states a current negative condition. We're looking for an expression that emphasizes
+          the *process* of ceasing* an action.
+      - competing_japanese:
+          - 以前 は よく ラーメン を 食べ に 行っ た けど、最近 は 行っ {て い ませ ん}。
+        english: I used to often go eat ramen, but recently I am not going.
+        hint: 「～ていない」 describes a current state of not performing an action. We're looking for an expression
+          that indicates a *change* from habitually doing something to not doing it.
+    scene: A man explaining his changed eating habits to a friend who asks him to go out.
+    register: semi-formal
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「行かなくなりました」 indicates a shift in a regular activity. The semi-formal register is
+      common in polite conversations between adults, even friends, especially when discussing personal
+      habits. The older male speaker reinforces a slightly more mature conversational tone.
+  - english: He used to get angry often, but recently he rarely gets angry anymore.
+    japanese:
+      - 彼 は 以前 は よく 怒っ て い た が、最近 は 滅多 に 怒ら {なくなり まし た}。
+      - 彼 は 昔 は よく 怒っ て た けど、最近 は 滅多 に 怒ら {なくなっ た}。
+      - 彼 は 以前 は 短気 だっ た けど、最近 は 丸く なっ て 怒ら {なくなり まし た}。
+    english_literally: He before often was angry, but recently he rarely becomes not angry.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 以前 は よく 怒っ て い た が、最近 は 滅多 に 怒り {ませ ん}。
+        english: He used to get angry often, but recently he rarely gets angry.
+        hint: 「～ない」 simply states a current negative condition. We're looking for an expression that emphasizes
+          the *process* of a habit ceasing.
+      - competing_japanese:
+          - 彼 は 以前 は よく 怒っ て い た が、最近 は もう 滅多 に 怒り {ませ ん}。
+        english: He used to get angry often, but recently he rarely gets angry anymore.
+        hint: 「もう～ない」 states a current negative condition. We're looking for an expression that emphasizes
+          the *process* of a habit ceasing.
+      - competing_japanese:
+          - 彼 は 以前 は よく 怒っ て い た が、最近 は 滅多 に 怒っ {て い ませ ん}。
+        english: He used to get angry often, but recently he is rarely angry.
+        hint: 「～ていない」 describes a current state of not being in a certain condition. We're looking for
+          an expression that indicates a *change* from habitually being angry to not being angry.
+    scene: Two colleagues discussing a coworker's change in temperament.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: This example shows the cessation of a behavioral pattern (getting angry often). The polite
+      register (teineigo) is appropriate for discussing a coworker in a professional setting. The subtle
+      shift from frequently angry to rarely angry is effectively conveyed by 「滅多 に 怒ら なくなりました」.
+  - english: If you practice, you'll eventually stop feeling nervous.
+    japanese:
+      - 練習 すれ ば、その うち 緊張 し {なくなり ます} よ。
+      - 練習 すれ ば、その うち 緊張 し {なくなる} よ。
+      - 練習 すれ ば、いつ か 緊張 が {なくなり ます} よ。
+    english_literally: If you practice, eventually you will cease to feel nervous, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 練習 すれ ば、その うち 緊張 し {ない} でしょう。
+        english: If you practice, you won't be nervous eventually.
+        hint: 「～ない」 simply states a simple future negative condition. We're looking for an expression
+          that implies a *process* of change leading to the cessation of nervousness.
+      - competing_japanese:
+          - 練習 すれ ば、その うち もう 緊張 し {ない} でしょう。
+        english: If you practice, you won't be nervous anymore eventually.
+        hint: 「もう～ない」 states a simple future negative condition. We're looking for an expression that
+          implies a *process* of change leading to the cessation of nervousness.
+    scene: A mentor encouraging a mentee who is nervous about a presentation.
+    register: semi-formal
+    setting: supportive
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「なくなります」 with 「その うち」 (eventually) emphasizes the future cessation of nervousness
+      as a result of practice, implying a positive change. The semi-formal register is fitting for a supportive
+      mentor-mentee relationship. The sentence-final particle 「よ」 adds a gentle assertion, conveying encouragement.
+  - english: My child used to cry a lot, but recently they've stopped crying.
+    japanese:
+      - うち の 子 は よく 泣い て い まし た が、最近 は 泣か {なくなり まし た}。
+      - うち の 子 は よく 泣い て た けど、最近 は 泣か {なくなっ た}。
+      - 私 の 子供 は よく 泣い て い まし た が、最近 は 泣か {なくなり まし た}。
+    english_literally: Our child often used to cry, but recently has ceased to cry.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 子 は よく 泣い て い まし た が、最近 は 泣き {ませ ん}。
+        english: Our child used to cry a lot, but recently doesn't cry.
+        hint: 「～ない」 expresses a simple negative. We are looking for an expression that indicates a *change*
+          from crying to not crying.
+    scene: A mother talking to her friend about her child's development.
+    register: casual
+    setting: friendly
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「泣かなくなりました」 highlights the child's developmental change from frequently crying to no longer
+      doing so. The casual register is appropriate for a conversation between friends. The use of 「うち
+      の 子」 is a common way for parents to refer to their children in a familiar context.
+  - english: It's no longer cold, so let's go out for a walk.
+    japanese:
+      - 寒く {なくなっ て} き た の で、散歩 に 行き ましょ う。
+      - 寒く {なくなっ た}、散歩 しよ う。
+      - 寒く {なくなり まし た} から、散歩 に 行き ませ ん か。
+    english_literally: It has become not cold, so let's go for a walk.
+    competing_grammar:
+      - competing_japanese:
+          - 寒く {ない} の で、散歩 に 行き ましょ う。
+        english: It's not cold, so let's go for a walk.
+        hint: 「～ない」 states a current condition. We are looking for an expression that implies a *change*
+          from a cold state to a not-cold state, suggesting the weather has improved.
+    scene: Two friends deciding to go for a walk on a warming day.
+    register: casual
+    setting: friendly
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The 「て-form」 of なくなる in 「寒くなくなって」 indicates that the cessation of coldness is the reason for
+      wanting to go for a walk, implying a pleasant change in weather. The casual tone suits friends making
+      plans.
+  - english: This area used to be very quiet, but it's no longer quiet due to the new construction.
+    japanese:
+      - この 地域 は とても 静か だっ た の に、新しい 建設 で 静か じゃ {なくなり まし た}。
+      - この 地域 は とても 静か だっ た の に、新しい 建設 で 静か じゃ {なくなっ た}。
+      - この エリア は とても 静か だっ た ん です が、新しい 建物 が でき て 静か じゃ {なくなり まし た}。
+    english_literally: This area was very quiet, but due to new construction, it has ceased to be quiet.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 は とても 静か だっ た の に、新しい 建設 で 静か じゃ {ない} です。
+        english: This area used to be very quiet, but it's not quiet due to the new construction.
+        hint: 「～ない」 states a simple negative. We are looking for an expression that emphasizes the *transformation*
+          of the area from quiet to not quiet.
+    scene: A resident lamenting the noise increase in their neighborhood due to development.
+    register: semi-formal
+    setting: reflective
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「静かじゃなくなりました」 expresses regret over the loss of a previous state of quietness. The semi-formal
+      register is appropriate for discussing community changes with a group, reflecting a shared sentiment.
+      The nuance conveys a change for the worse, implying a negative impact of development.
+  - english: From next spring, I will no longer be a student.
+    japanese:
+      - 来年 の 春 から、もう 学生 じゃ {なくなり ます}。
+      - 来年 の 春 から、学生 じゃ {なくなる}。
+      - 来年 の 春 より、学生 で は {なくなり まし た}。
+    english_literally: From next spring, I will no longer be a student.
+    competing_grammar:
+      - competing_japanese:
+          - 来年 の 春 から、もう 学生 じゃ {ない} です。
+        english: From next spring, I am no longer a student.
+        hint: 「～ない」 states a simple negative. We are looking for an expression that points to a *future
+          change* in status, emphasizing the transition from student to non-student.
+    scene: A university student discussing their future plans after graduation.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「学生じゃなくなります」 clearly marks a future change in identity or status, typical for a graduating
+      student. The formal register and polite ending 「なります」 are suitable for discussing one's future with
+      a teacher or in a more official context. The phrase 「もう」 reinforces the idea of something ceasing
+      completely.
+post_example_writeup: As these examples demonstrate, 「なくなる」 is a versatile expression indicating a change
+  resulting in the cessation of a state or action. Whether it's a personal habit, an environmental condition,
+  or a change in one's identity, this grammar point effectively conveys the transformation. Pay close
+  attention to the various formations (verb negative, い-adjective, な-adjective, noun) and the context
+  to accurately apply 「なくなる」 in your Japanese communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/なくなる

@@ -1,0 +1,196 @@
+grammar_point: 面 (aspect)
+learn_before:
+  - Verb[えば] (conditional)
+  - お~だ (honorific copula)
+  - から見ると (from the viewpoint of・looking from)
+  - と思う (I think or thought)
+  - の (noun modifier)
+  - までもない (needless to say)
+  - やや (slightly)
+  - より (comparative)
+  - 何〜ない (not at all)
+  - 全く〜ない (not at all)
+  - 影響を与える (to influence・to affect)
+meaning: aspect; side; viewpoint; in terms of
+pronunciation:
+  katakana: メン
+  romaji: men
+formation:
+  '[Noun] + 面': Indicates an aspect, side, or viewpoint of the noun it attaches to.
+jlpt: N3
+etymology: 「面」 (men) originally refers to the surface or face of something. In this grammatical context,
+  it's used metaphorically to refer to a particular side or aspect of a subject.
+writeup: The suffix 「面」 (men) is attached to nouns to indicate a specific aspect, side, or viewpoint.
+  It's used to focus on one particular element of a larger topic. For example, 「安全面」 (anzenmen) means
+  "the safety aspect," and 「経済面」 (keizaimen) means "the economic aspect." It is similar to 「〜の点から」 but
+  more concise, often used when discussing an entire dimension of something rather than just a specific
+  point.
+false_friends:
+  - term: 点
+    meaning: point; aspect; score
+    kind: similar expression
+    nuance: 「点」 can refer to a specific point or score, while 「面」 emphasizes a broader aspect or side
+      of something. 「面」 is more suitable for describing the aspect of a topic.
+    grammar_point: 点 (aspect・point)
+post_false_friends_writeup: While both 「点」 and 「面」 can refer to an aspect, 「面」 tends to cover broader,
+  more general facets, while 「点」 often focuses on specific points or scores within that aspect. Using
+  the correct term ensures that you convey the precise meaning you intend.
+examples:
+  - english: This plan has some problems in terms of budget.
+    japanese:
+      - この 計画 は、予算 {面} で 少し 問題 が ある。
+      - この 計画 は、予算 {面} で 少し 問題 が あり ます。
+      - この 計画 は、予算 {面} で やや 問題 が あり ます。
+    english_literally: This plan, regarding the budget aspect, has a few problems.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は、予算 の {点} で 少し 問題 が ある。
+        english: This plan has some problems at the point of budget.
+        hint: While both mean 'in terms of', 「点」 often refers to a specific point, whereas 「面」 indicates
+          a broader aspect. We're looking for a broad aspect here.
+    scene: Discussing the challenges of a project.
+    register: semi-formal
+    setting: professional
+  - english: She has no problems at all in terms of her studies.
+    japanese:
+      - 彼女 は 勉強 {面} で は 全然 問題 が ない。
+      - 彼女 は 勉強 {面} で は 全く 問題 が あり ませ ん。
+      - 彼女 は 勉強 {面} で は 何 の 問題 も あり ませ ん。
+    english_literally: Regarding the study aspect, she has no problems at all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 勉強 の {点} で は 全然 問題 が ない。
+        english: Regarding the point of her studies, she has no problems at all.
+        hint: 「点」 can refer to specific points, but 「面」 emphasizes a general aspect or area. We're looking
+          for a general aspect of her studies.
+    scene: Talking about a student's performance.
+    register: semi-formal
+    setting: informative
+  - english: The new company especially emphasizes the design aspect.
+    japanese:
+      - 新しい 会社 は デザイン {面} を 特に 重視 し て いる。
+      - 新しい 会社 は デザイン {面} を 特に 重視 し て い ます。
+      - 新しい 会社 は デザイン {面} を とても 重視 し て い ます。
+    english_literally: The new company particularly emphasizes the design aspect.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 会社 は デザイン の {点} を 特に 重視 し て いる。
+        english: The new company particularly emphasizes the point of design.
+        hint: To convey that design is treated as an inherent 'aspect' of the business, 「面」 is more fitting
+          than 「点」, which can imply a specific point.
+    scene: Describing a company's priorities.
+    register: formal
+    setting: informative
+  - english: This smartphone is excellent in terms of functionality.
+    japanese:
+      - この スマート フォン は 機能 {面} で 非常 に 優れ て いる。
+      - この スマート フォン は 機能 {面} で 非常 に 優れ て い ます。
+      - この スマート フォン は 機能 {面} で とても 優れ て い ます。
+    english_literally: This smartphone is extremely excellent in terms of its functional aspect.
+    competing_grammar:
+      - competing_japanese:
+          - この スマート フォン は 機能 の {点} で 非常 に 優れ て いる。
+        english: This smartphone is excellent at the point of functionality.
+        hint: 「面」 is used for a comprehensive 'functional side' or overall aspect, while 「点」 might suggest
+          specific features. We're talking about the overall functionality.
+    scene: Reviewing a tech product.
+    register: semi-formal
+    setting: technical
+  - english: Tanaka is perfect in terms of work, but his personal life is a bit...
+    japanese:
+      - 田中 さん は 仕事 {面} で は 完璧 だ けど、私 生活 は ちょっと...
+      - 田中 さん は 仕事 {面} で は 完璧 です が、私 生活 は ちょっと...
+      - 田中 さん は 仕事 {面} に おい て は 完璧 です が、私 生活 は 少々...
+    english_literally: Tanaka is perfect in the work aspect, but his private life is a bit...
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は 仕事 の {点} で は 完璧 だ けど、私 生活 は ちょっと...
+        english: Tanaka is perfect at the point of work, but his private life is a bit...
+        hint: When highlighting an entire domain like 'work life,' 「面」 is more appropriate than 「点」, which
+          focuses on specific points.
+    scene: Gossiping about a colleague.
+    register: casual
+    setting: humorous
+  - english: I think this restaurant is great for a date in terms of atmosphere.
+    japanese:
+      - この レストラン は 雰囲気 {面} で デート に 最高 だ と 思う よ。
+      - この レストラン は 雰囲気 {面} で デート に 最高 だ と 思い ます。
+      - この レストラン は 雰囲気 {面} で は デート に 最高 だ と 思い ます。
+    english_literally: This restaurant, in terms of its atmosphere aspect, I think is the best for a date.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は 雰囲気 の {点} で デート に 最高 だ と 思う よ。
+        english: I think this restaurant is great for a date at the point of atmosphere.
+        hint: To describe the comprehensive 'atmospheric side' of the restaurant, 「面」 is more suitable
+          than 「点」, which refers to specific points.
+    scene: Recommending a restaurant for a date.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「雰囲気面」 suggests the restaurant's vibe and ambiance are suitable for romance. The sentence-final
+      particle 「よ」 (yo) adds a casual, assertive tone, common in male speech or when emphasizing information,
+      especially when speaking to someone of a similar or younger age.
+  - english: This project has severe time constraints.
+    japanese:
+      - この プロジェクト は 時間 {面} で の 制約 が 厳しい です。
+      - この プロジェクト は 時間 {面} で の 制約 が 厳しい。
+      - この プロジェクト は 時間 {面} で の 制限 が 厳しい です。
+    english_literally: This project has severe constraints in the time aspect.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト は 時間 の {点} で の 制約 が 厳しい です。
+        english: This project has severe constraints at the point of time.
+        hint: For an overall 'time-related side' or aspect, 「面」 is preferred over 「点」, which suggests
+          a specific point in time.
+    scene: Discussing the limitations of a project.
+    register: formal
+    setting: professional
+  - english: The new policy will likely have a big impact on the environmental aspect.
+    japanese:
+      - 新しい 政策 は 環境 {面} に 大きな 影響 を 与える だろう。
+      - 新しい 政策 は 環境 {面} に 大きな 影響 を 与える でしょう。
+      - 新しい 政策 は 環境 {面} に 大きな 影響 を 与える と 思わ れ ます。
+    english_literally: The new policy will probably give a big impact on the environmental aspect.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 政策 は 環境 の {点} に 大きな 影響 を 与える だろう。
+        english: The new policy will likely have a big impact on the point of the environment.
+        hint: To discuss the entire 'environmental side' or dimension of impact, 「面」 is more appropriate
+          than 「点」, which implies isolated points.
+    scene: Analyzing the effect of a policy.
+    register: semi-formal
+    setting: informative
+  - english: From a management perspective, this investment isn't wise.
+    japanese:
+      - 経営 {面} から 見る と、この 投資 は 賢明 で は ない。
+      - 経営 {面} から 見る と、この 投資 は 賢明 で は あり ませ ん。
+      - 経営 {面} から 見れ ば、この 投資 は 賢明 で は あり ませ ん。
+    english_literally: Looking from the management aspect, this investment is not wise.
+    competing_grammar:
+      - competing_japanese:
+          - 経営 の {点} から 見る と、この 投資 は 賢明 で は ない。
+        english: Looking from the point of management, this investment is not wise.
+        hint: For a holistic 'management perspective' or 'management side,' 「面」 is more fitting than 「点」,
+          which would refer to a specific point in management.
+    scene: Evaluating an investment opportunity.
+    register: formal
+    setting: professional
+  - english: From a character standpoint, he is a very serious person.
+    japanese:
+      - 彼 は 性格 {面} で は とても 真面目 な 人 です。
+      - 彼 は 性格 {面} に おい て は とても 真面目 な 人 です。
+      - 彼 は 性格 {面} で は 大変 真面目 な 方 です。
+    english_literally: He, regarding the character aspect, is a very serious person.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 性格 の {点} で は とても 真面目 な 人 です。
+        english: He is a very serious person at the point of his character.
+        hint: 「点」 focuses on specific points of character, while 「面」 refers to the overall aspect of one's
+          character. We're discussing his character in general.
+    scene: Two colleagues discussing a new hire's personality.
+    register: semi-formal
+    setting: professional
+post_example_writeup: 「面」 provides a concise way to specify the aspect or viewpoint you're considering,
+  making your statements more focused.

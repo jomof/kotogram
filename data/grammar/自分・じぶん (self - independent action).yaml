@@ -1,0 +1,317 @@
+grammar_point: 自分・じぶん (self - independent action)
+learn_before:
+  - Verb[ます] (polite present)
+  - '[Noun]以上 (more than or equal to)'
+  - '[Verb-dictionary]のが好きだ (to like doing)'
+  - '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - '[Verb-て] (means・method)'
+  - お~だ (honorific copula)
+  - と伝える (to convey or report)
+  - 差し上げる (humbly give)
+  - 自分 (oneself)
+  - 自分・じぶん (one's own)
+meaning: self; oneself; by oneself; own
+pronunciation:
+  katakana: ジブン
+  romaji: jibun
+formation:
+  自分: Refers back to a human subject, contrasted with someone else.
+  自分の + [Noun]: Indicates something belonging to the subject.
+  自分から + [Verb]: Indicates that someone does something voluntarily or of their own accord.
+  ご自分: Polite form of 自分, often used in honorific contexts to refer to someone else's personal action
+    or possession in a respectful way. It implies 'by your own hand' or 'your own personal one'.
+jlpt: N4
+etymology: The word 「自分 (jibun)」 is derived from 「自 (ji)」 meaning 'self' and 「分 (bun)」 which originally
+  meant 'to divide' or 'a part'. Over time, it evolved to represent one's own portion or self. The independent
+  action connotation comes from the reflexive nature of referring back to the subject performing the action.
+writeup: '**自分 (jibun)** is a reflexive pronoun that refers back to the subject of a sentence, similar
+  to "oneself" or "myself/yourself/himself/herself/themselves" in English. It implies a contrast or emphasis
+  on the individual''s own actions or possessions. 「自分」 can also indicate doing something independently
+  or voluntarily. It is a fundamental word that shows a clear distinction between the speaker''s own self
+  or actions and those of others. This usage of 「自分」 emphasizes an action being performed by the subject
+  *personally* rather than by or for someone else, or a possession being *exclusively* one''s own. It
+  can also be used honorifically with the prefix 「ご」 as in 「ご自分」, to respectfully refer to someone else''s
+  personal actions or belongings.'
+false_friends:
+  - term: 自分 (一般代名詞)
+    meaning: oneself, myself, yourself, himself, herself, itself, themselves (general reflexive pronoun)
+    kind: similar expression
+    nuance: Unlike this grammar point, 「自分 (一般代名詞)」 is used as a simple reflexive pronoun referring to
+      the subject without emphasizing a contrast with someone else. It is similar to "oneself" in English,
+      for example, in "自分を大切にする" (to take care of oneself). In contrast, this grammar point, 「自分 (独立した行動)」,
+      is used to emphasize distinction from others, independent action, or exclusive possession, meaning
+      "one's own."
+    grammar_point: <strongly-suggest>:自分 (general reflexive pronoun)
+  - term: 一人で
+    meaning: Alone; by oneself (physically)
+    kind: often confused with
+    nuance: While 「一人で」 emphasizes physical solitude, 「自分でする」 focuses on the self-reliance and initiative
+      of performing an action without external help or direction, not necessarily physical isolation.
+    grammar_point: <strongly-suggest>:一人で (physically alone)
+  - term: 自ら
+    meaning: By oneself; personally; on one's own initiative (formal/literary)
+    kind: similar expression
+    nuance: 「自ら」 is a more formal or literary equivalent emphasizing self-initiative, often implying a
+      sense of duty or serious purpose. 「自分から」 (this grammar point) is more common and less formal, highlighting
+      voluntary action or proactiveness in everyday contexts.
+    grammar_point: <strongly-suggest>:自ら (on one's own initiative)
+post_false_friends_writeup: 「自分」は日本語において、英語の"self"に対応する非常に多義的な表現です。この文法点では、主語が他人とは異なる独立した行動をとる、あるいは他者とは区別される「自分自身のもの」であるという強調を伴う「自分」の用法に焦点を当てています。これに対して、文脈によっては単に主語を指す一般的な再帰代名詞としての「自分」も存在します。この二つの「自分」の用法は、文脈における「対比」や「独立性」の有無によって区別されます。また、「自分」と混同されやすい表現に「一人で
+  (hitori de)」があります。「一人で」は物理的に孤立している状態を指すのに対し、この文法点の「自分 (jibun) で」は、他者の助けを借りずに、あるいは自らの意志で行動するという「自立性」や「自主性」に重きを置きます。例えば、部屋に他の人がいても「自分でご飯を作る」と言うことはできます。さらに、「自ら
+  (mizukara)」も「自分から」と同様に「自発的な行動」を表しますが、「自ら」はよりフォーマルな場面や書き言葉で用いられ、行為者の強い意志や責任感を強調する傾向があります。一方、「自分から」は日常会話で自然に使われ、より個人的な動機や積極性を表す際に適しています。これらの類義表現との違いを理解することで、「自分」の持つ豊かなニュアンスをより深く掴むことができるでしょう。
+examples:
+  - english: My daughter always properly conveys her own feelings.
+    japanese:
+      - 娘 は いつ も {自分} の 気持ち を ちゃんと 伝える。
+      - 娘 は いつ も {自分} の 気持ち を しっかり 伝える。
+      - 娘 が いつ も {自分} の 気持ち を ちゃんと 伝え ます。
+    english_literally: My daughter always herself's feelings properly conveys.
+    competing_grammar:
+      - competing_japanese:
+          - 娘 は いつ も {彼女 の} 気持ち を ちゃんと 伝える。
+        english: My daughter always properly conveys her feelings (belonging to her).
+        hint: The use of 「彼女の気持ち」 simply indicates possession, but lacks the nuance that the feelings
+          originate from within her, emphasizing her independent expression. We're looking for an expression
+          that highlights the self-originated nature of the feelings.
+    scene: A parent is praising their daughter's emotional maturity to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「自分の気持ち」 emphasizes that the feelings are intrinsic to the daughter, and her act
+      of conveying them is an independent, mature action. The speaker, a mother, uses the casual tone
+      appropriate for sharing a personal observation with a friend. This highlights the daughter's individuality
+      and emotional intelligence. For example, 「娘はいつまでも{自分の}気持ちをちゃんと言う」 uses 「自分の」 to emphasize that the
+      feelings are uniquely hers, and she expresses them without external influence or guidance, showing
+      personal integrity and self-awareness as a positive trait. Contrast this with simply saying 「彼女の気持ち」,
+      which merely states possession without this deeper nuance of self-origin or independence.
+  - english: I make my own bento and take it to the office.
+    japanese:
+      - 私 は {自分} で 弁当 を 作っ て 会社 に 持っ て 行く。
+      - 私 は {自分} で 弁当 を 作成 し て 会社 に 持っ て 行き ます。
+      - '{自分} で 弁当 を 作っ て 会社 に 持っ て 行く よ。'
+    english_literally: I myself by bento make and company to take go.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は {一人 で} 弁当 を 作っ て 会社 に 持っ て 行く。
+        english: I make bento alone and take it to the office.
+        hint: 「一人で」 emphasizes being physically alone. However, 「自分で」 highlights the act of doing something
+          without relying on others, emphasizing self-sufficiency and effort. We're looking for an expression
+          that emphasizes personal effort and independence.
+    scene: A busy professional is explaining their daily routine to a colleague, highlighting their self-sufficiency.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「自分で」 emphasizes the speaker's personal effort and independence in preparing their own meal,
+      rather than buying it or having someone else prepare it. This conveys diligence and self-reliance,
+      common traits admired in a professional setting. The slightly formal verb endings (行く) align with
+      a semi-formal, professional conversation. For instance, 「{自分}で弁当を作る」 clearly indicates that the
+      speaker takes personal initiative and effort, distinguishing it from an action performed by someone
+      else or a task for which help was received. The choice of casual vs. polite forms 「作る」 vs 「作ります」
+      depends on the speaker's relation to the listener and the desired level of formality.
+  - english: He worked hard to make his own dream come true.
+    japanese:
+      - 彼 は {自分} の 夢 を 実現 する ため に 努力 し た。
+      - 彼 は {自分} の 夢 を 叶える ため に 努力 し た。
+      - 彼 は {自分} の 夢 を 実現 する ため に 努力 し まし た。
+    english_literally: He himself's dream realize to for worked hard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {彼 の} 夢 を 実現 する ため に 努力 し た。
+        english: He worked hard to make his dream (belonging to him) come true.
+        hint: 「彼の夢」 simply indicates possession. 「自分の夢」 strongly emphasizes that the dream is deeply personal
+          and unique to him, motivating his efforts. We're looking for an expression that emphasizes the
+          personal and intrinsic nature of the dream.
+    scene: A teacher is describing a student's dedication to achieving a personal goal.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「自分の夢」 strongly emphasizes that the dream is deeply personal and unique to him, motivating
+      his efforts. The formal tone is suitable for an academic setting where a teacher is speaking to
+      students or parents, conveying a serious and inspiring message about personal ambition. The use
+      of 「{自分}の夢」 implies that the dream is inherently 'his own', not one influenced or imposed by others.
+      This phrasing, coupled with the formal 「努力しました」, creates a strong sense of personal commitment and
+      self-driven pursuit characteristic of an academic or reflective context.
+  - english: It suddenly started raining, so my clothes got wet.
+    japanese:
+      - 急 に 雨 が 降っ て 来 た の で、{自分} の 服 が 濡れ て しまっ た。
+      - 急 に 雨 が 降っ て 来 た の で、{自分} の 服 が 濡れ て しまい まし た。
+      - 急 な 雨 で {自分} の 服 が 濡れ て しまっ た。
+    english_literally: Suddenly rain fell came so, myself's clothes got wet did.
+    competing_grammar:
+      - competing_japanese:
+          - 急 に 雨 が 降っ て 来 た の で、{私 の} 服 が 濡れ て しまっ た。
+        english: It suddenly started raining, so my clothes (belonging to me) got wet.
+        hint: 「私の服」 is grammatically correct but doesn't carry the subtle emphasis that it's *my* specific
+          clothes, distinct from others, that got wet. 「自分の服」 highlights this personal possession in such
+          an unfortunate situation. We're looking for an expression that emphasizes personal ownership
+          in this context.
+    scene: Someone is recounting an unexpected incident where they got caught in the rain.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「自分の服」 highlights that the clothes are distinctively 'mine,' conveying a slight emphasis on
+      personal inconvenience. The casual しまった ending indicates regret or an unfortunate outcome. This
+      is typical of casual conversation when recounting a minor mishap. The phrase 「{自分}の服」 highlights
+      a personal inconvenience, emphasizing that it was specifically 'my' clothes that got wet, rather
+      than just 'the clothes' or 'her clothes', implying a stronger, more personal connection to the item
+      affected.
+  - english: For this job, it's important to participate proactively on your own initiative.
+    japanese:
+      - この 仕事 は {自分} から 積極 的 に 参加 する こと が 大切 です。
+      - この 仕事 で は {自分} から 積極 的 に 参加 する の が 大切 です。
+      - この 仕事 は {自分} から 積極 的 に 参加 する こと が 重要 です。
+    english_literally: This job myself from proactively participate doing is important.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は {自ら} 積極 的 に 参加 する こと が 大切 です。
+        english: For this job, it's important to participate proactively on your own initiative (formal).
+        hint: 「自ら」 is more formal or literary and implies self-initiative, but 「自分から」 is more common and
+          natural in everyday advice or instructional settings, emphasizing acting without being told.
+          We're looking for a more natural expression for advice in this context.
+    scene: A team leader is giving advice to new team members about contributing to projects.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「自分から」 emphasizes taking personal initiative without needing external prompting, which is
+      crucial for new employees in a team setting. The use of polite form です and the instructional setting
+      imply a semi-formal professional environment. The phrase 「{自分}から積極的に参加する」 highlights the importance
+      of individual proactivity, showing that employees should initiate actions rather than waiting for
+      instructions. This nuance is crucial in a professional, instructional context, promoting self-driven
+      contribution.
+  - english: The department manager himself kindly made tea for the customer.
+    japanese:
+      - 部 長 が ご {自分} で お 客 様 の お 茶 を 入れ て くださっ た。
+      - 部 長 が ご {自分} で お 客 様 に お 茶 を お 入れ ください まし た。
+      - 部 長 が ご {自分} で お 客 様 に お 茶 を 差し上げ まし た。
+    english_literally: Department manager himself by customer's tea making kindly gave.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 が {秘書 に} お 客 様 の お 茶 を 入れ させ た。
+        english: The department manager made his secretary make tea for the customer.
+        hint: 「秘書に〜させた」 indicates the manager instructed someone else to make tea. 「ご自分で」 emphasizes that
+          the manager, despite his high status, personally performed the task, showing humility and respect.
+          We're looking for an expression that highlights the manager's personal action.
+    scene: An employee is expressing surprise and admiration to a colleague about their manager's humble
+      act.
+    register: sonkeigo (respectful)
+    setting: professional
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The honorific 「ご」 combined with 「自分」 in 「ご自分で」 signifies the department manager's high status
+      and the exceptional nature of his personal act of making tea for a customer. 「くださった」 further conveys
+      the speaker's gratitude and respect. This sophisticated usage is characteristic of formal business
+      interactions, especially when discussing superiors' actions. The use of honorifics like お 客 様 も
+      adds to the respect, and the younger speaker's use of such polite language highlights her deference.
+      The combination of 「ご{自分}で」 and 「くださいました」 (or 差し上げました) highlights a high degree of respect shown
+      towards the manager, emphasizing that someone of his status chose to perform such a task personally.
+      This nuance is deeply embedded in Japanese honorific language, reflecting both humility from the
+      manager and respect from the speaker. The female speaker's choice of these forms, particularly when
+      younger, shows appropriate deference in a professional setting. The phrase 「お客さまのお茶」 also subtly
+      adds to the formal context.
+  - english: I like to study by myself at the library.
+    japanese:
+      - 私 は 図書 館 で {自分} で 勉強 する の が 好き です。
+      - 図書 館 で {自分} で 勉強 する の が 好き だ。
+      - 私 は 図書 館 で {自分} で 勉強 する の が 好き な ん です。
+    english_literally: I library at myself by study do like is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 図書 館 で {一人 で} 勉強 する の が 好き です。
+        english: I like to study alone at the library.
+        hint: 「一人で」 emphasizes being physically alone. However, 「自分で」 highlights the self-directed and
+          independent nature of studying, rather than with a group or being taught. We're looking for
+          an expression that highlights independent effort.
+    scene: A student explaining their study habits to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「自分で勉強する」 emphasizes that the studying is self-directed and independent, not reliant on teachers
+      or study groups. This is a common, natural expression among students. The phrase 「{自分}で勉強する」 here
+      implies autonomy and self-reliance in studying, differentiating it from group study or receiving
+      direct instruction. The male speaker's use of 「好きです」 in a friendly context is natural, while the
+      optional 「なんです」 can add a slightly explanatory or emphatic tone.
+  - english: My son, on his own initiative, helps with chores.
+    japanese:
+      - 息子 は {自分} から 家事 を 手伝い ます。
+      - 息子 が {自分} から 家事 を 手伝い ます。
+      - 息子 が {自分} から 家事 を 手伝っ て くれ ます。
+    english_literally: Son himself from chores helps.
+    competing_grammar:
+      - competing_japanese:
+          - 息子 は {言わ れ なく て も} 家事 を 手伝い ます。
+        english: My son helps with chores even without being told.
+        hint: 「言われなくても」 emphasizes doing something without being prompted, but 「自分から」 specifically highlights
+          the internal motivation and willingness. We're looking for an expression that conveys proactive,
+          willing action.
+    scene: A parent proudly telling another parent about their child's helpfulness.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「自分から」 emphasizes the son's internal motivation and willingness to help, rather than being
+      asked or forced. This brings out the child's positive character trait. The usage of 「{自分}から」 in
+      「息子は{自分}から家事を手伝います」 highlights the son's proactiveness and internal motivation, implying that he
+      helps without being asked. The female speaker's use of this phrase in an informative setting emphasizes
+      her son's positive character, suitable for sharing with another parent. This phrase is about personal
+      initiative, not just the act of helping.
+  - english: Please keep your personal belongings in your locker.
+    japanese:
+      - '{自分} の 荷物 は ロッカー に 入れ て ください。'
+      - '{自分} の 荷物 を ロッカー に 入れ て ください。'
+      - '{ご 自分} の 荷物 は ロッカー に お 入れ ください。'
+    english_literally: Myself's belongings locker in put please.
+    competing_grammar:
+      - competing_japanese:
+          - '{各人 の} 荷物 は ロッカー に 入れ て ください。'
+        english: Please put each person's belongings in their locker.
+        hint: 「各人の」 is more formal and general, referring to 'each person's' in a broad sense. 「自分の荷物」
+          more directly instructs each individual to manage *their own* distinct belongings. We're looking
+          for a common, direct instruction for personal responsibility.
+    scene: A staff member giving instructions to new members at a gym or facility.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「自分の荷物」 clearly indicates that each person is responsible for *their own* distinct belongings,
+      emphasizing personal property and responsibility within a shared space. The polite request 「〜てください」
+      is suitable for an instructional setting. The use of 「{自分}の荷物」 (or 「ご{自分}の荷物」 for higher formality)
+      clearly assigns personal responsibility for each individual's belongings, in contrast to a more
+      general term like 「各人の荷物」. The male speaker's formal instructional tone reflects the setting, where
+      clear, direct guidance on personal accountability is needed.
+  - english: No matter how difficult, I want to overcome this challenge by myself.
+    japanese:
+      - どんな に 困難 で も、この 課題 は {自分} で 乗り越え たい です。
+      - どんな に 困難 で も、この 課題 を {自分} で 乗り越え たい です。
+      - どんな に 困難 で も、{自分} で この 課題 を 乗り越え たい。
+    english_literally: How much difficult even, this challenge myself by overcome want is.
+    competing_grammar:
+      - competing_japanese:
+          - どんな に 困難 で も、この 課題 は {誰 の 助け も 借り ず に} 乗り越え たい です。
+        english: No matter how difficult, I want to overcome this challenge without anyone's help.
+        hint: 「誰の助けも借りずに」 is more verbose and explicitly states 'without help'. 「自分で」 is a more concise
+          way to express the desire for self-reliance and personal effort in overcoming a challenge. We're
+          looking for a more succinct expression of personal determination.
+    scene: Someone expressing their determination to face a personal difficulty to a close friend or as
+      an internal monologue.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「自分で乗り越えたい」 expresses a strong personal desire for independence and self-reliance in overcoming
+      a difficult situation, highlighting internal strength and determination. The polite 「です」 makes it
+      suitable for a reflective statement or speaking to a close friend without being overly casual. The
+      use of 「{自分}で乗り越えたい」 powerfully conveys the speaker's desire for self-reliance and personal strength
+      in overcoming a challenge. The female speaker's use of this phrase, even if to no one in particular,
+      emphasizes an internal monologue of determination. This is a common way to express personal resolve
+      in a serious context, showing the 'self' as the primary agent of effort.
+post_example_writeup: The examples showcase how 「自分」 emphasizes personal ownership, independent action,
+  or self-initiative, often in contrast to others or external forces. This nuance is key to mastering
+  its usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/164

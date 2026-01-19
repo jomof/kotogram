@@ -1,0 +1,237 @@
+grammar_point: どうやって (how to do)
+learn_before:
+  - どう (how)
+meaning: how to do; by what means
+pronunciation:
+  katakana: ドウヤッテ
+  romaji: dou yatte
+formation:
+  どう + Verb[te-form]: To inquire about the method or means of an action.
+  どうやって + [Verb]: Used to ask how an action is performed.
+  どうやって + Noun: Used less commonly, implies 'how something is done with this noun' or 'how to make this
+    noun'.
+jlpt: N4
+etymology: どうやって combines どう (how, in what way), which originates from 如何 (いか) meaning "how, what kind
+  of", and やって, the te-form of the verb やる (to do, to perform). The やる here implies carrying out an action
+  or task. Thus, どうやって literally asks "how one does" or "by what means one performs" an action.
+writeup: |-
+  どうやって is a common Japanese expression used to inquire about the method or means by which something is done. It literally translates to "how to do" or "by what means." It is formed by combining the adverb どう (how) with the te-form of the verb やる (to do), resulting in どうやって.
+
+  This phrase is versatile and can be used with various verbs to ask about the process or procedure. For example, if you want to know how to open a specific door, you would ask 「そのドア、{どうやって} 開けますか。」 (How do you open that door?). It can refer to physical actions, mental processes, or even the mechanism of something.
+
+  While どうやって is generally neutral in politeness, the politeness level of the overall sentence depends on the verb form that follows it. For instance, using ～ますか makes it polite, while a plain form makes it casual.
+
+  It's important to distinguish どうやって from どう (how). While both relate to "how," どう is broader and can refer to appearance, state, or opinion (e.g., 「{どう}ですか。」 - How is it?). どうやって specifically focuses on the *method* or *process* of an action.
+false_friends:
+  - term: どう
+    meaning: how; in what way; what kind; how about
+    kind: similar expression
+    nuance: 「どう」 is a general interrogative adverb asking about state, manner, or opinion. It does not
+      specifically refer to the method of doing something.
+    grammar_point: どう (how)
+  - term: どのように
+    meaning: in what way; how (polite)
+    kind: synonym
+    nuance: 「どのように」 is a more formal and polite equivalent of 「どうやって」. While 「どうやって」 is common in everyday
+      conversation, 「どのように」 is preferred in more formal settings or when you want to be more respectful.
+    grammar_point: どのように (in what way)
+post_false_friends_writeup: When choosing between どうやって and どう or どのように, remember the core difference.
+  どうやって and どのように are specifically about the *method* or *process* of performing an action. どうやって is more
+  common and less formal. どのように is more formal. In contrast, どう is a more general interrogative, asking
+  about state, appearance, or opinion, not typically the step-by-step process.
+examples:
+  - english: How do you make this dish?
+    japanese:
+      - この 料理 は {どう やっ て} 作り ます か。
+      - この 料理、{どう やっ て} 作る の？
+      - この 料理、{どう やっ て} 作る？
+      - この 料理、{どう やっ て} 作れ ば いい？
+    english_literally: This dish, how do you make?
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は どう です か。
+        english: How is this dish?
+        hint: 「どうですか」 asks for a general opinion or state. We're looking for how to *make* something.
+    scene: A student in a cooking class asks the instructor about the preparation method.
+    register: formal
+    setting: instructional
+    conjugation: non-past polite (～ます)
+  - english: How did you find out about that?
+    japanese:
+      - それ、{どう やっ て} 知っ た の？
+      - それ を {どう やっ て} 知り まし た か。
+      - それ、{どう やっ て} 知っ た ん だ？
+      - それ、{どう やっ て} わかっ た の？
+    english_literally: That, how did you know?
+    competing_grammar:
+      - competing_japanese:
+          - それ、どう だっ た？
+        english: How was that?
+        hint: 「どうだった」 asks about the general state or outcome in the past. We're looking for the *method*
+          of knowing.
+    scene: Two close friends are chatting, and one asks how the other acquired some information.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of the plain past form 「知ったの？」 makes this question very casual and friendly, typical
+      among close friends. The sentence-final particle 「の」 further softens the tone, common in female
+      speech, asking for explanation.
+  - english: How does this machine work?
+    japanese:
+      - この 機械 は {どう やっ て} 動き ます か。
+      - この 機械 は {どう やっ て} 動作 し ます か。
+      - この 機械、{どう やっ て} 動く の？
+      - この 機械、{どう やっ て} 使う の？
+    english_literally: This machine, how does it move?
+    competing_grammar:
+      - competing_japanese:
+          - この 機械 の 使い 方 は どう です か。
+        english: How is the way to use this machine?
+        hint: This phrasing is slightly indirect. We're looking for a direct question about *how* the
+          machine operates.
+    scene: A new employee is being trained on a complex piece of equipment and asks their supervisor.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: How are we going to solve this problem?
+    japanese:
+      - この 問題 を {どう やっ て} 解決 し ます か。
+      - この 問題、{どう やっ て} 解決 する の？
+      - この 問題 を {どう やっ て} 解決 すれ ば よろしい でしょう か。
+      - この 問題 を {どう やっ て} 解決 し ましょう か。
+    english_literally: This problem, how will we solve?
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は どう です か。
+        english: How is this problem?
+        hint: 「どうですか」 asks about the problem's current state. We're looking for the *method* to solve
+          it.
+    scene: Colleagues in a team meeting are brainstorming solutions to a challenge.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: How do I get to the station?
+    japanese:
+      - 駅 まで {どう やっ て} 行け ば いい です か。
+      - 駅 まで {どう やっ て} 行き ます か。
+      - 駅 まで {どう やっ て} 行く？
+      - 駅 まで {どう やっ て} 行っ たら いい です か。
+    english_literally: To the station, how to go, is good?
+    competing_grammar:
+      - competing_japanese:
+          - 駅 は どこ です か。
+        english: Where is the station?
+        hint: This asks for the location, not the *method* of transportation or directions.
+    scene: A tourist asks a passerby for directions to the nearest train station.
+    register: formal
+    setting: interrogative
+    conjugation: conditional (～ば)
+  - english: How did you get home yesterday?
+    japanese:
+      - 昨日、{どう やっ て} 家 に 帰り まし た か。
+      - 昨日、{どう やっ て} 家 に 帰っ た の？
+      - 昨日、{どう やっ て} 家 に 帰っ た？
+      - 昨日、{どう やっ て} 家 に 帰ら れ まし た か。
+    english_literally: Yesterday, how did you return home?
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、家 に どう でし た か。
+        english: How was it at home yesterday?
+        hint: This asks about the state of being home, not the *method* of returning.
+    scene: A friend is catching up with another friend, asking about their commute after a late event.
+    register: formal
+    setting: friendly
+    conjugation: past polite (～ました)
+  - english: How can I improve my Japanese reading skills?
+    japanese:
+      - 日本 語 の 読解 力 を {どう やっ て} 伸ばせ ます か。
+      - 日本 語 の 読解 力 を {どう やっ て} 伸ばせる？
+      - 日本 語 の 読解 力 を {どう やっ て} 上げ られ ます か。
+    english_literally: Japanese reading ability, how can I extend?
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 の 読解 力 を どう し たい です か。
+        english: How do you want to do with your Japanese reading ability?
+        hint: This asks about desire, not the *method* of improvement.
+    scene: A student asks their Japanese language teacher for advice on studying.
+    register: formal
+    setting: academic
+    conjugation: potential (～られる/～える)
+  - english: How are we gonna meet up later?
+    japanese:
+      - 後 で {どう やっ て} 待ち合わせる？
+      - 後 で {どう やっ て} 待ち合わせ ます か。
+      - 後 で {どう やっ て} 待ち合わせる ん だ？
+      - 後 で {どう やっ て} 会う？
+    english_literally: Later, how will we meet?
+    competing_grammar:
+      - competing_japanese:
+          - 後 で 待ち合わせ、どう？
+        english: Later, for meeting up, how about it?
+        hint: This is a suggestion for meeting, not an inquiry about the *method* of meeting.
+    scene: Two young male friends are making plans for later in the day.
+    register: casual
+    setting: casual slang
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The plain form 「待ち合わせる？」 is typical casual male speech. The lack of a final particle makes
+      it a direct, unadorned question common among young male friends.
+  - english: How do you manage to balance work and personal life?
+    japanese:
+      - 仕事 と プライベート を {どう やっ て} 両立 さ せ て い ます か。
+      - 仕事 と プライベート を {どう やっ て} 両立 さ せ てる の？
+      - 仕事 と プライベート を {どう やっ て} 両立 なさっ て い ます か。
+    english_literally: Work and private life, how are you balancing?
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 と プライベート は どう です か。
+        english: How are work and personal life?
+        hint: This asks for a general status update. We're looking for the *method* of balancing.
+    scene: A junior colleague asks a senior colleague for life advice during a coffee break.
+    register: semi-formal
+    setting: professional
+    conjugation: progressive (～ている)
+  - english: How are you ever going to explain this to them?
+    japanese:
+      - これ を みんな に {どう やっ て} 説明 する つもり な の？
+      - これ を みんな に {どう やっ て} 説明 し ます か？
+      - これ を みんな に {どう やっ て} 説明 する ん だ？
+      - これ を みんな に {どう やっ て} 話す つもり な の？
+    english_literally: This, to everyone, how are you intending to explain?
+    competing_grammar:
+      - competing_japanese:
+          - これ を みんな に どう する の？
+        english: What are you going to do about this to everyone?
+        hint: This asks what action will be taken, not the *method* of explaining.
+    scene: A parent, with a concerned tone, asks their child about how they plan to communicate a difficult
+      situation to others.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: How am I supposed to know?
+    japanese:
+      - '{どう やっ て} 知れ って いう ん だ よ。'
+      - '{どう やっ て} 知れ ば いい ん だ よ。'
+      - '{どう やっ て} 知る ん だ よ。'
+      - '{どう やっ て} 知れ ば よい の でしょう か。'
+    english_literally: How, know (imperative), what do you mean?
+    competing_grammar:
+      - competing_japanese:
+          - 知ら ない よ。
+        english: I don't know.
+        hint: While conveying the same message, this is a simple statement of lack of knowledge. We're
+          looking for a rhetorical question expressing frustration about being expected to know *how*.
+    scene: Someone is asked a question they don't know the answer to, expressing mild frustration or exasperation.
+    register: casual
+    setting: casual slang
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: male
+    nuance: This is a very colloquial and slightly frustrated expression. The 「って いうんだよ」 structure is
+      a casual way to ask "What do you mean by telling me to do X?" combined with the imperative 「知れ」
+      (know!). It's common in male speech, especially when expressing exasperation.
+post_example_writeup: どうやって is extremely versatile and can be used with a wide range of verbs and in various
+  tenses to inquire about the method of an action. Pay attention to the verb conjugation and sentence-final
+  particles to match the politeness and gender-specific nuances required for your context.

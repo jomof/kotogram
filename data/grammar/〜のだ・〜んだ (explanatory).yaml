@@ -1,0 +1,826 @@
+grammar_point: 〜のだ・〜んだ (explanatory)
+learn_before:
+  - だった (past copula, casual)
+  - な-Adjectives (adjectival nouns)
+  - は (topic and contrast)
+meaning: Used to provide or seek explanation, or to add emphasis to a statement, often implying a reason
+  or context for something observed or known.
+pronunciation:
+  katakana: ノ・ンデス・ノデス
+  romaji: no / n desu / no desu
+  pronunciation_warning: The 'ん' (n) in 'んです' is often pronounced as a syllabic nasal, similar to the
+    'ng' in 'sing'.
+formation:
+  Verb Plain form + の/んだ/のです/んです: Used to provide an explanation or emphasize the reason for an action
+    or state.
+  I-adjective Plain form + の/んだ/のです/んです: Used to provide an explanation or emphasize the reason for a
+    quality or characteristic.
+  Na-adjective stem + な + の/んだ/なのです/なんです: Used to explain or emphasize the nature or state described by
+    the な-adjective.
+  Noun + な + の/んだ/なのです/なんです: Used to explain or emphasize the identity or nature of a noun, or to provide
+    context about it. The 'な' is essential when following a noun or な-adjective.
+jlpt: N5
+etymology: The core of 〜のだ・〜んだ lies in the nominalizing particle の, which historically functions like
+  こと or もの in turning a clause into a noun phrase, implying "the matter of..." or "the fact that...".
+  When combined with the copula です (as in の です), it literally meant "it is the matter of...". Over time,
+  this evolved to convey an explanatory or emphatic nuance, framing the preceding statement as a reason,
+  context, or something that needs explanation. The casual forms のだ and んだ evolved from の です, with んだ
+  being a phonetic contraction of のです (from のです -> のん です -> んです -> んだ), reflecting a natural linguistic
+  tendency for sounds to assimilate or shorten for ease of pronunciation in Japanese. The sentence-final
+  particle の (without だ or です) is a further casual abbreviation of のだ or のです, retaining the explanatory
+  or confirmatory nuance but with a softer, often more emotive or feminine tone.
+writeup: 'The grammar point **〜のだ・〜んだ** (and its polite forms **〜のです・〜んです**) serves multiple crucial functions
+  in Japanese. It goes beyond merely stating a fact, implying that the speaker is offering a reason, cause,
+  or background information for something observed or known. This structure frames a statement as an explanation,
+  or seeks clarification about an underlying situation. There are several forms, each with varying degrees
+  of politeness and nuance: * **〜のだ / 〜んだ**: These are the plain, casual forms. "のだ" is slightly more
+  formal or emphatic than "んだ", which is a phonetic contraction often used in everyday conversation. Both
+  are used to provide explanations or emphasize a point. * **〜のです / 〜んです**: These are the polite forms.
+  "んです" is much more common in spoken Japanese than "のです", giving it a more conversational feel. They
+  serve the same explanatory or emphatic function as their plain counterparts but in polite contexts.
+  * **〜の**: This is the most casual and often softer form, derived from the omission of "だ" or "です" from
+  "のだ" or "のです". It is frequently used to seek or provide explanations, express emotion, or soften the
+  tone of a statement. Its usage can sometimes be associated with **female speakers** or **children**,
+  contributing to a gentler, more endearing, or intimate tone, though its use is not strictly limited
+  by gender or age. This construction attaches to the plain form of verbs and い-adjectives. For nouns
+  and な-adjectives, a **な** is required before the "の/ん" part (e.g., 学生**なんです**, 静か**なんです**). This ''な''
+  acts as a connecting particle, similar to how it connects な-adjectives to nouns. When used in a question
+  form (e.g., **〜んですか** or **〜の？**), it indicates that the speaker is seeking an explanation or the reason
+  behind something observed or known. It adds a nuanced layer of inquiry, suggesting the speaker is not
+  just asking for a simple fact but for context, justification, or a deeper understanding. This makes
+  conversations more engaging and allows for more natural probing into underlying reasons. Understanding
+  the subtle implication of providing a reason or context is key. If a simple statement of fact suffices,
+  **です** or **だ** is used. However, when you want to frame your statement as an explanation, or when you
+  are responding to an implied question about *why* something is the way it is, **〜のだ・〜んだ** becomes essential.
+  It creates a sense of shared understanding, implying that the statement is relevant to a current situation
+  or observation.'
+false_friends:
+  - term: です
+    meaning: to be, is
+    kind: similar expression
+    nuance: Unlike 〜のだ・〜んだ, です is a simple copula used to state a fact without implying a reason or explanation.
+      です is less explanatory and does not inherently convey the speaker's emotional involvement or shared
+      context that 〜のだ・〜んだ does.
+    grammar_point: です (polite copula)
+  - term: 〜から
+    meaning: because, since
+    kind: similar expression
+    nuance: While 〜から explicitly states a cause or reason, 〜のだ・〜んだ implies a reason or explanation that
+      the speaker assumes the listener needs or is seeking. 〜から is a direct causal connector, whereas
+      〜のだ・〜んだ frames the preceding statement as an explanation in response to an implied context or question.
+    grammar_point: '[Clause]から (because・so)'
+  - term: 〜らしい
+    meaning: appears to be
+    kind: often confused with
+    nuance: While "〜らしい" indicates that something seems true based on information or common understanding
+      (often hearsay), 〜のだ・〜んだ is used when the speaker is stating something as a fact, or as their own
+      explanation or emphasis. "〜らしい" conveys inference, 〜のだ・〜んだ conveys conviction or context.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+  - term: はずだ
+    meaning: expected to be
+    kind: similar expression
+    nuance: While both "〜のだ・〜んだ" and "はずだ" can explain why something is the case, "はずだ" implies a logical
+      expectation or certainty based on known facts or common sense. "〜のだ・〜んだ" focuses on providing an
+      explanation or background for a current situation or observation, often in response to an implied
+      question, and can carry more emotional nuance or a personal conviction.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: 〜そうだ
+    meaning: looks or seems like
+    kind: often confused with
+    nuance: Similar to "らしい", "そう" indicates an appearance or inference based on observation. "〜のだ・〜んだ",
+      however, is used for stating a direct explanation or reason, often for a situation already understood
+      or experienced by the speaker. "そう" describes how something *appears*, while "〜のだ・〜んだ" explains
+      *what* it is or *why* it is.
+    grammar_point: <suggest>:[Verb-stem・Adj-stem]〜そうだ (it seems・looks like)
+  - term: こと
+    meaning: abstract thing, making a verb a noun
+    kind: often confused with
+    nuance: Both "の" (as in "のです") and "こと" can nominalize clauses. However, "の" in "のです" specifically
+      introduces an explanation, reason, or emphasis, often tying the statement to an underlying context.
+      "こと" more generally turns a verb or adjective phrase into a conceptual noun, without the inherent
+      explanatory or emphatic nuance of "のです".
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: ね
+    meaning: seeking agreement
+    kind: often confused with
+    nuance: While both "の" and "ね" are sentence-final particles, "ね" primarily seeks agreement or confirmation
+      from the listener, whereas "の" provides an explanation or expresses the speaker's emotion or personal
+      observation. "の" often implies the speaker is sharing new information or a realization, rather than
+      just confirming shared knowledge.
+    grammar_point: ね (seeking agreement)
+  - term: よ
+    meaning: emphasis; information sharing
+    kind: often confused with
+    nuance: よ is used to emphasize a statement or provide new information with certainty, sometimes with
+      a sense of telling the listener something they don't know. In contrast, 〜のだ・〜んだ softens the statement
+      or seeks an explanation, making it sound less assertive and more personal or inquisitive.
+    grammar_point: よ (emphasis・information sharing)
+  - term: かしら
+    meaning: I wonder
+    kind: similar expression
+    nuance: While "の？" can be used to ask a gentle question, "かしら" specifically expresses the speaker's
+      personal uncertainty or wondering, often with a softer, more reflective tone, predominantly used
+      by female speakers. "の？" can also imply seeking an explanation or clarification from the listener.
+    grammar_point: かしら (soft uncertainty・female)
+  - term: もの・もん
+    meaning: because; since
+    kind: similar expression
+    nuance: もの (or its casual variant もん) shares the explanatory function of 〜のだ・〜んだ, indicating a reason
+      or cause. However, 〜のだ・〜んだ is often broader, used for gentle explanations, personal feelings, or
+      soft inquiries, while もの/もん more strongly emphasizes the reason or justification for a statement,
+      often with a slightly whining or defensive nuance.
+    grammar_point: もの・もん (because・since)
+post_false_friends_writeup: While "です" merely states a fact and "〜から" directly expresses cause, "〜のだ・〜んだ"
+  subtly implies a reason or explanation, or adds emphasis, often in response to an implied question or
+  to establish a shared context. Unlike inferences like "らしい" or "そう", "〜のだ・〜んだ" conveys the speaker's
+  direct conviction or explanation. Similarly, while "はずだ" denotes a logical expectation, "〜のだ・〜んだ" serves
+  to frame a statement as an explanation for a current situation, often with a personal touch. Understand
+  that "の" in "のです" functions as a nominalizer, much like "こと", but specifically carries this explanatory
+  or emphatic function, making it more than just a factual statement. The more casual "の" also provides
+  a softer, sometimes more emotive or gender-specific nuance, setting it apart from other sentence-final
+  particles.
+examples:
+  - english: I'm going home early tomorrow.
+    japanese:
+      - 明日 は 早く 帰る {の}。
+      - 明日 は 早く 帰る {ん です}。
+      - 明日 は 早く 帰る {の です}。
+    english_literally: Tomorrow quickly return, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 早く 帰り ます。
+        english: Tomorrow, I will return home early.
+        hint: Using "帰ります" would be overly formal and unnatural for this intimate, casual context, making
+          "の" more fitting for a gentle explanation. We're looking for a softer, more casual explanation.
+      - competing_japanese:
+          - 明日 は 早く 帰る ん だ。
+        english: Tomorrow, I am going home early.
+        hint: For a child, "帰るんだ" can sound more assertive or self-justifying. The scene emphasizes a
+          gentle explanation, which "の" provides, without sounding demanding. We're looking for a softer
+          explanation.
+      - competing_japanese:
+          - 明日 は 早く 帰る の？
+        english: Are you going home early tomorrow?
+        hint: Adding a question mark to "の" turns it into an interrogative particle. Here, we are stating
+          a fact, not asking a question. We're looking for an explanatory statement.
+    scene: A young boy tells his mother why he needs to prepare for school early.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of "の" by a younger male speaker to explain "早く 帰る の" conveys a gentle, less demanding
+      tone. While "の" is often associated with female speech, it can be used by boys in a tender or explanatory
+      context, especially when speaking to a parent, softening the statement into an endearing explanation.
+  - english: This room is very big.
+    japanese:
+      - この 部屋 は とても 大きい {の}。
+      - この 部屋 は とても 大きい {ん です}。
+      - この 部屋 は とても 大きい {の です}。
+    english_literally: This room, very big, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は とても 大きい です。
+        english: This room is very big.
+        hint: Using "大きい です" would be too formal and lack the personal, emotive emphasis that "の" provides
+          in this context. We're looking for a more personal and expressive statement.
+      - competing_japanese:
+          - この 部屋 は とても 大きい よ。
+        english: This room is very big, you know.
+        hint: While "大きい よ" can add emphasis, it might sound more assertive. The use of "の" softens the
+          statement, making it a shared observation with a gentle, emotive tone. We're looking for a softer,
+          more shared observation.
+      - competing_japanese:
+          - この 部屋 は とても 大きい の だ。
+        english: It is that this room is very big.
+        hint: '"のだ" provides a stronger, more direct explanation or assertion. Here, we are expressing
+          a personal feeling with a softer touch, making "の" more appropriate.'
+      - competing_japanese:
+          - この 部屋 は とても 大きい ね。
+        english: This room is very big, isn't it?
+        hint: '"ね" seeks agreement or confirmation. While "の" can also seek confirmation, it also implies
+          an explanation or personal feeling. We''re looking for a statement with an explanatory or emotive
+          nuance, not just simple agreement.'
+    scene: A young woman showing a new apartment to her friend, enthusiastically describing the spaciousness.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The "の" in "とても 大きい の", used by a young woman, adds an expressive, slightly emotive emphasis
+      to the room's size. This usage highlights a personal feeling and is characteristic of a softer,
+      more intimate conversational style often associated with female speakers in casual settings.
+  - english: It's really quiet here.
+    japanese:
+      - ここ は 本当 に 静か {な の}。
+      - ここ は 本当 に 静か {な ん です}。
+      - ここ は 本当 に 静か {な の です}。
+    english_literally: Here, truly quiet, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - ここ は 本当 に 静か です。
+        english: It is really quiet here.
+        hint: Using "静か です" would be too formal for a relaxed, intimate conversation between friends,
+          lacking the personal touch that "なの" provides when sharing a sentiment. We're looking for a
+          more intimate and expressive statement.
+      - competing_japanese:
+          - ここ は 本当 に 静か だ よ。
+        english: It is really quiet here, you know.
+        hint: While "静か だ よ" is casual, it can sound more like a direct declaration. The use of "の" softens
+          the statement, making it a shared observation with a gentle, emotive tone, inviting shared appreciation.
+          We're looking for a softer, more inviting statement.
+      - competing_japanese:
+          - ここ は 本当 に 静か な の だ。
+        english: It is that it is really quiet here.
+        hint: '"な のだ" carries a stronger explanatory or assertive tone. Here, the speaker is conveying
+          a personal feeling with a gentle, shared nuance, making "なの" more suitable. We''re looking for
+          a softer, more emotive explanation.'
+      - competing_japanese:
+          - ここ は 本当 に 静か だ ね。
+        english: It's really quiet here, isn't it?
+        hint: '"だね" seeks simple agreement. "なの" offers a deeper sense of personal feeling or explanation,
+          inviting the listener to understand the speaker''s internal state. We''re looking for an expression
+          that shares a personal observation with a gentle nuance.'
+    scene: A woman in a peaceful garden sighs contentedly and shares her feeling with a friend.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The "なの" in "本当 に 静か なの", spoken by a woman, conveys a gentle, appreciative explanation of
+      the quietness. This form softens the statement and invites shared sentiment, a nuance frequently
+      found in female speech, particularly in intimate or reflective moments.
+  - english: Everyone was healthy back then.
+    japanese:
+      - あの 時 は みんな、元気 {だっ た の}。
+      - あの 時 は みんな、元気 {だっ た ん です}。
+      - あの 時 は みんな、元気 {だっ た の です}。
+    english_literally: That time, everyone, healthy, it was that.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 は みんな、元気 でし た。
+        english: Everyone was healthy back then.
+        hint: Using "でした" would be overly formal and less emotionally resonant for sharing a personal
+          memory and family history with a grandchild. The scene implies a tender, informal recollection.
+          We're looking for a more personal and reflective statement.
+      - competing_japanese:
+          - あの 時 は みんな、元気 だっ た ん だ。
+        english: Everyone was healthy back then.
+        hint: While "だったんだ" explains, it can sound more assertive or purely factual. The scene suggests
+          a tender, nostalgic tone, which "だったの" provides by adding a softer, more reflective nuance to
+          the past event. We're looking for a softer, more nostalgic explanation.
+      - competing_japanese:
+          - あの 時 は みんな、元気 でし た か？
+        english: Was everyone healthy back then?
+        hint: Adding "か" makes it a polite question seeking information. The original sentence is a reflective
+          statement sharing a memory. We're looking for a statement that expresses a nostalgic sentiment.
+    scene: An elderly man looks at an old photo and explains to his grandchild about the people in it.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The "だったの" in "元気 だった の", used by an older male speaker, conveys a nostalgic and soft tone.
+      This usage softens the past recollection, making it a gentle revelation or personal story, which
+      is typical when an elder shares memories with a younger family member.
+  - english: I'm a student.
+    japanese:
+      - 私 は 学生 {な の}。
+      - 私 は 学生 {な ん です}。
+      - 私 は 学生 {な の です}。
+    english_literally: I am a student, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 学生 です。
+        english: I am a student.
+        hint: While polite, "です" can sound a bit too formal or neutral for a casual self-introduction
+          where a softer, more personable tone is desired. "なの" adds a subtle explanatory nuance. We're
+          looking for a softer, more personable self-introduction.
+      - competing_japanese:
+          - 私 は 学生 だ よ。
+        english: I am a student, you know.
+        hint: Using "だ よ" can sound more assertive or masculine, making it less suitable for a gentle,
+          feminine introduction. The scene guides towards the softer, more inviting tone of "なの". We're
+          looking for a gentle, inviting statement.
+      - competing_japanese:
+          - 私 は 学生 な の だ。
+        english: It is that I am a student.
+        hint: '"な のだ" carries a stronger, more definite assertion or explanation. Here, the speaker is
+          gently explaining her status in a casual setting, making "なの" more appropriate. We''re looking
+          for a softer, explanatory self-introduction.'
+      - competing_japanese:
+          - 私 は 学生 です か？
+        english: Am I a student?
+        hint: Adding "か" makes it a question. The original sentence is a statement of status. We're looking
+          for an informative statement.
+    scene: A young woman at a casual meetup gently introduces herself, explaining her current status.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: The "なの" in "学生 な の", spoken by a young woman, softens the declaration of her status. This
+      gentle, explanatory tone is characteristic of how young women often introduce themselves in casual
+      settings, making the information more personable and less direct.
+  - english: A long time ago, this was a hospital.
+    japanese:
+      - 昔、ここ は 病院 {だっ た の}。
+      - 昔、ここ は 病院 {だっ た ん です}。
+      - 昔、ここ は 病院 {だっ た の です}。
+    english_literally: Long ago, here was a hospital, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、ここ は 病院 でし た。
+        english: A long time ago, this was a hospital.
+        hint: Using "でした" would be overly formal and less engaging for sharing a historical detail personally.
+          We're looking for a more personal and engaging storytelling.
+      - competing_japanese:
+          - 昔、ここ は 病院 だっ た ん だ。
+        english: A long time ago, this was a hospital.
+        hint: While "だったんだ" conveys explanation, it can sometimes carry a more assertive or definite tone.
+          The scene suggests a softer, more reflective sharing of information, which "だったの" provides with
+          its gentle nuance. We're looking for a softer, more reflective storytelling.
+      - competing_japanese:
+          - 昔、ここ は 病院 でし た か？
+        english: Was this a hospital long time ago?
+        hint: Adding "か" makes it a polite question seeking information. The original sentence is a statement
+          sharing a historical fact. We're looking for a reflective statement.
+    scene: An older woman walking through her hometown points to an old building, explaining its past
+      to her younger companion.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The "だったの" in "病院 だった の", used by an older female speaker, adds a touch of reminiscence and
+      a gentle explanatory tone to the historical fact. This makes the shared memory feel more personal
+      and less like a dry recounting, fitting for an older woman sharing local history in a warm, narrative
+      way.
+  - english: That's why I couldn't come yesterday.
+    japanese:
+      - 昨日 は 行け {なかっ た の}。
+      - 昨日 は 行け {なかっ た ん です}。
+      - 昨日 は 行け {なかっ た の です}。
+    english_literally: Yesterday, could not go, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 行き ませ ん でし た。
+        english: Yesterday, I did not go.
+        hint: Using a simple polite negative past tense like "行きませんでした" states the fact but lacks the
+          personal, explanatory nuance of "の", which clarifies the reason. We're looking for a statement
+          that explains the reason.
+      - competing_japanese:
+          - 昨日 は 行け なかっ た ん だ。
+        english: It is that I couldn't go yesterday.
+        hint: While "なかったんだ" provides a direct explanation. While correct, "の" offers a slightly softer,
+          more personal reason for why one couldn't go, which is appropriate for a casual chat with a
+          friend. We're looking for a softer explanation.
+    scene: A man explaining to a close friend why he missed an event.
+    register: casual
+    setting: apologetic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of "の" in "行け なかった の" by a male speaker softens the explanation for not being able
+      to attend, making it sound more personal and less like a mere excuse. It conveys a slight nuance
+      of regret or a gentle reason, characteristic of using "の" for mild explanations among close peers.
+  - english: Did you already eat breakfast?
+    japanese:
+      - もう 朝ごはん 食べ {た の}？
+      - もう 朝ごはん 食べ {た ん です か}？
+      - もう 朝ごはん 食べ {た の です か}？
+    english_literally: Already breakfast ate, it is that?
+    competing_grammar:
+      - competing_japanese:
+          - もう 朝ごはん 食べ まし た か？
+        english: Did you already eat breakfast?
+        hint: Using "食べましたか" is a polite, neutral question. The "の？" form adds a gentle, caring, and often
+          softer interrogative nuance, common when a parent asks a child. We're looking for a more gentle
+          and caring question.
+      - competing_japanese:
+          - もう 朝ごはん 食べ た か？
+        english: Have you already eaten breakfast?
+        hint: '"食べ た か" is a very direct and often masculine or rough way of asking. "の？" provides a significantly
+          softer and more inviting tone. We''re looking for a softer, more inviting question.'
+    scene: A mother asking her child in the morning.
+    register: casual
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The interrogative "の？" in "食べた の？ " is a classic use by female speakers, especially mothers
+      to children, to ask a gentle, caring question without sounding demanding. It softens the inquiry
+      and implies a concern or a desire for a brief explanation.
+  - english: It's so difficult!
+    japanese:
+      - 本当 に 難しい {の}。
+      - 本当 に 難しい {ん です}。
+      - 本当 に 難しい {の です}。
+      - 本当 に 難しい {ん だ}。
+    english_literally: Truly difficult, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - 本当 に 難しい です。
+        english: It is truly difficult.
+        hint: While "難しいです" is a correct polite statement, it lacks the personal, emotional emphasis and
+          slight lament that "の" adds, which expresses a deeper feeling of frustration. We're looking
+          for a more personal and expressive statement.
+      - competing_japanese:
+          - 本当 に 難しい ぞ。
+        english: It is truly difficult!
+        hint: '"ぞ" adds a strong, assertive emphasis, often masculine. "の" provides a softer, more introspective
+          or subtly complaining tone, even for a male speaker. We''re looking for a softer, more nuanced
+          expression of difficulty.'
+    scene: A male student struggling with a problem and complaining to himself or a close friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The "の" in "難しい の", used by a male speaker, adds a personal, slightly exasperated nuance to
+      the expression of difficulty. While often associated with female speech for emotional expression,
+      men can use "の" in casual, intimate contexts to soften a complaint or express a personal struggle,
+      making it less direct or assertive.
+  - english: I'm going on a trip next week.
+    japanese:
+      - 来週 旅行 {な の}。
+      - 来週 旅行 {な ん です}。
+      - 来週 旅行 {な の です}。
+    english_literally: Next week trip, it is that.
+    competing_grammar:
+      - competing_japanese:
+          - 来週 旅行 に 行き ます。
+        english: I will go on a trip next week.
+        hint: '"旅行 に 行き ます" is a factual statement. The use of "なの" provides a gentle explanation or context
+          for why one might be busy or unavailable, which is a common nuance of "の". We''re looking for
+          a statement that offers a gentle explanation.'
+      - competing_japanese:
+          - 来週 旅行 に 行く ん だ。
+        english: It is that I will go on a trip next week.
+        hint: '"行く ん だ" is a more direct, assertive explanation. "なの" softens the statement, making it
+          feel more like sharing personal information rather than a blunt declaration. We''re looking
+          for a softer, more personal explanation.'
+    scene: A female college student explaining her busy schedule to a friend.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The "なの" in "旅行 な の", used by a female speaker, gently explains her upcoming plans. This use
+      of "の" softens the statement, providing a personal context or reason for her schedule, a common
+      pattern in casual female speech when sharing personal information.
+  - english: He studies kanji every day.
+    japanese:
+      - 彼 は 毎日 漢字 を 勉強 し て いる {ん です}。
+      - 彼 は 毎日 漢字 を 勉強 し て いる {の です}。
+      - 彼 は 毎日 漢字 を 勉強 し て いる {ん だ}。
+      - 彼 は 毎日 漢字 を 勉強 し て いる {の だ}。
+    english_literally: He every day kanji studying is (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 毎日 漢字 を 勉強 し て い ます。
+        english: He studies kanji every day.
+        hint: This is a simple statement of fact. We are looking for an explanation or reason for something.
+      - competing_japanese:
+          - 彼 は 毎日 漢字 を 勉強 し て いる から。
+        english: Because he studies kanji every day.
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - 彼 は 毎日 漢字 を 勉強 し て いる らしい。
+        english: It seems he studies kanji every day (based on what I've heard/seen).
+        hint: This suggests an inference based on external information. We are looking for the speaker's
+          own explanation or emphasis.
+    scene: A teacher explaining why a student's Japanese is improving quickly.
+    register: teineigo (polite)
+    setting: informative
+  - english: This camera is a bit expensive, you see.
+    japanese:
+      - この カメラ は 少し 高い {ん です}。
+      - この カメラ は 少し 高い {の です}。
+      - この カメラ は 少し 高い {ん だ}。
+      - この カメラ は 少し 高い {の だ}。
+    english_literally: This camera a little expensive is (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - この カメラ は 少し 高い です。
+        english: This camera is a bit expensive.
+        hint: This is a simple factual statement. We are looking for a nuance that explains *why* it is
+          expensive.
+      - competing_japanese:
+          - この カメラ は 少し 高い から。
+        english: Because this camera is a bit expensive.
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - この カメラ は 少し 高い らしい。
+        english: It seems this camera is a bit expensive (based on what I've heard/seen).
+        hint: This indicates information based on hearsay or general appearance. We are looking for the
+          speaker's own explanation or emphasis.
+    scene: A salesperson explaining why a particular camera model has a higher price point compared to
+      others.
+    register: teineigo (polite)
+    setting: informative
+  - english: Actually, I'm a student.
+    japanese:
+      - 実 は、私 は 学生 {な ん です}。
+      - 実 は、私 は 学生 {な の です}。
+      - 実 は、私 は 学生 {な ん だ}。
+      - 実 は、私 は 学生 {な の だ}。
+    english_literally: Actually, I student am (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - 実 は、私 は 学生 です。
+        english: Actually, I'm a student.
+        hint: This is a direct statement. We are looking for an explanation or background for a situation.
+      - competing_japanese:
+          - 実 は、私 は 学生 だ から。
+        english: Actually, because I'm a student.
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - 実 は、私 は 学生 らしい。
+        english: Actually, it seems I'm a student (e.g., from an official document).
+        hint: This implies external information about one's status. We are looking for a direct explanation
+          from the speaker.
+    scene: Someone explaining why they can't work full-time during the day.
+    register: teineigo (polite)
+    setting: informative
+  - english: This room is very quiet.
+    japanese:
+      - この 部屋 は とても 静か {な ん です}。
+      - この 部屋 は とても 静か {な の です}。
+      - この 部屋 は とても 静か {な ん だ}。
+      - この 部屋 は とても 静か {な の だ}。
+    english_literally: This room very quiet is (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は とても 静か です。
+        english: This room is very quiet.
+        hint: This is a simple observation. We are looking for a statement that implies a reason or a
+          noteworthy characteristic.
+      - competing_japanese:
+          - この 部屋 は とても 静か だ から。
+        english: Because this room is very quiet.
+        hint: This explicitly states 'because'. We are looking for an explanatory tone without explicitly
+          stating 'because'.
+      - competing_japanese:
+          - この 部屋 は とても 静か らしい。
+        english: It seems this room is very quiet.
+        hint: This indicates an inference based on observation or hearsay. We are looking for the speaker's
+          own explanation or emphasis on a characteristic.
+    scene: Someone describing an unexpected characteristic of a room in a usually noisy building.
+    register: teineigo (polite)
+    setting: informative
+  - english: It rained yesterday.
+    japanese:
+      - 昨日 は 雨 が 降っ {た ん です}。
+      - 昨日 は 雨 が 降っ {た の です}。
+      - 昨日 は 雨 が 降っ {た ん だ}。
+      - 昨日 は 雨 が 降っ {た の だ}。
+    english_literally: Yesterday rain fell (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 雨 が 降り まし た。
+        english: It rained yesterday.
+        hint: This simply states a past event. We are looking for an explanation for a current state.
+      - competing_japanese:
+          - 昨日 は 雨 が 降っ た から。
+        english: Because it rained yesterday.
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - 昨日 は 雨 が 降っ た らしい。
+        english: It seems it rained yesterday.
+        hint: This indicates information based on hearsay or observation. We are looking for the speaker's
+          own explanation or emphasis on a fact.
+    scene: Explaining why the ground is still wet this morning.
+    register: teineigo (polite)
+    setting: informative
+  - english: What are you looking for?
+    japanese:
+      - 何 を 探し て いる {の です か}。
+      - 何 を 探し て いる {ん です か}。
+      - 何 を 探し て いる {ん だ}？
+      - 何 を 探し て いる {の だ}？
+    english_literally: What looking for is (explaining/asking)?
+    competing_grammar:
+      - competing_japanese:
+          - 何 を 探し て い ます か。
+        english: What are you looking for?
+        hint: This is a general inquiry. We are looking for a question that seeks the reason or explanation
+          behind someone's actions.
+      - competing_japanese:
+          - 何 を 探し て いる らしい？
+        english: What does it seem you are looking for?
+        hint: This questions an inference based on observation. We are seeking the actual reason or explanation
+          from the person directly.
+    scene: A librarian asking a patron why they are searching through shelves with a puzzled expression.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: I didn't eat.
+    japanese:
+      - ご飯 を 食べ {なかっ た ん です}。
+      - ご飯 を 食べ {なかっ た の です}。
+      - ご飯 を 食べ {なかっ た ん だ}。
+      - ご飯 を 食べ {なかっ た の だ}。
+    english_literally: Meal ate not (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - ご飯 を 食べ ませ ん でし た。
+        english: I didn't eat.
+        hint: This is a simple statement of fact. We are looking for a statement that provides a reason
+          for a current condition.
+      - competing_japanese:
+          - ご飯 を 食べ なかっ た から。
+        english: Because I didn't eat.
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - ご飯 を 食べ なかっ た らしい。
+        english: It seems I didn't eat.
+        hint: This implies uncertainty or hearsay. We are looking for the speaker's direct explanation.
+    scene: Someone explaining why they feel very hungry.
+    register: teineigo (polite)
+    setting: informative
+  - english: She was a teacher previously.
+    japanese:
+      - 彼女 は 以前 先生 {だっ た の です}。
+      - 彼女 は 以前 先生 {だっ た ん です}。
+      - 彼女 は 以前 先生 {だっ た ん だ}。
+      - 彼女 は 以前 先生 {だっ た の だ}。
+    english_literally: She before teacher was (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 以前 先生 でし た。
+        english: She was a teacher previously.
+        hint: This is a simple statement of a past fact. We are looking for a statement that emphasizes
+          this fact as a reason for something else.
+      - competing_japanese:
+          - 彼女 は 以前 先生 だっ た から。
+        english: Because she was a teacher previously.
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - 彼女 は 以前 先生 だっ た らしい。
+        english: It seems she was a teacher previously.
+        hint: This indicates information based on hearsay or appearance. We are looking for the speaker's
+          own explanation or emphasis on a fact.
+    scene: Explaining why a retired woman has excellent pedagogical skills.
+    register: teineigo (polite)
+    setting: informative
+  - english: This plan is not very good.
+    japanese:
+      - この 計画 は あまり 良く {ない ん です}。
+      - この 計画 は あまり 良く {ない の です}。
+      - この 計画 は あまり 良く {ない ん だ}。
+      - この 計画 は あまり 良く {ない の だ}。
+    english_literally: This plan not very good (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 は あまり 良く あり ませ ん。
+        english: This plan is not very good.
+        hint: This states a negative assessment. We are looking for a statement that frames this assessment
+          as a reason for a problem or necessary action.
+      - competing_japanese:
+          - この 計画 は あまり 良く ない から。
+        english: Because this plan is not very good.
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - この 計画 は あまり 良く ない らしい。
+        english: It seems this plan is not very good.
+        hint: This implies an inference or hearsay. We are looking for the speaker's direct assessment
+          and explanation.
+    scene: Explaining why a project proposal needs significant revisions.
+    register: teineigo (polite)
+    setting: serious
+  - english: I really want to become better at Japanese!
+    japanese:
+      - 日本 語 が もっと 上手 に なり たい {ん です}！
+      - 日本 語 が もっと 上手 に なり たい {の です}！
+      - 日本 語 が もっと 上手 に なり たい {ん だ}！
+      - 日本 語 が もっと 上手 に なり たい {の だ}！
+    english_literally: Japanese more skillful want to become (explaining/emphasizing)!
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が もっと 上手 に なり たい です！
+        english: I want to become better at Japanese!
+        hint: This expresses a desire. We are looking for a statement that adds strong emphasis and personal
+          conviction to that desire.
+      - competing_japanese:
+          - 日本 語 が もっと 上手 に なり たい から！
+        english: Because I really want to become better at Japanese!
+        hint: This explicitly states 'because' and usually requires a consequence. We are looking for
+          an explanatory tone without explicitly stating 'because'.
+      - competing_japanese:
+          - 日本 語 が もっと 上手 に なり たい らしい！
+        english: It seems I really want to become better at Japanese!
+        hint: This conveys an inference or hearsay about one's own desire, which is unnatural. We are
+          looking for the speaker's direct, emphatic statement of their desire.
+    scene: A young female student enthusiastically telling her tutor about her study goals, explaining
+      her dedication.
+    register: teineigo (polite)
+    setting: inspirational
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The female speaker's use of 'んです' when expressing a strong desire like「もっと 上手 に なりたいんです！」adds
+      a sense of personal conviction and explanation, making it clear that this desire is the *reason*
+      for her efforts or a central part of her current state. This phrasing is very natural for a younger
+      female expressing enthusiasm or a strong personal motivation.
+  - english: I'm tired, so I'm going home now.
+    japanese:
+      - 疲れ {た ん だ}。今 から 帰る。
+      - 疲れ {た の だ}。今 から 帰る。
+      - 疲れ {た ん です}。今 から 帰り ます。
+      - 疲れ {た の です}。今 から 帰り ます。
+    english_literally: Tired (explaining). Now from home go back.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ た から、今 から 帰る。
+        english: Because I'm tired, I'm going home now.
+        hint: This explicitly states 'because' as a direct cause. We are looking for an explanatory tone
+          that frames the statement as a reason for an implied question or situation.
+      - competing_japanese:
+          - 疲れ た らしい。今 から 帰る。
+        english: It seems I'm tired. I'm going home now.
+        hint: This implies an inference or hearsay about being tired. We are looking for a direct, self-explanatory
+          statement.
+    scene: A student explaining to a friend why they are leaving class early.
+    register: casual
+    setting: informative
+  - english: This cat is really cute, isn't it?
+    japanese:
+      - この 猫、本当 に かわいい {ん だ} ね。
+      - この 猫、本当 に かわいい {の だ} ね。
+      - この 猫、本当 に かわいい {ん です} ね。
+      - この 猫、本当 に かわいい {の です} ね。
+    english_literally: This cat really cute (explaining/agreeing) isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 猫、本当 に かわいい ね。
+        english: This cat is really cute, isn't it?
+        hint: This is a simple observation and agreement. We are looking for a nuance that emphasizes
+          the cuteness as an explanation for an observation or a feeling.
+      - competing_japanese:
+          - この 猫、本当 に かわいい から ね。
+        english: Because this cat is really cute, right?
+        hint: This explicitly states 'because'. We are looking for a more subtle explanation or emphasis.
+      - competing_japanese:
+          - この 猫、本当 に かわいい らしい ね。
+        english: It seems this cat is really cute, isn't it?
+        hint: This indicates an inference. We are looking for a direct observation emphasized by the speaker.
+    scene: Two friends admiring a cat.
+    register: casual
+    setting: friendly
+  - english: It's not that I don't want to go, it's just that I don't have time.
+    japanese:
+      - 行き たく ない わけ じゃ {ない ん だ}。時間 が ない だけ {な ん だ}。
+      - 行き たく ない わけ じゃ {ない の だ}。時間 が ない だけ {な の だ}。
+      - 行き たく ない わけ じゃ {ない ん です}。時間 が ない だけ {な ん です}。
+      - 行き たく ない わけ じゃ {ない の です}。時間 が ない だけ {な の です}。
+    english_literally: Don't want to go it's not (explaining). Time don't have only (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - 行き たく ない わけ じゃ ない。時間 が ない だけ だ。
+        english: It's not that I don't want to go. I just don't have time.
+        hint: This is a plain statement of fact. We are looking for an explanatory tone to convey the
+          reason.
+      - competing_japanese:
+          - 行き たく ない わけ じゃ ない から。時間 が ない だけ だ。
+        english: Because it's not that I don't want to go. I just don't have time.
+        hint: This explicitly uses 'because'. We are looking for a more natural explanatory nuance.
+      - competing_japanese:
+          - 行き たく ない わけ じゃ ない らしい。時間 が ない だけ らしい。
+        english: It seems it's not that I was afraid. It seems I just wasn't prepared.
+        hint: This implies hearsay or uncertainty about one's own reasons. We are looking for a direct
+          explanation from the speaker.
+    scene: A friend declining an invitation, providing a nuanced reason for their unavailability.
+    register: casual
+    setting: apologetic
+  - english: It wasn't that I was afraid; I just wasn't prepared.
+    japanese:
+      - 怖かっ た わけ じゃ {なかっ た ん だ}。準備 が 足り {なかっ た だけ だ}。
+      - 怖かっ た わけ じゃ {なかっ た の だ}。準備 が 足り {なかっ た だけ な の だ}。
+      - 怖かっ た わけ じゃ {なかっ た ん です}。準備 が 足り {なかっ た だけ な ん です}。
+      - 怖かっ た わけ じゃ {なかっ た の です}。準備 が 足り {なかっ た だけ な の です}。
+    english_literally: Afraid it wasn't (explaining). Preparation wasn't enough only (explaining).
+    competing_grammar:
+      - competing_japanese:
+          - 怖かっ た わけ じゃ なかっ た。準備 が 足り なかっ た だけ だ。
+        english: It wasn't that I was afraid. I just wasn't prepared.
+        hint: This is a plain statement of fact. We are looking for an explanatory tone to convey the
+          reason.
+      - competing_japanese:
+          - 怖かっ た わけ じゃ なかっ た から。準備 が 足り なかっ た だけ だ。
+        english: Because it's not that I was afraid. I just wasn't prepared.
+        hint: This explicitly uses 'because'. We are looking for a more natural explanatory nuance.
+      - competing_japanese:
+          - 怖かっ た わけ じゃ なかっ た らしい。準備 が 足り なかっ た だけ らしい。
+        english: It seems it's not that I was afraid. It seems I just wasn't prepared.
+        hint: This implies hearsay or uncertainty about one's own reasons. We are looking for a direct
+          explanation from the speaker.
+    scene: Someone reflecting on a past event and explaining their actions.
+    register: casual
+    setting: reflective
+post_example_writeup: As demonstrated, **〜のだ・〜んだ** (and its polite and casual forms) is highly versatile.
+  It can be used to explain personal circumstances, provide reasons for actions, or emphasize a statement’s
+  significance. Pay close attention to the context and the speaker's intention to fully grasp its nuanced
+  meaning, as it often bridges a statement to an implicit question or observation. The choice of form
+  (の, んだ, のです, んです) conveys varying degrees of formality and emotional nuance.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/gp0149

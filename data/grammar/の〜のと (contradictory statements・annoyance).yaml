@@ -1,0 +1,439 @@
+grammar_point: の〜のと (contradictory statements・annoyance)
+learn_before:
+  - Verb[たり] (representative listing)
+  - いつも (always・usually)
+meaning: Listing contrasting things someone says to express disagreement or dissatisfaction; saying ~
+  or ~; saying ~, ~, and so on.
+pronunciation:
+  katakana: ノ～ノト
+  romaji: no ~ no to
+formation:
+  Verb[dictionary] の Verb[plain negative] のと: Expressing frustration over indecision or conflicting verbal
+    statements, such as whether something is done or not done.
+  い-Adjective[plain] の い-Adjective[plain negative] のと: Expressing frustration over conflicting evaluations
+    or states related to i-adjectives, often whether something is or isn't a certain way.
+  い-Adjective[plain] の い-Adjective[plain antonym] のと: Expressing frustration over conflicting qualities
+    or states using antonymous i-adjectives.
+  な-Adjective[plain] な の な-Adjective[plain negative] な のと: Expressing frustration over conflicting qualities
+    or states related to na-adjectives, often whether something is or isn't a certain way.
+  な-Adjective[plain] な の な-Adjective[plain antonym] な のと: Expressing frustration over conflicting qualities
+    or states using antonymous na-adjectives.
+  Noun[plain] な の Noun[plain negative] な のと: Expressing frustration over conflicting statements about
+    a noun, often regarding whether something is or isn't that noun.
+  Noun[plain] の Noun[plain antonym] のと: Expressing frustration over conflicting qualities or states using
+    antonymous nouns.
+  Sentence[plain] の Sentence[plain] のと: For expressing frustration by listing multiple conflicting or
+    annoying conditions or statements.
+jlpt: N2
+etymology: The pattern 「の〜のと」 originates from the particle 「の」, which serves to nominalize a preceding
+  phrase or clause, combined with 「と」, a particle often used to indicate a quote or something said. The
+  repetition of 「の」 with contrasting elements emphasizes the speaker's frustration with the different
+  or conflicting statements being made, creating a sense of exasperation or annoyance. The structure highlights
+  the back-and-forth or contradictory nature of the statements being commented upon.
+writeup: |-
+  The grammar point 「Verb[dictionary]・Adjective・Noun+の〜のと」 is used to express disagreement or dissatisfaction by listing conflicting or contradictory statements or conditions that someone is saying or presenting. It often conveys a sense of annoyance, exasperation, or frustration on the part of the speaker.
+
+  This pattern indicates that someone is endlessly going back and forth between two opposing ideas, complaining about various aspects, or simply being indecisive. The speaker uses 「の〜のと」 to highlight this behavior and express their negative sentiment about it.
+
+  **Key characteristics of usage:**
+  *   **Listing Contrasting Ideas**: It connects two contrasting or opposing statements, actions, or qualities. These can be affirmative and negative forms of the same word (e.g., 行く の 行か ない のと), or antonyms (e.g., いい の 悪い のと).
+  *   **Expression of Speaker's Annoyance**: The primary function is to convey the speaker's annoyance, frustration, or a sense that the listed points are pointless or irritating. It's not merely a neutral listing of alternatives.
+  *   **Informal Context**: This pattern is generally informal and frequently used in casual conversations, often when complaining about someone else's behavior or a problematic situation.
+  *   **Grammatical Forms**: The forms preceding 「の」 are typically plain forms of verbs, i-adjectives, na-adjectives (followed by な), or nouns (followed by な). The second clause can also be a plain sentence.
+
+  **Important Considerations:**
+  *   While the structure can list more than two items, the typical and most impactful usage is for two contrasting points, emphasized by the repeated 「の〜のと」.
+  *   This construction is distinct from simply stating alternatives or listing facts; it always carries a nuance of criticism or exasperation.
+false_friends:
+  - term: だの〜だのと
+    meaning: Listing various things (often complaints or criticisms); saying ~ and ~.
+    kind: similar expression
+    nuance: While similar in conveying a negative nuance by listing items, 「だ の 〜 だ の と」 often implies
+      a more exhaustive or disparaging list of various unrelated complaints, not necessarily conflicting
+      opposites. It can sometimes be used to list various reasons for dissatisfaction, whereas 「の 〜 の
+      と」 typically focuses on the back-and-forth or contradictory nature of two specific statements or
+      states.
+    grammar_point: だの (listing with negative nuance)
+  - term: とか〜とか
+    meaning: Listing examples; saying things like ~ or ~.
+    kind: similar expression
+    nuance: 「とか 〜 とか」 is a more neutral way to list examples or possibilities, often without the strong
+      nuance of dissatisfaction or annoyance found in 「の 〜 の と」. It simply means "things like X and Y"
+      or "X or Y, etc.," whereas 「の 〜 の と」 specifically highlights conflicting statements or indecisiveness
+      in a critical light.
+    grammar_point: とか〜とか (listing examples)
+post_false_friends_writeup: To differentiate between 「の〜のと」, 「だの〜だのと」, and 「とか〜とか」, consider the nuance.
+  「の〜のと」 emphasizes the *contradictory or indecisive* nature of two specific statements, conveying the
+  speaker's frustration with the back-and-forth. 「だの〜だのと」, on the other hand, is used to list *multiple*
+  complaints or criticisms, often with a disparaging tone, and the items don't necessarily have to be
+  direct opposites. Lastly, 「とか〜とか」 is a neutral listing particle for examples or possibilities, carrying
+  no inherent negative or exasperated nuance. Choose 「の〜のと」 when you want to highlight frustrating indecision
+  or contradictory statements from someone, especially when they go back and forth between two clear options.
+examples:
+  - english: She is always complaining about her salary being low or high.
+    japanese:
+      - 彼女 は、給料 が 安い {の} 高い {の と} 文句 ばかり 言っ て いる。
+      - 彼女 は、給料 が 安い {の} 高い {の と}、いつ も 文句 ばかり 言っ てる。
+      - あいつ、給料 安い {の} 高い {の と}、文句 ばっか 言っ てん の よ。
+    english_literally: As for her, salary is low or high, (she) is always complaining.
+    competing_grammar:
+      - competing_japanese:
+          - 給料 が 安い と 言っ {たり}、高い と 言っ {たり}
+        english: She keeps saying her salary is low or high.
+        hint: 「〜たり〜たり」 expresses a list of actions or states occurring alternately or randomly. We're
+          looking for an expression of frustration over contradictory verbal statements, not just a list
+          of things she says.
+      - competing_japanese:
+          - 給料 が 安い {だ の}、高い {だ の と}
+        english: She complains about her salary being low or high, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+      - competing_japanese:
+          - 給料 が 安い {と か}、高い {と か}
+        english: She talks about her salary being low or high (as possibilities).
+        hint: 「とか 〜 とか」 lists examples or possibilities in a neutral way. We're looking for an expression
+          that highlights the speaker's irritation with contradictory statements, not a neutral listing.
+    scene: A coworker is constantly grumbling about their salary, no matter what it is.
+    register: casual
+    setting: humorous
+    nuance: The use of 「安い { の } 」 and 「高い { の と } 」 highlights the contradictory nature of the complaints.
+      The speaker is annoyed because the person complains regardless of the situation, indicating a pointless
+      or frustrating behavior. The phrase 「文句 ばかり 言っ て いる」 (always complaining) reinforces this negative
+      nuance.
+  - english: He can't decide whether to go or not.
+    japanese:
+      - 彼 は、行く {の} 行か ない {の と}、なかなか 決め られ ない。
+      - あいつ、行く {の} 行か ない {の と} なかなか 決め られ なく て 困る よ な。
+      - 彼、行く {の} 行か ない {の と} って ずっと 迷っ てる よ。
+    english_literally: As for him, (he) goes or doesn't go, (he) can't easily decide.
+    competing_grammar:
+      - competing_japanese:
+          - 行く {か} 行か ない {か}
+        english: He can't decide whether to go or not (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question between two alternatives. We're looking for
+          an expression that conveys frustration with indecisiveness, not just a factual choice.
+      - competing_japanese:
+          - 行く {と か} 行か ない {と か}
+        english: He mentions going or not going (as possibilities).
+        hint: 「とか 〜 とか」 lists examples or possibilities in a neutral way. We're looking for an expression
+          that highlights the speaker's irritation with the man's inability to commit due to his constant
+          back-and-forth.
+      - competing_japanese:
+          - 行く {だ の}、行か ない {だ の と}
+        english: He complains about going or not going, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A man is struggling to make a decision about attending an event, causing frustration for others.
+    register: casual
+    setting: serious
+    nuance: 「行く { の } 行か ない { の と } 」 clearly indicates the two opposing choices he's wavering between.
+      The particles 「 { の } 」 and 「 { の と } 」 nominalize the verb phrases, and the overall construction
+      expresses the speaker's frustration with his indecisiveness. 「なかなか 決め られ ない」 (can't decide easily)
+      reinforces the feeling of annoyance.
+  - english: She is always talking about whether the food is delicious or not.
+    japanese:
+      - 彼女 は、美味しい {の} 美味しく ない {の と}、いつ も 食べ物 の こと を 言っ て いる。
+      - あの 人、美味しい {の} 美味しく ない {の と} って、食べ物 の こと で いちいち うるさい ん だ よ ね。
+      - 彼女、美味しい {の} 美味しく ない {の と}、食べ物 に 関し て いつ も 文句 ばかり。
+    english_literally: As for her, delicious or not delicious, (she) is always talking about food.
+    competing_grammar:
+      - competing_japanese:
+          - 美味しい {か} 美味しく ない {か}
+        english: She talks about whether it's delicious or not (neutral question).
+        hint: 「〜か〜か」 indicates a choice or question between two options. We're looking for an expression
+          that conveys annoyance at a repetitive and opinionated behavior, not a simple inquiry about
+          taste.
+      - competing_japanese:
+          - 美味しい {と か} 美味しく ない {と か}
+        english: She talks about things like delicious or not delicious.
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression emphasizing the speaker's
+          frustration with constant, binary judgments, not just a general enumeration of possibilities.
+      - competing_japanese:
+          - 美味しい {だ の}、美味しく ない {だ の と}
+        english: She complains about food being delicious or not, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A woman who is a picky eater constantly gives her unsolicited opinion on food, much to the
+      annoyance of her friends.
+    register: casual
+    setting: humorous
+    nuance: 「美味しい { の } 美味しく ない { の と } 」 contrasts her two frequent evaluations of food. The repeated
+      comments, regardless of the actual taste, are depicted as a source of irritation for the speaker,
+      highlighted by 「いつ も」 (always) and the implied negative tone of the expression.
+  - english: That person is so annoying about people's ages, saying they're young or old.
+    japanese:
+      - あの 人 は、若い {の} 年寄り {の と}、人 の 年齢 に つい て うるさい。
+      - あの 人、若い {の} 年寄り {の と} って、いちいち 年齢 の 話 ばかり する から 嫌 だ よ ね。
+      - あいつ、若い {の} 年寄り {の と} 人 の こと ばっか 気 に し て て うざい。
+    english_literally: As for that person, young or old, (they are) annoying about people's age.
+    competing_grammar:
+      - competing_japanese:
+          - 若い {か} 年寄り {か}
+        english: They ask if someone is young or old (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that conveys
+          annoyance at unsolicited and intrusive comments about age, not a factual inquiry.
+      - competing_japanese:
+          - 若い {と か} 年寄り {と か}
+        english: They talk about things like young or old (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression that emphasizes the
+          annoying and judgmental aspect of age-related remarks, going beyond a neutral listing.
+      - competing_japanese:
+          - 若い {だ の}、年寄り {だ の と}
+        english: They complain about people being young or old, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: There's a nosy relative who constantly makes comments about everyone's age, whether they're
+      young or old.
+    register: casual
+    setting: serious
+    nuance: 「若い { の } 年寄り { の と } 」 directly contrasts the two categories of age the person obsessively
+      comments on. The phrase 「うるさい」 (annoying/noisy) explicitly states the speaker's irritation with
+      this behavior, showing that the age comments are perceived as bothersome and intrusive.
+  - english: He's so fickle, saying he likes me and then he doesn't; it's a problem.
+    japanese:
+      - 彼 は、好き {な の} 嫌い {な の と}、気まぐれ で 困る。
+      - 彼、好き {な の} 嫌い {な の と} って、本当 に 気まぐれ だ から 困る よ。
+      - あいつ、好き {な の} 嫌い {な の と}、いっつ も そう だ から 付き合い にくい。
+    english_literally: As for him, like or dislike, (he is) fickle and troublesome.
+    competing_grammar:
+      - competing_japanese:
+          - 好き {か} 嫌い {か}
+        english: He asks if he likes or dislikes something (neutral choice).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that describes
+          a pattern of inconsistent behavior causing distress, not just a single instance of uncertainty.
+      - competing_japanese:
+          - 好き {と か} 嫌い {と か}
+        english: He talks about things like liking or disliking.
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression emphasizing the emotional
+          difficulty caused by the fickleness, which is stronger than a neutral listing of possibilities.
+      - competing_japanese:
+          - 好き {だ の}、嫌い {だ の と}
+        english: He complains about liking or disliking, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A friend is complaining about their on-again, off-again relationship with someone who constantly
+      changes their mind about their feelings.
+    register: casual
+    setting: serious
+    nuance: The structure 「好き { な の } 嫌い { な の と } 」 uses 「 { な の } 」 to nominalize the adjectival states
+      of 'liking' and 'disliking', highlighting the constant flip-flopping. 「気まぐれ で 困る」 (fickle and troublesome)
+      explicitly states the problem caused by this inconsistent behavior, underscoring the speaker's frustration.
+  - english: She's always bragging or belittling herself, saying she's smart or not.
+    japanese:
+      - 彼女 は、頭 が いい {の} 悪い {の と}、いつ も 自分 の こと を 自慢 し たり 卑下 し たり する。
+      - 彼女、頭 が いい {の} 悪い {の と}、自慢 し たり 卑下 し たり ばっかり で、聞かさ れる 方 は たまら ない よ ね。
+      - あの 子、頭 いい {の} 悪い {の と} って、いちいち 自分 の 能力 の こと で うるさい ん だ よ。
+    english_literally: As for her, head is good or bad, (she) always brags or belittles herself.
+    competing_grammar:
+      - competing_japanese:
+          - 頭 が いい {か} 悪い {か}
+        english: She asks if she's smart or not (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that describes
+          a chronic behavioral pattern of self-evaluation, not a simple question of intelligence.
+      - competing_japanese:
+          - 頭 が いい {と か} 悪い {と か}
+        english: She talks about things like being smart or bad (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression that highlights the
+          speaker's frustration with the contradictory and self-absorbed nature of her comments, going
+          beyond a neutral listing.
+      - competing_japanese:
+          - 頭 が いい {だ の}、悪い {だ の と}
+        english: She complains about being smart or not, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A person has a constant struggle with self-esteem, alternating between overconfidence and self-deprecation.
+    register: casual
+    setting: serious
+    nuance: 「頭 が いい { の } 悪い { の と } 」 contrasts the two extremes of her self-evaluation. The usage of
+      「自慢 し たり 卑下 し たり する」 (bragging or belittling herself) shows the constant shift in her self-perception,
+      leading to the speaker's exasperation. The structure emphasizes the annoying inconsistency.
+  - english: He's always making excuses, saying he's tired or not.
+    japanese:
+      - 彼 は、疲れ た {の} 疲れ て い ない {の と}、言い訳 ばかり し て いる。
+      - 彼、疲れ た {の} 疲れ て ない {の と}、言い訳 ばっかり だ から 信用 でき ない。
+      - あいつ、疲れ た {の} 疲れ て ない {の と} って、結局 やる気 ない だけ でしょ。
+    english_literally: As for him, tired or not tired, (he) is always making excuses.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ た {か} 疲れ て い ない {か}
+        english: He asks if he's tired or not (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that illustrates
+          a pattern of deceptive and annoying excuse-making, not a simple query about fatigue.
+      - competing_japanese:
+          - 疲れ た {と か} 疲れ て い ない {と か}
+        english: He talks about things like being tired or not tired (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression that highlights the
+          speaker's sarcasm and irritation with the man's constant, contradictory excuses, which is more
+          strongly expressed by this grammar point.
+      - competing_japanese:
+          - 疲れ た {だ の}、疲れ て い ない {だ の と}
+        english: He complains about being tired or not, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A man frequently avoids responsibilities by giving inconsistent excuses about his energy levels.
+    register: casual
+    setting: sarcastic
+    nuance: 「疲れ た { の } 疲れ て い ない { の と } 」 lists the two opposing excuses he uses. The phrase 「言い訳 ばかり
+      し て いる」 (always making excuses) makes it clear that the speaker is fed up with his contradictory
+      and insincere behavior, conveying a sarcastic or annoyed tone.
+  - english: She's always looking in the mirror, saying she's cute or not.
+    japanese:
+      - 彼女 は、可愛い {の} 可愛く ない {の と}、鏡 を 見 て ばかり いる。
+      - あの 子、可愛い {の} 可愛く ない {の と}、ずっと 鏡 見 て て 面白い よ ね。
+      - 彼女、可愛い {の} 可愛く ない {の と}、鏡 の 前 から 動か ない ん だ から。
+    english_literally: As for her, cute or not cute, (she) is always looking in the mirror.
+    competing_grammar:
+      - competing_japanese:
+          - 可愛い {か} 可愛く ない {か}
+        english: She asks if she's cute or not (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that describes
+          an obsessive and self-critical behavior, not a genuine question about attractiveness.
+      - competing_japanese:
+          - 可愛い {と か} 可愛く ない {と か}
+        english: She talks about things like being cute or not cute (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression that focuses on the
+          speaker's exasperation with the girl's self-absorbed and repetitive cycle of judgments.
+      - competing_japanese:
+          - 可愛い {だ の}、可愛く ない {だ の と}
+        english: She complains about being cute or not, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A teenage girl spends excessive time in front of the mirror, constantly debating her appearance.
+    register: casual
+    setting: humorous
+    nuance: 「可愛い { の } 可愛く ない { の と } 」 illustrates her constant internal debate about her appearance.
+      The repetitive action indicated by 「見 て ばかり いる」 (always looking) combined with the conflicting self-assessments
+      conveys the speaker's amusement or exasperation with her vanity.
+  - english: He's always lying about having money or not.
+    japanese:
+      - 彼 は、お 金 が ある {の} ない {の と}、嘘 を つい て いる。
+      - 彼、お 金 ある {の} ない {の と}、嘘 ばっかり 言う から 信じ られ ない。
+      - あいつ、金 ある {の} ない {の と} って、結局 嘘つき だ から な。
+    english_literally: As for him, money exists or doesn't exist, (he) is telling lies.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が ある {か} ない {か}
+        english: He asks if he has money or not (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that indicates
+          a deceptive pattern of behavior, not a neutral question about financial status.
+      - competing_japanese:
+          - お 金 が ある {と か} ない {と か}
+        english: He talks about things like having money or not (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression that highlights the
+          speaker's disbelief and frustration with the man's inconsistent lies, which is more strongly
+          conveyed by this grammar point.
+      - competing_japanese:
+          - お 金 が ある {だ の}、ない {だ の と}
+        english: He complains about having money or not, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A man is known for fabricating stories about his financial situation, often contradicting himself.
+    register: casual
+    setting: serious
+    nuance: 「お金 が ある { の } ない { の と } 」 clearly contrasts the two opposing claims about his financial
+      status. The phrase 「嘘 を つい て いる」 (is lying) explicitly states the speaker's judgment, emphasizing
+      that the conflicting statements are perceived as dishonest and annoying.
+  - english: She's always changing her mind about whether she's busy or free.
+    japanese:
+      - 彼女 は、忙しい {の} 暇 {な の} と、都合 が 変わり やすい。
+      - 彼女、忙しい {の} 暇 {な の} と って、都合 が 二 転 三 転 する から 困る。
+      - あの 子、忙しい {の} 暇 {な の} と、行っ たり 来 たり で 予定 立て にくい。
+    english_literally: As for her, busy or free, convenience changes easily.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい {か} 暇 {か}
+        english: She asks if she's busy or free (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that describes
+          the ongoing inconvenience caused by her fluctuating availability, not just a simple query about
+          her status.
+      - competing_japanese:
+          - 忙しい {と か} 暇 {と か}
+        english: She talks about things like being busy or free (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression emphasizing the speaker's
+          annoyance with the unpredictability of her schedule, which is stronger than a neutral enumeration.
+      - competing_japanese:
+          - 忙しい {だ の}、暇 {だ の と}
+        english: She complains about being busy or free, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A friend's schedule is incredibly erratic, making it difficult to plan anything with her.
+    register: casual
+    setting: serious
+    nuance: This example beautifully uses 「忙しい { の } 」 (i-adjective) and 「暇 { な の } 」 (na-adjective) to
+      show her conflicting states. 「都合 が 変わり やすい」 (her convenience changes easily) explicitly states the
+      problem, highlighting the speaker's frustration with her unpredictable schedule.
+  - english: He's always going on about whether something is important or not important.
+    japanese:
+      - 彼 は、それ が 大切 {な の} 大切 で ない {な の と}、いつ も 論争 ばかり し て いる。
+      - 彼、それ 大切 {な の} 大切 じゃ ない {な の と}、延々 と 議論 し てる から 疲れる わ。
+      - あいつ、いちいち 大切 {な の} 大切 じゃ ない {な の と} って、面倒 くさい。
+    english_literally: As for him, that is important or not important, (he) is always arguing.
+    competing_grammar:
+      - competing_japanese:
+          - 大切 {か} 大切 で ない {か}
+        english: He asks if it is important or not important (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that conveys
+          annoyance at constant, pointless arguments over the same issue, not a simple factual inquiry.
+      - competing_japanese:
+          - 大切 {と か} 大切 で ない {と か}
+        english: He talks about things like being important or not important (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression that highlights the
+          speaker's frustration with the man's tendency to argue about contradictory evaluations, which
+          is stronger than a neutral listing.
+      - competing_japanese:
+          - 大切 {だ の}、大切 で ない {だ の と}
+        english: He complains about things being important or not, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A colleague has a habit of getting into prolonged debates about the significance of minor details.
+    register: casual
+    setting: serious
+    nuance: 「大切 { な の } 大切 で ない { な の と } 」 illustrates the contradictory nature of his arguments. The
+      use of 「論争 ばかり し て いる」 (always arguing/debating) emphasizes the speaker's frustration with this
+      repetitive and often unproductive behavior.
+  - english: They're arguing about whether he's a professional or not, it's exhausting.
+    japanese:
+      - 彼 が プロ {な の} プロ で ない {な の と}、皆 が 口論 し て いる。
+      - みんな、彼 プロ {な の} プロ じゃ ない {な の と} って、いつ まで 口論 し てん の か な。
+      - 彼 が プロ {な の} プロ じゃ ない {な の と}、周り が うるさく て 集中 でき ない よ。
+    english_literally: As for him being professional or not professional, everyone is arguing.
+    competing_grammar:
+      - competing_japanese:
+          - プロ {か} プロ で ない {か}
+        english: They are discussing whether he is a professional or not (neutral inquiry).
+        hint: 「〜か〜か」 presents a neutral choice or question. We're looking for an expression that conveys
+          annoyance at a persistent, unresolved argument, not a simple factual query about someone's status.
+      - competing_japanese:
+          - プロ {と か} プロ で ない {と か}
+        english: They talk about things like being a professional or not (neutrally).
+        hint: 「とか 〜 とか」 lists examples neutrally. We're looking for an expression that highlights the
+          speaker's exasperation with the group's constant and contradictory arguments, which is stronger
+          than a neutral listing.
+      - competing_japanese:
+          - プロ {だ の}、プロ で ない {だ の と}
+        english: They complain about him being a professional or not, among other things.
+        hint: 「だ の 〜 だ の」 lists multiple items, often complaints, implying there are other similar things.
+          We're looking for an expression of annoyance specifically about *contradictory* statements about
+          the same topic.
+    scene: A group of colleagues are endlessly debating whether a new hire is truly skilled or not.
+    register: casual
+    setting: serious
+    nuance: 「プロ { な の } プロ で ない { な の と } 」 uses the Noun + な の Noun + な のと formation, effectively contrasting
+      the two opposing views. 「口論 し て いる」 (are arguing) explicitly states the negative outcome of this
+      constant back-and-forth, emphasizing the speaker's weariness.
+post_example_writeup: As you can see from these examples, the core function of 「の〜のと」 is to express the
+  speaker's exasperation when faced with contradictory statements or behaviors. It's often used when someone
+  keeps going back and forth on a topic, or complains about two opposite extremes. This makes it a powerful
+  tool for conveying nuance in everyday conversation, especially when you want to express a sense of 'here
+  we go again' or 'can't you make up your mind?'

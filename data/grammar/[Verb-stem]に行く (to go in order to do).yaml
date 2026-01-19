@@ -1,0 +1,233 @@
+grammar_point: '[Verb-stem]に行く (to go in order to do)'
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[た] (past tense)
+  - Verb[ました] (polite past)
+  - か (question)
+  - だい (informal question or request emphasis)
+  - と (with)
+  - に (adverbializer)
+  - に (target・destination)
+  - の? (question)
+meaning: to go in order to do
+pronunciation:
+  katakana: ニイク
+  romaji: ni iku
+formation:
+  Verb[ます-stem] + に + 行く: Indicates the primary purpose of going is to perform the indicated verb.
+  Verb[ます-stem] + に + 来る: Indicates the primary purpose of coming is to perform the indicated verb.
+  Verb[ます-stem] + に + 帰る: Indicates the primary purpose of returning is to perform the indicated verb.
+jlpt: N5
+etymology: The construction combines the ます-stem of a verb, which serves as a nominalized form representing
+  the action, with the directional particle 「に」 and a verb of motion (行く, 来る, 帰る). The particle 「に」 in
+  this context signifies the purpose or destination of the action, effectively translating to 'for the
+  purpose of' or 'to do'. This pattern highlights that the movement is undertaken specifically to perform
+  the action.
+writeup: The grammar pattern 「Verb[ます-stem]に行く」is used to express the purpose of going to a certain place.
+  It signifies that the act of going is for the specific reason of performing the action indicated by
+  the ます-stem verb. This is a very common and fundamental way to state one's intention or objective when
+  moving to a location. The particle 「に」 here functions similarly to "to" or "for the purpose of" in English,
+  specifying the destination of the action. While most commonly seen with 行く (to go), it can also be used
+  with 来る (to come) or 帰る (to return home), indicating the purpose of coming or returning. This pattern
+  emphasizes the reason for the movement, making it clear why one is heading to a particular place.
+false_friends:
+  - term: '[Verb-dictionary]ために'
+    meaning: for the purpose of, in order to
+    kind: similar expression
+    nuance: 「ために」can be used with a wider range of verbs and doesn't necessarily imply movement. It states
+      a general purpose or reason. 「[Verb-stem]に行く」specifically links the purpose to the act of going/coming/returning.
+    grammar_point: <suggest>:[Verb-dictionary]ために (for the purpose of)
+  - term: '[Verb-dictionary]ことにする'
+    meaning: to decide to do
+    kind: often confused with
+    nuance: While both express intention, 「[Verb-stem]に行く」states the purpose of movement, whereas 「ことにする」expresses
+      a decision to do something, which may or may not involve movement.
+    grammar_point: '[Verb-dictionary]ことにする (to decide to do)'
+  - term: に (target・destination)
+    meaning: to (direction)
+    kind: similar expression
+    nuance: The simple particle 「に」indicates a destination. 「[Verb-stem]に行く」adds the specific purpose
+      of an action to be performed at that destination, not just simple movement.
+    grammar_point: に (target・destination)
+post_false_friends_writeup: While 「Verb[ます-stem]に行く」and 「Verb[dictionary]ために」both express purpose, the
+  former specifically implies movement for that purpose, emphasizing the act of going/coming/returning.
+  For instance, 「買い物に行く」means "to go shopping," where going is directly linked to the act of shopping.
+  In contrast, 「健康のために運動する」("to exercise for health") uses 「ために」to state a general purpose (health) for
+  an action (exercising), which doesn't necessarily involve movement to a specific place for that purpose.
+  Similarly, 「Verb[dictionary]ことにする」expresses a personal decision, not necessarily the purpose of a movement.
+  Understanding these distinctions helps clarify which pattern to use based on whether you are emphasizing
+  the purpose of a movement or a general reason/decision.
+examples:
+  - english: I'm going to buy some juice.
+    japanese:
+      - ジュース を {買い に 行く}。
+      - ジュース を {買い に 行き ます}。
+    english_literally: Juice object mark buying to go.
+    competing_grammar:
+      - competing_japanese:
+          - ジュース を 買い に 行き ます。
+        english: I will go to buy juice (polite).
+        hint: The politeness level in Japanese can change the ending of the verb. We're looking for the
+          casual plain form here.
+    scene: A person is leaving the house.
+    register: casual
+    setting: friendly
+  - english: I'm going to study at the library.
+    japanese:
+      - 図書 館 へ {勉強 し に 行く}。
+      - 図書 館 へ {勉強 し に 行き ます}。
+    english_literally: Library to study to go.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 で 勉強 する。
+        english: I will study at the library.
+        hint: This sentence states you will study at the library, but doesn't explicitly state your purpose
+          for going there. We're looking for an expression that connects the purpose of studying with
+          the act of going.
+      - competing_japanese:
+          - 図書 館 に 行く ため に 勉強 する。
+        english: I study in order to go to the library.
+        hint: This implies studying is the means to go to the library, which reverses the intended meaning.
+          We're looking for going to the library for the purpose of studying.
+    scene: A student tells their roommate their plans.
+    register: casual
+    setting: informative
+  - english: I'll go to meet my friend tomorrow.
+    japanese:
+      - 明日、友達 に {会い に 行く}。
+      - 明日、友達 に {会い に 行き ます}。
+    english_literally: Tomorrow, friend to meet to go.
+    competing_grammar:
+      - competing_japanese:
+          - 明日、友達 と 会う。
+        english: I will meet my friend tomorrow.
+        hint: This sentence states you will meet your friend, but doesn't explicitly connect it to the
+          act of going somewhere to meet them. We're looking for an expression that combines both the
+          movement and the purpose.
+    scene: Making plans over the phone.
+    register: casual
+    setting: friendly
+  - english: I need to go to pick up the laundry.
+    japanese:
+      - 洗濯 物 を {取り に 行く} 必要 が ある。
+      - 洗濯 物 を {取り に 行く} 必要 が あり ます。
+    english_literally: Laundry object mark pick up to go need exists.
+    competing_grammar:
+      - competing_japanese:
+          - 洗濯 物 を 取り に 行く 必要 が ある。
+        english: I have to pick up the laundry.
+        hint: The example uses a plain form ending. The competing Japanese uses a polite form ending.
+          We are looking for the plain form.
+    scene: A busy person making a mental note.
+    register: casual
+    setting: serious
+  - english: My friend is coming to play this weekend.
+    japanese:
+      - 週末、友達 が {遊び に 来る}。
+      - 週末、友達 が {遊び に 来 ます}。
+    english_literally: Weekend, friend subject mark play to come.
+    competing_grammar:
+      - competing_japanese:
+          - 週末、友達 が 遊び ます。
+        english: My friend will play this weekend.
+        hint: This only states the friend will play. We're looking for the sense of them coming specifically
+          for the purpose of playing.
+    scene: Talking about weekend plans.
+    register: casual
+    setting: friendly
+  - english: I returned to eat dinner.
+    japanese:
+      - 晩ご飯 を {食べ に 帰っ た}。
+      - 晩ご飯 を {食べ に 帰り まし た}。
+    english_literally: Dinner object mark eat to returned.
+    competing_grammar:
+      - competing_japanese:
+          - 晩ご飯 を 食べ に 帰り まし た。
+        english: I returned to eat dinner (polite).
+        hint: This example uses a casual past tense. The competing Japanese is a polite past tense. We
+          are looking for the casual form.
+    scene: Someone explains why they came home early.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+  - english: Let's go to see a movie.
+    japanese:
+      - 映画 を {見 に 行こう}。
+      - 映画 を {見 に 行き ましょう}。
+    english_literally: Movie object mark see to go-volitional.
+    competing_grammar:
+      - competing_japanese:
+          - 映画 を 見よう。
+        english: Let's watch a movie.
+        hint: This phrase suggests watching a movie, but doesn't include the idea of going to a place
+          to do so. We're looking for an expression that includes movement for the purpose of an activity.
+    scene: Friends deciding on an activity.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+  - english: I went to buy a new book yesterday.
+    japanese:
+      - 昨日、新しい 本 を {買い に 行っ た}。
+      - 昨日、新しい 本 を {買い に 行き まし た}。
+    english_literally: Yesterday, new book object mark buying to went.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、新しい 本 を 買っ た。
+        english: I bought a new book yesterday.
+        hint: This sentence states that you bought a book, but not that you specifically went somewhere
+          for that purpose. We're looking for the phrase that includes the act of going.
+    scene: Talking about what you did yesterday.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+  - english: I will go to meet the client now.
+    japanese:
+      - 今 から、お 客 様 に {会い に 行き ます}。
+      - 今 から、お 客 様 に {会い に 行く}。
+    english_literally: Now from, client to meet to go-polite.
+    competing_grammar:
+      - competing_japanese:
+          - 今 から、お 客 様 と 会い ます。
+        english: I will meet the client now (polite).
+        hint: This sentence states you will meet the client, but doesn't explicitly mention going to meet
+          them. We're looking for an expression that combines both the movement and the purpose in a polite
+          register.
+    scene: A professional informing their colleague.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: If you need help, I can go to help you.
+    japanese:
+      - 困っ て いる なら、{助け に 行ける}。
+      - 困っ て いる なら、{助け に 行け ます}。
+    english_literally: Troubled if, help to go-can.
+    competing_grammar:
+      - competing_japanese:
+          - 困っ て いる なら、助け られ ます。
+        english: If you need help, I can help you.
+        hint: This expresses ability to help but doesn't specify 'going' to help. We're looking for the
+          potential form of 'go to help'.
+    scene: Offering assistance to someone.
+    register: casual
+    setting: supportive
+    conjugation: potential (～られる/～える)
+  - english: I won't go to play today because I have homework.
+    japanese:
+      - 宿題 が ある から、今日 は {遊び に 行か ない}。
+      - 宿題 が ある から、今日 は {遊び に 行き ませ ん}。
+    english_literally: Homework exists because, today play to go-negative.
+    competing_grammar:
+      - competing_japanese:
+          - 宿題 が ある から、今日 は 遊ば ない。
+        english: I won't play today because I have homework.
+        hint: This phrase states you won't play, but doesn't specifically mention not going somewhere
+          to play. We're looking for the negative form of 'go to play'.
+    scene: Explaining why you can't join friends.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+post_example_writeup: As seen in the examples, this pattern is versatile and can be conjugated for tense
+  and politeness like a regular verb of motion (行く, 来る, 帰る). It is crucial to remember that the verb immediately
+  preceding 「に」must be in its ます-stem form, as this acts as the nominalized purpose of the movement.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verb-stem-%E3%81%AB%E8%A1%8C%E3%81%8F

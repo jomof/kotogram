@@ -1,0 +1,222 @@
+grammar_point: で (for)
+learn_before:
+  - ちょっと (adverb)
+meaning: for; per
+pronunciation:
+  katakana: デ
+  romaji: de
+formation:
+  Quantity + で + Rate/Amount: Indicates the rate or amount associated with a certain quantity or unit.
+jlpt: N4
+etymology: The particle で originally indicates the location where an action takes place or the means by
+  which something is done. In this context, it has evolved to express a ratio or rate, specifying the
+  cost or quantity associated with something.
+writeup: The particle **で** in this usage precisely indicates a rate or price for a specific quantity
+  or unit, essentially conveying 'per' or 'for each'. It is frequently employed when discussing financial
+  transactions, such as costs, prices, or rates. This usage specifies the exact amount or cost associated
+  with a fundamental unit or quantity. While its primary application is in expressing pricing and rates,
+  **で** can also convey a quantity achieved within a defined scope, such as the amount of work completed
+  within a certain timeframe. Its versatility allows it to be used across various registers, from formal
+  business contexts to casual everyday conversations, depending on the broader sentence structure and
+  vocabulary.
+false_friends:
+  - term: に
+    meaning: per; in
+    kind: similar expression
+    nuance: While に can also indicate a rate (e.g., 一日に二回 - twice a day), で is specifically used to indicate
+      a cost or amount associated with a unit or quantity, making it more direct in pricing and efficiency
+      contexts. に often implies a broader relationship or proportion.
+    grammar_point: に (frequency)
+  - term: につき
+    meaning: per; for each
+    kind: similar expression
+    nuance: につき is more formal and used in official or written contexts, such as regulations or official
+      notices. で is more versatile and commonly used in everyday spoken Japanese for pricing and rates.
+    grammar_point: につき (due to or per)
+post_false_friends_writeup: Both に and につき can express rates, but で is more specific to indicating a rate
+  or amount associated with a unit or quantity. につき is much more formal, while で is widely used in both
+  casual and polite spoken Japanese. Paying attention to the context and formality will help you choose
+  the most appropriate particle.
+examples:
+  - english: This pen is 150 yen per piece.
+    japanese:
+      - この ペン は 一 本 {で} １５０ 円 です。
+      - この ペン は 一 本 {で} １５０ 円 だ。
+    english_literally: As for this pen, one piece for 150 yen it is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 学校 {で} この ペン を 買い まし た。
+        english: I bought this pen at school.
+        hint: Here, 『で』 indicates the location of an action, not the price per unit. We're looking to
+          specify the cost per item.
+    scene: A customer is at a stationery store, asking a shop clerk about the price of a single pen from
+      a display.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「一本で」 clearly states that the 150 yen price applies to each individual pen. The polite 「です」
+      maintains a respectful and informative tone appropriate for a customer-clerk interaction.
+  - english: He makes 50 items per hour.
+    japanese:
+      - 彼 は 一 時間 {で} ５０ 個 の 物 を 作り ます。
+      - 彼 は 一 時間 {で} ５０ 個 の 物 を 作る。
+    english_literally: As for him, one hour for 50 items he makes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 疲労 {で} ５０ 個 の 物 を 作り まし た。
+        english: He made 50 items due to fatigue.
+        hint: Here, 『で』 indicates a cause or reason, not a rate of production. We're looking to specify
+          the output per unit of time.
+    scene: A factory manager explains the production efficiency of a worker to a new intern.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「一時間で」 clearly indicates the output volume achieved within one hour. The use of 「作ります」 is
+      appropriate for explaining a process in a workplace. The manager's tone is informative and professional
+      for a new intern.
+  - english: This bus is full with 30 people.
+    japanese:
+      - この バス は ３０ 人 {で} いっぱい です。
+      - この バス は ３０ 人 {で} いっぱい だ。
+    english_literally: As for this bus, 30 people for full it is.
+    competing_grammar:
+      - competing_japanese:
+          - ３０ 人 {で} バス を 運転 し ます。
+        english: I will drive the bus with 30 people.
+        hint: Here, 『で』 indicates the means or company, not the capacity that makes something full. We're
+          looking to specify the number of people that constitutes 'full'.
+    scene: A tour guide addresses a group of tourists, explaining the bus's capacity before boarding.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「３０人で」 specifies that the capacity of '30 people' is what makes the bus full. The polite form
+      「いっぱいです」 is suitable for a tour guide addressing a group respectfully.
+  - english: These apples weigh 5 kilograms per box.
+    japanese:
+      - この りんご は 一 箱 {で} ５ キロ あり ます。
+      - この りんご は 一 箱 {で} ５ キロ ある。
+    english_literally: As for these apples, one box for 5 kilograms there are.
+    competing_grammar:
+      - competing_japanese:
+          - この りんご は 危険 物 {で} は あり ませ ん。
+        english: These apples are not hazardous materials.
+        hint: Here, 『で』 is part of the negative copula 『ではない』, meaning 'is not', rather than indicating
+          weight per unit. We're looking to specify the weight per package.
+    scene: A fruit seller explains the weight of apples in a box to a customer who is considering a purchase.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    nuance: 「一箱で」 clarifies that the 5 kilograms is the weight contained within each box. The polite 「あります」
+      is standard for describing attributes of items in a sales context.
+  - english: This printer can print 10 pages per minute.
+    japanese:
+      - この プリンター は 一 分 {で} １０ 枚 プリント でき ます。
+      - この プリンター は 一 分 {で} １０ 枚 プリント できる。
+    english_literally: As for this printer, one minute for 10 sheets can print.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 鉛筆 {で} １０ 枚 の 絵 を 描き まし た。
+        english: He drew 10 pictures with a pencil.
+        hint: Here, 『で』 indicates the instrument or means, not the rate of printing. We're looking to
+          specify the number of pages printed per minute.
+    scene: An office worker explains the new printer's specifications to a colleague during a break.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「一分で」 specifies the speed of printing per minute. The casual 「プリントできます」 is suitable for a
+      relaxed conversation between colleagues, focusing on practical information.
+  - english: The taxi fare is 400 yen per kilometer.
+    japanese:
+      - タクシー 料金 は １ キロ {で} ４００ 円 です。
+      - タクシー 料金 は １ キロ {で} ４００ 円 だ。
+    english_literally: As for taxi fare, one kilometer for 400 yen it is.
+    competing_grammar:
+      - competing_japanese:
+          - タクシー {で} 駅 へ 行き まし た。
+        english: I went to the station by taxi.
+        hint: Here, 『で』 indicates the means of transportation, not the fare per unit of distance. We're
+          looking to specify the cost per kilometer.
+    scene: A hotel concierge is explaining common taxi pricing to a foreign tourist at the front desk.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「１キロで」 clearly defines the unit price for distance. The polite 「です」 is appropriate for providing
+      information to a guest, maintaining a professional and helpful demeanor.
+  - english: It costs 1,000 yen per person.
+    japanese:
+      - 一 人 {で} １０００ 円 です。
+      - 一 人 {で} １０００ 円 だ。
+    english_literally: One person for 1000 yen it is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 一 人 {で} 食事 を し まし た。
+        english: He ate a meal by himself.
+        hint: Here, 『で』 indicates 'by oneself' or 'alone', not the cost per person. We're looking to specify
+          the price per individual.
+    scene: A waiter explains the price structure for a special course menu to a group of friends dining
+      at a restaurant.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「一人で」 specifies that the price applies to each individual. This is a common phrase heard in
+      restaurants and services to clarify pricing for groups.
+  - english: This car runs 15 kilometers per liter.
+    japanese:
+      - この 車 は １ リットル {で} １５ キロ 走り ます。
+      - この 車 は １ リットル {で} １５ キロ 走る。
+    english_literally: As for this car, one liter for 15 kilometers it runs.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 {で} は 車 は 左側 を 走り ます。
+        english: In Japan, cars drive on the left side.
+        hint: Here, 『で』 indicates the location where an action takes place, not the fuel efficiency per
+          liter. We're looking to specify the distance per unit of fuel.
+    scene: Two friends are discussing their cars' fuel efficiency while waiting at a gas station.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「１リットルで」 clearly indicates the fuel consumption rate. The casual form 「走る」 is fitting for
+      a conversation between friends, indicating a relaxed and informal exchange.
+  - english: I can only type 200 characters per minute.
+    japanese:
+      - 私 は 一 分 {で} ２００ 文字 しか 打て ませ ん。
+      - 私 は 一 分 {で} ２００ 文字 しか 打て ない。
+    english_literally: As for me, one minute for 200 characters only I cannot type.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は パソコン {で} 報告 書 を 作り まし た。
+        english: I created a report using a computer.
+        hint: Here, 『で』 indicates the instrument or means, not the typing speed per minute. We're looking
+          to specify the number of characters typed per unit of time.
+    scene: A job applicant is humbly explaining their typing speed during an interview for an administrative
+      position.
+    register: formal
+    setting: apologetic
+    nuance: 「一分で」 establishes the rate of output. The use of 「～しか～ません」 (only ~ can't) conveys humility,
+      which is common in formal apologies or self-introductions in Japanese business settings, especially
+      when stating a perceived limitation.
+  - english: You can buy three for 500 yen.
+    japanese:
+      - ５００ 円 {で} 三 つ 買え ます。
+      - ５００ 円 {で} 三 つ 買える。
+    english_literally: 500 yen for three pieces can buy.
+    competing_grammar:
+      - competing_japanese:
+          - この 値段 {で} は 高 すぎ ます。
+        english: At this price, it's too expensive.
+        hint: Here, 『で』 indicates the condition or circumstance 'at this price', not the quantity available
+          for a specific amount. We're looking to specify how many items can be bought for 500 yen.
+    scene: A shop assistant is explaining a special offer on an item to a customer in a retail store.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「５００円で」 specifies the exact amount of money required to obtain the quantity, highlighting
+      a good deal. The potential form 「買えます」 indicates that it is possible to buy them at this favorable
+      price.
+post_example_writeup: Understanding で in this context helps you grasp how prices and rates are expressed
+  in Japanese. It's vital for shopping, budgeting, and general communication about costs, as well as describing
+  capacities and efficiency. Pay attention to the context to determine if 『で』 is conveying a rate, a total
+  amount, or a means by which something is done.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/gp0800

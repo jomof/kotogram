@@ -1,0 +1,247 @@
+grammar_point: よく (frequently・often・well)
+learn_before:
+  - Verb[ます] (polite present)
+meaning: frequently, often, well, or thoroughly
+pronunciation:
+  katakana: ヨク
+  romaji: yoku
+formation:
+  Verb + よく: Indicates that the action of the verb is performed frequently, thoroughly, or well.
+  Adjective + よく: Indicates a high degree or thoroughness for the adjective. Less common for degree than
+    'とても'.
+jlpt: N5
+etymology: 'The adverb 「よく」 originates from the い-adjective 「良い (yoi)」, meaning ''good.'' In classical
+  Japanese, い-adjectives formed their adverbial form by changing the final い to く, thus 「よく」 meant ''in
+  a good way'' or ''well.'' This historical connection explains its diverse uses: from meaning ''well''
+  (as in doing something skillfully or thoroughly) to ''often'' (implying a ''good'' or frequent occurrence),
+  or even ''very'' (to a ''good'' degree, though this usage is less common in modern Japanese, with 「とても」
+  being more prevalent for simple intensification).'
+writeup: The adverb 「よく」 is a versatile word in Japanese with several key meanings, primarily revolving
+  around frequency, quality, and thoroughness.When expressing **frequency**, 「よく」 means 'often' or 'frequently.'
+  It indicates that an action or event occurs many times or regularly. For example, 「よく食べる」 means 'to
+  eat often.'It can also describe the **quality** or **manner** in which an action is performed, translating
+  to 'well,' 'skillfully,' or ' nicely.' In this sense, it implies a satisfactory or proficient execution.
+  For instance, 「よくできた」 can mean 'it was done well' or 'it was completed nicely.' This usage often carries
+  a sense of accomplishment or approval.Furthermore, 「よく」 can convey **thoroughness** or **completeness**,
+  meaning 'properly,' 'carefully,' or 'completely.' This nuance suggests attention to detail and ensuring
+  something is done to a full extent. An example would be 「よく考える」 meaning 'to think carefully/thoroughly.'While
+  less common in modern colloquial Japanese for simple intensification, 「よく」 can sometimes convey a sense
+  of 'very' or 'quite' when emphasizing a degree, especially in set phrases or literary contexts, though
+  「とても」 is generally preferred for this purpose.Understanding the context and the verb/adjective it modifies
+  is crucial for correctly interpreting 「よく」, as its meaning shifts subtly between these interconnected
+  senses derived from its root in 'goodness.'
+false_friends:
+  - term: いつも
+    meaning: always, usually
+    kind: similar expression
+    nuance: 「いつも」 implies a continuous or near-constant state or action, suggesting a higher frequency
+      or habitual nature than 「よく」. While 「よく」 indicates 'often,' 「いつも」 is closer to 'always' or 'every
+      time.'
+    grammar_point: <strongly-suggest>:いつも (always・usually)
+  - term: たびたび
+    meaning: frequently, often
+    kind: similar expression
+    nuance: 「たびたび」 is a more formal or literary equivalent of 「よく」 (meaning 'often'). It often implies
+      a somewhat irregular or noticeable frequency, whereas 「よく」 can be more general. 「たびたび」 might be
+      used in more formal reports or speeches.
+    grammar_point: <strongly-suggest>:たびたび (frequently)
+  - term: ちゃんと
+    meaning: properly, neatly, exactly
+    kind: similar expression
+    nuance: When 「よく」 means 'thoroughly' or 'properly,' it overlaps with 「ちゃんと」. However, 「ちゃんと」 emphasizes
+      correctness, precision, or adherence to a standard, often implying responsibility or carefulness.
+      「よく」 can also mean 'well done' in a general sense, without necessarily implying strict adherence
+      to rules.
+    grammar_point: ちゃんと・きちんと (properly・neatly)
+  - term: とても
+    meaning: very, extremely
+    kind: similar expression
+    nuance: While 「よく」 can sometimes imply 'very' (e.g., 「よく似ている」 - 'very similar'), 「とても」 is the standard
+      adverb for expressing a high degree or intensity. 「よく」 as 'very' is more limited and often combined
+      with specific verbs/adjectives, whereas 「とても」 is broadly applicable for intensification.
+    grammar_point: <strongly-suggest>:とても (very)
+post_false_friends_writeup: When differentiating 「よく」 from similar expressions, consider the specific
+  nuance. 「いつも」 (always) signifies a higher degree of constancy than 「よく」 (often). For formality, 「たびたび」
+  can often replace 「よく」 when discussing frequency. If you want to convey that something was done 'properly'
+  or 'correctly' with an emphasis on adherence to a standard, 「ちゃんと」 is generally more precise than 「よく」.
+  Lastly, while 「よく」 can occasionally imply intensity, 「とても」 is the standard and more broadly applicable
+  adverb for expressing 'very' or 'extremely'.
+examples:
+  - english: I often go to that cafe.
+    japanese:
+      - その 喫茶 店 に {よく} 行き ます。
+      - その 喫茶 店 に {よく} 行く。
+      - その 喫茶 店 に {よく} 参り ます。
+    english_literally: To that cafe, often go.
+    competing_grammar:
+      - competing_japanese:
+          - その 喫茶 店 に いつ も 行き ます。
+        english: I always go to that cafe.
+        hint: 「いつも」 implies 'always' or 'every time', a higher frequency than 'often'. We're looking for
+          'often'.
+    scene: Someone talking about their routine.
+    register: formal
+    setting: friendly
+  - english: She sings very well.
+    japanese:
+      - 彼女 は 歌 が {よく} 歌え ます。
+      - 彼女 は 歌 が {よく} 歌える。
+      - 彼女 は 歌 が {よく} お 歌い に なり ます。
+    english_literally: She, song, well can sing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 歌 が とても 上手 です。
+        english: She is very good at singing.
+        hint: 「とても」 emphasizes 'very' or 'extremely' as a general intensifier for skill. We're looking
+          for an adverb that directly modifies the action of singing as 'well.'
+    scene: A person praising a singer's ability.
+    register: formal
+    setting: informative
+    conjugation: potential (～られる/～える)
+  - english: Please chew your food well.
+    japanese:
+      - 食べ物 を {よく} 噛ん で ください。
+      - 食べ物 を {よく} 噛ん で ね。
+      - 食べ物 を {よく} お 噛み ください。
+    english_literally: Food, well chew, please.
+    competing_grammar:
+      - competing_japanese:
+          - 食べ物 を ちゃんと 噛ん で ください。
+        english: Please chew your food properly/correctly.
+        hint: While 「ちゃんと」 also means 'properly', it often implies correctness or adherence to a rule.
+          「よく」 here means 'thoroughly' or 'completely.'
+    scene: A parent advising their child at the dinner table.
+    register: casual
+    setting: instructional
+  - english: I often make mistakes.
+    japanese:
+      - 私 は {よく} 間違え ます。
+      - 私 は {よく} 間違える。
+      - 私 は {よく} 間違い を いたし ます。
+    english_literally: I, often make mistakes.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は いつ も 間違え ます。
+        english: I always go to that cafe.
+        hint: 「いつも」 implies a higher, almost constant, frequency than 'often.' We're looking for 'often.'
+    scene: Someone admitting their tendencies.
+    register: casual
+    setting: reflective
+  - english: Do you understand it well?
+    japanese:
+      - '{よく} 分かり ます か？'
+      - '{よく} 分かる？'
+      - '{よく} お 分かり に なり ます か？'
+    english_literally: Well understand?
+    competing_grammar:
+      - competing_japanese:
+          - ちゃんと 分かり ます か？
+        english: Do you understand it correctly?
+        hint: 「ちゃんと」 focuses on correctness or accuracy of understanding. 「よく」 focuses on the completeness
+          or thoroughness of understanding.
+    scene: A teacher asking a student.
+    register: formal
+    setting: academic
+  - english: How often do you come here?
+    japanese:
+      - ここ に {よく} 来 ます か？
+      - ここ に {よく} 来る？
+      - ここ に {よく} 参り ます か？
+    english_literally: Here, often come?
+    competing_grammar:
+      - competing_japanese:
+          - ここ に しばしば 来 ます か？
+        english: Do you frequently come here?
+        hint: 「しばしば」 is a more formal equivalent of 'frequently'. We're looking for the common, everyday
+          'often'.
+    scene: Two new acquaintances chatting at a public place.
+    register: casual
+    setting: friendly
+  - english: I can see it well.
+    japanese:
+      - '{よく} 見え ます。'
+      - '{よく} 見える。'
+      - '{よく} ご覧 に なれ ます。'
+    english_literally: Well can see.
+    competing_grammar:
+      - competing_japanese:
+          - はっきり 見え ます。
+        english: I can see it clearly.
+        hint: 「はっきり」 emphasizes visual clarity. 「よく」 can mean 'well' in a broader sense, implying good
+          visibility or proper functioning.
+    scene: Someone testing their eyesight or confirming visibility.
+    register: formal
+    setting: informative
+    conjugation: potential (～られる/～える)
+  - english: Please think about it carefully.
+    japanese:
+      - '{よく} 考え て ください。'
+      - '{よく} 考え て ね。'
+      - '{よく} お 考え ください。'
+    english_literally: Well think, please.
+    competing_grammar:
+      - competing_japanese:
+          - じっくり 考え て ください。
+        english: Please think about it thoroughly/deliberately.
+        hint: 「じっくり」 implies taking one's time and being unhurried in thinking. 「よく」 emphasizes thinking
+          completely or properly.
+    scene: A manager giving advice to a subordinate.
+    register: formal
+    setting: professional
+  - english: Well done! You really did a great job!
+    japanese:
+      - '{よく} やっ た ね！'
+      - '{よく} でき まし た ね！'
+      - '{よく} やっ た！'
+    english_literally: Well did, right!
+    competing_grammar:
+      - competing_japanese:
+          - お 疲れ 様 でし た！
+        english: Good work! / You must be tired!
+        hint: 「お疲れ様でした」 is a general expression of appreciation for effort, but 「よくやったね」 specifically
+          praises the quality of the outcome or the act of doing something well.
+    scene: A coach praising an athlete after a competition.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「よくやったね」 with the masculine-leaning sentence-final particle 「ね」 is a very common
+      way for male speakers, especially those in a mentorship or coaching role, to praise someone for
+      a job 'well done.' It implies commendation for effort and successful completion.
+  - english: My grandmother often travels.
+    japanese:
+      - 私 の 祖母 は {よく} 旅行 し ます。
+      - 私 の 祖母 は {よく} 旅行 する。
+      - 私 の 祖母 は {よく} ご 旅行 なさい ます。
+    english_literally: My grandmother, often travels.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 祖母 は たびたび 旅行 し ます。
+        english: My grandmother frequently travels.
+        hint: 「たびたび」 is a more formal or literary way to say 'frequently' or 'often.' We're looking for
+          the more common, everyday use of 'often.'
+    scene: Someone describing their grandmother's hobbies to a friend.
+    register: formal
+    setting: informative
+  - english: He often stays up late.
+    japanese:
+      - 彼 は {よく} 夜更かし し ます。
+      - 彼 は {よく} 夜更かし する。
+    english_literally: He, often stays up late.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 夜更かし し ます。
+        english: He always stays up late.
+        hint: 「いつも」 implies a constant habit of staying up late, whereas 「よく」 indicates that it happens
+          often but not necessarily every single time.
+    scene: Friends talking about a mutual acquaintance's habits.
+    register: casual
+    setting: friendly
+    nuance: While literally "often stays up late," the nuance of 「よく」 here can also subtly imply that
+      it's something he's accustomed to doing, or perhaps even 'good' at in the sense of frequently managing
+      to do it. This ties back to the etymological root of 'good'.
+post_example_writeup: As seen in the examples, the context is key to discerning the precise meaning of
+  「よく」. Whether it's about frequency, quality, or thoroughness, 「よく」 consistently points to a positive
+  or significant characteristic of the action or state.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/よく

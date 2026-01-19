@@ -1,0 +1,304 @@
+grammar_point: い-Adjective[がる] (showing signs of)
+learn_before:
+  - '[い-Adjective-stem]がる・[な-Adjective]がる (to show signs of feeling)'
+meaning: to show outward signs or appearances of an internal emotion or state, inferred from observed
+  behavior of a third party.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: い-Adjective stem + がる
+    rarity: common
+    meaning: to show signs of (emotion/state)
+  - conjugation-type: non-past polite (～ます)
+    form: い-Adjective stem + がります
+    rarity: common
+    meaning: to show signs of (emotion/state) politely
+  - conjugation-type: past plain (～た)
+    form: い-Adjective stem + がった
+    rarity: common
+    meaning: showed signs of (emotion/state)
+  - conjugation-type: negative plain (～ない)
+    form: い-Adjective stem + がらない
+    rarity: common
+    meaning: not to show signs of (emotion/state)
+  - conjugation-type: progressive (～ている)
+    form: い-Adjective stem + がっている
+    rarity: common
+    meaning: is showing signs of (emotion/state)
+  - conjugation-type: te-form (～て)
+    form: い-Adjective stem + がって
+    rarity: common
+    meaning: showing signs of (emotion/state)
+pronunciation:
+  katakana: イーアジェクティブ ガル
+  romaji: i-adjective garu
+formation:
+  い-Adjective stem + がる: 'Used for i-adjectives to express that someone is showing external signs of feeling
+    that way (e.g., 悲しがる: to show signs of sadness).'
+  寒い -> 寒がる: When you observe someone acting cold, shivering, etc., you say they are 'showing signs of
+    being cold'.
+jlpt: N3
+etymology: The suffix 「がる」 (garu) originates from the classical Japanese verb 「がる」(garu), which meant
+  'to have the tendency to do' or 'to act as if'. Over time, its usage specialized to indicate the outward
+  manifestation of an internal state or emotion, particularly when describing others. This is because
+  one can directly state their own feelings (e.g., 悲しい desu), but for others, one must infer their feelings
+  from their behavior, leading to the use of 「がる」.
+writeup: |-
+  The grammar pattern 「い-Adjective[がる]」 is used to describe when someone is **showing external signs** of a feeling or state that is typically expressed by an い-adjective. The core verb 「がる」 attaches to the **stem** of an い-adjective.
+
+  For example, from 「悲しい」 (kanashii - sad), you remove the 「い」 to get the stem 「悲し」 (kanashi), and then add 「がる」 to form 「悲しがる」 (kanashigaru - to show signs of sadness). Similarly, from 「寒い」 (samui - cold), you get 「寒がる」 (samugaru - to show signs of being cold).
+
+  **Important Considerations:**
+
+  1.  **Observing Others:** This grammar point is almost exclusively used when **observing the feelings or states of a third party**. You would not typically use 「がる」 to describe your own feelings, as you know your own feelings directly. For instance, you would say 「私は悲しいです」 (I am sad), not 「私は悲しがります」.
+
+  2.  **Inference, Not Direct Knowledge:** The use of 「がる」 implies that you are **inferring** the person's feelings from their outward behavior, actions, or expressions, rather than knowing their internal state directly. For example, if a child is shivering and complaining about the cold, you might say 「子供が寒がっている」 (The child is showing signs of being cold/acting cold).
+
+  3.  **Transformation to a Verb:** When 「がる」 is attached to an い-adjective stem, the resulting phrase functions as a Godan verb (五段動詞), meaning it conjugates like other Godan verbs (e.g., 「読む」 - yomu).
+
+  While 「がる」 can also attach to な-adjectives (e.g., 「嫌い」 → 「嫌がる」 - to show aversion, to dislike doing) and the desiderative 「〜たい」 (e.g., 「行きたい」 → 「行きたがる」 - to show signs of wanting to go), this specific grammar point focuses on its application with い-adjectives.
+false_friends:
+  - term: な-Adjective[がる]
+    meaning: To show signs of a na-adjective state or aversion (e.g., 嫌がる - to dislike doing).
+    kind: similar expression
+    nuance: While both `い-Adjective[がる]` and `な-Adjective[がる]` express outward signs of an internal state,
+      this specific grammar point refers only to い-adjectives. `な-Adjective[がる]` applies to adjectival
+      nouns.
+    grammar_point: '[い-Adjective-stem]がる・[な-Adjective]がる (to show signs of feeling)'
+  - term: '[Verb-stem・Adj-stem]そうだ'
+    meaning: It seems, it looks like (based on direct visual observation or hearsay).
+    kind: similar expression
+    nuance: '`〜そうだ` describes an appearance or an objective observation of a state, and can apply to inanimate
+      objects or situations. `い-Adjective[がる]` is specifically used for observing another''s *internal*
+      emotional or physical state, inferred from their behavior.'
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+  - term: '[Verb-ます-stem]たがる'
+    meaning: To show signs of wanting to do something (referring to a third person).
+    kind: similar expression
+    nuance: This is a specific application of `がる` attached to the desiderative `〜たい`. While `がる` itself
+      indicates showing signs of an adjective-derived state, `〜たがる` is specifically about showing signs
+      of *desire* for an action.
+    grammar_point: <suggest>:[Verb-ます-stem]たがる (to show signs of wanting to do)
+  - term: '[i-Adj-stem]み'
+    meaning: A suffix that forms a noun from an i-adjective, indicating the abstract quality itself (e.g.,
+      悲しみ - sadness).
+    kind: similar expression
+    nuance: '`〜み` creates a noun representing the abstract quality (e.g., 悲しみ - sadness). `い-Adjective[がる]`
+      describes the *action* of showing that quality through behavior.'
+    grammar_point: な-Adjective[み] (abstract quality)
+post_false_friends_writeup: When distinguishing 「い-Adjective[がる]」 from similar expressions, remember that
+  「がる」 focuses on the *behavioral manifestation* of an emotional or physical state in a third party. It's
+  particularly useful when direct communication of feelings is not possible or not the focus. In contrast,
+  「〜そう」 describes an *appearance* or a direct observation that can apply more broadly to situations or
+  objects, not just internal states. For example, a house can look `古そう` (old-looking) but not `古がる`.
+  The construction 「〜たがる」 is a specific instance of 「がる」, indicating the outward signs of someone's *desire*
+  to perform an action. Lastly, the suffix 「〜み」 forms a noun representing the abstract *quality* itself,
+  rather than the act of displaying it.
+examples:
+  - english: The child is showing signs of being cold, perhaps because the window is open.
+    japanese:
+      - 窓 が 開い て いる せい か、子供 が {寒 がっ て いる}。
+      - 窓 が 開い て いる せい か、子供 が {寒 がっ て い ます}。
+      - 窓 開い てる せい か、子供 {寒 がっ てる} なぁ。
+    english_literally: Window is open, because of that, child is showing signs of being cold.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 寒い と 言っ て いる。
+        english: The child is saying they are cold.
+        hint: We are looking for an expression that shows signs of feeling cold, not directly stating
+          it. 「と言っている」 indicates a direct verbal statement.
+    scene: A mother notices her child shivering near an open window.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「寒がっている」 implies the mother is inferring the child's coldness from their behavior
+      (e.g., shivering, hugging themselves), not because the child explicitly stated it. The phrase 「窓
+      が 開いている せい か」 adds context that the coldness is a perceived consequence of the open window.
+  - english: My older brother always acts like he's busy when I ask him for a favor.
+    japanese:
+      - 兄 は 頼み事 を する と いつ も {忙し がる}。
+      - 兄 は 頼み事 を する と いつ も {忙し がり ます}。
+      - 兄貴 は 頼み事 する と いつ も {忙し がる} ん だ よ なあ。
+    english_literally: Older brother, when asked a favor, always shows signs of being busy.
+    competing_grammar:
+      - competing_japanese:
+          - 兄 は 頼み事 を する と いつ も 忙しい と 言う。
+        english: My older brother always says he's busy when I ask him for a favor.
+        hint: This sentence describes observing a tendency to *act* busy, implying a visual cue, not a
+          verbal statement. We're looking for showing signs, not directly stating.
+    scene: Someone is complaining about their brother's habits.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「忙しがる」 indicates that the brother *acts* busy, or *appears* busy, rather than truly being
+      busy or directly stating his business. It suggests an observed pattern of behavior, often implying
+      a slight annoyance from the speaker.
+  - english: She was so delighted, she didn't even notice the spilled water.
+    japanese:
+      - 彼女 は あまり に {嬉し がっ て}、こぼれ た 水 に さえ 気付か なかっ た。
+      - 彼女 は あまり に {嬉し がり まし て}、こぼれ た 水 に さえ 気付き ませ ん でし た。
+      - 彼女 は あまり に も {嬉し がっ て} い て、こぼれ た 水 なんか に は さえ 気付か なかっ た の だ。
+    english_literally: She was too much showing signs of happiness, did not even notice spilled water.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は あまり に 嬉しい の で、こぼれ た 水 に さえ 気付か なかっ た。
+        english: Because she was so happy, she didn't even notice the spilled water.
+        hint: The nuance of this sentence is about her *display* of happiness, not just the state itself.
+          We're looking for the act of showing signs of joy.
+    scene: Describing someone's extremely joyful reaction.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The use of 「嬉しがって」 emphasizes her outward expression of happiness, suggesting she was visibly
+      exuberant. It highlights the extent to which her joy was evident to observers, making her oblivious
+      to her surroundings.
+  - english: Why does that cat always act so scared when I approach it?
+    japanese:
+      - あの 猫 は なぜ 私 が 近づく と いつ も {怖 がる} の です か？
+      - あの 猫 は なぜ 私 が 近づき ます と いつ も {怖 がり ます} の でしょう か。
+      - あの 猫 さ、なん で オレ が 近づく と いつ も {怖 がる} ん だろう ね？
+    english_literally: That cat, why when I approach always shows signs of being scared?
+    competing_grammar:
+      - competing_japanese:
+          - あの 猫 は なぜ 私 が 近づく と いつ も 怖い です か？
+        english: Why is that cat always scared when I approach it?
+        hint: While a cat might be scared, the grammar point expresses the *action* of showing fear, through
+          its behavior. We're looking for the observable behavior of fear, not just the state of being
+          scared.
+    scene: A person is puzzled by a cat's behavior.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: dictionary (plain non-past)
+    nuance: 「怖がる」 describes the cat's observable behavior, like flinching or running away, implying that
+      its fear is inferred from its actions. It's often used for animals or young children whose internal
+      feelings cannot be verbalized.
+  - english: He's always complaining about his lack of money.
+    japanese:
+      - 彼 は いつ も お 金 が ない と {貧し がっ て いる}。
+      - 彼 は いつ も お 金 が ない と {貧し がっ て い ます}。
+      - 彼 って さ、いつ も お 金 ない って {貧し がっ てる} よ な。
+    english_literally: He always, no money, and is showing signs of poverty.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も お 金 が ない と 言っ て いる。
+        english: He's always saying he has no money.
+        hint: While `貧しがっている` suggests a visible display of hardship or complaint about it, not just a
+          simple statement. We're describing an ongoing behavioral pattern.
+    scene: Two colleagues are discussing a mutual acquaintance.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: female
+    nuance: While 「貧しい」 (poor) is an i-adjective, 「貧しがっている」 here implies not just being poor but *acting*
+      or *complaining* about being poor, often in a way that is evident to others. It can carry a nuance
+      of being overly dramatic about it.
+  - english: Even though he's a grown man, he still acts childish.
+    japanese:
+      - 彼 は いい 大人 な の に、いまだ に {幼 し がる}。
+      - 彼 は いい 大人 な の に、いまだ に {幼 し がり ます}。
+      - 彼、いい 大人 な の に、まだ {幼 し がる} ん だ よ。
+    english_literally: He is a good adult, but still shows signs of being childish.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いい 大人 な の に、いまだ に 幼い です。
+        english: Even though he's a grown man, he's still childish.
+        hint: 「幼しがる」 specifically means he *acts* childishly, showing behaviors associated with children,
+          not just that he *is* childish in nature. We're describing an observed behavior.
+    scene: A frustrated friend discussing another friend's immaturity.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「幼しがる」 indicates that despite being an adult, he displays behaviors or mannerisms characteristic
+      of a child. This implies an observable, often inappropriate, immaturity in his actions.
+  - english: Please don't show signs of being lonely in front of others.
+    japanese:
+      - 人前 で {寂し がら ない} で ください。
+      - 人前 で {寂し がら ない} で いただけ ます か。
+      - 人前 で {寂し がる} な よ。
+    english_literally: In front of people, do not show signs of being lonely.
+    competing_grammar:
+      - competing_japanese:
+          - 人前 で 寂しい と 言わ ない で ください。
+        english: Please don't say you are lonely in front of others.
+        hint: The phrase aims to prevent the outward *display* of loneliness, not just verbally stating
+          it. We're looking for a prohibition on showing signs of loneliness through behavior.
+    scene: A parent advising their child before a social event.
+    register: teineigo (polite)
+    setting: instructional
+    conjugation: negative plain (～ない)
+    nuance: 「寂しがらないでください」 is a request to refrain from exhibiting behaviors that suggest loneliness, such
+      as looking downcast, sighing, or withdrawing. It's about maintaining composure and not burdening
+      others with visible sorrow.
+  - english: They say the puppy gets lonely when left alone.
+    japanese:
+      - その 子犬 は 一人 に なる と {寂し がる} そう だ。
+      - その 子犬 は 一人 に なる と {寂し がり ます} そう です。
+      - あの 子犬、一人 に なる と {寂し がっ ちゃう} みたい だ よ。
+    english_literally: That puppy, when alone, seems to show signs of being lonely, it is said.
+    competing_grammar:
+      - competing_japanese:
+          - その 子犬 は 一人 に なる と 寂しい そう だ。
+        english: They say that puppy is lonely when left alone.
+        hint: The use of `がる` here implies an observed behavior (like whining or pacing) that indicates
+          loneliness, rather than just stating the puppy's state. We're talking about the outward expression
+          of loneliness.
+    scene: Someone discussing a pet's habits.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「寂しがる」 describes the puppy's visible actions (e.g., whining, pacing, sitting by the door)
+      that lead one to infer it feels lonely. This is common for animals since they cannot verbally express
+      their feelings.
+  - english: Even if the situation is painful, you shouldn't show it.
+    japanese:
+      - 辛い 状況 で も、{辛 し がっ て} は いけ ない。
+      - 辛い 状況 で も、{辛 し がっ て} は なり ませ ん。
+      - 辛い 状況 で も、{辛 し がる} ん じゃ ない よ。
+    english_literally: Painful situation even if, showing signs of pain is not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - 辛い 状況 で も、辛い と 言っ て は いけ ない。
+        english: Even if the situation is painful, you shouldn't say it's painful.
+        hint: This phrase prohibits the *display* of pain or hardship, not just verbally expressing it.
+          We're looking for a negative prohibition against showing signs of difficulty.
+    scene: A mentor advising a trainee on professionalism.
+    register: formal
+    setting: instructional
+    conjugation: te-form (～て)
+    nuance: 「辛しがってはいけない」 emphasizes the importance of concealing one's suffering or difficulties, especially
+      in contexts where stoicism or resilience is expected. It's about not outwardly showing the burden,
+      even if it is felt internally.
+  - english: During the exam, many students were visibly nervous.
+    japanese:
+      - 試験 中、多く の 学生 が {緊張 し がっ て い た}。
+      - 試験 中、多く の 学生 が {緊張 し がっ て い まし た}。
+      - 試験 中、多く の 学生 が 明らか に {緊張 し がっ て い た}。
+    english_literally: During exam, many students were showing signs of tension.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 中、多く の 学生 が 緊張 し て い た。
+        english: During the exam, many students were tense.
+        hint: While `緊張していた` (were tense) describes their state, `緊張しがっていた` describes their *observable
+          behavior* (e.g., fidgeting, biting nails) that indicates their tension. We're looking for the
+          outward manifestation.
+    scene: An observer describing the atmosphere during a difficult test.
+    register: formal
+    setting: academic
+    conjugation: progressive (～ている)
+    nuance: While 「緊張しがっていた」 might seem like it should be 「緊張していた」 (from 緊張する, a する verb), sometimes い-adjectives
+      are formed from nouns + する where the noun describes a feeling that can be *displayed*. Here, 「緊張しがっていた」
+      means they were *visibly* showing their nervousness (e.g., fidgeting, sweating, shaking), not just
+      being nervous internally. This usage highlights the observable signs of their tension during the
+      exam.
+post_example_writeup: As illustrated in the examples, 「い-Adjective[がる]」 is a powerful tool for describing
+  the inferred emotional or physical states of others based on their observable behaviors. It's particularly
+  useful when direct communication of feelings is not possible or not the focus. Pay close attention to
+  the stem form of the い-adjective and the standard verb conjugations of 「がる」.

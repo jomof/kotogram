@@ -1,0 +1,330 @@
+grammar_point: 今更 (too late・belated)
+learn_before:
+  - Verb[しました] (polite past)
+  - 〜ても〜ても (repeated effort or state)
+  - かたわら (while doing something else)
+  - ところを (while or in circumstances)
+  - どうせ (anyway・inevitably)
+  - どこ (where)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+meaning: Too late; after all this time; now (belated)
+pronunciation:
+  katakana: イマサラ
+  romaji: imasara
+formation:
+  今更 + question word + verb (affirmative) か: Used to express that it's too late or pointless to ask or
+    do something now.
+  今更 + negative verb: Indicates that it is too late to perform an action or that an action undertaken
+    now would be ineffective.
+  今更 + verb (te-form) + も / verb (plain past) + ところで + negative predicate: Emphasizes that even if an
+    action were to be taken now, it would be useless or without effect.
+  今更ながら + clause: Indicates a belated realization or appreciation, often used for reflections on past
+    events.
+  今更ですが + clause: A polite phrase used to acknowledge that the current action or statement is belated
+    or awkwardly timed.
+jlpt: N2
+etymology: 今 (ima) means "now," and 更 (sara) means "again" or "further." The combination creates a nuance
+  of something happening "now, but after it should have already passed" or "now, when it is too late to
+  make a difference."
+writeup: '**今更 (imasara)** is an adverb used to express the sentiment that something is occurring too
+  late, is pointless, or is no longer relevant given the circumstances. It carries a strong connotation
+  of belatedness, often implying regret, resignation, or even sarcasm. This term highlights a mismatch
+  between the timing of an action or realization and the current situation, suggesting that any effort
+  now would be futile or inappropriate. It is frequently used with negative predicates, emphasizing the
+  impossibility or ineffectiveness of an action at this late stage. For example, 「今更言っても遅い」 (Imasara ittemo
+  osoi) means "Even if you say it now, it''s too late." It can also be combined with question words to
+  express exasperation, such as 「今更何をするつもりだ」 (Imasara nani o suru tsumori da?) meaning "What do you intend
+  to do now, after all this time?" Beyond expressing futility, 今更 can also be used to convey a **belated
+  realization** or appreciation, often appearing in the form 「今更ながら (imasara nagara)」. In these cases,
+  it signifies that the speaker has only now come to understand or appreciate something that they should
+  have recognized much earlier. This usage is less about futility and more about a moment of delayed insight.
+  For example, 「親になって今更ながら、母の苦労が分かりました」 (Oya ni natte imasara nagara, haha no kurō ga wakarimashita) means
+  "Having become a parent myself, I now, belatedly, understand my mother''s hardships." Additionally,
+  「今更ですが (imasara desu ga)」 is a polite phrase used to acknowledge that what one is about to say or do
+  is belated, typically when offering a belated greeting or apology. This softens the potential awkwardness
+  of the timing.'
+false_friends:
+  - term: 今に (ima ni)
+    meaning: sooner or later; before long; eventually
+    kind: similar expression
+    nuance: Unlike 今更, 今に refers to something that will happen in the future, not something that is too
+      late or futile. It implies an event is imminent or will happen eventually.
+    grammar_point: <suggest>:今に (soon・eventually)
+  - term: 今では (ima dewa)
+    meaning: now; nowadays
+    kind: similar expression
+    nuance: While 今更 focuses on something being too late or pointless, 今では simply describes the current
+      situation or a transition from a past state to the present, without any implication of regret or
+      futility.
+    grammar_point: <suggest>:今では (nowadays)
+  - term: 今から (ima kara)
+    meaning: from now on; starting now
+    kind: antonym
+    nuance: 今から means 'starting from this moment,' implying a fresh beginning or immediacy. This is the
+      opposite of 今更, which conveys a sense of something being too late or belated.
+    grammar_point: <suggest>:今から (from now on)
+post_false_friends_writeup: While 今更 emphasizes the lateness or futility of an action, 今に indicates something
+  will happen in the future, and 今では simply describes the current situation. 今から is a direct antonym,
+  focusing on immediate action or a fresh start. It is crucial to distinguish 今更 from these seemingly
+  similar time-related expressions based on the underlying nuance of belatedness or futility versus future
+  occurrence, present state, or immediate action.
+examples:
+  - english: Since the deadline has passed, there's no use panicking now.
+    japanese:
+      - 締め切り が 過ぎ た から、{今更} 焦っ {て} {も} 仕方 が ない よ。
+      - 締め切り が 過ぎ まし た の で、{今更} 焦っ {て} {も} 仕方 が あり ませ ん。
+      - 締め切り 過ぎ ちゃっ た から、{今更} 焦っ {て} {も} しょう が ない よ。
+    english_literally: Deadline has passed, so now even if panicking, it cannot be helped.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り が 過ぎ た から、{もう} 焦っ て も 仕方 が ない よ。
+        english: Since the deadline has passed, it's no use panicking anymore.
+        hint: This version simply states the fact without emphasizing the 'belated' nature of the panic.
+          The intended nuance of your sentence is specifically about the pointlessness of acting now after
+          a significant delay.
+      - competing_japanese:
+          - 締め切り が 過ぎ た から、{もう} 遅い から 焦っ て も 仕方ない よ。
+        english: Since the deadline has passed, it's too late so there's no use panicking.
+        hint: This phrase indicates that something is already too late. While similar, your sentence is
+          specifically about the futility of panicking *now*, given the elapsed time.
+    scene: A student giving up on studying for an exam after realizing they missed the sign-up deadline.
+    register: casual
+    setting: serious
+  - english: He's not trying to contact me anymore, so it'd probably be pointless to call him now.
+    japanese:
+      - 彼 は もう 連絡 を 取ろう と し ない から、{今更} 電話 し て も 無駄 だろう。
+      - 彼 は もう 連絡 を 取ろう と し ませ ん から、{今更} 電話 し て も 無駄 でしょう。
+      - 彼 は もう 連絡 取る 気 ない から、{今更} 電話 し て も 無駄 だ よ。
+    english_literally: He no longer try to contact, so now even if calling, probably useless.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は もう 連絡 を 取ろう と し ない から、電話 し {て} {も} 意味 が ない だろう。
+        english: He's not trying to contact me anymore, so calling him would probably be meaningless.
+        hint: This means there's no meaning or significance. Your sentence emphasizes the futility of
+          the action at this late stage due to the timing.
+      - competing_japanese:
+          - 彼 は もう 連絡 を 取ろう と し ない から、電話 する {べき} で は ない だろう。
+        english: He's not trying to contact me anymore, so you probably shouldn't call him.
+        hint: This implies it's morally or socially not advisable. Your sentence is about the action being
+          pointless due to timing, not about whether it's right or wrong to do it.
+    scene: A friend advises another friend against calling an ex-partner who has clearly moved on.
+    register: casual
+    setting: supportive
+    nuance: The use of 「無駄だろう」 (muda darō) conveys a strong sense of futility and resignation. The implication
+      is that attempting something 'now' is not just ineffective, but actively pointless because the opportunity
+      has passed.
+  - english: We've already had the wedding, so why are you sending invitations now?
+    japanese:
+      - 結婚 式 を 終え た の に、{今更} なぜ 招待 状 を 送る の です か。
+      - 結婚 式 終わっ た {の} {に}、{今更} なん で 招待 状 送る {ん} {です} {か}。
+      - 結婚 式 は もう 済ん だ {の} {に}、{今更} 招待 状 を 送っ {て} {も} 意味 が ない です よ。
+    english_literally: Wedding finished, but now why invitations sending?
+    competing_grammar:
+      - competing_japanese:
+          - 結婚 式 を 終え た {の} {に}、どう し {て} 招待 状 を 送る {の} {です} {か}。
+        english: We've already had the wedding, so why are you sending invitations?
+        hint: This is a general 'why' question. Your sentence expresses exasperation about the timing
+          of the action, implying it's pointless or inappropriate now, not just a general inquiry.
+      - competing_japanese:
+          - 結婚 式 を 終え た {の} {に}、この タイミング {で} 招待 状 を 送る {の} {です} {か}。
+        english: We've already had the wedding, so are you sending invitations at this timing?
+        hint: While this points out the specific timing, your sentence explicitly means 'now, when it's
+          too late or futile,' conveying a stronger sense of impropriety due to belatedness.
+    scene: A bewildered guest receives a wedding invitation several months after the wedding took place.
+    register: formal
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The rhetorical question with 「なぜ～なのですか」 (naze~nano desu ka) combined with 「今更」 expresses polite
+      but firm bewilderment and slight annoyance at the inappropriate timing. The polite 「のですか」 adds a
+      formal tone to the questioning, implying the speaker is puzzled by the ill-timed action.
+  - english: Having become a parent myself, I now, belatedly, truly understand my parents' hardships.
+    japanese:
+      - 親 に なっ て {今更} ながら、両親 の 苦労 が よく 分かり まし た。
+      - 親 に なっ て {今更} ながら、親 の 苦労 が よく 分かっ た よ。
+      - 親 に なっ て {今更} ながら、改めて 親 の 苦労 が 身 に 沁み まし た。
+    english_literally: Parent become, now belatedly, parents' hardships well understood.
+    competing_grammar:
+      - competing_japanese:
+          - 親 に なっ て {やっと}、両親 の 苦労 が よく 分かり まし た。
+        english: Having become a parent, I finally truly understood my parents' hardships.
+        hint: This means 'finally understood,' implying a long-awaited realization. Your sentence emphasizes
+          that the understanding came *later than it should have*.
+      - competing_japanese:
+          - 親 に なっ て、改めて 両親 {の} 苦労 が よく 分かり まし た。
+        english: Having become a parent, I once again truly understood my parents' hardships.
+        hint: This implies a renewed understanding or re-evaluation. Your sentence specifically highlights
+          that the realization is 'belated,' signifying a delayed insight.
+    scene: A new parent reflects on their own upbringing, realizing the extent of their parents' sacrifices
+      and efforts.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The phrase 「今更ながら」 (imasara nagara) highlights a belated yet profound realization. The speaker's
+      newfound understanding of parental struggles, now that he is a parent himself, makes the reflection
+      deeply personal and highlights the passage of time before this insight came. The use of 「よく分かりました」
+      (yoku wakarimashita) indicates a clear and deep comprehension.
+  - english: It's very belated, but I am sending the minutes from last week's meeting.
+    japanese:
+      - 大変 {今更} です {が}、先週 の 会議 の 議事 録 を 送付 いたし ます。
+      - '{今更} で 恐縮 です {が}、先週 の 会議 の 議事 録 を 送ら せ {て} いただき ます。'
+      - '{今更} {に} なっ {て} しまい まし た {が}、先週 の 会議 の 議事 録 を お 送り し ます。'
+    english_literally: Very belated but, last week's meeting's minutes sending.
+    competing_grammar:
+      - competing_japanese:
+          - 遅く なり まし た {が}、先週 の 会議 の 議事 録 を 送付 いたし ます。
+        english: It's late, but I truly appreciate your kindness.
+        hint: This simply states that the appreciation is late. Your sentence explicitly uses a phrase
+          that means 'now, when it's too late or futile,' implying a stronger sense of regret or apology
+          for the extreme lateness.
+    scene: An office worker sending out meeting minutes a week after the meeting, acknowledging the delay
+      politely.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「大変今更ですが」 (taihen imasara desu ga) is a polite, formulaic expression to acknowledge a significant
+      delay. The use of 「送付いたします」 (sōfu itashimasu), a humble form of sending, further emphasizes the
+      speaker's politeness and awareness of the belatedness in a business context. This phrase is used
+      to soften the impact of the late delivery.
+  - english: Don't regret it now; it's too late to change anything.
+    japanese:
+      - '{今更} 後悔 する {な}。'
+      - '{今更} 後悔 する {ん} じゃ {ない}。'
+      - '{今更} 後悔 し ない {で}。'
+    english_literally: Now regret do not.
+    competing_grammar:
+      - competing_japanese:
+          - '{もう} 後悔 する {な}。'
+        english: Don't regret it anymore.
+        hint: This simply means 'don't regret it anymore.' Your sentence conveys that it's pointless to
+          regret it at this late stage, as the opportunity for change has passed.
+      - competing_japanese:
+          - '{今 から} 後悔 する {な}。'
+        english: Don't start regretting it from now on.
+        hint: This means 'don't start regretting it from now on.' Your sentence suggests that regret is
+          futile because the time to act has already passed, emphasizing the belatedness.
+    scene: A friend advises another friend who is dwelling on a past mistake.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The casual negative imperatives like 「するな」 (suru na) or 「するんじゃ ない」 (surun ja nai) give this
+      a strong, direct, and slightly admonishing tone, emphasizing that dwelling on the past is unproductive.
+      The softer 「しない で」 (shinai de) can also be used, conveying a gentle yet firm piece of advice. The
+      nuance of 「今更」 here highlights the futility of regret at this point in time, as the situation cannot
+      be changed.
+  - english: Even if you apologize now, it's too late.
+    japanese:
+      - '{今更} 謝っ {て} {も} 遅い。'
+      - '{今更} 謝っ た ところ {で} 遅い {です} よ。'
+      - '{今更} 謝っ {て} {も} {もう} 手遅れ だ よ。'
+    english_literally: Now apologize even if, late.
+    competing_grammar:
+      - competing_japanese:
+          - '{もう} 謝っ {て} {も} 遅い。'
+        english: It's already too late even if you apologize.
+        hint: This simply states that it's too late. Your sentence uses a phrase that explicitly means
+          'now, when it's too late or futile,' emphasizing the belatedness of the apology and its lack
+          of effect.
+      - competing_japanese:
+          - 謝っ {て} {も} 無駄 だ よ。
+        english: It's useless even if you apologize.
+        hint: This emphasizes the uselessness of the action. Your sentence specifically points out that
+          the apology is futile *because of its belated timing*.
+    scene: A person tries to apologize to someone they deeply offended, but the relationship is already
+      irreparable.
+    register: casual
+    setting: serious
+    nuance: The combination of 「今更」 with the te-form + も (even if) and the predicate 「遅い」 (osoi - too
+      late) or 「手遅れ」 (teokure - beyond repair) strongly conveys futility. It emphasizes that the apology
+      is not just late, but so late that it has lost its potential impact, highlighting the missed opportunity.
+  - english: It's too late to start studying for the exam now.
+    japanese:
+      - '{今更} 試験 勉強 を 始め {て} {も} 間に合わ ない よ。'
+      - '{今更} 試験 勉強 を 始め {て} {も} 無駄 だ よ。'
+      - '{今更} 試験 勉強 を 始め {て} {も}、どうせ 間に合わ ない。'
+    english_literally: Now exam study begin even if, not in time.
+    competing_grammar:
+      - competing_japanese:
+          - '{もう} 試験 勉強 を 始め {て} {も} 間に合わ ない よ。'
+        english: It's already too late to start studying for the exam.
+        hint: This simply states it's too late. Your sentence implies that starting *now* is pointless
+          because the appropriate time has long passed.
+      - competing_japanese:
+          - 試験 勉強 を 始め {たっ て}、間に合わ ない だろう。
+        english: Even if you start studying for the exam, it probably won't be in time.
+        hint: This is a general statement about lack of time. Your sentence specifically implies a sense
+          of exasperation because the action is being considered *only now*, when it's far too late.
+    scene: A group of friends discussing their chances for an upcoming exam, one of them has procrastinated
+      severely.
+    register: casual
+    setting: pessimistic
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: This example combines 「今更」 with a negative potential form 「間に合わない」 (maniawanai - won't be
+      in time) and a casual final particle 「よ」 (yo), expressing a sense of resignation and futility. The
+      speaker is acknowledging that taking action *now* is utterly pointless. The nuance emphasizes the
+      belatedness as the core reason for the lack of success.
+  - english: It's belated, but I truly appreciate your kindness.
+    japanese:
+      - '{今更} ながら、あなた の 親切 に 心 から 感謝 し て い ます。'
+      - '{今更} ながら、心 から 感謝 し ます。'
+      - '{今更} ながら {です} {が}、本当 に ありがとう ござい ます。'
+    english_literally: Now belatedly, your kindness from heart thanking.
+    competing_grammar:
+      - competing_japanese:
+          - 遅く なり まし た {が}、あなた の 親切 に 心 から 感謝 し て い ます。
+        english: It's late, but I truly appreciate your kindness.
+        hint: This simply states that the appreciation is late. Your sentence uses a phrase that specifically
+          means 'now, belatedly,' indicating a delayed *realization* or *full appreciation* rather than
+          just a delayed action.
+      - competing_japanese:
+          - '{ようやく}、あなた の 親切 に 心 から 感謝 し て い ます。'
+        english: Finally, I truly appreciate your kindness.
+        hint: This implies a long-awaited appreciation. Your sentence highlights that the appreciation
+          is only coming *now*, after a period where it perhaps should have been more obvious or expressed.
+    scene: Someone reflecting on a past act of kindness they received, and finally understanding its depth
+      and impact.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「今更ながら」 (imasara nagara) here conveys a sense of deep, but belated, gratitude. It implies
+      that the speaker has had time to truly internalize the kindness and its significance. The use of
+      「心から感謝しています」 (kokoro kara kansha shite imasu - I am thanking from the bottom of my heart) elevates
+      the sincerity, emphasizing the profound nature of this delayed appreciation.
+  - english: It's a bit late to ask, but where are you going?
+    japanese:
+      - '{今更} {です} {が}、どこ {へ} 行か れる {ん} {です} {か}？'
+      - '{今更} {な} {ん} {です} けど、どちら {へ}？'
+      - '{今更} {に} なっ {て} しまい まし た {が}、どちら {へ} 行か れる {の} {です} {か}？'
+    english_literally: Now is belated, but where to going?
+    competing_grammar:
+      - competing_japanese:
+          - 遅く なり まし た {が}、どこ {へ} 行か れる {ん} {です} {か}？
+        english: It's gotten late, but where are you going?
+        hint: This simply states that the inquiry is late. Your sentence uses a phrase that signals that
+          the question is being asked 'now, when it's awkwardly belated,' implying a slight embarrassment
+          or acknowledgment of the strange timing.
+      - competing_japanese:
+          - 急 {に} {です} {が}、どこ {へ} 行か れる {ん} {です} {か}？
+        english: It's sudden, but where are you going?
+        hint: This implies a sudden or abrupt question. Your sentence focuses on the fact that the question
+          is belated, not just sudden, suggesting the opportunity to ask earlier was missed.
+    scene: A colleague approaches another who is already halfway out the door, realizing they forgot to
+      ask a crucial question earlier.
+    register: teineigo (polite)
+    setting: interrogative
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「今更ですが」 (imasara desu ga) is a polite softener used when acknowledging that a question or
+      statement is awkwardly timed or belated. The use of honorifics like 「行かれる」 (ikareru) and polite
+      endings like 「んですか」 (n desu ka) or 「のですか」 (no desu ka) maintains respect, while 「今更」 signals an
+      awareness of the unusual timing, often with a hint of self-deprecation for the delay.
+post_example_writeup: As these examples demonstrate, 今更 is incredibly versatile, expressing a range of
+  emotions from resignation and futility to belated realization and polite acknowledgment of awkward timing.
+  Its core meaning consistently revolves around the idea of something happening 'now, after the opportune
+  moment has passed,' making it a crucial expression for nuanced communication in Japanese.

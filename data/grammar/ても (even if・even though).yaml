@@ -1,0 +1,356 @@
+grammar_point: ても (even if・even though)
+learn_before:
+  - なくて (negative te-form)
+meaning: Even if, Even though
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ても
+    rarity: common
+    meaning: even if/though (verb/adjective/noun)
+  - conjugation-type: negative plain (～ない)
+    form: なくても
+    rarity: common
+    meaning: even if/though not (verb/adjective/noun)
+  - conjugation-type: progressive (～ている)
+    form: ていても
+    rarity: less common
+    meaning: even if/though currently (verb-ing)
+pronunciation:
+  katakana: テモ
+  romaji: temo
+formation:
+  Verb in て-form + も: Indicates a concessive condition for verbs.
+  い-adjective stem + くても: Indicates a concessive condition for い-adjectives.
+  な-adjective + でも: Indicates a concessive condition for な-adjectives.
+  Noun + でも: Indicates a concessive condition for nouns.
+jlpt: N4
+etymology: The grammar point 「ても」 is a combination of the 「て」-form of a verb or adjective and the particle
+  「も」. The 「て」-form serves as a conjunctive particle, linking clauses and sometimes indicating a temporal
+  sequence, cause, or means. The particle 「も」, in this context, adds the nuance of 'even,' 'also,' or
+  'likewise,' creating a concessive conditional meaning. Historically, this construction evolved from
+  simply linking clauses with 「て」 and then adding 「も」 to emphasize the unexpected nature of the outcome
+  despite the preceding condition.
+writeup: The 「ても」 grammar pattern is used to express 'even if,' 'even though,' or 'no matter how/what.'
+  It indicates that despite the condition or situation described in the first clause, the event or state
+  in the second clause still occurs or remains true, often contrary to expectation. This makes it a crucial
+  pattern for conveying resilience, acceptance, or unexpected results. To form 「ても」:For verbs, conjugate
+  them into their **て-form** and add 「も」. For example, 食べる (to eat) becomes 食べても (even if one eats).For
+  **い-adjectives**, remove the final 「い」 and add 「くても」. For example, 寒い (cold) becomes 寒くても (even if it's
+  cold).For **な-adjectives**, add 「でも」. For example, 静か (quiet) becomes 静かでも (even if it's quiet).For
+  **nouns**, add 「でも」. For example, 学生 (student) becomes 学生でも (even if one is a student).This pattern
+  is highly versatile and frequently encountered in daily Japanese. It can also be used to highlight negative
+  sentences, translating similarly to 'even if not (A)' or 'even though not (A)'. For instance, 行かなくても
+  (even if I don't go) or 好きじゃなくても (even if I don't like it).
+false_friends:
+  - term: 〜てもいい
+    meaning: It's okay to; it's alright to; can/may
+    kind: often confused with
+    nuance: Unlike 「ても」, which expresses a concessive condition ('even if A, then B'), 「～てもいい」 expresses
+      permission or allowance ('It's okay to do A'). The nuance shifts from 'despite' to 'permitted'.
+    grammar_point: <suggest>:〜てもいい (it's okay to)
+  - term: でも
+    meaning: Even; or something; any (with question words); no matter (who/what/where/when)
+    kind: often confused with
+    nuance: 「でも」 can function as a conjunction ('but, however') connecting two independent clauses, or
+      as a particle meaning 'or something'/'any' when following a question word. These uses are distinct
+      from the concessive particle 「ても」.
+    grammar_point: でも (even・any・no matter)
+  - term: ～ようが～まいが
+    meaning: Even if; no matter what; whether or not (emphatic)
+    kind: similar expression
+    nuance: 「～ようが～まいが」 is a more emphatic and often literary way to express 'whether or not' or 'no matter
+      what,' indicating a complete indifference to the outcome. It carries a stronger sense of 'it makes
+      no difference' compared to the broader 'even if' of 「ても」.
+    grammar_point: ようが〜まいが (regardless of whether)
+  - term: もし
+    meaning: If (for emphasis)
+    kind: similar expression
+    nuance: 「もし」 is an adverb that emphasizes a hypothetical condition, typically preceding a conditional
+      like 「～ば」, 「～たら」, or 「～なら」. While it sets up a 'if' scenario, it does not inherently carry the concessive
+      'even though' nuance of 「ても」.
+    grammar_point: もし・もしも (if, emphasis)
+  - term: ～にしても
+    meaning: Even if, Even though, No matter what, Also
+    kind: similar expression
+    nuance: 「～にしても」 is often used to introduce additional considerations or to make a concession based
+      on a statement or assumption. It can convey 'even if that is the case' or 'even considering that,'
+      implying a broader context than the simple 'even if' of 「ても」.
+    grammar_point: にしても (even if)
+  - term: ～としても
+    meaning: Even if (we assume), Assuming, Also as
+    kind: similar expression
+    nuance: 「～としても」 specifically focuses on a hypothetical assumption or a presumption. It means 'even
+      assuming that...' or 'even if it's considered that...'. While similar in meaning, it emphasizes
+      the assumed nature of the condition more strongly than 「ても」.
+    grammar_point: としても (even if assumed)
+  - term: ～にせよ・～にしろ
+    meaning: Even if, Even though, No matter, Whether… or
+    kind: similar expression
+    nuance: 「～にせよ」 and 「～にしろ」 are more formal and often used to present two contrasting options, implying
+      'whether A or B, the result is the same.' This binary or exhaustive concession differs from 「ても」,
+      which can apply to a single condition.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: さえ
+    meaning: Even; if only; as long as
+    kind: similar expression
+    nuance: The particle 「さえ」 means 'even' but often emphasizes a minimum requirement or an extreme case.
+      For example, 'even a child' (子供さえ) can do something, highlighting that if the easiest case can do
+      it, others surely can. It marks an inclusive extreme, whereas 「ても」 focuses on concession despite
+      a condition.
+    grammar_point: さえ (even・if only)
+  - term: たとえ～ても
+    meaning: Even if…is the case, Supposing that
+    kind: similar expression
+    nuance: 「たとえ～ても」 is a more emphatic and formal version of 「ても」. 「たとえ」 (even if, granted that) explicitly
+      introduces a hypothetical or concessive situation, often used in written or more formal speech to
+      stress the 'even if' aspect strongly.
+    grammar_point: たとえ〜ても (even if)
+  - term: ～たって
+    meaning: Even if, Even though, No matter how
+    kind: similar expression
+    nuance: 「～たって」 is a more casual and colloquial variant of 「ても」, commonly used in informal conversations.
+      It carries the same concessive meaning but with a relaxed tone.
+    grammar_point: たって (even if)
+  - term: 〜ても〜ても
+    meaning: No matter how much/often/hard/etc.; no matter how many times
+    kind: similar expression
+    nuance: While 「ても」 expresses a general 'even if' concession, the repetition in 「〜ても〜ても」 specifically
+      emphasizes repeated effort or a continuous state, highlighting that the outcome remains the same
+      despite continuous or exhaustive attempts.
+    grammar_point: 〜ても〜ても (repeated effort or state)
+  - term: たところで
+    meaning: Even if; even though; no matter how much
+    kind: similar expression
+    nuance: While 「ても」 simply expresses a concession ('even if A, then B'), 「たところで」 implies that the action
+      in the first clause is futile or will not lead to the desired outcome, often followed by a negative
+      result. It carries a nuance of resignation or a sense that 'it won't make a difference'.
+    grammar_point: (にし)たところで (even if)
+  - term: にもかかわらず
+    meaning: Despite, in spite of, regardless, nevertheless
+    kind: similar expression
+    nuance: 「にもかかわらず」 is more formal than 「ても」 and strongly emphasizes that something happened or is true
+      **despite** a preceding condition, often one that would logically prevent it. It highlights a stronger
+      contrast or unexpectedness than 「ても」, which can be a simple 'even if'.
+    grammar_point: にかかわらず (regardless of)
+post_false_friends_writeup: When using 「ても」, it is essential to distinguish it from similar-sounding expressions.
+  For instance, 「～てもいい」 expresses permission, whereas 「ても」 denotes a concession. Similarly, the conjunction
+  「でも」 ('but, however') is distinct from the concessive particle 「ても」. Other expressions like 「たとえ～ても」
+  provide a more emphatic or formal alternative, while 「～たって」 serves as its casual counterpart. Understanding
+  these nuances is key to accurate and natural Japanese communication.
+examples:
+  - english: Even if I practice every day, I can't really get good.
+    japanese:
+      - 毎日 練習 し {て も}、なかなか 上手 に なれ ませ ん。
+      - 毎日 練習 し {て も}、なかなか 上手 に なれ ない。
+      - 毎日 練習 し {たっ て}、なかなか 上手 に なれ ない よ。
+    english_literally: Every day practice do even if, quite good at cannot become.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 練習 すれ {ば}、上手 に なれ ます。
+        english: If I practice every day, I can get good.
+        hint: The grammar point is for 'even if/though', indicating that the result occurs despite the
+          condition. We're looking for a sentence that conveys frustration that effort doesn't lead to
+          improvement.
+    scene: A student expressing frustration about their slow progress in a new skill.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The speaker is a young man. The phrase 「なかなか～ない」 emphasizes the difficulty of improving despite
+      effort. The final 「なれません」 uses the polite negative potential form, which is common in casual conversation
+      to express an inability.
+    etymology: The term 「なかなか」 (difficult to, not easily) is often paired with negative verbs to express
+      difficulty in achieving something.
+  - english: No matter how busy you are, you have to eat properly.
+    japanese:
+      - どんな に 忙しく {て も}、食事 は ちゃんと 摂ら ない と。
+      - どんな に 忙しく {て も}、食事 は ちゃんと 摂ら なけれ ば なり ませ ん。
+      - どんな に 忙しく {て も}、ご飯 は ちゃんと 食べ なさい。
+    english_literally: No matter how busy are, meal is properly must take.
+    competing_grammar:
+      - competing_japanese:
+          - もし 忙しい {なら}、食事 は ちゃんと 摂ら ない と。
+        english: If you are busy, you have to eat properly.
+        hint: The grammar point emphasizes 'no matter how' or 'even if', conveying that the rule applies
+          regardless of the degree of business. We're looking for a stronger emphasis on the concession.
+    scene: A concerned mother reminding her college student child about their health.
+    register: casual
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「どんなに～ても」 adds emphasis, meaning 'no matter how much.' The phrase 「摂らないと」 is a casual contraction
+      of 「摂らないといけない」, meaning 'you have to take/eat,' and is typically used by an older person speaking
+      to a younger one. The use of 「ちゃんと」 emphasizes doing something properly.
+    etymology: 「摂る」 (to take/eat) is a more formal or clinical verb often used for consuming food or medicine,
+      in contrast to more casual 「食べる」 (to eat).
+  - english: Even if she's a little clumsy, she's a very kind person.
+    japanese:
+      - 彼女 は 少し 不 器用 {で も}、とても 優しい 人 です。
+      - 彼女 は 少し 不 器用 {で も}、とても 優しい 人 だ よ。
+      - 彼女 は 少し 不 器用 {で も}、本当 に 優しい 人 です。
+    english_literally: She is a little clumsy even if, very kind person is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 少し 不 器用 だ {けれど}、とても 優しい 人 です。
+        english: She is a little clumsy, but she is a very kind person.
+        hint: While 'but' can connect contrasting ideas, the grammar point specifically means 'even if'
+          or 'even though', highlighting an unexpected outcome despite the initial condition. We're looking
+          for a sentence that emphasizes this concession.
+    scene: Friends discussing a mutual acquaintance's personality.
+    register: semi-formal
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: 「不器用でも」 illustrates the concession for a な-adjective. The use of 「です」 maintains a semi-formal
+      tone while describing a personal observation.
+  - english: This problem is so easy that even a child can solve it.
+    japanese:
+      - この 問題 は、子供 {で も} 解ける くらい 簡単 だ。
+      - この 問題 は、子供 {で も} 解ける くらい 簡単 です。
+      - この 問題 は、子供 {で も} 分かる くらい 簡単 だ。
+    english_literally: This problem, even a child, to the extent that it can be solved, is easy.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は、子供 が 解ける {くらい} 簡単 だ。
+        english: This problem is easy enough that a child can solve it.
+        hint: The grammar point adds emphasis, meaning 'even a child,' highlighting that it's easy for
+          someone who might typically find it difficult. We're looking for an emphasis on the inclusiveness
+          of 'even'.
+    scene: A teacher reviewing a math problem with a class, emphasizing its simplicity.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: 「子供でも」 shows the concessive use with a noun, emphasizing that even a child (who might typically
+      struggle) can do it. 「～くらい簡単だ」 means 'it's easy to the extent that...'. The use of plain form 「だ」
+      for a declarative statement is common in instructional settings.
+  - english: Even if it doesn't rain, let's take an umbrella just in case.
+    japanese:
+      - 雨 が 降ら {なく て も}、念 の ため 傘 は 持っ て 行き ましょう。
+      - 雨 が 降ら {なく て も}、念 の ため 傘 持っ て 行こう よ。
+      - 雨 が 降ら {なく とも}、念 の ため 傘 は 持っ て 行き ましょう。
+    english_literally: Rain falls not even if, just in case umbrella is take let's.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降ら ない {なら}、傘 を 持っ て 行く 必要 は あり ませ ん。
+        english: If it doesn't rain, there's no need to take an umbrella.
+        hint: The grammar point expresses a concessive 'even if not', meaning the action is taken regardless
+          of the condition. We're looking for a sentence that implies caution despite a potential lack
+          of rain.
+    scene: A group of friends planning an outing, considering potential weather changes.
+    register: casual
+    setting: cautious
+    conjugation: negative plain (～ない)
+    nuance: 「降らなくても」 uses the negative plain form of a verb. 「念のため」 means 'just in case,' highlighting
+      a cautious approach. The volitional 「～ましょう」 invites agreement from the group.
+  - english: Even though she was utterly exhausted, she never stopped smiling.
+    japanese:
+      - 疲れ 果て て い {て も}、彼女 は 笑顔 を 絶やさ なかっ た。
+      - 疲れ 果て て い {て も}、彼女 は ずっと 笑顔 を 絶やさ なかっ た。
+      - 疲れ 果て て い {て も}、彼女 は 笑顔 を 絶やさ ず に い た。
+    english_literally: Utterly exhausted even though, she smile did not cease.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ 果て て い た {が}、彼女 は 笑顔 を 絶やさ なかっ た。
+        english: She was utterly exhausted, but she never stopped smiling.
+        hint: Using 'が' offers a simple contrast, but the grammar point emphasizes the strong concessive
+          'even though', highlighting the unexpected persistence of her smile despite extreme exhaustion.
+          We're looking for a stronger sense of concession.
+    scene: Observing a performer who has just finished a long and demanding show.
+    register: formal
+    setting: reflective
+    conjugation: progressive (～ている)
+    nuance: 「疲れ果てていても」 uses the progressive form of a verb (疲れ て いる + て も) to indicate a continuous state
+      of exhaustion. 「絶やさなかった」 means 'did not let cease/run out,' emphasizing her enduring positive demeanor
+      despite the circumstances.
+  - english: No matter how difficult it is, chasing your dreams is worth it.
+    japanese:
+      - どれ ほど 困難 {で も}、夢 を 追い 続ける 価値 は ある。
+      - どれ ほど 困難 {で も}、夢 を 追い 続ける 価値 は あり ます。
+      - どれ ほど 困難 {で も}、夢 を 追い 続ける 価値 は 絶対 ある。
+    english_literally: To what extent difficult it is, continuing to chase dreams, value exists.
+    competing_grammar:
+      - competing_japanese:
+          - もし 困難 {なら}、夢 を 追い 続ける 価値 は あり ませ ん。
+        english: If you are difficult, it is not worth chasing your dreams.
+        hint: The grammar point expresses 'no matter how difficult,' indicating that the value holds true
+          regardless of the difficulty. We're looking for a sentence that implies this value persists
+          despite the challenges.
+    scene: A motivational speaker addressing an audience, inspiring them to pursue their goals.
+    register: formal
+    setting: inspirational
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: 「どれほど困難でも」 uses the intensifier 「どれほど」 ('to what extent/degree') with a な-adjective in the
+      でも form, creating a strong 'no matter how difficult' meaning. The sentence structure reflects a
+      formal and encouraging tone, typical of motivational speech.
+  - english: Even if it's expensive, I still want to buy it.
+    japanese:
+      - 高く {て も}、私 は それ が 買い たい です。
+      - 高く {て も}、それ 買い たい な。
+      - 高く {て も}、やはり 買い たい です。
+    english_literally: Expensive even if, I that want to buy.
+    competing_grammar:
+      - competing_japanese:
+          - 高い {けれど}、買い たい です。
+        english: It's expensive, but I want to buy it.
+        hint: The grammar point emphasizes the concession ('even if'), implying the desire despite the
+          cost. We're looking for a sentence that expresses this strong desire despite a negative condition.
+    scene: You're at a shop, looking at an item you really like but it's a bit pricey.
+    register: semi-formal
+    setting: optimistic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    nuance: 「高くても」 uses the い-adjective form with 「ても」. The use of 「～たいです」 expresses a polite desire.
+      The sentence conveys a strong intention to purchase, even in the face of a high price, which is
+      why 「ても」 is more fitting than a simple "but".
+  - english: Even if you don't understand, you must continue studying.
+    japanese:
+      - 分 から {なく て も}、勉強 は 続け なけれ ば なり ませ ん。
+      - 分 から {なく て も}、勉強 は 続け ない と。
+      - 分 から {なく て も}、勉強 は 続け なく て は いけ ませ ん。
+    english_literally: Understand not even if, study must continue.
+    competing_grammar:
+      - competing_japanese:
+          - 分から ない {なら}、勉強 する 意味 は ない です。
+        english: If you don't understand, there's no meaning in studying.
+        hint: The grammar point means 'even if not', emphasizing persistence regardless of immediate comprehension.
+          We're looking for a sentence that conveys the necessity of continuing study despite lack of
+          understanding.
+    scene: A teacher encouraging a struggling student not to give up.
+    register: formal
+    setting: inspirational
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「分からなくても」 uses the negative て-form + も for a verb. The phrase 「～なければなりません」 indicates obligation
+      or necessity. This sentence is a strong encouragement, highlighting that effort is required even
+      when results are not immediately apparent, a common sentiment from teachers.
+  - english: Even if you go by car, it will take at least two hours.
+    japanese:
+      - 車 {で も}、最低 2 時間 は かかり ませ ん。
+      - 車 {で も}、最低 2 時間 は かかる よ。
+      - 車 {で も}、最低 で も 2 時間 は かかり ます。
+    english_literally: Car even if, minimum 2 hours will take.
+    competing_grammar:
+      - competing_japanese:
+          - 車 で 行く {と}、2 時間 かかり ます。
+        english: If you go by car, it will take 2 hours.
+        hint: The grammar point means 'even if', suggesting that taking the car (which might seem faster)
+          won't save much time. We're looking for a sentence that expresses this concession.
+    scene: Someone asking about travel time, and being told that even the fastest method will take a certain
+      amount of time.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: 「車でも」 uses the noun + でも formation. This phrase emphasizes that even with the seemingly fastest
+      mode of transport (car), the journey still takes a considerable amount of time, implying that other
+      modes might take even longer or that the distance is simply far.
+post_example_writeup: The 「ても」 construction is highly versatile, conveying the sense of "even if" or "even
+  though" across a wide range of situations. As seen in the examples, it attaches to verbs, い-adjectives,
+  な-adjectives, and nouns, allowing for nuanced expression of concession. Remember that the negative form,
+  「なくても」, means "even if not," altering the meaning to express an outcome that occurs despite a negative
+  condition. For continuous states or actions, the progressive form 「ていても」 can be used.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ても

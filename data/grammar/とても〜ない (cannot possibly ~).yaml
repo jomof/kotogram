@@ -1,0 +1,257 @@
+grammar_point: とても〜ない (cannot possibly ~)
+learn_before:
+  - 〜量 (quantity)
+  - い-Adjective[くない] (negative)
+  - こんな (this kind of)
+  - すぐ (immediately・easily)
+  - そんな (such)
+  - 信じられない (cannot be believed, unbelievable)
+meaning: Not ~ at all, Cannot ~ at all
+meaning_warning: Strong sense of impossibility
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: とても + V/い-adj. plain negative
+    rarity: common
+    meaning: cannot ~ at all / not ~ at all
+  - conjugation-type: potential (～られる/～える)
+    form: とても + V potential plain negative
+    rarity: common
+    meaning: cannot possibly ~
+  - conjugation-type: dictionary (plain non-past)
+    form: とても + N/な-adj. + だ
+    rarity: common
+    meaning: is absolutely impossible / is not ~ at all
+pronunciation:
+  katakana: トテモナイ
+  romaji: totemo nai
+formation:
+  とても + [Verb plain negative form]: Emphasizes the strong denial of an action or ability, or its impossibility.
+    (e.g., とても行かない)
+  とても + [い-adjective / な-adjective plain form] + だ: Indicates that the degree of the adjective is so strong
+    that it results in impossibility or inappropriateness. (e.g., とても無理だ)
+  とても + [Noun] + はない: Expresses that something does not exist at all, or that there is no hope/expectation
+    whatsoever. (e.g., とても希望はない)
+jlpt: N3
+etymology: 「とても」 originally meant "exceedingly" or "very much." When used with a negative, it intensifies
+  the negation, indicating something is absolutely not the case. Its usage with negative forms evolved
+  to express an absolute inability or impossibility, reflecting a sense of being 'too much' for something
+  to be achieved or endured.
+writeup: 「とても〜ない」 is used to express a strong sense of impossibility or complete negation. It signifies
+  that something is "not at all" possible or that one "cannot" do something at all. It emphasizes the
+  speaker's feeling that something is entirely out of the question. This phrase is frequently used when
+  conveying an emotional or subjective impossibility, rather than a purely objective one. While it often
+  appears with the potential form of verbs (e.g., できない, 食べられない), it can also combine with adjectival nouns
+  like 無理だ to convey a similar strong sense of impossibility.
+false_friends:
+  - term: ぜんぜん
+    meaning: (Not) at all
+    kind: similar expression
+    nuance: While 「全然〜ない」 (zenzen ~ nai) also expresses complete negation, it can be used in a wider range
+      of situations for things that are simply not the case or unexpected. 「とても〜ない」 specifically implies
+      a strong sense of *impossibility* or absolute inability.
+    grammar_point: 全然 (not at all; totally)
+  - term: 全く〜ない
+    meaning: Not~at all
+    kind: similar expression
+    nuance: 「全く〜ない」 (mattaku ~ nai) is similar to 「全然〜ない」 in expressing complete negation. It can describe
+      something that is entirely absent or untrue. However, 「とても〜ない」 retains its focus on a strong sense
+      of impossibility or difficulty that makes something unachievable.
+    grammar_point: 全く〜ない (not at all)
+  - term: すこしも〜ない
+    meaning: Not even a little, Not at all, Not in the least, Never
+    kind: similar expression
+    nuance: 「少しも〜ない」 (sukoshimo ~ nai) emphasizes the lack of even a tiny amount or degree of something.
+      It is about quantity or extent. 「とても〜ない」, in contrast, focuses on the absolute impossibility of
+      an action, state, or event occurring.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: とうてい〜ない
+    meaning: Absolutely impossible, by no means
+    kind: similar expression
+    nuance: 「とうてい〜ない」 (tōtei ~ nai) is perhaps the closest in nuance to 「とても〜ない」, also expressing absolute
+      impossibility. However, 「とうてい〜ない」 tends to be more formal and literary, emphasizing a logical or
+      objective conclusion of impossibility, whereas 「とても〜ない」 can carry a more subjective or emotional
+      nuance of 'it's just too much' to be possible.
+    grammar_point: <suggest>:とうてい〜ない (absolutely impossible)
+post_false_friends_writeup: While expressions like 「全然」、「全く」, 「少しも」, and 「とうてい」 can all be used with negation,
+  「とても〜ない」 specifically conveys a strong, often subjective, feeling that something is completely impossible,
+  beyond one's capacity, or too difficult to achieve. It goes beyond simple negation, conveying an absolute
+  lack of ability or possibility.
+examples:
+  - english: This amount of work, I can't possibly finish it.
+    japanese:
+      - こんな 量 の 仕事、{とても} 終わら {ない} よ。
+      - こんな 量 の 仕事、{とても} 終わん {ない} よ。
+      - こんな 量 の 仕事、{とても} 終わり ませ ん。
+    english_literally: This amount of work, it absolutely won't end.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 量 の 仕事、{全然} 終わら ない よ。
+        english: This amount of work, I won't finish it at all.
+        hint: 「全然終わらない」 indicates a general negation or lack of progress, but 「とても終わらない」 emphasizes the
+          *impossibility* due to the overwhelming nature of the task. We're looking for a strong sense
+          of impossibility.
+    scene: A male office worker complains to a colleague about an overwhelming workload.
+    register: casual
+    setting: pessimistic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    nuance: The casual 「よ」 particle at the end, often used by male speakers in casual settings, adds a
+      sense of exasperation and emphasizes his inability to complete the task. The contracted form 「終わんない」
+      is characteristic of very casual speech.
+  - english: I can't possibly believe what a liar like that says.
+    japanese:
+      - あんな 嘘つき の 言う こと は {とても} 信じ られ {ない} わ。
+      - あんな 嘘つき の 言う こと は {とても} 信じ られ ませ ん。
+      - あんな 嘘つき の 言う こと は {とても} 信じ られ {ない} な。
+    english_literally: The things that a liar like that says, I absolutely cannot believe them.
+    competing_grammar:
+      - competing_japanese:
+          - あんな 嘘つき の 言う こと は {全然} 信じ られ ない わ。
+        english: I can't believe what a liar like that says at all.
+        hint: 「全然信じられない」 implies a general disbelief. However, 「とても信じられない」 expresses a profound, emotional
+          impossibility of trusting the person's words. We're looking for this strong, emotional disbelief.
+    scene: A woman expressing her absolute distrust in someone's words due to their history of lying.
+    register: casual
+    setting: serious
+    conjugation: potential (～られる/～える)
+    speaker_gender: female
+    nuance: The feminine sentence-ending particle 「わ」 adds a soft but firm tone to the speaker's absolute
+      disbelief, making the statement more emotional and personal. The use of 「な」 is also casual and can
+      be used by both genders to express internal realization or mild assertion.
+  - english: Going out in this rain is absolutely impossible.
+    japanese:
+      - この 雨 の 中 を 外出 する なんて、{とても} 無理 だ。
+      - この 雨 の 中 を 外出 する なんて、{とても} 無理 です。
+    english_literally: Going out in the middle of this rain, it is absolutely impossible.
+    competing_grammar:
+      - competing_japanese:
+          - この 雨 の 中 を 外出 し {て は いけ ない}。
+        english: You mustn't go out in this rain.
+        hint: While 「とても無理だ」 conveys a strong subjective impossibility due to difficulty, 「てはいけない」 expresses
+          a strong prohibition. We're looking for a grammar that expresses an absolute impossibility due
+          to the situation, not a rule.
+    scene: Someone looking out at a heavy downpour, deciding against going outside.
+    register: semi-formal
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+  - english: In such a short time, I can't possibly memorize everything.
+    japanese:
+      - こんな 短い 時間 で は、{とても} 全部 覚え きれ {ない}。
+      - こんな 短い 時間 で は、{とても} 全部 覚え きれ ませ ん。
+    english_literally: In such a short time, I absolutely cannot completely remember all.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 短い 時間 で は、全部 {覚え 切れ ない}。
+        english: In such a short time, I can't completely memorize everything.
+        hint: Without 「とても」, 「覚え切れない」 simply means 'cannot finish memorizing'. We're looking for the emphasis
+          on the overwhelming impossibility given the time constraint.
+    scene: A student panicking before a test, realizing they don't have enough time to study.
+    register: formal
+    setting: academic
+    conjugation: potential (～られる/～える)
+  - english: I can't possibly buy such an expensive bag.
+    japanese:
+      - そんな 高い バッグ、{とても} 買え {ない} よ。
+      - そんな 高い バッグ、{とても} 買え ませ ん。
+    english_literally: Such an expensive bag, I absolutely cannot buy it.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 高い バッグ は {買う わけ に は いか ない}。
+        english: I cannot afford to buy such an expensive bag.
+        hint: 「買うわけにはいかない」 implies an inability due to circumstances or rules. 「とても買えない」 emphasizes the
+          *exorbitant price*, making it an 'absolute impossibility' for the speaker due to an overwhelming
+          financial hurdle. We're looking for that strong personal sense of impossibility.
+    scene: A young woman looking at a luxury bag in a shop window.
+    register: casual
+    setting: melancholic
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: The 「よ」 particle here adds a sense of resignation or slight complaint, emphasizing her financial
+      inability to afford the bag. While 「よ」 is often masculine, women can also use it to express assertion
+      or a strong statement of fact.
+  - english: Working with him is absolutely agonizing.
+    japanese:
+      - 彼 と 一緒 に 仕事 する の は {とても} 苦痛 だ。
+      - 彼 と 一緒 に 仕事 する の は {とても} 苦痛 です。
+    english_literally: Working together with him, it is absolutely agony.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 と 一緒 に 仕事 する の は {苦痛 で たまら ない}。
+        english: Working with him is unbearably painful.
+        hint: 「苦痛でたまらない」 means it's 'unbearably painful,' focusing on an uncontrollable feeling. 「とても苦痛だ」
+          implies the situation is so painful that it's 'absolutely agonizing' or impossible to endure.
+          We're looking for an extreme, almost unbearable quality.
+    scene: An employee complaining about a difficult colleague.
+    register: casual
+    setting: pessimistic
+    conjugation: dictionary (plain non-past)
+  - english: In this situation, I can't possibly find a solution.
+    japanese:
+      - この 状況 で は {とても} 解決 策 が 見つけ られ {ない}。
+      - この 状況 じゃ {とても} 解決 策 が 見つけ られ {ない} よ。
+      - この 状況 で は {とても} 解決 策 が 見つけ られ ませ ん。
+    english_literally: In this situation, an absolutely cannot find a solution.
+    competing_grammar:
+      - competing_japanese:
+          - この 状況 で は {どう に も} 解決 策 が 見つけ られ {ない}。
+        english: In this situation, I can't find a solution by any means.
+        hint: 「どうにも〜ない」 emphasizes that no matter what one tries, something cannot be done. 「とても〜ない」 conveys
+          a general strong sense of impossibility or being entirely out of the question. We're looking
+          for the sense of being completely stuck.
+    scene: A team leader facing a complex problem with no clear resolution.
+    register: formal
+    setting: serious
+    conjugation: potential (～られる/～える)
+  - english: I can't possibly go down such a dangerous road alone.
+    japanese:
+      - そんな 危険 な 道 を {とても} 一人 で 行け {ない}。
+      - そんな 危険 な 道 を {とても} 一人 で 行け ませ ん。
+    english_literally: Such a dangerous road, I absolutely cannot go alone.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 危険 な 道 を 一人 で {行く べき で は ない}。
+        english: You shouldn't go down such a dangerous road alone.
+        hint: 「べきではない」 expresses that one *should not* do something due to it being inappropriate or unwise.
+          「とても〜ない」 emphasizes that it's *impossible* to do something, often due to inherent difficulty
+          or danger. We're looking for the strong sense of impossibility.
+    scene: Someone hesitating before embarking on a risky journey.
+    register: semi-formal
+    setting: cautious
+    conjugation: negative plain (～ない)
+  - english: This puzzle is so difficult, I can't possibly solve it.
+    japanese:
+      - この パズル は {とても} 難しく て、解け {ない}。
+      - この パズル は {とても} 難しく て、解け ませ ん。
+    english_literally: This puzzle is absolutely difficult, and I cannot solve it.
+    competing_grammar:
+      - competing_japanese:
+          - この パズル は 難しく て、{解き よう が ない}。
+        english: This puzzle is difficult, and there's no way to solve it.
+        hint: 「解きようがない」 means there's no method or way to solve it. 「とても解けない」 emphasizes the *absolute
+          impossibility* of solving the puzzle due to its overwhelming difficulty. We're looking for that
+          strong sense of impossibility.
+    scene: A person struggling with a very complex puzzle.
+    register: casual
+    setting: pessimistic
+    conjugation: potential (～られる/～える)
+  - english: There's absolutely no hope for that plan to succeed.
+    japanese:
+      - その 計画 に は {とても} 希望 が {ない}。
+      - その 計画 に は {とても} 希望 が あり ませ ん。
+    english_literally: For that plan, there is absolutely no hope.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 に は {全く} 希望 が ない。
+        english: For that plan, there is no hope at all.
+        hint: 「全く希望がない」 states a complete absence of hope. 「とても希望がない」 emphasizes the *absolute absence*
+          of hope, indicating it's completely out of the question for the plan to succeed. We're looking
+          for that strong sense of utter hopelessness.
+    scene: A team discussing a failing project that seems beyond rescue.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+post_example_writeup: Remember that 「とても〜ない」 indicates a strong feeling that something is completely impossible,
+  often expressing the speaker's subjective perception or emotional state regarding the impossibility.
+  It goes beyond simple negation, conveying an absolute lack of ability or possibility.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とても-ない

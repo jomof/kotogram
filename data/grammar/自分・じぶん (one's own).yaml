@@ -1,0 +1,411 @@
+grammar_point: 自分・じぶん (one's own)
+learn_before:
+  - Verb[て] (casual request)
+  - '[Noun]に応える (to respond to)'
+  - い-Adjective[さ] (nominalizer)
+  - いい (good)
+  - と思う (I think or thought)
+  - の (possession)
+  - は (topic and contrast)
+  - 愛する (to love)
+  - 知る (to know or find out)
+meaning: oneself, one's own
+pronunciation:
+  katakana: ジブン
+  romaji: jibun
+formation:
+  '[Subject A が] + [within Subordinate Clause {自分} を/が/に/と Verb/Adjective]': Used when 自分 in a subordinate
+    clause refers back to the main subject (Subject A), often implying empathy or introspection from A's
+    perspective.
+  '[Subject が] + {自分} の + [Noun]': Indicates possession by the subject, emphasizing that it is 'one's
+    own'.
+jlpt: N5
+etymology: The word 「自分」 consists of 「自」 (ji), meaning "self," and 「分」 (bun), meaning "part" or "portion."
+  Together, they create a word that signifies "one's own part" or "oneself." Its evolution reflects a
+  linguistic trend towards emphasizing personal agency or connection within a sentence.
+writeup: |-
+  「自分」 is a reflexive pronoun that refers back to the subject of a sentence or to the discourse topic. It translates to "oneself" or "one's own." Importantly, its use often implies a degree of empathy or a personal connection from the speaker towards the subject. It is a versatile word and can be used in various registers, from casual conversations to more formal settings.
+
+  Consider these points:
+
+  *   When 「自分」 is used, it signals that the speaker is relating to the subject's perspective, almost stepping into their shoes.
+  *   「自分」 can replace other pronouns like 「私」 or 「僕」, but it adds a nuance of introspection, self-reference, or emphasis on personal ownership.
+  *   Unlike English reflexive pronouns (myself, himself, etc.) 「自分」 can often stand alone as the subject or object of a sentence, especially when referring back to the main subject of the clause.
+false_friends:
+  - term: 私 (わたし)
+    meaning: I, myself
+    kind: similar expression
+    nuance: 「私」 is a general first-person pronoun, whereas 「自分」 is reflexive, referring back to the subject
+      and often implying empathy.
+    grammar_point: <suggest>:私 (i, myself)
+  - term: 彼 (かれ)
+    meaning: he/him
+    kind: often confused with
+    nuance: 「彼」 is a third-person pronoun, whereas 「自分」 is a reflexive pronoun referring back to the subject.
+    grammar_point: <suggest>:彼 (he, him)
+  - term: 彼女 (かのじょ)
+    meaning: she/her
+    kind: often confused with
+    nuance: 「彼女」 is a third-person pronoun, whereas 「自分」 is a reflexive pronoun referring back to the
+      subject.
+    grammar_point: <suggest>:彼女 (she, her)
+  - term: 自分自身 (じぶんじしん)
+    meaning: myself/yourself/himself (emphatic)
+    kind: similar expression
+    nuance: 「自分自身」 is a more emphatic version of 「自分」, used for stronger self-emphasis. 「自分」 is sufficient
+      for general reflexivity.
+    grammar_point: <suggest>:自分自身 (oneself, emphatic)
+  - term: 自己 (じこ)
+    meaning: self
+    kind: often confused with
+    nuance: 「自己」 is a formal noun component in compounds, focusing on the abstract concept of 'self'.
+      「自分」 is a more versatile pronoun referring to 'oneself'.
+    grammar_point: <suggest>:自己 (self, abstract)
+post_false_friends_writeup: While both 「自分」 and 「私」 can refer to the self, 「自分」 specifically points back
+  to the subject within the sentence, whereas 「私」 simply indicates the speaker. Be mindful of this difference
+  to use the appropriate pronoun in your sentences.
+examples:
+  - english: Tanaka-san cleaned his own room.
+    japanese:
+      - 田中 さん は {自分} の 部屋 を 掃除 し た。
+      - 田中 さん は {自分} の 部屋 を 掃除 し まし た。
+      - 田中 さん は {自分} の 部屋 を 清掃 し まし た。
+      - 田中 さん は {自分} の 部屋 を 片付け た。
+      - 田中 さん は {自分} の 部屋 を きれい に し た。
+    english_literally: Tanaka-san cleaned his own room.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は {彼} の 部屋 を 掃除 し た。
+        english: Tanaka-san cleaned his room.
+        hint: 「彼 の 部屋」 implies general ownership. We're looking for a reflexive pronoun emphasizing it
+          was his *own* room.
+      - competing_japanese:
+          - 田中 さん は {自分 自身} の 部屋 を 掃除 し た。
+        english: Tanaka-san cleaned his very own room.
+        hint: 「自分自身」 adds strong emphasis, implying 'his very own' room. For general reflexivity without
+          strong emphasis, 「自分」 is sufficient.
+      - competing_japanese:
+          - 田中 さん は {自己} の 部屋 を 掃除 し た。
+        english: Tanaka-san cleaned his self's room.
+        hint: 「自己」 is typically used in formal compounds, not as a general possessive pronoun. We're looking
+          for a pronoun that means 'his own'.
+    scene: Someone describing what Tanaka-san did, emphasizing his personal responsibility.
+    register: formal
+    setting: informative
+    nuance: 「自分」 refers back to the subject 「田中 さん」, emphasizing that he cleaned his *own* room, not someone
+      else's. This conveys a nuance of personal initiative or responsibility.
+  - english: In the past, I liked playing in my own room.
+    japanese:
+      - 昔、{自分} の 部屋 で 遊ぶ の が 好き だっ た。
+      - 昔、{自分} の 部屋 で 遊ぶ の が 好き でし た。
+      - 昔、{自分} の 部屋 で 遊ぶ の が 大好き だっ た。
+      - 昔、{自分} の 部屋 で 遊ぶ の が 大好き でし た。
+    english_literally: In the past, I liked playing in my own room.
+    competing_grammar:
+      - competing_japanese:
+          - 昔、{私} の 部屋 で 遊ぶ の が 好き だっ た。
+        english: In the past, I liked playing in my room.
+        hint: 「私 の 部屋」 implies general ownership. We're looking for a reflexive pronoun emphasizing it
+          was your *own* private space.
+      - competing_japanese:
+          - 昔、{自分 自身} の 部屋 で 遊ぶ の が 好き だっ た。
+        english: In the past, I liked playing in my very own room.
+        hint: 「自分自身」 adds strong emphasis. If you simply want to refer to 'my own' room without strong
+          emphasis, 「自分」 is more natural.
+      - competing_japanese:
+          - 昔、{自己} の 部屋 で 遊ぶ の が 好き だっ た。
+        english: In the past, I liked playing in my self's room.
+        hint: 「自己」 is typically used in formal compounds related to abstract concepts of self, not for
+          general possession. We're looking for a pronoun that means 'my own'.
+    scene: Someone reminiscing about their childhood, highlighting a personal space.
+    register: casual
+    setting: storytelling
+    speaker_age: older
+    nuance: The speaker, who is older, uses 「自分 の」 to emphasize a personal connection and ownership over
+      their childhood room, highlighting a cherished personal memory.
+  - english: He admitted his own mistake.
+    japanese:
+      - 彼 は {自分} の 過ち を 認め た。
+      - 彼 は {自分} の 過ち を 認め まし た。
+      - 彼 は {自分} の 間違い を 認め た。
+      - 彼 は {自分} の 間違い を 認め まし た。
+      - 彼 は {自分} の 誤り を 認め た。
+    english_literally: He admitted his own mistake.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {彼} の 過ち を 認め た。
+        english: He admitted his mistake.
+        hint: 「彼 の 過ち」 implies general ownership. We're looking for a reflexive pronoun emphasizing it
+          was his *own* mistake.
+      - competing_japanese:
+          - 彼 は {自分 自身} の 過ち を 認め た。
+        english: He admitted his very own mistake.
+        hint: 「自分自身」 adds strong emphasis, implying 'his very own' mistake. 「自分」 is sufficient for acknowledging
+          'his own' mistake.
+      - competing_japanese:
+          - 彼 は {自己} の 過ち を 認め た。
+        english: He admitted his self's mistake.
+        hint: 「自己」 is typically used in formal compounds related to the abstract concept of 'self'. We're
+          looking for a pronoun that means 'his own'.
+    scene: A report about someone taking responsibility for their actions.
+    register: formal
+    setting: serious
+    nuance: 「自分」 underscores that he acknowledged *his own* error, signifying accountability and introspection.
+  - english: She doesn't realize her own beauty.
+    japanese:
+      - 彼女 は {自分} の 美し さ に 気づい て い ない。
+      - 彼女 は {自分} の 美し さ に 気づい て い ませ ん。
+      - 彼女 は {自分} の 美し さ に 気付か ない。
+      - 彼女 は {自分} の 美し さ に 気付き ませ ん。
+    english_literally: She doesn't realize her own beauty.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {彼女} の 美し さ に 気づい て い ない。
+        english: She doesn't realize her beauty.
+        hint: 「彼女 の 美しさ」 implies general ownership. We're looking for a reflexive pronoun emphasizing
+          it was her *own* beauty.
+      - competing_japanese:
+          - 彼女 は {自分 自身} の 美し さ に 気づい て い ない。
+        english: She doesn't realize her very own beauty.
+        hint: 「自分自身」 adds strong emphasis to 'her very own' beauty. 「自分」 is more common for simply stating
+          'her own' beauty.
+      - competing_japanese:
+          - 彼女 は {自己} の 美し さ に 気づい て い ない。
+        english: She doesn't realize her self's beauty.
+        hint: 「自己」 is typically used in formal compounds related to abstract concepts of self, not for
+          direct interaction with a person. We're looking for a pronoun that refers to 'her own' personal
+          quality.
+    scene: Someone commenting on another person's self-perception, noting a lack of awareness.
+    register: semi-formal
+    setting: reflective
+    nuance: 「自分」 highlights that she is unaware of *her own* attractiveness, emphasizing a lack of self-awareness
+      regarding her personal qualities.
+  - english: Even for me, it was a very difficult problem.
+    japanese:
+      - '{自分} に も、とても 難しい 問題 だっ た。'
+      - '{自分} に も、とても 難しい 問題 でし た。'
+    english_literally: Even for myself, it was a very difficult problem.
+    competing_grammar:
+      - competing_japanese:
+          - '{私} に も、とても 難しい 問題 だっ た。'
+        english: Even for me, it was a very difficult problem.
+        hint: While 「私」 is grammatically correct, 「自分」 can add a nuance of humility or internal perspective
+          when referring to oneself in certain contexts.
+    scene: A teacher reflecting on a past academic challenge they faced.
+    register: formal
+    setting: reflective
+    nuance: Here, 「自分」 is used by the speaker to refer to themselves, adding a nuance of humility or introspection.
+      It highlights that even a capable person like the speaker found the problem challenging, conveying
+      a personal perspective.
+  - english: If you'd like, why don't you come visit my apartment sometime?
+    japanese:
+      - もし よかっ たら、今度 {自分} の アパート に 遊び に 来 ませ ん か？
+      - もし よかっ たら、今度 {自分} の アパート に 遊び に 来 ない？
+      - もし よかっ たら、今度 {自分} の アパート に お 越し いただけ ませ ん か？
+      - もし よかっ たら、今度 {自分} の アパート へ 来 ない？
+    english_literally: If you'd like, why don't you come visit my own apartment sometime?
+    competing_grammar:
+      - competing_japanese:
+          - もし よかっ たら、今度 {私} の アパート に 遊び に 来 ませ ん か？
+        english: If you'd like, why don't you come visit my apartment sometime?
+        hint: 「私 の アパート」 is a general possessive. We're looking for a reflexive pronoun that makes the
+          invitation more personal to his *own* space.
+      - competing_japanese:
+          - もし よかっ たら、今度 {自分 自身} の アパート に 遊び に 来 ませ ん か？
+        english: If you'd like, why don't you come visit my very own apartment sometime?
+        hint: 「自分自身」 adds an unnecessary strong emphasis to 'my very own' apartment, which might sound
+          unnatural in this casual invitation. 「自分」 is more appropriate.
+      - competing_japanese:
+          - もし よかっ たら、今度 {自己} の アパート に 遊び に 来 ませ ん か？
+        english: If you'd like, why don't you come visit my self's apartment sometime?
+        hint: 「自己」 is typically used in formal compounds, not as a general possessive pronoun for one's
+          own dwelling. We're looking for a pronoun that means 'my own'.
+    scene: A man is asking a woman out on a date, inviting her to his personal space.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker, a man, uses 「自分」 to refer to his own apartment, adding a personal and inviting
+      nuance suitable for a romantic invitation to a woman. The phrase 「遊び に 来ませんか」 (won't you come visit?)
+      further enhances the casual and inviting tone.
+  - english: Nakagawa didn't think that he himself could enter Kyoto University.
+    japanese:
+      - 中川 は {自分} が 京大 に 入れる と 思っ て い なかっ た。
+      - 中川 は {自分} が 京大 に 入れる と 思っ て い ませ ん でし た。
+      - 中川 は {自分} が 京都 大学 に 入れる と 思っ て い なかっ た。
+      - 中川 は {自分} が 京都 大学 に 入れる と は 思っ て い なかっ た。
+    english_literally: Nakagawa didn't think that he himself could enter Kyoto University.
+    competing_grammar:
+      - competing_japanese:
+          - 中川 は {彼} が 京大 に 入れる と 思っ て い なかっ た。
+        english: Nakagawa didn't think that he could enter Kyoto University.
+        hint: 「彼 が」 is a general third-person pronoun. We're looking for a reflexive pronoun that shows
+          Nakagawa's internal perspective or self-doubt.
+      - competing_japanese:
+          - 中川 は {自分 自身} が 京大 に 入れる と 思っ て い なかっ た。
+        english: Nakagawa didn't think that he himself (emphatic) could enter Kyoto University.
+        hint: 「自分自身」 strongly emphasizes 'he himself'. 「自分」 already conveys the reflexive meaning in this
+          context.
+      - competing_japanese:
+          - 中川 は {自己} が 京大 に 入れる と 思っ て い なかっ た。
+        english: Nakagawa didn't think that his self could enter Kyoto University.
+        hint: 「自己」 is typically used in formal compounds related to abstract concepts of self, not as
+          a direct pronoun referring to a person's belief. We're looking for a pronoun that reflects his
+          personal internal thought.
+    scene: A story about Nakagawa's academic journey, focusing on his internal doubts and lack of confidence.
+    register: casual
+    setting: reflective
+    nuance: 「自分」 refers to Nakagawa, indicating that the thought originates from within Nakagawa's own
+      perspective. This highlights his personal internal struggle and lack of self-belief regarding his
+      capabilities.
+  - english: Tsuchida didn't know that Sachiko loved him.
+    japanese:
+      - 土田 は 幸子 が {自分} を 愛し て いる こと を 知ら なかっ た。
+      - 土田 は 幸子 が {自分} を 愛し て いる こと を 知り ませ ん でし た。
+      - 土田 は 幸子 が {自分} を 好き だ と 知ら なかっ た。
+      - 土田 は 幸子 が {自分} を 好き だ と は 知ら なかっ た。
+    english_literally: Tsuchida didn't know that Sachiko loved himself (Tsuchida).
+    competing_grammar:
+      - competing_japanese:
+          - 土田 は 幸子 が {彼} を 愛し て いる こと を 知ら なかっ た。
+        english: Tsuchida didn't know that Sachiko loved him.
+        hint: 「彼 を」 is a general third-person object. We're looking for a reflexive pronoun that refers
+          back to Tsuchida as the subject of the main clause, showing his lack of awareness regarding
+          his *own* situation.
+      - competing_japanese:
+          - 土田 は 幸子 が {自分 自身} を 愛し て いる こと を 知ら なかっ た。
+        english: Tsuchida didn't know that Sachiko loved him himself (emphatic).
+        hint: 「自分自身」 makes the object 'himself' unnecessarily emphatic. 「自分」 is sufficient.
+      - competing_japanese:
+          - 土田 は 幸子 が {自己} を 愛し て いる こと を 知ら なかっ た。
+        english: Tsuchida didn't know that Sachiko loved his self.
+        hint: 「自己」 is typically used in formal compounds related to abstract concepts of self, not for
+          direct interaction with a person. We're looking for a pronoun that refers to Tsuchida himself.
+    scene: A narrative revealing a misunderstanding between Tsuchida and Sachiko, where Tsuchida is unaware
+      of Sachiko's true feelings for him.
+    register: casual
+    setting: storytelling
+    nuance: 「自分」 refers to Tsuchida, the subject of the main clause. It conveys that the embedded clause
+      describes something related to Tsuchida's own situation, showing empathy with his subjective experience
+      of being loved without realizing it.
+  - english: Kenta wasn't at home when Fuyuko came to see him.
+    japanese:
+      - 健太 は 冬子 が {自分} に 会い に 来 た 時、うち に い なかっ た。
+      - 健太 は 冬子 が {自分} に 会い に 来 た 時、うち に い ませ ん でし た。
+      - 健太 は 冬子 が {自分} に 会い に 来 た 時、留守 だっ た。
+      - 健太 は 冬子 が {自分} に 会い に いらっしゃっ た 時、不在 だっ た。
+    english_literally: Kenta wasn't at home when Fuyuko came to see himself (Kenta).
+    competing_grammar:
+      - competing_japanese:
+          - 健太 は 冬子 が {彼} に 会い に 来 た 時、うち に い なかっ た。
+        english: Kenta wasn't at home when Fuyuko came to see him.
+        hint: 「彼 に」 is a general third-person object. We're looking for a reflexive pronoun that refers
+          back to Kenta, emphasizing the personal relevance of the visit to him.
+      - competing_japanese:
+          - 健太 は 冬子 が {自分 自身} に 会い に 来 た 時、うち に い なかっ た。
+        english: Kenta wasn't at home when Fuyuko came to see him himself (emphatic).
+        hint: 「自分自身」 adds an unnecessary strong emphasis to 'him himself'. 「自分」 is sufficient.
+      - competing_japanese:
+          - 健太 は 冬子 が {自己} に 会い に 来 た 時、うち に い なかっ た。
+        english: Kenta wasn't at home when Fuyuko came to see his self.
+        hint: 「自己」 is typically used in formal compounds related to abstract concepts of self, not for
+          direct interaction with a person. We're looking for a pronoun that refers to Kenta himself.
+    scene: A friend is telling another friend about Kenta's missed appointment, emphasizing that Fuyuko
+      intended to meet Kenta specifically, highlighting the personal aspect of the missed encounter.
+    register: casual
+    setting: informative
+    nuance: 「自分」 refers back to Kenta, the main subject. It indicates that Fuyuko's action of coming to
+      see someone was directed at Kenta himself, emphasizing the personal relevance to Kenta and the impact
+      on his own situation.
+  - english: Yukari was walking and thinking, wondering if Kenichi really loved her.
+    japanese:
+      - ゆかり は 歩き ながら 考え て い た。健一 は {自分} が 本当 に 好き な の だろう か。
+      - ゆかり は 歩き ながら 考え て い た。健一 は {自分} が 本当 に 好き な の だろう かしら。
+      - ゆかり は 歩き ながら 考え て い た。健一 は {自分} の こと を 本当 に 好き な の か な。
+      - ゆかり は 歩き ながら 考え て い た。健一 は {自分} を 本当 に 好き な の か な。
+    english_literally: Yukari was walking and thinking. 'Does Kenichi really love myself (Yukari)?'
+    competing_grammar:
+      - competing_japanese:
+          - ゆかり は 歩き ながら 考え て い た。健一 は {私} が 本当 に 好き な の だろう か。
+        english: Yukari was walking and thinking. 'Does Kenichi really love me?'
+        hint: 「私 が」 is a general first-person pronoun. We're looking for a reflexive pronoun that conveys
+          an introspective, self-analytical tone for an internal monologue.
+      - competing_japanese:
+          - ゆかり は 歩き ながら 考え て い た。健一 は {自分 自身} が 本当 に 好き な の だろう か。
+        english: Yukari was walking and thinking. 'Does Kenichi really love me myself (emphatic)?'
+        hint: 「自分自身」 adds strong emphasis, potentially making the internal thought sound overly dramatic.
+          「自分」 is more natural for a reflective internal query.
+      - competing_japanese:
+          - ゆかり は 歩き ながら 考え て い た。健一 は {自己} が 本当 に 好き な の だろう か。
+        english: Yukari was walking and thinking. 'Does Kenichi really love her self?'
+        hint: 「自己」 is typically used in formal compounds related to abstract concepts of self, not for
+          internal thoughts about romantic feelings. We're looking for a pronoun that expresses personal
+          internal reflection.
+    scene: A woman is deeply introspective, pondering her romantic relationship and whether she is truly
+      loved by Kenichi, reflecting on her own position.
+    register: shitashii kuchō (intimate)
+    setting: reflective
+    speaker_gender: female
+    nuance: Yukari, a woman, uses 「自分」 in her internal thought. While 「私」 could be used, 「自分」 adds a slightly
+      more detached, self-analytical nuance, common in introspective reflections on one's own feelings
+      or situation, reflecting her subjective experience.
+  - english: John was thinking of Mary, wondering if she would marry him.
+    japanese:
+      - ジョン は メアリー の こと を 思っ て い た。彼女 は {自分} と 結婚 し て くれる の だろう か。
+      - ジョン は メアリー の こと を 思っ て い た。彼女 は {自分} と 結婚 し て くれる か な。
+      - ジョン は メアリー の こと を 思っ て い た。彼女 は {自分} と 結婚 し て くれる だろう か。
+      - ジョン は メアリー の こと を 思っ て い た。彼女 は {自分} の 妻 に なっ て くれる だろう か。
+    english_literally: John was thinking of Mary. 'Will she marry myself (John)?'
+    competing_grammar:
+      - competing_japanese:
+          - ジョン は メアリー の こと を 思っ て い た。彼女 は {私} と 結婚 し て くれる の だろう か。
+        english: John was thinking of Mary. 'Will she marry me?'
+        hint: 「私 と」 is a general first-person pronoun. We're looking for a reflexive pronoun that reflects
+          an introspective query about one's *own* role in the relationship.
+      - competing_japanese:
+          - ジョン は メアリー の こと を 思っ て い た。彼女 は {自分 自身} と 結婚 し て くれる の だろう か。
+        english: John was thinking of Mary. 'Will she marry me myself (emphatic)?'
+        hint: 「自分自身」 adds strong, possibly unnatural emphasis to 'me myself' in this contemplative internal
+          thought. 「自分」 is more natural.
+      - competing_japanese:
+          - ジョン は メアリー の こと を 思っ て い た。彼女 は {自己} と 結婚 し て くれる の だろう か。
+        english: John was thinking of Mary. 'Will she marry his self?'
+        hint: 「自己」 is typically used in formal compounds related to abstract concepts of self, not for
+          internal thoughts about personal relationships. We're looking for a pronoun that expresses personal
+          internal reflection.
+    scene: A man is lost in thought, contemplating his future with a woman, and his own role in their
+      potential marriage.
+    register: shitashii kuchō (intimate)
+    setting: reflective
+    speaker_gender: male
+    nuance: John, a man, uses 「自分」 to refer to himself in his internal thought. This choice for self-reference
+      provides a subtle nuance of self-reflection, common when contemplating one's own role or desires
+      in a personal situation, rather than a simple first-person statement, reflecting his subjective
+      internal query.
+  - english: He decided to follow his own path, rather than doing what was expected of him.
+    japanese:
+      - 彼 は 周り の 期待 に 沿う の で は なく、{自分} の 道 を 進む こと に 決め た。
+      - 彼 は 周り の 期待 に 沿う の で は なく、{自分} の 道 を 進む こと に 決め まし た。
+      - 彼 は 周囲 の 期待 に 沿う の で は なく、{自分} の 道 を 進む こと に 決定 し た。
+    english_literally: He, not conforming to others' expectations, decided to proceed on his own path.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 周り の 期待 に 沿う の で は なく、{彼} の 道 を 進む こと に 決め た。
+        english: He decided to follow his path, rather than doing what was expected of him.
+        hint: 「彼 の 道」 is a general possessive. We're looking for a reflexive pronoun that highlights his
+          personal choice to forge *his own* unique path.
+      - competing_japanese:
+          - 彼 は 周り の 期待 に 沿う の で は なく、{自己} の 道 を 進む こと に 決め た。
+        english: He decided to follow his self's path, rather than doing what was expected of him.
+        hint: 「自己」 sounds too abstract and formal for describing a personal life choice in this context.
+          We're looking for a pronoun that emphasizes individual ownership of the path.
+    scene: Narrating a significant life decision someone made to pursue their individuality.
+    register: semi-formal
+    setting: reflective
+    nuance: 「自分 の 道」 vividly portrays the subject's agency and determination to chart a course unique
+      to themselves, distinguishing it from societal or external pressures.
+post_example_writeup: Remember that 「自分」 is not simply a direct translation of "myself" or "yourself."
+  It carries a nuance of personal connection and is often used when the speaker wants to emphasize the
+  subject's perspective or ownership.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/自分・じぶん%20(one's%20own)

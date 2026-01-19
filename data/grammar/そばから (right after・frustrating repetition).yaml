@@ -1,0 +1,348 @@
+grammar_point: そばから (right after・frustrating repetition)
+learn_before:
+  - '[Noun]をください (please give me)'
+  - すっかり (completely)
+  - てから (after and since)
+meaning: As soon as, Right after, Even if … still
+pronunciation:
+  katakana: ソバカラ
+  romaji: sobakara
+formation:
+  Verb (dictionary form) + そばから: Indicates that something happens immediately after a verb is performed.
+  Verb (past tense) + そばから: Indicates that something happens immediately after a verb is performed.
+  A + そばから + B: Emphasizes that B immediately follows A, often with the implication that B negates or
+    undoes A.
+jlpt: N1
+etymology: 「そばから」 combines the noun 「側 (そば)」 meaning "side," and the case-marking particle 「から」 meaning
+  "from." The literal sense is "from right beside," implying something happens immediately following something
+  else. This linguistic construction captures the immediacy and often frustrating or repetitive nature
+  of the subsequent event.
+writeup: |-
+  「そばから」 indicates that action or event (B) happens immediately after action or event (A). The core nuance conveyed is that (B) often negates, undoes, or otherwise makes (A) frustrating or futile from the speaker's perspective. It can be translated as "as soon as (A), (B)" or "right after (A), (B)."
+
+  This grammar point emphasizes that (B) is not just a one-time occurrence but typically a recurring, almost inevitable consequence of (A). It highlights a pattern where the beneficial or intended outcome of (A) is repeatedly nullified by (B).
+
+  「そばから」 can follow verbs in either their dictionary form or their past-tense form, with no change in meaning. The choice between dictionary and past tense often depends on the speaker's stylistic preference or the tense of the surrounding sentence, but the meaning of immediate succession remains constant.
+
+  This expression carries a formal tone, making it more common in written Japanese or in more serious, analytical speech.
+false_friends:
+  - term: からには
+    meaning: now that, since, because
+    kind: similar expression
+    nuance: Unlike 「そばから」, 「からには」 expresses a determination or a sense of obligation that arises because
+      of a certain situation. 「そばから」 implies something happens right after something else, often with
+      a negative or repetitive consequence.
+    grammar_point: からには (since; obligation)
+  - term: とたんに
+    meaning: just as, in the moment that
+    kind: often confused with
+    nuance: While 「とたんに」 emphasizes extreme immediacy, often for a singular, sudden event, 「そばから」 focuses
+      on a repetitive, often frustrating sequence where the second action immediately follows the first
+      repeatedly.
+    grammar_point: '[Verb-た]とたん(に) (as soon as・the moment)'
+  - term: ～とすぐに
+    meaning: as soon as, immediately
+    kind: often confused with
+    nuance: 「～とすぐに」 denotes general immediacy but lacks the strong implication of recurrence or the speaker's
+      frustration that 「そばから」 carries regarding the consequence.
+    grammar_point: <suggest>:Verb+とすぐに (as soon as)
+  - term: ～たびに
+    meaning: every time, whenever
+    kind: similar expression
+    nuance: 「～たびに」 indicates repetition, but it does not necessarily imply the *immediate* subsequent
+      action as 「そばから」 does. It focuses on the frequency rather than the instant sequence.
+    grammar_point: たびに (each time)
+  - term: ～やいなや
+    meaning: no sooner... than, as soon as
+    kind: often confused with
+    nuance: 「～やいなや」 signifies a swift, often unexpected, transition between two actions, emphasizing the
+      suddenness. 「そばから」, in contrast, often implies a predictable, recurring, and frequently irritating
+      immediate outcome.
+    grammar_point: '[Verb-た]とたん(に) (as soon as・the moment)'
+post_false_friends_writeup: To avoid confusing 「そばから」 with similar expressions, remember that 「そばから」 distinctively
+  indicates a sequence where the second action not only quickly follows the first but also tends to repeat,
+  often undoing the first action or causing frustration. Other expressions may emphasize cause and effect,
+  a singular moment of transition, or general repetition, but they do not typically combine these nuances
+  as 「そばから」 does.
+examples:
+  - english: The child immediately goes to play as soon as they finish their homework.
+    japanese:
+      - 子供 は 宿題 を 終える {そば から}、すぐ に 遊び に 行く。
+      - 子ども は 宿題 を 終え た {そば から}、すぐ に 遊び に 行き ます。
+      - 子供 は 宿題 を 終える {そば から}、すぐ に 遊び に 行っ て しまう。
+    english_literally: Child finishes homework side-from, immediately play goes.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 宿題 を 終え た {とたん に}、すぐ に 遊び に 行く。
+        english: The child immediately goes to play just as they finish their homework.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a repetitive, frustrating
+          immediate consequence.
+      - competing_japanese:
+          - 子供 は 宿題 を 終える {と すぐ に}、すぐ に 遊び に 行く。
+        english: The child immediately goes to play as soon as they finish their homework.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that repeatedly
+          frustrates the speaker.
+      - competing_japanese:
+          - 子供 は 宿題 を 終える {たび に}、すぐ に 遊び に 行く。
+        english: Every time the child finishes their homework, they immediately go to play.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence of the second action right after the first. We're looking for an immediate action
+          that repeatedly frustrates the speaker.
+      - competing_japanese:
+          - 子供 は 宿題 を 終える {や いな や}、すぐ に 遊び に 行く。
+        english: No sooner did the child finish their homework than they immediately went to play.
+        hint: 「～やいなや」 emphasizes a swift, often unexpected transition. We're looking for an immediate,
+          repetitive, and often predictable outcome.
+    scene: A parent sighs, observing their child's recurring habit.
+    register: casual
+    setting: serious
+  - english: My computer breaks down again right after I fix it, so I'm troubled.
+    japanese:
+      - パソコン を 直し た {そば から}、また 壊れ て しまう の で 困る。
+      - パソコン を 直す {そば から}、また 壊れ て しまい ます。
+      - パソコン を 直し た {そば から}、また すぐ に 壊れ て しまう。
+    english_literally: Computer repaired side-from, again broken becomes so troubled.
+    competing_grammar:
+      - competing_japanese:
+          - パソコン を 直し た {とたん に}、また 壊れ て しまう の で 困る。
+        english: Just as I fixed the computer, it breaks down again, so I'm troubled.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a repetitive, frustrating
+          immediate consequence.
+      - competing_japanese:
+          - パソコン を 直し た {と すぐ に}、また 壊れ て しまう の で 困る。
+        english: As soon as I fixed the computer, it breaks down again, so I'm troubled.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that repeatedly
+          frustrates the speaker.
+      - competing_japanese:
+          - パソコン を 直す {たび に}、また 壊れ て しまう の で 困る。
+        english: Every time I fix the computer, it breaks down again, so I'm troubled.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence of the second action right after the first. We're looking for an immediate action
+          that repeatedly frustrates the speaker.
+      - competing_japanese:
+          - パソコン を 直し た {や いな や}、また 壊れ て しまう の で 困る。
+        english: No sooner did I fix the computer than it breaks down again, so I'm troubled.
+        hint: 「～やいなや」 emphasizes a swift, often unexpected transition. We're looking for an immediate,
+          repetitive, and often predictable outcome.
+    scene: A tech support person vents to a colleague about a particularly problematic device.
+    register: semi-formal
+    setting: professional
+  - english: As soon as the new policy was explained, employees began to raise questions.
+    japanese:
+      - 新しい 方針 を 説明 する {そば から}、従業 員 は 疑問 を 呈し 始め た。
+      - 新しい 方針 を 説明 し た {そば から}、従業 員 は 疑問 を 呈し 始め まし た。
+      - 新しい 方針 を 説明 する {そば から}、従業 員 から 質問 が 出 始め た。
+    english_literally: New policy explaining side-from, employees doubt present started.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 方針 を 説明 し た {とたん に}、従業 員 は 疑問 を 呈し 始め た。
+        english: Just as the new policy was explained, employees began to raise questions.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a sequence where the immediate
+          reaction is part of a frustrating or expected pattern.
+      - competing_japanese:
+          - 新しい 方針 を 説明 する {と すぐ に}、従業 員 は 疑問 を 呈し 始め た。
+        english: As soon as the new policy was explained, employees began to raise questions.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that indicates
+          a repetitive or frustrating underlying pattern.
+      - competing_japanese:
+          - 新しい 方針 を 説明 し 終える {や いな や}、従業 員 は 疑問 を 呈し 始め た。
+        english: No sooner was the new policy explained than employees began to raise questions.
+        hint: 「～やいなや」 emphasizes a swift, often unexpected transition. We're looking for an immediate,
+          and likely predictable, outcome that signals a recurring issue like resistance.
+    scene: A manager recounts a challenging meeting where their team was highly skeptical.
+    register: formal
+    setting: professional
+  - english: I completely forget it in practice, right after learning it during training.
+    japanese:
+      - 研修 で 習っ た {そば から}、実践 で は すっかり 忘れ て しまう。
+      - 研修 で 習う {そば から}、実践 で は すっかり 忘れ て しまい ます。
+      - 研修 で 習っ た {そば から}、すぐ に 忘れ て しまう。
+    english_literally: Training at learned side-from, practice in completely forgotten become.
+    competing_grammar:
+      - competing_japanese:
+          - 研修 で 習っ た {とたん に}、実践 で は すっかり 忘れ て しまう。
+        english: Just as I learned it during training, I completely forget it in practice.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a repetitive, frustrating
+          immediate consequence.
+      - competing_japanese:
+          - 研修 で 習っ た {と すぐ に}、実践 で は すっかり 忘れ て しまう。
+        english: As soon as I learned it during training, I completely forget it in practice.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that repeatedly
+          frustrates the speaker.
+      - competing_japanese:
+          - 研修 で 習う {たび に}、実践 で は すっかり 忘れ て しまう。
+        english: Every time I learn something during training, I complete it in practice.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence of the second action right after the first. We're looking for an immediate action
+          that repeatedly frustrates the speaker.
+      - competing_japanese:
+          - 研修 で 習う {や いな や}、実践 で は すっかり 忘れ て しまう。
+        english: No sooner did I learn it during training than I completely forget it in practice.
+        hint: 「～やいなや」 emphasizes a swift, often unexpected transition. We're looking for an immediate,
+          repetitive, and often predictable outcome.
+    scene: A new employee expresses self-deprecating frustration about their retention skills.
+    register: casual
+    setting: apologetic
+  - english: As soon as the traffic jam clears on this road, new construction begins again.
+    japanese:
+      - この 道 は 渋滞 が 解消 する {そば から}、また 新しい 工事 が 始まる。
+      - この 道 は 渋滞 が 解消 し た {そば から}、また 新しい 工事 が 始まり ます。
+      - この 道 は 渋滞 が 解消 する {そば から}、すぐ に 新しい 工事 が 始まる。
+    english_literally: This road traffic-jam clears side-from, again new construction begins.
+    competing_grammar:
+      - competing_japanese:
+          - この 道 は 渋滞 が 解消 し た {とたん に}、また 新しい 工事 が 始まる。
+        english: Just as the traffic jam clears on this road, new construction begins again.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a repetitive, frustrating
+          immediate consequence.
+      - competing_japanese:
+          - この 道 は 渋滞 が 解消 する {と すぐ に}、また 新しい 工事 が 始まる。
+        english: As soon as the traffic jam clears on this road, new construction begins again.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that repeatedly
+          frustrates the speaker.
+      - competing_japanese:
+          - この 道 は 渋滞 が 解消 する {たび に}、また 新しい 工事 が 始まる。
+        english: Every time the traffic jam clears on this road, new construction begins again.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence of the second action right after the first. We're looking for an immediate action
+          that repeatedly frustrates the speaker.
+      - competing_japanese:
+          - この 道 は 渋滞 が 解消 する {や いな や}、また 新しい 工事 が 始まる。
+        english: No sooner does the traffic jam clear on this road than new construction begins again.
+        hint: 「～やいなや」 emphasizes a swift, often unexpected transition. We're looking for an immediate,
+          repetitive, and often predictable outcome.
+    scene: A frustrated commuter complains about endless roadworks on their daily route.
+    register: casual
+    setting: pessimistic
+  - english: Right after I told them 'Don't run,' the children are running around.
+    japanese:
+      - 『走る な』と 言っ た {そば から}、子供 たち が 走り 回っ て いる。
+      - 『走る な』と 言う {そば から}、子ども たち が 走り 回っ て い ます。
+      - 『走る な』と 言っ た {そば から}、すぐ に 走り 回っ て いる。
+    english_literally: '"Don''t run" said side-from, children running around are.'
+    competing_grammar:
+      - competing_japanese:
+          - 『走る な』と 言っ た {とたん に}、子供 たち が 走り 回っ て いる。
+        english: Just as I said 'Don't run,' the children started running around.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a repetitive, frustrating
+          immediate consequence.
+      - competing_japanese:
+          - 『走る な』と 言う {と すぐ に}、子供 たち が 走り 回っ て いる。
+        english: As soon as I said 'Don't run,' the children started running around.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that repeatedly
+          frustrates the speaker.
+      - competing_japanese:
+          - 『走る な』と 言う {たび に}、子供 たち が 走り 回っ て いる。
+        english: Every time I say 'Don't run,' the children start running around.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence of the second action right after the first. We're looking for an immediate action
+          that repeatedly frustrates the speaker.
+      - competing_japanese:
+          - 『走る な』と 言っ た {や いな や}、子供 たち が 走り 回っ て いる。
+        english: No sooner did I say 'Don't run' than the children started running around.
+        hint: 「～やいなや」 emphasizes a swift, often unexpected transition. We're looking for an immediate,
+          predictable, and often frustrating outcome.
+    scene: A teacher sighs, watching energetic children ignore their recent instruction.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「言った {そばから}」 conveys the immediate and repeated disobedience, implying that the
+      children's running is a recurring issue right after the instruction is given. The speaker's gender,
+      as a female teacher, might subtly influence the patient yet exasperated tone conveyed by the overall
+      sentence. The continuous action 「走り 回って いる」 (running around) reinforces the ongoing nature of the
+      children's disregard for rules.
+  - english: My salary disappears right after I receive it, due to rent and loan repayments.
+    japanese:
+      - 給料 を もらう {そば から}、家賃 と 借金 の 返済 で なくなっ て しまう。
+      - 給料 を もらっ た {そば から}、家賃 と 借金 の 返済 で なくなっ て しまい ます。
+      - 給料 を もらう {そば から}、すぐ に 家賃 と 借金 の 返済 で なくなる。
+    english_literally: Salary receive side-from, rent and debt repayment by disappeared becomes.
+    competing_grammar:
+      - competing_japanese:
+          - 給料 を もらう {とたん に}、家賃 と 借金 の 返済 で なくなっ て しまう。
+        english: Just as I receive my salary, it disappears due to rent and loan repayments.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a repetitive, frustrating
+          immediate consequence.
+      - competing_japanese:
+          - 給料 を もらう {と すぐ に}、家賃 と 借金 の 返済 で なくなっ て しまう。
+        english: As soon as I receive my salary, it disappears due to rent and loan repayments.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that repeatedly
+          frustrates the speaker.
+      - competing_japanese:
+          - 給料 を もらう {たび に}、家賃 と 借金 の 返済 で なくなっ て しまう。
+        english: Every time I receive my salary, it disappears due to rent and loan repayments.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence of the second action right after the first. We're looking for an immediate action
+          that repeatedly frustrates the speaker.
+      - competing_japanese:
+          - 給料 を もらう {や いな や}、家賃 と 借金 の 返済 で なくなっ て しまう。
+        english: No sooner do I receive my salary than it disappears due to rent and loan repayments.
+        hint: 「～やいなや」 emphasizes a swift, often unexpected transition. We're looking for an immediate,
+          repetitive, and often predictable outcome.
+    scene: Someone laments their financial situation, barely making ends meet.
+    register: casual
+    setting: melancholic
+  - english: I forget the directions right after my friend tells them to me.
+    japanese:
+      - 友達 が 道順 を 教える {そば から}、私 は すぐ に 忘れ て しまう。
+      - 友達 が 道順 を 教え た {そば から}、私 は すぐ に 忘れ て しまい ます。
+    english_literally: Friend directions teaches side-from, I immediately forget.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 道順 を 教える {と すぐ に}、私 は すぐ に 忘れ て しまう。
+        english: As soon as my friend tells me directions, I immediately forget them.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that repeatedly
+          frustrates the speaker's intention or capacity.
+      - competing_japanese:
+          - 友達 が 道順 を 教える {たび に}、私 は すぐ に 忘れ て しまう。
+        english: Every time my friend tells me directions, I immediately forget them.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence right after the first action. We're looking for an immediate and frustrating consequence.
+    scene: A student talks about their bad memory for directions.
+    register: casual
+    setting: humorous
+  - english: The children make a mess right after I clean it up.
+    japanese:
+      - 私 が 部屋 を 片付ける {そば から}、子供 たち は また 散らかし て しまう。
+      - 私 が 部屋 を 片付け た {そば から}、子供 たち は また 散らかし て しまい ます。
+    english_literally: I room clean up side-from, children again messy make.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 部屋 を 片付ける {とたん に}、子供 たち は また 散らかし て しまう。
+        english: Just as I clean up the room, the children make a mess again.
+        hint: 「とたんに」 emphasizes a sudden, singular event. We're looking for a repetitive, frustrating
+          immediate consequence.
+      - competing_japanese:
+          - 私 が 部屋 を 片付ける {たび に}、子供 たち は また 散らかし て しまう。
+        english: Every time I clean up the room, the children make a mess again.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence right after the first action. We're looking for an immediate and frustrating consequence.
+    scene: A tired parent complains about their children's habits.
+    register: casual
+    setting: serious
+  - english: I correct one mistake in the report, and I find another right after.
+    japanese:
+      - 報告 書 の 間違い を 一 つ 直す {そば から}、また 別 の 間違い を 見つける。
+      - 報告 書 の 間違い を 一 つ 直し た {そば から}、また 別 の 間違い を 見つけ ます。
+    english_literally: Report's mistake one correct side-from, again another mistake find.
+    competing_grammar:
+      - competing_japanese:
+          - 報告 書 の 間違い を 一 つ 直す {と すぐ に}、また 別 の 間違い を 見つける。
+        english: As soon as I correct one mistake in the report, I find another.
+        hint: 「～とすぐに」 implies general immediacy. We're looking for an immediate action that is part of
+          a recurring, frustrating pattern.
+      - competing_japanese:
+          - 報告 書 の 間違い を 一 つ 直す {たび に}、また 別 の 間違い を 見つける。
+        english: Every time I correct one mistake in the report, I find another.
+        hint: 「～たびに」 indicates repetition but doesn't necessarily imply the *immediacy* or the frustrating
+          consequence right after the first action. We're looking for an immediate and frustrating sequence.
+    scene: An office worker grumbles about a never-ending task.
+    register: semi-formal
+    setting: professional
+post_example_writeup: As illustrated by these examples, 「そばから」 is particularly effective when describing
+  situations where efforts are immediately undone or negated, leading to a sense of futility, frustration,
+  or a continuous, often unwelcome, cycle. It's a powerful tool to convey both immediate succession and
+  the speaker's sentiment towards the recurring outcome.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/そばから

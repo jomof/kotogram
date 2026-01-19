@@ -1,0 +1,279 @@
+grammar_point: 分 (amount; portion)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[ておく・とく] (preparation・advance action)
+  - い-Adjective[み] (abstract quality)
+  - が原因で (due to)
+  - しい (emotional suffix)
+  - たものだ (nostalgic recollection)
+  - ておく (to do in advance)
+  - で (for)
+  - にかなう (to be in accord with)
+  - へ (directional particle)
+  - 込み (including)
+meaning: Amount; portion; share; equivalent to
+pronunciation:
+  katakana: ブン
+  romaji: bun
+formation:
+  Number + Counter + 分: Amount worth or equivalent to a specified quantity.
+  Noun + 分: Amount or portion of something represented by the noun.
+jlpt: N3
+etymology: The kanji 分 (ぶん) originally meant “to divide” or “to separate.” Its use as a suffix to indicate
+  an amount or portion stems from this fundamental concept of dividing something into smaller, measurable
+  parts or shares. This evolution highlights how the act of 'portioning' or 'allocating' naturally leads
+  to the quantification of discrete amounts.
+writeup: The suffix 「分 (ぶん)」 indicates an amount, portion, or share of something. It attaches to a preceding
+  noun, or a number and counter. When used with a **number and counter**, it means “worth that amount”
+  or “equivalent to that amount.” For example, 「十 ドル 分 (じゅう ドル ぶん)」 means “ten dollars' worth.” When used
+  with a **noun**, it indicates the amount or portion of something represented by that noun. For example,
+  「不足 分 (ふそくぶん)」 means “the remaining amount.” The kanji for 分 is JLPT N5.
+false_friends:
+  - term: 部分 (ぶぶん)
+    meaning: portion, part
+    kind: similar expression
+    nuance: Unlike 「分」 which specifies a quantifiable amount or a share (e.g., 'three days' worth'), 「部分」
+      refers to a general segment or component of a larger whole (e.g., 'a part of the building'). Use
+      「分」 to quantify shares or portions, and 「部分」 to denote a general component.
+    grammar_point: <strongly-suggest>:部分 (portion part)
+  - term: だけ (only・just)
+    meaning: only, just
+    kind: similar expression
+    nuance: While 「分」 specifies a quantifiable amount or portion (e.g., 'a day's worth'), 「だけ」 indicates
+      a general limitation or exclusion of others (e.g., 'only this much').
+    grammar_point: だけ (only・just)
+  - term: くらい (approximate quantity or degree)
+    meaning: about, approximately
+    kind: similar expression
+    nuance: 「分」 defines a specific measured amount or portion (e.g., 'two people's worth'), whereas 「くらい」
+      indicates an approximate quantity or degree (e.g., 'about two people').
+    grammar_point: くらい (approximate quantity or degree)
+  - term: 〜量 (quantity)
+    meaning: quantity, amount
+    kind: similar expression
+    nuance: While 「分」 emphasizes a portion or amount equivalent to something (e.g., 'two days' worth'),
+      「量」 refers to a general measurable quantity (e.g., 'water quantity'). 「分」 often implies allocation
+      or a share.
+    grammar_point: <strongly-suggest>:〜量 (quantity)
+post_false_friends_writeup: While 「分」 indicates a specific quantifiable amount or share, 「部分」 refers to
+  a general part or segment. Therefore, use 「分」 when you are quantifying a share or portion (e.g., “a
+  two-person portion”), and 「部分」 when you are describing a component of something larger (e.g., “the lower
+  part of the wall”). The distinction lies in whether you are emphasizing a measured quantity or a general
+  component.
+examples:
+  - english: I put in ten dollars' worth of gas.
+    japanese:
+      - ガソリン を 十 ドル {分} 入れ て おき まし た。
+      - ガソリン を 十 ドル {分} 入れ て おい た。
+      - ガソリン 十 ドル {分} 入れ た よ。
+    english_literally: As for gas, ten dollars' worth I put in.
+    competing_grammar:
+      - competing_japanese:
+          - ガソリン を {十 ドル} 入れ て おき まし た。
+        english: I put in ten dollars of gas.
+        hint: 「分」 emphasizes the 'worth' or 'equivalent amount' of gas, not just the cost. We're looking
+          for an expression that quantifies the value.
+    scene: At a gas station, a driver informs their friend about how much fuel they've added to the car.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「入れ て おき まし た」 uses the `〜ておく` form, indicating an action done in preparation for
+      future convenience, which adds a nuance of thoughtfulness and responsibility typical in polite conversation
+      among friends or family members when discussing shared resources or tasks.
+  - english: Today I finished three days' worth of work.
+    japanese:
+      - 今日、三 日 {分} の 仕事 を 片付け た。
+      - 今日、三 日 {分} の 仕事 を 片付け まし た。
+      - 三 日 {分} の 仕事 が 今日 片付 い た。
+    english_literally: Today, three days' worth of work I finished.
+    competing_grammar:
+      - competing_japanese:
+          - 今日、{三 日} の 仕事 を 片付け た。
+        english: Today I finished three days' work.
+        hint: 「分」 highlights the *amount equivalent to* three days, emphasizing the volume. We're looking
+          for a way to express a quantity that corresponds to a specific duration.
+    scene: A busy professional tells a colleague about their productivity at the end of a long day.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of the plain past tense 「片付け た」 is natural for casual conversation between colleagues,
+      conveying a sense of directness and personal accomplishment without the need for formal politeness
+      markers. This conveys a relatable, everyday achievement.
+  - english: I'll pay the cash shortfall by check.
+    japanese:
+      - 現金 の 不足 {分} は 小切手 で 払い ます。
+      - 不足 {分} は 小切手 で 支払い ます。
+    english_literally: Cash's shortfall amount, by check I will pay.
+    competing_grammar:
+      - competing_japanese:
+          - 現金 が {不足 し た の} は 小切手 で 払い ます。
+        english: I'll pay for the insufficient cash by check.
+        hint: 「不足 分」 specifically denotes the *amount* of the deficit. We're looking for a term that quantifies
+          the exact shortage.
+    scene: A manager explains to an accountant how a discrepancy in funds will be resolved.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The formal tone of 「払い ます」 and the clear, precise phrasing of 「不足 分」 make this appropriate
+      for a professional setting, ensuring there is no ambiguity about the financial transaction. This
+      reflects careful communication in business.
+  - english: Please prepare materials for six people for the meeting.
+    japanese:
+      - 会議 の 資料 を 六 人 {分} 用意 し て おい て ください。
+      - 会議 の 資料 を 六 人 {分} 用意 し て ください。
+      - 会議 の 資料 を 六 人 {分} 準備 し て おい て ください。
+    english_literally: Meeting's materials, for six people's worth, please prepare.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 資料 を {六 人 用} に 用意 し て おい て ください。
+        english: Please prepare materials for six people's use for the meeting.
+        hint: 「〜用」 indicates purpose or target, but 「〜分」 specifically quantifies the amount *per person*.
+          We're looking for an expression that specifies the exact quantity needed for each person.
+    scene: An office supervisor instructs an assistant to prepare documents for an upcoming team meeting.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The phrase 「用意 し て おい て ください」 is a polite but firm instruction, commonly used by superiors
+      to subordinates in a professional or academic environment. The `〜ておく` form implies completion of
+      the task in advance.
+  - english: Please leave two lines of space here because someone will sign it later.
+    japanese:
+      - ここ は 後 で サイン を し ます の で 二 行 {分} あけ て おい て ください。
+      - ここ は 後 で サイン が ある の で 二 行 {分} あけ て おい て ください。
+      - ここ は 後 で サイン を する の で、二 行 {分} あけ て おい て ください。
+    english_literally: Here, later signature will be done so, two lines' worth, please leave open.
+    competing_grammar:
+      - competing_japanese:
+          - ここ は 後 で サイン を し ます の で {二 行} あけ て おい て ください。
+        english: Please leave two lines open here because someone will sign it later.
+        hint: 「分」 precisely indicates the *amount* of space equivalent to two lines. We're looking for
+          a way to specify a measured quantity of space.
+    scene: A teacher instructs a student to leave a specific amount of space on a document for a signature.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「あけ て おい て ください」 indicates a polite request for an action to be completed in preparation
+      for something else, highlighting the need for foresight and carefulness, especially in a formal
+      or instructional context.
+  - english: We received a bonus equivalent to four months' pay.
+    japanese:
+      - 私 たち は 四 か月 {分} の ボーナス を もらっ た。
+      - 私 たち は 四 か月 {分} の ボーナス を もらい まし た。
+      - 四 か月 {分} の ボーナス が 支給 さ れ た。
+    english_literally: As for us, four months' worth of bonus we received.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は {四 か月 相当} の ボーナス を もらっ た。
+        english: We received a bonus equivalent to four months' pay.
+        hint: While 「相当」 means 'equivalent', 「〜分」 is more commonly used for a specific quantity corresponding
+          to a duration or amount. We're looking for a natural way to express a bonus tied to a specific
+          period of salary.
+    scene: Employees discussing their annual bonuses after a company announcement.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The plain form 「もらっ た」 is typical for casual conversation between colleagues, implying a straightforward,
+      almost matter-of-fact report. This is common when discussing shared experiences in an informal context.
+  - english: Three truckloads of garbage came out.
+    japanese:
+      - トラック 三 台 {分} の ごみ が 出 た。
+      - トラック 三 台 {分} の ごみ が 出 まし た。
+      - トラック 三 台 {分} の ごみ が 発生 し た。
+    english_literally: Three trucks' worth of garbage came out.
+    competing_grammar:
+      - competing_japanese:
+          - '{トラック 三 台 に 積める} ごみ が 出 た。'
+        english: Garbage that can be loaded onto three trucks came out.
+        hint: 「〜分」 quantifies the garbage by its volume, equivalent to three trucks. We're looking for
+          an expression that directly states the volume of garbage as if measured by truck capacity.
+    scene: Neighbors comment on the massive amount of trash collected after a community clean-up event.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The casual plain form 「出 た」 (came out/was produced) is appropriate for a casual conversation
+      about a community event, reflecting a direct and informal observation about the amount of garbage.
+  - english: The school prepared lunch for 100 students.
+    japanese:
+      - 学校 は 生徒 百 人 {分} の 昼食 を 準備 し た。
+      - 学校 は 生徒 百 人 {分} の 昼食 を 準備 し まし た。
+      - 学校 は 生徒 百 人 {分} の 昼食 を 用意 し た。
+    english_literally: The school, for 100 students' worth, lunch prepared.
+    competing_grammar:
+      - competing_japanese:
+          - 学校 は 生徒 {百 人 に} 昼食 を 準備 し た。
+        english: The school prepared lunch for 100 students.
+        hint: 「〜分」 specifies the *portion* or *amount* of lunch designed for 100 people. We're looking
+          for a way to indicate the quantity of food prepared for a specific number of individuals.
+    scene: A school administrator reports on the logistics of providing meals for a large student body.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「準備 し た」 is a straightforward and formal way to report on a completed action, suitable
+      for official or factual communications within an organization. It conveys a clear and concise message.
+  - english: This report summarizes the increase in sales for this year.
+    japanese:
+      - この レポート は、今年 の 売上 増加 {分} を まとめ た もの です。
+      - この レポート は、今年 の 売上 増加 {分} を まとめ た もの だ。
+      - この レポート で は、今年 の 売上 増加 {分} が まとめ られ て いる。
+    english_literally: This report, this year's sales increase amount, is a summary of.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート は、今年 の 売上 の {増加} を まとめ た もの です。
+        english: This report summarizes the increase in sales for this year.
+        hint: 「増加 分」 specifically refers to the *quantifiable amount* of the increase. We're looking for
+          a term that refers to the precise numerical gain.
+    scene: A business analyst presents findings to senior management regarding the company's financial
+      performance.
+    register: bijinesu nihongo (business)
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「まとめ た もの です」 is a standard, polite, and professional way to introduce a summary
+      or report in a business context, emphasizing that the document compiles and organizes information.
+      This phrasing is common in formal presentations.
+  - english: Let's share a double portion of happiness together.
+    japanese:
+      - 二人 {分} の 幸せ、一緒 に 分け合おう よ。
+      - 二人 {分} の 幸せ を 分け合おう よ。
+      - 二人 {分} の 幸せ、一緒 に 分け合おう。
+    english_literally: Two people's worth of happiness, together let's share.
+    competing_grammar:
+      - competing_japanese:
+          - '{二 倍} の 幸せ、一緒 に 分け合おう よ。'
+        english: Let's share double the happiness together.
+        hint: 「二人 分」 implies a shared quantity *suitable for two people*, making it more empathetic than
+          just doubling. We're looking for an expression that conveys a shared amount specifically for
+          two individuals.
+    scene: A young man suggests to his girlfriend that they face life's joys and challenges as a unified
+      pair.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The volitional form 「分け合おう」 combined with the casual particle 「よ」 creates a warm, inviting,
+      and intimate tone, characteristic of close relationships. This encourages shared experience and
+      emotional connection.
+post_example_writeup: 「分」 is a versatile suffix that can be used in various contexts to indicate amounts
+  or portions, making it a useful addition to your Japanese vocabulary. Understanding its usage with both
+  counters and nouns will significantly enhance your ability to express precise quantities and allocations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/790

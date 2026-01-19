@@ -1,0 +1,227 @@
+grammar_point: い-Adjective[さ] (nominalizer)
+learn_before:
+  - さ (nominalizer)
+meaning: Transforms an い-adjective into a noun, typically representing the degree or extent of the quality
+  expressed by the adjective.
+pronunciation:
+  katakana: サ
+  romaji: sa
+formation:
+  い-Adjective stem + さ: Appends the suffix 'さ' to the stem of an い-adjective to create a noun that represents
+    the degree or extent of that adjective's quality.
+jlpt: N4
+etymology: The suffix 「さ」 (sa) historically derives from the classical Japanese nominalizing particle
+  「さま」 (sama), which was used to create nouns from adjectives and verbs, referring to a "state" or "condition."
+  Over time, 「さま」 shortened and evolved into 「さ」, specializing its function to denote the degree or extent
+  of an adjective's quality. This distinguishes it from other nominalizers like 「み」 (mi), which tends
+  to emphasize the inherent quality itself rather than its measurable aspect. For example, 寒い (samui,
+  cold) becomes 寒さ (samusa, the degree of coldness), allowing for quantification or comparison of that
+  coldness.
+writeup: 'The suffix 「さ」 (sa) is appended to the stem of an い-adjective (by removing the final い) to transform
+  it into a noun. This nominalization often refers to the **degree, extent, or measurable quantity** of
+  the quality expressed by the original adjective. It allows abstract qualities like "height" or "coldness"
+  to be treated as concrete nouns, which can then be followed by particles like 「が」, 「を」, 「に」, or used
+  as subjects or objects in sentences. For instance, from the adjective 「高い」 (takai, high/tall), we get
+  「高さ」 (takasa, height). Similarly, 「難しい」 (muzukashii, difficult) becomes 「難しさ」 (muzukashisa, difficulty).
+  **Important Considerations**: While 「さ」 transforms the adjective into a noun, the resulting noun retains
+  the core meaning of the adjective but shifts focus to the *dimension* or *measurement* of that quality.
+  It is commonly used for physical measurements (高さ, 長さ, 広さ - height, length, width) and abstract qualities
+  that can be somehow perceived or quantified (暖かさ, 快適さ, 楽しさ - warmth, comfort, enjoyment).'
+false_friends:
+  - term: い-Adjective + み
+    meaning: inherent quality or state
+    kind: similar expression
+    nuance: 「さ」 emphasizes the *degree* or *measurable extent* of a quality (e.g., 寒さ - the *degree* of
+      cold). 「み」 emphasizes the *inherent quality* or *feeling* itself, often subjective and not easily
+      quantifiable (e.g., 悲しみ - the *feeling* of sadness). While both derive nouns from adjectives, their
+      nuanced focus differs.
+    grammar_point: い-Adjective[み] (abstract quality)
+post_false_friends_writeup: The distinction between 「さ」 and 「み」 is subtle but important. Think of 「さ」
+  as quantifying or describing the *amount* of an adjective's quality. For example, if you say 「この 部屋
+  の 広さ」 (kono heya no hirosa), you are talking about the *size* or *dimensions* of the room. If you were
+  to say 「この 部屋 の 広み」 (kono heya no hiromi), while grammatically possible in some specific contexts, it
+  sounds less natural or implies a subjective *sense* of spaciousness rather than a measurable one. Similarly,
+  「辛さ」 (karasa) refers to the *degree* of spiciness, while 「辛み」 (karami) refers to the *inherent quality*
+  of being spicy, often implying the taste itself.
+examples:
+  - english: What is the height of that mountain?
+    japanese:
+      - あの 山 の {高 さ} は どれ くらい です か。
+      - あの 山 の {高 さ} は どれ くらい だ？
+      - あの 山 の {高 さ} って どれ くらい？
+    english_literally: That mountain's height, how much is it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 山 の 高み は どれ くらい です か。
+        english: What is the high place of that mountain?
+        hint: 「高み」 refers to a high place or position, not the measurable vertical dimension we're looking
+          for. We're looking for the degree of height.
+    scene: A hiker asking a local person about a mountain.
+    register: formal
+    setting: informative
+    nuance: The use of 「高さ」 refers to the measurable vertical dimension of the mountain. 「〜ですか」 makes
+      it a polite inquiry.
+  - english: I was surprised by the warmth of her kindness.
+    japanese:
+      - 彼女 の 親切 の {暖か さ} に 驚き まし た。
+      - 彼女 の 親切 の {暖か さ} に びっくり し まし た。
+      - 彼女 の 親切 の {暖か さ} に 感動 し まし た。
+    english_literally: Her kindness's warmth, was surprised by it.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 親切 の 暖かみ に 驚き まし た。
+        english: I was surprised by the inherent warmth of her kindness.
+        hint: 「暖かみ」 suggests an inherent feeling of warmth, but here we want to emphasize the *degree*
+          or *effect* of that warmth.
+    scene: A friend recounting a heartwarming experience about someone.
+    register: semi-formal
+    setting: friendly
+    nuance: 「暖かさ」 here describes the *degree* of warmth felt from her kindness, emphasizing the intensity
+      of the feeling.
+  - english: Please tell me the length of this string.
+    japanese:
+      - この 紐 の {長 さ} を 教え て ください。
+      - この 紐 の {長 さ} を 教え て いただけ ます か。
+      - この 紐 の {長 さ}、教え て ください。
+    english_literally: This string's length, please teach me.
+    competing_grammar:
+      - competing_japanese:
+          - この 紐 の 長い こと を 教え て ください。
+        english: Please tell me the fact that this string is long.
+        hint: 「長いこと」 means 'the fact that it's long' or 'for a long time', which isn't asking for a measurement.
+          We need a noun representing the extent of length.
+    scene: Asking for assistance at a craft store.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「長さ」 quantifies the dimension of the string. 「〜を 教えて ください」 is a standard polite request.
+  - english: I deeply feel the gravity of the situation.
+    japanese:
+      - 状況 の {重 さ} を 痛感 し て い ます。
+      - 状況 の {重 さ} を ひしひし と 感じ て い ます。
+      - 状況 の {重 さ} を 噛みしめ て い ます。
+    english_literally: Situation's gravity, deeply feel.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 の 重い こと を 痛感 し て い ます。
+        english: I deeply feel the fact that the situation is grave.
+        hint: 「重いこと」 means 'the fact that it's heavy/serious'. We're looking for the *degree* or *impact*
+          of that seriousness.
+    scene: Someone reflecting on a past difficult event or decision.
+    register: formal
+    setting: reflective
+    nuance: 「重さ」 nominalizes the い-adjective 「重い」 (omoi, heavy) to refer to the *degree* of its gravity
+      or seriousness, emphasizing the profound realization.
+  - english: I finally understood the difficulty of the exam.
+    japanese:
+      - やっと 試験 の {難し さ} が 分かり まし た。
+      - ようやく 試験 の {難し さ} が 分かり まし た。
+      - 試験 の {難し さ} が ついに 分かり まし た。
+    english_literally: Finally, exam's difficulty understood.
+    competing_grammar:
+      - competing_japanese:
+          - やっと 試験 の 難しい こと が 分かり まし た。
+        english: I finally understood the fact that the exam was difficult.
+        hint: 「難しいこと」 means 'the difficult thing or fact'. We need a noun that expresses the *degree*
+          of difficulty.
+    scene: A student discussing a difficult test result with a peer or teacher.
+    register: semi-formal
+    setting: academic
+    nuance: 「難しさ」 quantifies the *degree* of difficulty of the exam.
+  - english: The beauty of the forest soothes my heart.
+    japanese:
+      - 森 の {美し さ} が 心 を 癒し ます。
+      - 森 の {美し さ} が 心 を 落ち着か せ ます。
+    english_literally: Forest's beauty, heart heals.
+    competing_grammar:
+      - competing_japanese:
+          - 森 の 美しい こと が 心 を 癒し ます。
+        english: The fact that the forest is beautiful soothes my heart.
+        hint: 「美しいこと」 means 'the fact that it's beautiful'. We're looking for a noun that captures the
+          *degree* or *quality* of beauty.
+    scene: Someone enjoying a peaceful walk in nature.
+    register: formal
+    setting: optimistic
+    nuance: 「美しさ」 describes the *degree* of beauty, treating it as a tangible quality that affects the
+      speaker.
+  - english: I love the softness of this blanket.
+    japanese:
+      - この 毛布 の {柔らか さ} が 大好き です。
+      - この 毛布 の {柔らか さ} が とても 好き です。
+      - この 毛布 の {柔らか さ} が 堪ら ない です。
+    english_literally: This blanket's softness, very like.
+    competing_grammar:
+      - competing_japanese:
+          - この 毛布 が 柔らかい こと が 大好き です。
+        english: I love the fact that this blanket is soft.
+        hint: 「柔らかいこと」 means 'the fact that it's soft'. We're focusing on the *degree* or *quality* of
+          softness as a noun.
+    scene: A person selecting bedding in a department store.
+    register: casual
+    setting: friendly
+    nuance: 「柔らかさ」 quantifies the *degree* of softness the blanket provides.
+  - english: The brightness of this room is different from that room.
+    japanese:
+      - この 部屋 の {明る さ} は あの 部屋 と 違い ます。
+      - この 部屋 の {明る さ} は あの 部屋 と は 異なり ます。
+    english_literally: This room's brightness, that room and is different.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 が 明るい こと は あの 部屋 と 違い ます。
+        english: The fact that this room is bright is different from that room.
+        hint: 「明るいこと」 refers to the *fact* that it is bright. We are talking about the *degree* of brightness
+          itself.
+    scene: A real estate agent showing a client two different rooms.
+    register: formal
+    setting: informative
+    nuance: 「明るさ」 refers to the *degree* of brightness, allowing for direct comparison.
+  - english: I want to share the fun of learning Japanese.
+    japanese:
+      - 日本 語 を 学ぶ {楽し さ} を 分かち合い たい です。
+      - 日本 語 を 学ぶ {楽し さ} を シェア し たい です。
+    english_literally: Japanese to learn's fun, want to share.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 学ぶ 楽しい こと を 分かち合い たい です。
+        english: I want to share the fun thing about learning Japanese.
+        hint: 「楽しいこと」 means 'the fun thing or fact'. We need a noun representing the *degree* or *essence*
+          of the enjoyment.
+    scene: A Japanese teacher talking to new students about their studies.
+    register: formal
+    setting: inspirational
+    nuance: 「楽しさ」 describes the *degree* of enjoyment one gets from learning Japanese. 「分かち合い たい です」 expresses
+      a desire to share that experience.
+  - english: He experienced the sadness of parting.
+    japanese:
+      - 彼 は 別れ の {悲し さ} を 経験 し まし た。
+      - 彼 は 別れ の {悲し さ} を 味わい まし た。
+    english_literally: He, parting's sadness experienced.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 別れ の 悲しみ を 経験 し まし た。
+        english: He experienced the feeling of sadness from parting.
+        hint: 「悲しみ」 emphasizes the inherent *feeling* of sadness itself. 「悲しさ」 focuses on the *degree*
+          or *observable aspect* of that sadness.
+    scene: Narrating a personal story about a farewell.
+    register: semi-formal
+    setting: melancholic
+    nuance: 「悲しさ」 refers to the *degree* of sadness felt, as an observable outcome of the parting. This
+      contrasts with 「悲しみ」 (kanashimi) which would denote the inherent emotion itself.
+  - english: What is the width of this road?
+    japanese:
+      - この 道 の {広 さ} は どれ くらい です か。
+      - この 道 の {広 さ} は どの くらい です か。
+    english_literally: This road's width, how much is it?
+    competing_grammar:
+      - competing_japanese:
+          - この 道 が 広い こと は どれ くらい です か。
+        english: How much is the fact that this road is wide?
+        hint: 「広いこと」 means 'the fact that it is wide'. We are asking for the measurable *extent* of its
+          width.
+    scene: A city planner discussing infrastructure with a colleague.
+    register: formal
+    setting: professional
+    nuance: 「広さ」 quantifies the measurable width of the road. 「どれくらい です か」 is a common way to inquire
+      about measurements.
+post_example_writeup: As these examples demonstrate, the nominalizer 「さ」 is a versatile tool for converting
+  qualities into measurable nouns, making it easier to discuss and compare various aspects of things and
+  experiences.

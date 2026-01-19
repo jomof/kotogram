@@ -1,0 +1,234 @@
+grammar_point: というのに (despite・unexpected)
+learn_before:
+  - かい (casual question particle)
+meaning: Even though; despite the fact that; although; but
+pronunciation:
+  katakana: トイウノニ
+  romaji: to iu noni
+formation:
+  Verb (plain form) + というのに: Expresses disappointment, disapproval, or surprise that the reality is contrary
+    to what one would expect.
+  い-Adjective (plain form) + というのに: Expresses disappointment, disapproval, or surprise that the reality
+    is contrary to what one would expect.
+  な-Adjective (plain form) + というのに: Expresses disappointment, disapproval, or surprise that the reality
+    is contrary to what one would expect.
+  Noun (plain form) + というのに: Expresses disappointment, disapproval, or surprise that the reality is contrary
+    to what one would expect.
+jlpt: N3
+etymology: 「と」 is a particle indicating quotation or content. 「言う」 means "to say." 「のに」 is a conjunction
+  expressing contrast or unexpectedness. Together, 「というのに」 literally means "even though it is said that..."
+  or "despite the fact that..."
+writeup: '「というのに」 is a conjunction used to express disappointment, disapproval, or surprise about a situation
+  that contradicts one''s expectations. It''s similar to 「のに」 but often carries a stronger emotional weight.
+  It connects clauses to show contrast or an unexpected outcome. You''ll often find it used when the speaker
+  believes someone or something should have behaved differently. It''s versatile, attaching to various
+  sentence types: informal, い-adjective, な-adjective, and noun sentences.'
+false_friends:
+  - term: のに
+    meaning: even though, although, despite
+    kind: similar expression
+    nuance: 「のに」 is similar to 「というのに」, but 「というのに」 often carries a stronger emotional weight, expressing
+      more surprise or disappointment.
+    grammar_point: のに (unexpected result)
+  - term: にもかかわらず
+    meaning: despite; in spite of; nevertheless
+    kind: similar expression
+    nuance: 「にもかかわらず」 is a more formal expression than 「というのに」. While both express contrast, 「にもかかわらず」
+      is often used in written or more formal spoken contexts.
+    grammar_point: にかかわらず (regardless of)
+  - term: くせに
+    meaning: despite and yet
+    kind: similar expression
+    nuance: 「くせに」 carries a strong tone of criticism or contempt, implying that someone should know better
+      or act differently, whereas 「というのに」 expresses more general disappointment or surprise without necessarily
+      implying fault.
+    grammar_point: くせに (despite and yet)
+  - term: たところで
+    meaning: even if; even though; no matter how much
+    kind: similar expression
+    nuance: 「たところで」 implies that an action will be futile or have no significant positive effect, leading
+      to disappointment, whereas 「というのに」 expresses disappointment or surprise at an unexpected existing
+      reality.
+    grammar_point: (にし)たところで (even if)
+post_false_friends_writeup: While 「のに」, 「というのに」, 「にもかかわらず」, 「くせに」, and 「たところで」 all convey ideas of contrast,
+  unexpectedness, or futility, their emotional weight, formality, and specific implications differ. 「のに」
+  is the most neutral. 「というのに」 adds a stronger emotional emphasis, expressing disappointment or surprise.
+  「にもかかわらず」 is more formal and objective. 「くせに」 carries a critical tone, implying someone should have
+  known better. 「たところで」 highlights the futility of an action.
+examples:
+  - english: Even though it's April, it's still chilly, isn't it?
+    japanese:
+      - ４ 月 だ {と いう の に}、まだ 肌寒い です ね。
+      - ４ 月 だ {と いう の に}、まだ 肌寒い です よ。
+      - ４ 月 だ {と いう の に}、まだ 肌寒い ね。
+      - ４ 月 だ {と いう の に}、まだ 肌寒い わ ね。
+    english_literally: As for April, even though it is said to be, still chilly is, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - ４ 月 な の {に}、まだ 肌寒い です ね。
+        english: Even though it's April, it's still chilly, isn't it?
+        hint: While 「のに」 expresses contrast, 「というのに」 adds a stronger sense of disappointment or surprise.
+          We are looking for an expression that highlights the unexpectedness with emotional weight.
+    scene: Two people making small talk about the weather.
+    register: semi-formal
+    setting: friendly
+    nuance: 「肌寒いですね」は、相手に自分の意見を丁寧に伝える表現です。話し手は、4月なのにまだ肌寒いことに少し驚きを表しています。
+  - english: Even though I have an exam tomorrow, I haven't studied at all.
+    japanese:
+      - 明日 試験 だ {と いう の に}、全然 勉強 し て い ませ ん。
+      - 明日 試験 だ {と いう の に}、全然 勉強 し て い ない。
+      - 明日 試験 だ {と いう の に}、全然 勉強 し て ねえ。
+      - 明日 試験 だ {と いう の に}、全然 勉強 し て ない の。
+    english_literally: Tomorrow exam is, even though it is said to be, totally not studying.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 試験 な の {に}、全然 勉強 し て い ませ ん。
+        english: Even though I have an exam tomorrow, I haven't studied at all.
+        hint: 「のに」 is a neutral way to express contrast. We need 「というのに」 to convey the speaker's strong
+          sense of self-reproach or surprise regarding their lack of study.
+    scene: A student complaining to a friend.
+    register: casual
+    setting: melancholic
+    nuance: 「～ていません」 は、あることをしていない状態が続いていることを示し、それに対する心配や後悔を表します。
+  - english: Even though she's a doctor, she smokes cigarettes.
+    japanese:
+      - 彼女 は 医者 だ {と いう の に}、タバコ を 吸っ て いる。
+      - 彼女 は 医者 だ {と いう の に}、タバコ を 吸っ て い ます。
+      - 彼女 は 医者 で ある {と いう の に}、タバコ を 吸っ て いる。
+    english_literally: As for her, doctor is, even though it is said to be, cigarettes smoking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 医者 な の {に}、タバコ を 吸っ て いる。
+        english: Even though she's a doctor, she smokes cigarettes.
+        hint: This sentence carries a critical or sarcastic tone about the doctor's behavior. 「というのに」
+          is used to emphasize this strong feeling of disapproval, rather than a simple factual contrast
+          with 「のに」.
+    scene: Someone gossiping about a doctor's unhealthy habits.
+    register: casual
+    setting: sarcastic
+    nuance: 「医者」 は名詞であり、「というのに」 に接続しています。話し手は、医者が健康リスクを考慮せずに喫煙していることに皮肉を感じています。
+  - english: Even though I have a date today, it started raining.
+    japanese:
+      - 今日 は デート な ん だ {と いう の に}、雨 が 降っ て き た。
+      - 今日 は デート だ {と いう の に}、雨 が 降っ て き た。
+      - 今日 は デート な ん です {と いう の に}、雨 が 降っ て き まし た。
+      - 今日 は デート な ん だ {と いう の に}、雨 が 降っ て き ちゃっ た。
+    english_literally: Today date is, even though it is said to be, rain came falling.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は デート な の {に}、雨 が 降っ て き た。
+        english: Even though I have a date today, it started raining.
+        hint: The speaker expresses clear disappointment about the rain. 「というのに」 captures this strong
+          emotional letdown more effectively than the more neutral 「のに」.
+    scene: A person upset that it's raining on their date.
+    register: casual
+    setting: melancholic
+    nuance: 「～なんだ」 は、発言を強調するくだけた表現であり、ここではデートがあるという事実を強調しています。話し手は雨に明らかに落胆しています。
+  - english: Even though Mr. Yamada is busy, he's always smiling.
+    japanese:
+      - 山田 さん は 忙しい {と いう の に}、いつ も 笑顔 です ね。
+      - 山田 さん は 忙しい {と いう の に}、いつ も 笑顔 だ ね。
+      - 山田 さん は 忙しい {と いう の に}、いつ も 笑顔 です よ。
+    english_literally: As for Mr. Yamada, busy is, even though it is said to be, always smiling, isn't
+      he?
+    competing_grammar:
+      - competing_japanese:
+          - 山田 さん は 忙しい の {に}、いつ も 笑顔 です ね。
+        english: Even though Mr. Yamada is busy, he's always smiling.
+        hint: This example conveys admiration and slight surprise. 「というのに」 is chosen to highlight this
+          feeling of wonder and appreciation for Mr. Yamada's positive attitude, beyond just stating a
+          contrast with 「のに」.
+    scene: A colleague expressing admiration for Mr. Yamada.
+    register: formal
+    setting: professional
+    nuance: 「～ですね」 は、話し手の観察や意見を丁寧に述べる際に使われます。話し手は、山田さんが忙しい中でも陽気でいられることに感心しています。
+  - english: Even though I loved her so much, she chose another man.
+    japanese:
+      - あんな に 愛し て いる {と いう の に}、彼女 は 他 の 男 を 選ん だ。
+      - あんな に 愛し て いる {と いう の に}、彼女 は 他 の 男 を 選び まし た。
+      - あんな に 愛し て い た {と いう の に}、彼女 は 他 の 男 を 選ぶ なんて。
+    english_literally: That much loving, even though it is said to be, she other man chose.
+    competing_grammar:
+      - competing_japanese:
+          - あんな に 愛し て いる の {に}、彼女 は 他 の 男 を 選ん だ。
+        english: Even though I loved her so much, she chose another man.
+        hint: The deep heartache in this situation is emphasized by 「というのに」, which highlights the shock
+          and betrayal felt by the speaker. 「のに」 would not convey this strong emotional impact.
+    scene: A heartbroken man reflecting on a past relationship.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    nuance: 「愛して」 は動詞 「愛する」 のテ形であり、ここでは「というのに」 の前の文を修飾しています。この文は、予想外の選択に対する深い悲しみと後悔を伝えています。
+  - english: Even though I love you so much, why can't you understand?
+    japanese:
+      - 君 の こと が 大好き だ {と いう の に}、どう し て わかっ て くれ ない ん だ？
+      - 君 の こと が 大好き だ {と いう の に}、どう し て わかっ て くれ ない の？
+      - 君 の こと が 大好き な の だ {と いう の に}、どう し て わかっ て くれ ない ん だ？
+    english_literally: As for you, love very much is, even though it is said to be, why can't you understand?
+    competing_grammar:
+      - competing_japanese:
+          - 君 の こと が 大好き な の {に}、どう し て わかっ て くれ ない ん だ？
+        english: Even though I love you so much, she chose another man.
+        hint: The desperate plea in this situation calls for the stronger emotional emphasis of 「というのに」.
+          It expresses the speaker's confusion and frustration more powerfully than 「のに」.
+    scene: A person expressing their unrequited love to someone.
+    register: shitashii kuchō (intimate)
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: female
+    nuance: 話し手が男性であることは、文末の 「～んだ」 に表れており、気持ちをくだけて説明するニュアンスがあります。これは男性の話し方でより一般的です。「君 の こと が 大好き だ」 は、相手に対する強い愛情を直接的に表現する非常に率直な言い方です。彼は、彼女に自分の気持ちに気づいてもらい、受け入れてもらいたいと必死に訴えかけています。
+  - english: Even though the teacher kindly loaned you a book, you haven't read it yet?
+    japanese:
+      - 先生 が わざわざ 本 を 貸し て 下さっ た {と いう の に}、まだ 読ん で い ない の？
+      - 先生 が わざわざ 本 を 貸し て 下さっ た {と いう の に}、まだ 読ん で い ない の か？
+      - 先生 が わざわざ 本 を 貸し て 下さっ た {と いう の に}、まだ 読ん で い ない の か い？
+      - 先生 が わざわざ 本 を 貸し て 下さっ た {と いう の に}、まだ 読ん で い ませ ん か？
+    english_literally: Teacher expressly book loaned to me, even though it is said to be, still not read?
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が わざわざ 本 を 貸し て 下さっ た の {に}、まだ 読ん で い ない の？
+        english: Even though the teacher kindly loaned you a book, you haven't read it yet?
+        hint: The mother's strong disappointment and frustration are conveyed by 「というのに」. This expresses
+          more than a simple contrast; it implies a sense of obligation that was not met.
+    scene: A mother scolding her son about his overdue library book.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    nuance: 文末の 「の？」 は、女性の話し方で家族に対して使われる際に、より柔らかく、問いかけるような、あるいは少し非難するような調子を与えることがあります。母親の落胆が明白です。
+  - english: Even though I slept for 8 hours, I'm still sleepy.
+    japanese:
+      - ８ 時間 も 寝 た {と いう の に}、まだ 眠い。
+      - ８ 時間 も 寝 まし た {と いう の に}、まだ 眠い です。
+      - ８ 時間 も 寝 た {と いう の に}、まだ 眠い や。
+      - ８ 時間 も 寝 た {と いう の に}、まだ 眠たい。
+    english_literally: 8 hours even slept, even though it is said to be, still sleepy.
+    competing_grammar:
+      - competing_japanese:
+          - ８ 時間 も 寝 た の {に}、まだ 眠い。
+        english: Even though I slept for 8 hours, I'm still sleepy.
+        hint: While 「のに」 states a factually unexpected outcome, 「というのに」 emphasizes the speaker's personal
+          disappointment or frustration at still feeling sleepy despite sufficient rest.
+    scene: A student waking up and feeling tired, despite a long sleep.
+    register: casual
+    setting: melancholic
+    nuance: 話し手が「まだ眠い」と感じていることへの強い不満や落胆を表しています。十分な睡眠を取ったにも関わらず、期待に反する結果に直面している状況です。
+  - english: Even though I warned you repeatedly, you still made the same mistake.
+    japanese:
+      - 何 度 も 注意 し た {と いう の に}、また 同じ 間違い を し た な。
+      - 何 度 も 注意 し た {と いう の に}、また 同じ 間違い を し た わ ね。
+      - 何 度 も 注意 し た {と いう の に}、また 同じ 間違い か。
+      - 何 度 も 注意 し た {と いう の に}、また 同じ 間違い を し や がっ た な。
+    english_literally: Many times warned, even though it is said to be, again same mistake made, huh.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 も 注意 し た の {に}、また 同じ 間違い を し た な。
+        english: Even though I warned you repeatedly, you still made the same mistake.
+        hint: 「というのに」 conveys the speaker's strong sense of exasperation and disappointment at the repeated
+          error, implying a moral judgment or a greater degree of frustration than the more neutral 「のに」.
+    scene: A manager disappointed with an employee's repeated error.
+    register: semi-formal
+    setting: commanding
+    speaker_gender: male
+    listener_gender: male
+    nuance: この文は、話し手（上司）の相手に対する強い失望や叱責の感情を表現しています。「また同じ間違いをしたな」という表現に、注意したにもかかわらず改善が見られないことへの苛立ちが込められています。文末の「な」は、相手に念を押すような、あるいは軽く咎めるような男性的な響きがあります。

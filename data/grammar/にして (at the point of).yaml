@@ -1,0 +1,305 @@
+grammar_point: にして (at the point of)
+learn_before:
+  - '[Verb-stem]ながら・つつ (while doing)'
+  - '[Verb-stem・Adj・Noun]ながら (although・despite)'
+  - かける・かけ (in process・incomplete・on the verge)
+  - たった (only・just)
+  - ながらに (while being in a continuous state)
+  - まさか (no way)
+  - 思えば (come to think of it)
+  - 目 (ordinal numbers)
+meaning: At a critical, surprising, or noteworthy point; despite being a certain point.
+pronunciation:
+  katakana: ニシテ
+  romaji: ni shite
+formation:
+  Number + Counter + にして: Indicates something happening at or after reaching a certain count, often implying
+    a surprising or significant milestone.
+  Noun + にして: Indicates something happening at or after a specific point or condition, often suggesting
+    suddenness or a crucial juncture.
+  Verb (ます-form) + ながら + にして: Indicates an inherent state or quality present from the very beginning,
+    often from birth, implying a natural predisposition or a given condition.
+  Time + にして: Indicates something changing or occurring within a specific timeframe, often emphasizing
+    extreme rapidity or a dramatic shift from one state to another.
+jlpt: N1
+etymology: 「にして」 is derived from the particle 「に」 combined with the te-form of the verb 「する」 (to do).
+  The 「に」 marks a specific point or condition, and 「する」 in this context implies 'becoming' or 'reaching'
+  that point. Thus, 「にして」 signifies that something happens *at* the moment of reaching that point, often
+  implying surprise, significance, or an unexpected outcome.
+writeup: 「にして」 is used to express that something happens **at** or **after** a certain point or stage,
+  often implying that the event is surprising, noteworthy, or represents a significant milestone. It combines
+  the particle 「に」 with the te-form of 「する」, signifying a state or condition that has been reached or
+  accepted as fact, from which a new situation emerges. This expression frequently follows counters, nouns,
+  time expressions, or the 「ながら」 form of verbs, marking the specific instance as a critical juncture.
+  It can suggest that the point in question is of a high standard or a prime example, and the subsequent
+  event either aligns with or deviates from expectations for such a point. To further emphasize the importance
+  or unexpectedness of the moment, 「にして」 is often followed by adverbs or grammar patterns such as 「ようやく」
+  (finally) or 「初めて」 (for the first time). This expression carries a somewhat formal or literary tone
+  and is commonly encountered in formal writing and speech.
+false_friends:
+  - term: で
+    meaning: at, in, by means of (general particle)
+    kind: similar expression
+    nuance: Unlike 「にして」, 「で」 simply indicates the time, place, or means. 「にして」 emphasizes the significance,
+      surprise, or unexpectedness of the event occurring *at* or *after* that specific point. It carries
+      a more dramatic or noteworthy connotation.
+    grammar_point: で (location of action)
+  - term: 時 から
+    meaning: from the time of; since
+    kind: similar expression
+    nuance: While 「時 から」 indicates a starting point in time, 「にして」 emphasizes an inherent quality or state
+      that exists *from birth* or from a particularly significant initial stage, often highlighting a
+      natural predisposition rather than just a temporal origin.
+    grammar_point: から (from)
+post_false_friends_writeup: While 「で」 can mark a point in time or condition, 「にして」 adds a nuance of significance,
+  surprise, or a noteworthy achievement at that specific juncture. When choosing between them, consider
+  if you want to simply state the time or condition (using 「で」), or if you want to highlight the importance,
+  unexpectedness, or a milestone associated with the event occurring at that point (using 「にして」).
+examples:
+  - english: He traveled abroad for the first time at the age of 30.
+    japanese:
+      - 彼 は 30 歳 {に し て} 初めて 海外 旅行 に 出かけ た。
+      - 彼 は 30 歳 {に し て} 初めて 海外 旅行 に 出かけ まし た。
+      - 彼 は 30 歳 {に し て} 初めて 海外 旅行 へ と 旅立っ た。
+    english_literally: He at 30 years old for the first time went abroad.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 30 歳 {で} 初めて 海外 旅行 に 出かけ た。
+        english: He traveled abroad for the first time at the age of 30.
+        hint: 「で」 simply states the age, but 「にして」 emphasizes the significance or unexpectedness of the
+          event at that age. We're looking for emphasis on the milestone.
+      - competing_japanese:
+          - 彼 は 30 歳 {に なっ て} 初めて 海外 旅行 に 出かけ た。
+        english: He went abroad for the first time after turning 30.
+        hint: 「～になって」 states the action happened after turning 30, but 「にして」 conveys surprise or significance.
+          We're looking for the emphasis on the surprising timing.
+    scene: A man reflects on a significant milestone in his life, highlighting a new experience achieved
+      at an unexpected age.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: The phrase 「歳にして」 emphasizes the significant age at which this "first time" event occurred,
+      suggesting it might be considered surprisingly late or noteworthy for such an experience. The use
+      of 「彼」 provides a general male perspective, suitable for a casual reflection.
+  - english: She acquired her long-desired qualification on her fifth attempt.
+    japanese:
+      - 彼女 は 挑戦 ５ 回 目 {に し て}、念願 の 資格 を 取得 し た。
+      - 彼女 は 挑戦 ５ 回 目 {に し て}、念願 の 資格 を 取得 し まし た。
+      - 彼女 は ５ 回 目 の 挑戦 {に し て}、念願 の 資格 を 掴ん だ。
+    english_literally: She challenge fifth time at, long-desired qualification acquired.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 挑戦 ５ 回 目 {で}、念願 の 資格 を 取得 し た。
+        english: She acquired her long-desired qualification on her fifth attempt.
+        hint: 「で」 states the attempt number, but 「にして」 emphasizes the difficulty and the noteworthy achievement
+          *at* that specific attempt. We're looking for emphasis on the critical juncture.
+      - competing_japanese:
+          - 彼女 は 挑戦 ５ 回 目 {で} ようやく 念願 の 資格 を 取得 し た。
+        english: She finally acquired her long-desired qualification on her fifth attempt.
+        hint: Adding 「ようやく」 to 「～回目で」 emphasizes difficulty, but 「にして」 more strongly marks the attempt
+          itself as a significant point. We're looking for the specific noteworthy attempt.
+    scene: A woman recounts her journey to finally achieve a difficult goal after repeated efforts.
+    register: semi-formal
+    setting: serious
+    speaker_gender: female
+    nuance: 「回目にして」 stresses that it was specifically on the fifth try that the desired outcome was finally
+      achieved, implying significant difficulty and perseverance. The use of 「彼女」 establishes a female
+      speaker, conveying the personal triumph.
+  - english: The old house turned into rubble in an instant.
+    japanese:
+      - その 古い 家 は 瞬く 間 {に し て} 瓦礫 と 化し た。
+      - その 古い 家 は 瞬く 間 {に し て} 瓦礫 の 山 と 化し た。
+      - その 古い 家 は 瞬く 間 {に し て} 跡形 も なく 崩れ去っ た。
+    english_literally: That old house blink-of-an-eye at, became rubble.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 家 は 瞬く 間 {で} 瓦礫 と 化し た。
+        english: The old house turned into rubble in an instant.
+        hint: 「で」 indicates the time frame, but 「にして」 emphasizes the extreme rapidity and dramatic nature
+          of the transformation *at* that instant. We're looking for the sense of dramatic transformation.
+      - competing_japanese:
+          - その 古い 家 は {たちまち} 瓦礫 と 化し た。
+        english: The old house immediately turned into rubble.
+        hint: 「たちまち」 emphasizes immediate transformation, but 「瞬く間に して」 emphasizes the sudden, dramatic
+          change *at* that instant. We're looking for strong emphasis on the abrupt transformation.
+    scene: Describing a rapid and complete transformation due to a sudden, catastrophic event.
+    register: formal
+    setting: serious
+    nuance: 「瞬く間に して」 strongly emphasizes the extreme rapidity and totality of the change, conveying a
+      sense of shock or dramatic alteration that transcends mere time notation. This formal construction
+      is fitting for describing a severe, impactful event.
+  - english: Thinking about it now, that decision must have been a turning point in my life.
+    japanese:
+      - 今 {に し て} 思え ば、あの 決断 が 人生 の 転機 だっ た の だろう。
+      - 今 {に し て} 思え ば、あの 決断 が 人生 の 転機 だっ た の でしょう。
+      - 今 {に し て} 思え ば、あの 決断 こそ 人生 の 転機 だっ た ん だ な。
+    english_literally: Now at, thinking, that decision life's turning point was probably.
+    competing_grammar:
+      - competing_japanese:
+          - 今 {思え ば}、あの 決断 が 人生 の 転機 だっ た の だろう。
+        english: Thinking about it now, that decision must have been a turning point in my life.
+        hint: 「今 思えば」 indicates reflection, but 「今 にして 思えば」 specifically emphasizes a realization gained
+          *from* the present moment. We're looking for the nuance of hindsight and newfound perspective.
+      - competing_japanese:
+          - 今 {と なっ て は}、あの 決断 が 人生 の 転機 だっ た の だろう。
+        english: Now that it's come to this, that decision must have been a turning point in my life.
+        hint: 「今 と なって は」 implies a new situation and perspective, but 「今 にして 思えば」 focuses on the process
+          of reflection itself. We're looking for active reflection from the present.
+    scene: Someone reflecting deeply on a past event, realizing its long-term significance and impact
+      on their life.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    nuance: The phrase 「今 にして 思えば」 expresses a realization or understanding gained only after a period
+      of time, looking back from the present moment. This often carries a sense of hindsight or newfound
+      perspective. The casual tone and implied personal reflection are common for male speakers in this
+      context.
+  - english: He possessed extraordinary talent from birth.
+    japanese:
+      - 彼 は 生まれ ながら {に し て} 非凡 な 才能 を 持っ て い た。
+      - 彼 は 生まれ ながら {に し て} 非凡 な 才能 を 持っ て い まし た。
+      - 彼 は 生まれ ながら {に し て} 稀有 な 才能 を 授かっ て い た。
+    english_literally: He born while at, extraordinary talent possessed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {生まれ た 時 から} 非凡 な 才能 を 持っ て い た。
+        english: He possessed extraordinary talent from the time he was born.
+        hint: 「時 から」 indicates a starting point in time, but 「生まれ ながら にして」 specifically emphasizes an
+          inherent quality present from birth. We're looking for the innate, inborn quality.
+      - competing_japanese:
+          - 彼 は {生まれ て から ずっと} 非凡 な 才能 を 持っ て い た。
+        english: He possessed extraordinary talent ever since he was born.
+        hint: 「生まれ て から ずっと」 indicates a continuous state from birth, but 「生まれ ながら にして」 emphasizes an
+          inherent, inborn quality. We're looking for the innate, inborn quality.
+    scene: Describing an inherent, exceptional quality or gift a person has had since birth.
+    register: formal
+    setting: informative
+    nuance: 「生まれ ながら にして」 is a set phrase meaning "from birth" or "innately," emphasizing an inherent
+      quality that exists from the very beginning of one's life. This conveys a sense of destiny or natural
+      predisposition. The formal register suits the informative and somewhat profound nature of the statement.
+  - english: That artist published his masterpiece at the mere age of 15.
+    japanese:
+      - か の 芸術 家 は、僅か 15 歳 {に し て} その 傑作 を 発表 し た。
+      - か の 芸術 家 は、僅か 15 歳 {に し て} その 傑作 を 発表 し まし た。
+      - か の 芸術 家 は、僅か 15 歳 {に し て} 空前 絶後 の 傑作 を 世 に 送り出し た。
+    english_literally: That artist, merely 15 years old at, that masterpiece published.
+    competing_grammar:
+      - competing_japanese:
+          - か の 芸術 家 は、僅か 15 歳 {で} その 傑作 を 発表 し た。
+        english: That artist published his masterpiece at a mere 15 years old.
+        hint: 「で」 states the age, but 「にして」 emphasizes the surprisingly early or remarkable achievement
+          *at* that age. We're looking for the emphasis on the prodigy's achievement.
+      - competing_japanese:
+          - か の 芸術 家 は、{まだ} 15 歳 で その 傑作 を 発表 し た。
+        english: That artist published his masterpiece at only 15 years old.
+        hint: 「まだ～で」 emphasizes the young age, but 「にして」 conveys a stronger sense of remarkable or surprising
+          achievement. We're looking for the strong emphasis on the significant feat.
+    scene: Describing a prodigy's early and remarkably significant artistic achievement.
+    register: formal
+    setting: informative
+    nuance: 「僅か 15 歳 にして」 highlights the surprisingly young age at which such a significant feat was accomplished,
+      underscoring the artist's prodigy. This formal and somewhat literary expression is often used to
+      convey admiration or astonishment at an unusual achievement.
+  - english: That large city turned into rubble in just one night.
+    japanese:
+      - その 大 都市 は、たった 一夜 {に し て} 廃墟 と 化し た。
+      - その 大 都市 は、たった 一夜 {に し て} 廃墟 と 化し まし た。
+      - その 大 都市 は、たった 一夜 {に し て} 壊滅 的 な 廃墟 と 化し た。
+    english_literally: That large city, just one night at, became ruins.
+    competing_grammar:
+      - competing_japanese:
+          - その 大 都市 は、たった 一夜 {で} 廃墟 と 化し た。
+        english: That large city turned into ruins in just one night.
+        hint: 「で」 indicates the time frame, but 「一夜 にして」 emphasizes the extreme speed and completeness
+          of the transformation. We're looking for the dramatic and impactful sense of destruction.
+      - competing_japanese:
+          - その 大 都市 は、たった 一 晩 {で} 廃墟 と 化し た。
+        english: That large city turned into ruins in just one night.
+        hint: 「一晩 で」 refers to the duration, but 「一夜 にして」 emphasizes the sudden, dramatic change occurring
+          *at* that pivotal night. We're looking for the sense of drastic transformation.
+    scene: Describing a catastrophic and sudden destruction that transformed a vibrant place into desolation.
+    register: formal
+    setting: serious
+    nuance: 「たった 一夜 にして」 intensely emphasizes the extreme rapidity and scale of destruction, portraying
+      a shocking and irreversible change. This formal and somewhat literary expression is well-suited
+      for describing a grave, impactful event.
+  - english: Me, at this age, to think I’d have such a wonderful encounter, I’m truly surprised!
+    japanese:
+      - 私、この 年 {に し て} まさか こんな 素晴らしい 出会い が ある なんて、本当 に 驚い て いる の！
+      - 私、この 年 {に し て} まさか こんな 素晴らしい 出会い が ある なんて、本当 に 驚い て おり ます の！
+      - 私、この 年 {に し て} まさか こんな 素敵 な 出会い が ある なんて、夢 に も 思わ なかっ た わ！
+    english_literally: Me, this age at,まさか such wonderful encounter exist to think, truly surprised!
+    competing_grammar:
+      - competing_japanese:
+          - 私、この 年 {で} まさか こんな 素晴らしい 出会い が ある なんて、本当 に 驚い て いる の！
+        english: Me, at this age, to think I’d have such a wonderful encounter, I’m truly surprised!
+        hint: 「で」 states the age, but 「にして」 highlights the unexpectedness and significance of the encounter
+          *at* this particular age. We're looking for emphasis on delightful surprise.
+      - competing_japanese:
+          - 私、この 年 {で} こんな 素晴らしい 出会い が ある なんて、驚い て いる の！
+        english: Me, at this age, to think I’d have such a wonderful encounter, I’m surprised!
+        hint: Removing 「まさか」 and 「本当に」 reduces the intensity of surprise. 「にして」, especially with 「まさか」,
+          strongly conveys unexpectedness at this age. We're looking for the strong, delightful disbelief.
+    scene: A woman expressing delighted surprise about meeting someone special later in her life.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    nuance: The speaker uses 「私」 and the sentence-ending particle 「の」 which are common in casual female
+      speech, conveying excitement and personal surprise. The phrase 「この 年 にして まさか」 amplifies the unexpectedness
+      of the wonderful encounter happening at her current age, expressing a delightful disbelief.
+  - english: Seriously, for me to make such a basic mistake at this age... how pathetic.
+    japanese:
+      - まったく、俺 が この 年 {に し て} こんな 初歩 的 な ミス を 犯す と は な。情けない。
+      - まったく、この 年 {に し て} こんな 初歩 的 な ミス を 犯す と は な。情けない。
+      - まったく、この 年 {に し て} こんな 初歩 的 な ミス を する と は な。まったく 呆れ た もん だ。
+    english_literally: Seriously, I at this age, such basic mistake make, how pathetic.
+    competing_grammar:
+      - competing_japanese:
+          - まったく、俺 が この 年 {で} こんな 初歩 的 な ミス を 犯す と は な。情けない。
+        english: Seriously, for me to make such a basic mistake at this age... how pathetic.
+        hint: 「で」 states the age, but 「にして」 emphasizes the significance of his age, making the blunder
+          more surprising and regrettable. We're looking for the emphasis on unexpected self-reproach.
+      - competing_japanese:
+          - まったく、俺 が この 年 {に なっ て} こんな 初歩 的 な ミス を 犯す と は な。情けない。
+        english: Seriously, for me to make such a basic mistake after reaching this age... how pathetic.
+        hint: 「～になって」 indicates reaching that age. 「にして」 emphasizes the contrast or surprising regression
+          of making such a mistake *at* this point in life, implying it's a surprising regression for
+          someone of his age.
+    scene: An older man grumbling to himself after a blunder, expressing exasperation and self-reproach
+      over his unexpected error.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    nuance: The opening 「まったく」, the male pronoun 「俺」, and the sentence-ending 「とはな」 are characteristic
+      of informal male speech, conveying exasperation or self-admonishment. 「この 年 にして」 emphasizes the
+      unexpectedness of such a "basic mistake" at his advanced age, implying a sense of personal failure
+      or regret.
+  - english: Despite being a beginner, he played the piano like a professional.
+    japanese:
+      - 彼 は 初心 者 {に し て}、プロ の よう に ピアノ を 弾い た。
+      - 彼 は 初心 者 {に し て}、プロ の よう に ピアノ を 弾き まし た。
+      - 彼 は 初心 者 {に し て}、プロ 顔負け の 腕前 で ピアノ を 弾い た。
+    english_literally: He as a beginner at, like a professional piano played.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 初心 者 {な の に}、プロ の よう に ピアノ を 弾い た。
+        english: He played the piano like a professional, even though he was a beginner.
+        hint: 「なのに」 simply expresses a contradiction. 「にして」 emphasizes the surprising skill *despite*
+          being in the state of a beginner, marking it as noteworthy. We're looking for the unexpected
+          ability.
+      - competing_japanese:
+          - 彼 は 初心 者 {だ けど}、プロ の よう に ピアノ を 弾い た。
+        english: He played the piano like a professional, but he was a beginner.
+        hint: 「だけど」 serves as a simple conjunction expressing contrast. 「にして」 highlights the surprising
+          proficiency *at* the level of a beginner, implying an exceptional talent. We're looking for
+          the surprising, high-level performance.
+    scene: Describing a new student who exhibits surprisingly advanced skills in a particular art form,
+      exceeding expectations for their stated level.
+    register: semi-formal
+    setting: informative
+    nuance: 「初心者にして」 highlights the unexpected high level of skill for someone who is supposedly a beginner,
+      emphasizing a surprising discrepancy between their status and ability. This use underscores the
+      exceptional nature of their talent. The slightly more formal tone is appropriate for an informative
+      observation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/にして1

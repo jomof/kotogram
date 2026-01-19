@@ -1,0 +1,240 @@
+grammar_point: と同じで・と違って (similarity and contrast)
+learn_before:
+  - と同じ (exact sameness)
+meaning: Like, Similar to, Unlike, Dissimilar to
+pronunciation:
+  katakana: ト オナジデ・ト チガッテ
+  romaji: to onaji de, to chigatte
+formation:
+  Noun + と同じで: Indicates that something is the same as the noun.
+  Noun + と違って: Indicates that something is different from the noun.
+jlpt: N3
+etymology: The particle 「と」 (to) fundamentally expresses association or comparison. 「同じ」 (onaji) is a
+  noun meaning 'same' or 'identical,' while 「違う」 (chigau) is a verb meaning 'to differ' or 'to be wrong.'
+  The 「で」 component in 「と同じで」 is the て-form of the copula 「だ」 (da), signifying a state or reason. In 「と違って」,
+  「違って」 is the て-form of the verb 「違う」. Thus, these constructions literally mean 'being the same as' or
+  'being different from,' acting as adverbial phrases modifying the subsequent clause.
+writeup: |-
+  The phrases 「**と同じで**」 (to onaji de) and 「**と違って**」 (to chigatte) are essential for expressing similarity and dissimilarity in Japanese. They function as adverbial phrases, indicating a comparison between two entities or situations.
+
+  *   **「と同じで」 (to onaji de)**: This phrase means 'just like', 'similar to', or 'the same as'. It is used when the subsequent statement describes something that is similar or identical to the noun or noun phrase preceding it. The 「で」 here is the て-form of the copula 「だ」, connecting the state of being 'the same' to the main clause.
+
+  *   **「と違って」 (to chigatte)**: This phrase means 'unlike' or 'different from'. It is used when the subsequent statement describes something that contrasts with the noun or noun phrase preceding it. The 「違って」 is the て-form of the verb 「違う」, directly conveying the sense of difference.
+
+  Both constructions are always preceded by a noun or a noun phrase, which is the point of comparison. They set the stage for the following clause, which elaborates on the similarity or difference. These expressions are widely applicable in various contexts, from casual conversation to more formal discussions.
+false_friends:
+  - term: みたいに・みたいな
+    meaning: Like, Similar to, Resembling
+    kind: synonym
+    nuance: 「みたいに」 and 「みたいな」 express resemblance or approximation, while 「と同じで」 emphasizes that something
+      is exactly the same or shares a common characteristic.
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+post_false_friends_writeup: While 「みたいに」 and 「と同じで」 can both express similarity, 「みたいに」 implies that something
+  is *like* something else, whereas 「と同じで」 indicates that something *is the same* as something else. The
+  nuance is subtle, but important for precise communication. Similarly, 「と違って」 indicates a direct contrast,
+  while using 「みたいに」 to express difference implies more of a comparison than a complete divergence. Be
+  mindful of these distinctions to ensure your meaning is conveyed precisely.
+examples:
+  - english: Just like my father, my older brother has a very quiet personality.
+    japanese:
+      - 私 の 兄 は 父 {と 同じ で}、とても 静か な 性格 です。
+      - うち の 兄 は 親父 {と 同じ で}、すごく 静か な 性格 だ よ。
+      - 僕 の 兄 は 父 {と 同じ で}、非常 に 静か な 性格 です。
+    english_literally: My older brother, same as father, has a very quiet personality.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 兄 は 父 {の よう に}、とても 静か な 性格 です。
+        english: My older brother, like my father, has a very quiet personality.
+        hint: 「のように」 implies resemblance or appearance, but this sentence states a factual, shared characteristic.
+          We're looking for a phrase that expresses exact sameness.
+    scene: A young woman is describing her family members to a new acquaintance, highlighting personality
+      traits.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker, a young woman, uses casual sentence endings and refers to family members, indicative
+      of a friendly, informal conversation. The phrase 「父 と同じで」 is used to state a direct, factual similarity
+      in personality between her brother and father.
+  - english: Unlike his past self, he's been focusing on his work lately.
+    japanese:
+      - 以前 の 彼 {と 違っ て}、最近 は 仕事 に 集中 し て い ます。
+      - 以前 の 彼 {と 違っ て}、最近 は 仕事 に 集中 し て いる。
+      - 前 の 彼 {と 違っ て}、この頃 は 仕事 に 集中 し てる ね。
+    english_literally: Compared to his former self, recently he is focusing on work.
+    competing_grammar:
+      - competing_japanese:
+          - 以前 の 彼 {と 異なり}、最近 は 仕事 に 集中 し て い ます。
+        english: Differing from his past self, he's been focusing on his work lately.
+        hint: 「と異なり」 is more formal and less common in casual conversation about a personal change. We're
+          looking for a more natural, descriptive contrast.
+    scene: A colleague is noticing a positive change in a male coworker's attitude and work ethic.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: This statement uses a neutral tone appropriate for a professional setting, discussing a male
+      colleague's improved work ethic. The speaker uses 「以前 の 彼 と違って」 to highlight a clear contrast in
+      behavior over time, suggesting a positive development without being overly critical of his past.
+  - english: This book, just like other textbooks, is rich in easy-to-understand explanations.
+    japanese:
+      - この 本 は、他 の 教科 書 {と 同じ で}、分かり やすい 解説 が 豊富 です。
+      - この 本、他 の 教科 書 {と 同じ で}、分かり やすい 解説 が いっぱい だ よ。
+      - この 本 は、他 の 教科 書 {と 同じ で}、解説 が とても 分かり やすい です。
+    english_literally: This book, same as other textbooks, has abundant easy-to-understand explanations.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は、他 の 教科 書 {の よう に}、分かり やすい 解説 が 豊富 です。
+        english: This book, like other textbooks, is rich in easy-to-understand explanations.
+        hint: 「のように」 implies resemblance or an example, but this sentence states a shared, specific quality.
+          We're looking for a phrase that asserts an identical characteristic.
+    scene: A student is reviewing a textbook, noting its positive attributes in comparison to others.
+    register: casual
+    setting: informative
+    nuance: The sentence describes a textbook's quality, fitting an academic context. 「他の 教科書 と同じで」 points
+      out that the book shares a common, positive feature with other similar educational materials, indicating
+      it meets an expected standard.
+  - english: Unlike big cities, this small town is quiet and safe.
+    japanese:
+      - 大 都市 {と 違っ て}、この 小さな 町 は 静か で 安全 です。
+      - 大 都市 {と 違っ て}、この 小さな 町 は 静か で 安全 だ よ。
+      - 大 都市 {と 違っ て}、ここ の 小さな 町 は 静か で 安全 だ ね。
+    english_literally: Compared to big cities, this small town is quiet and safe.
+    competing_grammar:
+      - competing_japanese:
+          - 大 都市 {と は 違い}、この 小さな 町 は 静か で 安全 です。
+        english: Differing from big cities, this small town is quiet and safe.
+        hint: While similar, 「とは違い」 emphasizes the contrast slightly more. We're looking for a more straightforward
+          expression of difference.
+    scene: Someone is describing the peaceful atmosphere of a rural town, contrasting it with the hustle
+      and bustle of urban areas.
+    register: casual
+    setting: reflective
+    nuance: This casual statement reflects on the difference between urban and rural environments. 「大都市
+      と違って」 serves to highlight the desirable qualities of the smaller town by emphasizing its contrasting
+      characteristics.
+  - english: Just like me, he loves spicy food.
+    japanese:
+      - 彼 は 私 {と 同じ で}、辛い 食べ物 が 大好き です。
+      - 彼 は 俺 {と 同じ で}、辛い 食べ物 が 大好き だ よ。
+      - 彼 も 私 {と 同じ で}、辛い の が 大好き な ん だ。
+    english_literally: He, same as me, loves spicy food.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 {の よう に}、辛い 食べ物 が 大好き です。
+        english: He, like me, loves spicy food.
+        hint: 「のように」 suggests resemblance or an example of a type of person, but this sentence states
+          a direct, shared preference. We're looking for a phrase that indicates identical taste.
+    scene: A man is discovering a shared culinary preference with a new friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: This is a simple, casual statement between friends, indicating a shared preference. The use
+      of 「私 と同じで」 directly conveys that the speaker and the other person share the exact same taste.
+  - english: Unlike my old self, I've become more positive now.
+    japanese:
+      - 昔 の 私 {と 違っ て}、今 は もっと 前向き に なり まし た。
+      - 昔 の 私 {と 違っ て}、今 は もっと 前向き に なっ た よ。
+      - 昔 の 自分 {と 違っ て}、今 は すごく 前向き に なっ た なあ。
+    english_literally: Compared to my old self, now I have become more positive.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 の 私 {と は 違い}、今 は もっと 前向き に なり まし た。
+        english: Differing from my old self, I've become more positive now.
+        hint: While similar, 「とは違い」 can add a slightly stronger emphasis to the contrast. We're looking
+          for a straightforward expression of personal transformation.
+    scene: An individual reflects on their personal growth and a significant change in their mindset over
+      time.
+    register: casual
+    setting: reflective
+    nuance: This is a reflective statement about personal development. The phrase 「昔 の 私 と違って」 highlights
+      a significant internal change, emphasizing growth and a new mindset.
+  - english: Just like my mother, I decided to study abroad next year.
+    japanese:
+      - 来年、母 {と 同じ で}、私 も 留学 する こと に し まし た。
+      - 来年、母 {と 同じ で}、私 も 留学 する こと に し た の。
+      - 来年 は、お 母 さん {と 同じ で}、私 も 留学 する こと に なっ た ん だ。
+    english_literally: Next year, same as my mother, I also decided to study abroad.
+    competing_grammar:
+      - competing_japanese:
+          - 来年、母 {の よう に}、私 も 留学 する こと に し まし た。
+        english: Next year, like my mother, I also decided to study abroad.
+        hint: 「のように」 might imply following an example or inspiration, but this sentence states a shared
+          decision or path. We're looking for a phrase indicating identical circumstances or outcomes.
+    scene: A daughter tells her friend about her future plans, influenced by her mother's past experiences
+      or decisions.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The speaker, a young woman, casually discusses her future plans. The phrase 「母 と同じで」 emphasizes
+      that her decision to study abroad is precisely the same as her mother's, implying a shared life
+      path or similar circumstances. The use of 「～こと に しました」 confirms a personal decision.
+  - english: Unlike traditional methods, this new approach yields faster results.
+    japanese:
+      - 従来 の 方法 {と 違っ て}、この 新しい アプローチ は より 速い 結果 を もたらし ます。
+      - 従来 の 方法 {と 違っ て}、この 新しい アプローチ は より 速い 結果 を もたらす。
+      - 従来 の 方法 {と 違っ て}、この 新しい アプローチ は 迅速 な 結果 を もたらし ます。
+    english_literally: Compared to traditional methods, this new approach brings faster results.
+    competing_grammar:
+      - competing_japanese:
+          - 従来 の 方法 {と は 異なり}、この 新しい アプローチ は より 速い 結果 を もたらし ます。
+        english: Differing from traditional methods, this new approach yields faster results.
+        hint: 「とは異なり」 carries a more academic or formal tone and is often used in written contexts. We're
+          seeking a phrase suitable for a straightforward, slightly less formal comparison.
+    scene: A scientist or researcher is presenting a new methodology or discovery at a conference.
+    register: formal
+    setting: academic
+    nuance: This example uses highly formal vocabulary such as 「従来 の 方法」 (traditional methods) and 「もたらします」
+      (to bring about/yield), which is typical in academic or professional presentations. 「と違って」 is used
+      to highlight a clear, objective contrast between an old and new method, emphasizing the new method's
+      superiority.
+  - english: Just like everyone else, I was also surprised by the sudden news.
+    japanese:
+      - 皆 {と 同じ で}、私 も その 突然 の ニュース に 驚き まし た。
+      - 皆 {と 同じ で}、私 も その 突然 の ニュース に 驚い た よ。
+      - 皆 さん {と 同じ で}、私 も その 突然 の ニュース に 驚き まし た。
+    english_literally: Same as everyone, I also was surprised by that sudden news.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 {の よう に}、私 も その 突然 の ニュース に 驚き まし た。
+        english: Like everyone, I was also surprised by the sudden news.
+        hint: 「のように」 would suggest that the speaker's reaction merely resembled others', but the statement
+          implies a shared, identical reaction. We're looking for a phrase that expresses being exactly
+          the same as others.
+    scene: Someone discussing a surprising recent event with a group of friends or colleagues, sharing
+      a common reaction.
+    register: semi-formal
+    setting: informative
+    nuance: This sentence expresses a common, shared reaction among a group. 「皆 と同じで」 highlights that
+      the speaker's surprise was identical to that of everyone else, fostering a sense of collective experience.
+      The polite ending 「～ました」 makes it suitable for a semi-formal setting.
+  - english: Unlike my younger sister, I prefer salty snacks over sweet ones.
+    japanese:
+      - 妹 {と 違っ て}、私 は 甘い もの より も 塩辛い お 菓子 の 方 が 好き です。
+      - 妹 {と 違っ て}、俺 は 甘い の より 塩辛い お 菓子 の 方 が 好き だ な。
+      - 妹 {と 違っ て}、あたし は 甘い の より 塩辛い お 菓子 が 好き な ん だ。
+    english_literally: Compared to my younger sister, I prefer salty snacks more than sweet ones.
+    competing_grammar:
+      - competing_japanese:
+          - 妹 {の よう に は 違っ て}、私 は 甘い もの より も 塩辛い お 菓子 の 方 が 好き です。
+        english: It's not like my younger sister, but I prefer salty snacks over sweet ones.
+        hint: 「～のようには違って」 is an awkward and unnatural construction in this context. We're looking for
+          a simple and direct way to express a difference in preference.
+    scene: Someone explains their snack preferences to a friend while browsing snacks at a convenience
+      store.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: This casual statement uses 「妹 と違って」 to directly contrast the speaker's preference with that
+      of his younger sister. The phrase 「～の方 が 好き です」 is a common way to express preference between two
+      items. The male speaker's use of standard polite forms rather than overly casual male speech maintains
+      a friendly but not overly intimate tone.
+post_example_writeup: The examples illustrate how 「と同じで」 and 「と違って」 are used to make direct comparisons,
+  whether of people's personalities, work approaches, shared experiences, or personal preferences. These
+  phrases are fundamental for clearly articulating similarities and differences in Japanese, enabling
+  nuanced descriptions in various contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と同じで-と違って

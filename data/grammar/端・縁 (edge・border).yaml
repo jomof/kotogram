@@ -1,0 +1,510 @@
+grammar_point: 端・縁 (edge・border)
+learn_before:
+  - 側 (side or flank)
+meaning: Edge, border, rim, tip
+pronunciation:
+  katakana: ハシ, フチ
+  romaji: hashi, fuchi
+formation:
+  Noun + の + 端/縁: The edge/tip/rim of [Noun]
+jlpt: N3
+etymology: 「端 (はし)」 derives from a root meaning of 'extremity' or 'end'. Historically, it has been associated
+  with things that project or are situated at the furthest point of a line or surface. 「縁 (ふち)」 is related
+  to concepts of a 'surrounding line' or 'rim'. It frequently implies a boundary that defines or encloses
+  a space, or a raised/defined edge.
+writeup: |-
+  Both 「端 (はし)」 and 「縁 (ふち)」 refer to an 'edge' or 'border' in Japanese, but their usage differs significantly based on the type of edge described.
+
+  **「端 (はし)」** generally refers to an **end, tip, or extremity** of something. It often implies a linear object or a narrow part of a larger surface. Think of it as the 'end point' or 'side' of something.
+  *   **Linear objects:** The tip of a chopstick (箸の端), the end of a rope (ロープの端).
+  *   **Flat surfaces (narrow part):** The edge of a road (道の端), the corner of a table (テーブルの端).
+  *   **Conceptual ends:** The end of a conversation (話の端).
+
+  **「縁 (ふち)」** typically refers to a **rim, border, or perimeter** that encloses or outlines something. It implies a surrounding line or a raised/defined edge.
+  *   **Containers/Openings:** The rim of a cup (コップの縁), the edge of a well (井戸の縁).
+  *   **Bodies of water:** The edge of a pond (池の縁), the riverbank (川の縁).
+  *   **Eyes/Glasses:** The rim of glasses (眼鏡の縁), the edge of an eyelid (まぶたの縁).
+
+  **Key Differences:**
+  *   「端」 focuses on a point or a narrow section at the extreme end.
+  *   「縁」 focuses on a surrounding line or a raised/defined boundary.
+
+  Consider the shape of the object. For a flat, extended surface, 「端」 is often used for the literal edge where it stops. For something with a clear opening or a defined circular/rectangular outline, 「縁」 is more appropriate for the surrounding boundary.
+
+  For example, when you say "the edge of the table," if you mean the corner or the side where you might lean your arm, 「テーブルの端」 is likely. If you mean the decorative trim or raised border around the table's surface, 「テーブルの縁」 could be used, though this is less common for simple tables than for things like trays with rims.
+
+  Understanding these distinctions helps you choose the correct word for the specific type of 'edge' you wish to describe.
+false_friends:
+  - term: 際 (きわ)
+    meaning: edge, brink, verge, moment
+    kind: similar expression
+    nuance: 「際」 implies an extremely close proximity to the edge or a critical boundary, often suggesting
+      danger or a decisive moment. It's more abstract or precise than 「端」 or 「縁」.
+    grammar_point: <suggest>:際 (edge・brink)
+  - term: 辺 (へん)
+    meaning: area, vicinity, side
+    kind: similar expression
+    nuance: 「辺」 refers to a general area or side, not a sharp edge or boundary. It's much broader and
+      less specific about the exact boundary.
+    grammar_point: 周り・辺り・周辺 (surroundings)
+  - term: 横 (よこ)
+    meaning: side, horizontal
+    kind: similar expression
+    nuance: 「横」 refers to the side of something in a horizontal dimension or simply 'beside' it, not necessarily
+      the very edge or rim.
+    grammar_point: 横 (side・horizontal)
+  - term: 側 (がわ)
+    meaning: side, part, direction
+    kind: similar expression
+    nuance: 「側」 indicates a general side or direction, similar to 「横」, but can also refer to one 'party'
+      or 'group' in a discussion. It doesn't pinpoint an 'edge'.
+    grammar_point: 側 (side or flank)
+  - term: 隅 (すみ)
+    meaning: corner, nook
+    kind: similar expression
+    nuance: 「隅」 specifically refers to an inner corner where two surfaces meet, or a secluded nook. It's
+      more precise for a true corner than 「端」, which can mean an end or side, or 「縁」 for a border.
+    grammar_point: <suggest>:隅 (corner spatial)
+post_false_friends_writeup: While 「端」 and 「縁」 specify a distinct physical edge or boundary, other words
+  like 「際 (きわ)」, 「辺 (へん)」, 「横 (よこ)」, 「側 (がわ)」, and 「隅 (すみ)」 convey different spatial relationships. 「際」
+  emphasizes extreme closeness to a boundary or a critical point. 「辺」 and 「横」 indicate a general area
+  or direction around an object. 「側」 refers to a general side or aspect. 「隅」 is for an enclosed corner.
+  Choosing the right word depends on whether you're describing a precise boundary, a general vicinity,
+  a relational position, or a specific internal corner.
+examples:
+  - english: The cat is sleeping at the end of the bed.
+    japanese:
+      - 猫 が ベッド の {端} で 寝 て い ます。
+      - 猫 が ベッド の {端} で 寝 てる。
+      - 猫 が ベッド の {端} で 寝とる よ。
+      - 猫 が ベッド の {端} で 寝 て いる わ。
+      - 猫 が ベッド の {端} で ぐっすり 寝 て い た よ。
+      - うち の 猫 が ベッド の {端} で 寝 てん の。
+      - 猫 が ベッド の {端} っこ で 寝 てる よ。
+      - ほら、猫 ちゃん ベッド の {端} で 寝 ちゃっ てる よ。
+    english_literally: The cat, bed's end, is sleeping.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 が ベッド の {横} で 寝 て い ます。
+        english: The cat is sleeping beside the bed.
+        hint: 「横」 means 'beside' or 'to the side of', not necessarily at the very end or edge. We're looking
+          for the specific extremity of the bed.
+      - competing_japanese:
+          - 猫 が ベッド の {側} で 寝 て い ます。
+        english: The cat is sleeping on the side of the bed.
+        hint: 「側」 refers to a general side or direction, not specifically the end or tip. We're looking
+          for the specific extremity of the bed.
+      - competing_japanese:
+          - 猫 が ベッド の {辺} で 寝 て い ます。
+        english: The cat is sleeping in the vicinity of the bed.
+        hint: 「辺」 indicates a general area or vicinity, not the specific extremity or tip. We're looking
+          for the very end of the bed.
+      - competing_japanese:
+          - 猫 が ベッド の {際} で 寝 て い ます。
+        english: The cat is sleeping right at the brink of the bed.
+        hint: 「際」 implies a critical or precarious edge, which is not usually the intended meaning for
+          a cat sleeping on a bed. We're looking for the simple physical end.
+      - competing_japanese:
+          - 猫 が ベッド の {隅} で 寝 て い ます。
+        english: The cat is sleeping in the corner of the bed.
+        hint: 「隅」 specifically refers to an inner corner where two surfaces meet. While a bed has corners,
+          「端」 refers to the general end or extremity, which can encompass the corner area.
+    scene: You walk into a bedroom and see your pet.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「端」 specifies the very end of the bed. 「寝てる」 is a common casual contraction of 「寝ている」. 「寝とるよ」
+      with 「とる」 is a contraction of 「ている」 used in some dialects or by older males for a casual, sometimes
+      slightly gruff, tone. 「寝ているわ」 with 「わ」 is a sentence-ending particle often used by women to express
+      a soft assertion or emotion. 「うち の 猫 が ベッド の {端} で 寝 てん の。」 uses 「てん の」, a very casual contraction
+      of 「ている の」, often used in informal female speech to convey a personal observation.
+  - english: Please be careful not to spill water from the rim of the cup.
+    japanese:
+      - コップ の {縁} から 水 を こぼさ ない よう に 気 を つけ て ください。
+      - コップ の {縁} から 水 こぼさ ない よう に 気 を つけ て ね。
+      - コップ の {縁} から 水 こぼす な よ。
+      - ほら、コップ の {縁} から 水 が 溢れ そう だ よ。
+      - コップ の {縁} まで 水 を 入れる と こぼれる わ よ。
+      - コップ の {縁} から 水 が 垂れる から 気 を つけ て ね。
+      - コップ の {縁} いっぱい まで 入れ ない で ね。
+      - この コップ、{縁} が 薄い から こぼし やすい よ。
+    english_literally: Cup's rim from water don't spill, please be careful.
+    competing_grammar:
+      - competing_japanese:
+          - コップ の {端} から 水 を こぼさ ない よう に 気 を つけ て ください。
+        english: Please be careful not to spill water from the edge of the cup.
+        hint: 「端」 refers to a linear end or tip, not the circular rim of a container. We're looking for
+          the circular opening.
+      - competing_japanese:
+          - コップ の {横} から 水 を こぼさ ない よう に 気 を つけ て ください。
+        english: Please be careful not to spill water from the side of the cup.
+        hint: 「横」 refers to the side of an object, not the circular rim that encloses the opening. We're
+          looking for the surrounding edge.
+      - competing_japanese:
+          - コップ の {際} から 水 を こぼさ ない よう に 気 を つけ て ください。
+        english: Please be careful not to spill water from the very brink of the cup.
+        hint: 「際」 emphasizes an extremely critical or precarious edge. While water at the rim can be precarious,
+          「縁」 is the standard term for the rim of a container.
+      - competing_japanese:
+          - コップ の {辺} から 水 を こぼさ ない よう に 気 を つけ て ください。
+        english: Please be careful not to spill water from the vicinity of the cup.
+        hint: 「辺」 indicates a general area or vicinity, not the specific rim of the cup. We're looking
+          for the specific surrounding boundary.
+      - competing_japanese:
+          - コップ の {側} から 水 を こぼさ ない よう に 気 を つけ て ください。
+        english: Please be careful not to spill water from the side of the cup.
+        hint: 「側」 refers to a general side or direction, not the specific rim that forms the opening.
+          We're looking for the surrounding edge.
+      - competing_japanese:
+          - コップ の {隅} から 水 を こぼさ ない よう に 気 を つけ て ください。
+        english: Please be careful not to spill water from the corner of the cup.
+        hint: 「隅」 refers to an inner corner, which a round cup does not have in the context of its opening.
+          We're looking for the circular rim.
+    scene: You are giving advice to a child or someone who is clumsy.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「縁」 specifically refers to the rim of the cup. 「気をつけてね」 is a softer, more nurturing way of
+      advising, commonly used when speaking to children or friends. 「こぼすなよ」 is a strong, direct negative
+      imperative, often used by older males when instructing younger individuals, conveying a sense of
+      command. 「コップ の {縁} まで 水 を 入れる と こぼれる わ よ。」 uses 「わ よ」, a feminine sentence-ending particle used
+      to add a firm but gentle assertion or warning.
+  - english: He carefully walked along the very edge of the cliff.
+    japanese:
+      - 彼 は 崖 の {端} を 注意 深く 歩き まし た。
+      - 彼 は 崖 の {端} を 注意 深く 歩い た。
+      - 彼、崖 の {端} 歩い て た よ、危なかっ た。
+      - まさ か、崖 の {端} を 歩く なんて、無謀 だ。
+      - 彼 は 崖 の {端} ぎりぎり を 歩い て い まし た。
+      - 崖 の {端} って、見 てる だけ で 怖い よ ね。
+      - もっと 崖 の {端} から 離れ て 歩き なさい！
+    english_literally: He, cliff's edge, carefully walked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 崖 の {際} を 注意 深く 歩き まし た。
+        english: He carefully walked right at the brink of the cliff.
+        hint: While 「際」 can be used for a very close edge, it implies being dangerously close to the point
+          of no return. 「端」 is a more general term for the physical edge of the cliff.
+      - competing_japanese:
+          - 彼 は 崖 の {横} を 注意 深く 歩き まし た。
+        english: He carefully walked beside the cliff.
+        hint: 「横」 means 'beside' and doesn't convey being on the very edge or boundary of the cliff itself.
+          We're looking for the literal extremity.
+      - competing_japanese:
+          - 彼 は 崖 の {側} を 注意 深く 歩き まし た。
+        english: He carefully walked along the side of the cliff.
+        hint: 「側」 refers to a general side or direction, not necessarily the specific boundary or edge.
+          We're looking for the precise edge of the cliff.
+      - competing_japanese:
+          - 彼 は 崖 の {辺} を 注意 深く 歩き まし た。
+        english: He carefully walked in the vicinity of the cliff.
+        hint: 「辺」 indicates a general area or vicinity, not the sharp edge or boundary. We're looking
+          for the literal extremity of the cliff.
+      - competing_japanese:
+          - 彼 は 崖 の {隅} を 注意 深く 歩き まし た。
+        english: He carefully walked in the corner of the cliff.
+        hint: 「隅」 specifically refers to an inner corner where two surfaces meet. A cliff generally has
+          an 'edge' (端) rather than a 'corner' in this context. We're looking for the linear extremity.
+    scene: You are recounting a dangerous experience.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「端」 pinpoints the specific edge of the cliff. The plain form 「歩いた」 is direct and factual for
+      storytelling. The casual 「歩いてたよ、危なかった」 uses the continuous past tense 「～ていた」 contracted to 「～てた」,
+      often used in casual conversation to describe an ongoing action in the past, with 「よ」 for emphasis
+      and 「危なかった」 (it was dangerous) adding a personal reaction. 「まさか 、 崖 の {端} を 歩く なんて 、 無謀 だ。」 expresses
+      strong disbelief or astonishment using 「なんて」, often used by both genders in casual but strong reactions.
+  - english: The old photograph had a white border.
+    japanese:
+      - その 古い 写真 に は 白い {縁} が あり まし た。
+      - その 古い 写真 に は 白い {縁} が あっ た。
+      - あの 古い 写真、白い {縁} が つい て た ね。
+      - 昔 の 写真 って、よく {縁} が 白かっ た よ ね。
+      - この レトロ な 写真、敢えて 白い {縁} に し て ある ん だ。
+      - 昔 の 写真 は、白い {縁} が 特徴 だ よ ね。
+      - この 写真 の {縁}、ちょっと 黄 ばん でる ね。
+    english_literally: That old photograph to it white rim existed.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 写真 に は 白い {端} が あり まし た。
+        english: The old photograph had a white end/tip.
+        hint: 「端」 refers to the physical end or edge of a rectangular object. 「縁」 is used for a decorative
+          border or rim that surrounds the image.
+      - competing_japanese:
+          - その 古い 写真 に は 白い {側} が あり まし た。
+        english: The old photograph had a white side.
+        hint: 「側」 refers to a general side of an object, not a specific border or frame. We're looking
+          for the surrounding decorative part.
+      - competing_japanese:
+          - その 古い 写真 に は 白い {横} が あり まし た。
+        english: The old photograph had a white side.
+        hint: 「横」 refers to a general side in a horizontal direction, not a surrounding border or frame.
+          We're looking for the decorative rim.
+      - competing_japanese:
+          - その 古い 写真 に は 白い {隅} が あり まし た。
+        english: The old photograph had a white corner.
+        hint: 「隅」 refers to a specific inner corner. While a photo has corners, 「縁」 describes the continuous
+          border around the entire photograph, not just one corner.
+      - competing_japanese:
+          - その 古い 写真 に は 白い {際} が あり まし た。
+        english: The old photograph had a white brink.
+        hint: 「際」 implies a critical or dangerous edge, not a decorative border on a photograph. We're
+          looking for the surrounding frame.
+      - competing_japanese:
+          - その 古い 写真 に は 白い {辺} が あり まし た。
+        english: The old photograph had a white vicinity.
+        hint: 「辺」 indicates a general area or vicinity. It's too vague for the specific decorative border
+          of a photograph. We're looking for the surrounding frame.
+    scene: You are looking through old photo albums with a friend.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「縁」 denotes the surrounding border of the photograph. The use of 「～がついてたね」 is a casual contraction
+      of 「～がついていたね」, where 「ついていた」 means 'was attached/came with,' and 「ね」 seeks agreement or expresses
+      shared sentiment, common in casual reminiscing. 「昔 の 写真 って 、 よく {縁} が 白かった よ ね。」 uses 「って」 to introduce
+      a topic and 「よ ね」 to seek agreement on a general observation about traditional Japanese houses,
+      common in conversations between people of similar age.
+  - english: Please put the box in the corner of the room.
+    japanese:
+      - その 箱 を 部屋 の {端} に 置い て ください。
+      - その 箱 を 部屋 の {端} に 置い て くれ。
+      - その 箱、部屋 の {端} に 置い とい て。
+      - ちょっと、その 箱、部屋 の {端} に 寄せ て くれる？
+      - 部屋 の {端} に 邪魔 に なら ない よう に 置い て おこう。
+      - あの 箱、部屋 の {端} に 寄せ て もらえる？
+      - 部屋 の {端} は、荷物 が いっぱい だ ね。
+    english_literally: That box, room's end/corner to put, please.
+    competing_grammar:
+      - competing_japanese:
+          - その 箱 を 部屋 の {隅} に 置い て ください。
+        english: Please put the box in the corner of the room.
+        hint: While 「隅 (すみ)」 specifically means 'corner,' 「端」 can refer to the general extremity or side
+          of a room, including a corner area. 「隅」 is more precise for a true corner.
+      - competing_japanese:
+          - その 箱 を 部屋 の {辺} に 置い て ください。
+        english: Please put the box in the vicinity of the room.
+        hint: 「辺」 means a general area or vicinity. It's too vague for placing an object at a specific
+          point like an edge or corner of a room.
+      - competing_japanese:
+          - その 箱 を 部屋 の {際} に 置い て ください。
+        english: Please put the box right at the very brink of the room.
+        hint: 「際」 often implies an extreme closeness or a critical point, which might not be the intent
+          for simply placing a box in the corner. 「端」 is a more general term for an extremity or end of
+          a space.
+      - competing_japanese:
+          - その 箱 を 部屋 の {側} に 置い て ください。
+        english: Please put the box on the side of the room.
+        hint: 「側」 refers to a general side, not necessarily the corner or specific end of the room. We're
+          looking for the extreme point where two surfaces meet or a defined end.
+      - competing_japanese:
+          - その 箱 を 部屋 の {横} に 置い て ください。
+        english: Please put the box beside the room.
+        hint: 「横」 means 'beside' or 'to the side of', implying a position relative to the room, not an
+          internal location within it. We're looking for a specific end or corner of the room.
+    scene: You are tidying up a room with someone.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: 「端」 refers to the extreme part of the room, which can include a corner. 「置いてくれ」 is a direct,
+      masculine request, often used by a man speaking to a younger man or someone of equal status. 「置いといて」
+      is a very common casual contraction of 「置いておいて」, implying 'put and leave it there,' often used in
+      a gentle or informal request. 「ちょっと 、 その 箱 、 部屋 の {端} に 寄せ て くれる？」 uses 「くれる？」, a common casual
+      way to make a request, implying convenience for the speaker. 「部屋 の {端} に 邪魔 に なら ない ように 置いて おこう。」
+      uses 「～ように」 for purpose and 「～よう」 (volitional) for a self-directed action.
+  - english: The old house had a beautiful veranda around its edge.
+    japanese:
+      - その 古い 家 に は 美しい {縁} 側 が あり まし た。
+      - その 古い 家、美しい {縁} 側 あっ た よ ね。
+      - 日本 の 古 民家 は、よく {縁} 側 が あっ て 素敵 だ よ ね。
+      - 夏 は {縁} 側 に 座っ て 夕涼み する の が 好き な の。
+      - この {縁} 側、日当たり が 良く て 気持ち いい ね。
+      - 昔 の 家 は {縁} 側 が あっ て 落ち着く よ ね。
+    english_literally: That old house to it beautiful veranda existed.
+    competing_grammar:
+      - competing_japanese:
+          - その 古い 家 に は 美しい {際} が あり まし た。
+        english: That old house had a beautiful brink.
+        hint: 「際」 is about extreme proximity or a critical moment, not a structural part like a veranda.
+          We're looking for a specific architectural feature that borders the house.
+      - competing_japanese:
+          - その 古い 家 に は 美しい {横} が あり まし た。
+        english: That old house had a beautiful side.
+        hint: 「横」 refers to a general side. 「縁側」 is a specific type of side structure that forms a border,
+          making 「縁」 more suitable.
+      - competing_japanese:
+          - その 古い 家 に は 美しい {側} が あり まし た。
+        english: That old house had a beautiful side.
+        hint: 「側」 indicates a general side or direction. 「縁側」 is a specific architectural feature that
+          forms a defined border around the house, not just any side.
+      - competing_japanese:
+          - その 古い 家 に は 美しい {端} が あり まし た。
+        english: That old house had a beautiful end/tip.
+        hint: 「端」 refers to an end or tip, not the surrounding perimeter or an architectural feature like
+          a veranda which functions as a border.
+      - competing_japanese:
+          - その 古い 家 に は 美しい {辺} が あり まし た。
+        english: That old house had a beautiful vicinity.
+        hint: 「辺」 indicates a general area or vicinity. It's too vague to describe a specific architectural
+          feature like a veranda that forms a distinct border.
+      - competing_japanese:
+          - その 古い 家 に は 美しい {隅} が あり まし た。
+        english: That old house had a beautiful corner.
+        hint: 「隅」 refers to an inner corner. 「縁側」 is a specific architectural feature that runs along
+          the perimeter of the house, not just a single corner. We're looking for a structure that borders
+          the house.
+    scene: You are describing an old house you visited.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「縁側」 is a compound noun where 「縁」 refers to the edge or perimeter of the house that the veranda
+      borders. 「あったよね」 is a casual conversational ending combining the plain past 「あった」 with 「よね」, used
+      to confirm something with the listener or express shared sentiment. 「日本 の 古民家 は 、 よく {縁}側 が あって
+      素敵 だ よ ね。」 uses 「って」 to introduce a topic and 「よ ね」 to seek agreement on a general observation about
+      traditional Japanese houses, common in friendly conversation.
+  - english: I dropped my pen, and its tip broke.
+    japanese:
+      - ペン を 落とし たら、その {端} が 折れ て しまっ た。
+      - ペン 落とし たら、{端} が 折れ ちゃっ た よ。
+      - えー、私 の ペン、落とし て {端} 壊れ ちゃっ た ん だ けど。
+    english_literally: Pen dropped, its tip broke.
+    competing_grammar:
+      - competing_japanese:
+          - ペン を 落とし たら、その {先} が 折れ て しまっ た。
+        english: I dropped my pen, and its tip/point broke.
+        hint: 「先」 refers to the physical tip or point of an object, especially one that is pointed or
+          leading. While sometimes interchangeable, 「端」 emphasizes the very extremity or end of a linear
+          object, which can be less specific than a sharp 「先」. We're looking for the general end of the
+          pen.
+    scene: You are showing a friend your damaged pen.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: 「端」 here refers to the physical end or tip of the pen. 「折れちゃった」 is a casual contraction of
+      「折れてしまった」, indicating an accidental or regrettable outcome, commonly used by speakers of all genders
+      and ages in casual conversation. The final 「ん だ けど」 expresses a soft lament or seeking empathy.
+  - english: Please line up at the end of the corridor.
+    japanese:
+      - 廊下 の {端} に 並ん で ください。
+      - 廊下 の {端}、ちゃんと 並び なさい。
+      - 廊下 の {端} まで 列 を 作っ て ください。
+    english_literally: Corridor's end at line up please.
+    competing_grammar:
+      - competing_japanese:
+          - 廊下 の {突き当たり} に 並ん で ください。
+        english: Please line up at the dead end of the corridor.
+        hint: 「突き当たり」 specifically means a "dead end" or the very end of a passage where it cannot continue.
+          「端」 is a more general term for the extremity of a linear space, which may or may not be a dead
+          end. We're looking for the general end of the corridor.
+      - competing_japanese:
+          - 廊下 の {際} に 並ん で ください。
+        english: Please line up right at the brink of the corridor.
+        hint: 「際」 implies being dangerously close to an edge or a critical point. It's too strong for
+          a simple instruction to line up at the end of a corridor. We're looking for the normal end of
+          the corridor.
+    scene: A teacher instructing students in a school hallway.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: 「端」 indicates the extreme end of the corridor. 「並び なさい」 is a direct but polite command, common
+      from teachers or parents. The use of 「ください」 is a standard polite request. This phrasing is neutral
+      regarding gender.
+  - english: The beautiful teacup had a delicate gold rim.
+    japanese:
+      - その 美しい 湯呑み に は、繊細 な 金 の {縁} が あっ た。
+      - この 湯呑み の 金 の {縁}、本当 に 綺麗 だ ね。
+      - 繊細 な 金 の {縁} が、この 湯呑み の 魅力 だ な。
+    english_literally: That beautiful teacup to it, delicate gold rim existed.
+    competing_grammar:
+      - competing_japanese:
+          - その 美しい 湯呑み に は、繊細 な 金 の {端} が あっ た。
+        english: That beautiful teacup had a delicate gold end/tip.
+        hint: 「端」 refers to a linear end or tip, not the circular rim of a container. 「縁」 is specifically
+          for the surrounding border or rim of an object, especially one that encloses a space. We're
+          looking for the delicate border around the opening of the cup.
+    scene: Two friends are admiring antique pottery at a shop or museum.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「縁」 is correctly used for the rim of a teacup, which encloses the opening. 「本当に綺麗だね」 uses
+      「ね」 to seek agreement or express shared admiration, common in casual conversation. 「魅力だな」 uses 「な」
+      as a masculine sentence-ending particle to express a personal feeling or observation.
+  - english: The children were playing by the edge of the river.
+    japanese:
+      - 子供 たち が 川 の {縁} で 遊ん で い た。
+      - 川 の {縁} で 子供 たち が 楽し そう に 遊ん でる よ。
+      - 昔 は よく 川 の {縁} で 魚 を 捕まえ た もの だ。
+    english_literally: Children, river's edge at playing were.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち が 川 の {ほとり} で 遊ん で い た。
+        english: The children were playing by the riverbank.
+        hint: 「ほとり」 refers to the general waterside or bank area. 「縁」 is more specific, referring to the
+          actual perimeter or edge of the body of water itself, implying the line where the water meets
+          the land. We're looking for the precise edge of the river.
+      - competing_japanese:
+          - 子供 たち が 川 の {際} で 遊ん で い た。
+        english: The children were playing right at the brink of the river.
+        hint: 「際」 implies an extremely close or precarious edge, often with a sense of danger. While a
+          river's edge can be dangerous, 「縁」 is the standard, neutral term for the natural boundary. We're
+          looking for the natural edge of the river.
+    scene: You are reminiscing about your childhood or observing a park scene.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: 「縁」 is used for the edge or border of a body of water like a river. 「楽し そう に 遊ん でる よ」 is a
+      common casual observation, with 「よ」 adding emphasis or new information. 「～たものだ」 is a set phrase
+      used to recall past habitual actions or states, often with a nostalgic feeling, frequently used
+      by older speakers.
+  - english: She tore off a piece from the end of the paper.
+    japanese:
+      - 彼女 は 紙 の {端} を ちぎり まし た。
+      - 彼女 は 紙 の {端} を ちぎっ た。
+      - 紙 の {端} を ちぎっ て 渡し た よ。
+      - あ、紙 の {端} 破れ ちゃっ た。
+    english_literally: She, paper's end, tore off.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 紙 の {角} を ちぎり まし た。
+        english: She tore off a piece from the corner of the paper.
+        hint: 「角 (かど)」 explicitly refers to a corner, whereas 「端」 means the general extremity or end of
+          something flat like paper, which might include the corner but can also be just a side edge.
+          We're looking for the general end of the paper.
+      - competing_japanese:
+          - 彼女 は 紙 の {側面} を ちぎり まし た。
+        english: She tore off a piece from the side surface of the paper.
+        hint: 「側面 (そくめん)」 refers to the entire side surface, not the precise edge where something might
+          be torn off. We're looking for the very end of the paper.
+    scene: Someone is preparing a small note or just being a bit careless.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「端」 refers to the end portion of the paper. 「ちぎった」 is the plain past form, suitable for reporting
+      an action. 「破れちゃった」 uses the contracted form of 「てしまう」 to express that the tearing was accidental
+      or regrettable, common in casual speech.
+post_example_writeup: While 「端」 and 「縁」 both convey 'edge,' they are used for distinct types of boundaries.
+  「端」 is for linear ends or narrow extremities, while 「縁」 is for surrounding rims or borders. Pay attention
+  to the shape and nature of the object's edge to choose the appropriate word.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/端,縁 (edge・border spatial)

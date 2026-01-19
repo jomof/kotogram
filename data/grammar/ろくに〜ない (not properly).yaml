@@ -1,0 +1,421 @@
+grammar_point: ろくに〜ない (not properly)
+learn_before:
+  - Verb[imperative] (imperative)
+  - どんなに (how much)
+meaning: Not sufficiently; not satisfactorily; not properly; not well; hardly
+pronunciation:
+  katakana: ロクニ ～ナイ
+  romaji: rokuni ~ nai
+  pronunciation_warning: The ～ない part represents a verb conjugated into its negative form, not a standalone
+    'nai'.
+formation:
+  ろくに + Verb (negative form): Indicates that an action is not performed satisfactorily or sufficiently.
+  ろくに + Verb (negative potential form): Indicates an inability to perform an action properly or sufficiently.
+  ろくに + Noun + も + Verb (negative form): Indicates that not even the specified noun (often a basic necessity)
+    is managed properly or at all.
+  ろくに + Noun + も + Verb (negative potential form): Indicates an inability to properly manage or achieve
+    even the specified noun (often a basic necessity).
+jlpt: N3
+etymology: 「ろくに」 itself is an adverb that originally meant "sufficiently" or "adequately." However, when
+  paired with 「ない」, it takes on the opposite meaning, indicating a lack of sufficiency.
+writeup: |-
+  The grammar point 「ろくに～ない」 indicates that something is **not done properly, sufficiently, or satisfactorily.** It is always used with a verb in its negative form. This phrase expresses that an action is performed poorly, inadequately, or hardly at all. It emphasizes a lack of proper execution or performance and can convey a sense of disappointment, regret, or even frustration about the quality or quantity of an action. It is frequently used in everyday conversation and writing.
+
+  It implies that while an action might have been attempted, or some small amount of it might have been done, the quality or thoroughness was far below what is expected or necessary. For instance, 「ろくに寝ていない」 (rokuni nete inai) implies that one got some sleep, but it was not enough or not restful, leading to continued tiredness, rather than a complete lack of sleep.
+false_friends:
+  - term: 全然～ない
+    meaning: not at all, never
+    kind: similar expression
+    nuance: While both express negativity, 「ろくに～ない」 implies inadequacy or insufficiency, whereas 「全然～ない」
+      indicates a complete absence.
+    grammar_point: 全然 (not at all; totally)
+  - term: ほとんど～ない
+    meaning: hardly, scarcely
+    kind: similar expression
+    nuance: 「ほとんど～ない」 focuses on the quantity or frequency being very low, while 「ろくに～ない」 focuses on the
+      quality or manner of the action being insufficient.
+    grammar_point: ほとんど (almost all or hardly any)
+  - term: あまり〜ない
+    meaning: not very, not much
+    kind: similar expression
+    nuance: 「あまり～ない」 suggests a low degree or infrequent occurrence, similar to 「ほとんど～ない」, but 「ろくに～ない」
+      specifically points to a lack of properness or sufficiency in the action.
+    grammar_point: あまり ない (not very or much)
+  - term: 陸に〜ない
+    meaning: Not well or properly, barely
+    kind: synonym
+    nuance: 「陸に〜ない」 (まともに〜ない) is a close synonym of 「ろくに〜ない」, also emphasizing a lack of properness or
+      sufficiency, but it tends to be more formal and less commonly used in casual speech.
+    grammar_point: ろくに〜ない (not properly)
+  - term: すこしも〜ない
+    meaning: not even a little
+    kind: similar expression
+    nuance: 「すこしも～ない」 emphasizes a very small degree or quantity, indicating that not even a minimal amount
+      of something exists or happens. It focuses on the quantity or extent rather than the properness
+      of an action.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: 満足に〜ない
+    meaning: not satisfactorily
+    kind: similar expression
+    nuance: 「満足に〜ない」 is a very close synonym to 「ろくに〜ない」, explicitly meaning "not satisfactorily" or "not
+      sufficiently". It is often used interchangeably with 「ろくに〜ない」 when emphasizing that something did
+      not meet a satisfactory standard.
+    grammar_point: <suggest>:満足に〜ない (not satisfactorily)
+post_false_friends_writeup: 「ろくに～ない」, 「全然～ない」, 「ほとんど～ない」, 「あまり～ない」, 「陸に〜ない」, 「すこしも～ない」, and 「満足に〜ない」 all
+  express some form of negation, but they differ in nuance. Use 「ろくに～ない」 when you want to emphasize that
+  something wasn't done properly or to a satisfactory degree, implying a failure in quality or thoroughness
+  rather than a complete absence. Use 「全然～ない」 when you mean something wasn't done at all. 「ほとんど～ない」 is
+  used when something was done very little or rarely, focusing on quantity. 「あまり～ない」 also indicates a
+  low degree or infrequency, similar to 「ほとんど～ない」, but often implies a less extreme condition. 「陸に〜ない」
+  carries a very similar meaning and nuance to 「ろくに〜ない」, but is generally found in more formal contexts.
+  「すこしも～ない」 stresses that not even a tiny bit of something occurred or exists. 「満足に〜ない」 is almost identical
+  in meaning to 「ろくに〜ない」, both indicating a lack of satisfactory completion or standard, and can often
+  be used interchangeably.
+examples:
+  - english: Recently, I've been too busy, so I haven't been exercising properly.
+    japanese:
+      - 最近、忙し すぎ て、{ろくに} 運動 し {て い ない}。
+      - 最近、忙し すぎ て、{ろくに} 運動 し {て い ませ ん}。
+      - 最近、忙し すぎ て、{ろくに} 運動 も し {て い ない}。
+      - 最近、忙し すぎ て、{ろくに} 運動 も し {て い ませ ん}.
+    english_literally: Recently, I'm too busy, so I haven't properly done exercise.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、忙し すぎ て、{全然} 運動 し て い ない。
+        english: Recently, I'm too busy, so I haven't exercised at all.
+        hint: 「全然～ない」 emphasizes a complete lack or absence. We're looking for a situation where exercise
+          might be attempted but isn't done well. This implies some effort, but insufficient results.
+          We're looking for an inadequate action, not a non-existent one. Try again to match the nuance
+          of 'not properly'.
+      - competing_japanese:
+          - 最近、忙し すぎ て、{あまり} 運動 し て い ない。
+        english: Recently, I'm too busy, so I don't exercise much.
+        hint: 「あまり～ない」 implies a low degree or infrequent occurrence. While similar, 「ろくに」 specifically
+          points to a lack of properness or sufficiency in the action, not just its quantity. The nuance
+          is about the *quality* of exercise (e.g., too short, not intense enough), not merely its infrequency.
+          We're looking for the phrase that means the action was attempted but not done well, instead
+          of just a little.
+    scene: A busy professional lamenting their lack of physical activity and feeling out of shape.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The speaker uses 「～ていない」 to indicate a continuous state of not exercising. 「ろくに」 highlights
+      that even if they attempted some exercise, it was not done adequately or properly due to their busy
+      schedule, making it ineffective. This implies a lack of quality or thoroughness in the action rather
+      than a complete absence. The use of 「運動」 can imply not just the act of exercising, but also the
+      benefit or effect of exercise. Thus, 「ろくに運動していない」 means they haven't gotten sufficient or proper
+      exercise to achieve their fitness goals. It's not that they don't do any exercise, but rather that
+      what they do isn't good enough or doesn't feel sufficient for their needs. The male speaker's age
+      adds a common context for someone balancing work and fitness. The casual register makes it suitable
+      for a personal complaint. The serious setting reflects the genuine concern over health and fitness.
+      The combination of 「忙しすぎて」 and 「ろくに」 emphasizes the external constraints preventing proper execution.
+  - english: She couldn't even properly understand the lecture, no matter how hard she tried.
+    japanese:
+      - 彼女 は どんな に 頑張っ て も、講義 を {ろくに} 理解 でき {な かっ た}。
+      - 彼女 は どんな に 頑張っ て も、講義 を {ろくに} 理解 でき {ませ ん でし た}。
+      - 彼女 は どんな に 頑張っ て も、講義 を {ろくに} 理解 でき {なかっ た ん です}.
+    english_literally: She, no matter how much she tried, couldn't properly understand the lecture.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は どんな に 頑張っ て も、講義 を {全然} 理解 でき な かっ た。
+        english: She couldn't understand the lecture at all, no matter how hard she tried.
+        hint: 「全然～ない」 implies a complete inability or lack of understanding. The original sentence with
+          「ろくに」 suggests that she understood *some* parts, but not enough to grasp the lecture properly.
+          This hints at inadequate understanding, not a total void. We're looking for an inability to
+          do something *properly*, not a complete absence of the action. Try again to match the nuance
+          of 'not properly'.
+      - competing_japanese:
+          - 彼女 は どんな に 頑張っ て も、講義 を {あまり} 理解 でき な かっ た。
+        english: She didn't understand the lecture much, no matter how hard she tried.
+        hint: 「あまり～ない」 indicates a low degree of understanding. While close, 「ろくに」 emphasizes that her
+          understanding was *insufficient for the purpose* of the lecture, implying a failure to meet
+          a standard, not just a low quantity. We're looking for insufficient understanding, not just
+          a small amount. Try again to match the nuance of 'not properly'.
+    scene: A university student reflecting on a particularly challenging lecture she attended.
+    register: casual
+    setting: academic
+    speaker_gender: female
+    speaker_age: younger
+    nuance: The use of 「ろくに理解できなかった」 signifies that the speaker found the lecture so difficult that despite
+      her efforts 「どんなに頑張っても」, she was unable to understand it to an adequate or satisfactory degree.
+      It’s not that she understood absolutely nothing, but rather that her comprehension was insufficient
+      for truly grasping the material. This highlights the struggle and the unsatisfactory outcome. The
+      feminine speaker expresses a common frustration in an academic setting.
+  - english: Because of my tight schedule, I haven't even had a proper meal.
+    japanese:
+      - スケジュール が きつい から、{ろくに} 食事 も {し て い ない}。
+      - スケジュール が きつい から、{ろくに} 食事 も {し て い ませ ん}。
+      - スケジュール が きつい から、{ろくに} 食事 を とっ {て い ない}。
+      - スケジュール が きつい から、{ろくに} 食事 を とっ {て い ませ ん}.
+    english_literally: Schedule is tight, so, haven't even properly eaten meals.
+    competing_grammar:
+      - competing_japanese:
+          - スケジュール が きつい から、{全然} 食事 を し て い ない。
+        english: Because my schedule is tight, I haven't eaten at all.
+        hint: 「全然～ない」 means a complete lack of eating. The original sentence implies that the speaker
+          might have eaten *something*, but it wasn't a proper, fulfilling meal. The focus is on the quality
+          of the meal, not its total absence. We're looking for an inadequate action, not a non-existent
+          one. Try again to match the nuance of 'not properly'.
+      - competing_japanese:
+          - スケジュール が きつい から、{ほとんど} 食事 を し て い ない。
+        english: Because my schedule is tight, I've hardly eaten.
+        hint: 「ほとんど～ない」 focuses on a very small quantity of eating. 「ろくに」 emphasizes that the meals, if
+          any, were not sufficient or balanced, suggesting a qualitative inadequacy rather than just a
+          quantitative one. We're looking for insufficient nourishment, not just a small amount. Try again
+          to match the nuance of 'not properly'.
+    scene: Someone explaining their stressful work situation to a sympathetic colleague during a brief
+      break.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example emphasizes the difficulty of maintaining basic needs due to an intense schedule.
+      「ろくに食事もしていない」 implies that any eating done was hurried, unhealthy, or simply not enough, failing
+      to meet the standard of a 'proper meal.' It conveys a feeling of exhaustion and neglect of personal
+      well-being. The casual register and serious setting highlight the common struggle of work-life balance.
+  - english: They haven't even properly talked to each other recently, which is a shame.
+    japanese:
+      - 彼 ら は 最近、{ろくに} 話 も {し て い ない}。
+      - 彼 ら は 最近、{ろくに} 話 も {し て い ませ ん}。
+      - 彼 ら は 最近、{ろくに} 話 を し {て い ない}。
+      - 彼 ら は 最近、{ろくに} 話 を し {て い ませ ん}.
+    english_literally: They, recently, haven't even properly talked.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 最近、{全然} 話 し て い ない。
+        english: They haven't talked at all recently.
+        hint: 「全然～ない」 implies a complete lack of communication. The original sentence suggests that some
+          minimal interaction might occur, but it lacks depth or true communication. We're looking for
+          inadequate communication, not a total absence. Try again to match the nuance of 'not properly'.
+      - competing_japanese:
+          - 彼 ら は 最近、{あまり} 話 し て い ない。
+        english: They haven't talked much recently.
+        hint: 「あまり～ない」 means they haven't talked frequently. However, 「ろくに」 focuses on the *quality* of
+          their conversations—they aren't meaningful or substantial. We're looking for poor quality of
+          interaction, not just infrequency. Try again to match the nuance of 'not properly'.
+    scene: A friend observing a strained relationship between two mutual acquaintances.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「ろくに話もしていない」 conveys that while the couple might exchange brief greetings or functional
+      sentences, they haven't had any substantial or meaningful conversations. This suggests a deterioration
+      in the quality of their relationship. The female speaker here uses a common phrasing to express
+      concern about the state of a relationship, reflecting a typical observation among friends.
+  - english: My old laptop won't even properly start up anymore.
+    japanese:
+      - 古い パソコン は もう {ろくに} 起動 し {な い}。
+      - 古い パソコン は もう {ろくに} 起動 し {ませ ん}。
+      - 古い パソコン は もう {ろくに} 起動 し {て い ない}。
+      - 古い パソコン は もう {ろくに} 起動 し {て い ませ ん}.
+    english_literally: Old laptop, anymore, won't properly start up.
+    competing_grammar:
+      - competing_japanese:
+          - 古い パソコン は もう {全然} 起動 し な い。
+        english: My old laptop won't start up at all anymore.
+        hint: 「全然～ない」 implies a complete failure to start. The original sentence suggests that the laptop
+          *might* sometimes start, but it's unreliable or takes an extremely long time, meaning it doesn't
+          function *properly*. We're looking for an unreliable action, not a non-existent one. Try again
+          to match the nuance of 'not properly'.
+      - competing_japanese:
+          - 古い パソコン は もう {ほとんど} 起動 し な い。
+        english: My old laptop hardly starts up anymore.
+        hint: 「ほとんど～ない」 focuses on the infrequency of starting. 「ろくに」 implies that even if it starts,
+          it might crash immediately or perform poorly, making the startup process inadequate for use.
+          We're looking for a poor quality startup, not just infrequency. Try again to match the nuance
+          of 'not properly'.
+    scene: Someone frustrated with their failing technology, trying to turn on an old computer.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: group
+    nuance: Here, 「ろくに起動しない」 means the laptop's startup process is no longer reliable or efficient. It
+      might boot very slowly, freeze frequently, or not get to a usable state, indicating a lack of *proper*
+      functionality rather than a complete inability to boot at all. The male speaker's casual frustration
+      is a common sentiment when dealing with old electronics.
+  - english: With my part-time job, I can't even earn proper living expenses.
+    japanese:
+      - アルバイト で は {ろくに} 生活 費 も {稼げ ない}。
+      - アルバイト で は {ろくに} 生活 費 も {稼げ ませ ん}.
+    english_literally: With part-time job, can't even properly earn living expenses.
+    competing_grammar:
+      - competing_japanese:
+          - アルバイト で は {全然} 生活 費 を 稼げ ない。
+        english: With my part-time job, I can't earn any living expenses at all.
+        hint: 「全然～ない」 means earning absolutely no money for living expenses. The original sentence implies
+          that some money *is* earned, but it's insufficient to cover basic needs properly. We're looking
+          for an inadequate amount, not a total absence. Try again to match the nuance of 'not properly'.
+      - competing_japanese:
+          - アルバイト で は {ほとんど} 生活 費 を 稼げ ない。
+        english: With my part-time job, I can hardly earn living expenses.
+        hint: 「ほとんど～ない」 focuses on a very small quantity of earnings. 「ろくに」 emphasizes that the amount
+          earned is not enough to live *properly* or comfortably, highlighting the inadequacy in relation
+          to the necessity. We're looking for insufficient income for proper living, not just a small
+          amount. Try again to match the nuance of 'not properly'.
+    scene: A college student complaining to a friend about their financial struggles and the low pay of
+      their part-time job.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「ろくに生活費も稼げない」 illustrates that the income from the part-time job is not enough to cover basic
+      living costs adequately. It conveys a feeling of financial strain and the inability to live a 'proper'
+      life due to insufficient funds. The example shows the potential form of the verb with 「ろくに」. This
+      reflects a common concern for younger people navigating independence.
+  - english: He couldn't even properly prepare for the presentation, and it showed.
+    japanese:
+      - 彼 は プレゼンテーション の 準備 を {ろくに} でき {な かっ た}。
+      - 彼 は プレゼンテーション の 準備 を {ろくに} でき {ませ ん でし た}.
+    english_literally: He, presentation's preparation, couldn't properly do.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は プレゼンテーション の 準備 を {全然} でき な かっ た。
+        english: He couldn't prepare for the presentation at all.
+        hint: 「全然～ない」 means a complete lack of preparation. The original sentence implies he might have
+          done *some* preparation, but it was so poor or incomplete that it wasn't 'proper' or sufficient.
+          We're looking for inadequate preparation, not a total absence. Try again to match the nuance
+          of 'not properly'.
+      - competing_japanese:
+          - 彼 は プレゼンテーション の 準備 を {あまり} でき な かっ た。
+        english: He didn't prepare much for the presentation.
+        hint: 「あまり～ない」 indicates a low amount of preparation. 「ろくに」 focuses on the *quality* of the preparation—it
+          wasn't thorough or effective enough for a good presentation. We're looking for poor quality
+          of preparation, not just a small amount. Try again to match the nuance of 'not properly'.
+    scene: A colleague observing someone's poor performance during a business presentation, reflecting
+      on the reason.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The phrase 「ろくにできなかった」 here points to the insufficient or inadequate nature of the preparation.
+      It implies that the preparation was not thorough or effective enough to lead to a successful outcome,
+      highlighting a qualitative failure. The formal register suits a workplace observation, and the speaker's
+      internal reflection on the reason for the poor performance. This is a common phrase in a professional
+      setting when discussing work quality.
+  - english: Even after practicing so much, I still can't properly play the guitar.
+    japanese:
+      - あんな に 練習 し た の に、{ろくに} ギター も {弾け ない}。
+      - あんな に 練習 し た の に、{ろくに} ギター も {弾け ませ ん}.
+    english_literally: Even though practiced so much, can't even properly play guitar.
+    competing_grammar:
+      - competing_japanese:
+          - あんな に 練習 し た の に、{全然} ギター を 弾け ない。
+        english: Even after practicing so much, I can't play the guitar at all.
+        hint: 「全然～ない」 implies a complete inability to play. The original sentence with 「ろくに」 suggests
+          some ability, but not enough to play competently or beautifully. The focus is on the quality
+          of playing, not a total absence of ability. We're looking for inadequate skill, not a non-existent
+          one. Try again to match the nuance of 'not properly'.
+      - competing_japanese:
+          - あんな に 練習 し た の に、{ほとんど} ギター を 弾け ない。
+        english: Even after practicing so much, I can hardly play the guitar.
+        hint: 「ほとんど～ない」 focuses on playing very little or rarely. 「ろくに」 highlights that even when played,
+          it's not done well or satisfactorily, implying a qualitative deficiency despite effort. We're
+          looking for poor quality of playing, not just infrequency. Try again to match the nuance of
+          'not properly'.
+    scene: Someone feeling disappointed about their lack of progress in a hobby despite significant effort.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「ろくにギターも弾けない」 expresses frustration that despite extensive practice, the speaker's guitar
+      playing has not reached a satisfactory or 'proper' level. It suggests that while they can produce
+      some sound, they lack proficiency or skill. This is a common self-deprecating sentiment among learners
+      of any art. The female speaker's personal reflection emphasizes the disappointment.
+  - english: The customer service representative didn't even properly answer my question, it was so vague.
+    japanese:
+      - その カスタマー サービス は 私 の 質問 に {ろくに} 答え {な かっ た}。
+      - その カスタマー サービス は 私 の 質問 に {ろくに} 答え {ませ ん でし た}。
+      - その カスタマー サービス は 私 の 質問 に {ろくに} 答え て {くれ なかっ た}。
+      - その カスタマー サービス は 私 の 質問 に {ろくに} 答え て {ください ませ ん でし た}.
+    english_literally: That customer service, to my question, didn't properly answer.
+    competing_grammar:
+      - competing_japanese:
+          - その カスタマー サービス は 私 の 質問 に {全然} 答え な かっ た。
+        english: The customer service representative didn't answer my question at all.
+        hint: 「全然～ない」 implies a complete lack of response. The original sentence suggests that a response
+          *was* given, but it was insufficient, vague, or unhelpful, meaning it didn't *properly* answer
+          the question. We're looking for an unsatisfactory answer, not a non-existent one. Try again
+          to match the nuance of 'not properly'.
+      - competing_japanese:
+          - その カスタマー サービス は 私 の 質問 に {あまり} 答え な かっ た。
+        english: The customer service representative didn't answer my question much.
+        hint: 「あまり～ない」 implies a minimal answer. 「ろくに」 emphasizes that the answer provided was qualitatively
+          poor or did not address the core of the question adequately, making it unsatisfactory. We're
+          looking for a poor quality answer, not just a short one. Try again to match the nuance of 'not
+          properly'.
+    scene: A frustrated customer recounting a bad customer service experience to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「ろくに答えなかった」 signifies that the answer received was incomplete, evasive, or unhelpful, failing
+      to adequately address the question. It highlights the poor quality of the service rather than a
+      complete absence of a response. This phrase is often used when expressing dissatisfaction with a
+      service. The casual tone suits a complaint to a friend.
+  - english: I was so worried last night that I didn't even properly sleep.
+    japanese:
+      - 昨夜 は 心配 で、{ろくに} 眠れ {な かっ た}。
+      - 昨夜 は 心配 で、{ろくに} 眠れ {ませ ん でし た}.
+    english_literally: Last night, because of worry, couldn't properly sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜 は 心配 で、{全然} 眠れ な かっ た。
+        english: I was so worried last night that I couldn't sleep at all.
+        hint: 「全然～ない」 means a complete inability to sleep. The original sentence implies that some sleep
+          might have occurred, but it was restless, fragmented, or insufficient in quality to be considered
+          'proper' sleep. We're looking for inadequate sleep, not a total absence. Try again to match
+          the nuance of 'not properly'.
+      - competing_japanese:
+          - 昨夜 は 心配 で、{ほとんど} 眠れ な かっ た。
+        english: I was so worried last night that I hardly slept.
+        hint: 「ほとんど～ない」 focuses on a very small amount of sleep. 「ろくに」 emphasizes that the sleep, however
+          little, was not restful or deep enough to be restorative, pointing to a qualitative deficiency.
+          We're looking for poor quality sleep, not just a small amount. Try again to match the nuance
+          of 'not properly'.
+    scene: Someone talking to a close friend about a sleepless night due to anxiety or stress.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「ろくに眠れなかった」 indicates that the sleep obtained was of poor quality – perhaps light, disturbed,
+      or insufficient – so it did not fulfill the purpose of proper rest. This is a common way to express
+      suffering from insomnia or anxiety-induced sleep issues. The female speaker shares a vulnerable
+      sentiment with her friend.
+  - english: My child doesn't even properly clean up their toys after playing.
+    japanese:
+      - うち の 子 は おもちゃ を {ろくに} 片付け {な い}。
+      - うち の 子 は おもちゃ を {ろくに} 片付け {ませ ん}.
+    english_literally: Our child, toys, doesn't properly tidy up.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 子 は おもちゃ を {全然} 片付け な い。
+        english: My child doesn't clean up their toys at all.
+        hint: 「全然～ない」 implies a complete refusal or failure to tidy up. The original sentence suggests
+          that the child might move some toys, but not in an organized or complete manner, meaning they
+          don't clean up *properly*. We're looking for inadequate tidying, not a total absence. Try again
+          to match the nuance of 'not properly'.
+      - competing_japanese:
+          - うち の 子 は おもちゃ を {ほとんど} 片付け な い。
+        english: My child hardly cleans up their toys.
+        hint: 「ほとんど～ない」 focuses on the infrequent tidying of toys. 「ろくに」 emphasizes that even when the
+          child attempts to tidy, the result is messy or incomplete, implying a qualitative failure in
+          the task. We're looking for poor quality tidying, not just infrequency. Try again to match the
+          nuance of 'not properly'.
+    scene: A parent humorously complaining about their child's messiness to another parent.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「ろくに片付けない」 is a common parental complaint, meaning the child either leaves things scattered
+      or tidies them very poorly, not to a satisfactory standard. It implies a lack of thoroughness in
+      the action. The humorous setting makes it relatable, and the female speaker's casual complaint is
+      typical among parents discussing their children.
+post_example_writeup: As seen in the examples, 「ろくに～ない」 is versatile and can be used with various verbs
+  in their negative forms to express that an action, state, or quantity is unsatisfactory or inadequate.
+  It often carries a nuance of something being lacking despite expectations or attempts. This grammar
+  point particularly useful for expressing frustration, disappointment, or a sense of failure in achieving
+  a desired level of quality or sufficiency. It often suggests a gap between what was desired or expected
+  and what was actually achieved, usually with a negative emotional tone from the speaker.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ろくに~ない

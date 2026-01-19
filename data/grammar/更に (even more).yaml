@@ -1,0 +1,266 @@
+grammar_point: 更に (even more)
+learn_before:
+  - Verb[stem] (conjunction)
+  - Verb[えば] (conditional)
+  - '[Noun]をください (please give me)'
+  - '[Verb-た]とたん(に) (as soon as・the moment)'
+  - にする (to decide or make)
+  - によると・によれば (according to)
+  - に伴って・に伴い (along with・as a result of)
+  - より (from・extent・range)
+  - 以前 (before)
+  - 以前 (fundamental prerequisite)
+  - 加えて (in addition・adding to that)
+  - 加えると (to add)
+  - 化する (to make become ~ize)
+meaning: Even more, furthermore, again, in addition
+pronunciation:
+  katakana: サラニ
+  romaji: sarani
+formation:
+  更に + [Adjective]: Even more [Adjective]
+  更に + [Adverb]: Even more [Adverb]
+  更に + [Noun + Counter]: An additional [Noun]
+  更に + [Verb]: Someone does something further or additionally
+jlpt: N2
+etymology: The word 「更に」 comes from the verb 「更ける (fukeru)」, which means "to grow late" or "to advance."
+  The kanji 「更」 itself signifies change or renewal. The adverbial use of 「更に」 evolved to indicate a progression
+  beyond the current state, implying something is "even more advanced" or "further along."
+writeup: |-
+  「更に (sarani)」 is an adverb used to express "even more," "furthermore," "again," or "in addition." Its core meaning extends from the kanji 「更」, which suggests an "approaching change" or moving beyond a current state. This means that whatever follows 「更に」 will indicate a progression in time, quantity, or intensity beyond an initial statement.
+
+  A key nuance of 「更に」 is that it implies something has already reached a certain 'fullness' or 'completion,' and the addition or progression pushes it beyond this existing threshold. This can apply to both positive and negative developments, depending on the context of the sentence. As an adverb, 「更に」 frequently appears at the beginning of a clause, setting the stage for the new information that extends or intensifies what has already been stated.
+false_friends:
+  - term: ますます
+    meaning: Increasingly, more and more
+    kind: synonym
+    nuance: While both indicate increase, 「ますます」 often implies a gradual, continuous increase over time,
+      emphasizing the ongoing nature of the change. 「更に」 can denote a more abrupt or significant additional
+      step.
+    grammar_point: ますます (more and more)
+  - term: 再び
+    meaning: Again, once more
+    kind: synonym
+    nuance: 「再び」 strictly refers to the repetition of an action or event. 「更に」 focuses on an additional
+      degree, quantity, or depth, rather than a mere repeat.
+    grammar_point: 再び (again・second time)
+  - term: また
+    meaning: Also, as well, moreover, again, additionally
+    kind: synonym
+    nuance: 「また」 is a broader term that can mean "again" or "also." When it means "again," it implies
+      simple repetition. When it means "also," it implies adding another item to a list. 「更に」 specifically
+      emphasizes an increase in degree or moving beyond a threshold.
+    grammar_point: また (again; also; or)
+  - term: 上に
+    meaning: As well, besides, in addition to
+    kind: synonym
+    nuance: 「上に」 functions as "in addition to," typically adding another quality or item to a list of
+      characteristics. Unlike 「更に」, it does not carry the nuance of increasing the degree or intensity
+      of something.
+    grammar_point: 上に (in addition to)
+  - term: その上
+    meaning: Besides, in addition, furthermore
+    kind: synonym
+    nuance: 「その上」 is similar to 「上に」 but is often used to add further information, sometimes with a sense
+      of accumulated effect or an unexpected follow-up. It focuses on adding another point to an argument
+      or situation, not necessarily increasing a prior state's degree like 「更に」.
+    grammar_point: それに (in addition・moreover)
+  - term: しかも
+    meaning: Moreover, furthermore
+    kind: synonym
+    nuance: 「しかも」 is used to add supplementary information that often introduces something surprising
+      or unexpected. Its primary function is to build upon a previous statement with an additional, sometimes
+      contrasting, point. It doesn't imply an increase in degree or pushing beyond a threshold as 「更に」
+      does.
+    grammar_point: それに (in addition・moreover)
+post_false_friends_writeup: While expressions like 「ますます」, 「再び」, 「また」, 「上に」, 「その上」, and 「しかも」 share some
+  semantic overlap with 「更に」, their core nuances differ. 「更に」 is best utilized to emphasize an *additional
+  degree* or *further extent* of something, implying a progression beyond a previous state. The other
+  terms focus more on repetition, general addition, or building upon prior information in a different
+  manner. Understanding these distinctions is crucial for precise communication.
+examples:
+  - english: The problem became even more complex.
+    japanese:
+      - 問題 が {更に} 複雑 に なっ た。
+      - 問題 が {更に} 複雑 に なり まし た。
+      - 事態 が {更に} 複雑 化 し た。
+    english_literally: Problem further complex became.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 が {もっと} 複雑 に なっ た。
+        english: The problem became more complex.
+        hint: 「もっと」 means 'more' generally. We're looking for an emphasis on an increase beyond a certain
+          point, implying an intensification or progression.
+    scene: A team leader is reporting on the status of a project that has encountered unexpected difficulties.
+    register: semi-formal
+    setting: serious
+    nuance: 「更に」 emphasizes that the problem's complexity has increased to a notable or surprising degree,
+      exceeding prior expectations.
+  - english: We need to investigate the cause even more thoroughly.
+    japanese:
+      - 原因 を {更に} 徹底 的 に 調査 する 必要 が ある。
+      - 原因 を {更に} 徹底 的 に 調査 する 必要 が ござい ます。
+      - 原因 を {更に} 詳しく 調査 する 必要 が ある。
+    english_literally: Cause further thoroughly investigate do need there is.
+    competing_grammar:
+      - competing_japanese:
+          - 原因 を {もっと} 徹底 的 に 調査 する 必要 が ある。
+        english: We need to investigate the cause more thoroughly.
+        hint: 「もっと」 indicates a general increase. We need a word that implies pushing an investigation
+          beyond the current level of thoroughness or a new level of rigor.
+    scene: A manager is instructing their team after an incident, emphasizing the need for a deeper analysis.
+    register: formal
+    setting: instructional
+    nuance: Here, 「更に」 highlights the need to conduct the investigation to an even greater extent or depth
+      than initially planned, suggesting a new level of rigor.
+  - english: An additional 50 students enrolled in the course.
+    japanese:
+      - その コース に {更に} ５０ 人 の 学生 が 登録 し た。
+      - その コース に {更に} ５０ 名 の 学生 が 登録 いたし まし た。
+      - その コース は {更に} ５０ 人 の 学生 の 登録 が あり まし た。
+    english_literally: That course to further 50 people's students registered did.
+    competing_grammar:
+      - competing_japanese:
+          - その コース に {他 に} ５０ 人 の 学生 が 登録 し た。
+        english: Another 50 students enrolled in the course.
+        hint: 「他 に」 means 'in addition to others' or 'another' generally. We're looking for a term that
+          signifies adding to an existing number, implying a progression in quantity beyond an initial
+          count.
+    scene: An academic registrar is providing an update on course enrollment figures, noting an unexpected
+      surge.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「更に」 in this context means 'in addition' or 'an extra', indicating that the 50 students are
+      added to a previously existing number, thus increasing the total.
+  - english: He began to study Japanese even more diligently.
+    japanese:
+      - 彼 は 日本 語 を {更に} 熱心 に 勉強 し 始め た。
+      - 彼 は 日本 語 を {更に} 熱心 に 勉強 し 始め まし た。
+      - 彼 は {更に} 日本 語 の 勉強 に 励み 始め た。
+    english_literally: He Japanese further diligently study began.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 日本 語 を {もっと} 熱心 に 勉強 し 始め た。
+        english: He began to study Japanese more diligently.
+        hint: 「もっと」 indicates a general increase in diligence. We need a word that emphasizes a heightened
+          level of effort or intensity from a previous state, implying a noticeable progression.
+    scene: A friend is observing another friend's newfound dedication to their studies.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: He emphasizes 「更に」 to express a significant leap in his friend's dedication, indicating a
+      new, higher level of commitment beyond simple improvement, which is typical for close male friends
+      observing each other's efforts.
+  - english: According to the weather forecast, it will get even colder tomorrow.
+    japanese:
+      - 天気 予報 に よる と、明日 は {更に} 寒く なる そう だ。
+      - 天気 予報 に よる と、明日 は {更に} 寒く なる そう です。
+      - 天気 予報 です が、明日 は {更に} 冷え込む そう です。
+    english_literally: Weather forecast according to, tomorrow further cold become seems.
+    competing_grammar:
+      - competing_japanese:
+          - 天気 予報 に よる と、明日 は {もっと} 寒く なる そう だ。
+        english: According to the weather forecast, it will get colder tomorrow.
+        hint: 「もっと」 suggests a general increase in coldness. We're looking for a term that implies a significant
+          intensification of the cold beyond the current level, indicating a substantial change.
+    scene: Two colleagues are discussing the next day's grim weather forecast.
+    register: casual
+    setting: informative
+    nuance: 「更に」 here conveys that the temperature drop will be substantial, making it significantly colder
+      than today, emphasizing the intensity of the change.
+  - english: The demand for sustainable energy is expected to increase even further.
+    japanese:
+      - 持続 可能 な エネルギー へ の 需要 は {更に} 増加 する と 予想 さ れ て いる。
+      - 持続 可能 な エネルギー へ の 需要 は {更に} 増加 する と 予想 さ れ て い ます。
+      - 持続 可能 な エネルギー へ の 需要 は {更に} 伸びる と 見込ま れ て いる。
+    english_literally: Sustainable energy toward demand further increase do predicted is.
+    competing_grammar:
+      - competing_japanese:
+          - 持続 可能 な エネルギー へ の 需要 は {もっと} 増加 する と 予想 さ れ て いる。
+        english: The demand for sustainable energy is expected to increase more.
+        hint: 「もっと」 is a general 'more'. We need a word that signifies a continuous and anticipated rise,
+          pushing demand beyond its current level or exceeding existing expectations.
+    scene: An expert is presenting on global market trends and future projections.
+    register: teineigo (polite)
+    setting: academic
+    nuance: This use of 「更に」 indicates a continuous and anticipated rise in demand, projecting an increase
+      beyond its current level.
+  - english: Thanks to the new software, the system ran even faster than before.
+    japanese:
+      - 新しい ソフトウェア の おかげ で、システム は {更に} 以前 より 速く 動い た。
+      - 新しい ソフトウェア の おかげ で、システム は {更に} 以前 より 速く 動作 いたし まし た。
+      - 新 ソフトウェア の 導入 で、システム は {更に} 処理 速度 が 向上 し た。
+    english_literally: New software thanks to, system further before than fast moved.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい ソフトウェア の おかげ で、システム は {もっと} 以前 より 速く 動い た。
+        english: Thanks to the new software, the system ran faster than before.
+        hint: 「もっと」 implies a general speed increase. We're looking for a term that emphasizes a significant
+          enhancement, pushing performance beyond a previous benchmark or achieving a new level.
+    scene: An IT technician is reporting on the successful implementation of system improvements.
+    register: semi-formal
+    setting: technical
+    nuance: 「更に」 emphasizes that the system's speed has improved to a degree beyond the previous state,
+      indicating a significant enhancement.
+  - english: To improve the flavor, you can add an additional pinch of salt.
+    japanese:
+      - 風味 を 増す ため に、{更に} 塩 を ひと つまみ 加え て も よい。
+      - 風味 を 増す ため に、{更に} 塩 を ひと つまみ 加え て も よろしい です。
+      - '{更に} 塩 を ひと つまみ 足す と、風味 が 増し ます。'
+    english_literally: Flavor increase for, further salt one pinch add also good.
+    competing_grammar:
+      - competing_japanese:
+          - 風味 を 増す ため に、塩 を {もう ひと つまみ} 加え て も よい。
+        english: To improve the flavor, you can add one more pinch of salt.
+        hint: 「もう ひと つまみ」 means 'one more pinch'. We're looking for a word that implies adding salt to
+          achieve an *even higher* level of flavor, enhancing what's already there rather than just a
+          simple repetition.
+    scene: A cooking instructor is giving advice on how to perfect a dish.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    nuance: The use of 「更に」 by a female cooking instructor subtly encourages the student to achieve an
+      even more refined taste, common in instructional settings where precision is valued.
+  - english: Just when I thought the situation couldn't get worse, my car broke down.
+    japanese:
+      - 状況 が {更に} 悪く なら ない と 思っ た 矢先 に、車 が 故障 し た。
+      - 事態 が {更に} 悪化 し ない と 思っ た 矢先 に、車 が 故障 し まし た。
+      - もう これ 以上 {更に} 悪く なら ない だろう と 思っ た 途端 に、車 が 壊れ た。
+    english_literally: Situation further worse not become thought moment, car broke down.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 が {もっと} 悪く なら ない と 思っ た 矢先 に、車 が 故障 し た。
+        english: Just when I thought the situation couldn't get more worse, my car broke down.
+        hint: 「もっと」 is a general 'more'. We need a term that conveys the situation deteriorated *beyond*
+          what was previously considered its worst point, implying an unexpected and compounding negativity.
+    scene: A person is recounting a series of unfortunate events that took an even darker turn.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: The speaker uses 「更に」 to highlight the unexpected and compounding negative turn of events,
+      a common way to express escalating misfortune, often used in casual conversation among friends.
+  - english: The company aims to expand its overseas business even further next year.
+    japanese:
+      - その 会社 は 来年、{更に} 海外 事業 を 拡大 する こと を 目指し て いる。
+      - その 会社 は 来年、{更に} 海外 事業 を 拡大 する こと を 目指し て おり ます。
+      - 当該 企業 は 来年、{更に} 海外 展開 を 強化 する 方針 です。
+    english_literally: That company next year, further overseas business expand to aims.
+    competing_grammar:
+      - competing_japanese:
+          - その 会社 は 来年、{もっと} 海外 事業 を 拡大 する こと を 目指し て いる。
+        english: The company aims to expand its overseas business more next year.
+        hint: 「もっと」 is a general 'more'. We're looking for a word that signifies a strategic intent to
+          expand business to a *greater extent* than current operations, aiming for a new level of global
+          presence.
+    scene: A CEO is discussing future business strategy during an internal meeting.
+    register: formal
+    setting: persuasive
+    speaker_gender: male
+    nuance: 「更に」 here signals a strategic intent to expand the overseas business to a greater extent than
+      its current operations, pushing for a new level of global presence.
+post_example_writeup: As you can see from these examples, 「更に」 is versatile and can be used in various
+  contexts to denote an increase in degree, quantity, or intensity. It's often found in both formal and
+  casual speech, underscoring its broad applicability in Japanese communication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/さらに

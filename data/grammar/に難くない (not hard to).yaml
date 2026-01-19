@@ -1,0 +1,489 @@
+grammar_point: に難くない (not hard to)
+learn_before:
+  - さ (nominalizer)
+meaning: Not hard to, not difficult to, easy to, is obvious that
+pronunciation:
+  katakana: ニカタクナイ
+  romaji: ni kataku nai
+formation:
+  VN (思考・推量を示す動詞の名詞形) + {に難くない}: Indicates that it is not difficult to perform the mental action described
+    by the Sino-Japanese verb noun, suggesting ease of imagination, prediction, or understanding. (e.g.,
+    想像に難くない, 推測に難くない)
+jlpt: N1
+etymology: The grammar point 「に難くない」 uses 「難い(katai)」, which is an archaic or formal version of the い-adjective
+  「難しい(muzukashii)」, meaning "difficult." 「難い」 is negated (becoming 「難くない」) to express "not difficult,"
+  or "easy."
+writeup: The grammar pattern 「に難くない (ni kataku nai)」 is a formal expression indicating that something
+  is "not difficult," or rather, "easy" to understand, imagine, or predict. This expression utilizes 「難い
+  (katai)」, which is a more rigid, literary form of the i-adjective 「難しい (muzukashii)」 (difficult). When
+  negated to 「難くない」, it conveys the meaning "not difficult." The particle 「に」 preceding 「難くない」 typically
+  follows verb nouns that denote thought or conjecture, such as 「想像 (souzou, imagination)」, 「予想 (yosou,
+  prediction)」, 「察する (sassuru, to infer/sense)」, 「理解 (rikai, understanding)」, and 「推測 (suisoku, conjecture/guess)」.
+  This structure emphasizes that the conclusion or understanding is clear and undeniable. Interestingly,
+  Japanese has words for everyday use and those reserved for more formal or ceremonial situations. 「難い」
+  is an example of the latter. Dictionaries sometimes describe it as "the reformed expression of (A),"
+  where (A) is the more common equivalent. While the verb 「改まる (aratamaru)」 primarily means "to be renewed"
+  or "to be revised," it can also imply becoming "ceremonious" or "formal." In this grammar point, 「難い」
+  is positioned as a more formal and stiff expression compared to the common 「難しい」.
+false_friends:
+  - term: 〜のは容易だ
+    meaning: it is easy to ~
+    kind: synonym
+    nuance: 「〜のは容易だ」 is a more direct and less formal way to express ease of understanding or prediction.
+      While synonymous in meaning, 「に難くない」 carries a more literary and emphatic tone, often used to convey
+      an undeniable or self-evident truth in formal contexts. 「〜のは容易だ」 can be used in a broader range
+      of situations.
+    grammar_point: <suggest>:Verb[dictionary]+のは容易だ (it is easy to)
+  - term: 〜のは難しくない
+    meaning: it is not difficult to ~
+    kind: similar expression
+    nuance: 「〜のは難しくない」 directly states that something is 'not difficult' in a straightforward manner.
+      「に難くない」, using the formal 「難い」, elevates the expression to a more elevated and formal register,
+      suggesting that the point is so clear as to be beyond question. 「〜のは難しくない」 is a standard, everyday
+      expression.
+    grammar_point: <suggest>:Verb[dictionary]+のは難しくない (it is not difficult to)
+post_false_friends_writeup: While 「に難くない」 shares similar meanings with 「〜のは容易だ (it is easy to)」 and 「〜のは難しくない
+  (it is not difficult to)」, it is a more formal and literary expression. It is employed in contexts that
+  emphasize objectivity and logic, such as business documents, academic papers, or formal speeches. Using
+  it in daily conversation might sound stiff, so caution is advised.
+examples:
+  - english: Considering the complexity of that incident, it's not hard to imagine that it will take time
+      to resolve.
+    japanese:
+      - その 事件 の 複雑 さ を 考える と、解決 まで に 時間 が かかる こと は 想像 {に 難く ない}。
+      - その 事件 の 複雑 さ を 考える と、解決 まで に 時間 が かかる こと は 想像 {に 難く ない} の で ある。
+      - その 事件 の 複雑 さ を 考える と、解決 まで に 時間 が かかる こと は 想像 {に 難く ない} と 言える。
+    english_literally: Considering the complexity of that incident, it is not difficult to imagine that
+      resolution will take time.
+    competing_grammar:
+      - competing_japanese:
+          - その 事件 の 複雑 さ を 考える と 解決 まで に 時間 が かかる こと は 想像 する {の は 難しく ない}。
+        english: Considering the complexity of that incident, it is not difficult to imagine that it will
+          take time to resolve.
+        hint: The professional, serious tone of a detective's briefing warrants the formal and decisive
+          「想像に難くない」, which conveys an undeniable outcome more strongly than simpler expressions. We're
+          looking for a more formal and emphatic expression.
+      - competing_japanese:
+          - その 事件 の 複雑 さ を 考える と 解決 まで に 時間 が かかる こと は 想像 する {の は 容易 だ}。
+        english: Considering the complexity of that incident, it is easy to imagine that it will take
+          time to resolve.
+        hint: The professional, serious tone of a detective's briefing warrants the formal and decisive
+          「想像に難くない」, which conveys an undeniable outcome more strongly than simpler expressions. We're
+          looking for a more formal and emphatic expression.
+    scene: A detective explaining to his team why a case is difficult.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「に難くない」 by a male detective emphasizes the clear, undeniable nature of the situation's
+      difficulty, projecting an authoritative and informed assessment to his team. The phrase makes it
+      sound like an obvious conclusion for anyone familiar with the case.
+  - english: If the economic situation continues to worsen like this, it's not hard to predict that corporate
+      bankruptcies will follow one after another.
+    japanese:
+      - 経済 状況 が この まま 悪化 すれ ば、企業 の 倒産 が 相 次ぐ こと は 予想 {に 難く ない}。
+      - 経済 状況 が この まま 悪化 すれ ば、企業 の 倒産 が 相 次ぐ こと は 予想 {に 難く ない} の で ある。
+      - 経済 状況 が この まま 悪化 すれ ば、企業 の 倒産 が 相 次ぐ こと は 予想 {に 難く ない} と 言える。
+    english_literally: If the economic situation worsens as it is, it is not difficult to predict that
+      corporate bankruptcies will follow one after another.
+    competing_grammar:
+      - competing_japanese:
+          - 経済 状況 が この まま 悪化 すれ ば 企業 の 倒産 が 相 次ぐ こと は 予想 する {の は 難しく ない}。
+        english: If the economic situation continues to worsen like this, it is not difficult to predict
+          that corporate bankruptcies will follow one after another.
+        hint: The formal and analytical context of a financial presentation calls for 「予想に難くない」 to assert
+          a highly probable, unavoidable outcome. We're looking for a more formal and assertive expression.
+      - competing_japanese:
+          - 経済 状況 が この まま 悪化 すれ ば 企業 の 倒産 が 相 次ぐ こと は 予想 する {の は 容易 だ}。
+        english: If the economic situation continues to worsen like this, it is easy to predict that corporate
+          bankruptcies will follow one after another.
+        hint: The formal and analytical context of a financial presentation calls for 「予想に難くない」 to assert
+          a highly probable, unavoidable outcome. We're looking for a more formal and assertive expression.
+    scene: A financial analyst presenting market trends to executives.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female financial analyst uses 「予想に難くない」 to convey a stark, almost inevitable prediction
+      to a group of executives. This formal phrasing adds weight and authority to her assessment, implying
+      that the conclusion is evident from the data.
+  - english: Living alone in an unfamiliar place, it's not hard to understand that there will be many
+      hardships.
+    japanese:
+      - 慣れ ない 土地 で の 一人暮らし は、苦労 が 多い こと は 理解 {に 難く ない}。
+      - 慣れ ない 土地 で の 一人暮らし は、苦労 が 多い こと は 理解 {に 難く ない} の で ある。
+      - 慣れ ない 土地 で の 一人暮らし は、苦労 が 多い こと は 理解 {に 難く ない} と 言える。
+    english_literally: Living alone in an unfamiliar place, it is not difficult to understand that there
+      will be many hardships.
+    competing_grammar:
+      - competing_japanese:
+          - 慣れ ない 土地 で の 一人暮らし は 苦労 が 多い こと は 理解 する {の は 難しく ない}。
+        english: Living alone in an unfamiliar place, it's not difficult to understand that there will
+          be many hardships.
+        hint: In a supportive, advisory context, 「理解に難くない」 allows the teacher to express empathy and understanding
+          of a foreseeable challenge in a formal yet compassionate manner. We're looking for a more formal
+          and empathetic expression.
+      - competing_japanese:
+          - 慣れ ない 土地 で の 一人暮らし は 苦労 が 多い こと は 理解 する {の は 容易 だ}。
+        english: Living alone in an unfamiliar place, it is easy to understand that there will be many
+          hardships.
+        hint: In a supportive, advisory context, 「理解に難くない」 allows the teacher to express empathy and understanding
+          of a foreseeable challenge in a formal yet compassionate manner. We're looking for a more formal
+          and empathetic expression.
+    scene: A teacher advising a student who is moving abroad.
+    register: formal
+    setting: supportive
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: An older male teacher, offering advice to a younger female student, uses 「理解に難くない」 to convey
+      a clear, sympathetic understanding of the challenges she will face. This phrasing shows a mature
+      grasp of reality and offers a supportive tone while maintaining a formal distance.
+  - english: Considering how exhausted he was from the heavy workload, it's not hard to infer the reason
+      he suddenly quit the company.
+    japanese:
+      - 彼 が 突然 会社 を 辞め た 理由 は、激務 で 疲れ 切っ て い た こと を 考える と、察する {に 難く ない}。
+      - 彼 が 突然 会社 を 辞め た 理由 は、激務 で 疲れ 切っ て い た こと を 考える と、察する {に 難く ない} の で ある。
+      - 彼 が 突然 会社 を 辞め た 理由 は、激務 で 疲れ 切っ て い た こと を 考える と、察する {に 難く ない} と 言える。
+    english_literally: The reason he suddenly quit the company, considering he was exhausted from the
+      heavy workload, is not difficult to infer.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 突然 会社 を 辞め た 理由 は 激務 で 疲れ 切っ て い た こと を 考える と 察 する {の は 難しく ない}。
+        english: Considering how exhausted he was from the heavy workload, it's not difficult to infer
+          the reason he suddenly quit the company.
+        hint: The informal setting of colleagues discussing a sensitive topic can be subtly elevated by
+          「察するに難くない」 to imply a shared, obvious understanding without explicitly stating it, maintaining
+          a formal nuance to the observation. We're looking for a more formal and nuanced way to express
+          an obvious understanding.
+      - competing_japanese:
+          - 彼 が 突然 会社 を 辞め た 理由 は 激務 で 疲れ 切っ て い た こと を 考える と 察 する {の は 容易 だ}。
+        english: Considering how exhausted he was from the heavy workload, it's easy to infer the reason
+          he suddenly quit the company.
+        hint: The informal setting of colleagues discussing a sensitive topic can be subtly elevated by
+          「察するに難くない」 to imply a shared, obvious understanding without explicitly stating it, maintaining
+          a formal nuance to the observation. We're looking for a more formal and nuanced way to express
+          an obvious understanding.
+    scene: Colleagues discussing why a coworker suddenly resigned.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: A female colleague uses 「察するに難くない」 to express an obvious, shared understanding of a former
+      colleague's sudden departure, implying that the reason is self-evident to anyone who observed his
+      work situation. This adds a slight air of formality to what is essentially a private conversation.
+  - english: If that famous actor's hidden private life comes to light, it's not hard to guess that it
+      will become a scandal.
+    japanese:
+      - あの 有名 俳優 の 隠さ れ た 私 生活 が 明るみ に 出れ ば、スキャンダル に なる こと は 推測 {に 難く ない}。
+      - あの 有名 俳優 の 隠さ れ た 私 生活 が 明るみ に 出れ ば、スキャンダル に なる こと は 推測 {に 難く ない} の で ある。
+      - あの 有名 俳優 の 隠さ れ た 私 生活 が 明るみ に 出れ ば、スキャンダル に なる こと は 推測 {に 難く ない} と 言える。
+    english_literally: If that famous actor's hidden private life comes to light, it is not difficult
+      to guess that it will become a scandal.
+    competing_grammar:
+      - competing_japanese:
+          - あの 有名 俳優 の 隠さ れ た 私 生活 が 明るみ に 出れ ば スキャンダル に なる こと は 推測 する {の は 難しく ない}。
+        english: If that famous actor's hidden private life comes to light, it's not difficult to guess
+          that it will become a scandal.
+        hint: In a context of predicting public reaction to sensitive information, 「推測に難くない」 conveys a
+          clear, undeniable forecast, suitable for professional discussion about impactful outcomes. We're
+          looking for a more formal and undeniable prediction.
+      - competing_japanese:
+          - あの 有名 俳優 の 隠さ れ た 私 生活 が 明るみ に 出れ ば スキャンダル に なる こと は 推測 する {の は 容易 だ}。
+        english: If that famous actor's hidden private life comes to light, it's easy to guess that it
+          will become a scandal.
+        hint: In a context of predicting public reaction to sensitive information, 「推測に難くない」 conveys a
+          clear, undeniable forecast, suitable for professional discussion about impactful outcomes. We're
+          looking for a more formal and undeniable prediction.
+    scene: A tabloid journalist discussing potential exposes with an editor.
+    register: formal
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: female
+    nuance: A male tabloid journalist uses 「推測に難くない」 to emphasize the clear, inevitable consequence of
+      revealing sensitive information about a celebrity to a female editor. The formality highlights the
+      certainty of the predicted public reaction, aiming to persuade.
+  - english: Even for those of us not present, it's not hard to imagine how much his words hurt the other
+      person.
+    japanese:
+      - 彼 の 発言 が どれ ほど 相手 を 傷つけ た か、その 場 に い なかっ た 私 たち に も 想像 {に 難く ない}。
+      - 彼 の 発言 が どれ ほど 相手 を 傷つけ た か、その 場 に い なかっ た 私 たち に も 想像 {に 難く ない} の で ある。
+      - 彼 の 発言 が どれ ほど 相手 を 傷つけ た か、その 場 に い なかっ た 私 たち に も 想像 {に 難く ない} と 言える。
+    english_literally: Even for those of us not present, it is not difficult to imagine how much his words
+      hurt the other person.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 発言 が どれ ほど 相手 を 傷つけ た か その 場 に い なかっ た 私 たち に も 想像 する {の は 難しく ない}。
+        english: Even for those of us not present, it's not difficult to imagine how much his words hurt
+          the other person.
+        hint: The phrase adds a degree of formality to the observation, suggesting that the impact of
+          the words was so severe that it's easily understood, even by those who weren't there. We're
+          looking for a formal observation of an easily understood impact.
+      - competing_japanese:
+          - 彼 の 発言 が どれ ほど 相手 を 傷つけ た か その 場 に い なかっ た 私 たち に も 想像 する {の は 容易 だ}。
+        english: Even for those of us not present, it's easy to imagine how much his words hurt the other
+          person.
+        hint: The phrase adds a degree of formality to the observation, suggesting that the impact of
+          the words was so severe that it's easily understood, even by those who weren't there. We're
+          looking for a formal observation of an easily understood impact.
+    scene: Friends discussing a conflict that occurred without them.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female speaker uses 「想像に難くない」 when discussing a sensitive topic among friends, indicating
+      that the emotional impact of the words spoken was so profound that its severity is undeniably evident,
+      even to those who weren't present.
+  - english: The despair felt when years of effort bear no fruit is not difficult for those with experience
+      to understand.
+    japanese:
+      - 長年 の 努力 が 実ら なかっ た 時 の 絶望 感 は、経験 者 なら 理解 {に 難く ない}。
+      - 長年 の 努力 が 実ら なかっ た 時 の 絶望 感 は、経験 者 なら 理解 {に 難く ない} の で ある。
+      - 長年 の 努力 が 実ら なかっ た 時 の 絶望 感 は、経験 者 なら 理解 {に 難く ない} と 言える。
+    english_literally: The despair felt when years of effort bear no fruit is not difficult for those
+      with experience to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 努力 が 実ら なかっ た 時 の 絶望 感 は 経験 者 なら 理解 する {の は 難しく ない}。
+        english: The despair felt when years of effort bear no fruit is not difficult to understand.
+        hint: In a mentorship context, the phrase conveys a profound, almost universal understanding of
+          a difficult emotion, making it relatable to anyone who has faced similar setbacks. We're looking
+          for a profound and relatable understanding.
+      - competing_japanese:
+          - 長年 の 努力 が 実ら なかっ た 時 の 絶望 感 は 経験 者 なら 理解 する {の は 容易 だ}。
+        english: The despair felt when years of effort bear no fruit is easy for those with experience
+          to understand.
+        hint: In a mentorship context, the phrase conveys a profound, almost universal understanding of
+          a difficult emotion, making it relatable to anyone who has faced similar setbacks. We're looking
+          for a profound and relatable understanding.
+    scene: A mentor sharing wisdom with a frustrated student.
+    register: formal
+    setting: supportive
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: An older male mentor, speaking to a younger female student, employs 「理解に難くない」 to express a
+      deep, undeniable understanding of the profound despair that comes from unfulfilled long-term efforts.
+      This conveys a sense of shared human experience and wisdom.
+  - english: In modern society, it's not hard to infer that smartphones have become an indispensable part
+      of daily life.
+    japanese:
+      - 現代 社会 で、スマート フォン が 生活 に 不可欠 な 存在 に なっ て いる こと は 察する {に 難く ない}。
+      - 現代 社会 で、スマート フォン が 生活 に 不可欠 な 存在 に なっ て いる こと は 察する {に 難く ない} の で ある。
+      - 現代 社会 で、スマート フォン が 生活 に 不可欠 な 存在 に なっ て いる こと は 察する {に 難く ない} と 言える。
+    english_literally: In modern society, it is not difficult to infer that smartphones have become an
+      indispensable part of daily life.
+    competing_grammar:
+      - competing_japanese:
+          - 現代 社会 で スマート フォン が 生活 に 不可欠 な 存在 に なっ て いる こと は 察 する {の は 難しく ない}。
+        english: In modern society, it's not difficult to infer that smartphones have become an indispensable
+          part of daily life.
+        hint: The academic setting uses 「察するに難くない」 to present an evident and widely accepted conclusion,
+          reinforcing the authority and clear-sightedness of the research. We're looking for an authoritative
+          and evident conclusion.
+      - competing_japanese:
+          - 現代 社会 で スマート フォン が 生活 に 不可欠 な 存在 に なっ て いる こと は 察 する {の は 容易 だ}。
+        english: In modern society, it's easy to infer that smartphones have become an indispensable part
+          of daily life.
+        hint: The academic setting uses 「察するに難くない」 to present an evident and widely accepted conclusion,
+          reinforcing the authority and clear-sightedness of the research. We're looking for an authoritative
+          and evident conclusion.
+    scene: A researcher presenting findings on technology's impact on society.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female researcher uses 「察するに難くない」 to present an undeniable observation about smartphone
+      integration into modern life to an academic audience. This formal phrasing conveys a clear, widely
+      accepted truth derived from common societal observation.
+  - english: Given the current political climate, it's not hard to guess that public dissatisfaction will
+      only increase.
+    japanese:
+      - 現在 の 政治 情勢 を 踏まえる と、国民 の 不満 が さらに 高まる こと は 推測 {に 難く ない}。
+      - 現在 の 政治 情勢 を 踏まえる と、国民 の 不満 が さらに 高まる こと は 推測 {に 難く ない} の で ある。
+      - 現在 の 政治 情勢 を 踏まえる と、国民 の 不満 が さらに 高まる こと は 推測 {に 難く ない} と 言える。
+    english_literally: Considering the current political situation, it is not difficult to guess that
+      public dissatisfaction will further increase.
+    competing_grammar:
+      - competing_japanese:
+          - 現在 の 政治 情勢 を 踏まえる と 国民 の 不満 が さらに 高まる こと は 推測 する {の は 難しく ない}。
+        english: Given the current political climate, it's not difficult to guess that public dissatisfaction
+          will only increase.
+        hint: In a political commentary setting, 「推測に難くない」 lends a sophisticated and authoritative tone,
+          implying the conclusion is an obvious consequence of current trends, suitable for expert analysis.
+          We're looking for a more sophisticated and authoritative prediction.
+      - competing_japanese:
+          - 現在 の 政治 情勢 を 踏まえる と 国民 の 不満 が さらに 高まる こと は 推測 する {の は 容易 だ}。
+        english: Given the current political climate, it's easy to guess that public dissatisfaction will
+          only increase.
+        hint: In a political commentary setting, 「推測に難くない」 lends a sophisticated and authoritative tone,
+          implying the conclusion is an obvious consequence of current trends, suitable for expert analysis.
+          We're looking for a more sophisticated and authoritative prediction.
+    scene: A political commentator on a TV news program discussing recent policy changes.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male political commentator uses 「推測に難くない」 to present an obvious, logical conclusion about
+      public sentiment given the political situation. This formal and objective phrasing adds weight to
+      his analysis, suggesting that any informed viewer would reach the same conclusion.
+  - english: If global warming continues at this rate, it's not hard to predict severe climate changes
+      in the future.
+    japanese:
+      - この まま 地球 温暖 化 が 進め ば、将来 的 に 深刻 な 気候 変動 が 起こる こと は 予想 {に 難く ない}。
+      - この まま 地球 温暖 化 が 進め ば、将来 的 に 深刻 な 気候 変動 が 起こる こと は 予想 {に 難く ない} の で ある。
+      - この まま 地球 温暖 化 が 進め ば、将来 的 に 深刻 な 気候 変動 が 起こる こと は 予想 {に 難く ない} と 言える。
+    english_literally: If global warming progresses as it is, it is not difficult to predict that severe
+      climate changes will occur in the future.
+    competing_grammar:
+      - competing_japanese:
+          - この まま 地球 温暖 化 が 進め ば 将来 的 に 深刻 な 気候 変動 が 起こる こと は 予想 する {の は 難しく ない}。
+        english: If global warming continues at this rate, it's not difficult to predict severe climate
+          changes in the future.
+        hint: An environmental scientist uses 「予想に難くない」 to underscore the certainty of future climate
+          events, presenting scientific findings with a tone of undeniable truth, suitable for academic
+          or public address. We're looking for a more certain and scientific prediction.
+      - competing_japanese:
+          - この まま 地球 温暖 化 が 進め ば 将来 的 に 深刻 な 気候 変動 が 起こる こと は 予想 する {の は 容易 だ}。
+        english: If global warming continues at this rate, it's easy to predict severe climate changes
+          in the future.
+        hint: An environmental scientist uses 「予想に難くない」 to underscore the certainty of future climate
+          events, presenting scientific findings with a tone of undeniable truth, suitable for academic
+          or public address. We're looking for a more certain and scientific prediction.
+    scene: An environmental scientist presenting research findings at an international conference.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female environmental scientist uses 「予想に難くない」 to emphasize the inevitability of severe climate
+      change if current trends continue. This formal phrasing highlights the scientific certainty and
+      the undeniable nature of the prediction, adding gravity to her presentation.
+  - english: The deep bond between the members of the team, having overcome so many challenges together,
+      is not hard to comprehend.
+    japanese:
+      - 数々 の 困難 を 乗り越え て き た チーム メンバー の 間 に ある 絆 の 深 さ は、理解 {に 難く ない}。
+      - 数々 の 困難 を 乗り越え て き た チーム メンバー の 間 に ある 絆 の 深 さ は、理解 {に 難く ない} の で ある。
+      - 数々 の 困難 を 乗り越え て き た チーム メンバー の 間 に ある 絆 の 深 さ は、理解 {に 難く ない} と 言える。
+    english_literally: The depth of the bond among team members who have overcome many difficulties is
+      not difficult to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 数々 の 困難 を 乗り越え て き た チーム メンバー の 間 に ある 絆 の 深 さ は 理解 する {の は 難しく ない}。
+        english: The deep bond between the members of the team, having overcome so many challenges together,
+          is not difficult to comprehend.
+        hint: To convey an easily understood, profound human connection in a reflective context, 「理解に難くない」
+          adds a formal, almost philosophical depth to the observation. We're looking for a formal and
+          philosophical observation.
+      - competing_japanese:
+          - 数々 の 困難 を 乗り越え て き た チーム メンバー の 間 に ある 絆 の 深 さ は 理解 する {の は 容易 だ}。
+        english: The deep bond between the members of the team, having overcome so many challenges together,
+          is easy to comprehend.
+        hint: To convey an easily understood, profound human connection in a reflective context, 「理解に難くない」
+          adds a formal, almost philosophical depth to the observation. We're looking for a formal and
+          philosophical observation.
+    scene: A speaker at a team-building retreat reflecting on the team's journey.
+    register: formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female speaker uses 「理解に難くない」 to articulate the undeniable depth of the team's bond, making
+      it sound like a self-evident truth to everyone present. This formal tone elevates the sentiment
+      from a simple observation to a profound insight.
+  - english: Given his outstanding talent, it's not hard to expect that he will achieve even greater things
+      in the future.
+    japanese:
+      - 彼 の 卓越 し た 才能 を 考えれ ば、今後、さらなる 飛躍 を 遂げる こと は 予想 {に 難く ない}。
+      - 彼 の 卓越 し た 才能 を 考えれ ば、今後、さらなる 飛躍 を 遂げる こと は 予想 {に 難く ない} の で ある。
+      - 彼 の 卓越 し た 才能 を 考えれ ば、今後、さらなる 飛躍 を 遂げる こと は 予想 {に 難く ない} と 言える。
+    english_literally: Considering his outstanding talent, it is not difficult to predict that he will
+      achieve even greater things in the future.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 卓越 し た 才能 を 考えれ ば、今後 さらなる 飛躍 を 遂げる こと は 予想 する {の は 難しく ない}。
+        english: Given his outstanding talent, it's not difficult to expect that he will achieve even
+          greater things in the future.
+        hint: In a formal recommendation or appraisal, 「予想に難くない」 provides a strong, undeniable prediction
+          of future success, lending weight and credibility to the assessment. We're looking for a strong
+          and undeniable prediction.
+      - competing_japanese:
+          - 彼 の 卓越 し た 才能 を 考えれ ば、今後 さらなる 飛躍 を 遂げる こと は 予想 する {の は 容易 だ}。
+        english: Given his outstanding talent, it's easy to expect that he will achieve even greater things
+          in the future.
+        hint: In a formal recommendation or appraisal, 「予想に難くない」 provides a strong, undeniable prediction
+          of future success, lending weight and credibility to the assessment. We're looking for a strong
+          and undeniable prediction.
+    scene: A manager writing a performance review for a highly promising employee.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: no one
+    nuance: A male manager uses 「予想に難くない」 in a formal appraisal to express the undeniable certainty of
+      a talented employee's future success. This formal phrasing emphasizes the objective and logical
+      conclusion drawn from the employee's abilities.
+  - english: The emotional impact of witnessing that tragic accident, even through media, is not hard
+      for anyone to imagine.
+    japanese:
+      - あの 悲惨 な 事故 が もたらし た 衝撃 は、映像 を 通し て 見 た 者 に とっ て も 想像 {に 難く ない}。
+      - あの 悲惨 な 事故 が もたらし た 衝撃 は、映像 を 通し て 見 た 者 に とっ て も 想像 {に 難く ない} の で ある。
+      - あの 悲惨 な 事故 が もたらし た 衝撃 は、映像 を 通し て 見 た 者 に とっ て も 想像 {に 難く ない} と 言える。
+    english_literally: The impact brought by that tragic accident is not difficult for even those who
+      saw it through images to imagine.
+    competing_grammar:
+      - competing_japanese:
+          - あの 悲惨 な 事故 が もたらし た 衝撃 は 映像 を 通し て 見 た 者 に とっ て も 想像 する {の は 難しく ない}。
+        english: The emotional impact of witnessing that tragic accident, even through media, is not difficult
+          for anyone to imagine.
+        hint: To convey the universally understandable nature of a traumatic event's impact, 「想像に難くない」
+          adds a formal gravity, implying that the suffering is self-evident even to those not directly
+          involved. We're looking for a formal way to express universal understanding of an impact.
+      - competing_japanese:
+          - あの 悲惨 な 事故 が もたらし た 衝撃 は 映像 を 通し て 見 た 者 に とっ て も 想像 する {の は 容易 だ}。
+        english: The emotional impact of witnessing that tragic accident, even through media, is easy
+          for anyone to imagine.
+        hint: To convey the universally understandable nature of a traumatic event's impact, 「想像に難くない」
+          adds a formal gravity, implying that the suffering is self-evident even to those not directly
+          involved. We're looking for a formal way to express universal understanding of an impact.
+    scene: A news anchor reporting on the aftermath of a disaster.
+    register: formal
+    setting: serious
+    speaker_gender: female
+    listener_gender: group
+    nuance: A female news anchor uses 「想像に難くない」 to emphasize the undeniable emotional impact of a tragic
+      event, suggesting that the audience, even just watching from home, can easily comprehend the magnitude
+      of suffering. This formal tone lends solemnity and objectivity to the report.
+  - english: Considering the harsh training regimen, it's not hard to understand why the athletes pushed
+      themselves to their limits.
+    japanese:
+      - あの 厳し い 訓練 内容 を 考える と、選手 たち が 極限 まで 追い込ま れ た こと は 理解 {に 難く ない}。
+      - あの 厳し い 訓練 内容 を 考える と、選手 たち が 極限 まで 追い込ま れ た こと は 理解 {に 難く ない} の で ある。
+      - あの 厳し い 訓練 内容 を 考える と、選手 たち が 極限 まで 追い込ま れ た こと は 理解 {に 難く ない} と 言える。
+    english_literally: Considering that harsh training content, it is not difficult to understand that
+      the athletes were pushed to their limits.
+    competing_grammar:
+      - competing_japanese:
+          - あの 厳し い 訓練 内容 を 考える と、選手 たち が 極限 まで 追い込ま れ た こと は 理解 する {の は 難しく ない}。
+        english: Considering the harsh training regimen, it's not difficult to understand why the athletes
+          pushed themselves to their limits.
+        hint: In a sports commentary, 「理解に難くない」 adds a formal, analytical depth to the explanation of
+          athletes' extreme efforts, making it sound like an obvious consequence of their demanding training.
+          We're looking for a formal and analytical explanation.
+      - competing_japanese:
+          - あの 厳し い 訓練 内容 を 考える と、選手 たち が 極限 まで 追い込ま れ た こと は 理解 する {の は 容易 だ}。
+        english: Considering the harsh training regimen, it's easy to understand why the athletes pushed
+          themselves to their limits.
+        hint: In a sports commentary, 「理解に難くない」 adds a formal, analytical depth to the explanation of
+          athletes' extreme efforts, making it sound like an obvious consequence of their demanding training.
+          We're looking for a formal and analytical explanation.
+    scene: A sports commentator explaining an athlete's performance in a tough competition.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    nuance: A male sports commentator uses 「理解に難くない」 to explain the athletes' extreme exertion as an undeniable
+      outcome of their rigorous training. This formal phrasing provides an authoritative and clear analysis
+      for the audience.
+post_example_writeup: 「〜に難くない」 strongly implies that the speaker is convinced of a certain fact, and believes
+  the listener can also easily understand it. Therefore, it is frequently used in objective and formal
+  situations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/に難くない

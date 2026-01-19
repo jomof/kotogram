@@ -1,0 +1,304 @@
+grammar_point: その (that)
+learn_before:
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - '[Verb-dictionary]べき・べきではない (should・should not)'
+  - '[Verb-て] (means・method)'
+  - '[Verb-て]あげる (to do for someone, outward)'
+  - 〜てはいけない・〜てはならない (must not)
+  - 〜について・〜に関して (about・regarding)
+  - ことなの (it is that)
+  - 二度と (never again)
+  - 入り (containing)
+  - 向こう (beyond)
+  - 気になる (to be concerned or interested)
+meaning: that (near listener or topic-related)
+pronunciation:
+  katakana: ソノ
+  romaji: sono
+formation:
+  その + Noun: Refers to a noun that is physically close to the listener or has just been mentioned in conversation.
+jlpt: N5
+etymology: The demonstrative words in Japanese, like こ (ko), そ (so), あ (a), and ど (do), are rooted in
+  ancient Japanese. 「その」 is derived from the "so" series, which originally indicated something close to
+  the listener or related to the listener's domain. Historically, the "so" series (それ, その, そう, etc.) has
+  always been used to refer to things or concepts that are either physically near the second person (the
+  listener) or that have just been introduced into the conversation, making them a shared point of reference.
+writeup: |-
+  「その」 is a demonstrative determiner, meaning it always precedes and modifies a noun. Unlike its pronominal counterpart 「それ」 (which means 'that thing'), 「その」 functions like 'that' in English when it modifies a noun, such as 'that book' (その本).
+
+  There are two main contexts in which 「その」 is used:
+
+  1.  **Physical Proximity to the Listener**: When the object being referred to is physically located near the listener, or within the listener's immediate space. For instance, if you are talking to someone and a book is right next to them, you might say 「その本」.
+
+  2.  **Topic Reference (Shared Knowledge)**: When referring to something that has just been mentioned in the conversation, or is understood by both speakers as part of the shared context. This is a very common use of 「その」, indicating that the item is 'that one we were just talking about.' This is distinct from 「あの」, which refers to something generally distant from both speakers, or something universally known/recalled from a long time ago. 「その」 creates a sense of immediate relevance to the ongoing discussion.
+
+  Understanding the subtle difference between 「この」「その」「あの」 (and their pronominal forms 「これ」「それ」「あれ」) is key. 「この」 refers to something near the speaker, 「その」 near the listener or the topic at hand, and 「あの」 distant from both or a shared distant memory.
+false_friends:
+  - term: これ (this)
+    meaning: this (near speaker)
+    kind: similar expression
+    nuance: 「これ」 is a demonstrative pronoun that refers to something physically near the *speaker*, or
+      something the speaker is currently thinking about. 「その」, on the other hand, is a determiner (modifies
+      a noun) and refers to something near the *listener* or already established in the conversation.
+    grammar_point: これ (this)
+  - term: それ (that)
+    meaning: that (near listener or topic-related)
+    kind: similar expression
+    nuance: 「それ」 is a demonstrative *pronoun*, meaning it stands alone and refers to 'that thing' near
+      the listener or the topic being discussed. 「その」 is a demonstrative *determiner*, always used directly
+      before a noun, as in 'that Noun'.
+    grammar_point: それ (that)
+  - term: あれ (that over there)
+    meaning: that (distant from both)
+    kind: similar expression
+    nuance: 「あれ」 is a demonstrative *pronoun* referring to something far from *both* the speaker and the
+      listener, or something that evokes a sense of nostalgic or distant memory. 「その」 is a determiner
+      for something near the listener or the immediate topic.
+    grammar_point: あれ (that over there)
+  - term: あの (that over there)
+    meaning: that (distant from both)
+    kind: similar expression
+    nuance: 「あの」 is a demonstrative *determiner* that modifies a noun, referring to something far from
+      *both* speakers, or something from shared, often distant, memory. 「その」 refers to something near
+      the listener or the current topic.
+    grammar_point: あの (interjection)
+  - term: こんな (such a)
+    meaning: such a (like this)
+    kind: similar expression
+    nuance: 「こんな」 means 'such a (like this)' and describes the *kind* or *nature* of something, often
+      with an emotive nuance, referring to something near the speaker. 「その」 refers to a specific item
+      near the listener or a previously mentioned topic.
+    grammar_point: こんなに (this much)
+  - term: そんな (such a)
+    meaning: such a (like that)
+    kind: similar expression
+    nuance: 「そんな」 means 'such a (like that)' and describes the *kind* or *nature* of something, often
+      with an emotive nuance, referring to something near the listener or the topic. While both refer
+      to the 'so' series, 「その」 points to a specific noun, whereas 「そんな」 describes the quality or type
+      of something.
+    grammar_point: <suggest>:そんな・こんな・あんな・どんな (such a・kind of)
+  - term: あんな (such a)
+    meaning: such a (like that over there)
+    kind: similar expression
+    nuance: 「あんな」 means 'such a (like that over there)' and describes the *kind* or *nature* of something,
+      often with an emotive nuance, referring to something far from both speakers. 「その」 refers to a specific
+      item near the listener or a previously mentioned topic.
+    grammar_point: あんなに (that much over there)
+post_false_friends_writeup: The core distinction among the demonstratives (こ・そ・あ・ど series) lies in their
+  proximity to the speaker and listener, and whether they function as pronouns or determiners. Always
+  remember that 「その」 directly modifies a noun (e.g., その本 - that book), while 「それ」 stands alone as a pronoun
+  (e.g., それ - that thing). Furthermore, 「その」 implies either physical closeness to the listener or a direct
+  reference to something just discussed, unlike 「あの」 which implies distance or shared general knowledge.
+  「こんな」, 「そんな」, and 「あんな」 describe the *quality* or *type* of something, not a specific item.
+examples:
+  - english: Can you pass that book?
+    japanese:
+      - その 本 を 取っ て くれ ます か？
+      - その 本 を 取っ て いただけ ます か？
+      - その 本 を 渡し て くれ ます か？
+      - その 本 を 渡し て いただけ ます か？
+      - その 本、取っ て もらえる？
+    english_literally: That book object-marker take please can you?
+    competing_grammar:
+      - competing_japanese:
+          - あれ を 取っ て くれ ます か？
+        english: Can you pass that one over there?
+        hint: 「あれ」 is a pronoun referring to something far from both speakers. We're looking for a determiner
+          that points to something near the listener.
+      - competing_japanese:
+          - それ を 取っ て くれ ます か？
+        english: Can you pass that (thing) please?
+        hint: 「それ」 is a pronoun for 'that thing'. We're looking for 'that book', so we need a determiner
+          modifying 'book'.
+    scene: A person asks their friend to hand them a book that is near the friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: So, about that plan, what's the next step?
+    japanese:
+      - その 計画 に つい て、次 の ステップ は 何 です か？
+      - その 計画 に つい て、次 の ステップ は どう です か？
+      - その 計画 の こと な ん です が、次 の ステップ は？
+    english_literally: That plan about, next step topic-marker what is-it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 計画 に つい て、次 の ステップ は 何 です か？
+        english: So, about that (well-known or distant) plan, what's the next step?
+        hint: 「あの」 refers to something distant or a shared, general memory. We're talking about a plan
+          just discussed or currently relevant.
+    scene: Two colleagues are discussing a plan they just talked about.
+    register: semi-formal
+    setting: professional
+  - english: I heard about that incident. It sounds serious.
+    japanese:
+      - その 事件 の こと を 聞き まし た。深刻 そう です ね。
+      - その 事件 の 件 を 聞き まし た。深刻 そう です ね。
+      - その 事件 の 話 を 聞き まし た。深刻 そう です ね。
+      - その 事件、聞い た ん です が。深刻 そう です ね。
+    english_literally: That incident's thing object-marker heard. Serious-seeming is, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - あれ の こと を 聞き まし た。深刻 そう です ね。
+        english: I heard about that (thing) over there. It sounds serious.
+        hint: 「あれ」 is a pronoun for something physically distant. We're referring to an incident that
+          has been a recent topic.
+    scene: Two friends are talking about a recent news event that they both heard about.
+    register: teineigo (polite)
+    setting: serious
+  - english: Do you remember that time we went to Kyoto?
+    japanese:
+      - 京都 に 行っ た その 時 を 覚え て い ます か？
+      - 京都 に 行っ た その 時 の こと、覚え て い ます か？
+      - 京都 に 行っ た その 時 の こと、覚え てる？
+      - 京都 に 行っ た その 時 の こと を、まだ 覚え て い ます か？
+    english_literally: Kyoto to went that time object-marker remember te-iru ka?
+    competing_grammar:
+      - competing_japanese:
+          - 京都 に 行っ た あの 時 を 覚え て い ます か？
+        english: Do you remember that (long-ago/nostalgic) time we went to Kyoto?
+        hint: 「あの」 implies a more distant, possibly nostalgic memory. 「その」 can be used for a specific
+          shared memory that is more immediately recalled or relevant to the current conversation.
+    scene: Two old friends are reminiscing about a shared experience.
+    register: teineigo (polite)
+    setting: reflective
+  - english: Please put your name on that paper.
+    japanese:
+      - その 紙 に 名前 を 書い て ください。
+      - その 紙 に お 名前 を 書い て ください。
+      - その 紙 に 名前 を 書い て いただけ ます か？
+      - その 紙 に、名前 書い て。
+    english_literally: That paper on name object-marker write please.
+    competing_grammar:
+      - competing_japanese:
+          - この 紙 に 名前 を 書い て ください。
+        english: Please put your name on this paper (near me).
+        hint: 「この」 refers to something near the speaker. We're asking the listener to sign a paper near
+          them.
+    scene: A teacher is handing out papers and instructing students.
+    register: formal
+    setting: instructional
+  - english: That ramen shop across the street is really popular.
+    japanese:
+      - 道 の 向こう 側 に ある その ラーメン 屋 は とても 人気 が あり ます。
+      - 道 の 向こう 側 の その ラーメン 屋 は とても 人気 が あり ます。
+      - 道 の 向こう に ある その ラーメン 屋、すごい 人気 だ よ。
+      - 道 の 向こう に ある その ラーメン 屋 さん、すごく 人気 が ある ね。
+    english_literally: Street's across side ni aru that ramen shop topic-marker very popularity ga arimasu.
+    competing_grammar:
+      - competing_japanese:
+          - 道 の 向こう 側 に ある あの ラーメン 屋 は とても 人気 が あり ます。
+        english: That ramen shop over there across the street is really popular.
+        hint: While both 'ano' and 'sono' can refer to things that are not immediately present, 「その」 emphasizes
+          that it's the one you're currently observing or talking about with the listener, creating a
+          more immediate shared context.
+    scene: Two friends walking down the street point out a shop.
+    register: casual
+    setting: friendly
+  - english: That question you asked earlier was very insightful.
+    japanese:
+      - さっき あなた が し た その 質問 は とても 洞察 力 が あり まし た。
+      - さっき の その 質問 は とても 洞察 力 が あり まし た。
+      - 先程 の その 質問 は とても 洞察 力 が あり まし た。
+      - さっき し て くれ た その 質問、すごく 洞察 力 あっ た よ。
+    english_literally: Earlier you subject-marker did that question topic-marker very insightful-power
+      ga arimashita.
+    competing_grammar:
+      - competing_japanese:
+          - さっき あなた が し た それ は とても 洞察 力 が あり まし た。
+        english: That thing you did earlier was very insightful.
+        hint: 「それ」 is a pronoun. We need a determiner to modify 'question'.
+    scene: A mentor praises their student after a discussion.
+    register: semi-formal
+    setting: academic
+  - english: We must not repeat that mistake.
+    japanese:
+      - その 失敗 を 繰り返し て は いけ ませ ん。
+      - その 失敗 を 繰り返す べき で は あり ませ ん。
+      - その 失敗 は 繰り返す べき で は ない。
+      - その 失敗 は 二 度 と 起こし て は いけ ませ ん。
+    english_literally: That mistake object-marker repeat te wa ikemasen.
+    competing_grammar:
+      - competing_japanese:
+          - あの 失敗 を 繰り返し て は いけ ませ ん。
+        english: We must not repeat that (past, perhaps infamous) mistake.
+        hint: 「あの」 implies a past, perhaps well-known mistake. 「その」 is used for a mistake that is immediately
+          relevant, perhaps just made or recently discussed.
+    scene: A team leader addresses their team after a recent setback.
+    register: formal
+    setting: serious
+  - english: Did you finish reading that manga I lent you?
+    japanese:
+      - 君 に 貸し た その 漫画、読み 終え た？
+      - 君 に 貸し た その 漫画、もう 読ん だ？
+      - 貸し て あげ た その 漫画、読ん だ？
+      - 前 に 貸し た その 漫画、読み 終え まし た か？
+    english_literally: You to lent that manga, read finish ta?
+    competing_grammar:
+      - competing_japanese:
+          - 君 に 貸し た それ、読み 終え た？
+        english: Did you finish reading that (thing) I lent you?
+        hint: 「それ」 is a pronoun, but we need to specify 'manga', so a determiner is better.
+    scene: A friend asks about a manga they lent to another friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The male casual speech, particularly the omission of the final particle in 「読み 終え た？」, is
+      common between close male friends. 「君」 can be used by males when addressing other males or sometimes
+      females in a casual context.
+  - english: Could you tell me more about that idea?
+    japanese:
+      - その アイデア に つい て、もっと 詳しく 教え て いただけ ます か？
+      - その アイデア の 詳細 を 教え て いただけ ます か？
+      - その アイデア に つい て、もう 少し 詳しく 教え て ください。
+      - その アイデア の こと を、もう 少し 詳しく 聞か せ て もらえ ませ ん か？
+    english_literally: That idea about, more detailed tell please can you?
+    competing_grammar:
+      - competing_japanese:
+          - その アイデア に つい て、もっと 詳しく 教え て もらえ ます か？
+        english: Could you tell me more about that idea (more casually)?
+        hint: 「教えてもらえますか」 is polite, but 「教えていただけますか」 is more humble and formal, suitable for professional
+          contexts or requesting from someone of higher status. We're looking for a formal request.
+    scene: A junior employee asks their boss for more details about a new project idea.
+    register: sonkeigo (respectful)
+    setting: professional
+  - english: I'm still thinking about that strange dream I had last night.
+    japanese:
+      - 昨日 見 た その 変 な 夢 の こと が、まだ 頭 から 離れ ない ん です。
+      - 昨日 見 た その 変 な 夢 の こと を、まだ 考え て い ます。
+      - 昨日 の その 変 な 夢 が、ずっと 気 に なっ て いる ん です。
+      - 昨日 の その 妙 な 夢 が、いまだ に 頭 に 残っ て いる ん です よ ね。
+    english_literally: Yesterday saw that strange dream's thing ga, still head from not separate n desu.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 見 た あの 変 な 夢 の こと が、まだ 頭 から 離れ ない ん です。
+        english: I'm still thinking about that (distant/abstract) strange dream I had last night.
+        hint: 「あの」 would suggest a dream from long ago or one that feels very abstract. 「その」 emphasizes
+          that it's *that specific dream* that was just brought to mind or is currently occupying the
+          speaker's thoughts.
+    scene: Someone is talking to a friend about a recent dream that's still on their mind.
+    register: teineigo (polite)
+    setting: intimate
+  - english: That painting, which is in the museum, is a masterpiece.
+    japanese:
+      - あの 美術 館 に ある その 絵 は、傑作 です。
+      - あの 美術 館 に 飾ら れ て いる その 絵 は、まさに 傑作 です。
+      - あの 美術 館 に 所蔵 さ れ て いる その 絵 は、傑作 と 言える でしょう。
+      - あの 美術 館 の その 絵、傑作 だ よ。
+    english_literally: That museum ni aru that painting wa, masterpiece desu.
+    competing_grammar:
+      - competing_japanese:
+          - あの 美術 館 に ある あの 絵 は、傑作 です。
+        english: That painting (over there in that distant museum) is a masterpiece.
+        hint: While both 'ano' and 'sono' can refer to things that are not immediately present, 「その」 here
+          creates a sense that the painting has just been mentioned or is being specifically referenced
+          in the current conversation, even if it's geographically distant.
+    scene: Two art enthusiasts are discussing a famous painting in a distant museum.
+    register: formal
+    setting: academic
+post_example_writeup: As you can see from the examples, 「その」 is highly versatile. It's not just about
+  physical location but also about shared conversational context. Mastering its use is crucial for natural
+  Japanese communication, as it constantly marks what is mutually understood or currently being focused
+  on.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%9D%E3%81%AE

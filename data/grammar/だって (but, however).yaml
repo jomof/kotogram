@@ -1,0 +1,222 @@
+grammar_point: だって (but, however)
+learn_before:
+  - だって (because・since)
+meaning: but; because; I mean
+pronunciation:
+  katakana: ダッテ
+  romaji: datte
+formation:
+  Plain form Verb + だって: Used to introduce a counter-argument or reason.
+  Plain form い-Adjective + だって: Used to introduce a counter-argument or reason.
+  な-Adjective (stem) + だって: Used to introduce a counter-argument or reason.
+  Noun + だって: Used to introduce a counter-argument or reason.
+  だって (sentence initial/standalone): Used as an interjection to express a counter-argument, objection,
+    or a reason.
+jlpt: N3
+etymology: The word だって (datte) is generally understood to be a contracted form derived from だ (da, the
+  plain form copula) and とて (tote), a particle with concessive or causal meanings. Historically, とて itself
+  evolved from と (to, a quotative particle) and て (te, the te-form of a verb or particle). This etymology
+  helps explain its dual function of expressing 'even if it is so' (leading to 'but' or 'even') and 'because
+  it is so' (leading to 'because' or 'I mean'). The core idea revolves around stating a fact or a proposition
+  and then either countering it or using it as a basis for explanation.
+writeup: |-
+  だって is a versatile and very common expression in casual Japanese, often translated as "but," "because," or "I mean." Its core function is to introduce a counter-argument, an objection, or to provide a reason or explanation.
+
+  When だって is used at the beginning of a sentence or clause, it functions similarly to でも or しかし, but it carries a more casual, direct, and often emotional nuance. It's particularly effective for expressing a protest, refuting an implied statement, or showing exasperation. For instance, if someone asks you to do something you don't want to do, you might simply say "だって…" to convey your unwillingness or to prompt them for clarification.
+
+  When だって is used to provide a reason, it typically follows the plain form of a verb, い-adjective, な-adjective (without な or だ), or a noun. In this context, it's akin to saying "〜からだ" or "〜んだ" but with a more conversational and often defensive or self-evident tone. It implies that the reason being given should be obvious or is sufficient justification for the preceding statement or action.
+
+  だって is almost exclusively used in **casual** conversations among friends, family, or close acquaintances. It is **not suitable for formal** or business settings. It is used by speakers of all genders and across age groups, though its directness might be slightly more pronounced in certain casual male speech patterns or among younger speakers. Understanding its nuance is key to sounding natural in informal Japanese.
+false_friends:
+  - term: しかし・だが・けれど・しかしながら
+    meaning: but, however
+    kind: similar expression
+    nuance: These are more formal or standard conjunctions. They lack the casual, often emotional or defensive
+      nuance of だって.
+    grammar_point: しかし (but・however)
+  - term: もの・もん
+    meaning: because, since
+    kind: similar expression
+    nuance: Also casual, and used to provide a reason, but だって can also introduce a counter-argument,
+      and often carries a stronger, more emphatic tone.
+    grammar_point: もの・もん (because・since)
+  - term: だって (even・also)
+    meaning: even; also; too
+    kind: often confused with
+    nuance: This is a homograph; it's the same word but functions as an inclusive particle. It means 'even'
+      or 'too,' emphasizing that something applies to an unexpected item or person (e.g., 子供だってできる - Even
+      a child can do it), whereas だって (but, however) introduces a contrasting statement or justification.
+    grammar_point: だって (even・also)
+post_false_friends_writeup: While だって can mean "but" or "because," it's crucial to distinguish it from
+  other similar expressions. Formal conjunctions like しかし or けれど lack the casual, often emotional or defensive
+  nuance of だって. もの or もん (often shortened from ものだ) also provide reasons in casual speech, but だって carries
+  a stronger sense of "I mean, it's because..." or "but..." with a slightly more emphatic or argumentative
+  tone. The most important distinction is between だって (but, however) and its homograph だって (even・also).
+  The latter functions as an inclusive particle meaning "even" or "too," and it's essential to rely on
+  context to determine which meaning is intended.
+examples:
+  - english: But I don't want to go!
+    japanese:
+      - '{だ って} 行き たく ない ん だ もん！'
+      - '{だ って} 行き たく ない ん だ よ！'
+    english_literally: But, I don't want to go, because I'm telling you!
+    competing_grammar:
+      - competing_japanese:
+          - で も 行き たく ない よ。
+        english: But I don't want to go.
+        hint: 「でも」is a general 'but'. 「だって」expresses a more emotional objection or reason. We're looking
+          for a strong objection.
+    scene: A child complaining to their parent about going to school.
+    register: casual
+    setting: friendly
+    nuance: This use of {だって} expresses a strong, slightly whiny objection or protest. The final {もん}
+      reinforces the childish, complaining tone, emphasizing the speaker's feelings.
+  - english: But, I was busy!
+    japanese:
+      - '{だ って} 忙しかっ た ん だ よ。'
+      - '{だ って} 忙しかっ た ん だ から。'
+    english_literally: But, I was busy!
+    competing_grammar:
+      - competing_japanese:
+          - 忙しかっ た から。
+        english: Because I was busy.
+        hint: 「から」is a simple 'because'. 「だって」adds a nuance of justification or an obvious reason. We're
+          looking for a defensive explanation.
+    scene: A student explaining to a friend why they couldn't meet up.
+    register: casual
+    setting: apologetic
+    nuance: '{だって} here introduces the reason for an action (or inaction), often implying that the reason
+      is self-evident or should be understood. The final {だよ} adds a light explanatory nuance, as if saying
+      ''you know, it''s because...''.'
+  - english: But that's not what I said!
+    japanese:
+      - '{だ って} そんな こと 言っ て ない よ！'
+      - '{だ って} そんな こと 言っ て ない もん！'
+    english_literally: But, I haven't said such a thing!
+    competing_grammar:
+      - competing_japanese:
+          - で も そんな こと 言っ て ない よ。
+        english: But I haven't said such a thing.
+        hint: 「でも」is a general 'but'. 「だって」expresses a more direct and often frustrated contradiction.
+          We're looking for a strong denial.
+    scene: Two friends arguing over a misunderstanding.
+    register: casual
+    setting: serious
+    nuance: Used to directly contradict or refute a statement, often with a slight sense of frustration.
+      The tone conveyed by {だって} is more direct and emotionally charged than a simple 'でも'.
+  - english: I didn't eat it. Because it tasted bad.
+    japanese:
+      - 食べ なかっ た よ。{だ って} 美味しく なかっ た から。
+      - 食べ なかっ た。{だ って} 美味しく なかっ た ん だ もん。
+    english_literally: I didn't eat it. Because it wasn't delicious.
+    competing_grammar:
+      - competing_japanese:
+          - 美味しく なかっ た から 食べ なかっ た。
+        english: I didn't eat it because it wasn't delicious.
+        hint: This is a direct causal statement. We're looking for a more conversational, slightly defensive
+          explanation for not eating.
+    scene: Someone being asked why they didn't finish their food at a casual gathering.
+    register: casual
+    setting: informative
+    nuance: '{だって} introduces a reason, implying that the reason is justification enough and perhaps obvious
+      from the speaker''s perspective. The addition of {から} at the end reinforces the causal link.'
+  - english: I have to go home now, because my mother is waiting.
+    japanese:
+      - もう 帰ら ない と。{だ って} 母 が 待っ てる から。
+      - もう 帰ら なきゃ。{だ って} 母 が 待っ て いる ん だ もん。
+    english_literally: I must go home already. Because my mother is waiting.
+    competing_grammar:
+      - competing_japanese:
+          - 母 が 待っ て いる から、もう 帰ら ない と。
+        english: Since my mother is waiting, I have to go home now.
+        hint: This directly states the reason first. We're looking for a more natural-sounding explanation
+          of *why* the speaker has to leave.
+    scene: A person leaving a gathering early and explaining their departure.
+    register: casual
+    setting: friendly
+    nuance: '{だって} provides a simple, direct reason for the speaker''s action. It''s a casual way to state
+      a clear and understandable cause, implying ''you see, the reason is...''.'
+  - english: But it's impossible!
+    japanese:
+      - '{だ って} 無理 だ よ！'
+      - '{だ って} 無理 な ん だ もん！'
+    english_literally: But, it's impossible!
+    competing_grammar:
+      - competing_japanese:
+          - で も 無理 だ よ。
+        english: But it's impossible.
+        hint: 「でも」is a simpler 'but'. 「だって」conveys a stronger, more exasperated sense of impossibility.
+          We're looking for an emphatic declaration of impossibility.
+    scene: A team member responding to a difficult request from a colleague.
+    register: casual
+    setting: serious
+    nuance: Expresses an objection based on the nature of something (here, 無理 - impossible), often with
+      a sense of exasperation or finality. The {だよ} adds emphasis to the statement.
+  - english: But it's dangerous!
+    japanese:
+      - '{だ って} 危険 だ！'
+      - '{だ って} 危険 だ よ！'
+    english_literally: But, it is dangerous!
+    competing_grammar:
+      - competing_japanese:
+          - で も 危険 だ！
+        english: But it's dangerous!
+        hint: 「でも」is a general 'but'. 「だって」adds a more direct and urgent warning. We're looking for a
+          persuasive caution.
+    scene: Someone trying to stop a friend from doing something risky, such as climbing a slippery rock.
+    register: casual
+    setting: cautious
+    nuance: Used to express a warning or strong objection based on an inherent characteristic (danger).
+      The plain form {危険だ} makes the statement very straightforward and urgent.
+  - english: But it's Sunday!
+    japanese:
+      - '{だ って} 日曜 日 だ よ！'
+      - '{だ って} 日曜 日 な ん だ から！'
+    english_literally: But, it's Sunday!
+    competing_grammar:
+      - competing_japanese:
+          - で も 日曜 日 だ！
+        english: But it's Sunday!
+        hint: 「でも」is a general 'but'. 「だって」implies a stronger sense of protest or incredulity against
+          the situation. We're looking for a protest based on an obvious fact.
+    scene: A person complaining to a coworker about having to work on their day off. The implied meaning
+      is 'Why do we have to work?'.
+    register: casual
+    setting: humorous
+    nuance: '{だって} here highlights a fact (it being Sunday) that contradicts an expectation or current
+      situation (having to work). It conveys a sense of light protest or incredulity.'
+  - english: Why don't you eat meat? Because I'm vegetarian.
+    japanese:
+      - 肉食 べ ない の？{だ って} 私、ベジタリアン だ から。
+      - 肉食 べ ない の？{だ って} 私 は ベジタリアン な ん だ もん。
+    english_literally: Don't you eat meat? Because, I'm vegetarian.
+    competing_grammar:
+      - competing_japanese:
+          - 肉 を 食べ ない の は、私 が ベジタリアン だ から です。
+        english: The reason I don't eat meat is because I am vegetarian.
+        hint: This is a polite and direct answer. We're looking for a casual explanation, almost as if
+          the reason should be obvious to the listener.
+    scene: Someone asking a new acquaintance about their dietary habits.
+    register: casual
+    setting: informative
+    nuance: Provides a personal reason for a characteristic or habit. {だって} sets up the explanation, indicating
+      that the following statement is the justification.
+  - english: But I told you so many times!
+    japanese:
+      - '{だ って} 何 回 も 言っ た じゃん！'
+      - '{だ って} 何 回 も 言っ た ん だ から！'
+    english_literally: But, I said it many times, didn't I!
+    competing_grammar:
+      - competing_japanese:
+          - で も 何 回 も 言っ た じゃん！
+        english: But I told you so many times!
+        hint: 「でも」is a general 'but'. 「だって」expresses stronger exasperation and highlights the speaker's
+          repeated effort. We're looking for a frustrated reminder.
+    scene: A frustrated parent reminding their child about something they were supposed to do.
+    register: casual
+    setting: friendly
+    nuance: '{だって} strengthens the counter-argument, often implying the listener is being dense or forgetful.
+      The {じゃん} at the end is a casual, often youthful, emphatic sentence-final particle, adding to the
+      frustrated tone.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A0%E3%81%A3%E3%81%A6

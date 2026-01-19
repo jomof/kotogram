@@ -1,0 +1,422 @@
+grammar_point: かしら (soft uncertainty・female)
+learn_before:
+  - '[Verb-た]ほうがいい (it is better to do)'
+  - すぎる (too much・excessive)
+  - ね (seeking agreement)
+meaning: I wonder
+pronunciation:
+  katakana: カシラ
+  romaji: kashira
+formation:
+  Verb (plain form) + かしら: Expresses uncertainty or wondering about an action, state, or future event.
+  い-Adjective (plain form) + かしら: Expresses uncertainty or wondering about the quality or characteristic
+    described by the adjective.
+  な-Adjective (stem) + かしら: Expresses uncertainty or wondering about the state or quality described by
+    the adjective. The 'だ' (or its absence) is implied.
+  Noun + かしら: Expresses uncertainty or wondering about the identity or status of a noun. The 'だ' (or its
+    absence) is implied.
+jlpt: N4
+etymology: The particle 「かしら」 originally comes from 「か知らぬ」 or 「かしらん」, meaning "I don't know if..." Over
+  time, it evolved into a standalone sentence-ending particle expressing uncertainty or doubt. Essentially,
+  it's a shortened way of saying, "I wonder if that's the case."
+writeup: "「かしら」 is a sentence-ending particle used to express uncertainty or a sense of wondering about\
+  \ something. It is similar to 「かも」, but carries a more contemplative or introspective nuance. It's attached\
+  \ to the end of a phrase or sentence to pose a question to oneself, or sometimes gently to others, without\
+  \ seeking a direct answer. \n\nWhile historically usable by anyone, in modern Japanese, 「かしら」 is primarily\
+  \ used by women and is considered distinctly feminine. Men generally avoid it as using it might sound\
+  \ unnatural or effeminate. It allows for a soft, gentle way of expressing doubt or speculation, often\
+  \ about future events, or to oneself about a situation."
+false_friends:
+  - term: かな
+    meaning: I wonder
+    kind: similar expression
+    nuance: 「かな」 is also used to express wondering, but it's more gender-neutral than 「かしら」. Both men
+      and women use 「かな」, making it more broadly applicable.
+    grammar_point: かな (I wonder)
+  - term: 〜のだろうか
+    meaning: I wonder...
+    kind: similar expression
+    nuance: 「〜のだろうか」 is a more formal and often more emphatic way of expressing wondering. It's suitable
+      for both men and women, especially in formal or academic contexts, and carries a stronger sense
+      of inquiry or deliberation than 「かしら」.
+    grammar_point: のだろうか (I wonder)
+  - term: かも
+    meaning: perhaps, maybe
+    kind: similar expression
+    nuance: 「かも」 expresses an objective possibility or likelihood, without the personal, introspective,
+      or gendered nuance of 「かしら」. It can be used by anyone to state a probability.
+    grammar_point: かもしれない (might・maybe)
+post_false_friends_writeup: While 「かな」, 「かしら」, 「〜のだろうか」, and 「かも」 all relate to uncertainty, their nuances
+  and usage contexts differ. 「かな」 is the most versatile, suitable for both genders and most situations.
+  「かしら」 is primarily feminine, conveying a softer, often introspective wonder. 「〜のだろうか」 is generally more
+  formal and analytical, usable by anyone for deeper inquiry. 「かも」 expresses objective possibility, stating
+  a likelihood without the personal pondering often found with 「かしら」.
+examples:
+  - english: I wonder if Yamada will bring the documents for tomorrow's meeting.
+    japanese:
+      - 山田 さん は、明日 の 会議 の 資料 を 持っ て くる {かしら}。
+      - 山田 さん、明日 の 会議 の 資料 を 持っ て くる {かしら}。
+      - 山田 さん、明日 の 会議 の 資料 持っ て くる {かしら}。
+    english_literally: Yamada, tomorrow's meeting's documents, will bring, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 山田 さん は、明日 の 会議 の 資料 を 持っ て くる {か な}。
+        english: I wonder if Yamada will bring the documents for tomorrow's meeting.
+        hint: The nuance conveyed by 「かしら」 here is a gentle, almost internal musing, distinct from the
+          more direct, slightly less introspective 「かな」. We're looking for a softer, more introspective
+          nuance.
+      - competing_japanese:
+          - 山田 さん は、明日 の 会議 の 資料 を 持っ て くる {の だろう か}。
+        english: I wonder if Yamada will bring the documents for tomorrow's meeting.
+        hint: While 「〜のだろうか」 also expresses wondering, it carries a more analytical or formal tone, which
+          is less suited for a casual, personal thought about a colleague's task. We're looking for a
+          softer, more personal way of wondering.
+      - competing_japanese:
+          - 山田 さん は、明日 の 会議 の 資料 を 持っ て くる {か も しれ ない}。
+        english: Yamada might bring the documents for tomorrow's meeting.
+        hint: 「かもしれない」 states a possibility, but doesn't convey the personal, contemplative "I wonder"
+          feeling as strongly as 「かしら」. We're looking for a personal pondering.
+    scene: A female manager is preparing for a meeting, wondering if her male subordinate has prepared
+      everything.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The speaker uses 「かしら」 to express a mild uncertainty or personal wonder about a male colleague's
+      actions. This is common for female speakers when considering something to themselves, allowing for
+      a gentle expression of thought rather than a direct query.
+    etymology: 「資料」 (shiryō) means 'documents' or 'materials'.
+  - english: I wonder if it will be sunny for tomorrow's excursion.
+    japanese:
+      - 明日 の 遠足 は、晴れる {かしら}。
+      - 明日 の 遠足、晴れる {かしら}。
+    english_literally: Tomorrow's excursion, will be sunny, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 遠足 は、晴れる {か な}。
+        english: I wonder if it will be sunny for tomorrow's excursion.
+        hint: The use of 「かしら」 here emphasizes a gentle, hopeful wondering, often associated with female
+          speakers when thinking about something important for loved ones, differing from the more neutral
+          「かな」. We're looking for a more tender, hopeful expression.
+      - competing_japanese:
+          - 明日 の 遠足 は、晴れる {の だろう か}。
+        english: I wonder if it will be sunny for tomorrow's excursion.
+        hint: The informal, personal context of a mother's concern makes the more formal and analytical
+          「〜のだろうか」 unsuitable. We're looking for a softer, more personal wondering.
+      - competing_japanese:
+          - 明日 の 遠足 は、晴れる {か も しれ ない}。
+        english: Tomorrow's excursion might be sunny.
+        hint: 「かもしれない」 states a neutral possibility regarding the weather, while 「かしら」 conveys a hopeful,
+          personal wonder, typical of a mother's concern. We're looking for a more tender, hopeful expression.
+    scene: A mother looking out the window, hoping the weather is good for her child's school trip tomorrow.
+    register: casual
+    setting: optimistic
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The speaker expresses her hope and slight uncertainty about the weather for an important event.
+      The particle 「かしら」 conveys a gentle, feminine way of wondering, often used when thinking aloud or
+      to oneself.
+    etymology: 「遠足」 (ensoku) means 'excursion' or 'field trip'.
+  - english: The sky suddenly got dark, didn't it? I wonder if it will rain.
+    japanese:
+      - 急 に 空 が 暗く なっ た わ ね。雨 が 降る {かしら}。
+      - 急 に 空 が 暗く なっ た わ ね。雨 降る {かしら}。
+    english_literally: Suddenly sky became dark, didn't it? Rain will fall, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 急 に 空 が 暗く なっ た わ ね。雨 が 降る {か な}。
+        english: I wonder if it will be sunny for tomorrow's excursion.
+        hint: The combination with 「わね」 and 「かしら」 creates a very feminine and slightly concerned tone
+          when observing the weather, making it more expressive than a simple 「かな」. We're looking for
+          a more conversational and feminine nuance.
+      - competing_japanese:
+          - 急 に 空 が 暗く なっ た わ ね。雨 が 降る {の だろう か}。
+        english: I wonder if it will rain.
+        hint: For a casual, immediate observation about the weather, 「〜のだろうか」 is too formal and analytical,
+          whereas 「かしら」 conveys a more natural, conversational wonder. We're looking for a more natural,
+          casual expression of wonder.
+      - competing_japanese:
+          - 急 に 空 が 暗く なっ た わ ね。雨 が 降る {か も しれ ない}。
+        english: The sky suddenly got dark, didn't it? It might rain.
+        hint: 「かもしれない」 states a probability, but 「かしら」 used with 「わね」 adds a nuanced feminine concern
+          and introspection about the sudden weather change. We're looking for a more conversational and
+          feminine nuance.
+    scene: A woman noticing a sudden change in the weather, expressing slight concern to a friend.
+    register: casual
+    setting: cautious
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The speaker uses 「かしら」 to express a gentle uncertainty about the weather, suitable for a casual
+      conversation with a friend. The inclusion of 「わね」 further emphasizes the feminine and conversational
+      tone of her observation.
+    etymology: 「空」 (sora) means 'sky'.
+  - english: I wonder if I should take a short break.
+    japanese:
+      - 少し 休憩 し た ほう が いい {かしら}。
+      - 休憩 し た ほう が いい {かしら}。
+    english_literally: A little rest did better, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 休憩 し た ほう が いい {か な}。
+        english: I wonder if I should take a short break.
+        hint: 「かしら」 adds a personal, introspective touch to the question, making it sound more like a
+          thought she's gently contemplating rather than a direct inquiry. We're looking for a more gentle
+          and introspective way of thinking aloud.
+      - competing_japanese:
+          - 少し 休憩 し た ほう が いい {の だろう か}。
+        english: I wonder if I should take a short break.
+        hint: The context of personal reflection makes the more analytical and formal 「〜のだろうか」 less fitting,
+          emphasizing the speaker's internal, gentle musing. We're looking for a softer, more personal
+          wondering.
+      - competing_japanese:
+          - 少し 休憩 し た ほう が いい {か も しれ ない}。
+        english: I might need to take a short break.
+        hint: 「かもしれない」 indicates a simple possibility or suggestion. 「かしら」 here emphasizes a gentle, internal
+          contemplation or questioning of oneself, which is a key nuance we want to capture. We're looking
+          for a more gentle and introspective way of thinking aloud.
+    scene: A woman feeling overwhelmed by work, contemplating her energy level.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The internal debate about taking a break is softly expressed with 「かしら」, a common way for
+      women to voice self-doubt or consideration to themselves. This adds a sense of gentle contemplation.
+    etymology: 「休憩」 (kyūkei) means 'break' or 'rest'.
+  - english: I wonder if it's okay to have a picnic in this park.
+    japanese:
+      - この 公園 で、ピクニック を し て も いい {かしら}。
+      - この 公園 で、ピクニック し て も いい {かしら}。
+    english_literally: In this park, picnic do even good, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この 公園 で、ピクニック を し て も いい {か な}。
+        english: I wonder if it's okay to have a picnic in this park.
+        hint: 「かしら」 softens the inquiry about permission, making it sound more polite and considerate,
+          which is a common feminine approach to such questions, unlike the more neutral 「かな」. We're looking
+          for a softer, more polite way to inquire.
+      - competing_japanese:
+          - この 公園 で、ピクニック を し て も いい {の だろう か}。
+        english: I wonder if it's okay to have a picnic in this park.
+        hint: The informal setting implied by the query about eating makes the formal and often detached
+          「〜のだろうか」 inappropriate, favoring the more personal 「かしら」。 We're looking for a more personal
+          and informal way of wondering.
+      - competing_japanese:
+          - この 公園 で、ピクニック を し て も いい {か も しれ ない}。
+        english: It might be okay to have a picnic in this park.
+        hint: While 「かもしれない」 expresses possibility, 「かしら」 softens the inquiry about permission, making
+          it sound more polite and considerate, which is a common feminine approach to such questions.
+          We're looking for a softer, more polite way to inquire.
+    scene: A woman and her child at a new park, she's unsure about the rules regarding eating.
+    register: formal
+    setting: cautious
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The speaker is being polite and cautious about eating in a particular location. A male speaker
+      would likely use 「かな」 instead of 「かしら」 for this inquiry, emphasizing the feminine nature of 「かしら」
+      in expressing polite hesitancy.
+    etymology: 「ピクニック」 (pikunikku) is a loanword from English, meaning 'picnic'.
+  - english: I wonder if this cake is too sweet.
+    japanese:
+      - この ケーキ、甘 すぎる {かしら}。
+      - ケーキ、甘 すぎる {かしら}。
+    english_literally: This cake, too sweet, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ、甘 すぎる {か な}。
+        english: I wonder if this cake is too sweet.
+        hint: The use of 「かしら」 conveys a gentle, subjective observation about the cake's sweetness, common
+          for female speakers, rather than a neutral assessment with 「かな」. We're looking for a softer,
+          more subjective expression.
+      - competing_japanese:
+          - この ケーキ、甘 すぎる {の だろう か}。
+        english: I wonder if this cake is too sweet.
+        hint: The personal comment about taste is not formal enough for 「〜のだろうか」, which would suggest
+          a more analytical or objective tone. We're looking for a more casual, personal reflection.
+      - competing_japanese:
+          - この ケーキ、甘 すぎる {か も しれ ない}。
+        english: This cake might be too sweet.
+        hint: 「かもしれない」 offers a neutral assessment. 「かしら」, however, introduces a gentle, subjective wondering
+          or slight hesitation about the cake's taste, reflecting a more personal reflection. We're looking
+          for a softer, more subjective expression.
+    scene: A woman trying a new cake, considering its taste.
+    register: casual
+    setting: cautious
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The use of 「かしら」 expresses a gentle uncertainty about the cake's sweetness. This usage is
+      typical for a female speaker, conveying a soft, personal judgment.
+    etymology: 「甘すぎる」 (amasugiru) combines 「甘い」 (amai - sweet) with the suffix 「すぎる」 (sugiru - too much).
+  - english: I wonder if I locked the door before leaving.
+    japanese:
+      - 出かける 前 に、鍵 を 閉め た {かしら}。
+      - 出かける 前 に、鍵 閉め た {かしら}。
+      - 鍵 を 閉め た {かしら}。
+    english_literally: Before leaving, key locked, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 出かける 前 に、鍵 を 閉め た {か な}。
+        english: I wonder if I locked the door before leaving.
+        hint: 「かしら」 conveys a moment of self-doubt or rumination, common for female speakers when expressing
+          internal questions about past actions, making it distinct from a simple, neutral wondering with
+          「かな」. We're looking for a more introspective and slightly anxious expression.
+      - competing_japanese:
+          - 出かける 前 に、鍵 を 閉め た {の だろう か}。
+        english: I wonder if I locked the door before leaving.
+        hint: The internal and slightly anxious reflection about a forgotten action is best captured by
+          「かしら」, while 「〜のだろうか」 would imply a more detached or formal investigation. We're looking for
+          a more personal, self-addressing question.
+      - competing_japanese:
+          - 出かける 前 に、鍵 を 閉め た {か も しれ ない}。
+        english: I might have locked the door before leaving.
+        hint: 「かもしれない」 states a possibility. 「かしら」 conveys a moment of self-doubt or rumination, common
+          for female speakers when expressing internal questions about past actions, adding an introspective
+          and slightly anxious tone. We're looking for a more introspective and slightly anxious expression.
+    scene: A woman suddenly remembering something after leaving home, feeling a slight worry.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The speaker is expressing self-doubt or a moment of reflection. The particle 「かしら」 effectively
+      conveys this feminine uncertainty, particularly when questioning her own actions.
+    etymology: 「鍵 を 閉める」 (kagi o shimeru) means "to lock (a door)."
+  - english: I wonder if she is well.
+    japanese:
+      - 彼女 は 元気 {かしら}。
+      - 彼女、元気 {かしら}。
+      - 元気 {かしら}。
+    english_literally: She, well, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 元気 {か な}。
+        english: I wonder if she is well.
+        hint: While 「かな」 is also used for wondering, 「かしら」 provides a more gentle and specifically feminine
+          nuance of concern. We're looking for a softer, more empathetic tone.
+      - competing_japanese:
+          - 彼女 は 元気 な {の だろう か}。
+        english: I wonder if she is well.
+        hint: 「〜のだろうか」 would be too formal and analytical for a casual inquiry about a friend's health.
+          We're looking for a simple, informal way to express concern.
+      - competing_japanese:
+          - 彼女 は 元気 {か も しれ ない}。
+        english: She might be well.
+        hint: 「かもしれない」 is a neutral statement of possibility. 「かしら」 provides a more gentle and empathetic
+          nuance of concern about someone's well-being, typical of female speakers. We're looking for
+          a softer, more empathetic tone.
+    scene: A friend has been sick for a while, and another friend is wondering about her condition.
+    register: casual
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: 「かしら」 softens the inquiry about someone's well-being, conveying a gentle concern typical of
+      female speakers. The direct stem usage with 「元気」 (genki) without 「だ」 maintains the casual, feminine
+      tone.
+  - english: I wonder if Mr. Tanaka is still a teacher.
+    japanese:
+      - 田中 先生 は まだ 先生 {かしら}。
+      - 田中 先生、まだ 先生 {かしら}。
+    english_literally: Tanaka sensei, still teacher, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 先生 は まだ 先生 {か な}。
+        english: I wonder if Mr. Tanaka is still a teacher.
+        hint: 「かな」 is more neutral, while 「かしら」 adds a distinctively feminine nuance of nostalgic or gentle
+          wondering. We're looking for a more personal and reflective tone characteristic of female speakers.
+      - competing_japanese:
+          - 田中 先生 は まだ 先生 な {の だろう か}。
+        english: I wonder if Mr. Tanaka is still a teacher.
+        hint: The casual reminiscence between friends makes the more formal and analytical 「〜のだろうか」 sound
+          out of place. We're looking for a more conversational and informal expression of wondering.
+      - competing_japanese:
+          - 田中 先生 は まだ 先生 {か も しれ ない}。
+        english: Mr. Tanaka might still be a teacher.
+        hint: 「かもしれない」 offers a neutral speculation. 「かしら」, in this context, adds a distinctively feminine
+          nuance of nostalgic or gentle wondering about a past figure, making it more personal and reflective.
+          We're looking for a more personal and reflective tone characteristic of female speakers.
+    scene: Two female friends are reminiscing about their old school days and a favorite teacher.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: 「かしら」 here expresses a nostalgic and gentle wonder about a past figure. The noun 「先生」 (sensei)
+      directly followed by 「かしら」 reflects this usage, common in casual feminine speech when reflecting
+      on something with mild uncertainty.
+  - english: I wonder if Rika-chan is coming to the party.
+    japanese:
+      - リカ ちゃん は、パーティー に 来る {かしら}。
+      - リカ ちゃん、パーティー に 来る {かしら}。
+      - リカ ちゃん、パーティー 来る {かしら}。
+    english_literally: Rika-chan, as for party, will come, I wonder.
+    competing_grammar:
+      - competing_japanese:
+          - リカ ちゃん は、パーティー に 来る {か な}。
+        english: I wonder if Rika-chan is coming to the party.
+        hint: The use of 「かしら」 here expresses a gentle, slightly anxious wonder, often used by female
+          speakers when anticipating someone's arrival, unlike the more neutral 「かな」. We're looking for
+          a more gentle, slightly anxious way of wondering.
+      - competing_japanese:
+          - リカ ちゃん は、パーティー に 来る {の だろう か}。
+        english: I wonder if Rika-chan is coming to the party.
+        hint: The informal, social context of a party makes the analytical and formal 「〜のだろうか」 unsuitable
+          for such a casual, personal wondering. We're looking for a more casual and personal expression.
+      - competing_japanese:
+          - リカ ちゃん は、パーティー に 来る {か も しれ ない}。
+        english: Rika-chan might come to the party.
+        hint: 「かもしれない」 indicates a simple possibility. 「かしら」 here expresses a gentle, slightly anxious
+          wonder, often used by female speakers when anticipating someone's arrival, lending a more personal
+          and emotional tone. We're looking for a more gentle, slightly anxious way of wondering.
+    scene: A young woman is waiting for her friend Rika to arrive at a party and is unsure if she will
+      show up.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The speaker uses 「かしら」 to express her anticipation and slight uncertainty about her friend's
+      arrival. This reflects a common feminine way of voicing personal speculation in a light, conversational
+      manner, particularly when referring to a close female friend.
+    etymology: 「リカ ちゃん」 (Rika-chan) is a common affectionate nickname for a girl named Rika. 「パーティー」 (pātī)
+      is a loanword from English, meaning 'party'.
+  - english: I wonder if you're free tonight?
+    japanese:
+      - 今夜、時間 が ある {かしら}？
+      - 今夜、時間 ある {かしら}？
+      - 時間 が ある {かしら}？
+      - 時間 ある {かしら}？
+    english_literally: Tonight, time is there, I wonder?
+    competing_grammar:
+      - competing_japanese:
+          - 今夜、時間 が ある {か な}？
+        english: I wonder if you're free tonight?
+        hint: The "flirty" nuance is uniquely expressed by 「かしら」, which softens the directness of the
+          question and makes it sound more inviting and less demanding, a common tactic for female speakers
+          in such contexts. 「かな」 would be too blunt for this nuance. We're looking for a softer, more
+          subtly inviting way to ask.
+      - competing_japanese:
+          - 今夜、時間 が ある {の だろう か}？
+        english: I wonder if you're free tonight?
+        hint: The informal and intimate nature of the interaction makes the formal and analytical 「〜のだろうか」
+          completely inappropriate for this specific "flirty" scenario. We're looking for a casual, intimate
+          way to ask.
+    scene: A woman subtly inviting a man, using a soft, indirect approach.
+    register: casual
+    setting: flirty
+    listener_gender: male
+    speaker_age: younger
+    nuance: 「かしら」 softens the question, making it sound less direct and more inviting. Using 「かしら」 here
+      makes it sound like she's wondering to herself, but still implying to the listener that she's interested
+      in spending time with him. This is a common way for female speakers to express curiosity or invite
+      interaction subtly, giving it a feminine and slightly coy feel.
+    etymology: 「時間 が ある」 (jikan ga aru) means "to have time."
+post_example_writeup: Remember that while 「かしら」 is useful for expressing doubt or wondering, it's generally
+  considered feminine. Men should typically avoid using it in most social contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/かしら

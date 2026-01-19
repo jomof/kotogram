@@ -1,0 +1,253 @@
+grammar_point: ではない (formal negative copula)
+matcher: |-
+  (
+    ⌈ˢでᵖprt:case_particleᵇでʳデ⌉|
+    ⌈ˢでᵖauxv:auxv-da:conjunctiveᵇだᵈだʳデ⌉
+  )
+  ⌈ˢはᵖprt:binding_particleᵇはʳワ⌉
+  (
+    ⌈ˢないᵖadj:non_self_reliant:adjective:terminalᵇないᵈ無いʳナイ⌉|
+    ⌈ˢないᵖadj:non_self_reliant:adjective:attributiveᵇないᵈ無いʳナイ⌉|
+    ⌈ˢありᵖv:non_self_reliant:godan-ra:conjunctiveᵇあるᵈ有るʳアリ⌉⌈ˢませᵖauxv:auxv-masu:imperfectiveᵇますᵈますʳマセ⌉⌈ˢんᵖauxv:auxv-nu:terminal-nasalᵇぬᵈずʳン⌉
+  )
+learn_before:
+  - な-Adjective[ではない・じゃない] (plain negative)
+meaning: is not (formal)
+pronunciation:
+  katakana: デハナイ
+  romaji: dewanai
+formation:
+  Noun + ではない: Indicates that the noun is not something.
+  な-Adjective (stem) + ではない: Indicates that the na-adjective is not describing a state or quality.
+jlpt: N3
+etymology: The grammatical structure ではない originates from the combination of the particle で and the negative
+  form of the classical copula ある (to be), which is あらず. In modern Japanese, ある is primarily used for
+  existence, but its role as a copula persists in formal constructions. So, である is the formal affirmative
+  copula, and ではない is its negative counterpart. The は particle here emphasizes the negation, creating
+  a clearer distinction of 'is not'.
+writeup: |-
+  The grammar point ではない serves as the **formal negative copula** in Japanese. It is equivalent to 'is not,' 'am not,' or 'are not' in English. Unlike its more common and casual counterpart じゃない, ではない is primarily used in formal settings, written language, speeches, and situations where a polite or objective tone is required.
+
+  It functions to negate nouns and な-adjectives, forming a predicate. When negating a noun, you simply attach ではない directly to the noun. For な-adjectives, you use the adjective stem (without the final な) followed by ではない.
+
+  **Key Characteristics:**
+  *   **Formality**: It is crucial to understand that ではない is notably more formal than じゃない. Using ではない in casual conversation can sound stiff, distant, or even sarcastic, depending on the context.
+  *   **Objectivity**: This form often conveys a more objective or declarative negation. It states a fact rather than expressing a personal opinion, making it suitable for academic papers, official documents, and news reports.
+
+  Understanding ではない is essential for students aiming to read formal texts, listen to news reports, or engage in polite and respectful conversations, particularly in business or academic environments.
+false_friends:
+  - term: じゃない (negation noun and na-adj)
+    meaning: is not (casual); am not (casual); are not (casual)
+    kind: similar expression
+    nuance: While both mean 'is not', じゃない is highly casual and commonly used in everyday speech, whereas
+      ではない is formal and more appropriate for written or polite contexts.
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: ではないか (isn't it?)
+    meaning: isn't it?; right?; don't you think?
+    kind: similar expression
+    nuance: This form uses ではない but adds か to create a rhetorical question, seeking agreement or expressing
+      a strong opinion. It is not simply a negative statement.
+    grammar_point: じゃないか (isn't it?)
+  - term: ではないか (let's・why don't we)
+    meaning: Let's do (something); Why don't we (do something)?
+    kind: similar expression
+    nuance: This form is used to make a strong suggestion or proposal, particularly in speeches or calls
+      to action. It uses ではない but functions as a volitional expression, not a direct negation.
+    grammar_point: '[Verb-よう]ではないか (let''s・why don''t we)'
+  - term: のではないだろうか
+    meaning: I wonder if it isn't...; Perhaps it is...
+    kind: similar expression
+    nuance: This phrase adds だろうか to ではない, forming a polite and somewhat indirect way of expressing speculation
+      or a soft assertion, implying 'I think it might be, don't you agree?'
+    grammar_point: のではないだろうか (indirect suggestion)
+  - term: である (formal copula)
+    meaning: to be (formal/literary)
+    kind: antonym
+    nuance: This is the affirmative counterpart to ではない, used in equally formal contexts. ではない is the
+      negative of である.
+    grammar_point: である (formal copula)
+post_false_friends_writeup: |-
+  When encountering ではない, it is crucial to consider the context to avoid confusion with similar-sounding but functionally different expressions. The most direct contrast is じゃない, which serves the same grammatical purpose but is strictly casual. Therefore, when speaking or writing formally, ではない is the appropriate choice, while じゃない is reserved for informal conversations.
+
+  Furthermore, ではない often appears as part of larger constructions like ではないか (for rhetorical questions or strong suggestions) or ではないだろうか (for polite speculation). These phrases incorporate ではない but convey meanings beyond simple negation, adding layers of nuance like assertion, appeal for agreement, or uncertainty. Remember that である is the positive, formal copula, directly opposite to ではない.
+examples:
+  - english: This is not my pen.
+    japanese:
+      - これ は 私 の ペン {で は ない}。
+      - これ は 私 の ペン {で は あり ませ ん}。
+    english_literally: This as for me's pen is not.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 私 の ペン {じゃ ない}。
+        english: This isn't my pen.
+        hint: We are looking for a formal statement, not a casual one.
+    scene: A student found a pen and is returning it to the lost and found.
+    register: formal
+    setting: informative
+    nuance: The use of 「ではない」 indicates a formal or objective statement, suitable for a school announcement
+      or a public notice. Using 「ではありません」 adds a layer of politeness to this formal context.
+  - english: That is not an important issue.
+    japanese:
+      - それ は 重要 {で は ない} 問題 です。
+      - それ は 重要 な 問題 {で は あり ませ ん}。
+    english_literally: That as for important is not problem is.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 重要 {じゃ ない} 問題 です。
+        english: That isn't an important problem.
+        hint: We need a formal tone appropriate for a professional setting.
+    scene: A manager addressing their team about project priorities.
+    register: formal
+    setting: professional
+    nuance: 「重要ではない問題」 maintains a formal, objective tone, appropriate for a manager giving a business
+      update. Using 「重要な問題ではありません」 shifts the negation to the main predicate while maintaining formality
+      and politeness.
+  - english: This document is not confidential.
+    japanese:
+      - この 書類 は 機密 {で は ない}。
+      - この 書類 は 機密 {で は あり ませ ん}。
+    english_literally: This document as for confidential is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 は 機密 {じゃ ない}。
+        english: This document isn't confidential.
+        hint: We are looking for language suitable for written, official contexts.
+    scene: A legal assistant annotating a document.
+    register: formal
+    setting: professional
+    nuance: The plain form 「ではない」 (without です) is very common in written formal contexts like official
+      documents or academic papers, maintaining a factual, declarative tone. Adding 「ではありません」 makes it
+      suitable for formal spoken communication or polite written statements.
+  - english: His argument is not logical.
+    japanese:
+      - 彼 の 主張 は 論理 的 {で は ない}。
+      - 彼 の 主張 は 論理 的 {で は あり ませ ん}。
+    english_literally: His argument as for logical is not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 主張 は 論理 的 {じゃ ない}。
+        english: His argument isn't logical.
+        hint: The context demands a formal and objective assessment in written form.
+    scene: A peer reviewer writing comments on a research paper.
+    register: formal
+    setting: academic
+    nuance: The plain form 「ではない」 is used to deliver a factual and objective critique in an academic setting.
+      The polite 「ではありません」 is suitable for verbal feedback or a more deferential written style.
+  - english: That is not a lie, but the truth.
+    japanese:
+      - それ は 嘘 {で は ない}、真実 です。
+      - それ は 嘘 {で は あり ませ ん}、真実 です。
+    english_literally: That as for lie is not, truth is.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 嘘 {じゃ ない}、真実 です。
+        english: That isn't a lie, it's the truth.
+        hint: The speaker needs to present a strong, formal statement to contrast two ideas.
+    scene: A lawyer presenting evidence in court.
+    register: formal
+    setting: serious
+    nuance: Here, 「ではない」 is used to clearly and formally contrast 「嘘」 (lie) with 「真実」 (truth), fitting
+      for a legal setting where precision and formality are paramount. Using 「ではありません」 provides the same
+      strong contrast with added politeness, suitable for addressing a judge or jury.
+  - english: This is not an easy task.
+    japanese:
+      - これ は 簡単 {で は ない} 作業 です。
+      - これ は 簡単 な 作業 {で は あり ませ ん}。
+    english_literally: This as for easy is not task is.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 簡単 {じゃ ない} 作業 です。
+        english: This isn't an easy task.
+        hint: While professional, the tone is slightly less rigid than legal or academic.
+    scene: A team leader explaining the challenges of a new project to new hires.
+    register: semi-formal
+    setting: professional
+    nuance: Even in a semi-formal, professional context, 「ではない」 maintains a respectful and clear declarative
+      tone when explaining a situation. 「簡単な作業ではありません」 more explicitly negates the noun phrase, making
+      the overall sentence polite and formal.
+  - english: This concept is not easy to grasp.
+    japanese:
+      - この 概念 は 容易 {で は ない}。
+      - この 概念 は 容易 {で は あり ませ ん}。
+    english_literally: This concept as for easy is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 概念 は 容易 {じゃ ない}。
+        english: This concept isn't easy.
+        hint: For academic explanations, a formal and clear tone is preferred.
+    scene: A university professor explaining complex theories to students.
+    register: formal
+    setting: informative
+    nuance: 「容易ではない」 emphasizes the difficulty in a formal and objective manner, typical of academic discourse.
+      The polite 「容易ではありません」 is appropriate when directly addressing students in a formal lecture setting.
+  - english: It is not that the method is wrong.
+    japanese:
+      - その 方法 が 間違っ て いる {の で は ない}。
+      - その 方法 が 間違っ て いる {の で は あり ませ ん}。
+    english_literally: That method is wrong is not.
+    competing_grammar:
+      - competing_japanese:
+          - その 方法 が 間違っ て いる {わけ じゃ ない}。
+        english: It's not that the method is wrong.
+        hint: This is a casual expression for 'it's not that...'. We're looking for a formal clarification.
+    scene: A researcher clarifying a point in a Q&A session after a presentation.
+    register: formal
+    setting: academic
+    nuance: The use of 「のではない」 adds an explanatory nuance, common in formal clarifications or rebuttals.
+      It's often used to deny the existence of a particular state or fact, or to correct a misconception.
+      「のではありません」 conveys the same meaning with added politeness suitable for a public Q&A.
+  - english: His behavior is not appropriate.
+    japanese:
+      - 彼 の 行動 は 適切 {で は ない}。
+      - 彼 の 行動 は 適切 {で は あり ませ ん}。
+    english_literally: His behavior as for appropriate is not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 行動 は 適切 {じゃ ない}。
+        english: His behavior isn't appropriate.
+        hint: This is a formal assessment of conduct, requiring a polite and objective tone.
+    scene: A board member discussing an employee's conduct in a meeting.
+    register: formal
+    setting: professional
+    nuance: 「適切ではない」 provides a direct and formal judgment, suitable for a serious professional discussion.
+      The polite 「適切ではありません」 is used to soften the directness while maintaining formality, often in a
+      meeting where superiors or peers are present.
+  - english: Human life is not eternal.
+    japanese:
+      - 人間 の 命 は 永遠 {で は ない}。
+      - 人間 の 命 は 永遠 {で は あり ませ ん}。
+    english_literally: Human's life as for eternal is not.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 の 命 は 永遠 {じゃ ない}。
+        english: Human life isn't eternal.
+        hint: This is a universal truth stated in a formal, declarative way.
+    scene: A philosopher delivering a lecture on existentialism.
+    register: formal
+    setting: serious
+    nuance: Used for stating universal truths or facts in a formal and objective tone, adding gravity
+      to the statement. The polite form 「永遠ではありません」 is suitable for a formal lecture or presentation.
+  - english: This decision is not in the best interest of the citizens.
+    japanese:
+      - この 決定 は 市民 の 最善 の 利益 {で は ない}。
+      - この 決定 は 市民 の 最善 の 利益 {で は あり ませ ん}。
+    english_literally: This decision as for citizen's best interest is not.
+    competing_grammar:
+      - competing_japanese:
+          - この 決定 は 市民 の 最善 の 利益 {じゃ ない}。
+        english: This decision isn't in the citizens' best interest.
+        hint: Political discourse requires a high level of formality.
+    scene: A politician making a statement at a press conference.
+    register: formal
+    setting: professional
+    nuance: 「ではない」 is essential for formal public announcements or political statements, where a clear
+      and objective negation is required to convey a policy stance or official position. Using 「ではありません」
+      adds a layer of politeness and respect towards the audience, common in public speaking.
+post_example_writeup: The examples illustrate how ではない is consistently used to negate nouns and な-adjectives
+  in formal contexts. Notice the interchangeable use of its plain form 「ではない」 and its polite form 「ではありません」,
+  both of which maintain a formal tone, with 「ではありません」 adding an extra layer of politeness. While 「ではない」
+  can sometimes appear within a clause modifying a noun (e.g., 「重要ではない問題」), its fundamental role as a
+  formal negative copula remains consistent. It provides a clear, objective negation, distinguishing it
+  from casual alternatives.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ではない-formal-negative-copula

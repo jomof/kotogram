@@ -1,0 +1,538 @@
+grammar_point: とき (when)
+learn_before:
+  - 〜てくる (change toward present・movement toward speaker)
+  - ご (honorific prefix for Sino-Japanese words)
+  - それは (of course)
+  - たものだ (nostalgic recollection)
+  - や (non-exhaustive list)
+meaning: When, at the time of
+pronunciation:
+  katakana: トキ
+  romaji: toki
+formation:
+  Verb (plain form) + とき: Indicates the time when an action occurs or a state is present.
+  い-adjective + とき: Indicates the time when a quality is present.
+  な-adjective + な + とき: Indicates the time when a state or quality is present.
+  Noun + の + とき: Indicates the time or occasion of a noun-related event or state (e.g., 'at the time of
+    the meeting').
+jlpt: N4
+etymology: The word 「時 (とき)」 directly translates to "time" in Japanese. Its usage as a temporal conjunction
+  evolved from its core meaning, allowing it to specify the exact moment or period during which an action
+  or state takes place. It acts as a pivot, connecting a preceding clause that describes the condition
+  or event (what is happening or was happening) with a following clause that describes what occurs at
+  that time.
+writeup: |-
+  「とき」 (時 in kanji) functions as a dependent noun meaning "when" or "at the time of." It is used to describe actions or states that occur at specific times or during certain events. 「とき」 is notably versatile, applicable to both recurring events (habits, routines) and unique, single occurrences. For example, 「雨 が 降る **とき**」 (when it rains) describes a general condition, while 「あの 映画 を 見た **とき**」 (when I watched that movie) refers to a specific past event.
+
+  To use 「とき」, you attach it to the end of a clause. The form of the word preceding 「とき」 depends on its part of speech:
+  *   **Verbs**: Attach directly to the plain form (dictionary form, ta-form, or te-iru form). For instance, 「食べる **とき**」 (when eating) or 「食べた **とき**」 (when I ate).
+  *   **い-adjectives**: Attach directly to the adjective. For example, 「寒い **とき**」 (when it's cold).
+  *   **な-adjectives**: Add 「な」 before 「とき」. For example, 「静か な **とき**」 (when it's quiet).
+  *   **Nouns**: Add 「の」 before 「とき」. For example, 「学生 の **とき**」 (when I was a student).
+
+  The particle 「に」 can optionally follow 「とき」, especially when the following clause describes a single, specific action occurring at that time. For instance, 「駅 に 着く **とき** に 電話 し て ください。」 (Please call me when you arrive at the station.) While 「に」 is optional, its inclusion often emphasizes the specific moment of occurrence.
+false_friends:
+  - term: 際に
+    meaning: When, at the time of, in case of, on the occasion of
+    kind: similar expression
+    nuance: 「際に」 (sai ni) is more formal and often used in written or official contexts, whereas 「とき」
+      is more general and versatile for everyday speech and writing. 「際に」 often implies a more significant
+      or specific occasion than 「とき」 does, like 'on the occasion of a major event'.
+    grammar_point: 際に (at the time of・when・on the occasion of)
+  - term: と同時に
+    meaning: At the same time as, the instant, the moment, as well as
+    kind: similar expression
+    nuance: 「と同時に」 (to douji ni) indicates actions happening strictly simultaneously, emphasizing the
+      very moment two things occur together, whereas 「とき」 simply indicates one action happening during
+      a time frame or at a specific point in time without necessarily being precisely simultaneous down
+      to the instant. It can also mean 'as well as'.
+    grammar_point: と同時に (at the same time as)
+  - term: の間に
+    meaning: While, during, between, period
+    kind: similar expression
+    nuance: 「の間に」 (no aida ni) emphasizes the duration of an action or state within a specified period,
+      implying something happens *during* a continuous activity. In contrast, 「とき」 focuses on a specific
+      point in time or a broader timeframe when something occurs, without necessarily implying an ongoing
+      action throughout the entire period outlined by 'とき'.
+    grammar_point: あいだ (between・among・while・during)
+  - term: 中
+    meaning: During, while, throughout, in the process of
+    kind: similar expression
+    nuance: 「中」 (naka) indicates an ongoing state, process, or a duration. It typically suggests that
+      an action is continuous or occurs *throughout* a specified period. 「とき」, while also indicating time,
+      specifies a particular moment or event within time, or a broader period during which something generally
+      happens, but not necessarily continuously 'throughout'.
+    grammar_point: 中 (duration・entirety)
+  - term: 最中に
+    meaning: In the middle of
+    kind: similar expression
+    nuance: 「最中に」 (saichuu ni) indicates that something happens abruptly in the very middle of another
+      action, often implying an unexpected interruption or occurrence at the peak of an activity. 「とき」
+      is a more neutral temporal indicator, simply stating 'when' something occurs without the connotation
+      of interruption or being 'right in the middle' of something specific in an abrupt way.
+    grammar_point: 最中に (in the middle of)
+  - term: ながら
+    meaning: While doing ~ing, during, as
+    kind: similar expression
+    nuance: 「ながら」 (nagara) implies two actions are performed simultaneously by the same subject. It specifically
+      means 'while doing X, also doing Y.' 「とき」 simply indicates that one thing happens when another is
+      the case, without requiring strict simultaneity or a single subject performing both actions. It
+      focuses on the time frame, not the dual action.
+    grammar_point: '[Verb-stem]ながら・つつ (while doing)'
+  - term: ているあいだに
+    meaning: While, during the time that ~
+    kind: similar expression
+    nuance: 「ているあいだに」 (te iru aida ni) indicates a period of time during which something happens, often
+      implying a change or completion by the end of that period. It emphasizes the duration and that something
+      new occurs within that span. 「とき」 specifies a particular moment or occasion without necessarily
+      emphasizing the continuous duration or a change occurring within that duration.
+    grammar_point: あいだ (between・among・while・during)
+  - term: ているところだ
+    meaning: In the process of doing ~ right now/at this moment
+    kind: similar expression
+    nuance: 「ているところだ」 (te iru tokoro da) emphasizes the precise current action in progress, indicating
+      that something is happening at this very moment or is about to begin/just finished. 「とき」 simply
+      refers to the general time of an event or state, not necessarily the exact point of an action's
+      initiation or completion.
+    grammar_point: '[Verb-て]いるところだ (in the process of doing)'
+  - term: うちに
+    meaning: While, during, before (a change occurs)
+    kind: similar expression
+    nuance: 「うちに」 (uchi ni) suggests taking advantage of a limited time frame or opportunity, or that
+      a change occurs naturally during a period, often implying a sense of urgency or impermanence. 「とき」
+      is a more neutral indicator of time without these specific connotations of limitation or internal
+      change.
+    grammar_point: '[Verb-dictionary・い-Adj・な-Adj・Nounの]うちに (while a state continues)'
+  - term: '[Verb-dictionary]ことがある (there are times when)'
+    meaning: Sometimes, occasionally, there are times when
+    kind: similar expression
+    nuance: 「ことがある」 (koto ga aru) indicates an occasional occurrence or a possibility, describing something
+      that happens from time to time. While 「とき」 can describe general occurrences, it focuses on the time
+      itself, whereas 「ことがある」 focuses on the *frequency* or *existence* of such occurrences.
+    grammar_point: '[Verb-dictionary]ことがある (there are times when)'
+  - term: ごろ
+    meaning: Around, about
+    kind: similar expression
+    nuance: 「ごろ」 (goro) indicates an approximate time for a point in time or a period. It's used for estimations
+      like 'around 3 o'clock.' 「とき」, while flexible, implies a more specific moment or period relative
+      to an action or state, rather than just an approximate time.
+    grammar_point: ごろ (approximate time)
+  - term: 折には
+    meaning: On the occasion of; When the opportunity arises; When
+    kind: similar expression
+    nuance: 「折には」 (ori ni wa) is a more polite and somewhat formal expression used to indicate a specific
+      occasion or opportunity. It carries a nuance of a suitable or special moment. 「とき」 is a more general
+      and common term for time, without the added formality or sense of a special occasion.
+    grammar_point: 際に (at the time of・when・on the occasion of)
+post_false_friends_writeup: When selecting among expressions that convey 'when' or 'at the time of,' it
+  is crucial to consider the precise context and nuance. Factors such as the desired level of formality,
+  whether actions are simultaneous or sequential, the emphasis on a specific moment versus a duration,
+  and whether the event is sudden or expected, all influence the most appropriate choice. Careful attention
+  to these subtle differences will lead to precise and natural Japanese.
+examples:
+  - english: When I'm tired, I feel like eating something sweet, you know?
+    japanese:
+      - 疲れ て いる {とき} は、甘い もの が 食べ たく なる ね。
+      - 疲れ て いる {とき} は、甘い もの が 食べ たく なり ます ね。
+      - 疲れ て いる {とき} は、甘い もの が 食べ たく なる でしょう ね。
+    english_literally: When being tired, as for (that time), sweet things I feel like eating, huh?
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ {たら} 甘い もの が 食べ たく なる
+        english: If I get tired, I feel like eating something sweet.
+        hint: The scene emphasizes a recurring tendency rather than a strict conditional. 'とき' here suggests
+          'whenever' or 'on occasions when', which fits the habit better than '{たら}' which implies a direct
+          consequence.
+      - competing_japanese:
+          - 疲れ て いる {あいだ に} 甘い もの が 食べ たく なる ね。
+        english: While I'm tired, I feel like eating something sweet, you know?
+        hint: 「ている{あいだに}」 emphasizes a continuous duration and that something occurs within that time.
+          We're looking for a general condition or tendency that happens *when* one is tired, not necessarily
+          a process *during* the entire period of tiredness.
+      - competing_japanese:
+          - 疲れ て いる {うち に}、甘い もの が 食べ たく なる ね。
+        english: As I get tired, I start to feel like eating something sweet, you know?
+        hint: 「{うちに}」 often implies a change that occurs naturally during a period, or an action taken
+          before a condition changes. We're stating a recurring tendency, not a change that happens *during*
+          tiredness or an action to be taken.
+      - competing_japanese:
+          - 疲れ て いる {こと が ある} と、甘い もの が 食べ たく なる ね。
+        english: There are times when I'm tired, and I feel like eating something sweet, you know?
+        hint: 「{ことがある}」 emphasizes the *occasional occurrence* of something. 「とき」 here describes the general
+          condition that *leads* to the craving, not just that the craving sometimes happens.
+    scene: You are feeling tired and expressing your usual craving.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The casual ending particle 「ね」 at the end of the sentence is frequently used by female speakers
+      to seek agreement or share a personal observation in a gentle manner, fitting a reflective setting.
+      「〜なるね」 makes the statement sound conversational and relatable, common in casual speech among friends
+      or family, regardless of gender. However, this phrasing carries a slightly more feminine tone when
+      used to express a general, soft observation like this. A male speaker might use just 「〜なる」 or 「〜なるよ」
+      but 「〜なるね」 can also be used by men in intimate or very casual contexts.
+  - english: When I was a student, I could use my time more freely, couldn't I?
+    japanese:
+      - 学生 の {とき} は、もっと 自由 に 時間 を 使え た な。
+      - 学生 の {とき} は、もっと 自由 に 時間 を 使え まし た ね。
+      - 学生 の {とき} は、もっと 自由 に 時間 を 使え た わ ね。
+      - 学生 の {とき} は、もっと 自由 に 時間 を 使え た もの だ ね。
+    english_literally: Student's time, as for (that time), more freely time I could use, huh?
+    competing_grammar:
+      - competing_japanese:
+          - 学生 {だっ たら} もっと 自由 に 時間 を 使え た
+        english: If I were a student, I could use my time more freely.
+        hint: The scene describes a past state or period of life, which 'とき' is ideally suited for. '{だったら}'
+          implies a hypothetical or a past condition, not the specific duration of being a student.
+      - competing_japanese:
+          - 学生 の {際 に}、もっと 自由 に 時間 を 使え た な。
+        english: On the occasion of being a student, I could use my time more freely, couldn't I?
+        hint: 「{際に}」 is more formal and used for specific, often significant, occasions. Here, we're reflecting
+          on a general period of life, which 「とき」 describes more naturally.
+      - competing_japanese:
+          - 学生 の {間 に}、もっと 自由 に 時間 を 使え た な。
+        english: 「{の間に}」 emphasizes the duration of an action or state within a specified period. While
+          grammatically possible, 「とき」 focuses on the period *when* one was a student, implying a state
+          rather than an ongoing action throughout the entire period.
+        hint: 「{の間に}」 emphasizes the duration of an action or state within a specified period. While grammatically
+          possible, 「とき」 focuses on the period *when* one was a student, implying a state rather than
+          an ongoing action throughout the entire period.
+      - competing_japanese:
+          - 学生 の {うち に}、もっと 自由 に 時間 を 使え た な。
+        english: While I was a student, I could use my time more freely, couldn't I?
+        hint: 「{うちに}」 often implies taking advantage of a limited time frame or that a change occurs naturally
+          during a period. We are simply stating a fact about a past period, not implying urgency or a
+          change.
+      - competing_japanese:
+          - 学生 の {折 に は}、もっと 自由 に 時間 を 使え た な。
+        english: On the occasion of being a student, I could use my time more freely, couldn't I?
+        hint: 「{折には}」 is a more polite and formal expression for a specific occasion or opportunity. This
+          is a general reflection on a period of life, making 「とき」 more appropriate.
+    scene: An older man, reflecting on his youth, talks to a younger colleague about the past.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The particle 「な」 at the end of the sentence adds a sense of personal reflection or mild nostalgia,
+      commonly used by male speakers when reminiscing. The phrasing 「〜時間を使えたな」 suggests a wistful look
+      back at a time when things were different. This makes the sentence natural for an older male speaker
+      sharing his past experiences with a younger person, regardless of gender, but often heard when an
+      older male is talking to a younger woman.
+  - english: When it's cold, warm soup is the best, isn't it?
+    japanese:
+      - 寒い {とき} は、温かい スープ が 一番 だ ね。
+      - 寒い {とき} は、温かい スープ が 一番 です ね。
+      - 寒い {とき} は、温かい スープ が 一番 だ ぜ。
+    english_literally: Cold time, as for (that time), warm soup is the best, huh?
+    competing_grammar:
+      - competing_japanese:
+          - 寒けれ {ば} 温かい スープ が 一番 だ
+        english: If it's cold, warm soup is the best.
+        hint: The scene implies a general truth or preference that applies 'whenever' it's cold. 'とき'
+          with an 'い-adjective' expresses this condition naturally, whereas '{ければ}' (the conditional 'ba'
+          form) creates a more direct and often absolute conditional statement.
+      - competing_japanese:
+          - 寒い {あいだ に}、温かい スープ が 一番 だ ね。
+        english: While it's cold, warm soup is the best, isn't it?
+        hint: 「{あいだ に}」 emphasizes a continuous duration. While grammatically possible, 「とき」 is better
+          for a general condition that happens *when* it's cold, not necessarily continuously *during*
+          the cold period.
+      - competing_japanese:
+          - 寒い {うち に}、温かい スープ が 一番 だ ね。
+        english: While it's cold, warm soup is the best, isn't it?
+        hint: 「{うちに}」 often implies taking advantage of a limited time or a natural change. Here, we're
+          stating a general preference, not an action to be taken before the cold passes or a change occurring
+          due to the cold.
+      - competing_japanese:
+          - 寒い {こと が ある} と、甘い もの が 食べ たく なる ね。
+        english: When it's sometimes cold, warm soup is the best, isn't it?
+        hint: 「{ことがある}」 emphasizes the *occasional occurrence*. 「とき」 here describes the general condition
+          that makes warm soup the best, not just that it's sometimes cold.
+    scene: Two friends are discussing their favorite comfort foods on a chilly day.
+    register: casual
+    setting: friendly
+  - english: I'll focus and finish the report when it's quiet.
+    japanese:
+      - 静か な {とき} に 集中 し て、レポート を 仕上げ ます。
+      - 静か な {とき} に 集中 し て、レポート を 仕上げる よ。
+      - 静か な {とき} に 集中 し、レポート を 仕上げ ます。
+    english_literally: Quiet time, at (that time), concentrating, report I will finish.
+    competing_grammar:
+      - competing_japanese:
+          - 静か {なら} 集中 し て レポート を 仕上げ ます
+        english: If it's quiet, I'll focus and finish the report.
+        hint: The scene sets a specific condition for an action. 'とき' here indicates the specific time
+          or condition ('when it is quiet') for focusing on the report, which is less hypothetical than
+          '{なら}' (the conditional 'nara').
+      - competing_japanese:
+          - 静か な {際 に} 集中 し て、レポート を 仕上げ ます。
+        english: On the occasion of quietness, I'll focus and finish the report.
+        hint: 「{際に}」 is more formal and used for specific, often significant, occasions. This is a practical
+          plan, making 「とき」 more natural than the overly formal 「{際に}」.
+      - competing_japanese:
+          - 静か な {うち に} 集中 し て、レポート を 仕上げ ます。
+        english: While it's quiet, I'll focus and finish the report.
+        hint: 「{うちに}」 implies taking advantage of a limited time frame before a condition changes. While
+          similar, 「とき」 can simply state the condition for action without the implication of urgency or
+          limitation.
+      - competing_japanese:
+          - 静か な {折 に は} 集中 し て、レポート を 仕上げ ます。
+        english: On the occasion of quietness, I'll focus and finish the report.
+        hint: 「{折には}」 is a more polite and formal expression for a specific occasion or opportunity. This
+          is a practical plan, making 「とき」 more appropriate than the highly formal 「{折には}」.
+    scene: A student outlining their plan for completing an assignment.
+    register: semi-formal
+    setting: informative
+  - english: When I went abroad for the first time, I was really moved.
+    japanese:
+      - はじめて 海外 に 行っ た {とき} は、すごく 感動 し た よ。
+      - はじめて 海外 に 行っ た {とき} は、すごく 感動 し まし た。
+      - はじめて 海外 に 行っ た {とき} は、すごく 感動 し た わ。
+      - はじめて 海外 に 行っ た {とき} は、すごく 感動 し た。
+    english_literally: First time abroad went time, as for (that time), very moved I was, you know.
+    competing_grammar:
+      - competing_japanese:
+          - はじめて 海外 に 行っ {たら}、すごく 感動 し た よ
+        english: If I went abroad for the first time, I would be really moved.
+        hint: The scene describes a specific, singular past event and its emotional outcome. 'とき' precisely
+          pinpoints this past moment, differentiating it from '{たら}', which can imply a more general sequence
+          or a hypothetical outcome, although '{たら}' could also be used here depending on the subtle nuance
+          the speaker wants to convey.
+      - competing_japanese:
+          - はじめて 海外 に 行っ た {際 に}、すごく 感動 し た よ。
+        english: On the occasion of going abroad for the first time, I was really moved.
+        hint: 「{際に}」 is more formal and often used for specific, significant occasions. While this was
+          a significant event, 「とき」 is more commonly used for personal, casual recollections.
+      - competing_japanese:
+          - はじめて 海外 に 行っ た {と 同時 に}、すごく 感動 し た よ。
+        english: The moment I went abroad for the first time, I was really moved.
+        hint: 「{と同時に}」 implies strict simultaneity. Here, the feeling of being moved is a result of the
+          experience, not something that happened at the exact instant of departure.
+      - competing_japanese:
+          - はじめて 海外 に 行っ て いる {最中 に}、すごく 感動 し た よ。
+        english: Right in the middle of going abroad for the first time, I was really moved.
+        hint: 「{最中 に}」 implies an abrupt occurrence *in the very middle* of an action, often an interruption.
+          The sentence describes the feeling experienced *when* the trip happened, not something that
+          happened at an abrupt event during it.
+      - competing_japanese:
+          - はじめて 海外 に 行っ て いる {あいだ に}、すごく 感動 し た よ。
+        english: While going abroad for the first time, I was really moved.
+        hint: 「ている{あいだ に}」 emphasizes a period of duration during which something changes or completes.
+          While similar, 「とき」 here specifies the time *of* the event (the trip itself), not necessarily
+          what happened *during* the continuous act of traveling.
+      - competing_japanese:
+          - はじめて 海外 に 行っ た {折 に は}、すごく 感動 し た よ。
+        english: On the occasion of going abroad for the first time, I was really moved.
+        hint: 「{折には}」 is a more polite and formal expression for a specific occasion or opportunity. 「とき」
+          is more natural for a personal, casual recollection of a past event.
+      - competing_japanese:
+          - はじめて 海外 に 行く {と}、すごく 感動 し た よ。
+        english: When I first went abroad, I was really moved (as a result).
+        hint: 「〜る{と}」 implies a direct, often automatic, consequence or discovery. We're looking for a
+          simple temporal indicator of a specific past event.
+    scene: Someone recounting a memorable past travel experience to a friend.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    nuance: The sentence ending particle 「よ」 can be used by both male and female speakers for emphasis
+      or to convey information, fitting a casual storytelling setting. The speaker is sharing a personal,
+      impactful experience with a sense of conviction. While women can also use 「よ」, this particular combination
+      feels very natural for a male speaker sharing a strong feeling like 「感動した」 ('was moved').
+  - english: When you're in trouble, please consult me anytime, okay?
+    japanese:
+      - 困っ た {とき} は、いつ で も 私 に 相談 し て ください ね。
+      - 困っ た {とき} は、いつ で も 私 に 相談 し て ください。
+      - 困っ た {とき} は、いつ で も 俺 に 相談 し て ね。
+    english_literally: Troubled time, as for (that time), anytime me to please consult, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 困っ {たら}、いつ で も 私 に 相談 し て ください ね
+        english: If you get troubled, please consult me anytime, okay?
+        hint: The scene suggests a standing offer of support for future occasions. 'とき' effectively conveys
+          'whenever' or 'on any occasion that you are troubled,' providing a broader and more empathetic
+          sense of availability than the more direct conditional '{たら}'.
+      - competing_japanese:
+          - 困っ た {際 に}、いつ で も 私 に 相談 し て ください ね。
+        english: On the occasion of being troubled, please consult me anytime, okay?
+        hint: 「{際に}」 is more formal and used for specific, significant occasions. While offering help,
+          「とき」 feels more natural for a general, standing offer of support.
+      - competing_japanese:
+          - 困っ て いる {うち に}、いつ で も 私 に 相談 し て ください ね。
+        english: While you're troubled, please consult me anytime, okay?
+        hint: 「{うちに}」 implies taking action before a condition changes or runs out. We're offering a general,
+          standing invitation, not an action to be taken urgently during the period of trouble.
+      - competing_japanese:
+          - 困る {こと が ある} と、いつ で も 私 に 相談 し て ください ね。
+        english: When you sometimes get troubled, please consult me anytime, okay?
+        hint: 「{ことがある}」 emphasizes the *occasional occurrence*. 「とき」 here describes the general condition
+          that prompts seeking advice, not just that trouble sometimes happens.
+      - competing_japanese:
+          - 困っ た {折 に は}、いつ で も 私 に 相談 し て ください ね。
+        english: On the occasion of being troubled, please consult me anytime, okay?
+        hint: 「{折には}」 is a more polite and formal expression for a specific occasion or opportunity. This
+          is a general, standing offer, making 「とき」 more appropriate.
+      - competing_japanese:
+          - 困る {と}、いつ で も 私 に 相談 し て ください ね。
+        english: When you get troubled, please consult me anytime, okay?
+        hint: 「〜る{と}」 indicates a direct, often automatic, consequence that regularly follows a condition.
+          We're looking for a general condition or occasion for seeking advice.
+    scene: A kind senior colleague offering help to a junior colleague.
+    register: teineigo (polite)
+    setting: supportive
+    listener_gender: group
+    nuance: The use of the polite imperative 「相談してください」 combined with the soft ending particle 「ね」 shows
+      both respect and concern. This phrasing is common in a workplace setting where a senior offers help
+      to a junior. While gender-neutral, the supportive tone makes it appropriate for addressing a group
+      of colleagues or a general audience implicitly, emphasizing an inclusive offer of assistance.
+  - english: During the entrance ceremony, I was so nervous my legs were shaking.
+    japanese:
+      - 入学 式 の {とき}、緊張 し て 足 が 震え た よ。
+      - 入学 式 の {とき}、緊張 し て 足 が 震え まし た。
+      - 入学 式 の {とき}、緊張 し て 足 が 震え た ぜ。
+      - 入学 式 の {とき}、緊張 し て 足 が 震え た。
+    english_literally: Entrance ceremony's time, nervous became and legs shook, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 入学 式 {だっ たら} 緊張 し て 足 が 震え た
+        english: If it were the entrance ceremony, I would have been nervous and my legs would have shaken.
+        hint: The scene refers to a specific, unique event in the past. 'とき' precisely indicates the moment
+          of the entrance ceremony as the context for the nervousness, making it clear it was a past,
+          real experience rather than a hypothetical 'if it were the entrance ceremony'.
+      - competing_japanese:
+          - 入学 式 の {際 に}、緊張 し て 足 が 震え た よ。
+        english: On the occasion of the entrance ceremony, I was so nervous my legs were shaking.
+        hint: 「{際に}」 is more formal and typically used for specific, significant occasions. While an entrance
+          ceremony is significant, 「とき」 is more commonly used for personal, casual recollections.
+      - competing_japanese:
+          - 入学 式 の {間 に}、緊張 し て 足 が 震え た よ。
+        english: 「{の間に}」 emphasizes duration within which something occurs. While grammatically similar,
+          「とき」 simply denotes the time of the event, whereas 「{の間に}」 highlights the continuous period
+          during which the nervousness was felt.
+        hint: 「{の間に}」 emphasizes duration within which something occurs. While grammatically similar,
+          「とき」 simply denotes the time of the event, whereas 「{の間に}」 highlights the continuous period
+          during which the nervousness was felt.
+      - competing_japanese:
+          - 入学 式 の {最中 に}、緊張 し て 足 が 震え た よ。
+        english: Right in the middle of the entrance ceremony, I was so nervous my legs were shaking.
+        hint: 「{最中 に}」 implies an abrupt occurrence *in the very middle* of an action, often an interruption.
+          Here, the nervousness was felt throughout or when the ceremony happened, not necessarily as
+          an abrupt event in the middle.
+      - competing_japanese:
+          - 入学 式 {ごろ}、緊張 し て 足 が 震え た よ。
+        english: Around the time of the entrance ceremony, I was so nervous my legs were shaking.
+        hint: 「{ごろ}」 indicates an approximate time. 「とき」 refers to the specific event itself as the temporal
+          context, not just an approximate period around it.
+      - competing_japanese:
+          - 入学 式 の {折 に は}、緊張 し て 足 が 震え た よ。
+        english: On the occasion of the entrance ceremony, I was so nervous my legs were shaking.
+        hint: 「{折には}」 is a more polite and formal expression for a specific occasion or opportunity. 「とき」
+          is more natural for a personal, casual recollection of a past event.
+    scene: A woman reminiscing about her university entrance ceremony with a friend.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: The sentence ending particle 「よ」 can be used by both male and female speakers for emphasis
+      or to convey information. In this context, combined with the personal recollection of nervousness
+      and physical reaction (「足が震えた」), it feels natural for a female speaker to share such a vivid personal
+      experience in a casual setting. The detail about one's legs shaking due to nervousness is a very
+      human and relatable detail often shared in close conversations, suitable for reflecting on past
+      significant moments.
+  - english: When you attend the meeting, please bring the documents.
+    japanese:
+      - 会議 に 出席 する {とき} は、資料 を 持っ て き て ください。
+      - 会議 に 出席 する {とき} は、資料 を 持っ て き て。
+      - 会議 に ご 出席 の {とき} は、資料 を ご 持参 ください。
+    english_literally: Meeting to attend time, as for (that time), documents please bring.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 に 出席 し {たら}、資料 を 持っ て き て ください。
+        english: If you attend the meeting, please bring the documents.
+        hint: 「とき」 indicates the time or condition under which something happens generally or is expected
+          to happen. 「{たら}」 introduces a conditional statement, implying a consequence that follows if
+          the condition is met.
+      - competing_japanese:
+          - 会議 に 出席 する {なら}、資料 を 持っ て き て ください。
+        english: If you are going to attend the meeting, please bring the documents.
+        hint: 「{なら}」 often implies a condition based on a known or assumed fact, or a recommendation based
+          on someone's intention. 「とき」 simply states 'when' something occurs.
+      - competing_japanese:
+          - 会議 に 出席 する {際 に}、資料 を 持っ て き て ください。
+        english: On the occasion of attending the meeting, please bring the documents.
+        hint: 「{際に}」 is more formal and typically used for specific, significant occasions or official
+          procedures. 「とき」 is a more general and versatile term for 'when'.
+    scene: A manager instructing an employee about an upcoming meeting.
+    register: formal
+    setting: instructional
+  - english: When I was a child, I used to play outside all day.
+    japanese:
+      - 子供 の {とき} は、一 日中 外 で 遊ん で い まし た。
+      - 子供 の {とき} は、一 日中 外 で 遊ん で い た。
+      - 子供 の {とき} は、一 日中 外 で 遊ん で い た よ。
+      - 子供 の {とき} は、一 日中 外 で 遊ん で い た わ。
+    english_literally: Child's time, as for (that time), all day outside played.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の {時 に は}、一 日中 外 で 遊ん で い まし た。
+        english: At the time of being a child, I used to play outside all day.
+        hint: While 「{時 に は}」 is grammatically correct and similar, 「とき」 (without 「に」) is more common
+          when referring to a general period like 'when I was a child', emphasizing the duration rather
+          than a precise point.
+      - competing_japanese:
+          - 子供 の {頃 は}、一 日中 外 で 遊ん で い まし た。
+        english: In my childhood, I used to play outside all day.
+        hint: 「{頃} (goro)」 indicates an approximate period, often used for childhood or similar life stages.
+          While similar, 「とき」 can refer to a more defined period, often linking it to a specific state
+          (being a child).
+      - competing_japanese:
+          - 子供 だっ た {頃 に}、一 日中 外 で 遊ん で い まし た。
+        english: In the period when I was a child, I used to play outside all day.
+        hint: This phrase explicitly uses the past tense of 'child' and the approximate period '{頃}'.
+          While grammatically fine, 「子供のとき」 is a simpler and more direct way to express 'when I was a
+          child'.
+    scene: A parent reminiscing with their child about their own childhood.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    nuance: The use of 「〜ていました」 indicates a continuous or habitual action in the past, perfectly suited
+      for describing childhood activities. 「子供のとき」 is a very common and natural way for anyone to refer
+      to their childhood. The casual tone and focus on sharing a personal memory are common among parents
+      speaking to their children. There is no gender-specific language in this phrasing.
+  - english: When I feel stressed, I listen to classical music.
+    japanese:
+      - ストレス を 感じる {とき} は、クラシック 音楽 を 聴き ます。
+      - ストレス を 感じる {とき} は、クラシック 音楽 を 聴く。
+      - ストレス を 感じる {とき} は、クラシック 音楽 を 聴く ね。
+      - ストレス を 感じる {とき} は、クラシック 音楽 を 聴く よ。
+      - ストレス を 感じる {とき} は、クラシック 音楽 を 聴く わ。
+    english_literally: Stress feel time, as for (that time), classical music listen.
+    competing_grammar:
+      - competing_japanese:
+          - ストレス を 感じる {と}、クラシック 音楽 を 聴き ます。
+        english: When I feel stressed, I listen to classical music (as a regular outcome).
+        hint: 「〜る{と}」 often implies a more direct and habitual cause-and-effect relationship or a natural
+          consequence. While similar, 「とき」 is more generally 'when' a condition is met, without necessarily
+          implying an automatic outcome as strongly.
+      - competing_japanese:
+          - ストレス を 感じ た {時 は}、クラシック 音楽 を 聴き ます。
+        english: When I felt stressed, I listen to classical music.
+        hint: Using the past tense 「感じた{時 は}」 would refer to a specific past instance of feeling stressed.
+          Here, we are talking about a general, recurring habit that happens whenever stress is felt.
+      - competing_japanese:
+          - ストレス を 感じ {たら}、クラシック 音楽 を 聴き ます。
+        english: If I feel stressed, I listen to classical music.
+        hint: 「〜る{たら}」 sets up a conditional statement where the action follows the condition. 「とき」 indicates
+          a more general 'whenever' or 'on occasions when' that specific feeling occurs.
+    scene: Someone sharing their coping mechanism for stress in a casual conversation.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    nuance: The use of 「〜ます」 makes the sentence polite, suitable for sharing personal habits in a semi-formal
+      or friendly context. The phrase 「ストレスを感じる」 is a common and neutral way to express feeling stressed.
+      While anyone might share this, a male speaker might use this direct and informative tone when explaining
+      a personal routine or preference to a colleague or friend.
+post_example_writeup: Observe the nuances present in each example, particularly how the chosen setting
+  and speaker/listener dynamics influence the appropriate register. 「とき」 is remarkably flexible, allowing
+  for specific past events, general habits, and conditional future situations depending on the preceding
+  clause's tense and context.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/とき

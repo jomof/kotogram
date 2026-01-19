@@ -1,0 +1,330 @@
+grammar_point: ごろ (approximate time)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[しました] (polite past)
+  - Verb[よう] (volitional)
+  - '[Verb-stem]はじめる (to start doing)'
+  - い-Adjective[み] (abstract quality)
+  - ずっと (continuous state or action)
+  - だろう・でしょう (probably・right?)
+  - で (by time)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - なん・Counter・か (some・several・a few)
+  - には (in order to)
+  - 側 (side or flank)
+  - 毎・まい (every・per)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: Around, About (time)
+pronunciation:
+  katakana: ゴロ
+  romaji: goro
+formation:
+  Noun (time) + {ごろ}: Indicates an approximate time.
+jlpt: N4
+etymology: The origin of 「ごろ」 is debated, but one theory suggests it comes from 「頃 (koro)」, meaning "time"
+  or "about". 「ごろ」 softens the exactness of a time, making it approximate, often appearing as a colloquial
+  pronunciation of 「ころ」.
+writeup: "「ごろ」, often used interchangeably with 「ころ」 (especially in its kanji form 「頃」), functions to\
+  \ indicate an approximate time or period. It is primarily affixed to nouns that denote time, such as\
+  \ specific hours or broader timeframes like seasons or life stages. \n\nThis grammar point is frequently\
+  \ compared with 「くらい」 (or 「ぐらい」), as both express approximation. However, there are crucial distinctions:\n\
+  \n*   **Scope of Use**: While 「ごろ」 is exclusively used for approximations of time, 「くらい」 has a wider\
+  \ application, covering approximations of quantities, distances, or degrees, in addition to time.\n\
+  *   **Precision and Span**: 「ごろ」 often conveys a broader, less precise span of time. For example, 「子供の{ごろ}」\
+  \ (around my childhood) suggests the entire period of one's youth. In contrast, when used with time,\
+  \ 「くらい」 can imply a more focused or \"up to the extent of\" approximation, like 「３時{くらい}」 (around 3\
+  \ o'clock, suggesting a point close to 3). Think of 「ごろ」 as indicating 'within the span of' a given\
+  \ time, while 「くらい」 is closer to 'at the point of' that time, or 'up to the extent of' it.\n*   **Interchangeability**:\
+  \ For very specific time points (e.g., 3 o'clock), 「ごろ」 and 「くらい」 can often be used interchangeably\
+  \ without a significant difference in meaning. However, for broader or less defined periods (like \"\
+  childhood\" or \"the Edo period\"), 「ごろ」 is the more natural and appropriate choice.\n\nIt is important\
+  \ to note that 「ごろ」 is not used for approximating distances or quantities. For instance, you would say\
+  \ 「２メートル{くらい}」 (around 2 meters), not 「２メートル{ごろ}」."
+false_friends:
+  - term: くらい
+    meaning: About, approximately
+    kind: similar expression
+    nuance: Unlike `ごろ` which is primarily for time, `くらい` can also express approximate quantities, distances,
+      or degrees. For specific time points, they can often be interchangeable.
+    grammar_point: くらい (approximate quantity or degree)
+  - term: とき
+    meaning: When, at the time of
+    kind: often confused with
+    nuance: While `とき` indicates a specific point or period in time, `ごろ` expresses a less precise approximation
+      around that time or period, emphasizing a broader span.
+    grammar_point: とき (when)
+post_false_friends_writeup: While both `ごろ` and `くらい` indicate approximation, `ごろ` is exclusively used
+  for approximating time, often suggesting a broader period or span. In contrast, `くらい` can approximate
+  time, but also extends to quantities, distances, or degrees. Therefore, careful consideration of the
+  context is crucial when choosing between them. Additionally, `とき` refers to a definite moment or period
+  in time, lacking the approximate nuance conveyed by `ごろ`.
+examples:
+  - english: The meeting is scheduled to end around 3 PM.
+    japanese:
+      - 会議 は 午後 三 時 {ごろ} に 終わる 予定 です。
+      - 会議 午後 三 時 {ごろ} 終わる 予定 だ よ。
+      - 会議 は 午後 三 時 {ごろ} 終わる と 思い ます。
+    english_literally: Meeting as for afternoon three o'clock around finish scheduled is.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 午後 三 時 {くらい} に 終わる 予定 です。
+        english: The meeting is scheduled to end around 3 PM.
+        hint: 「くらい」 is also used for approximations of time and can be interchangeable with 「ごろ」 for specific
+          time points, but 「ごろ」 can imply a broader window around the time.
+      - competing_japanese:
+          - 会議 は 午後 三 時 {に} 終わる 予定 です。
+        english: The meeting is scheduled to end at 3 PM.
+        hint: This states a precise time. We're looking for a grammar point that indicates an approximate
+          time.
+    scene: A project manager is giving a general estimate for when a long meeting will conclude.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The use of 「ごろ」 indicates a general time frame, not a precise minute, suitable for a professional
+      update where flexibility is implied. The formal 「予定です」 reinforces the professional setting and polite
+      register.
+    etymology: The use of 'ごろ' here is common for professional estimates, reflecting an cultural understanding
+      that precise timings can be difficult to maintain in dynamic environments.
+  - english: Around my childhood, I often played on the hill behind my house.
+    japanese:
+      - 子供 の {ごろ} は よく 裏山 で 遊ん で い まし た。
+      - 子供 の {ごろ} は よく 裏山 で 遊ん で た ん だ。
+    english_literally: Child's around as for often backyard mountain at playing was.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の {くらい} は よく 裏山 で 遊ん で い まし た。
+        english: During my childhood, I often played on the hill behind my house (incorrect usage).
+        hint: 「くらい」 is generally not used for broad, undefined periods like "childhood". We're looking
+          for a grammar point that expresses an approximate period.
+      - competing_japanese:
+          - 子供 の {とき} は よく 裏山 で 遊ん で い まし た。
+        english: When I was a child, I often played on the hill behind my house.
+        hint: 「とき」 can refer to a period, but 「ごろ」 emphasizes the entire span or general age more broadly.
+          We're looking for a grammar point that conveys a broader, less precise approximation of a period.
+    scene: An older woman is warmly reminiscing about her carefree days as a child to a younger family
+      member.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    speaker_age: older
+    nuance: The phrase 「子供の{ごろ}」 highlights a broad period (childhood) rather than a specific moment.
+      The use of 「遊んでいました」, while polite, is a common and gentle way for older speakers to reminisce about
+      past long-term activities. This fits the casual register for a family interaction.
+    etymology: The combination of '子供' (child) and 'ごろ' to refer to one's youth is a classic usage, showing
+      how 'ごろ' captures extended, less defined periods of time.
+  - english: By this time next month, I'll probably have moved into my new house.
+    japanese:
+      - 来月 の 今 {ごろ} に は 新しい 家 に 引っ越し て いる でしょう。
+      - 来月 の 今 {ごろ}、新しい 家 に 引っ越し て いる と 思う。
+      - 来月 の 今 {ごろ}、新しい 家 に 引っ越し てる だろう な。
+    english_literally: Next month's now around as for new house to moved probably will be.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 の 今 {くらい} に は 新しい 家 に 引っ越し て いる でしょう。
+        english: By this time next month, I'll probably have moved into my new house.
+        hint: While 「くらい」 can also approximate time, 「ごろ」 is often preferred for phrases like "this time
+          next [period]" to indicate a general period.
+      - competing_japanese:
+          - 来月 の 今 の {とき} に は 新しい 家 に 引っ越し て いる でしょう。
+        english: At the time of this time next month, I'll probably have moved into my new house (grammatically
+          awkward).
+        hint: 「とき」 refers to a specific point or occasion. We need a word that implies an approximate
+          time or period.
+    scene: A man is excitedly telling his friend about his upcoming move, predicting the timeline.
+    register: casual
+    setting: optimistic
+    speaker_gender: male
+    nuance: 「今{ごろ}」 is used here to indicate an approximate point in the near future, conveying a hopeful
+      prediction. The casual ending 「だろうな」 is commonly used by male speakers to express certainty or conjecture
+      in an informal context, fitting for a friendly conversation about personal plans.
+    etymology: The phrase '今ごろ' (now/this time around) emphasizes the approximate nature of the current
+      or near-future moment, fitting well with predictions.
+  - english: Around what time can dinner be ready?
+    japanese:
+      - 夕飯 は 何 時 {ごろ} に 準備 でき ます か。
+      - 夕飯 は 何 時 {ごろ} 準備 でき ます でしょう か。
+      - 夕飯 何 時 {ごろ} に なる？
+    english_literally: Dinner as for what time around prepared can be?
+    competing_grammar:
+      - competing_japanese:
+          - 夕飯 は 何 時 {くらい} に 準備 でき ます か。
+        english: Around what time can dinner be ready?
+        hint: 「くらい」 is also used for approximate times and is often interchangeable with 「ごろ」 for specific
+          time inquiries.
+      - competing_japanese:
+          - 夕飯 は 何 時 の {とき} に 準備 でき ます か。
+        english: When is dinner ready (grammatically incorrect phrasing).
+        hint: 「とき」 indicates a specific point or event, not an approximation for "what time". We're looking
+          for a word to ask for an estimated time.
+      - competing_japanese:
+          - 夕飯 は 何 時 {に} 準備 でき ます か。
+        english: At what time can dinner be ready?
+        hint: This asks for a precise time. We're looking for a grammar point that asks for an approximate
+          time.
+    scene: A father asks his teenage son, who is cooking, for an estimated meal time.
+    register: casual
+    setting: interrogative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The informal tone of the question and the use of 「何時{ごろ}」 are typical for a parent asking
+      a child for a rough time estimate. The casual phrase 「何時{ごろ}になる？」 is commonly used by older male
+      speakers when addressing younger family members informally, fitting this family dynamic.
+    etymology: Using '何時ごろ' is a common and polite way to inquire about approximate timing, reflecting
+      a cultural emphasis on not demanding exact schedules.
+  - english: Yesterday, I went to sleep around 2 AM.
+    japanese:
+      - 昨日 は 深夜 二 時 {ごろ} に 寝 まし た。
+      - 昨日 は 深夜 二 時 {ごろ} 寝 た よ。
+    english_literally: Yesterday as for late night two o'clock around slept.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 深夜 二 時 {くらい} に 寝 まし た。
+        english: Yesterday, I went to sleep around 2 AM.
+        hint: 「くらい」 is also used for approximate times and is often interchangeable with 「ごろ」 for specific
+          time points.
+      - competing_japanese:
+          - 昨日 は 深夜 二 時 の {とき} に 寝 まし た。
+        english: When it was 2 AM, I went to sleep (grammatically incorrect phrasing).
+        hint: 「とき」 indicates a specific point or event, not an approximation for "around a time".
+    scene: A young woman, yawning, tells her colleague why she looks tired.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: 「深夜二時{ごろ}」 suggests a general time, not an exact moment, which is common when recalling a
+      late bedtime. The polite casual ending 「寝たよ」 is a common, friendly way for female speakers to share
+      information with colleagues in a casual setting.
+    etymology: The phrase '深夜' (late night/midnight) combined with 'ごろ' is often used when an exact timestamp
+      isn't known or necessary, highlighting the relaxed nature of the approximation.
+  - english: I've been listening to music ever since around high school.
+    japanese:
+      - 高校 生 の {ごろ} から ずっと 音楽 を 聴い て い ます。
+      - 高校 生 の {ごろ} から ずっと 音楽 聴い てる ん だ。
+    english_literally: High school student's around from always music listening am.
+    competing_grammar:
+      - competing_japanese:
+          - 高校 生 の {くらい} から ずっと 音楽 を 聴い て い ます。
+        english: I've been listening to music ever since high school (incorrect usage).
+        hint: 「くらい」 is generally not used for broad, undefined periods like "high school student years".
+          We're looking for a grammar point that expresses an approximate period.
+      - competing_japanese:
+          - 高校 生 の {とき} から ずっと 音楽 を 聴い て い ます。
+        english: I've been listening to music ever since I was a high school student.
+        hint: 「とき」 can refer to a period, but 「ごろ」 emphasizes the entire span or general age. We're looking
+          for a grammar point that conveys a broader, less precise approximation of a period.
+    scene: A college student shares their lifelong passion for music with a new friend.
+    register: casual
+    setting: storytelling
+    speaker_age: younger
+    nuance: 「高校生 の {ごろ}」 refers to the general period of high school, indicating a continuous action over
+      that time. The casual 「聴いてるんだ」 is characteristic of younger speakers in informal conversation, emphasizing
+      an ongoing state.
+    etymology: Similar to '子供のごろ', using 'ごろ' with a period like '高校生' (high school student) implies the
+      entire span of that life stage, not a specific moment it began.
+  - english: The cherry blossoms usually bloom around late March.
+    japanese:
+      - 桜 は 例年 三 月 末 {ごろ} に 咲き ます。
+      - 桜 は 三 月 末 {ごろ} に 咲く よ。
+    english_literally: Cherry blossoms as for annually March end around bloom.
+    competing_grammar:
+      - competing_japanese:
+          - 桜 は 例年 三 月 末 {くらい} に 咲き ます。
+        english: The cherry blossoms usually bloom around late March.
+        hint: While 「くらい」 can also approximate time, 「ごろ」 is often preferred for broader timeframes or
+          seasons that can vary slightly year to year.
+      - competing_japanese:
+          - 桜 は 例年 三 月 末 {に} 咲き ます。
+        english: The cherry blossoms usually bloom at the end of March.
+        hint: This states a precise time. We're looking for a grammar point that indicates an approximate
+          time or period.
+    scene: A tour guide explains the best time to see cherry blossoms to a group of tourists.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「三月末{ごろ}」 is used to indicate an approximate time of year, common for seasonal events that
+      inherently vary slightly. The polite 「咲きます」 is appropriate for a guide providing general information.
+    etymology: Using 'ごろ' with seasonal markers like '三月末' (end of March) is natural as the exact timing
+      of natural phenomena is approximate and varies by year.
+  - english: This temple was built around the Heian period.
+    japanese:
+      - この お 寺 は 平安 時代 の {ごろ} に 建て られ まし た。
+      - この お 寺 は 平安 時代 の {ごろ} に 建て られ た そう です。
+    english_literally: This temple as for Heian period's around built was.
+    competing_grammar:
+      - competing_japanese:
+          - この お 寺 は 平安 時代 {くらい} に 建て られ まし た。
+        english: This temple was built around the Heian period.
+        hint: While 「くらい」 can be used for approximate historical periods, 「ごろ」 is often preferred as it
+          emphasizes the general span of that era.
+      - competing_japanese:
+          - この お 寺 は 平安 時代 {に} 建て られ まし た。
+        english: This temple was built in the Heian period.
+        hint: This implies exact knowledge of the construction date. We're looking for a grammar point
+          that indicates an approximate historical period.
+    scene: A historian is giving a lecture about ancient Japanese architecture, acknowledging the lack
+      of precise dates.
+    register: formal
+    setting: academic
+    nuance: 「平安時代 の {ごろ}」 is used to indicate a broad historical period, signifying approximation. The
+      passive voice 「建てられました」 is formal and appropriate for academic discourse, where precise dates might
+      not be available.
+    etymology: When discussing historical eras, 'ごろ' signifies that the event occurred broadly within
+      that period, rather than at a precise moment, reflecting the nature of historical dating.
+  - english: I usually finish work around 6 PM.
+    japanese:
+      - いつ も 仕事 は 六 時 {ごろ} に 終わり ます。
+      - いつ も 仕事 は 六 時 {ごろ} に 終わる よ。
+    english_literally: Always work as for six o'clock around finish.
+    competing_grammar:
+      - competing_japanese:
+          - いつ も 仕事 は 六 時 {くらい} に 終わり ます。
+        english: I usually finish work around 6 PM.
+        hint: 「くらい」 is also used for approximate times and can be interchangeable with 「ごろ」 for specific
+          time points, but 「ごろ」 often implies a consistent, recurring approximation in routines.
+      - competing_japanese:
+          - いつ も 仕事 は 六 時 {に} 終わり ます。
+        english: This implies a strict schedule. We're looking for a grammar point that indicates an approximate
+          time, allowing for slight variations.
+        hint: This implies a strict schedule. We're looking for a grammar point that indicates an approximate
+          time, allowing for slight variations.
+    scene: A young professional is talking about their daily schedule to a friend over coffee.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: 「六時{ごろ}」 is common for describing regular approximate times in daily life, allowing for slight
+      variations. The casual 「終わるよ」 is natural for a friendly conversation among peers, reflecting a typical
+      male speech pattern.
+    etymology: Using 'ごろ' for routine activities like '六時ごろ' (around 6 o'clock) acknowledges the common
+      slight deviations from a fixed schedule, emphasizing a flexible approximation.
+  - english: This cat seems to be around three years old.
+    japanese:
+      - この 猫 は 三 歳 {ごろ} だ と 思い ます。
+      - この 猫 は 三 歳 {ごろ} か な。
+    english_literally: This cat as for three years old around is think.
+    competing_grammar:
+      - competing_japanese:
+          - この 猫 は 三 歳 {くらい} だ と 思い ます。
+        english: This cat seems to be around three years old.
+        hint: 「くらい」 can also be used for approximate ages, but 「ごろ」 is quite common for estimating the
+          age of living beings or objects.
+      - competing_japanese:
+          - この 猫 は 三 歳 {です}。
+        english: This cat is three years old.
+        hint: This states a precise age. We're looking for a grammar point that indicates an estimated
+          or approximate age.
+    scene: Two friends are looking at a stray cat at an animal shelter, trying to guess its age based
+      on its appearance.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: 「三歳{ごろ}」 expresses an estimated age, common when an exact number isn't known, implying a gentle
+      approximation. The polite casual 「だと思います」 or the more speculative 「かな」 is a common way for female
+      speakers to express an opinion or guess in a casual setting.
+    etymology: The application of 'ごろ' to age, as in '三歳ごろ' (around three years old), extends its meaning
+      of approximation beyond strict temporal points to estimations of duration or stage of life.
+post_example_writeup: As you can see from these examples, 「ごろ」 is a versatile suffix used exclusively
+  for time to indicate approximation, whether it's a specific time point, a broader period, a routine,
+  or an estimated age. Its primary function is to soften the precision of the stated time, allowing for
+  flexibility and generalization. Pay attention to the subtle differences with 「くらい」 and 「とき」 to ensure
+  you choose the most natural expression in Japanese.

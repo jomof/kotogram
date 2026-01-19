@@ -1,0 +1,457 @@
+grammar_point: '[Verb-stem]だす (to suddenly start doing)'
+learn_before:
+  - Verb[ました] (polite past)
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - ずっと (continuous state or action)
+  - まさか (no way)
+  - もっと (degree)
+meaning: To suddenly begin; to start doing
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: だす
+    rarity: common
+    meaning: to suddenly begin
+  - conjugation-type: non-past polite (～ます)
+    form: だします
+    rarity: common
+    meaning: to suddenly begin (polite)
+  - conjugation-type: negative plain (～ない)
+    form: ださない
+    rarity: common
+    meaning: not to suddenly begin
+  - conjugation-type: negative non-past polite (～ません)
+    form: だしません
+    rarity: common
+    meaning: not to suddenly begin (polite)
+  - conjugation-type: past plain (～た)
+    form: だした
+    rarity: common
+    meaning: suddenly began
+  - conjugation-type: past polite (～ました)
+    form: だしました
+    rarity: common
+    meaning: suddenly began (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: ださなかった
+    rarity: common
+    meaning: did not suddenly begin
+  - conjugation-type: negative past polite (～ませんでした)
+    form: だしませんでした
+    rarity: common
+    meaning: did not suddenly begin (polite)
+  - conjugation-type: te-form (～て)
+    form: だして
+    rarity: common
+    meaning: suddenly beginning (te-form)
+  - conjugation-type: conditional (～ば)
+    form: だせば
+    rarity: uncommon
+    meaning: if suddenly begins
+  - conjugation-type: conditional (～たら)
+    form: だしたら
+    rarity: uncommon
+    meaning: if suddenly began
+  - conjugation-type: volitional (～よう)
+    form: だそう
+    rarity: common
+    meaning: let's suddenly begin
+  - conjugation-type: volitional polite (～ましょう)
+    form: だしましょう
+    rarity: common
+    meaning: let's suddenly begin (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: だせ
+    rarity: uncommon
+    meaning: suddenly begin!
+  - conjugation-type: imperative polite (～なさい)
+    form: だしなさい
+    rarity: common
+    meaning: please suddenly begin
+  - conjugation-type: potential (～られる/～える)
+    form: だせる
+    rarity: common
+    meaning: can suddenly begin
+  - conjugation-type: passive (～られる/～かれる)
+    form: だされる
+    rarity: common
+    meaning: to be suddenly begun
+  - conjugation-type: causative (～させる)
+    form: ださせる
+    rarity: uncommon
+    meaning: to make/let suddenly begin
+pronunciation:
+  katakana: ダス
+  romaji: dasu
+formation:
+  '[Verb stem] + だす': Indicates the sudden or unexpected start of an action.
+jlpt: N4
+etymology: The grammar point 「だす」 originates from the verb 「出す」 (dasu), which means "to take out" or "to
+  put out." The nuance of something emerging or becoming apparent is extended to indicate the sudden commencement
+  of an action.
+writeup: 'The grammar point 「だす」, written as 出す in kanji, is a verb that''s added to the ます-stem (連用形)
+  of another verb. It indicates the sudden or unexpected start of an action. Think of it as "to burst
+  into (A)" or "to suddenly do (A)." This suffix allows for the expression of an action beginning abruptly
+  or spontaneously. To form this construction, attach 「だす」 to the ます-stem of the verb. For example, 走り
+  (hashiri, run) + 「だす」 becomes 走り{だす} (hashiri dasu) "to suddenly start running." **Important Considerations**:
+  Unlike 「はじめる」 (hajimeru), which also means "to begin", 「だす」 often carries a nuance of being unintentional
+  or something the subject can''t control. 「はじめる」, on the other hand, implies a direct intention to start
+  something. Consider the context carefully to choose between 「だす」 and 「はじめる」. 「だす」 is suited for spontaneous
+  actions.'
+false_friends:
+  - term: おわる
+    meaning: To finish, to end
+    kind: antonym
+    nuance: Unlike 「だす」, which signifies the commencement of an action, 「おわる」 indicates its completion.
+    grammar_point: '[Verb-stem]おわる (to finish doing)'
+  - term: はじめる
+    meaning: To start; To begin to
+    kind: synonym
+    nuance: While both indicate starting an action, 「だす」 implies suddenness, while 「はじめる」 suggests a more
+      intentional start.
+    grammar_point: '[Verb-stem]はじめる (to start doing)'
+  - term: いきなり
+    meaning: For no reason, suddenly, all of a sudden
+    kind: similar expression
+    nuance: 「いきなり」 is an adverb describing the manner of an action, while 「だす」 is a verb indicating the
+      beginning of an action. 「いきなり」 can modify a verb, but it doesn't attach to it like 「だす」.
+    grammar_point: いきなり (suddenly・without warning)
+  - term: かけ
+    meaning: Half-, not yet finished, about to, begin to
+    kind: similar expression
+    nuance: 「かけ」 indicates an action is in progress or about to begin, while 「だす」 focuses on the moment
+      the action starts.
+    grammar_point: かける・かけ (in process・incomplete・on the verge)
+post_false_friends_writeup: To avoid confusion, remember that 「だす」 highlights the abrupt or unexpected
+  commencement of an action, while 「はじめる」 implies a more intentional start. 「いきなり」 describes the manner
+  of the action, and 「かけ」 indicates an action is in progress. Consider the specific nuance you want to
+  convey when choosing the right word.
+examples:
+  - english: The baby suddenly started crying.
+    japanese:
+      - 赤ちゃん は 泣き {だし た}。
+      - 赤ちゃん が 泣き {だし た}。
+      - 赤ちゃん が 急 に 泣き {だし た}。
+      - 赤ちゃん は 泣き {だし まし た}。
+    english_literally: The baby burst into crying.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん は 泣き {始め た}。
+        english: The baby began to cry.
+        hint: 「はじめる」implies a more intentional start, while 「だす」 suggests an abrupt, unexpected beginning.
+      - competing_japanese:
+          - 赤ちゃん が 突然 泣き {始め た}。
+        english: The baby suddenly began to cry.
+        hint: While 「突然」 emphasizes suddenness, 「はじめる」 still implies a more deliberate beginning compared
+          to 「だす」.
+      - competing_japanese:
+          - 赤ちゃん が 泣き 出し た {ところ だ}。
+        english: The baby has just started crying.
+        hint: 「ところだ」 emphasizes that the action has just commenced. We are looking for the general sudden
+          onset of crying.
+    scene: A mother is explaining to her friend why she is tired.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The speaker, a mother, uses 「泣きだした」 to describe the baby's action, emphasizing the spontaneity
+      and abruptness of the crying. Given it's a mother talking about her baby, the casual register is
+      appropriate.
+  - english: It started to rain.
+    japanese:
+      - 雨 が 降り {だし た}。
+      - 急 に 雨 が 降り {だし た}。
+      - 雨 が 降り {だし まし た}。
+    english_literally: Rain started to fall out.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降り {始め た}。
+        english: It began to rain.
+        hint: 「はじめる」implies a more intentional beginning, while 「だす」 highlights the sudden and often unexpected
+          onset of rain.
+      - competing_japanese:
+          - 雨 が 降っ {て き た}。
+        english: It has come to rain.
+        hint: 「～てくる」 indicates a change or movement towards the speaker/present state. While it can imply
+          a start, it lacks the specific 'sudden burst' nuance of 「だす」.
+      - competing_japanese:
+          - 雨 が 降り 出し た {ところ だ}。
+        english: It has just started raining.
+        hint: 「ところだ」 indicates an action has just taken place. We are looking for the general sudden onset
+          of rain.
+    scene: Two friends are walking down the street and it starts to rain.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: The speaker simply states a fact about the world, that it has just started raining. 「降りだした」
+      highlights the sudden onset of rain, which is typically an unexpected event. It would be equally
+      acceptable to say 「雨が降り始めました」, but 「だす」 adds the nuance of suddenness.
+  - english: I was surprised when he suddenly stood up.
+    japanese:
+      - 彼 が 立ち {だし た} 時、私 は びっくり し た わ。
+      - 彼 が 立ち {だし まし た} 時、私 は びっくり し まし た わ。
+      - 彼 が 突然 立ち {だし た} 時、私 は びっくり し た わ。
+      - 彼 が 立ち {だし た} とき、私 は 驚い た わ。
+    english_literally: When he suddenly stood up, I was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 立ち {始め た} 時、私 は 驚い た わ。
+        english: I was surprised when he began to stand up.
+        hint: The scene focuses on the element of surprise, which is best conveyed by the unexpectedness
+          implied by 「だす」, rather than a simple beginning.
+      - competing_japanese:
+          - 彼 が 突然 立ち上がっ た 時、私 は びっくり し た わ。
+        english: When he suddenly stood up, I was surprised.
+        hint: 「立ち上がる」 means to stand up. While '突然' means suddenly, 'だす' directly attaches to the verb
+          stem to convey the sudden *onset* of the action itself, giving a stronger sense of a sudden
+          burst.
+      - competing_japanese:
+          - 彼 が 立ち上がり {始め た} 時、私 は びっくり し た わ。
+        english: When he began to stand up, I was surprised.
+        hint: 「立ち上がる」 means to stand up. Using 「はじめる」 emphasizes the beginning of the action, but not
+          necessarily the *sudden burst* into that action like 「だす」.
+    scene: A woman is telling a story to a male friend about something unexpected that happened.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker, a woman, expresses her surprise using 「びっくりしたわ」, where 「わ」 is a feminine sentence-ending
+      particle that adds a soft, emotional, or assertive nuance. 「立ちだした」 emphasizes the unexpectedness
+      of his action, contributing to her surprise.
+  - english: Once she starts talking, she keeps talking.
+    japanese:
+      - 彼女 は 話し {だす と}、ずっと 話し て いる。
+      - 彼女 は 話し {だす} と、もう 止まら ない。
+      - 彼女 は 話し {だす} と、ずっと 話し 続ける。
+    english_literally: When she starts to speak out, she keeps talking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 話し {始める} と、止まら ない。
+        english: Once she starts talking, she doesn't stop.
+        hint: The scene portrays a characteristic of the person that is often involuntary or difficult
+          to stop once it starts, aligning with the uncontrollable nuance of 「だす」.
+      - competing_japanese:
+          - 彼女 は 話し {始める} と、ずっと 話し て いる。
+        english: Once she begins talking, she keeps talking.
+        hint: 「はじめる」 can also mean 'to begin', but 「だす」 specifically carries the nuance of a sudden, often
+          uncontrollable, burst into action. This makes it more suitable for describing a continuous,
+          characteristic behavior.
+      - competing_japanese:
+          - 彼女 は 話す {と}、ずっと 話し て いる。
+        english: When she talks, she keeps talking.
+        hint: This is a simple conditional. While grammatically correct, it lacks the nuance of the *onset*
+          of talking that 「だす」 provides, which is crucial for conveying the idea that once she starts,
+          there's no stopping.
+    scene: Describing someone who is very talkative.
+    register: casual
+    setting: humorous
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「話しだす」 in this context implies that once she begins speaking, it's an almost uncontrollable
+      flow, which is characteristic of the 「だす」 nuance. The 「～と」 conditional emphasizes this inevitable
+      outcome. The phrase 「ずっと話している」 clearly conveys that she continues talking without stopping, reinforcing
+      the idea of an uncontrollable flow.
+  - english: Does anyone have any questions before the teacher starts explaining?
+    japanese:
+      - 先生 が 説明 し {だす} 前 に、質問 が ある 人 は い ます か。
+      - 先生 が 説明 し {だす} 前 に、ご 質問 は あり ます か。
+      - 先生 が 説明 し {ださ れる} 前 に、質問 が ある 方 は いらっしゃい ます か。
+      - 先生 が 説明 し {だす} 前 に、何 か 質問 は あり ます か。
+    english_literally: Before the teacher starts to explain out, is there anyone with questions?
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 説明 し {始める} 前 に、質問 が ある 人 は い ます か。
+        english: Does anyone have any questions before the teacher begins explaining?
+        hint: The scene sets up a formal, instructional context where the teacher is about to initiate
+          an explanation, making 「だす」 suitable for marking the abrupt beginning of the lecture.
+      - competing_japanese:
+          - 先生 が 説明 {する} 前 に、質問 が ある 人 は い ます か。
+        english: This is a general way to say 'when the teacher explains'. 「だす」 specifically implies the
+          sudden onset of explanation, often used when marking a clear point where something is about
+          to commence abruptly.
+        hint: This is a general way to say 'when the teacher explains'. 「だす」 specifically implies the
+          sudden onset of explanation, often used when marking a clear point where something is about
+          to commence abruptly.
+      - competing_japanese:
+          - 先生 が 説明 を {始める} 前 に、質問 が ある 人 は い ます か。
+        english: Does anyone have any questions before the teacher begins the explanation?
+        hint: This uses the transitive verb 「始める」 to mean 'to start the explanation'. While similar, 「だす」
+          is typically used as a suffix to another verb stem, emphasizing the *bursting into* action.
+    scene: A teacher asking the students if they have any questions before beginning the lecture.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: The teacher uses a polite and formal tone appropriate for addressing a class. 「説明しだす」 here
+      indicates the point at which the explanation will spontaneously begin, perhaps after a brief pause
+      or preparation, rather than a planned start (which `はじめる` might imply).
+  - english: Because he started crying, I talked to him.
+    japanese:
+      - 彼 が 泣き {だし た} の で、私 は 話しかけ た。
+      - 彼 が 泣き {だし た} から、私 は 話しかけ た。
+      - 彼 が 泣き {だし た} の で、私 は 話しかけ まし た。
+      - 彼 が 突然 泣き {だし た} の で、私 は 話しかけ た。
+    english_literally: Because he burst into crying, I spoke to him.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 泣き {始め た} の で、私 は 慰め た。
+        english: Because he began to cry, I comforted him.
+        hint: The scene implies a sudden onset of distress that prompted immediate comfort, emphasizing
+          the involuntary and abrupt nature of the crying best captured by 「だす」.
+      - competing_japanese:
+          - 彼 が 突然 泣い た の で、私 は 話しかけ た。
+        english: Because he suddenly cried, I talked to him.
+        hint: 「突然」 emphasizes suddenness but applies to the simple action of crying. 「泣きだした」 highlights
+          the sudden *onset* or *burst* into crying, suggesting a stronger, more immediate reaction.
+      - competing_japanese:
+          - 彼 が 泣き {始め た} の で、私 は 話しかけ た。
+        english: Because he began to cry, I talked to him.
+        hint: 「はじめる」 indicates a general start. 「だす」 conveys a more abrupt and often uncontrollable start,
+          making it more impactful when describing an emotional outburst like crying.
+    scene: Describing a situation where someone was upset and needed comfort, leading to a supportive
+      interaction.
+    register: casual
+    setting: sympathetic
+    conjugation: past plain (～た)
+    nuance: 「泣きだした」 emphasizes the sudden onset of crying, highlighting that it was an immediate and perhaps
+      unexpected outburst that prompted the speaker to respond by talking to him. The sympathetic setting
+      aligns with this.
+  - english: When the song began, everyone became quiet.
+    japanese:
+      - 歌 が 始まり {だし た} 時、みんな 静か に なっ た。
+      - 歌 が 始まり {だす と}、みんな 静か に なっ た。
+      - 歌 が 始まり {だし まし た} 時、みんな 静か に なり まし た。
+      - 歌 が 始まり {だし た} 瞬間、みんな 静か に なっ た。
+    english_literally: When the song started out, everyone became quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 演奏 が 始まっ た 瞬間、観客 は 静まり返っ た。
+        english: The moment the performance started, the audience fell silent.
+        hint: The scene implies a sudden, perhaps abrupt, commencement of the song, which is best captured
+          by 「だす」 to highlight the immediate reaction from the listeners.
+      - competing_japanese:
+          - 歌 が 始まっ た 時、みんな 静か に なっ た。
+        english: When the song began, everyone became quiet.
+        hint: This is a simple way to say 'when the song started'. 「始まりだした」 specifically emphasizes the
+          sudden or abrupt *commencement* of the song, suggesting it 'burst into' existence.
+      - competing_japanese:
+          - 歌 が 流れ {始め た} 時、みんな 静か に なっ た。
+        english: When the song started playing, everyone became quiet.
+        hint: 「流れ始める」 means 'to start flowing/playing'. While it indicates a beginning, it lacks the specific
+          nuance of a sudden, perhaps unexpected, *burst* into sound that 「始まりだした」 conveys.
+    scene: Describing the start of a musical event.
+    register: semi-formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: 「始まりだした」 here emphasizes the unexpected or abrupt commencement of the song, rather than a
+      smoothly planned start, which caused everyone to immediately become quiet 「静かになった」. This change
+      from noise to quiet highlights the sudden onset of the music.
+  - english: Um, is it okay if I start to speak?
+    japanese:
+      - あの う、言い {だし て も} いい です か？
+      - あの う、言い {だし て} も よろしい です か？
+      - あの う、申し上げ {だし て} も よろしい でしょう か？
+      - あの う、ちょっと 話し {だし て} も いい です か？
+    english_literally: Um, is it okay even if I start to speak out?
+    competing_grammar:
+      - competing_japanese:
+          - あの う、言い {始め て} も いい です か？
+        english: Um, is it okay if I begin to speak?
+        hint: The scene highlights the employee's hesitation and the potentially sensitive nature of what
+          they are about to say. 「だす」 emphasizes the suddenness of bringing up the topic, making the request
+          for permission more appropriate.
+      - competing_japanese:
+          - あの う、話し {て も いい} です か？
+        english: Um, is it okay if I talk?
+        hint: This is a general way to ask permission to speak. 「言いだしても」 specifically suggests asking
+          permission to *start* saying something, implying it was unexpected that they would *start* saying
+          it at all.
+      - competing_japanese:
+          - あの う、発言 し {て も いい} です か？
+        english: Um, is it okay if I make a statement?
+        hint: 「発言する」 is a more formal verb for 'to speak' or 'to make a statement'. While appropriate
+          for a professional setting, it doesn't carry the nuance of 'suddenly starting to speak' like
+          「言いだす」.
+    scene: An employee is speaking to his boss.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker uses 「言いだしてもいいですか？」, combining 「だす」 with the 「～てもいいですか」 pattern, to create a deferential
+      tone suitable for speaking to a superior. This construction implies a sudden or perhaps difficult
+      topic is about to be broached. The speaker's hesitancy is further conveyed by 「あのう」. This is an
+      example of respectful language (謙譲語) as the speaker humbles their own action.
+  - english: I never thought you'd start saying something like that.
+    japanese:
+      - 君 が そんな こと 言い {だす} なんて、思わ なかっ た。
+      - 君 が そんな こと を 言い {だす} なんて、思わ なかっ た。
+      - 君 が そんな こと 言い {だす} と は 思わ なかっ た。
+      - まさ か 君 が そんな こと 言い {だす} と は 思わ なかっ た。
+    english_literally: That you would start to say out such a thing, I didn't think.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が そんな こと 言い {始める} なんて、思わ なかっ た。
+        english: I never thought you'd begin saying something like that.
+        hint: The scene emphasizes the speaker's disbelief at the other person's sudden and unexpected
+          statement, which is precisely the nuance conveyed by 「だす」.
+      - competing_japanese:
+          - 君 が そんな こと 言う {なんて}、思わ なかっ た。
+        english: I never thought you'd say something like that.
+        hint: This is a general expression of surprise about someone's words. 「言いだす」 specifically emphasizes
+          the *sudden onset* of saying something, implying it was unexpected that they would *start* saying
+          it at all.
+      - competing_japanese:
+          - 君 が 突然 そんな こと を 言い {始める} なんて、思わ なかっ た。
+        english: While '突然' emphasizes suddenness, 'はじめる' still implies a more deliberate or intentional
+          beginning, whereas 'だす' suggests a more spontaneous and often unexpected burst into speech.
+        hint: While '突然' emphasizes suddenness, 'はじめる' still implies a more deliberate or intentional
+          beginning, whereas 'だす' suggests a more spontaneous and often unexpected burst into speech.
+    scene: Expressing surprise or disbelief at someone's statement.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「言いだす」 here emphasizes the unexpected and abrupt nature of the other person's statement. The
+      phrase 「思わなかった」 directly underscores the speaker's surprise and disbelief at the listener's uncharacteristic
+      remark. The use of 「君」 by a male speaker to a female listener in a casual context can imply a close
+      relationship or a slightly condescending tone, depending on intonation.
+  - english: Hey, why don't you start depending on me more?
+    japanese:
+      - ねえ、もっと 僕 に 甘え {だし て} よ。
+      - ねえ、もっと 僕 に 甘え {だし て} くれ よ。
+      - ねえ、もっと 僕 に 甘え {だせ} よ。
+      - ねえ、もっと 僕 に 甘え {だし て} ほしい な。
+    english_literally: Hey, please start to depend out on me more.
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、もっと 僕 に 甘え {始め て} よ。
+        english: Hey, why don't you begin depending on me more?
+        hint: The scene suggests a desire for a sudden, spontaneous shift in the relationship towards
+          greater intimacy, which is captured by the abruptness implied by 「だす」.
+      - competing_japanese:
+          - ねえ、もっと 僕 に 甘え {て} よ。
+        english: Hey, depend on me more.
+        hint: This simply asks the person to depend more. 「甘えだして」 specifically suggests the *initiation*
+          of this behavior, implying a desire for a new phase where they start to be more dependent.
+      - competing_japanese:
+          - ねえ、もっと 僕 に 急 に 甘え {始め て} よ。
+        english: While '急に' adds suddenness, 'はじめる' implies a more intentional start to the act of depending,
+          whereas 'だす' conveys a more spontaneous and emotional *burst* into that behavior.
+        hint: While '急に' adds suddenness, 'はじめる' implies a more intentional start to the act of depending,
+          whereas 'だす' conveys a more spontaneous and emotional *burst* into that behavior.
+    scene: A man speaking to a woman he likes.
+    register: casual
+    setting: flirty
+    conjugation: te-form (～て)
+    speaker_gender: male
+    listener_gender: female
+    nuance: Using 「甘えだして」 in the te-form followed by 「よ」 softens the request, making it more suggestive
+      and playful, suitable for a flirty setting. 「だす」 here encourages the sudden or spontaneous onset
+      of relying on the speaker. The use of 「ねえ」 indicates a casual, intimate tone, and 「僕」 is a common
+      male first-person pronoun.
+    etymology: 「甘える」 (amaeru) has an etymological link to depending on someone's sweetness (甘い, amai).
+post_example_writeup: Remember that while both 「だす」 and 「はじめる」 indicate the start of an action, 「だす」 often
+  implies suddenness or lack of control, whereas 「はじめる」 indicates a more intentional beginning. Pay close
+  attention to the context to choose the most appropriate expression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/だす

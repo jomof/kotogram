@@ -1,0 +1,574 @@
+grammar_point: '[Verb-た]ほうがいい (it is better to do)'
+learn_before:
+  - '[Verb-ない]ほうがいい (it is better not to do)'
+  - たらいい・といい (hope・suggestion)
+  - てたまらない (uncontrollably feels)
+  - といい (hope・suggestion)
+  - もっと (degree)
+meaning: It's better to; You should
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: たほうがいい
+    rarity: common
+    meaning: It's better to; You should
+  - conjugation-type: past plain (～た)
+    form: たほうがよかった
+    rarity: common
+    meaning: It would have been better to
+  - conjugation-type: negative plain (～ない)
+    form: たほうがよくない
+    rarity: less common
+    meaning: It's not good to
+  - conjugation-type: negative past plain (～なかった)
+    form: たほうがよくなかった
+    rarity: less common
+    meaning: It wouldn't have been good to
+pronunciation:
+  katakana: タホウガイイ
+  romaji: ta hou ga ii
+formation:
+  Verb - Past Tense + ほうがいい: Suggests that it would be better to do something.
+  Verb - Past Tense + ほうがいい + よ: Adding emphasis to the advice.
+  Verb - Past Tense + ほう が いい + です: Polite version of the expression.
+jlpt: N5
+etymology: The grammar point 「たほうがいい」 is composed of 「た」 (past tense form of a verb), 「方 (ほう)」 (direction,
+  way), 「が」 (particle), and 「いい」 (good). Literally, it means "the way you did [verb] is good," implying
+  that doing that action is preferable.
+writeup: The 「たほうがいい」 construction is used to give advice or make a suggestion. It carries the nuance
+  that doing something is better than not doing it, and often implies that there may be negative consequences
+  if the advice is not followed. It's a fairly direct expression, so it's important to consider your relationship
+  with the listener. Using 「たほうがいい」 can come across as presumptuous or even rude if used carelessly with
+  someone of higher status or someone you don't know well. In such situations, consider using more polite
+  expressions such as 「方が良い (ほうがよい) 」 or indirect suggestions.
+false_friends:
+  - term: ないほうがいい
+    meaning: It'd be better not to; You shouldn't
+    kind: antonym
+    nuance: Unlike 「たほうがいい」, which advises for an action, 「ないほうがいい」 suggests that it's better to avoid
+      doing something.
+    grammar_point: '[Verb-ない]ほうがいい (it is better not to do)'
+  - term: べきではない
+    meaning: Should not; Must not; Ought not to
+    kind: antonym
+    nuance: While both indicate avoidance, 「べきではない」 implies a stronger sense of moral obligation or duty
+      not to do something, whereas 「ないほうがいい」 is a more direct and often softer recommendation.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: べき
+    meaning: Should; Ought to
+    kind: synonym
+    nuance: 「べき」 implies a stronger sense of obligation or duty compared to the more advisory tone of
+      「たほうがいい」.
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: ばいい
+    meaning: Can; Should; It'd be good if
+    kind: synonym
+    nuance: 「ばいい」 offers a milder suggestion or expresses what would be ideal, without the implied directness
+      or consequence of 「たほうがいい」.
+    grammar_point: ばいい (if... then it's good)
+  - term: ことだ
+    meaning: Should; Ought to
+    kind: synonym
+    nuance: 「ことだ」 often expresses a general rule or strong recommendation based on logic or common sense,
+      making it more impersonal and objective than the direct advice of 「たほうがいい」.
+    grammar_point: ことだ (should・ought to)
+  - term: たらいい・といい
+    meaning: It would be nice if; It would be good if; Should; I hope
+    kind: synonym
+    nuance: 「たらいい・といい」 often expresses hope or a wish for a desirable outcome, or a gentle suggestion,
+      lacking the direct advisory tone of 「たほうがいい」.
+    grammar_point: たらいい・といい (hope・suggestion)
+  - term: より〜のほうが
+    meaning: To be more ~ than ~
+    kind: similar expression
+    nuance: While 「たほうがいい」 points to a single preferred action, 「より～のほうが」 is used for direct comparison,
+      stating that one option is superior to another, without necessarily being advisory.
+    grammar_point: '[Y]より[X]のほうが (comparison, X is more than Y)'
+  - term: たらどう
+    meaning: Why don't you...?; What if you did...?
+    kind: similar expression
+    nuance: 「たらどう」 is a softer, more indirect suggestion or invitation, often used as a polite inquiry.
+      It's less direct than 「たほうがいい」 which gives firm advice.
+    grammar_point: たらどう (how about)
+  - term: ～ていいですか
+    meaning: May I?; Is it okay to?
+    kind: often confused with
+    nuance: 「～ていいですか」 is used to ask for permission to do something, whereas 「たほうがいいですか」 is used to ask
+      for advice on what action would be most beneficial or appropriate.
+    grammar_point: <suggest>:Verb[て]+もいい (permission)
+  - term: ばよかった
+    meaning: I wish I had done; It would have been better if I had done
+    kind: similar expression
+    nuance: 「～ばよかった」 expresses regret about something that was not done in the past. In contrast, 「たほうがよかった」
+      emphasizes that a different action *would have been better* in the past.
+    grammar_point: ばよかった (should have)
+  - term: ないほうがよかった
+    meaning: It would have been better not to (do Verb)
+    kind: similar expression
+    nuance: This form uses the negative verb, focusing on the benefit of *not* doing something in the
+      past. While 「たほうがよかった」 is about a better action, 「ないほうがよかった」 is about a better non-action.
+    grammar_point: <suggest>:ないほうがよかった (would have been better not to)
+  - term: なければならない
+    meaning: Must do; Have to do
+    kind: similar expression
+    nuance: 「たほうがいい」 suggests a beneficial action or advice, while 「なければならない」 expresses a strong, unavoidable
+      obligation or necessity.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+post_false_friends_writeup: 「たほうがいい」 is used for giving advice with an implied consequence if not followed.
+  「ないほうがいい」 is the opposite, advising against an action. 「べきです」 and 「べき」 convey a stronger sense of obligation
+  or duty, while 「べきではない」 expresses a strong prohibition. Similarly, 「なければならない」 states an unavoidable
+  necessity. In contrast, 「ばいい」 and 「たらいい・といい」 offer milder suggestions or express a wish for a favorable
+  outcome, without the directness or potential implied consequence of 「たほうがいい」. 「より～のほうが」 compares options,
+  and 「たらどう」 is an indirect suggestion. Be mindful of the level of politeness needed; 「たほうがいい」 is more
+  casual than 「ほうが良い」, which is more formal.
+examples:
+  - english: If you're tired, you should rest a little.
+    japanese:
+      - もし 疲れ て いる なら、少し {休ん だ ほう が いい} です よ。
+      - もし 疲れ て いる なら、少し {休ん だ ほう が いい} よ。
+      - もし 疲れ て いる なら、少し {休ん だ ほう が いい}。
+    english_literally: If tired, it is better to rest a little, you know.
+    competing_grammar:
+      - competing_japanese:
+          - もし 疲れ て いる なら、少し {休ん で ください}。
+        english: If you're tired, please rest a little.
+        hint: 「～てください」 is a direct command, whereas 「たほうがいい」 is advice or a suggestion. We're looking
+          for a supportive, advisory tone rather than a commanding one.
+      - competing_japanese:
+          - もし 疲れ て いる なら、少し {休む と いい} です よ。
+        english: If you're tired, it would be good to rest a little.
+        hint: 「～といい」 offers a softer suggestion or expresses a general wish. We're looking for a specific
+          recommendation based on a present condition, aligning better with the more direct advisory nature
+          of 「たほうがいい」.
+      - competing_japanese:
+          - もし 疲れ て いる なら、少し {休む べき です} よ。
+        english: If you're tired, you should definitely rest a little.
+        hint: 「べき」 implies a stronger sense of obligation or duty. We're looking for advice that is less
+          obligatory.
+      - competing_japanese:
+          - もし 疲れ て いる なら、少し {休め ば いい} ぞ。
+        english: If you're tired, you can just rest a little!
+        hint: 「ばいい」 can sound more like an allowance or a less emphatic suggestion. We're looking for
+          more direct and firm advice.
+      - competing_japanese:
+          - もし 疲れ て いる なら、少し {休ん だら どう} です か。
+        english: If you're tired, why don't you rest a little?
+        hint: 「たらどう」 is an indirect question/suggestion. We're looking for a more direct piece of advice.
+    scene: A colleague advises another on taking a break.
+    register: teineigo (polite)
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+  - english: Don't just play games, you should probably study soon.
+    japanese:
+      - ゲーム ばかり し て い ない で、そろそろ {勉強 し た ほう が いい} ぞ。
+      - ゲーム ばかり し て い ない で、そろそろ {勉強 し た ほう が いい} よ。
+      - ゲーム ばかり し て い ない で、そろそろ {勉強 し た ほう が いい}。
+    english_literally: Not just playing games, soon it is better to study, you know!
+    competing_grammar:
+      - competing_japanese:
+          - ゲーム ばかり し て い ない で、そろそろ {勉強 し なさい}。
+        english: Stop just playing games, study soon!
+        hint: 「～しなさい」 is a strong, imperative command. We're looking for advice with an implied benefit,
+          fitting parental guidance more naturally than a strict order.
+      - competing_japanese:
+          - ゲーム ばかり し て い ない で、そろそろ {勉強 す べき だ}。
+        english: Stop just playing games, you should study soon.
+        hint: 「～すべきだ」 implies a strong obligation or duty. We're looking for practical, beneficial advice,
+          not a moral imperative.
+      - competing_japanese:
+          - ゲーム ばかり し て い ない で、そろそろ {勉強 すれ ば いい} ぞ。
+        english: Stop just playing games, you can just study soon!
+        hint: 「ばいい」 can sound more like an allowance or a less emphatic suggestion. We're looking for
+          more direct and firm advice.
+      - competing_japanese:
+          - ゲーム ばかり し て い ない で、そろそろ {勉強 する こと だ}。
+        english: Stop just playing games, studying is the thing to do soon.
+        hint: 「ことだ」 expresses a general rule or objective truth. We're looking for personal advice.
+      - competing_japanese:
+          - ゲーム ばかり し て い ない で、そろそろ {勉強 する と いい} ぞ。
+        english: Stop just playing games, it would be good to study soon!
+        hint: 「～といい」 is a softer suggestion or a wish for a good outcome. We're looking for more direct
+          advice.
+    scene: A father telling his son to study.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The masculine sentence-ending particle 「ぞ」 adds a sense of firm, direct advice or warning,
+      commonly used by a male figure like a father speaking to his son. The casual form of the entire
+      sentence fits the family setting.
+    etymology: The casual masculine particle 「ぞ」 (zo) is used here to add emphasis and a sense of directness,
+      common in informal warnings or strong advice between males, particularly from an older individual
+      to a younger one. The word 「ちゃんと」 (chanto) signifies doing something properly or thoroughly, reinforcing
+      the seriousness of the advice regarding preparation.
+  - english: That new cafe is really cute, so you should definitely check it out!
+    japanese:
+      - あの 新しい カフェ、本当 に 可愛い から {行っ て み た ほう が いい} よ。
+      - あの 新しい カフェ、本当 に 可愛い から {行っ て み た ほう が いい}。
+    english_literally: That new cafe, because it's really cute, it is better to try going, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 新しい カフェ、本当 に 可愛い から {行く と いい} よ。
+        english: That new cafe is really cute, so it would be good to check it out!
+        hint: While 「～といい」 can offer a suggestion, 「たほうがいい」 provides a stronger, more personal recommendation,
+          implying a direct benefit or positive experience. We're looking for enthusiastic, confident
+          advice from one friend to another.
+      - competing_japanese:
+          - あの 新しい カフェ、本当 に 可愛い から {行っ て みる べき だ よ}。
+        english: That new cafe is really cute, so you should check it out!
+        hint: 「べき」 implies a stronger sense of obligation or duty. We're looking for a recommendation
+          based on personal preference and enjoyment, not obligation.
+      - competing_japanese:
+          - あの 新しい カフェ、本当 に 可愛い から {行っ て みれ ば いい} よ。
+        english: That new cafe is really cute, so you can just check it out!
+        hint: 「ばいい」 can imply a more passive or less enthusiastic suggestion. We're looking for a strong,
+          enthusiastic recommendation.
+      - competing_japanese:
+          - あの 新しい カフェ、本当 に 可愛い から {行っ て み たら どう}？
+        english: That new cafe is really cute, so why don't you check it out?
+        hint: 「たらどう」 is an indirect question/suggestion. We're looking for a more direct recommendation.
+    scene: A young woman excitedly recommending a cafe to her friend.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「本当に可愛い」 (really cute) and the enthusiastic tone conveyed by the casual 「よ」 are
+      characteristic of friendly conversation among young women, making the recommendation feel personal
+      and inviting.
+  - english: Customer, regarding the details, I think it would be better to confirm directly with the
+      person in charge.
+    japanese:
+      - お 客 様、詳しい こと は、直接 担当 者 に {確認 し た ほう が いい} と 思い ます。
+      - お 客 様、詳しい こと は、直接 担当 者 に {確認 し た ほう が いい} です。
+    english_literally: Customer, about detailed things, directly with person in charge it is better to
+      confirm, I think.
+    competing_grammar:
+      - competing_japanese:
+          - お 客 様、詳しい こと は、直接 担当 者 に {確認 し て ください}。
+        english: Customer, please confirm the details directly with the person in charge.
+        hint: 「～てください」 is a direct command, whereas in a professional context, 「たほうがいい」 followed by 「と思います」
+          softens the advice, making it a suggestion based on experience rather than an order, which is
+          more appropriate when addressing a client.
+      - competing_japanese:
+          - お 客 様、詳しい こと は、直接 担当 者 に {確認 す べき です}。
+        english: Customer, you should confirm the details directly with the person in charge.
+        hint: 「～すべきです」 implies a strong obligation or duty. We're looking for helpful advice, not a strict
+          requirement, which is better conveyed by the advisory tone of 「たほうがいい」.
+      - competing_japanese:
+          - お 客 様、詳しい こと は、直接 担当 者 に {確認 すれ ば いい} と 思い ます。
+        english: Customer, I think it would be fine if you confirm the details directly with the person
+          in charge.
+        hint: 「ばいい」 can sound like a more permissive or less insistent suggestion. We're looking for a
+          more specific recommendation for the customer's benefit.
+      - competing_japanese:
+          - お 客 様、詳しい こと は、直接 担当 者 に {確認 する こと です} と 思い ます。
+        english: Customer, I think confirming the details directly with the person in charge is the thing
+          to do.
+        hint: 「ことだ」 expresses a general rule or objective advice. We're looking for personal advice tailored
+          to the situation.
+      - competing_japanese:
+          - お 客 様、詳しい こと は、直接 担当 者 に {確認 する と いい} と 思い ます。
+        english: Customer, I think it would be good if you confirm the details directly with the person
+          in charge.
+        hint: 「～といい」 offers a softer suggestion or a wish for a good outcome. We're looking for more direct
+          and professional advice.
+      - competing_japanese:
+          - お 客 様、詳しい こと は、直接 担当 者 に {確認 し たら どう} です か。
+        english: Customer, how about confirming the details directly with the person in charge?
+        hint: 「たらどう」 is an indirect question/suggestion. We're looking for a more direct, yet polite,
+          recommendation.
+    scene: A customer service representative advising a client.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: At that time, it would have been better if I had made a decision sooner.
+    japanese:
+      - あの 時、もっと 早く {決断 し た ほう が よかっ た} な。
+      - あの 時、もっと 早く {決断 し た ほう が よかっ た}。
+      - あの 時、もっと 早く {決断 し た ほう が よかっ た} ね。
+    english_literally: At that time, more quickly it was better to decide, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、もっと 早く {決断 すれ ば よかっ た} な。
+        english: I wish I had made a decision sooner.
+        hint: While 「～ばよかった」 expresses regret about an action *not* taken, 「たほうがよかった」 emphasizes that
+          a different action *would have been better* in the past. We're looking for a retrospective judgment
+          of a past choice.
+      - competing_japanese:
+          - あの 時、もっと 早く {決断 す べき だっ た} な。
+        english: At that time, I should have decided sooner.
+        hint: 「べきだった」 implies a stronger sense of past obligation or duty. We're looking for a reflection
+          on what would have been a preferable action.
+      - competing_japanese:
+          - あの 時、もっと 早く {決断 し ない ほう が よかっ た} な。
+        english: At that time, it would have been better not to decide sooner.
+        hint: This is the negative form, meaning it would have been better *not* to do something. We're
+          looking for a statement about an action that *should* have been done.
+    scene: Someone reflecting on a missed opportunity.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    listener_gender: no one
+    nuance: The casual sentence-ending particle 「な」 adds a sense of personal reflection or mild regret,
+      often used when speaking to oneself or in a contemplative manner about a past event.
+  - english: It's not good to force yourself to go out when you're still not feeling well.
+    japanese:
+      - まだ 体調 が 良く ない の に、無理 し て {出かけ た ほう が よく ない} よ。
+      - まだ 体調 が 良く ない の に、無理 し て {出かけ た ほう が よく ない}。
+    english_literally: Still health not good, even though, forcing self to go out is not better, you know.
+    competing_grammar:
+      - competing_japanese:
+          - まだ 体調 が 良く ない の に、無理 し て {出かけ ない ほう が いい} よ。
+        english: Even though you're still not feeling well, it's better not to force yourself to go out.
+        hint: 「～ないほうがいい」 advises against doing something. 「たほうがよくない」 states that a certain action *is
+          not* the better option, implying an inherent detriment. We're highlighting that the act of forcing
+          oneself out is deemed harmful.
+      - competing_japanese:
+          - まだ 体調 が 良く ない の に、無理 し て {出かける べき で は ない} よ。
+        english: Even though you're still not feeling well, you shouldn't force yourself to go out.
+        hint: 「べきではない」 implies a stronger prohibition based on obligation or appropriateness. We're looking
+          for advice about what's not good for one's well-being.
+    scene: A worried parent telling their sick child not to overexert themselves.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    nuance: The phrase 「無理して」 (forcing oneself) combined with 「よくない」 expresses a caring concern and advises
+      against an action that would clearly be detrimental. The casual 「よ」 softens the directness, making
+      it sound like a mother's gentle but firm warning.
+  - english: You should avoid eating fatty foods for a while.
+    japanese:
+      - しばらく の 間、脂っこい もの は {食べ ない ほう が いい} です よ。
+      - しばらく の 間、脂っこい もの は {食べ ない ほう が いい} です。
+      - しばらく の 間、脂っこい もの は {食べ ない ほう が いい} よ。
+    english_literally: For a while, fatty things not to eat is better, you know.
+    competing_grammar:
+      - competing_japanese:
+          - しばらく の 間、脂っこい もの は {食べ ない で ください} よ。
+        english: For a while, please don't eat fatty foods.
+        hint: 「～ないでください」 is a direct negative command. We're looking for advisory guidance that suggests
+          what is beneficial for health without issuing a strict order.
+      - competing_japanese:
+          - しばらく の 間、脂っこい もの は {食べる べき で は ない} です よ。
+        english: For a while, you should not eat fatty foods.
+        hint: 「べきではない」 implies a stronger prohibition based on obligation or appropriateness, often used
+          for moral or rule-based prohibitions. We're looking for health advice, which is better conveyed
+          as a strong recommendation.
+    scene: A doctor giving dietary advice to a patient during a check-up.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The polite form 「です」 combined with the advisory 「～たほうがいい」, along with the sentence-ending
+      particle 「よ」, creates a professional yet reassuring tone, typical of a doctor providing important
+      health guidance.
+  - english: In that situation, I now think it wouldn't have been better to let him go alone.
+    japanese:
+      - あの 状況 で は、彼 を 一人 で {行か せ た ほう が よく なかっ た} と 今 は 思う。
+      - あの 状況 で は、彼 を 一人 で {行か せ た ほう が よく なかっ た} と 今 は 思う よ。
+      - あの 状況 で は、彼 を 一人 で {行か せ た ほう が よく なかっ た}。
+    english_literally: That situation, in, him alone let go was not better, now I think.
+    competing_grammar:
+      - competing_japanese:
+          - あの 状況 で は、彼 を 一人 で {行か せ ない ほう が よかっ た} と 今 は 思う。
+        english: In that situation, I now think it would have been better not to let him go alone.
+        hint: 「～ないほうがよかった」 means 'it would have been better not to do X'. 「たほうがよくなかった」 means 'doing X
+          would not have been better', implying the action itself (letting him go) was a bad choice. We're
+          looking for a retrospective judgment about the negative outcome of a specific action.
+      - competing_japanese:
+          - あの 状況 で は、彼 を 一人 で {行か せる べき で は なかっ た} と 今 は 思う。
+        english: In that situation, I now think I shouldn't have let him go alone.
+        hint: 「べきではなかった」 implies a strong past prohibition or obligation not to do something. We're looking
+          for a judgment that the action was not beneficial in retrospect.
+    scene: A detective reflecting on a past case where a decision led to a negative outcome.
+    register: formal
+    setting: serious
+    conjugation: negative past plain (～なかった)
+    nuance: The formal tone established by 「状況では」 (in that situation) and the reflective 「今は思う」 (I now
+      think) suggests a serious, professional analysis of a past decision, indicating that the action
+      taken was deemed unfavorable in retrospect.
+  - english: For your future, you should start saving money now.
+    japanese:
+      - 将来 の ため に、今 から {貯金 し た ほう が いい} です。
+      - 将来 の ため に、今 から {貯金 し た ほう が いい} よ。
+      - 将来 の ため に、今 から {貯金 し た ほう が いい}。
+    english_literally: For future, from now it is better to save money.
+    competing_grammar:
+      - competing_japanese:
+          - 将来 の ため に、今 から {貯金 す べき です}。
+        english: For your future, you should definitely start saving money now.
+        hint: 「～すべきです」 implies a stronger sense of obligation or duty. We're looking for advisory guidance,
+          which suggests what is beneficial without imposing a strict requirement.
+      - competing_japanese:
+          - 将来 の ため に、今 から {貯金 すれ ば いい} です。
+        english: For your future, you can just start saving money now.
+        hint: 「ばいい」 offers a milder suggestion or sometimes implies a lack of strong opinion. We're looking
+          for more direct and beneficial advice.
+      - competing_japanese:
+          - 将来 の ため に、今 から {貯金 する こと です}。
+        english: For your future, saving money now is the thing to do.
+        hint: 「ことだ」 expresses a general rule or objective advice. We're looking for personal advice tailored
+          to the client's situation.
+      - competing_japanese:
+          - 将来 の ため に、今 から {貯金 する と いい} です。
+        english: For your future, it would be good if you start saving money now.
+        hint: 「～といい」 offers a softer suggestion or a wish for a good outcome. We're looking for more direct
+          and professional advice.
+      - competing_japanese:
+          - 将来 の ため に、今 から {貯金 し たら どう} です か。
+        english: For your future, how about starting to save money now?
+        hint: 「たらどう」 is an indirect question/suggestion. We're looking for a more direct, yet polite,
+          recommendation.
+    scene: A financial advisor giving general advice to a client.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Today's test is difficult, so you really should review properly.
+    japanese:
+      - 今日 の テスト、難しい から {ちゃんと 復習 し た ほう が いい} ぞ。
+      - 今日 の テスト、難しい から {ちゃんと 復習 し た ほう が いい} よ。
+      - 今日 の テスト、難しい から {ちゃんと 復習 し た ほう が いい}。
+    english_literally: Today's test, difficult because, properly to review it is better, you know!
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の テスト、難しい から {ちゃんと 復習 し なさい}。
+        english: Today's test is difficult, so review properly!
+        hint: 「～しなさい」 is a direct command. The scene implies a warning or strong advice from a peer/senior,
+          which is less commanding and more advisory than a direct order.
+      - competing_japanese:
+          - 今日 の テスト、難しい から {ちゃんと 復習 す べき だ} ぞ。
+        english: Today's test is difficult, so you should properly review!
+        hint: 「べき」 implies a stronger sense of duty or obligation. We're looking for strong, advisory
+          warning rather than a strict duty.
+      - competing_japanese:
+          - 今日 の テスト、難しい から {ちゃんと 復習 すれ ば いい} ぞ。
+        english: Today's test is difficult, so you can just properly review!
+        hint: 「ばいい」 can imply a less serious or less emphatic suggestion. We're looking for a strong,
+          urgent recommendation.
+      - competing_japanese:
+          - 今日 の テスト、難しい から {ちゃんと 復習 する こと だ} ぞ。
+        english: Today's test is difficult, so properly reviewing is the thing to do!
+        hint: 「ことだ」 expresses a general rule or objective advice. We're looking for personal warning or
+          strong advice.
+      - competing_japanese:
+          - 今日 の テスト、難しい から {ちゃんと 復習 する と いい} ぞ。
+        english: Today's test is difficult, so it would be good if you properly review!
+        hint: 「～といい」 offers a softer suggestion or a wish for a good outcome. We're looking for more direct
+          and urgent advice.
+      - competing_japanese:
+          - 今日 の テスト、難しい から {ちゃんと 復習 し たら どう}？
+        english: Today's test is difficult, so why don't you properly review?
+        hint: 「たらどう」 is an indirect question/suggestion. We're looking for a more direct, urgent warning.
+    scene: An older student warning a younger student about a difficult test.
+    register: casual
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    speaker_age: older
+    nuance: The casual masculine particle 「ぞ」 (zo) is used here to add emphasis and a sense of directness,
+      common in informal warnings or strong advice between males, particularly from an older individual
+      to a younger one. The word 「ちゃんと」 (chanto) signifies doing something properly or thoroughly, reinforcing
+      the seriousness of the advice regarding preparation.
+  - english: You should prepare the materials before the meeting.
+    japanese:
+      - 会議 の 前 に、資料 を {準備 し た ほう が いい} です。
+      - 会議 の 前 に、資料 を {準備 し た ほう が いい} よ。
+      - 会議 の 前 に、資料 を {準備 し た ほう が いい}。
+    english_literally: Before meeting, materials to prepare it is better.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 の 前 に、資料 を {準備 し て ください}。
+        english: Please prepare the materials before the meeting.
+        hint: 「～てください」 is a direct command. While polite, it is more prescriptive than the advisory tone
+          of 「たほうがいい」, which offers a suggestion for a better course of action.
+      - competing_japanese:
+          - 会議 の 前 に、資料 を {準備 す べき です}。
+        english: You should definitely prepare the materials before the meeting.
+        hint: 「べきです」 implies a strong obligation or duty. We're looking for advice about what is beneficial
+          and practical, not a strict requirement or moral imperative.
+      - competing_japanese:
+          - 会議 の 前 に、資料 を {準備 すれ ば いい} です。
+        english: You can just prepare the materials before the meeting.
+        hint: 「ばいい」 can sound more like a mild suggestion or that something is merely permissible, lacking
+          the emphasis on a better choice inherent in 「たほうがいい」.
+      - competing_japanese:
+          - 会議 の 前 に、資料 を {準備 する こと です}。
+        english: Preparing the materials before the meeting is the thing to do.
+        hint: 「ことだ」 expresses a general rule or objective truth. We're looking for specific advice tailored
+          to the immediate situation and the listener's benefit.
+      - competing_japanese:
+          - 会議 の 前 に、資料 を {準備 する と いい} です。
+        english: It would be good if you prepare the materials before the meeting.
+        hint: 「～といい」 offers a softer suggestion or expresses a wish for a good outcome. We're looking
+          for more direct and firm advice about a preferable action.
+      - competing_japanese:
+          - 会議 の 前 に、資料 を {準備 し たら どう} です か。
+        english: How about preparing the materials before the meeting?
+        hint: 「たらどう」 is an indirect question/suggestion, less direct and assertive than the advice given
+          by 「たほうがいい」.
+    scene: A senior colleague advising a junior colleague before an important business meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「です」 maintains a polite and professional tone suitable for a senior advising a
+      junior colleague in a business setting. It conveys a practical and beneficial recommendation for
+      a smoother meeting.
+  - english: You've been studying so much lately, you should really get some more sleep.
+    japanese:
+      - 最近、すごく 勉強 し てる から、もっと {寝 た ほう が いい} よ。
+      - 最近、すごく 勉強 し てる から、もっと {寝 た ほう が いい}。
+    english_literally: Recently, really studying, because, more it is better to sleep, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、すごく 勉強 し てる から、もっと {寝 なさい} よ。
+        english: You've been studying so much lately, sleep more!
+        hint: 「～しなさい」 is a direct command often used by parents to children. We're looking for a supportive
+          suggestion between peers.
+      - competing_japanese:
+          - 最近、すごく 勉強 し てる から、もっと {寝る べき だ} よ。
+        english: You've been studying so much lately, you really ought to sleep more.
+        hint: 「べきだ」 implies a stronger sense of moral obligation or duty. We're looking for friendly,
+          practical advice.
+    scene: A friend showing concern for another friend who is studying for exams.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of the casual sentence-ending particle 「よ」 softens the advice, making it sound like
+      a genuine expression of friendly concern rather than a demand. The emphasis on 「もっと」 (more) highlights
+      the importance of increasing sleep for well-being.
+  - english: I should have listened to the teacher's advice then.
+    japanese:
+      - あの 時、先生 の 助言 を {聞い た ほう が よかっ た} な。
+      - あの 時、先生 の 助言 を {聞い た ほう が よかっ た} と 思う。
+    english_literally: That time, teacher's advice to listen it was better, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、先生 の 助言 を {聞け ば よかっ た} な。
+        english: I wish I had listened to the teacher's advice then.
+        hint: While 「～ばよかった」 expresses a wish or regret about a past action not taken, 「たほうがよかった」 specifically
+          states that taking that action *would have been better* in the past, often implying a retrospective
+          realization.
+      - competing_japanese:
+          - あの 時、先生 の 助言 を {聞く べき だっ た} な。
+        english: I should have listened to the teacher's advice then.
+        hint: 「べきだった」 conveys a stronger sense of past obligation or duty. We're looking for a reflection
+          on what would have been a preferable action to avoid a negative outcome.
+    scene: A student reflecting on a past mistake during an exam review, realizing they made the wrong
+      choice.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    listener_gender: no one
+    nuance: The casual sentence-ending particle 「な」 adds a tone of self-reflection and mild regret, common
+      when someone is contemplating a past decision. The verb 「聞く」 (kiku) can mean 'to hear' or 'to listen',
+      and in this context, it implies 'to listen to and follow advice'.
+post_example_writeup: When offering advice or suggestions, it's important to consider the context and
+  relationship with the person you're speaking to. Using 「たほうがいい」 directly can sometimes sound a bit forceful,
+  so be mindful of your tone and choose your words carefully.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たほうがいい

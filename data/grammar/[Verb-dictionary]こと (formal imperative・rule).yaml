@@ -1,0 +1,248 @@
+grammar_point: '[Verb-dictionary]こと (formal imperative・rule)'
+learn_before:
+  - Verb[ないで] (negative without doing)
+  - '[な-Adjective]に (adverbial form)'
+  - な (prohibitive particle)
+  - ないでください・ないで (please don't)
+  - に (adverbializer)
+  - にする (to decide or make)
+  - ぬ (classical negative auxiliary)
+  - 注意する (to pay attention・to warn・to caution)
+meaning: Formal imperative; a rule or regulation; should (do something)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: Verb-dictionary + こと
+    rarity: common
+    meaning: Formal imperative; a rule or regulation
+  - conjugation-type: negative plain (～ない)
+    form: Verb-ない + こと
+    rarity: common
+    meaning: Formal prohibition; a negative rule or regulation
+pronunciation:
+  katakana: コト
+  romaji: koto
+formation:
+  Verb[dictionary form] + こと: Used to express a formal imperative or a rule.
+  Verb[ない form] + こと: Used to express a formal prohibition or a negative rule.
+jlpt: N2
+etymology: The particle 「こと」 (koto) originally referred to abstract matters or facts. Its use in this
+  construction evolved to emphasize the verb's action as an established fact or a required matter, thereby
+  conveying an imperative or prescriptive nuance.
+writeup: |-
+  The grammatical pattern `[Verb-dictionary]こと` is primarily used to express formal imperatives, rules, or obligations. It is often found in written contexts, such as regulations, instructions, warnings, or official notices, rather than in casual conversation. It carries a strong sense of "must do" or "should do," emphasizing that the action is a required or established procedure.
+
+  This construction is more rigid and less personal than polite imperatives like `～てください` or `～なさい`. While `～なさい` implies a gentle command from a superior to a subordinate, `[Verb-dictionary]こと` expresses a universal rule or a non-negotiable instruction that applies to everyone. It doesn't convey the speaker's personal request, but rather an impersonal mandate.
+
+  For instance, you might see it on a sign in a park: 「芝生に入らないこと」 (Do not enter the grass). Here, it's a direct rule, not a polite suggestion. The nuance is absolute and prescriptive.
+false_friends:
+  - term: なければならない
+    meaning: Must do; have to do
+    kind: similar expression
+    nuance: '`[Verb-dictionary]こと` is typically for impersonal rules/instructions, whereas `～なければならない`
+      can apply personally or generally. `なければならない` is more common in daily speech.'
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: べき
+    meaning: Should, ought to, must
+    kind: similar expression
+    nuance: '`～べき` implies moral obligation or strong recommendation, often from a personal standpoint
+      or general societal expectation. `[Verb-dictionary]こと` is a direct, often written, directive.'
+    grammar_point: '[Verb-dictionary]べき・べきではない (should・should not)'
+  - term: なさい
+    meaning: Do (something)
+    kind: similar expression
+    nuance: '`なさい` is a polite but firm command usually from a superior to a subordinate or adult to child,
+      common in spoken language. `[Verb-dictionary]こと` is an impersonal rule, often written.'
+    grammar_point: '[Verb-stem]なさい (polite imperative)'
+  - term: てはいけない
+    meaning: Must not; may not; cannot
+    kind: similar expression
+    nuance: '`てはいけない` is a general prohibition, widely used in both spoken and written contexts, often
+      with a personal tone. `[Verb-ない form]こと` is more formal and impersonal, typically seen in official
+      instructions.'
+    grammar_point: 〜てはいけない・〜てはならない (must not)
+  - term: ことだ
+    meaning: Should, ought to
+    kind: similar expression
+    nuance: '`ことだ` implies advice or a natural consequence, often translated as "You should..." or "It''s
+      a good idea to...". It''s more of a suggestion. `[Verb-dictionary]こと` is a direct, mandatory rule
+      or instruction.'
+    grammar_point: ことだ (should・ought to)
+post_false_friends_writeup: While `[Verb-dictionary]こと` conveys obligation or command, its formality and
+  impersonal nature distinguish it from other expressions. `～なければならない` and `～べき` convey similar senses
+  of necessity or advisability, but `[Verb-dictionary]こと` is far more rigid, often appearing in written
+  rules and regulations. Unlike the personal commands of `～なさい` or prohibitions of `～てはいけない`, `[Verb-dictionary]こと`
+  (or `～ないこと`) expresses a universal, non-negotiable directive. Furthermore, `～ことだ` is used for advice
+  or natural conclusions, not for direct, impersonal commands as `[Verb-dictionary]こと` is.
+examples:
+  - english: Keep quiet in the library.
+    japanese:
+      - 図書 館 で は 静か に {する こと}。
+      - 図書 館 で 静か に {する こと}。
+      - 図書 館 で は 静か に {する こと} だ。
+      - 図書 館 で 静か に {する こと} だ。
+    english_literally: In the library, quietly to do {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 で は 静か に し て ください。
+        english: Please be quiet in the library.
+        hint: 「～てください」は丁寧な依頼で、公式の不特定多数に向けた規則とは異なります。私たちは形式的な命令を探しています。
+    scene: A sign posted inside a library.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Do not feed the animals.
+    japanese:
+      - 動物 に エサ を やら ない {こと}。
+      - 動物 に エサ を あげ ない {こと}。
+      - 動物 へ エサ を やら ない {こと}。
+      - 動物 へ エサ を あげ ない {こと}。
+    english_literally: To animals, food not to give {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 動物 に エサ を やっ て は いけ ない。
+        english: You must not feed the animals.
+        hint: 「～てはいけない」はより一般的で、しばしば個人的な禁止を示します。私たちは形式的な、非個人的な規則を探しています。
+    scene: A warning sign at a zoo exhibit.
+    register: formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+  - english: Before leaving, please turn off the lights.
+    japanese:
+      - 帰る 前 に、電気 を 消す {こと}。
+      - 帰る 前、電気 を 消す {こと}。
+    english_literally: Before returning, electricity to turn off {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 帰る 前 に、電気 を 消す べき です。
+        english: Before leaving, you should turn off the lights.
+        hint: 「～べき」は道徳的な義務や強い推奨を示します。私たちは直接的な、形式的な指示を必要としています。
+    scene: A notice displayed in an office, reminding employees about energy conservation.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+  - english: Be careful of falling objects.
+    japanese:
+      - 落下 物 に 注意 {する こと}。
+      - 落下 物 に 注意 する {こと}。
+    english_literally: Falling objects to attention {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 落下 物 に 注意 し なさい。
+        english: Be careful of falling objects.
+        hint: 「～なさい」は丁寧な命令で、しばしば目上の者が目下に対して使います。この規則は一般的な、非個人的な警告です。
+    scene: A sign on a construction site.
+    register: formal
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+  - english: Read the instruction manual carefully before use.
+    japanese:
+      - 使用 前 に、取扱 説明 書 を よく 読む {こと}。
+      - 使用 前、取扱 説明 書 を よく 読む {こと}。
+    english_literally: Before use, instruction manual well to read {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 使用 前 に、取扱 説明 書 を よく 読み ましょう。
+        english: Let's read the instruction manual carefully before use.
+        hint: 「～ましょう」は丁寧な提案や意志を表す形です。私たちは直接的な指示を探しています。
+    scene: A section in a user manual for a new electronic device.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+  - english: Staff must wear their ID badges at all times.
+    japanese:
+      - 職員 は 常 に 身分 証明 書 を 着用 {する こと}。
+      - 職員 は 常 に 身分 証明 書 を 着用 する {こと}。
+      - 職員 は 常 に 身分 証明 書 を 着用 {する こと} だ。
+      - 職員 は 常 に 身分 証明 書 を 着用 する {こと} だ。
+    english_literally: Staff always ID badge to wear {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 職員 は 常 に 身分 証明 書 を 着用 し なく て は なり ませ ん。
+        english: Staff must wear their ID badges at all times.
+        hint: 「～なくてはなりません」は強い義務を表しますが、「こと」は書面での会社規則により一般的です。
+    scene: An internal memo posted in a corporate office.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+  - english: Do not touch the internal components.
+    japanese:
+      - 内部 部品 に 触ら ない {こと}。
+      - 内部 部品 に 触れ ない {こと}。
+    english_literally: Internal parts not to touch {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 内部 部品 に 触っ て は いけ ない。
+        english: You must not touch the internal components.
+        hint: 「～てはいけない」は一般的な禁止ですが、「～ないこと」はより形式的で、書面での規則に適しています。
+    scene: A warning label on industrial machinery.
+    register: formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+  - english: Remember, always confirm the details.
+    japanese:
+      - 細部 を 必ず 確認 {する こと}。
+      - 細部 を 必ず 確認 する {こと}。
+      - 細部 を 必ず 確認 {する こと} だ。
+      - 細部 を 必ず 確認 する {こと} だ。
+    english_literally: Details definitely to confirm {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 細部 を 必ず 確認 す べき だ。
+        english: You should definitely confirm the details.
+        hint: 「～べきだ」は強い助言や道徳的義務です。これは非個人的な、絶対的な原則として表現されています。
+    scene: A teacher giving a general principle to their students about academic work.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: No smoking in the club room.
+    japanese:
+      - 部室 で は 喫煙 し ない {こと}。
+      - 部室 で は 喫煙 せ ぬ {こと}。
+    english_literally: In the club room, smoking not to do {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 部室 で は 喫煙 禁止 です。
+        english: Smoking is prohibited in the club room.
+        hint: 「～禁止です」はより簡潔な直接的な禁止の表明です。私たちは規則を表す命令形を探しています。
+    scene: A rule posted on a bulletin board in a university club room.
+    register: formal
+    setting: serious
+    conjugation: negative plain (～ない)
+  - english: Do not enter private property.
+    japanese:
+      - 私有 地 に 立ち入ら ない {こと}。
+      - 私有 地 へ 立ち入ら ない {こと}。
+      - 私有 地 立ち入ら ない {こと}。
+    english_literally: To private property, not to enter {is the matter}.
+    competing_grammar:
+      - competing_japanese:
+          - 私有 地 立ち入り 禁止。
+        english: Private property. No entry.
+        hint: この文法点は動詞の辞書形＋ことを使って規則を示します。より簡潔な表現は動詞形を使用していません。
+    scene: A sign at the boundary of private land.
+    register: formal
+    setting: instructional
+    conjugation: negative plain (～ない)
+    nuance: この表現は「立ち入る」という動詞の否定形に「こと」を続け、直接的で非個人的な禁止を表しています。形式的な警告によく見られます。
+  - english: You know, no talking during the test.
+    japanese:
+      - テスト 中 は 話さ ない {こと} だ よ。
+      - テスト 中 は 話さ ない {こと} だ ね。
+      - テスト 中 は 話さ ない {こと}。
+    english_literally: “During test, not to talk {is the matter}, you know.”
+    competing_grammar:
+      - competing_japanese:
+          - テスト 中 は 話し て は いけ ない よ。
+        english: “You shouldn't talk during the test, you know.”
+        hint: 「～てはいけない」も禁止を表しますが、この文脈での「～ないことだよ」は、直接的な禁止よりも、既知の確立された規則を思い出させるような響きがあります。
+    scene: A student reminds another student of a test rule that they both already know.
+    register: casual
+    setting: academic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 友人間のくだけた会話では、「ことだよ」や「ことだね」は、ルールや期待される行動を思い出させるために使われることがあります。男性話者が「だよ」を使うことで、本来「～ないこと」が持つ形式的さが和らぎ、親しいリマインダーのニュアンスになります。
+post_example_writeup: While `[Verb-dictionary]こと` (and its negative form `～ないこと`) is primarily formal
+  and written, it can occasionally appear in more casual spoken contexts, often softened by sentence-ending
+  particles like `よ` or `ね`. In such cases, it typically functions as a firm reminder of an established
+  rule or expected behavior rather than a strict, impersonal command.

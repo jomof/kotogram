@@ -1,0 +1,756 @@
+grammar_point: '[Noun]が嫌いだ (to dislike)'
+learn_before:
+  - (という)わけではない (it's not that...)
+meaning: Dislike, not fond of
+meaning_warning: Despite ending in い, きらい is a な-Adjective
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 嫌い だ
+    rarity: common
+    meaning: dislike
+  - conjugation-type: non-past polite (～ます)
+    form: 嫌い です
+    rarity: common
+    meaning: dislike
+  - conjugation-type: past plain (～た)
+    form: 嫌い だっ た
+    rarity: common
+    meaning: disliked
+  - conjugation-type: past polite (～ました)
+    form: 嫌い でし た
+    rarity: common
+    meaning: disliked
+  - conjugation-type: negative plain (～ない)
+    form: 嫌い で は ない
+    rarity: common
+    meaning: do not dislike
+  - conjugation-type: negative non-past polite (～ません)
+    form: 嫌い で は あり ませ ん
+    rarity: common
+    meaning: do not dislike
+  - conjugation-type: negative past plain (～なかった)
+    form: 嫌い で は なかっ た
+    rarity: common
+    meaning: did not dislike
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 嫌い で は あり ませ ん でし た
+    rarity: common
+    meaning: did not dislike
+pronunciation:
+  katakana: キライ
+  romaji: kirai
+formation:
+  '[Subject] + が + {嫌い} + だ/です': Used when the grammar point acts as a predicate to express dislike or
+    aversion towards a subject.
+  '{嫌い} + な + [Noun]': Used when the grammar point modifies a noun to indicate it is disliked by someone
+    or generally disliked.
+jlpt: N5
+etymology: 「嫌い」 comes from the verb 「嫌う」 (kirau), meaning "to hate" or "to dislike". Over time, it evolved
+  into a な-adjective to describe the state of disliking something, functioning as a descriptive term for
+  feelings of aversion rather than an action. Its usage as a な-adjective, despite ending in い, reflects
+  a historical linguistic development where some verbs transitioned into adjectival forms.
+writeup: '「嫌い」 (kirai) expresses a feeling of dislike or aversion. Despite ending in い, it is classified
+  as a な-adjective (adjectival noun) in Japanese, which is an important point for learners to remember
+  as its grammatical behavior differs from i-adjectives. This means it behaves similarly to nouns, requiring
+  「だ」 (casual) or 「です」 (polite) when used predicatively, and 「な」 when modifying a noun.Like other な-adjectives,
+  「嫌い」 can be used in two primary ways:Predicative Use: When used as a predicate, it is followed by 「だ」
+  or 「です」. For example, 「私はピーマンが嫌いです。」 (I dislike green peppers.) In this usage, it asserts that something
+  *is dislikable* or that one *has a dislike* for something.Attributive Use: When modifying a noun, it
+  is followed by 「な」. For example, 「嫌いな食べ物」 (disliked food). Here, it describes a quality of the noun,
+  indicating that the noun *is disliked*.「嫌い」 can be intensified by adding 「大」 (dai) before it, forming
+  「大嫌い」 (daikirai), which means "to hate" or "to intensely dislike." This amplifies the negative feeling,
+  similar to how 「大好き」 (daisuki) amplifies liking to loving.'
+false_friends:
+  - term: 好き
+    meaning: Like, fond of
+    kind: antonym
+    nuance: Unlike 「嫌い」, 「好き」 expresses a positive feeling or fondness towards something. It also takes
+      the particle が to mark the object of liking.
+    grammar_point: '[Noun]が好きだ (to like)'
+  - term: 嫌
+    meaning: Unpleasant, disagreeable
+    kind: similar expression
+    nuance: Unlike 「嫌い」, 「嫌」 (iya) is often used as a standalone adjective to describe something as unpleasant,
+      or to express reluctance towards an action or situation. It does not typically describe a personal,
+      ongoing dislike for a specific object or person.
+    grammar_point: 嫌 (unpleasant・disagreeable)
+  - term: 苦手
+    meaning: Weak point, not good at, dislike (something one is not good at)
+    kind: similar expression
+    nuance: While 「嫌い」 expresses a general dislike for something, 「苦手」 often implies a dislike due to
+      a lack of ability or discomfort with something. For example, 「英語が苦手」 means 'I'm not good at English'
+      rather than 'I dislike English' in a general sense.
+    grammar_point: 苦手 (not good at)
+  - term: 憎む
+    meaning: To hate, to detest
+    kind: similar expression
+    nuance: 「憎む」 is a strong transitive verb meaning 'to hate' or 'to detest' someone or something, implying
+      active animosity. 「嫌い」 is an adjectival noun expressing a state of dislike, generally less intense
+      than 「憎む」, though 「大嫌い」 can approach it in intensity.
+    grammar_point: <strongly-suggest>:憎む (to hate, to detest)
+  - term: 嫌がる
+    meaning: To show signs of dislike, to be unwilling
+    kind: similar expression
+    nuance: 「嫌がる」 is a verb indicating that someone *shows* or *expressions* their dislike or unwillingness,
+      often through their behavior or actions, rather than simply stating a feeling of dislike as with
+      「嫌い」.
+    grammar_point: <strongly-suggest>:嫌がる (to show signs of dislike, to be unwilling)
+  - term: 気に入らない
+    meaning: Not to one's liking, displeasing
+    kind: similar expression
+    nuance: 「気に入らない」 expresses that something does not suit one's preference or approval at a specific
+      moment or in a specific context. 「嫌い」 describes a more inherent, long-term personal aversion.
+    grammar_point: <strongly-suggest>:気に入らない (not to one's liking)
+  - term: 嫌う
+    meaning: To dislike, to hate
+    kind: similar expression
+    nuance: 「嫌う」 is the verb from which 「嫌い」 is derived, meaning to actively dislike or hate something
+      or someone. While 「嫌い」 describes a state of feeling, 「嫌う」 describes the action of feeling aversion.
+    grammar_point: <strongly-suggest>:嫌う (to dislike, to hate)
+post_false_friends_writeup: The key difference between 「嫌」 (iya) and 「嫌い」 (kirai) is that 「嫌」 describes
+  something as generally unpleasant or expresses a feeling of reluctance in a specific moment. For instance,
+  「これは嫌だ。」 (This is unpleasant/I don't want this.) In contrast, 「嫌い」 always describes a personal and more
+  enduring dislike towards a specific object, person, or concept. To use 「嫌い」, you typically need a subject
+  (the person who dislikes) and an object (what is disliked), whereas 「嫌」 can be used more broadly to
+  describe a situation or one's general feeling about it.Furthermore, while 「嫌い」 indicates a direct dislike,
+  「苦手」 suggests a dislike stemming from an inability or discomfort with something (e.g., 'bad at' or 'not
+  good with'). 「憎む」 is a much stronger verb for 'to hate', implying active animosity, unlike the more
+  descriptive adjectival noun 「嫌い」. 「嫌がる」 focuses on the *expression* or *action* of showing dislike,
+  rather than the internal feeling itself. Lastly, 「気に入らない」 implies something not meeting one's specific
+  preferences or approval at a given time, which is different from a general, inherent dislike expressed
+  by 「嫌い」.
+examples:
+  - english: I dislike natto.
+    japanese:
+      - 納豆 が {嫌い} です。
+      - 納豆 が {嫌い} だ。
+      - 納豆 が {嫌い}。
+      - 納豆 が {大嫌い} です。
+      - 納豆 が {大嫌い} だ。
+      - 納豆 なんか {嫌い}。
+      - 納豆 なんて {嫌い} だ ぜ。
+      - 納豆 は {嫌い} だ わ。
+      - 納豆 が {嫌い} な ん だ。
+      - 納豆 なんか {大嫌い}！
+      - 私 は 納豆 が {嫌い} です。
+      - 納豆、{嫌い}。
+      - 納豆、本当 に {嫌い} な ん だ よ ね。
+      - 納豆 は {嫌い} だ けど、食べ られる よ。
+    english_literally: Natto, I dislike.
+    competing_grammar:
+      - competing_japanese:
+          - 納豆 を {嫌う}。
+        english: Natto hates.
+        hint: 「嫌う」 is a verb meaning 'to hate' or 'to dislike' actively. Here, we're expressing a state
+          of aversion, not an specific action. We're looking for a direct expression of aversion.
+      - competing_japanese:
+          - 納豆 が {好き} で は ない。
+        english: I am not fond of natto.
+        hint: 「好きではない」 means 'do not like' or 'not fond of'. While similar, 「嫌い」 directly states aversion,
+          which can be stronger or more definite than 'not liking'. We're looking for a direct expression
+          of aversion.
+      - competing_japanese:
+          - 納豆 が 食べ {たく ない}。
+        english: I don't want to eat natto.
+        hint: This expresses a lack of desire to perform an action. We're looking for a statement about
+          a general feeling of aversion towards natto itself.
+      - competing_japanese:
+          - 納豆 は {嫌} だ。
+        english: Natto is unpleasant.
+        hint: 「嫌」 describes general unpleasantness. We're looking for a direct personal dislike for an
+          object.
+      - competing_japanese:
+          - 納豆 が {苦手} だ。
+        english: I'm not good with natto (or) Natto is my weak point.
+        hint: 「苦手」 often implies dislike due to a lack of ability or discomfort. We're looking for a general
+          dislike, not necessarily related to skill.
+      - competing_japanese:
+          - 納豆 を {憎む}。
+        english: I hate natto (verb).
+        hint: 「憎む」 is a verb meaning 'to hate' or 'detest' with strong animosity. We're looking for an
+          adjectival expression of dislike.
+      - competing_japanese:
+          - 納豆 を {嫌 がっ て いる}。
+        english: Someone is showing aversion to natto.
+        hint: 「嫌がる」 means to *show* signs of dislike, not the internal feeling itself. We're looking for
+          a direct statement of personal dislike.
+      - competing_japanese:
+          - 納豆 が {気 に 入ら ない}。
+        english: Natto is not to my liking.
+        hint: 「気に入らない」 means something isn't to one's liking or approval in a specific context. We're
+          looking for a general, personal aversion.
+    scene: A person is offered natto and politely declines, stating their general dislike.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「です」 makes the statement polite and suitable for general conversation, even when
+      expressing a personal dislike. 「納豆 が」 clearly marks natto as the object of dislike, common for expressing
+      personal preferences.
+    etymology: 納豆 (nattō) refers to fermented soybeans, a traditional Japanese food known for its strong
+      smell and sticky texture.
+  - english: He doesn't eat any vegetables he dislikes.
+    japanese:
+      - 彼 は {嫌い} な 野菜 を 全然 食べ ない。
+      - 彼 は {嫌い} な 野菜 を 全く 食べ ませ ん。
+      - 彼 は {嫌い} な 野菜 は 一切 食べ ない。
+      - 彼 は {嫌い} な 野菜 を ほとんど 食べ ない。
+      - 彼 は {嫌い} な 野菜 は 絶対 食べ ない。
+      - 彼 は 野菜 を 食べる の が {嫌い} だ。
+      - 彼 は {嫌い} な 野菜 を 全く 召し上がり ませ ん。
+      - 彼 は 昔 から {嫌い} な 野菜 は 食べ ない ん だ。
+      - 彼 は {嫌い} な 野菜 が ある から 食べ ない。
+      - '{嫌い} な 野菜 は 彼 は 食べ ない。'
+      - 彼 は {嫌い} な もの は 野菜 で も 食べ ない。
+    english_literally: He, disliked vegetables, completely does not eat.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 野菜 を {好ま ない}。
+        english: He doesn't prefer vegetables.
+        hint: 「好まない」 means 'does not prefer' or 'does not favor'. While similar, it's often more formal
+          or expresses a general lack of preference rather than a specific personal dislike. We're looking
+          for a statement about specific vegetables that someone avoids due to their personal feelings
+          towards them.
+      - competing_japanese:
+          - 彼 は 野菜 が {苦手} な。
+        english: He is not good with vegetables.
+        hint: 「苦手」 indicates a lack of ability or discomfort with something, suggesting one is 'not good
+          with' it. It can sometimes imply aversion, but usually from a perspective of capability or tolerance.
+          We're looking for a direct description of vegetables that are actively aversive to someone.
+      - competing_japanese:
+          - 彼 は 野菜 を {避け て いる}。
+        english: He avoids vegetables.
+        hint: This describes an action of avoidance. We're looking for an adjective that describes the
+          quality of the vegetables from the perspective of the person's feelings.
+      - competing_japanese:
+          - 彼 は {嫌} な 野菜 を 全然 食べ ない。
+        english: He doesn't eat any vegetables that are unpleasant (to him).
+        hint: 「嫌」 describes general unpleasantness. We're looking for a specific type of vegetable that
+          the person actively dislikes.
+      - competing_japanese:
+          - 彼 は {憎ん で いる} 野菜 を 全然 食べ ない。
+        english: He doesn't eat any vegetables he hates (actively).
+        hint: 「憎む」 implies active hatred. We're looking for an adjectival description of a disliked vegetable.
+      - competing_japanese:
+          - 彼 は {嫌 がる} 野菜 を 全然 食べ ない。
+        english: He doesn't eat any vegetables he shows aversion to.
+        hint: 「嫌がる」 means to *show* signs of dislike, not the internal feeling itself. We're looking for
+          an inherent dislike, not just the outward display.
+      - competing_japanese:
+          - 彼 は {気 に 入ら ない} 野菜 を 全然 食べ ない。
+        english: He doesn't eat any vegetables that aren't to his liking.
+        hint: 「気に入らない」 refers to something not meeting one's approval in a specific context. We're looking
+          for a general category of vegetables that are disliked.
+    scene: A mother is explaining her son's eating habits to a friend, focusing on the type of food her
+      son specifically avoids.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This example uses the attributive form 「嫌いな」 to directly modify 「野菜」, specifying which type
+      of vegetables are not eaten. This is common in casual explanations of habits. 「全然」 (zenzen) emphasizes
+      a complete lack of action.
+    etymology: 野菜 (yasai) means vegetables, a common word formed from 野 (no - field) and 菜 (sai - greens).
+  - english: I absolutely hate noisy people.
+    japanese:
+      - 騒がしい 人 は {大嫌い} だ。
+      - 騒がしい 人 が {大嫌い} です。
+      - うるさい 人 は {大嫌い} な ん だ よ ね。
+      - 騒音 を 出す 人 は {大嫌い} だ。
+      - 声 が 大きい 人 は {大嫌い} です。
+      - 騒がしい 人間 なんて {大嫌い} だ よ！
+      - 私 は 騒がしい 人 が {大嫌い} です。
+      - 騒がしい 人 は 本当 に {大嫌い} だ から やめ て ほしい。
+    english_literally: Noisy people, I greatly dislike.
+    competing_grammar:
+      - competing_japanese:
+          - 騒がしい 人 は {嫌} です。
+        english: Noisy people are unpleasant.
+        hint: 「嫌」 describes general unpleasantness or reluctance. 「大嫌い」 expresses a much stronger, intense
+          personal aversion or hatred. We're looking for an intense statement of dislike.
+      - competing_japanese:
+          - 騒がしい 人 は {苦手} です。
+        english: I'm not good with noisy people (or) Noisy people are my weak point.
+        hint: 「苦手」 implies discomfort or a lack of tolerance for something, not necessarily an active
+          hatred. We're looking for a strong statement of aversion.
+      - competing_japanese:
+          - 騒がしい 人 は {許せ ませ ん}。
+        english: Noisy people are unforgivable.
+        hint: This expresses that something cannot be forgiven or tolerated, focusing on a moral judgment.
+          We're looking for an high-level feeling of dislike, not a judgment.
+      - competing_japanese:
+          - 騒がしい 人 は {好き} で は ない です。
+        english: I don't like noisy people.
+        hint: This is a milder expression of dislike. 「大嫌い」 indicates a much stronger, more intense feeling
+          of hatred. We're looking for a very strong statement of dislike.
+    scene: Someone is venting their frustration about a common annoyance in a public place or at home,
+      expressing a strong pet peeve.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「大嫌い」 emphasizes an extreme level of dislike or hatred. 「騒がしい 人」 (sawagashii hito)
+      refers to noisy people. The bluntness of 「だ」 or 「です」 with 「大嫌い」 makes it a direct and emphatic statement
+      of personal aversion.
+    etymology: 騒がしい (sawagashii) means noisy or boisterous, deriving from 騒ぐ (sawagu), to make noise or
+      be boisterous.
+  - english: During my student days, I disliked studying.
+    japanese:
+      - 学生 の 時 は 勉強 が {嫌い} だっ た。
+      - 学生 の 時 は 勉強 が {嫌い} でし た。
+      - 学生 の 時、勉強 が {嫌い} だっ た な。
+      - 学生 の 頃 は 勉強 が {嫌い} だっ た。
+      - 学生 時代 は 勉強 が {嫌い} だっ た。
+      - 学生 の 時 は 勉強 なんか {嫌い} だっ た よ。
+      - 学生 の 頃 は 本当 に 勉強 が {嫌い} だっ た。
+      - 昔 から 勉強 が {嫌い} だっ た なあ。
+      - とにかく 勉強 が {嫌い} だっ た。
+      - 学生 の 時 は ずっと 勉強 が {嫌い} だっ た ん だ。
+      - 私 は 学生 の 頃 勉強 が {嫌い} だっ た。
+    english_literally: Student time, studying, I disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 が {好き} で は なかっ た。
+        english: I was not fond of studying.
+        hint: 「好きではなかった」 means 'did not like' or 'was not fond of'. While grammatically correct, it is
+          a negative statement about 'liking'. We're looking for a direct, positive statement of past
+          aversion.
+      - competing_japanese:
+          - 勉強 を {好ま ない}。
+        english: I did not prefer studying.
+        hint: 「好まなかった」 is a more formal expression for 'did not prefer'. We're looking for a casual and
+          direct statement about a past personal feeling.
+      - competing_japanese:
+          - 勉強 に {興味 が なかっ た}。
+        english: This indicates a lack of interest, which is a reason for not liking something, but not
+          the direct feeling itself. We're looking for a direct statement of aversion towards studying.
+        hint: This indicates a lack of interest, which is a reason for not liking something, but not the
+          direct feeling itself. We're looking for a direct statement of aversion towards studying.
+      - competing_japanese:
+          - 学生 の 時 は 勉強 が {嫌} だっ た。
+        english: During my student days, studying was unpleasant.
+        hint: 「嫌」 describes general unpleasantness. We're looking for a direct personal dislike.
+      - competing_japanese:
+          - 学生 の 時 は 勉強 が {苦手} だっ た。
+        english: During my student days, I was bad at studying (or) I was uncomfortable with studying.
+        hint: 「苦手」 implies lack of ability or discomfort. We're looking for a direct feeling of dislike.
+      - competing_japanese:
+          - 学生 の 時 は 勉強 を {憎ん で い た}。
+        english: During my student days, I hated studying (actively).
+        hint: 「憎む」 implies active hatred. We're looking for an adjectival description of a past feeling.
+      - competing_japanese:
+          - 学生 の 時 は 勉強 を {嫌 がっ て い た}。
+        english: During my student days, I showed aversion to studying.
+        hint: 「嫌がる」 describes showing dislike, not the internal feeling itself. We're looking for a statement
+          about past personal dislike.
+      - competing_japanese:
+          - 学生 の 時 は 勉強 が {気 に 入ら なかっ た}。
+        english: During my student days, studying was not to my liking.
+        hint: 「気に入らない」 implies disapproval or not meeting preferences. We're looking for a general past
+          dislike.
+    scene: An older man is reminiscing about his youth to a younger family member, reflecting on past
+      attitudes towards education.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_age: older
+    nuance: The past tense 「だった」 indicates a state that existed in the past. An older speaker using this
+      casual form implies a sense of shared experience or a relaxed, retrospective conversation. 「学生 の
+      時」 (gakusei no toki) refers to one's school days.
+    etymology: 勉強 (benkyō) means study, derived from 勉 (ben - exertion) and 強 (kyō - strong/force).
+  - english: The department head didn't dislike his proposal very much.
+    japanese:
+      - 部 長 は 彼 の 提案 が あまり {嫌い} で は あり ませ ん でし た。
+      - 部 長 は 彼 の 提案 が さほど {嫌い} で は あり ませ ん でし た。
+      - 部 長 は 彼 の 提案 が あまり {嫌い} じゃ あり ませ ん でし た。
+      - 部 長 は 彼 の 提案 を 特に {嫌い} で は なかっ た。
+      - 部 長 は 彼 の 提案 を 全然 {嫌い} で は なかっ た。
+      - 部 長 は その 提案 を 決し て {嫌い} で は あり ませ ん でし た。
+      - 部 長 は 彼 の 提案 を そんな に {嫌い} で は なかっ た です。
+      - 部 長 は 彼 の 提案 を 別 に {嫌い} じゃ なかっ た です よ。
+      - 部 長 は その 提案 を 決し て {嫌い} で は なかっ た です。
+    english_literally: Department head, his proposal, not very disliked was.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 を {悪く は 思っ て い なかっ た}。
+        english: The department head didn't think badly of his proposal.
+        hint: 「悪くは思っていなかった」 means 'did not think badly of it', which is a broader statement about general
+          opinion. We're looking for a statement specifically about a lack of strong aversion.
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 を {気 に 入ら なかっ た}。
+        english: The department head didn't approve of his proposal.
+        hint: 「気に入らなかった」 means 'did not like' in the sense of 'not finding it pleasing' or 'not approving'.
+          While similar, it describes a different nuance of preference. We're looking for a statement
+          that suggests a lack of strong aversion.
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 に {反対 し なかっ た}。
+        english: The department head did not oppose his proposal.
+        hint: This states a lack of opposition, focusing on action or decision. We're looking for a statement
+          about the department head's subtle feeling or lack thereof towards the proposal.
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 が あまり {嫌} で は なかっ た。
+        english: The department head's proposal wasn't very unpleasant (to him).
+        hint: 「嫌」 describes general unpleasantness. We're looking for a subtle expression regarding the
+          department head's personal feeling of dislike.
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 が あまり {苦手} で は なかっ た。
+        english: The department head wasn't very uncomfortable with his proposal.
+        hint: 「苦手」 implies discomfort or inability to handle. We're looking for a subtle expression regarding
+          the department head's personal feeling of dislike.
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 を あまり {憎ん で い なかっ た}。
+        english: The department head didn't hate his proposal very much.
+        hint: 「憎む」 implies active hatred. We're looking for a nuanced statement about a lack of strong
+          dislike.
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 を あまり {嫌 がっ て い なかっ た}。
+        english: The department head wasn't really showing aversion to his proposal.
+        hint: 「嫌がる」 implies showing dislike. We're looking for a statement about the internal feeling
+          or lack thereof.
+      - competing_japanese:
+          - 部 長 は 彼 の 提案 を あまり {好き} で は なかっ た。
+        english: The department head didn't like his proposal very much.
+        hint: While grammatically correct, this phrasing emphasizes a lack of liking rather than a lack
+          of disliking, which is a subtle difference. We're looking for a statement that expresses a lack
+          of strong aversion.
+    scene: Two colleagues are discreetly discussing a recent meeting, evaluating the department head's
+      mild reaction to a proposal, suggesting a subtle, professional assessment.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative past polite (～ませんでした)
+    nuance: The phrasing 「あまり～ではありませんでした」 (didn't dislike very much) is a nuanced polite negative, suggesting
+      mild approval or at least a lack of strong disapproval. This indirectness is characteristic of professional
+      Japanese communication to avoid direct conflict and maintain harmony. 「部長」 (buchō) means department
+      head.
+  - english: I really dislike exercising.
+    japanese:
+      - 運動 が {嫌い} な ん です。
+      - 運動 は {嫌い} な の。
+      - 運動 が 本当 に {嫌い} です。
+      - 運動 なんか {大嫌い} だ。
+      - 毎日 運動 する の は {嫌い} です。
+      - 正直、運動 は {嫌い} です。
+      - 運動 する こと 自体 が {嫌い} な ん です。
+      - 運動 に は 本当 に {嫌い} な 気持ち が あり ます。
+      - 運動 は 昔 から {嫌い} だっ た ん だ よ ね。
+    english_literally: Exercise, I dislike.
+    competing_grammar:
+      - competing_japanese:
+          - 運動 が {苦手} です。
+        english: I'm not good at exercising (or) Exercising is my weak point.
+        hint: 「苦手」 implies discomfort or a lack of skill, not necessarily outright dislike. We're looking
+          for a direct statement of aversion.
+      - competing_japanese:
+          - 運動 {し たく ない} です。
+        english: I don't want to exercise.
+        hint: This expresses a lack of desire for an action, not a general aversion to the activity itself.
+          We're looking for a statement about a general feeling of dislike for exercise.
+      - competing_japanese:
+          - 運動 は あまり {好き} じゃ ない です。
+        english: I don't really like exercising.
+        hint: This is a softer expression of dislike. 「嫌い」 implies a stronger, more definite aversion.
+          We're looking for a strong statement of dislike.
+      - competing_japanese:
+          - 運動 は {嫌} です。
+        english: Exercising is unpleasant (or) I don't want to exercise.
+        hint: 「嫌」 can express reluctance or general unpleasantness, but 「嫌い」 specifically conveys personal
+          aversion towards something as a general state. We're looking for a personal, inherent dislike.
+    scene: A student is explaining why they avoid sports classes to a friend, confessing their personal
+      aversion to physical activity.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The use of 「嫌い な ん です」 emphasizes a personal reason or explanation for disliking exercise,
+      making it a more natural expression in casual conversation than just 「嫌い です」 alone. 「運動」 (undō)
+      refers to exercise or physical activity.
+    etymology: 運動 (undō) means 'exercise' or 'movement'. It combines 運 (un - luck, carry) and 動 (dō -
+      move), suggesting the 'movement of fate' or 'motion carried out'.
+  - english: My child dislikes mushrooms, so I don't use them in cooking.
+    japanese:
+      - 私 の 子供 は きのこ が {嫌い} な の で、料理 に 使い ませ ん。
+      - うち の 子 は きのこ が {嫌い} だ から、料理 に 入れ ない の。
+      - 息子 は きのこ が {嫌い} な の で、献立 から 外し ます。
+      - 娘 は きのこ を {嫌い} ます の で、使い ませ ん。
+      - うち の 子 は きのこ が {嫌い} で、全然 食べ て くれ ない ん です。
+      - きのこ は うち の 子 が {嫌い} な 食材 な の で、使い ませ ん。
+      - 私 の 子供 は きのこ が {嫌い} みたい な ん です。
+    english_literally: My child, mushrooms dislikes, so for cooking, I do not use.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 子供 は きのこ が {苦手} な の で、料理 に 使い ませ ん。
+        english: My child is not good with mushrooms, so I don't use them in cooking.
+        hint: 「苦手」 can imply discomfort or a sensitivity rather than a simple dislike, like 'can't handle'
+          them. We're looking for a direct statement of aversion.
+      - competing_japanese:
+          - 私 の 子供 は きのこ が {嫌} な の で、料理 に 使い ませ ん。
+        english: My child finds mushrooms unpleasant, so I don't use them in cooking.
+        hint: 「嫌」 describes something as unpleasant in a general sense. 「嫌い」 specifically conveys a personal
+          dislike. We're looking for a statement about personal aversion.
+      - competing_japanese:
+          - 私 の 子供 は きのこ を {食べ た がり ませ ん}。
+        english: My child doesn't want to eat mushrooms.
+        hint: This focuses on the child's *desire* not to eat, rather than the underlying *feeling* of
+          dislike for the mushrooms themselves. We're looking for a statement about the child's dislike
+          of mushrooms.
+      - competing_japanese:
+          - 私 の 子供 は きのこ を {好ま ない} の で、料理 に 使い ませ ん。
+        english: My child doesn't prefer mushrooms, so I don't use them in cooking.
+        hint: 「好まない」 is a more formal or subtle way of saying 'doesn't like'. We're looking for a more
+          direct statement of dislike.
+    scene: A parent is explaining their cooking choices to a guest or another parent, giving a reason
+      for avoiding certain ingredients.
+    register: semi-formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「嫌い な の で」 connects the child's dislike to the consequence of not using mushrooms
+      in cooking, acting as a causal explanation. 「きのこ」 (kinoko) means mushrooms.
+    etymology: きのこ (kinoko) is believed to be derived from 木の子 (ki no ko), meaning 'child of tree', referring
+      to how mushrooms grow on trees.
+  - english: I don't like scary movies.
+    japanese:
+      - '{嫌い} な 映画 は 怖い 映画 です。'
+      - 怖い 映画 が {嫌い} です。
+      - 怖い 映画 は {嫌い} な ん だ よ ね。
+      - 私 は 怖い 映画 が {大嫌い} だ。
+      - スリラー 映画 が {嫌い} な ん です。
+      - ホラー 映画 は ちょっと {嫌い} な タイプ です。
+      - '{嫌い} な の は 怖い 映画 です。'
+      - 怖い 映画 は どう し て も {嫌い} です ね。
+      - 私 に とっ て は 怖い 映画 が {嫌い} です。
+      - 基本 的 に 怖い 映画 は {嫌い} な ん です。
+    english_literally: Disliked movies are scary movies.
+    competing_grammar:
+      - competing_japanese:
+          - 怖い 映画 は あまり {好き} じゃ ない です。
+        english: I don't really like scary movies.
+        hint: This is a milder statement. 「嫌い」 expresses a more definite aversion. We're looking for a
+          clear statement of dislike.
+      - competing_japanese:
+          - 怖い 映画 は {苦手} です。
+        english: I'm not good with scary movies (or) Scary movies are my weak point.
+        hint: 「苦手」 implies discomfort or a lack of tolerance, like 'can't handle' them. While often used
+          for things one dislikes, it emphasizes the inability to cope. We're looking for a direct statement
+          of aversion.
+      - competing_japanese:
+          - 怖い 映画 は {嫌} です。
+        english: Scary movies are unpleasant (or) I don't want scary movies.
+        hint: 「嫌」 can describe something as generally unpleasant, but 「嫌い」 specifically conveys a personal,
+          enduring dislike for a category. We're looking for a statement about personal dislike for a
+          type of movie.
+      - competing_japanese:
+          - 怖い 映画 は {見 たく ない} です。
+        english: I don't want to watch scary movies.
+        hint: This focuses on the desire not to watch, not necessarily an inherent dislike for the movies
+          themselves. We're looking for a statement about disliking scary movies as a genre.
+    scene: Two friends are deciding what movie to watch, and one expresses their preference by stating
+      a genre they dislike.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: This example uses 「嫌い な 映画」 as a noun phrase, and then clarifies what type of movie that is.
+      Alternatively, 「怖い 映画 が 嫌い です」 directly states the object of dislike. Both are common ways to express
+      preferences in a polite setting. 「怖い 映画」 (kowai eiga) means scary movie.
+    etymology: 映画 (eiga) means 'movie' or 'film', combining 映 (ei - to reflect, project) and 画 (ga - picture,
+      drawing).
+  - english: Surprisingly, I don't dislike cleaning.
+    japanese:
+      - 意外 と 掃除 は {嫌い} じゃ ない ん です。
+      - 意外 と 掃除 が {嫌い} で は ない です。
+      - まさ か と 思う か も しれ ませ ん が、掃除 が {嫌い} で は あり ませ ん。
+      - 驚 か れる か も しれ ませ ん が、掃除 は {嫌い} で も ない ん です よ。
+      - 意外 に 掃除 は {嫌い} じゃ なかっ たり し ます。
+      - 掃除 は {嫌い} な 部類 で は ない です ね。
+      - 自分 で も 意外 だ けど、掃除 が {嫌い} じゃ ない ん だ よ ね。
+    english_literally: Surprisingly, cleaning, I do not dislike.
+    competing_grammar:
+      - competing_japanese:
+          - 意外 と 掃除 は {好き} です。
+        english: Surprisingly, I like cleaning.
+        hint: While this conveys a similar sentiment, it states a positive liking, whereas the original
+          sentence emphasizes the *absence* of dislike, often implying it's not a favorite but also not
+          hated. We're looking for a nuanced statement that expresses a lack of aversion.
+      - competing_japanese:
+          - 意外 と 掃除 は {苦手} じゃ ない です。
+        english: Surprisingly, I'm not bad at cleaning (or) I'm not uncomfortable with cleaning.
+        hint: 「苦手じゃありません」 implies a lack of difficulty or discomfort. We're looking for a statement about
+          not disliking the act itself.
+      - competing_japanese:
+          - 意外 と 掃除 は {嫌} じゃ ない です。
+        english: Surprisingly, cleaning isn't unpleasant.
+        hint: 「嫌」 describes general unpleasantness. We're looking for a statement about a personal feeling
+          of dislike.
+    scene: A person is having a casual conversation, perhaps about chores, and expresses a surprising
+      personal revelation about their feelings towards cleaning.
+    register: semi-formal
+    setting: informative
+    conjugation: negative plain (～ない)
+    nuance: The phrase 「意外 と」 (igai to) means 'surprisingly' or 'unexpectedly', adding a layer of personal
+      reflection. 「嫌い じゃ ない」 is a common and natural way to express a mild, non-averse feeling, especially
+      when it goes against expectations. 「掃除」 (sōji) means cleaning.
+    etymology: 掃除 (sōji) combines 掃 (sō - to sweep) and 除 (ji - to remove), literally 'sweeping and removing'.
+  - english: Since childhood, I've disliked insects.
+    japanese:
+      - 小さい 頃 から 虫 が {嫌い} だっ た。
+      - 子供 の 時 から 虫 が {嫌い} です。
+      - 幼い 頃 から 虫 が {嫌い} な ん です。
+      - 昔 から 虫 は {大嫌い} でし た。
+      - 生まれつき 虫 が {嫌い} です。
+      - ずっと 虫 は {嫌い} です ね。
+      - 虫 なんて 小さい 頃 から {大嫌い} だ よ。
+    english_literally: Small time from, insects I disliked.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい 頃 から 虫 が {苦手} だっ た。
+        english: Since childhood, I was not good with insects (or) Insects were my weak point.
+        hint: 「苦手」 implies discomfort or a lack of tolerance, suggesting 'can't handle' them. We're looking
+          for a direct statement of personal dislike.
+      - competing_japanese:
+          - 小さい 頃 から 虫 は {嫌} だっ た。
+        english: Since childhood, insects were unpleasant.
+        hint: 「嫌」 describes general unpleasantness. We're looking for a personal, inherent dislike for
+          insects. The phrasing implies a more general, less personal aversion.
+      - competing_japanese:
+          - 小さい 頃 から 虫 を {怖 がっ て い た}。
+        english: Since childhood, I was scared of insects.
+        hint: This emphasizes fear as the primary emotion, not necessarily dislike. We're looking for
+          a direct statement of aversion.
+      - competing_japanese:
+          - 小さい 頃 から 虫 は あまり {好き} じゃ なかっ た。
+        english: Since childhood, I didn't really like insects.
+        hint: This is a softer, less definitive statement of dislike. 「嫌い」 implies a stronger aversion.
+          We're looking for a direct and clear statement of dislike.
+    scene: Someone is reflecting on a long-standing personal aversion, perhaps in a conversation about
+      fears or phobias, explaining its origin.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: The phrase 「小さい 頃 から」 (chiisai koro kara) indicates that the dislike has been present since
+      early childhood, emphasizing its long-standing nature. This casual past tense is suitable for a
+      personal reflection. 「虫」 (mushi) means insect.
+    etymology: 虫 (mushi) is a broad term for insects, bugs, and worms. Its etymology traces back to ancient
+      pictograms for insects, and it has been used in various compounds related to nature and small creatures.
+  - english: That restaurant's food isn't bad, but it's not like I dislike it either.
+    japanese:
+      - あの レストラン の 料理 は 悪く ない が、{嫌い} な わけ で も ない。
+      - あの レストラン の 料理 は 美味しい わけ じゃ ない けど、{嫌い} じゃ ない です。
+      - そこ の 料理 は 可 も なく 不可 も なく、{嫌い} で は ない です ね。
+      - あの 店 の 料理 は 別 に {嫌い} って わけ じゃ ない ん です よ。
+      - 料理 は まあまあ です が、{嫌い} と いう ほど で も ない です。
+      - 味 は 普通 です が、特に {嫌い} と いう わけ で は ない です。
+      - あの レストラン の 料理 は 不味く ない です が、{嫌い} で も ない です。
+    english_literally: That restaurant's food is not bad, but it's not that I dislike it either.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン の 料理 は 悪く ない が、{好き} な わけ で も ない。
+        english: That restaurant's food isn't bad, but it's not like I like it either.
+        hint: This states the absence of liking. The original sentence is more nuanced, implying that
+          while it's not a favorite but also not hated. We're looking for a statement about the absence
+          of dislike, not the absence of liking.
+      - competing_japanese:
+          - あの レストラン の 料理 は 悪く ない が、{苦手} な わけ で も ない。
+        english: That restaurant's food isn't bad, but it's not that I'm bad with it either.
+        hint: 「苦手」 implies discomfort or inability to handle. We're looking for a statement about a feeling
+          of dislike.
+      - competing_japanese:
+          - あの レストラン の 料理 は 悪く ない が、{嫌} な わけ で も ない。
+        english: That restaurant's food isn't bad, but it's not unpleasant either.
+        hint: 「嫌」 describes general unpleasantness. We're looking for a statement about personal feeling
+          of dislike. The nuance is subtly different.
+    scene: Someone is giving a balanced, lukewarm review of a restaurant's food, indicating it's acceptable
+      but not exciting.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The phrasing 「嫌い な わけ で も ない」 (kirai na wake demo nai) indicates that it's not the case that
+      one dislikes it, expressing a nuanced neutrality. 「悪く ない」 (waruku nai) means 'not bad'. This is
+      a common way to express a mild, non-committal opinion.
+    etymology: レストラン (resutoran) is a loanword from English 'restaurant'. 料理 (ryōri) means 'cuisine' or
+      'cooking', combining 料 (ryō - ingredients, material) and 理 (ri - reason, logic, principle).
+  - english: I'm not saying I dislike him, but it's hard to get along with him.
+    japanese:
+      - 彼 の こと が {嫌い} と いう わけ で は ない が、付き合い づらい。
+      - 彼 が {嫌い} と いう わけ で は ない ん です が、少し 苦手 です。
+      - 彼 の こと を {嫌い} だ と は 言わ ない けど、話し づらい です。
+      - 彼 は {嫌い} じゃ ない けど、どう も 合わ ない な。
+      - 彼 の 人間 性 が {嫌い} と いう こと は ない が、相性 が 良く ない。
+      - 彼 の こと を {嫌い} だ と は 思わ ない が、気 が 合わ ない です。
+      - 彼 の こと を {嫌い} だ と は 口 が 裂け て も 言え ない が、付き合い づらい。
+    english_literally: About him, it's not that I dislike, but hard to get along with.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の こと が {苦手} と いう わけ で は ない が、付き合い づらい。
+        english: I'm not saying I'm bad with him, but it's hard to get along with him.
+        hint: 「苦手」 implies discomfort or a lack of ease, but not necessarily a full-blown dislike. We're
+          looking for a statement about the absence of dislike, which is a subtle distinction.
+      - competing_japanese:
+          - 彼 の こと が {嫌} と いう わけ で は ない が、付き合い づらい。
+        english: I'm not saying he's unpleasant, but it's hard to get along with him.
+        hint: 「嫌」 describes something as generally unpleasant. We're looking for a statement about a personal
+          feeling of dislike.
+      - competing_japanese:
+          - 彼 の こと が {好き} で は ない と いう わけ で は ない が、付き合い づらい。
+        english: I'm not saying I don't like him, but it's hard to get along with him.
+        hint: This phrasing is double negative, meaning 'I might like him'. The original sentence explicitly
+          denies dislike, which has a different nuance than denying *not liking*. We're looking for a
+          statement that denies dislike while implying difficulty in relationship.
+      - competing_japanese:
+          - 彼 の こと を {好ま ない} と いう わけ で は ない が、付き合い づらい。
+        english: I'm not saying I don't favor him, but it's hard to get along with him.
+        hint: 「好まない」 is more formal and refers to not favoring. We're looking for a statement about direct
+          dislike.
+    scene: A person is confiding in a close friend about a difficult relationship with an acquaintance
+      or colleague, trying to articulate their complex feelings.
+    register: casual
+    setting: intimate
+    conjugation: dictionary (plain non-past)
+    nuance: The construction 「嫌い と いう わけ で は ない が」 (kirai to iu wake de wa nai ga) indicates that the
+      speaker doesn't exactly dislike the person, but then introduces a contrasting difficulty. This is
+      a common way to express complex or nuanced feelings without being overly negative. 「付き合い づらい」 (tsukiai
+      zurai) means 'hard to get along with'.
+    etymology: 付き合い (tsukiai) means association, relationship, or companionship, derived from the verb
+      付く (tsuku - to attach) and 合う (au - to meet, fit together).
+  - english: It's not that I disliked my previous job; it was just very demanding.
+    japanese:
+      - 前 の 仕事 が {嫌い} だっ た わけ で は ない、ただ とても 大変 だっ た だけ です。
+      - 前 の 仕事 が {嫌い} だっ た と いう より も、単に 忙し すぎ まし た。
+      - 以前 の 仕事 は {嫌い} で は なかっ た です が、きつかっ た です。
+      - 前 の 仕事 は {嫌い} と いう わけ で は なく て、肉体 的 に きつかっ た ん です。
+      - 別 に {嫌い} で は なかっ た けど、精神 的 に 疲弊 し まし た。
+      - 前 の 仕事 を {嫌い} だっ た と は 思わ ない が、ストレス が 多かっ た です。
+      - 前 の 職場 が {嫌い} だっ た の で は なく、ただ 仕事 が 辛かっ た だけ です。
+    english_literally: Previous job, disliked it was not that, just very demanding was only.
+    competing_grammar:
+      - competing_japanese:
+          - 前 の 仕事 が {苦手} だっ た わけ で は ない、ただ とても 大変 だっ た だけ です。
+        english: It's not that I was bad at my previous job; it was just very demanding.
+        hint: 「苦手」 emphasizes a lack of skill or difficulty in handling something. We're looking for a
+          statement about personal dislike.
+      - competing_japanese:
+          - 前 の 仕事 が {嫌} だっ た わけ で は ない、ただ とても 大変 だっ た だけ です。
+        english: It's not that my previous job was unpleasant; it was just very demanding.
+        hint: 「嫌」 describes something as generally unpleasant or expresses reluctance. We're looking for
+          a statement about personal feeling of dislike.
+      - competing_japanese:
+          - 前 の 仕事 が {好き} で は なかっ た わけ で は ない、ただ とても 大変 だっ た だけ です。
+        english: It's not that I didn't like my previous job; it was just very demanding.
+        hint: This states the absence of liking. The original sentence emphasizes the *absence* of dislike,
+          which is a subtle but different nuance from denying *not liking*. We're looking for a statement
+          that denies dislike.
+      - competing_japanese:
+          - 前 の 仕事 が {辛かっ た} だけ で、辞め た わけ で は ない。
+        english: My previous job was just tough, and it's not that I quit.
+        hint: This focuses on the difficulty of the job itself. We're looking for a statement about whether
+          the speaker disliked the job.
+    scene: A person is explaining their reasons for leaving a previous job, clarifying that it wasn't
+      due to dislike but rather the demanding nature of the work.
+    register: semi-formal
+    setting: professional
+    conjugation: past plain (～た)
+    nuance: The past tense 「嫌い だっ た」 refers to a past state of dislike. The phrase 「わけ で は ない」 clearly
+      negates the idea that dislike was the reason, shifting the explanation to the requesting nature
+      of the job. This is a common way to provide a nuanced explanation in professional contexts. 「大変」
+      (taihen) means difficult or demanding.
+    etymology: 仕事 (shigoto) means 'job' or 'work', derived from 仕 (shi - to serve, do) and 事 (koto - matter,
+      affair).
+post_example_writeup: While 「嫌い」 expresses dislike, its antonym 「好き」 expresses fondness. Both can be intensified
+  with 「大」 (dai) to mean "hate" (大嫌い) or "love" (大好き). Pay attention to the particle 「が」, which marks
+  the object of dislike, as 「嫌い」 is an adjectival noun, not a transitive verb.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/きらい

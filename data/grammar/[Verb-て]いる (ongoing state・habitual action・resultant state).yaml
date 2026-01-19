@@ -1,0 +1,935 @@
+grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+learn_before:
+  - Verb[ている・てる] (progressive・resultative)
+  - に (if only・regret)
+  - まだ～ていない (still uncompleted)
+  - 風 (style・manner)
+meaning: To describe an action in progress, a continuous state resulting from an action, or a habitual/repeated
+  activity.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: ている
+    rarity: common
+    meaning: is/am/are doing; is in the state of; habitually doing
+  - conjugation-type: non-past polite (～ます)
+    form: ています
+    rarity: common
+    meaning: is/am/are doing (polite); is in the state of (polite); habitually doing (polite)
+  - conjugation-type: negative plain (～ない)
+    form: ていない
+    rarity: common
+    meaning: is/am/are not doing; is not in the state of; not habitually doing
+  - conjugation-type: negative non-past polite (～ません)
+    form: ていません
+    rarity: common
+    meaning: is/am/are not doing (polite); is not in the state of (polite); not habitually doing (polite)
+  - conjugation-type: past plain (～た)
+    form: ていた
+    rarity: common
+    meaning: was/were doing; was in the state of; used to habitually do
+  - conjugation-type: past polite (～ました)
+    form: ていました
+    rarity: common
+    meaning: was/were doing (polite); was in the state of (polite); used to habitually do (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: ていなかった
+    rarity: common
+    meaning: was/were not doing; was not in the state of; did not habitually do
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ていませんでした
+    rarity: common
+    meaning: was/were not doing (polite); was not in the state of (polite); did not habitually do (polite)
+  - conjugation-type: te-form (～て)
+    form: ていて
+    rarity: common
+    meaning: doing (te-form); being in the state of (te-form); linking habitual actions or states
+  - conjugation-type: conditional (～ば)
+    form: ていれば
+    rarity: uncommon
+    meaning: if doing; if in the state of; if habitually doing
+  - conjugation-type: conditional (～たら)
+    form: ていたら
+    rarity: uncommon
+    meaning: if/when doing; if/when in the state of; if habitually doing (conditional)
+  - conjugation-type: concessive (～ても)
+    form: ていても
+    rarity: uncommon
+    meaning: even if doing; even if in the state of; even if habitually doing
+  - conjugation-type: volitional (～よう)
+    form: ていよう
+    rarity: very rare
+    meaning: let's do (plain)
+  - conjugation-type: volitional polite (～ましょう)
+    form: ていましょう
+    rarity: very rare
+    meaning: let's do (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: ていろ
+    rarity: rare
+    meaning: do! (plain, blunt)
+  - conjugation-type: imperative polite (～なさい)
+    form: ていなさい
+    rarity: less common
+    meaning: be/do! (polite command)
+pronunciation:
+  katakana: テイル
+  romaji: teiru
+  pronunciation_warning: The 「いる」 part of 「ている」 is often contracted to 「る」 in casual speech. This applies
+    to all conjugations, e.g., 「います」 to 「ます」, 「いて」 to 「って」, 「いた」 to 「た」.
+formation:
+  Verb (て-form) + いる: Expresses an ongoing action, a state of being resulting from an action, or a habitual/repeated
+    activity.
+  Verb (て-form) + いる + 状態/状況: Used to explicitly state that the resultant state is ongoing, adding emphasis
+    to the continuing condition. For example, 「開いている状態」 (a state of being open).
+  Verb in te-form + いる/います: Indicates a habitual action or repeated activity.
+jlpt: N5
+etymology: The grammar point 「ている」 is a combination of the 「て」-form of a verb, which indicates a manner
+  or state, and the verb 「いる」, meaning 'to exist' or 'to be'. Therefore, literally, 「ている」 means 'to exist
+  in the state of doing something'. This etymology reflects its function of describing ongoing actions
+  or existing states resulting from actions. Historically, this structure signified "to be in the state
+  of having completed an action." Over time, its meaning broadened to encompass actions currently in progress
+  and, as seen here, habitual or repetitive actions. The core concept remains that of "existing in a particular
+  state"—in this case, the state of repeatedly performing an action. This evolution allows 「ている」 to convey
+  ongoing existence, completion leading to a state, or persistent activity, all stemming from the fundamental
+  meaning of 「いる」.
+writeup: |-
+  The 「ている」 form in Japanese is a versatile and fundamental grammatical structure used to express three primary aspects: **ongoing actions**, **resultant states**, and **habitual actions**. Understanding the context and the nature of the main verb is crucial to discerning its precise meaning.
+
+  *   **Ongoing Actions:** This indicates that an action is currently happening. It is often compared to the "~ing" form in English. For example, 「食べている」 means "is eating." This usage focuses on the process of an action as it unfolds.
+
+  *   **Resultant States:** This describes a state that continues to exist as a result of a previously completed action. This applies particularly to verbs that describe an instantaneous action or a change, where the focus is on the state after the action's completion. For instance, 「結婚する」 (to marry) becomes 「結婚している」 (is married – the state of having married). Similarly, 「ドアが開いている」 means "the door is open" (the state resulting from the door having opened), not "the door is opening."
+
+  *   **Habitual Actions:** When combined with words indicating frequency like `いつも` (always), `毎日` (every day), or `よく` (often), 「ている」 can also indicate a continuous or habitual action, rather than a specific action happening at a particular moment. This conveys the sense of "doing [verb] regularly" or "being in the habit of doing [verb]."
+
+  This form is created by attaching 「いる」 to the *te-* form of a verb. While the base form of `いる` is plain, its use in `ている` is adaptable to various registers depending on the ending (e.g., `います` for polite). In casual speech, 「いる」 is often contracted to 「る」, resulting in forms like 「てる」, 「てて」, 「てた」, and 「てます」. Be aware that some verbs, like 「死ぬ」 (to die) and 「知る」 (to get to know), appear in the 「ている」 form to describe a state, which might be translated into the past tense in English. For example, 「死んでいる」 means "is dead" (the state of having died) and 「知っている」 means "knows" (the state of having come to know).
+
+  **Important Considerations:**
+  *   For **resultant states**, this form is most commonly used with verbs that denote an instantaneous change, where the action's completion leads to a new, continuing state. Examples include verbs like 開く (to open), 閉まる (to close), 始まる (to begin), 終わる (to end), 結婚する (to marry), 死ぬ (to die), 忘れる (to forget), 太る (to get fat), 痩せる (to get thin), etc.
+  *   The primary focus for resultant states is on the *current condition* or state, not the process of change.
+  *   For **habitual actions**, to emphasize the nature of the action, you will frequently find 「ている」 used with expressions of time such as **毎日** (every day), **毎晩** (every night), **毎週** (every week), **いつも** (always), or **普段** (usually). This highlights that the action is a consistent part of someone's life or a regular occurrence.
+false_friends:
+  - term: Verb+て
+    meaning: And, Then (Linking events)
+    kind: similar expression
+    nuance: While the Verb + て form can link actions sequentially, {ている} specifically describes an ongoing
+      action, a resultant state, or a habitual action. It is not merely a connector of events.
+    grammar_point: Verb[て] (and then)
+  - term: ているところだ
+    meaning: In the process of doing ~ right now/at this moment
+    kind: often confused with
+    nuance: '{ているところだ} emphasizes an action happening at this very moment or about to begin, conveying
+      a sense of immediacy that {ている} alone does not always carry. While {ている} can indicate an ongoing
+      action, adding ところだ specifies that it''s occurring *right now*.'
+    grammar_point: '[Verb-て]いるところだ (in the process of doing)'
+  - term: ているあいだに
+    meaning: While, During the time that ~
+    kind: similar expression
+    nuance: '{ているあいだに} signifies an action occurring *during* the span of another ongoing activity, whereas
+      {ている} simply describes the ongoing action or state itself.'
+    grammar_point: あいだ (between・among・while・during)
+  - term: てある
+    meaning: Something is done, Has been done, Remaining state
+    kind: similar expression
+    nuance: While {ている} can describe a resultant state (e.g., ドアが開いている - the door is open), {てある} specifically
+      implies that the action was performed intentionally, and the state exists because of that preparation
+      or intentional act (e.g., ドアが開けてある - The door has been opened by someone, for a purpose).
+    grammar_point: てある (resultant state)
+  - term: つづける
+    meaning: To continue
+    kind: similar expression
+    nuance: While {ている} can indicate a continuous or habitual action, {つづける} emphasizes the continuous
+      nature of the *action itself* and its progression, rather than the resulting state or simply the
+      habit. It implies an action that keeps going without interruption.
+    grammar_point: '[Verb-stem]つづける (to continue doing)'
+  - term: まま
+    meaning: As is; unchanged; while still; leaving something as it is.
+    kind: similar expression
+    nuance: '{まま} describes a state where something remains *unchanged* from a previous condition or a
+      state in which something is left. Unlike {ている} which emphasizes the result of a completed action
+      or an ongoing action/habit, {まま} often implies a lack of action or a continuous, static state without
+      necessarily being the *result* of a specific verb''s completion. For example, 「電気をつけたまま寝た」 (I slept
+      with the lights left on).'
+    grammar_point: 〜まま(に) (as is・unchanged)
+  - term: ものだ
+    meaning: Indicates something is natural, expected, or supposed to be a certain way.
+    kind: similar expression
+    nuance: While {ている} describes a consistent, repeated behavior or ongoing state, {ものだ} expresses a
+      general truth, a strong expectation, or a nostalgic habit from the past that may no longer be current.
+      It focuses on the inherent nature of something or a past routine, not a presently active, ongoing
+      habit or current state.
+    grammar_point: ものだ (general truth expectation)
+post_false_friends_writeup: To distinguish 「ている」 from similar expressions, consider the specific nuance.
+  If the focus is on a momentary action happening *right now*, 「ているところだ」 is more appropriate. If it's
+  about an action occurring *during* another event, use 「ているあいだに」. For a state resulting from an *intentional*
+  action or preparation, 「てある」 is used. When emphasizing the continuous *progression* of an action, 「つづける」
+  is preferred. If something remains *unchanged* from a prior condition, 「まま」 is the fit. Lastly, 「ものだ」
+  expresses general truths or past habits rather than current actions or states.
+examples:
+  - english: The children are playing in the park.
+    japanese:
+      - 子供 たち が 公園 で 遊ん で {いる}。
+      - 子供 たち が 公園 で 遊ん で {る}。
+      - 子供 たち が 公園 で 遊ん で {い ます}。
+      - 子供 たち が 公園 で 遊ん で {ます}。
+    english_literally: Children are playing in the park.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 公園 で {遊ぶ}。
+        english: The children play in the park (habitually/future).
+        hint: The scene describes an ongoing activity, making '遊ぶ' (to play, future/habitual) less appropriate.
+          We're looking for an action currently happening.
+      - competing_japanese:
+          - 子供 が 公園 で {遊ん だ}。
+        english: The children played in the park.
+        hint: The scene implies a current observation, not a past completed action, distinguishing it
+          from '遊んだ' (played). We're looking for an action in progress.
+      - competing_japanese:
+          - 子供 は 公園 で {遊ん で いる}。
+        english: As for the children, they are playing in the park.
+        hint: Using 'は' changes the focus to a general statement about the children rather than a specific
+          observation about their current action. We're looking for a specific current action.
+      - competing_japanese:
+          - 子供 たち は 公園 に {いる}。
+        english: The children are in the park.
+        hint: This sentence only states their location, not the action they are performing. We're looking
+          for the activity itself.
+      - competing_japanese:
+          - 子供 たち が 公園 で {遊ん で}、それ から 家 に 帰っ た。
+        english: The children played in the park, and then went home.
+        hint: This uses the plain 'て' form to link sequential actions, not to describe an ongoing action.
+          We're looking for an action currently happening.
+      - competing_japanese:
+          - 子供 たち が 公園 で {遊ん で いる ところ だ}。
+        english: The children are just now in the process of playing in the park.
+        hint: This emphasizes the immediacy of the action, suggesting it's happening right at this very
+          moment. We're looking for an ongoing action without that specific immediacy.
+      - competing_japanese:
+          - 子供 たち が 公園 で {遊ん で いる あいだ に}、母 が 来 た。
+        english: While the children were playing in the park, their mother came.
+        hint: This uses a temporal phrase indicating one action occurring during another. We're looking
+          for the simple description of the ongoing action.
+    scene: A parent looks out the window and observes their children having fun outdoors.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+  - english: The teacher is speaking now.
+    japanese:
+      - 今、先生 が 話し て {い ます}。
+      - 今、先生 が 話し て {いる}。
+      - 今、先生 が 話し て {る}。
+      - 今、先生 が 話し て {いらっしゃる}。
+    english_literally: Now, the teacher is speaking.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が {話す}。
+        english: The teacher speaks (habitually/future).
+        hint: The word '今' (now) emphasizes the ongoing nature of the action, making '話す' (to speak, future/habitual)
+          less fitting. We're looking for an action happening at this very moment.
+      - competing_japanese:
+          - 先生 が {話し まし た}。
+        english: The teacher spoke.
+        hint: The scene clearly indicates a present, ongoing action, not a completed past action, ruling
+          out '話しました' (spoke). We're looking for an action in progress.
+      - competing_japanese:
+          - 先生 が {話す ところ だ}。
+        english: The teacher is about to speak.
+        hint: This phrase suggests the action is about to begin, not that the action is currently in progress.
+          We're looking for an ongoing action.
+      - competing_japanese:
+          - 先生 が {話し て}、質問 を 募集 する。
+        english: The teacher spoke, and then solicited questions.
+        hint: This uses the plain 'て' form to link sequential actions. We're looking for an action currently
+          happening.
+      - competing_japanese:
+          - 先生 が {話し て いる ところ だ}。
+        english: The teacher is just now in the process of speaking.
+        hint: This emphasizes the immediacy of the action, suggesting it's happening right at this very
+          moment. We're looking for an ongoing action without that specific immediacy.
+      - competing_japanese:
+          - 先生 が {話し て いる あいだ に}、メモ を 取っ た。
+        english: While the teacher was speaking, I took notes.
+        hint: This uses a temporal phrase indicating one action occurring during another. We're looking
+          for the simple description of the ongoing action.
+    scene: A student politely informs another student that the teacher is currently lecturing.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: That person hasn't been standing all along.
+    japanese:
+      - あの 人 は ずっと 立っ て {い ない}。
+      - あの 人 は ずっと 立っ て {い ませ ん}。
+      - あの 人 は ずっと 立っ て {ない}。
+    english_literally: That person is not in the state of standing continuously.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は ずっと {立た ない}。
+        english: That person doesn't stand all along (habitually/negative general).
+        hint: The nuance is about a continuous state not being maintained, rather than a general inability
+          or refusal to stand, which '立たない' would imply. We're looking for a state that has not been continuous.
+      - competing_japanese:
+          - あの 人 は {立た なかっ た}。
+        english: That person didn't stand.
+        hint: This refers to a single instance of not standing, not a continuous state of not standing.
+          We're looking for a negative continuous state.
+      - competing_japanese:
+          - あの 人 は ずっと {立っ て}、話し て い た。
+        english: That person was standing and talking all along.
+        hint: This uses the plain 'て' form to link sequential actions. We're looking for the state of
+          *not* standing.
+      - competing_japanese:
+          - あの 人 は ずっと {立っ て いる ところ で は ない}。
+        english: That person is not in the process of standing right now.
+        hint: This explicitly negates the immediate ongoing action. We're looking for a negation of a
+          continuous state, not just immediacy.
+      - competing_japanese:
+          - あの 人 は ずっと {立っ て いる あいだ に}、電話 が 鳴っ た。
+        english: While that person was standing all along, the phone rang.
+        hint: This uses a temporal phrase indicating one action occurring during another. We're looking
+          for the simple negation of a continuous state.
+    scene: A friend explains that someone has been sitting or moving, not standing the entire time.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: I study Japanese every day.
+    japanese:
+      - 毎日、日本 語 を 勉強 し て {い ます}。
+      - 毎日、日本 語 を 勉強 し て {いる}。
+      - 毎日、日本 語 を 勉強 し て {る}。
+      - 毎日、日本 語 の 勉強 を し て {い ます}。
+    english_literally: Every day, I am doing Japanese study.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、日本 語 を {勉強 し ます}。
+        english: I study Japanese every day (habitual, polite).
+        hint: While '勉強します' can indicate habit, the grammar point emphasizes the continuous, ongoing nature
+          of the daily study, fitting the 'every day' context more strongly. We're looking for a continuous
+          or habitual action.
+      - competing_japanese:
+          - 毎日、日本 語 の 勉強 を {する}。
+        english: I do Japanese study every day.
+        hint: This phrase describes the action itself, but does not carry the same nuance of continuous
+          engagement as the grammar point. We're looking for a continuous or habitual action.
+      - competing_japanese:
+          - 毎日、日本 語 を {勉強 し て}、それ から 寝る。
+        english: Every day, I study Japanese, and then go to sleep.
+        hint: This uses the plain 'て' form to link sequential actions. We're looking for a habitual action.
+      - competing_japanese:
+          - 今、日本 語 を {勉強 し て いる ところ だ}。
+        english: I'm just now in the process of studying Japanese.
+        hint: This emphasizes the immediacy of the action, suggesting it's happening right at this very
+          moment, which doesn't fit the 'every day' context. We're looking for a habitual action.
+      - competing_japanese:
+          - 日本 語 を {勉強 し て いる あいだ に}、友達 が 来 た。
+        english: While studying Japanese, my friend came.
+        hint: This uses a temporal phrase indicating one action occurring during another. We're looking
+          for the simple description of a habitual action.
+    scene: A student describes their consistent daily study routine to their teacher.
+    register: formal
+    setting: academic
+    conjugation: non-past polite (～ます)
+  - english: It was raining yesterday.
+    japanese:
+      - 昨日 は、雨 が 降っ て {い た}。
+      - 昨日 は、雨 が 降っ て {い まし た}。
+      - 昨日 は、雨 が 降っ て {た}。
+    english_literally: Yesterday, rain was falling.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 雨 が {降っ た}。
+        english: It rained yesterday.
+        hint: The focus is on the continuous nature of the rain throughout the day, not just that it rained
+          once. '降った' suggests a singular event. We're looking for an action that was ongoing in the past.
+      - competing_japanese:
+          - 昨日 は 雨 {だっ た}。
+        english: Yesterday was rain.
+        hint: This phrase states that it was rain, not that the action of raining was ongoing. We're looking
+          for a past continuous action.
+      - competing_japanese:
+          - 雨 が {降っ て}、道 が 濡れ た。
+        english: The rain fell, and the road became wet.
+        hint: This uses the plain 'て' form to link sequential actions. We're looking for an action that
+          was ongoing.
+      - competing_japanese:
+          - 雨 が {降っ て いる ところ だっ た}。
+        english: It was just in the process of raining (at that moment).
+        hint: This emphasizes the immediacy of the action at a specific past moment. We're looking for
+          an ongoing action over a period, not just an immediate point.
+      - competing_japanese:
+          - 雨 が {降っ て いる あいだ に}、買い物 を 済ま せ た。
+        english: While it was raining, I finished shopping.
+        hint: This uses a temporal phrase indicating one action occurring during another. We're looking
+          for the simple description of the ongoing past action.
+    scene: Someone reflects on the continuous rain they experienced on the previous day.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: That person knew my name.
+    japanese:
+      - あの 人 は 私 の 名前 を 知っ て {い まし た}。
+      - あの 人 は 私 の 名前 を 知っ て {い た}。
+      - あの 人 は 私 の 名前 を 知っ て {た}。
+    english_literally: That person was in the state of knowing my name.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は 私 の 名前 を {知り まし た}。
+        english: That person came to know my name.
+        hint: The sentence describes a continuous state of knowing, not the event of learning or coming
+          to know. '知りました' would imply the latter. We're looking for an existing state of knowing.
+      - competing_japanese:
+          - あの 人 は 私 の 名前 を {覚え て いる}。
+        english: That person remembers my name.
+        hint: While similar, '覚え て いる' emphasizes the act of remembering, whereas the grammar point focuses
+          on the state of possessing knowledge. We're looking for the state of knowing, not the process
+          of remembering.
+      - competing_japanese:
+          - 私 の 名前 を {知っ て}、驚い て い た。
+        english: They knew my name, and were surprised.
+        hint: This uses the plain 'て' form to link actions. We're looking for a state of knowing.
+      - competing_japanese:
+          - 私 の 名前 を {知っ て いる ところ だっ た}。
+        english: They were just in the process of knowing my name (doesn't fit natural English).
+        hint: This form emphasizes the immediacy of an action in the past, which doesn't apply to the
+          state of knowing. We're looking for a continuous state.
+      - competing_japanese:
+          - 私 の 名前 を {知っ て いる あいだ に}、彼 ら の こと を 思い出し た。
+        english: While I was knowing their name, I remembered them.
+        hint: This uses a temporal phrase, but the state of knowing is not an action that happens 'during'
+          another event in this way. We're looking for the simple description of a continuous state.
+    scene: Someone expresses surprise or confirmation that an acquaintance was already aware of their
+      name.
+    register: formal
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: That person has been looking at their phone all this time, huh.
+    japanese:
+      - あの 人、ずっと スマホ を 見 て {いる} な。
+      - あの 人、ずっと スマホ を 見 て {る} な。
+      - あの 人、ずっと スマホ を 見 て {い ます} ね。
+      - あの 人、ずっと スマホ 見 て {はる} わ。
+    english_literally: That person, continuously is in the state of looking at their smartphone, isn't
+      it?
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は ずっと スマホ を {見る}。
+        english: That person watches their phone all the time (habitually/future).
+        hint: The particle 'な' and the context imply an observation of an ongoing, continuous action rather
+          than a future or habitual action. We're looking for an action that has been ongoing.
+      - competing_japanese:
+          - あの 人 は スマホ を {見 始め た} な。
+        english: That person started looking at their phone, huh.
+        hint: This phrase indicates the beginning of an action, not that the action has been continuous
+          up until now. We're looking for a continuous action.
+      - competing_japanese:
+          - あの 人、ずっと スマホ を {見 て}、何 も 言わ なかっ た な。
+        english: That person was looking at their phone all along, and didn't say anything, huh.
+        hint: This uses the plain 'て' form to link sequential actions. We're looking for an ongoing action.
+      - competing_japanese:
+          - あの 人、ずっと スマホ を {見 て いる ところ だ} な。
+        english: That person is just now in the process of looking at their phone all along, huh.
+        hint: This implies immediacy, which conflicts with 'ずっと' (all along). We're looking for a continuous
+          action over a period.
+      - competing_japanese:
+          - あの 人、スマホ を {見 て いる あいだ に}、私 に 気づか なかっ た な。
+        english: While that person was looking at their phone, they didn't notice me, huh.
+        hint: This uses a temporal phrase indicating one action occurring during another. We're looking
+          for the simple description of the ongoing action.
+    scene: A man casually observes someone who appears to be engrossed in their phone for a long period.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The sentence-final particle 「な」 (pronounced with a rising intonation) is a common male speech
+      marker used to express a mild exclamation or observation, often seeking implicit agreement. The
+      additional 「はる」 is a regional dialect (Kansai-ben) often used by older male speakers to express
+      respect, but here it's used colloquially among familiar peers, making the phrase 「スマホ見 て はる」 add
+      a touch of Kansai casualness and observation.
+  - english: You're happily talking with your friend, aren't you?
+    japanese:
+      - 友達 と 楽しく 話し て {いる} よ ね。
+      - 友達 と 楽しく 話し て {る} よ ね。
+      - 友達 と 楽しく 話し て {い ます} よ ね。
+      - 友達 と 楽しく 話し て {はる} よ ね。
+    english_literally: You are in the state of happily talking with your friend, aren't you?
+    competing_grammar:
+      - competing_japanese:
+          - 友達 と 楽しく {話す} よ ね。
+        english: You talk happily with your friend, don't you?
+        hint: The sentence-final particle 'よね' and the context clearly point to an ongoing, present activity,
+          not a general or future action. We're looking for a current, ongoing activity.
+      - competing_japanese:
+          - 友達 と 楽しく {話し た} よ ね。
+        english: You talked happily with your friend, didn't you?
+        hint: This refers to a completed action in the past, not an action that is currently ongoing.
+          We're looking for an action in progress.
+      - competing_japanese:
+          - 友達 と 楽しく {話し て}、楽しかっ た よ ね。
+        english: We talked happily with friends, and it was fun, wasn't it?
+        hint: This uses the plain 'て' form to link actions. We're looking for an ongoing action.
+      - competing_japanese:
+          - 友達 と 楽しく {話し て いる ところ だ} よ ね。
+        english: You're just now in the process of happily talking with your friend, aren't you?
+        hint: This emphasizes the immediacy of the action. We're looking for an ongoing action without
+          that specific immediacy.
+      - competing_japanese:
+          - 友達 と 楽しく {話し て いる あいだ に}、時間 が 過ぎ た ね。
+        english: While you were happily talking with your friend, time passed, didn't it?
+        hint: This uses a temporal phrase indicating one action occurring during another. We're looking
+          for the simple description of the ongoing action.
+    scene: A woman warmly engages with a friend, noticing their cheerful conversation and seeking confirmation.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The sentence-final particle 「よね」 is frequently used by female speakers to seek agreement or
+      confirmation in a softer, more engaging manner, implying a shared understanding or observation.
+      The addition of 「はる」, a Kansai-ben honorific, can be used casually to refer to others' actions with
+      a sense of mild respect or politeness, even among peers, making the phrase 「話し て はる」 a common colloquialism
+      in some regions.
+  - english: The clock is broken.
+    japanese:
+      - 時計 は {壊れ て いる}。
+      - 時計 は {壊れ て い ます}。
+      - 時計、{壊れ てる} よ。
+      - 時計 が {壊れ て いる} ね。
+      - 時計 は {壊れ てる} わ。
+      - 時計、{壊れ ちゃっ てる}。
+    english_literally: The clock has broken (and is in that state).
+    competing_grammar:
+      - competing_japanese:
+          - 時計 が {壊れ た}。
+        english: The clock broke.
+        hint: 「壊れた」 focuses solely on the event of the clock breaking. We're looking for the *current
+          condition* of the clock being broken, not just the past event of it breaking.
+    scene: A child observes their toy clock on the floor.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: Is the restaurant open yet?
+    japanese:
+      - レストラン は もう {開い て い ます} か？
+      - レストラン は もう {開い て いる} か？
+      - レストラン、もう {開い てる}？
+      - レストラン は もう {開い て おり ます} か？
+      - もう レストラン、{開い て る} か い？
+      - レストラン、もう {開い て ます}？
+    english_literally: Has the restaurant opened (and is in that state) yet?
+    competing_grammar:
+      - competing_japanese:
+          - レストラン は もう {開き まし た} か？
+        english: Did the restaurant open already?
+        hint: 「開きましたか」 asks if the *action* of opening has occurred. We're looking for the *current state*
+          of being open, not just whether the opening event happened.
+    scene: A person arrives early at a restaurant and asks a staff member.
+    register: formal
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+  - english: He was wearing a new shirt yesterday.
+    japanese:
+      - 彼 は 昨日、新しい シャツ を {着 て い た}。
+      - 彼 は 昨日、新しい シャツ を {着 て い まし た}。
+      - 彼、昨日 新しい シャツ {着 て た} よ。
+      - 彼 は 昨日、新しい シャツ を {着用 し て い まし た}。
+      - 昨日、彼、新しい シャツ {着 て た} ん だ よ ね。
+    english_literally: He had worn a new shirt (and was in that state) yesterday.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 昨日、新しい シャツ を {着 た}。
+        english: He put on a new shirt yesterday.
+        hint: 「着た」 indicates the *action* of putting on the shirt. We're looking for the *state* of continuously
+          wearing the shirt, which implies he had it on for some period.
+    scene: A female friend recounts an outfit someone wore the previous day to another female friend.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「着ていた」 by a female speaker casually recounting an observation emphasizes the *current
+      state* of someone wearing a shirt, rather than the action of putting it on. The phrase 「着て いた」 describes
+      a sustained condition in the past, making the anecdote more vivid for the listener.
+  - english: She's tired from all the work.
+    japanese:
+      - 彼女 は 仕事 で {疲れ て いる}。
+      - 彼女 は 仕事 で {疲れ て い ます}。
+      - 彼女、仕事 で {疲れ てる}。
+      - 彼女 は 仕事 で {疲れ てる} の。
+    english_literally: She, because of work, is tired.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 仕事 で {疲れ た}。
+        english: She got tired from work.
+        hint: 「疲れた」 focuses on the *event* of becoming tired. We're looking for the *current state* of
+          being tired.
+    scene: A colleague talks about another colleague after a busy day.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: He has gained weight recently.
+    japanese:
+      - 彼 は 最近 {太っ て いる}。
+      - 彼 は 最近 {太っ て い ます}。
+    english_literally: He, recently, is fat.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 最近 {太っ た}。
+        english: He gained weight recently.
+        hint: 「太った」 describes the *action* of gaining weight. We're looking for the *resulting state*
+          of being fat.
+    scene: A male friend casually comments on another male friend's physical change.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「太っている」 by a male speaker to another male emphasizes the *current state* of having
+      gained weight. This direct observation is common in casual conversation between friends.
+  - english: The light in the room is off.
+    japanese:
+      - 部屋 の 電気 が {消え て いる}。
+      - 部屋 の 電気 が {消え て い ます}。
+    english_literally: The room's light is extinguished (and remains so).
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 の 電気 が {消え た}。
+        english: The light in the room went off.
+        hint: 「消えた」 focuses on the *event* of the light going off. We're looking for the *current state*
+          of the light being off.
+    scene: Someone enters a dark room and notices the light is off.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: My sister is married.
+    japanese:
+      - 私 の 姉 は {結婚 し て いる}。
+      - 私 の 姉 は {結婚 し て い ます}。
+    english_literally: My older sister is married.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 姉 は {結婚 し まし た}。
+        english: My sister got married.
+        hint: 「結婚しました」 describes the *event* of getting married. We're looking for the *current state*
+          of being married.
+    scene: Someone introduces their family member.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: I've forgotten my wallet at home.
+    japanese:
+      - 財布 を 家 に {忘れ て いる}。
+      - 財布 を 家 に {忘れ て い ます}。
+    english_literally: My wallet, at home, I have forgotten (and it remains there).
+    competing_grammar:
+      - competing_japanese:
+          - 財布 を 家 に {忘れ た}。
+        english: I forgot my wallet at home (past action).
+        hint: 「忘れた」 describes the *past action* of forgetting. We're looking for the *present state* of
+          the wallet being forgotten and still at home.
+    scene: A person realizes they don't have their wallet at a store.
+    register: casual
+    setting: emergency/alarm
+    conjugation: dictionary (plain non-past)
+  - english: There's water in the bottle.
+    japanese:
+      - ボトル の 中 に 水 が {入っ て いる}。
+      - ボトル の 中 に 水 が {入っ て い ます}。
+    english_literally: Inside the bottle, water is contained.
+    competing_grammar:
+      - competing_japanese:
+          - ボトル の 中 に 水 が {入っ た}。
+        english: Water went into the bottle.
+        hint: 「入った」 describes the *action* of water entering the bottle. We're looking for the water being
+          *present* in the bottle now.
+    scene: Someone asks about the contents of a bottle.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: The store is closed today.
+    japanese:
+      - その お 店 は 今日 は {閉まっ て いる}。
+      - その お 店 は 今日 は {閉まっ て い ます}。
+    english_literally: That store, today, is closed (and remains so).
+    competing_grammar:
+      - competing_japanese:
+          - その お 店 は 今日 {閉まっ た}。
+        english: That store closed today.
+        hint: 「閉まった」 describes the *action* of the store closing. We're looking for the *current state*
+          of the store being closed for the day.
+    scene: Two friends arrive at a store only to find it not open.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+  - english: The shop isn't open yet, it's still closed.
+    japanese:
+      - その お 店 は まだ {開い て い ない}、まだ {閉まっ て いる} よ。
+      - その お 店 は まだ {開い て い ませ ん}、まだ {閉まっ て い ます} よ。
+    english_literally: That shop has not yet opened (and is not in that state), it is still closed.
+    competing_grammar:
+      - competing_japanese:
+          - その お 店 は まだ {開か ない}。
+        english: That shop won't open yet (future tense).
+        hint: 「開かない」 indicates a future action. We're looking for the *current state* of the shop not
+          being open.
+    scene: Two friends wait outside a shop before opening hours.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: That man runs in the park every day.
+    japanese:
+      - あの 男 の 人 は 毎日 こうえん で は しっ て {い ます}。
+      - あの 男 の 人 は 毎日 公園 で 走っ て {いる}。
+      - あの 男 の 人 は 毎日 公園 で 走っ {てる}。
+    english_literally: That man, every day, in the park, is running.
+    competing_grammar:
+      - competing_japanese:
+          - あの 男 の 人 は 毎日 こうえん で {はしり ます}。
+        english: That man runs in the park every day.
+        hint: While 「はしります」 states a general fact, 「はしって{います}」 emphasizes the ongoing, habitual nature
+          of his running routine. This example is about a consistent habit.
+      - competing_japanese:
+          - あの 男 の 人 は こうえん で は しっ て {い ます}。
+        english: That man is running in the park right now.
+        hint: Without a time expression like 「毎日」 (every day), 「はしって{います}」 often implies an action happening
+          right now. We're looking for a habitual action here.
+    scene: You are observing a person's regular routine.
+    register: teineigo (polite)
+    setting: informative
+  - english: I study Japanese at home every day.
+    japanese:
+      - わたし は 毎日 家 で 日本 語 を {べんきょう し て い ます}。
+      - 私 は 毎日 家 で 日本 語 を {勉強 し て いる}。
+      - 僕 は 毎日 家 で 日本 語 を {勉強 し てる}。
+    english_literally: I, every day, at home, Japanese am studying.
+    competing_grammar:
+      - competing_japanese:
+          - わたし は 毎日 家 で 日本 語 を {べんきょう し ます}。
+        english: I study Japanese at home every day.
+        hint: 「べんきょうします」 states a general fact or future action. 「べんきょうしています」 highlights that studying
+          Japanese at home is a consistent, habitual part of the speaker's daily routine.
+      - competing_japanese:
+          - わたし は 家 で 日本 語 を {べんきょう し て い ます}。
+        english: I am studying Japanese at home right now.
+        hint: When no daily or habitual time expression is present, 「べんきょうしています」 typically means the action
+          is ongoing in the present. We're looking for a regular, habitual action.
+    scene: A student is explaining their daily routine to a new friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: She hasn't been eating many sweets.
+    japanese:
+      - かのじょ は あまい もの を あまり {食べ て い ませ ん}。
+      - 彼女 は 甘い もの を あまり {食べ て い ない}。
+      - 彼女 は 甘い もの を あまり {食べ て ない}。
+    english_literally: She, sweet things, not much, is not habitually eating.
+    competing_grammar:
+      - competing_japanese:
+          - かのじょ は あまい もの を あまり {食べ ませ ん}。
+        english: She doesn't eat many sweets.
+        hint: 「食べません」 simply states a general non-action. 「食べていません」 emphasizes that this is an ongoing
+          change or a routine she has stopped following, fitting a discussion about current habits.
+      - competing_japanese:
+          - かのじょ は あまい もの を {食べ て い ませ ん}。
+        english: She is not eating sweets (right now).
+        hint: Without the context of a long-term change or routine, 「食べていません」 can mean she is simply not
+          eating sweets at this very moment. We are looking for an ongoing absence of a habit.
+    scene: Two friends are discussing a woman's dietary habits.
+    register: teineigo (polite)
+    setting: informative
+  - english: My father doesn't read much.
+    japanese:
+      - 私 の 父 は、本 を あまり {読ん で い ない}。
+      - 私 の 父 は、本 を あまり {読ん で ない}。
+      - 私 の 父 は、本 を あまり {読ん で い ませ ん}。
+    english_literally: My father, book, not much, is not reading.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 父 は、本 を あまり {読ま ない}。
+        english: My father doesn't read much.
+        hint: 「読まない」 states a general non-action. 「読んでいない」 implies that a past habit of reading has ceased
+          or significantly decreased, emphasizing the ongoing absence of the activity as a habit.
+      - competing_japanese:
+          - 私 の 父 は、今 本 を {読ん で い ない}。
+        english: My father is not reading a book right now.
+        hint: When no time expression is present, 「読んでいない」 can refer to the action not happening at the
+          current moment. This example focuses on the absence of a habitual reading practice.
+    scene: Someone is talking about their father's reading habits.
+    register: casual
+    setting: informative
+  - english: That man didn't exercise at all.
+    japanese:
+      - あの 男 の 人 は ぜんぜん からだ を うごかし て {い なかっ た}。
+      - あの 男 の 人 は ぜんぜん からだ を うごかし て {なかっ た}。
+      - あの 男性 は 全然 体 を 動かし て {い ませ ん でし た}。
+    english_literally: That man, not at all, body was not habitually moving.
+    competing_grammar:
+      - competing_japanese:
+          - あの 男 の 人 は ぜんぜん からだ を {うごかさ なかっ た}。
+        english: That man didn't exercise at all.
+        hint: 「うごかさなかった」 simply states a past non-event. 「うごかして{いなかった}」 conveys that the lack of exercise
+          was a continuous state or habitual non-action throughout that past period, emphasizing the consistent
+          absence of the activity.
+      - competing_japanese:
+          - あの 男 の 人 は その 時 からだ を うごかし て {い なかっ た}。
+        english: That man was not exercising at that time.
+        hint: 「うごかして{いなかった}」 can describe an action not happening at a specific point in the past. This
+          example implies that not exercising was his continuous habit for a period.
+    scene: A man is talking about a friend who used to be inactive.
+    register: casual
+    setting: informative
+  - english: When I was a student, I often read books in the park.
+    japanese:
+      - がくせい の 時、よく こうえん で 本 を {読ん で い た}。
+      - 学生 の 時、よく 公園 で 本 を {読ん で た}。
+      - 学生 の 時、よく 公園 で 本 を {読ん で い まし た}。
+    english_literally: Student's time, often, in the park, book was habitually reading.
+    competing_grammar:
+      - competing_japanese:
+          - がくせい の 時、よく こうえん で 本 を {読ん だ}。
+        english: When I was a student, I often read books in the park (on one specific occasion).
+        hint: 「読んだ」 implies a single past event. 「読んでいた」 conveys a habitual action that occurred regularly
+          over a period in the past, emphasizing the routine.
+      - competing_japanese:
+          - がくせい の 時、私 は その 時 本 を {読ん で い た}。
+        english: When I was a student, I was reading a book at that moment.
+        hint: While 「読んでいた」 can mean an action was ongoing at a specific time in the past, here, combined
+          with 「よく」 (often) and 「がくせいの 時」 (when I was a student), it indicates a repeated action or habit
+          during that period. We're looking for a habitual action.
+    scene: An older woman shares memories of her student days with a younger relative.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「がくせいの 時」 and the past habitual form 「読んでいた」 creates a nostalgic tone, common in
+      reflective conversations about past routines. The speaker, being older, uses casual language appropriate
+      for sharing memories with a younger generation.
+  - english: When I was a child, our family often went on trips every week.
+    japanese:
+      - 子ども の 時、まい しゅう かぞく と りょこう に {行っ て い まし た}。
+      - 子供 の 時、毎週 家族 と 旅行 に {行っ て い た}。
+      - 子供 の 時、毎週 家族 と 旅行 に {行っ て た}。
+    english_literally: Child's time, every week, family with, to travel, was habitually going.
+    competing_grammar:
+      - competing_japanese:
+          - 子ども の 時 は、まい しゅう かぞく と りょこう に {行き まし た}。
+        english: When I was a child, our family went on trips every week (at some point).
+        hint: 「行きました」 indicates a single past event. 「行っていました」 highlights a repeated, habitual action
+          that occurred regularly over a period in the past, emphasizing the routine of family trips.
+      - competing_japanese:
+          - 子ども の 時、かぞく と りょこう に {行っ て い まし た}。
+        english: When I was a child, I was going on a trip with my family (on that day).
+        hint: Without the clear indication of repetition like 「まいしゅう」 (every week), 「行っていました」 could mean
+          the action was ongoing at a specific point in the past. This example specifies a repeated, habitual
+          action.
+    scene: An older man reminisces with his grandchild about his youth.
+    register: semi-formal
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The male speaker uses polite but accessible language when speaking to a younger family member,
+      showing respect while sharing personal memories. The politeness of 「行っていました」 is appropriate for
+      a more formal or semi-formal storytelling context within a family.
+  - english: She wasn't walking outside every morning before.
+    japanese:
+      - かのじょ は 前 は まいあさ 外 を あるい て {い ませ ん でし た}。
+      - 彼女 は 前 は 毎朝 外 を 歩い て {い なかっ た}。
+      - 彼女 は 前 は 毎朝 外 を 歩い て {なかっ た}。
+    english_literally: She, previously, every morning, outside was not habitually walking.
+    competing_grammar:
+      - competing_japanese:
+          - かのじょ は 前 は まいあさ 外 を {あるき ませ ん でし た}。
+        english: She didn't walk outside every morning before.
+        hint: 「あるきませんでした」 simply states a past non-event. 「あるいて{いませんでした}」 specifically implies that a
+          past habitual action (walking outside every morning) was not occurring regularly for a period,
+          emphasizing the absence of the routine in the past.
+      - competing_japanese:
+          - かのじょ は その 時 外 を あるい て {い ませ ん でし た}。
+        english: She was not walking outside at that time.
+        hint: 「あるいて{いませんでした}」 can refer to an action not ongoing at a specific point in the past. Here,
+          it describes the ongoing absence of a daily habit.
+    scene: Two colleagues are discussing a coworker's previous morning routine.
+    register: formal
+    setting: informative
+  - english: If you practice every day, your singing will improve.
+    japanese:
+      - 毎日 れんしゅう を {し て いれ ば}、もっと うた が じょうず に なる よ。
+      - 毎日 練習 を {し て いれ ば}、もっと 歌 が 上手 に なる よ。
+      - 毎日 練習 を {し て たら}、もっと 歌 が 上手 に なる よ。
+    english_literally: If habitually practicing every day, singing will become skillful.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 れんしゅう を {すれ ば}、もっと うた が じょうず に なる よ。
+        english: If you practice every day, your singing will improve.
+        hint: 「すれば」 suggests a general condition. 「していれば」 emphasizes that the *habit* of daily practice
+          is the condition for improvement, making the advice about consistent effort rather than a one-time
+          act.
+      - competing_japanese:
+          - もし、今 れんしゅう を {し て いれ ば}、すぐ に じょうず に なる よ。
+        english: If you are practicing right now, you will improve quickly.
+        hint: 「していれば」 can refer to an action ongoing in the present as a condition. With 「毎日」 (every day),
+          it emphasizes the *habit* of daily practice as the condition for improvement.
+    scene: A kind music teacher encourages a student who is struggling with their singing.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「よ」 at the end of the sentence and the kind, encouraging tone suggest an older
+      female teacher speaking to a younger male student. The casual register is evident in the sentence-final
+      particle 「よ」.
+  - english: If you had exercised every day, you probably would have been healthier.
+    japanese:
+      - もし 毎日 からだ を うごかし て {い たら}、もっと げんき だっ た だろう ね。
+      - もし 毎日 体 を 動かし て {い たら}、もっと 元気 だっ た だろう ね。
+      - もし 毎日 体 を 動かし て {たら}、もっと 元気 だっ た だろう ね。
+    english_literally: If habitually moving body every day, probably would have been more energetic/healthy.
+    competing_grammar:
+      - competing_japanese:
+          - もし 毎日 からだ を {うごかし たら}、もっと げんき だっ た だろう ね。
+        english: If you had exercised every day, you probably would have been healthier.
+        hint: 「うごかしたら」 suggests a single instance of action. 「うごかして{いたら}」 clearly refers to a hypothetical
+          habitual action that was not taken in the past, emphasizing the continuous nature of the missed
+          practice and its long-term effects. It sets up a counterfactual scenario about a routine.
+      - competing_japanese:
+          - もし その 時 からだ を うごかし て {い たら}、げんき だっ た だろう ね。
+        english: If you were exercising at that time, you probably would have been healthier.
+        hint: 「うごかして{いたら}」 can refer to an action ongoing at a specific point in the past as a hypothetical
+          condition. The presence of 「毎日」 (every day) signifies that the condition is about a habitual
+          action.
+    scene: A coach talks to a former player who expresses regret about not training harder in the past.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The coach uses 「ね」 at the end to soften the advice and 「だろう」 to indicate a hypothetical outcome,
+      common for an older male mentor guiding a younger male player with empathy. The casual register
+      is conveyed through the use of 「ね」.
+  - english: That man wakes up early every day, and he's healthy.
+    japanese:
+      - あの 男 の 人 は 毎日 はやく {起き て い て}、げんき だ。
+      - あの 男性 は 毎日 早く {起き て い て}、元気 だ。
+      - あの 男性 は 毎日 早く {起き て て}、元気 だ。
+    english_literally: That man, every day, early is waking up, and is energetic/healthy.
+    competing_grammar:
+      - competing_japanese:
+          - あの 男 の 人 は 毎日 はやく {起き て}、げんき だ。
+        english: That man wakes up early every day and is healthy.
+        hint: 「起きて」 simply links two actions. 「起きていて」 implies a sustained state (waking up early) that
+          results in another state (being healthy), emphasizing the continuous consequence of the habitual
+          action. It highlights how the routine directly leads to a continuous outcome.
+      - competing_japanese:
+          - あの 男 の 人 は 今、はやく {起き て い て}、げんき だ。
+        english: That man is waking up early right now, and he's healthy.
+        hint: 「起きていて」 can describe an action ongoing at the current moment leading to a state. With 「毎日」
+          (every day), it emphasizes the habitual action of waking up early and its continuous effect.
+    scene: A friend describes a disciplined person's daily habits and their positive outcome.
+    register: casual
+    setting: informative
+post_example_writeup: The versatility of 「ている」 allows it to express both ongoing actions, continuous states
+  resulting from a past action, and habitual actions. Understanding the context and the nature of the
+  verb is key to discerning its precise meaning. Pay close attention to the type of verb and the desired
+  emphasis to correctly use or interpret this versatile form. Remember that habitual actions often involve
+  time expressions such as 「いつも」 (always), 「毎日」 (every day), 「毎晩」 (every night), etc. The key is that
+  the action is repeated regularly, making it a habitual part of life.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ている1

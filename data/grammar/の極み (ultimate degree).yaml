@@ -1,0 +1,304 @@
+grammar_point: の極み (ultimate degree)
+matcher: |-
+  ⌈ˢのᵖprt:case_particleᵇのʳノ⌉
+  ⌈ˢ極みᵖn:common_nounᵇ極みʳキワミ⌉
+learn_before:
+  - 〜など・〜なんか (listing examples)
+  - あとで (after・later)
+  - こんな (this kind of)
+  - たびに (each time)
+  - というのは (definition or reason)
+  - とは言え (that being said)
+  - 主に (mainly)
+meaning: Ultimate, Extreme, Utter, Epitome, Peak
+pronunciation:
+  katakana: ノキワミ
+  romaji: no kiwami
+formation:
+  Noun + の + 極み: Indicates the extreme or ultimate state of the noun.
+jlpt: N1
+etymology: 「極み (きわみ)」 literally means 'extremity,' 'height,' or 'limit.' When used with 「の」, it intensifies
+  the preceding noun, indicating that something has reached its utmost degree. This structure highlights
+  the noun as reaching its absolute peak or essence, whether in a positive or negative sense.
+writeup: 「の極み」 (no kiwami) is used to express that something is the **ultimate**, **extreme**, or **epitome**
+  of a certain quality or state. It is a formal expression often found in writing or formal speech, emphasizing
+  that something has reached the highest or most intense level of whatever it describes. Because 「極み」
+  itself is a noun, it is often followed by 「だ」 or 「です」, completing the sentence by asserting the state
+  of being the 'extreme of X'. This grammar point conveys a strong sense of a culmination or pinnacle,
+  applicable to both positive and negative attributes.
+false_friends:
+  - term: 極まりない・極まる
+    meaning: Extreme, Extremely
+    kind: similar expression
+    nuance: Unlike 「の極み」 which connects to nouns, 「極まる」 and 「極まりない」 are used with adjectives to express
+      an extreme degree.
+    grammar_point: 極まりない・極まる (extreme degree)
+  - term: この上ない
+    meaning: Utmost; extremely; utterly; cannot be more
+    kind: similar expression
+    nuance: While 「の極み」 emphasizes something as the absolute pinnacle or essence of a quality, 「この上ない」
+      often means "cannot be more X than this," implying an unsurpassed degree. 「の極み」 tends to be more
+      formal and literary, often used with abstract nouns, while 「この上ない」 can be used with a wider range
+      of nouns and adjectives.
+    grammar_point: この上ない (unbeatable)
+post_false_friends_writeup: To avoid confusion, remember that 「の極み」 is always preceded by a noun and 「の」,
+  forming a noun phrase, while 「極まる」 and 「極まりない」 are used to describe the degree of an adjective, functioning
+  more like adjectives themselves. For example, you might say 「失礼極まりない」 (shitsurei kiwamarinai - extremely
+  rude), but you wouldn't say 「失礼の極み」. Instead, for a noun like 'rudeness,' you'd use a different construction
+  or rephrase it, such as 「無礼の極み」 (burei no kiwami - the height of discourtesy). As for 「この上ない」, it conveys
+  a similar ultimate degree but often implies an unsurpassable level, like "nothing better exists." 「の極み」
+  is more about something being the 'quintessence' of a quality, rather than simply being the 'best' or
+  'most' of it.
+examples:
+  - english: If only I had waited five more minutes, I would have met my favorite idol... It's the peak
+      of despair.
+    japanese:
+      - あと 5 分 待っ て 居れ ば 私 が 大好き な アイドル に 会え て い た と は...痛恨 {の 極み} だ。
+      - あと 5 分 待っ て いれ ば 大好き な アイドル に 会え て い た なんて...痛恨 {の 極み} だ。
+    english_literally: If only I had waited 5 more minutes, that I would have been able to meet the idol
+      I love so much... it is the extreme of regret.
+    competing_grammar:
+      - competing_japanese:
+          - とても {残念 だ}。
+          - 本当 に {残念 です}。
+        english: It's very disappointing.
+        hint: While 'disappointing' conveys regret, 「の極み」 emphasizes the absolute peak or extreme of that
+          emotion. We're looking for an ultimate sense of despair.
+      - competing_japanese:
+          - とても {がっかり だ}。
+          - 大変 {がっかり し まし た}。
+        english: I'm very disappointed.
+        hint: 「がっかりだ」 means disappointment. 「の極み」 signifies the utmost intensity, an extreme level of
+          despair beyond simple disappointment. We're looking for the ultimate peak of this feeling.
+    scene: A person regrets missing an opportunity by just a few minutes.
+    register: formal
+    setting: melancholic
+    nuance: This example uses 「痛恨」 (tsuukon), a strong word for deep regret or remorse, emphasizing the
+      intensity of the speaker's feeling when using 「の極み」.
+  - english: I am beyond thrilled that you have been so good to me so far.
+    japanese:
+      - 今 まで こんな に 良く し て くれ て、感激 {の 極み} です。
+      - 今 まで こんな に 良く し て くださっ て、感激 {の 極み} です。
+    english_literally: You have been so good to me until now, it is the extreme of emotion.
+    competing_grammar:
+      - competing_japanese:
+          - 心 から {感謝 し て い ます}。
+          - 大変 {感謝 し て おり ます}。
+        english: I am truly thankful.
+        hint: 「感謝しています」 expresses gratitude. 「の極み」 elevates it to an extreme, profound emotional depth.
+          We're looking for an overwhelming feeling of emotion, not just thankfulness.
+      - competing_japanese:
+          - とても {嬉しい です}。
+          - 心 から {嬉しい です}。
+        english: I am truly happy.
+        hint: 「嬉しい」 means happy. 「の極み」 indicates an emotion reaching its absolute peak. We're looking
+          for a profound, extreme sense of emotion.
+    scene: A person expresses heartfelt gratitude to someone who has consistently treated them well.
+    register: teineigo (polite)
+    setting: intimate
+    nuance: 「感激」 (kangeki) means deep emotion or strong impression, showing the speaker's profound appreciation.
+      The use of 「です」 at the end makes the sentence polite.
+  - english: Telling us not to take paid time off? That's the epitome of being evil.
+    japanese:
+      - 有給 は 取る な と か 鬼畜 {の 極み} だ。
+      - 有給 を 取る な と いう の は 鬼畜 {の 極み} です。
+      - 有給 を 取る な だ なんて、鬼畜 {の 極み} だ。
+    english_literally: Telling us not to take paid leave, that's the extreme of evil/brutality.
+    competing_grammar:
+      - competing_japanese:
+          - それ は {ひどい}。
+          - な ん て {ひどい} ん だ。
+        english: That's terrible.
+        hint: 「ひどい」 describes something as bad. 「の極み」 signifies the absolute extreme or epitome of a negative
+          quality. We're looking for the ultimate level of wickedness.
+      - competing_japanese:
+          - '{最悪 だ}。'
+          - 本当 に {最悪 だ}。
+        english: It's the worst.
+        hint: 「最悪だ」 means the worst. 「の極み」 conveys that something has reached its ultimate, most extreme
+          degree, often indicating an inhumane level. We're looking for the absolute embodiment of evil.
+    scene: An employee complains about a harsh and inhumane workplace policy regarding paid time off.
+    register: casual
+    setting: sarcastic
+    nuance: 「鬼畜」 (kichiku) means devil or beast, highlighting the extreme negativity and inhumanity of
+      the action.
+  - english: It's the ultimate luxury to be able to eat such delicious food in such a scenic place.
+    japanese:
+      - こんな 景色 が いい ところ で、こんな 美味しい 料理 を 食べ られる なんて、なんて 贅沢 {の 極み} だ。
+      - こんな 景色 の いい ところ で、こんな 美味しい 料理 を 食べ られる なんて、なん と 贅沢 {の 極み} だ。
+    english_literally: To be able to eat such delicious food in such a place with a good view, what an
+      extreme of luxury!
+    competing_grammar:
+      - competing_japanese:
+          - とても {贅沢 だ}。
+          - 本当 に {贅沢 です}。
+        english: It's very luxurious.
+        hint: 「とても贅沢」 describes something as very luxurious. 「の極み」 means the ultimate or peak of luxury,
+          going beyond just 'very.' We're looking for the highest possible degree of luxury.
+      - competing_japanese:
+          - '{贅沢 極まる}。'
+          - '{贅沢 極まりない}。'
+        english: It is extremely luxurious.
+        hint: While 「贅沢極まる」 also expresses extreme luxury, it functions more like an adjective. 「の極み」
+          is a noun phrase, emphasizing the very state or essence of ultimate luxury. We're looking for
+          the epitome of luxury.
+    scene: A person expresses overwhelming delight while dining in a beautiful location.
+    register: casual
+    setting: excited
+    nuance: Using 「なんて」 (nante) adds a sense of wonder and excitement to the expression of luxury, emphasizing
+      its extreme nature.
+  - english: The lyrics of this song are the peak of emotion and bring tears to my eyes every time I listen
+      to it.
+    japanese:
+      - この 曲 の 歌詞 は 感動 {の 極み} で、聞く たび に 涙 が 溢れ 出 て くる。
+      - この 曲 の 歌詞 は 感動 {の 極み} で、聞く たび に 涙 が あふれ て くる。
+    english_literally: The lyrics of this song are the extreme of emotion, and tears overflow every time
+      I listen.
+    competing_grammar:
+      - competing_japanese:
+          - とても {感動 的 だ}。
+          - 本当 に {感動 的 です}。
+        english: It's very moving.
+        hint: 「感動的」 means moving. 「の極み」 indicates an emotion reaching its absolute peak, evoking a profound,
+          overwhelming response. We're looking for the ultimate level of emotional impact.
+      - competing_japanese:
+          - すごく {感動 する}。
+          - とても {感動 し まし た}。
+        english: I am very moved.
+        hint: 「感動する」 means to be moved. 「の極み」 describes the pinnacle of emotion that causes one to be
+          moved, not just the feeling itself. We're looking for the absolute peak of moving impact.
+    scene: Someone describes a song with lyrics so powerful that they consistently evoke a profound emotional
+      response, leading to tears.
+    register: semi-formal
+    setting: melancholic
+    nuance: 「感動」 (kandō) describes the overwhelming emotion caused by the song, leading to tears, indicating
+      the lyrics reach an extreme degree of moving impact.
+  - english: Hearing the news, King Daimos reached the very peak of surprise.
+    japanese:
+      - ダイモス 王 は この 報道 を 聞い て、驚き {の 極み} に 達し まし た。
+      - ダイモス 王 は この 報道 を 聞い て、驚き {の 極み} に 至り まし た。
+    english_literally: Hearing this report, King Daimos reached the extreme of surprise.
+    competing_grammar:
+      - competing_japanese:
+          - とても {驚い た}。
+          - 非常 に {驚き まし た}。
+        english: He was very surprised.
+        hint: 「驚いた」 means surprised. 「の極み」 conveys that surprise reached its absolute highest point, indicating
+          an extreme, almost unprecedented level. We're looking for the ultimate peak of surprise.
+      - competing_japanese:
+          - 非常 に {驚い た}。
+          - 大変 {驚き まし た}。
+        english: He was extremely surprised.
+        hint: 「非常 に 驚い た」 indicates a high degree of surprise. 「の極み」 expresses that the surprise reached
+          an absolute, ultimate limit. We're looking for the very peak of surprise.
+    scene: A narrator describes King Daimos's extreme reaction to unexpected news.
+    register: bungo (literary)
+    setting: storytelling
+    nuance: The phrase 「驚きの極みに達しました」 (odoroki no kiwami ni tasshimashita) is literary and dramatic, conveying
+      that the king's surprise reached its absolute highest point, fitting for a novel setting.
+  - english: 'When meeting a superior for the first time: It is an extreme honor to be able to meet you.'
+    japanese:
+      - 目上 の 人 に はじめて 出会う 時:お 目 に 掛かる こと が でき、光栄 {の 極み} です。
+      - 誠 に お 目 に 掛かる こと が でき、光栄 {の 極み} で ござい ます。
+    english_literally: 'When meeting a superior for the first time: To be able to meet you, it is the
+      extreme of honor.'
+    competing_grammar:
+      - competing_japanese:
+          - とても {光栄 です}。
+          - 本当 に {光栄 です}。
+        english: It's a great honor.
+        hint: 「とても光栄」 describes something as a great honor. 「の極み」 emphasizes the absolute peak or ultimate
+          degree of honor. We're looking for the highest possible level of honor.
+      - competing_japanese:
+          - '{光栄 極まる} こと です。'
+          - '{光栄 極まりない} こと です。'
+        english: It is extremely honorable.
+        hint: While 「光栄極まる」 also expresses extreme honor, it functions more like an adjective. 「の極み」 is
+          a noun phrase, emphasizing the very state or essence of ultimate honor. We're looking for the
+          epitome of honor.
+    scene: A young professional is introduced to a company executive for the first time.
+    register: kenjōgo (humble)
+    setting: professional
+    nuance: The phrase 「お目に掛かることができ」 (ome ni kakaru koto ga deki) is a humble way of saying 'to meet'
+      someone of higher status, and expressing 「光栄の極み」 (kōei no kiwami) shows profound, ultimate respect
+      and honor.
+  - english: Sushi - the epitome of Japan, a Japanese-style meal made by combining fish and shellfish
+      with cooked rice.
+    japanese:
+      - 寿司 は 日本 {の 極み} と も 言える 和食 で、主に 米飯 に 魚介 類 など を 組み合わせ た もの です。
+      - 寿司、それ は まさに 日本 {の 極み}。主に 米飯 に 魚介 類 など を 組み合わせ た 和食 です。
+    english_literally: Sushi - the extreme of Japan, a Japanese meal mainly combining cooked rice with
+      seafood.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 を {代表 する} もの。
+          - 日本 の {代表}。
+        english: Something representative of Japan.
+        hint: While 'representative' is close, 「の極み」 goes further, indicating the absolute peak, or the
+          ideal embodiment of something. We're looking for the ultimate essence of Japan.
+      - competing_japanese:
+          - 日本 を {象徴 する} もの。
+          - 日本 の {象徴}。
+        english: Something symbolizing Japan.
+        hint: 「象徴する」 means to symbolize. 「の極み」 suggests not just a symbol, but the ultimate, most perfect
+          embodiment of something. We're looking for the quintessential representation of Japan.
+    scene: A restaurant website describes sushi to potential customers, emphasizing its cultural significance
+      and quality.
+    register: bijinesu nihongo (business)
+    setting: informative
+    nuance: This sentence presents sushi as the ultimate representation and ideal example of Japanese
+      culinary tradition and culture, emphasizing its supreme status.
+  - english: The people trapped in the building due to the earthquake were in extreme utter turmoil.
+    japanese:
+      - 地震 に よっ て ビル に 閉じ込め られ た 人々 は 混乱 {の 極み} に あっ た。
+      - 地震 に よっ て ビル に 閉じ込め られ た 人々 は 混乱 {の 極み} で あっ た。
+    english_literally: The people trapped in the building due to the earthquake were in the extreme of
+      confusion.
+    competing_grammar:
+      - competing_japanese:
+          - とても {混乱 し て い た}。
+          - ひどく {混乱 し て い た}。
+        english: They were very confused.
+        hint: 「とても混乱」 means very confused. 「の極み」 conveys that the confusion reached an absolute, ultimate
+          state, often indicating total chaos. We're looking for the ultimate state of turmoil.
+      - competing_japanese:
+          - 非常 に {混乱 し て い た}。
+          - 大変 {混乱 し て い た}。
+        english: They were extremely confused.
+        hint: 「非常 に 混乱」 means extremely confused. 「の極み」 signifies the absolute peak of turmoil, a state
+          of utter disorder. We're looking for the ultimate confusion.
+    scene: A news report details the dire situation of people trapped in a building after a severe earthquake.
+    register: formal
+    setting: serious
+    nuance: This sentence describes the profound state of chaos and confusion experienced by those trapped,
+      emphasizing the extreme degree of their turmoil due to the severe circumstances.
+  - english: At first, Buddha lived an utterly luxurious life.
+    japanese:
+      - 釈迦 様 は 当初 贅沢 {の 極み} を 尽くし た 生活 を し て い た。
+      - 釈迦 様 は 当初 贅沢 {の 極み} の 生活 を し て い た。
+      - 釈迦 様 は 当初 贅沢 {の 極み} と いえる 生活 を 送っ て い た。
+    english_literally: At first, Lord Buddha was living a life that completely indulged in the extreme
+      of luxury.
+    competing_grammar:
+      - competing_japanese:
+          - とても {贅沢 な} 生活。
+          - 大変 {贅沢 な} 生活。
+        english: A very luxurious life.
+        hint: 「とても贅沢な生活」 describes a very luxurious life. 「の極み」 emphasizes an absolute, ultimate degree
+          of luxury, legendary in its opulence. We're looking for the pinnacle of indulgence.
+      - competing_japanese:
+          - 非常 に {贅沢 な} 生活。
+          - すごく {贅沢 な} 生活。
+        english: An extremely luxurious life.
+        hint: 「非常 に 贅沢 な 生活」 indicates an extremely luxurious life. 「の極み」 conveys the ultimate, unparalleled
+          level of extravagance. We're looking for the epitome of luxury.
+    scene: A historical account describes the early life of Buddha before his enlightenment, highlighting
+      his indulgence in ultimate luxury.
+    register: formal
+    setting: informative
+    nuance: This sentence describes the extreme degree to which Buddha indulged in luxury before his enlightenment,
+      conveying that his life was the pinnacle of extravagance, using 「尽くした」 (tsukushita - did completely,
+      exhausted) to emphasize total immersion in luxury.
+post_example_writeup: No additional writeup for examples at this time.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/の極み

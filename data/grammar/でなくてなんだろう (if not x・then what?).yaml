@@ -1,0 +1,372 @@
+grammar_point: でなくてなんだろう (if not x・then what?)
+learn_before:
+  - '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - 〜のだ・〜んだ (explanatory)
+  - に決まっている (surely is)
+  - に違いない (no doubt)
+  - わけだ (logical conclusion)
+meaning: If it isn't... then what is it?
+pronunciation:
+  katakana: デナクテナンダロウ
+  romaji: de nakute nan darou
+formation:
+  Noun + でなくてなんだろう: Expresses a strong conviction that something is definitively the case, often as a
+    rhetorical question.
+  Noun + でなくてなんだろう か: Adds rhetorical emphasis to the question, making the assertion even stronger. Both
+    forms have the same fundamental meaning and usage, with 『か』 simply adding a common rhetorical question
+    marker for heightened effect or agreement-seeking nuance in certain contexts. Both forms are interchangeable,
+    but the addition of 『か』 can soften the tone slightly, inviting the listener's agreement rather than
+    stating it as an unchallengeable fact, though the conviction remains strong. The choice between including
+    『か』 or not often depends on the speaker's specific intent for rhetorical impact.
+jlpt: N1
+etymology: This grammar point is constructed from で (the conjunctive form of the copula だ), なくて (the conjunctive
+  form of the negative ない), なん (what), and だろう (the volitional form of だ, expressing conjecture or rhetorical
+  question). It literally asks, "If it is not this, then what could it be?" This construction highlights
+  the lack of any plausible alternative, thus reinforcing the initial assertion.
+writeup: |-
+  「でなくてなんだろう」 is a formal and emphatic pattern used to express a strong conviction that something is undoubtedly a certain way. It often takes the form of a rhetorical question, asserting the speaker's opinion so strongly that no other possibility seems conceivable. The expression can be translated as "If it isn't (A), then what is it?" or "What else could it be if not (A)?"
+
+  This pattern is typically used to emphasize a point or express a powerful, undeniable opinion. It is a highly assertive rhetorical device. While it functions as a question, it implicitly conveys a definitive statement.
+
+  It is commonly used in formal or semi-formal contexts, particularly when the speaker wishes to convey a sense of profound truth or an unavoidable conclusion. It can sometimes be followed by the sentence-ending particle 「か」 for added rhetorical emphasis, which does not change its core meaning.
+false_friends:
+  - term: に違いない
+    meaning: Must be; there's no mistake that
+    kind: similar expression
+    nuance: 「に違いない」 states a strong certainty directly, like "It must be true." In contrast, 「でなくてなんだろう」
+      expresses certainty through a rhetorical question, challenging the listener to deny the obvious.
+    grammar_point: に違いない (no doubt)
+  - term: に決まっている
+    meaning: It's certain that; it's decided that
+    kind: similar expression
+    nuance: 「に決まっている」 indicates certainty, often with a nuance of inevitability or common knowledge, like
+      "It's definitely going to happen." While it conveys conviction, it lacks the argumentative, rhetorical
+      question aspect of 「でなくてなんだろう」.
+    grammar_point: に決まっている (surely is)
+  - term: にほかならない
+    meaning: Is nothing but; is precisely
+    kind: similar expression
+    nuance: 「にほかならない」 is a very formal and emphatic expression that means 'is nothing other than' or 'is
+      precisely,' asserting something's true nature exclusively. It is a definitive statement, whereas
+      「でなくてなんだろう」 uses a rhetorical question to achieve a similar emphatic effect.
+    grammar_point: にほかならない (nothing but)
+  - term: としか言えない
+    meaning: Can only say; it can only be described as
+    kind: similar expression
+    nuance: While 「としか言えない」 expresses the speaker's firm internal conclusion that there is no other way
+      to describe something, 「でなくてなんだろう」 is a rhetorical question that challenges the listener, implying
+      there is no other logical possibility.
+    grammar_point: <suggest>:としか言えない (can only say)
+post_false_friends_writeup: These expressions all convey a strong sense of certainty or conviction, but
+  they differ in their nuance and how they deliver that conviction. 「でなくてなんだろう」 stands out by using a
+  rhetorical question to assert an undeniable truth, engaging the listener (even if implicitly) to agree.
+  The other expressions are direct statements of certainty, varying in their level of formality and the
+  specific nuance of that certainty. 「としか言えない」, for example, expresses an internal conviction rather than
+  an outward challenge.
+examples:
+  - english: My company doesn't let me take any paid leave at all. If this isn't a black company, then
+      what is?
+    japanese:
+      - うち の 会社 で は、有給 休暇 を 全然 取ら せ て くれ ない。これ は ブラック 企業 {で なく て な ん だろう}。
+      - うち の 会社 で は、有給 休暇 を 全然 取ら せ て くれ ない。これ は ブラック 企業 {で なく て な ん だろう} か。
+    english_literally: At my company, they completely don't let me take paid leave. If this isn't a black
+      company, then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - うち の 会社 で は、有給 休暇 を 全然 取ら せ て くれ ない。これ は ブラック 企業 {に 違い ない}。
+        english: My company doesn't let me take any paid leave at all. This must be a black company.
+        hint: The original asserts certainty through a rhetorical question, while this version states
+          it as a direct conclusion. We're looking for a rhetorical question.
+      - competing_japanese:
+          - うち の 会社 で は、有給 休暇 を 全然 取ら せ て くれ ない。これ は ブラック 企業 {に 決まっ て いる}。
+        english: My company doesn't let me take any paid leave at all. This is certainly a black company.
+        hint: This phrase suggests a strong certainty based on common knowledge or inevitability. The
+          original uses a rhetorical question to convey undeniable conviction.
+      - competing_japanese:
+          - うち の 会社 で は、有給 休暇 を 全然 取ら せ て くれ ない。これ は ブラック 企業 {に ほか なら ない}。
+        english: My company doesn't let me take any paid leave at all. This is nothing but a black company.
+        hint: This is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+      - competing_japanese:
+          - うち の 会社 で は、有給 休暇 を 全然 取ら せ て くれ ない。これ は ブラック 企業 {と しか 言え ない}。
+        english: My company doesn't let me take any paid leave at all. It can only be said that this is
+          a black company.
+        hint: This expresses the speaker's inability to describe it otherwise. The original rhetorical
+          question is more emphatic and challenges the listener to find an alternative. We're looking
+          for an assertion through a rhetorical question.
+    scene: An employee complaining to a friend about their dismal working conditions.
+    register: casual
+    setting: serious
+    nuance: 「ブラック企業」 means "black company", referring to a work environment with poor working conditions,
+      such as forced overtime and abuse of power. The rhetorical question 「でなくて なんだろう」 highlights the
+      speaker's strong conviction that their company fits this description, emphasizing the undeniable
+      nature of the situation.
+    etymology: 'ブラック企業 (burakku kigyō): ''Black company'' is a loanword based on the English word ''black'',
+      and it describes a work environment with poor working conditions, such as forced overtime and abuse
+      of power.'
+  - english: Being able to make such delicious ramen, if it isn't talent, then what is?
+    japanese:
+      - こんな に 美味しい ラーメン を 作れる の は、才能 {で なく て な ん だろう}。
+      - こんな に 美味しい ラーメン を 作れる の は、才能 {で なく て な ん だろう} か。
+    english_literally: Being able to make such delicious ramen, if it isn't talent, then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 美味しい ラーメン を 作れる の は、才能 {に 違い ない}。
+        english: Being able to make such delicious ramen, it must be talent.
+        hint: The original rhetorically asks what else it could be, emphasizing the obviousness. This
+          version directly states certainty. We're looking for a rhetorical question.
+      - competing_japanese:
+          - こんな に 美味しい ラーメン を 作れる の は、才能 {に 決まっ て いる}。
+        english: Being able to make such delicious ramen, it's certainly talent.
+        hint: This implies common agreement or inevitability. The original uses a rhetorical question
+          to strongly assert the sole possible explanation.
+      - competing_japanese:
+          - こんな に 美味しい ラーメン を 作れる の は、才能 {に ほか なら ない}。
+        english: Being able to make such delicious ramen, it is nothing but talent.
+        hint: This phrase is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+    scene: A food critic praising a ramen chef after tasting their dish.
+    register: formal
+    setting: informative
+    nuance: This sentence suggests a high level of natural skill and aptitude in the ramen chef. The rhetorical
+      question 「でなくて なんだろう」 expresses the critic's absolute conviction that such culinary mastery can
+      only be attributed to innate talent.
+    etymology: '才能 (さいのう): This word means talent, ability, or capacity. It''s a common word to describe
+      a natural gift for something.'
+  - english: This kindness, if it isn't love, then what is? I'm gonna fall for you.
+    japanese:
+      - この 優し さ {で なく て な ん だろう}、惚れ て まう やろ。
+      - この 優し さ {で なく て な ん だろう} か、惚れ て まう やろ。
+    english_literally: This kindness, if it isn't love, then what is it? I'm gonna fall for you.
+    competing_grammar:
+      - competing_japanese:
+          - この 優し さ、愛 {に 違い ない}。惚れ て まう やろ。
+        english: This kindness, it must be love. I'm gonna fall for you.
+        hint: The original phrase expresses certainty through a rhetorical question, while this is a direct
+          assertion. We're looking for a rhetorical question that prompts the listener to agree.
+      - competing_japanese:
+          - この 優し さ、愛 {と しか 思え ない}。惚れ て まう やろ。
+        english: This describes the speaker's internal conclusion, while the original is a more outward,
+          rhetorical challenge.
+        hint: This expresses the speaker's internal conclusion that there's no other way to describe it.
+          The original is a rhetorical question that prompts the listener to agree. We're looking for
+          a rhetorical question that prompts the listener to agree.
+    scene: A person being flirtatious with someone who has just shown them exceptional kindness.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「惚れてまうやろ」 is a Kansai-ben expression that means "I'm gonna fall for you!" It adds a playful
+      and intimate tone. The rhetorical question 「でなくて なんだろう」 strongly implies that the kindness shown
+      is so profound it can only be love, underscoring the speaker's growing affection. This expression
+      is often used humorously or playfully by male speakers to female listeners to express being smitten.
+    etymology: 惚れてまうやろ is a common phrase in the Kansai dialect, often used humorously or playfully to
+      express being smitten or impressed by someone's actions or qualities.
+  - english: Getting along so well, if it isn't fate, then what is?
+    japanese:
+      - こんな に 気 が 合う の は、運命 {で なく て な ん だろう}。
+      - こんな に 気 が 合う の は、運命 {で なく て な ん だろう} か。
+    english_literally: Getting along this well, if it isn't fate, then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 気 が 合う の は、運命 {に 違い ない}。
+        english: Getting along so well, it must be fate.
+        hint: The original conveys undeniable conviction through a rhetorical question. This version is
+          a direct statement of certainty. We're looking for a rhetorical question.
+      - competing_japanese:
+          - こんな に 気 が 合う の は、運命 {に 決まっ て いる}。
+        english: Getting along so well, it's certainly fate.
+        hint: This phrase suggests a strong certainty based on common knowledge or inevitability. The
+          original uses a rhetorical question to strongly assert the sole possible explanation.
+    scene: Two people on a first date, marveling at how compatible they are.
+    register: formal
+    setting: first-date
+    nuance: The use of 「こんなに」 emphasizes how well they get along. The phrase 「でなくて なんだろう」 is used to romantically
+      assert that their connection is so strong, it can only be destiny, a common sentiment on a first
+      date when trying to establish a special bond.
+    etymology: '運命 (うんめい): This word means fate or destiny. It suggests that their connection is predetermined
+      and special.'
+  - english: Being able to see such a wonderful view, if it isn't a dream, then what is it?
+    japanese:
+      - こんな に 素晴らしい 景色 が 見れる の は、夢 {で なく て な ん だろう} か。
+      - こんな に 素晴らしい 景色 が 見れる の は、夢 {で なく て な ん だろう}。
+    english_literally: Being able to see such a wonderful view, if it isn't a dream, then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 素晴らしい 景色 が 見れる の は、夢 {に 違い ない}。
+        english: Being able to see such a wonderful view, it must be a dream.
+        hint: The original expresses profound wonder and certainty through a rhetorical question. This
+          version states it as a direct conclusion. We're looking for a rhetorical question.
+      - competing_japanese:
+          - こんな に 素晴らしい 景色 が 見れる の は、夢 {に ほか なら ない}。
+        english: Being able to see such a wonderful view, it is nothing but a dream.
+        hint: This is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+    scene: Someone admiring a breathtaking landscape, feeling as though it's too beautiful to be real.
+    register: formal
+    setting: reflective
+    nuance: The rhetorical 「か」 at the end of the sentence adds emphasis, inviting agreement and underscoring
+      the speaker's profound sense of wonder and disbelief that such beauty could be real. The phrase
+      「でなくて なんだろう か」 conveys that the scene is so perfect it transcends reality.
+    etymology: '景色 (けしき): ''Landscape'', is a common word used to describe natural scenery.'
+  - english: Every day, it's nothing but overtime and I have no time for myself. If I am not a slave,
+      then what am I?
+    japanese:
+      - 毎日 毎日 残業 ばかり で、自分 の 時間 が ない。奴隷 {で なく て な ん だろう}。
+      - 毎日 毎日 残業 ばかり で、自分 の 時間 が ない。奴隷 {で なく て な ん だろう} か。
+    english_literally: Every single day it's only overtime, and I have no time for myself. If I'm not
+      a slave, then what am I?
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 毎日 残業 ばかり で、自分 の 時間 が ない。奴隷 {に 違い ない}。
+        english: Every day, it's nothing but overtime and I have no time for myself. I must be a slave.
+        hint: The original uses a rhetorical question to express undeniable despair. This version is a
+          direct assertion of certainty. We're looking for a rhetorical question.
+      - competing_japanese:
+          - 毎日 毎日 残業 ばかり で、自分 の 時間 が ない。奴隷 {に 決まっ て いる}。
+        english: Every day, it's nothing but overtime and I have no time for myself. I'm certainly a slave.
+        hint: This phrase suggests an undeniable certainty based on common knowledge. The original uses
+          a rhetorical question to strongly assert the speaker's feeling of exploitation.
+    scene: An overworked individual lamenting their exhausting and relentless work schedule.
+    register: casual
+    setting: melancholic
+    nuance: The sentence is full of negativity and self-pity. The speaker uses 「毎日 毎日」 to express the
+      continuous and burdensome nature of overtime. The phrase 「奴隷 でなくて なんだろう」 emphatically conveys the
+      speaker's feeling of being completely controlled and exploited, asserting that their situation is
+      undeniably akin to slavery.
+    etymology: '奴隷 (どれい): This word literally means ''slave''. Using it in this context emphasizes the
+      speaker''s feeling of being controlled and exploited.'
+  - english: For someone with such amazing talent to not succeed, if that isn't unfair, then what is?
+    japanese:
+      - こんな に 素晴らしい 才能 を 持っ て いる 人 が 成功 し ない の は、不 公平 {で なく て な ん だろう}。
+      - こんな に 素晴らしい 才能 を 持っ て いる 人 が 成功 し ない の は、不 公平 {で なく て な ん だろう} か。
+    english_literally: For someone who possesses such amazing talent to not succeed, if that isn't unfair,
+      then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 素晴らしい 才能 を 持っ て いる 人 が 成功 し ない の は、不 公平 {に 違い ない}。
+        english: For someone with such amazing talent to not succeed, it must be unfair.
+        hint: The original conveys undeniable conviction through a rhetorical question. This version is
+          a direct assertion of certainty. We're looking for a rhetorical question.
+      - competing_japanese:
+          - こんな に 素晴らしい 才能 を 持っ て いる 人 が 成功 し ない の は、不 公平 {に ほか なら ない}。
+        english: For someone with such amazing talent to not succeed, it is nothing but unfair.
+        hint: This is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+    scene: Someone expressing strong frustration and indignation over a talented person's lack of success
+      or recognition.
+    register: formal
+    setting: serious
+    nuance: The speaker uses 「こんなに 素晴らしい 才能 を 持っている 人」 to emphasize the exceptional talent of the person,
+      highlighting that their lack of success is an egregious injustice. The phrase 「不公平 でなくて なんだろう」 powerfully
+      asserts that such a situation is undeniably unfair, leaving no room for other interpretations.
+    etymology: '不公平 (ふこうへい): This word means unfair or unjust. It expresses the speaker''s feeling that
+      the situation is not equitable.'
+  - english: She always helps me when I'm in trouble; if she's not an angel, then what is she?
+    japanese:
+      - 私 が 困っ て いる 時 に いつ も 助け て くれる 彼女 は、天使 {で なく て な ん だろう} か。
+      - 私 が 困っ て いる 時 に いつ も 助け て くれる 彼女 は、天使 {で なく て な ん だろう}。
+    english_literally: When I am in trouble, she always helps me; if she's not an angel, then what is
+      she?
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 困っ て いる 時 に いつ も 助け て くれる 彼女 は、天使 {に 違い ない}。
+        english: She always helps me when I'm in trouble; she must be an angel.
+        hint: The original expresses deep gratitude and conviction through a rhetorical question. This
+          version is a direct assertion of certainty. We're looking for a rhetorical question.
+      - competing_japanese:
+          - 私 が 困っ て いる 時 に いつ も 助け て くれる 彼女 は、天使 {に 決まっ て いる}。
+        english: She always helps me when I'm in trouble; she's certainly an angel.
+        hint: This implies an undeniable certainty based on common agreement. The original uses a rhetorical
+          question to strongly assert the speaker's feeling of her being an angel.
+    scene: Someone expressing profound gratitude and admiration for a friend who consistently offers help.
+    register: formal
+    setting: supportive
+    nuance: The 「か」 at the end of the sentence is rhetorical, strengthening the assertion that the person
+      is undoubtedly like an angel. The phrase 「天使 でなくて なんだろう か」 conveys the speaker's overwhelming appreciation
+      and belief that their friend's selfless actions are truly angelic, leaving no other plausible explanation.
+    etymology: '天使 (てんし): This word means angel. It is used here metaphorically to describe someone who
+      is kind, helpful, and selfless.'
+  - english: This perfect proposal, if it isn't love, then what is it?
+    japanese:
+      - この 完璧 な プロポーズ は、愛 {で なく て な ん だろう} か。
+      - この 完璧 な プロポーズ は、愛 {で なく て な ん だろう}。
+    english_literally: This perfect proposal, if it isn't love, then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - この 完璧 な プロポーズ は、愛 {に 違い ない}。
+        english: This perfect proposal, it must be love.
+        hint: The original expresses deep emotion and conviction through a rhetorical question. This version
+          is a direct assertion of certainty. We're looking for a rhetorical question.
+      - competing_japanese:
+          - この 完璧 な プロポーズ は、愛 {に ほか なら ない}。
+        english: This is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+        hint: This is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+    scene: A man giving his girlfriend a meticulously planned and emotionally resonant proposal.
+    register: formal
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「完璧な」 emphasizes the perfection of the proposal, adding to the romantic atmosphere. The rhetorical
+      question 「愛 でなくて なんだろう か」 is used by the male speaker to the female listener to convey the overwhelming
+      sentiment that such a perfect act can only be attributed to genuine love, highlighting the depth
+      of his feelings and the undeniable nature of his affection.
+    etymology: 'プロポーズ (puropōzu): This is a loanword from English, meaning proposal.'
+  - english: The data clearly shows a correlation. If this isn't proof, then what is it?
+    japanese:
+      - データ は 明らか に 相関 関係 を 示し て いる。これ が 証拠 {で なく て な ん だろう}。
+      - データ は 明らか に 相関 関係 を 示し て いる。これ が 証拠 {で なく て な ん だろう} か。
+    english_literally: The data clearly correlation is showing. If this isn't evidence, then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - データ は 明らか に 相関 関係 を 示し て いる。これ は 証拠 {に 違い ない}。
+        english: The data clearly shows a correlation. This must be proof.
+        hint: The original asserts certainty through a rhetorical question, while this version states
+          it as a direct conclusion. We're looking for a rhetorical question.
+      - competing_japanese:
+          - データ は 明らか に 相関 関係 を 示し て いる。これ は 証拠 {に 決まっ て いる}。
+        english: The data clearly shows a correlation. This is certainly proof.
+        hint: This phrase suggests a strong certainty based on common knowledge or inevitability. The
+          original uses a rhetorical question to strongly assert the undeniable nature of the data.
+      - competing_japanese:
+          - データ は 明らか に 相関 関係 を 示し て いる。これ は 証拠 {に ほか なら ない}。
+        english: The data clearly shows a correlation. This is nothing but proof.
+        hint: This is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+    scene: A scientist presenting research findings to colleagues in an academic setting.
+    register: formal
+    setting: academic
+    nuance: The phrase 「でなくて なんだろう」 emphasizes the irrefutable nature of the data, asserting that it undeniably
+      constitutes proof. The use of 「明らか に」 further stresses the clarity of the correlation, reinforcing
+      the speaker's conviction.
+    etymology: '相関 関係 (そうかんかんけい): Means ''correlation'' or ''interrelationship'', commonly used in academic
+      and scientific contexts.'
+  - english: This level of craftsmanship, if it isn't art, then what is it?
+    japanese:
+      - この 職人 技 は、芸術 {で なく て な ん だろう}。
+      - この 職人 技 は、芸術 {で なく て な ん だろう} か。
+    english_literally: This craftsmanship, if it isn't art, then what is it?
+    competing_grammar:
+      - competing_japanese:
+          - この 職人 技 は、芸術 {に 違い ない}。
+        english: This craftsmanship must be art.
+        hint: The original asserts certainty through a rhetorical question, while this version states
+          it as a direct conclusion. We're looking for a rhetorical question.
+      - competing_japanese:
+          - この 職人 技 は、芸術 {に 決まっ て いる}。
+        english: This craftsmanship is certainly art.
+        hint: This phrase suggests a strong certainty based on common knowledge or inevitability. The
+          original uses a rhetorical question to convey undeniable conviction.
+      - competing_japanese:
+          - この 職人 技 は、芸術 {に ほか なら ない}。
+        english: This craftsmanship is nothing but art.
+        hint: This is a very formal statement of exclusivity. The original uses a rhetorical question
+          to challenge the listener and emphasize the obviousness of the conclusion.
+    scene: An art enthusiast marveling at a highly skilled artisan's work in a gallery.
+    register: formal
+    setting: creative
+    nuance: 「職人技」 emphasizes the skill and dedication involved in the creation. The phrase 「芸術 でなくて なんだろう」
+      powerfully asserts that such a high level of craftsmanship transcends mere skill and is undeniably
+      a form of art, reflecting a deep appreciation for the creator's talent.

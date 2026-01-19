@@ -1,0 +1,255 @@
+grammar_point: これ (this)
+matcher: ⌈ˢこれᵖpronᵇこれᵈ此れʳコレ⌉
+matcher_enforce_examples: true
+learn_before:
+  - い (friendly particle)
+  - の (one)
+  - 何 (what)
+meaning: this or this one
+pronunciation:
+  katakana: コレ
+  romaji: kore
+formation:
+  これ: Refers to an object, concept, or situation close to the speaker.
+  これ は [Noun] です/だ: Used to identify or state something as this thing.
+  '[Noun] は これ です/だ': Used to identify this as a specific noun.
+jlpt: N5
+etymology: The Japanese demonstrative system (こそあど言葉 - ko-so-a-do kotoba) has roots in Old Japanese. The
+  ko- series (これ, この, ここ, こちら) indicates proximity to the speaker. This system is ancient and fundamental
+  to the language's spatial and contextual referencing. これ specifically refers to a thing (mono), in contrast
+  to ここ (place) or こんな (manner). Its core function has remained consistent throughout history, reflecting
+  the fundamental human need to refer to objects in relation to one's own position.
+writeup: 'これ (kore) is a fundamental Japanese demonstrative pronoun, meaning "this" or "this one." It
+  belongs to the "ko" series of demonstratives, which are used to refer to things, places, or directions
+  that are perceived as being close to the speaker.Unlike この (kono), which is a demonstrative determiner
+  that must be followed by a noun (e.g., この本 - "this book"), これ acts as a standalone pronoun. It can directly
+  replace a noun when the item being referred to is clearly understood from context or is being pointed
+  at.これ is versatile and can refer to:   **Physical objects**: When you are holding or are very close
+  to an object.   **Abstract concepts or ideas**: Something that has just been mentioned, is currently
+  being discussed, or is about to be explained by the speaker.   **A situation**: The current state of
+  affairs or a particular scenario.When used with the copula です (polite) or だ (casual), これ forms basic
+  identification sentences, such as 「これ は ペン です。」 (This is a pen.). It can also function as the subject
+  or object of a verb or particle, similar to any other noun. Understanding これ is crucial for navigating
+  basic conversations and distinguishing between what is near you, near the listener, or far from both.'
+false_friends:
+  - term: それ
+    meaning: that (thing/one)
+    kind: similar expression
+    nuance: それ refers to something near the listener or something recently mentioned by the listener.
+      Unlike これ, it implies proximity to the listener, not the speaker.
+    grammar_point: それ (that)
+  - term: あれ
+    meaning: that (thing/one) over there
+    kind: similar expression
+    nuance: あれ refers to something far from both the speaker and the listener. It indicates a greater
+      distance than これ or それ.
+    grammar_point: あれ (that over there)
+  - term: この
+    meaning: this (determiner)
+    kind: often confused with
+    nuance: この is a demonstrative determiner that must always precede a noun (e.g., この本 - "this book").
+      これ is a standalone pronoun and cannot directly precede a noun. We're looking for a standalone "this"
+      here.
+    grammar_point: この (this)
+  - term: ここ
+    meaning: here (place)
+    kind: similar expression
+    nuance: ここ refers to "this place" or "here," indicating a location. これ refers to "this thing" or "this
+      one," indicating an object or concept.
+    grammar_point: ここ (here)
+post_false_friends_writeup: The "ko-so-a-do" system can be confusing initially, but the distinction between
+  これ, それ, and あれ is primarily about relative distance from the speaker and listener. これ is always speaker-centric.
+  この is distinct from これ because この modifies a noun, while これ stands alone. ここ specifies a location, whereas
+  これ refers to an object or idea. Keeping these contextual differences in mind will help avoid common
+  mix-ups.
+examples:
+  - english: This is my bag.
+    japanese:
+      - '{これ} は 私 の 鞄 です。'
+      - '{これ} は 俺 の 鞄 だ。'
+      - '{これ} は 私 の 鞄 だ わ。'
+      - '{これ} は 私 の 鞄 で ござい ます。'
+    english_literally: This, as for, my bag is.
+    competing_grammar:
+      - competing_japanese:
+          - この 鞄 は 私 の です。
+        english: This bag is mine.
+        hint: The nuance is slightly different because you are emphasizing "this bag" as opposed to "this
+          is the bag".
+    scene: Pointing at a bag on the floor.
+    register: teineigo (polite)
+    setting: informative
+  - english: What is this?
+    japanese:
+      - '{これ} は 何 です か。'
+      - '{これ} は 何 だ？'
+      - '{これ} は 何？'
+      - '{これ} は 何 で ござい ます か。'
+    english_literally: This, as for, what is?
+    competing_grammar:
+      - competing_japanese:
+          - それ は 何 です か。
+        english: What is that?
+        hint: The item is close to the speaker, not the listener. We're looking for 'this'.
+    scene: Picking up an unknown object.
+    register: teineigo (polite)
+    setting: interrogative
+  - english: This is important.
+    japanese:
+      - '{これ} は 大切 です。'
+      - '{これ} は 大切 だ。'
+      - '{これ} は 大切 だ よ。'
+      - '{これ} は 大切 で ござい ます。'
+    english_literally: This, as for, important is.
+    competing_grammar:
+      - competing_japanese:
+          - それ が 大切 です。
+        english: That is important.
+        hint: The speaker is referring to something immediately present in the discussion, not something
+          previously mentioned by someone else.
+    scene: Discussing a crucial point in a meeting.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「これ」refers to the entire preceding statement or idea being discussed, emphasizing its importance
+      in the context of the conversation.
+  - english: This is a famous movie.
+    japanese:
+      - '{これ} は 有名 な 映画 だ よ。'
+      - '{これ} は 有名 な 映画 です。'
+      - '{これ} は 有名 な 映画 だ。'
+    english_literally: This, as for, famous movie is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は 有名 だ よ。
+        english: This movie is famous.
+        hint: The sentence emphasizes 'this' as the object, not 'this movie'.
+    scene: Two friends talking about movies they like, holding a DVD case.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The male speaker uses the casual copula 「だ」and the sentence-final particle 「よ」to assertively
+      share information with his friend, making the sentence sound direct and friendly.
+  - english: Is this okay?
+    japanese:
+      - '{これ} で 大丈夫？'
+      - '{これ} で 大丈夫 です か。'
+      - '{これ} で 大丈夫 か い？'
+    english_literally: This, by means of, alright?
+    competing_grammar:
+      - competing_japanese:
+          - それ で 大丈夫？
+        english: Is that okay?
+        hint: We're referring to something near the speaker, not the listener.
+      - competing_japanese:
+          - この やり 方 で 大丈夫？
+        english: Is this method okay?
+        hint: The original uses a general "this" referring to a situation or object, not a specific "this
+          method".
+    scene: Asking a friend if a chosen item or plan is acceptable.
+    register: casual
+    setting: friendly
+  - english: This is what I heard.
+    japanese:
+      - '{これ} が 私 が 聞い た こと だ よ。'
+      - '{これ} が 私 が 聞い た こと です。'
+      - '{これ} が 私 が 聞い た こと だ。'
+    english_literally: This, subject, I, subject, heard thing, is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - それ が 私 が 聞い た こと だ よ。
+        english: That's what I heard.
+        hint: We're emphasizing the information the speaker just obtained or is about to convey, not information
+          the listener shared.
+      - competing_japanese:
+          - 私 が 聞い た こと は こう だ よ。
+        english: What I heard is like this.
+        hint: The original uses 'this' as a direct reference to the content itself, not merely describing
+          what was heard.
+    scene: Sharing information from a reliable source with a friend.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: The use of 「これ」refers to the content of the information shared, not a physical object. The
+      particle 「が」 emphasizes 「これ」as the subject of the information. The female speaker might use 「よ」to
+      gently emphasize her statement.
+  - english: Please give me this one.
+    japanese:
+      - '{これ} を ください。'
+      - '{これ} を お 願い し ます。'
+      - '{これ} ちょうだい。'
+    english_literally: This, object, please give.
+    competing_grammar:
+      - competing_japanese:
+          - この[Noun]を ください。
+        english: Please give me this [Noun].
+        hint: The original uses a standalone pronoun, not a determiner modifying a noun.
+    scene: A customer pointing at an item in a store.
+    register: teineigo (polite)
+    setting: professional
+  - english: Here, take this.
+    japanese:
+      - はい、{これ} を どうぞ。
+      - うん、{これ} どうぞ。
+      - はい、{これ} よ。
+      - ほら、{これ} だ。
+    english_literally: Yes, this, object, please.
+    competing_grammar:
+      - competing_japanese:
+          - はい、この 本 を どうぞ。
+        english: Here, take this book.
+        hint: The original uses a standalone "this" for an unspecified item, not "this book."
+    scene: Offering an item to someone.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「はい」and 「どうぞ」are polite and encouraging expressions when offering something, making the exchange
+      smooth and respectful.
+  - english: This isn't quite finished yet.
+    japanese:
+      - '{これ} は まだ 終わっ て い ませ ん。'
+      - '{これ} は まだ 終わっ て い ない。'
+      - '{これ} は まだ 終わっ て ねぇ。'
+      - '{これ} まだ 終わっ て ない ね。'
+    english_literally: This, as for, still, finished is not.
+    competing_grammar:
+      - competing_japanese:
+          - 作業 は まだ 終わっ て い ませ ん。
+        english: The work isn't quite finished yet.
+        hint: The original uses 'this' as a general reference to the task, not the explicit noun 'work'.
+    scene: Explaining the status of a task or project to a supervisor.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「これ」refers to the task or work itself, which is in the process of completion. 「終わっていません」is
+      the polite negative progressive form of 終わる.
+  - english: I'll go with this one.
+    japanese:
+      - '{これ} に し ます。'
+      - '{これ} に する。'
+      - '{これ} に 決め た。'
+      - '{これ} に 致し ます。'
+    english_literally: This, to, will do/decide.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ に し ます。
+        english: I'll go with this cake.
+        hint: The original allows for a general choice of "this one" without specifying the noun.
+    scene: Deciding on a dish from a menu at a restaurant.
+    register: teineigo (polite)
+    setting: professional
+  - english: Is this better than that?
+    japanese:
+      - '{これ} は それ より いい です か。'
+      - '{これ} は それ より いい？'
+      - '{これ} は それ より いい か？'
+      - '{これ} は それ より いい かしら？'
+    english_literally: This, as for, that, than, good is?
+    competing_grammar:
+      - competing_japanese:
+          - どちら が いい です か。
+        english: Which one is better?
+        hint: The original specifically contrasts 'this' and 'that' explicitly, rather than asking generally
+          'which one'.
+    scene: Comparing two options with a friend.
+    register: teineigo (polite)
+    setting: casual slang
+    nuance: Demonstrates the use of 「これ」in a comparative sentence, clearly differentiating it from 「それ」,
+      which points to the object closer to the listener or a previously mentioned item by the listener.

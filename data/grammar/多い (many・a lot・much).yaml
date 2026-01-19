@@ -1,0 +1,257 @@
+grammar_point: 多い (many・a lot・much)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Noun]をください (please give me)'
+  - 側 (side or flank)
+  - 背面 (back surface spatial)
+meaning: Many, A lot of, Much
+pronunciation:
+  katakana: オオイ
+  romaji: ooi
+formation:
+  '[Noun] が 多い': Used to state that there is a large quantity of a specific noun.
+  '[Verb] ことが 多い': Used to express that an action or state occurs frequently.
+  '[い-Adjective] + Noun (Attributive)': Used to directly modify a noun, meaning 'many [noun]'.
+jlpt: N5
+etymology: The word 「多い」 (おおい) originates from Old Japanese. Its root 「おお」 (ō) is related to concepts
+  of 'large' or 'numerous'. As an い-adjective, its structure is consistent with historical adjectival
+  forms in Japanese, reflecting a long-standing use to denote abundance.
+writeup: 「多い」 (おおい) is an い-adjective meaning "many," "a lot," or "much." It is used to describe a large
+  quantity or high frequency of something. Like other い-adjectives, it can directly modify a noun (e.g.,
+  「多い人」 - many people) or act as a predicate at the end of a sentence (e.g., 「人が多い」 - There are many people).%When
+  used with nouns, 「多い」 can apply to both countable nouns (e.g., 「学生が多い」 - many students) and uncountable
+  nouns (e.g., 「水が多い」 - much water), depending on the context.%When describing frequency, 「多い」 is often
+  paired with the nominalizer 「こと」 (koto) and a verb to indicate that an action happens often. For instance,
+  「食べる ことが 多い」 (taberu koto ga ooi) means "I eat often" or "It is often the case that I eat."%While generally
+  objective, 「多い」 can also convey a subjective sense of "too many" or "more than expected" depending on
+  intonation and context, though it's less direct than using specific intensifiers.
+false_friends:
+  - term: たくさん
+    meaning: a lot, many, much
+    kind: synonym
+    nuance: 「たくさん」 is an adverbial noun and can modify verbs or nouns (with の). It feels more conversational
+      and less formal than 「多い」 when modifying nouns (e.g., 「たくさんの人」 vs. 「多い人」). 「たくさん」 also works more
+      easily with verbs to mean "do a lot." 「多い」 specifically describes the quantity of the subject/object
+      or the frequency of an action.
+    grammar_point: たくさん (many・a lot)
+  - term: 少ない (few・little)
+    meaning: few, little
+    kind: antonym
+    nuance: 「少ない」 is the direct opposite of 「多い」, meaning "few" or "little." It indicates a small quantity
+      or low frequency.
+    grammar_point: 少ない (few・little)
+  - term: ばかり (only・excessive)
+    meaning: nothing but, full of
+    kind: similar expression
+    nuance: 「ばかり」 can also imply "many" or "a lot" in the sense of "nothing but" or "full of," but it
+      often carries a negative or restrictive nuance. For example, 「文句 ばかりだ」 (monku bakari da) means "It's
+      nothing but complaints" or "There are only complaints," suggesting an excessive and often undesirable
+      amount. 「多い」 is more neutral and simply states a large quantity.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+  - term: すぎる (too much・excessive)
+    meaning: too much, excessive
+    kind: similar expression
+    nuance: 「すぎる」 implies an excessive degree, often with a negative connotation, meaning "too much" or
+      "too many." For example, 「人が多すぎる」 (hito ga ooisugiru) means "There are too many people." While 「多い」
+      just states "many," 「すぎる」 adds the judgmental idea of "excessiveness."
+    grammar_point: すぎる (too much・excessive)
+post_false_friends_writeup: While 「多い」 directly states a large quantity or frequency, 「たくさん」 often emphasizes
+  the *amount* or *degree* of something, and can act as an adverb for actions. 「少ない」 is its direct opposite.
+  Expressions like 「ばかり」 and 「すぎる」 also relate to quantity but introduce additional nuances of restriction,
+  "nothing but," or "excessiveness," respectively. Understanding these subtle differences helps in choosing
+  the most appropriate word for the desired emphasis and nuance.
+examples:
+  - english: There are many students in this class.
+    japanese:
+      - この クラス は 学生 が {多い} です。
+      - この クラス は 学生 が {多い}。
+    english_literally: This class, students are many.
+    competing_grammar:
+      - competing_japanese:
+          - この クラス は 学生 が {たくさん} い ます。
+        english: This class has many students.
+        hint: 「たくさん」 is an adverbial noun meaning "a lot," which can be used similarly to describe quantity.
+          However, 「多い」 is an い-adjective directly describing the noun's quantity as a characteristic.
+          We're looking for an adjective use.
+    scene: A teacher observing their new class.
+    register: teineigo (polite)
+    setting: academic
+  - english: Recently, there are many young people who don't read books.
+    japanese:
+      - 最近、本 を 読ま ない 若者 が {多い}。
+      - 最近、本 を 読ま ない 若者 が {多い} です。
+    english_literally: Recently, books read not young people are many.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、本 を 読ま ない 若者 は {少ない}。
+        english: Recently, there are few young people who don't read books.
+        hint: 「少ない」 is the antonym of 「多い」, meaning "few" or "little." We're looking for an expression
+          indicating a large quantity.
+    scene: Two friends discussing modern trends.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+  - english: I often eat outside.
+    japanese:
+      - 私 は 外食 する {こと が 多い} です。
+      - 私 は 外食 する {こと が 多い}。
+    english_literally: I, outside eating, thing is many.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 外食 する {こと が よく} あり ます。
+        english: I often eat outside.
+        hint: 「よくあります」 means "it often happens," focusing more on the adverbial sense of "often" rather
+          than the adjective "many" describing frequency of an event. We're looking for an expression
+          that treats the occurrence as a quantity.
+    scene: A person telling their colleague about their dining habits.
+    register: teineigo (polite)
+    setting: professional
+  - english: My cat often sleeps.
+    japanese:
+      - うち の 猫 は 寝る {こと が 多い}。
+      - うち の 猫 は 寝る {こと が 多い} です。
+    english_literally: Our cat, sleeps, thing is many.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 猫 は 寝 て ばかり いる。
+        english: My cat is always just sleeping.
+        hint: 「ばかりいる」 implies that the cat is *only* sleeping, often with a slight nuance of "all the
+          time" or "excessively." While it conveys frequency, it adds a restrictive element that 「ことが多い」
+          does not. We're looking for a neutral statement of high frequency.
+    scene: Someone talking about their pet.
+    register: casual
+    setting: intimate
+  - english: There are many rainy days in June.
+    japanese:
+      - ６ 月 は {多い} 雨 の 日 が あり ます。
+      - ６ 月 は {多い} 雨 の 日 が ある。
+    english_literally: June, many rainy days exist.
+    competing_grammar:
+      - competing_japanese:
+          - ６ 月 は 雨 の 日 が {多 すぎる}。
+        english: There are too many rainy days in June.
+        hint: 「多すぎる」 adds the nuance of "too many," implying an excessive or undesirable amount. 「多い」
+          simply states "many" without that judgment. We're looking for a neutral statement of quantity.
+    scene: A weather forecaster giving general climate information.
+    register: formal
+    setting: informative
+  - english: This area has many mosquitoes.
+    japanese:
+      - この 地域 は 蚊 が {多い}。
+      - この 地域 は 蚊 が {多い} です。
+    english_literally: This area, mosquitoes are many.
+    competing_grammar:
+      - competing_japanese:
+          - この 地域 は 蚊 ばかり だ。
+        english: This area is nothing but mosquitoes.
+        hint: 「ばかりだ」 emphasizes that there's *only* that thing, often with a negative connotation of annoyance
+          or overabundance, which is stronger than simply stating "there are many." We're looking for
+          a phrase that expresses "many" neutrally.
+    scene: Someone complaining about insects in their neighborhood.
+    register: casual
+    setting: casual slang
+  - english: I often travel for work.
+    japanese:
+      - 仕事 で 出張 する {こと が 多い} です。
+      - 仕事 で 出張 する {こと が 多い}。
+    english_literally: Work by, business trips do, thing is many.
+    competing_grammar:
+      - competing_japanese:
+          - 仕事 で は 出張 が {しばしば} あり ます。
+        english: For work, there are often business trips.
+        hint: 「しばしば」 is an adverb meaning "often" or "frequently." While similar in meaning, 「ことが多い」 highlights
+          the frequency as a recurring "thing" or "occurrence." We're looking for a phrase that describes
+          the *quantity of occurrences*.
+    scene: An employee explaining their job responsibilities.
+    register: semi-formal
+    setting: professional
+  - english: This store has many types of bread.
+    japanese:
+      - この お 店 は パン の 種類 が {多い} です。
+      - この お 店 は パン の 種類 が {多い}。
+    english_literally: This store, bread's types are many.
+    competing_grammar:
+      - competing_japanese:
+          - この お 店 は パン の 種類 が {豊富} です。
+        english: This store has a rich variety of bread.
+        hint: 「豊富 (houfu)」 means "abundant" or "rich (in variety)" and implies a positive, rich selection.
+          「多い」 simply states "many," which is more neutral and direct about the count. We're looking for
+          a simple statement of quantity.
+    scene: A customer commenting on a bakery's selection.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Kids often ask Why?
+    japanese:
+      - 子供 は『なぜ？』と 聞く {こと が 多い}。
+      - 子供 は『なぜ？』と 聞く {こと が 多い} です。
+    english_literally: Children, "Why?" and ask, thing is many.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は『なぜ？』と {よく} 聞く。
+        english: Kids often ask "Why?"
+        hint: 「よく」 is an adverb meaning "often" or "frequently." 「ことが多い」 functions more as a noun phrase
+          indicating "it's a common thing that..." We're looking for a construction that makes "asking"
+          a frequent 'thing'.
+    scene: Parents discussing their children's curiosity.
+    register: casual
+    setting: friendly
+  - english: There are many benefits.
+    japanese:
+      - 利点 が {多い} です。
+      - 利点 が {多い}。
+    english_literally: Benefits are many.
+    competing_grammar:
+      - competing_japanese:
+          - 利点 は {たくさん} あり ます。
+        english: There are many benefits.
+        hint: 「たくさんあります」 uses the adverbial noun 「たくさん」 with the verb 「あります」 to express quantity. 「多いです」
+          uses the い-adjective 「多い」 directly as a predicate to describe the noun. We are focusing on the
+          adjectival form here.
+    scene: A presenter highlighting advantages.
+    register: formal
+    setting: academic
+  - english: Recently, I often work overtime.
+    japanese:
+      - 最近、残業 する {こと が 多い} ん だ よ な。
+      - 最近、残業 する {こと が 多い} ん だ よ。
+      - 最近、残業 する {こと が 多い} です ね。
+      - 最近、残業 する {こと が 多い} です。
+    english_literally: Recently, overtime do, thing is many, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、残業 {ばっかり} し て いる よ な。
+        english: Lately, I've just been doing overtime all the time, you know.
+        hint: 「ばっかり」 (a casual form of ばかり) implies doing *nothing but* overtime, highlighting the restrictive
+          and perhaps monotonous nature of the action. 「ことが多い」 simply states that it happens frequently.
+          We're looking for a neutral expression of frequency.
+    scene: A man complaining to a friend after work.
+    register: casual
+    setting: casual slang
+    speaker_gender: male
+    listener_gender: male
+    nuance: The 「んだよな」 (nda yo na) ending adds a casual, slightly resigned, male-specific tone.
+  - english: Lately, I have a lot of worries.
+    japanese:
+      - 最近、悩み 事 が {多い} の よ ね。
+      - 最近、悩み 事 が {多い} の ね。
+      - 最近、悩み 事 が {多い} です ね。
+    english_literally: Recently, worries are many, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 最近、悩み 事 が {少なく て 困る} の よ ね。
+        english: Lately, I'm troubled because I have few worries, you know.
+        hint: 「少なくて困る」 indicates the opposite, that there are *few* worries, and this causes trouble.
+          We're looking to express that there are *many* worries.
+    scene: A woman confiding in a friend.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The 「のよ」 (no yo) and 「ね」 (ne) particles make the sentence softer and more feminine, expressing
+      a personal feeling.
+post_example_writeup: These examples demonstrate how 「多い」 is used to convey a sense of abundance or frequency,
+  either modifying nouns directly or in conjunction with 「こと」 to describe recurring actions. Paying attention
+  to the context and surrounding particles helps to distinguish its meaning and nuance from similar expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/多い

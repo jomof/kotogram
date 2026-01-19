@@ -1,0 +1,310 @@
+grammar_point: でできる (made of)
+learn_before:
+  - い-Adjective[くて] (te-form)
+  - からできる (made from)
+  - な (prohibitive particle)
+  - の? (question)
+  - 点 (aspect・point)
+meaning: To be made of; to be composed of (material is readily apparent).
+meaning_warning: Use できている when describing the current state of a specific item, and できる for general facts
+  or typical composition.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: できる
+    rarity: common
+    meaning: to be made/to be formed (general)
+  - conjugation-type: non-past polite (～ます)
+    form: できます
+    rarity: common
+    meaning: to be made/to be formed (polite)
+  - conjugation-type: negative plain (～ない)
+    form: できない
+    rarity: common
+    meaning: not to be made/not to be formed
+  - conjugation-type: negative non-past polite (～ません)
+    form: できません
+    rarity: common
+    meaning: not to be made/not to be formed (polite)
+  - conjugation-type: past plain (～た)
+    form: できた
+    rarity: common
+    meaning: was made/was formed
+  - conjugation-type: past polite (～ました)
+    form: できました
+    rarity: common
+    meaning: was made/was formed (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: できなかった
+    rarity: common
+    meaning: was not made/was not formed
+  - conjugation-type: negative past polite (～ませんでした)
+    form: できませんでした
+    rarity: common
+    meaning: was not made/was not formed (polite)
+  - conjugation-type: te-form (～て)
+    form: できて
+    rarity: common
+    meaning: being made/being formed (te-form)
+  - conjugation-type: conditional (～ば)
+    form: できれば
+    rarity: uncommon
+    meaning: if made/if formed (conditional)
+  - conjugation-type: conditional (～たら)
+    form: できたら
+    rarity: uncommon
+    meaning: if made/if formed (conditional)
+  - conjugation-type: progressive (～ている)
+    form: できている
+    rarity: common
+    meaning: is made (of)/is formed (of) (state)
+pronunciation:
+  katakana: デデキル
+  romaji: de dekiru
+formation:
+  '[Material] + で + できる': Indicates the material something is made from when the material is still visible
+    or clearly identifiable.
+jlpt: N4
+etymology: 「できる」 means "to be made" or "to be completed." 「で」 indicates the means or material used. The
+  combination describes the composition of an object where the material remains evident.
+writeup: |-
+  The grammar point 「でできる」 indicates that an object is made from a certain material. It emphasizes the **compositional material** that is visually evident or immediately recognizable. For instance, if you can clearly see that a wooden table is indeed made of wood, 「木でできている」 would be appropriate. It focuses on the direct and apparent use of the material in the final product.
+
+  There is a subtle distinction in nuance between 「できる」 and 「できている」 in this construction:
+  *   **「できる」**: Refers to a general fact or a broad statement about what something is typically made of. It describes a general property or the potential for something to be made from a material.
+  *   **「できている」**: Refers to a specific item and its current state of being made from a particular material. It describes the existing composition of a single object.
+
+  This distinguishes it from 「からできる」, which is used when the material undergoes a significant transformation, making the original substance less obvious in the final product. While 「でできる」 might sometimes be used loosely in such cases in contemporary Japanese, its core nuance lies in the direct traceability of the material.
+false_friends:
+  - term: できる
+    meaning: to be able to do
+    kind: similar expression
+    nuance: Unlike 「でできる」 and 「からできる」 which describe the composition of something, 「できる」 by itself means
+      "to be able to do" or "can do."
+    grammar_point: <suggest>:できる (to be able to)
+  - term: 作られる (tsukurareru)
+    meaning: to be made, to be produced
+    kind: similar expression
+    nuance: 「作られる」(tsukurareru) means 'to be made' in a more general sense. 「でできる」 and 「からできる」 are more
+      specific, highlighting the material used. 「作られる」 focuses on the process of creation, while 「でできる」
+      and 「からできる」 focus on the result of that process in terms of composition.
+    grammar_point: <suggest>:作られる (to be made, to be produced)
+  - term: からできる (made from, transformed)
+    meaning: To be made from; to be produced from (material undergoes transformation)
+    kind: often confused with
+    nuance: Unlike 「でできる」, 「からできる」 is used when the original material is no longer visually apparent due
+      to significant transformation, such as sake from rice or plastic from oil.
+    grammar_point: <suggest>:からできる (made from, transformed)
+post_false_friends_writeup: It is important to distinguish between 「でできる」, which indicates the material
+  composition where the material is clearly identifiable, and the general verb 「できる」 meaning 'to be able
+  to do' or 'to be completed'. Furthermore, while 「作られる」 also means 'to be made,' it describes the act
+  of being manufactured or produced, rather than explicitly stating the material composition as 「でできる」
+  does. These phrases emphasize the *what* something is made *of*, whereas 「作られる」 emphasizes the *how*
+  it came to be. Finally, remember that 「からできる」 focuses on materials that undergo a significant transformation,
+  where the original form is no longer obvious.
+examples:
+  - english: This chair is made of wood.
+    japanese:
+      - この 椅子 は 木 {で でき て いる}。
+      - この 椅子 は 木 {で でき て い ます}。
+    english_literally: This chair is wood by being made.
+    competing_grammar:
+      - competing_japanese:
+          - この 椅子 は 木 {で 作ら れ て いる}。
+        english: This chair is produced from wood.
+        hint: 「作られる」 indicates the process of making, whereas 「でできる」 specifically highlights the material
+          composition. We're looking for what the chair is composed *of*.
+    scene: A furniture store salesperson is explaining the materials of their products to a customer.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: 「でできている」 clearly states the material of this specific chair. The formal register (salesperson
+      to customer) aligns with the direct and clear statement. The particle 「で」 indicates the material
+      used, focusing on the composition of the specific item. The phrase 「できている」 describes the state of
+      being completed or made from something, implying a finished product.
+  - english: My new jacket is made of leather.
+    japanese:
+      - 僕 の 新しい ジャケット は 革 {で でき て いる} よ。
+      - 僕 の 新しい ジャケット は 革 {で でき てる} よ。
+      - 僕 の 新しい ジャケット は 革 {で でき て い ます}。
+    english_literally: My new jacket is leather by being made, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 僕 の 新しい ジャケット は {革製 だ} よ。
+        english: My new jacket is leather-made, you know.
+        hint: While 「革製」 means 'leather-made', 「でできている」 explicitly states the material it *is made of*.
+          We're looking for a description of the material.
+    scene: A young man casually showing off his new jacket to a friend.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「よ」 adds a casual, informative tone, common among younger male speakers when sharing
+      personal news. 「でできている」 directly states the material of the specific item. The particle 「で」 emphasizes
+      the material as the means of composition. The use of 「よ」 as a sentence-final particle adds emphasis
+      or calls for confirmation, common in informal communication. 「革でできている」 literally means 'made of
+      leather,' specifying the material of the jacket.
+  - english: The latest smartphones are made from light and durable materials.
+    japanese:
+      - 最新 の スマート フォン は 軽く て 丈夫 な 素材 {で できる}。
+      - 最新 の スマート フォン は 軽く て 丈夫 な 素材 {で でき ます}.
+    english_literally: Latest smartphones are light and durable materials by made.
+    competing_grammar:
+      - competing_japanese:
+          - 最新 の スマート フォン は 軽く て 丈夫 な 素材 {で 作ら れる}。
+        english: The latest smartphones are produced with light and durable materials.
+        hint: 「作られる」 is a general verb for production. We're looking for a phrase that emphasizes the
+          *composition* by material.
+    scene: A technology reviewer discussing general manufacturing trends in smartphones.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: 「でできる」 refers to the general composition or potential composition of smartphones as a category,
+      not a specific one. The formal setting uses plain form for general statements. The particle 「で」
+      indicates the material or component. The use of 「でできる」 in this general context describes a characteristic
+      or capability of smartphones as a product category, emphasizing the material used in their construction.
+      「できる」 here is in its dictionary form, conveying a timeless, general truth.
+  - english: This artwork is made of traditional lacquer.
+    japanese:
+      - こちら の 美術 品 は 伝統 的 な 漆 {で でき て おり ます}。
+      - こちら の 美術 品 は 伝統 的 な 漆 {で でき て い ます}。
+      - こちら の 美術 品 は 伝統 的 な 漆 {で でき て いる}。
+    english_literally: This artwork is traditional lacquer by being made (humble).
+    competing_grammar:
+      - competing_japanese:
+          - こちら の 美術 品 は 伝統 的 な {漆製 で ござい ます}。
+        english: This artwork is traditionally lacquered.
+        hint: 「漆製」 means 'lacquer-made'. We're looking for an expression that states the material it *is
+          made of*, in humble language.
+    scene: A museum curator describing an exhibit to esteemed guests.
+    register: kenjōgo (humble)
+    setting: professional
+    conjugation: progressive (～ている)
+    nuance: 「できております」 is the humble form of 「できている」, emphasizing the humble speaker's deference while
+      presenting information in a professional context. This is appropriate for a museum curator addressing
+      guests. The particle 「で」 indicates the material of composition. 「できております」 is a highly polite, humble
+      expression using the continuative form of 「できる」 combined with the humble auxiliary verb 「おる」 and
+      polite 「ます」. This demonstrates how even simple statements of material composition can be elevated
+      through keigo.
+  - english: Recycled paper can be made from old paper, so it's environmentally friendly.
+    japanese:
+      - 再生 紙 は 古紙 {で できる} の で、環境 に 優しい です。
+      - 再生 紙 は 古紙 {で でき ます} の で、環境 に 優しい です。
+      - 再生 紙 は 古紙 {で でき て い ます} の で、環境 に 優しい です。
+      - 再生 紙 は 古紙 {で でき て いる} の で、環境 に 優しい です。
+    english_literally: Recycled paper is old paper by made, so environment friendly is.
+    competing_grammar:
+      - competing_japanese:
+          - 再生 紙 は 古紙 {から 作ら れる} の で、環境 に 優しい です。
+        english: Recycled paper is produced from old paper, so it's environmentally friendly.
+        hint: 「から作られる」 describes the process of being made from something. We're looking for a phrase
+          that states what recycled paper *can be made of* as a general fact.
+    scene: Explaining the process of recycling paper in an educational setting.
+    register: formal
+    setting: instructional
+    conjugation: dictionary (plain non-past)
+    nuance: 「でできる」 is used to describe a general fact or capability – recycled paper *can be* made from
+      old paper. The polite 「です」 maintains a formal, instructional tone. The particle 「で」 specifies the
+      material. This usage of 「でできる」 describes a general, inherent capability or characteristic of recycled
+      paper, emphasizing its composition. The phrase 「ので」 connects this fact to the reason for its environmental
+      friendliness, acting as a causal conjunction.
+  - english: This house is made of brick.
+    japanese:
+      - この 家 は レンガ {で でき て いる}。
+      - この 家 は レンガ {で でき て い ます}。
+    english_literally: This house is brick by being made.
+    competing_grammar:
+      - competing_japanese:
+          - この 家 は レンガ {から 造ら れ た}。
+        english: This house was constructed from brick.
+        hint: 「から造る」 implies a process of construction from raw materials. We're looking for a simple
+          statement of what the house is *composed of*.
+    scene: A real estate agent showing a house to a potential buyer.
+    register: formal
+    setting: informative
+    conjugation: progressive (～ている)
+    nuance: 「でできている」 clearly states the primary construction material of the house. The use of the progressive
+      tense 「できている」 highlights the current state of composition. The formal register is appropriate for
+      a real estate agent.
+  - english: His argument is made of weak points.
+    japanese:
+      - 彼 の 議論 は 弱い 点 {で でき て いる}。
+      - 彼 の 議論 は 弱い 点 {で でき て い ます}。
+    english_literally: His argument is weak points by being made.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 議論 は 弱い 点 {が 構成 する}。
+        english: His argument is constituted by weak points.
+        hint: 「構成する」 means 'to constitute' or 'to compose'. We're looking for a more natural way to express
+          that the argument *consists of* weak points.
+    scene: Two colleagues discussing a third person's flawed presentation.
+    register: semi-formal
+    setting: professional
+    conjugation: progressive (～ている)
+    nuance: This example uses 「でできている」 figuratively to describe the composition of an abstract concept,
+      an 'argument,' from 'weak points.' The 「で」 particle here extends beyond physical materials to abstract
+      components. The semi-formal register is suitable for colleagues discussing a professional matter.
+  - english: Glass is made of sand.
+    japanese:
+      - ガラス は 砂 {で できる}。
+      - ガラス は 砂 {で でき ます}。
+    english_literally: Glass is sand by being made.
+    competing_grammar:
+      - competing_japanese:
+          - ガラス は 砂 {を 原料 と する}。
+        english: Glass uses sand as its raw material.
+        hint: 「原料とする」 means 'to use as raw material'. We're looking for a phrase that simply states what
+          glass *is made of*.
+    scene: A parent explaining a basic science fact to their child.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: The plain form 「できる」 is appropriate for stating a general, timeless fact about glass composition,
+      commonly used in casual educational contexts between a parent and child. The 「で」 particle indicates
+      the direct material.
+  - english: That sculpture is made of metal, so it's very heavy.
+    japanese:
+      - あの 彫刻 は 金属 {で でき て いる} から、とても 重い。
+      - あの 彫刻 は 金属 {で でき て い ます} から、とても 重い です。
+    english_literally: That sculpture is metal by being made, so very heavy.
+    competing_grammar:
+      - competing_japanese:
+          - あの 彫刻 は 金属 {製 だ} から、とても 重い。
+        english: That sculpture is metal-made, so it's very heavy.
+        hint: 「金属製だ」 describes an item as 'metal-made'. We're looking for an expression that indicates
+          what the sculpture *is composed of*.
+    scene: Two friends at an art exhibition admiring a large sculpture.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    nuance: 「でできている」 explicitly states the material composition, directly linking it to the consequence
+      of being heavy. The casual register and direct speech are typical of friends conversing. The causal
+      「から」 links the material to its physical property.
+  - english: Her dress is made of cotton.
+    japanese:
+      - 彼女 の ドレス は 綿 {で でき て いる}。
+      - 彼女 の ドレス は 綿 {で でき て い ます}。
+    english_literally: Her dress is cotton by being made.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の ドレス は 綿 {で 作ら れ た}。
+        english: Her dress was produced from cotton.
+        hint: 「で作られる」 focuses on the process of creation. We're looking for a statement about the current
+          material composition.
+    scene: Someone complimenting a friend on their new dress.
+    register: formal
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: female
+    nuance: This is a straightforward use of 「でできている」 to describe the material of clothing. The friendly
+      register is typical for compliments among peers. The particle 「で」 points to cotton as the material
+      used to form the dress.
+post_example_writeup: As you can see from the examples, 「でできる」 is versatile and can be used in various
+  contexts from everyday conversations to more formal and technical explanations. It focuses on compositions
+  where the material is clearly visible or directly incorporated. When the material undergoes a significant
+  transformation and is no longer apparent in its original form, a different grammatical structure might
+  be more appropriate, such as 「からできる」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/でできる-からできる

@@ -1,0 +1,244 @@
+grammar_point: ただの (just・only)
+learn_before:
+  - どう (how)
+meaning: Just; only; merely; common; ordinary; plain
+pronunciation:
+  katakana: タダノ
+  romaji: tada no
+formation:
+  ただの + Noun: Indicates that something is merely a common or ordinary example of the noun, emphasizing
+    its lack of distinction or special quality.
+jlpt: N3
+etymology: The term 「ただ」 (tada) originally meant 'free' or 'gratis' (e.g., in 「無料」, muryō, or 「ただ飯」, tadameshi,
+  a free meal). Over time, its meaning evolved to encompass 'ordinary' or 'common', signifying something
+  that is not special or costly. The addition of the particle 「の」 (no) functions as a genitive particle,
+  making 「ただの」 a direct modifier for nouns, similar to 'of ordinary' or 'a mere' in English, reinforcing
+  the idea of plainness or lack of extraordinary qualities.
+writeup: 「ただの」 is a grammatical construct used to emphasize that something is nothing special, merely
+  ordinary, or "just" something. It functions as a pre-noun modifier, directly preceding the noun it describes.
+  This expression is particularly useful when you want to downplay the significance of something or clarify
+  that it lacks any extraordinary or hidden qualities. It's akin to saying "just a" or "only a" in English,
+  often conveying a sense of disappointment, reassurance, or dismissiveness. It is frequently used in
+  everyday speech and informal contexts, but can appear in more formal settings when the speaker wishes
+  to explicitly state the plainness or lack of distinction of a subject. The nuance of 「ただの」 is stronger
+  than simply stating a fact; it deliberately highlights the 'unremarkable' aspect.
+false_friends:
+  - term: 単なる
+    meaning: Simple, mere, plain.
+    kind: similar expression
+    nuance: While both convey a sense of simplicity or ordinariness, 「単なる」 (tan naru) is generally considered
+      a more formal and slightly stronger synonym, often used in written contexts or to emphasize a definitive
+      lack of complexity or depth. It often sounds more objective.
+    grammar_point: <suggest>:単なる (mere, simple)
+  - term: 普通の
+    meaning: Normal, ordinary, usual.
+    kind: similar expression
+    nuance: 「普通の」 (futsū no) simply describes something as ordinary in a general, neutral sense without
+      the added nuance of dismissing or downplaying. 「ただの」 implies that something is merely ordinary and
+      nothing more, often conveying a subjective judgment of insignificance.
+    grammar_point: <suggest>:普通の (ordinary, common)
+  - term: に過ぎない
+    meaning: nothing more than; merely; just; only
+    kind: similar expression
+    nuance: 「に過ぎない」 (ni suginai) is a more emphatic and often critical expression, stating that something
+      is nothing more than a certain thing, implying it's insufficient, trivial, or fails to meet expectations.
+      It's a sentence-ending expression rather than a noun modifier like 「ただの」.
+    grammar_point: にすぎない (no more than)
+  - term: 単に
+    meaning: Simply, merely, only.
+    kind: similar expression
+    nuance: 「単に」 (tanni) is an adverb that modifies verbs or clauses, meaning "simply" or "merely." While
+      「ただの」 is a pre-noun modifier that emphasizes the ordinariness of a noun, 「単に」 describes the simple
+      manner or reason of an action or state. It doesn't modify nouns directly.
+    grammar_point: 単に (simply)
+  - term: ばかり
+    meaning: Only, nothing but.
+    kind: similar expression
+    nuance: 「ばかり」 can mean "only" or "nothing but," similar to 「ただの」 in implying exclusivity or lack of
+      anything else. However, 「ばかり」 can be used more broadly with verbs and quantities (e.g., 「食べることばかり考えている」
+      - "He thinks only about eating"), whereas 「ただの」 is strictly a pre-noun modifier to emphasize lack
+      of specialness.
+    grammar_point: ばかり (only・just, often with nuance of excess)
+post_false_friends_writeup: 「ただの」 is a casual, pre-noun modifier emphasizing something is merely ordinary
+  or just what it seems, often with a dismissive or humble tone. It differs from the more objective and
+  formal noun modifier 「単なる」, and the neutral descriptor 「普通の」. Unlike the adverbial 「単に」 (simply) or
+  the sentence-ending, emphatic 「に過ぎない」 (nothing more than), 「ただの」 specifically modifies nouns to convey
+  this subjective ordinariness. While 「ばかり」 also means 'only' or 'nothing but', it has a broader range
+  of use beyond describing a noun's lack of specialness.
+examples:
+  - english: This is just a stone.
+    japanese:
+      - これ は {ただ の} 石 です。
+      - これ は {ただ の} 石 だ。
+    english_literally: This is a mere stone.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 石 です。
+        english: This is a stone.
+        hint: Using just 「石です」 states a fact. We're looking for an expression that emphasizes it's nothing
+          special.
+    scene: A child picks up a peculiar-looking object from the ground, thinking it might be a treasure
+      or a magical artifact. An adult calmly identifies it.
+    register: casual
+    setting: informative
+  - english: She is not just a company employee.
+    japanese:
+      - 彼女 は {ただ の} 会社 員 で は あり ませ ん。
+      - 彼女 は {ただ の} 会社 員 で は ない です。
+      - 彼女 は {ただ の} 会社 員 で は ない。
+    english_literally: She is not merely a company employee.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 会社 員 で は あり ませ ん。
+        english: She is not a company employee.
+        hint: While correct, this simply states she isn't an employee. We're looking for an expression
+          that negates the idea of her being merely an employee, implying she is more.
+    scene: Someone expresses surprise at a woman's extensive influence within the community, assuming
+      her professional title limits her. Another person corrects this misconception.
+    register: formal
+    setting: informative
+  - english: His injury turned out to be just a bruise.
+    japanese:
+      - 彼 の 怪我 は {ただ の} 打撲 で 済ん だ。
+      - 彼 の 怪我 は {ただ の} 打撲 でし た。
+    english_literally: His injury finished with just a bruise.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 怪我 は 打撲 で 済ん だ。
+        english: His injury turned out to be a bruise.
+        hint: This is factual, but doesn't convey relief. We're looking for a phrase that emphasizes it
+          was only a bruise, implying it could have been worse.
+    scene: After a scary accident, a worried friend asks about the extent of the injury. The other person
+      reassures them that it's not severe.
+    register: casual
+    setting: serious
+    nuance: 「済んだ」(sunda) implies that the situation concluded with minimal negative impact, emphasizing
+      the relief that it was 'just' a bruise.
+  - english: That kind of thing is just a coincidence.
+    japanese:
+      - そんな こと は {ただ の} 偶然 だ よ。
+      - そんな こと は {ただ の} 偶然 です よ。
+      - そんな こと は {ただ の} 偶然 だ。
+    english_literally: Such a thing is merely a coincidence.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと は 偶然 だ よ。
+        english: That kind of thing is a coincidence.
+        hint: This states it's a coincidence. We're looking for a phrase that dismisses any deeper meaning,
+          emphasizing it's merely a coincidence.
+    scene: Someone is trying to find a deeper, perhaps supernatural, meaning in a series of unrelated
+      events. A pragmatic friend attempts to calm their overthinking.
+    register: casual
+    setting: reflective
+  - english: I'm just an ordinary housewife.
+    japanese:
+      - 私 は {ただ の} 平凡 な 主婦 です。
+      - 私 は {ただ の} 平凡 な 主婦 だ わ。
+      - 私 は {ただ の} 平凡 な 主婦 よ。
+    english_literally: I am merely an ordinary housewife.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 平凡 な 主婦 です。
+        english: I am an ordinary housewife.
+        hint: This is a statement of fact. We're looking for a phrase that conveys humility and self-deprecation.
+    scene: A woman is being praised for her extraordinary organizational skills and community involvement.
+      She humbly downplays her achievements.
+    register: formal
+    setting: apologetic
+    speaker_gender: female
+    nuance: The term 「主婦」(shufu) itself denotes a married woman who primarily manages her household. When
+      used with 「ただの」, it emphasizes a humble or self-deprecating tone, common among Japanese women who
+      might minimize their contributions despite often managing complex household finances and family
+      logistics. This is a common way for Japanese women to express modesty.
+  - english: I don't think of you as just a child.
+    japanese:
+      - 君 を {ただ の} 子ども だ と は 思っ て い ない よ。
+      - 君 を {ただ の} 子ども だ と は 思っ て おり ませ ん よ。
+    english_literally: I don't think of you as merely a child.
+    competing_grammar:
+      - competing_japanese:
+          - 君 を 子ども だ と は 思っ て い ない よ。
+        english: I don't think of you as a child.
+        hint: This implies they are not a child. We're looking for a phrase that specifically negates
+          the idea of being merely a child, emphasizing recognition of their maturity or capabilities.
+    scene: A young person feels their opinions are constantly dismissed by adults because of their age.
+      An older mentor offers reassurance.
+    register: casual
+    setting: supportive
+    speaker_age: older
+    nuance: 「君」(kimi) is a casual second-person pronoun, often used by superiors or older individuals
+      towards subordinates or younger people, regardless of gender, indicating familiarity and a slight
+      hierarchical distance. The 「よ」 (yo) at the end adds a sense of assertion and reassurance. This phrase
+      is a common way for an older person to encourage a younger one.
+  - english: It was just a misunderstanding.
+    japanese:
+      - あれ は {ただ の} 勘違い でし た。
+      - あれ は {ただ の} 勘違い だっ た。
+      - あれ は {ただ の} 勘違い です。
+      - あれ は {ただ の} 勘違い だっ た の さ。
+    english_literally: That was merely a misunderstanding.
+    competing_grammar:
+      - competing_japanese:
+          - あれ は 勘違い でし た。
+        english: That was a misunderstanding.
+        hint: This simply states a fact. We need to express that it was only a misunderstanding, implying
+          no malice or deeper issue.
+    scene: After an awkward silence or argument, one person wants to clear the air and defuse tension.
+    register: semi-formal
+    setting: apologetic
+  - english: It's just a common cold.
+    japanese:
+      - '{ただ の} 風邪 です。'
+      - '{ただ の} 風邪 だ よ。'
+      - '{ただ の} 風邪 だ。'
+    english_literally: It's merely a common cold.
+    competing_grammar:
+      - competing_japanese:
+          - 風邪 です。
+          - 風邪 だ よ。
+        english: It's a cold.
+        hint: Saying 「風邪です」 states you have a cold. We're looking for a phrase that reassures someone
+          it's nothing serious or nothing more than a cold.
+    scene: Someone is worried about feeling unwell, fearing it might be something serious. Another person
+      reassures them.
+    register: casual
+    setting: reflective
+  - english: He's just a regular office worker.
+    japanese:
+      - 彼 は {ただ の} サラリーマン です。
+      - 彼 は {ただ の} サラリーマン だ。
+    english_literally: He is merely a regular office worker.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は サラリーマン です。
+        english: He is an office worker.
+        hint: This is a neutral statement. We need an expression that implies he is nothing extraordinary
+          or not special in any way.
+    scene: Someone is building up a person's importance, but another person wants to temper expectations
+      and state the reality.
+    register: casual
+    setting: informative
+    speaker_gender: male
+  - english: That was just a joke.
+    japanese:
+      - あれ は {ただ の} 冗談 です よ。
+      - あれ は {ただ の} 冗談 だ よ。
+      - あれ は {ただ の} 冗談 でし た。
+      - あれ は {ただ の} 冗談 だっ た の さ。
+    english_literally: That was merely a joke.
+    competing_grammar:
+      - competing_japanese:
+          - あれ は 冗談 です よ。
+        english: That was a joke.
+        hint: This explains it was a joke. We're looking for a phrase that dismisses any deeper meaning,
+          emphasizing it was only a joke and should not be taken seriously.
+    scene: Someone took a comment too seriously, and the speaker wants to lighten the mood and clarify
+      their intent.
+    register: casual
+    setting: humorous
+post_example_writeup: The usage of 「ただの」 often carries an underlying emotional tone, whether it's relief,
+  humility, dismissal, or reassurance. It's more than a simple descriptor; it's a way to contextualize
+  the ordinariness of something in relation to a perceived significance or expectation. Paying attention
+  to the context and the speaker's intent is crucial for understanding its full implication.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ただの

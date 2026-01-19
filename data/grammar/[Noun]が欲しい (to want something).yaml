@@ -1,0 +1,339 @@
+grammar_point: '[Noun]が欲しい (to want something)'
+learn_before:
+  - 要る・いる (need)
+meaning: To want something (a noun or abstract concept)
+meaning_warning: 'Do not confuse: ほしくなかった (past negative), with ほしくなった (ほしくない + なる), meaning ''to come
+  to want''.'
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 欲しい
+    rarity: common
+    meaning: want (something)
+  - conjugation-type: non-past polite (～ます)
+    form: 欲しいです
+    rarity: common
+    meaning: want (something)
+  - conjugation-type: negative plain (～ない)
+    form: ほしくない
+    rarity: common
+    meaning: don't want (something)
+  - conjugation-type: negative non-past polite (～ません)
+    form: ほしくありません
+    rarity: common
+    meaning: don't want (something)
+  - conjugation-type: past plain (～た)
+    form: ほしかった
+    rarity: common
+    meaning: wanted (something)
+  - conjugation-type: past polite (～ました)
+    form: ほしかったです
+    rarity: common
+    meaning: wanted (something)
+  - conjugation-type: negative past plain (～なかった)
+    form: ほしくなかった
+    rarity: common
+    meaning: didn't want (something)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: ほしくありませんでした
+    rarity: common
+    meaning: didn't want (something)
+  - conjugation-type: te-form (～て)
+    form: ほしくて
+    rarity: less common
+    meaning: wanting (something), and...
+  - conjugation-type: conditional (～ば)
+    form: ほしければ
+    rarity: uncommon
+    meaning: if one wants (something)
+  - conjugation-type: conditional (～たら)
+    form: ほしかったら
+    rarity: uncommon
+    meaning: if one wanted (something)
+pronunciation:
+  katakana: ホシイ
+  romaji: hoshii
+formation:
+  Noun + が + 欲しい: Indicates a desire for something (a thing or concept).
+  Subject が + Object が + 欲しい: Expresses the speaker's desire for something.
+jlpt: N5
+etymology: The adjective 「欲しい」 (hoshii) is believed to have originated from the verb 「欲す (hosu)」, meaning
+  "to desire," with the addition of 「-しい (-shii)」 creating its adjectival form. The particle 「が」 marks
+  the object of this desire, reflecting how Japanese i-adjectives directly convey states like wanting
+  or needing, with the object being the subject of that state.
+writeup: |-
+  The Japanese adjective 「**欲しい (hoshii)**」 is used to express one's desire to **have** or **possess** a noun or an abstract concept. It functions grammatically like any other い-adjective. The item desired is marked by the particle 「が」, and the person who wants the item is the subject of the sentence, often marked by 「は」 or 「が」.
+
+  While 「欲しい」 primarily conveys the speaker's personal desires, it can appear in quoted speech or questions about others' desires. However, when describing someone else's apparent desires as an observation, the verb 「**欲しがる (hoshigaru)**」 is typically used. For instance, you would say 「彼 は 新しい 車 を 欲し がっ て いる」 (He seems to want a new car) if you are observing his behavior.
+
+  It is crucial to distinguish 「欲しい」 from similar expressions:
+  *   **「〜たい」**: This form is used to express a desire to **perform an action** (a verb), not to have a thing. For example, 「寿司 を 食べたい」 means "I want to eat sushi," focusing on the action of eating.
+  *   **「〜てほしい」**: This construction is used when you want **another person to perform an action** for you. For example, 「手伝っ て ほしい」 means "I want you to help me."
+  *   **「〜ように〜てほしい」**: This is similar to 「〜てほしい」 but specifically emphasizes the *manner* or *way* in which an action should be done, or for a *state* to be achieved. For example, 「早く 帰っ て ほしい」 (I want you to come home quickly).
+
+  「欲しい」 can be made polite by adding 「です」 (e.g., 「欲しいです」). Like all い-adjectives, it conjugates to express negative, past, and conditional forms.
+false_friends:
+  - term: たい
+    meaning: Want to do (action)
+    kind: similar expression
+    nuance: While 「Nounが欲しい」 expresses a desire to have a noun (thing or concept), 「〜たい」 expresses a desire
+      to do an action, attaching directly to a verb stem.
+    grammar_point: たい (want to do)
+  - term: '[i-Adj-stem]がる・[na-Adj]がる'
+    meaning: To show signs of feeling; to want (for someone else)
+    kind: similar expression
+    nuance: 「Nounが欲しい」 expresses the speaker's own desire. 「〜がる」 (and its action-focused variant 「〜たがる」)
+      is used to describe someone else's apparent desire or inclination, often based on observation, as
+      it's an observable behavior.
+    grammar_point: '[い-Adjective-stem]がる・[な-Adjective]がる (to show signs of feeling)'
+  - term: '[Verb-て]ほしい'
+    meaning: To want someone to do (action)
+    kind: similar expression
+    nuance: 「Nounが欲しい」 is for wanting a noun. 「〜てほしい」 is used when you want another person to perform
+      an action for you.
+    grammar_point: '[Verb-て]ほしい (to want someone to do)'
+  - term: ように〜てほしい
+    meaning: To want someone to act in a certain way; to want something to happen in a certain way
+    kind: similar expression
+    nuance: This expression is similar to 「〜てほしい」 but specifically emphasizes the manner or way in which
+      an action should be done, or for a state to be achieved.
+    grammar_point: ように〜てほしい (want someone to act in a certain way)
+post_false_friends_writeup: To ensure correct usage, remember that 「Nounが欲しい」 is specifically for desiring
+  tangible or intangible **things** (nouns). If you wish to express a desire to **perform an action**,
+  use 「〜たい」. If you are talking about **someone else's desires** based on your observation, use the 「〜がる」
+  form. Lastly, when you want **someone else to do something for you**, use 「〜てほしい」, and if you're specifying
+  *how* you want it done, use 「〜ように〜てほしい」.
+examples:
+  - english: I want a new computer.
+    japanese:
+      - 新しい パソコン が {欲しい}。
+      - 新しい パソコン が {欲しい} です。
+    english_literally: New computer is wanted.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい パソコン を 買い {たい}。
+        english: I want to buy a new computer.
+        hint: 「〜たい」 is used for wanting to do an action, not for wanting a thing. Here, you want to buy
+          a computer.
+    scene: A student discusses their wish for a new gadget, implying a simple desire for a physical object.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    nuance: This is a direct, straightforward statement of desire for a noun, typical in casual conversation.
+      The polite form 「欲しいです」 can be used in more formal settings.
+  - english: I want summer vacation to come soon.
+    japanese:
+      - 早く 夏休み が {欲しい} です。
+      - 早く 夏休み が {欲しい}。
+      - 早く 夏休み が {欲しい} なぁ。
+    english_literally: Quickly summer vacation is wanted.
+    competing_grammar:
+      - competing_japanese:
+          - 早く 夏休み に なっ {て ほしい} です。
+        english: I want summer vacation to arrive soon.
+        hint: 「〜てほしい」 is used when you want an action to be performed or a state to be reached. 「が欲しい」
+          is for directly desiring a thing or an event.
+    scene: A tired office worker expresses their desire for a break to a colleague, focusing on a future
+      event.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「早く」 (hayaku) emphasizes the strong desire for the vacation to arrive, indicating
+      weariness or anticipation. The polite 「です」 ending makes it suitable for general conversation with
+      colleagues.
+  - english: I wanted a quieter environment.
+    japanese:
+      - もっと 静か な 環境 が {欲しかっ た}。
+      - もっと 静か な 環境 が {欲しかっ た} です。
+    english_literally: More quiet environment was wanted.
+    competing_grammar:
+      - competing_japanese:
+          - もっと 静か な 環境 に なっ {て 欲しかっ た}。
+        english: I wanted it to become a quieter environment.
+        hint: 「〜が欲しい」 is for wanting a thing. If you want a state to be reached or a change to occur,
+          「〜になる」 followed by 「〜てほしい」 is more appropriate.
+    scene: A person reflects on their past living situation after moving to a new place, indicating a
+      past unfulfilled desire.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: This past-tense conjugation expresses a desire that was not met or was felt in the past. 「もっと
+      静か な 環境」 (motto shizuka na kankyou) indicates a desire for a different quality of environment.
+  - english: I didn't want anything at that time.
+    japanese:
+      - あの 時 は 何 も {ほしく なかっ た}。
+      - あの 時 は 何 も {ほしく} なかっ た な。
+    english_literally: That time anything was not wanted.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 は 何 も し {たく なかっ た}。
+        english: I didn't want to do anything at that time.
+        hint: 「〜が欲しい」 is for wanting a thing. If you didn't want to do an action, 「〜たくない」 would be used
+          instead.
+    scene: Someone reminiscing about a period of contentment or emotional distress where material desires
+      were absent.
+    register: casual
+    setting: melancholic
+    conjugation: negative past plain (～なかった)
+    nuance: This sentence uses the plain past negative form of 「欲しい」, expressing a lack of desire in the
+      past. 「何も」 (nani mo) emphasizes 'nothing at all'.
+  - english: I don't particularly want anything right now.
+    japanese:
+      - 今 は 特に 何 も {ほしく あり ませ ん}。
+      - 今 は 特に 何 も {ほしく ない}。
+      - 今 は 特に 何 も {ほしく} ない な。
+    english_literally: Now particularly anything is not wanted.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は 特に 何 も し {たく あり ませ ん}。
+        english: I don't particularly want to do anything right now.
+        hint: 「〜が欲しい」 is for wanting a thing. If you don't want to do an action, 「〜たくない」 would be the
+          appropriate expression.
+    scene: A host offering a guest a gift, and the guest politely declining, indicating a current lack
+      of desire.
+    register: teineigo (polite)
+    setting: apologetic
+    conjugation: negative non-past polite (～ません)
+    nuance: This polite negative form is used to politely decline or state a current lack of desire. 「特に」
+      (toku ni) adds the nuance of 'not particularly', making the refusal softer.
+  - english: Yesterday, I was tired, so I didn't even want to eat.
+    japanese:
+      - 昨日 は 疲れ て い た の で、ご飯 も {ほしく あり ませ ん でし た}。
+      - 昨日 は 疲れ て い た の で、ご飯 も {ほしく なかっ た}。
+    english_literally: Yesterday was tired so, rice also was not wanted.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 疲れ て い た の で、ご飯 を 食べ {たく あり ませ ん でし た}。
+        english: Yesterday, I was tired, so I didn't want to eat.
+        hint: 「〜たい」 is for wanting to do an action. 「が欲しい」 is for desiring a thing. While 「ご飯も」 can imply
+          the action of eating, the direct form for expressing a desire to not eat would be 「食べたくない」.
+    scene: A person explaining to their friend why they didn't join them for dinner the previous night,
+      stating a past lack of appetite.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+    nuance: 「ご飯も」 (gohan mo) literally means "even rice" and implies they had no appetite for anything,
+      not just food. The polite past negative form 「欲しくありませんでした」 expresses a past state of not wanting
+      something.
+  - english: He's always saying, 'I want more time.'
+    japanese:
+      - 彼 は いつ も『もっと 時間 が {欲しい}』と 言っ て いる よ。
+      - 彼 は いつ も『もっと 時間 が {欲しい}』と 言っ て い ます よ。
+      - 彼 は いつ も もっと 時間 が {欲しい} と 言っ て い ます。
+      - 彼 は いつ も もっと 時間 が {欲しい} と 言っ て いる。
+    english_literally: He always 'more time is wanted' saying.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も もっと 時間 を 欲し {がっ て いる} よ。
+        english: He's always showing signs of wanting more time.
+        hint: 「が欲しい」 directly states a desire. When describing someone else's desire, 「〜がる」 is typically
+          used to indicate it's an observable behavior or inclination, not a direct statement from them,
+          unless it's a direct quote.
+    scene: A female friend discusses a mutual male friend's constant complaints with another female friend,
+      observing his ongoing desire.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「〜と 言っ て いる よ」 (to itte iru yo) is a common casual way for female speakers to share
+      observations or gossip. The 「よ」 particle adds a sense of informing the listener. This sentence describes
+      someone else's desire using the indirect quotation of 「欲しい」.
+  - english: My grandmother was always saying she wanted pictures of her grandchild.
+    japanese:
+      - 祖母 が 孫 の 写真 が {欲しい} と ずっと 言っ て い た の。
+      - 祖母 が 孫 の 写真 が {欲しい} と ずっと 言っ て い まし た。
+      - 祖母 が 孫 の 写真 が {欲しい} と ずっと 言っ て い た。
+    english_literally: Grandmother grandchild's photos wanted continuously saying was.
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 が 孫 の 写真 を 欲し {がっ て} ずっと 言っ て い た の。
+        english: My grandmother was always showing signs of wanting pictures of her grandchild.
+        hint: 「が欲しい」 expresses the speaker's own desire. When talking about someone else's desire, especially
+          when observed, 「〜がる」 is more commonly used, unless it's a direct quote.
+    scene: A young adult sharing a heartwarming anecdote about their grandmother's persistent desire for
+      family photos.
+    register: casual
+    setting: storytelling
+    conjugation: dictionary (plain non-past)
+    speaker_age: younger
+    nuance: The speaker is a younger person recounting a past event about an older relative. 「ずっと 言っ て
+      い た の」 (zutto itte ita no) is a very natural and slightly informal way for a younger speaker to
+      describe something an elder continually expressed. The final 「の」 acts as a soft sentence-ending
+      particle, adding a touch of personal sentiment.
+  - english: I want courage to speak in front of many people.
+    japanese:
+      - 大勢 の 人 の 前 で 話す 勇気 が {欲しい}。
+      - 大勢 の 人 の 前 で 話す 勇気 が {欲しい} です。
+    english_literally: Many people's front at speak courage is wanted.
+    competing_grammar:
+      - competing_japanese:
+          - 大勢 の 人 の 前 で 話せる よう に なり {たい}。
+        english: I want to become able to speak in front of many people.
+        hint: 「〜たい」 is for wanting to do an action or become something. 「が欲しい」 is for wanting a thing
+          or quality.
+    scene: A person expresses their desire for an abstract quality to overcome a personal challenge, such
+      as public speaking anxiety.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    nuance: Here, 「欲しい」 is used to express a desire for an intangible quality, 「勇気」 (yuuki - courage),
+      which is treated as a noun. This shows the versatility of 「が欲しい」 beyond concrete objects.
+  - english: What do you want for your birthday?
+    japanese:
+      - 誕生 日 に 何 が {欲しい} です か。
+      - 誕生 日 に 何 が {欲しい}？
+    english_literally: Birthday on what is wanted question.
+    competing_grammar:
+      - competing_japanese:
+          - 誕生 日 に 何 を し {たい} です か。
+        english: What do you want to do for your birthday?
+        hint: 「〜が欲しい」 asks about a desired thing (a gift). 「〜たい」 asks about a desired action (what you
+          want to do).
+    scene: A mother asks her child what gift they would like for their upcoming birthday.
+    register: teineigo (polite)
+    setting: interrogative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: This is a very common and natural way to inquire about someone's desired gift. The polite
+      「です か」 makes it suitable for addressing a child or someone younger while maintaining a polite tone.
+      The question is open-ended, allowing for any noun as an answer.
+  - english: Wanting new shoes, I started a part-time job.
+    japanese:
+      - 新しい 靴 が {ほしく て}、バイト を 始め まし た。
+      - 新しい 靴 が {欲しく て}、アルバイト を 始め まし た。
+    english_literally: New shoes being wanted, I started a part-time job.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 靴 を {買い たく て}、バイト を 始め まし た。
+        english: Wanting to buy new shoes, I started a part-time job.
+        hint: 「〜たい」 is used for wanting to do an action (buy), not for wanting to have an object (shoes)
+          as the direct cause.
+    scene: A student explaining to a friend why they recently took on a part-time job.
+    register: casual
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: The te-form 「ほしくて」 connects the desire for new shoes as the reason for starting the part-time
+      job, indicating a cause-and-effect relationship.
+  - english: If you want help, please ask me anytime.
+    japanese:
+      - 助け が {ほしけれ ば}、いつ で も 私 に 聞い て ください。
+      - 助け が {欲しけれ ば}、いつ で も 声 を かけ て ください。
+    english_literally: If help is wanted, please ask me anytime.
+    competing_grammar:
+      - competing_japanese:
+          - 助け が {必要 なら}、いつ で も 私 に 聞い て ください。
+        english: If help is necessary, please ask me anytime.
+        hint: 「必要なら」 implies a required condition. We're looking for an optional desire for assistance.
+    scene: A teacher addressing their students at the beginning of a new term, offering support.
+    register: formal
+    setting: instructional
+    conjugation: conditional (～ば)
+    nuance: The conditional 「ほしければ」 emphasizes that the request for help is dependent on the listener's
+      desire, making the offer of assistance conditional but open.
+post_example_writeup: As these examples demonstrate, 「Nounが欲しい」 is versatile, applying to both concrete
+  items and abstract concepts. While it primarily conveys the speaker's desire, it's also used in questions
+  or when quoting someone else's stated desire. Always consider whether the desired item is a noun (use
+  「が欲しい」) or an action (use 「〜たい」) for accurate expression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/がほしい

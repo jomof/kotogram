@@ -1,0 +1,235 @@
+grammar_point: いかん (depending on)
+learn_before:
+  - にかかっている (to depend on)
+meaning: depending on; contingent on; the state of things; outcome
+pronunciation:
+  katakana: イカン
+  romaji: ikan
+formation:
+  '[Noun] + の + いかん + だ': The outcome or situation is contingent on the state of [Noun].
+  '[Noun] + の + いかん + に + よっては': Depending on the state or nature of [Noun], the situation varies.
+  '[Noun] + の + いかん + にかかっている': It depends on the state of [Noun].
+jlpt: N1
+etymology: The term 「いかん」 originates from classical Japanese, deriving from the interrogative word 「いか」
+  (how, what kind) and the nominalizing suffix 「ん」. Initially, it was used in questions to inquire about
+  the state or condition of something. Over time, it evolved into fixed expressions that, rather than
+  asking 'how,' state that something's nature or outcome is determined by 'how' things are, or 'what kind'
+  of state it is in. This historical connection to inquiry about state or condition explains its use in
+  expressing dependency on circumstances, giving it a somewhat archaic yet precise and formal quality
+  in modern Japanese.
+writeup: |-
+  「いかん」 is a formal and somewhat literary expression used to indicate that a result, decision, or situation is entirely dependent on, or contingent upon, the state or nature of something. It carries a strong nuance of "it all hinges on..." or "the outcome is determined by...". You will often encounter this expression in formal written documents, academic papers, legal texts, or serious discussions where precise and objective language is preferred.
+
+  When used with 「だ」 (e.g., 「〜のいかんだ」), it acts as a predicative phrase, stating that the preceding noun's condition is the determining factor. For instance, 「この計画の成功は、皆さんの努力の{いかん}だ。」 (The success of this plan depends on everyone's effort.) Here, 「いかん」 explicitly states that success is *contingent upon* the effort.
+
+  When followed by 「によって」 (e.g., 「〜のいかんによって」), it functions adverbially, meaning "depending on the state/nature of...". For example, 「天候の{いかん}によって、イベントは中止になる可能性がある。」 (Depending on the weather conditions, the event might be canceled.) This emphasizes that the weather's state is the deciding factor for cancellation.
+
+  It's crucial to understand that 「いかん」 refers to the *state* or *condition* of the preceding noun, not merely a simple cause or influence. It implies that the *nature* or *degree* of that noun's state is what truly determines the outcome. Because of its formal and somewhat archaic nature, 「いかん」 is rarely used in casual conversation. Its usage lends a sense of gravity and definitive consequence to the statement.
+false_friends:
+  - term: いかんにかかわらず
+    meaning: Regardless of; irrespective of
+    kind: similar expression
+    nuance: While both use 「いかん」, 「いかんにかかわらず」 expresses *independence* from a condition, meaning something
+      will happen *no matter* the state of X. In contrast, 「いかん」 (this grammar point) expresses *dependency*
+      on a condition.
+    grammar_point: にかかわらず (regardless of)
+  - term: いかに
+    meaning: How; how much; to what extent
+    kind: similar expression
+    nuance: 「いかに」 is an adverb that queries or states the *manner* or *degree* of something (e.g., 「いかに美しい」
+      - how beautiful). 「いかん」 refers to the *state* or *outcome* upon which something depends. They share
+      a common etymological root but have diverged in modern usage.
+    grammar_point: いかに (how; how much)
+  - term: ～による
+    meaning: Depending on; according to; due to
+    kind: synonym
+    nuance: 「いかん」 is much more formal and often emphasizes a critical, decisive dependency, especially
+      regarding the *quality* or *nature* of the preceding noun. 「～による」 is a more general and common expression
+      for "depending on" and doesn't carry the same weighty, formal nuance.
+    grammar_point: '[Noun]によって (means・method)'
+post_false_friends_writeup: While 「いかん」 and 「いかんにかかわらず」 both contain 「いかん」, their meanings are fundamentally
+  opposite. 「いかん」 emphasizes that an outcome is *determined by* a certain condition, whereas 「いかんにかかわらず」
+  stresses that an outcome occurs *irrespective of* a condition. Similarly, 「いかに」 focuses on the *degree*
+  or *manner* ("how much/how X"), unlike 「いかん」, which is about the *state* upon which something depends.
+  When choosing between 「いかん」 and 「～による」, consider the formality and the depth of the dependency you wish
+  to convey. 「いかん」 implies a more significant and often intrinsic reliance on the state of the subject,
+  making it suitable for more formal or impactful statements.
+examples:
+  - english: The success of this project hinges on your efforts.
+    japanese:
+      - この プロジェクト の 成功 は、皆 さん の 努力 の {いか ん} だ。
+      - この プロジェクト の 成功 は、皆 さん の 努力 の {いか ん} に かかっ て い ます。
+      - この プロジェクト の 成功 は、皆 さん の 努力 の {いか ん} で 決まり ます。
+    english_literally: This project's success, everyone's effort's state depends.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト の 成功 は、皆 さん の 努力 {次第 だ}。
+        english: The success of this project depends on your efforts.
+        hint: 「次第だ」 is a slightly less formal way to express dependency. We're looking for a more formal
+          and definitive expression that highlights the critical nature of the effort.
+    scene: A team leader addresses their members about an upcoming project, emphasizing the importance
+      of their collective work.
+    register: formal
+    setting: professional
+  - english: The continuation of this policy depends on the public's reaction.
+    japanese:
+      - この 政策 の 続行 は、国民 の 反応 の {いか ん} に よる。
+      - この 政策 の 続行 は、国民 の 反応 の {いか ん} に 依る もの です。
+      - この 政策 の 続行 は、国民 の 反応 の {いか ん} に 左右 さ れ ます。
+    english_literally: This policy's continuation, the public's reaction's state depends on.
+    competing_grammar:
+      - competing_japanese:
+          - この 政策 の 続行 は、国民 の 反応 {に よっ て} 決まる。
+        english: The continuation of this policy is decided by the public's reaction.
+        hint: 「によって」 is a general particle for cause or means. While similar in meaning, we're seeking
+          a more specific and formal term that emphasizes the critical nature of the state or condition.
+    scene: A government spokesperson explains to the press that the future of a new policy is contingent
+      upon how the populace responds to it.
+    register: formal
+    setting: informative
+  - english: The future of our company will be determined by this quarter's financial results.
+    japanese:
+      - 我が 社 の 将来 は、今期 の 業績 の {いか ん} に かかっ て いる。
+      - 我が 社 の 将来 は、今期 の 業績 の {いか ん} に かかっ て おり ます。
+      - 我が 社 の 将来 は、今期 の 業績 の {いか ん} で 決まり ます。
+    english_literally: Our company's future, this quarter's performance's state depends on.
+    competing_grammar:
+      - competing_japanese:
+          - 我が 社 の 将来 は、今期 の 業績 {次第 だ}。
+        english: The future of our company depends on this quarter's financial results.
+        hint: 「次第だ」 can express dependency but 「いかん」 followed by 「にかかっている」 emphasizes a more critical
+          and decisive reliance on the performance.
+    scene: A CEO addresses shareholders during an annual meeting, highlighting the crucial importance
+      of recent financial performance for the company's trajectory.
+    register: formal
+    setting: professional
+    nuance: 「にかかっている」 further emphasizes the critical dependency. This statement implies a high-stakes
+      situation where the company's fate is directly tied to its performance.
+  - english: The hiring decision will depend on the candidates' qualifications.
+    japanese:
+      - 採用 の 決定 は、応募 者 の 能力 の {いか ん} に 左右 さ れる。
+      - 採用 の 決定 は、応募 者 の 能力 の {いか ん} に 左右 さ れ ます。
+      - 採用 の 決定 は、応募 者 の 能力 の {いか ん} で 決まり ます。
+    english_literally: Hiring decision, applicants' ability's state will be influenced by.
+    competing_grammar:
+      - competing_japanese:
+          - 採用 の 決定 は、応募 者 の 能力 {に よる}。
+        english: The hiring decision depends on the candidates' abilities.
+        hint: While 「による」 expresses dependency, 「いかん」 with 「に左右される」 (to be influenced by) reinforces that
+          the qualifications directly determine the outcome in a formal context.
+    scene: Hiring decision, applicants' ability's state will be influenced by.
+    register: formal
+    setting: professional
+    nuance: 「に左右される」 (to be influenced by) reinforces that the qualifications directly determine the outcome,
+      emphasizing the strict criteria in a formal hiring process.
+  - english: The repair cost will vary depending on the extent of the damage.
+    japanese:
+      - 修理 費 は、破損 状況 の {いか ん} に よっ て 変わる。
+      - 修理 費 は、破損 状況 の {いか ん} に よっ て 変わり ます。
+      - 修理 費 は、破損 状況 の {いか ん} に より 変動 し ます。
+    english_literally: Repair cost, damage situation's state, depending on, will change.
+    competing_grammar:
+      - competing_japanese:
+          - 修理 費 は、破損 状況 {に よっ て} 変わる。
+        english: The repair cost will change depending on the damage situation.
+        hint: 「によって」 is more general. 「いかんによって」 emphasizes that the specific *state* or *severity* of
+          the damage is the determining factor for the cost, in a more formal tone.
+    scene: A technician explains to a customer that the final repair estimates cannot be given until the
+      full scope of the damage is assessed, as the cost directly correlates with the condition.
+    register: formal
+    setting: informative
+  - english: Our next course of action depends entirely on the seriousness of the situation.
+    japanese:
+      - 今後 の 対応 は、事態 の 深刻 さ の {いか ん} で 決まる。
+      - 今後 の 対応 は、事態 の 深刻 さ の {いか ん} で 決まり ます。
+      - 今後 の 対応 は、事態 の 深刻 さ の {いか ん} に よる。
+    english_literally: Future actions, situation's seriousness's state, by which, will be decided.
+    competing_grammar:
+      - competing_japanese:
+          - 今後 の 対応 は、事態 の 深刻 さ {次第 だ}。
+        english: Our next actions depend on the seriousness of the situation.
+        hint: 「次第だ」 is an option, but 「いかん」 paired with 「決まる」 (to be decided) highlights that the seriousness
+          is the sole and critical determining factor in a very formal context.
+    scene: An emergency response team leader briefs their members, stating that all subsequent actions
+      hinge on how critical the developing situation becomes.
+    register: formal
+    setting: serious
+    nuance: The combination with 「決まる」 (to be decided) highlights that the seriousness is the sole determining
+      factor for subsequent actions, emphasizing decisiveness in a serious situation.
+  - english: Your punishment will depend on the manner of your conduct.
+    japanese:
+      - 処罰 は、君 の 態度 の {いか ん} に よる だろう。
+      - 処罰 は、あなた の 態度 の {いか ん} に よる でしょう。
+      - 処罰 は、君 の 態度 の {いか ん} に 左右 さ れる だろう。
+    english_literally: Punishment, your attitude's state, will depend on.
+    competing_grammar:
+      - competing_japanese:
+          - 処罰 は、君 の 態度 {に よっ て} 決まる だろう。
+        english: Your punishment will be decided by your attitude.
+        hint: While 「によって」 can convey dependency, 「いかん」 in this formal context, particularly from an older
+          male, emphasizes that the *quality* or *nature* of the attitude is the critical factor.
+    scene: A teacher, speaking sternly, explains to a student that the consequences for their actions
+      will be directly tied to how they conduct themselves during the disciplinary process.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「君 (きみ)」 is typically used by an older male speaker addressing a younger male,
+      implying a hierarchical relationship or direct address. The formal tone with 「いかん」 makes the statement
+      authoritative, indicating the seriousness of the situation and the clear link between behavior and
+      outcome.
+  - english: Whether or not you understand depends on the explanation.
+    japanese:
+      - 理解 できる か 否 か は、説明 の {いか ん} に よる。
+      - 理解 できる か 否 か は、説明 の {いか ん} に より ます。
+      - 理解 できる か 否 か は、説明 の {いか ん} で 決まる。
+    english_literally: Whether or not you can understand, the explanation's state depends on.
+    competing_grammar:
+      - competing_japanese:
+          - 理解 できる か 否 か は、説明 {の 仕方 に よっ て} 変わる。
+        english: Whether or not you can understand changes depending on the way of explanation.
+        hint: 「の仕方によって」 focuses on the *method*. 「いかん」, on the other hand, highlights that the *quality*
+          or *nature* of the explanation itself is the key determinant for understanding.
+    scene: A professor states to a teaching assistant that a student's comprehension is fundamentally
+      linked to the clarity and quality of the instruction provided.
+    register: formal
+    setting: academic
+    nuance: This sentence stresses that understanding isn't guaranteed but is directly conditional on
+      the quality of the explanation. The use of 「いかん」 makes this a more objective and academic statement,
+      suitable for a professor.
+  - english: Productivity at work is highly dependent on the work environment.
+    japanese:
+      - 職場 の 生産 性 は、環境 の {いか ん} に 大きく 左右 さ れる。
+      - 職場 の 生産 性 は、環境 の {いか ん} に 大きく 左右 さ れ ます。
+      - 職場 の 生産 性 は、環境 の {いか ん} が 大きく 影響 し ます。
+    english_literally: Workplace productivity, environment's state, greatly influenced by.
+    competing_grammar:
+      - competing_japanese:
+          - 職場 の 生産 性 は、環境 {に よっ て} 大きく 影響 さ れる。
+        english: Workplace productivity is greatly influenced by the environment.
+        hint: 「によって影響される」 is a common expression. 「いかん」 with 「左右される」 implies a more profound and decisive
+          impact, emphasizing how the environment's *condition* controls productivity.
+    scene: A business consultant presents findings on workplace efficiency, underscoring the direct correlation
+      between output and the quality of the surrounding conditions.
+    register: formal
+    setting: professional
+  - english: The effectiveness of this method depends on its application.
+    japanese:
+      - この 方法 の 有効 性 は、その 適用 の {いか ん} に 帰する。
+      - この 方法 の 有効 性 は、その 適用 の {いか ん} に 帰し ます。
+      - この 方法 の 有効 性 は、その 適用 の {いか ん} に よる。
+    english_literally: This method's effectiveness, its application's state, is attributable to.
+    competing_grammar:
+      - competing_japanese:
+          - この 方法 の 有効 性 は、その 適用 {に よる}。
+        english: The effectiveness of this method depends on its application.
+        hint: 「による」 is a general term. 「いかん」 combined with 「に帰する」 (to be attributable to) emphasizes that
+          the method's success is a direct and intrinsic result of *how* it is applied.
+    scene: Researchers discuss experimental results, concluding that the observed success of a scientific
+      method is entirely due to the specific way it was put into practice.
+    register: formal
+    setting: academic
+    nuance: 「に帰する」 (to be attributable to, to result from) emphasizes that the method's success is a direct
+      result of how it is applied, indicating a precise and formal attribution of cause, common in academic
+      settings.

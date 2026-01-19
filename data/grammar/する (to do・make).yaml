@@ -1,0 +1,467 @@
+grammar_point: する (to do・make)
+learn_before:
+  - Verb[ます] (polite present)
+  - ちゃんと・きちんと (properly・neatly)
+  - にする (to decide or make)
+meaning: To do, to make, to play (a game or sport)
+meaning_warning: Although not common, 為る kanji use can be seen
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: する
+    rarity: common
+    meaning: to do
+  - conjugation-type: non-past polite (～ます)
+    form: します
+    rarity: common
+    meaning: to do (polite)
+  - conjugation-type: negative plain (～ない)
+    form: しない
+    rarity: common
+    meaning: not to do
+  - conjugation-type: negative non-past polite (～ません)
+    form: しません
+    rarity: common
+    meaning: not to do (polite)
+  - conjugation-type: past plain (～た)
+    form: した
+    rarity: common
+    meaning: did
+  - conjugation-type: past polite (～ました)
+    form: しました
+    rarity: common
+    meaning: did (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: しなかった
+    rarity: common
+    meaning: did not do
+  - conjugation-type: negative past polite (～ませんでした)
+    form: しませんでした
+    rarity: common
+    meaning: did not do (polite)
+  - conjugation-type: te-form (～て)
+    form: して
+    rarity: common
+    meaning: doing, and then
+  - conjugation-type: conditional (～ば)
+    form: すれば
+    rarity: common
+    meaning: if one does
+  - conjugation-type: conditional (～たら)
+    form: したら
+    rarity: common
+    meaning: if/when one does
+  - conjugation-type: volitional (～よう)
+    form: しよう
+    rarity: common
+    meaning: let's do
+  - conjugation-type: volitional polite (～ましょう)
+    form: しましょう
+    rarity: common
+    meaning: let's do (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: しろ
+    rarity: common
+    meaning: do! (plain imperative)
+  - conjugation-type: imperative polite (～なさい)
+    form: してください
+    rarity: common
+    meaning: please do
+  - conjugation-type: potential (～られる/～える)
+    form: できる
+    rarity: common
+    meaning: can do
+  - conjugation-type: passive (～られる/～かれる)
+    form: される
+    rarity: common
+    meaning: to be done
+  - conjugation-type: causative (～させる)
+    form: させる
+    rarity: common
+    meaning: to make/let someone do
+  - conjugation-type: progressive (～ている)
+    form: している
+    rarity: common
+    meaning: doing
+  - conjugation-type: concessive (～ても)
+    form: しても
+    rarity: common
+    meaning: even if one does
+  - conjugation-type: desiderative (～たい)
+    form: したい
+    rarity: common
+    meaning: want to do
+  - conjugation-type: causative-passive (～させられる)
+    form: させられる
+    rarity: common
+    meaning: to be made/forced to do
+pronunciation:
+  katakana: スル
+  romaji: suru
+formation:
+  Noun + を + する: To do [noun], to perform [noun].
+  Noun + に + する: To decide on [noun], to make it [noun].
+  Verb (dictionary form) + こと + に + する: To decide to [verb].
+  '[Amount (price/time)] + する': To cost [amount], to take [time].
+  '[Sensory Noun] + が + する': To sense [sensory noun] (e.g., sound, smell, taste, feeling).
+  '[Quality Noun] + を + する': To show a [quality] or have a [characteristic].
+jlpt: N5
+etymology: The verb 「する」 'suru' originates from the Old Japanese verb 「す」 'su', meaning 'to do'. Over
+  time, the auxiliary verb 「る」 'ru' was added to create 「する」 'suru', which became the standard form used
+  in modern Japanese.
+writeup: |-
+  「する」 is a fundamental and highly versatile irregular verb in Japanese, primarily meaning "to do," "to make," or "to perform an action." It is unique because it does not follow the standard conjugation patterns of Godan or Ichidan verbs. This irregular behavior stems from its historical evolution from the Old Japanese verb 「す」.
+
+  One of the most common applications of 「する」 is to convert nouns into verbs, particularly with nouns referring to actions, sports, or borrowed foreign words. For example, 「勉強」 (benkyou, study) becomes 「勉強する」 (benkyou suru, to study), and 「サッカー」 (sakkaa, soccer) becomes 「サッカーする」 (sakkaa suru, to play soccer).
+
+  When used with nouns, 「する」 often takes the particle 「を」 (o) to mark the direct object of the action (e.g., 「宿題を する」, to do homework). It can also be used with 「に」 (ni) to express a decision or choice (e.g., 「これに する」, to decide on this).
+
+  This verb is indispensable for basic communication and is one of the first irregular verbs learners must master. Its conjugations, while irregular, are consistent and crucial for forming various tenses and moods. Although typically written in hiragana, the kanji 「為る」 (suru) exists but is rarely used in modern common texts.
+false_friends:
+  - term: いたす
+    meaning: To do (humble)
+    kind: synonym
+    nuance: 「いたす」 is the humble form of 「する」, used to lower oneself when speaking to someone of higher
+      status.
+    grammar_point: お[Verb-stem]する・いたす (humble action - kenjougo)
+  - term: なさる
+    meaning: To do (honorific)
+    kind: synonym
+    nuance: 「なさる」 is the honorific form of 「する」, used to elevate the listener by speaking of their actions
+      with respect.
+    grammar_point: お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+  - term: やる
+    meaning: To do (casual)
+    kind: similar expression
+    nuance: 「やる」 is similar to 「する」 but is less polite and often used when speaking about oneself or with
+      close friends.
+    grammar_point: あげる・やる (to give, outward)
+  - term: する (cost)
+    meaning: To cost (money); to take (time)
+    kind: similar expression
+    nuance: While this grammar point 「する」 commonly means 'to do', `する (cost)` refers to the cost of an
+      item or the time taken for an action, not an action being performed by the subject. This is a common
+      point of confusion for learners.
+    grammar_point: する (cost)
+  - term: する (to have a characteristic)
+    meaning: To have (a characteristic, feature, or quality)
+    kind: similar expression
+    nuance: This usage of 「する」 describes possession of an attribute or characteristic (e.g., 「目立つを する」
+      - 'to stand out', literally 'to have a noticeable quality'), which is distinct from actively 'doing'
+      something.
+    grammar_point: する (to have a characteristic)
+  - term: がする (sense perception)
+    meaning: To give off (a smell, sound, taste, or sensation)
+    kind: similar expression
+    nuance: When combined with the particle 「が」, 「する」 indicates a sensory perception (e.g., 「音が する」 -
+      'a sound is heard', literally 'a sound does'), implying something is perceived by the speaker, rather
+      than an action performed by them.
+    grammar_point: がする (sense perception)
+post_false_friends_writeup: |-
+  When choosing between 「する」, 「いたす」, 「なさる」, and 「やる」, consider the level of politeness required. Use 「する」 in neutral situations. Use 「いたす」 when speaking humbly about your own actions to superiors. Use 「なさる」 when speaking respectfully about the actions of someone you want to honor. Use 「やる」 in casual conversations with close friends. While 「する」 is the most general and widely applicable, mastering its honorific and humble counterparts is crucial for appropriate communication in various social contexts.
+
+  Beyond just politeness, it's vital to recognize that 「する」 is a chameleon verb, taking on different meanings depending on context and accompanying particles. It can indicate a cost (e.g., 「五千円 する」 - 'it costs 5,000 yen'), the possession of a characteristic (e.g., 「気が する」 - 'to feel/have a feeling'), or a sensory perception (e.g., 「変な 匂い が する」 - 'a strange smell is present'). Pay close attention to the particles and surrounding context to correctly interpret its varied roles.
+examples:
+  - english: I do Japanese every day.
+    japanese:
+      - 毎日、日本 語 を {する}。
+      - 毎日、日本 語 を {する} ん です。
+      - 毎日、日本 語 {する} わ。
+      - 毎日、日本 語 {する} ん だ。
+      - 毎日、ちゃんと 日本 語 {する}。
+      - 毎日、日本 語 の 勉強 を {する}。
+    english_literally: Every day, Japanese I do.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、日本 語 を 勉強 {し ます}。
+        english: I study Japanese every day.
+        hint: The scene specifies 'do Japanese' rather than 'study Japanese' to highlight the literal
+          meaning of 'suru' as 'to do something related to Japanese', rather than specifically 'to study'.
+          We're looking for a general action verb here Moxa
+      - competing_japanese:
+          - 毎日、日本 語 を {やり ます}。
+        english: I do Japanese every day (casual).
+        hint: 「やる」 is generally more informal or can imply putting effort into something. While acceptable,
+          「する」 is the more standard and neutral choice for 'to do' in this context.
+    scene: A language learner is explaining their daily routine to a friend, focusing on the action of
+      studying Japanese.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: I will play tennis next week.
+    japanese:
+      - 来週、テニス を {し ます}。
+      - 来週、テニス を {し ます} よ。
+      - 来週、テニス を {し ます} から。
+      - 来週、テニス {し ます} ね.
+      - 来週、テニス を {し ます} わ。
+      - 来週 は テニス を {し ます}。
+      - 来週、きっと テニス を {し ます}。
+    english_literally: Next week, tennis I will do.
+    competing_grammar:
+      - competing_japanese:
+          - 来週、テニス を {やり ます}。
+        english: I will play tennis next week (casual).
+        hint: The scene implies a polite context where a more standard verb choice like 'します' is preferred
+          over the more casual 'やります'.
+      - competing_japanese:
+          - 来週、テニス に {行き ます}。
+        english: I will go to play tennis next week.
+        hint: This emphasizes 'going' to a location to play, rather than the act of 'playing' itself.
+          We're looking for the verb 'to do/play'.
+      - competing_japanese:
+          - 来週、テニス を {いたし ます}。
+        english: I humbly play tennis next week.
+        hint: 「いたします」 is the humble form of 「します」, used to express humility regarding your own actions,
+          typically when addressing a superior. The scene implies a neutral, friendly context.
+    scene: A man is making plans with his friend for the upcoming week and mentions his tennis schedule.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: Will you choose cake for dessert?
+    japanese:
+      - デザート は ケーキ に {し ます} か？
+      - デザート は ケーキ に {し ます} でしょう か？
+      - で は、デザート は ケーキ に {し ます} か？
+    english_literally: Regarding dessert, will you make it cake?
+    competing_grammar:
+      - competing_japanese:
+          - デザート は ケーキ を {選び ます} か？
+        english: Will you select cake for dessert?
+        hint: The scene focuses on the nuance of '決める' (to decide) implied by 'に する' when making a choice
+          from available options, rather than simply '選ぶ' (to select) an item. We're looking for a verb
+          that indicates making a decision.
+      - competing_japanese:
+          - デザート は ケーキ で {いい です} か？
+        english: Is cake okay for dessert?
+        hint: This is a simpler, more direct way to confirm a choice, but it lacks the nuance of actively
+          'deciding' on an item that 「に する」 provides.
+      - competing_japanese:
+          - デザート は ケーキ に {なさい ます} か？
+        english: Regarding dessert, will you honorably choose cake?
+        hint: 「なさいますか」 is an honorific form of 「しますか」, used to respectfully ask about the actions of someone
+          superior. While polite, 「に しますか」 is the standard way a waiter would ask a customer to make a
+          choice.
+    scene: A waiter is taking an order at a cafe, asking a customer about their dessert choice, emphasizing
+      the act of making a decision.
+    register: teineigo (polite)
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「に します」 in this context (e.g., 「ケーキに しますか」) implies making a decision or selection
+      among options, common in ordering food or making choices. The polite 「しますか」 is appropriate for a
+      service interaction.
+    etymology: The phrase 「〜に する」 (ni suru) to indicate choice or decision derives from the action of
+      'making something into' (に) a certain state or object. It has become a standard idiom for expressing
+      choices, particularly when ordering or selecting from a set of options, formalizing over time from
+      its more literal meaning of 'to turn into' or 'to cause to be'.
+  - english: Please don't do such a thing.
+    japanese:
+      - そんな 事 は {し ない} で ください。
+      - そんな 事 は {し ない} で ね。
+      - そんな 事 は 絶対 に {し ない} で ください。
+      - そんな 事 は {し ない} 方 が いい よ。
+      - そんな 事 は {し ない}！
+      - そんな 事 は {し ない} で ほしい な。
+      - いや、そんな 事 は {し ない}。
+      - そんな 事、{し ない} で くれ。
+    english_literally: Such a thing, please do not do.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと は {やら ない} で ください。
+        english: Please don't do such a thing (informal).
+        hint: The tone of 'warning' from an 'older sister' implies a more direct, but still somewhat gentle,
+          prohibition using 'しない' over the slightly harsher or more informal 'やらない'. We're looking for
+          a general negative command.
+      - competing_japanese:
+          - そんな こと は す {べき} で は あり ませ ん。
+        english: You should not do such a thing.
+        hint: This expresses a strong recommendation or obligation, 'should not do', rather than a direct
+          request 'please don't do'. We're looking for a command.
+    scene: A concerned older sister is warning her younger brother against a mischievous act.
+    register: casual
+    setting: commanding
+    speaker_gender: female
+    speaker_age: older
+    nuance: The casual negative form 「しない」 is used with 「でください」 to create a gentle but firm command. The
+      older sister's role allows for this directness while still conveying a degree of politeness appropriate
+      for family. The addition of 「で ね」 makes it softer, more feminine, while 「絶対 に」 adds emphasis to
+      the prohibition. 「しない 方 が いい よ」 offers a gentler suggestion.
+    etymology: The suffix 「でください」 evolved from the te-form of verbs followed by 「ください」, meaning 'please
+      give'. Over time, it became a common polite request or command form.
+  - english: I was able to do well on yesterday's exam.
+    japanese:
+      - 昨日 の 試験 は よく {でき まし た}。
+      - 昨日 の 試験 は うまく {でき まし た}。
+      - 昨日 の 試験、バッチリ {でき まし た}。
+      - 昨日 の 試験 は 無事 に {でき まし た}。
+      - 昨日 の 試験 は ちゃんと {でき まし た}。
+      - 昨日 の 試験 は よく {でき た}。
+      - 昨日 の 試験 は よく {でき まし た} よ。
+      - 昨日 の 試験 は よく {でき た} ん です。
+      - 昨日 の 試験 は しっかり {でき まし た}。
+    english_literally: Yesterday's exam, well, I was able to do.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 試験 は よく {やっ た}。
+        english: I did well on yesterday's exam (casual).
+        hint: The context of reporting to a teacher requires a polite and capable expression, making 'できました'
+          the appropriate choice for 'was able to do', conveying competence rather than just 'did'. We're
+          looking for the potential form of 'to do'.
+      - competing_japanese:
+          - 昨日 の 試験 は よく {でき た}。
+        english: I was able to do well on yesterday's exam (plain).
+        hint: This is the plain form of the potential verb. While grammatically correct, it lacks the
+          politeness appropriate for reporting to a teacher. We're looking for the polite potential form.
+    scene: A student is confidently reporting their performance on a difficult exam to their teacher.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: potential (～られる/～える)
+  - english: I decided to study abroad for summer vacation.
+    japanese:
+      - 夏休み に 留学 {する こと に し まし た}。
+      - 夏休み に 留学 {する こと に し まし た} よ。
+      - 夏休み は 留学 {する こと に し まし た}。
+      - 夏休み に 留学 {する こと に し まし た} ね。
+      - 夏休み に 留学 {する こと に し た} ん です。
+      - 夏休み に 留学 {する こと に し た}。
+    english_literally: For summer vacation, studying abroad, I decided to do.
+    competing_grammar:
+      - competing_japanese:
+          - 夏休み に 留学 {する} つもり です。
+        english: I intend to study abroad for summer vacation.
+        hint: The phrase 'ことにしました' explicitly indicates a decision has been made, which is stronger than
+          merely stating an intention ('するつもりです'). The scene implies a finalized plan. We're looking for
+          a verb indicating a decision.
+      - competing_japanese:
+          - 夏休み に 留学 を {決め まし た}。
+        english: While 「決めました」 (kimemashita) directly means 'decided', 「〜ことにしました」 implies a decision about
+          a course of action or a new state. We're looking for the nuance of deciding on a course of action.
+        hint: While similar, 「に 決めましょう」 explicitly states the act of deciding. 「に しましょう」 implies making
+          a decision or choosing something as a course of action, which is a more nuanced decision-making
+          context. We're looking for the nuance of deciding or settling on something.
+    scene: A university student announces their plans for summer break to their friends, having made a
+      firm decision.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: past polite (～ました)
+  - english: I don't know what the section chief is doing.
+    japanese:
+      - 部 長 が 何 を {さ れ て いる} か、私 に は わかり ませ ん。
+      - 部 長 が 何 を {さ れ て いらっしゃる} か、私 に は わかり ませ ん。
+      - 部 長 が 何 を {さ れ て おら れ ます} か、私 に は わかり ませ ん。
+      - 部 長 が 何 を {さ れ て いる} か、わかり ませ ん。
+    english_literally: What the section chief is being done, for me, is not understood.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 が 何 を {し て いる} か、私 に は わかり ませ ん。
+        english: I don't know what the section chief is doing (plain).
+        hint: The use of the passive/honorific 'されている' subtly conveys respect for the '部長' (section chief),
+          which is essential in a professional Japanese setting when discussing superiors. The scene highlights
+          this hierarchical context. We're looking for an expression of respect for the chief's actions.
+    scene: An employee is cautiously speaking to a colleague about their supervisor, emphasizing distance
+      and respect.
+    register: bijinesu nihongo (business)
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: The passive form 「されている」 can be used honorifically when referring to actions of a superior,
+      adding a layer of respect. In this business setting, the male speaker uses it to show deference
+      towards his section chief. This demonstrates the speaker's awareness of business etiquette. The
+      alternatives 「されて いらっしゃる」 and 「されて おられます」 use honorific auxiliary verbs, further elevating the respect
+      shown towards the section chief's actions.
+    etymology: The honorific use of the passive voice, known as 'sonkeigo' (尊敬語), traces its roots to
+      classical Japanese. It serves to elevate the status of the person performing the action, even when
+      the action itself is common. This grammatical construction became formalized as part of the Japanese
+      politeness system over centuries.
+  - english: Let's make it tomorrow.
+    japanese:
+      - 明日 に {し ましょう}。
+      - 明日 に {し ましょう} か。
+      - で は、明日 に {し ましょう}。
+      - じゃあ、明日 に {し ましょう}。
+    english_literally: Tomorrow, let's make it.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 に {し よう}。
+        english: Let's make it tomorrow (casual).
+        hint: This option uses the plain volitional form, which is less polite than 「しましょう」. We're looking
+          for a polite suggestion to make a decision.
+    scene: Two colleagues are discussing a deadline or a meeting time, and one suggests postponing it
+      to the next day.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: volitional polite (～ましょう)
+    nuance: The phrase 「〜に する」 followed by the volitional 「しましょう」 is a polite way to suggest or decide
+      upon a course of action or choice. It's often used when confirming a selection, like "let's choose
+      X" or "let's make it X." Here 「明日 に しましょう」 suggests "let's decide on tomorrow" or "let's make tomorrow
+      the chosen day."
+  - english: What are you doing right now?
+    japanese:
+      - 今、何 を {し て いる} の？
+      - 今、何 を {し てる}？
+      - 今、何 を {し て いる}？
+      - 今、何 を {し て いる} の か な？
+      - 今、何 を {し て ん} の？
+      - 今、何 を {し て いる} ん です か？
+    english_literally: Now, what are you doing?
+    competing_grammar:
+      - competing_japanese:
+          - 今、何 を {し て い ます} か？
+        english: What are you doing right now? (polite)
+        hint: This option is more formal. The scene implies a casual conversation between friends, where
+          the plain form with 「の」 is more natural. We're looking for a casual interrogative.
+    scene: A friend calls another friend unexpectedly and asks what they are up to.
+    register: casual
+    setting: interrogative
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「し て いる の」 with the sentence-final particle 「の」 (often used by females or in a
+      softer, questioning tone) indicates a casual, inquisitive tone between close friends. 「いる」 is the
+      progressive form of 「する」, showing an action in progress.
+  - english: This book costs 2,000 yen.
+    japanese:
+      - この 本 は 二千 円 {し ます}。
+      - この 本 は 二千 円 {し ます} よ。
+      - この 本 は 二千 円 {し ます} と 言わ れ まし た。
+      - この 本 は 二千 円 も {し ます}。
+    english_literally: This book costs 2,000 yen.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 二千 円 {です}。
+        english: This book is 2,000 yen.
+        hint: While 「です」 states the price, 「する」 emphasizes the act of costing or being priced at that
+          amount. We're looking for the verb form of 'to cost'.
+      - competing_japanese:
+          - この 本 は 二千 円 が {かかり ます}。
+        english: This book takes 2,000 yen (as a cost).
+        hint: 「かかる」 is used for time, money, or effort that 'takes' or 'is required', but 「する」 is a more
+          direct way to express the item's price. We're looking for the cost of the item itself.
+    scene: A customer is asking a bookstore clerk about the price of a book.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: I hear a strange noise.
+    japanese:
+      - 変 な 音 が {し ます}。
+      - 何 か 変 な 音 が {し ます} ね。
+      - 向こう から 変 な 音 が {し ます}。
+      - 今、変 な 音 が {し た}！
+    english_literally: A strange sound makes.
+    competing_grammar:
+      - competing_japanese:
+          - 変 な 音 が {聞こえ ます}。
+        english: A strange noise is audible.
+        hint: 「聞こえる」 refers to sound being audible to you, while 「音が する」 describes the occurrence or presence
+          of the sound itself, as if the sound is 'doing' something. We're looking for the nuance of a
+          sound manifesting itself. 「音が する」 is distinct from simply 'hearing' a sound; it describes the
+          *existence* of a sound that one senses.
+    scene: Someone is in a quiet room and suddenly hears an unexpected sound.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+post_example_writeup: As illustrated by these examples, 「する」 is incredibly flexible, adapting its nuance
+  based on particles like 「を」 and 「に」, and through its various conjugations. Pay close attention to the
+  context and desired level of politeness or formality when choosing the appropriate form.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/する

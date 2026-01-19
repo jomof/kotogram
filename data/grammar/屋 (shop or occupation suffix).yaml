@@ -1,0 +1,293 @@
+grammar_point: 屋 (shop or occupation suffix)
+learn_before:
+  - Question-phrase+か (embedded question)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - あそこ (over there)
+  - い-Adjective[み] (abstract quality)
+  - ただの (just・only)
+  - ちょっと (adverb)
+  - と (with)
+  - というより (rather than)
+  - どこ (where)
+  - へ (directional particle)
+  - 側 (side or flank)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+meaning: Shop; Store; Occupation
+pronunciation:
+  katakana: ヤ
+  romaji: ya
+formation:
+  Noun + 屋: Indicates a type of shop, occupation, or sometimes a derogatory term affecting persons or
+    a particular type of shop by general application with negative connotation in the case of a person's
+    behavior/trait in relation to that field/profession that the suffix applies to in a negative way (i.e.
+    'one who only cares for the business side' of politics, academia, etc.)
+jlpt: N4
+etymology: The kanji 屋 (ya) literally means "house" or "roof." Over time, it came to be associated with
+  places of business or shops, as many early businesses were conducted from homes or under a specific
+  roof. It evolved into a suffix indicating the type of establishment or the profession conducted there.
+  The derogatory use is a more recent development, drawing on the idea of someone being 'just a shopkeeper'
+  or 'just a professional' with no deeper meaning or integrity.
+writeup: The suffix 「屋・や」 is attached to nouns to denote a type of shop, store, or a person's occupation.
+  For example, 「本屋 (hon'ya)」 means "bookstore," and 「魚屋 (sakana'ya)」 means "fish shop." This usage is
+  widespread and generally neutral. However, 「屋・や」 can also be used in a derogatory sense, implying that
+  someone is excessively or single-mindedly focused on a particular activity, often for personal gain
+  or without genuine depth. For instance, 「政治屋 (seiji'ya)」 refers to a "mere politician" or someone overly
+  involved in politics for personal gain, contrasting with 「政治家 (seijika)」 which implies a statesman.
+  Similarly, 「学屋 (gaku'ya)」 might refer to someone who is merely a bookworm or academic without true understanding
+  or contribution. It is crucial to understand the context to interpret its meaning correctly, especially
+  when applied to people.
+false_friends:
+  - term: 政治家 (seijika)
+    meaning: politician, statesman
+    kind: often confused with
+    nuance: Unlike 「政治屋 (seiji'ya)」 which can carry a derogatory connotation, 「政治家 (seijika)」 is a neutral
+      term for a politician, often implying respect or statesmanship.
+    grammar_point: <suggest>:政治家 (politician)
+  - term: 学者 (gakusha)
+    meaning: scholar, academic
+    kind: often confused with
+    nuance: While 「学屋 (gaku'ya)」 can be used to describe someone who is merely a bookworm without true
+      depth, 「学者 (gakusha)」 is the standard, respectful term for a scholar or academic.
+    grammar_point: <suggest>:学者 (scholar)
+  - term: 書店 (shoten)
+    meaning: bookstore
+    kind: similar expression
+    nuance: Unlike the more colloquial 「本屋 (hon'ya)」, 「書店 (shoten)」 is a more formal and general term
+      for a bookstore, often used for larger establishments or in written contexts.
+    grammar_point: <suggest>:書店 (bookstore)
+  - term: 洋菓子店 (yōgashiten)
+    meaning: Western confectionery shop
+    kind: similar expression
+    nuance: While 「ケーキ屋 (kēki'ya)」 specifically refers to a cake shop and carries a casual, familiar tone,
+      「洋菓子店 (yōgashiten)」 is a broader and more formal term for a shop selling Western-style sweets.
+    grammar_point: <suggest>:洋菓子店 (western confectionery shop)
+  - term: 鮮魚店 (sengyoten)
+    meaning: fresh fish store
+    kind: similar expression
+    nuance: Unlike the more common 「魚屋 (sakana'ya)」 which can refer to both the shop and the shopkeeper,
+      「鮮魚店 (sengyoten)」 is a more formal and specific term for a store specializing in fresh fish.
+    grammar_point: <suggest>:鮮魚店 (fresh fish store)
+post_false_friends_writeup: The suffix 「屋・や」 can indeed be tricky. While its primary use is to name shops
+  or occupations, its occasional derogatory application, particularly to individuals, requires careful
+  attention to context. Words like 「政治家」 (politician/statesman) and 「学者」 (scholar) are neutral and often
+  respectful terms. When 「屋」 is affixed to create 「政治屋」 or 「学屋」, it often strips away that respect, implying
+  someone who is merely 'in the business of' politics or academia without genuine dedication or integrity.
+  Similarly, when referring to shops, more formal terms like 「書店」 or 「洋菓子店」 exist. The key is to recognize
+  the shift from naming a profession or establishment to implicitly criticizing the person's character
+  or motivation within that profession, or understanding the register and nuance of the shop name.
+examples:
+  - english: Every Sunday, I go to the bookstore in front of the station.
+    japanese:
+      - 毎週 日曜 日 に、駅前 の 本 {屋} に 行き ます。
+      - 毎週 日曜 日 に、駅前 の 本 {屋} へ 行き ます。
+      - 毎週 日曜 日、駅前 の 本 {屋} に 行く。
+      - 毎週 日曜 日、駅前 の 本 {屋} へ 行く。
+    english_literally: Every Sunday, in front of the station's book-shop, I go.
+    competing_grammar:
+      - competing_japanese:
+          - 書 {店} に 行き ます。
+        english: I go to the bookstore.
+        hint: While 「書店」 refers to a bookstore, 「本屋」 is the more common and familiar term for a bookstore
+          in everyday conversation. We're looking for a more colloquial term for a shop that sells books.
+    scene: A student talks about their routine, mentioning a place they visit regularly.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「本屋」 (hon'ya) is the most common and natural way to refer to a bookstore in everyday
+      conversation, implying a familiar, often smaller, local shop, as opposed to the more formal 「書店」
+      (shoten), which can refer to a larger, more commercial book retailer. The polite verb ending 「〜ます」
+      (masu) maintains a respectful tone.
+  - english: The fishmonger always prepares delicious fish for us.
+    japanese:
+      - 魚 {屋} さん は、いつ も 美味しい 魚 を 用意 し て くれ ます。
+      - 魚 {屋} さん は、いつ も 美味しい 魚 を 用意 し て くれる よ。
+      - 魚 {屋} さん が、いつ も 美味しい 魚 を 用意 し て ください ます。
+    english_literally: Fish-shop person always delicious fish prepares for us.
+    competing_grammar:
+      - competing_japanese:
+          - 魚 {商人} は、いつ も 美味しい 魚 を 用意 し て くれ ます。
+        english: The fish merchant always prepares delicious fish for us.
+        hint: 「魚商人」 is a more formal or business-oriented term. We're looking for the common, friendly
+          term for a fishmonger or fish shop owner.
+    scene: A customer expresses appreciation for their local fishmonger's service.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: Adding 「さん」 (san) to 「魚屋」 (sakana'ya) makes it a respectful and familiar way to refer to the
+      person who runs the fish shop. The phrase 「用意してくれ ます」 (yōi shite kuremasu) expresses gratitude for
+      the effort they put in, highlighting a positive relationship between customer and vendor.
+  - english: He's less of a doctor and more just a druggist.
+    japanese:
+      - 彼 は 医者 と いう より も、ただ の 薬 {屋} だ。
+      - あいつ は 医者 と いう より も、ただ の 薬 {屋} だ。
+      - 彼 は 医者 って いう か、ただ の 薬 {屋} だ な。
+    english_literally: He is doctor, rather than that, just a drug-seller.
+    competing_grammar:
+      - competing_japanese:
+          - '{薬剤 師} だ。'
+        english: He is a pharmacist.
+        hint: 「薬剤師」 means 'pharmacist' and does not carry the derogatory implication intended here. We're
+          looking for a term that criticizes the person's character, implying they are merely a drug-seller
+          without genuine care.
+    scene: A patient expresses disappointment in a medical professional who prioritizes selling medication
+      over comprehensive treatment.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The phrase 「医者 と いう より も」 (isha to iu yori mo) sets up a contrast, implying that while someone
+      might superficially appear to be a doctor, their actions suggest they are merely a '薬屋' (kusuri'ya),
+      which in this context takes on a derogatory meaning of someone who only sells drugs without genuine
+      care or skill, diminishing their professional standing. This kind of critical judgment is often
+      expressed in casual settings. The use of 「あいつ」 (aitsu) in one variation reinforces the speaker's
+      casual and somewhat contemptuous tone towards the subject.
+  - english: A new cake shop opened in the neighborhood.
+    japanese:
+      - 新しい ケーキ {屋} が 近所 に オープン し た。
+      - 近所 に 新しい ケーキ {屋} が でき た よ。
+      - 近所 に 新しい ケーキ {屋} が でき まし た。
+    english_literally: New cake-shop near opened.
+    competing_grammar:
+      - competing_japanese:
+          - 洋 {菓子 店} が 近所 に オープン し た。
+        english: A Western confectionery shop opened in the neighborhood.
+        hint: While 「洋菓子店」 is a general term for a Western confectionery shop, 「ケーキ屋」 is a more casual,
+          specific, and common term for a shop specializing in cakes. We're looking for the more direct
+          and common term in this casual context.
+    scene: Two neighbors chat about recent developments in their area.
+    register: casual
+    setting: friendly
+    nuance: 「ケーキ {屋}」 (kēki'ya) is a common and straightforward way to refer to a cake shop in everyday
+      conversation, conveying a sense of familiarity. The use of 「近所」 (kinjo - neighborhood) reinforces
+      the casual, local context of the news. The variation 「できた よ」 (dekita yo) is a very common casual
+      phrase for something having just opened or appeared.
+  - english: I was disappointed by that mere politician's statement.
+    japanese:
+      - あの 政治 {屋} の 発言 に は 失望 し た。
+      - あの 政治 {屋} の 発言 に は、本当 に 失望 し た よ。
+    english_literally: That politics-seller's statement with disappointment did.
+    competing_grammar:
+      - competing_japanese:
+          - 政治 {家} の 発言 に は 失望 し た。
+        english: I was disappointed by the politician's statement.
+        hint: While 「政治家」 is the neutral term for a politician, 「政治屋」 is used here to convey a strong
+          sense of disapproval, implying the person is a politician only for personal gain or superficial
+          reasons, lacking true statesmanship. We're looking for the term that expresses this critical
+          nuance.
+    scene: A frustrated citizen discusses recent political events with a friend.
+    register: casual
+    setting: serious
+    listener_gender: group
+    nuance: The term 「政治 {屋}」 (seiji'ya) is specifically used here to express a negative judgment, implying
+      that someone is merely a politician by profession without the integrity or vision expected of a
+      true statesman. This is a derogatory usage, expressing contempt. The casual register reflects a
+      common way to express such frustration among peers. The addition of 「本当 に」 (hontō ni - really) and
+      「よ」 (yo - sentence-final particle for assertion) in the second variation further emphasizes the
+      speaker's strong feeling of disappointment.
+  - english: I bought a beautiful bouquet at the flower shop.
+    japanese:
+      - 花 {屋} で きれい な 花束 を 買っ た。
+      - 花 {屋} で きれい な 花束 を 買い まし た。
+    english_literally: Flower-shop at beautiful bouquet bought.
+    competing_grammar:
+      - competing_japanese:
+          - '{花屋 さん} から 花束 を 買っ た。'
+        english: I bought a bouquet from the florist.
+        hint: While 「花屋さん」 refers to the florist (person), 「花屋」 here refers to the shop itself. We're
+          focusing on the location of the purchase.
+    scene: Someone enthusiastically tells a friend about a recent purchase.
+    register: casual
+    setting: informative
+    nuance: 「花屋」 (hana'ya) is the standard and most common term for a flower shop in Japanese. The sentence
+      variations allow for both casual 「買った」 (katta) and polite 「買いました」 (kaimashita) registers, suitable
+      for informal conversations among friends or more polite interactions respectively.
+  - english: The greengrocer always has fresh vegetables.
+    japanese:
+      - 八百 {屋} さん は いつ も 新鮮 な 野菜 を 揃え て い ます。
+      - 八百 {屋} さん、いつ も 新鮮 な 野菜 を 揃え てる ね。
+    english_literally: Greengrocer always fresh vegetables prepares/has available.
+    competing_grammar:
+      - competing_japanese:
+          - 野 {菜 店} は いつ も 新鮮 な 野菜 を 揃え て い ます。
+        english: The vegetable store always has fresh vegetables.
+        hint: While 「野菜店」 means 'vegetable store,' 「八百屋」 (yaoya) is the traditional and common term for
+          a greengrocer's shop and, by extension, the person who runs it. We're looking for the familiar
+          term.
+    scene: A customer praises their local greengrocer to a neighbor.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: Adding 「さん」 (san) to 「八百屋」 (yaoya) makes it a respectful and familiar way to refer to the
+      person who runs the greengrocer's shop. This usage highlights the close, personal relationship often
+      found with local shopkeepers. The verb 「揃える」 (soroeru) implies having a good selection available.
+      The second variation uses the casual 「揃えてるね」 (soroeteru ne), suitable for a more intimate conversation.
+  - english: Let's stop by the snack shop on the way home!
+    japanese:
+      - 帰り に 駄 菓子 {屋} に 寄ろう よ！
+      - 帰り に 駄 菓子 {屋} に 寄っ て いこう か？
+    english_literally: Way home at snack-shop let's stop by!
+    competing_grammar:
+      - competing_japanese:
+          - 帰り に {コンビニ} に 寄ろう よ！
+        english: Let's stop by the convenience store on the way home!
+        hint: A convenience store sells snacks, but 「駄菓子屋」 specifically refers to a traditional Japanese
+          snack shop, often associated with nostalgic cheap candies and toys for children. We're looking
+          for that specific type of shop.
+    scene: A child suggests to a friend that they visit a local shop for cheap sweets and toys after school.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「駄菓子屋」 (dagashi'ya) specifically refers to a traditional Japanese sweets shop selling inexpensive
+      snacks, often frequented by children, evoking a sense of nostalgia. The phrase 「寄ろう よ！」 (yorō yo!)
+      is a casual and enthusiastic suggestion, typical among friends or younger speakers. The use of 「よ」
+      (yo) adds a sense of assertion or invitation. This casual tone is reinforced by the speaker being
+      a younger female, as this kind of suggestion is very common among children.
+  - english: He's just an academic; he doesn't understand real-world problems.
+    japanese:
+      - 彼 は ただ の 学 {屋} だ、現実 の 問題 を 理解 し て い ない。
+      - あいつ は 全く の 学 {屋} で、世間 知ら ず だ。
+    english_literally: He is just an academic-seller, real-world problems does not understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {学者} だ、現実 の 問題 を 理解 し て い ない。
+        english: He is a scholar, he doesn't understand real-world problems.
+        hint: While 「学者」 (gakusha) is a neutral term for a scholar, 「学屋」 (gaku'ya) carries a derogatory
+          connotation, implying someone is merely academic without practical understanding or wisdom.
+          We're looking for the term that expresses criticism.
+    scene: Two colleagues discuss a third, overly theoretical colleague who lacks practical understanding.
+    register: casual
+    setting: serious
+    listener_gender: group
+    nuance: 「学屋」 (gaku'ya) is a derogatory term implying someone is merely an academic or 'book-smart'
+      without practical wisdom or understanding of real-world issues. It suggests a narrow-minded intellectual.
+      The casual tone and phrases like 「ただ の」 (tada no - just a) or 「全く の」 (mattaku no - completely a)
+      emphasize the dismissive attitude. 「世間知らず」 (sekenshirazu) literally means 'ignorant of the world'
+      and reinforces the criticism of someone being out of touch with reality.
+  - english: That person is more of an actor than a genuine leader.
+    japanese:
+      - あの 人 は 指導 者 と いう より も、ただ の 役者 {屋} だ。
+      - あいつ は リーダー じゃ なく て、役者 {屋} だ よ。
+    english_literally: That person leader rather than, just an actor-seller is.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 は 指導 者 と いう より も、ただ の {役者} だ。
+        english: That person is more of an actor than a genuine leader.
+        hint: While 「役者」 (yakusha) means 'actor' in a neutral sense, adding 「屋」 forms 「役者屋」 (yakusha'ya),
+          which can imply someone who performs or puts on a show, lacking true sincerity or substance.
+          We're looking for the term that suggests this insincerity.
+    scene: Someone expresses disillusionment with a public figure's sincerity.
+    register: casual
+    setting: serious
+    nuance: The term 「役者屋」 (yakusha'ya) used here is derogatory, implying that someone is merely 'acting'
+      a role, especially in a position of responsibility, rather than being genuine or sincere. It suggests
+      they are performing for an audience without true conviction. The phrase 「指導者 と いう より も」 (shidōsha
+      to iu yori mo - rather than a leader) sets up the contrast, highlighting the speaker's disappointment.
+      The casual nature of the speech, including 「よ」 (yo) in the second variation, emphasizes this critical
+      and familiar tone.
+post_example_writeup: As demonstrated by the examples, 「屋・や」 can attach to nouns to describe a type of
+  shop or profession. It's important to remember that while this usage is generally neutral and common
+  for shops like 「本屋」 (bookstore) or when referring to a shopkeeper respectfully with 「〜さん」 like 「魚屋 さん」
+  (fishmonger), it can also carry a strong derogatory connotation when applied to people, such as 「政治屋」
+  (mere politician) or 「薬屋」 (druggist). Context is crucial for correct interpretation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/屋・や

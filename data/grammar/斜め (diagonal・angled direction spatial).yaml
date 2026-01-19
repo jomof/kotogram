@@ -1,0 +1,264 @@
+grammar_point: 斜め (diagonal・angled direction spatial)
+learn_before:
+  - から見ると (from the viewpoint of・looking from)
+  - に (static location・time)
+  - に伴って・に伴い (along with・as a result of)
+  - ように言う (tell・request・order)
+meaning: diagonal, slanted, angled direction (spatial)
+pronunciation:
+  katakana: ナナメ
+  romaji: naname
+formation:
+  Noun + の + 斜め: Describes a position relative to a noun, indicating a diagonal or angled direction.
+  斜め + な + Noun: Describes a noun as being diagonal or slanted.
+  斜め + に + Verb: Modifies a verb, indicating an action done diagonally or at an angle.
+  斜め (as a noun): Refers to a diagonal line or direction itself.
+jlpt: N3
+etymology: The term 「斜め」 (naname) comes from the kanji 「斜」 (sha, nana-me), which means 'slant' or 'inclination'.
+  The doubling of 'naname' itself creates a more descriptive, visual quality, emphasizing the 'slanting'
+  or 'diagonal' nature. It paints a picture of something specifically angled, rather than just 'not straight'
+  or 'crooked'. Its origin highlights the visual characteristic of being neither perfectly horizontal
+  nor vertical.
+writeup: 「斜め」 is a versatile word in Japanese used to describe anything that is **diagonal**, **slanted**,
+  or **at an angle**. It can refer to physical objects, lines, directions, or even abstract concepts like
+  a 'slant' in one's mood (though less common in basic usage). When used as a な-adjective, it directly
+  modifies a noun, as in 「斜めな線」 (a diagonal line). When modifying a verb, it often takes the particle
+  「に」, for example, 「斜めに切る」 (to cut diagonally). It can also function as a noun itself, as in 「斜めから見る」
+  (to look from a diagonal angle). It is a fundamental term for spatial description in Japanese.
+false_friends:
+  - term: 曲がっている (magatte iru)
+    meaning: bent, curved, crooked
+    kind: similar expression
+    nuance: While 「斜め」 describes a straight line or direction at an angle, 「曲がっている」 implies a curve or
+      an irregular, non-straight shape. Something 「斜め」 is intentionally or structurally angled, while
+      something 「曲がっている」 is often unintentionally or naturally curved or bent.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - term: 傾いている (katamuite iru)
+    meaning: tilted, leaning
+    kind: similar expression
+    nuance: 「傾いている」 specifically describes something that is *tilted* or *leaning* from its usual upright
+      or level position, often implying instability or a temporary state. 「斜め」 refers to something being
+      diagonal or angled as its inherent form or direction, without necessarily implying a tilt or lean
+      from a standard position. For example, a diagonal line is 「斜め」, but a tower might be 「傾いている」.
+    grammar_point: '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+post_false_friends_writeup: When describing spatial orientation, it's easy to confuse 「斜め」 with words
+  like 「曲がっている」 or 「傾いている」. Remember that 「斜め」 is about a clear, straight angle, like a diagonal line.
+  「曲がっている」 is for things that are curved or bent. 「傾いている」 is for things that are tilted or leaning, often
+  from an upright position. Understanding these subtle differences will help you describe situations more
+  accurately.
+examples:
+  - english: Please go diagonally down this road.
+    japanese:
+      - この 道 を {斜め} に 進ん で ください。
+      - この 道 を {斜め} に 進ん で ね。
+    english_literally: This road, diagonally, please proceed.
+    competing_grammar:
+      - competing_japanese:
+          - この 道 を {まっすぐ} 進ん で ください。
+        english: Please go straight down this road.
+        hint: The instruction is to move at an angle, not in a direct straight line. We're looking for
+          a word that means 'diagonally'.
+      - competing_japanese:
+          - この 道 を {曲がっ} て 進ん で ください。
+        english: Please go around the bend down this road.
+        hint: The path is an angle, not a curve or bend in the road. We're looking for a word that means
+          'diagonally'.
+    scene: A tourist asks for directions to a specific shop, and you're explaining a shortcut through
+      a park.
+    register: formal
+    setting: instructional
+  - english: She was sitting diagonally on the chair.
+    japanese:
+      - 彼女 は 椅子 に {斜め} に 座っ て い た。
+      - 彼女 は 椅子 に {斜め} に 座っ て た。
+    english_literally: She chair on diagonally was sitting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 椅子 に {まっすぐ} 座っ て い た。
+        english: She was sitting straight on the chair.
+        hint: The way she is sitting is not aligned straight, but at an angle. We're looking for a word
+          that means 'diagonally'.
+      - competing_japanese:
+          - 彼女 は 椅子 に {傾い} て 座っ て い た。
+        english: She was sitting tilted on the chair.
+        hint: She was sitting at an angle, not leaning over as if about to fall. We're looking for a word
+          that means 'diagonally'.
+    scene: You are observing someone's unusual posture in a waiting room.
+    register: casual
+    setting: reflective
+  - english: I drew a diagonal line on the wall.
+    japanese:
+      - 壁 に {斜め} の 線 を 引い た。
+      - 壁 に {斜め} の 線 を 引き まし た。
+    english_literally: Wall on diagonal line drew.
+    competing_grammar:
+      - competing_japanese:
+          - 壁 に {まっすぐ} の 線 を 引い た。
+        english: I drew a straight line on the wall.
+        hint: The line was drawn at an angle, not perfectly horizontal or vertical. We're looking for
+          a word that means 'diagonal'.
+      - competing_japanese:
+          - 壁 に {曲がっ} て いる 線 を 引い た。
+        english: I drew a curved line on the wall.
+        hint: The line is a straight angle, not a curve. We're looking for a word that means 'diagonal'.
+    scene: You're explaining to a friend how you prepared the wall for a painting project.
+    register: casual
+    setting: informative
+  - english: If you look at the photo from a diagonal angle, it has an interesting effect.
+    japanese:
+      - 写真 を {斜め} から 見る と、面白い 効果 が ある。
+      - 写真 を {斜め} から 見る と、面白い 効果 が ある よ。
+    english_literally: Photo from diagonal angle look at, interesting effect there is.
+    competing_grammar:
+      - competing_japanese:
+          - 写真 を {まっすぐ} 見る と、面白い 効果 が ある。
+        english: If you look at the photo straight on, it has an interesting effect.
+        hint: The specific perspective creates the effect, which is from an angle, not directly. We're
+          looking for a word that means 'diagonally'.
+      - competing_japanese:
+          - 写真 を {逆さま} に 見る と、面白い 効果 が ある。
+        english: If you look at the photo upside down, it has an interesting effect.
+        hint: The effect comes from viewing it at an angle, not inverted. We're looking for a word that
+          means 'diagonally'.
+    scene: You're showing a friend an optical illusion in a photo.
+    register: casual
+    setting: friendly
+  - english: I think that tower is a little slanted.
+    japanese:
+      - あの タワー は 少し {斜め} に なっ て いる と 思う。
+      - あの タワー は 少し {斜め} に なっ て いる と 思い ます。
+    english_literally: That tower a little diagonally has become, I think.
+    competing_grammar:
+      - competing_japanese:
+          - あの タワー は 少し {傾い} て いる と 思う。
+        english: I think that tower is a little tilted.
+        hint: While 'tilted' is close, '斜め' implies a stable, albeit angled, structure, rather than a
+          lean. We're looking for a word that means 'slanted' as its inherent form.
+      - competing_japanese:
+          - あの タワー は 少し {曲がっ} て いる と 思う。
+        english: I think that tower is a little bent.
+        hint: The tower is angled, not curved or bent out of shape. We're looking for a word that means
+          'slanted'.
+    scene: You and a friend are discussing the architecture of a famous building.
+    register: semi-formal
+    setting: informative
+  - english: She held the tray diagonally to avoid spilling the drink.
+    japanese:
+      - 彼女 は 飲み物 を こぼさ ない よう に、トレー を {斜め} に 持っ た。
+      - 彼女 は 飲み物 を こぼさ ない よう に、トレー を {斜め} に 持ち まし た。
+      - 彼女 は 飲み物 を こぼさ ない よう に、トレー を {斜め} に 持っ て い た。
+    english_literally: She drink to not spill, tray diagonally held.
+    competing_grammar:
+      - competing_japanese:
+          - トレー を {まっすぐ} に 持っ た。
+        english: She held the tray straight.
+        hint: The way she held it was angled, not level. We're looking for a word that means 'diagonally'.
+      - competing_japanese:
+          - トレー を {傾け} て 持っ た。
+        english: She intentionally held it at an angle, not accidentally tilted it. We're looking for
+          a word that means 'diagonally'.
+        hint: She intentionally held it at an angle, not accidentally tilted it. We're looking for a word
+          that means 'diagonally'.
+    scene: A waitress is carefully balancing drinks on a tray.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    nuance: The use of 「斜めに」 here highlights the intentional angling of the tray, distinguishing it from
+      an accidental tilt or a simple 'straight' hold. It implies a deliberate action to maintain balance
+      or prevent spilling.
+  - english: The new art gallery has a unique room with a diagonal wall.
+    japanese:
+      - 新しい 美術 館 に は、{斜め} な 壁 が ある ユニーク な 部屋 が ある。
+      - 新しい 美術 館 に は、{斜め} な 壁 が ある ユニーク な 部屋 が あり ます。
+      - 新しい 美術 館 に は、{斜め} の 壁 が ある ユニーク な 部屋 が ある。
+      - 新しい 美術 館 に は、{斜め} の 壁 が ある ユニーク な 部屋 が あり ます。
+    english_literally: New art gallery in, diagonal wall exists unique room exists.
+    competing_grammar:
+      - competing_japanese:
+          - '{まっすぐ} な 壁 が ある。'
+        english: It has a straight wall.
+        hint: The wall is not perfectly vertical or horizontal; it's angled. We're looking for a word
+          that means 'diagonal'.
+      - competing_japanese:
+          - '{曲がっ} た 壁 が ある。'
+        english: It has a curved wall.
+        hint: The wall is straight but set at an angle, not curved. We're looking for a word that means
+          'diagonal'.
+    scene: You are describing the architecture of a new building to a friend.
+    register: casual
+    setting: informative
+  - english: The antique clock is placed diagonally from the entrance.
+    japanese:
+      - あの アンティーク 時計 は、玄関 の {斜め} に 置い て ある。
+      - あの アンティーク 時計 は、玄関 の {斜め} に 置い て あり ます。
+      - あの アンティーク 時計 は、玄関 から {斜め} に 置い て ある。
+      - あの アンティーク 時計 は、玄関 から {斜め} に 置い て あり ます。
+    english_literally: That antique clock, entrance's diagonal in is placed.
+    competing_grammar:
+      - competing_japanese:
+          - 玄関 の {正面} に 置い て ある。
+        english: It is placed straight ahead from the entrance.
+        hint: The clock isn't directly opposite the entrance but off to the side at an angle. We're looking
+          for a word that means 'diagonally' relative to another object.
+      - competing_japanese:
+          - 玄関 の {隣} に 置い て ある。
+        english: It is placed next to the entrance.
+        hint: The clock is positioned at a distance and angle, not right beside it. We're looking for
+          a word that means 'diagonally' relative to another object.
+    scene: You are giving directions to someone looking for a specific item in a large room.
+    register: semi-formal
+    setting: instructional
+    speaker_age: older
+    nuance: 「玄関の斜め」 pinpoints a location that is neither directly in front of nor directly beside the
+      entrance, but rather offset at an angle. This precise spatial description helps in guiding someone
+      to the exact spot.
+  - english: He looked at me out of the corner of his eye, perhaps suspecting something.
+    japanese:
+      - 彼 は 何 か 疑っ て いる か の よう に、私 を {斜め} に 見 た。
+      - 彼 は 何 か 疑っ て いる か の よう に、私 を {斜め} に 見 まし た。
+      - 彼 は 何 か 疑っ て いる か の よう に、私 を {斜め} に 見 て い た。
+    english_literally: He something suspecting as if, me diagonally looked.
+    competing_grammar:
+      - competing_japanese:
+          - 私 を {まっすぐ} 見 た。
+        english: He looked at me straight.
+        hint: His gaze was indirect and hinted at distrust, not a direct look. We're looking for a word
+          that means 'looked suspiciously'.
+      - competing_japanese:
+          - 私 を {じっと} 見 た。
+        english: He stared at me.
+        hint: He didn't stare openly but cast a sidelong, perhaps wary, glance. We're looking for a word
+          that means 'looked suspiciously'.
+    scene: You are recounting a suspicious encounter to a friend.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「斜めに見た」 is an idiomatic expression that literally means 'looked diagonally' but
+      implies looking at someone askance or suspiciously, from the corner of one's eye. It conveys a sense
+      of wariness or distrust, reflecting the speaker's perception of the other person's hidden thoughts
+      or intentions.
+  - english: We need to calculate the length of the diagonal for this square.
+    japanese:
+      - この 正 方形 の {斜め} の 長 さ を 計算 する 必要 が ある。
+      - この 正 方形 の {斜め} の 長 さ を 計算 する 必要 が あり ます。
+      - この 正 方形 の {斜め} の 長 さ を 計算 し なけれ ば なり ませ ん。
+    english_literally: This square's diagonal's length to calculate need there is.
+    competing_grammar:
+      - competing_japanese:
+          - この 正 方形 の {一 辺} の 長 さ を 計算 する 必要 が ある。
+        english: We need to calculate the length of one side for this square.
+        hint: We are looking for the measurement across the corners, not along an edge. We're looking
+          for a word that means 'diagonal' (as a noun).
+      - competing_japanese:
+          - この 正 方形 の {周囲} の 長 さ を 計算 する 必要 が ある。
+        english: We need to calculate the perimeter of this square.
+        hint: We need to measure from one corner to the opposite, not around the entire shape. We're looking
+          for a word that means 'diagonal' (as a noun).
+    scene: A geometry teacher is instructing students.
+    register: formal
+    setting: academic
+post_example_writeup: As these examples demonstrate, 「斜め」 can be used in various contexts to describe
+  physical orientation, relative position, or even abstract concepts. Pay attention to the particles used,
+  such as 「に」 when modifying verbs or 「の」 when functioning as part of a noun phrase, to ensure correct
+  and natural usage.

@@ -1,0 +1,420 @@
+grammar_point: '[Verb-volitional]ものなら (if one were to)'
+learn_before:
+  - '[Verb-potential]ものなら (if one could)'
+meaning: If one were to (action), (negative consequence) would happen.
+pronunciation:
+  katakana: モノナラ
+  romaji: mono nara
+formation:
+  Verb - Volitional Form + ものなら: Expresses a hypothetical situation where taking a particular action would
+    lead to a definite undesirable or negative consequence.
+jlpt: N1
+etymology: The phrase 「ものなら」 is a combination of the noun 「もの」 (mono), meaning 'thing' or 'that which',
+  and 「なら」 (nara), which is a conditional form derived from the copula 「だ」 (da), essentially meaning 'if
+  it is' or 'were it to be'. The もの here emphasizes the hypothetical 'situation' or 'event' itself, giving
+  it a concrete, albeit imagined, existence. Thus, the full expression implies 'if (the situation of)
+  X were to happen,' powerfully setting up the inevitable negative consequence. The historical usage of
+  なら as 'were' reinforces the strong hypothetical nature of this grammar point, distinguishing it from
+  other conditional forms.
+writeup: 'The grammar point 「ものなら」 is a powerful construction used to describe a **strong hypothetical
+  situation** where performing a particular action would inevitably lead to a **definite, undesirable,
+  or negative consequence**. It functions as a potent warning or a dire prediction, emphasizing the certainty
+  of a bad outcome if the hypothetical action were to be taken. The speaker often implies that the action
+  is unwise, forbidden, or fraught with peril, and they might even believe the action is unlikely to occur
+  due to its severe repercussions. The nuance is akin to "If you were to *dare* to do X, then Y (a bad
+  thing) would happen." This pattern highlights the **inevitable nature** of the negative result. While
+  often encountered in serious warnings or formal contexts, 「ものなら」 can also appear in more casual or even
+  humorous scenarios where an exaggerated, yet certain, negative outcome is implied. It''s a way to convey
+  a sense of "there''s no escaping the consequences if you do this." Important Considerations: *   **Volitional
+  Form**: 「ものなら」 *always* follows the volitional form of a verb (e.g., 食べようものなら, しようものなら). This emphasizes
+  the speaker''s or subject''s intention or a strong inclination toward the action. *   **Negative Consequence**:
+  The second clause *must* describe an undesirable or negative consequence. If the outcome is neutral
+  or positive, 「ものなら」 is not appropriate. *   **Strong Certainty**: This pattern conveys a high degree
+  of certainty about the negative outcome. It''s not merely a possibility but an almost guaranteed result.'
+false_friends:
+  - term: としたら
+    meaning: if; supposing that
+    kind: similar expression
+    nuance: Unlike 「ものなら」, 「としたら」 is a more general conditional and does not necessarily imply a negative
+      consequence. It simply means 'if' or 'supposing that', without the inherent warning or dire prediction.
+    grammar_point: としたら (if assuming)
+  - term: たら
+    meaning: if; when; after
+    kind: similar expression
+    nuance: 「たら」 is a versatile conditional that can express 'if', 'when', or 'after'. It does not inherently
+      carry the strong warning or sense of inevitable negative consequence that 「ものなら」 does. It's a neutral
+      conditional, whereas 「ものなら」 specifically points to a bad outcome.
+    grammar_point: たら (conditional, when・if A then B)
+  - term: ば
+    meaning: if; when
+    kind: similar expression
+    nuance: 「ば」 is another general conditional form, often used to state a general truth or a condition
+      that leads to a result. It lacks the strong emphasis on an unavoidable, negative outcome found in
+      「ものなら」. 「ものなら」 implies a more certain and often grave consequence.
+    grammar_point: ば (conditional, if A then B)
+post_false_friends_writeup: While other conditional forms like 「たら」, 「ば」, and 「としたら」 are used broadly
+  to express 'if' or 'when', 「ものなら」 distinguishes itself by its **specific emphasis on an unavoidable
+  and undesirable consequence**. It serves as a direct and often stern warning, implying that the outcome
+  is certain if the action is undertaken. Unlike the neutral nature of other conditionals, 「ものなら」 always
+  points to a problematic result, making it uniquely suited for conveying a strong sense of inevitability
+  regarding negative repercussions.
+examples:
+  - english: If you were to proceed without listening to the teacher, you'd surely fail.
+    japanese:
+      - 先生 の 言う こと を 聞 か ず に 勝手 に 進めよう {もの なら}、きっと 失敗 する よ。
+      - 先生 の 言う こと を 聞 か ず に 勝手 に 進めよう {もの なら}、きっと 失敗 する でしょう。
+      - 先生 の おっしゃる こと を 聞 か ず に 勝手 に 進めよう {もの なら}、きっと 失敗 する でしょう。
+    english_literally: Teacher's words without listening, if you were to proceed selfishly, surely fail.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 の 言う こと を 聞 か ず に 勝手 に 進めれ {ば}、きっと 失敗 する よ。
+        english: If you proceed without listening to the teacher, you'll surely fail.
+        hint: 「ば」 is a general conditional. We're looking for a strong warning about an inevitable negative
+          consequence, which 「ものなら」 conveys more emphatically.
+      - competing_japanese:
+          - 先生 の 言う こと を 聞 か ず に 勝手 に 進ん {だら}、きっと 失敗 する よ。
+        english: If you proceed without listening to the teacher, you'll surely fail.
+        hint: 「たら」 is a general conditional. We're looking for a strong warning about an inevitable negative
+          consequence, which 「ものなら」 conveys more forcefully.
+      - competing_japanese:
+          - 先生 の 言う こと を 聞 か ず に 勝手 に 進める {と し たら}、きっと 失敗 する よ。
+        english: If you were to proceed without listening to the teacher, you'd surely fail.
+        hint: 「としたら」 is a general conditional for 'if' or 'supposing that'. We're looking for a strong
+          warning about an inevitable negative consequence.
+    scene: A senior student warns a junior about ignoring a professor's advice on a project, implying
+      a strong and certain negative consequence.
+    register: casual
+    setting: academic
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「きっと」 (surely) combined with the strong conditional 「ものなら」 emphasizes the inevitability
+      of the negative outcome. The casual 「よ」 at the end is common among male friends in a warning context,
+      making the statement more direct and personal.
+  - english: If one were to violate the regulations, severe penalties would be imposed.
+    japanese:
+      - 規定 に 違反 しよう {もの なら}、厳重 な 処分 が 下さ れる でしょう。
+      - 規定 に 違反 しよう {もの なら}、厳重 な 処分 が 下さ れる に 違い あり ませ ん。
+      - 規定 に 違反 しよう {もの なら}、厳重 な 処分 が 下さ れ ます。
+    english_literally: Regulations to violate, if one were to, severe punishment would be given.
+    competing_grammar:
+      - competing_japanese:
+          - 規定 に 違反 すれ {ば}、厳重 な 処分 が 下さ れる でしょう。
+        english: If one violates the regulations, severe penalties will be imposed.
+        hint: The formal setting and the phrase 'severe penalties would be imposed' emphasize the absolute
+          nature of the consequences, which 「ものなら」 conveys as an unavoidable outcome more strongly than
+          a general 「ば」 conditional.
+      - competing_japanese:
+          - 規定 に 違反 し {たら}、厳重 な 処分 が 下さ れる でしょう。
+        english: If one violates the regulations, severe penalties will be imposed.
+        hint: The context of a formal warning highlights the non-negotiable and certain nature of the
+          penalties, a nuance more pronounced with 「ものなら」 than with the neutral conditional 「たら」.
+      - competing_japanese:
+          - 規定 に 違反 する {と し たら}、厳重 な 処分 が 下さ れる でしょう。
+        english: If one were to violate the regulations, severe penalties would be imposed.
+        hint: 「としたら」 is a general conditional for 'if' or 'supposing that'. We're looking for a strong
+          warning about an inevitable negative consequence.
+    scene: A manager explaining company policy consequences during an orientation, stressing the certainty
+      of repercussions.
+    register: formal
+    setting: professional
+    nuance: The formal 「〜でしょう」 and phrases like 「厳重 な 処分 が 下さ れる」 (severe penalties would be imposed)
+      are typical of professional and official warnings, indicating the seriousness and inevitability
+      of the disciplinary action.
+  - english: If you were to eat my pudding without asking, I wouldn't speak to you for a month!
+    japanese:
+      - 私 の プリン を 勝手 に 食べよう {もの なら}、一 ヶ月 は 口 を きい て やら ない わ よ。
+      - 私 の プリン を 勝手 に 食べよう {もの なら}、一 ヶ月 は 口 を きい て あげ ない わ よ。
+      - 俺 の プリン を 勝手 に 食べよう {もの なら}、一 ヶ月 は 口 を きい て やら ない ぞ。
+    english_literally: My pudding without permission if you were to eat, one month won't speak to you.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の プリン を 勝手 に 食べ {たら}、一 ヶ月 は 口 を きい て やら ない わ よ。
+        english: If you eat my pudding without asking, I won't speak to you for a month!
+        hint: The humorous exaggeration of the consequence is better conveyed by 「ものなら」, which adds a
+          layer of dramatic certainty to the 'punishment' for a minor offense, making the joke more impactful
+          than a simple 「たら」 conditional.
+      - competing_japanese:
+          - 私 の プリン を 勝手 に 食べれ {ば}、一 ヶ月 は 口 を きい て やら ない わ よ。
+        english: If you eat my pudding without asking, I won't speak to you for a month!
+        hint: 「ば」 is a general conditional. We're looking for an exaggerated, certain negative outcome,
+          which 「ものなら」 conveys more playfully.
+      - competing_japanese:
+          - 私 の プリン を 勝手 に 食べる {と し たら}、一 ヶ月 は 口 を きい て やら ない わ よ。
+        english: If you were to eat my pudding without asking, I wouldn't speak to you for a month!
+        hint: 「としたら」 is a general conditional. We're looking for an exaggerated, certain negative outcome,
+          which 「ものなら」 conveys more playfully.
+    scene: A young woman jokingly threatening her roommate about stealing her dessert, exaggerating the
+      consequence for comic effect.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    listener_gender: male
+    nuance: The feminine particle 「わ よ」 at the end adds a touch of playful firmness often used by women
+      when making a light-hearted threat. 「口 を きいて やらない」 (I won't speak to you) is a common expression
+      for giving someone the silent treatment, enhancing the humorous tone of the exaggerated consequence.
+  - english: If this plan were to fail, the entire company would be plunged into crisis.
+    japanese:
+      - この 計画 が 失敗 しよう {もの なら}、会社 全体 が 危機 に 陥る だろう。
+      - この 計画 が 失敗 しよう {もの なら}、会社 全体 が 危機 に 陥る こと は 避け られ ませ ん。
+      - この 計画 が 失敗 しよう {もの なら}、会社 全体 が 危機 に 瀕 する で あろう。
+    english_literally: This plan if it were to fail, company entire would fall into crisis.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 が 失敗 すれ {ば}、会社 全体 が 危機 に 陥る だろう。
+        english: If this plan fails, the entire company will be plunged into crisis.
+        hint: The high stakes and broad impact ('entire company plunged into crisis') convey a dire, unavoidable
+          consequence, making 「ものなら」 the most suitable choice to emphasize the gravity and certainty of
+          the outcome, more so than a general 「ば」 conditional.
+      - competing_japanese:
+          - この 計画 が 失敗 し {たら}、会社 全体 が 危機 に 陥る だろう。
+        english: If this plan fails, the entire company will be plunged into crisis.
+        hint: The severity of the potential crisis for the entire company is best highlighted by 「ものなら」,
+          which signifies an inevitable negative outcome, contrasting with the more neutral conditional
+          「たら」.
+      - competing_japanese:
+          - この 計画 が 失敗 する {と し たら}、会社 全体 が 危機 に 陥る だろう。
+        english: If this plan were to fail, the entire company would be plunged into crisis.
+        hint: 「としたら」 is a general conditional for 'if' or 'supposing that'. We're looking for a strong
+          warning about an inevitable negative consequence.
+    scene: A CEO addressing executives about a critical business venture, emphasizing the severe repercussions
+      of failure.
+    register: formal
+    setting: professional
+    nuance: The phrase 「会社 全体 が 危機 に 陥る」 (the entire company would be plunged into crisis) highlights
+      the severe and widespread repercussions, common in high-level corporate discussions where the stakes
+      are immense and consequences are certain.
+  - english: If you were to break your promise, there wouldn't be a next time.
+    japanese:
+      - 約束 を 破ろう {もの なら}、もう 次 は ない よ。
+      - 約束 を 破ろう {もの なら}、もう 次 は ない ぞ。
+      - 約束 を 破ろう {もの なら}、もう 次 は ない わ よ。
+    english_literally: Promise if you were to break, no next time.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 を 破っ {たら}、もう 次 は ない よ。
+        english: If you break your promise, there won't be a next time.
+        hint: The direct and firm parental warning, emphasizing a final chance ('no next time'), aligns
+          with the absolute and unavoidable consequence implied by 「ものなら」, making the warning stronger
+          than a simple 「たら」 conditional.
+      - competing_japanese:
+          - 約束 を 破れ {ば}、もう 次 は ない よ。
+        english: If you break your promise, there won't be a next time.
+        hint: The definitive nature of 'no next time' is better expressed by 「ものなら」, which conveys a strong,
+          non-negotiable boundary, unlike the more general conditional 「ば」.
+      - competing_japanese:
+          - 約束 を 破る {と し たら}、もう 次 は ない よ。
+        english: If you were to break your promise, there wouldn't be a next time.
+        hint: 「としたら」 is a general conditional for 'if' or 'supposing that'. We're looking for a strong
+          warning about an inevitable negative consequence, a final chance.
+    scene: A father sternly warning his child after they broke a rule, indicating a final chance.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「もう 次 は ない よ」 (There's no next time) is a common phrase used by parents to set firm boundaries
+      and convey a final warning to children. The casual 「よ」 at the end makes the warning direct and personal.
+  - english: If one were to step foot into that forest, they would never return alive.
+    japanese:
+      - あの 森 に 足 を 踏み入れよう {もの なら}、二 度 と 生き て 戻れ まい。
+      - あの 森 に 足 を 踏み入れよう {もの なら}、二 度 と 生き て 帰る こと は 叶う まい。
+      - あの 森 に 足 を 踏み入れよう {もの なら}、再び 生き て 帰ら ぬ 運命 と なろう。
+    english_literally: That forest into foot if one were to step, never alive would not return.
+    competing_grammar:
+      - competing_japanese:
+          - あの 森 に 足 を 踏み入れれ {ば}、二 度 と 生き て 戻れ まい。
+        english: If one steps foot into that forest, they will never return alive.
+        hint: The dramatic, almost supernatural consequence ('never return alive') is best captured by
+          「ものなら」, which conveys an inevitable, grim fate with heightened impact compared to the general
+          conditional 「ば」.
+      - competing_japanese:
+          - あの 森 に 足 を 踏み入れ {たら}、二 度 と 生き て 戻れ まい。
+        english: If one steps foot into that forest, they will never return alive.
+        hint: The use of 「ものなら」 emphasizes the absolute certainty and direness of the consequence, making
+          it more suitable for a cautionary tale where the negative outcome is presented as an inescapable
+          doom rather than a mere possibility implied by 「たら」.
+      - competing_japanese:
+          - あの 森 に 足 を 踏み入れる {と し たら}、二 度 と 生き て 戻れ まい。
+        english: If one were to step foot into that forest, they would never return alive.
+        hint: 「としたら」 is a general conditional. We're looking for an inevitable, grim fate in a cautionary
+          tale.
+    scene: An elder telling a cautionary tale about a cursed or perilous place, evoking a sense of inevitable
+      doom.
+    register: bungo (literary)
+    setting: storytelling
+    nuance: 「二度と 生きて 戻れまい」 (would never return alive) is a very strong and somewhat archaic expression,
+      emphasizing an absolute and dreadful fate. It is often used in folklore or dramatic narratives to
+      convey an ultimate and inescapable doom associated with a forbidden or dangerous act.
+  - english: If I keep eating like this, I probably won't be able to wear my jeans tomorrow.
+    japanese:
+      - こんな に 食べ 続けよう {もの なら}、明日 に は ジーンズ が 履け なく なる だろう な。
+      - こんな に 食べ 続けよう {もの なら}、明日 に は ジーンズ が 履け なく なる って もん だ よ な。
+      - こんな に 食べ 続けよう {もの なら}、明日 に は ジーンズ が 履け なく なっ ちゃう か も ね。
+    english_literally: This much if I were to keep eating, tomorrow jeans won't be able to wear, probably.
+    competing_grammar:
+      - competing_japanese:
+          - こんな に 食べ 続け {たら}、明日 に は ジーンズ が 履け なく なる だろう な。
+        english: If I keep eating like this, I probably won't be able to wear my jeans tomorrow.
+        hint: The speaker's personal, humorous prediction of an immediate, certain negative consequence
+          ('won't be able to wear jeans') is well-suited for 「ものなら」 to express a strong, almost resigned
+          inevitability, which is more emphasized than with a simple 「たら」 conditional.
+      - competing_japanese:
+          - こんな に 食べ 続けれ {ば}、明日 に は ジーンズ が 履け なく なる だろう な。
+        english: If I keep eating like this, I probably won't be able to wear my jeans tomorrow.
+        hint: 「ば」 is a general conditional. We're looking for a strong, resigned inevitability about a
+          personal consequence.
+      - competing_japanese:
+          - こんな に 食べ 続ける {と し たら}、明日 に は ジーンズ が 履け なく なる だろう な。
+        english: If I keep eating like this, I probably won't be able to wear my jeans tomorrow.
+        hint: 「としたら」 is a general conditional. We're looking for a strong, resigned inevitability about
+          a personal consequence.
+    scene: Someone lamenting their overeating while looking at their favorite pair of jeans, with a sense
+      of resigned inevitability.
+    register: casual
+    setting: humorous
+    listener_gender: no one
+    nuance: The casual ending particle 「な」 (a softening, reflective tone) combined with 「だろう」 (probably)
+      implies a self-aware, somewhat resigned humor about an inevitable physical consequence. The phrase
+      is often used when talking to oneself or in a lighthearted, self-deprecating manner.
+  - english: If you were to leak this information, you'd be immediately dismissed.
+    japanese:
+      - この 情報 を 漏らそう {もの なら}、即刻 解雇 だ ぞ。
+      - この 情報 を 漏らそう {もの なら}、即刻 解雇 に なる でしょう。
+      - この 情報 を 漏らそう {もの なら}、即刻 解雇 に なる だろう。
+    english_literally: This information if you were to leak, immediate dismissal it is, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 情報 を 漏らし {たら}、即刻 解雇 だ ぞ。
+        english: If you leak this information, you'll be immediately dismissed.
+        hint: 「ものなら」 emphasizes the certainty of the severe consequence for a breach of trust, more so
+          than a general 「たら」 conditional.
+      - competing_japanese:
+          - この 情報 を 漏らせ {ば}、即刻 解雇 だ ぞ。
+        english: If you leak this information, you'll be immediately dismissed.
+        hint: 「ものなら」 conveys a stronger, more direct threat of inevitable dismissal, unlike the general
+          conditional 「ば」.
+      - competing_japanese:
+          - この 情報 を 漏らす {と し たら}、即刻 解雇 だ ぞ。
+        english: If you were to leak this information, you'd be immediately dismissed.
+        hint: 「としたら」 is a general conditional for 'if' or 'supposing that'. We're looking for a strong
+          warning about an inevitable, harsh consequence.
+    scene: A security manager warns an employee about the severe consequences of leaking confidential
+      company information during a briefing.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: group
+    nuance: The strong male ending particle 「ぞ」 combined with 「即刻 解雇 だ」 (immediate dismissal) emphasizes
+      the definitive and unyielding nature of the consequence, typical in a serious workplace warning.
+  - english: If you were to touch that, you'd get a severe burn.
+    japanese:
+      - あれ に 触れよう {もの なら}、大 火傷 する よ。
+      - あれ に 触れよう {もの なら}、大 火傷 する でしょう。
+      - あれ に 触れよう {もの なら}、大 火傷 し て しまう よ。
+    english_literally: That if you were to touch, big burn you'd get, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あれ に 触っ {たら}、大 火傷 する よ。
+        english: If you touch that, you'll get a severe burn.
+        hint: 「ものなら」 makes the warning more emphatic and conveys a higher certainty of the bad outcome
+          compared to a simple 「たら」 conditional.
+      - competing_japanese:
+          - あれ に 触れ れ {ば}、大 火傷 する よ。
+        english: If you touch that, you'll get a severe burn.
+        hint: 「ものなら」 adds a dramatic and certain tone to the warning, highlighting the unavoidable nature
+          of the injury more strongly than the general conditional 「ば」.
+      - competing_japanese:
+          - あれ に 触れる {と し たら}、大 火傷 する よ。
+        english: If you were to touch that, you'd get a severe burn.
+        hint: 「としたら」 is a general conditional for 'if' or 'supposing that'. We're looking for an emphatic
+          warning about an immediate and certain injury.
+    scene: A parent quickly warns their curious child not to touch a hot stove or a sharp object.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「よ」 at the end, coupled with 「大 火傷 する」 (get a severe burn), makes this a direct
+      and firm warning from a parent. The strong emphasis from 「ものなら」 is appropriate for preventing immediate
+      danger.
+  - english: If anyone were to oppose that person, they would be utterly crushed.
+    japanese:
+      - あの 人 に 逆らおう {もの なら}、徹底 的 に 潰さ れる だろう。
+      - あの 人 に 逆らおう {もの なら}、徹底 的 に 潰さ れる こと に なる でしょう。
+      - あの 人 に 逆らおう {もの なら}、徹底 的 に 潰さ れ て しまう だろう。
+    english_literally: That person to oppose if one were to, thoroughly crushed would be, probably.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 に 逆らっ {たら}、徹底 的 に 潰さ れる だろう。
+        english: If you oppose that person, you'll be utterly crushed.
+        hint: 「ものなら」 conveys the absolute certainty and severity of the consequence of defying a powerful
+          figure, making it a stronger warning than a simple 「たら」 conditional.
+      - competing_japanese:
+          - あの 人 に 逆らえ {ば}、徹底 的 に 潰さ れる だろう。
+        english: If you oppose that person, you'll be utterly crushed.
+        hint: The phrase suggests an almost tyrannical power, and 「ものなら」 emphasizes the inescapable and
+          crushing retaliation, which is more intense than the general conditional 「ば」.
+      - competing_japanese:
+          - あの 人 に 逆らう {と し たら}、徹底 的 に 潰さ れる だろう。
+        english: If anyone were to oppose that person, they would be utterly crushed.
+        hint: 「としたら」 is a general conditional for 'if' or 'supposing that'. We're looking for a strong
+          caution about dire, inevitable consequences from a powerful individual.
+    scene: Two colleagues are discreetly discussing the ruthless nature of their powerful boss.
+    register: semi-formal
+    setting: cautious
+    speaker_gender: female
+    listener_gender: male
+    nuance: The phrase 「徹底的 に 潰さ れる」 (would be utterly crushed) emphasizes the severe and complete nature
+      of the negative consequence. 「だろう」 adds a slight level of speculation, but the preceding 「ものなら」
+      ensures the strong sense of certainty regarding the outcome. This tone is common in semi-formal,
+      cautionary discussions among colleagues.
+  - english: If you were to post something like that online, you'd regret it later.
+    japanese:
+      - そんな こと を ネット に 投稿 しよう {もの なら}、後 で 後悔 する よ。
+      - そんな こと を ネット に 投稿 しよう {もの なら}、後 で 後悔 する でしょう。
+      - そんな こと を ネット に 投稿 しよう {もの なら}、後 で 痛い 目 に あう よ。
+      - そんな こと を ネット に 投稿 しよう {もの なら}、後 で 泣き を 見る よ。
+    english_literally: Such a thing online if you were to post, later regret will do, you know.
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと を ネット に 投稿 し {たら}、後 で 後悔 する よ。
+        english: If you post something like that online, you'll regret it later.
+        hint: 「たら」 is a general conditional. We're looking for a stronger emphasis on the inevitable negative
+          consequence, which 「ものなら」 conveys.
+      - competing_japanese:
+          - そんな こと を ネット に 投稿 すれ {ば}、後 で 後悔 する よ。
+        english: If you post something like that online, you'll regret it later.
+        hint: 「ば」 is a general conditional. 「ものなら」 emphasizes the certainty of the regrettable outcome
+          more strongly.
+    scene: A friend warns another against posting something sensitive or controversial on social media.
+    register: casual
+    setting: cautious
+    nuance: The use of 「よ」 makes it a direct, personal warning between friends. The phrase 「後で 後悔 する」
+      emphasizes the future negative emotional consequence, heightened by 「ものなら」.
+  - english: If you were to tell a lie, your parents would never trust you again.
+    japanese:
+      - 嘘 を つこう {もの なら}、お 父 さん と お 母 さん は 二 度 と あなた を 信じ ない だろう。
+      - 嘘 を つこう {もの なら}、二 度 と 信用 し て もらえ ない よ。
+      - 嘘 を つこう {もの なら}、二 度 と 信用 を 得 られ ない でしょう。
+      - 嘘 を つこう {もの なら}、マジ で 信用 なくす よ。
+    english_literally: A lie if you were to tell, dad and mom will never trust you again.
+    competing_grammar:
+      - competing_japanese:
+          - 嘘 を つい {たら}、お 父 さん と お 母 さん は 二 度 と あなた を 信じ ない だろう。
+        english: If you tell a lie, your parents will never trust you again.
+        hint: 「たら」 is a general conditional. 「ものなら」 emphasizes the absolute and lasting consequence of
+          losing trust.
+      - competing_japanese:
+          - 嘘 を つけ {ば}、お 父 さん と お 母 さん は 二 度 と あなた を 信じ ない だろう。
+        english: If you tell a lie, your parents will never trust you again.
+        hint: 「ば」 is a general conditional. 「ものなら」 conveys a stronger, more certain negative outcome regarding
+          family trust.
+    scene: A parent warns their child about the consequences of lying, emphasizing the loss of trust.
+    register: casual
+    setting: serious
+    nuance: This emphasizes the lasting impact on trust within a family. The consequence is not physical
+      but relational, highlighting the gravity of the action through the strong implication of 「ものなら」.
+post_example_writeup: As seen in these examples, 「ものなら」 consistently attaches to the volitional form of
+  verbs and invariably points to a **negative, undesirable, or highly problematic outcome** that is expected
+  to follow the hypothetical action. This consistent pattern of 'action leading to inevitable bad consequence'
+  is central to its usage.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ものなら%E2%91%A1

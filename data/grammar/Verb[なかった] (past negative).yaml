@@ -1,0 +1,286 @@
+grammar_point: Verb[なかった] (past negative)
+learn_before:
+  - 〜のだ・〜んだ (explanatory)
+  - に比べて (compared to)
+meaning: did not do
+pronunciation:
+  katakana: ナカッタ
+  romaji: nakatta
+formation:
+  Verb[ない form] + かった: This forms the plain past negative for verbs. Take the plain negative form of the
+    verb (ending in ない) and replace the final い with かった.
+jlpt: N5
+etymology: The form なかった (nakatta) combines the negative auxiliary ない (nai) with the past tense auxiliary
+  た (ta). Historically, ない evolved from なし (nashi), an archaic adjective meaning 'non-existent' or 'not
+  present.' The かっ (katt) part comes from the adjectival stem なかっ when conjugating ない into its past form.
+  Thus, it literally means 'was not present' or 'did not exist (for the verb),' highlighting its adjectival
+  origin in Japanese grammar.
+writeup: |-
+  The なかった form is the plain past negative conjugation for verbs in Japanese. It signifies that an action or event did not occur in the past. This form is widely used in casual conversation and informal writing. It's essential for forming negative statements about past events without conveying a sense of politeness or formality.
+
+  To form なかった, you take the plain negative form of a verb (the ない form) and replace the final い with かった. For example, 食べる (taberu, to eat) becomes 食べない (tabenai, not eat), and then 食べなかった (tabenakatta, did not eat). This pattern applies to all regular verbs.
+
+  It's a declarative form, simply stating a fact about the past. Unlike polite forms, なかった doesn't convey any specific speaker-listener relationship beyond being informal. It's often used when speaking with friends, family, or in situations where politeness is not required. Understanding this basic past negative form is fundamental for constructing comprehensive sentences in Japanese.
+false_friends:
+  - term: Verb[ませんでした]
+    meaning: did not do (polite past negative)
+    kind: similar expression
+    nuance: This is the polite equivalent of なかった. While なかった is casual and used among friends or family,
+      ませんでした は used in formal settings or when addressing someone of higher status, or simply to show
+      general politeness.
+    grammar_point: Verb[ませんでした] (polite past negative)
+  - term: Verb[ていない]
+    meaning: have not done / is not doing
+    kind: often confused with
+    nuance: なかった indicates a completed past non-action (e.g., 'I did not eat breakfast yesterday'). ていない
+      indicates an ongoing state of non-action or a state that has not yet begun/completed (e.g., 'I haven't
+      eaten breakfast yet' or 'I am not eating breakfast'). The time reference is crucial here. なかった is
+      a definite past, while ていない often implies a continuation from the past up to the present, or an
+      action that is currently not happening.
+    grammar_point: Verb[ている・てる] (progressive・resultative)
+  - term: ないでください
+    meaning: please don't do
+    kind: often confused with
+    nuance: なかった is a declarative statement about something that did not happen. ないでください is a command
+      or request to not do something. It's about future action or current cessation, not past non-occurrence.
+    grammar_point: ないでください・ないで (please don't)
+post_false_friends_writeup: While なかった marks a simple past non-occurrence, its politeness level sets it
+  apart from ませんでした. Furthermore, distinguish なかった from forms like ていない (the negative form of ている). なかった
+  confirms something did not happen in the past at a specific time. ていない typically indicates a state of
+  not having done something yet (implying future potential) or currently not doing something. ないでください
+  is a prohibition, a command for future action, whereas なかった simply states a past fact.
+examples:
+  - english: I didn't eat breakfast today.
+    japanese:
+      - 今日、朝ごはん を {食べ なかっ た}。
+      - 今日、朝ごはん を {食べ なかっ た} よ。
+      - 今日、朝ごはん を {食べ なかっ た} ね。
+    english_literally: Today, breakfast (object) did not eat.
+    competing_grammar:
+      - competing_japanese:
+          - 今日、朝ごはん を {食べ ませ ん でし た}。
+        english: I didn't eat breakfast today (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 今日、朝ごはん を {食べ て い ませ ん}。
+        english: I haven't eaten breakfast today / I am not eating breakfast today.
+        hint: This indicates a current state of not having eaten yet or not currently eating. We're looking
+          for a completed past action that did not occur.
+      - competing_japanese:
+          - 今日、朝ごはん を {食べ ない で ください}。
+        english: Please don't eat breakfast today.
+        hint: This is a command or request. We're looking for a statement about what someone did not do
+          in the past.
+    scene: A casual conversation with a friend.
+    register: casual
+    setting: friendly
+  - english: He didn't come to the party yesterday.
+    japanese:
+      - 彼 は 昨日 パーティー に {来 なかっ た}。
+      - 彼 は 昨日 パーティー に {来 なかっ た} よ。
+      - 彼 は 昨日 パーティー に {来 なかっ た} ね。
+    english_literally: He (topic) yesterday party to did not come.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 昨日 パーティー に {来 ませ ん でし た}。
+        english: He didn't come to the party yesterday (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 彼 は 昨日 パーティー に {来 て い ませ ん}。
+        english: He hasn't come to the party yet / He isn't coming to the party.
+        hint: This indicates an ongoing state of not having come or not currently coming. We're looking
+          for a completed past action that did not occur.
+      - competing_japanese:
+          - 彼 は 昨日 パーティー に {来る べき で は なかっ た}。
+        english: He shouldn't have come to the party yesterday.
+        hint: This expresses a sense of obligation or advice about what should or shouldn't have happened.
+          We're looking for a simple statement of past non-occurrence.
+    scene: Discussing a mutual friend with another friend.
+    register: casual
+    setting: friendly
+  - english: I didn't understand the teacher's explanation at all.
+    japanese:
+      - 先生 の 説明 が 全然 {分から なかっ た}。
+      - 先生 の 説明 が 全然 {分から なかっ た} よ。
+      - 先生 の 説明 が 全然 {分から なかっ た} ね。
+    english_literally: Teacher's explanation (subject) completely did not understand.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 の 説明 が 全然 {分かり ませ ん でし た}。
+        english: I didn't understand the teacher's explanation at all (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 先生 の 説明 が 全然 {分から なかっ た でしょう}。
+        english: I probably didn't understand the teacher's explanation at all.
+        hint: This adds conjecture or probability. We're looking for a definitive statement of past non-understanding.
+    scene: A student confiding in a classmate after class.
+    register: casual
+    setting: academic
+    nuance: The use of 全然 (zenzen) strongly emphasizes the complete lack of understanding, which pairs
+      naturally with the plain past negative form.
+  - english: I didn't buy that book.
+    japanese:
+      - その 本 を {買わ なかっ た}。
+      - その 本 を {買わ なかっ た} よ。
+      - その 本 を {買わ なかっ た} ね。
+    english_literally: That book (object) did not buy.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 を {買い ませ ん でし た}。
+        english: I didn't buy that book (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - その 本 を {買っ て ない}。
+        english: I haven't bought that book (casual contraction of ていない).
+        hint: This indicates a state of not having purchased yet. We're looking for a simple statement
+          of past non-action.
+      - competing_japanese:
+          - その 本 を {買わ なけれ ば なら なかっ た}。
+        english: I had to buy that book.
+        hint: This indicates an obligation. We're looking for a statement about what was *not* done.
+    scene: Explaining a shopping decision to a roommate.
+    register: casual
+    setting: friendly
+  - english: Last night, I didn't sleep well.
+    japanese:
+      - 昨夜、よく {寝 なかっ た}。
+      - 昨夜、よく {寝 なかっ た} よ。
+      - 昨夜、よく {寝 なかっ た} ね。
+    english_literally: Last night, well did not sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜、よく {寝 ませ ん でし た}。
+        english: Last night, I didn't sleep well (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 昨夜、よく {寝 て い ませ ん}。
+        english: Last night, I haven't slept well (and still haven't, or am not sleeping).
+        hint: This indicates a continuous state or result. We're looking for a completed past non-action.
+    scene: Complaining to a friend over coffee.
+    register: casual
+    setting: melancholic
+  - english: I didn't run today.
+    japanese:
+      - 今日 は {走ら なかっ た}。
+      - 今日 は {走ら なかっ た} よ。
+      - 今日 は {走ら なかっ た} ね。
+    english_literally: Today (topic) did not run.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は {走り ませ ん でし た}。
+        english: I didn't run today (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 今日 は {走ら なかっ た だろう}。
+        english: I probably didn't run today.
+        hint: This adds a nuance of conjecture or uncertainty. We're looking for a definitive statement
+          of past non-action.
+    scene: A person talking to themselves or writing in a journal.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+  - english: The bus didn't arrive on time.
+    japanese:
+      - バス が 時間 通り に {来 なかっ た}。
+      - バス が 時間 通り に {来 なかっ た} よ。
+      - バス が 時間 通り に {来 なかっ た} ね。
+    english_literally: Bus (subject) time street on did not come.
+    competing_grammar:
+      - competing_japanese:
+          - バス が 時間 通り に {来 ませ ん でし た}。
+        english: The bus didn't arrive on time (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - バス が 時間 通り に {来 ない}。
+        english: The bus doesn't arrive on time / The bus won't arrive on time (present/future).
+        hint: This is a statement about present habit or future intention. We're looking for a past event.
+    scene: Commuters discussing a delay at the bus stop.
+    register: casual
+    setting: serious
+  - english: My friend didn't call me.
+    japanese:
+      - 友達 が 私 に 電話 を {かけ なかっ た}。
+      - 友達 が 私 に 電話 を {かけ なかっ た} よ。
+      - 友達 が 私 に 電話 を {かけ なかっ た} ね。
+    english_literally: Friend (subject) me to call (object) did not make.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 私 に 電話 を {かけ ませ ん でし た}。
+        english: My friend didn't call me (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 友達 が 私 に 電話 を {かけ なかっ た だろう}。
+        english: My friend probably didn't call me.
+        hint: This adds a nuance of conjecture or uncertainty. We're looking for a definitive statement
+          of past non-action.
+    scene: Explaining why you didn't know something.
+    register: casual
+    setting: informative
+  - english: I didn't watch that drama.
+    japanese:
+      - その ドラマ は {見 なかっ た} わ。
+      - その ドラマ は {見 なかっ た}。
+    english_literally: That drama (topic) did not watch (feminine emphasis).
+    competing_grammar:
+      - competing_japanese:
+          - その ドラマ は {見 ませ ん でし た} わ。
+        english: I didn't watch that drama (polite, feminine).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - その ドラマ は {見 て ない} わ。
+        english: I haven't watched that drama (casual, feminine).
+        hint: This indicates a state of not having watched yet. We're looking for a simple statement of
+          past non-action.
+    scene: Two female friends chatting about TV shows.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-final particle わ 「わ」 adds a soft, feminine touch, often used to convey personal
+      feelings or assert a statement casually.
+  - english: Last night, I didn't play mahjong.
+    japanese:
+      - 昨晩 は 麻雀 を {し なかっ た} よ。
+      - 昨晩 は 麻雀 を {し なかっ た}。
+    english_literally: Last night (topic) mahjong (object) did not do (emphasis).
+    competing_grammar:
+      - competing_japanese:
+          - 昨晩 は 麻雀 を {し ませ ん でし た} よ。
+        english: Last night, I didn't play mahjong (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 昨晩 は 麻雀 を {し て い ませ ん} よ。
+        english: Last night, I haven't played mahjong (and still haven't, or am not playing).
+        hint: This indicates a continuous state or result. We're looking for a completed past non-action.
+    scene: An older man telling his friend about his evening.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    speaker_age: older
+    nuance: The particle よ 「よ」 emphasizes the statement and is commonly used by male speakers, especially
+      older ones, to inform or assure the listener in a casual context.
+  - english: He didn't express his opinion.
+    japanese:
+      - 彼 は 意見 を {言わ なかっ た}。
+      - 彼 は 意見 を {言わ なかっ た} の だ。
+      - 彼 は 意見 を {言わ なかっ た} の で ある。
+    english_literally: He (topic) opinion (object) did not say.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 意見 を {言い ませ ん でし た}。
+        english: He didn't express his opinion (polite).
+        hint: This uses the polite past negative form. We're looking for the casual form.
+      - competing_japanese:
+          - 彼 は 意見 を {言わ ない}。
+        english: He doesn't express his opinion / He won't express his opinion (present/future).
+        hint: This is a statement about present habit or future intention. We're looking for a past event.
+    scene: A phrase that might appear in a news report or a formal document excerpt, stating a fact objectively.
+    register: formal
+    setting: informative
+    nuance: While なかった is generally casual, its plain form allows it to be used in formal written contexts
+      for objective reporting or factual statements, especially when formality is conveyed by other elements
+      of the sentence or discourse. Variations like 「のだ」 and 「のである」 can add an explanatory or more formal
+      tone to the plain form, even when the verb itself remains casual.
+post_example_writeup: The examples illustrate how Verb[なかった] is used to state a simple past negative fact.
+  Notice its versatility across various everyday situations, from personal reflections to casual conversations
+  and even objective reporting. While the plain form is inherently informal, the overall context, including
+  vocabulary and other particles, can influence the perceived politeness or formality of the sentence.

@@ -1,0 +1,519 @@
+grammar_point: へいく (to head toward)
+learn_before:
+  - 〜ていく (change toward future・movement away from speaker)
+meaning: To go to, To head toward
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: へいく
+    rarity: common
+    meaning: to head towards
+  - conjugation-type: non-past polite (～ます)
+    form: へいきます
+    rarity: common
+    meaning: will head towards
+  - conjugation-type: negative plain (～ない)
+    form: へいかない
+    rarity: common
+    meaning: does not head towards
+  - conjugation-type: negative non-past polite (～ません)
+    form: へいきません
+    rarity: common
+    meaning: will not head towards
+  - conjugation-type: past plain (～た)
+    form: へいった
+    rarity: common
+    meaning: headed towards
+  - conjugation-type: past polite (～ました)
+    form: へいきました
+    rarity: common
+    meaning: headed towards
+  - conjugation-type: negative past plain (～なかった)
+    form: へいかなかった
+    rarity: common
+    meaning: did not head towards
+  - conjugation-type: negative past polite (～ませんでした)
+    form: へいきませんでした
+    rarity: common
+    meaning: did not head towards
+  - conjugation-type: te-form (～て)
+    form: へいって
+    rarity: common
+    meaning: heading towards / and head towards
+  - conjugation-type: conditional (～ば)
+    form: へいけば
+    rarity: uncommon
+    meaning: if one heads towards
+  - conjugation-type: conditional (～たら)
+    form: へいったら
+    rarity: uncommon
+    meaning: if one heads towards
+  - conjugation-type: volitional (～よう)
+    form: へいこう
+    rarity: common
+    meaning: let's head towards
+  - conjugation-type: volitional polite (～ましょう)
+    form: へいきましょう
+    rarity: common
+    meaning: shall we head towards
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: へいけ
+    rarity: very rare
+    meaning: head towards!
+  - conjugation-type: imperative polite (～なさい)
+    form: へいってください
+    rarity: very rare
+    meaning: please head towards
+  - conjugation-type: potential (～られる/～える)
+    form: へいける
+    rarity: uncommon
+    meaning: can head towards
+  - conjugation-type: passive (～られる/～かれる)
+    form: へいかれる
+    rarity: rare
+    meaning: to be headed towards
+  - conjugation-type: causative (～させる)
+    form: へいかせる
+    rarity: rare
+    meaning: to make someone head towards
+  - conjugation-type: desiderative (～たい)
+    form: へいきたい
+    rarity: common
+    meaning: want to head towards
+pronunciation:
+  katakana: ヘイク
+  romaji: heiku
+formation:
+  '[Place] + へ + 行く': Indicates movement in a certain direction or to a certain location.
+jlpt: N5
+etymology: 「へ」 is a particle indicating direction, while 「行く (いく)」 is the verb "to go." Together, 「へいく」
+  literally means "to go in the direction of" or "to head towards."
+writeup: '「へいく」 is a fundamental expression used to describe movement towards a specific place or direction.
+  While the particles 「に」 and 「へ」 are often interchangeable, there is a subtle but important nuance: 「へ」
+  emphasizes the **direction or the journey**, while 「に」 emphasizes the **destination itself**. Therefore,
+  「へいく」 focuses more on the act of moving towards a place rather than solely on the arrival at it. This
+  makes it versatile for various contexts, from casual conversation to more formal declarations of intent.
+  Understanding this distinction is crucial for expressing precise nuances of movement in Japanese.'
+false_friends:
+  - term: ～ていく
+    meaning: to go on, to continue (action or state)
+    kind: similar expression
+    nuance: Unlike 「へいく」 which indicates movement towards a physical location, 「ていく」 describes an consistent
+      action or state that continues into the future or moves away from the speaker in time or space.
+    grammar_point: 〜ていく (change toward future・movement away from speaker)
+  - term: Verb+にいく
+    meaning: to go in order to do something
+    kind: similar expression
+    nuance: While 「へいく」 indicates heading towards a place, 「Verb+にいく」 specifies the *purpose* for going
+      to a place. The focus is on the action to be performed, not just the direction.
+    grammar_point: '[Verb-stem]に行く (to go in order to do)'
+  - term: くる
+    meaning: to come
+    kind: antonym
+    nuance: 「へいく」 signifies movement *away* from the speaker's current location, whereas 「くる」 signifies
+      movement *towards* the speaker's current location or viewpoint.
+    grammar_point: くる (come)
+  - term: いらっしゃる
+    meaning: to be (honorific), to come (honorific), to go (honorific)
+    kind: often confused with
+    nuance: 「いらっしゃる」 is the honorific equivalent of 「行く (いく)」, the verb component of 「へいく」. It is used
+      to show high respect to the person performing the action of going, regardless of the direction indicated
+      by 「へ」. It changes the politeness level and target of respect, not the fundamental meaning of movement.
+    grammar_point: お[Verb-stem]になる・なさる・いらっしゃる (respectful action - sonkeigo)
+post_false_friends_writeup: Understanding the difference between 「へいく」 and similar expressions involves
+  recognizing the nuances of direction versus purpose, continuation, and the speaker's perspective. Distinguish
+  between 'going towards' and 'going to do' something. Also, be mindful of the level of politeness required
+  in different social contexts.
+examples:
+  - english: I head to school every morning.
+    japanese:
+      - 毎朝、学校 {へ 行く}。
+      - 毎朝、学校 {へ いく}。
+      - 毎朝、学校 {へ 行く} ん だ。
+      - 毎朝、学校 {へ 行き ます}。
+      - 毎朝、学校 {へ 行く} の よ。
+      - 毎朝、学校 {へ 行く} ぞ。
+    english_literally: Every morning, towards school, I go.
+    competing_grammar:
+      - competing_japanese:
+          - 毎朝、学校 {に 行く}。
+        english: Every morning, I go to school.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - 毎朝、学校 {に 向かう}。
+        english: Every morning, I head towards school.
+        hint: 「向かう」 implies facing or turning towards a direction, not necessarily the active movement
+          of going there. We're looking for the act of moving towards a place.
+      - competing_japanese:
+          - 毎朝、学校 {へ 来る}。
+        english: Every morning, I come to school.
+        hint: 「来る」 means 'to come,' implying movement towards the speaker's location. We're looking for
+          movement away from the speaker.
+      - competing_japanese:
+          - 毎朝、勉強 {し に 学校 に 行く}。
+        english: Every morning, I go to school to study.
+        hint: This specifies the purpose of going to school. We're looking for emphasis on the direction
+          of going, not the reason.
+      - competing_japanese:
+          - 毎朝、学校 へ と 歩い {て いく}。
+        english: Every morning, I walk on towards school.
+        hint: 「ていく」 implies a continuous action or a movement away from the speaker. We're looking for
+          the simple act of heading towards a place.
+    scene: A student explaining their daily routine.
+    register: casual
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: I will head to Kyoto next week.
+    japanese:
+      - 来週、京都 {へ いき ます}。
+      - 来週、京都 {へ 行き ます}。
+      - 来週、京都 {へ 行く} 予定 です。
+      - 来週、京都 {へ 参り ます}。
+      - 来週、京都 {へ 行く} わ。
+      - 来週、京都 {へ 行く} よ。
+    english_literally: Next week, towards Kyoto, I will go.
+    competing_grammar:
+      - competing_japanese:
+          - 来週、京都 {に 行き ます}。
+        english: Next week, I will go to Kyoto.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - 来週、京都 に {旅行 し ます}。
+        english: Next week, I will travel to Kyoto.
+        hint: 「旅行します」 refers to undertaking a trip or journey, focusing on the activity. We're looking
+          for the action of moving towards a place.
+      - competing_japanese:
+          - 来週、京都 {へ 来 ます}。
+        english: Next week, I will come to Kyoto.
+        hint: 「来ます」 means 'to come,' implying movement towards the speaker's location or viewpoint. We're
+          looking for movement away from the speaker.
+      - competing_japanese:
+          - 来週、京都 {へ いらっしゃい ます}。
+        english: Next week, (someone respectfully) goes to Kyoto.
+        hint: 「いらっしゃる」 is the honorific form used for someone else going, not the speaker. We're looking
+          for the speaker's own action.
+      - competing_japanese:
+          - 来週、観光 {し に 京都 に 行き ます}。
+        english: Next week, I will go to Kyoto to sightsee.
+        hint: This specifies the purpose of going to Kyoto. We're looking for emphasis on the direction
+          of heading to space, not the reason.
+      - competing_japanese:
+          - 来週、京都 へ と 向かっ {て いく} でしょう。
+        english: Next week, I will continue to head towards Kyoto.
+        hint: 「ていく」 implies a continuous or ongoing movement. We're looking for a simple statement of
+          intent to head somewhere.
+    scene: A person discussing their travel plans with a colleague.
+    register: formal
+    setting: informative
+    conjugation: non-past polite (～ます)
+  - english: I headed to the library yesterday.
+    japanese:
+      - 昨日、図書 館 {へ いっ た} よ。
+      - 昨日、図書 館 {へ 行っ た} よ。
+      - 昨日、図書 館 {へ 行っ た} ん だ。
+      - 昨日、図書 館 {へ 行き まし た}。
+      - 昨日、図書 館 {へ 行っ た} ぜ。
+      - 昨日、図書 館 {へ 行っ た} の。
+    english_literally: Yesterday, towards the library, I went, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、図書 館 {に 行っ た} よ。
+        english: Yesterday, I went to the library, you know.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - 昨日、図書 館 {に 着い た} よ。
+        english: Yesterday, I arrived at the library, you know.
+        hint: 「着いた」 means arrived, focusing on the completion of movement. We're looking for the act of
+          moving towards a place.
+      - competing_japanese:
+          - 昨日、図書 館 {へ 来 た} よ。
+        english: Yesterday, I came to the library, you know.
+        hint: 「来た」 means 'to come,' implying movement towards the speaker's location. We're looking for
+          movement away from the speaker.
+      - competing_japanese:
+          - 昨日、本 を 借り {に 図書 館 に 行っ た} よ。
+        english: Yesterday, I went to the library to borrow books, you know.
+        hint: This specifies the purpose of going to the library. We're looking for emphasis on the direction
+          of going, not the reason.
+      - competing_japanese:
+          - 昨日、図書 館 まで ずっと 歩い {て いっ た} よ。
+        english: Yesterday, I kept walking all the way to the library, you know.
+        hint: 「ていく」 emphasizes the continuous or process of the action. We're looking for the simple act
+          of heading towards a place.
+    scene: A man casually telling his friend about his previous day.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+  - english: Sorry, I'm not heading anywhere today.
+    japanese:
+      - ごめん、今日 は どこ {へ も 行か ない}。
+      - ごめん、今日 は どこ に も {行か ない}。
+      - ごめん、今日 は どこ {へ も いか ない}。
+      - ごめん、今日 は どこ {へ も 行き ませ ん}。
+      - ごめん、今日 は どこ に も {行き ませ ん}。
+      - ごめん、今日 は どこ {へ も 行か ない} から。
+      - ごめん、今日 は どこ に も {行か ない} よ。
+    english_literally: Sorry, today, nowhere, I will not head to.
+    competing_grammar:
+      - competing_japanese:
+          - ごめん、今日 は どこ {に も 行か ない}。
+        english: Sorry, today, I'm not going anywhere.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - ごめん、今日 は {出かけ ない}。
+        english: Sorry, today, I'm not going out.
+        hint: 「出かけない」 is a general term for not going out. We're looking for the specific idea of not
+          heading towards any particular place.
+      - competing_japanese:
+          - ごめん、今日 は どこ へ も {来 ない}。
+        english: Sorry, today, I won't come anywhere.
+        hint: 「来ない」 means 'won't come,' implying movement towards the speaker's location. We're looking
+          for movement away from the speaker.
+      - competing_japanese:
+          - ごめん、今日 は 買い物 {し に どこ に も 行か ない}。
+        english: Sorry, today, I won't go anywhere to shop.
+        hint: This specifies a purpose for not going anywhere. We're looking for a general statement of
+          not heading in any direction.
+      - competing_japanese:
+          - ごめん、今日 は どこ へ も {行か ない で い ます}。
+        english: Sorry, today, I will continue not going anywhere (staying put).
+        hint: 「ていく」 implies a continuation of a state or action. We're looking for a simple negative statement
+          about not heading to a place.
+    scene: A young woman explaining to a friend why she can't join an outing.
+    register: casual
+    setting: apologetic
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+  - english: Someday, I want to head to space.
+    japanese:
+      - いつ か、宇宙 {へ いき たい}。
+      - いつ か、宇宙 {へ 行き たい}。
+      - いつ か、宇宙 {へ 行き たい} なあ。
+      - いつ か、宇宙 {へ 行き たい} です。
+      - いつ か、宇宙 {へ 行き たい} と 思っ て いる。
+      - いつ か、宇宙 {へ 行き たい} と 願っ て いる。
+    english_literally: Someday, towards space, I want to go.
+    competing_grammar:
+      - competing_japanese:
+          - いつ か、宇宙 {に 行き たい}。
+        english: Someday, I want to go to space.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - いつ か、宇宙 を {探検 し たい}。
+        english: Someday, I want to explore space.
+        hint: 「探検したい」 means to want to explore, focusing on the activity. We're looking for the desire
+          to move towards a place.
+      - competing_japanese:
+          - いつ か、宇宙 {へ 来 たい}。
+        english: Someday, I want to come to space.
+        hint: 「来たい」 means 'want to come,' implying movement towards the speaker's location. We're looking
+          for movement away from the speaker.
+      - competing_japanese:
+          - いつ か、宇宙 を 研究 {し に 宇宙 に 行き たい}。
+        english: Someday, I want to go to space to research space.
+        hint: This specifies a purpose for going to space. We're looking for emphasis on the direction
+          of heading to space, not the reason.
+      - competing_japanese:
+          - いつ か、宇宙 の 彼方 へ 飛ん {で いき たい}。
+        english: Someday, I want to fly off to the far side of space.
+        hint: 「ていく」 here suggests movement continuing away from the speaker. We're looking for a general
+          desire to head towards a place.
+    scene: A child excitedly talking about their dream.
+    register: casual
+    setting: optimistic
+    conjugation: desiderative (～たい)
+    speaker_age: younger
+  - english: Let's all head to the station.
+    japanese:
+      - みんな で 駅 {へ いき ましょう}。
+      - みんな で 駅 {へ 行き ましょう}。
+      - みんな で 駅 {へ 行こう} か。
+      - みんな で 駅 {へ 行こう} よ。
+      - みんな で 駅 {へ 行こう} ぜ。
+      - 皆 で 駅 {へ 参り ましょう}。
+    english_literally: Everyone together, towards the station, let's go.
+    competing_grammar:
+      - competing_japanese:
+          - みんな で 駅 {に 行き ましょう}。
+        english: Let's all go to the station.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - みんな で 駅 {に 向かい ましょう}。
+        english: Let's all head towards the station.
+        hint: 「向かいましょう」 implies orienting oneself towards, or starting to move in that direction. We're
+          looking for the active suggestion to collectively go to the station.
+      - competing_japanese:
+          - みんな で 駅 {へ 来 ましょう}。
+        english: Let's all come to the station.
+        hint: 「来ましょう」 means 'let's come,' implying movement towards the speaker's location. We're looking
+          for movement away from the speaker.
+      - competing_japanese:
+          - みんな で 映画 を 観 {に 駅 に 行き ましょう}。
+        english: Let's all go to the station to see a movie.
+        hint: This specifies the purpose of going to the station. We're looking for a general suggestion
+          to head towards the station.
+      - competing_japanese:
+          - みんな で 駅 まで 歩い {て いき ましょう}。
+        english: Let's all walk on to the station.
+        hint: 「ていく」 implies a continuous action or movement away. We're looking for a simple suggestion
+          to head to a place.
+    scene: A leader suggesting to a group that they move to the station.
+    register: semi-formal
+    setting: commanding
+    conjugation: volitional polite (～ましょう)
+    listener_gender: group
+  - english: If it's this road, we should be able to head to the mountain.
+    japanese:
+      - この 道 なら 山 {へ いける} はず だ。
+      - この 道 なら 山 {へ 行ける} はず だ。
+      - この 道 なら 山 {へ 行ける} はず だ よ。
+      - この 道 なら 山 {へ 行け ます} はず です。
+      - この 道 なら 山 {へ 行ける} だろう。
+    english_literally: If it's this road, towards the mountain, it should be possible to go.
+    competing_grammar:
+      - competing_japanese:
+          - この 道 なら 山 {に 行ける} はず だ。
+        english: If it's this road, we should be able to go to the mountain.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - この 道 なら 山 へ {辿り着ける} はず だ。
+        english: If it's this road, we should be able to reach the mountain.
+        hint: 「辿り着ける」 means to manage to arrive after a struggle or journey. We're looking for the simple
+          possibility of being able to head to a place.
+      - competing_japanese:
+          - この 道 なら 山 {へ 来れる} はず だ。
+        english: If it's this road, we should be able to come to the mountain.
+        hint: 「来れる」 means 'can come,' implying movement towards the speaker's location. We're looking
+          for movement away from the speaker.
+      - competing_japanese:
+          - この 道 なら 山 を 登り {に 行ける} はず だ。
+        english: This specifies the purpose of going to the mountain. We're looking for emphasis on the
+          direction of heading, not the reason.
+        hint: This specifies the purpose of going to the mountain. We're looking for emphasis on the direction
+          of heading, not the reason.
+      - competing_japanese:
+          - この 道 なら 山 へ と 歩い {て いける} はず だ。
+        english: If it's this road, we should be able to walk on towards the mountain.
+        hint: 「ていく」 emphasizes the continuous nature of the movement. We're looking for the simple possibility
+          of heading towards a place.
+    scene: Two hikers consulting a map, discussing the route.
+    register: casual
+    setting: serious
+    conjugation: potential (～られる/～える)
+  - english: First, I'll head to the bank, and then I'll go to the supermarket.
+    japanese:
+      - まず、銀行 {へ いっ て}、それ から スーパー へ 行く。
+      - まず、銀行 {へ 行っ て}、それ から スーパー へ 行く。
+      - まず、銀行 {へ 行っ て}、その あと スーパー へ 行く。
+      - まず、銀行 {へ 行き ます}。それ から スーパー {へ 行き ます}。
+      - まず、銀行 {へ 行っ て}、その 後 スーパー {へ 行こう} と 思う。
+      - まず、銀行 {へ 行き まし て}、その 後 スーパー {へ 参り ます}。
+    english_literally: First, towards the bank going, then towards the supermarket, I go.
+    competing_grammar:
+      - competing_japanese:
+          - まず、銀行 {に 行っ て}、それ から スーパー に 行く。
+        english: First, I'll go to the bank, and then I'll go to the supermarket.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction.
+      - competing_japanese:
+          - まず、銀行 で {用事 を 済ま せ て}、それ から スーパー へ 行く。
+        english: First, I'll finish my business at the bank, then I'll go to the supermarket.
+        hint: 「用事を済ませる」 means to take care of business or run errands. We're looking for the sequence
+          of movements between locations.
+      - competing_japanese:
+          - まず、銀行 {へ 来 て}、それ から スーパー へ 行く。
+        english: First, coming to the bank, then I'll go to the supermarket.
+        hint: 「来て」 means 'coming,' implying movement towards the speaker's location. We're looking for
+          movement away from the speaker.
+      - competing_japanese:
+          - まず、お 金 を 引き出し {に 銀行 に 行っ て}、それ から スーパー へ 買い物 に 行く。
+        english: First, I'll go to the bank to withdraw money, and then I'll go to the supermarket to
+          shop.
+        hint: This specifies the purpose for going to each location. We're looking for a sequence of movements
+          emphasizing direction.
+      - competing_japanese:
+          - まず、銀行 へ と {向かっ て いき}、その 後 スーパー へ 向かい ます。
+        english: First, I will go towards the bank, and then I will go towards the supermarket.
+        hint: 「ていく」 implies a continuous or sequential movement. We're looking for a simple statement
+          of heading to locations in order.
+    scene: A busy person listing their errands for the day.
+    register: casual
+    setting: informative
+    conjugation: te-form (～て)
+  - english: You really shouldn't have headed to that dangerous area alone.
+    japanese:
+      - そんな 危険 な 場所 {へ は 一人 で 行く} べき で は なかっ た よ。
+      - そんな 危険 な 場所 {へ は 一人 で いく} べき で は なかっ た よ。
+      - そんな 危険 な 場所 {へ は 一人 で 行く} べき じゃ なかっ た よ。
+      - そんな 危険 な 場所 {へ は 一人 で 行く} べき で は あり ませ ん でし た よ。
+      - そんな 危険 な 場所 {へ は 一人 で 行か ない} 方 が よかっ た よ。
+    english_literally: To such a dangerous place, by yourself, going, it should not have been.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 危険 な 場所 {に は 一人 で 行く} べき で は なかっ た よ。
+        english: You really shouldn't have gone to that dangerous area alone.
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction
+          taken.
+      - competing_japanese:
+          - そんな 危険 な 場所 へ と 一人 で {進ん で いく} べき で は なかっ た よ。
+        english: You really shouldn't have proceeded into that dangerous area alone.
+        hint: 「進んでいく」 emphasizes continuous progression into the area. We're looking for the initial act
+          of heading towards it.
+      - competing_japanese:
+          - そんな 危険 な 場所 へ と 一人 で {来る} べき で は なかっ た よ。
+        english: You really shouldn't have come to that dangerous area alone.
+        hint: 「来る」 implies movement towards the speaker's location or viewpoint. We're looking for movement
+          away from the speaker.
+      - competing_japanese:
+          - 危険 な 場所 で 何 か {し に 一人 で 行く} べき で は なかっ た よ。
+        english: You shouldn't have gone alone to that dangerous place to do something.
+        hint: This specifies the purpose for going. We're looking for a general statement of heading towards
+          a place.
+    scene: An older sibling scolding their younger sibling after they got into trouble.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    speaker_age: older
+    nuance: The use of 「べきではなかった」 indicates regret or a strong recommendation against an action that has
+      already occurred. The particle 「へ」 emphasizes the **direction** of going into the dangerous area,
+      rather than just the arrival there.
+  - english: Don't head into the forest after sunset!
+    japanese:
+      - 日 が 暮れ たら 森 {へ 行く} な！
+      - 日 が 暮れ たら 森 {へ いく} な！
+      - 日 が 暮れ たら 森 {へ 行く} ん じゃ ない！
+      - 日 が 暮れ たら 森 {へ 行き なさい} ませ ん！
+      - 日 が 暮れ たら 森 {へ 行っ て は いけ ませ ん}！
+    english_literally: When the sun sets, to the forest, do not go!
+    competing_grammar:
+      - competing_japanese:
+          - 日 が 暮れ たら 森 {に 行く} な！
+        english: Don't go to the forest after sunset!
+        hint: 「に」 emphasizes the destination itself. We're looking for emphasis on the journey or direction
+          into the forest.
+      - competing_japanese:
+          - 日 が 暮れ たら 森 へ {寄っ て 来る} な！
+        english: Don't come near the forest after sunset!
+        hint: 「寄ってくる」 implies drawing near or coming towards a point, often with the speaker's perspective.
+          We're looking for movement away from the speaker's safe location.
+      - competing_japanese:
+          - 日 が 暮れ たら 森 へ {入る} な！
+        english: Don't enter the forest after sunset!
+        hint: 「入る」 means to enter, focusing on crossing a boundary. We're looking for the act of beginning
+          to move towards a place.
+      - competing_japanese:
+          - 日 が 暮れ たら 森 へ {行か ない で ください}。
+        english: Please don't go to the forest after sunset.
+        hint: This is a polite negative request. We're looking for a strong, direct command or warning.
+    scene: A concerned parent warning their child about a local danger.
+    register: casual
+    setting: commanding
+    conjugation: imperative plain (～ろ/～え)
+    speaker_gender: female
+    speaker_age: older
+    nuance: The imperative negative form 「～な」 is a strong, direct command typically used by someone in
+      a position of authority or concern. 「へ 行く」 highlights the **act of moving into** the forest, emphasizing
+      the hazardous journey itself rather than just arriving at the destination.
+post_example_writeup: The examples illustrate how 「へいく」 is used in various contexts, from daily routines
+  to travel plans and requests for permission. The consistent emphasis on the 'heading towards' nuance,
+  rather than just arrival, distinguishes its usage from other particles.

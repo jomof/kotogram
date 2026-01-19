@@ -1,0 +1,227 @@
+grammar_point: いずれ (eventually・sooner or later)
+learn_before:
+  - Verb[ないで] (negative without doing)
+  - 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - いずれも (all or none)
+meaning: eventually, sooner or later, anyway, in any case
+pronunciation:
+  katakana: いずれ
+  romaji: izure
+formation:
+  いずれ + Verb: Indicates that something will eventually happen.
+  いずれ + Sentence: Used as an adverb to mean 'anyway' or 'in any case', often at the beginning of a sentence
+    or clause.
+jlpt: N3
+etymology: The word いずれ (izure) is thought to derive from いづれ (idure), an older form that originally meant
+  'which one (of two or more)' or 'where.' Over time, its meaning shifted from indicating a choice or
+  location to denoting an an unspecified future time or an inevitable outcome, retaining a sense of 'in
+  one way or another' or 'at some point.' This evolution highlights how words for choice or place can
+  develop temporal or modal meanings in Japanese.
+writeup: '`いずれ` is a versatile adverb in Japanese that can express several related concepts: ''''eventually,''''
+  ''''sooner or later,'''' ''''anyway,'''' or ''''in any case.'''' Its core nuance revolves around inevitability
+  or a future state that will certainly arrive, often without specifying an exact time. It''s important
+  to note that while `いずれ` can refer to a choice among possibilities in older or more formal contexts
+  (like `いずれの道も険しい` - ''''Both paths are difficult''''), its more common modern adverbial use, especially
+  for ''''eventually'''' or ''''anyway,'''' does not directly imply a choice but rather a definitive outcome.'
+false_friends:
+  - term: 結局
+    meaning: after all, in the end
+    kind: similar expression
+    nuance: While `結局` and `いずれ` both relate to outcomes, `結局` implies a conclusion or result reached
+      after a process, often with a sense of finality or resignation. `いずれ` simply points to an inevitable
+      future, without necessarily implying a long process or a specific conclusion, and without the nuance
+      of 'as it turned out.'
+    grammar_point: <suggest>:結局 (after all・in the end)
+  - term: そのうち
+    meaning: eventually, before long
+    kind: similar expression
+    nuance: Very close in meaning to `いずれ`. `そのうち` often implies 'in due course' or 'before long,' suggesting
+      something will happen relatively soon or naturally without specific effort, and it feels slightly
+      more casual. `いずれ` can convey a stronger sense of certainty or inevitability over a potentially
+      longer or more unspecified period.
+    grammar_point: そのうち (eventually・before long)
+  - term: いずれにしても
+    meaning: in any case, anyhow
+    kind: similar expression
+    nuance: This is a common fixed phrase that explicitly uses `いずれ` to express 'in any case' or 'anyhow,'
+      regardless of prior considerations. While `いずれ` itself can convey this meaning, `いずれにしても` is a set
+      conjunction for connecting ideas.
+    grammar_point: <strongly-suggest>:いずれにしても (in any case, anyhow)
+  - term: 最終的に
+    meaning: finally, ultimately
+    kind: similar expression
+    nuance: '`最終的に` clearly states a ''final'' outcome or step in a sequence. `いずれ` is less precise about
+      the timing and focuses more on the certainty of the future event.'
+    grammar_point: <strongly-suggest>:最終的に (finally)
+post_false_friends_writeup: While `いずれ` and `結局` both describe an outcome, `いずれ` indicates an inevitable
+  future occurrence, whereas `結局` describes a conclusion reached after a process, often with a sense of
+  'as it turned out.' `そのうち` is very similar to `いずれ` in meaning 'eventually,' but `そのうち` often feels
+  more casual and suggests a natural, perhaps sooner, occurrence, while `いずれ` can imply a more definitive,
+  albeit unspecified, future event. The phrase `いずれにしても` uses `いずれ` to mean 'in any case,' indicating
+  that the statement holds true regardless of other possibilities. `最終的に` refers to a definitive 'final'
+  stage.
+examples:
+  - english: Everyone will eventually understand this truth.
+    japanese:
+      - この 真実 は {いずれ} 誰 に で も 分かる だろう。
+      - この 真実 は {いずれ} 誰 に で も 分かる でしょう。
+    english_literally: This truth, eventually, to anyone, will become clear.
+    competing_grammar:
+      - competing_japanese:
+          - この 真実 は 結局 誰 に で も 分かる だろう。
+        english: This truth will, in the end, be understood by everyone.
+        hint: 「結局」 emphasizes the final outcome after a process, whereas 「いずれ」 points to an inevitable
+          future.
+    scene: A wise elder speaks to a group of young, confused students, trying to reassure them about a
+      complex concept.
+    register: semi-formal
+    setting: academic
+  - english: Don't worry, you'll sooner or later get used to living alone.
+    japanese:
+      - 心配 し ない で、一人暮らし に も {いずれ} 慣れる よ。
+      - 心配 し ない で、一人暮らし に も {いずれ} 慣れる でしょう。
+    english_literally: Don't worry, to living alone, eventually, you will get used to.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し ない で、一人暮らし に も その うち 慣れる よ。
+        english: Don't worry, you'll eventually get used to living alone.
+        hint: Both are similar, but そのうち often implies 'before long' and feels slightly more casual or
+          natural, whereas いずれ can imply a slightly longer or more certain inevitability.
+    scene: A supportive friend is comforting someone who has just started living by themselves and is
+      feeling lonely.
+    register: casual
+    setting: friendly
+  - english: Even if it takes time, the correct answer will eventually be found.
+    japanese:
+      - 時間 が かかっ て も、正しい 答え は {いずれ} 見つかる だろう。
+      - 時間 が かかっ て も、正しい 答え は {いずれ} 見つかる でしょう。
+    english_literally: Time taking even if, the correct answer, eventually, will be found.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 が かかっ て も、正しい 答え は 最終 的 に 見つかる だろう。
+        english: Even if it takes time, the correct answer will finally be found.
+        hint: 「最終的に」 implies a definite end point, whereas 「いずれ」 suggests an inevitable future without
+          a strict timeline.
+    scene: A researcher is struggling with a difficult problem but remains optimistic, talking to their
+      colleague.
+    register: formal
+    setting: academic
+  - english: I suppose anyway, I'll have to go and apologize properly.
+    japanese:
+      - '{いずれ} に せよ、ちゃんと 謝り に 行か なけれ ば なら ない だろう。'
+      - '{いずれ} に せよ、ちゃんと 謝り に 行か なけれ ば なり ませ ん でしょう。'
+    english_literally: Anyway, properly, to apologize, must go, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 結局、ちゃんと 謝り に 行か なけれ ば なら ない だろう。
+        english: After all, I'll have to go and apologize properly.
+        hint: 結局 emphasizes the conclusion reached after a process or events, 'as it turned out.' いずれ
+          in this context emphasizes 'regardless of other factors, this is what must happen.'
+      - competing_japanese:
+          - どちら に し て も、ちゃんと 謝り に 行か なけれ ば なら ない だろう。
+        english: In any case, I'll have to go and apologize properly.
+        hint: 「どちらにしても」 literally means 'in either case' and is a good alternative for 'anyway' or 'regardless.'
+    scene: Someone has had a misunderstanding with a friend and is reluctantly deciding to make amends.
+    register: casual
+    setting: reflective
+  - english: No matter how much you try to hide it, the truth will eventually come out.
+    japanese:
+      - いくら 隠そう と し て も、真実 は {いずれ} 明るみ に 出る もの だ。
+      - いくら 隠そう と し て も、真実 は {いずれ} 明るみ に 出る もの です。
+    english_literally: However much try to hide, truth, eventually, into light, come out, it is.
+    competing_grammar:
+      - competing_japanese:
+          - いくら 隠そう と し て も、真実 は いつ か 明るみ に 出る もの だ。
+        english: No matter how much you try to hide it, the truth will someday come out.
+        hint: 「いつか」 means 'someday' and suggests an indefinite future, but it lacks the stronger sense
+          of inevitability that 「いずれ」 carries.
+    scene: A detective tells a suspect that their secrets won't remain hidden forever.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+  - english: We'll have to decide eventually, so let's think about it carefully.
+    japanese:
+      - '{いずれ} 決め なけれ ば なら ない から、よく 考えよう。'
+      - '{いずれ} 決め なけれ ば なり ませ ん から、よく 考え ましょう。'
+    english_literally: Eventually, must decide, so, let's think well.
+    competing_grammar:
+      - competing_japanese:
+          - その うち 決め なけれ ば なら ない から、よく 考えよう。
+        english: We'll have to decide before long, so and let's think about it carefully.
+        hint: 「そのうち」 often implies a sooner or more natural timing, while 「いずれ」 emphasizes the inevitability
+          of the decision.
+    scene: A project manager addresses their team during a meeting about an upcoming deadline.
+    register: semi-formal
+    setting: professional
+    listener_gender: group
+  - english: Anyway, let's just try doing what we can now.
+    japanese:
+      - '{いずれ} に せよ、今 できる こと を やっ て みよう。'
+      - '{いずれ} に せよ、今 できる こと を やっ て み ましょう。'
+    english_literally: Anyway, now can do thing, let's try.
+    competing_grammar:
+      - competing_japanese:
+          - とにかく、今 できる こと を やっ て みよう。
+        english: Anyway, let's just try doing what we can now.
+        hint: 「とにかく」 is a stronger, more direct way to say 'anyway' or 'at any rate,' often implying urgency
+          or a decision to disregard less important factors. 「いずれにせよ」 is slightly more formal and encompassing.
+    scene: After a setback, a team leader encourages their members to focus on immediate actions.
+    register: semi-formal
+    setting: professional
+    listener_gender: group
+  - english: Her efforts will eventually bear fruit.
+    japanese:
+      - 彼女 の 努力 は {いずれ} 実 を 結ぶ だろう。
+      - 彼女 の 努力 は {いずれ} 実 を 結ぶ でしょう。
+    english_literally: Her efforts, eventually, fruit, will bear.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 努力 は 最終 的 に 実 を 結ぶ だろう。
+        english: Her efforts will finally bear fruit.
+        hint: 「最終的に」 indicates the culmination or last stage of a process, whereas 「いずれ」 simply states
+          the inevitable future outcome.
+    scene: A teacher comments on a diligent student's perseverance to a colleague.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: female
+  - english: Even if it's difficult now, you'll sooner or later understand its meaning.
+    japanese:
+      - 今 は 難しく て も、その 意味 は {いずれ} 分かる よ。
+      - 今 は 難しく て も、その 意味 は {いずれ} 分かる でしょう。
+    english_literally: Now difficult even if, that meaning, eventually, will understand.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は 難しく て も、その 意味 は その うち 分かる よ。
+        english: Even if it's difficult now, you'll eventually understand its meaning.
+        hint: 「そのうち」 often implies a sooner or more natural timing, while 「いずれ」 emphasizes the inevitability
+          of the decision.
+    scene: An older sibling encourages their younger sibling who is struggling with homework.
+    register: casual
+    setting: supportive
+    speaker_age: older
+    nuance: The use of `いずれ` here implies a natural progression of understanding with time, suggesting
+      patience. The `よ` particle at the end, coupled with the older speaker and casual register, adds
+      a gentle, reassuring tone. In the more polite `でしょう` version, the same nuance is conveyed in a more
+      universally polite manner.
+  - english: All countries will eventually need to cooperate on environmental issues.
+    japanese:
+      - 環境 問題 に つい て は、{いずれ} 全て の 国 が 協力 する 必要 が ある だろう。
+      - 環境 問題 に つい て は、{いずれ} 全て の 国 が 協力 する 必要 が ある でしょう。
+    english_literally: Regarding environmental issues, eventually, all countries, cooperate, need, probably.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 問題 に つい て は、最終 的 に 全て の 国 が 協力 する 必要 が ある だろう。
+        english: Regarding environmental issues, all countries will finally need to cooperate.
+        hint: 「最終的に」 suggests the end point of a development or negotiation, while 「いずれ」 emphasizes the
+          certainty of this need arising in the future.
+    scene: A diplomat gives a speech at an international conference.
+    register: formal
+    setting: professional
+post_example_writeup: As seen in the examples, `いずれ` can be used to describe future inevitability, ranging
+  from personal growth to global cooperation. It emphasizes certainty without specifying the exact time.
+  It can also serve as a conjunction to mean 'anyway' or 'in any case,' especially when moving to a conclusive
+  point or a necessary action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%84%E3%81%9A%E3%82%8C

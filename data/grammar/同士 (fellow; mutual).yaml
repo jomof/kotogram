@@ -1,0 +1,292 @@
+grammar_point: 同士 (fellow; mutual)
+learn_before:
+  - Verb[えば] (conditional)
+  - ちょっと (adverb)
+  - と同じ (exact sameness)
+  - な (prohibitive particle)
+  - に合わせる・に合う (match or fit)
+  - 合う (mutual action)
+  - 姿 (figure・appearance)
+  - 様子 (state・situation・appearance)
+  - 真上 (directly above)
+  - 背面 (back surface spatial)
+  - 色々 (various・a variety of)
+meaning: Fellow, With each other, Mutually, Between, Among, Together, With
+pronunciation:
+  katakana: ドウシ
+  romaji: doushi
+formation:
+  Noun + 同士: Indicates a mutual relationship or action between members of the same group.
+  Noun + 同士 + の + Noun: Indicates that the second noun is a group form of the first noun, emphasizing
+    the shared characteristic.
+jlpt: N3
+etymology: '「同士 (どうし)」 is composed of two kanji: 「同 (どう)」 meaning "same" or "similar," and 「士 (し)" originally
+  referring to a "samurai" or "gentleman," but now broadly used to denote a person, professional, or member
+  of a group. Combined, they form a term for people who share a common characteristic, status, or objective,
+  hence conveying a sense of fellowship or mutuality.'
+writeup: |-
+  「同士 (どうし)」 functions as a noun that can be used similarly to a suffix, conveying meanings such as 'fellow,' 'mutual,' or 'together.' It is typically affixed directly to a noun to denote a relationship or a shared attribute. The structure 「(Noun) + 同士 + の + (Noun)」 is also commonly employed, indicating that the second noun represents a collective form of the first, thereby emphasizing the shared characteristic. While 「同士」 is most frequently utilized to describe relationships among people or living beings, it can occasionally refer to inanimate objects, albeit less commonly. Its primary function is to highlight a shared type or relationship within a group.
+
+  For instance, 「友達同士 (tomodachi doushi)」 means 'friends with each other' or 'fellow friends', stressing the shared bond. This grammar point is versatile and can be used in various contexts to express solidarity, a mutual connection, or an interaction specifically between members of the same category.
+false_friends:
+  - term: 〜のうち(で)
+    meaning: Of the, Among(st)
+    kind: synonym
+    nuance: Unlike 「同士」, 「〜のうち(で)」 refers to selecting from a larger group rather than a mutual relationship
+      or shared characteristic within a group. It focuses on inclusion or selection from a set of items
+      or people, without implying active interaction or a common bond among them. For example, 「生徒のうちで」
+      (among the students) could mean selecting one student from a group, whereas 「生徒同士」 (among students)
+      suggests interaction or shared traits.
+    grammar_point: のうち(で) (within・among)
+  - term: のなかで
+    meaning: In, Among, Within
+    kind: synonym
+    nuance: Unlike 「同士」, 「のなかで」 indicates location or inclusion within a general group or space, not a
+      shared trait or mutual action among specific members. It describes physical or abstract placement,
+      rather than a reciprocal relationship or commonality between entities. For example, 「箱のなかで」 (inside
+      the box) refers to location, while 「友達のなかで」 (among friends) could simply mean being physically surrounded
+      by them, without implying a mutual action that 「友達同士」 would.
+    grammar_point: のなかで (in・among)
+  - term: と共に
+    meaning: Together with, at the same time as, as well as
+    kind: similar expression
+    nuance: 「同士」 emphasizes a shared status or group membership leading to mutual interaction or shared
+      characteristics. 「と共に」 indicates being together with someone or something, or performing an action
+      alongside them, but does not necessarily imply the same shared status or fellowship that 「同士」 does.
+      For example, 「家族と共に旅行する」 (travel with family) means traveling alongside them, whereas 「家族同士で話す」
+      (talk among family members) implies a conversation between family members, highlighting their shared
+      family status.
+    grammar_point: と共に (together with)
+post_false_friends_writeup: 「同士」 specifically highlights a shared attribute, status, or a mutual relationship
+  among entities of the same kind. In contrast, 「〜のうち(で)」 and 「のなかで」 primarily denote selection from or
+  inclusion within a larger group or space. Meanwhile, 「と共に」 simply indicates being together with someone
+  or something, or performing an action alongside them, without emphasizing a shared status or peer relationship.
+  Therefore, use 「同士」 when the emphasis is on a common bond, mutual interaction, or shared characteristic,
+  and opt for the other expressions when you need to specify a subset within a group, a location, or simply
+  being alongside something.
+examples:
+  - english: This is a discussion among doctors. Please refrain from entering if you are not a doctor.
+    japanese:
+      - これ は 医師 {同士} の 話し合い です。一般 の 方 は ご 遠慮 ください。
+      - これ は 医師 {同士} の 話し合い だ よ。一般 の 人 は 入ら ない で。
+    english_literally: This is doctors-fellow discussion. General people please refrain from entering.
+    competing_grammar:
+      - competing_japanese:
+          - これ は {医師 たち} の 話し合い です。
+        english: This is a discussion of doctors.
+        hint: 「医師たち」 simply pluralizes 'doctors' and doesn't emphasize the peer-to-peer nature or exclusivity
+          that 「医師同士」 conveys. We're looking for a term that specifically means 'among fellow doctors'.
+    scene: A private room in a hospital where medical professionals are having a sensitive discussion.
+    register: formal
+    setting: professional
+  - english: In our household, the parents often exchange opinions about the children.
+    japanese:
+      - 我が家 で は、親 {同士} が 子ども の こと で よく 意見 を 交換 し ます。
+      - 我が家 で は、親 {同士} が 子ども の こと で よく 意見 を 交換 する。
+      - 我が家 で は、親 {同士} が 子ども の こと で よく 意見 を 交換 する ん だ。
+    english_literally: In our household, parents-fellow regarding children often opinions exchange.
+    competing_grammar:
+      - competing_japanese:
+          - 我が家 で は、{親 たち} が 子ども の こと で よく 意見 を 交換 し ます。
+        english: In our household, the parents often exchange opinions about the children.
+        hint: 「親たち」 refers to parents as a general group, but 「親同士」 specifically highlights the mutual
+          exchange *between* them, as fellow parents in the same household. We're looking for an expression
+          that signifies 'between fellow parents'.
+    scene: A couple discussing parenting strategies at home.
+    register: semi-formal
+    setting: informative
+  - english: It seems she forgot a promise exchanged between old friends.
+    japanese:
+      - 彼女 は、昔 の 友人 {同士} で 交わし た 約束 を 忘れ て しまっ た らしい。
+      - 彼女 は、昔 の 友人 {同士} で 交わし た 約束 を 忘れ て しまっ た よう です。
+      - 彼女 は、昔 の 友達 {同士} で 交わし た 約束 を 忘れ ちゃっ た らしい。
+    english_literally: She, old friends-fellow exchanged promise forgot it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は、昔 の {友達 が し た 約束} を 忘れ て しまっ た らしい。
+        english: It seems she forgot a promise old friends made.
+        hint: 「昔の友達がした約束」 implies a promise made *by* old friends. 「友人同士」 emphasizes that the promise
+          was made *mutually* or *reciprocally* between them. We're looking for an expression that highlights
+          a shared or reciprocal action between friends.
+    scene: Reflecting on a past friendship and a forgotten promise.
+    register: semi-formal
+    setting: serious
+  - english: Since we are both adults, we should talk calmly.
+    japanese:
+      - 私 たち も 大人 {同士} な ん だ から、冷静 に 話し合う べき だ。
+      - 私 たち も 大人 {同士} です の で、冷静 に 話し合う べき です。
+      - 私 たち も 大人 {同士} な ん です から、冷静 に 話し合い ましょ う。
+      - 俺 たち も 大人 {同士} な ん だ から、冷静 に 話し合おう ぜ。
+    english_literally: We also adults-fellow because, calmly discuss should.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち も {大人 な ん だ から}、冷静 に 話し合う べき だ。
+        english: Since we are adults, we should talk calmly.
+        hint: 「私たちは大人なので」 states a simple fact, but 「大人同士」 reinforces the expectation that *both* parties
+          should behave in a mature way *because they share the same adult status*. We're looking for
+          an expression that emphasizes shared status as a basis for mutual behavior.
+    scene: Two people are arguing and one suggests a more mature approach.
+    register: casual
+    setting: persuasive
+  - english: Those two are truly alike. Their way of thinking is also identical.
+    japanese:
+      - あの 二人 は 本当 に 似 た もの {同士} だ ね。考え 方 も そっくり だ。
+      - あの 二人 は 本当 に 似 た もの {同士} です ね。考え 方 も そっくり です。
+      - あの 二人 は 本当 に 似 た もの {同士} だ ね。考え 方 も 全く 同じ だ。
+    english_literally: Those two truly similar-things-fellow are, isn't it? Way of thinking also identical.
+    competing_grammar:
+      - competing_japanese:
+          - あの 二人 は 本当 に {似 て いる} ね。考え 方 も そっくり だ。
+        english: Those two are truly similar. Their way of thinking is also identical.
+        hint: 「とても似ている」 just means 'very similar'. 「似たもの同士」 is an idiomatic expression that means 'birds
+          of a feather' or 'two of a kind', emphasizing a deep, inherent similarity or shared nature.
+          We're looking for a phrase that implies a strong, intrinsic resemblance between two people.
+    scene: Two friends are observing a couple or two individuals who share many characteristics.
+    register: casual
+    setting: friendly
+  - english: That's a problem between siblings, isn't it? Don't drag me into it.
+    japanese:
+      - それ は 兄弟 {同士} の 問題 でしょ？私 を 巻き込ま ない で よ。
+      - それ は 兄弟 {同士} の 問題 でしょ う？私 を 巻き込ま ない で ください。
+      - それ は 兄弟 {同士} の 問題 だろ？俺 を 巻き込む な よ。
+    english_literally: That is siblings-fellow problem, isn't it? Me don't involve.
+    competing_grammar:
+      - competing_japanese:
+          - それ は {兄弟 の 間 の} 問題 でしょ？私 を 巻き込ま ない で よ。
+        english: That's a problem between siblings, isn't it? Don't drag me into it.
+        hint: 「兄弟の間」 simply means 'between siblings'. 「兄弟同士」 more strongly implies that the problem is
+          *internal* to the sibling relationship, and should be resolved *mutually* by them, rather than
+          involving outsiders. We're looking for a way to say 'a problem that is specifically *among*
+          siblings as peers'.
+    scene: Someone is trying to avoid getting involved in a family dispute.
+    register: casual
+    setting: serious
+  - english: A match between professional sports players is impressive to watch.
+    japanese:
+      - プロ の スポーツ 選手 {同士} の 戦い は、見応え が ある。
+      - プロ の スポーツ 選手 {同士} の 戦い は、見応え が あり ます。
+      - プロ の スポーツ 選手 {同士} の 試合 は、非常 に 見応え が ある。
+    english_literally: Professional sports players-fellow match, impressive to watch.
+    competing_grammar:
+      - competing_japanese:
+          - プロ の {スポーツ 選手 たち} の 戦い は、見応え が ある。
+        english: A match of professional sports players is impressive to watch.
+        hint: 「プロのスポーツ選手たち」 refers to a group of players. 「スポーツ選手同士」 specifically emphasizes a direct
+          competition or interaction *between* fellow professional athletes. We're looking for an expression
+          that highlights a reciprocal match among peers of the same professional standing.
+    scene: Discussing the entertainment value of high-level competitive games.
+    register: semi-formal
+    setting: informative
+  - english: I enjoy watching cats play with each other.
+    japanese:
+      - 猫 {同士} が じゃれ 合う 姿 は 見 て い て 楽しい。
+      - 猫 {同士} が じゃれ 合う 姿 は 見 て い て 楽しい です。
+      - 猫 {同士} が 遊び 合う 様子 は、見 て い て 楽しい です。
+    english_literally: Cats-fellow playing sight watching is fun.
+    competing_grammar:
+      - competing_japanese:
+          - '{猫 たち が じゃれ 合う} 姿 は 見 て い て 楽しい。'
+        english: I enjoy watching cats play with each other.
+        hint: 「猫たちがじゃれ合う」 describes cats playing. 「猫同士」 specifically indicates that the playful interaction
+          is happening *between* the cats themselves, highlighting their mutual engagement. We're looking
+          for a way to emphasize reciprocal play among multiple cats.
+    scene: Observing pets.
+    register: casual
+    setting: friendly
+  - english: Now, cooperation between Japanese companies is becoming more important.
+    japanese:
+      - 今、日本 の 会社 {同士} が 助け合う こと が より 重要 に なっ て いる。
+      - 今、日本 の 会社 {同士} が 助け合う こと が より 重要 に なっ て い ます。
+      - 今、日本 企業 {同士} が 助け合う こと が より 重要 に なっ て いる。
+    english_literally: Now, Japanese companies-fellow helping each other becoming more important.
+    competing_grammar:
+      - competing_japanese:
+          - 今、日本 {企業 間 の 協力} が より 重要 に なっ て いる。
+        english: Now, cooperation among Japanese companies is becoming more important.
+        hint: 「日本企業間の協力」 is a general term for cooperation between Japanese companies. 「日本の会社同士」 specifically
+          emphasizes the collaboration *among fellow* Japanese companies, stressing their shared nationality
+          and peer relationship in this context. We're looking for an expression that highlights mutual
+          assistance among companies of the same origin.
+    scene: A business analyst presenting current economic trends.
+    register: formal
+    setting: informative
+  - english: Those of us who failed the exam, let's console each other, shall we?
+    japanese:
+      - 試験 に 落ち た 者 {同士}、慰め合おう じゃ ない か。
+      - 試験 に 落ち た 者 {同士}、慰め合い ましょ う。
+      - 試験 に 落ち た 者 {同士} です から、お 互い 慰め合え たら いい です ね。
+    english_literally: Exam failed ones-fellow, console each other, shall we?
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 落ち た {人 たち}、慰め合おう じゃ ない か。
+        english: Those people who failed the exam, let's console each other, shall_we?
+        hint: 「試験に落ちた人たち」 simply refers to the group of people who failed. 「落ちた者同士」 creates a stronger
+          sense of shared experience and solidarity among those who share the common (negative) outcome.
+          We're looking for an expression that conveys 'fellow sufferers' or 'those who share the same
+          unfortunate fate'.
+    scene: After receiving bad exam results, a student tries to cheer up fellow disappointed students.
+    register: casual
+    setting: friendly
+  - english: '''Yabai'' is an informal expression used among young people.'
+    japanese:
+      - 『やばい』は、若者 {同士} で 使わ れる くだけ た 表現 です。
+      - 『やばい』は、若者 {同士} が 使う くだけ た 表現 だ よ。
+    english_literally: '''Yabai'' is young people-fellow by used informal expression.'
+    competing_grammar:
+      - competing_japanese:
+          - 『やばい』は、{若者 の 間 で} 使わ れる くだけ た 表現 です。
+        english: '''Yabai'' is an informal expression used among young people.'
+        hint: 「若者の間で」 is a general way to say 'among young people'. 「若者同士」 specifies that the expression
+          is used *within* the group of young people, implying a shared linguistic code or cultural norm
+          unique to that demographic. We're looking for a phrase that emphasizes usage *among peers* within
+          a specific age group.
+    scene: A Japanese teacher explaining slang to foreign students.
+    register: formal
+    setting: instructional
+  - english: The pieces of this puzzle fit together perfectly.
+    japanese:
+      - この パズル の ピース {同士} は ぴったり 合い ます。
+      - この パズル の ピース {同士} は ぴったり 合う。
+      - この パズル の ピース {同士} は 実 に ぴったり と 合い ます。
+    english_literally: This puzzle's pieces-fellow fit perfectly.
+    competing_grammar:
+      - competing_japanese:
+          - この パズル の {ピース が} ぴったり 合い ます。
+        english: The pieces of this puzzle fit together perfectly.
+        hint: 「このパズルのピースが合う」 is a simple statement that the pieces fit. 「ピース同士」 emphasizes that the fitting
+          occurs *between* the pieces themselves, highlighting their complementary nature and mutual interaction.
+          We're looking for an expression that specifically means 'the pieces *with each other* fit'.
+    scene: Explaining how a puzzle works.
+    register: semi-formal
+    setting: instructional
+  - english: We've just met today, but I'm glad we could talk about many things.
+    japanese:
+      - 今日 会っ た ばかり の 者 {同士} だ けど、色々 話せ て 嬉しい な。
+      - 今日 会っ た ばかり の 者 {同士} です が、色々 お 話し でき て 嬉しい です。
+      - 今日 会っ た ばかり の 者 {同士} だ けれど も、色々 話せ て よかっ た。
+    english_literally: Today met just-ones-fellow but, various things talk could glad, huh.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 初めて {会っ た 人} だ けど、色々 話せ て 嬉しい な。
+        english: We've just met today, but I'm glad we could talk about many things.
+        hint: 「今日初めて会った人」 refers to a single person. 「会ったばかりの者同士」 emphasizes the *mutual* status of having
+          just met, creating a sense of shared newness and common ground between both parties. We're looking
+          for a phrase that highlights a shared experience of meeting for the first time *between two
+          people*.
+    scene: End of a first casual meeting or date.
+    register: casual
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「会ったばかりの者同士」 emphasizes the shared experience of having just met, creating a sense
+      of immediate connection. The sentence ends with 「嬉しいな」, which, when spoken by a younger male to
+      a female, conveys a gentle and approachable gladness, hinting at a desire for continued interaction.
+      This is a common phrase to conclude a friendly or burgeoning romantic encounter.
+post_example_writeup: As you can see from these examples, 「同士」 adds a layer of nuance that emphasizes
+  shared attributes, mutual relationships, or reciprocal actions within a group. It's not just about pluralizing
+  or indicating a general group, but rather highlighting the commonality and interaction among peers.
+  This makes it a powerful tool for expressing solidarity, peer-to-peer discussions, or even conflicts
+  that are internal to a specific category of people or things.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/同士

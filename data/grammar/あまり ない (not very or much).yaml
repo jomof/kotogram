@@ -1,0 +1,287 @@
+grammar_point: あまり ない (not very or much)
+learn_before:
+  - Verb[ません] (polite negative)
+meaning: not very or much
+pronunciation:
+  katakana: アマリ ナイ
+  romaji: amari nai
+formation:
+  Adverb + Negative Verb/Adjective/Noun: Indicates a low degree or insufficient amount of something. Used
+    to negate or lessen the extent of an action, state, or quality.
+jlpt: N5
+etymology: 「あまり」 originates from 「余り」 (あまり), meaning "remainder," "excess," or "more than." In its adverbial
+  usage, especially with negation, it came to mean "not much," "not very," or "not exceeding (a certain
+  level/expectation)." The core idea of "remainder" or "excess" then applied to the *lack* of something
+  significant when used in a negative context. For example, if there's "not much excess" (余りがない), it implies
+  a scarcity. Over time, this evolved to denote a modest degree of something, particularly when followed
+  by a negative.
+writeup: 'The phrase 「あまり〜ない」 (amari ~ nai) is a fundamental Japanese expression used to indicate that
+  something is "not very," "not much," or "not really" the case. It softens a negative statement, suggesting
+  a degree of insufficiency rather than an absolute absence or strong negation. This construction typically
+  pairs the adverb 「あまり」 with the plain negative form of a verb, an い-adjective, or a な-adjective/noun
+  followed by 「ではない」 or 「じゃない」. 「あまり」 functions as a degree adverb, modifying the extent of the negation.
+  It''s crucial to remember that 「あまり」 almost exclusively appears with negative predicates. Using it with
+  a positive predicate (e.g., 「あまり好きだ」) is generally incorrect and unnatural, though 「あまりにも」 can sometimes
+  appear with positive forms to mean "too much." Consider the nuance: if you say 「あまり食べない」 (amari tabenai),
+  it means "I don''t eat much," implying you eat some, but not a lot. This differs from 「全く食べない」 (mattaku
+  tabenai), which means "I don''t eat at all." The choice between 「あまり〜ない」 and stronger negations depends
+  on the precise degree of negation you wish to convey. It often expresses a feeling of things not quite
+  meeting expectations or being less than what one might desire.'
+false_friends:
+  - term: 全く〜ない (mattaku ~ nai)
+    meaning: not at all
+    kind: similar expression
+    nuance: 「全く〜ない」 expresses a complete and absolute negation, meaning "not at all." Unlike 「あまり〜ない」,
+      which indicates a lesser degree or partial absence, 「全く〜ない」 leaves no room for any presence or occurrence
+      of the negated item or action.
+    grammar_point: 全く〜ない (not at all)
+  - term: 少しも〜ない (sukoshimo ~ nai)
+    meaning: not even a little
+    kind: similar expression
+    nuance: 「少しも〜ない」 also indicates an absolute negation, similar to 「全く〜ない」, but often emphasizes the
+      *lack* of even the slightest amount or degree. It can convey a stronger sense of surprise or disappointment
+      about the complete absence.
+    grammar_point: すこしも〜ない (not even a little)
+  - term: ほとんど〜ない (hotondo ~ nai)
+    meaning: hardly ever / almost never
+    kind: similar expression
+    nuance: 「ほとんど〜ない」 means "hardly ever" or "almost not." It's closer in meaning to 「あまり〜ない」 in that
+      it implies a very low frequency or degree, but it usually suggests that the action/state happens
+      so rarely that it's almost non-existent. 「あまり〜ない」 can still imply a noticeable but small amount,
+      while 「ほとんど〜ない」 pushes it closer to zero.
+    grammar_point: ほとんど (almost all or hardly any)
+  - term: あまりにも (amari nimo)
+    meaning: too much; excessively
+    kind: similar expression
+    nuance: While it uses 「あまり」, 「あまりにも」 is an intensifier used with *positive* statements (or negative
+      statements where "too much" of a negative quality is expressed). It means "too much" or "excessively,"
+      often carrying a sense of being overwhelmed or that something is beyond a reasonable degree. This
+      is the opposite of the 「あまり〜ない」 construction.
+    grammar_point: あまりに (excessively・too much)
+post_false_friends_writeup: When distinguishing between 「あまり〜ない」, 「全く〜ない」, 「少しも〜ない」, and 「ほとんど〜ない」, remember
+  that 「あまり〜ない」 implies "not much," allowing for a small amount or occasional occurrence. In contrast,
+  「全く〜ない」 and 「少しも〜ない」 convey an absolute "not at all," with the latter adding emphasis to the complete
+  lack. 「ほとんど〜ない」 sits between 「あまり〜ない」 and absolute negation, meaning "hardly ever" or "almost not,"
+  suggesting something is very close to non-existent. Lastly, 「あまりにも」 stands apart as an intensifier for
+  positive situations, meaning "excessively."
+examples:
+  - english: I don't eat much meat.
+    japanese:
+      - 私 は 肉 を {あまり 食べ ませ ん}。
+      - 私、肉 {あまり 食べ ない} な。
+      - 肉 は {あまり 食わ ない}。
+    english_literally: As for me, meat I don't eat much.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 肉 を {全く 食べ ませ ん}。
+        english: I don't eat any meat at all.
+        hint: 「全く食べません」 indicates absolute non-consumption. We're looking for an expression that suggests
+          eating *some* but *not much*.
+      - competing_japanese:
+          - 私 は 肉 を {少し も 食べ ませ ん}。
+        english: I don't eat even a little bit of meat.
+        hint: 「少しも食べません」 implies eating not even the slightest amount. We're looking for a softer negation.
+    scene: A person explaining their dietary habits.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+    nuance: 「あまり食べません」 expresses that the speaker consumes meat, but not frequently or in large quantities.
+      This is a common, polite way to state a moderate eating habit.
+  - english: This movie wasn't very interesting.
+    japanese:
+      - この 映画 は {あまり 面白く なかっ た} です。
+      - この 映画、{あまり 面白く なかっ た} ね。
+      - この 映画、{あんま 面白く なかっ た}。
+    english_literally: This movie, it wasn't very interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 映画 は {全く 面白く なかっ た} です。
+        english: This movie wasn't interesting at all.
+        hint: 「全く面白くなかった」 means it had zero interesting elements. We need to express that it was only
+          *not very* interesting.
+    scene: Friends discussing a movie they watched.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    nuance: 「あまり面白くなかった」 implies that it had some interesting parts, but overall it didn't meet expectations.
+      The past tense shows a concluded judgment.
+  - english: He isn't very good at singing.
+    japanese:
+      - 彼 は 歌 が {あまり 上手 じゃ ない} です。
+      - 彼 は 歌 が {あまり 上手 じゃ ない}。
+      - 彼、歌 が {あんまり 上手 じゃ ない} ね。
+    english_literally: As for him, singing he isn't very good at.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 歌 が {全然 上手 じゃ ない} です。
+        english: He is not good at singing at all.
+        hint: 「全然上手じゃない」 suggests a complete lack of skill. We want to say he's just *not very* good.
+    scene: Two friends gossiping about a mutual acquaintance.
+    register: shitashii kuchō (intimate)
+    setting: casual slang
+    conjugation: negative plain (～ない)
+    nuance: 「あまり上手じゃない」 indicates a moderate level of skill, falling short of "good." The use of 「上手じゃない」
+      with 「あまり」 is typical for expressing moderate inability.
+  - english: I don't go out much on weekends.
+    japanese:
+      - 週末 は {あまり 出かけ ませ ん}。
+      - 週末 は {あまり 出かけ ない}。
+      - 週末 は {あんまり 出かけ ない} ん だ。
+    english_literally: Weekends, I don't go out much.
+    competing_grammar:
+      - competing_japanese:
+          - 週末 は {ほとんど 出かけ ませ ん}。
+        english: I hardly ever go out on weekends.
+        hint: 「ほとんど出かけません」 implies going out very rarely, almost never. We're looking for a statement
+          that she calls, but not often.
+    scene: A student talking about their weekend routine.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative non-past polite (～ません)
+    nuance: 「あまり出かけません」 suggests the speaker does go out sometimes, but their outings are infrequent.
+      It conveys a laid-back lifestyle.
+  - english: That story isn't much of a secret.
+    japanese:
+      - その 話 は {あまり 秘密 じゃ ない}。
+      - その 話 は {あまり 秘密 で は ない} です。
+      - あれ、{あんまり 秘密 じゃ ない} よ。
+    english_literally: That story, it isn't much secret.
+    competing_grammar:
+      - competing_japanese:
+          - その 話 は {全く 秘密 じゃ ない}。
+        english: That story is not a secret at all.
+        hint: 「全く秘密じゃない」 would mean there's absolutely no secrecy. We're looking for a statement that
+          implies it's not a *big* secret, but still somewhat private.
+    scene: Two colleagues discussing a piece of office gossip.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    nuance: 「あまり秘密じゃない」 means it's not a deeply kept secret, perhaps common knowledge. It softens the
+      idea of "not a secret."
+  - english: The weather wasn't very good yesterday.
+    japanese:
+      - 昨日 は 天気 が {あまり 良く なかっ た}。
+      - 昨日 は 天気 が {あまり 良く なかっ た} です。
+      - 昨日、天気 {あんまり 良く なかっ た} ね。
+    english_literally: Yesterday, weather it wasn't very good.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 天気 が {全然 良く なかっ た}。
+        english: The weather was not good at all yesterday.
+        hint: 「全然良くなかった」 implies the weather was completely bad. We're looking for a milder statement
+          that it was just *not very* good.
+    scene: Someone commenting on the weather.
+    register: casual
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    nuance: 「あまり良くなかった」 indicates the weather wasn't terrible, but it wasn't ideal either. A mild complaint.
+  - english: I don't really feel like eating right now.
+    japanese:
+      - 今 は {あまり 食べる 気 が し ない}。
+      - 今 は {あまり 食べる 気 が し ませ ん}。
+      - 今、{あんまり 食べる 気 し ない} な。
+    english_literally: Now, I don't really feel like eating.
+    competing_grammar:
+      - competing_japanese:
+          - 今 は {全く 食べる 気 が し ない}。
+        english: I don't feel like eating at all right now.
+        hint: 「全く食べる気がしない」 suggests a complete lack of desire to eat. We're looking for a slightly softer
+          expression, meaning "not really feeling like it."
+    scene: A person feeling unwell or tired.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    nuance: 「あまり食べる気がしない」 expresses a lack of appetite, but not a complete aversion. The nuance is a gentle
+      disinterest rather than a strong refusal.
+  - english: I don't really understand what he's saying.
+    japanese:
+      - 彼 の 言っ て いる こと が {あまり 分から ない}。
+      - 彼 の 言っ て いる こと が {あまり 分かり ませ ん}。
+      - 言っ てる こと、{あんま 分かん ない}。
+    english_literally: What he is saying, I don't really understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 言っ て いる こと が {全く 分から ない}。
+        english: I don't understand what he's saying at all.
+        hint: 「全く分からない」 implies zero comprehension. We want to say the understanding is partial or incomplete.
+    scene: A student struggling with a lecture.
+    register: casual
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    nuance: 「あまり分からない」 means the understanding is partial or incomplete, not entirely absent. It's a common
+      expression of mild confusion.
+  - english: I can't really see anything from here.
+    japanese:
+      - ここ から は {あまり 見え ない}。
+      - ここ から は {あまり 見え ませ ん}。
+      - ここ から じゃ、{あんまり 見え ない} ね。
+    english_literally: From here, I can't really see.
+    competing_grammar:
+      - competing_japanese:
+          - ここ から は {全く 見え ない}。
+        english: I can't see anything at all from here.
+        hint: 「全く見えない」 means absolute invisibility. We're looking for limited visibility, not complete.
+    scene: Two people trying to watch something from a distance.
+    register: casual
+    setting: informative
+    conjugation: potential (～られる/～える)
+    nuance: 「あまり見えない」 implies limited visibility, not complete blindness. There might be some visual information,
+      but it's insufficient.
+  - english: I can't speak Japanese very well.
+    japanese:
+      - 日本 語 が {あまり 話せ ませ ん}。
+      - 日本 語 が {あまり 話せ ない} ん です。
+      - 日本 語、{あんまり 話せ ない} ん だ。
+    english_literally: Japanese, I can't speak much.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 が {全く 話せ ませ ん}。
+        english: I can't speak Japanese at all.
+        hint: 「全く話せません」 states zero ability. We are looking for an expression that implies some limited
+          ability.
+    scene: A foreigner introducing themselves in Japan.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: potential (～られる/～える)
+    nuance: 「あまり話せません」 indicates a limited ability, allowing for some basic communication, as opposed
+      to speaking "no Japanese at all." This is a humble and common self-assessment by language learners.
+  - english: She doesn't call much.
+    japanese:
+      - 彼女 は {あまり 電話 を かけ ませ ん}。
+      - 彼女、{あまり 電話 かけ ない} ね。
+      - 彼女 って、{あんま 電話 かけ ない} よ。
+    english_literally: As for her, she doesn't call much.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {ほとんど 電話 を かけ ませ ん}。
+        english: She hardly ever calls.
+        hint: 「ほとんど電話をかけません」 means she calls extremely rarely, almost never. We're looking for a statement
+          that she calls, but not often.
+    scene: Friends discussing a friend's communication habits.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative non-past polite (～ません)
+    nuance: 「あまり電話をかけません」 suggests that she calls occasionally but not frequently. It's a common observation
+      about someone's communication habits.
+  - english: I wasn't really happy about that.
+    japanese:
+      - それ は {あまり 嬉しく なかっ た} です。
+      - それ は {あまり 嬉しく なかっ た}。
+      - あれ、{あんまり 嬉しく なかっ た} ん だ。
+    english_literally: That, it wasn't very happy.
+    competing_grammar:
+      - competing_japanese:
+          - それ は {全く 嬉しく なかっ た} です。
+        english: I wasn't happy at all about that.
+        hint: 「全く嬉しくなかった」 indicates complete absence of happiness. We're looking for a milder statement,
+          implying some happiness but not much.
+    scene: Someone reflecting on a past event with mild disappointment.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    nuance: 「あまり嬉しくなかった」 means the speaker wasn't entirely pleased, hinting at some dissatisfaction or
+      a subdued reaction. It's a mild way to express disappointment without being overly negative.
+post_example_writeup: As these examples demonstrate, 「あまり〜ない」 is a versatile phrase for expressing a moderate
+  degree of negation. It allows for a nuanced expression of "not very" or "not much," making it distinct
+  from more absolute negative constructions. The specific conjugation of the verb or adjective will follow
+  standard Japanese grammar rules for negation and tense, allowing 「あまり」 to modify various types of predicates.

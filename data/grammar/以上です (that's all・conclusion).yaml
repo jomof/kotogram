@@ -1,0 +1,262 @@
+grammar_point: 以上です (that's all・conclusion)
+learn_before:
+  - 以上 (more than or equal to・numerical)
+meaning: more than; equal to or greater than; above
+pronunciation:
+  katakana: イジョウ
+  romaji: ijou
+formation:
+  Noun + 以上: Indicates 'more than' a certain noun or level.
+  Number + 以上: Indicates 'equal to or greater than' a specific number or quantity.
+  Verb[dictionary form] + 以上: Indicates 'once a certain condition or action is met, then...'
+jlpt: N3
+etymology: 'The term 「以上」 (いじょう) is composed of two kanji: 「以」 (い), meaning "by means of, within, according
+  to," and 「上」 (じょう), meaning "above, upon." Historically, this combination conveyed the idea of "what
+  is above (this point)" or "starting from and including this point upwards." This linguistic origin directly
+  supports its modern meanings of "equal to or greater than," "more than," or "above a certain standard/level."
+  It precisely defines a boundary from which something extends upwards, whether in quantity, quality,
+  or condition.'
+writeup: |-
+  The Japanese grammar point 「以上」 (いじょう) is primarily used to express "more than," "equal to or greater than," or "above" a certain quantity, level, or condition. It sets a lower limit, meaning the specified value or condition is the minimum, and anything beyond that is included.
+
+  When used with numbers or quantities, 「以上」 means "that number or more" (e.g., ５０歳以上 - 50 years old or older). It inherently includes the specified number. This is a crucial distinction when compared to similar expressions that strictly mean "greater than."
+
+  Beyond numerical contexts, 「以上」 can also be appended to nouns or verb dictionary forms to indicate a condition or standard. For example, 「プロ以上」 (puro ijou) implies "beyond the level of a professional" or "more than a professional." When attached to a verb's plain form, it can mean "now that (a certain condition is met)" or "since (something is the case), therefore...." In this usage, it often implies a logical consequence or a sense of responsibility.
+
+  Understanding 「以上」 is essential for comprehending various formal and quantitative expressions in Japanese, as it precisely defines thresholds and conditions. Its application ranges from describing age and weight limits to setting performance standards or logical deductions.
+false_friends:
+  - term: 以下 (below/less than or equal to)
+    meaning: less than or equal to; below
+    kind: antonym
+    nuance: 「以下」 is the direct opposite of 「以上」. While 「以上」 includes the specified value and everything
+      above it, 「以下」 includes the specified value and everything below it.
+    grammar_point: 〜以下 (less than or equal to・the following)
+  - term: 未満 (less than)
+    meaning: less than; not reaching
+    kind: similar expression
+    nuance: Unlike 「以上」 which includes the specified number, 「未満」 means strictly "less than" and does
+      not include the number itself. For example, ５０歳以上 means 50 or older, but ５０歳未満 means strictly younger
+      than 50.
+    grammar_point: 未満 (strictly less than)
+  - term: 超 (over/exceeding)
+    meaning: exceeding; over; beyond
+    kind: similar expression
+    nuance: 「超」 typically implies strictly "exceeding" the number, similar to "over" in English, and often
+      has a nuance of surpassing. While 「以上」 includes the boundary, 「超」 focuses on being beyond it. For
+      example, ５０度以上 means 50 degrees or more, but ５０度超 means strictly more than 50 degrees.
+    grammar_point: <suggest>:〜超 (exceeding)
+  - term: 以来 (since)
+    meaning: since; ever since
+    kind: often confused with
+    nuance: Despite sharing the kanji 「以」, 「以来」 (いらい) refers specifically to a time period starting from
+      a past event and continuing to the present. It has no relation to quantity or a 'more than' meaning,
+      making it a common source of confusion due to visual similarity.
+    grammar_point: 以来 (since・ever since)
+post_false_friends_writeup: When distinguishing 「以上」 from 「以下」, remember that 「上」 means "above" and 「下」
+  means "below." The key difference between 「以上」 (X or more) and 「未満」 (strictly less than X) or 「超」 (strictly
+  more than X) lies in whether the boundary number is included. 「以上」 always includes the boundary, making
+  it inclusive.
+examples:
+  - english: To become a legal adult in Japan, you must be 18 years old or older.
+    japanese:
+      - 日本 で は、成人 に なる に は 18 歳 {以上} で なけれ ば なり ませ ん。
+      - 日本 に おい て は、成人 は 18 歳 {以上} と 定め られ て い ます。
+      - 日本 で は、成人 に なる に は 18 歳 {以上} が 義務 付け られ て い ます。
+    english_literally: In Japan, to become an adult, must be 18 years old or above.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 で は、成人 に なる に は 18 歳 未満 で なけれ ば なり ませ ん。
+        english: In Japan, to become an adult, you must be strictly younger than 18.
+        hint: The grammar point means 'equal to or greater than'. We're looking for an age requirement
+          that includes 18.
+    scene: Discussing legal age requirements.
+    register: formal
+    setting: informative
+  - english: You need to submit 20 reports or more by tomorrow.
+    japanese:
+      - 明日 まで に レポート を 20 枚 {以上} 提出 する 必要 が あり ます。
+      - 明日 まで に レポート を 20 枚 {以上} 提出 し なけれ ば なり ませ ん。
+      - 明日 まで に レポート は 20 枚 {以上} が 必要 と なり ます。
+    english_literally: By tomorrow, reports 20 sheets or more to submit necessity there is.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 まで に レポート を 20 枚 未満 提出 する 必要 が あり ます。
+        english: You need to submit strictly less than 20 reports by tomorrow.
+        hint: The instruction is to submit '20 or more' reports. We're looking for a minimum quantity.
+      - competing_japanese:
+          - 明日 まで に レポート を 20 枚 以下 提出 する 必要 が あり ます。
+        english: You need to submit 20 reports or less by tomorrow.
+        hint: The instruction is '20 or more', not '20 or less'. We're looking for a minimum quantity.
+    scene: A manager setting a deadline for a junior employee.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「以上」 with a quantity like 「20枚」 (20 sheets) clearly sets a minimum threshold for
+      the submission, indicating that 20 is the floor, and anything above is also acceptable. The formality
+      of 「提出する 必要 が あります」 suits the professional, hierarchical setting.
+  - english: This product is designed for professionals and those of a higher level.
+    japanese:
+      - この 製品 は プロ {以上} の 方 向け に 設計 さ れ て い ます。
+      - この 製品 は プロ {以上} の 方 を 対象 に 設計 さ れ て い ます。
+      - 本 製品 は プロ {以上} の ユーザー 様 向け に 作ら れ て い ます。
+    english_literally: This product for professionals or higher people towards designed is.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 は プロ 以下 の 方 向け に 設計 さ れ て い ます。
+        english: This product is designed for professionals and below.
+        hint: The product is for high-level users. We're looking for 'professional or above'.
+    scene: A product launch presentation.
+    register: semi-formal
+    setting: informative
+  - english: Since I've said it, I can't take it back.
+    japanese:
+      - 言っ て しまっ た {以上}、もう 後 に は 引け ない。
+      - 言っ て しまっ た {以上} は、もう 後 に は 引け ませ ん。
+      - 一 度 言っ て しまっ た {以上} は、もう 引き返せ ませ ん。
+    english_literally: Having said it, already behind cannot pull.
+    competing_grammar:
+      - competing_japanese:
+          - 言っ て しまっ た 後 で、もう 後 に は 引け ない。
+        english: After having said it, I can't take it back.
+        hint: The grammar point implies a logical consequence of an action, not just a temporal sequence.
+          We're looking for 'since/now that'.
+    scene: Someone reflecting on an irreversible statement.
+    register: casual
+    setting: reflective
+  - english: The temperature must be 25 degrees Celsius or more for the experiment.
+    japanese:
+      - 実験 の ため に は 気温 が 摂氏 25 度 {以上} で なけれ ば なり ませ ん。
+      - 実験 に は 気温 が 摂氏 25 度 {以上} 必要 です。
+      - 実験 条件 と し て 気温 は 摂氏 25 度 {以上} が 求め られ ます。
+    english_literally: For the experiment, temperature Celsius 25 degrees or more must be.
+    competing_grammar:
+      - competing_japanese:
+          - 実験 の ため に は 気温 が 摂氏 25 度 未満 で なけれ ば なり ませ ん。
+        english: For the experiment, the temperature must be strictly less than 25 degrees Celsius.
+        hint: The requirement is a minimum temperature of 25 degrees. We're looking for '25 or higher'.
+    scene: A lab technician explaining experimental conditions.
+    register: formal
+    setting: technical
+  - english: Given that he is a team leader, he should take responsibility.
+    japanese:
+      - チーム リーダー で ある {以上}、彼 が 責任 を 取る べき だ。
+      - チーム リーダー で ある {以上}、彼 が 責任 を 負う べき です。
+      - チーム リーダー の 立場 で ある {以上}、彼 が 責任 を 果たす べき です。
+    english_literally: Team leader being, he responsibility should take.
+    competing_grammar:
+      - competing_japanese:
+          - チーム リーダー だ から、彼 が 責任 を 取る べき だ。
+        english: Because he is a team leader, he should take responsibility.
+        hint: The grammar point implies a logical consequence or duty given a certain status, not just
+          a simple reason. We're looking for 'since/now that'.
+    scene: Colleagues discussing accountability in a project.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: Using 「以上」 after 「チームリーダー で ある」 emphasizes that being a team leader inherently carries the
+      responsibility to take action. It highlights a logical and unavoidable consequence of his position.
+      The casual tone of 「べき だ」 makes it suitable for a conversation between colleagues, implying a shared
+      understanding of roles.
+  - english: This elevator can hold 10 people or more.
+    japanese:
+      - この エレベーター は 10 人 {以上} 乗れ ます。
+      - この エレベーター は 10 名 {以上} ご 利用 いただけ ます。
+      - 定員 10 名 {以上} の エレベーター です。
+    english_literally: This elevator 10 people or more can ride.
+    competing_grammar:
+      - competing_japanese:
+          - この エレベーター は 10 人 以下 乗れ ます。
+        english: This elevator can hold 10 people or less.
+        hint: The example is about the maximum capacity being 10 people or more (which usually implies
+          a minimum of 10 people it can safely carry, or that capacity starts from 10). We're looking
+          for '10 or more'.
+    scene: Reading a sign in an elevator.
+    register: formal
+    setting: informative
+  - english: You need to have a GPA of 3.0 or higher to apply for this scholarship.
+    japanese:
+      - この 奨学 金 に 応募 する に は、GPA が 3.0 {以上} で なけれ ば なり ませ ん。
+      - この 奨学 金 へ の 応募 に は、GPA 3.0 {以上} が 必須 です。
+      - 奨学 金 の 申請 に は、GPA 3.0 {以上} が 条件 と なり ます。
+    english_literally: This scholarship to apply to, GPA 3.0 or more must be.
+    competing_grammar:
+      - competing_japanese:
+          - この 奨学 金 に 応募 する に は、GPA が 3.0 未満 で なけれ ば なり ませ ん。
+        english: To apply for this scholarship, your GPA must be strictly less than 3.0.
+        hint: The requirement is a minimum GPA of 3.0. We're looking for '3.0 or higher'.
+    scene: An academic advisor explaining scholarship requirements.
+    register: formal
+    setting: academic
+  - english: Since you've made a promise, you must keep it.
+    japanese:
+      - 約束 し た {以上}、守ら なけれ ば なら ない。
+      - 一 度 約束 し た {以上}、守る べき です。
+      - 約束 を し た {以上}、それ を 守ら なけれ ば なり ませ ん。
+    english_literally: Promise made, must keep.
+    competing_grammar:
+      - competing_japanese:
+          - 約束 し た 後 で、守ら なけれ ば なら ない。
+        english: After making a promise, you must keep it.
+        hint: The grammar point emphasizes the logical consequence and obligation arising from the promise,
+          not just the temporal order. We're looking for 'given that'.
+    scene: A parent teaching a child about responsibility.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「約束 した 以上」 creates a strong sense of obligation and consequence, emphasizing that
+      once a promise is made, there's no turning back. This usage highlights a principle of integrity
+      often taught in Japanese households, making it fitting for a parent-child interaction where moral
+      lessons are imparted. The directness of 「守ら なければ ならない」 reinforces the unyielding nature of the commitment.
+  - english: I need a salary of 300,000 yen or more per month to live comfortably.
+    japanese:
+      - 快適 に 暮らす に は、月 30 万 円 {以上} の 給料 が 必要 だ。
+      - 快適 な 生活 に は、月 30 万 円 {以上} の 収入 が 必須 です。
+      - 月 に 30 万 円 {以上} なけれ ば、快適 に 暮らせ ませ ん。
+    english_literally: Comfortably to live, monthly 300,000 yen or more salary is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 快適 に 暮らす に は、月 30 万 円 未満 の 給料 が 必要 だ。
+        english: To live comfortably, a salary of strictly less than 300,000 yen per month is necessary.
+        hint: The speaker needs a minimum salary of 300,000 yen. We're looking for '300,000 yen or more'.
+    scene: Someone discussing their financial needs with a friend.
+    register: casual
+    setting: friendly
+  - english: Given that he is a doctor, he is expected to know about medicine.
+    japanese:
+      - 医者 で ある {以上}、医学 に つい て 知っ て いる はず だ。
+      - 医者 で ある {以上}、医学 に 精通 し て いる はず です。
+      - 医師 で ある {以上}、医学 的 知識 が ある べき だ。
+    english_literally: Doctor being, medicine about knowing should be.
+    competing_grammar:
+      - competing_japanese:
+          - 医者 だ から、医学 に つい て 知っ て いる はず だ。
+        english: Because he is a doctor, he should know about medicine.
+        hint: The grammar point implies a logical expectation or inherent duty derived from one's status
+          or profession, stronger than a simple 'because'. We're looking for 'since/now that'.
+    scene: People discussing a doctor's expected knowledge.
+    register: semi-formal
+    setting: informative
+  - english: Children 6 years old or older can enter for free.
+    japanese:
+      - 6 歳 {以上} の 子供 は 無料 で 入場 でき ます。
+      - 6 歳 {以上} の お 子 様 は 無料 で ご 入場 いただけ ます。
+      - 入場 は 6 歳 {以上} の お 子 様 から 無料 と なっ て い ます。
+    english_literally: 6 years old or above children free can enter.
+    competing_grammar:
+      - competing_japanese:
+          - 6 歳 未満 の 子供 は 無料 で 入場 でき ます。
+        english: Children strictly younger than 6 years old can enter for free.
+        hint: The rule applies to children who are 6 years old or older. We're looking for '6 and above'.
+    scene: Reading a sign at an amusement park.
+    register: formal
+    setting: informative
+post_example_writeup: As illustrated in the examples, 「以上」 can signify both a quantitative minimum (e.g.,
+  18歳以上) and a logical implication or consequence based on a given condition (e.g., 約束 した 以上). Pay attention
+  to the context to discern whether it refers to 'more than/equal to' or 'since/now that'. The nuance
+  of obligation or expectation often accompanies the latter usage.

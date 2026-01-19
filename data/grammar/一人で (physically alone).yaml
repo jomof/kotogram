@@ -1,0 +1,285 @@
+grammar_point: 一人で (physically alone)
+better_grammar_point_name:
+  - <suggest>:一人で (alone・by oneself physical)
+learn_before:
+  - Verb[stem] (conjunction)
+  - Verb[ないで] (negative without doing)
+  - '[Noun]が好きだ (to like)'
+  - '[Verb-dictionary]のが好きだ (to like doing)'
+  - 〜きり (only・just)
+  - さ (casual emphasis)
+  - な (prohibitive particle)
+  - に (adverbializer)
+  - にしてからが (even in surprising cases)
+  - は (topic and contrast)
+  - 周り・辺り・周辺 (surroundings)
+  - 心配する (to worry)
+meaning: alone; by oneself (physically)
+pronunciation:
+  katakana: ヒトリデ
+  romaji: hitoride
+formation:
+  Noun (person) + で: Indicates an action performed by that single person without assistance.
+jlpt: N5
+etymology: The phrase combines 一人 (hitori), meaning "one person," and the particle で (de), which in this
+  context functions to indicate the agent or means by which an action is performed. Historically, 一人 (hitori)
+  itself derives from a combination of the numeral 一 (ichi) meaning 'one' and 人 (hito) meaning 'person',
+  with the り sound being an archaic Japanese counting suffix. Thus, 一人で literally translates to something
+  akin to "by one person" or "with one person as the agent," clearly denoting solitary action.
+writeup: |-
+  一人で (hitoride) is a fundamental Japanese phrase used to describe the act of doing something "alone" or "by oneself." It is constructed by taking the noun 一人 (hitori), which means "one person," and attaching the particle で. In this specific construction, the で particle functions to indicate the **means, method, or agent** of an action, thereby conveying that the action is performed solely by that one person, without help or company.
+
+  This phrase is versatile and can be applied to a wide range of situations, from simple daily activities like eating or studying alone to more significant life decisions such as living or traveling alone. Its primary focus is on the **physical absence of others** or the **independent nature of the action**, rather than an emotional state of loneliness.
+
+  While 一人で is generally neutral, the broader context of the sentence or the speaker's tone can sometimes imply associated feelings, but the phrase itself does not inherently carry connotations of sadness or isolation.
+false_friends:
+  - term: 孤独
+    meaning: loneliness; isolation (noun)
+    kind: similar expression
+    nuance: 孤独 refers to the **emotional state** of being alone, often with negative connotations of isolation
+      or sadness. In contrast, 一人で simply states the **factual circumstance** of performing an action
+      without the presence of others, without necessarily implying any particular emotion.
+    grammar_point: <suggest>:孤独 (loneliness)
+  - term: 一人きり
+    meaning: alone; by oneself (emphasizing exclusivity)
+    kind: similar expression
+    nuance: 一人きり emphasizes that there is **only one** person present, often implying a sense of being
+      left alone, or specifically highlighting the sole presence to an exclusive degree. 一人で focuses on
+      the **action** being performed independently, not necessarily the exclusivity of presence.
+    grammar_point: 〜きり (only・just)
+  - term: 勝手に
+    meaning: on one's own accord; selfishly; arbitrarily
+    kind: often confused with
+    nuance: 勝手に describes doing something by oneself *without consulting others* or *without permission*,
+      often implying a selfish, arbitrary, or self-initiated action. While it involves acting independently,
+      its core nuance differs significantly from 一人で, which merely states the absence of others.
+    grammar_point: <suggest>:勝手に (on one's own accord)
+post_false_friends_writeup: 'When distinguishing 一人で from other expressions, remember its core meaning:
+  the factual state of performing an action without others present or assisting. 孤独 expresses the feeling
+  of loneliness. 一人きり highlights that one is the *only* person, often with a sense of being left behind
+  or exclusively alone. 勝手に describes acting independently, but with the added nuance of doing so without
+  external input or permission, sometimes implying a lack of consideration for others.'
+examples:
+  - english: The child is playing alone.
+    japanese:
+      - 子供 が {一人 で} 遊ん で いる。
+      - 子供 が {一人 で} 遊ん で い ます。
+      - 子供 が {一人 で} 遊ぶ。
+    english_literally: Child subject alone playing is.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 孤独 に 遊ん で いる。
+        english: The child is playing in loneliness.
+        hint: 孤独 is an emotional state, not a physical description of being by oneself. We're looking
+          for a simple statement about physical aloneness.
+    scene: A parent is watching their young child in the park, observing their independent play.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of 遊んでいる (asobunde iru) indicates a continuous action. The sentence is simple and
+      direct, typical of how a parent might comment on their child's activity. The gender of the speaker's
+      isn't inherently marked by any particular Japanese phrasing in this sentence, but ～ている is a common
+      neutral form.
+    etymology: The word 子供 (kodomo) literally means 'child' and is composed of 子 (ko, child) and 供 (tomo,
+      companion). In this context, it refers to a single child playing by themselves, not a group of children.
+  - english: I often study alone in the library.
+    japanese:
+      - 私 は 図書 館 で {一人 で} よく 勉強 し ます。
+      - 僕 は 図書 館 で {一人 で} よく 勉強 する。
+      - 私 は 図書 館 で {一人 で} よく 勉強 し て い ます。
+    english_literally: As for me, library in alone often study.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 図書 館 で 勝手 に 勉強 し ます。
+        english: I study arbitrarily in the library.
+        hint: 勝手に implies acting without permission or consideration, not just physically by oneself.
+          We're looking for a statement about studying independently.
+    scene: A university student is explaining their preferred study environment and habits to a classmate.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    nuance: The use of 僕 (boku) in one variation is a common masculine pronoun, making the sentence sound
+      natural for a male speaker. 勉強します (benkyou shimasu) is polite, while 勉強する (benkyou suru) is plain.
+      The inclusion of よく (yoku) means 'often', indicating a habitual action.
+    etymology: 図書館 (toshokan) is a compound word formed from 図 (to, drawing/plan), 書 (sho, writing/book),
+      and 館 (kan, building/hall), literally 'drawing/book hall'.
+  - english: He went to Japan alone for a business trip.
+    japanese:
+      - 彼 は 出張 で {一人 で} 日本 へ 行き まし た。
+      - 彼 は 出張 で {一人 で} 日本 へ 行っ た。
+    english_literally: He subject business trip for alone Japan to went.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 出張 で 一人 日本 へ 行き まし た。
+        english: He went to Japan for a business trip, one person.
+        hint: While 一人 can sometimes stand alone to mean 'alone', 一人で explicitly marks the person as the
+          agent doing it alone. We're looking for the most common and natural way to express 'by oneself'.
+    scene: Two colleagues are discussing a third coworker's recent business travel arrangements.
+    register: formal
+    setting: professional
+    speaker_gender: female
+    nuance: The use of 彼 (kare) refers to a male third person. 行きました (ikimashita) is the polite past tense,
+      suitable for a professional context. 行った (itta) is the plain past form.
+    etymology: 出張 (shucchou) is composed of 出 (shutsu, go out) and 張 (chou, extend/stretch), meaning to
+      'go out' for 'business' or 'duty'.
+  - english: She decided to live alone after graduating from college.
+    japanese:
+      - 彼女 は 大学 を 卒業 し て から {一人 で} 暮らす こと に し まし た。
+      - 彼女 は 大学 を 卒業 し て から {一人 で} 暮らす こと に し た。
+    english_literally: She subject university object graduation after alone live nominalizer decided.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 大学 を 卒業 し て から 一人 きり で 暮らす こと に し まし た。
+        english: She decided to live all alone after graduating from college.
+        hint: 一人きり implies being isolated or utterly alone, stronger than simply living by oneself. We're
+          looking for the simple act of living unaccompanied.
+    scene: Friends are having a conversation about their plans and life choices after graduating from
+      college.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    nuance: 彼女 (kanojo) refers to a female third person. 卒業してから (sotsugyou shite kara) means 'after graduating'.
+      The phrase ～ことにした (koto ni shita) means 'decided to do ~', indicating a personal decision. This
+      sentence is quite neutral regarding the speaker's gender.
+    etymology: 暮らす (kurasu) meaning 'to live' or 'to get along', has roots in ancient Japanese words related
+      to the passing of time and daily life.
+  - english: Tonight, I cooked dinner alone.
+    japanese:
+      - 今夜、{一人 で} 晩ご飯 を 作り まし た。
+      - 今夜、{一人 で} 晩ご飯 を 作っ た。
+      - 今夜、{一人 で} 夕食 を 作っ た わ。
+    english_literally: Tonight, alone dinner object made.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜、自分 で 晩ご飯 を 作り まし た。
+        english: Tonight, I cooked dinner by myself (emphasizing personal effort/initiative).
+        hint: 自分で highlights the effort or initiative of doing something by oneself, whereas 一人で focuses
+          on the absence of others. We're looking for the fact that no one else helped with cooking.
+    scene: A person proudly announces to their family or roommates that they prepared the evening meal
+      by themselves.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of ～わ (wa) at the end of 夕食 を 作った わ adds a feminine touch, commonly used by women
+      in casual speech to express a mild assertion or emotional nuance. 晩ご飯 (bangohan) and 夕食 (yuushoku)
+      both mean dinner, with 夕食 sounding slightly more formal but both are common.
+    etymology: 今夜 (kon'ya) combines 今 (kon, now) and 夜 (ya, night). While 夜 is typically yoru, in compounds
+      it often becomes ya.
+  - english: It's dangerous to walk alone at night.
+    japanese:
+      - 夜 に {一人 で} 歩く の は 危ない です。
+      - 夜 に {一人 で} 歩く の は 危ない。
+      - 夜道 を {一人 で} 歩く の は 危ない よ。
+    english_literally: Night in alone walk nominalizer dangerous is.
+    competing_grammar:
+      - competing_japanese:
+          - 夜 に 孤独 に 歩く の は 危ない です。
+        english: It's dangerous to walk in loneliness at night.
+        hint: 孤独 describes the emotional state, not the physical act of being by oneself. We're looking
+          for a warning about walking without company.
+    scene: A parent is giving a cautionary piece of advice to their teenage child about safety.
+    register: teineigo (polite)
+    setting: cautious
+    listener_gender: group
+    nuance: 夜道 (yomichi) specifically means 'night road', making the phrase more idiomatic. The particle
+      よ (yo) at the end of 危ない よ adds a sense of assertion or warning, which is common in advice-giving
+      contexts. This phrasing is gender-neutral and often used by parents regardless of their own gender
+      or the listener's.
+    etymology: 危ない (abunai) is an adjective stemming from 危うい (ayaui), signifying danger or peril. Its
+      phonetic evolution emphasizes the sense of being 'at risk'.
+  - english: Don't worry, I can carry this alone.
+    japanese:
+      - 心配 し ない で、私 {一人 で} これ を 運べ ます。
+      - 心配 し ない で、俺 が {一人 で} これ を 運べる よ。
+      - 大丈夫、{一人 で} 運べる から。
+    english_literally: Worry don't, I alone this object can carry.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し ない で、私 が 勝手 に これ を 運べ ます。
+        english: Don't worry, I can arbitrarily carry this.
+        hint: 勝手に suggests acting without consulting others or arbitrarily, which doesn't fit the context
+          of carrying something for a friend. We're looking for the ability to carry something without
+          help.
+    scene: Someone reassures a friend who is offering help with a heavy item, indicating their self-sufficiency.
+    register: casual
+    setting: supportive
+    speaker_gender: male
+    nuance: The use of 俺 (ore) and the plain form 運べる よ (hakoberu yo) makes the second variation particularly
+      masculine and casual. 大丈夫 (daijoubu) is a common casual way to say 'It's okay' or 'Don't worry'.
+      ～から (kara) here indicates a reason or softening. The overall tone is one of confident self-reliance.
+    etymology: 運ぶ (hakobu) 'to carry' is an old Japanese word, reflecting the physical act of transporting
+      items. The potential form 運べる (hakoberu) implies the ability to do so.
+  - english: He wants to travel the world alone someday.
+    japanese:
+      - 彼 は いつ か 世界 を {一人 で} 旅 し たい と 思っ て い ます。
+      - 彼 は いつ か 世界 を {一人 で} 旅 し たい と 思っ て いる。
+    english_literally: He subject someday world object alone travel want to think is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ か 世界 を 一人 きり で 旅 し たい と 思っ て い ます。
+        english: He wants to travel the world all alone someday.
+        hint: 一人きり emphasizes being completely alone, which can sometimes imply a stronger sense of isolation
+          than the simple fact of traveling without company. We're looking for the simple desire to travel
+          solo.
+    scene: Friends are discussing their long-term dreams and aspirations for the future.
+    register: casual
+    setting: optimistic
+    speaker_gender: male
+    nuance: The use of 彼 (kare) refers to a male subject. ～たいと 思っています (tai to omotte imasu) means 'is
+      thinking of wanting to do', expressing a desire. This phrase is generally gender-neutral for the
+      speaker, but the sentence describes a male's aspirations.
+    etymology: 世界 (sekai) combines 世 (se, world/generation) and 界 (kai, boundary/world), denoting the
+      entire 'world'.
+  - english: She likes to sing karaoke alone sometimes.
+    japanese:
+      - 彼女 は 時々 {一人 で} カラオケ を 歌う の が 好き です。
+      - 彼女 は 時々 {一人 で} カラオケ に 行く の が 好き だ。
+    english_literally: She subject sometimes alone karaoke object sing nominalizer like is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 時々 一人 カラオケ を 歌う の が 好き です。
+        english: She sometimes likes to sing one-person karaoke.
+        hint: While 一人 can modify a noun (e.g., 一人旅, solo trip), when describing an action done by oneself,
+          一人で is the standard and most natural construction. We're looking for the act of singing karaoke
+          by oneself.
+    scene: Someone is describing their friend's unique hobbies or preferences.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The first variation uses 歌う (utau - to sing), while the second uses 行く (iku - to go), a common
+      way to say 'go to karaoke'. Both 好きです (suki desu) and 好きだ (suki da) mean 'likes', with the latter
+      being plain form. The gender of the speaker's isn't directly marked by the Japanese here, but the
+      sentence structure is natural for a female speaker describing a friend.
+    etymology: カラオケ (karaoke) is a well-known Japanese portmanteau from 空 (kara, empty) and オーケストラ (ōkesutora,
+      orchestra), literally "empty orchestra."
+  - english: I spent my birthday alone this year.
+    japanese:
+      - 今年 は 誕生 日 を {一人 で} 過ごし まし た。
+      - 今年 は 誕生 日 を {一人 で} 過ごし た。
+      - 今年 は 誕生 日 を {一人 きり で} 過ごし まし た。
+    english_literally: This year subject birthday object alone spent.
+    competing_grammar:
+      - competing_japanese:
+          - 今年 は 誕生 日 を 孤独 に 過ごし まし た。
+        english: This year, I spent my birthday in loneliness.
+        hint: 孤独 describes the emotional state, not the physical act of being by oneself. The example
+          is about the factual circumstance, even if it implies sadness. We're looking for the act of
+          spending the day unaccompanied.
+    scene: A person recounts their recent birthday experience to a sympathetic listener.
+    register: semi-formal
+    setting: melancholic
+    speaker_gender: female
+    nuance: 過ごしました (sugoshimashita) is the polite past form of 'to spend'. The inclusion of 一人きりで (hitorikiri
+      de) adds emphasis, suggesting a stronger sense of being completely by oneself, which can often carry
+      a nuanced feeling of loneliness or isolation, especially when describing an event like a birthday.
+      This nuance is stronger than simply 一人で.
+    etymology: 誕生日 (tanjoubi) combines 誕 (tan, birth) and 生 (jou, life/birth) with 日 (bi, day), literally
+      'birth day'. The word has maintained its meaning throughout its history.
+post_example_writeup: As demonstrated in the examples, 一人で is primarily used to specify that an action
+  is performed by a single person, emphasizing independence rather than an emotional state. It combines
+  fluidly with various verb forms and can be used across different registers, depending on the formality
+  of the accompanying verb and overall sentence structure. The choice between plain and polite forms,
+  as well as specific pronouns, often depends on the speaker's gender, age, and relationship with the
+  listener.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/一人で

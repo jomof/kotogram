@@ -1,0 +1,277 @@
+grammar_point: ～ても～なくても (whether or not)
+learn_before:
+  - 〜ても〜なくても (whether or not)
+meaning: Whether or not
+pronunciation:
+  katakana: デモナクテモ / テモナクテモ
+  romaji: de mo nakute mo / te mo nakute mo
+formation:
+  Noun[で] + も + Noun[で] + なくても: Expresses 'whether or not' in relation to nouns.
+  Verb[て] + も + Verb[ない-form] + くても: Expresses 'whether or not' in relation to verbs.
+  い-Adjective[く] + て + も + い-Adjective[く] + なくても: Expresses 'whether or not' in relation to い-adjectives.
+  な-Adjective[で] + も + な-Adjective[で] + なくても: Expresses 'whether or not' in relation to な-adjectives.
+jlpt: N3
+etymology: This grammar point is a combination of the 「〜ても」 form (even if) and the 「〜なくても」 form (even
+  if not). It creates a structure where both the affirmative and negative possibilities are considered,
+  indicating that the outcome remains the same regardless of the condition.
+writeup: |-
+  The 「〜ても〜なくても」 structure is used to express that an outcome or situation remains constant, regardless of whether a particular condition is met or not. It conveys a sense of inevitability or indifference to the condition. Literally translated as 'even if (X) or even if not (X)', it emphasizes that the consequence is fixed, making the condition irrelevant. This pattern is versatile and can be applied to verbs, adjectives, and nouns:
+  *   **Verbs**: Use the **te-form** followed by も, and the **ない-form + くても**. For example, 「行っても行かなくても」 (whether you go or don't go).
+  *   **い-Adjectives**: Use the **て-form** (e.g., 寒くても) followed by も, and the **ない-form + くても** (e.g., 寒くなくても). For example, 「良くても良くなくても」 (whether it's good or not good).
+  *   **な-Adjectives/Nouns**: Use **で** followed by も, and **でなくても**. For example, 「静かでも静かでなくても」 (whether it's quiet or not quiet) or 「学生でも学生でなくても」 (whether you're a student or not a student).
+  The core meaning is that the *outcome* is unaffected by the presence or absence of the condition. It often implies a definitive stance, a resigned acceptance, or a statement of universal truth. Unlike 「かどうか」 which primarily expresses uncertainty or asking 'if/whether', 「〜ても〜なくても」 confirms that the outcome is already known and unchanging regardless of the condition.
+  While generally standard in register, certain nuances might be perceived based on the context and choice of words. For instance, ending a sentence with 「〜ないわ」 after using this pattern can give a distinctly feminine and reflective tone, as seen in Example 4. Similarly, a blunt refusal using 「〜しないよ」 might sound more typical of male speech in certain casual, direct contexts (Example 9).
+false_friends:
+  - term: ようが〜まいが
+    meaning: Even if, No matter what, Whether or not, [Emphatic], Volitional+が
+    kind: synonym
+    nuance: 「ようが〜まいが」 emphasizes the speaker's determination or indifference more strongly than 「〜ても〜なくても」.
+    grammar_point: ようが〜まいが (regardless of whether)
+  - term: かどうか
+    meaning: Whether or not, If...or not
+    kind: synonym
+    nuance: 「かどうか」 is often used to express uncertainty or a question about a condition, whereas 「〜ても〜なくても」
+      implies that the outcome is the same regardless.
+    grammar_point: かどうか (whether or not)
+  - term: Noun+でも〜でも
+    meaning: Whether ~ or, Neither ~ or
+    kind: synonym
+    nuance: 「〜でも 〜でも」 can also mean "neither... nor," whereas 「〜ても〜なくても」 focuses on the lack of impact
+      of a condition.
+    grammar_point: でも〜でも (whether x or y)
+  - term: にしても〜にしても
+    meaning: Even if, Even though, No matter what, Also
+    kind: synonym
+    nuance: 「にしても〜にしても」 often introduces a reason or justification, whereas 「〜ても〜なくても」 emphasizes the
+      invariance of the result.
+    grammar_point: にしても〜にしても (regardless of whether a or b)
+  - term: を問わず
+    meaning: Regardless of; irrespective of; without reference to; whether or not; no matter
+    kind: synonym
+    nuance: 「を問わず」 is used to indicate that something applies to all cases, irrespective of specific conditions,
+      while 「〜ても〜なくても」 highlights the equivalence of outcomes under different conditions.
+    grammar_point: '[Noun]を問わず (regardless of)'
+  - term: にしろ〜にしろ
+    meaning: Whether... or... (it doesn't matter)
+    kind: synonym
+    nuance: 「にしろ〜にしろ」 is similar to 「〜ても〜なくても」 but often carries a nuance of concession or acknowledgment
+      of different possibilities.
+    grammar_point: 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - term: にかかわらず
+    meaning: Regardless of, whether or not, no matter
+    kind: synonym
+    nuance: 「にかかわらず」 is a more formal and direct way of saying "regardless of," while 「〜ても〜なくても」 has a
+      softer tone.
+    grammar_point: <strongly-suggest>:にかかわらず (regardless of)
+  - term: やら〜やら
+    meaning: Whether or not; Things like... and...; And so on
+    kind: synonym
+    nuance: 「やら〜やら」 often implies a list of possibilities and can convey a sense of confusion or uncertainty,
+      whereas 「〜ても〜なくても」 is more focused on the irrelevance of the condition.
+    grammar_point: やら (uncertainty・listing)
+post_false_friends_writeup: While 「〜ても〜なくても」 effectively conveys that a result is fixed regardless of
+  a condition, other expressions exist with subtle differences. For instance, 「〜かどうか」 is used to express
+  uncertainty or inquiry. 「〜ようが〜まいが」 carries a stronger, more emphatic nuance of determination or indifference,
+  often implying a speaker's strong will despite the circumstances. 「〜にかかわらず」 tends to be more formal
+  and directly translates to 'regardless of', focusing on a broad applicability rather than the specific
+  affirmative/negative pairing. When choosing, consider if you are stating a factual unchangeable outcome
+  (「〜ても〜なくても」), expressing uncertainty (「〜かどうか」), or emphasizing personal resolve (「〜ようが〜まいが」).
+examples:
+  - english: Whether he comes or not, we will proceed with this project.
+    japanese:
+      - 彼 が {来 て も} {来 なく て も}、この 企画 は 進め ます。
+      - 彼 が {来 て も} {来 なく て も}、この 企画 は 進める。
+    english_literally: He even if comes even if does not come, this project will proceed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 来る か 来 ない か {に かかわら ず}、この 企画 は 進め ます。
+        english: Regardless of whether he comes or not, we will proceed with this project.
+        hint: 「〜にかかわらず」 often indicates a lack of influence of a condition, but 「〜ても〜なくても」 emphasizes
+          the outcome's unchanging nature despite both positive and negative possibilities. We're looking
+          for an expression that clearly states the outcome is fixed despite the condition.
+    scene: A team leader is making a clear decision in a meeting, emphasizing that project progress is
+      independent of one member's presence.
+    register: formal
+    setting: professional
+  - english: Whether I try hard or not, the results are always the same.
+    japanese:
+      - 私 は {努力 し て も} {し なく て も}、結果 は いつ も 同じ だ。
+      - 私 は {努力 し て も} {し なく て も}、結果 は いつ も 同じ です。
+    english_literally: As for me, even if I try hard even if I don't, the results are always the same.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 努力 する か し ない か {に かかわら ず}、結果 は いつ も 同じ だ。
+        english: Regardless of whether I try hard or not, the results are always the same.
+        hint: While 「〜にかかわらず」 expresses independence from a condition, 「〜ても〜なくても」 highlights a sense of
+          resignation or inevitability regarding the outcome, emphasizing that the result is constant
+          no matter what. We're looking for a phrase that conveys this unchanging outcome.
+    scene: A frustrated student is complaining to their friend about consistently poor academic performance
+      despite their efforts.
+    register: casual
+    setting: melancholic
+  - english: Whether you make a reservation or not, this restaurant is always crowded on weekends.
+    japanese:
+      - この レストラン は、{予約 し て も} {し なく て も}、週末 は いつ も 混ん で いる。
+      - この レストラン は、{予約 し て も} {し なく て も}、週末 は いつ も 混ん で い ます。
+    english_literally: This restaurant, even if you reserve even if you don't, on weekends is always crowded.
+    competing_grammar:
+      - competing_japanese:
+          - この レストラン は、予約 する か し ない か {に 関係 なく}、週末 は いつ も 混ん で いる。
+        english: This restaurant is always crowded on weekends, unrelated to whether you make a reservation
+          or not.
+        hint: 「〜に関係なく」 states that something is irrelevant, but 「〜ても〜なくても」 directly compares both the
+          affirmative and negative possibilities to show that the outcome is the same, emphasizing a consistently
+          unavoidable result.
+    scene: A local explains to a tourist why they should arrive early at a popular restaurant on a Saturday
+      evening.
+    register: casual
+    setting: informative
+  - english: Whether you pass the exam or not, what you've learned will become your asset.
+    japanese:
+      - 試験 に {合格 し て も} {し なく て も}、学ん だ こと は 君 の 財産 に なる よ。
+      - 試験 に {合格 し て も} {し なく て も}、学ん だ こと は 君 の 財産 に なり ます よ。
+    english_literally: Exam even if you pass even if you don't, what you learned will become your asset.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に {合格 する か どう か}、学ん だ こと は 君 の 財産 に なる よ。
+        english: Whether you pass the exam or not, what you've learned will become your asset.
+        hint: 「〜かどうか」 often expresses uncertainty or poses a question about a condition, but 「〜ても〜なくても」
+          asserts that the outcome is fixed regardless of the condition, emphasizing a universal truth.
+          We're looking for a phrase that states the result is unchangeable despite the condition.
+    scene: A teacher is encouraging a student who is nervous about an upcoming exam, emphasizing the value
+      of the learning process itself.
+    register: casual
+    setting: supportive
+  - english: Regardless of whether or not I eat, my weight doesn't change, so I won't eat anymore.
+    japanese:
+      - 私 は {食べ て も} {食べ なく て も} 体重 は 変わら ない から、もう 食べ ない わ。
+      - 私 は {食べ て も} {食べ なく て も} 体重 は 変わら ない から、もう 食べ ない。
+      - 私 は {食べ て も} {食べ なく て も} 体重 は 変わり ませ ん から、もう 食べ ませ ん。
+    english_literally: As for me, even if I eat even if I don't eat, weight doesn't change, so I won't
+      eat anymore.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 食べる か 食べ ない か {に かかわら ず} 体重 は 変わら ない から、もう 食べ ない わ。
+        english: Regardless of whether I eat or not, my weight doesn't change, so I won't eat anymore.
+        hint: While 「〜にかかわらず」 indicates independence from a condition, 「〜ても〜なくても」 conveys a sense of resignation
+          or frustration that the outcome remains fixed despite contrasting actions. We're looking for
+          a phrase that shows the futility of action given an unchanging result.
+    scene: A woman is lamenting her struggles with weight loss to a friend after trying various diets
+      without success.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: The sentence ending 「食べないわ」 (tabenai wa) is a distinctly feminine particle used to express
+      a firm decision or declaration with a softer, more reflective tone.
+  - english: Whether I take this class or not, I've studied enough to graduate.
+    japanese:
+      - この 授業 を {受け て も} {受け なく て も}、卒業 できる だけ の 勉強 は し た。
+      - この 授業 を {受け て も} {受け なく て も}、卒業 できる だけ の 勉強 は し まし た。
+    english_literally: This class even if I take even if I don't, enough to graduate I have studied.
+    competing_grammar:
+      - competing_japanese:
+          - この 授業 を 受ける か 受け ない か {に かかわら ず}、卒業 できる だけ の 勉強 は し た。
+        english: Regardless of whether I take this class or not, I've studied enough to graduate.
+        hint: 「〜にかかわらず」 highlights independence from a condition, but 「〜ても〜なくても」 more specifically emphasizes
+          that the outcome is the same despite both positive and negative scenarios. We're looking for
+          a phrase that expresses the irrelevance of a specific action to a fixed outcome.
+    scene: A university student, confident in their overall progress, is considering whether to bother
+      with an optional, last-minute class.
+    register: casual
+    setting: academic
+  - english: Whether you are chosen or not, I will always be on your side.
+    japanese:
+      - あなた が {選 ばれ て も} {選ば れ なく て も}、私 は いつ も あなた の 味方 です。
+      - あなた が {選 ばれ て も} {選ば れ なく て も}、私 は いつ も あなた の 味方 だ よ。
+    english_literally: You even if are chosen even if are not chosen, I am always your ally.
+    competing_grammar:
+      - competing_japanese:
+          - あなた が {選 ばれる か どう か}、私 は いつ も あなた の 味方 です。
+        english: Whether you are chosen or not, I will always be on your side.
+        hint: 「〜かどうか」 introduces a question or uncertainty about a condition, but 「〜ても〜なくても」 makes a stronger
+          statement that the outcome is unwavering regardless of the condition. We're looking for a phrase
+          that asserts a constant state of support.
+    scene: A friend is offering unwavering support to another who is awaiting the results of a competitive
+      selection process.
+    register: casual
+    setting: supportive
+  - english: It's fine whether you buy it or not, so please take a look once.
+    japanese:
+      - '{買っ て も} {買わ なく て も} 結構 です から、ぜひ 一 度 ご覧 ください。'
+      - '{買っ て も} {買わ なく て も} いい です から、ぜひ 一 度 見 て ください。'
+    english_literally: Even if you buy even if you don't buy, it's fine, so please take a look once.
+    competing_grammar:
+      - competing_japanese:
+          - '{買う か 買わ ない か に 関係 なく} 結構 です から、ぜひ 一 度 ご覧 ください。'
+        english: It's fine, unrelated to whether you buy it or not, so please take a look once.
+        hint: 「〜に関係なく」 generally states irrelevance, but 「〜ても〜なくても」 explicitly presents both possibilities
+          (buying/not buying) to show that the outcome remains the same, emphasizing a lack of obligation.
+          We're looking for a phrase that reassures someone that a decision is irrelevant to their action.
+    scene: A salesperson is politely inviting a customer to browse without feeling obligated to purchase.
+    register: formal
+    setting: persuasive
+  - english: Whether I know your phone number or not, I won't contact you.
+    japanese:
+      - 電話 番号 を {知っ て も} {知ら なく て も}、連絡 は し ない よ。
+      - 電話 番号 を {知っ て も} {知ら なく て も}、連絡 は し ない。
+      - 電話 番号 を {知っ て も} {知ら なく て も}、連絡 は し ませ ん。
+    english_literally: Phone number even if I know even if I don't know, I won't contact.
+    competing_grammar:
+      - competing_japanese:
+          - 電話 番号 を 知っ て いる か い ない か {に かかわら ず}、連絡 は し ない よ。
+        english: Regardless of whether I know your phone number or not, I won't contact you.
+        hint: 「〜にかかわらず」 indicates independence from a condition, but 「〜ても〜なくても」 directly expresses an
+          unwavering stance by comparing both the affirmative and negative possibilities. We're looking
+          for a phrase that strongly conveys a fixed intention.
+    scene: A man is bluntly expressing his disinterest to someone who has offered their phone number.
+    register: casual
+    setting: sarcastic
+    speaker_gender: male
+    listener_gender: female
+    nuance: The direct and somewhat dismissive tone conveyed by 「連絡はしないよ」 (renraku wa shinai yo) is characteristic
+      of casual male speech when expressing a firm decision or disinterest.
+  - english: Whether I'm busy or not, I always make time for my hobbies.
+    japanese:
+      - 私 は {忙しく て も} {忙しく なく て も}、趣味 の 時間 を 必ず 作り ます。
+      - 私 は {忙しく て も} {忙しく なく て も}、趣味 の 時間 を 必ず 作る。
+    english_literally: As for me, even if I am busy even if I am not busy, hobbies' time I certainly make.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい か どう か {に かかわら ず}、趣味 の 時間 を 必ず 作り ます。
+        english: Regardless of whether I'm busy or not, I always make time for my hobbies.
+        hint: 「〜にかかわらず」 is more formal and just states independence, whereas 「〜ても〜なくても」 explicitly contrasts
+          two conditions to show a consistent outcome. We're looking for an expression that highlights
+          the dual possibilities leading to the same result.
+      - competing_japanese:
+          - 忙しい か {どう か}、趣味 の 時間 を 必ず 作り ます。
+        english: Whether or not I'm busy, I always make time for my hobbies.
+        hint: 「〜かどうか」 often expresses uncertainty or poses a question about a condition. This grammar
+          point is used to affirm that the outcome is constant despite the condition.
+    scene: An individual explaining their consistent approach to work-life balance to a junior colleague.
+    register: semi-formal
+    setting: informative
+  - english: Whether you're an adult or not, you can enjoy this anime.
+    japanese:
+      - 大人 {で も} 大人 {で なく て も}、この アニメ は 楽しめ ます。
+      - 大人 {で も} 大人 {で なく て も}、この アニメ は 楽しめる よ。
+    english_literally: Adult even if adult even if not, this anime can be enjoyed.
+    competing_grammar:
+      - competing_japanese:
+          - 大人 か どう か {に かかわら ず}、この アニメ は 楽しめ ます。
+        english: Regardless of whether you're an adult or not, you can enjoy this anime.
+        hint: 「〜にかかわらず」 is more formal and indicates independence from a condition. This grammar point,
+          「〜ても〜なくても」, explicitly contrasts two states (adult/not adult) to show that the outcome is the
+          same for both.
+      - competing_japanese:
+          - 大人 か {どう か}、この アニメ は 楽しめ ます。
+        english: Whether or not you're an adult, you can enjoy this anime.
+        hint: 「〜かどうか」 is used for uncertainty or posing a question about a condition. This grammar point
+          affirms that the enjoyment is constant regardless of status.
+    scene: A fan enthusiastically recommending an anime to a friend, emphasizing its broad appeal.
+    register: casual
+    setting: friendly
+post_example_writeup: As you can see from the examples, this structure is quite versatile and can be used
+  in various contexts, from professional discussions to casual conversations. Pay attention to the surrounding
+  words and particles to gauge the overall register and nuance of the sentence.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/439

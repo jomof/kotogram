@@ -1,0 +1,306 @@
+grammar_point: な-Adjective[そう] (appearance)
+learn_before:
+  - '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+meaning: Appears to be; looks like; seems (based on direct observation)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 静かそう
+    rarity: common
+    meaning: looks quiet
+  - conjugation-type: past plain (～た)
+    form: 静かそうだった
+    rarity: common
+    meaning: looked quiet
+  - conjugation-type: negative plain (～ない)
+    form: 静かそうじゃない
+    rarity: common
+    meaning: doesn't look quiet
+  - conjugation-type: non-past polite (～ます)
+    form: 静かそうです
+    rarity: common
+    meaning: looks quiet (polite)
+  - conjugation-type: past polite (～ました)
+    form: 静かそうでした
+    rarity: common
+    meaning: looked quiet (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 静かそうじゃありません
+    rarity: common
+    meaning: doesn't look quiet (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 静かそうじゃありませんでした
+    rarity: common
+    meaning: didn't look quiet (polite)
+pronunciation:
+  katakana: ナ・アドジェクティブ・ソウ
+  romaji: na-adjective-sou
+formation:
+  な-Adjective stem + そうだ/そうです: Indicates that a na-adjective quality appears to be true based on observation.
+  な-Adjective stem + そうに + Verb: Modifies a verb, describing how the action is performed with an apparent
+    quality (e.g., quietly-looking).
+jlpt: N4
+etymology: The そう (sou) in this construction, like the one for verbs and i-adjectives, comes from the
+  classical Japanese verb 然る (saru) meaning "to be so" or "to appear". It evolved to attach to various
+  word types to indicate appearance or conjecture. The そう here functions as a quasi-adjective, describing
+  how something 'is' or 'seems to be'. Its use across different word types (verbs, i-adjectives, na-adjectives)
+  reflects its core meaning of conveying an observed state or likelihood.
+writeup: な-Adjective[そう] (appearance) is used to express that something "appears to be" or "looks like"
+  a certain quality, based on direct visual or sensory observation. It attaches to the stem of な-adjectives.
+  This grammatical construction allows speakers to convey an immediate impression about a person, object,
+  or situation.Unlike そうだ used with verbs or i-adjectives, which often implies a direct visual cue (e.g.,
+  雨が降りそうだ - "It looks like rain"), the そう attached to な-adjectives describes the quality itself as it
+  appears. For instance, 「静か」 (shizuka - quiet) becomes 「静かそう」 (shizukasou - looks quiet).This form acts
+  like an i-adjective itself, meaning it can be conjugated further. For example, to make it negative,
+  you would say 「静かそうじゃない」 (shizukasou janai - doesn't look quiet), or to use it in the past tense, 「静かそうだった」
+  (shizukasou datta - looked quiet).It's important to differentiate this そう from other similar-sounding
+  grammatical patterns. The key here is the direct, observable impression of a characteristic. This form
+  is common in everyday conversations to describe immediate perceptions.
+false_friends:
+  - term: い-Adjective[そう] (appearance)
+    meaning: Appears to be; looks like; seems (based on direct observation) for i-adjectives
+    kind: similar expression
+    nuance: While both express appearance based on observation, な-Adjective[そう] attaches to the stem of
+      な-adjectives (e.g., 賑やかそう - looks lively), whereas い-Adjective[そう] attaches to the stem of い-adjectives
+      (dropping the final い) (e.g., 楽しそう - looks fun).
+    grammar_point: い-Adjective[そう] (appearance)
+  - term: '[Verb-stem]そうだ (it seems・looks like)'
+    meaning: It looks like; it seems that (something is about to happen or is in a certain state)
+    kind: similar expression
+    nuance: This そうだ attaches to the stem of a verb and suggests a likelihood or an impending event based
+      on observation (e.g., 雨が降りそうだ - "It looks like it will rain"). In contrast, な-Adjective[そう] describes
+      the apparent quality of something.
+    grammar_point: <suggest>:[Verb-stem]そうだ (it seems・looks like)
+  - term: 〜ようだ・〜みたいだ (seems・like)
+    meaning: It seems; it looks like; as if (conjecture based on broader information or comparison)
+    kind: similar expression
+    nuance: Both そう and ようだ/みたいだ convey appearance, but そう often implies a direct, visual impression,
+      while ようだ/みたいだ can be more speculative, based on less direct evidence, or used for comparison (e.g.,
+      彼は日本人みたいだ - "He looks like a Japanese person").
+    grammar_point: 〜ようだ・〜みたいだ (seems・like)
+  - term: '[Sentence]らしい (it seems, based on evidence・I hear)'
+    meaning: It seems that; I hear that; apparently (based on external evidence or hearsay)
+    kind: similar expression
+    nuance: らしい conveys an impression based on indirect evidence or what one has heard (e.g., 彼はお金持ちらしい
+      - "Apparently, he's rich"). な-Adjective[そう] is based on direct sensory input about a quality.
+    grammar_point: '[Sentence]らしい (it seems, based on evidence・I hear)'
+post_false_friends_writeup: When expressing appearance in Japanese, it's crucial to consider the type
+  of word being modified and the source of your impression. While な-Adjective[そう] conveys a direct visual
+  assessment of a quality, い-Adjective[そう] does the same for i-adjectives. The そう attached to verbs, however,
+  refers to the likelihood of an action or state. For more generalized conjecture, or when making comparisons,
+  ようだ or みたいだ are often used. Finally, if your impression is based on hearsay or indirect evidence, らしい
+  is the appropriate choice. Paying attention to these distinctions will help you choose the correct expression.
+examples:
+  - english: That design looks simple.
+    japanese:
+      - その デザイン は {簡単 そう} です ね。
+      - その デザイン は {簡単 そう} だ ね。
+    english_literally: That design is {simple-appearing}, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - その デザイン は 綺麗 です ね。
+        english: That design is pretty, isn't it?
+        hint: This sentence directly states the design's quality. We're looking for a form to express
+          appearance based on observation, for a な-adjective like 簡単 (simple).
+      - competing_japanese:
+          - その デザイン は 簡単 な よう です ね。
+        english: That design seems simple, doesn't it?
+        hint: 「ようです」 is used for conjecture or comparison, while 「そう」 emphasizes a direct visual impression.
+          We're looking for a direct observational statement based on how it looks.
+    scene: A designer is showing a new product concept to a colleague.
+    register: formal
+    setting: professional
+    nuance: The speaker is making a direct observation about the design's perceived simplicity. The 「ね」
+      softens the statement, inviting agreement. The use of 「簡単そう」 indicates an impression formed from
+      looking at the design, implying ease of understanding or use rather than inherent simplicity. The
+      formal です makes the observation polite in a professional context.
+  - english: This room looks quiet and comfortable.
+    japanese:
+      - この 部屋 は {静か そう} で {快適 そう} です ね。
+      - この 部屋 は {静か そう} で {快適 そう} だ ね。
+    english_literally: This room is {quiet-appearing} and {comfortable-appearing}, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 静か で 快適 です ね。
+        english: This room is quiet and comfortable, isn't it?
+        hint: This directly states the room's qualities. We need a phrase that conveys a visual or sensory
+          impression of those qualities, using the 'looks like' form for な-adjectives 静か and 快適.
+    scene: A real estate agent showing a potential apartment to a client.
+    register: formal
+    setting: professional
+    nuance: The use of 「静かそう」 and 「快適そう」 highlights the immediate sensory impression of the room's qualities
+      based on observation (e.g., lack of noise, spaciousness, decor). The 「で」 connects the two apparent
+      qualities as a conjunctive te-form for adjectives, and 「ね」 softens the statement while seeking agreement
+      in a polite, professional tone.
+  - english: He seems kind, doesn't he?
+    japanese:
+      - 彼 は {親切 そう} です ね。
+      - 彼 は {親切 そう} だ ね。
+      - 彼、{親切 そう}。
+    english_literally: He is {kind-appearing}, isn't he?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 親切 らしい です ね。
+        english: Apparently, he is kind, isn't he?
+        hint: 「らしい」 suggests the impression is based on indirect evidence or what's generally known. We're
+          looking for an impression based on direct observation of his demeanor, not hearsay.
+    scene: Two female friends observing a new colleague from a distance.
+    register: casual
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The female speaker uses 「ね」 to seek agreement on their impression of the person's kindness,
+      which is derived from observing his actions or demeanor. 「親切そう」 indicates that his kindness is visibly
+      apparent or strongly suggested by his appearance or behavior. The です ね makes it a polite but casual
+      inquiry.
+  - english: This task looks easy, let's finish it quickly.
+    japanese:
+      - この 作業 は {簡単 そう} だ から、早く 終わら せよう。
+      - この 作業 は {簡単 そう} です から、早く 終わら せ ましょう。
+    english_literally: This task is {easy-appearing}, so let's finish it quickly.
+    competing_grammar:
+      - competing_japanese:
+          - この 作業 は 簡単 です から、早く 終わら せよう。
+        english: This task is easy, so let's finish it quickly.
+        hint: This directly states the task is easy. We need a form that expresses an appearance or impression
+          of ease, not a definitive statement of fact, using the 'looks like' form.
+    scene: A team leader encouraging their team to complete a task.
+    register: casual
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The speaker (team leader) is assessing the task's ease based on its apparent nature or description.
+      The phrase 「終わらせよう」 is a casual volitional, encouraging prompt action. 「簡単そうだから」 provides a perceived
+      reason for acting quickly, based on the task's appearance.
+  - english: The new park looks lively.
+    japanese:
+      - 新しい 公園 は {賑やかそう} だ。
+      - 新しい 公園 は {賑やかそう} です。
+    english_literally: The new park is {lively-appearing}.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 公園 は 賑やか です。
+        english: The new park is lively.
+        hint: This states the park is lively as a fact. We need a phrase that expresses an impression
+          or appearance of liveliness, based on observation, using the 'looks like' form.
+    scene: Two male neighbors chatting about a newly opened park.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker is commenting on the apparent liveliness of the park, likely based on sounds or
+      visual cues from a distance. The plain form 「だ」 is typical for casual male speech, making the observation
+      sound direct and informal.
+  - english: This bag looks very durable.
+    japanese:
+      - この カバン は とても {丈夫 そう} だ。
+      - この カバン は とても {丈夫 そう} です。
+    english_literally: This bag is very {durable-appearing}.
+    competing_grammar:
+      - competing_japanese:
+          - この カバン は とても 丈夫 です。
+        english: This bag is very durable.
+        hint: This statement confirms the bag's durability. We need a phrase that conveys a strong visual
+          impression of durability, implying it 'looks' durable rather than being a confirmed fact.
+    scene: A person examining a bag in a store.
+    register: casual
+    setting: casual slang
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The speaker is making a self-assessment of the bag's durability based on its physical appearance.
+      The use of 「とても」 emphasizes the strong impression. The plain form 「だ」 is a casual, internal thought
+      or observation.
+  - english: She looks anxious about the presentation.
+    japanese:
+      - 彼女 は プレゼン に {不安 そう} に 見える。
+      - 彼女 は プレゼン に {不安 そう} に 見え ます。
+    english_literally: She looks to be {anxious-appearing}.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は プレゼン で 不安 です。
+        english: She is anxious about the presentation.
+        hint: This directly states her state of anxiety. We need a phrase that describes how she 'appears'
+          to be anxious, based on observation of her demeanor.
+    scene: A colleague observing another before a big presentation.
+    register: formal
+    setting: professional
+    nuance: 「不安そうに 見える」 means "looks anxiously" or "appears to be anxious". 「不安」 is a な-adjective, and
+      adding 「そう」 makes it an adverbial form describing how she appears. This expresses an observation
+      of her outward manifestation of anxiety.
+  - english: That restaurant looks luxurious. Let's go there next time.
+    japanese:
+      - あの レストラン は {豪華 そう} だ ね。今度 行こう。
+      - あの レストラン は {豪華 そう} です ね。今度 行き ましょう。
+    english_literally: That restaurant is {luxurious-appearing}, isn't it? Let's go next time.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 豪華 らしい ね。
+        english: Apparently, that restaurant is luxurious, isn't it?
+        hint: 「らしい」 implies the information comes from hearsay or general knowledge. We're looking for
+          an impression based on directly seeing the restaurant.
+    scene: Friends walking past a fancy restaurant.
+    register: casual
+    setting: friendly
+    nuance: 「豪華そう」 implies an impression of luxury based on the restaurant's exterior or ambiance (e.g.,
+      lighting, decorations). The use of 「ね」 invites agreement from the listener, making it a shared observation.
+      「今度 行こう」 is a casual suggestion for a future plan.
+  - english: This chair looks comfortable. Can I try sitting?
+    japanese:
+      - この 椅子 は {快適 そう} です。座っ て み て も いい です か？
+      - この 椅子 は {快適 そう} だ ね。座っ て み て も いい？
+    english_literally: This chair is {comfortable-appearing}. Is it okay if I try sitting?
+    competing_grammar:
+      - competing_japanese:
+          - この 椅子 は 快適 だろう。
+        english: This chair is probably comfortable.
+        hint: 「だろう」 expresses a guess or probability without necessarily being based on direct visual
+          evidence of comfort. We're looking for a direct visual impression of comfort.
+    scene: A customer in a furniture store.
+    register: formal
+    setting: professional
+    conjugation: non-past polite (～ます)
+    nuance: The speaker is expressing their immediate impression of the chair's comfort based on its appearance.
+      The formal phrasing is appropriate in a retail setting when addressing a sales associate. 「座ってみてもいいですか」
+      is a polite request for permission.
+  - english: He looks very healthy recently.
+    japanese:
+      - 最近 彼 は とても {健康 そう} に 見える。
+      - 最近 彼 は とても {健康 そう} に 見え ます。
+    english_literally: Recently he looks to be {healthy-appearing}.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 彼 は 健康 です。
+        english: Recently, he is healthy.
+        hint: This states his health as a fact. We need a phrase that describes how he 'appears' to be
+          healthy, based on recent observations of his appearance.
+    scene: Two acquaintances discussing a mutual friend's well-being.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「健康そうに 見える」 indicates that the speaker observes signs of good health in the person's
+      appearance (e.g., good complexion, energetic demeanor). 「最近」 specifies the timeframe of this observation,
+      and the casual tone suggests a relaxed conversation between friends.
+  - english: The problem looks complex, but it might actually be simple.
+    japanese:
+      - その 問題 は {複雑 そう} です が、実 は 簡単 か も しれ ない。
+      - その 問題 は {複雑 そう} だ けど、実 は 簡単 か も しれ ない。
+    english_literally: That problem is {complex-appearing}, but in reality it might be simple.
+    competing_grammar:
+      - competing_japanese:
+          - その 問題 は 複雑 です が、実 は 簡単 か も しれ ない。
+        english: That problem is complex, but in reality it might be simple.
+        hint: This directly states the problem's complexity as a fact. We need a form that expresses an
+          initial impression or appearance of complexity, using the 'looks like' form.
+    scene: Colleagues discussing a difficult problem at work.
+    register: formal
+    setting: professional
+    nuance: The speaker acknowledges the initial impression of complexity 「複雑そう」 based on how the problem
+      is presented or understood at first glance, but then offers a contrasting possibility, indicating
+      careful consideration. The use of です makes the observation polite and suitable for a professional
+      environment.
+post_example_writeup: As seen in the examples, な-Adjective[そう] is highly versatile for describing appearances.
+  It can be used directly as a predicate (e.g., 賑やかそう だ) or adverbially with 見える (mieru - to appear) (e.g.,
+  不安そうに 見える). The context of the sentence, including the presence of particles like に or auxiliary verbs
+  like 見える, clarifies its role in conveying observations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%AA-Adjective%E3%81%9D%E3%81%86

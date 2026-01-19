@@ -1,0 +1,252 @@
+grammar_point: '[Verb-dictionary]ことになる (it has been decided・to turn out that)'
+learn_before:
+  - いずれ (eventually・sooner or later)
+  - お (honorific prefix)
+  - から (from)
+  - ことになっている (expected to; scheduled to)
+  - とき (when)
+  - となる (to become・result in)
+meaning: It has been decided or it will turn out that
+pronunciation:
+  katakana: コトニナル
+  romaji: koto ni naru
+formation:
+  Verb[dictionary form] + ことになる: Indicates that something has been decided or is a natural consequence,
+    often by external factors.
+jlpt: N3
+etymology: The particle に here marks the result of a change, and なる means "to become". こと nominalizes
+  the preceding verb phrase. Thus, ことになる literally means "to become the matter/fact that [verb]". This
+  structure evolved to express an outcome or a decision that solidifies into a fixed "matter" or "fact,"
+  often one that is externally determined or unavoidable, reflecting a shift from a potential state to
+  a concrete reality.
+writeup: |-
+  Verb[dictionary form] + ことになる is a fundamental grammatical pattern used to express that something has been decided, arranged, or will naturally turn out to be the case due to external circumstances, rules, or established facts. It differs significantly from Verb[dictionary form] + ことにする, which conveys a personal decision or intention.
+
+  The core meaning of ことになる is that a situation or action **becomes a matter/fact**, implying a lack of direct personal control over the outcome. It can be used for:
+
+  *   **Decisions/Arrangements:** When a decision has been made by a third party, or an arrangement has been finalized. For example, "It has been decided that I will transfer departments."
+  *   **Natural/Unavoidable Outcomes:** When something is a logical or unavoidable consequence of a situation. For example, "If you continue to not study, you will naturally fail the exam."
+  *   **Rules/Customs:** To state established rules or customs, often conveying an impersonal truth. For example, "In Japan, you take off your shoes when entering a house."
+
+  It often translates to "it has been decided that...", "it turns out that...", "it comes to pass that...", or "it means that..." depending on context. This structure emphasizes the result or the status of something becoming a settled fact, rather than the process or the agent of the decision.
+false_friends:
+  - term: '[Verb-dictionary]ことにする'
+    meaning: to decide to do
+    kind: often confused with
+    nuance: 「〜ことにする」 expresses a personal decision or intention, where the speaker (or subject) actively
+      chooses to do something. In contrast, 「〜ことになる」 indicates a decision made by external factors or
+      an unavoidable outcome, with less personal agency.
+    grammar_point: '[Verb-dictionary]ことにする (to decide to do)'
+  - term: '[Verb-dictionary]つもりだ'
+    meaning: to intend to
+    kind: often confused with
+    nuance: 「〜つもりだ」 expresses the speaker's personal intention or belief about something, which may or
+      may not align with reality. 「〜ことになる」, however, describes a concrete outcome or decision that is
+      already established or will definitely occur, often due to external factors.
+    grammar_point: '[Verb-dictionary]つもりだ (to intend to)'
+  - term: 〜のだ・〜んだ
+    meaning: explanatory (it is that...)
+    kind: similar expression
+    nuance: While both can explain circumstances, 「〜のだ・〜んだ」 provides an explanation or background for
+      a situation, often emphasizing the reason or cause. 「〜ことになる」 specifically states what the outcome
+      or established decision is, functioning more as a statement of fact or consequence.
+    grammar_point: 〜のだ・〜んだ (explanatory)
+post_false_friends_writeup: It is crucial to differentiate between 〜ことになる and 〜ことにする. The former highlights
+  an external decision or an unavoidable outcome, while the latter emphasizes a personal choice. Consider
+  whether the subject of the sentence has direct control over the action or event described. If the action
+  is a result of circumstances or someone's else's decision, 〜ことになる is appropriate. If it is a self-initiated
+  decision, 〜ことにする is used.
+examples:
+  - english: It has been decided that the meeting will be held next week.
+    japanese:
+      - 会議 は 来週 {行う こと に なる}。
+      - 会議 は 来週 {行う こと に なり ます}。
+    english_literally: As for the meeting, next week it will become the matter of being held.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 は 来週 行い ます。
+        english: The meeting will be held next week.
+        hint: This is a simple statement of fact, not emphasizing an external decision. We're looking
+          for an expression that indicates the meeting's schedule was formally decided.
+    scene: A manager informs their team about a schedule change.
+    register: formal
+    setting: professional
+  - english: If you drink too much coffee, you won't be able to sleep.
+    japanese:
+      - コーヒー を 飲み すぎる と、眠れ なく {なる こと に なる}。
+      - コーヒー を 飲み すぎる と、眠れ なく {なる こと に なり ます}。
+    english_literally: If you drink too much coffee, it will become the matter that you cannot sleep.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー を 飲み すぎる と、眠れ ない でしょう。
+        english: If you drink too much coffee, you probably won't be able to sleep.
+        hint: This expresses a probability or conjecture. We're looking for an unavoidable outcome or
+          consequence.
+    scene: A friend gives advice to another who is struggling with sleep.
+    register: casual
+    setting: friendly
+  - english: In Japan, you take off your shoes when entering a house.
+    japanese:
+      - 日本 で は、家 に 入る とき は 靴 を 脱ぐ {こと に なり ます}。
+      - 日本 で は、家 に 入る とき は 靴 を 脱ぐ {こと に なる}。
+    english_literally: In Japan, when entering a house, it becomes the matter of taking off shoes.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 で は、家 に 入る とき は 靴 を 脱ぎ ます。
+        english: This is a direct statement of action. We're looking for a phrase that implies an established
+          custom or rule.
+        hint: This is a direct statement of action. We're looking for a phrase that implies an established
+          custom or rule.
+    scene: A tour guide explains customs to foreign visitors.
+    register: teineigo (polite)
+    setting: informative
+    nuance: The use of 「〜ことになります」 implies this is an established custom or rule, something that is universally
+      understood and expected. It is not a personal choice.
+  - english: I will be working in Tokyo from next month.
+    japanese:
+      - 来月 から 東京 で 働く {こと に なる}。
+      - 来月 から 東京 で 働く {こと に なり ます}。
+    english_literally: From next month, it will become the matter of working in Tokyo.
+    competing_grammar:
+      - competing_japanese:
+          - 来月 から 東京 で 働き ます。
+        english: I will work in Tokyo from next month.
+        hint: This is a simple statement of future action. We're looking for a phrase that implies the
+          decision to work in Tokyo was made for them, or by the company, not purely their own.
+      - competing_japanese:
+          - 来月 から 東京 で 働く つもり だ。
+        english: I intend to work in Tokyo from next month.
+        hint: This expresses personal intention, not an established external decision. We're looking for
+          something that implies the decision is already set by external factors.
+    scene: A young professional tells their parents about their new job assignment.
+    register: semi-formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: Due to the rain, the event has been postponed.
+    japanese:
+      - 雨 の ため、イベント は 延期 {に なる こと に なっ た}。
+      - 雨 の ため、イベント は 延期 {に なる こと に なり まし た}。
+    english_literally: Due to rain, the event became the matter of being postponed.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 の ため、イベント は 延期 に なり まし た。
+        english: Due to the rain, the event has been postponed.
+        hint: This is a polite statement of fact. We're looking for a phrase that specifically indicates
+          the postponement was a consequence or decision stemming from external circumstances.
+    scene: An event organizer informs participants about a change in schedule.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+  - english: Because I missed the deadline, I have to re-do the whole report.
+    japanese:
+      - 締め切り を 守ら なかっ た の で、レポート を 全て やり直す {こと に なっ た}。
+      - 締め切り を 守ら なかっ た の で、レポート を 全て やり直す {こと に なり まし た}。
+    english_literally: Because I didn't meet the deadline, it became the matter of re-doing the whole
+      report.
+    competing_grammar:
+      - competing_japanese:
+          - 締め切り を 守ら なかっ た の で、レポート を 全て やり直さ なけれ ば なら ない。
+        english: Because I missed the deadline, I must re-do the whole report.
+        hint: This emphasizes obligation. We're looking for a phrase that expresses the re-doing of the
+          report as an unavoidable outcome or consequence of missing the deadline.
+    scene: A student explains why they are busy to a friend.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: We will be moving to a new office next year.
+    japanese:
+      - 来年、新しい オフィス へ 引っ越す {こと に なっ て い ます}。
+      - 来年、新しい オフィス へ 引っ越す {こと に なっ て いる}。
+    english_literally: Next year, it has become the matter that we are moving to a new office.
+    competing_grammar:
+      - competing_japanese:
+          - 来年、新しい オフィス へ 引っ越す 予定 です。
+        english: We are planning to move to a new office next year.
+        hint: This indicates a plan or schedule. We're looking for a phrase that emphasizes that the move
+          is an established arrangement or decision.
+    scene: A company executive announces future plans to employees.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: progressive (～ている)
+    nuance: The use of 「〜ことになっています」 emphasizes that this is an established plan or arrangement, a state
+      that has been decided and is now ongoing.
+  - english: Since the project was successful, I ended up getting a promotion.
+    japanese:
+      - プロジェクト が 成功 し た の で、昇進 する {こと に なっ た}。
+      - プロジェクト が 成功 し た の で、昇進 する {こと に なり まし た}。
+    english_literally: Because the project succeeded, it became the matter of getting a promotion.
+    competing_grammar:
+      - competing_japanese:
+          - プロジェクト が 成功 し た の で、昇進 し た。
+        english: Because the project was successful, I got a promotion.
+        hint: This is a direct statement of past events. We're looking for a phrase that specifically
+          indicates the promotion was a result or consequence of the project's success.
+    scene: A colleague shares good news with another.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+  - english: If you take this train, you will have to transfer at the next station.
+    japanese:
+      - この 電車 に 乗る と、次 の 駅 で 乗り換える {こと に なる}。
+      - この 電車 に 乗る と、次 の 駅 で 乗り換える {こと に なり ます}。
+    english_literally: If you take this train, it will become the matter of transferring at the next station.
+    competing_grammar:
+      - competing_japanese:
+          - この 電車 に 乗る と、次 の 駅 で 乗り換え なけれ ば なり ませ ん。
+        english: If you take this train, you must transfer at the next station.
+        hint: This emphasizes obligation. We're looking for a phrase that describes a natural or impersonal
+          consequence/rule of taking this train.
+    scene: A station attendant gives directions to a traveler.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: dictionary (plain non-past)
+  - english: After much discussion, it was decided that we would use a new system.
+    japanese:
+      - 議論 の 結果、新しい システム を 導入 する {こと に なっ た}。
+      - 議論 の 結果、新しい システム を 導入 する {こと に なり まし た}。
+    english_literally: As a result of discussion, it became the matter of introducing a new system.
+    competing_grammar:
+      - competing_japanese:
+          - 議論 の 結果、新しい システム を 導入 する こと に し た。
+        english: As a result of discussion, we decided to introduce a new system.
+        hint: This implies a personal decision made by the speakers. We're looking for a phrase that indicates
+          the decision was made by an external or collective entity, rather than a singular personal choice.
+    scene: A project leader reports the outcome of a meeting.
+    register: formal
+    setting: professional
+    conjugation: past plain (～た)
+  - english: If you don't take care of yourself, you'll end up getting sick.
+    japanese:
+      - 体 を 大切 に し ない と、病気 に {なる こと に なる}。
+      - 体 を 大切 に し ない と、病気 に {なる こと に なり ます}。
+    english_literally: If you don't take care of your body, it will become the matter of becoming sick.
+    competing_grammar:
+      - competing_japanese:
+          - 体 を 大切 に し ない と、病気 に なり ます よ。
+        english: If you don't take care of your body, you'll get sick.
+        hint: This is a direct warning. We're looking for a phrase that indicates getting sick is an unavoidable
+          consequence of not taking care of oneself.
+    scene: A doctor advises a patient.
+    register: formal
+    setting: serious
+    conjugation: dictionary (plain non-past)
+  - english: Everyone will eventually grow old.
+    japanese:
+      - 誰 で も いずれ 老いる {こと に なる}。
+      - 誰 で も いずれ 老いる {こと に なり ます}。
+    english_literally: Anyone, eventually, it will become the matter of growing old.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 で も いずれ 老い ます。
+        english: Everyone will eventually grow old.
+        hint: This is a simple statement of future fact. We're looking for a phrase that emphasizes this
+          as an inherent or unavoidable truth for all.
+    scene: A philosopher contemplating life.
+    register: formal
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+post_example_writeup: Understanding the distinction between decisions made by external factors (〜ことになる)
+  and personal decisions (〜ことにする) is key to mastering these similar-sounding structures. Pay attention
+  to the context and who or what is the implied agent of the decision or outcome.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%93%E3%81%A8%E3%81%AB%E3%81%AA%E3%82%8B

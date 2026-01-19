@@ -1,0 +1,263 @@
+grammar_point: んがため (for the purpose of)
+learn_before:
+  - '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - '[Verb-dictionary・Nounの]ために (for the purpose of)'
+meaning: In order to, for the purpose of, with the goal of
+pronunciation:
+  katakana: ンガタメ(ニ)
+  romaji: n ga tame (ni)
+  pronunciation_warning: The "ん" in 「んがため」 is a syllabic nasal which is often pronounced like an "ng"
+    sound, similar to the "ng" in "sing", because it precedes a "g" sound.
+formation:
+  Verb (未然形 / mizenkei) + んがため(に): Used to express the purpose or goal of an action, carrying a formal
+    and somewhat archaic nuance. The "未然形" is often the stem before adding "-ない" or classical auxiliary
+    verbs like "む".
+jlpt: N1
+etymology: 「んがため」 stems from 「むがため」. The 「む」 is a classical auxiliary verb signifying intent or strong
+  will, similar to modern 「う」 or 「よう」. Over time, 「む」 often phonetically shifted to 「ん」 in certain contexts.
+  「が」 is a possessive particle, and 「ため」 means "sake" or "purpose". Thus, the phrase literally means "for
+  the sake of [one's] intention" or "for the purpose of [one's] will", conveying a resolute pursuit of
+  a goal. This structure evokes a sense of formal, sometimes literary, dedication to an objective.
+writeup: 'The grammar point 「んがため(に)」 is employed to articulate that an action is performed "for the explicit
+  purpose of" or "with a specific goal in mind." It is a highly formal and somewhat archaic expression,
+  predominantly encountered in written literature, official documents, or dignified speeches rather than
+  daily conversation. The core of this pattern lies in 「ん」, which is derived from the classical auxiliary
+  verb 「む」. This 「む」 signifies intent, strong will, or conjecture, akin to the modern Japanese volitional
+  endings 「う」 and 「よう」. When used in 「んがため(に)」, it is attached to the 未然形 (irrealis or imperfective stem)
+  of the preceding verb. This structure strongly implies the speaker''s (or subject''s) resolute will
+  to achieve the stated goal. Consequently, the verb preceding 「んがため(に)」 must describe a strong, controllable
+  action by the subject. It cannot be used for involuntary actions or states of being. **Important Considerations**:
+  *   **Formality and Usage**: This pattern lends a weighty and determined tone to the statement. Its
+  use is limited to formal contexts, making it unsuitable for casual interactions. Its formality often
+  elevates the significance of the goal being described. *   **Connection to する**: For verbs ending in
+  「する」, the older 未然形 「せ」 is used instead of the more common modern 「し」. Thus, you will see 「せんがため」 (e.g.,
+  成功させんがため) rather than 「しんがため」. *   **Particle Usage**: The particle 「に」 is commonly used after 「んがため」
+  when it modifies a verb or a clause, indicating the purpose of an action. For example, 「目的を達成せんがために努力する」
+  (to strive in order to achieve the goal). When it modifies a noun, 「の」 is used, creating a phrase like
+  「目的を達成せんがための努力」 (effort for the purpose of achieving the goal).'
+false_friends:
+  - term: ため(に)
+    meaning: For, for the sake of, in order to
+    kind: similar expression
+    nuance: While both 「んがため(に)」 and 「ため(に)」 express purpose, 「んがため(に)」 is significantly more formal and
+      literary, carrying a strong sense of determined will. 「ため(に)」 is versatile and commonly used in
+      all registers, including everyday conversation. You would typically choose 「んがため(に)」 to emphasize
+      a profound, resolute, or even dramatic purpose in formal or written contexts, whereas 「ため(に)」 serves
+      as the general, neutral expression of purpose.
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+post_false_friends_writeup: To differentiate, consider the context and the desired level of formality.
+  If you are writing a formal essay, a novel, or making a profound statement, 「んがため(に)」 can add gravity
+  and a classical touch. For all other everyday situations, or when you simply need to state a purpose
+  without additional emphasis, 「ため(に)」 is the appropriate choice. Remember that 「んがため(に)」 requires the
+  verb to be in its 未然形, while 「ため(に)」 attaches to the dictionary form or plain past form of verbs.
+examples:
+  - english: He continued his solitary battle in order to change the world.
+    japanese:
+      - 彼 は 世界 を 変え {ん が ため} に、一人 で 戦い を 続け た。
+      - 彼 は 世界 を 変え {ん が ため}、一人 で 戦い を 続け た。
+    english_literally: He for the purpose of changing the world, continued his solitary battle.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 世界 を 変える {ため} に、一人 で 戦い を 続け た。
+        english: He continued his solitary battle in order to change the world.
+        hint: The phrase "一人で戦い" (solitary battle) and the overall context of a determined revolutionary
+          evoke a more formal and resolute tone, making {んがため} a more fitting choice than the common "ため".
+          We're looking for the sense of strong internal motivation for a grand purpose.
+      - competing_japanese:
+          - 彼 は 世界 を 変える {べく}、一人 で 戦い を 続け た。
+        english: He continued his solitary battle to change the world.
+        hint: 「べく」 often describes a necessary or appropriate action to achieve a goal, like 'should'
+          or 'must'. 「んがため」 emphasizes the strong personal resolve or firm intention. We're looking for
+          the sense of strong internal motivation for a grand purpose.
+    scene: Imagine a determined revolutionary, working tirelessly against overwhelming odds.
+    register: formal
+    setting: serious
+    nuance: The use of 「んがため」 here emphasizes the profound and ambitious nature of the goal (changing
+      the world) and the speaker's strong, almost fated, determination. The tone is elevated, befitting
+      a grand narrative.
+  - english: This law was enacted for the purpose of protecting the safety of citizens.
+    japanese:
+      - この 法律 は 市民 の 安全 を 守 {らん が ため} に 制定 さ れ た。
+      - この 法律 は 市民 の 安全 を 守 {らん が ため}、制定 さ れ た。
+    english_literally: This law for the purpose of protecting citizens' safety was enacted.
+    competing_grammar:
+      - competing_japanese:
+          - この 法律 は 市民 の 安全 を 守る {ため} に 制定 さ れ た。
+        english: This law was enacted to protect the safety of citizens.
+        hint: The context of a law being "enacted" (制定された) and the formal nature of a government explanation
+          lean towards the more elevated and official tone of {んがため} over the everyday "ため". We're looking
+          for the deliberate and principled action for a critical intent.
+      - competing_japanese:
+          - この 法律 は 市民 の 安全 を 守る {べく} 制定 さ れ た。
+        english: This law was enacted to protect the safety of citizens.
+        hint: 「べく」 can also express a purpose, particularly when the action is deemed necessary or suitable
+          for the goal. 「んがため」 stresses the solemn intent or firm will behind the enactment. We're looking
+          for the deliberate and principled action for a critical intent.
+    scene: A government official is explaining the rationale behind a new legislative act.
+    register: formal
+    setting: informative
+    nuance: In a formal legislative context, 「んがため」 highlights the solemn and critical intent behind the
+      law's creation—the safeguarding of public safety. It implies a deliberate and principled action.
+    etymology: The term 「制定」 (enactment) itself reflects the formal context, reinforcing the usage of
+      「んがため」.
+  - english: We will exhaust all means in order to pursue the truth.
+    japanese:
+      - 私 たち は 事実 を 明らか に せ {ん が ため} に、全て の 方法 を 尽くす だろう。
+      - 私 たち は 事実 を 明らか に せ {ん が ため}、全て の 方法 を 尽くす だろう。
+    english_literally: We for the purpose of pursuing the truth, will exhaust all means.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 事実 を 明らか に する {ため} に、全て の 方法 を 尽くす だろう。
+        english: We will exhaust all means to pursue the truth.
+        hint: The resolute declaration "全ての方法を尽くす" (exhaust all means) by a detective chief addressing
+          their team suggests a level of determination and formality best captured by {んがため}, rather than
+          the more neutral "ため". We're looking for the strong sense of unwavering commitment.
+      - competing_japanese:
+          - 私 たち は 事実 を 明らか に する {べく}、全て の 方法 を 尽くす だろう。
+        english: We will exhaust all means to pursue the truth.
+        hint: 「べく」 implies the action is a suitable means to achieve the goal. 「んがため」 stresses the strong
+          resolve or determination to achieve the truth. We're looking for the strong sense of unwavering
+          commitment.
+    scene: A detective chief is briefing their team on a complex investigation, emphasizing their commitment.
+    register: semi-formal
+    setting: serious
+    nuance: The phrase 「明らかにせんがため」 conveys an unwavering commitment to discovering the truth, typical
+      of academic or investigative pursuits where the goal is paramount. The volitional 'ん' component
+      adds to this strong sense of resolve.
+  - english: In order to protect his honor, he risked his life.
+    japanese:
+      - 名誉 を 守 {らん が ため}、彼 は 命 を 賭し た。
+      - 名誉 を 守 {らん が ため} に、彼 は 命 を 賭し た。
+    english_literally: For the purpose of protecting honor, he gambled his life.
+    competing_grammar:
+      - competing_japanese:
+          - 名誉 を 守る {ため}、彼 は 命 を 賭し た。
+        english: To protect his honor, he risked his life.
+        hint: The historical context and the dramatic action of "risking one's life" (命を賭した) in defense
+          of "honor" (名誉) strongly suggest the formal, often archaic, tone of {んがため}, making "ため" feel
+          too modern or informal.
+    scene: From a historical account of a samurai or knight's decisive action.
+    register: formal
+    setting: storytelling
+    nuance: This example uses a literary style for dramatic effect, common in historical narratives. 「守らんがため」
+      underscores the grave significance of the act and the ultimate sacrifice for a noble cause, characteristic
+      of older literary works.
+  - english: In order to pave the way for her children's future, she invested a large sum of money.
+    japanese:
+      - 子供 たち の 未来 を 開か {ん が ため}、彼女 は 大きな お 金 を 投じ た。
+      - 子供 たち の 未来 を 開か {ん が ため} に、彼女 は 大きな お 金 を 投じ た。
+    english_literally: For the purpose of opening up her children's future, she invested a large sum of
+      money.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち の 未来 を 開く {ため}、彼女 は 大きな お 金 を 投じ た。
+        english: To pave the way for her children's future, she invested a large sum of money.
+        hint: The magnitude of the sacrifice ("invested a large sum of money") and the noble cause ("pave
+          the way for her children's future") create a serious and somewhat profound context, making {んがため}
+          a more suitable and impactful choice for expressing such a dedicated purpose than "ため".
+    scene: A philanthropist is making a significant personal sacrifice for the next generation.
+    register: formal
+    setting: inspirational
+    nuance: The expression 「開かんがため」 captures the profound and selfless dedication of a parent or guardian.
+      The formal nature of 「んがため」 elevates the act to one of significant, perhaps sacrificial, effort
+      aimed at securing a future for others.
+    etymology: 「投じる」 (to invest/throw) is a formal verb choice that complements the elevated tone of 「んがため」.
+  - english: He sacrificed others in order to satisfy his own desires.
+    japanese:
+      - 彼 は 自分 の 欲 を 満た {さん が ため} に、他人 を 犠牲 に し た。
+      - 彼 は 自分 の 欲 を 満た {さん が ため}、他人 を 犠牲 に し た。
+    english_literally: He for the purpose of satisfying his own desires, made others sacrifices.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 自分 の 欲 を 満たす {ため} に、他人 を 犠牲 に し た。
+        english: He sacrificed others to satisfy his own desires.
+        hint: The severe action of "sacrificing others" (他人を犠牲にした) driven by selfish "desires" (自分の欲)
+          in a narrative describing a villain creates a dramatic and formal tone, where {んがため} fits the
+          gravitas of the situation better than the more neutral "ため".
+    scene: Describing the ruthless actions of a villain or corrupt individual.
+    register: formal
+    setting: serious
+    nuance: This example uses the Godan verb 「満たす」 in its 未然形 (満たさ) followed by 「ん」. 「満たさんがため」 highlights
+      a malevolent and determined pursuit of selfish aims, often seen in dramatic or morally charged narratives.
+      The old-fashioned feel adds to the sense of a dark resolve.
+    etymology: The use of 「犠牲にする」 (to sacrifice) is a grave and formal expression, aligning with the elevated
+      register of 「んがため」.
+  - english: Scientists are conducting experiments in order to unravel the mysteries of the universe.
+    japanese:
+      - 科学 者 たち は 宇宙 の 神秘 を 解き明かさ {ん が ため} に、実験 を 繰り返し て いる。
+      - 科学 者 たち は 宇宙 の 神秘 を 解き明かさ {ん が ため}、実験 を 繰り返し て いる。
+    english_literally: Scientists for the purpose of unraveling the universe's mysteries, are repeating
+      experiments.
+    competing_grammar:
+      - competing_japanese:
+          - 科学 者 たち は 宇宙 の 神秘 を 解き明かす {ため} に、実験 を 繰り返し て いる。
+        english: Scientists are conducting experiments to unravel the mysteries of the universe.
+        hint: While 「ため」 is grammatically correct, the profound goal of "unraveling the universe's mysteries"
+          and the academic setting of a public lecture makes 「んがため」 a more fitting choice, conveying a
+          strong, dedicated purpose.
+    scene: A renowned astrophysicist is giving a public lecture on their ongoing research.
+    register: formal
+    setting: informative
+    nuance: The use of 「解き明かさん」 for "unravel" emphasizes the profound and challenging nature of scientific
+      inquiry, elevating the pursuit of knowledge to a serious, dedicated endeavor. The formal tone is
+      suitable for an academic presentation.
+  - english: The soldiers fought fiercely in order to protect their homeland.
+    japanese:
+      - 兵士 たち は 故国 を 守 {らん が ため} に、猛烈 に 戦っ た。
+      - 兵士 たち は 故国 を 守 {らん が ため}、猛烈 に 戦っ た。
+    english_literally: Soldiers for the purpose of protecting their homeland, fiercely fought.
+    competing_grammar:
+      - competing_japanese:
+          - 兵士 たち は 故国 を 守る {ため} に、猛烈 に 戦っ た。
+        english: The soldiers fought fiercely to protect their homeland.
+        hint: The historical and solemn context of "protecting their homeland" through "fierce fighting"
+          calls for the more resolute and archaic feel of 「んがため」, rather than the simpler 「ため」.
+    scene: A historian is recounting a pivotal battle from ancient times.
+    register: formal
+    setting: storytelling
+    nuance: 「守らんがため」 here highlights the ultimate sacrifice and unwavering resolve of soldiers fighting
+      for their nation, a solemn purpose that merits the elevated, literary tone. The phrase 「猛烈に戦った」
+      (fought fiercely) reinforces this intensity.
+  - english: People train diligently every day in order to master their skills.
+    japanese:
+      - 人々 は 己 の 技 を 極め {ん が ため} に、日々 鍛錬 を 積む。
+      - 人々 は 己 の 技 を 極め {ん が ため}、日々 鍛錬 を 積む。
+    english_literally: People for the purpose of mastering their own skills, accumulate daily training.
+    competing_grammar:
+      - competing_japanese:
+          - 人々 は 己 の 技 を 極める {ため} に、日々 鍛錬 を 積む。
+        english: People train diligently every day to master their skills.
+        hint: The concept of "mastering one's skills" (己の技を極める) and the idea of continuous, deep "training"
+          (日々鍛錬を積む) suggests a profound, disciplined purpose, which is better conveyed by the more formal
+          and resolute 「んがため」 than 「ため」.
+    scene: A Zen master is teaching disciples about the path to mastery and self-perfection.
+    register: formal
+    setting: inspirational
+    nuance: 「極めんがため」 imparts a sense of profound dedication and relentless pursuit of perfection in one's
+      craft or skill, often seen in the context of martial arts, traditional arts, or spiritual disciplines.
+      The phrase 「日々鍛錬を積む」 (accumulate daily training) reinforces the ongoing, deep commitment.
+  - english: They worked tirelessly for the purpose of building a prosperous future for the children.
+    japanese:
+      - 彼 ら は 子供 たち の 豊か な 未来 を 築か {ん が ため} に、日夜 尽力 し た。
+      - 彼 ら は 子供 たち の 豊か な 未来 を 築か {ん が ため}、日夜 尽力 し た。
+    english_literally: They for the purpose of building children's prosperous future, day and night exerted
+      effort.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 子供 たち の 豊か な 未来 を 築く {ため} に、日夜 尽力 し た。
+        english: They worked tirelessly to build a prosperous future for the children.
+        hint: The significant, long-term goal of "building a prosperous future for children" and the notion
+          of "tireless effort" suggest a deep, collective commitment, making the more formal and determined
+          「んがため」 a more appropriate expression than the general 「ため」.
+    scene: A community leader is addressing volunteers at a charity event, commending their efforts.
+    register: formal
+    setting: inspirational
+    nuance: The use of 「築かんがため」 here conveys a strong, collective resolve and noble purpose in working
+      for the betterment of the next generation. The phrase 「日夜尽力した」 (exerted effort day and night) further
+      emphasizes the tireless dedication involved.
+post_example_writeup: As illustrated by the examples, 「んがため(に)」 is reserved for situations where the purpose
+  is significant, often grand or highly principled. It imbues the statement with a sense of solemnity
+  and a strong, almost unyielding, resolve. Pay close attention to the verb's 未然形 when forming this pattern,
+  especially for する-verbs.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/んがため-に

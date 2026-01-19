@@ -1,0 +1,570 @@
+grammar_point: '[Noun]が好きだ (to like)'
+learn_before:
+  - だった (past copula, casual)
+meaning: To like; to be fond of.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 好きだ
+    rarity: common
+    meaning: like (plain)
+  - conjugation-type: non-past polite (～ます)
+    form: 好きです
+    rarity: common
+    meaning: like (polite)
+  - conjugation-type: past plain (～た)
+    form: 好きだった
+    rarity: common
+    meaning: liked (plain)
+  - conjugation-type: past polite (～ました)
+    form: 好きでした
+    rarity: common
+    meaning: liked (polite)
+  - conjugation-type: negative plain (～ない)
+    form: 好きではない
+    rarity: common
+    meaning: do not like (plain)
+  - conjugation-type: negative plain (～ない)
+    form: 好きじゃない
+    rarity: common
+    meaning: do not like (plain, casual)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 好きではありません
+    rarity: common
+    meaning: do not like (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 好きじゃないです
+    rarity: common
+    meaning: do not like (polite, casual)
+  - conjugation-type: negative past plain (～なかった)
+    form: 好きではなかった
+    rarity: common
+    meaning: did not like (plain)
+  - conjugation-type: negative past plain (～なかった)
+    form: 好きじゃなかった
+    rarity: common
+    meaning: did not like (plain, casual)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 好きではありませんでした
+    rarity: common
+    meaning: did not like (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 好きじゃありませんでした
+    rarity: common
+    meaning: did not like (polite, casual)
+  - conjugation-type: te-form (～て)
+    form: 好きで
+    rarity: common
+    meaning: being fond of; because one likes
+  - conjugation-type: conditional (～ば)
+    form: 好きならば
+    rarity: less common
+    meaning: if one likes
+  - conjugation-type: conditional (～たら)
+    form: 好きだったら
+    rarity: common
+    meaning: if one liked
+pronunciation:
+  katakana: スキダ
+  romaji: suki da
+formation:
+  '[Noun] + が + {好きだ / 好きです}': To express liking something.
+  '{好きな} + [Noun]': Used when 「好き」 directly modifies a noun, meaning 'favorite' or 'liked'.
+  '[Verb in dictionary form] + のが + {好きだ / 好きです}': To express liking an action or activity.
+  '[Subject] は + [Object] が + 好きだ': Expresses that someone likes something or someone.
+  '[Subject] は + [Object] が + 大好きだ': Expresses that someone loves something or someone.
+jlpt: N5
+etymology: The word 「好き (suki)」 originally meant 'inclination' or 'preference'. Over time, it evolved
+  to describe the feeling of liking something or someone. The 「だ (da)」 is a copula, indicating a state
+  of being. Its origin can be traced back to the verb 「好く (suku)」, meaning "to be fond of" or "to prefer."
+  Over time, 「好く」 evolved into the noun-like adjective 「好き」, retaining its core meaning of affection or
+  preference.
+writeup: 「好き (suki)」, meaning "to like," is a common な-adjective used in various expressions. Like all
+  な-adjectives, it behaves somewhat like a verb in that its form changes depending on what follows it.
+  For instance, 「好き」 is followed by 「な」 when it functions as an adjective modifying a noun (e.g., 「好きな
+  本 (suki na hon)」 - "a favorite book"). When it acts as a predicate, directly stating a preference, it
+  is typically followed by 「だ (da)」 in plain form or 「です (desu)」 in polite form. This distinction is crucial
+  for correct usage. The basic structure is Subject + は + Object + が + 好きだ/です. Using 「を」 instead of 「が」
+  is a common mistake. Also, 「大好き」 means "to really like" or "to love," indicating a strong preference.
+false_friends:
+  - term: 嫌い
+    meaning: Dislike, hate
+    kind: antonym
+    nuance: Unlike 「好き」 which expresses fondness, 「嫌い」 conveys the opposite sentiment of dislike or aversion.
+      While both are な-adjectives, their emotional weight is directly opposed.
+    grammar_point: '[Noun]が嫌いだ (to dislike)'
+  - term: 愛している (aishiteiru)
+    meaning: To love
+    kind: similar expression
+    nuance: Unlike 「好きだ」, 「愛している」 expresses a much deeper and more profound love. It's rarely used in
+      casual conversation and is reserved for very strong, usually romantic, affection.
+    grammar_point: 愛する (to love)
+  - term: 恋しい (koishii)
+    meaning: To miss; to long for
+    kind: often confused with
+    nuance: Unlike 「好きだ」, which describes liking something, 「恋しい」 describes the feeling of missing someone
+      or something that is absent or nostalgic affection for it.
+    grammar_point: い-Adjective[dictionary] (dictionary)
+  - term: 得意
+    meaning: Good at, skilled in
+    kind: similar expression
+    nuance: Unlike 「好き」 which expresses a general liking or preference, 「得意」 specifically indicates a
+      skill or aptitude in something, often implying enjoyment but focusing on ability.
+    grammar_point: 得意 (good at)
+  - term: 苦手
+    meaning: Not good at, weak point, dislike
+    kind: similar expression
+    nuance: While 「苦手」 can express a dislike, it more commonly implies a lack of skill or being poor at
+      something, often used as a milder way to express aversion than 「嫌い」. It focuses on difficulty or
+      inability rather than direct emotional aversion.
+    grammar_point: 苦手 (not good at)
+  - term: 気に入る
+    meaning: To take a liking to, to be pleased with, to be fond of
+    kind: similar expression
+    nuance: 「気に入る」 implies a process of becoming pleased with something or developing a liking for it,
+      often after some consideration. It focuses on the act of finding something appealing, whereas 「好き」
+      describes the state of liking it.
+    grammar_point: 気に入る (become fond of)
+post_false_friends_writeup: While 「好き」 and 「嫌い」 are direct opposites, 「得意」 and 「苦手」 express aptitude or
+  lack thereof, which can sometimes imply a liking or dislike without explicitly stating it. Similarly,
+  「気に入る」 describes the process of coming to like something. The words 「愛している」 and 「恋しい」 are for stronger
+  and more specific types of affection. Understanding these subtle differences is key to choosing the
+  most appropriate expression.
+examples:
+  - english: I really like this book.
+    japanese:
+      - この 本 が とても {好き} です。
+      - この 本 が とても {好き} だ。
+      - この 本、すごく {好き} な ん だ。
+      - この 本、まじ {好き}！
+      - 私、この 本 が とても {好き} です。
+      - 私 は この 本 が 本当 に {好き} です。
+      - この 本、めっちゃ {好き} な ん だ よ ね！
+      - この 本、{好き} だ なあ。
+    english_literally: This book is very liked by me.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 に {夢中} です。
+        english: I'm absorbed in this book.
+        hint: 「夢中」 describes being absorbed or engrossed in something. We are looking for an expression
+          of general fondness here, not absorption.
+      - competing_japanese:
+          - この 本 が {気 に 入 り} まし た。
+        english: I've taken a liking to this book.
+        hint: 「気に入る」 indicates the process of becoming fond of something or the result of that process.
+          We are looking for a statement about the current state of liking something, not the process
+          of developing a liking for it.
+      - competing_japanese:
+          - この 本 は {素晴らしい} です。
+        english: This book is wonderful.
+        hint: 「素晴らしい」 expresses an objective evaluation of excellence. We are looking for a personal feeling
+          of liking, not an objective evaluation of excellence.
+      - competing_japanese:
+          - この 本 は {嫌い} です。
+        english: I dislike this book.
+        hint: 「嫌い」 is the direct opposite of 「好き」 and expresses a clear dislike. We are looking to express
+          fondness here, not dislike.
+    scene: A student tells their teacher about a book they are enjoying.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「です」 at the end of 「好きです」 indicates a polite register, suitable for addressing
+      a teacher. For a more casual setting, one might use 「好きだ」 or the even more casual and emphatic 「好きなんだ」,
+      often used when expressing a personal feeling with emphasis. The addition of 「まじ」 (maji), a very
+      casual slang term for 'really' or 'seriously,' makes 「まじ 好き」 an expression of strong, often youthful
+      enthusiasm. 「めっちゃ」 is an even more casual intensifier, similar to 'super' or 'totally.' The sentence-ending
+      「なあ」 adds a reflective or somewhat wistful nuance, often used by female speakers to convey sentiment,
+      though in casual contexts, it can be gender-neutral or even masculine depending on inflection. The
+      casualness is appropriate for a student sharing personal interest with a teacher. The example uses
+      「{好き} です」 in the first variation, making it suitable for the polite register and informative setting
+      described in the scene. The competing examples provide alternatives that don't precisely capture
+      the personal fondness expressed by 「好き」, focusing instead on being absorbed, having taken a liking,
+      or an objective evaluation.
+  - english: I like Japanese food.
+    japanese:
+      - 日本 の 食べ物 が {好き} だ。
+      - 日本 の 食べ物 が {好き} です。
+      - 日本 の 食べ物、超 {好き}！
+      - 日本 の 食べ物 は {好き} だ。
+      - 日本 食、マジ {好き} だ わ。
+      - 和食 が 大 {好き} な ん です。
+      - 私 は 日本 の 食べ物 が 大 {好き} です。
+      - 日本 の 食べ物 って 本当 {好き} だ よ ね。
+    english_literally: Japanese food is liked by me.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 食べ物 は {最高} だ。
+        english: Japanese food is the best.
+        hint: 「最高」 means 'the best' and refers to something being excellent. We are looking to express
+          a personal preference using 「好き」, not an objective assessment of quality or superiority.
+      - competing_japanese:
+          - 日本 の 食べ物 は 私 の {得意} な ジャンル だ。
+        english: Japanese food is my forte / a genre I'm good at.
+        hint: 「得意」 describes being good or skilled at something. We are looking for an expression of simple
+          preference, not an indication of skill or aptitude.
+      - competing_japanese:
+          - 日本 の 食べ物 が {気 に 入 り} まし た。
+        english: I've come to like Japanese food.
+        hint: 「気に入る」 emphasizes the change of developing a liking for something. We are looking to express
+          the current state of liking, not the process of coming to like it.
+    scene: Two friends are chatting about their favorite cuisines.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    nuance: The plain form 「好きだ」 is natural in casual conversations between friends. When speaking politely,
+      「好きです」 is used. The very casual 「超 (ちょう) 好き！」 expresses strong liking and is commonly used among
+      close friends or younger generations. 「日本食」 is a slightly more specific term for Japanese cuisine.
+      The use of 「マジ」 (maji) adds a strong, casual emphasis, often used by younger speakers. The sentence-ending
+      「わ」 (wa) here, when used by male speakers, can convey a sense of personal conviction or a slight
+      exclamation, especially in casual speech. 「大好き」 emphasizes a strong liking. The phrase 「～って本当好きだよね」
+      is conversational, seeking agreement from the listener. The example uses 「{好き} だ」 in the first variation,
+      which is appropriate for the casual register and friendly setting. The competing examples offer
+      alternatives that convey different nuances like being "the best" or being "good at something", which
+      are distinct from simply "liking" something.
+  - english: What is your favorite food?
+    japanese:
+      - '{好き} な 食べ物 は 何 です か。'
+      - '{好き} な 食べ物 は 何？'
+      - 食べ物 は 何 が {好き} です か。
+      - 何 が {好き} な 食べ物？
+      - 一番 {好き} な 色 は 青 な ん だ。
+      - 一番 {好き} な 食べ物 は なに？
+      - 君 の {好き} な 食べ物 は？
+      - お {好き} な 食べ物 は 何 でしょ う か？
+    english_literally: What is the liked food?
+    competing_grammar:
+      - competing_japanese:
+          - お {好み} の 食べ物 は 何 です か。
+        english: What is your preferred food?
+        hint: 「好み (このみ)」 is a more formal term for 'preference.' We are looking for the more common expression
+          using 「好き」, not a more formal one that emphasizes selection rather than personal affection.
+    scene: A new coworker is getting to know their colleagues over lunch.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: 「好きな 食べ物」 uses 「好き」 as an adjective modifying 「食べ物」, directly asking about the 'liked' food.
+      The alternative 「食べ物 は 何 が 好き です か」 uses 「好き」 as a predicate. Both are polite, but the former is
+      often more natural for asking about preferences. The particle 「って」 (tte) makes the question more
+      informal and conversational, akin to 'What is your favorite food, you know?' The use of 「君」 (kimi)
+      is a casual pronoun for 'you', typically used among close friends or by older speakers to younger
+      ones. 「お好き」 is an honorific form of 「好き」 used in formal contexts to show respect for the listener's
+      preference. The example uses 「{好き} な 食べ物 は 何 です か」 in the first variation, which is suitable for
+      the polite register and informative setting. The competing examples suggest alternative phrasing
+      like 「好み」 (preference), which is more formal, or 「得意」 (good at), which implies a different meaning
+      entirely.
+  - english: I don't really like loud sounds.
+    japanese:
+      - 大きい 音 は あまり {好き} で は あり ませ ん。
+      - 大きい 音 は あまり {好き} じゃ あり ませ ん。
+      - 大きい 音 は あまり {好き} で は ご ざ い ま せ ん。
+      - 大きい 音 は あんま {好き} じゃ ない。
+      - 大きい 音 は ちょっと {好き} じゃ ない ん です。
+      - 大きな 音 は あまり {好き} じゃ ない です。
+      - 私 は 大きな 音 が あまり {好き} で は な い で す。
+      - 騒音 は {好き} で は な い で す ね。
+    english_literally: Large sounds are not liked very much by me.
+    competing_grammar:
+      - competing_japanese:
+          - 大きい 音 は ちょっと {苦手} です。
+        english: I'm not good with loud sounds.
+        hint: 「苦手」 means you are not good with something or find it difficult. We are looking for a direct
+          expression of not liking something using 「好き」, not an inability to handle something.
+    scene: A person politely expresses a preference to a new acquaintance.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: negative non-past polite (～ません)
+    nuance: 「好きではありません」 is a standard polite negation. 「好きじゃありません」 is a slightly more casual, but still
+      polite, alternative. For a more formal or humble context, especially in business or formal settings,
+      「好きではございません」 would be used. 「あんま」 (anma) is a casual contraction of 「あまり」 (amari), common in informal
+      speech. 「好きじゃないんです」 (suki janai n desu) uses the explanatory 「ん です」, which softens the refusal and
+      provides context, suitable for polite but slightly more personal expression. Using 「大きな音」 is a common
+      variation of 「大きい音」. 「騒音」 (sōon) means 'noise' and carries a slightly more negative connotation,
+      implying unpleasant sound. The example uses 「{好き} で は あり ませ ん」 in the first variation, suitable
+      for a polite register and a serious setting. The competing examples explore phrases like 「苦手」 (not
+      good with) or 「気に入らない」 (not pleased with), which carry different nuances than a straightforward
+      lack of preference using 「好き」.
+  - english: I don't really like this story.
+    japanese:
+      - この 話 は あまり {好き} じゃ な い ん だ。
+      - この 話 は あまり {好き} で は な い。
+      - この 話、あんま {好き} じゃ ない な。
+      - この 話、あんまり {好き} じゃ ない か も。
+      - この 話 は {好き} じゃ ない。
+      - 正直、この 話 は あまり {好き} じゃ ない なあ。
+      - うーん、この 話 は ちょっと {好き} に な れ な い な。
+      - この ストーリー は {好き} で は な い で す。
+    english_literally: This story is not liked very much, you know.
+    competing_grammar:
+      - competing_japanese:
+          - この 話 は {つまら な い} な。
+        english: This story is boring.
+        hint: 「つまらない」 means boring. We are looking to express not liking something with 「好き」, not stating
+          an objective quality like boredom.
+    scene: A teenager tells their friend why they didn't enjoy a story they heard.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The use of 「んだ」 in 「好きじゃないんだ」 adds a sense of explanation or emphasis, common among younger
+      male speakers. 「好きではない」 is the plain negation form, slightly more formal than 「好きじゃない」. 「あんま (am-ma)」
+      is a very casual contraction of 「あまり (amari)」, and 「な」 adds a soft, reflective tone, making 「あんま
+      好き じゃ ないな」 highly informal and natural among close friends. The use of 「あんまり」 (anmari) with 「～じゃないかも」
+      (janai kamo) softens the statement, indicating a degree of uncertainty or politeness, often used
+      by female speakers to avoid directness. 「正直」 (shōjiki) adds an honest or candid nuance. 「好きになれない」
+      suggests an inability to develop a liking, rather than just a current state of dislike. Using 「ストーリー」
+      (story) is a common borrowed word. The example uses 「{好き} じゃ な い ん だ」 in the first variation, fitting
+      the casual register and the younger male speaker's nuance of explanation. The competing examples
+      provide other ways to express dissatisfaction, such as boredom or difficulty with something, which
+      differ from a simple lack of personal liking expressed by 「好き」.
+  - english: I like reading books every day.
+    japanese:
+      - 毎日 本 を 読む の が {好き} で す。
+      - 毎日 本 を 読む の が {好き} だ。
+      - 毎日 本 読む の 超 {好き} な ん だ！
+      - 毎日 本 を 読む の を {好き} だ。
+      - 私 は 毎日 本 を 読む の が 大 {好き} です。
+      - 毎日 の 読書 が {好き} です。
+      - 本 を 毎日 読む の は {好き} だ ね。
+    english_literally: The act of reading books every day is liked very much by me.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 本 を 読む の が {楽しみ} です。
+        english: Reading books every day is enjoyable for me.
+        hint: 「楽しみ (たのしみ)」 expresses joy or anticipation. We are looking to state a preference or fondness
+          for an activity using 「好き」, not just that it is enjoyable.
+    scene: A student describes their favorite daily activity to a new classmate.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    nuance: The use of 「です」 in 「好きです」 conveys politeness, appropriate for speaking with a new classmate.
+      If speaking to a close friend or in an informal context, the plain form 「好きだ」 would be used. 「超」
+      (chou) means 'super' or 'extremely,' an intensifier popular among younger generations. The exclamation
+      「な ん だ！」 (nanda) adds strong emphasis and a sense of shared feeling, making it very enthusiastic.
+      Using 「大好き」 emphasizes a strong liking. 「毎日の読書」 (mainichi no dokusho) is a more formal noun phrase
+      for 'daily reading.' The sentence-ending 「ね」 makes it conversational, seeking agreement. The example
+      uses 「{好き} で す」 in the first variation, which is suitable for a polite register and informative
+      setting. The competing examples provide alternatives like 「楽しみ」 (enjoyment) or 「得意」 (skilled at),
+      which are different from stating a direct liking for the activity using 「好き」.
+  - english: When I was a child, I really liked the books I often read.
+    japanese:
+      - 子供 の 時、よく 読 ん だ 本 が とても {好き} でし た。
+      - 子供 の 時、よく 読 ん だ 本 が とても {好き} だっ た。
+      - 子供 の 頃、よく 読 ん で た 本 が 超 {好き} だっ た ん だ。
+      - 子供 の 時、あの 本 は とても {好き} だっ た。
+      - 小さい 頃、繰り返し 読 ん だ 本 が 本当 に {好き} でし た。
+      - 子供 の 頃 に よ く 読 ん だ 本 が {好き} だっ た な あ。
+      - 私 が 子供 だっ た 時、よ く 読 ん だ 本 が と て も {好き} で し た。
+    english_literally: When I was a child, the often-read books were very liked.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 時、よく 読 ん だ 本 は とても {面白} かっ た。
+        english: When I was a child, the books I often read were very interesting.
+        hint: 「面白かった」 is an objective evaluation of something being interesting. We are looking for a
+          personal expression of fondness, not an objective evaluation of interest.
+    scene: An adult reminisces about their childhood favorite books with a younger family member.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: past polite (～ました)
+    nuance: 「好きでした」 is the polite past tense, suitable for an adult speaking to a younger family member,
+      maintaining respect even while reminiscing. 「好きだった」 is the plain past tense, used in more casual
+      or intimate settings. 「子供 の 頃」 (kodomo no koro) is a common way to say 'when I was a child.' Similar
+      to previous examples, 「超」 (chou) adds strong emphasis, and 「な ん だ！」 (nanda) conveys a deep, shared
+      sentiment, fitting for nostalgic reflection with enthusiasm. 「小さい頃」 (chiisai koro) is another common
+      phrase for 'when I was little'. 「繰り返し読んだ本」 (kurikaeshi yonda hon) means 'books I read repeatedly'.
+      The sentence-ending 「なあ」 adds a wistful, nostalgic tone. The example uses 「{好き} でし た」 in the first
+      variation, which is appropriate for the polite register and reflective setting. The competing examples
+      explore terms like 「面白かった」 (interesting) or 「気に入っていた」 (was fond of), which are close but do not
+      precisely capture the simple, direct past liking expressed by 「好き」.
+  - english: I used to really like that person, but not so much now.
+    japanese:
+      - あの 人、前 は すごく {好き} だっ た ん だ け ど、今 は そ う で も な い な。
+      - あの 人、前 は すごく {好き} でし た が、今 は そ う で も あ り ま せ ん。
+      - あの 人、前 は すごく {好き} だっ た ん で す け ど、今 は そ う で も な い ん で す。
+      - あの 人、昔 は {好き} だっ た け ど、今 は 違う。
+      - あの 人、昔 マジ {好き} だっ た け ど、今 は 別 に。
+      - 昔 は あ の 人 が 大 {好き} で し た が、今 は そ う で も な い で す。
+      - 昔、あ の 人 の こ と {好き} だっ た け ど、今 は も う 興味 な い な。
+    english_literally: That person, previously was very liked, but now it's not really so, you know.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人、前 は と て も {気 に 入} って い た ん だ け ど、今 は そ う で も な い な。
+        english: I used to be very fond of that person, but not so much now.
+        hint: 「気に入る」 expresses having developed a liking for someone. We are looking for a general fondness
+          that has changed, not a specific process of coming to like someone or a state of being pleased
+          with them.
+    scene: A young woman tells her close friend how her feelings for someone have changed.
+    register: casual
+    setting: melancholic
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「好きだったんだけど」 indicates a past state that has changed, with 「んだけど」 adding a soft,
+      explanatory tone. The sentence-final 「な」 adds a reflective nuance, common among female speakers.
+      In contrast, 「好きでしたが」 is a polite past form, while 「好きだったんですけど」 is a more informal polite variation,
+      combining the plain past with a polite ending. The overall casualness is suited for close friends.
+      「昔」 (mukashi) means 'in the past' or 'formerly.' 「マジ」 (maji) is slang for 'really,' commonly used
+      by younger speakers. 「別に」 (betsu ni) here implies 'not particularly' or 'not anymore,' suggesting
+      indifference or a complete lack of feeling, a casual and often female expression of changed sentiment.
+      「大好き」 emphasizes strong past feelings. 「夢中だったけど」 (muchū datta kedo) means 'I was engrossed,' implying
+      a strong past attachment. 「もう興味ない」 (mō kyōmi nai) directly states a loss of interest. The example
+      uses 「{好き} だっ た ん だ け ど」 in the first variation, which is suitable for the casual register and melancholic
+      setting, expressing a past liking that has faded. The competing examples delve into stronger emotions
+      like "hate" or specific states like being "engrossed" or "fond of," which are distinct from the
+      general shift in preference indicated by 「好き」.
+  - english: If that girl liked you, what would you do?
+    japanese:
+      - もし あ の 子 が あ な た の こ と を {好き} だっ た ら、ど う す る？
+      - もし あ の 子 が あ な た の こ と を {好き} な ら ば、ど う す る？
+      - もし あ の 子、お 前 の こ と {好き} だっ た ら ど う す ん だ よ？
+      - もし あ の 子 が 君 の こ と を {好き} だ と し た ら、ど う す る？
+      - あ の 子 が も し お 前 の こ と {好き} だ って 言っ た ら、ど う す る ん だ？
+      - もし 彼 女 が あ な た を {好き} に なっ た ら、ど う し ま す か？
+      - 仮 に あ の 子 が あ な た の こ と を {好き} だっ た と し た ら、ど う し ま す か？
+    english_literally: If that child were liked by you, what would you do?
+    competing_grammar:
+      - competing_japanese:
+          - もし あ の 子 が あ な た に {興味 が あっ た} ら、ど う す る？
+        english: If that girl were interested in you, what would you do?
+        hint: 「興味 が ある」 means to have an interest, which is less intense than romantic liking. We are
+          looking for an expression that suggests romantic affection, not just intellectual interest.
+    scene: A friend asks another friend about a hypothetical romantic situation.
+    register: casual
+    setting: interrogative
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    listener_gender: male
+    nuance: The 「～たら」 conditional in 「好きだったら」 is frequently used in casual conversation for hypothetical
+      situations, especially among friends. 「～ならば」 is a slightly more formal conditional, but still acceptable
+      in this context. The directness of 「どう する？」 matches the casual tone between male friends discussing
+      personal matters. 「お前」 (omae) is a very casual and direct, often masculine, pronoun for 'you.' The
+      sentence-ending 「どう すんだよ」 (dou sun da yo) is a highly informal, masculine way of asking 'What would
+      you do?!' expressing a direct challenge or probing in a male-to-male conversation. 「だって言ったら」 (datte
+      ittara) indicates reported speech in a casual context. Using 「彼女」 (kanojo) for 'girl/girlfriend'
+      and 「～になりますか」 for a more polite question. 「仮に」 (kari ni) adds the nuance of 'suppose' or 'hypothetically,'
+      making the conditional more formal. The example uses 「{好き} だっ た ら」 in the first variation, which
+      is appropriate for the casual register and interrogative setting, positing a hypothetical romantic
+      scenario. The competing examples explore expressions like 「興味がある」 (interested) or 「気に入る」 (to take
+      a liking to), which are related but do not convey the specific romantic nuance of "liking" that
+      「好き」 carries in this context.
+  - english: If you like this project, please cooperate.
+    japanese:
+      - この 企画 が {好き} な ら ば、ぜ ひ ご 協力 く だ さ い。
+      - この 企画 が {好き} だっ た ら、ぜ ひ ご 協力 く だ さ い。
+      - この 企画 を お {好き} い た だ け る よ う で し た ら、ご 協力 い た だ け ま す で し ょ う か。
+      - もし こ の プ ロ ジ ェ ク ト が {好き} な ら、協力 し て ほ し い で す。
+      - この 企画 を {好き} に なっ て い た だ け た ら、ぜ ひ 協力 し て ほ し い と 思 い ま す。
+    english_literally: If this project is liked, please cooperate.
+    competing_grammar:
+      - competing_japanese:
+          - この 企画 に ご {賛同} い た だ け る よ う で し た ら、ぜ ひ ご 協力 く だ さ い。
+          - 本 プ ロ ジ ェ ク ト に ご {賛同} い た だ け ま す よ う で し た ら、ぜ ひ ご 協力 を お 願 い い た し ま す。
+        english: If you can agree to this project, please cooperate.
+        hint: 「ご賛同いただける」 is a formal way to ask for agreement or endorsement. We are looking for a phrase
+          based on personal preference using 「好き」, not formal agreement or endorsement.
+    scene: A project leader formally asks for support from team members in a meeting.
+    register: formal
+    setting: persuasive
+    conjugation: conditional (～ば)
+    nuance: The 「～ならば」 conditional is highly appropriate for formal requests in professional settings,
+      conveying a persuasive yet respectful tone. While 「～だったら」 is also a conditional, it is generally
+      considered less formal than 「～ならば」 and is more common in everyday conversation. The highly formal
+      and humble expression 「お好きいただける」 (osuki itadakeru) combines the honorific prefix 「お」 (o-) with the
+      humble verb 「いただく」 (itadaku) to show respect for the listener's preference, typically used in very
+      formal business contexts to express a request. The polite request 「いただけますでしょうか」 (itadakemasu deshou
+      ka) further enhances the formality and deference. Using 「プロジェクト」 (project) is a common alternative.
+      「協力してほしい」 (kyōryoku shite hoshii) is a direct request for cooperation. 「好きになっていただけたら」 (suki ni natte
+      itadaketara) implies hoping they come to like it. The last example is extremely formal and uses
+      「本プロジェクト」 (hon purojekuto) for 'this project' and 「ご協力をお願いいたします」 (go-kyōryoku o onegai itashimasu)
+      for a humble request. The example uses 「{好き} な ら ば」 in the first variation, which is appropriate
+      for the formal register and persuasive setting, asking for cooperation based on genuine liking of
+      the project. The competing examples offer alternatives like 「ご賛同いただける」 (agree to) or 「気に入っていただけたならば」
+      (taken a liking to), which are related but do not convey the direct sense of personal fondness that
+      「好き」 does.
+  - english: Even if you like him, you shouldn't just follow him blindly.
+    japanese:
+      - た と え 彼 が {好き} で も、や み く も に 追い か け る べ き で は な い。
+      - た と え 彼 が {好き} で も、や み く も に 追い か け る べ き じ ゃ な い。
+      - た と え 彼 が {好き} で も、や み く も に 追い か け ち ゃ ダ メ だ。
+      - た と え 彼 が {好き} で も、む や み や た ら に 追い か け ち ゃ だ め だ よ。
+    english_literally: Even if he is liked, blindly chasing should not be done.
+    competing_grammar:
+      - competing_japanese:
+          - た と え 彼 が {魅力 的} で も、や み く も に 追い か け る べ き で は な い。
+        english: Even if he is charming, you shouldn't just follow him blindly.
+        hint: 「魅力的」 means charming or attractive, an objective quality. We are looking for an expression
+          of personal affection, not an objective assessment of attractiveness.
+    scene: A concerned friend advises another who is infatuated.
+    register: casual
+    setting: serious
+    conjugation: concessive (～ても)
+    speaker_gender: female
+    listener_gender: female
+    nuance: Using `好きでも` allows for a concession, implying 'even if it's true that you like him.' The
+      casual register is appropriate for a serious conversation between friends. The phrase `やみくもに追いかけるべきではない`
+      conveys a strong piece of advice against blind pursuit. Variations like 「べきじゃない」 or 「～ちゃダメだ」 offer
+      more casual and emphatic tones, commonly used in direct advice among friends, while 「むやみやたら」 is
+      an informal adverb meaning 'recklessly' or 'inconsistently', enhancing the nuance of the warning.
+      The example uses 「{好き} で も」 in the first variation, which is appropriate for the casual register
+      and serious setting, providing advice based on a personal liking. The competing examples explore
+      alternatives like 「魅力的」 (charming/attractive) or 「気に入っている」 (fond of), which are related but do not
+      directly convey the simple, personal romantic liking expressed by 「好き」.
+  - english: I didn't like the vegetables from last night.
+    japanese:
+      - 昨日 の 野菜 は あまり {好き} で は あ り ま せ ん で し た。
+      - 昨日 の 野菜 は あ ん ま {好き} じ ゃ な かっ た。
+      - 昨日 の 野菜 は ち ょ っと {好き} に な れ な かった で す。
+    english_literally: Yesterday's vegetables were not very liked.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 野菜 は {まず} かっ た。
+        english: Yesterday's vegetables tasted bad.
+        hint: 「まずい」 refers to the taste being unpleasant. We are looking for a general expression of disliking
+          the food, not specifically about its taste.
+    scene: A child talks to their parent at the breakfast table.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: female
+    listener_gender: male
+    nuance: Using the polite form `好きではありませんでした` indicates a respectful distance, which is appropriate
+      for a child speaking to a parent, even when expressing a dislike. The phrase `あまり～ませんでした` softens
+      the negative statement, making it less blunt and more considerate. The casual `あんま好きじゃなかった` uses
+      a common contraction for 'あまり' and the plain negative past. `好きになれなかった` indicates an inability to
+      come to like something. The example uses 「{好き} で は あ り ま せ ん で し た」 in the first variation, which
+      is suitable for the polite register and informative setting, expressing a past dislike. The competing
+      examples provide alternatives like 「まずかった」 (tasted bad) or 「嫌いでした」 (disliked strongly), which are
+      similar but do not capture the softer nuance of "not really liking" expressed by 「あまり好きではない」.
+  - english: I really like singing karaoke.
+    japanese:
+      - カラオケ を 歌う の が {好き} で す。
+      - カラオケ を 歌う の が {好き} だ。
+      - カラオケ 歌う の 超 {好き}！
+      - カラオケ 歌う の が 大 {好き} な ん だ よ ね。
+      - 私 は カ ラ オ ケ を 歌 う の が {好き} で す。
+      - カラオケ で 歌う の って 最 高 に {好き}。
+      - 歌う こ と が {好き} で す、特 に カ ラ オ ケ は。
+      - 歌 が {好き} な の は カ ラ オ ケ だ な。
+    english_literally: The act of singing karaoke is liked very much by me.
+    competing_grammar:
+      - competing_japanese:
+          - カラオケ を 歌う の が {楽し い} で す。
+        english: Singing karaoke is fun.
+        hint: 「楽しい」 expresses that the activity itself is enjoyable. We are looking to express a personal
+          fondness using 「好き」, not just that it is fun.
+    scene: A group of friends are deciding what to do for fun.
+    register: casual
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: 「歌う の が 好き」 is a direct way to express liking an activity. The use of 「超 好き！」 is very casual
+      and emphatic, common among younger people. 「大好き な ん だ よ ね」 adds a strong, almost shared feeling,
+      expecting agreement. This expression feels very natural and enthusiastic among close friends. The
+      example uses 「{好き} で す」 in the first variation, which is appropriate for the casual register and
+      friendly setting. The competing examples suggest terms like 「楽しい」 (fun) or 「興味がある」 (interested),
+      which are related but do not convey the specific personal fondness expressed by 「好き」 for an activity.
+post_example_writeup: Remember that 「好きだ」 is versatile and can be used in various contexts, from expressing
+  simple preferences to confessing romantic feelings. The key is to ensure the correct particle usage
+  and conjugation depending on the nuance you wish to convey. Pay attention to the formality of the situation
+  and the relationship between speakers when choosing between plain and polite forms, and when deciding
+  whether to include intensifiers or sentence-ending particles.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/好きだ・すきだ

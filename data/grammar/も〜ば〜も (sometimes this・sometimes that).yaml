@@ -1,0 +1,250 @@
+grammar_point: も〜ば〜も (sometimes this・sometimes that)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+meaning: both X and Y; sometimes X, sometimes Y; X also, and Y also
+pronunciation:
+  katakana: モ〜バ〜モ
+  romaji: mo~ba~mo
+formation:
+  Noun も Verb[ば形] Noun も: Used when listing two nouns and their associated actions or states.
+  Noun も い-Adjective[ければ] Noun も: Used when listing two nouns and their associated い-adjective states.
+  Noun も な-Adjective[であれば] Noun も: Used when listing two nouns and their associated な-adjective states.
+  Noun も Noun[であれば] Noun も: Used when listing two nouns that are both applicable as nouns.
+  Clause A も Clause B も: Used to connect two clauses, indicating that both situations or conditions apply.
+jlpt: N2
+etymology: The particle 「も」(mo) itself indicates inclusion or "also/too." The 「ば」(ba) form is a conditional
+  or hypothetical form of verbs and adjectives, indicating "if" or "when." When combined in the pattern
+  「A も B ば C も」, it literally means something like "if A also, then C also," or "A also, and C also."
+  This structure evolved to express that multiple conditions or items are equally applicable or present,
+  highlighting their coexistence rather than a strict conditional relationship.
+writeup: |-
+  The grammar pattern 「〜も〜ば〜も」 is used to indicate that multiple items, actions, or states are applicable, true, or occur. It can connect various parts of speech, including nouns, verbs, adjectives, and even entire clauses. The core function is to present a comprehensive list or a pair of elements, emphasizing that both are included or present.
+
+  This pattern often translates to "both X and Y," "sometimes X, sometimes Y," or "X as well as Y." It highlights that the characteristic or action applies to all mentioned elements, suggesting a breadth or variety. For instance, if you say 「彼は料理もすれば、洗濯もする」(Kare wa ryōri mo sureba, sentaku mo suru), it means "He both cooks and does laundry," emphasizing his diverse household skills.
+
+  While it literally uses the 「ば」 conditional form, in this construction, it does not always imply a direct conditional relationship. Instead, it serves to link the elements in a parallel or enumerative fashion. The first 「も」 emphasizes the inclusivity of the first item, and the second 「も」 extends that inclusivity to the second (and subsequent) items.
+
+  This construction is quite versatile and can be used in a wide range of situations, from describing someone's personality to listing features of a place or conditions of a situation. It is a natural way to express "not only A, but also B" when listing parallel characteristics or actions.
+false_friends:
+  - term: そして (and・and then)
+    meaning: and; and then
+    kind: similar expression
+    nuance: 「そして」 is a simple conjunctive adverb that connects sentences or clauses in sequence or adds
+      more information. It does not carry the emphasis of inclusivity or the "both... and..." nuance that
+      「〜も〜ば〜も」 does. 「〜も〜ば〜も」 specifically highlights that multiple things each possess a quality or each
+      happen.
+    grammar_point: そして (and・and then)
+  - term: 〜し〜し (and; listing reasons)
+    meaning: and; listing reasons
+    kind: similar expression
+    nuance: 「〜し〜し」 lists multiple reasons or facts. While it also lists multiple items, its primary nuance
+      is to provide reasons or supportive facts, often leading to a conclusion. 「〜も〜ば〜も」 emphasizes the
+      coexistence or mutual applicability of the listed items, not necessarily their role as reasons.
+    grammar_point: し〜し (and; listing reasons)
+  - term: 〜や〜など (listing examples)
+    meaning: listing examples (e.g., and others)
+    kind: similar expression
+    nuance: 「〜や〜など」 lists examples, implying there might be other unmentioned items. 「〜も〜ば〜も」, especially
+      when only two items are listed, often implies that these two are the main or exhaustive focus, or
+      at least two distinct examples that both apply.
+    grammar_point: 〜など・〜なんか (listing examples)
+  - term: 〜だけでなく (not only... but also)
+    meaning: not only X, but also Y
+    kind: similar expression
+    nuance: 「〜だけでなく」 clearly states "not only X, but also Y." It explicitly presents Y as an addition
+      to X. 「〜も〜ば〜も」 presents X and Y as more parallel or equally emphasized, often implying they are
+      two aspects of the same thing or situation rather than one being an addition to the other.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+post_false_friends_writeup: While 「〜も〜ば〜も」 can sometimes be translated similarly to other listing or additive
+  expressions, its unique characteristic lies in its emphasis on the coexistence or mutual applicability
+  of the listed elements. It is less about sequence (like 「そして」) or providing reasons (like 「〜し〜し」), or
+  just examples (like 「〜や〜など」). Instead, it highlights that both X and Y are equally true or equally occur,
+  often describing a comprehensive state or a range of possibilities. 「〜だけでなく」 focuses on adding to a
+  previous statement, whereas 「〜も〜ば〜も」 treats the elements more symmetrically.
+examples:
+  - english: In Hokkaido, in summer it's cool, and in winter it snows.
+    japanese:
+      - 北海道 は 夏 は {涼しけれ ば}、冬 は 雪 が {降る}。
+      - 北海道 は 夏 は 涼しけれ ば、冬 は 雪 が 降り ます。
+    english_literally: As for Hokkaido, summer also if it is cool, winter also snow falls.
+    competing_grammar:
+      - competing_japanese:
+          - 北海道 は 夏 が 涼しい。そして、冬 は 雪 が 降る。
+        english: Hokkaido is cool in summer. And then, it snows in winter.
+        hint: 「そして」 connects statements sequentially or adds information, but it does not emphasize the
+          parallel existence of both conditions like 「も〜ば〜も」 does. We are emphasizing both aspects of
+          Hokkaido's weather.
+    scene: Describing the climate of Hokkaido.
+    register: casual
+    setting: informative
+  - english: That restaurant has delicious food, and the service is also good.
+    japanese:
+      - あの レストラン は 食べ物 も {美味しけれ ば}、サービス も {良い}。
+      - あの レストラン は 食べ物 も 美味しけれ ば、サービス も 良い です。
+      - あの レストラン は 食べ物 も 美味しけれ ば、サービス も よろしい です。
+    english_literally: As for that restaurant, food also if delicious, service also is good.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 食べ物 が 美味しい し、サービス も 良い。
+        english: That restaurant's food is delicious, and the service is also good.
+        hint: While 「〜し〜し」 often lists reasons or multiple characteristics, 「も〜ば〜も」 puts a stronger emphasis
+          on the simultaneous presence and equal applicability of both listed qualities.
+    scene: Two friends discussing a favorite restaurant.
+    register: casual
+    setting: friendly
+  - english: He's good at both singing and dancing.
+    japanese:
+      - 彼 は 歌 も {歌え} ば、ダンス も {できる}。
+      - 彼 は 歌 も 歌えれ ば、ダンス も でき ます。
+    english_literally: As for him, singing also if he can sing, dance also he can do.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 歌 が 上手い し、ダンス も 上手い。
+        english: He is good at singing, and he is also good at dancing.
+        hint: While 「〜し」 can list multiple abilities, 「も〜ば〜も」 clearly states he possesses *both* abilities,
+          emphasizing a comprehensive skill set rather than just listing separate facts.
+    scene: A talent scout is evaluating a performer.
+    register: formal
+    setting: professional
+  - english: Sometimes it's hot, sometimes it's cold, so it's hard to decide what to wear.
+    japanese:
+      - 暑い 日 も {あれ ば}、寒い 日 も {ある} の で、何 を 着る か 悩む。
+      - 暑い 日 も あれ ば、寒い 日 も あり ます の で、何 を 着る か 悩み ます。
+    english_literally: Hot days also if there are, cold days also there are, so, what to wear I worry.
+    competing_grammar:
+      - competing_japanese:
+          - 暑く なっ たり 寒く なっ たり する の で、何 を 着る か 悩む。
+        english: Because it gets hot and cold, I worry about what to wear.
+        hint: 「〜たり〜たりする」 implies a repetition of actions or states. 「も〜ば〜も」 describes alternating conditions
+          by emphasizing the existence of both types of days, with a stronger sense of 'each time it is
+          X, it is also Y'.
+    scene: A person complaining about the unpredictable weather.
+    register: casual
+    setting: reflective
+  - english: In this job, you need both physical strength and mental endurance.
+    japanese:
+      - この 仕事 は 体力 も {必要} な {ら}、精神 力 も {必要} だ。
+      - この 仕事 は 体力 も 必要 なら ば、精神 力 も 必要 です。
+    english_literally: As for this job, physical strength also if necessary, mental endurance also is
+      necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 体力 が 必要 だ し、精神 力 も 必要 だ。
+        english: This job requires physical strength, and mental endurance is also required.
+        hint: 「〜し」 lists multiple necessary conditions. 「も〜ば〜も」 highlights that *both* aspects are simultaneously
+          present and equally important for the job, framing them as a pair of requirements.
+    scene: A team leader explaining the demands of a new project to their team.
+    register: semi-formal
+    setting: informative
+    listener_gender: group
+  - english: He can handle both difficult tasks and simple tasks.
+    japanese:
+      - 彼 は 難しい 仕事 も {こなせ} ば、簡単 な 仕事 も {こなせる}。
+      - 彼 は 難しい 仕事 も こなせれ ば、簡単 な 仕事 も こなせ ます。
+    english_literally: As for him, difficult work also if he can manage, simple work also he can manage.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 難しい 仕事 も 簡単 な 仕事 も どちら も こなせる。
+        english: He can handle both difficult and simple tasks.
+        hint: 「どちらも」 explicitly states 'both' but 「も〜ば〜も」 flows more naturally when emphasizing that a
+          single subject possesses a range of qualities or abilities, often implying completeness.
+    scene: A manager giving a performance review for an employee.
+    register: formal
+    setting: professional
+  - english: My grandfather is sometimes kind, and sometimes strict.
+    japanese:
+      - 祖父 は 優しい {時 も} {あれ ば}、厳しい {時 も} {ある}。
+      - 祖父 は 優しい 時 も あれ ば、厳しい 時 も あり ます。
+    english_literally: As for grandfather, gentle times also if there are, strict times also there are.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は 優しい 面 も 厳しい 面 も ある。
+        english: My grandfather has both gentle and strict sides.
+        hint: 「〜面もある」 describes having different aspects. 「も〜ば〜も」 focuses on the occasional manifestation
+          of both qualities, emphasizing the variation over time or in different situations.
+    scene: A grandchild describing their grandfather's personality to a friend.
+    register: casual
+    setting: friendly
+  - english: This city has beautiful scenery, and the people are kind.
+    japanese:
+      - この 街 は 景色 も {綺麗} な {ら}、人々 も {親切} だ。
+      - この 街 は 景色 も 綺麗 なら ば、人々 も 親切 です。
+    english_literally: As for this city, scenery also if beautiful, people also are kind.
+    competing_grammar:
+      - competing_japanese:
+          - この 街 は 景色 が 綺麗 だ し、人々 も 親切 だ。
+        english: This city has beautiful scenery, and the people are kind.
+        hint: 「〜し」 connects facts, but 「も〜ば〜も」 provides a stronger sense that *both* features contribute
+          to the city's overall positive impression, presenting them as equally noteworthy characteristics.
+    scene: A travel blogger reviewing a city they recently visited.
+    register: semi-formal
+    setting: informative
+  - english: This company offers both good benefits and a good working environment.
+    japanese:
+      - この 会社 は 福利 厚生 も {良けれ} ば、職場 環境 も {良い}。
+      - この 会社 は 福利 厚生 も 良けれ ば、職場 環境 も 良い です。
+    english_literally: As for this company, welfare benefits also if good, workplace environment also
+      is good.
+    competing_grammar:
+      - competing_japanese:
+          - この 会社 は 福利 厚生 も 職場 環境 も 良い。
+        english: This company has good welfare benefits and a good working environment.
+        hint: While listing with multiple 「も」 is similar, 「も〜ば〜も」 provides a more flowing and emphasized
+          connection between the two equally positive attributes, often used when presenting a comprehensive
+          positive evaluation.
+    scene: A recruiter explaining the advantages of their company to a job applicant.
+    register: formal
+    setting: professional
+  - english: The weather today is sometimes sunny, sometimes rainy.
+    japanese:
+      - 今日 の 天気 は 晴れ の 日 も {あれ ば}、雨 の 日 も {ある}。
+      - 今日 の 天気 は 晴れ の 日 も あれ ば、雨 の 日 も あり ます。
+      - 今日 の 天気 は 晴れる こと も {あれ} ば、雨 が 降る こと も {ある}。
+      - 今日 の 天気 は 晴れる こと も あれ ば、雨 が 降る こと も あり ます。
+    english_literally: Today's weather, clear days also if there are, rainy days also there are.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 天気 は 晴れ たり 降っ たり だ。
+        english: Today's weather is sometimes sunny, sometimes rainy.
+        hint: 「〜たり〜たりだ」 indicates alternation. 「も〜ば〜も」 is used here for a slightly more vivid description
+          of the weather's changeable nature, highlighting both possibilities as equally present throughout
+          the day.
+    scene: A weathercaster giving a detailed report on the day's fluctuating conditions.
+    register: formal
+    setting: informative
+  - english: Children's games are sometimes exciting, sometimes calm.
+    japanese:
+      - 子供 の 遊び は 派手 {な} {もの も} {あれ} ば、地味 {な} {もの も} {ある}。
+      - 子供 の 遊び は 派手 な もの も あれ ば、地味 な もの も あり ます。
+    english_literally: As for children's games, flashy ones also if there are, plain ones also there are.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 の 遊び は 派手 な もの や 地味 な もの など が ある。
+        english: Children's games include flashy ones and plain ones.
+        hint: 「〜や〜など」 is for listing examples, implying more exist. 「も〜ば〜も」 emphasizes that *both* types
+          of games exist as part of children's play, suggesting a comprehensive range rather than just
+          a partial list.
+    scene: A kindergarten teacher explaining the variety of activities children engage in.
+    register: semi-formal
+    setting: informative
+  - english: That comedian makes you laugh and also makes you think.
+    japanese:
+      - あの 芸人 は 笑わ せ も {すれ} ば、考え させ も {する}。
+      - あの 芸人 は 笑わ せ も すれ ば、考え させ も し ます。
+    english_literally: As for that comedian, make you laugh also if he does, make you think also he does.
+    competing_grammar:
+      - competing_japanese:
+          - あの 芸人 は 笑わ せる こと も、考え させる こと も できる。
+        english: That comedian can make you laugh and make you think.
+        hint: 「〜することもできる」 lists multiple capabilities. 「も〜ば〜も」 emphasizes that *both* effects are achieved
+          by the comedian, presenting them as dual impacts of their performance.
+    scene: Friends discussing a recent comedy show they attended.
+    register: casual
+    setting: friendly
+post_example_writeup: As seen in the examples, 「〜も〜ば〜も」 is a versatile pattern that effectively conveys
+  the presence or applicability of multiple elements. It can be used with various parts of speech by conjugating
+  them into their 「ば」 form or using the conditional 「なら」 for nouns and な-adjectives. This structure provides
+  a natural and nuanced way to express 'both... and...' or 'sometimes... sometimes...' in Japanese, highlighting
+  the coexistence of different qualities or occurrences.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/も〜ば〜も

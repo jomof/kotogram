@@ -1,0 +1,305 @@
+grammar_point: 見た目 (appearance)
+learn_before:
+  - '[Verb-dictionary]べき・べきではない (should・should not)'
+  - 〜てはいけない・〜てはならない (must not)
+  - けっこう (quite・ample・no thanks)
+  - すごく (very・incredibly)
+  - っぽい (ish; characteristic of)
+  - と同じくらい (about the same as)
+  - はともかく (setting aside・leaving aside)
+  - まさか (no way)
+  - もう (already・anymore)
+  - を気にする (to mind)
+  - 反面 (on the other hand)
+  - 第一 (foremost・primary)
+meaning: Outward appearance; visual impression.
+pronunciation:
+  katakana: ミタメ
+  romaji: mitame
+formation:
+  Noun + の + 見た目: To describe the visual impression of a specific noun.
+  い-Adjective + 見た目: To describe the visual aspect related to an i-adjective.
+  な-Adjective + な + 見た目: To describe the visual aspect related to a na-adjective.
+  Verb[た-form] + 目: The literal construction from 'to see' plus 'eye' indicating 'that which is seen'.
+jlpt: N3
+etymology: The term `見た目` is derived from the verb `見る` (miru - to see) in its past tense form `見た` (mita),
+  meaning 'seen,' combined with the noun `目` (me), which here functions as a suffix indicating 'aspect'
+  or 'appearance.' This formation is similar to other Japanese words like `早め` (hayame - on the early
+  side) or `遅め` (osome - on the late side). `見た目` literally translates to 'that which has been seen by
+  the eye,' thereby referring to the outward visual impression.
+writeup: '`見た目` refers to the outward, visual appearance of something or someone. It encompasses everything
+  that can be perceived with the eyes, from physical attributes to the general impression an object or
+  person gives. This term is often used when discussing how things look on the surface, sometimes contrasting
+  with their actual content, quality, or inner nature. For instance, food might have a `見た目` that is not
+  appealing but be surprisingly delicious, or conversely, look exquisite but taste bland. It highlights
+  the superficial visual aspect, whether that''s a positive or negative connotation depending on the context.
+  This noun is gender-neutral and can be used across various registers, though it tends to be more common
+  in everyday, conversational settings rather than highly formal or academic discourse.'
+false_friends:
+  - term: 見かけ
+    meaning: outward appearance, looks
+    kind: similar expression
+    nuance: '`見かけ` is very close in meaning and often interchangeable with `見た目`. However, `見かけ` tends
+      to emphasize the superficiality or the act of ''seeming'' more, often carrying a slightly stronger
+      implication of deception or that things are not as they appear. For example, `見かけ倒し` means ''deceptive
+      appearance.'' `見た目` is generally more neutral, simply stating ''what it looks like.'' Additionally,
+      `見かけ` can also be used as a verb stem `見かける` (to happen to see), which `見た目` cannot.'
+    grammar_point: <suggest>:見かけ (outward appearance)
+  - term: 外見
+    meaning: external appearance, outward form
+    kind: similar expression
+    nuance: '`外見` is a more formal and broader term for ''external appearance'' or ''outward form.'' It
+      encompasses not just visual aspects but also other superficial characteristics, making it suitable
+      for more objective, academic, or formal contexts. While `見た目` strictly focuses on the visual impression,
+      `外見` can refer to a more comprehensive external presentation. For instance, when talking about the
+      external design of a building or a person''s overall exterior presentation, `外見` might be preferred.'
+    grammar_point: 外見 (external appearance)
+  - term: 様子
+    meaning: state, situation, appearance, aspect
+    kind: similar expression
+    nuance: While `様子` can sometimes refer to 'appearance' in a general sense, it more broadly describes
+      the overall state, condition, situation, or demeanor of a person or thing. It often includes non-visual
+      cues like atmosphere, behavior, or even sound, reflecting a more dynamic and comprehensive 'look'
+      or 'feel' of something. `見た目` is strictly limited to the visual, static impression.
+    grammar_point: <suggest>:様子 (state・situation)
+post_false_friends_writeup: While `見た目`, `見かけ`, `外見`, and `様子` all pertain to aspects of how things appear,
+  their usage varies. `見た目` is a common, neutral term for visual appearance. `見かけ` carries a slight implication
+  of superficiality or potential discrepancy between appearance and reality. `外見` is a more formal and
+  comprehensive term for external characteristics. `様子` describes the overall state, condition, or demeanor,
+  which can include non-visual elements. By understanding these nuances, you can select the most precise
+  term to convey your intended meaning in Japanese.
+examples:
+  - english: Despite its appearance, this cake is really delicious!
+    japanese:
+      - この ケーキ は、{見 た 目} は 悪い けど、本当 に 美味しい です！
+      - この ケーキ は、{見 た 目} が 良く ない けど、本当 に 美味しい です！
+      - この ケーキ、{見 た 目} は ちょっと ね、で も 凄く 美味しい よ！
+    english_literally: This cake, its appearance is bad, but it is truly delicious!
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は、外見 は 悪い けど、本当 に 美味しい です！
+        english: This cake, its external appearance is bad, but it is truly delicious!
+        hint: While `外見` can also mean appearance, it's a broader and more formal term often used for
+          external forms. We're looking for a common, neutral term for visual appearance.
+      - competing_japanese:
+          - この ケーキ は、見かけ は 悪い けど、本当 に 美味しい です！
+        english: This cake, its outward appearance is bad, but it is truly delicious!
+        hint: '`見かけ` is very similar but can carry a slight nuance of deceptiveness. We''re looking for
+          a more neutral term simply describing what it looks like.'
+    scene: A person is hesitant to try a cake because it doesn't look appealing, but someone encourages
+      them to taste it.
+    register: casual
+    setting: friendly
+    nuance: This example highlights the common use of `見た目` to contrast initial visual perception with
+      actual quality or taste. The phrase `見た目 は 悪い けど` implies that while the appearance might be unappealing,
+      the true quality is different.
+  - english: His appearance is so young, it's hard to believe he's already 40.
+    japanese:
+      - 彼 の {見 た 目} は とても 若く て、もう 40 歳 と は 信じ られ ない です。
+      - 彼、{見 た 目} が すごく 若い から、まさか 40 歳 なんて 思わ ない よ ね。
+      - 彼 の {見 た 目} は 非常 に 若々しく、もう 40 歳 で ある と は とても 思え ませ ん。
+    english_literally: His appearance is very young, already 40 years old, it is unbelievable.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 顔 は とても 若く て、もう 40 歳 と は 信じ られ ない です。
+        english: His face is very young, it's hard to believe he's already 40.
+        hint: '`顔` specifically refers to the face. We''re looking for a term that encompasses a person''s
+          general outward appearance, not just their face.'
+      - competing_japanese:
+          - 彼 の 若 さ から する と、もう 40 歳 と は 思え ない です。
+        english: Considering his youthfulness, one wouldn't think he's already 40.
+        hint: '`若さ` refers to the abstract quality of youth. We''re looking for a term that describes
+          his physical, visual appearance.'
+    scene: Two friends are discussing an acquaintance who looks much younger than their age.
+    register: casual
+    setting: friendly
+    nuance: '`見た目` here refers specifically to the person''s physical appearance and how youthful it is.
+      The phrase `見た目 は とても 若くて` emphasizes the visual aspect of his youthfulness, making it hard to reconcile
+      with his actual age.'
+  - english: They say first impressions are important, and a person's appearance is often the first thing
+      people notice.
+    japanese:
+      - 第 一 印象 は 大事 と 言い ます が、人 の {見 た 目} は よく 最初 に 気づか れる こと です。
+      - 第 一 印象 は 重要 だ と 言わ れる が、人 の {見 た 目} は 大抵、まず 目 に 留まる もの だ。
+    english_literally: First impressions are important, it is said, a person's appearance is often the
+      thing first noticed.
+    competing_grammar:
+      - competing_japanese:
+          - 第 一 印象 は 大事 と 言い ます が、人 の 外見 は よく 最初 に 気づか れる こと です。
+        english: They say first impressions are important, and a person's external appearance is often
+          the first thing people notice.
+        hint: '`外見` is a broader and more formal term for external appearance. We''re looking for a common,
+          neutral term for visual appearance in general.'
+    scene: A teacher is giving advice to students about job interviews or social interactions.
+    register: formal
+    setting: informative
+    nuance: This sentence uses `見た目` in a more general, informative context to discuss the significance
+      of visual appearance in forming first impressions. `最初 に 気づかれる こと` highlights that it's the primary
+      visual characteristic that gets noticed.
+  - english: The product's appearance is simple, but its functionality is excellent.
+    japanese:
+      - その 製品 の {見 た 目} は シンプル です が、機能 性 は 素晴らしい です。
+      - この 製品 は {見 た 目} が シンプル な 反面、機能 性 が 非常 に 優れ て い ます。
+    english_literally: That product's appearance is simple, but its functionality is wonderful.
+    competing_grammar:
+      - competing_japanese:
+          - その 製品 の デザイン は シンプル です が、機能 性 は 素晴らしい です。
+        english: The product's design is simple, but its functionality is excellent.
+        hint: '`デザイン` refers specifically to the aesthetic design. We''re looking for a term that describes
+          the overall visual impression, not just the artistic layout.'
+      - competing_japanese:
+          - その 製品 の 外装 は シンプル です が、機能 性 は 素晴らしい です。
+        english: The product's exterior is simple, but its functionality is excellent.
+        hint: '`外装` refers to the outer casing or covering. We''re looking for a term that describes the
+          general visual appearance, which includes but isn''t limited to the exterior material.'
+    scene: A reviewer or salesperson is describing a new electronic device.
+    register: semi-formal
+    setting: informative
+    nuance: Here, `見た目` describes the aesthetic design of a product. The contrast with `機能 性 は 素晴らしい`
+      (excellent functionality) emphasizes that despite a basic external look, the product performs exceptionally
+      well.
+  - english: It's important not to judge a book by its appearance.
+    japanese:
+      - 本 は {見 た 目} で 判断 する べき で は ない。
+      - 本 は {見 た 目} で 判断 し て は いけ ない。
+      - '{見 た 目} で 本 を 判断 する の は 良く ない。'
+    english_literally: Books should not be judged by appearance.
+    competing_grammar:
+      - competing_japanese:
+          - 本 は 表紙 で 判断 する べき で は ない。
+        english: It's important not to judge a book by its cover.
+        hint: '`表紙` specifically refers to the book''s cover. We''re looking for a more general term for
+          external visual appearance.'
+      - competing_japanese:
+          - 本 は 外見 で 判断 する べき で は ない。
+        english: It's important not to judge a book by its external appearance.
+        hint: '`外見` is a valid alternative but is more formal and general than the common phrase using
+          `見た目` in this context.'
+    scene: A parent is teaching their child a life lesson.
+    register: casual
+    setting: instructional
+    nuance: This is a direct translation of a common idiom, applying `見た目` to the concept of judging based
+      on superficial qualities. It uses `判断 する べき ではない` (should not judge) to convey a moral lesson.
+  - english: The packaging makes it look like luxury chocolate, but the appearance is deceiving.
+    japanese:
+      - パッケージ が 高級 チョコレート の よう に 見える けど、{見 た 目} は あて に なら ない ね。
+      - パッケージ は 高級 チョコレート の よう だ が、{見 た 目} に 騙さ れ て は いけ ない。
+    english_literally: The package looks like luxury chocolate, but the appearance cannot be relied upon,
+      right?
+    competing_grammar:
+      - competing_japanese:
+          - パッケージ は 高級 チョコレート の よう に 見える けど、見かけ 倒し だ ね。
+        english: The packaging makes it look like luxury chocolate, but it's deceptively good-looking.
+        hint: '`見かけ倒し` directly means ''deceptive appearance,'' implying that something looks good but
+          is actually bad. While related, we''re looking for a phrase that simply states the appearance
+          is not reliable.'
+      - competing_japanese:
+          - パッケージ は 高級 チョコレート の よう に 見える けど、外見 は 当て に なら ない ね。
+        english: The packaging makes it look like luxury chocolate, but the external appearance cannot
+          be relied upon.
+        hint: '`外見` is more formal. We''re looking for the more common, casual phrase for visual impression
+          being unreliable.'
+    scene: A person is disappointed after opening a beautifully packaged, but cheap-tasting, chocolate.
+    register: casual
+    setting: reflective
+    nuance: This example specifically uses `見た目 は あて に ならない` (appearance cannot be relied upon) to express
+      that the visual impression is misleading. This implies a negative outcome or disappointment arising
+      from a deceptive look.
+  - english: For a chef, the appearance of the dish is just as important as the taste.
+    japanese:
+      - 料理 人 に とっ て、料理 の {見 た 目} は 味 と 同じ くらい 重要 です。
+      - 料理 人 に とっ て は、料理 の {見 た 目} は 味 と 並ん で 同様 に 大切 だ。
+    english_literally: For a chef, the appearance of the dish is as important as the taste.
+    competing_grammar:
+      - competing_japanese:
+          - 料理 人 に とっ て、料理 の 盛り付け は 味 と 同じ くらい 重要 です。
+        english: For a chef, the plating of the dish is just as important as the taste.
+        hint: '`盛り付け` specifically refers to the plating or arrangement of food. We''re looking for a
+          term that describes the overall visual aspect of the dish.'
+      - competing_japanese:
+          - 料理 人 に とっ て、料理 の 彩り は 味 と 同じ くらい 重要 です。
+        english: For a chef, the color scheme of the dish is just as important as the taste.
+        hint: '`彩り` refers to the color arrangement. We''re looking for a broader term for the overall
+          visual presentation.'
+    scene: A culinary instructor is emphasizing the importance of presentation.
+    register: formal
+    setting: academic
+    nuance: '`見た目` here refers to the visual presentation of food. The phrase `味 と 同じくらい 重要 です` (as important
+      as the taste) stresses that visual appeal is a crucial component in culinary arts, not just an afterthought.'
+  - english: Her appearance changed a lot after she started exercising regularly.
+    japanese:
+      - 彼女 は 定期 的 に 運動 し 始め て から、{見 た 目} が ずいぶん 変わっ た ね。
+      - 彼女 は 定期 的 に 運動 を する よう に なっ て から、{見 た 目} が かなり 変化 し た よ。
+    english_literally: She, after starting to exercise regularly, her appearance changed quite a lot,
+      right?
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 定期 的 に 運動 し 始め て から、体型 が ずいぶん 変わっ た ね。
+        english: Her body shape changed a lot after she started exercising regularly.
+        hint: '`体型` specifically refers to body shape. We''re looking for a term that describes the general
+          outward appearance, which can include more than just body shape.'
+      - competing_japanese:
+          - 彼女 は 定期 的 に 運動 し 始め て から、印象 が ずいぶん 変わっ た ね。
+        english: Her impression changed a lot after she started exercising regularly.
+        hint: '`印象` refers to the overall impression, which can include personality or aura, not just
+          physical appearance. We''re looking for a term focused on visual changes.'
+    scene: Two friends notice a positive physical transformation in their mutual female friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: female
+    nuance: This sentence refers to a noticeable change in a person's physical appearance. The use of
+      `ずいぶん 変わった ね` (changed quite a lot, right?) implies a significant and positive transformation, indicating
+      that her outward look has improved.
+  - english: The appearance of the building might be old, but the inside is completely renovated.
+    japanese:
+      - その 建物 の {見 た 目} は 古い か も しれ ない けど、中 は 完全 に 改装 さ れ て いる よ。
+      - あの 建物 は {見 た 目} こそ 古い が、内装 は 全く 新しく なっ て いる。
+    english_literally: That building's appearance might be old, but inside it is completely renovated.
+    competing_grammar:
+      - competing_japanese:
+          - その 建物 の 外観 は 古い か も しれ ない けど、中 は 完全 に 改装 さ れ て いる よ。
+        english: The exterior of the building might be old, but the inside is completely renovated.
+        hint: '`外観` specifically refers to the exterior appearance of a building or structure. While valid,
+          `見た目` is a more general term for visual appearance in this context.'
+      - competing_japanese:
+          - その 建物 は 古い よう に 見える か も しれ ない けど、中 は 完全 に 改装 さ れ て いる よ。
+        english: That building might look old, but the inside is completely renovated.
+        hint: This phrase focuses on the act of 'looking old' rather than directly using a noun for 'appearance'.
+          We're looking for an example that explicitly uses `見た目`.
+    scene: A real estate agent is showing a property to a potential buyer.
+    register: semi-formal
+    setting: professional
+    nuance: This example uses `見た目` to describe the exterior condition of a building, contrasting it with
+      the interior. `古い かもしれない けど` (might be old, but) sets up the common discrepancy between external
+      appearance and internal reality.
+  - english: He always cares a lot about his appearance.
+    japanese:
+      - 彼 は いつ も 自分 の {見 た 目} を とても 気 に する タイプ だ。
+      - 彼 は 常 に 自身 の {見 た 目} を 大変 気 に かけ て いる。
+    english_literally: He always, his own appearance, is the type that cares a lot.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 身だしなみ を とても 気 に する タイプ だ。
+        english: He is always the type to care a lot about his grooming.
+        hint: '`身だしなみ` refers to personal grooming, neatness, and presentation. While related, `見た目` refers
+          more broadly to overall visual appearance, not just neatness.'
+      - competing_japanese:
+          - 彼 は いつ も 服装 を とても 気 に する タイプ だ。
+        english: He is always the type to care a lot about his clothing.
+        hint: '`服装` refers specifically to clothing. We''re looking for a term that encompasses general
+          appearance, which is broader than just clothes.'
+    scene: Someone is describing a male friend who is very conscious about how he looks.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: '`見た目` refers to the person''s concern for their own physical appearance and presentation.
+      `気に する タイプ だ` (is the type who cares about) indicates a characteristic personality trait related
+      to self-presentation.'
+post_example_writeup: As these examples demonstrate, `見た目` is a versatile noun used to describe the visual
+  aspect of people, objects, and even abstract concepts when discussing how they are perceived by the
+  eye. It can be used in both positive and negative contexts, often highlighting the contrast between
+  superficial appearance and underlying reality.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/見た目

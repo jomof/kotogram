@@ -1,0 +1,335 @@
+grammar_point: たびに (each time)
+learn_before:
+  - Verb[imperative] (imperative)
+meaning: Each time, Every time, Whenever
+meaning_warning: たびに is often pronounced as たんびに in casual conversation.
+pronunciation:
+  katakana: タビニ
+  romaji: tabi ni
+formation:
+  Verb in dictionary form + たびに: Indicates 'each time' or 'every time' an action is performed, something
+    else also happens.
+  Noun + の + たびに: Indicates 'each time' or 'every time' a noun-related event occurs, something else also
+    happens.
+jlpt: N3
+etymology: The grammar point 「たびに」 comes from the noun 「度(たび)」, meaning "time" or "instance." The addition
+  of the particle 「に」 creates an adverbial phrase indicating frequency or repetition, similar to how 「時(とき)に」
+  (at times) or 「場合(ばあい)に」 (in cases of) are formed. Historically, 「度」 has been used to denote recurrence
+  or occasions.
+writeup: |-
+  「たびに」 is a fundamental grammatical structure used to express that a particular action or event takes place **every time** a specific condition or preceding action occurs. It signifies a consistent consequence or accompaniment to a recurring action, creating a strong cause-and-effect relationship between the two.
+
+  This phrase can attach to verbs in their plain, non-past (dictionary) form, such as 「行(い)くたびに」 (every time I go), or to nouns followed by the possessive particle 「の」, as in 「旅行(りょこう)のたびに」 (every time I travel).
+
+  While conceptually similar to 「ごとに」, 「たびに」 particularly emphasizes the notion of "every time (one does something)." It highlights a direct, predictable link between the repeated action and the subsequent event or result. Consequently, 「たびに」 is almost exclusively used to describe dynamic actions or concrete events, rather than just arbitrary instances in time or static occurrences. For example, you would use 「たびに」 to describe "every time I read this book, I discover something new," emphasizing the action of reading and its direct outcome.
+
+  It's worth noting that in casual conversation, 「たびに」 is often pronounced as 「たんびに」.
+false_friends:
+  - term: まい〜のように
+    meaning: Almost every ~, Nearly every ~, On a ~ basis
+    kind: similar expression
+    nuance: Unlike 「たびに」, 「まい〜のように」 focuses on the general prevalence or near-certainty of an occurrence,
+      often describing a broad pattern or estimation of frequency rather than a direct, repeated consequence
+      of a specific action.
+    grammar_point: まい〜のように (almost every time)
+  - term: ごとに
+    meaning: Each, Every
+    kind: synonym
+    nuance: While often interchangeable, 「ごとに」 generally emphasizes regularity or frequency at fixed intervals
+      or with distinct units (e.g., 'every two hours'), whereas 「たびに」 more strongly suggests a direct
+      cause-and-effect relationship between a recurring action/event and a subsequent result.
+    grammar_point: ごとに (each・every)
+  - term: おきに
+    meaning: Repeated at intervals, Every other, Every, At intervals of
+    kind: similar expression
+    nuance: 「おきに」 specifically indicates repetition at fixed intervals, implying that something is skipped
+      between occurrences (e.g., 'every other day' or 'every two blocks'), which is distinct from 「たびに」's
+      emphasis on what happens each time a specific action is performed.
+    grammar_point: おきに (at intervals of)
+  - term: につけ
+    meaning: Whenever, Every time something happens
+    kind: similar expression
+    nuance: 「につけ」 is typically used when an action or event triggers a particular feeling, thought, or
+      memory, often implying an emotional or mental response. It carries a more literary or reflective
+      nuance compared to the more objective cause-and-effect expressed by 「たびに」.
+    grammar_point: につけ (natural emotional response)
+post_false_friends_writeup: To avoid confusion, remember that 「たびに」 specifically links two events or actions
+  where one consistently follows the other, implying a stronger cause-and-effect link. 「ごとに」 focuses on
+  general regularity or frequency, 「おきに」 indicates repetition with specific intervals, and 「につけ」 expresses
+  feelings or emotions tied to recurring situations.
+examples:
+  - english: Every time my younger brother visits, he brings his dog.
+    japanese:
+      - 弟 が 来る {たび に} 犬 を 連れ て 来る。
+      - 弟 が 来る {たび に} 犬 を 連れ て 来 ます。
+      - 弟 が 来る {たび に}、いつ も 犬 を 連れ て 来る ん だ。
+    english_literally: Younger brother comes each time, dog bringing comes.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 が 来る {と} 犬 を 連れ て 来る。
+          - 弟 が 来る {と} 犬 を 連れ て 来 ます。
+        english: When my younger brother comes, he brings his dog.
+        hint: While 「〜と」 expresses a natural consequence, it doesn't carry the strong 'every single time'
+          emphasis of 「たびに」.
+    scene: A person talking about a family member's regular habit.
+    register: casual
+    setting: friendly
+    nuance: The usage of 「弟」 (younger brother) sets a casual, familial tone. 「連れて 来る」 (to bring someone/something
+      along) is a common verb in daily conversation. The suffix 「て来る」 indicates coming to a location while
+      performing the action of bringing someone or something, emphasizing arrival with the object.
+  - english: Every time I try to diet, I end up eating even more.
+    japanese:
+      - ダイエット を する {たび に}、かえって たくさん 食べ て しまう。
+      - ダイエット を する {たび に}、かえって たくさん 食べ て しまい ます。
+      - ダイエット する {たび に}、かえって いっぱい 食べ ちゃう ん だ。
+    english_literally: Diet doing each time, on the contrary much eating end up doing.
+    competing_grammar:
+      - competing_japanese:
+          - ダイエット を すれ {ば}、かえって たくさん 食べ て しまう。
+          - ダイエット を すれ {ば}、かえって たくさん 食べ て しまい ます。
+        english: If I diet, I end up eating even more.
+        hint: 「〜ば」 expresses a general condition, but it doesn't emphasize the repeated, consistent occurrence
+          as strongly as 「たびに」.
+    scene: Someone confessing a common struggle with self-control.
+    register: casual
+    setting: humorous
+    nuance: 「かえって」 (on the contrary, rather) emphasizes the ironic outcome. 「〜て しまう」 expresses an unintended
+      action, highlighting a lack of control or regret, common in casual self-deprecating remarks. The
+      casual 「食べちゃうんだ」 is a contraction of 「食べて しまう の だ」 and adds a colloquial, somewhat self-pitying
+      tone.
+    etymology: The auxiliary verb 「〜て しまう」 evolved from 「〜て 終わる」 (to finish doing something), which then
+      came to mean 'to finish completely' or 'to do something unintentionally/regrettably'. This etymology
+      explains its dual use for completion and regret/unintended outcomes.
+  - english: Every time I have a day off, I usually watch movies.
+    japanese:
+      - 休み の {たび に}、たいてい 映画 を 見 ます。
+      - 休み の {たび に}、たいてい 映画 を 見る。
+      - 休み の {たび に}、大抵 映画 を 観る こと に し て いる。
+    english_literally: Day off each time, usually movies watch.
+    competing_grammar:
+      - competing_japanese:
+          - 休み の 日 {ごと に}、たいてい 映画 を 見 ます。
+          - 休み の 日 {ごと に}、たいてい 映画 を 見る。
+        english: Each day off, I usually watch movies.
+        hint: While 「ごとに」 can be similar, it tends to emphasize regularity at fixed intervals or distinct
+          units, whereas 「たびに」 focuses on a direct cause-and-effect relationship for each instance.
+    scene: Someone talking about their routine during leisure time.
+    register: formal
+    setting: informative
+    nuance: The polite verb ending 「見ます」 and the general statement with 「たいてい」 (usually) make this a standard,
+      informative sentence suitable for various contexts. The third Japanese sentence, 「観る こと に している」,
+      indicates a decided routine or habit, making the statement more intentional.
+    etymology: 「たいてい」 originates from 「大概」, which literally means 'general outline' or 'broad summary'.
+      This evolved to mean 'mostly' or 'usually', indicating a general tendency rather than absolute certainty.
+  - english: My boss changes his opinion every time he talks to a client.
+    japanese:
+      - うち の 上司 は 顧客 と 話す {たび に}、意見 を 変える。
+      - うち の 上司 は 顧客 と 話す {たび に}、意見 を 変え ます。
+      - うち の 上司、顧客 と 話す {たび に}、意見 変える ん す よ ね。
+    english_literally: My boss customer with talks each time, opinion changes.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 上司 は 顧客 と 話す {と}、意見 を 変える。
+          - うち の 上司 は 顧客 と 話す {と}、意見 を 変え ます。
+        english: When my boss talks to a client, he changes his opinion.
+        hint: 「〜と」 describes a natural consequence or a habitual action, but 「たびに」 specifically emphasizes
+          that this happens 'every single time' without fail.
+    scene: Colleagues discussing a common behavior of their superior.
+    register: semi-formal
+    setting: professional
+    nuance: 「うち の 上司」 (my boss, our boss) is a common way to refer to one's superior in a work context.
+      「意見 を 変える」 (to change one's opinion) directly describes the recurring action. The phrase 「意見 変えるんすよね」
+      is a casual, slightly exasperated remark often heard among colleagues, indicating a shared, sometimes
+      annoying, observation.
+    etymology: 「上司」 (jōshi) combines 「上」 (jō, meaning 'up' or 'superior') and 「司」 (shi, meaning 'to manage'
+      or 'to oversee'). This literally describes someone who manages from a higher position in a hierarchy.
+  - english: Every time I buy a new smartphone, I inevitably drop it.
+    japanese:
+      - 新しい スマホ を 買う {たび に}、必ず 落とし て しまう。
+      - 新しい スマホ を 買う {たび に}、必ず 落とし て しまい ます。
+      - 新しい スマホ 買う {たび に}、必ず 落とし ちゃう ん だ よ ね。
+    english_literally: New smartphone buy each time, surely drop end up doing.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい スマホ を 買う {と}、必ず 落とし て しまう。
+          - 新しい スマホ を 買う {と}、必ず 落とし て しまい ます。
+        english: When I buy a new smartphone, I inevitably drop it.
+        hint: 「〜と」 indicates a natural consequence or habit, but 「たびに」 stresses that this outcome occurs
+          'each and every time' the action is performed.
+    scene: Someone lamenting their own clumsiness with electronics.
+    register: casual
+    setting: melancholic
+    nuance: 「必ず」 (certainly, without fail) intensifies the regularity of the unfortunate event. 「落として
+      しまう」 again uses 「〜て しまう」 to show an unintended or regrettable action, adding a touch of self-deprecating
+      humor. The colloquial 「落としちゃうんだよね」 adds a sense of shared frustration and resignation.
+    etymology: The adverb 「必ず」 (kanarazu) derives from 「兼ねる」 (kaneru, meaning 'to combine' or 'to serve
+      two purposes'), suggesting a strong, unyielding combination or certainty. Its negative counterpart
+      「必ずしも〜ない」 (not necessarily) also reflects this root.
+  - english: The price of vegetables rises every time there's a typhoon.
+    japanese:
+      - 台風 の {たび に}、野菜 の 値段 が 上がる。
+      - 台風 の {たび に}、野菜 の 値段 が 上がり ます。
+      - 台風 の {たび に}、野菜 の 価格 が 上昇 し ます。
+    english_literally: Typhoon's each time, vegetable's price rises.
+    competing_grammar:
+      - competing_japanese:
+          - 台風 が ある {ごと に}、野菜 の 値段 が 上がる。
+          - 台風 が ある {ごと に}、野菜 の 値段 が 上がり ます。
+        english: Each time there's a typhoon, the price of vegetables rises.
+        hint: While 「ごとに」 emphasizes regularity and distinct units, 「たびに」 specifically highlights the
+          cause-and-effect relationship for every single instance of the new version being released.
+    scene: A news report or casual conversation about economic impacts of weather.
+    register: formal
+    setting: informative
+    nuance: This sentence describes a general trend or phenomenon, often heard in news reports or economic
+      discussions, making the standard register appropriate. The third Japanese sentence uses more formal
+      vocabulary like 「価格」 (kakaku) and 「上昇 し ます」 (jōshō shimasu), common in more formal or academic contexts.
+    etymology: 「台風」 (taifū) is a loanword from Chinese, literally meaning 'great wind'. Its pronunciation
+      and form were adapted into Japanese to describe the specific weather phenomenon.
+  - english: Every time I listen to this song, I remember my first love.
+    japanese:
+      - この 曲 を 聞く {たび に}、初恋 を 思い出す。
+      - この 曲 を 聞く {たび に}、初恋 を 思い出し ます。
+      - この 曲 を 聴く {たび に}、いつ も 初恋 の こと が 頭 を よぎる。
+    english_literally: This song listen each time, first love remember.
+    competing_grammar:
+      - competing_japanese:
+          - この 曲 を 聞く {に つけ}、初恋 を 思い出す。
+          - この 曲 を 聞く {に つけ}、初恋 を 思い出し ます。
+        english: Whenever I listen to this song, I remember my first love.
+        hint: 「〜につけ」 is often used when an action triggers a feeling or memory, similar to 「たびに」. However,
+          「につけ」 can imply a more emotional or reflective nuance, while 「たびに」 focuses on a consistent,
+          objective occurrence.
+    scene: Someone feeling nostalgic about a specific piece of music.
+    register: casual
+    setting: reflective
+    nuance: The sentence describes a personal, emotional reaction to a stimulus. 「思い出す」 (to recall, remember)
+      is a common verb for describing memories. The feeling is directly tied to the action of listening
+      to the song. The third Japanese sentence, 「頭 を よぎる」, conveys a more nuanced, subtle recall of a
+      memory.
+    etymology: 「初恋」 (hatsukoi) combines 「初」 (hatsu, meaning 'first') and 「恋」 (koi, meaning 'love'). It
+      specifically refers to one's initial romantic affection, often associated with a sense of innocence
+      or wistfulness.
+  - english: Every time I meet my daughter, she tells me about the events of her day.
+    japanese:
+      - 娘 と 会う {たび に}、その 日 の 出来事 を 話し て くれる。
+      - 娘 と 会う {たび に}、その 日 の 出来事 を 話し て くれ ます。
+      - 娘 と 会う {たび に}、今日 あっ た こと を 話し て くれる ん だ。
+    english_literally: Daughter with meet each time, that day's events tells me.
+    competing_grammar:
+      - competing_japanese:
+          - 娘 と 会え {ば}、その 日 の 出来事 を 話し て くれる。
+          - 娘 と 会え {ば}、その 日 の 出来事 を 話し て くれ ます。
+        english: If I meet my daughter, she tells me about the events of her day.
+        hint: 「〜ば」 expresses a general condition or consequence, but it lacks the strong implication of
+          'every single instance' that 「たびに」 conveys.
+    scene: A parent talking about their routine interaction with their child.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「娘 と 会う {たびに}」 implies a regular meeting. 「話して くれる」 shows the daughter doing something for
+      the speaker, which carries a nuance of gratitude or benefit to the speaker. This expresses a common,
+      warm family dynamic. This is a common way for a parent, regardless of age, to speak about their
+      child. The phrase 「今日 あった こと を 話してくれるんだ」 is a more casual and direct way of expressing 'the events
+      of her day', often used in familiar conversation.
+    etymology: 「くれる」 (kureru) evolved from the verb 「呉る」, meaning 'to give to the speaker or an ingroup
+      member'. This etymology is why 「くれる」 implies a favor or benefit received by the speaker or someone
+      close to them.
+  - english: Every time I go to the bookstore, I find a book I want.
+    japanese:
+      - 本屋 へ 行く {たび に}、欲しい 本 が 見つかる。
+      - 本屋 へ 行く {たび に}、欲しい 本 が 見つかり ます。
+      - 本屋 に 行く {たび に}、必ず 欲しい 本 を 見つけ て しまう。
+    english_literally: Bookstore to go each time, desired book is found.
+    competing_grammar:
+      - competing_japanese:
+          - 本屋 へ 行く {と}、欲しい 本 が 見つかる。
+          - 本屋 へ 行く {と}、欲しい 本 が 見つかり ます。
+        english: When I go to the bookstore, I find a book I want.
+        hint: 「〜と」 indicates a natural consequence or habit, but 「たびに」 stresses that this outcome occurs
+          'each and every time' the action is performed.
+    scene: A book lover describing their consistent experience at a bookstore.
+    register: casual
+    setting: informative
+    nuance: 「欲しい 本 が 見つかる」 (a desired book is found) uses the potential/passive form to describe an outcome
+      that happens to the speaker, implying a pleasant, frequent experience. The third Japanese sentence,
+      「見つけ て しまう」, implies an unintended but consistent action of finding a desired book.
+    etymology: 「本屋」 (hon'ya) combines 「本」 (hon, meaning 'book') and 「屋」 (ya, meaning 'shop' or 'dealer').
+      This simple combination literally means 'book shop' or 'book dealer', reflecting the direct function
+      of the establishment.
+  - english: Every time a new version comes out, there are always bugs.
+    japanese:
+      - 新しい バージョン が 出る {たび に}、必ず バグ が ある。
+      - 新しい バージョン が 出る {たび に}、必ず バグ が あり ます。
+      - 新しい バージョン 出る {たび に}、絶対 バグ ある ん だ よ な。
+    english_literally: New version appears each time, surely bugs exist.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい バージョン が 出る {ごと に}、必ず バグ が ある。
+          - 新しい バージョン が 出る {ごと に}、必ず バグ が あり ます。
+        english: Each time a new version comes out, there are always bugs.
+        hint: While 「ごとに」 emphasizes regularity and distinct units, 「たびに」 specifically highlights the
+          cause-and-effect relationship for every single instance of the new version being released.
+    scene: Software developers discussing recurring issues with releases.
+    register: casual
+    setting: technical
+    nuance: 「バグ」 is a common loanword in Japanese technical contexts. The passive/intransitive 「出る」 (to
+      come out, appear) is used for the new version being released, describing an expected, often frustrating,
+      occurrence. The phrase 「絶対 バグ あるんだよな」 is a very casual, frustrated expression often used by technical
+      professionals among themselves, emphasizing the certainty and annoyance of the bugs.
+    etymology: 「バージョン」 (bājon) is a direct loanword from the English word 'version', commonly used in
+      Japanese technical and software contexts due to the global influence of English in these fields.
+  - english: Every time I bake sweets, I forget at least one ingredient.
+    japanese:
+      - お 菓子 を 焼く {たび に}、何 か 一 つ は 材料 を 忘れ て しまう。
+      - お 菓子 を 焼く {たび に}、何 か 一 つ は 材料 を 忘れ て しまい ます。
+      - お 菓子 焼く {たび に}、つい 何 か 一 つ 材料 忘れ ちゃう の よ ね。
+    english_literally: Sweets bake each time, somehow one ingredient forget end up doing.
+    competing_grammar:
+      - competing_japanese:
+          - お 菓子 を 焼く {と}、何 か 一 つ は 材料 を 忘れ て しまう。
+          - お 菓子 を 焼く {と}、何 か 一 つ は 材料 を 忘れ て しまい ます。
+        english: When I bake sweets, I forget at least one ingredient.
+        hint: 「〜と」 expresses a natural result. 「たびに」, however, emphasizes that this specific consequence
+          occurs consistently 'every time' the action of baking is performed.
+    scene: Someone talking about a recurring minor frustration in their hobby.
+    register: casual
+    setting: humorous
+    nuance: 「何か 一つ は」 (at least one) specifies the recurring error. 「忘れ て しまう」 uses 「〜て しまう」 to express
+      an unintended mistake, adding a touch of self-deprecating humor common in casual conversation. The
+      phrase 「忘れちゃうのよね」 further emphasizes a casual, slightly self-deprecating tone, often used by female
+      speakers, implying an accidental and somewhat habitual oversight.
+    etymology: 「お菓子」 (okashi) is said to derive from 「果子」 (kashi), originally referring to fruits and
+      nuts, which were the earliest forms of sweets. Over time, it evolved to encompass a wider range
+      of confections.
+  - english: Every time I meet him, my heart pounds.
+    japanese:
+      - 彼 に 会う {たび に}、胸 が ドキドキ する。
+      - 彼 に 会う {たび に}、胸 が ドキドキ し ます。
+      - 彼 に お 会い する {たび に}、胸 が 高鳴り ます。
+    english_literally: Him with meet each time, chest thumps.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 に 会う {に つけ}、胸 が ドキドキ する。
+          - 彼 に 会う {に つけ}、胸 が ドキドキ し ます。
+        english: Whenever I meet him, my heart pounds.
+        hint: 「〜につけ」 is often used for recurring emotional or psychological responses. While similar,
+          「たびに」 more broadly emphasizes a consistent, objective occurrence connected to every instance
+          of the action.
+    scene: A young woman describing her feelings about someone she likes.
+    register: casual
+    setting: flirty
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「ドキドキ する」 is an onomatopoeic expression for a pounding heart, commonly used to describe excitement
+      or nervousness, often in romantic contexts. This direct expression of physical reaction makes the
+      sentence intimate and expressive of strong feelings, typically used by younger individuals. The
+      phrase 「彼 に お会い する {たびに} 、胸 が 高鳴り ます」 uses more polite and literary language, 「お会い する」 (to meet,
+      respectful) and 「高鳴る」 (to beat fast, more formal than ドキドキする), while still conveying strong emotion.
+    etymology: 「ドキドキ」 (dokidoki) is an onomatopoeic word, reflecting the sound and sensation of a rapidly
+      beating heart. Onomatopoeia in Japanese often vividly captures physical sensations or sounds.
+post_example_writeup: Remember that 「たびに」 emphasizes the connection between two events, indicating that
+  one regularly follows the other. It implies a stronger cause-and-effect link than simply stating frequency.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/たびに

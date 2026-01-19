@@ -1,0 +1,219 @@
+grammar_point: Verb[ております] (humble progressive・state)
+learn_before:
+  - お[Verb-stem]する・いたす (humble action - kenjougo)
+meaning: Expresses a humble continuous action or state of the speaker or their in-group.
+pronunciation:
+  katakana: テオリマス
+  romaji: te orimasu
+formation:
+  Verb te-form + おります: Indicates the speaker's action or state in a humble, polite manner.
+jlpt: N3
+etymology: The grammatical construct Verb[ております] is a combination of the te-form of a verb, indicating
+  an ongoing action or state, and おります (orimasu), which is the humble (謙譲語・kenjōgo) equivalent of います
+  (imasu), the polite form of いる (iru), meaning "to exist" or "to be." Historically, おります emphasizes the
+  speaker's presence or state in a deferential way. Thus, Verb[ております] literally means "I humbly exist
+  in the state of Verb-ing," conveying a deep sense of modesty and respect for the listener or the situation.
+writeup: Verb[ております] is the humble equivalent of Verb[ています]. While Verb[ています] simply indicates a continuous
+  action or state in a polite register, Verb[ております] adds a layer of humility (謙譲語, kenjōgo). This means
+  the speaker uses it to humble their own actions or states, or those of their in-group, out of respect
+  for the listener or the person being spoken to. It is commonly encountered in formal settings such as
+  business communication, customer service, or official announcements. For example, a shop assistant might
+  say「少々お待ちください。ただいま確認 {して おります}。」 ("Please wait a moment. I am currently confirming it.") Here, 確認しております
+  humbly describes the assistant's action. It is crucial to remember that Verb[ております] is used *only* for
+  the speaker's actions or the actions of those within the speaker's in-group (e.g., family members, company
+  colleagues) when speaking to someone outside that group. It should *not* be used to describe the actions
+  of a superior or someone from an out-group. Misusing humble language can sound awkward or even disrespectful.
+false_friends:
+  - term: Verb[ています]
+    meaning: Expresses ongoing action or state (polite)
+    kind: similar expression
+    nuance: Verb[ています] is a general polite form and carries no humble or respectful nuance. Verb[ております]
+      actively lowers the speaker's status to show respect to the listener.
+    grammar_point: <suggest>:Verb[ている] (ongoing state・habitual action・resultant state)
+  - term: Verb[ていらっしゃいます]
+    meaning: Expresses ongoing action or state (respectful)
+    kind: similar expression
+    nuance: Verb[ていらっしゃいます] is a respectful form used for the actions of *others*, especially superiors,
+      to elevate their status. Verb[ております] is a humble form used for the actions of *oneself* or one's
+      in-group.
+    grammar_point: <suggest>:Verb[ていらっしゃいます] (respectful progressive)
+  - term: お[Verb-stem]する
+    meaning: Humble action (single action)
+    kind: similar expression
+    nuance: お[Verb-stem]する is used for single, humble actions of the speaker (e.g., お手伝いします - I will humbly
+      help). Verb[ております] specifically denotes a humble *ongoing* action or state.
+    grammar_point: お[Verb-stem]する・いたす (humble action - kenjougo)
+  - term: Verb[ます]
+    meaning: Polite non-past action
+    kind: often confused with
+    nuance: Verb[ます] is a polite ending for non-past actions, but it does not convey the deep humility
+      of Verb[ております]. おります specifically humbles the 'being' or 'doing' itself.
+    grammar_point: Verb[ます] (polite present)
+post_false_friends_writeup: 'It''s crucial to distinguish between simple politeness (Verb[ています]), respectful
+  language for others (Verb[ていらっしゃいます]), and humble language for oneself or one''s in-group (Verb[ております],
+  お[Verb-stem]する). While all are polite, ております and お[Verb-stem]する explicitly lower the speaker''s status,
+  while ていらっしゃいます elevates the listener''s status. Confusing these can lead to awkward or unintended implications
+  in formal Japanese. Always remember: ております is about *you* (or your group) being humble.'
+examples:
+  - english: I am currently preparing the documents.
+    japanese:
+      - ただいま、資料 を {準備 し て おり ます}。
+      - ただいま、資料 の 準備 を {し て おり ます}。
+      - 現在、資料 の 準備 を {し て おり ます}。
+    english_literally: Just now, documents preparing am humbly.
+    competing_grammar:
+      - competing_japanese:
+          - ただいま、資料 を 準備 し て い ます。
+        english: I am currently preparing the documents (polite).
+        hint: While polite, います doesn't carry the humble nuance required when speaking to a superior or
+          client. We're looking for a humble form.
+    scene: A secretary speaking to their boss or a client over the phone.
+    register: kenjōgo (humble)
+    setting: professional
+  - english: We are looking forward to your visit.
+    japanese:
+      - 皆 様 の ご 来店 を {お 待ち し て おり ます}。
+      - 皆 様 の ご 来店 を 心 より {お 待ち し て おり ます}。
+      - お 客 様 の ご 来店 を {お 待ち し て おり ます}。
+    english_literally: Everyone's visit humbly waiting for am humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 様 の ご 来店 を 楽しみ に し て い ます。
+        english: We are looking forward to your visit (polite).
+        hint: This is polite, but お待ちしております is a set humble phrase often used in business or service for
+          'looking forward to' or 'waiting for'. We need a humble expression that is also common in this
+          setting.
+    scene: A shop assistant addressing customers as they leave.
+    register: kenjōgo (humble)
+    setting: professional
+  - english: I have been living in Tokyo for five years.
+    japanese:
+      - 私 は 東京 に 5 年間 {住ん で おり ます}。
+      - 東京 に 5 年間 {住ん で おり ます}。
+      - この 東京 に 5 年間 {住ん で おり ます}。
+    english_literally: As for me, Tokyo in 5 years living am humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 東京 に 5 年間 住ん で い ます。
+        english: I have been living in Tokyo for five years (polite).
+        hint: Although grammatically correct and polite, 住んでおります is used to humbly state one's ongoing
+          state to someone of higher status or in a formal context. We're looking for a humble way to
+          state a continuous state.
+    scene: A junior employee introducing themselves to a senior executive at a company event.
+    register: kenjōgo (humble)
+    setting: professional
+  - english: I am currently handling customer inquiries.
+    japanese:
+      - 私 は ただいま、お 客 様 の お 問い合わせ に {対応 し て おり ます}。
+      - ただいま、お 客 様 の お 問い合わせ に {対応 し て おり ます}。
+      - お 客 様 から の お 問い合わせ に {対応 し て おり ます}。
+    english_literally: As for me, just now, customer's inquiries to corresponding am humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は ただいま、お 客 様 の お 問い合わせ に 対応 し て い ます。
+        english: I am currently handling customer inquiries (polite).
+        hint: The nuance of humility is missing in the polite form. When speaking to a customer, it is
+          better to use humble language. We're looking for a humble continuous action.
+    scene: A customer service representative speaking to a client on the phone.
+    register: kenjōgo (humble)
+    setting: professional
+  - english: Our company is researching new technologies.
+    japanese:
+      - 弊社 は 新しい 技術 を {研究 し て おり ます}。
+      - 新しい 技術 の 研究 を {し て おり ます}。
+      - 弊社 にて、新しい 技術 を {研究 し て おり ます}。
+    english_literally: Our company, new technology researching is humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 弊社 は 新しい 技術 を 研究 し て い ます。
+        english: Our company is researching new technologies (polite).
+        hint: While polite, います does not convey the humble nuance appropriate when speaking about one's
+          company to an external party. We need to express a humble ongoing state of our company.
+    scene: A company spokesperson explaining their current activities to potential investors.
+    register: kenjōgo (humble)
+    setting: professional
+  - english: We are currently closed for the New Year holidays.
+    japanese:
+      - 当店 は 年末 年始 の 休暇 の ため、{休業 し て おり ます}。
+      - 年末 年始 の 休暇 の ため、当店 は {休業 し て おり ます}。
+      - 当店 は 年末 年始 の お 休み の ため、{休業 し て おり ます}。
+    english_literally: Our store, year-end New Year's holiday due to, closed is humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 当店 は 年末 年始 の 休暇 の ため、休業 し て い ます。
+        english: Our store is currently closed for the New Year holidays (polite).
+        hint: When informing customers of the store's state, using a humble form like おります is more polite
+          and deferential. We're looking for a humble way to express a state.
+    scene: A recorded announcement at a store entrance during holidays.
+    register: kenjōgo (humble)
+    setting: informative
+  - english: I will give you a call around 3 PM.
+    japanese:
+      - 午後 3 時 頃 に お 電話 {差し上げ て おり ます}。
+      - 午後 3 時 頃 に、お 電話 を {差し上げ て おり ます}。
+      - お 電話 を 午後 3 時 頃 に {差し上げ て おり ます}。
+    english_literally: PM 3 o'clock around calling up am humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 午後 3 時 頃 に 電話 し ます。
+        english: I will give you a call around 3 PM (polite).
+        hint: 電話します is polite but lacks the formal humility. 差し上げる is the humble form of 'to give'. We're
+          looking for a humble continuous action related to 'giving' a call.
+    scene: A business person confirming a follow-up call with a client.
+    register: kenjōgo (humble)
+    setting: professional
+  - english: I apologize for the delay. I am confirming it now.
+    japanese:
+      - 大変 お 待た せ いたし まし た。ただいま 確認 {し て おり ます}。
+      - ただいま、確認 を {し て おり ます}。
+      - 現在、確認 作業 を {し て おり ます}。
+    english_literally: Very caused to wait humbly. Just now confirming am humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 大変 お 待た せ いたし まし た。ただいま 確認 し て い ます。
+        english: I apologize for the delay. I am confirming it now (polite).
+        hint: The context of apologizing and speaking to a customer demands a higher level of humble language.
+          We need the humble form for an ongoing action.
+    scene: A customer service agent responding to a customer's query after a brief wait.
+    register: kenjōgo (humble)
+    setting: apologetic
+  - english: We are always striving to improve our services.
+    japanese:
+      - 私 ども は 常 に サービス の 改善 に {努め て おり ます}。
+      - 常 に サービス の 改善 に {努め て おり ます}。
+      - 私 ども は、サービス の 改善 に 絶え ず {努め て おり ます}。
+    english_literally: Our company is always service's improvement for striving is humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 私 ども は 常 に サービス の 改善 に 努め て い ます。
+        english: Our company is researching new technologies (polite).
+        hint: 努めております emphasizes the company's humble dedication to improvement, which is typical in formal
+          business statements. We're looking for a humble, continuous effort.
+    scene: A company executive delivering a speech at a business conference.
+    register: kenjōgo (humble)
+    setting: professional
+  - english: I am looking after my grandchild at home.
+    japanese:
+      - 家 で 孫 を {見 て おり ます}。
+      - 家 で 孫 の 世話 を {し て おり ます}。
+      - 自宅 で 孫 を {見 て おり ます}。
+    english_literally: Home at grandchild looking after am humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 家 で 孫 を 見 て い ます。
+        english: I am looking after my grandchild at home (polite).
+        hint: While 見ています is correct, if the speaker is trying to be humble about their activities when
+          asked by, for example, a neighbor or acquaintance, 見ております can be used. We're looking for a humble
+          statement about one's activity.
+    scene: An older woman humbly explaining her daily activities to a respectful younger neighbor who
+      asks about her day.
+    register: kenjōgo (humble)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 見ております by an older woman when speaking to a younger neighbor is a subtle way of
+      showing modesty about her daily life, reflecting traditional Japanese values of not boastfully stating
+      one's activities. The nuance here comes from the speaker's implied lower status relative to the
+      listener in terms of direct social obligation, or simply a general cultural tendency towards humility
+      in self-description.

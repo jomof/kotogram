@@ -1,0 +1,205 @@
+grammar_point: '[Verb-た]や否や (as soon as・no sooner than)'
+learn_before:
+  - か否か (whether or not)
+meaning: as soon as; no sooner than; the moment that
+pronunciation:
+  katakana: ヤイナヤ
+  romaji: ya inaya
+formation:
+  Verb[た形] + や否や: Indicates that immediately after an action, another action or event occurs.
+jlpt: N1
+etymology: The expression 「や否や」 (ya inaya) combines 「や」, an ancient interjection or particle indicating
+  suddenness or immediate occurrence, with 「否や」, which is derived from 「否」 (ina), meaning 'no' or 'not',
+  often used in classical Japanese to signify a negative or a contrary state. In this context, 「否や」 reinforces
+  the sense of 'no sooner than' or 'immediately, without delay'. Historically, 「や」 would sometimes function
+  as a conjunctive particle indicating immediate succession, and 「否や」 emphasizes the lack of any interval.
+  Thus, it literally conveys 'this happens, and immediately, without that not happening, this other thing
+  happens'.
+writeup: 「〜や否や」 is a formal and literary expression used to describe an immediate succession of two events.
+  It means 'as soon as' or 'the moment that' one action or event (A) happens, another action or event
+  (B) immediately follows. There is virtually no time gap between A and B. It often implies a sense of
+  surprise or an automatic, almost involuntary, reaction to the preceding event. The second event (B)
+  is usually something unexpected or noteworthy. This grammatical pattern is more commonly found in written
+  Japanese, formal speeches, or narratives, rather than casual conversation. It is typically used with
+  verbs that describe a momentary or instantaneous action, rather than a continuous state.
+false_friends:
+  - term: '[Verb-た] とたん(に)'
+    meaning: as soon as; the moment
+    kind: similar expression
+    nuance: 「〜や否や」 emphasizes the immediate succession and often implies a slightly more formal or literary
+      tone, with the second event being a swift, sometimes surprising, consequence. 「〜とたん(に)」 is also
+      about immediate succession but often describes a sudden, unexpected change or a natural reaction,
+      and it can be used more broadly in both formal and informal contexts. While both express immediacy,
+      「や否や」 often highlights the lack of an interval, whereas 「とたん」 emphasizes the suddenness of the second
+      event.
+    grammar_point: <suggest>:[Verb-た] とたん(に) (as soon as)
+  - term: '[Verb-た]が早いか'
+    meaning: as soon as; no sooner than
+    kind: similar expression
+    nuance: 「〜や否や」 and 「〜が早いか」 are very similar in meaning and usage, both conveying immediate succession.
+      However, 「〜や否や」 tends to be more literary and formal, often used for descriptions where the speaker
+      is somewhat detached. 「〜が早いか」 often implies a quick, sometimes impulsive, action or reaction. It
+      often emphasizes the speed and 'predictable' nature of the follow-up action, while 「や否や」 can carry
+      a stronger sense of an unexpected or unavoidable consequence.
+    grammar_point: '[Verb-た]が早いか (as soon as・no sooner than)'
+  - term: 次第
+    meaning: as soon as (after a decision or completion)
+    kind: similar expression
+    nuance: 「次第」 indicates that an action will happen immediately upon the completion of another, often
+      in the context of plans, decisions, or formal announcements. It implies a sense of readiness and
+      a planned sequence. In contrast, 「〜や否や」 describes an immediate, often unforeseen or spontaneous,
+      consequence of an action that has already occurred.
+    grammar_point: 次第 (as soon as)
+post_false_friends_writeup: While 「〜や否や」, 「〜とたん(に)」, and 「〜が早いか」 all convey the meaning of 'as soon as',
+  pay attention to their nuances in formality, spontaneity, and the nature of the following event. 「次第」
+  is distinctly different as it relates to scheduled or determined actions rather than an immediate, observed
+  reaction.
+examples:
+  - english: As soon as the teacher entered the classroom, the students quieted down.
+    japanese:
+      - 先生 が 教室 に {入っ た や 否 や}、生徒 たち は 静か に なっ た。
+      - 先生 が 教室 に {入っ た や 否 や}、生徒 たち は 静か に なり まし た。
+    english_literally: The teacher entered the classroom, and immediately, the students became quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 教室 に {入っ た とたん}、生徒 たち は 静か に なっ た。
+        english: The moment the teacher entered the classroom, the students quieted down.
+        hint: 「〜とたん(に)」 also expresses immediate succession, but it can be used in a wider range of contexts,
+          including slightly less formal ones. We're looking for the more literary and emphatic expression
+          here.
+    scene: A scene in a traditional Japanese classroom where students are rowdy before the teacher arrives.
+    register: formal
+    setting: informative
+  - english: The moment I heard the alarm, I jumped out of bed.
+    japanese:
+      - アラーム の 音 が {聞こえ た や 否 や}、ベッド から 飛び起き た。
+      - アラーム の 音 が {聞こえ た や 否 や}、ベッド から 飛び起き まし た。
+    english_literally: The sound of the alarm was heard, and immediately, I jumped out of bed.
+    competing_grammar:
+      - competing_japanese:
+          - アラーム の 音 が {聞こえ た が 早い か}、ベッド から 飛び起き た。
+        english: No sooner had the alarm sounded than I jumped out of bed.
+        hint: 「〜が早いか」 is very similar to 「〜や否や」 but can emphasize the speed and an almost impulsive reaction.
+          We're looking for the expression that implies an immediate, almost involuntary consequence without
+          a time gap.
+    scene: Someone abruptly waking up due to a loud alarm.
+    register: casual
+    setting: storytelling
+  - english: As soon as he finished his speech, he was surrounded by reporters.
+    japanese:
+      - 彼 が スピーチ を {終え た や 否 や}、記者 たち に 囲ま れ た。
+      - 彼 が スピーチ を {終え た や 否 や}、記者 たち に 囲ま れ まし た。
+    english_literally: He finished his speech, and immediately, he was surrounded by reporters.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が スピーチ を {終わっ た とたん}、記者 たち に 囲ま れ た。
+        english: The moment he finished his speech, he was surrounded by reporters.
+        hint: While 「〜とたん」 works here, it emphasizes the suddenness of the event. 「〜や否や」 often implies
+          a slightly more formal or literary tone and highlights the lack of an interval.
+    scene: A public figure giving a speech at a press conference.
+    register: semi-formal
+    setting: professional
+  - english: The moment she opened the door, a strong wind blew in.
+    japanese:
+      - 彼女 が ドア を {開け た や 否 や}、強い 風 が 吹き込ん で き た。
+      - 彼女 が ドア を {開け た や 否 や}、強い 風 が 吹き込ん で き まし た。
+    english_literally: She opened the door, and immediately, a strong wind blew in.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が ドア を {開ける が 早い か}、強い 風 が 吹き込ん で き た。
+        english: No sooner had she opened the door than a strong wind blew in.
+        hint: 「〜が早いか」 is a close synonym, often used when the second action is an immediate, almost automatic
+          response. We want the expression emphasizing the lack of any time lapse.
+    scene: A person opening a door on a windy day.
+    register: casual
+    setting: storytelling
+    speaker_gender: female
+  - english: As soon as I turned off the light, the room became completely dark.
+    japanese:
+      - 電気 を {消し た や 否 や}、部屋 は 真っ暗 に なっ た。
+      - 電気 を {消し た や 否 や}、部屋 は 真っ暗 に なり まし た。
+    english_literally: I turned off the light, and immediately, the room became completely dark.
+    competing_grammar:
+      - competing_japanese:
+          - 電気 を {消し た とたん}、部屋 は 真っ暗 に なっ た。
+        english: The moment I turned off the light, the room became completely dark.
+        hint: Both are suitable, but 「〜とたん」 emphasizes the sudden change. 「〜や否や」 focuses on the strict
+          immediacy between the two events.
+    scene: Describing a sudden change in a room's lighting.
+    register: casual
+    setting: informative
+  - english: The child, as soon as he saw his mother, ran towards her.
+    japanese:
+      - 子供 は 母親 の 姿 を {見 た や 否 や}、駆け寄っ た。
+      - 子供 は 母親 の 姿 を {見 た や 否 や}、駆け寄り まし た。
+    english_literally: The child saw his mother's figure, and immediately, ran towards her.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 母親 の 姿 を {見る が 早い か}、駆け寄っ た。
+        english: No sooner had the child seen his mother than he ran towards her.
+        hint: 「〜が早いか」 is a very similar expression, often used for immediate, almost instinctual reactions.
+          We are looking for the formal expression that emphasizes there was no delay whatsoever.
+    scene: A child's immediate reaction upon seeing their mother after a separation.
+    register: casual
+    setting: storytelling
+  - english: As soon as the signal turned green, the cars started moving.
+    japanese:
+      - 信号 が 青 に {変わっ た や 否 や}、車 が 一斉 に 動き 出し た。
+      - 信号 が 青 に {変わっ た や 否 や}、車 が 一斉 に 動き 出し まし た。
+    english_literally: The traffic light changed to green, and immediately, cars all at once started moving.
+    competing_grammar:
+      - competing_japanese:
+          - 信号 が 青 に {変わっ た とたん}、車 が 一斉 に 動き 出し た。
+        english: The moment the signal turned green, the cars started moving.
+        hint: While 「〜とたん」 conveys immediate succession, it might emphasize the suddenness. 「〜や否や」 is
+          more formal and emphasizes the complete lack of a time gap.
+    scene: Observing traffic at an intersection.
+    register: formal
+    setting: informative
+  - english: The dog, as soon as it heard its owner's voice, wagged its tail vigorously.
+    japanese:
+      - 犬 は 飼い主 の 声 が {聞こえ た や 否 や}、激しく しっぽ を 振っ た。
+      - 犬 は 飼い主 の 声 が {聞こえ た や 否 や}、激しく しっぽ を 振り まし た。
+    english_literally: The dog heard its owner's voice, and immediately, wagged its tail vigorously.
+    competing_grammar:
+      - competing_japanese:
+          - 犬 は 飼い主 の 声 が {聞こえる が 早い か}、激しく しっぽ を 振っ た。
+        english: No sooner had the dog heard its owner's voice than it wagged its tail vigorously.
+        hint: 「〜が早いか」 is a strong alternative for immediate reactions, often implying an eager or impulsive
+          response. We need the more general, formal expression for instantaneous occurrence.
+    scene: A pet's excited reaction to its owner's return.
+    register: casual
+    setting: storytelling
+  - english: As soon as the meeting ended, everyone started packing their bags.
+    japanese:
+      - 会議 が {終わっ た や 否 や}、皆 が 荷物 を まとめ 始め た。
+      - 会議 が {終わっ た や 否 や}、皆 が 荷物 を まとめ 始め まし た。
+    english_literally: The meeting ended, and immediately, everyone started packing their bags.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 が {終わっ た とたん}、皆 が 荷物 を まとめ 始め た。
+        english: The moment the meeting ended, everyone started packing their bags.
+        hint: 「〜とたん」 highlights the suddenness of the follow-up action. 「〜や否や」 conveys a more precise,
+          formal sense of instantaneity between the events.
+    scene: A common scene after a long meeting.
+    register: semi-formal
+    setting: professional
+  - english: The baby, as soon as it saw the candy, reached out its hand.
+    japanese:
+      - 赤ちゃん は 飴 を {見 た や 否 や}、手 を 伸ばし た。
+      - 赤ちゃん は 飴 を {見 た や 否 や}、手 を 伸ばし まし た。
+    english_literally: The baby saw the candy, and immediately, reached out its hand.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん は 飴 を {見る が 早い か}、手 を 伸ばし た。
+        english: No sooner had the baby seen the candy than it reached out its hand.
+        hint: 「〜が早いか」 is very close in meaning and often used for rapid, almost instinctive actions. We
+          are focusing on the formal expression that emphasizes absolute immediate succession.
+    scene: A baby's instinctive reaction to seeing a treat.
+    register: casual
+    setting: storytelling
+post_example_writeup: As you can see from these examples, 「〜や否や」 is perfect for describing an extremely
+  rapid, almost instantaneous sequence of events. It often captures an element of surprise or an automatic
+  response, making it particularly effective in narrative contexts.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%84%E5%90%A6%E3%82%84

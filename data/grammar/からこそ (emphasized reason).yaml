@@ -1,0 +1,241 @@
+grammar_point: からこそ (emphasized reason)
+learn_before:
+  - いくら (how much)
+  - 任せる (to entrust or leave to)
+  - 色々 (various・a variety of)
+meaning: Emphasized because, Precisely because
+pronunciation:
+  katakana: カラコソ
+  romaji: kara koso
+formation:
+  Verb + からこそ: Emphasizes the reason or cause.
+  Noun + だ + からこそ: Emphasizes the reason or cause stemming from the noun's nature.
+  Noun + で ある + からこそ: Emphasizes the reason or cause stemming from the noun's nature (more formal).
+jlpt: N3
+etymology: The particle 「こそ」 originates from classical Japanese and has always served to emphasize the
+  preceding word or phrase. When combined with 「から」 (because/from), which indicates a source or reason,
+  「からこそ」 was formed to specifically highlight that the preceding reason is the definitive or primary cause,
+  thus underscoring the strong causal link.
+writeup: The expression 「からこそ」 is used to emphasize the reason or cause for something. It conveys that
+  something is true "precisely because" of a particular reason. It is similar to saying "precisely because
+  (A), (B)" in English. It's used after verbs in their plain form or nouns followed by 「だ」. While there
+  may be multiple reasons for a situation, 「からこそ」 highlights the most important or primary one. It lends
+  a strong sense of conviction to the stated reason.
+false_friends:
+  - term: から (because)
+    meaning: Because, Since
+    kind: similar expression
+    nuance: 「から」 simply indicates a reason, while 「からこそ」 emphasizes that reason above others, marking
+      it as the specific or primary cause.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ものだから
+    meaning: Because, The reason is
+    kind: similar expression
+    nuance: 「ものだから」 provides an explanation for a reason, often with a slight nuance of excuse or justification,
+      but lacks the strong emphasis on the reason itself that 「からこそ」 carries.
+    grammar_point: もので・ものだから (because・as an excuse)
+  - term: ことだから
+    meaning: It is exactly because
+    kind: often confused with
+    nuance: 「ことだから」 is used when explaining someone's typical behavior based on their inherent character
+      or nature, whereas 「からこそ」 emphasizes a specific, general reason or cause for an action or state.
+    grammar_point: ことだから (given the nature of)
+  - term: 〜てこそ
+    meaning: Only if, Because, By, Unless, Until
+    kind: similar expression
+    nuance: 「〜てこそ」 implies that a certain action or state is a prerequisite or condition for something
+      else to be achieved, conveying 'only by doing X, Y is possible,' differing from 「からこそ」 which emphasizes
+      an existing reason for a result.
+    grammar_point: '[Verb-て]こそ (only if or by)'
+  - term: こそ
+    meaning: For sure, For certain, Even more so, Used to strongly emphasize a word or phrase.
+    kind: similar expression
+    nuance: 「こそ」 by itself emphasizes the word or phrase it attaches to, highlighting its importance.
+      In contrast, 「からこそ」 specifically emphasizes the preceding reason or cause, making it the decisive
+      factor.
+    grammar_point: こそ (emphasis)
+  - term: あまり
+    meaning: So much...that
+    kind: similar expression
+    nuance: 「あまり」 indicates a degree or extent of a condition that leads to a certain result, often implying
+      an excessive amount, whereas 「からこそ」 directly emphasizes the primary reason for something, not its
+      intensity or degree.
+    grammar_point: '[Verb-dict・Nounの]あまり (so much... that)'
+  - term: 〜ばこそ
+    meaning: Precisely because, Only because, Because, Due to
+    kind: similar expression
+    nuance: 「〜ばこそ」 shares the core meaning of emphasizing a reason, similar to 「からこそ」, but it often carries
+      a more formal, literary, or slightly old-fashioned nuance. It implies a 'precisely for this reason
+      and no other' sentiment.
+    grammar_point: ばこそ (precisely because)
+post_false_friends_writeup: While 「からこそ」 shares similar meanings with other expressions like 「から」, 「ものだから」,
+  「ことだから」, 「～てこそ」, 「こそ」, 「あまり」 and 「～ばこそ」, it's crucial to remember that 「からこそ」 is used to **emphasize**
+  a specific reason or cause. It elevates the reason from a mere explanation to the core determinant of
+  the outcome. Other expressions may provide reasons or conditions, but lack the specific emphasis that
+  「からこそ」 provides. 「～ばこそ」 is very similar, but it has a different register. So be careful to use the one
+  that matches the register that you want.
+examples:
+  - english: I was able to win the match precisely because I practiced every day.
+    japanese:
+      - 毎日 練習 し た {から こそ}、試合 に 勝て た。
+      - 毎日 練習 し まし た {から こそ}、試合 に 勝て まし た。
+    english_literally: Precisely because I practiced every day, I was able to win the match.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日 練習 し た {から} 試合 に 勝て た。
+        english: I was able to win the match because I practiced every day.
+        hint: This simply states a reason. We're looking for a sentence that emphasizes the practice as
+          the *definitive* reason for winning.
+    scene: A sports player explaining their success.
+    register: casual
+    setting: serious
+  - english: She's kind to everyone, precisely because of her kindness.
+    japanese:
+      - 優し さ {だ から こそ}、彼女 は 誰 に で も 親切 に する。
+      - 優し さ {だ から こそ}、彼女 は 誰 に で も 親切 に し ます。
+      - 優し さ {で ある から こそ}、彼女 は 誰 に で も 親切 に する。
+    english_literally: Precisely because it is kindness, she is kind to everyone.
+    competing_grammar:
+      - competing_japanese:
+          - 優し さ だ {から} 彼女 は 誰 に で も 親切 に する。
+        english: She's kind to everyone because of her kindness.
+        hint: This provides a reason. We need to emphasize that her inherent kindness is the *primary*
+          reason for her actions.
+    scene: Describing someone's motivation.
+    register: semi-formal
+    setting: informative
+  - english: He's the only one I can entrust with this difficult task, precisely because it's him.
+    japanese:
+      - 彼 {だ から こそ}、この 難しい 仕事 を 任せ られる。
+      - 彼 {だ から こそ}、この 難しい 仕事 を 任せ られ ます。
+      - 彼 {だ から こそ}、この 難解 な 仕事 を 任せる こと が できる。
+    english_literally: Precisely because it is him, this difficult task can be entrusted.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 だ {から} この 難しい 仕事 を 任せ られる。
+        english: I can entrust this difficult task to him because it's him.
+        hint: This implies a reason. We need to strongly highlight that he is the *specific and unique*
+          person for this task.
+    scene: A manager assigning a challenging project.
+    register: formal
+    setting: professional
+  - english: Precisely because I love you, I'm going to be honest with you.
+    japanese:
+      - 愛し て いる {から こそ}、君 に は 正直 に 話す。
+      - 愛し て い ます {から こそ}、君 に は 正直 に 話し ます。
+      - 愛し て いる {から こそ}、あなた に は 正直 に 話す。
+    english_literally: Precisely because I love you, I will speak honestly to you.
+    competing_grammar:
+      - competing_japanese:
+          - 愛し て いる {から} 君 に は 正直 に 話す。
+        english: Because I love you, I'm going to be honest with you.
+        hint: This states a reason. We're looking for an expression that underlines love as the *fundamental*
+          reason for honesty.
+    scene: Expressing deep feelings.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses the phrase 「愛し て いる」, conveying a strong declaration of love. This highlights
+      the intimate setting and speaker_gender is male speaking to listener_gender female.
+  - english: Precisely because I've seen various things, I can remain calm.
+    japanese:
+      - 色々 見 て き た {から こそ}、落ち着い て い られる。
+      - 色々 見 て き まし た {から こそ}、落ち着い て い られ ます。
+    english_literally: Precisely because I have seen various things, I can remain calm.
+    competing_grammar:
+      - competing_japanese:
+          - 色々 見 て き た {から} 落ち着い て い られる。
+        english: Because I've seen various things, I can remain calm.
+        hint: This indicates a reason. We need to express that seeing various things is the *core* reason
+          for maintaining calmness.
+    scene: Explaining how you can handle a situation.
+    register: semi-formal
+    setting: serious
+  - english: Precisely because it's a difficult path, it's worth challenging.
+    japanese:
+      - 難しい 道 {だ から こそ}、挑戦 する 価値 が ある。
+      - 難しい 道 {だ から こそ}、挑戦 する 価値 が あり ます。
+      - 困難 な 道 {で ある から こそ}、挑戦 する 価値 が ある。
+    english_literally: Precisely because it is a difficult path, it has value to challenge.
+    competing_grammar:
+      - competing_japanese:
+          - 難しい 道 だ {から} 挑戦 する 価値 が ある。
+        english: Because it's a difficult path, it's worth challenging.
+        hint: This simply states a reason. We are looking for a sentence that emphasizes the difficulty
+          itself as the *reason* for its value.
+    scene: Encouraging someone to take on a hard task.
+    register: formal
+    setting: inspirational
+  - english: Precisely because it's you whom I trust, I'm going to confide what I can't tell others.
+    japanese:
+      - 信頼 し て いる あなた {だ から こそ}、人 に 言え ない こと を 打ち明ける。
+      - 信頼 し て いる あなた {だ から こそ}、人 に 言え ない こと を 打ち明け ます。
+      - 信頼 する あなた {だ から こそ}、人 に 言え ない こと を 打ち明ける。
+    english_literally: Precisely because it is you whom I trust, I will reveal what I cannot tell others.
+    competing_grammar:
+      - competing_japanese:
+          - 信頼 し て いる あなた だ {から} 人 に 言え ない こと を 打ち明ける。
+        english: Because it's you whom I trust, I'm going to confide what I can't tell others.
+        hint: This explains a reason. We need to emphasize that the trust in this specific person is the
+          *defining* factor for confiding.
+    scene: Confiding in a close friend.
+    register: semi-formal
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker, a female, expresses deep trust by using 「人 に 言え ない こと」 (things I can't tell others),
+      emphasizing the confidential nature of the information she is entrusting to the male listener. This
+      intimate sharing highlights her strong reliance on him.
+  - english: Precisely because I struggled, I have my current success.
+    japanese:
+      - 苦労 し た {から こそ}、今 の 成功 が ある。
+      - 苦労 し まし た {から こそ}、今 の 成功 が あり ます。
+      - 大変 な 経験 を し た {から こそ}、今 の 成功 が ある。
+    english_literally: Precisely because I struggled, there is current success.
+    competing_grammar:
+      - competing_japanese:
+          - 苦労 し た {から} 今 の 成功 が ある。
+        english: Because I struggled, I have my current success.
+        hint: This states a reason. We need to express that past struggles are the *direct and indispensable*
+          cause of current success.
+    scene: Reflecting on past hardships.
+    register: semi-formal
+    setting: reflective
+  - english: Precisely because it's delicious coffee, I want to drink it every day.
+    japanese:
+      - 美味しい コーヒー {だ から こそ}、毎日 飲み たい。
+      - 美味しい コーヒー {だ から こそ}、毎日 飲み たい です。
+      - うまい コーヒー {だ から こそ}、毎日 飲み たい。
+    english_literally: Precisely because it is delicious coffee, I want to drink it every day.
+    competing_grammar:
+      - competing_japanese:
+          - 美味しい コーヒー だ {から} 毎日 飲み たい。
+        english: Because it's delicious coffee, I want to drink it every day.
+        hint: This indicates a reason. We are looking for an expression that strongly conveys the deliciousness
+          as the *sole driver* for daily consumption.
+    scene: Expressing enjoyment of a beverage.
+    register: casual
+    setting: friendly
+  - english: I get angry precisely because I'm serious.
+    japanese:
+      - 本気 {だ から こそ}、怒る ん だ よ。
+      - 本気 {だ から こそ}、怒る ん です よ。
+    english_literally: Precisely because I am serious, I get angry.
+    competing_grammar:
+      - competing_japanese:
+          - 本気 だ {から} 怒る ん だ よ。
+        english: Because I'm serious, I get angry.
+        hint: This provides a reason. We need to emphasize that being serious is the *underlying and fundamental*
+          reason for getting angry.
+    scene: Explaining the reason behind anger.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    nuance: The use of 「怒る ん だ よ」 conveys a sense of exasperation and emotion, appropriate for a casual
+      context and used by male speaker_gender.
+post_example_writeup: As you can see from these examples, 「からこそ」 is a powerful tool to highlight the crucial
+  role of a preceding reason. It elevates the reason from a mere explanation to the core determinant of
+  the outcome.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/からこそ

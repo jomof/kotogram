@@ -1,0 +1,254 @@
+grammar_point: と同じくらい (about the same as)
+learn_before:
+  - い-Adjective[み] (abstract quality)
+meaning: About the same as, About as, No less
+pronunciation:
+  katakana: ト オナジ クライ
+  romaji: to onaji kurai
+formation:
+  '[Noun A] + と同じくらい + [Adjective / Noun]': Compares Noun A to another entity, stating they are approximately
+    the same in a specified quality (e.g. サイズ, 重さ).
+  '[Noun A] + と同じくらい + の + [Noun B]': Used when the comparison functions as an adjectival phrase modifying
+    Noun B (e.g. 同じくらいのスピード - same speed).
+  '[Noun/Clause (plain form) + の] + と同じくらい + に + [Verb/Adjective/です]': Compares actions or states, indicating
+    a similar degree or manner (e.g. 同じくらいに痛い - hurts as much, 同じくらいになります - becomes about the same).
+jlpt: N3
+etymology: The expression 「と同じくらい」 is a compound phrase. It combines the particle 「と」 (to), which marks
+  the object of comparison or indicates 'with' or 'and'; the adjective 「同じ」 (onaji), meaning 'the same';
+  and the adverbial particle 「くらい」 (kurai), meaning 'about' or 'approximately'. Historically, 「くらい」 evolved
+  from 「くらべ」 (kurabe), the stem of the verb 「比べる」 (kuraberu), meaning 'to compare'. Thus, 「と同じくらい」 literally
+  translates to 'about the same when compared to' or 'to the extent of being the same as'. This linguistic
+  evolution emphasizes the comparative nature and approximate equivalence conveyed by the phrase.
+writeup: 'The Japanese expression 「と同じくらい」 (to onaji kurai) is used to state that something is approximately
+  equivalent to something else in terms of a specific quality, quantity, or degree. It emphasizes that
+  the two entities are ''''about the same as'''' or ''''no less than'''' each other. This phrase indicates
+  a strong similarity without necessarily implying an exact match, allowing for a slight margin of difference
+  while still conveying a sense of practical equivalence. This grammar point is versatile and can be applied
+  across various contexts, such as comparing physical attributes (size, weight, height), abstract qualities
+  (difficulty, importance), or states/conditions (pain, speed). It is a standard expression in Japanese
+  and can be used in both casual and polite settings, depending on the sentence ending and context. **Formation
+  Breakdown:** *   **[Noun A] + と同じくらい + [Adjective / Noun]**: This is a direct comparison. For example,
+  「私の猫は、この箱と同じくらい大きい。」 (My cat is about as big as this box.) *   **[Noun A] + と同じくらい + の + [Noun B]**:
+  When the comparison modifies a subsequent noun, the particle 「の」 is inserted after 「くらい」. For instance,
+  「彼の車は、電車と同じくらいの速さで走る。」 (His car runs at about the same speed as a train.) *   **[Plain Form Clause/Noun
+  + の] + と同じくらい + に + [Verb/Adjective/です]**: This structure is used to compare actions or states, indicating
+  a similar degree or manner. For example, 「この古いテレビを直すのは、新しいのを買うのと同じくらいお金がかかります。」 (Repairing this old
+  TV costs about as much as buying a new one.) In some cases, 「に」 may be omitted if the phrase directly
+  modifies a noun or is the predicate.'
+false_friends:
+  - term: ～と同じ
+    meaning: the same as
+    kind: similar expression
+    nuance: Unlike 「と同じくらい」 which implies approximate similarity, 「と同じ」 states exact sameness or identity.
+      It leaves no room for variation, meaning 'exactly the same as X'.
+    grammar_point: <strongly-suggest>:と同じ (exact sameness)
+  - term: ～くらい／ぐらい
+    meaning: about, approximately
+    kind: similar expression
+    nuance: While 「くらい／ぐらい」 also conveys approximation, it lacks the explicit comparative element of 「と」.
+      「と同じくらい」 specifically states 'about the same *as X*', drawing a direct link to the compared item.
+      「くらい／ぐらい」 alone focuses on a general measure or extent, not a direct comparison of sameness to another
+      specific entity.
+    grammar_point: くらい (approximate quantity or degree)
+  - term: ～ほど
+    meaning: as much as, to the extent of
+    kind: similar expression
+    nuance: 「ほど」 implies 'to the degree of' or 'as much as', often suggesting a surprising or noteworthy
+      extent. 「と同じくらい」 focuses on direct comparative equivalence, emphasizing sameness rather than degree
+      or extent. While both involve comparison, 「ほど」 often highlights a surprising or unexpected scale,
+      whereas 「と同じくらい」 simply states a similar magnitude.
+    grammar_point: ほど (extent・approximation)
+post_false_friends_writeup: To avoid confusion, remember that 「と同じくらい」 is best used when you want to highlight
+  a strong, but not necessarily perfect, equivalence between two things or situations. If absolute identity
+  is key, 「と同じ」 is the correct choice. If you're simply giving an approximate measure or extent without
+  a specific comparative reference, 「くらい／ぐらい」 is more suitable. When emphasizing a surprising degree or
+  extent, particularly if it's beyond what might be expected, consider using 「ほど」.
+examples:
+  - english: My cat is about as big as this box.
+    japanese:
+      - 私 の 猫 は、この 箱 と {同じ くらい} 大きい です。
+      - 私 の 猫 は、この 箱 と {同じ くらい} 大きい。
+      - 私 の 猫 は、この 箱 と {同じ ぐらい} 大きい です。
+      - 私 の 猫 は、この 箱 と {同じ ぐらい} 大きい。
+    english_literally: My cat, this box and about the same big is.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 猫 は、この 箱 {ぐらい} 大きい です。
+        english: My cat is approximately as big as this box.
+        hint: 「ぐらい」 indicates a general approximation. We're looking for a specific comparison indicating
+          'about the same as' another distinct item.
+    scene: A cat owner is showing a friend how their cat, though small, manages to fit into a surprisingly
+      small box.
+    register: teineigo (polite)
+    setting: friendly
+  - english: His car runs at about the same speed as a train.
+    japanese:
+      - 彼 の 車 は、電車 と {同じ くらい} の 速 さ で 走る。
+      - 彼 の 車 は、電車 と {同じ くらい} の 速 さ で 走り ます。
+      - 彼 の 車 は、電車 と {同じ ぐらい} の 速 さ で 走る。
+      - 彼 の 車 は、電車 と {同じ ぐらい} の 速 さ で 走り ます。
+    english_literally: His car, train and about the same speed at runs.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 車 は、電車 と {同じ} 速 さ で 走る。
+        english: His car runs at the same speed as a train.
+        hint: 「と同じ」 implies exact sameness. We're looking for a comparison that indicates 'about the same
+          as', allowing for slight variation.
+    scene: Two people are discussing how fast their friend drives.
+    register: casual
+    setting: informative
+  - english: This dish is about as difficult as making ramen.
+    japanese:
+      - この 料理 は、ラーメン を 作る の と {同じ くらい} 難しい です。
+      - この 料理 は、ラーメン を 作る の と {同じ くらい} 難しい。
+      - この 料理 は、ラーメン を 作る の と {同じ ぐらい} 難しい です。
+      - この 料理 は、ラーメン を 作る の と {同じ ぐらい} 難しい。
+    english_literally: This cooking, ramen to make that and about the same difficult is.
+    competing_grammar:
+      - competing_japanese:
+          - この 料理 は、ラーメン を 作る の {よう に} 難しい です。
+        english: This dish is difficult, like making ramen.
+        hint: 「～のように」 expresses similarity or appearance but lacks the specific nuance of 'about the same
+          degree'. We're looking for a phrase that explicitly states similar difficulty in extent.
+    scene: Someone is trying a new recipe and commenting on its complexity.
+    register: teineigo (polite)
+    setting: reflective
+  - english: Our son is about the same age as the dog I used to have.
+    japanese:
+      - うち の 息子 は、私 が 飼っ て い た 犬 と {同じ くらい} の 年齢 です。
+      - うち の 息子 は、私 が 飼っ て い た 犬 と {同じ くらい} の 年齢 だ。
+      - うち の 息子 は、私 が 飼っ て い た 犬 と {同じ ぐらい} の 年齢 です。
+      - うち の 息子 は、私 が 飼っ て い た 犬 と {同じ ぐらい} の 年齢 だ。
+    english_literally: Our son, I was keeping dog and about the same age is.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 息子 は、私 が 飼っ て い た 犬 と {同じ} 年齢 です。
+        english: Our son is the same age as the dog I used to have.
+        hint: 「と同じ」 means 'exactly the same'. We're looking for a comparison that indicates 'about the
+          same age', allowing for a slight approximation.
+    scene: A parent is reminiscing with a friend about an old pet and noting their child's current age.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Repairing this old TV costs about as much as buying a new one.
+    japanese:
+      - この 古い テレビ を 直す の は、新しい の を 買う の と {同じ くらい} お 金 が かかり ます。
+      - この 古い テレビ を 直す の は、新しい の を 買う の と {同じ くらい} お 金 が かかる。
+      - この 古い テレビ を 直す の は、新しい の を 買う の と {同じ ぐらい} お 金 が かかり ます。
+      - この 古い テレビ を 直す の は、新しい の を 買う の と {同じ ぐらい} お 金 が かかる。
+    english_literally: This old TV to fix that, new one to buy that and about the same money costs.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い テレビ を 直す の は、新しい の を 買う の と {同じ} お 金 が かかり ます。
+        english: Repairing this old TV costs the same as buying a new one.
+        hint: 「と同じ」 indicates an exact cost. We're looking for a comparison that suggests an approximate
+          cost, 'about the same'.
+    scene: A repair technician is explaining to a customer why it might be better to buy a new TV.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+  - english: The dentist's injection hurt about as much as pinching my finger.
+    japanese:
+      - 歯 医者 の 注射 は、指 を 挟む の と {同じ くらい} 痛かっ た。
+      - 歯 医者 の 注射 は、指 を 挟む の と {同じ くらい} 痛かっ た です。
+      - 歯 医者 の 注射 は、指 を 挟む の と {同じ ぐらい} 痛かっ た。
+      - 歯 医者 の 注射 は、指 を 挟む の と {同じ ぐらい} 痛かっ た です。
+    english_literally: Dentist's injection, finger to pinch that and about the same painful.
+    competing_grammar:
+      - competing_japanese:
+          - 歯 医者 の 注射 は、指 を 挟む の {よう に} 痛かっ た。
+        english: The dentist's injection hurt, like pinching my finger.
+        hint: 「～のように」 expresses similarity or appearance but doesn't specify the same degree or extent
+          of pain. We're looking for a phrase that expresses a similar degree of pain.
+    scene: A patient is describing their recent dental visit to a friend.
+    register: casual
+    setting: sympathetic
+    nuance: The plain past form 「痛かった」 is typical of casual conversation. The comparison to 「指を挟む」 (pinching
+      one's finger) is an everyday experience often used for comparison of minor pain or discomfort, making
+      the statement relatable and slightly hyperbolic for emphasis without being formal or technical.
+  - english: His guitar playing is about as good as a professional musician's.
+    japanese:
+      - 彼 の ギター は、プロ の 音楽 家 と {同じ くらい} 上手 です。
+      - 彼 の ギター は、プロ の 音楽 家 と {同じ くらい} 上手 だ。
+      - 彼 の ギター は、プロ の 音楽 家 と {同じ ぐらい} 上手 です。
+      - 彼 の ギター は、プロ の 音楽 家 と {同じ ぐらい} 上手 だ.
+    english_literally: His guitar, professional musician and about the same good is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の ギター は、プロ の 音楽 家 と {同じ} 上手 です。
+        english: His guitar playing is the same as a professional musician's.
+        hint: 「と同じ」 implies exact equality in skill. We're looking for a phrase that indicates 'about
+          as good as', suggesting a very high but perhaps not identical level of skill.
+    scene: Friends are praising someone's talent after a performance.
+    register: teineigo (polite)
+    setting: supportive
+  - english: This bag is about as heavy as a rock!
+    japanese:
+      - この カバン は、岩 と {同じ くらい} 重い よ！
+      - この カバン は、岩 と {同じ くらい} 重い です よ！
+      - この カバン は、岩 と {同じ ぐらい} 重い よ！
+      - この カバン は、岩 と {同じ ぐらい} 重い です よ！
+    english_literally: This bag, rock and about the same heavy, you know!
+    competing_grammar:
+      - competing_japanese:
+          - この カバン は、岩 と {同じ} 重い よ！
+        english: This bag is the same as a rock, heavy!
+        hint: 「と同じ」 implies literal, exact sameness. We're looking for a phrase that conveys a strong
+          but approximate comparison, suitable for exaggeration.
+    scene: Someone is struggling to lift a very heavy bag and complains to a friend.
+    register: casual
+    setting: humorous
+    speaker_gender: male
+    listener_gender: male
+    nuance: The sentence-final particle 「よ」 is used for emphasis and to inform the listener, characteristic
+      of casual male speech. The comparison to 「岩」 (rock) is a common hyperbolic expression for something
+      extremely heavy, often used humorously between friends.
+  - english: This job is about as important as my last one.
+    japanese:
+      - この 仕事 は、前 の 仕事 と {同じ くらい} 大切 です。
+      - この 仕事 は、前 の 仕事 と {同じ くらい} 大切 だ。
+      - この 仕事 は、前 の 仕事 と {同じ ぐらい} 大切 です。
+      - この 仕事 は、前 の 仕事 と {同じ ぐらい} 大切 だ。
+    english_literally: This job, previous job and about the same important is.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は、前 の 仕事 と {同じ} 大切 です。
+        english: This job is exactly as important as my last one.
+        hint: 「と同じ」 means 'exactly the same'. We're looking for a comparison indicating 'about the same
+          importance', allowing for slight variation.
+      - competing_japanese:
+          - この 仕事 は、前 の 仕事 {ぐらい} 大切 です。
+        english: This job is around the importance of my last one.
+        hint: 「ぐらい」 indicates a general approximation. We need to explicitly state it's 'about the same
+          as' another specific item.
+    scene: A person is discussing their new employment with a friend, comparing it to their previous role.
+    register: teineigo (polite)
+    setting: informative
+  - english: Learning Japanese is about as difficult as learning German.
+    japanese:
+      - 日本 語 を 習う の は、ドイツ 語 を 習う の と {同じ くらい} 難しい です。
+      - 日本 語 を 習う の は、ドイツ 語 を 習う の と {同じ くらい} 難しい。
+      - 日本 語 を 習う の は、ドイツ 語 を 習う の と {同じ ぐらい} 難しい です。
+      - 日本 語 を 習う の は、ドイツ 語 を 習う の と {同じ ぐらい} 難しい。
+    english_literally: Japanese to learn that, German to learn that and about the same difficult is.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 を 習う の は、ドイツ 語 を 習う の と {同じ} 難しい です。
+        english: Learning Japanese is exactly as difficult as learning German.
+        hint: 「と同じ」 implies exact sameness. We're looking for 'about the same difficulty', suggesting
+          a slight approximation.
+      - competing_japanese:
+          - 日本 語 を 習う の は、ドイツ 語 を 習う {ぐらい} 難しい です。
+        english: Learning Japanese is around the difficulty of learning German.
+        hint: 「ぐらい」 focuses on a general degree. We need to explicitly state 'about the same as' for a
+          direct comparison.
+    scene: Two friends who are both learning foreign languages are comparing their experiences.
+    register: teineigo (polite)
+    setting: informative
+post_example_writeup: When using 「と同じくらい」, consider the context and what you want to emphasize. It's a
+  versatile phrase for expressing approximate equivalence, but always be mindful of the subtle differences
+  it conveys compared to expressions of exact sameness or simple approximation. The inclusion of 「の」 or
+  「に」 after 「くらい」 is important for grammatical correctness depending on whether you are modifying a noun
+  or an action/state.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/と同じくらい

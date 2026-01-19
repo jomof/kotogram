@@ -1,0 +1,236 @@
+grammar_point: '[Verb-stem]っぱなし (leaving something in a state)'
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - 〜まま(に) (as is・unchanged)
+  - がち (tend to)
+  - そんなに (that much)
+  - な (prohibitive particle)
+meaning: Leaving something in an undesirable or incomplete state; leaving something unattended.
+pronunciation:
+  katakana: ッパナシ
+  romaji: ppanashi
+formation:
+  Verb Stem + っぱなし: Indicates that an action has been performed, and the resulting state is left as is,
+    often implying carelessness or neglect.
+jlpt: N3
+etymology: The grammatical pattern 「～っぱなし」 derives from the verb 「放す (hanasu)」, meaning "to release,"
+  "to let go," or "to set free." The initial 「っ」 (small tsu) indicates a geminate consonant, turning 「はなす
+  (hanasu)」 into 「っぱなし (ppanashi)」, a common phonological phenomenon in Japanese. Fundamentally, it conveys
+  the idea of an action being completed and the resulting state being left "as is" or "released." Over
+  time, this evolved to often imply a state of neglect or an action left incomplete, thereby acquiring
+  its common negative connotation of leaving something unattended or in an undesirable condition.
+writeup: |-
+  The grammar pattern 「～っぱなし」 is used to describe a state where an action has been performed, and the resulting situation or object is left as it is, often implying a sense of carelessness, neglect, or incompletion. While it can be used descriptively, its most prevalent use carries a negative nuance, suggesting that something was left undone, in disarray, or in an undesirable manner.
+
+  For instance, if you leave the television on and walk away, you could say 「テレビをつけっぱなし」, highlighting that the TV was left on and is now unattended. This often implies a subtle disapproval or a hint of annoyance. Similarly, if someone leaves their shoes scattered around, you might hear 「靴を出しっぱなし」.
+
+  While the core meaning is simply "leaving something as is," the implied context usually infers that it's a state that should not have been left in that way, or that it causes inconvenience. For example, leaving a door open and walking out 「ドアを開けっぱなし」 can be problematic for security or climate control.
+
+  It attaches to the stem of a verb. For example, from 「つける (tsukeru)」 (to turn on), you get 「つけっぱなし (tsukeppanashi)」. From 「開ける (akeru)」 (to open), you get 「開けっぱなし (akeppanashi)」. It's a very common expression in everyday Japanese conversations, especially when expressing minor complaints or observations about tidiness and responsibility.
+false_friends:
+  - term: まま (as is)
+    meaning: Remaining in a state; as is.
+    kind: similar expression
+    nuance: Unlike 「～っぱなし」, 「～まま」 is a neutral expression. It simply describes a state of something being
+      left as it is, without inherently implying carelessness, neglect, or a negative outcome. It can
+      be used for both positive, negative, or neutral situations.
+    grammar_point: 〜まま(に) (as is・unchanged)
+  - term: てある (resultant state)
+    meaning: Something is done and left in that state (often implying preparation or purpose).
+    kind: similar expression
+    nuance: While 「～てある」 also describes a resultant state, it often implies that the action was done with
+      a purpose or as a preparation, and the state is maintained for some reason. 「～っぱなし」 implies neglect
+      or an undesirable state.
+    grammar_point: てある (resultant state)
+  - term: きり (only・since)
+    meaning: Only; just; since (implies a state that has not changed since a particular action or time).
+    kind: similar expression
+    nuance: 「～きり」 can describe a state that has been left, but it emphasizes the exclusivity or continuity
+      since a certain point, rather than the negligence or undesirable nature of the state itself, as
+      「～っぱなし」 does.
+    grammar_point: 〜きり (only・just)
+post_false_friends_writeup: 'While 「～っぱなし」, 「～まま」, 「～てある」, and 「～きり」 can all describe a state where something
+  is left as it is, the critical difference lies in the nuance and implied intent. 「～っぱなし」 strongly suggests
+  carelessness or neglect, often leading to a negative or inconvenient outcome. For example, 「電気をつけっぱなしだ」
+  means the light was left on carelessly. In contrast, 「～まま」 is neutral, simply stating that something
+  remains in a certain state, whether intentional or not, like 「靴を履いたまま」 (with shoes on). 「～てある」 implies
+  that an action was done for a purpose and the resulting state is maintained, as in 「窓が開けてある」 (the window
+  was opened and left open for a reason, e.g., ventilation). Lastly, 「～きり」 emphasizes exclusivity or continuity
+  from a specific point, often meaning "only that one thing" or "since then," not necessarily implying
+  neglect, such as 「彼が部屋を出たきり、誰も見ていない」 (No one has seen him since he left the room). Remember: 「～っぱなし」
+  usually hints at a problem or complaint.'
+examples:
+  - english: My younger brother left the lights on all night.
+    japanese:
+      - 弟 が 電気 を つけ っぱなし に し て い た。
+      - 弟 が 電気 つけ っぱなし だっ た。
+      - 弟 が 電気 を つけ っぱなし に し て い まし た。
+    english_literally: My younger brother left the electricity on and didn't turn it off.
+    competing_grammar:
+      - competing_japanese:
+          - 弟 が 電気 を つけ た まま に し て い た。
+        english: My younger brother left the lights on (without turning them off).
+        hint: 「～まま」 is neutral and simply describes a state. We're looking for an expression that suggests
+          carelessness or neglect, which is typical for 「～っぱなし」. 「つけっぱなし」 implies an unintentional or
+          neglectful action.
+    scene: A sister is complaining to her parents about her brother.
+    register: casual
+    setting: serious
+  - english: Don't leave the door open like that!
+    japanese:
+      - そんな に ドア を 開け っぱなし に し ない で！
+      - そんな に ドア 開け っぱなし に する な！
+      - ドア 開け っぱなし に する な よ！
+    english_literally: Don't do leaving the door open like that!
+    competing_grammar:
+      - competing_japanese:
+          - そんな に ドア を 開け た まま に し ない で！
+        english: Don't leave the door open (like that).
+        hint: 「～まま」 is neutral. This situation needs a phrase that expresses annoyance or a problem caused
+          by the action, which 「～っぱなし」 conveys.
+      - competing_japanese:
+          - そんな に ドア を 開け っぱなし に やめ て！
+        english: Stop leaving the door open like that!
+        hint: While 「やめて」 means stop, the correct auxiliary verb to use with the verb stem is 「～にしないで」,
+          indicating the state not to be maintained. We're looking for the proper grammatical formation.
+    scene: A parent scolding their child.
+    register: casual
+    setting: commanding
+  - english: The umbrella was left out and got soaking wet in the rain.
+    japanese:
+      - 傘 を 出し っぱなし に し て、雨 で びしょ濡れ に なっ た。
+      - 傘、出し っぱなし に し て、雨 で びしょ濡れ に なっ た よ。
+    english_literally: The umbrella was left out, and by rain, it became soaking wet.
+    competing_grammar:
+      - competing_japanese:
+          - 傘 を 出し た まま、雨 で びしょ濡れ に なっ た。
+        english: The umbrella was left out, and it got soaking wet in the rain.
+        hint: 「～まま」 is neutral. This sentence needs a nuance of carelessness or an undesirable outcome,
+          which 「～っぱなし」 provides. The focus here is on the negative result of leaving it out.
+    scene: Someone is recounting an unfortunate incident.
+    register: casual
+    setting: melancholic
+  - english: I unintentionally fell asleep with the TV still on.
+    japanese:
+      - テレビ を つけ っぱなし で 寝 ちゃっ た。
+      - テレビ を つけ っぱなし で 寝 て しまい まし た。
+      - テレビ つけ っぱなし で 寝 て た。
+    english_literally: I fell asleep with the TV left on.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ を つけ た まま 寝 て しまっ た。
+        english: I fell asleep with the TV on.
+        hint: Both are possible, but 「～っぱなし」 highlights the carelessness or the undesirable state of having
+          left the TV on. 「～まま」 is more neutral. The example implies a slight regret.
+    scene: A person confides in a friend about a recent slip-up.
+    register: casual
+    setting: intimate
+  - english: My roommate always leaves the cap off the toothpaste.
+    japanese:
+      - ルームメイト が いつ も 歯磨き 粉 の 蓋 を 開け っぱなし に する ん だ。
+      - ルームメイト が いつ も 歯磨き 粉 の 蓋開け っぱなし に し てる。
+      - ルームメイト が いつ も 歯磨き 粉 の 蓋 を 開け っぱなし だ よ。
+    english_literally: My roommate always does leaving the toothpaste lid open.
+    competing_grammar:
+      - competing_japanese:
+          - ルームメイト が いつ も 歯磨き 粉 の 蓋 を 開け た まま に する ん だ。
+        english: My roommate always leaves the toothpaste lid open.
+        hint: While both are grammatically correct, 「～っぱなし」 better expresses the speaker's frustration
+          or complaint about the recurring careless action, which is the nuance sought here.
+    scene: A student complaining about their roommate's habits.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「開けっぱなしにする」 implies a habit of leaving the cap off due to carelessness, which the
+      speaker finds annoying. The sentence ends with 「～んだ」 which is a casual, explanatory particle often
+      used to convey a complaint or provide context in a conversational setting. This expresses the female
+      speaker's slight exasperation to her female listener.
+  - english: Please don't leave the water running.
+    japanese:
+      - 水 を 出し っぱなし に し ない で ください。
+      - 水、出し っぱなし に し ない で。
+      - 水 は 出し っぱなし に し ない こと。
+    english_literally: Please don't do leaving the water out.
+    competing_grammar:
+      - competing_japanese:
+          - 水 を 出し た まま に し ない で ください。
+        english: Please don't leave the water running.
+        hint: 「～まま」 is neutral. This instruction implies that leaving the water running is wasteful or
+          problematic, hence requiring the more negative nuance of 「～っぱなし」.
+    scene: A notice in a public restroom.
+    register: formal
+    setting: instructional
+  - english: Leaving the task unfinished is unprofessional.
+    japanese:
+      - 課題 を やり っぱなし に する の は プロ らしく ない。
+      - 課題 を やり っぱなし は プロ らしく ない。
+      - 課題 を やり っぱなし に する こと は、プロ と し て 相応しく ない。
+    english_literally: Doing leaving the task unfinished is not professional-like.
+    competing_grammar:
+      - competing_japanese:
+          - 課題 を やりかけ の まま に する の は プロ らしく ない。
+        english: Leaving the task half-done is unprofessional.
+        hint: While 「やりかけ」 (half-done) is close, 「やりっぱなし」 specifically emphasizes the act of doing it
+          and then neglecting it, leaving it in an incomplete state due to carelessness, which is the
+          specific nuance for this grammar point.
+    scene: A manager giving feedback to an employee.
+    register: semi-formal
+    setting: professional
+  - english: Kids today tend to leave their toys scattered around.
+    japanese:
+      - 今 の 子供 たち は、おもちゃ を 散らかし っぱなし に し がち だ。
+      - 今 の 子供 たち、おもちゃ 散らかし っぱなし に し がち だ よ ね。
+      - 今 の 子供 たち、おもちゃ 散らかし っぱなし に し がち。
+    english_literally: Current children tend to do leaving toys scattered.
+    competing_grammar:
+      - competing_japanese:
+          - 今 の 子供 たち は、おもちゃ を 散らかっ た まま に し がち だ。
+        english: Kids today tend to leave their toys in a scattered state.
+        hint: 「～まま」 focuses on the state. 「～っぱなし」, attached to the verb stem 「散らかし」 (from 散らかす - to scatter),
+          emphasizes the action of scattering and then neglecting to clean up. The addition of 「～しがちだ」
+          reinforces the tendency to be careless.
+    scene: An adult commenting on children's habits.
+    register: casual
+    setting: reflective
+    speaker_age: older
+    nuance: The phrase 「散らかしっぱなしにしがちだ」 implies a habit of scattering toys and leaving them without tidying
+      up. The use of 「～がちだ」 (tend to) softens the complaint while still pointing out a common, slightly
+      negative behavior. The older speaker expresses a general observation about younger generations.
+  - english: If you leave your computer on all the time, it wears out faster.
+    japanese:
+      - パソコン を つけ っぱなし に する と、寿命 が 短く なる よ。
+      - パソコン つけ っぱなし だ と、寿命 短く なる よ。
+      - パソコン を つけ っぱなし に し ます と、寿命 が 短く なり ます。
+    english_literally: If you leave the computer on, its lifespan shortens.
+    competing_grammar:
+      - competing_japanese:
+          - パソコン を つけ た まま に する と、寿命 が 短く なる よ。
+        english: If you leave the computer on, its lifespan shortens.
+        hint: 「～まま」 is neutral. While correct, 「～っぱなし」 emphasizes the continuous, potentially problematic,
+          state of leaving it on without turning it off, suggesting a habitual neglect for its well-being.
+          This is a common warning.
+    scene: A tech-savvy person advising a friend.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「つけっぱなしにすると」 conveys a causal link between the careless habit of leaving the computer
+      on and its negative consequence (shortened lifespan). The casual 「よ」 at the end is a common male-leaning
+      sentence-final particle for giving advice or information, making the tone friendly but firm.
+  - english: He kept talking and talking without listening to anyone else.
+    japanese:
+      - 彼 は 人 の 意見 を 聞か ず、話し っぱなし だっ た。
+      - 彼 は 人 の 意見 聞か ない で、話し っぱなし だっ た ね。
+      - 彼 は 人 の 意見 も 聞か ず に、話し っぱなし だっ た。
+    english_literally: He, without listening to others' opinions, was continuously talking.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 人 の 意見 を 聞か ず、話し 続け た。
+        english: He kept talking without listening to anyone else's opinions.
+        hint: 「～続ける」 means to simply continue. 「～っぱなし」 highlights the continuous talking with a nuance
+          of insensitivity or disregard for others, implying he was talking without interruption or concern
+          for others' input. This is a common negative nuance.
+    scene: A person describing an annoying behavior of a colleague.
+    register: semi-formal
+    setting: serious

@@ -1,0 +1,231 @@
+grammar_point: Verb[(ら)れる] (adversative passive)
+learn_before:
+  - Verb[(ら)れる] (direct passive)
+  - にかなう (to be in accord with)
+  - 込み (including)
+meaning: The adversative passive expresses that the subject experiences a negative effect or inconvenience
+  due to someone else's action or an external event.
+pronunciation:
+  katakana: ラレル
+  romaji: rareru
+formation:
+  'Godan verbs: Verb[uncontracted ない-form stem] + れる': For Godan verbs (e.g., 読む 'yomu'), remove the final
+    character, add the 'a' sound to the preceding consonant, and then attach れる. For example, 読む becomes
+    読まれる.
+  'Ichidan verbs: Verb[ない-form stem] + られる': For Ichidan verbs (e.g., 食べる 'taberu'), keep the stem and
+    attach られる. For example, 食べる becomes 食べられる.
+  'Irregular verbs: する → される, 来る → 来られる': The irregular verbs する (to do) and 来る (to come) have special
+    passive forms.
+jlpt: N3
+etymology: The passive form 「〜れる/〜られる」 evolved from classical Japanese to express not only simple passive
+  voice but also potentiality, spontaneity, and the adversative sense. The adversative meaning specifically
+  highlights the 'suffering' or 'receiving a negative impact' aspect, emphasizing that the subject is
+  involuntarily subjected to an action that causes them inconvenience or harm.
+writeup: |-
+  The adversative passive in Japanese is a unique grammatical construction used to express that the subject of the sentence has been negatively affected by an action or event, often one that was outside of their control or unwelcome. Unlike the direct passive, which simply states that an action was performed on the subject (e.g., 「本が読まれた」 - The book was read), the adversative passive explicitly conveys the inconvenience, trouble, or suffering experienced by the subject.
+
+  This form is often used when the speaker wants to complain about something, recount an unfortunate incident, or describe a situation where they were put in a difficult position by someone else's actions or by circumstances. The agent who performed the action is typically marked with the particle 「に」.
+
+  For example, if your younger sibling ate your cake, you might say 「弟にケーキを{食べられた}」. While the direct passive would be 「ケーキが食べられた」 (The cake was eaten), using the adversative passive focuses on *your* inconvenience and how *you* were affected by your brother's action.
+false_friends:
+  - term: Verb[(ら)れる] (direct passive)
+    meaning: Expresses an action being performed on the subject.
+    kind: similar expression
+    nuance: Unlike the adversative passive, the direct passive simply states that an action happened to
+      the subject without necessarily implying a negative impact. For example, 「彼に褒められた」 (He praised me)
+      is a direct passive construction that usually carries a positive or neutral connotation.
+    grammar_point: Verb[(ら)れる] (direct passive)
+  - term: Verb[(ら)れる] (potential)
+    meaning: Expresses ability or possibility to do something.
+    kind: similar expression
+    nuance: This form has the exact same conjugation as the Ichidan adversative passive, but its meaning
+      is completely different, indicating 'can do' rather than 'suffered from doing'. Context is crucial
+      for distinguishing between these two. For instance, 「この本は読めない」 (This book cannot be read) uses the
+      potential form, while 「友達に本を読まれた」 (My friend read my book, causing me trouble) uses the adversative
+      passive.
+    grammar_point: Verb[(ら)れる] (potential)
+post_false_friends_writeup: It's important to differentiate the adversative passive from the direct passive
+  and the potential form, especially since Ichidan verbs share the same conjugation for adversative passive
+  and potential. The key is to pay attention to the context and the nuance of whether the action is causing
+  an unwanted effect on the subject or simply stating a fact about an action, or an ability.
+examples:
+  - english: My wallet was stolen by someone.
+    japanese:
+      - 誰 か に {財布 を 盗ま れ た}。
+      - 誰 か に {財布 を 盗ま れ まし た}。
+      - 誰 か に {財布 盗ま れ た}。
+      - 誰 か に {財布 を 盗ま れ ちゃっ た}。
+    english_literally: By someone, wallet was stolen (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - 財布 が 誰 か に 盗ま れ た。
+        english: The wallet was stolen by someone.
+        hint: This is a direct passive, focusing on the action happening to the wallet. We're looking
+          for an adversative passive that emphasizes the speaker's personal loss and inconvenience.
+    scene: You are reporting a crime to the police, expressing your personal distress.
+    register: formal
+    setting: serious
+    nuance: The use of 「盗まれた」 (passive of 盗む - to steal) in the adversative sense highlights the speaker's
+      personal suffering and the negative impact of having their wallet stolen.
+  - english: My little brother ate my cake.
+    japanese:
+      - 弟 に {ケーキ を 食べ られ た}。
+      - 弟 に {ケーキ を 食べ られ まし た}。
+      - 弟 に {ケーキ を 食べ られ ちゃっ た}。
+      - 弟 に {ケーキ を 食べ られ ちゃい まし た}。
+    english_literally: By my younger brother, cake was eaten (by me, adversely).
+    competing_grammar:
+      - competing_japanese:
+          - 弟 が ケーキ を 食べ た。
+        english: My younger brother ate the cake.
+        hint: This is an active sentence, simply stating a fact. We're looking for a passive construction
+          that conveys your annoyance or inconvenience.
+    scene: You come home and find your special dessert is gone, causing you annoyance.
+    register: casual
+    setting: friendly
+    nuance: 「食べられた」 expresses the speaker's frustration or annoyance that their cake was eaten by their
+      younger brother. The act itself isn't inherently negative, but the context implies personal inconvenience.
+  - english: The heavy rain ruined my picnic.
+    japanese:
+      - 大雨 に {ピクニック を 台無し に さ れ た}。
+      - 大雨 に {ピクニック を 台無し に さ れ まし た}。
+      - 大雨 に {ピクニック を 台無し に さ れ ちゃっ た}。
+    english_literally: By heavy rain, picnic was ruined (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - 大雨 で ピクニック は 台無し に なっ た。
+        english: The picnic became ruined by heavy rain.
+        hint: This focuses on the picnic's state. We're looking for a construction that emphasizes how
+          the rain negatively affected *you* and your plans.
+    scene: You had planned a fun outdoor event, but the weather interfered and spoiled your plans.
+    register: casual
+    setting: melancholic
+    nuance: The adversative passive 「台無しにされた」 highlights the speaker's disappointment and the negative
+      impact the heavy rain had on their planned picnic.
+  - english: My car was hit by a truck.
+    japanese:
+      - トラック に {車 を ぶつけ られ た}。
+      - トラック に {車 を ぶつけ られ まし た}。
+      - トラック に {車 を ぶつけ られ ちゃっ た}。
+    english_literally: By a truck, car was hit (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - トラック が 車 に ぶつかっ た。
+        english: A truck hit the car.
+        hint: This is an active sentence, stating the fact. We're looking for a passive construction that
+          emphasizes the damage or inconvenience caused to *you* as the car owner.
+    scene: You are talking about a recent car accident that caused damage to your vehicle.
+    register: casual
+    setting: serious
+    nuance: 「ぶつけられた」 (passive of ぶつける - to hit/strike) conveys the unfortunate and undesired event of
+      the car being hit, emphasizing the trouble it caused the owner.
+  - english: I was made fun of by my friends.
+    japanese:
+      - 友達 に {バカ に さ れ た}。
+      - 友達 に {バカ に さ れ まし た}。
+      - 友達 に {バカ に さ れ ちゃっ た}。
+    english_literally: By friends, was made a fool of (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 私 を バカ に し た。
+        english: My friends made fun of me.
+        hint: This is an active sentence. We're looking for a passive construction that highlights the
+          speaker's feeling of being hurt or embarrassed.
+    scene: A teenager confides in a parent or close friend about a school incident where they were teased.
+    register: casual
+    setting: sympathetic
+    nuance: 「バカにされた」 (passive of バカにする - to make a fool of) emphasizes the hurtful and unwanted experience
+      of being ridiculed by friends.
+  - english: My secret was overheard by my colleague.
+    japanese:
+      - 同僚 に {秘密 を 聞か れ た}。
+      - 同僚 に {秘密 を 聞か れ まし た}。
+      - 同僚 に {秘密 を 聞か れ ちゃっ た}。
+    english_literally: By colleague, secret was heard (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - 同僚 が 秘密 を 聞い た。
+        english: My colleague heard the secret.
+        hint: This is an active sentence. We're looking for a passive construction that conveys the speaker's
+          sense of invasion of privacy or discomfort.
+    scene: You discover a private conversation you had was not so private after all, leading to potential
+      issues at work.
+    register: formal
+    setting: serious
+    nuance: The adversative passive 「聞かれた」 implies that the secret being overheard was an unwelcome invasion
+      of privacy or could lead to negative consequences for the speaker.
+  - english: I was slandered by my senior.
+    japanese:
+      - 先輩 に {悪口 を 言わ れ た}。
+      - 先輩 に {悪口 を 言わ れ まし た}。
+      - 先輩 に {悪口 を 言わ れ ちゃっ た}。
+    english_literally: By senior, slander was said (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - 先輩 が 悪口 を 言っ た。
+        english: My senior said bad things.
+        hint: This is an active sentence. We're looking for a passive construction that emphasizes the
+          speaker's distress or reputational damage.
+    scene: A junior employee discusses workplace gossip, feeling hurt by what their senior said.
+    register: casual
+    setting: serious
+    nuance: 「言われた」 (passive of 言う - to say) here means someone spoke ill of the speaker, causing them
+      distress or potential reputational damage, highlighting the negative impact.
+  - english: My child cried all night, and I couldn't sleep.
+    japanese:
+      - 子供 に {一 晩 中 泣か れ て}、眠れ なかっ た。
+      - 子供 に {一 晩 中 泣か れ まし て}、眠れ ませ ん でし た。
+      - 子供 に {一 晩 中 泣か れ ちゃっ て}、眠れ なかっ た。
+    english_literally: By child, cried all night (adversely to me), could not sleep.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 一 晩 中 泣い て、眠れ なかっ た。
+        english: The child cried all night, and I couldn't sleep.
+        hint: This sentence simply states the child's action. We're looking for a construction that clearly
+          shows the speaker's suffering due to the child's action.
+    scene: A new parent is exhausted from a sleepless night and complaining to a friend.
+    register: casual
+    setting: friendly
+    nuance: 「泣かれて」 (passive of 泣く - to cry) conveys the parent's suffering and lack of sleep due to the
+      child's crying, highlighting the negative impact on the subject. The structure 「〜て、〜なかった」 often
+      implies a cause-and-effect of the adverse situation.
+  - english: I was given a low evaluation by my boss.
+    japanese:
+      - 上司 に {低い 評価 を つけ られ た}。
+      - 上司 に {低い 評価 を つけ られ まし た}。
+      - 上司 に {低い 評価 を つけ られ ちゃっ た}。
+    english_literally: By boss, low evaluation was attached (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - 上司 が 私 に 低い 評価 を つけ た。
+        english: My boss gave me a low evaluation.
+        hint: This is an active sentence focusing on the boss's action. We're looking for a passive construction
+          that emphasizes the speaker's negative experience of receiving the evaluation.
+    scene: An employee discusses their performance review, expressing dissatisfaction with the outcome.
+    register: formal
+    setting: serious
+    nuance: 「つけられた」 (passive of つける - to attach/assign) indicates that the low evaluation was an undesirable
+      outcome for the speaker, suggesting disappointment or unfairness.
+  - english: My trip was cancelled due to the typhoon.
+    japanese:
+      - 台風 に {旅行 を 中止 さ れ た}。
+      - 台風 に {旅行 を 中止 さ れ まし た}。
+      - 台風 に {旅行 を 中止 さ れ ちゃっ た}。
+    english_literally: By typhoon, trip was cancelled (adversely to me).
+    competing_grammar:
+      - competing_japanese:
+          - 台風 で 旅行 が 中止 に なっ た。
+        english: The trip was cancelled due to the typhoon.
+        hint: This sentence focuses on the trip's cancellation. We're looking for a construction that
+          emphasizes the speaker's personal disappointment and inconvenience due to the typhoon.
+    scene: Explaining why a planned vacation didn't happen, emphasizing the disappointment.
+    register: casual
+    setting: melancholic
+    nuance: 「中止された」 (passive of 中止する - to cancel) shows the speaker's disappointment and the inconvenience
+      caused by the typhoon forcing the cancellation of their trip.
+post_example_writeup: The adversative passive is a powerful tool to express personal suffering or inconvenience.
+  It highlights the speaker's perspective on an event, emphasizing the unwanted nature of the action and
+  its negative impact. Pay close attention to the agent marked by 「に」, as this is the source of the adverse
+  action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/verb%E3%82%89%E3%82%8C%E3%82%8B%E3%80%80adversative%E3%80%80passive

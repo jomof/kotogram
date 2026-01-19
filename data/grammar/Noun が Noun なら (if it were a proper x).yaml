@@ -1,0 +1,440 @@
+grammar_point: Noun が Noun なら (if it were a proper x)
+learn_before:
+  - '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+meaning: If (something) were a proper/ideal (something); if (something) were the real deal.
+pronunciation:
+  katakana: メイシ ガ ナラ
+  romaji: meishi ga nara
+formation:
+  Noun が Noun なら: Used when the first Noun is a repetition of the second Noun, emphasizing that if the
+    thing in question were an ideal or proper example of itself.
+  Noun が Noun なら (だろう/かもしれない/のに): Often followed by auxiliary expressions like だろう, かもしれない, or のに to indicate
+    hypothetical outcomes, uncertainty, or regret.
+jlpt: N2
+etymology: This grammar point combines 「が」, indicating a subject, with 「なら」, the conditional form of the
+  copula 「だ」. Essentially, it sets up a conditional statement where the noun is hypothetically in a better
+  or more ideal state. It highlights the discrepancy between the hypothetical ideal and the current reality.
+writeup: '「Noun が Noun なら」 is a grammatical construction used to express a hypothetical situation where
+  something, if it were its ideal or proper self, would lead to a different, often better, outcome. It
+  carries a strong nuance of disappointment or regret, implying that the current reality falls short of
+  this ideal state. The structure involves repeating the same noun: 「Noun が Noun なら」. For example, 「会社
+  が 会社 なら」 (If the company were a real company). This repetition serves to emphasize the contrast between
+  the actual entity and its idealized form. This pattern is frequently followed by expressions such as
+  「～だろう」 (probably), 「～かもしれない」 (might be), or 「～のに」 (if only) to articulate the hypothetical consequence
+  or the speaker''s lament. This structure is versatile and can be used in both formal and informal contexts,
+  depending on the specific nouns and the overall tone of the sentence.'
+false_friends:
+  - term: ～としたら
+    meaning: If; supposing that
+    kind: similar expression
+    nuance: Unlike 「Noun が Noun なら」, 「～としたら」 sets up a general conditional statement without the implication
+      of something being less than ideal. It merely introduces a hypothetical condition without judgment
+      on the quality of the subject.
+    grammar_point: としたら (if assuming)
+  - term: ～ば
+    meaning: If (conditional)
+    kind: similar expression
+    nuance: While 「～ば」 also expresses a general conditional, 「Noun が Noun なら」 carries the additional nuance
+      of wishing something were a better version of itself. 「～ば」 is a neutral conditional form, whereas
+      「Noun が Noun なら」 inherently conveys disappointment or criticism.
+    grammar_point: ば (conditional, if A then B)
+  - term: ～のなら
+    meaning: If (it is the case that); if (you say that)
+    kind: similar expression
+    nuance: 「～のなら」 makes a conditional statement based on an existing fact or shared information, often
+      used to draw a conclusion or give advice. It does not carry the same 'ideal vs. reality' contrast
+      or disappointment inherent in 「Noun が Noun なら」.
+    grammar_point: <suggest>:のなら (given a condition)
+post_false_friends_writeup: While conditional expressions like 「～としたら」, 「～ば」, and 「～のなら」 all introduce
+  hypothetical scenarios, 「Noun が Noun なら」 specifically targets a situation where an entity fails to meet
+  the expected standard of what it *should* be. It's crucial to select this particular construction when
+  you want to express a sense of disappointment or critique regarding the actual quality or behavior compared
+  to an idealized version.
+examples:
+  - english: If this phone were a real phone, it shouldn't break so easily.
+    japanese:
+      - この 電話 が {電話 なら}、こんな に すぐ 壊れ ない はず だ。
+      - この 電話 が {電話 なら}、こんな に すぐ 壊れ ない はず だ よ。
+      - この 電話 が {電話 なら}、こんな に すぐ 壊れる はず は ない。
+      - この 電話 が {電話 なら}、こんな に すぐ 壊れる わけ ない よ ね。
+      - この 電話 が {電話 なら}、こんな に あっけなく 壊れる なんて こと は ない。
+      - この 電話 が {電話 なら}、こんな に もろく は ない だろう に。
+      - この 電話 が {電話 なら}、これ ほど ひどい 出来 で は ない はず だ。
+    english_literally: If this phone were a phone, it should not break so easily.
+    competing_grammar:
+      - competing_japanese:
+          - この 電話 は {質 が 悪い} から 壊れ た。
+        english: This phone broke because its quality is bad.
+        hint: This sentence describes a general reason for the phone breaking. We're looking for an expression
+          that points out a fundamental flaw or disappointment in what the phone should be.
+      - competing_japanese:
+          - この 電話 は {壊れ やすい}。
+        english: This phone breaks easily.
+        hint: This is a simple statement about the phone's fragility. We're looking for a phrase that
+          expresses disappointment that the phone doesn't live up to the expected standard of a 'phone'.
+      - competing_japanese:
+          - この 電話 は {使い物 に なら ない}。
+        english: This phone is useless.
+        hint: This is a general complaint about the phone's utility. We're looking for an expression that
+          implies a critical assessment of the phone's failure to meet an ideal standard.
+      - competing_japanese:
+          - この 電話 が 壊れ た {と し たら}、修理 に 出す 必要 が ある だろう。
+        english: If this phone were to break, it would probably need to be sent for repair.
+        hint: This sentence talks about a hypothetical situation where the phone breaks. We're looking
+          for an expression that critiques the phone's quality itself, implying it doesn't live up to
+          its name.
+      - competing_japanese:
+          - この 電話 が {壊れれ ば}、修理 する しか ない。
+        english: If this phone breaks, there's nothing to do but repair it.
+        hint: This sentence uses a general conditional to state a consequence of breaking. We're looking
+          for an expression that critiques the phone's fundamental quality, not just a hypothetical event.
+      - competing_japanese:
+          - この 電話 が 壊れ た {の なら}、新しい の を 買う べき だ。
+        english: If this phone broke, you should buy a new one.
+        hint: This sentence gives advice based on the fact that the phone broke. We're looking for an
+          expression that expresses disappointment about the phone's poor quality, implying it's not a
+          'real' phone.
+      - competing_japanese:
+          - この 電話 は {期待 外れ だ}。
+        english: This phone is a disappointment.
+        hint: This is a general statement of disappointment. We're looking for an expression that specifically
+          implies the phone isn't living up to its fundamental nature as a 'phone'.
+    scene: A person angrily holds up a newly purchased smartphone that has already stopped working, complaining
+      to a friend.
+    register: casual
+    setting: serious
+  - english: If my son were a proper son, he would have studied more.
+    japanese:
+      - うち の 息子 が {息子 なら}、もっと 勉強 し た だろう に。
+      - うち の 息子 が {息子 なら}、もっと 勉強 する だろう に ね。
+      - うち の 息子 が {息子 なら}、もっと 勉強 する べき だっ た の に。
+      - うち の 息子 が {息子 なら}、今頃 は もう 落ち着い て いる はず な の に。
+      - うち の 息子 が {息子 なら}、私 の 気持ち を 分かっ て くれる はず な の に。
+      - うち の 息子 が {息子 なら}、親 に 心配 を かける こと も ない だろう に。
+    english_literally: If my son were a son, he would have studied more.
+    competing_grammar:
+      - competing_japanese:
+          - 息子 は {勉強 し ない}。
+        english: My son doesn't study.
+        hint: This is a simple statement of fact about the son's study habits. We're looking for a phrase
+          that implies disappointment in his failure to live up to an expected standard.
+      - competing_japanese:
+          - 息子 は {全然 勉強 し ませ ん}。
+        english: My son doesn't study at all.
+        hint: This is a polite, factual statement about the son's lack of study. We're looking for a phrase
+          that implies disappointment that he is not meeting an ideal expectation for a child.
+      - competing_japanese:
+          - 息子 が 勉強 し た {と し たら}、大学 に 入れ た か も しれ ない。
+        english: If my son had studied, he might have been able to get into college.
+        hint: This sentence discusses a general hypothetical consequence of studying. We're looking for
+          an expression that suggests disappointment in the son's nature or behavior, implying he isn't
+          living up to what a 'son' should be.
+      - competing_japanese:
+          - 息子 が {勉強 すれ ば}、成績 が 上がる だろう。
+        english: If my son studies, his grades will probably improve.
+        hint: This sentence uses a general conditional about studying. We're looking for an phrase that
+          implies disappointment in the son's character or inherent motivation, not just a condition for
+          better grades.
+      - competing_japanese:
+          - 息子 が 勉強 し ない {の なら}、しかた が ない。
+        english: If my son doesn't study, it can't be helped.
+        hint: This sentence expresses resignation based on the fact that the son doesn't study. We're
+          looking for an expression that implies disappointment that he's not living up to the expected
+          standard of a 'son'.
+      - competing_japanese:
+          - 息子 に は {失望 し た}。
+        english: I'm disappointed in my son.
+        hint: This expresses a general feeling of disappointment. We're looking for a phrase that implies
+          the son isn't meeting the expected standard of what a 'son' should be.
+    scene: A mother sighs, looking at her son's poor report card, lamenting his lack of effort compared
+      to what she expects from him.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    nuance: The mother's use of 「息子 が 息子 なら」 reflects her disappointment that her son doesn't meet her
+      ideal expectations for his behavior or academic effort. The 「だろう に」 expresses regret about the outcome.
+  - english: If the company were a real company, it would probably listen more to its employees' opinions.
+    japanese:
+      - 会社 が {会社 なら}、従業 員 の 意見 を もっと 聞く だろう。
+      - 会社 が {会社 なら}、従業 員 の 意見 を もっと 聞く べき でしょう。
+      - 会社 が {会社 なら}、従業 員 の 意見 に もっと 耳 を 傾ける はず です。
+      - 会社 が {会社 なら}、こんな 理 不尽 な 要求 は し ない はず です。
+      - 会社 が {会社 なら}、社員 の 福利 厚生 を もっと 考える べき です。
+      - 会社 が {会社 なら}、責任 を ちゃんと 取る だろう。
+    english_literally: If the company were a company, it would listen more to employees' opinions.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 は {従業 員 の 意見 を 聞か ない}。
+        english: The company doesn't listen to employee opinions.
+        hint: This states that the company doesn't listen. We're looking for an expression that implies
+          the company is fundamentally lacking in meeting its expected role.
+      - competing_japanese:
+          - あの 会社 は {本当 に 最悪 だ}。
+        english: That company is truly the worst.
+        hint: This is a general complaint about the company. We're looking for an expression that suggests
+          the company fails to live up to the fundamental principles of what a 'company' should be.
+      - competing_japanese:
+          - 会社 が 利益 を 出す {と し たら}、ボーナス が 増える だろう。
+        english: If the company were to make a profit, bonuses would probably increase.
+        hint: This sentence talks about a hypothetical financial outcome for the company. We're looking
+          for an expression that critiques the company's operational philosophy, implying it doesn't meet
+          the standard of a 'proper' company.
+      - competing_japanese:
+          - 利益 が {上がれ ば}、会社 は 成長 する だろう。
+        english: If profits increase, the company will probably grow.
+        hint: This sentence uses a general conditional about company growth. We're looking for an expression
+          that critiques the company's current practices and values, implying it's not acting like a 'proper'
+          company.
+      - competing_japanese:
+          - 従業 員 の 意見 を 聞か ない {の なら}、不満 が たまる の は 当然 だ。
+        english: If they don't listen to employee opinions, it's natural for dissatisfaction to accumulate.
+        hint: This sentence states a logical consequence based on the fact that opinions aren't heard.
+          We're looking for an expression that critiques the company's fundamental nature or conduct,
+          implying it's not a 'proper' company.
+      - competing_japanese:
+          - この 会社 は {従業 員 を 大切 に し ない}。
+        english: This company doesn't value its employees.
+        hint: This is a statement about how the company treats its employees. We're looking for an expression
+          that criticizes the company's fundamental nature or its failure to act like a 'proper' company.
+    scene: An employee, frustrated by unresponsive management, discusses the company culture with a colleague.
+    register: formal
+    setting: serious
+  - english: If it were a proper era, such a problem wouldn't have occurred.
+    japanese:
+      - 時代 が {時代 なら}、こんな 問題 は 起こら なかっ た だろう。
+      - 時代 が {時代 なら}、こんな 問題 は 起こっ て い なかっ た だろう。
+      - 時代 が {時代 なら}、こんな 問題 が 生じる はず は ない の に。
+      - 時代 が {時代 なら}、もっと 平和 な 世界 だっ た の に。
+      - 時代 が {時代 なら}、こんな 不安 を 感じる こと も ない だろう。
+      - 時代 が {時代 なら}、人々 は もっと 希望 を 持て た はず だ。
+    english_literally: If the era were an era, such a problem would not have occurred.
+    competing_grammar:
+      - competing_japanese:
+          - 今 の 時代 は {問題 が 多い}。
+        english: The current era has many problems.
+        hint: This implies that the current era has many problems. We're looking for a statement that
+          suggests the era itself is flawed or not living up to an ideal historical period.
+      - competing_japanese:
+          - 昔 は {こんな 問題 は なかっ た の に}。
+        english: There weren't such problems in the past.
+        hint: This is a simple lament about how things used to be. We're looking for an expression that
+          critically assesses the current era's inherent flaws.
+      - competing_japanese:
+          - 時代 が 変わっ た {と し たら}、新しい 価値 観 が 生まれる だろう。
+        english: If the era were to change, new values would probably emerge.
+        hint: This sentence talks about a hypothetical change in the era. We're looking for an expression
+          that implies the current era itself is flawed or inadequate, leading to problems that an 'ideal'
+          era wouldn't have.
+      - competing_japanese:
+          - 知識 が {増えれ ば}、視野 が 広がる。
+        english: If knowledge increases, one's perspective will broaden.
+        hint: This sentence uses a general conditional about gaining knowledge. We're looking for an expression
+          that implies the current era itself is fundamentally flawed, causing specific problems.
+      - competing_japanese:
+          - 今 の 時代 が 変わっ た {の なら}、私 たち も 変わる べき だ。
+        english: If the current era has changed, we should also change.
+        hint: This sentence suggests a course of action based on the fact that the era has changed. We're
+          looking for an expression that implies the current era is inherently flawed, allowing specific
+          problems to arise.
+      - competing_japanese:
+          - 昔 は {良かっ た}。
+        english: The old days were good.
+        hint: This is a nostalgic statement about the past. We're looking for an expression that implies
+          the current era is inherently flawed or inadequate.
+    scene: A historian or sociologist comments on a recurring societal issue, suggesting its prevalence
+      is tied to contemporary conditions rather than being timeless.
+    register: formal
+    setting: informative
+  - english: If humans were truly human, they should be able to understand others more.
+    japanese:
+      - 人間 が {人間 なら}、他者 を もっと 理解 できる はず だ。
+      - 人間 が {人間 なら}、もっと 互い を 理解 できる はず な の に。
+      - 人間 が {人間 なら}、もっと 互い を 理解 す べき だ。
+      - 人間 が {人間 なら}、こんな 残酷 な 行為 は し ない はず だ。
+      - 人間 が {人間 なら}、争う こと なく 生き て いける はず な の に。
+      - 人間 が {人間 なら}、自然 を 破壊 する こと も ない だろう に。
+    english_literally: If humans were human, they should be able to understand others more.
+    competing_grammar:
+      - competing_japanese:
+          - 人間 は {他者 を 理解 する こと が 難しい}。
+        english: It is difficult for humans to understand others.
+        hint: This states that understanding others is difficult for humans. We're looking for an expression
+          that implies humanity fails to live up to its inherent capacity for empathy.
+      - competing_japanese:
+          - 人々 は {なぜ お 互い を 理解 し ない の だろう}。
+        english: Why don't people understand each other?
+        hint: This is a rhetorical question about the lack of mutual understanding. We're looking for
+          an expression that implies a fundamental failure of humanity to meet an ideal.
+      - competing_japanese:
+          - 人間 が 不死身 だ {と し たら}、世界 は 変わる だろう。
+        english: If humans were immortal, the world would change.
+        hint: This sentence talks about a hypothetical physical state of humans. We're looking for an
+          expression that critiques humanity's moral or empathetic capacity, implying they don't live
+          up to the ideal of 'being human'.
+      - competing_japanese:
+          - 知識 が {増えれ ば}、視野 が 広がる。
+        english: If knowledge increases, one's perspective will broaden.
+        hint: This sentence uses a general conditional about gaining knowledge. We're looking for an expression
+          that critiques humanity's current state of empathy or understanding, implying they fall short
+          of what 'being human' should entail.
+      - competing_japanese:
+          - 人間 が 愚か だ {と いう の なら}、賢く なる 方法 を 探す べき だ。
+        english: If it's true that humans are foolish, we should look for ways to become wiser.
+        hint: This sentence suggests a course of action based on the premise that humans are foolish.
+          We're looking for an expression that critiques humanity's current state of empathy or understanding,
+          implying they fall short of what 'being human' should entail.
+      - competing_japanese:
+          - 人間 は {愚か だ}。
+        english: Humans are foolish.
+        hint: This is a general statement about human nature. We're looking for an expression that critiques
+          humanity's inability to live up to its ideal potential for understanding others.
+    scene: A philosopher or social commentator expresses disappointment in humanity's inability to empathize
+      or coexist, reflecting on conflicts.
+    register: formal
+    setting: reflective
+  - english: If this teacher were a real teacher, they would answer students' questions properly.
+    japanese:
+      - この 先生 が {先生 なら}、生徒 の 質問 に ちゃんと 答え て くれる はず だ。
+      - この 先生 が {先生 なら}、生徒 の 質問 に 丁寧 に 答える はず な の に。
+      - この 先生 が {先生 なら}、もっと 分かり やすく 説明 する だろう に。
+      - この 先生 が {先生 なら}、学生 の 相談 に も 乗る はず だ。
+    english_literally: If this teacher were a teacher, they should answer students' questions properly.
+    competing_grammar:
+      - competing_japanese:
+          - この 先生 は {質問 に 答え て くれ ない}。
+        english: This teacher doesn't answer questions.
+        hint: This is a simple statement of fact. We're looking for an expression that points out a fundamental
+          flaw or disappointment in what the teacher should be, implying they don't meet the expected
+          standard of a 'teacher'.
+      - competing_japanese:
+          - 先生 は {質問 に 答える べき だ}。
+        english: Teachers should answer questions.
+        hint: This expresses a general expectation for teachers. We're looking for a phrase that implies
+          disappointment in this specific teacher's failure to live up to the standard of a 'teacher'.
+      - competing_japanese:
+          - この 先生 は {説明 が 下手 だ}。
+        english: This teacher is bad at explaining.
+        hint: This is a general criticism of the teacher's skill. We're looking for a phrase that expresses
+          disappointment that the teacher doesn't embody the core qualities of a 'teacher'.
+    scene: A male student talks to a classmate about their frustration with a teacher who is not very
+      helpful.
+    register: casual
+    setting: serious
+    speaker_gender: male
+  - english: If this game were a real game, it wouldn't have so many bugs.
+    japanese:
+      - この ゲーム が {ゲーム なら}、こんな に バグ が 多く ない はず だ。
+      - この ゲーム が {ゲーム なら}、もっと ちゃんと デバッグ さ れ て いる だろう に。
+      - この ゲーム が {ゲーム なら}、頻繁 に フリーズ する なんて こと は ない はず だ。
+      - この ゲーム が {ゲーム なら}、アップデート で 改善 する だろう に。
+    english_literally: If this game were a game, there should not be so many bugs.
+    competing_grammar:
+      - competing_japanese:
+          - この ゲーム は {バグ が 多い}。
+        english: This game has many bugs.
+        hint: This is a simple factual statement. We're looking for an expression that implies the game
+          is fundamentally flawed and doesn't meet the expected quality of a 'game'.
+      - competing_japanese:
+          - この ゲーム は {面白く ない}。
+        english: This game is not interesting.
+        hint: This is a general opinion. We're looking for a phrase that expresses disappointment that
+          the game lacks the fundamental quality expected of a 'game' due to its technical state.
+      - competing_japanese:
+          - '{バグ が 多い} ゲーム は 嫌い だ。'
+        english: I hate games with many bugs.
+        hint: This expresses a personal preference. We're looking for a phrase that critiques the game
+          itself for not living up to the standard of a 'game'.
+    scene: A gamer complains to their friend about a newly released video game that is full of technical
+      issues and glitches.
+    register: casual
+    setting: technical
+  - english: If this politician were a real politician, they would keep their promises.
+    japanese:
+      - この 政治 家 が {政治 家 なら}、約束 を 守る はず だ。
+      - この 政治 家 が {政治 家 なら}、国民 の 声 に 耳 を 傾ける だろう に。
+      - この 政治 家 が {政治 家 なら}、不正 を 働く なんて こと は ない はず だ。
+      - この 政治 家 が {政治 家 なら}、責任 を きちんと 取る だろう。
+    english_literally: If this politician were a politician, they should keep promises.
+    competing_grammar:
+      - competing_japanese:
+          - この 政治 家 は {約束 を 破っ た}。
+        english: This politician broke their promise.
+        hint: This is a simple statement of a past event. We're looking for an expression that implies
+          the politician fundamentally fails to meet the expected standard of a 'politician'.
+      - competing_japanese:
+          - 政治 家 は {約束 を 守る べき だ}。
+        english: Politicians should keep promises.
+        hint: This states a general moral principle. We're looking for a phrase that expresses disappointment
+          that this specific politician doesn't live up to the standard of a 'politician'.
+      - competing_japanese:
+          - あの 政治 家 は {信用 でき ない}。
+        english: That politician cannot be trusted.
+        hint: This is a general judgment of trustworthiness. We're looking for a phrase that critiques
+          the politician's very essence as a 'politician' due to their actions.
+    scene: A citizen expresses their disillusionment with a political leader who has not fulfilled campaign
+      promises during a public forum.
+    register: formal
+    setting: serious
+  - english: If this professional were a real professional, they wouldn't make such amateurish mistakes.
+    japanese:
+      - この プロ が {プロ なら}、あんな 初歩 的 な ミス は し ない はず だ。
+      - この プロ が {プロ なら}、もっと 集中 し て いる はず だろう に。
+      - この プロ が {プロ なら}、プレッシャー に 負ける なんて こと は ない はず だ。
+      - この プロ が {プロ なら}、基本 を おろそか に し ない だろう に。
+    english_literally: If this pro were a pro, they should not make such amateurish mistakes.
+    competing_grammar:
+      - competing_japanese:
+          - あの プロ は {ミス が 多い}。
+        english: That professional makes many mistakes.
+        hint: This is a simple observation of frequency. We're looking for an expression that implies
+          the individual's fundamental lack of professionalism, suggesting they don't meet the expected
+          standard of a 'pro'.
+      - competing_japanese:
+          - プロ は {ミス を し ない はず だ}。
+        english: Professionals shouldn't make mistakes.
+        hint: This states a general expectation for professionals. We're looking for a phrase that expresses
+          disappointment that this specific professional falls short of the ideal 'pro' standard.
+      - competing_japanese:
+          - あの プロ は {まだ 未熟 だ}。
+        english: That professional is still immature/inexperienced.
+        hint: This is an opinion about their skill level. We're looking for a phrase that critiques their
+          core identity as a 'professional' due to their performance.
+    scene: A male coach observes a professional athlete or performer making a basic error during a critical
+      moment in a competition.
+    register: semi-formal
+    setting: commanding
+    speaker_gender: male
+  - english: If this friendship were a real friendship, they wouldn't talk behind my back.
+    japanese:
+      - この 友達 が {友達 なら}、裏 で 私 の 悪口 を 言わ ない はず だ。
+      - この 友達 が {友達 なら}、私 を 騙す なんて こと は ない はず な の に。
+      - この 友達 が {友達 なら}、困っ て いる 時 に 助け て くれる だろう に。
+      - この 友達 が {友達 なら}、私 の 秘密 を 守る だろう に。
+    english_literally: If this friend were a friend, they should not speak ill of me behind my back.
+    competing_grammar:
+      - competing_japanese:
+          - あの 友達 は {私 の 悪口 を 言っ た}。
+        english: That friend spoke ill of me.
+        hint: This is a simple factual statement of a past action. We're looking for an expression that
+          implies the fundamental nature of the friendship is being questioned, suggesting it's not a
+          'real' friendship.
+      - competing_japanese:
+          - 友達 なら {悪口 を 言う べき で は ない}。
+        english: Friends shouldn't speak ill of others.
+        hint: This states a general moral principle for friendships. We're looking for a phrase that expresses
+          deep disappointment that this specific friendship doesn't live up to the ideal standard of a
+          'friendship'.
+      - competing_japanese:
+          - あの 友達 は {私 を 裏切っ た}。
+        english: That friend betrayed me.
+        hint: This is a strong accusation of betrayal. We're looking for a phrase that critiques the very
+          essence of the relationship, implying it's not a 'real' friendship.
+    scene: A person confides in a trusted friend about feeling betrayed by someone they considered a close
+      friend, who was gossiping about them.
+    register: casual
+    setting: melancholic
+post_example_writeup: The repetitive structure of Noun が Noun なら strongly emphasizes the speaker's view
+  that the initial noun falls short of the ideal qualities implied by the repeated noun. This construction
+  is inherently critical or lamenting, highlighting a gap between reality and expectation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/1152

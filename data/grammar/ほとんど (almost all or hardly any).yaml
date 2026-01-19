@@ -1,0 +1,289 @@
+grammar_point: ほとんど (almost all or hardly any)
+learn_before:
+  - どう (how)
+meaning: Almost all, Most, Hardly any, Few (Adverbial noun)
+meaning_warning: generally written in kana, though 殆ど form can also be seen
+pronunciation:
+  katakana: ホトンド
+  romaji: hotondo
+formation:
+  ほとんど: Indicates 'almost all' or 'most' when describing a quantity or extent.
+  ほとんど + Verb (negative): Indicates 'hardly any' or 'almost none' in negative sentences.
+jlpt: N4
+etymology: The etymology of 「ほとんど」 is not definitively known, but it is believed to have originated from
+  the verb 「程取る (hodotoru)」, meaning to 'take a degree' or 'measure'. Over time, this evolved to imply
+  'almost reaching the full extent' or 'degree'.
+writeup: The adverb 「ほとんど」 is versatile, translating to "almost all," "most," "hardly any," or similar
+  expressions, depending on the context. Think of it as "almost," referring to a complete group rather
+  than a single item. Like other adverbs of quantity, 「ほとんど」 can modify a whole phrase or precede 「の」
+  to specify a noun. In negative sentences, 「ほとんど」 means "hardly any," emphasizing that the 'full group'
+  it describes is almost nonexistent. It is generally written in kana, though the kanji form 「殆ど」 can
+  also be seen.
+false_friends:
+  - term: めったに〜ない
+    meaning: Hardly, Rarely, Seldom
+    kind: synonym
+    nuance: Unlike 「ほとんど」, 「めったに〜ない」 specifically emphasizes the infrequency of an action or event.
+    grammar_point: めったに〜ない (rarely)
+  - term: 少し
+    meaning: A little, a few, small quantity
+    kind: similar expression
+    nuance: 「少し」 indicates a small amount or degree. Unlike 「ほとんど」 (which can mean 'almost all' or 'hardly
+      any'), 「少し」 always refers to a small, positive quantity or degree, not an approximation to zero
+      or entirety.
+    grammar_point: <strongly-suggest>:少し (a little)
+  - term: 少ししか〜ない
+    meaning: Only a little, very few, not much (implying insufficiency)
+    kind: similar expression
+    nuance: 「少ししか〜ない」 emphasizes that the amount is small and *insufficient* or *limited*, often with
+      a sense of regret or inadequacy. While 「ほとんど〜ない」 implies a near-absence, 「少ししか〜ない」 explicitly states
+      there *is* a small amount, but it's not enough.
+    grammar_point: 数量・しか・ない (limited quantity)
+post_false_friends_writeup: While 「ほとんど」 expresses 'almost all' or 'mostly' in affirmative contexts and
+  'hardly any' or 'almost none' in negative contexts, other terms convey different degrees of quantity
+  or infrequency. 「めったに〜ない」 specifically highlights the **rarity** of an event, meaning it happens 'seldom'.
+  In contrast, 「ほとんど〜ない」 suggests a near-complete **absence** or non-occurrence. For positive small quantities,
+  「少し」 indicates 'a little' or 'a few', a definite small amount. When that small amount is deemed insufficient
+  or limited, 「少ししか〜ない」 is used, conveying 'only a little' or 'not much' with a sense of inadequacy. Understanding
+  these distinctions helps in precisely describing quantities and frequencies in Japanese.
+examples:
+  - english: He almost always goes to the gym after work.
+    japanese:
+      - 彼 は {ほとんど} いつ も、仕事 の 後 で ジム に 行く。
+      - 彼 は {ほとんど} いつ も、仕事 の 後 で ジム に 行き ます。
+    english_literally: He almost always, after work, goes to the gym.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {大体} いつ も、仕事 の 後 で ジム に 行く。
+        english: He usually goes to the gym after work.
+        hint: 「大体」 (daitai) means 'roughly' or 'usually'. We're looking for a word that emphasizes a very
+          close approximation to 'always', indicating a near-constant habit.
+    scene: A colleague describing a friend's consistent routine to another colleague.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: This example is neutral in its expression, but the casual register of `行く` (iku) would be
+      appropriate between male and female colleagues in a friendly, informal setting.
+  - english: Yesterday's presentation was almost a success, wasn't it?
+    japanese:
+      - 昨日 の プレゼンテーション は {ほとんど} 成功 だっ た ね。
+      - 昨日 の プレゼンテーション は {ほとんど} 成功 でし た ね。
+    english_literally: Yesterday's presentation was almost success, wasn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の プレゼンテーション は {ほぼ} 成功 だっ た ね。
+        english: Yesterday's presentation was nearly a success, wasn't it?
+        hint: 「ほぼ」 (hobo) also means 'nearly' or 'approximately'. We're looking for a word that emphasizes
+          the high degree of success, just short of complete.
+    scene: Two project members reviewing the outcome of a presentation.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of `ね` (ne) at the end of the sentence invites agreement and softens the statement,
+      making it suitable for a casual reflective conversation between a female speaker and a male listener.
+  - english: Most students passed the test.
+    japanese:
+      - '{ほとんど} の 学生 が テスト に 合格 し まし た。'
+      - '{ほとんど} の 学生 が テスト に 合格 し た。'
+    english_literally: Almost all students passed the test.
+    competing_grammar:
+      - competing_japanese:
+          - '{大体} の 学生 が テスト に 合格 し まし た。'
+        english: Roughly half of the students passed the test.
+        hint: 「大体」 (daitai) implies 'roughly' or 'about'. We're looking for a term that indicates a more
+          precise and higher majority.
+      - competing_japanese:
+          - '{多く} の 学生 が テスト に 合格 し まし た。'
+        english: Many students passed the test.
+        hint: 「多く」 (ooku) means 'many'. We're looking for a word that implies an even larger proportion,
+          closer to the entirety of the group.
+    scene: A teacher informing parents about the test results.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of the polite form `しました` (shimashita) is appropriate for a male teacher of an older
+      age addressing a group of parents, maintaining a respectful and formal tone.
+  - english: I spend most of my time in the library.
+    japanese:
+      - 私 は {ほとんど} の 時間 を 図書 館 で 過ごし て い ます。
+      - 私 は {ほとんど} の 時間 を 図書 館 で 過ごし て いる。
+    english_literally: I spend almost all of my time in the library.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は {大体} の 時間 を 図書 館 で 過ごし て い ます。
+        english: I spend roughly half of my time in the library.
+        hint: 「大体」 (daitai) implies 'roughly' or 'about'. We're looking for a word that emphasizes a very
+          significant portion, almost the entirety of one's time.
+    scene: A student explaining their study habits to a new friend.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual register and the use of `過ごしています` (sugoshite imasu) is typical for a female student
+      speaking to another female friend in an informal setting.
+  - english: You hardly ever see cats in this town.
+    japanese:
+      - この 町 で は、猫 を 見かける こと が {ほとんど} ない。
+      - この 町 で は、猫 を 見かける こと が {ほとんど} あり ませ ん。
+    english_literally: In this town, seeing cats is almost not.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 で は、猫 を 見かける こと が {めった に} ない。
+        english: In this town, you rarely see cats.
+        hint: 「めったに〜ない」 means 'rarely' or 'seldom'. We're looking for a phrase that suggests a near-complete
+          absence, implying the occurrence is almost zero.
+      - competing_japanese:
+          - この 町 で は、猫 を 見かける こと が {あまり} ない。
+        english: In this town, you don't often see cats.
+        hint: 「あまり〜ない」 means 'not much' or 'not often'. We're looking for a stronger statement that indicates
+          the frequency is extremely low, close to never.
+    scene: A local resident explaining a curious fact about their town to a visitor.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: This is a factual observation. The casual ending `ない` (nai) is neutral and fits a conversational
+      context between a male resident and a female visitor.
+  - english: I'm so busy, I hardly have any time to rest.
+    japanese:
+      - 私 は 忙しく て、休む 時間 が {ほとんど} ない。
+      - 私 は 忙しく て、休む 時間 が {ほとんど} あり ませ ん。
+    english_literally: I am busy, and resting time is almost not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 忙しく て、休む 時間 が {あまり} ない。
+        english: I'm so busy, I don't have much time to rest.
+        hint: 「あまり〜ない」 means 'not much'. We're looking for a phrase that emphasizes a near-total absence
+          of resting time due to being very busy.
+      - competing_japanese:
+          - 私 は 忙しく て、休む 時間 が {少し しか} ない。
+        english: I'm so busy, I only have a little time to rest.
+        hint: 「少ししか〜ない」 means 'only a little'. We're looking for a phrase that conveys the amount is so
+          minimal it's practically zero.
+    scene: A student complaining about their hectic schedule to a friend.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+    nuance: The casual `ない` (nai) ending is natural for a female student complaining to a close female
+      friend about being busy.
+  - english: Hardly any food was left at the party.
+    japanese:
+      - パーティ の 料理 は {ほとんど} 残っ て い なかっ た。
+      - パーティ の 料理 は {ほとんど} 残っ て い ませ ん でし た。
+    english_literally: Party's food was almost not remaining.
+    competing_grammar:
+      - competing_japanese:
+          - パーティ の 料理 は {あまり} 残っ て い なかっ た。
+        english: Not much food was left at the party.
+        hint: 「あまり〜ない」 means 'not much'. We're looking for a phrase that describes a very small amount
+          remaining, implying near-complete consumption.
+      - competing_japanese:
+          - パーティ の 料理 は {少し しか} 残っ て い なかっ た。
+        english: Only a little food was left at the party.
+        hint: 「少ししか〜ない」 means 'only a little'. We're looking for a phrase that highlights the amount left
+          was so negligible it's practically nothing.
+    scene: Friends cleaning up after a lively party, noting how much food was eaten.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: male
+    nuance: The casual `いなかった` (inakatta) ending is suitable for two male friends discussing the outcome
+      of a party.
+  - english: He's a person who hardly talks.
+    japanese:
+      - 彼 は {ほとんど} 話さ ない 人 だ。
+      - 彼 は {ほとんど} 話さ ない 人 です。
+    english_literally: He is a person who almost doesn't talk.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {あまり} 話さ ない 人 だ。
+        english: He's a person who doesn't talk much.
+        hint: 「あまり〜ない」 means 'doesn't talk much'. We're looking for a phrase that emphasizes an extreme
+          quietness, indicating someone 'hardly' speaks at all.
+      - competing_japanese:
+          - 彼 は {全然} 話さ ない 人 だ。
+        english: He's a person who doesn't talk at all.
+        hint: 「全然〜ない」 means 'doesn't talk at all', implying absolute silence. We're looking for a phrase
+          that describes someone who talks very rarely, but not never.
+    scene: Observing a quiet person in a social setting.
+    register: casual
+    setting: informative
+    listener_gender: no one
+    nuance: The neutral casual `だ` (da) ending makes this observation appropriate for either gender speaking,
+      and when the listener is not directly addressed (`no one`).
+  - english: Hardly any sugar is used in this cake.
+    japanese:
+      - この ケーキ は {ほとんど} 砂糖 が 使わ れ て い ませ ん。
+      - この ケーキ は {ほとんど} 砂糖 が 使わ れ て い ない。
+    english_literally: In this cake, almost no sugar is used.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は {あまり} 砂糖 が 使わ れ て い ませ ん。
+        english: Not much sugar is used in this cake.
+        hint: 「あまり〜ない」 means 'not much sugar'. We're looking for a phrase that implies a very low sugar
+          content, emphasizing a near absence.
+      - competing_japanese:
+          - この ケーキ は {少し しか} 砂糖 が 使わ れ て い ませ ん。
+        english: Only a little sugar is used in this cake.
+        hint: 「少ししか〜ない」 means 'only a little sugar'. We're looking for a phrase that suggests the amount
+          is so negligible it's almost equivalent to no sugar at all.
+    scene: A health-conscious person describing a dessert.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    nuance: The polite negative `いません` (imasen) is often used by female speakers in a casual but informative
+      context, such as explaining food ingredients to a male listener.
+  - english: In my first Japanese class, I hardly understood anything.
+    japanese:
+      - 初めて の 日本 語 の 授業 で、私 は {ほとんど} 理解 でき なかっ た。
+      - 初めて の 日本 語 の 授業 で、私 は {ほとんど} 理解 でき ませ ん でし た。
+    english_literally: In my first Japanese class, I almost could not understand.
+    competing_grammar:
+      - competing_japanese:
+          - 初めて の 日本 語 の 授業 で、私 は {あまり} 理解 でき なかっ た。
+        english: In my first Japanese class, I didn't understand much.
+        hint: 「あまり〜ない」 means 'didn't understand much'. We're looking for a phrase that emphasizes a near-complete
+          lack of comprehension.
+      - competing_japanese:
+          - 初めて の 日本 語 の 授業 で、私 は {全然} 理解 でき なかっ た。
+        english: In my first Japanese class, I didn't understand at all.
+        hint: 「全然〜ない」 means 'didn't understand at all'. We're looking for a phrase that describes minimal
+          comprehension, allowing for the slight possibility of understanding a few things.
+    scene: A student reflecting on their challenging early language learning experience.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The casual `なかった` (nakatta) ending is typical for a male speaker reflecting on a past experience,
+      where the listener is oneself (`no one`).
+  - english: The test questions were almost exactly as expected.
+    japanese:
+      - テスト の 問題 は {ほとんど} 予想 通り だっ た。
+      - テスト の 問題 は {ほとんど} 予想 通り でし た。
+    english_literally: Test questions were almost exactly as expected.
+    competing_grammar:
+      - competing_japanese:
+          - テスト の 問題 は {ほぼ} 予想 通り だっ た。
+        english: The test questions were nearly as expected.
+        hint: 「ほぼ」 (hobo) means 'nearly' or 'approximately'. We're looking for a phrase that emphasizes
+          the degree of alignment with expectations, indicating it was almost identical.
+    scene: Students discussing a recent exam, surprised by its predictability.
+    register: casual
+    setting: excited
+    speaker_gender: female
+    listener_gender: group
+    nuance: The casual `だった` (datta) ending is fitting for a female speaker expressing excitement to a
+      group of friends or classmates after an exam.
+post_example_writeup: The examples illustrate how 「ほとんど」 is used both to signify 'almost all' or 'most'
+  when referring to a majority or approximation, and 'hardly any' or 'almost none' when combined with
+  a negative verb. The nuance shifts based on the presence of negation, making it a powerful tool for
+  expressing quantity across a wide spectrum. Pay close attention to whether the sentence is affirmative
+  or negative to correctly interpret its meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ほとんど

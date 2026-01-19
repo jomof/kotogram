@@ -1,0 +1,277 @@
+grammar_point: た末・の末・末に (culmination)
+learn_before:
+  - 〜任せ (leaving to or relying on)
+  - を旨とする (to make it one's principle)
+  - 抜く (do completely)
+  - 気持ち (feeling・mood)
+meaning: after a long process, eventually; as a result of
+pronunciation:
+  katakana: タスエ・ノスエ・スエニ
+  romaji: ta sue・no sue・sue ni
+formation:
+  Verb (た形) + 末に / の末 / 末の: Indicates an outcome after a long process or action.
+  Noun + の末に / 末の: Indicates an outcome after a period of deliberation, struggle, or events (used with
+    nouns implying a process).
+jlpt: N2
+etymology: The word 「末 (すえ)」 originally refers to the 'end' or 'tip' of something, like a branch or a
+  period of time. Its usage in this grammar point extends this core meaning to signify the 'end result'
+  or 'culmination' of a process or series of events. It emphasizes that the outcome occurs after a certain
+  progression or effort, linking the physical 'end' to a metaphorical 'conclusion'.
+writeup: |-
+  This grammar point, 「〜た末・〜の末・〜末に」, is used to indicate that a particular outcome or conclusion was reached **after** a long process, a series of actions, or a period of deliberation. The phrase emphasizes the culmination of these preceding events. While it can be used for both positive and negative results, it often carries a nuance of something finally being decided or concluded after much effort, struggle, or consideration.
+
+  The most common patterns are:
+  -   **Verb (た形) + 末に**: This form is used when the preceding verb describes an action or process that has been completed or carried out over a period. For example, 「考えた末に」 (after much thought) or 「話し合った末に」 (after discussing thoroughly).
+  -   **Noun + の末に**: This pattern is typically used with nouns that imply a process, struggle, or deliberation, such as 「議論の末に」 (at the end of the discussion) or 「苦労の末に」 (after much hardship).
+  -   **末に / 末の**: These can function somewhat adverbially or attributively, respectively, highlighting the "eventual outcome."
+
+  It is important to note that 「〜末に」 implies a finality or definitive conclusion that is reached *because* of the preceding process. It’s not just about temporal sequence, but about cause and effect where the preceding actions lead to the ultimate result.
+false_friends:
+  - term: Verb[て]から
+    meaning: after; since
+    kind: similar expression
+    nuance: 「〜てから」 simply indicates a sequential action (A happens, then B). It does not carry the nuance
+      of a long process or deliberation leading to a final conclusion, unlike 「〜末に」. It's a neutral temporal
+      connector.
+    grammar_point: てから (after and since)
+  - term: Verb[た]結果
+    meaning: as a result of; consequently
+    kind: similar expression
+    nuance: 「〜た結果」 focuses on the direct outcome or consequence of an action or event. While it indicates
+      a result, it doesn't necessarily imply the extended process or careful deliberation that 「〜の末に」
+      does. It's more about the immediate or logical consequence.
+    grammar_point: '[Verb-た・Nounの]結果 (as a result of)'
+  - term: Verb[て]を経て
+    meaning: after undergoing; having experienced
+    kind: similar expression
+    nuance: 「〜を経て」 suggests passing through a formal stage, a significant period, or undergoing a specific
+      experience or procedure. It implies a journey or a formal process rather than the internal deliberation
+      or varied efforts often associated with 「〜末に」. It's frequently used in more formal or official contexts.
+    grammar_point: を経て (after process or experience)
+post_false_friends_writeup: While all these expressions indicate a sequence or consequence, 「〜末に」 distinctively
+  emphasizes that the final outcome is the culmination of a preceding, often prolonged, process of thought,
+  effort, or events. Unlike the more neutral temporal marker 「〜てから」 or the direct cause-and-effect of
+  「〜た結果」, 「〜末に」 highlights the "end of the road" after a journey, sometimes a difficult one. 「〜を経て」 is
+  similar in implying a process, but often refers to more formal or distinct stages of passage rather
+  than the internal or varied efforts implied by 「〜末に」.
+examples:
+  - english: After thinking it over for a long time, I decided to buy the house.
+    japanese:
+      - 長く {考え た 末 に}、その 家 を 買う こと に し まし た。
+      - 長く {考え た 末}、その 家 を 買う こと に し まし た。
+      - 長く {考え 抜い た 末 に}、その 家 を 購入 する こと に 致し まし た。
+    english_literally: After long thinking, concerning that house, decided to buy.
+    competing_grammar:
+      - competing_japanese:
+          - 長く 考え た 後 で、その 家 を 買う こと に し まし た。
+        english: After thinking for a long time, I decided to buy the house.
+        hint: 「〜後で」 is a general temporal marker that indicates a simple sequence. It lacks the nuance
+          of a prolonged process or deliberation that leads to a final outcome, which 「〜末に」 conveys. We're
+          looking for an expression that emphasizes the culmination of thought.
+    scene: A person is reflecting on a significant purchase decision.
+    register: formal
+    setting: serious
+    nuance: 「考えた末に」 emphasizes that the decision came after a prolonged period of deliberation. This phrase
+      is commonly used to express an outcome following significant thought, highlighting the effort put
+      into the decision-making process.
+  - english: After a heated discussion, they finally reached an agreement.
+    japanese:
+      - 白熱 し た 議論 {の 末 に}、彼 ら は ついに 合意 に 達し まし た。
+      - 白熱 し た 議論 {の 末}、彼 ら は ついに 合意 に 達し た。
+      - 徹底 的 な 話し合い {の 末 に}、彼 ら は ついに 合意 に 達し まし た。
+    english_literally: After heated discussion, they finally reached agreement.
+    competing_grammar:
+      - competing_japanese:
+          - 白熱 し た 議論 の 結果、彼 ら は ついに 合意 に 達し まし た。
+        english: As a result of a heated discussion, they finally reached an agreement.
+        hint: 「〜の結果」 focuses on the direct outcome, without necessarily emphasizing the extended or thorough
+          process of deliberation that 「〜の末に」 implies. We're looking for a phrase that highlights the
+          culmination of the discussion.
+    scene: A team or group is trying to resolve a conflict.
+    register: formal
+    setting: negotiating
+    nuance: 「議論の末に」 highlights that the agreement was the culmination of an intense debate, implying that
+      it wasn't an easy or quick decision. It conveys that the agreement was arrived at through a process
+      of discussion and often struggle.
+  - english: After much hardship, he finally succeeded in opening his own restaurant.
+    japanese:
+      - 長い 苦労 {の 末 に}、彼 は ついに 自分 の レストラン を 開く こと に 成功 し まし た。
+      - 長い 苦労 {の 末}、彼 は ついに 自分 の レストラン を 開く こと に 成功 し た。
+      - 多大 な 努力 {の 末 に}、彼 は ついに 自分 の レストラン を 開く こと に 成功 し まし た。
+    english_literally: After long hardship, he finally succeeded in opening his own restaurant.
+    competing_grammar:
+      - competing_japanese:
+          - 長い 苦労 を 経 て、彼 は ついに 自分 の レストラン を 開く こと に 成功 し まし た。
+        english: After undergoing much hardship, he finally succeeded in opening his own restaurant.
+        hint: 「〜を経て」 often implies passing through formal stages or experiences. While similar, 「〜の末に」
+          emphasizes the culmination of effort or struggle over time. We're looking for a phrase that
+          strongly conveys the successful conclusion after persistent hard work.
+    scene: A determined individual overcomes obstacles to achieve a dream.
+    register: formal
+    setting: inspirational
+    nuance: 「苦労の末に」 conveys that success was achieved only after enduring significant difficulties and
+      persistent effort, emphasizing the arduous journey leading to the final triumph. It highlights the
+      overcoming of obstacles.
+  - english: After much searching, I found the book I was looking for at an old bookstore.
+    japanese:
+      - ずいぶん 探し {た 末 に}、探し て い た 本 を 古い 本屋 で 見つけ まし た。
+      - ずいぶん 探し {た 末}、探し て た 本 を 古い 本屋 で 見つけ た。
+      - 探し回っ {た 末 に}、探し て い た 本 を 古い 本屋 で 見つけ まし た。
+    english_literally: After much searching, the book I was looking for was found at an old bookstore.
+    competing_grammar:
+      - competing_japanese:
+          - ずいぶん 探し て、探し て い た 本 を 古い 本屋 で 見つけ まし た。
+        english: After searching for a long time, I found the book I was looking for at an old bookstore.
+        hint: Using the て-form for sequence is simpler and less emphatic. 「〜た末に」 specifically implies
+          that the discovery was the result of an exhaustive or prolonged search, highlighting the eventual
+          success after effort. We're looking for that sense of 'after much effort, finally'.
+    scene: Someone is looking for a specific item that is hard to find.
+    register: casual
+    setting: informative
+    nuance: 「探した末に」 indicates that the book was found after a considerable amount of searching, implying
+      effort and persistence were required before the successful outcome. It suggests the 'end' of the
+      search process.
+  - english: After several failed attempts, he finally gave up.
+    japanese:
+      - 何 度 も 失敗 し {た 末 に}、彼 は ついに 諦め まし た。
+      - 何 度 も 失敗 し {た 末}、彼 は ついに 諦め た。
+      - 繰り返し の 失敗 {の 末 に}、彼 は ついに 諦め まし た。
+    english_literally: After many failures, he finally gave up.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 も 失敗 し た の で、彼 は ついに 諦め まし た。
+        english: Because he failed many times, he finally gave up.
+        hint: 「〜ので」 or 「〜から」 state a reason, but 「〜た末に」 emphasizes that giving up was the *culmination*
+          or *final result* of repeated attempts, often implying a sense of resignation after a process.
+          We're looking for the sense of an 'eventual outcome after repeated actions'.
+    scene: A person trying repeatedly to achieve something difficult.
+    register: casual
+    setting: melancholic
+    nuance: 「失敗した末に」 shows that giving up was the result of multiple unsuccessful tries, highlighting
+      the eventual outcome of repeated failures. This usage often carries a negative or resigned connotation,
+      emphasizing the 'end' of the effort.
+  - english: After careful consideration, we decided to implement the new plan.
+    japanese:
+      - 慎重 な 検討 {の 末 に}、新しい 計画 を 実行 する こと に 決定 し まし た。
+      - 慎重 な 検討 {の 末}、新しい 計画 を 実行 する こと に 決定 し た。
+      - 熟慮 {の 末 に}、新しい 計画 を 実行 する こと に 決定 し まし た。
+    english_literally: After careful consideration, it was decided to implement the new plan.
+    competing_grammar:
+      - competing_japanese:
+          - 慎重 に 検討 し た 上 で、新しい 計画 を 実行 する こと に 決定 し まし た。
+        english: After carefully considering, we decided to implement the new plan.
+        hint: 「〜上で」 implies performing an action and then proceeding to the next, often with a sense of
+          preparation or logical sequence. 「〜の末に」, however, emphasizes that the decision is the *culmination*
+          of thorough and possibly difficult deliberation. We're looking for the stronger sense of 'after
+          an extensive process'.
+    scene: A company board meeting discussing a new strategy.
+    register: formal
+    setting: serious
+    nuance: 「検討の末に」 signifies that the decision to implement the plan was made only after thorough and
+      careful deliberation, implying a well-thought-out and comprehensive process leading to the final
+      choice. It suggests that the decision was not made lightly.
+  - english: After much hesitation, I finally confessed my feelings to him.
+    japanese:
+      - 随分 迷っ{た 末 に}、やっと 彼 に 気持ち を 伝え まし た。
+      - 随分 迷っ{た 末}、やっと 彼 に 気持ち を 伝え た。
+      - 散々 悩ん {だ 末 に}、やっと 彼 に 気持ち を 伝え まし た。
+    english_literally: After much hesitation, finally to him, conveyed feelings.
+    competing_grammar:
+      - competing_japanese:
+          - 随分 迷い まし た が、やっと 彼 に 気持ち を 伝え まし た。
+        english: Although I hesitated a lot, I finally confessed my feelings to him.
+        hint: Using 「〜が」 to connect sentences simply expresses a contrast or concession. 「〜た末に」 specifically
+          highlights that the confession was the *result* of a prolonged period of indecision and inner
+          conflict, emphasizing the personal struggle before the final action. We're looking for the outcome
+          of an internal process.
+    scene: A young person grappling with personal emotions and a big decision.
+    register: casual
+    setting: intimate
+    nuance: 「迷った末に」 indicates that the confession was the result of a period of indecision and inner conflict,
+      emphasizing the personal struggle before the final action was taken. It conveys a sense of finality
+      after much internal debate.
+  - english: This report is the result of years of research.
+    japanese:
+      - この レポート は 長年 の 研究 {末 の} 成果 です。
+      - この レポート は 長年 の 研究 {の 末 の} 成果 で ござい ます。
+      - この レポート は 長年 の 探求 {末 の} 成果 です。
+    english_literally: This report is years of research's result.
+    competing_grammar:
+      - competing_japanese:
+          - この レポート は 長年 の 研究 の 結果 です。
+        english: This report is the result of years of research.
+        hint: While 「〜の結果」 is also correct, 「〜末の」 specifically frames the 'result' as something that emerged
+          *from the culmination* of a lengthy and possibly exhaustive research process, emphasizing the
+          final product of continuous effort. We're looking for an expression that highlights the outcome
+          after a long-term process.
+    scene: A scientist presenting their findings at a conference.
+    register: formal
+    setting: academic
+    nuance: 「研究末の成果」 uses the attributive form 「末の」 to describe the "result" as one that emerged *from*
+      the culmination of long-term research, emphasizing the outcome of a continuous and often arduous
+      process. It implies a thorough and complete research phase.
+  - english: After a thorough investigation, the truth became clear.
+    japanese:
+      - 徹底 的 な 調査 を 行なっ {た 末 に}、真実 が 明らか に なり まし た。
+      - 徹底 的 な 調査 を 行なっ {た 末}、真実 が 明らか に なっ た。
+      - 徹底 し た 調査 {の 末 に}、真実 が 判明 いたし まし た。
+    english_literally: After carrying out a thorough investigation, the truth became clear.
+    competing_grammar:
+      - competing_japanese:
+          - 徹底 的 な 調査 の 結果、真実 が 明らか に なり まし た。
+        english: As a result of a thorough investigation, the truth became clear.
+        hint: 「〜た結果」 is a valid option, but 「〜た末に」 places more emphasis on the investigative process itself
+          as a culmination of efforts leading to the final revelation. It implies the truth was unveiled
+          *after* everything had been thoroughly examined. We're looking for the sense of a definitive
+          conclusion after a complete process.
+    scene: An official announcement about a resolved case.
+    register: formal
+    setting: informative
+    nuance: 「行なった末に」 highlights that the truth was revealed only after a comprehensive and exhaustive
+      investigative process, implying a significant effort to uncover it. This is typically used in formal
+      or official contexts to underscore the rigor of the preceding actions.
+  - english: After a long trial, the defendant was found guilty.
+    japanese:
+      - 長い 裁判 {の 末 に}、被告 は 有罪 と なり まし た。
+      - 長い 裁判 {の 末}、被告 は 有罪 と なっ た。
+      - 裁判 {の 末 に}、被告 は 有罪 と なり まし た。
+    english_literally: After a long trial, the defendant became guilty.
+    competing_grammar:
+      - competing_japanese:
+          - 長い 裁判 を 経 て、被告 は 有罪 と なり まし た。
+        english: After undergoing a long trial, the defendant was found guilty.
+        hint: While 「〜を経て」 is also suitable for formal processes, 「〜の末に」 specifically underscores that
+          the verdict was the *culmination* of the entire protracted legal process, emphasizing the finality
+          and consequence reached at its very end. We're looking for the ultimate result of the trial.
+    scene: A courtroom where a verdict is being delivered.
+    register: formal
+    setting: legal
+    nuance: 「裁判の末に」 underscores that the verdict was reached after a protracted and complete legal process,
+      emphasizing the finality of the judicial decision. It highlights the conclusion of a complex and
+      possibly arduous event.
+  - english: After much deliberation with the team, we decided to postpone the project.
+    japanese:
+      - チーム で 散々 議論 し {た 末 に}、プロジェクト を 延期 する こと に し まし た。
+      - チーム で 散々 議論 し {た 末}、プロジェクト を 延期 する こと に し た。
+      - チーム 内 で の 徹底 的 な 議論 {の 末 に}、プロジェクト を 延期 する 旨 決定 いたし まし た。
+    english_literally: After discussing repeatedly with the team, we decided to postpone the project.
+    competing_grammar:
+      - competing_japanese:
+          - チーム で 散々 議論 し た 結果、プロジェクト を 延期 する こと に し まし た。
+        english: As a result of discussing repeatedly with the team, we decided to postpone the project.
+        hint: Both 「〜た結果」 and 「〜た末に」 indicate a result, but 「〜た末に」 carries a stronger nuance of the decision
+          being the *culmination* of extensive and possibly difficult deliberations, not just a direct
+          outcome. We're emphasizing the thoroughness of the discussion.
+    scene: A project team meeting where a difficult decision needs to be made.
+    register: formal
+    setting: serious
+    nuance: 「議論した末に」 indicates that the decision to postpone was a result of extensive discussion and
+      consideration among team members, implying that it was not taken lightly and was the final conclusion
+      of their talks.
+post_example_writeup: As illustrated by the examples, 「〜末に」 is versatile and can be applied to various
+  contexts, from personal decisions to formal processes. Its core meaning consistently conveys an outcome
+  achieved after a preceding series of actions or a period of contemplation. Pay attention to the nuanced
+  difference between 「末に」 and other similar expressions like 「てから」, 「結果」, or 「経て」, as 「末に」 often emphasizes
+  a more exhaustive or conclusive process.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/た末・の末・末に (culmination)

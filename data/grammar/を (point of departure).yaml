@@ -1,0 +1,226 @@
+grammar_point: を (point of departure)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Verb-dictionary]こと (nominalization)'
+  - 〜如し・〜ごとし (like・as if)
+  - すぐ (immediately・easily)
+  - だが (but・however)
+  - という (naming and definition)
+  - ね (seeking agreement)
+  - 右・左 (left and right)
+meaning: Indicates the point from which someone or something departs or separates.
+pronunciation:
+  katakana: ヲ
+  romaji: o
+formation:
+  '[Place] + を + [Verb of Movement]': Indicates the location from which movement begins.
+jlpt: N5
+etymology: The particle 「を」 originally had a broader range of uses, but over time, its function narrowed
+  to primarily marking the direct object of a verb. Its use to indicate a point of departure is a slightly
+  less common, but still important, application of the particle, semantically marking the 'object' that
+  is being moved out of or away from.
+writeup: The particle 「を」, when used with verbs of movement, indicates the location from which someone
+  or something departs. It emphasizes the action of leaving or separating from that place. This usage
+  is distinct from 「から」, which also marks a starting point but focuses more on the location itself rather
+  than the act of departure. Understanding this nuance is **essential** for accurately interpreting Japanese
+  sentences involving movement.
+false_friends:
+  - term: から (from)
+    meaning: from; starting point
+    kind: similar expression
+    nuance: Unlike 「を」, 「から」 focuses on the location as the origin, not the action of leaving it. For
+      example, 「東京から来ました」 (I came from Tokyo) focuses on Tokyo as the origin.
+    grammar_point: から (from)
+  - term: に (location, direction)
+    meaning: to; toward; at (a place)
+    kind: often confused with
+    nuance: While 「を」 indicates departure, 「に」 often indicates arrival or destination. For example, 「東京に行きます」
+      (I go to Tokyo) implies arrival in Tokyo, contrasting with leaving from it.
+    grammar_point: に (static location・time)
+post_false_friends_writeup: While 「を」 and 「から」 can both indicate a starting point, remember that 「を」 emphasizes
+  the **action** of departing from a place, whereas 「から」 simply indicates the location where something
+  originates. When describing movement, consider whether you want to highlight the departure itself or
+  simply state the origin.
+examples:
+  - english: I leave home at 8 o'clock every morning.
+    japanese:
+      - 私 は 毎朝 8 時 に 家 {を} 出 ます。
+      - 私、毎朝 8 時 に 家 {を} 出る ん だ。
+      - 毎朝 8 時 に 家 {を} 出 てる。
+    english_literally: As for me, every morning at 8 o'clock, I depart the house.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 毎朝 8 時 に 家 {から} 出 ます。
+        english: I depart from home at 8 o'clock every morning.
+        hint: The scene emphasizes a routine action of 'leaving' the house, making を more appropriate
+          to highlight the departure from the specific location, rather than just stating the origin.
+          We're looking for an action of leaving.
+    scene: A person explaining their daily routine.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please exit this door and turn left.
+    japanese:
+      - この ドア {を} 出 て、左 に 曲がっ て ください。
+      - この ドア {を} 出 て、左 に 曲がっ て ね。
+      - この ドア {を} 出 て、左 に 曲がっ て。
+    english_literally: Exit this door (object of departure), and please turn left.
+    competing_grammar:
+      - competing_japanese:
+          - この ドア {から} 出 て、左 に 曲がっ て ください。
+        english: Please depart from this door and turn left.
+        hint: The scene describes a direct instruction to 'exit' the door, emphasizing the action of leaving
+          the specific point, which is best conveyed by を. We're looking for an action of exiting a specific
+          place.
+    scene: A person giving directions to someone looking for an exit.
+    register: teineigo (polite)
+    setting: instructional
+  - english: She departed from Tokyo Station at 9 AM this morning.
+    japanese:
+      - 彼女 は 今朝 9 時 に 東京 駅 {を} 出発 し まし た。
+      - 彼女、今朝 9 時 に 東京 駅 {を} 出発 し た ん です。
+    english_literally: As for her, this morning at 9 o'clock, she departed Tokyo Station (object of departure).
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 今朝 9 時 に 東京 駅 {から} 出発 し まし た。
+        english: She departed from Tokyo Station at 9 AM this morning.
+        hint: The scene focuses on the definite act of departure from the station, aligning with を which
+          emphasizes the point of separation, rather than just the origin. We're looking for the direct
+          action of departing a place.
+    scene: Someone reporting on a friend's travel plans.
+    register: teineigo (polite)
+    setting: informative
+  - english: I met a friend yesterday when I left the restaurant.
+    japanese:
+      - 昨日、レストラン {を} 出 た 時 に 友達 に 会い まし た。
+      - 昨日、レストラン {を} 出 た 時 に 友達 に 会っ た よ。
+      - 昨日、レストラン {を} 出 た 時 に 友達 に 会っ た の。
+    english_literally: Yesterday, when I left the restaurant (object of departure), I met a friend.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、レストラン {から} 出 た 時 に 友達 に 会い まし た。
+        english: Yesterday, when I departed from the restaurant, I met a friend.
+        hint: The scene describes the event of 'leaving' the restaurant when an encounter occurred, making
+          を the natural choice to mark the place of departure. We're looking for the action of leaving.
+    scene: A person recounting a chance encounter.
+    register: teineigo (polite)
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「〜ました」 indicates polite past tense. 「会った よ 」 and 「会った の 」 are casual forms. 「よ」 is often used
+      by male speakers to assert information or confirm, while 「の 」 is typically used by female speakers
+      to soften the statement or add an explanatory tone. The choice between 「よ」 and 「の」 can reflect the
+      speaker's gender or a specific expressive intent. This example has both male and female usage. 「友達
+      に 会っ た よ」 would be used by a male speaker, and 「友達 に 会っ た の」 would be used by a female speaker,
+      both in a casual setting.
+  - english: I'm thinking of working immediately after leaving university.
+    japanese:
+      - 大学 {を} 出 たら、すぐ に 働き たい と 思っ て い ます。
+      - 大学 {を} 出 たら、すぐ に 働き たい と 思っ てる。
+    english_literally: If I leave university (object of departure), I am thinking I want to work immediately.
+    competing_grammar:
+      - competing_japanese:
+          - 大学 {から} 出 たら、すぐ に 働き たい と 思っ て い ます。
+        english: If I depart from university, I am thinking I want to work immediately.
+        hint: The scene describes the action of 'leaving' university to pursue work, highlighting the
+          point of departure, which is best expressed by を. We're looking for the action of physically
+          leaving the institution.
+    scene: A student sharing their future plans.
+    register: teineigo (polite)
+    setting: serious
+  - english: Getting off a crowded train is always difficult.
+    japanese:
+      - 満員 電車 {を} 降りる の は いつ も 大変 です。
+      - 満員 電車 {を} 降りる の、いつ も 大変 だ よ ね。
+    english_literally: As for getting off a crowded train (object of departure), it is always difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 満員 電車 {から} 降りる の は いつ も 大変 です。
+        english: Departing from a crowded train is always difficult.
+        hint: The scene describes the specific action of 'getting off' the train, emphasizing the point
+          of departure rather than just the origin, making を more appropriate. We're looking for the specific
+          act of disembarking.
+    scene: Someone complaining about their daily commute.
+    register: teineigo (polite)
+    setting: melancholic
+  - english: He left his hometown and is living in the city.
+    japanese:
+      - 彼 は 地元 {を} 離れ て 都会 で 暮らし て い ます。
+      - 彼、地元 {を} 離れ て 都会 で 暮らし てる よ。
+    english_literally: As for him, leaving his hometown (object of departure), he is living in the city.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 地元 {から} 離れ て 都会 で 暮らし て い ます。
+        english: He departed from his hometown and is living in the city.
+        hint: The scene focuses on the act of 'separating' from one's hometown, which is precisely what
+          を conveys for a point of departure. We're looking for the action of separating from a place.
+    scene: Someone explaining why someone else moved to the city.
+    register: teineigo (polite)
+    setting: informative
+  - english: Tonight, as soon as I finish work, I'm leaving the company right away.
+    japanese:
+      - 今夜、仕事 が 終わっ たら、すぐ に 会社 {を} 出る よ。
+      - 今夜、仕事 が 終わっ たら、すぐ に 会社 {を} 出る ね。
+    english_literally: Tonight, if work finishes, I am leaving the company (object of departure) right
+      away, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜、仕事 が 終わっ たら、すぐ に 会社 {から} 出る よ。
+        english: Tonight, as soon as I finish work, I'm departing from the company right away.
+        hint: The scene portrays a man eager to 'leave' work to meet his girlfriend, underscoring the
+          immediate departure from his workplace, best expressed by を. We're looking for the action of
+          exiting the company.
+    scene: A man talking to his girlfriend about his plans to meet her later.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「よ」 at the end of the sentence is a casual way of asserting or informing, often
+      used by male speakers. 「ね」 can also be used in casual settings by both genders, sometimes seeking
+      confirmation or just sharing information with a softer tone, such as a younger female speaker might
+      use. This example uses both forms to show options.
+  - english: Leaving this town was my dream.
+    japanese:
+      - この 町 {を} 出る こと が、私 の 夢 だっ た の。
+      - この 町 {を} 出る こと が、俺 の 夢 だっ た ん だ。
+    english_literally: That I leave this town (object of departure) was my dream, you see.
+    competing_grammar:
+      - competing_japanese:
+          - この 町 {から} 出る こと が、私 の 夢 だっ た の。
+        english: Departing from this town was my dream.
+        hint: The scene is about a woman's desire to 'depart' from the town, emphasizing the action of
+          leaving, which を conveys effectively. We're looking for the action of leaving this specific
+          town.
+    scene: A woman reminiscing about her aspirations.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The use of 「の」 at the end of the sentence adds a soft, explanatory, or reflective tone, typical
+      of female speech, especially when an older speaker is reminiscing or explaining something to herself
+      or an intimate listener. The second option uses 「俺」 for 'I/me' and 「ん だ 」 as a casual explanatory
+      particle, typical for a male speaker conveying a personal thought or realization. This example demonstrates
+      both a female speaker's reflection and a male speaker's personal thought.
+  - english: The bird flew out of the cage.
+    japanese:
+      - 鳥 は 籠 {を} 飛び出し まし た。
+      - 鳥 が 籠 {を} 飛び出し た。
+    english_literally: As for the bird, it flew out of the cage (object of departure).
+    competing_grammar:
+      - competing_japanese:
+          - 鳥 は 籠 {から} 飛び出し まし た。
+        english: The bird flew out from the cage.
+        hint: The original sentence emphasizes the action of the bird flying *out of* the cage, using
+          を to mark the specific place of exit, rather than just stating the origin of its flight. We're
+          looking for the action of exiting a contained space.
+    scene: You are narrating a sudden event where a pet bird escapes.
+    register: teineigo (polite)
+    setting: storytelling
+post_example_writeup: As you can see from the examples, the particle 「を」 when marking a point of departure
+  is consistently used with verbs that imply a physical separation from a location, such as 「出る」, 「降りる」,
+  「離れる」, and 「飛び出す」. This contrasts with 「から」, which denotes a broader origin without the same emphasis
+  on the act of *leaving* a specific place. Pay close attention to the verb used to determine whether
+  「を」 or 「から」 is more appropriate.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/を-(point-of-departure)

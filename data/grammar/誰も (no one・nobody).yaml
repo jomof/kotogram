@@ -1,0 +1,222 @@
+grammar_point: 誰も (no one・nobody)
+learn_before:
+  - いる (to exist, animate)
+  - たい (want to do)
+  - まだ～ていない (still uncompleted)
+  - も (addition or emphasis particle)
+  - 知る (to know or find out)
+meaning: No one; nobody (when used with a negative verb)
+pronunciation:
+  katakana: ダレモ
+  romaji: daremo
+formation:
+  誰 (who) + も (particle) + [Negative Verb or Adjective]: Indicates that no one or nobody performs an action
+    or possesses a characteristic.
+jlpt: N5
+etymology: The phrase 誰も is a combination of 誰 (dare), meaning "who," and the particle も (mo). The particle
+  も, when paired with an interrogative word and followed by a negative predicate, creates a comprehensive
+  negation. This structure literally translates to "not even a who," thereby conveying the meaning of
+  "no one" or "nobody." This pattern is also seen in similar constructions like 何も (nothing) and どこも (nowhere),
+  indicating a complete absence or negation.
+writeup: |-
+  The phrase 誰も is used to indicate "no one" or "nobody" in Japanese. It is always followed by a negative form of a verb or adjective. The particle も in this context serves to emphasize the complete lack or absence of someone. This construction signifies a total negation regarding people.
+
+  It is crucial to remember that 誰も **must** be paired with a negative predicate. If used with a positive predicate (e.g., 誰でも or 誰もが), its meaning changes significantly, often implying "everyone" or "anyone." Understanding this distinction is fundamental.
+
+  This grammatical pattern is essential for expressing comprehensive negation in Japanese, extending beyond people to include things (何も - nothing) and places (どこも - nowhere). Mastering the role of も with interrogatives in negative sentences is key to correctly interpreting and using these expressions.
+false_friends:
+  - term: 誰でも
+    meaning: Anyone; everyone
+    kind: similar expression
+    nuance: Unlike 誰も (no one), 誰でも refers to "anyone" or "everyone" and is used with a positive predicate.
+      It implies inclusivity or universality, a direct opposite of 誰も's negative implication.
+    grammar_point: 誰でも (anyone・everyone)
+  - term: 何も
+    meaning: Nothing (when used with a negative verb)
+    kind: similar expression
+    nuance: While similar in structure (interrogative + も + negative), 何も refers to "nothing" (things),
+      whereas 誰も refers to "no one" (people). Both require a negative predicate.
+    grammar_point: なにか・なにも (something or nothing)
+  - term: どこも
+    meaning: Nowhere (when used with a negative verb); Everywhere (with positive verb)
+    kind: similar expression
+    nuance: Similar to 誰も, どこも uses the interrogative どこ (where) with も to indicate "nowhere" when followed
+      by a negative predicate. With a positive verb, it can mean "everywhere." The key is the accompanying
+      verb's polarity.
+    grammar_point: <suggest>:どこも (nowhere・everywhere)
+  - term: 誰もが
+    meaning: Everyone; everybody
+    kind: similar expression
+    nuance: This phrase explicitly means "everyone" and is typically followed by a positive verb. It emphasizes
+      that a characteristic or action applies to all individuals, contrasting sharply with 誰も which implies
+      negation.
+    grammar_point: <suggest>:誰もが (everyone)
+  - term: 誰も彼も
+    meaning: Everyone; every single person
+    kind: similar expression
+    nuance: An idiomatic expression that strongly emphasizes "everyone" or "every single person," often
+      used when referring to a large, inclusive group. It is always used with a positive predicate, unlike
+      誰も.
+    grammar_point: <suggest>:誰も彼も (everyone・every single person)
+post_false_friends_writeup: It is common for learners to confuse 誰も with phrases like 誰でも or 誰もが because
+  they all involve 誰 (who). The key distinction lies in the particle that follows 誰 and whether the predicate
+  is positive or negative. 誰も, when meaning "no one," *always* takes a negative verb. In contrast, 誰でも
+  and 誰もが are generally used with positive verbs to mean "anyone" or "everyone." Pay close attention to
+  the verb conjugation to correctly interpret these expressions and avoid mixing them up.
+examples:
+  - english: Nobody was there.
+    japanese:
+      - '{誰 も} い なかっ た。'
+      - '{誰 も} い ませ ん でし た。'
+      - '{誰 も} い なかっ た ん だ。'
+    english_literally: Nobody was.
+    competing_grammar:
+      - competing_japanese:
+          - みんな い た。
+        english: Everyone was there.
+        hint: We're looking for an absence of people, not their presence. This uses みんな (everyone).
+    scene: You arrive at the designated meeting place, but it's completely empty.
+    register: casual
+    setting: informative
+  - english: Doesn't anyone know the answer?
+    japanese:
+      - '{誰 も} 答え を 知ら ない の？'
+      - '{誰 も} 答え を 知り ませ ん か？'
+      - '{誰 も} 答え を 知ら ない ん です か？'
+    english_literally: Nobody answer knows?
+    competing_grammar:
+      - competing_japanese:
+          - 誰 か 答え を 知っ てる の？
+        english: Does someone know the answer?
+        hint: We're implying that *no one* seems to know, not asking if *someone* does. This uses 誰か (someone).
+    scene: A teacher asks a difficult question to a quiet classroom, met with silence.
+    register: casual
+    setting: interrogative
+  - english: Nobody will understand this difficult problem.
+    japanese:
+      - この 難しい 問題 は {誰 も} 理解 し ない だろう。
+      - この 難しい 問題 は {誰 も} 理解 し ない でしょう。
+      - この 難しい 問題 は {誰 も} 理解 でき ない だろう。
+    english_literally: This difficult problem nobody will understand probably.
+    competing_grammar:
+      - competing_japanese:
+          - みんな この 難しい 問題 を 理解 する だろう。
+        english: Everyone will probably understand this difficult problem.
+        hint: The speaker feels the problem is too hard for *anyone* to grasp, not that everyone *will*
+          grasp it. This uses みんな (everyone).
+    scene: A frustrated student stares at a particularly complex math problem, feeling overwhelmed.
+    register: casual
+    setting: pessimistic
+  - english: Nobody has seen that movie yet.
+    japanese:
+      - その 映画 は {誰 も} まだ 見 て い ませ ん。
+      - その 映画 は {誰 も} まだ 見 て い ない。
+      - その 映画 は {誰 も} まだ 見 て おり ませ ん。
+    english_literally: That movie nobody yet seen not.
+    competing_grammar:
+      - competing_japanese:
+          - その 映画 は みんな もう 見 て い ます。
+        english: Everyone has already seen that movie.
+        hint: The movie is new and *no one* has had a chance to see it yet, not that everyone *has* seen
+          it. This uses みんな (everyone).
+    scene: Friends are discussing popular movies, and one mentions a new release that none of them have
+      watched.
+    register: formal
+    setting: friendly
+  - english: Nobody wants to go to that boring party.
+    japanese:
+      - あの つまら ない パーティー に は {誰 も} 行き たく ない。
+      - あの つまら ない パーティー に は {誰 も} 行き たく あり ませ ん。
+      - あの つまら ない パーティー に は {誰 も} 行き たく ない ん です。
+    english_literally: That boring party to nobody want to go not.
+    competing_grammar:
+      - competing_japanese:
+          - あの つまら ない パーティー に は 誰 で も 行き たい。
+        english: Anyone wants to go to that boring party.
+        hint: The sentiment is that *no one* desires to go, implying aversion, not a general desire. This
+          uses 誰でも (anyone).
+    scene: A group of friends are trying to decide what to do on a Saturday night, and someone suggests
+      a dull event.
+    register: casual
+    setting: reflective
+  - english: Nobody believed his strange story.
+    japanese:
+      - 彼 の 奇妙 な 話 を {誰 も} 信じ なかっ た。
+      - 彼 の 奇妙 な 話 を {誰 も} 信じ ませ ん でし た。
+      - 彼 の 奇妙 な 話 を {誰 も} 信じよう と し なかっ た。
+    english_literally: His strange story nobody believed not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 奇妙 な 話 を 誰 で も 信じ た。
+        english: Anyone believed his strange story.
+        hint: His story was so strange that *not a single person* found it credible, not that it was universally
+          believed. This uses 誰でも (anyone).
+    scene: A detective interviews witnesses to a peculiar event, but their accounts of one person's testimony
+      are skeptical.
+    register: formal
+    setting: serious
+  - english: If nobody cooperates, we won't be able to finish.
+    japanese:
+      - '{誰 も} 協力 し なけれ ば、終わら せる こと は でき ない。'
+      - '{誰 も} 協力 し なけれ ば、終わら せる こと は でき ませ ん。'
+      - '{誰 も} 協力 し なけれ ば、終わら ない だろう。'
+    english_literally: Nobody cooperates if, finish not possible.
+    competing_grammar:
+      - competing_japanese:
+          - みんな 協力 すれ ば、終わら せる こと は できる。
+        english: If everyone cooperates, we can finish.
+        hint: The condition is based on the *absence* of cooperation, not its presence. This uses みんな
+          (everyone).
+    scene: A project leader addresses their team, emphasizing the necessity of collective effort.
+    register: semi-formal
+    setting: serious
+  - english: Nobody feels well after eating that strange food.
+    japanese:
+      - あの 変 な 食べ物 を 食べ た 後 は {誰 も} 気分 が 良く ない。
+      - あの 変 な 食べ物 を 食べ た 後 は {誰 も} 気分 が 良く あり ませ ん。
+      - あの 変 な 食べ物 を 食べ た 後 は {誰 も} 良い 気分 で は ない。
+    english_literally: That strange food ate after nobody feeling good not.
+    competing_grammar:
+      - competing_japanese:
+          - あの 変 な 食べ物 を 食べ た 後 は みんな 気分 が 良い。
+        english: Everyone feels well after eating that strange food.
+        hint: The food had a negative effect on *everyone*, making *no one* feel good, not the opposite.
+          This uses みんな (everyone).
+    scene: After a bizarre food challenge at a festival, participants are visibly unwell.
+    register: casual
+    setting: humorous
+  - english: Nobody understands the true meaning of life.
+    japanese:
+      - 人生 の 本当 の 意味 を {誰 も} 理解 し て い ない。
+      - 人生 の 本当 の 意味 を {誰 も} 理解 し て い ませ ん。
+      - 人生 の 本当 の 意味 は {誰 も} に は 分から ない。
+    english_literally: Life's true meaning nobody understands.
+    competing_grammar:
+      - competing_japanese:
+          - 人生 の 本当 の 意味 を 誰 で も 理解 し て いる。
+        english: Anyone understands the true meaning of life.
+        hint: The speaker believes that this profound concept is beyond *anyone's* complete grasp, not
+          universally understood. This uses 誰でも (anyone).
+    scene: A philosopher, in deep contemplation, ponders the mysteries of existence.
+    register: casual
+    setting: reflective
+  - english: Nobody cares about such a small thing.
+    japanese:
+      - そんな 小さい こと は {誰 も} 気 に し ない よ。
+      - そんな 小さい こと は {誰 も} 気 に し ませ ん よ。
+      - そんな 小さい こと は {誰 も} 気 に し ない。
+    english_literally: Such small thing nobody cares (particle).
+    competing_grammar:
+      - competing_japanese:
+          - そんな 小さい こと は 誰 で も 気 に する よ。
+        english: Anyone cares about such a small thing.
+        hint: The speaker is conveying that the issue is so trivial that *no one* would pay attention
+          to it, not that it's a general concern. This uses 誰でも (anyone).
+    scene: One friend tries to reassure another about a minor mistake they made, waving it off as insignificant.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「よ」 (yo) adds a soft assertion, reinforcing the idea that it's universally true
+      that 「誰も気にしない」 (nobody cares) about such a minor detail. This informal female speech pattern indicates
+      reassurance.

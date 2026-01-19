@@ -1,0 +1,246 @@
+grammar_point: 程度に (to the extent)
+learn_before:
+  - Verb[imperative] (imperative)
+  - にすぎない (no more than)
+  - 加えると (to add)
+meaning: to the extent of; to the degree that
+pronunciation:
+  katakana: テイドニ
+  romaji: teido ni
+formation:
+  Verb[dictionary] + 程度に: Expresses the degree or extent to which an action is performed.
+  Noun + の + 程度に: Expresses the degree or level of a noun.
+  い-Adjective + 程度に: Expresses the degree to which an i-adjective applies.
+  な-Adjective + な + 程度に: Expresses the degree to which a na-adjective applies.
+jlpt: N2
+etymology: The word 程度 (ていど) combines 程 (ほど - extent, degree, measure) and 度 (ど - degree, time). Thus,
+  程度に literally means "to the degree" or "to the extent." It formalizes and specifies the manner of expressing
+  extent or a certain level of something. This usage evolved from simply indicating a limit or measure
+  to describing the intensity or quality of an action or state.
+writeup: |-
+  The expression 「程度に」 is used to specify the degree or extent to which something is done, exists, or applies. It functions adverbially, modifying verbs, adjectives, or even entire clauses to provide a more precise scope. Unlike more casual expressions like 「くらい」 or 「ほど」, 「程度に」 often carries a slightly more formal or objective tone, suitable for conveying a measured or considered amount.
+
+  This grammar point can be attached to various parts of speech:
+  *   **Verbs (dictionary form)**: Describes the extent of an action.
+      *   例：彼は話せる【程度に】日本語ができます。 (He can speak Japanese to the extent that he can talk.)
+  *   **Nouns (+ の)**: Specifies the degree or level of a noun.
+      *   例：健康維持【の程度に】運動する。 (Exercise to the extent of maintaining health.)
+  *   **い-Adjectives**: Indicates the degree of an adjective's quality.
+      *   例：疲れている【程度に】休憩しよう。 (Let's rest to the extent that we are tired.)
+  *   **な-Adjectives (+ な)**: Similarly, for na-adjectives, it expresses the degree of their quality.
+      *   例：適当【な程度に】塩を加える。 (Add salt to an appropriate degree.)
+
+  「程度に」 is often used when setting a standard, a boundary, or an approximate level. It can be particularly useful in instructions, descriptions, or when evaluating conditions.
+false_friends:
+  - term: くらい
+    meaning: about; approximately; to the extent that; at least
+    kind: similar expression
+    nuance: While both express degree, 「くらい」 is generally more casual and often implies an approximation
+      or a minimum extent. 「程度に」 feels more deliberate and precise in specifying a standard or boundary.
+      「くらい」 can also mean 'at least' or convey a sense of 'about that much'.
+    grammar_point: くらい (approximate quantity or degree)
+  - term: ほど
+    meaning: degree; extent; as much as; about; approximately
+    kind: similar expression
+    nuance: 「ほど」 is quite versatile, similar to 「くらい」 in expressing approximation or extent. However,
+      「ほど」 also frequently appears in comparative structures (e.g., AほどBはない - 'nothing is as B as A')
+      or to indicate a negative limit ('so much that not'). 「程度に」 focuses purely on the level or extent,
+      often with a more neutral or objective tone.
+    grammar_point: ほど (extent・approximation)
+  - term: まで
+    meaning: until; to; as far as; even
+    kind: similar expression
+    nuance: 「まで」 indicates a boundary or limit (spatial, temporal, or conceptual), whereas 「程度に」 specifies
+      a degree or level. While both relate to limits, 「まで」 emphasizes reaching a point, while 「程度に」 describes
+      the quality or quantity at or within a certain level.
+    grammar_point: まで (limit extent)
+  - term: だけに
+    meaning: precisely because; as might be expected; all the more because
+    kind: similar expression
+    nuance: Superficially similar in structure (ending in 'に'), 「だけに」 expresses a reason or a consequence
+      that is expected given a certain situation. It implies 'because of X, it is all the more Y'. This
+      is distinct from 「程度に」 which indicates the degree or extent.
+    grammar_point: 〜だけあって・〜だけに・〜だけのことはある (as expected・precisely because)
+post_false_friends_writeup: To differentiate, consider if you are talking about an **approximate amount**
+  (use 「くらい」 or 「ほど」, which are more common in casual speech) versus specifying a **precise or intended
+  level/standard** (use 「程度に」, which is more formal and specific). If you are indicating a **boundary**
+  or a **point of completion**, 「まで」 is the appropriate choice. 「だけに」 signifies a causal relationship,
+  not a degree.
+examples:
+  - english: Please exercise to a healthy extent.
+    japanese:
+      - 健康 的 な 【 程度 に 】 運動 し て ください。
+      - 健康 的 な 【 程度 に 】 運動 し なさい。
+      - 健康 的 な 【 程度 に 】 運動 し て ね。
+    english_literally: To a healthy degree, please exercise.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 的 な 運動 量 くらい 運動 し て ください。
+        english: Please exercise to about a healthy amount of exercise.
+        hint: 「くらい」 suggests an approximation or a general sense of 'about that much'. 「程度に」 is used to
+          specify a more defined or intended level or standard. We're looking for a grammar point that
+          expresses a specific 'extent' or 'degree'.
+    scene: A doctor giving advice to a patient.
+    register: formal
+    setting: informative
+    nuance: This example uses 「健康的な程度に」 to set a specific, appropriate level for exercising, emphasizing
+      a measured approach to health.
+  - english: Please add sugar to your preferred level of sweetness.
+    japanese:
+      - お 好み の 甘 さ の 【 程度 に 】 砂糖 を 加え て ください。
+      - お 好み の 甘 さ の 【 程度 に 】 砂糖 を 加え て ね。
+      - お 好み の 甘 さ の 【 程度 に 】 砂糖 を 加える。
+    english_literally: To the degree of your preferred sweetness, please add sugar.
+    competing_grammar:
+      - competing_japanese:
+          - お 好み の 甘 さ まで 砂糖 を 加え て ください。
+        english: Please add sugar up to your preferred sweetness.
+        hint: 「まで」 indicates a boundary or limit you reach. 「程度に」 emphasizes the *degree* or *level* itself.
+          We're looking for an expression of specific level, not just a boundary.
+    scene: A cooking instruction from a recipe book.
+    register: formal
+    setting: instructional
+    nuance: Here, 「お好みの甘さの程度に」 specifies the extent of adding sugar according to personal preference,
+      highlighting the customizability of the degree.
+  - english: He can speak Japanese to the extent that he can express himself.
+    japanese:
+      - 彼 は 自分 の 考え を 表現 できる 【 程度 に 】 日本 語 を 話し ます。
+      - 彼 は 自分 の 考え を 表現 できる 【 程度 に 】 日本 語 を 話す。
+    english_literally: He, his own thoughts can express, to the degree that, Japanese speaks.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 自分 の 考え を 表現 できる くらい 日本 語 を 話し ます。
+        english: He speaks Japanese to the extent that he can express his own thoughts (approximately).
+        hint: 「くらい」 can also indicate extent but often implies an approximation or a casual sense of 'about
+          that much'. 「程度に」 is more precise and deliberate in defining the level. We're looking for an
+          expression of specific level, not approximation.
+    scene: Two colleagues discussing a new foreign employee's language skills.
+    register: semi-formal
+    setting: informative
+    nuance: 「表現できる程度に」 defines the functional level of Japanese spoken. It's not perfect, but sufficient
+      for expressing thoughts, specifying a practical degree of ability.
+  - english: Please adjust the air conditioner to a comfortable level.
+    japanese:
+      - エアコン を 快適 な 【 程度 に 】 調整 し て ください。
+      - エアコン を 快適 な 【 程度 に 】 調整 し て。
+      - エアコン を 快適 な 【 程度 に 】 調整 なさい。
+    english_literally: Air conditioner, to a comfortable degree, please adjust.
+    competing_grammar:
+      - competing_japanese:
+          - エアコン が 快適 に なる よう に 調整 し て ください。
+        english: Please adjust the air conditioner so that it becomes comfortable.
+        hint: 「ように」 indicates a desired result or purpose. 「程度に」 specifies the degree or level that is
+          desired. We're looking for an expression that focuses on the 'level' of comfort.
+    scene: A hotel staff member instructing a guest on using the room's air conditioning.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「快適な程度に」 indicates finding a subjective yet appropriate 'level of comfort' for the air conditioner's
+      setting. The politeness makes it suitable for service interactions.
+  - english: We should work to the extent that we don't overwork ourselves.
+    japanese:
+      - 私 たち は 働き すぎ ない 【 程度 に 】 仕事 を する べき です。
+      - 働き すぎ ない 【 程度 に 】 仕事 を する べき だ。
+    english_literally: We, overwork not, to the degree that, work should do.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち は 働き すぎ ない 範囲 で 仕事 を する べき です。
+        english: We should work within the range that we don't overwork ourselves.
+        hint: 「範囲で」 means 'within the range' or 'within the scope', focusing on boundaries. 「程度に」 specifies
+          the degree or level itself. We're looking for a grammar point that expresses a certain degree
+          of work.
+    scene: A manager advising their team about work-life balance.
+    register: formal
+    setting: instructional
+    nuance: 「働きすぎない程度に」 sets a negative boundary for the extent of work, emphasizing moderation. It expresses
+      a cautious approach to prevent overexertion.
+  - english: He takes risks to a dangerous extent.
+    japanese:
+      - 彼 は 危険 な 【 程度 に 】 リスク を 冒し ます。
+      - 彼 は 危険 な 【 程度 に 】 リスク を 冒す。
+    english_literally: He, dangerous degree, risks takes.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 危険 な ほど リスク を 冒し ます。
+        english: He takes risks to the extent that it is dangerous (so dangerous).
+        hint: 「ほど」 can express the *result* of an extreme degree ('so much that it hurt ears'). 「程度に」
+          describes the degree or level itself ('to the extent of hurting ears'). We're looking for an
+          expression of degree or extent.
+    scene: Friends discussing a mutual acquaintance who has an adventurous but reckless hobby.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「危険な程度に」 describes the extent of his risk-taking as being 'dangerous', highlighting an undesirable
+      or worrying level. The casual speech makes it sound like a personal observation.
+  - english: I learned to cook to the extent that I won't starve.
+    japanese:
+      - 餓死 し ない 【 程度 に 】 料理 を 覚え まし た。
+      - 餓死 し ない 【 程度 に 】 料理 を 覚え た。
+    english_literally: Starve not, to the degree that, cooking I learned.
+    competing_grammar:
+      - competing_japanese:
+          - 餓死 し ない くらい 料理 を 覚え まし た。
+        english: I learned to cook about enough not to starve.
+        hint: 「くらい」 is good for approximation, implying 'approximately to the level of not starving'.
+          「程度に」 is more specific about setting a clear (even if minimal) benchmark. We're looking for
+          a clear definition of the extent learned.
+    scene: Someone humorously describing their basic cooking skills.
+    register: casual
+    setting: humorous
+    nuance: 「餓死しない程度に」 is a humorous understatement, indicating a very basic, minimal level of cooking
+      ability. It implies 'just enough to survive' and emphasizes the low extent.
+  - english: The sound of the music was loud enough to hurt your ears.
+    japanese:
+      - 音楽 の 音量 は 耳 が 痛く なる 【 程度 に 】 大きかっ た。
+      - 音楽 の 音量 は 耳 が 痛く なる 【 程度 に 】 大きかっ た です。
+    english_literally: Music's volume, ears become painful, to the degree that, was loud.
+    competing_grammar:
+      - competing_japanese:
+          - 音楽 の 音量 は 耳 が 痛い ほど 大きかっ た。
+        english: The music volume was so loud that it hurt ears.
+        hint: 「ほど」 can express the *result* of an extreme degree ('so much that it hurt ears'). 「程度に」
+          describes the degree or level itself ('to the extent of hurting ears'). We're looking for an
+          expression of degree or extent.
+    scene: Someone describing a concert or a loud party they attended.
+    register: casual
+    setting: storytelling
+    nuance: 「耳が痛くなる程度に」 quantifies the loudness of the music by the physical effect it had, illustrating
+      an unpleasant, excessive degree of sound.
+  - english: She studies Japanese to the extent that she understands daily conversations.
+    japanese:
+      - 彼女 は 日常 会話 が 理解 できる 【 程度 に 】 日本 語 を 勉強 し て い ます。
+      - 彼女 は 日常 会話 が 理解 できる 【 程度 に 】 日本 語 を 勉強 し て いる。
+    english_literally: She, daily conversations can understand, to the degree that, Japanese is studying.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 日常 会話 が 理解 できる ぐらい 日本 語 を 勉強 し て い ます。
+        english: She studies Japanese to about the extent that she understands daily conversations.
+        hint: 「ぐらい」 is a more casual alternative to 「くらい」, implying a general approximation. 「程度に」 is
+          more precise and formal in defining the specific level of her comprehension. We're looking for
+          a precise degree.
+    scene: A teacher talking about a diligent student's progress.
+    register: formal
+    setting: informative
+    listener_gender: group
+    nuance: 「理解できる程度に」 specifies a practical, communicative level of Japanese comprehension. This example
+      highlights achieving a functional degree in language learning.
+  - english: The project was completed to a satisfactory degree.
+    japanese:
+      - その プロジェクト は 満足 できる 【 程度 に 】 完成 し た。
+      - その プロジェクト は 満足 できる 【 程度 に 】 完成 し まし た。
+    english_literally: That project, can be satisfied, to the degree that, was completed.
+    competing_grammar:
+      - competing_japanese:
+          - その プロジェクト は 満足 できる よう に 完成 し た。
+        english: The project was completed so that it could be satisfactory.
+        hint: 「ように」 often indicates a desired outcome or purpose. 「程度に」 specifies the level or standard
+          *at which* something was completed. We're focusing on the degree of completion.
+    scene: A team leader giving a status update on a project.
+    register: formal
+    setting: informative
+    nuance: 「満足できる程度に」 sets a quality benchmark for the project's completion, indicating that it met expectations
+      for being 'satisfactory'. This is common in professional contexts.
+post_example_writeup: Understanding the precise nuance of 「程度に」 helps in expressing measured or specific
+  levels of actions or states, adding clarity and formality to your Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/程度に

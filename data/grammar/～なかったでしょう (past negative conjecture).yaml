@@ -1,0 +1,262 @@
+grammar_point: ～なかったでしょう (past negative conjecture)
+learn_before:
+  - おそらく (probably)
+  - だろう・でしょう (probably・right?)
+  - な-Adjectives (adjectival nouns)
+  - ほとんど (almost all or hardly any)
+  - 何 (what)
+meaning: Probably didn't, wouldn't have, likely wasn't
+pronunciation:
+  katakana: ナカッタデショウ
+  romaji: nakatta deshou
+formation:
+  Verb[ない-form] + かった + でしょう: Used for conjecturing that a past action probably did not happen. (e.g.,
+    行かない → 行かなかった でしょう)
+  い-Adjective[stem] + くなかった + でしょう: Used for conjecturing that a past state described by an い-adjective
+    probably was not true. (e.g., 忙しい → 忙しくなかった でしょう)
+  な-Adjective[original form] + じゃなかった + でしょう: Used for conjecturing that a past state described by a な-adjective
+    probably was not true. (e.g., 暇 → 暇じゃなかった でしょう)
+  Noun[original form] + じゃなかった + でしょう: Used for conjecturing that a past identity or state described by
+    a noun probably was not true. (e.g., 先生 → 先生じゃなかった でしょう)
+jlpt: N3
+etymology: This grammatical construction combines the plain past negative form of verbs and adjectives
+  (～なかった) with the polite conjectural auxiliary verb でしょう. The ～なかった form itself is a contraction of ～ない
+  (negative) and ～あった (past existence/state). でしょう is the polite form of だろう, which conveys supposition
+  or probability. Thus, ～なかったでしょう literally means something like 'it probably was not the case that (something
+  happened/was).' It represents a speaker's logical deduction about a past negative event or state.
+writeup: |-
+  The grammar pattern **～なかったでしょう** is used to express a speaker's conjecture or strong assumption that something **probably did not happen** or **was not the case** in the past. It conveys a high degree of certainty or a strong inference that an action or state was negative.
+
+  This form is highly versatile and can be used with verbs, い-adjectives, な-adjectives, and nouns by first conjugating them into their plain negative past form and then attaching **でしょう**.
+
+  **Key Characteristics:**
+
+  *   **Polite Conjecture:** While the core forms are plain, the addition of **でしょう** makes the overall expression polite. It can be used in both formal and semi-formal contexts.
+  *   **Logical Deduction:** The speaker often bases their conjecture on a logical deduction from observed circumstances, prior knowledge, or general common sense. It's not merely a guess, but an informed assumption.
+  *   **Nuance of Expectation:** Sometimes, it can carry a nuance of an expectation that aligns with the negative outcome.
+false_friends:
+  - term: まい
+    meaning: Won't, probably not, intend not to
+    kind: similar expression
+    nuance: While both express negative conjecture, 「まい」 is a stronger, more definite negation, often
+      carrying a nuance of determination or archaic formality. 「～なかったでしょう」 is a softer, more probable
+      conjecture. We're looking for a softer conjecture.
+    grammar_point: Verb[まい] (negative volitional)
+  - term: はずがない
+    meaning: There's no way, cannot be, highly unlikely
+    kind: similar expression
+    nuance: 「はずがない」 expresses logical impossibility or an extremely high degree of certainty that something
+      is NOT the case, almost a logical deduction. 「～なかったでしょう」 suggests probability or likelihood of non-occurrence,
+      but allows for a small possibility of the contrary. We're looking for probability, not impossibility.
+    grammar_point: '[Clause]はずだ・はずがない (is expected to be・cannot be)'
+  - term: わけがない
+    meaning: No way, impossible, cannot be
+    kind: similar expression
+    nuance: Similar to 「はずがない」, 「わけがない」 denotes an absolute impossibility or strong logical denial. It's
+      often used with an emotional emphasis on the unlikeliness. 「～なかったでしょう」 simply states a strong probability
+      of non-occurrence. We're looking for a high probability, not an impossibility.
+    grammar_point: わけがない (no way)
+post_false_friends_writeup: |-
+  When distinguishing between **～なかったでしょう** and similar expressions like **まい**, **はずがない**, or **わけがない**, consider the degree of certainty and the underlying reason for the negative conclusion.
+
+  **～なかったでしょう** implies a high probability that something did not occur, often based on circumstantial evidence or general expectation. It leaves a slight margin of doubt.
+
+  **まい** provides a stronger, more definitive negative conjecture, sometimes even expressing the speaker's personal resolve not to do something or a strong prediction of non-occurrence, often with a slightly formal or archaic feel.
+
+  **はずがない** and **わけがない** express a near-absolute certainty that something *could not have happened* or *cannot be true*, based on logical reasoning or undeniable facts. They convey a sense of impossibility rather than mere improbability. Therefore, if you are making an informed guess about a past negative event, **～なかったでしょう** is suitable. If you are stating a logical impossibility, **はずがない** or **わけがない** would be more appropriate.
+examples:
+  - english: She probably didn't come because of the heavy rain.
+    japanese:
+      - 大雨 だっ た の で、彼女 は {来 なかっ た でしょう}。
+      - 大雨 だっ た の で、彼女 は {来 なかっ た でしょう ね}。
+    english_literally: Because it was heavy rain, she probably did not come.
+    competing_grammar:
+      - competing_japanese:
+          - 大雨 だっ た の で、彼女 は {来 ない はず が ない}。
+        english: Because it was heavy rain, there's no way she didn't come (meaning she must have come).
+        hint: 「～はずがない」 expresses logical impossibility in the opposite sense. We're conjecturing that
+          she didn't come, not that it's impossible she didn't come.
+    scene: You and a friend were supposed to meet another friend, but it started raining heavily. Your
+      friend didn't show up.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: negative past plain (～なかった)
+    nuance: This sentence uses the past negative of a verb (来なかった) combined with でしょう to express a polite
+      conjecture about a past event. The use of 「大雨 だったので」 provides the logical basis for the conjecture,
+      making the listener understand the reason for the high probability of her not coming. The politeness
+      of でしょう makes it suitable for addressing a friend or acquaintance.
+  - english: The test wasn't easy, so most students probably didn't get high scores.
+    japanese:
+      - 試験 は 簡単 じゃ なかっ た の で、ほとんど の 学生 は 高い 点 を {取れ なかっ た でしょう}。
+      - ほとんど の 学生 は、高い 点 を {取れ なかっ た でしょう ね}。
+    english_literally: The test was not easy, so most students probably could not get high scores.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 簡単 じゃ なかっ た の で、ほとんど の 学生 は 高い 点 を {取れ ない だろう}。
+        english: The test wasn't easy, so most students probably didn't get high scores (casual).
+        hint: 「だろう」 is the casual form of 「でしょう」. We are practicing the polite form here.
+    scene: A teacher is discussing the results of a difficult exam with a colleague.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: negative past plain (～なかった)
+    nuance: Here, 「取れなかった」 is the potential form in the past negative. Combining it with 「でしょう」 expresses
+      a polite conjecture that it was difficult for students to achieve high scores. The phrase 「ほとんど
+      の 学生」 makes the conjecture more general, suggesting a shared understanding of the difficulty. This
+      polite form is appropriate for academic or professional discussions.
+  - english: She probably wasn't happy about that decision.
+    japanese:
+      - 彼女 は その 決定 に {嬉しく なかっ た でしょう}。
+      - 彼女 は その 決定 に は、{嬉しく なかっ た でしょう ね}。
+    english_literally: As for her, to that decision, probably was not happy.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は その 決定 に {嬉しく ない はず が ない}。
+        english: She couldn't have not been happy about that decision (meaning she must have been happy).
+        hint: 「～ないはずがない」 implies a logical certainty of a positive outcome. We're conveying a probable
+          negative emotional state.
+    scene: Two colleagues are talking about a recent company decision that might have upset a third colleague.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative past plain (～なかった)
+    nuance: This example uses an い-adjective in its past negative form 「嬉しくなかった」. The sentence conveys
+      a polite conjecture about someone's emotional state, implying empathy or understanding of why they
+      might not have been happy. The polite ending 「でしょう」 keeps the tone respectful, even when discussing
+      someone's feelings.
+  - english: The food last night probably wasn't very tasty, was it?
+    japanese:
+      - 昨日 の 料理 は あまり {美味しく なかっ た でしょう}？
+      - 昨日 の 料理、あまり {美味しく なかっ た でしょう ね}？
+    english_literally: Yesterday's food was not very delicious, was it?
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 料理 は あまり {美味しく なかっ た はず だ}。
+        english: Yesterday's food definitely wasn't very tasty (strong certainty).
+        hint: 「はずだ」 expresses strong certainty, while 「でしょう」 here is used to seek agreement or soften
+          the statement, turning it into a question.
+    scene: You're catching up with a friend about a party you both attended where the food was notoriously
+      bad.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    nuance: Adding a rising intonation to 「でしょう」 turns it into a question, seeking confirmation. This
+      is a common polite way to ask for agreement on a conjecture. 「美味しくなかった」 is the past negative of
+      an い-adjective. The use of 「あまり」 (not very) softens the negative description.
+  - english: He probably wasn't serious when he said that.
+    japanese:
+      - 彼 は それ を 言っ た 時、{真面目 じゃ なかっ た でしょう}。
+      - 彼 が それ を 言っ た 時 は、{真面目 じゃ なかっ た でしょう ね}。
+    english_literally: As for him, when he said that, probably was not serious.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は それ を 言っ た 時、{真面目 で は ない でしょう}。
+        english: He probably isn't serious when he says that (present conjecture).
+        hint: This is a present tense conjecture. We are talking about a past event.
+    scene: Two friends are discussing a third friend's questionable comment.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: negative past plain (～なかった)
+    nuance: This sentence uses a な-adjective in its past negative form 「真面目じゃなかった」. The conjecture expressed
+      by 「でしょう」 is about a past state of being. The nuance suggests that the speaker believes the statement
+      was made in jest or without genuine intent, offering an explanation for the listener. The polite
+      ending maintains a respectful tone between speakers.
+  - english: The meeting probably didn't go well because the manager looked upset.
+    japanese:
+      - 部 長 の 顔 を 見る と、会議 は {うまく いか なかっ た でしょう}。
+      - 部 長 の 顔 を 見る と、会議 は {うまく いか なかっ た でしょう ね}。
+    english_literally: Seeing the manager's face, the meeting probably did not go well.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 の 顔 を 見る と、会議 は {うまく いか ない まい}。
+        english: Seeing the manager's face, the meeting probably won't go well (future, stronger negative
+          conjecture).
+        hint: 「まい」 is typically used for future negative conjecture, and is stronger. We're discussing
+          a past event.
+    scene: Two coworkers observe their boss's demeanor after a meeting.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative past plain (～なかった)
+    nuance: 「うまくいかなかった」 is the negative past form of the verb. This sentence exemplifies using **～なかったでしょう**
+      to draw a polite conclusion based on an observation. The speaker infers the negative outcome of
+      the meeting from the manager's appearance, conveying this inference politely to their colleague.
+      The use of 「見る と」 (upon seeing) highlights the trigger for the conjecture.
+  - english: It probably wasn't a good idea to tell him the truth then.
+    japanese:
+      - あの 時、彼 に 本当 の こと を {言わ ない ほう が よかっ た でしょう}。
+      - あの 時、彼 に 本当 の こと を {言わ ない ほう が よかっ た でしょう ね}。
+    english_literally: At that time, to him, the truth, probably it would have been better not to say.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時、彼 に 本当 の こと を {言わ ない ほう が よかっ た はず だ}。
+        english: At that time, it definitely would have been better not to tell him the truth (stronger
+          certainty).
+        hint: 「はずだ」 expresses a stronger logical certainty, whereas 「でしょう」 here makes it a softer, more
+          reflective conjecture about a past decision.
+    scene: A person is reflecting on a past difficult conversation they had.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: negative past plain (～なかった)
+    nuance: This sentence combines 「～ないほうがよかった」 (it would have been better not to do) with 「でしょう」 to express
+      a polite and reflective conjecture about a past action that, in retrospect, was probably not the
+      best choice. It implies a degree of regret or a lesson learned.
+  - english: They probably weren't students yet at that time, were they?
+    japanese:
+      - あの 時 は、彼 ら は まだ {学生 じゃ なかっ た でしょう}？
+      - 彼 ら、あの 時 は まだ {学生 じゃ なかっ た でしょう ね}？
+    english_literally: At that time, as for them, still probably were not students?
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 は、彼 ら は まだ {学生 で は なかっ た}。
+        english: At that time, they were not students (simple statement of fact).
+        hint: This is a simple statement of fact. We're looking for a conjecture about a past state.
+    scene: You're looking at old photos with a friend, trying to recall when certain people started attending
+      school.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    nuance: This example uses a noun in its past negative form 「学生じゃなかった」, combined with 「でしょう」 as a question,
+      seeking confirmation for a conjecture about a past status. The particle 「まだ」 (still) adds a nuance
+      that they were likely young at that time, reinforcing the negative conjecture.
+  - english: The reason for her absence probably wasn't a good one.
+    japanese:
+      - 彼女 の 欠席 の 理由 は {良く なかっ た でしょう}。
+      - 彼女 の 欠席 の 理由 は、おそらく {良く なかっ た でしょう}。
+    english_literally: Her absence's reason probably was not good.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 欠席 の 理由 は {良く ない でしょう}。
+        english: The reason for her absence is probably not good (present conjecture).
+        hint: This is a present tense conjecture. We are talking about a past event's reason.
+    scene: Two managers are discussing an employee's unexpected absence.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: negative past plain (～なかった)
+    nuance: This sentence applies the pattern to an い-adjective 「良い」 (good) in its past negative form
+      「良くなかった」. It expresses a polite, yet critical, conjecture about the quality or validity of a past
+      reason. The formal context of the 'managers discussing' fits well with the polite 「でしょう」.
+  - english: He probably didn't notice us there.
+    japanese:
+      - 彼 は 私 たち に {気づか なかっ た でしょう}。
+      - 彼 は 私 たち に は、{気づか なかっ た でしょう ね}。
+    english_literally: As for him, to us, probably did not notice.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 たち に {気づか ない はず が ない}。
+        english: There's no way he didn't notice us (meaning he must have noticed).
+        hint: This expresses a logical impossibility of not noticing, implying he *did* notice. We're
+          conveying a probability of *not* noticing.
+    scene: You and a friend were hiding from someone, and you're wondering if you were seen.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: negative past plain (～なかった)
+    nuance: This example uses a verb in its past negative form 「気づかなかった」. It expresses a polite conjecture
+      about someone's lack of awareness in the past. The nuance can be relief (if they were trying to
+      be unseen) or simple observation, depending on the context. 「でしょう」 maintains a polite and somewhat
+      detached tone.
+post_example_writeup: As you can see from the examples, **～なかったでしょう** is a versatile expression used to
+  state a polite conjecture about a past negative state or action. It’s crucial to select the correct
+  plain negative past form for the verb, い-adjective, な-adjective, or noun, as outlined in the 'Formation'
+  section. The politeness of **でしょう** makes it suitable for a wide range of situations, from casual conversations
+  with friends to more professional or academic discussions. Remember that while it conveys a high probability,
+  it is still a conjecture, allowing for a degree of uncertainty.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/～なかったでしょう

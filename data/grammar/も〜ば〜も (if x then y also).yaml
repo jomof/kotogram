@@ -1,0 +1,465 @@
+grammar_point: も〜ば〜も (if x then y also)
+learn_before:
+  - おきに (at intervals of)
+  - たびに (each time)
+  - だって (because・since)
+  - でしかない (merely・nothing but)
+  - でできる (made of)
+  - とされている (is considered)
+  - とする (to assume・to decide)
+  - のみならず (not only・let alone)
+  - はもとより (not only・let alone)
+  - 外見 (external appearance)
+  - 方 (direction)
+  - 真上 (directly above)
+meaning: Both... and..., ... and... as well
+pronunciation:
+  katakana: モ～バ～モ
+  romaji: mo ~ ba ~ mo
+formation:
+  Noun A + も + Verb (ば form) + Noun B + も + Verb: 'Expresses that if one condition involving a verb is
+    true, a related condition also involving a verb is also true. For example: 本 も 読め れば、映画 も 見る (If one
+    reads books, one also watches movies).'
+  Noun A + も + い-Adjective (ければ form) + Noun B + も + い-Adjective: 'Expresses that if one condition involving
+    an い-adjective is true, a related condition also involving an い-adjective is also true. For example:
+    寒ければ、湿気 も 多い (If it''s cold, it''s also humid).'
+  Noun A + も + な-Adjective (なら/ならば form) + Noun B + も + な-Adjective: 'Expresses that if one condition
+    involving a な-adjective is true, a related condition also involving a な-adjective is also true. For
+    example: 静か なら、快適 も です (If it''s quiet, it''s also comfortable).'
+  Noun A + も + Noun (なら/ならば form) + Noun B + も + Noun: 'Expresses that if one condition involving a noun
+    is true, a related condition also involving a noun is also true. For example: 学生 なら、若者 も です (If they
+    are a student, they are also a young person).'
+jlpt: N2
+etymology: The structure combines the particle 「も」, indicating 'also' or 'too,' with the conditional 「ば」
+  form of a verb or adjective, creating a parallel structure that emphasizes the co-occurrence of two
+  related elements. The repeated 「も」 emphasizes that both elements are true or applicable. Historically,
+  this structure highlights a natural, often inherent, correlation between two facts or qualities, implying
+  that if one holds true, the other almost invariably does as well.
+writeup: |-
+  The 「も〜ば〜も」 construction in Japanese highlights that if one thing is true, another related thing is also true. It emphasizes that traits or characteristics often go hand-in-hand, suggesting a strong correlation between them. The general idea is "If (A) is true, then (B) is also true."
+
+  Here's the breakdown:
+
+  *   「も」 connects to a noun.
+  *   The first predicate uses the 「ば」 conditional form. This varies depending on the part of speech:
+      *   **Verbs:** Change to their ば-form (e.g., 食べる → 食べれば).
+      *   **い-Adjectives:** Change to their ければ-form (e.g., 寒い → 寒ければ).
+      *   **な-Adjectives/Nouns:** Use 「なら」 or 「ならば」 after them (e.g., 静か → 静かなら, 学生 → 学生なら).
+  *   The second 「も」 follows a noun and is typically followed by a predicate similar to the first one, but not necessarily in the conditional form.
+
+  **Important Considerations:**
+
+  *   Both traits must share a mutual connection; they should both be positive, neutral, or negative. It is unnatural to mix positive and negative traits in this construction.
+  *   This construction is generally used in standard or semi-formal contexts. It is not typically seen in very casual or overly formal speech.
+  *   It implies that the existence of one characteristic naturally leads to or is intrinsically linked with the existence of the other, presenting them as a cohesive set.
+false_friends:
+  - term: 〜し
+    meaning: And, moreover, in addition to
+    kind: similar expression
+    nuance: While 「〜し」 simply lists reasons or facts without necessarily implying an inherent, conditional
+      correlation between them, 「も〜ば〜も」 emphasizes that if one condition (A) holds true, then a related
+      condition (B) also tends to hold true, highlighting a deeper, often inherent, pairing or consistency.
+      It's about 'both X and Y' as a cohesive, interrelated set.
+    grammar_point: し〜し (and; listing reasons)
+  - term: も〜も
+    meaning: Both ~ and ~; neither ~ nor ~; also; (not) either
+    kind: similar expression
+    nuance: 「も〜も」 simply states that two items (X and Y) possess a certain quality or undergo a certain
+      action without implying a conditional relationship between them. For example, 'XもYも〜だ' means 'Both
+      X and Y are 〜'. In contrast, 「も〜ば〜も」 explicitly uses the conditional 'ば' form, emphasizing that
+      if the first condition is met, the second, related condition is also met, thereby highlighting an
+      inherent or expected co-occurrence.
+    grammar_point: も~も (both neither ~ nor)
+  - term: ばかりか〜（さえ）
+    meaning: Not only...but also; much more than; in addition to.
+    kind: similar expression
+    nuance: 「ばかりか〜（さえ）」 expresses 'not only X, but also (even) Y,' implying that Y is an additional and
+      often more surprising element. It conveys an additive and often escalating relationship. 「も〜ば〜も」
+      focuses on the parallel existence or inherent pairing of two elements without necessarily implying
+      an escalation or surprising addition; it emphasizes that 'both X and Y' are consistently present
+      together.
+    grammar_point: <suggest>:〜だけでなく (not only... but also)
+  - term: のみならず
+    meaning: Not only...but also, Not just...but also, What is more
+    kind: similar expression
+    nuance: 「のみならず」 is a formal 'not only X, but also Y' construction, often used to extend a statement
+      to a broader scope or additional case. It's about inclusiveness. 「も〜ば〜も」, however, specifically
+      frames the relationship between two elements as a conditional pairing, suggesting that if one quality
+      or state is present, the other related quality or state is typically present as well. It underscores
+      a consistent, inherent connection rather than simply adding to a list.
+    grammar_point: はもとより (not only・let alone)
+  - term: たり〜たりする
+    meaning: To do things like X and Y; sometimes X and sometimes Y
+    kind: similar expression
+    nuance: While 「〜たり〜たりする」 lists examples of actions or states, often implying a non-exhaustive list
+      or alternation, 「も〜ば〜も」 specifically highlights an inherent, conditional correlation where the presence
+      of one quality or fact implies the presence of another. It emphasizes a stable pairing rather than
+      a varied list of activities.
+    grammar_point: Verb[たり] (representative listing)
+  - term: 〜も〜ば〜も
+    meaning: Sometimes... and sometimes...; there are times when... and there are times when...
+    kind: similar expression
+    nuance: While the main grammar point も〜ば〜も highlights an inherent correlation where if one condition
+      is true, the other also holds, this expression emphasizes an alternation or variety of actions or
+      states without implying a direct dependency.
+    grammar_point: <suggest>:〜も〜ば〜も (alternating actions)
+post_false_friends_writeup: When comparing 「も〜ば〜も」 with these similar expressions, the key distinction
+  lies in the nuance of connection. While 「〜し」 and 「も〜も」 primarily list or state coexistence, and 「ばかりか〜（さえ）」
+  and 「のみならず」 emphasize addition or escalation, 「も〜ば〜も」 specifically highlights an *inherent correlation*
+  or *conditional pairing*. It implies that if one characteristic or condition exists, the other *naturally
+  and consistently* follows or is present alongside it, framing them as an inseparable pair rather than
+  just a simple collection of facts. The form 「〜も〜ば〜も」 can also be used to express alternating actions
+  or states, but in that context, it lacks the inherent conditional connection and instead focuses on
+  variety over correlation. Pay attention to the context to discern the intended meaning.
+examples:
+  - english: My father can speak both Italian and Spanish.
+    japanese:
+      - 父 は イタリア 語 {も でき れ ば}、スペイン 語 {も 話せる}。
+      - 父 は イタリア 語 {も でき れ ば}、スペイン 語 {も 話せ ます}。
+    english_literally: Father, Italian language also can if, Spanish language also can speak.
+    competing_grammar:
+      - competing_japanese:
+          - 父 は イタリア 語 も できる し、スペイン 語 も 話せる。
+        english: My father can speak Italian, and he can also speak Spanish.
+        hint: The use of 〜し connects multiple reasons or facts, but it doesn't carry the same strong implication
+          of 'both...and...' that comes from the specific conditional structure. We're looking for a pattern
+          that emphasizes the simultaneous presence of two qualities.
+    scene: A person is describing their father's linguistic talents, highlighting his proficiency in multiple
+      languages.
+    register: semi-formal
+    setting: informative
+    nuance: The structure 「も〜ば〜も」 is used to emphasize that both abilities, speaking Italian 「イタリア 語 も
+      でき れば」 and speaking Spanish 「スペイン 語 も 話せる」, are true for the father. It implies a comprehensive
+      skill set.
+    etymology: The etymology of 「できる」 (to be able to, to be skilled at) suggests a deep-rooted sense of
+      capability or completion, which is well-suited here to describe acquired linguistic skills. The
+      combination with the 「も」 particle and conditional 「ば」 form stresses the dual existence of these
+      proficiencies, making them equally important and mutually reinforcing aspects of his linguistic
+      talents. This inherent capability is what allows for the expression of both skills co-existing within
+      the same individual.
+  - english: Winter in Japan is both dry and cold, so you must be careful when using fire outside.
+    japanese:
+      - 日本 の 冬 は 湿度 {も 低けれ ば}、温度 {も 低い} から、外 で 火 を 使う 時 は 気 を つけ なけれ ば なり ませ ん。
+      - 日本 の 冬 は 湿度 {も 低けれ ば}、寒 さ {も 厳しい} から、外 で 火 を 使う 時 は 気 を つけ なけれ ば なり ませ ん。
+    english_literally: Japanese winter, humidity also being low, temperature also being low, so outside
+      fire use when must be careful.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 冬 は 湿度 が 低く て、温度 も 低い から、外 で 火 を 使う 時 は 気 を つけ なけれ ば なり ませ ん。
+        english: Winter in Japan is dry, and the temperature is also low, so you must be careful when
+          using fire outside.
+        hint: Using 〜て for connecting adjectives simply lists attributes. It doesn't emphasize the correlation
+          of 'both...and...' in the same way the conditional form does. We're looking for a pattern that
+          highlights both conditions simultaneously.
+    scene: Someone explains the harsh conditions of winter in Japan and the necessary precautions.
+    register: formal
+    setting: informative
+    nuance: This example highlights two characteristics of winter in Japan using 「湿度 も 低けれ ば」 (humidity
+      is low) and 「温度 も 低い」 (temperature is low). The particle 「も」 reinforces that both aspects are true,
+      leading to the necessity of caution stated with 「気 を つけ なければ なり ませ ん」.
+    etymology: The word 「低い」 (hikui) for 'low' is used for both temperature and humidity. The etymology
+      of 「低い」 stems from a concept of physical lowness or depth. When used with 「も〜ば〜も」, it emphasizes
+      that these two 'low' conditions exist simultaneously, leading to a critical situation. This structure
+      suggests a natural pairing, where dryness and coldness are inherent qualities of Japanese winters
+      that necessitate caution.
+  - english: I like both the sound and the design of this guitar, so I never want to let it go.
+    japanese:
+      - この ギター は 音 {も 好き なら}、柄 {も 好き} な の で、一生 手放し たく あり ませ ん。
+      - この ギター は 音 {も 好き なら}、柄 {も 好き} な の で、一生 手放し たく ない です。
+      - この ギター は 音 {も 好き なら}、柄 {も 好き} だ から、一生 手放し たく ない。
+    english_literally: This guitar, sound also liked if, design also liked so, lifetime let go want not.
+    competing_grammar:
+      - competing_japanese:
+          - この ギター は 音 も 好き だ し、柄 も 好き な の で、一生 手放し たく あり ませ ん。
+        english: This guitar, I like the sound, and I also like the design, so I never want to let it
+          go.
+        hint: Using 〜し for connecting reasons or facts is a common way to list, but it lacks the parallel
+          emphasis that も〜ば〜も provides, which states that 'if one is true, the other is also true'. We're
+          looking for a structure that strongly pairs two attributes.
+    scene: A musician expressing deep affection for their guitar, emphasizing two distinct features.
+    register: casual
+    setting: reflective
+    nuance: Here, 「好き なら」 is used with the な-adjective 「好き」 to show that both the sound 「音」 and the design
+      「柄」 are reasons for the speaker's strong attachment. The repetition of 「も」 highlights the equal
+      importance of both aspects.
+    etymology: The concept of 「好き」 (suki) meaning 'liking' or 'fondness' has ancient roots, indicating
+      a state of being pleasing or agreeable. The use of 「好き なら」 (if I like) in the conditional 「ば」 form,
+      coupled with the double 「も」, builds a strong argument for the speaker's attachment to the guitar.
+      It implies that because both these inherent qualities are appealing, the desire to keep it is a
+      logical and inevitable outcome. The phrase 「手放し たく あり ませ ん」 (do not want to let go) reinforces this
+      strong emotional bond.
+  - english: Whenever I hear about pyramid schemes, I always think that both the scammers and the scammed
+      are at fault.
+    japanese:
+      - マルチ 商法 の 話 を 聞く たび に、騙す 方 {も 騙す 方 なら}、騙さ れる 方 {も 騙さ れる 方} だ と いつ も 思い ます。
+      - マルチ 商法 の 話 を 聞く たび に、騙す 方 {も 騙す 方 なら}、騙さ れる 方 {も 騙さ れる 方} だ と いつ も 思う。
+    english_literally: Pyramid scheme's story hear each time, deceiving side also deceiving side if, deceived
+      side also deceived side is, always think.
+    competing_grammar:
+      - competing_japanese:
+          - マルチ 商法 の 話 を 聞く たび に、騙す 方 も、騙さ れる 方 も 悪い と いつ も 思い ます。
+        english: While this sentence also uses 「も」 for 'both', it doesn't convey the specific conditional
+          nuance of 'if one is like that, the other is also like that' that the も〜ば〜も structure implies.
+          We're looking for a phrasing that emphasizes the inherent nature or a given state of both parties.
+        hint: While this sentence also uses 「も」 for 'both', it doesn't convey the specific conditional
+          nuance of 'if one is like that, the other is also like that' that the も〜ば〜も structure implies.
+          We're looking for a phrasing that emphasizes the inherent nature or a given state of both parties.
+    scene: Someone reflects critically on pyramid schemes, expressing a balanced perspective on who is
+      responsible.
+    register: formal
+    setting: serious
+    nuance: This complex sentence uses 「騙す 方 も 騙す 方 なら」 (the scammer is a scammer) and 「騙さ れる 方 も 騙さ れる
+      方」 (the scammed is scammed) with 「なら」 to express a critical, balanced view. It implies a certain
+      inevitability or characteristic nature for both sides in such schemes.
+    etymology: The verb 「騙す」 (damasu) meaning 'to deceive' and its passive form 「騙さ れる」 (damasareru) meaning
+      'to be deceived' are central here. The repetition of the noun phrase 「騙す 方」 (the deceiving side)
+      and 「騙さ れる 方」 (the deceived side) within the 「も〜ば〜も」 structure serves to emphasize an intrinsic
+      nature or predilection. It suggests that if one is a deceiver, that's their nature, and if one is
+      deceived, that's their nature, implying a cyclical or inherent flaw in both parties involved in
+      such schemes.
+  - english: That izakaya is always full because both the staff's attitude is good and the food is exquisite.
+    japanese:
+      - あの 居酒屋 は スタッフ の 態度 {も 良けれ ば}、料理 {も 絶品} だ から、いつ も 満席 だ ね。
+      - あの 居酒屋 は スタッフ の 態度 {も 良けれ ば}、料理 {も 絶品} な の で、いつ も 満席 です よ。
+    english_literally: That izakaya, staff's attitude also good if, food also exquisite is because, always
+      full is, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 居酒屋 は スタッフ の 態度 も 良い し、料理 も 絶品 だ から、いつ も 満席 だ ね。
+        english: That izakaya, the staff's attitude is good, and the food is also exquisite, so it's always
+          full, isn't it?
+        hint: While 〜し effectively lists multiple reasons, it lacks the strong sense of parallelism and
+          inherent connection that も〜ば〜も conveys, suggesting that these two qualities go hand-in-hand.
+          We're looking for a structure that emphasizes both traits as equally contributing to the outcome.
+    scene: Two friends casually discussing why a popular izakaya is always crowded, admiring its consistent
+      quality.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: 'This example highlights two positive attributes of the izakaya: the staff''s attitude 「スタッフ
+      の 態度 も 良けれ ば」 and the exquisite food 「料理 も 絶品」. The casual ending 「ね」 is appropriate for a conversation
+      between male friends, seeking agreement and sharing an observation.'
+    etymology: The word 「絶品」 (zeppin), meaning 'exquisite' or 'masterpiece,' historically refers to a
+      product of exceptional quality. When combined with 「良けれ ば」 (if it's good), the conditional form
+      of 「良い」 (yoi/ii), this construction emphasizes that both the staff's attitude and the food are superlatively
+      good. The combined effect of these two high-quality elements makes the izakaya consistently popular,
+      highlighting their inherent connection to its success. The casual ending 「ね」 (ne) adds a touch of
+      shared observation common among male friends.
+  - english: I admire him because he's good at both sports and efficient at work.
+    japanese:
+      - 彼 は、スポーツ {も 上手 に でき れ ば}、仕事 {も 効率 よく できる} から、尊敬 する よ。
+      - 彼 は、スポーツ {も 上手 に でき れ ば}、仕事 {も 効率 よく できる} の で、尊敬 し ます。
+      - 彼 は、運動 神経 {も 良けれ ば}、仕事 {も 効率 よく できる} から、尊敬 する よ。
+    english_literally: He, sports also skillfully can do if, work also efficiently can do because, respect.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は、スポーツ も 上手 に できる し、仕事 も 効率 よく できる から、尊敬 する よ。
+        english: He's good at sports, and he can also work efficiently, so I respect him.
+        hint: Using 〜し for listing reasons implies 'and' or 'in addition to', but it doesn't emphasize
+          the strong parallelism and correlation that も〜ば〜も conveys, which states that 'if one is true,
+          the other is also true'. We're looking for a structure that highlights both abilities as equally
+          present and contributing.
+    scene: A person expressing admiration for a colleague or friend who excels in multiple areas.
+    register: casual
+    setting: friendly
+    speaker_age: younger
+    nuance: The speaker expresses admiration for a person who excels in both sports 「スポーツ も 上手 に でき れば」
+      and work 「仕事 も 効率 よく できる」. The use of 「できる」 in the ば-form highlights the combination of abilities,
+      making the person truly respectable.
+    etymology: The verb 「できる」 (dekiru) often signifies 'to be able to' or 'to be accomplished'. In this
+      context, it reflects an inherent capability or knack. The phrase 「効率 よく」 (kouritsu yoku) meaning
+      'efficiently' comes from 「効率」 (kouritsu), relating to 'effectiveness' or 'efficiency,' often used
+      in business or productive contexts. The 「も〜ば〜も」 structure with these two distinct areas emphasizes
+      a balanced excellence, where the individual's abilities in both fields contribute equally to their
+      admirable qualities. The ending 「尊敬 する よ」 (I respect you/him/her) highlights the speaker's genuine
+      admiration, implying that these dual skills are indeed the foundation for such respect.
+  - english: She has neither status nor money.
+    japanese:
+      - 彼女 は 地位 {も なけれ ば} お 金 {も ない}。
+      - 彼女 は 地位 {も なけれ ば} お 金 {も あり ませ ん}。
+      - 彼女 は 地位 {も なけれ ば} お 金 {も ない} です。
+    english_literally: She, status also not if money also not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 地位 も お 金 も ない。
+        english: She has neither status nor money.
+        hint: While this sentence expresses the lack of both, the construction is a fixed phrase that
+          emphasizes the 'both...and also not...' aspect more strongly than a simple double-も with a single
+          negative ending. We're looking for the specific grammatical pattern that explicitly links two
+          negations with a conditional feel.
+    scene: Someone commenting on a person's unfortunate circumstances, highlighting a complete lack of
+      certain advantages.
+    register: semi-formal
+    setting: melancholic
+    nuance: This sentence uses the negative form 「なけれ ば」 (if there is not) with 「も」 to express the absence
+      of both status 「地位」 and money 「お金」. It implies a situation where neither is present, emphasizing
+      a comprehensive lack.
+    etymology: The expression 「〜もなければ〜もない」 (mo nakereba mo nai) is a very common fixed phrase employing
+      this grammar. 「ない」 (nai) means 'not exist' or 'not have', and its conditional form 「なけれ ば」 (nakereba)
+      means 'if there is not'. The repetition of 「も」 (mo) intensifies the negation, emphasizing the complete
+      absence of both elements. This structure has roots in classical Japanese, where conditionals were
+      often used to express concurrent states or conditions. In this phrase, it conveys a profound lack,
+      almost as if 'if this doesn't exist, then that also doesn't exist', painting a picture of comprehensive
+      privation.
+  - english: It seems the Prime Minister can both reform the economy and resolve human rights issues.
+    japanese:
+      - 総理 大臣 は、経済 {も 見直し でき れ ば}、人権 問題 {も 解決 でき そう} です。
+      - 総理 大臣 は、経済 {も 見直し でき れ ば}、人権 問題 {も 解決 でき そう} だ。
+    english_literally: Prime Minister, economy also able to review if, human rights issues also able to
+      solve seems.
+    competing_grammar:
+      - competing_japanese:
+          - 総理 大臣 は、経済 の 見直し も できる し、人権 問題 の 解決 も でき そう です。
+        english: The Prime Minister can also review the economy, and it seems they can resolve human rights
+          issues too.
+        hint: Using 〜し for listing abilities or possibilities implies 'and' or 'in addition', but it doesn't
+          emphasize the strong parallelism and shared capacity that も〜ば〜も conveys, where both abilities
+          contribute equally. We're looking for a structure that highlights both capabilities as equally
+          present.
+    scene: A political analyst discusses the promising capabilities of the Prime Minister, anticipating
+      positive outcomes in multiple policy areas.
+    register: formal
+    setting: informative
+    nuance: The speaker uses 「見直し でき れば」 (if able to reform) and 「解決 でき そう」 (seems able to solve) to suggest
+      the Prime Minister's dual capacity for handling complex issues like the economy 「経済」 and human rights
+      「人権 問題」. This highlights a holistic competence.
+    etymology: The verb 「見直す」 (minaosu), meaning 'to review' or 'to reconsider,' combines 「見」 (mi, look)
+      and 「直す」 (naosu, fix/correct), implying a re-evaluation for improvement. 「解決」 (kaiketsu), meaning
+      'resolution,' combines 「解」 (kai, untie) and 「決」 (ketsu, decide), suggesting untangling a problem.
+      The 「も〜ば〜も」 structure here, combined with the potential form 「でき」 and the volitional/speculative
+      「そう」, implies a strong potential for the Prime Minister to achieve both. It's almost as if 'if reform
+      is possible, then resolution also seems possible', painting a picture of multifaceted competence
+      based on inherent capabilities.
+  - english: He is valued because he can do both photography and narration.
+    japanese:
+      - 彼 は 撮影 {も でき れ ば}、ナレーション {も できる} から、重宝 さ れ て い ます。
+      - 彼 は 撮影 {も でき れ ば}、ナレーション {も できる} から、重宝 さ れ て いる。
+      - 彼 は 撮影 {も でき れ ば}、ナレーション {も できる} の で、とても 役立っ て い ます。
+    english_literally: He, photography also can do if, narration also can do because, valued is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 撮影 も できる し、ナレーション も できる から、重宝 さ れ て い ます。
+        english: He can do photography, and he can also do narration, so he is valued.
+        hint: Using 〜し to list skills implies 'and' or 'in addition', but it doesn't emphasize the strong
+          parallelism and combined usefulness that も〜ば〜も conveys, where both skills contribute equally
+          to his value. We're looking for a structure that highlights both abilities as a pair.
+    scene: A manager explains why a particular employee is highly valued within their team.
+    register: semi-formal
+    setting: informative
+    nuance: This sentence highlights the individual's diverse skill set, using 「撮影 も でき れば」 (if able to
+      photograph) and 「ナレーション も できる」 (also able to narrate) to show he can perform both tasks. The grammar
+      point emphasizes that this dual capability is why he is highly valued 「重宝 さ れ て い ます」.
+    etymology: The words 「撮影」 (satsuei, photography) and 「ナレーション」 (nareeshon, narration) are distinct
+      professional skills. The phrase 「重宝 さ れ て い ます」 (chouhou sareteimasu) means 'is highly valued' or
+      'is very useful,' combining 「重宝」 (chouhou, valuable item/treasure) with the passive verb suffix
+      「さ れる」. The 「も〜ば〜も」 structure with 「できる」 (to be able to) frames these two abilities as co-existing
+      and mutually contributing to his value. It suggests that because he possesses both these skills,
+      he is uniquely indispensable. This emphasizes the synergistic effect of his diverse talents.
+  - english: That acrobat can spin both a teacup and a cushion, so they always excite the audience.
+    japanese:
+      - あの 曲芸 師 は、茶碗 {も 回せ れ ば}、座 布団 {も 回せる} の で、いつ も 観客 を 湧か せ ます。
+      - あの 曲芸 師 は、茶碗 {も 回せ れ ば}、座 布団 {も 回せる} から、いつ も 観客 を 湧か せ ます。
+    english_literally: That acrobat, teacup also can spin if, cushion also can spin because, always audience
+      excites.
+    competing_grammar:
+      - competing_japanese:
+          - あの 曲芸 師 は、茶碗 も 座 布団 も 回せ ます から、いつ も 観客 を 湧か せ ます。
+        english: While using two 「も」 particles with a single predicate expresses 'both', it doesn't convey
+          the conditional nuance of 'if A, then B also' or the strong parallelism of the も〜ば〜も structure,
+          which highlights the separate but equally impressive actions. We're looking for a structure
+          that emphasizes two distinct but equally skillful actions.
+        hint: While using two 「も」 particles with a single predicate expresses 'both', it doesn't convey
+          the conditional nuance of 'if A, then B also' or the strong parallelism of the も〜ば〜も structure,
+          which highlights the separate but equally impressive actions. We're looking for a structure
+          that emphasizes two distinct but equally skillful actions.
+    scene: A narrator describing the impressive and multifaceted skills of an acrobat during a performance.
+    register: formal
+    setting: storytelling
+    nuance: 'This sentence describes an acrobat with impressive dual talents: spinning a teacup 「茶碗 も
+      回せ れば」 and a cushion 「座布団 も 回せる」. The use of 「も〜ば〜も」 highlights the rare combination of skills that
+      consistently thrills the audience 「観客 を 湧か せ ます」.'
+    etymology: The verb 「回す」 (mawasu) meaning 'to spin' or 'to turn,' takes on a dynamic and skillful
+      connotation in the context of acrobatics. Its potential form 「回せる」 (mawaseru) indicates the ability
+      to perform the action. 「茶碗」 (chawan, teacup) and 「座布団」 (zabuton, cushion) are everyday items transformed
+      into props by the acrobat's skill. The phrase 「観客 を 湧か せ ます」 (kankyaku o wakasemasu) means 'to excite
+      the audience.' The 「も〜ば〜も」 structure here elevates the acrobat's ability by showing that their talent
+      is not limited to one impressive feat but encompasses two distinct, challenging ones, implying a
+      profound mastery that consistently captivates the audience.
+  - english: Since that child is good at both studying and has a good personality, I bet they're popular.
+    japanese:
+      - あの 子 は 勉強 {も でき れ ば}、性格 {も 良い} から、モテる だろう ね。
+      - あの 子 は 勉強 {も でき れ ば}、性格 {も 良い} の で、モテる でしょう ね。
+      - あの 子 は 成績 {も 良けれ ば}、性格 {も 良い} から、モテる だろう ね。
+    english_literally: That child, studying also can do if, personality also good because, popular likely
+      is, right?
+    competing_grammar:
+      - competing_japanese:
+          - あの 子 は 勉強 も できる し、性格 も 良い から、モテる だろう ね。
+        english: While 〜し effectively lists multiple reasons, it lacks the strong sense of parallelism
+          and inherent connection that も〜ば〜も conveys, suggesting that these two qualities go hand-in-hand.
+          We're looking for a structure that emphasizes both traits as equally contributing to the outcome.
+        hint: While 〜し effectively lists multiple reasons, it lacks the strong sense of parallelism and
+          inherent connection that も〜ば〜も conveys, suggesting that these two qualities go hand-in-hand.
+          We're looking for a structure that emphasizes both traits as equally contributing to the outcome.
+    scene: Two mothers gossiping good-naturedly about a child who seems to effortlessly excel in various
+      aspects.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: older
+    nuance: The speaker, likely an older female, observes that a child is both academically strong 「勉強
+      も でき れば」 and has a good personality 「性格 も 良い」. The casual ending 「だろう ね」 is common among female
+      speakers when speculating or seeking soft agreement, implying a shared understanding of the child's
+      attractiveness.
+    etymology: The verb 「できる」 (dekiru) for 'studying well' here denotes capability and achievement. The
+      adjective 「良い」 (yoi/ii) for 'good personality' signifies inherent quality. The expression 「モテる」
+      (moteru) means 'to be popular/attractive' and often implies popularity among peers. The 「も〜ば〜も」
+      construction effectively conveys that both academic prowess and good character are present, and
+      these two attributes combined are the reason for the child's popularity. The use of 「だろう ね」 (darou
+      ne) suggests a shared, gentle speculation common in informal female conversation, reinforcing the
+      observation that these dual qualities are inherently attractive.
+  - english: You're truly a captivating person, as you're both intelligent and good-looking.
+    japanese:
+      - 君 は 頭 {も 良い なら}、外見 {も 良い} から、本当 に 魅力 的 な 人 だ ね。
+      - 君 は 頭 {も 良い なら}、外見 {も 良い} の で、本当 に 魅力 的 な 人 です ね。
+      - 君 は {賢けれ ば}、外見 {も 良い} から、本当 に 魅力 的 な 人 だ ね。
+    english_literally: You, head also good if, appearance also good because, truly charming person is,
+      right?
+    competing_grammar:
+      - competing_japanese:
+          - 君 は 頭 も 良い し、外見 も 良い から、本当 に 魅力 的 な 人 だ ね。
+        english: While 〜し effectively lists multiple positive attributes, it lacks the strong sense of
+          parallelism and inherent connection that も〜ば〜も conveys, implying that these two qualities go
+          hand-in-hand to make someone captivating. We're looking for a structure that emphasizes both
+          traits as equally contributing to the overall impression.
+        hint: While 〜し effectively lists multiple positive attributes, it lacks the strong sense of parallelism
+          and inherent connection that も〜ば〜も conveys, implying that these two qualities go hand-in-hand
+          to make someone captivating. We're looking for a structure that emphasizes both traits as equally
+          contributing to the overall impression.
+    scene: A person on a first date giving a genuine compliment to their partner, admiring their well-rounded
+      qualities.
+    register: casual
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: 'This casual compliment, likely from a younger male speaker, highlights two appealing attributes:
+      intelligence 「頭 も 良い」 and good looks 「外見 も 良い」. The use of 「良い なら」 for the い-adjective with 「も」
+      emphasizes that both qualities contribute to the person being truly captivating 「本当 に 魅力 的 な 人 だ
+      ね」. The ending 「だ ね」 seeks agreement and conveys a friendly, admiring tone.'
+    etymology: The idiom 「頭 が 良い」 (atama ga ii) literally means 'head is good,' signifying intelligence.
+      「外見 が 良い」 (gaiken ga ii) means 'appearance is good.' The word 「魅力 的」 (miryokuteki) means 'captivating'
+      or 'charming,' combining 「魅力」 (miryoku, charm) and 「的」 (teki, -like). The 「も〜ば〜も」 structure serves
+      to emphasize that both intelligence and good looks are simultaneously present, and these two qualities
+      together make the person genuinely attractive. The final 「だ ね」 (da ne) is a common casual sentence-ending
+      particle that seeks soft agreement or confirms a shared sentiment, often used in intimate or friendly
+      settings.
+post_example_writeup: Keep in mind that the 'both...and...' structure indicates that if one thing is true,
+  the other is also likely to be true, or that they exist in conjunction. This emphasizes a strong correlation
+  between the two elements. While this construction highlights characteristics that go hand-in-hand, it
+  does not imply causation, nor is it universally applicable to all situations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/も-ば-も

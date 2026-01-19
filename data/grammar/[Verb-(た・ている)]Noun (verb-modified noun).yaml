@@ -1,0 +1,249 @@
+grammar_point: '[Verb-(た・ている)]Noun (verb-modified noun)'
+learn_before:
+  - Verb[た] (past tense)
+  - Verb[て] (non-sequential events)
+  - Verb[ました] (polite past)
+  - '[Verb-stem][Place noun] (location where action occurs)'
+  - 〜付き (attached with)
+  - いただく (humbly receive)
+  - か (or)
+  - が原因で (due to)
+  - どこ (where)
+  - な-Adjective (modifying nouns)
+  - へ (directional particle)
+  - を (direct object marker)
+  - 先 (ahead・first)
+  - 方 (direction)
+meaning: A verb in its past (た-form) or progressive (ている-form) directly modifies a noun that follows it,
+  describing the noun's action or state.
+pronunciation:
+  katakana: どうししゅうしょくめいし
+  romaji: dōshi shūshoku meishi
+  pronunciation_warning: This grammar point describes a syntactic pattern, not a specific word. Its pronunciation
+    refers to the Japanese grammatical term for 'verb-modified noun'.
+formation:
+  Verb[た form] + Noun: Describes a noun that was the object or subject of a completed action or is in
+    a resultant state.
+  Verb[ている form] + Noun: Describes a noun that is currently performing an action, is in a state resulting
+    from an action, or is the object/subject of an ongoing action or habitual state.
+jlpt: N4
+etymology: This grammatical structure reflects a core principle of Japanese syntax where verb phrases
+  can directly precede and modify nouns, similar to adjectives. Unlike English, which often uses relative
+  clauses (e.g., 'the man who ran'), Japanese allows a more direct pre-nominal modification using various
+  verb forms. The use of the past (た) form to indicate completed action or resultant state and the progressive
+  (ている) form for ongoing action or state is a natural extension of their basic verbal functions when used
+  attributively.
+writeup: The pattern of a verb directly modifying a noun, specifically using the past (た-form) or progressive
+  (ている-form), is a fundamental and efficient way to describe nouns in Japanese. This construction allows
+  for concise expression, eliminating the need for explicit relative pronouns often found in English,
+  such as 'who,' 'which,' or 'that.' When a verb in its た-form directly precedes a noun, it typically
+  describes a noun that has completed a certain action or is in a resultant state due to that action.
+  For example, 「食べた リンゴ」 (the apple that was eaten) or 「壊れた 時計」 (the broken clock). The noun is either
+  the object of the action (as in 食べたリンゴ) or the subject (as in 壊れた時計). The context usually clarifies
+  this relationship. Conversely, when a verb in its ている-form modifies a noun, it indicates that the noun
+  is currently performing an action, is undergoing an action, or is in a continuous state. For instance,
+  「走っている 犬」 (the dog that is running) or 「座っている 人」 (the person who is sitting). This form captures dynamism
+  or a sustained condition. It can also describe a habitual action, such as 「働いている 人」 (a person who is
+  always working). This construction is similar in function to adjectives modifying nouns (e.g., 「赤い りんご」
+  - a red apple), providing descriptive information directly before the noun it modifies. Understanding
+  how verbs can take on this attributive role is crucial for natural Japanese expression.
+false_friends:
+  - term: '[Clause]こと'
+    meaning: nominalization of a clause; the act of...
+    kind: similar expression
+    nuance: While {Verb-form}Noun directly modifies a noun, 「〜{動詞}こと」 nominalizes the entire clause or
+      action itself, making it a noun. It doesn't modify a specific noun in the sentence.
+    grammar_point: '[Clause]こと (the act of・the fact that)'
+  - term: い-Adjective + Noun
+    meaning: adjectives directly modifying nouns
+    kind: similar expression
+    nuance: Adjectives (い-Adjectives) inherently describe qualities or states of nouns. Verbs in {た・ている}
+      forms describe nouns based on their actions or states resulting from actions, providing a dynamic
+      or temporal element that simple adjectives do not.
+    grammar_point: <suggest>:い-Adjective + Noun (describing nouns)
+post_false_friends_writeup: The key distinction between verbs directly modifying nouns and nominalized
+  clauses using こと lies in their scope. Verb-modified nouns (e.g., 「読んだ 本」) describe the book's state
+  or action. In contrast, clauses ending with こと (e.g., 「本を 読む こと」) treat the entire action of 'reading
+  a book' as a noun, often used as the subject or object of another verb or to form a general statement.
+  Similarly, while adjectives describe inherent qualities, verbs modifying nouns describe them based on
+  actions or resultant states, adding a temporal or dynamic dimension.
+examples:
+  - english: I bought the book I read yesterday.
+    japanese:
+      - 昨日、{読ん だ} 本 を 買い まし た。
+      - 昨日、{読ん だ} 本 を 買っ た よ。
+      - 昨日、{読ん だ} 本、買っ た わ。
+      - 昨日、{読み まし た} 本 を 買い まし た。
+    english_literally: Yesterday, {read} book, bought.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、本 を 読ん だ こと を 買い まし た。
+        english: I bought the fact that I read a book yesterday.
+        hint: This nominalizes the action of reading, not the book itself. We want to describe the book
+          that was read.
+    scene: Talking to a friend about a recent purchase.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The dog running in the park is cute.
+    japanese:
+      - 公園 で {走っ て いる} 犬 は 可愛い です。
+      - 公園 で {走っ てる} 犬、可愛い よ。
+      - 公園 で {走っ て いる} 犬 は 可愛い わ ね。
+    english_literally: Park in {running} dog is cute.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 で 走る の が 可愛い 犬 です。
+        english: The dog that runs in the park is cute.
+        hint: This nominalizes the act of 'running' as something cute, not directly describing the dog.
+          We want to say 'the dog which is running'.
+    scene: Pointing out a dog in the park.
+    register: teineigo (polite)
+    setting: friendly
+  - english: The person who called was my mother.
+    japanese:
+      - '{電話 し た} 人 は 私 の 母 でし た。'
+      - '{電話 し た} 人 は うち の 母 だっ た。'
+      - '{電話 し た} 人 は 私 の 母 で ござい ます。'
+    english_literally: '{Called} person is my mother was.'
+    competing_grammar:
+      - competing_japanese:
+          - 電話 が 鳴っ た 人 は 私 の 母 でし た。
+        english: The person for whom the phone rang was my mother.
+        hint: This is a roundabout way to say 'the person who called'. We're looking for a direct description
+          of the person who initiated the call.
+    scene: Explaining to a family member who contacted you.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The use of 「電話した人」 is a very common and neutral way to refer to 'the person who called,' regardless
+      of gender.
+  - english: Please return the CD you are listening to.
+    japanese:
+      - '{聞い て いる} CD を 返し て ください。'
+      - '{聞い てる} CD、返し て ね。'
+      - '{聞い て いる} CD を 返却 し て いただけ ます か。'
+    english_literally: '{Listening} CD, please return.'
+    competing_grammar:
+      - competing_japanese:
+          - CD を 聞い て いる こと を 返し て ください。
+        english: Please return the act of listening to the CD.
+        hint: This nominalizes the act of listening, which doesn't make sense in this context. We want
+          to describe the CD itself.
+    scene: A parent asking their child to return an item.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The casual request 「返して ください」 is common from a parent to a child. 「聞いている CD」 clearly identifies
+      the specific CD by its ongoing action.
+  - english: This is the picture I took on my trip.
+    japanese:
+      - これ は 旅行 で {撮っ た} 写真 です。
+      - これ、旅行 で {撮っ た} 写真 な の。
+      - こちら は 旅行 で {撮影 し まし た} 写真 で ござい ます。
+    english_literally: This is trip in {took} picture.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 旅行 に 行っ た こと を 写し た 写真 です。
+        english: This is a photo that reflects the fact that I went on a trip.
+        hint: This phrase is overly complex and does not directly describe the picture itself as 'taken'.
+          We're looking for a simple description of the picture.
+    scene: Showing photos to friends.
+    register: teineigo (polite)
+    setting: friendly
+    nuance: 「撮った写真」 implies the completed action of taking the photo and the resulting photo itself, directly
+      modifying 'picture'.
+  - english: He is a man who is always working hard.
+    japanese:
+      - 彼 は いつ も {働い て いる} 人 です。
+      - 彼 は いつ も {働い てる} 人 だ ね。
+      - 彼 は いつ も {勤労 し て いる} 方 です。
+    english_literally: He is always {working} person.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は いつ も 働く の です。
+        english: He is someone who always works.
+        hint: This sentence nominalizes 'working' to describe him as a worker, but we want to directly
+          modify 'person' to describe 'a person who is working'.
+    scene: Describing a colleague to another colleague.
+    register: teineigo (polite)
+    setting: professional
+    nuance: 「働いている人」 uses the ている form to describe a habitual or continuous action, characterizing the
+      person as someone who is 'always working'.
+  - english: We are investigating the accident that occurred yesterday.
+    japanese:
+      - 昨日 {発生 し た} 事故 を 調査 し て おり ます。
+      - 昨日 {起き た} 事故 を 調査 し て い ます。
+      - 昨日 {発生 いたし まし た} 事故 を 調査 し て おり ます。
+    english_literally: Yesterday {occurred} accident, investigating.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、事故 が 発生 し た こと を 調査 し て おり ます。
+        english: We are investigating the fact that an accident occurred yesterday.
+        hint: This nominalizes the entire event, but we want to describe the 'accident' itself that occurred.
+          We're looking for a direct description of the noun.
+    scene: A formal business meeting discussing an incident.
+    register: bijinesu nihongo (business)
+    setting: professional
+    nuance: 「発生した事故」 is a standard, formal way to refer to an 'accident that occurred', directly modifying
+      'accident' with the verb's completed action. 「調査して おります」 is humble language appropriate for a business
+      context.
+  - english: Where is the cat sleeping in the living room?
+    japanese:
+      - リビング で {寝 て いる} 猫 は どこ？
+      - リビング で {寝 てる} 猫、どこ に いる の？
+      - リビング で {お 休み に なっ て いる} 猫 は どちら に いらっしゃい ます か。
+    english_literally: Living room in {sleeping} cat is where?
+    competing_grammar:
+      - competing_japanese:
+          - リビング で 猫 が 寝 て いる こと は どこ です か？
+        english: Where is the fact that the cat is sleeping in the living room?
+        hint: This sentence structure asks where 'the fact' is, which doesn't make sense. We want to know
+          the location of the cat.
+    scene: Asking a family member about a pet's location.
+    register: casual
+    setting: intimate
+    nuance: The casual interrogative 「どこ？」 is typical in an intimate setting. 「寝ている 猫」 indicates the cat
+      is currently in the act of sleeping, describing the cat by its ongoing state.
+  - english: The money I saved will be used for my trip.
+    japanese:
+      - '{} 貯め た} お 金 は 旅行 に 使わ れ ます。'
+      - '{} 貯め た} お 金 が 旅行 に 使わ れる よ。'
+      - '{} 貯め て おい た} お 金 は 旅行 に 使わ れ ます。'
+    english_literally: '{}Saved} money, trip for, will be used.'
+    competing_grammar:
+      - competing_japanese:
+          - お 金 を 貯め た こと は 旅行 に 使わ れ ます。
+        english: The act of saving money will be used for the trip.
+        hint: This focuses on 'the act of saving money' as the subject, not the money itself. We want
+          to describe the money that was saved.
+    scene: Talking about future plans.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「貯めた お金」 concisely means 'money that I saved,' highlighting the completed action of saving
+      and its direct effect on the noun 'money'.
+  - english: I bought a present for the child who is crying.
+    japanese:
+      - '{泣い て いる} 子供 に プレゼント を 買い まし た。'
+      - '{泣い てる} 子 に プレゼント を 買っ て あげ た。'
+      - '{泣い て いらっしゃる} お 子 様 に 贈り物 を 買い まし た。'
+    english_literally: '{Crying} child for present bought.'
+    competing_grammar:
+      - competing_japanese:
+          - 子供 が 泣い て いる こと に プレゼント を 買い まし た。
+        english: I bought a present for the fact that the child is crying.
+        hint: This phrasing indicates the present was for 'the fact' of crying, which is illogical. We
+          want to give a present to the child.
+    scene: Explaining to a friend why you bought a gift.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: male
+    nuance: 「泣いている 子供」 specifies the child by their current emotional state, which is clearly visible.
+      The speaker's use of 「買いました」 (bought) indicates a completed action.
+post_example_writeup: As you can see from these examples, this structure is highly versatile. It is a
+  fundamental building block for forming complex sentences in Japanese. Pay close attention to whether
+  the verb is describing a completed action/resultant state (た-form) or an ongoing/habitual action (ている-form)
+  of the noun.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/70

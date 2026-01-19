@@ -1,0 +1,288 @@
+grammar_point: Verb[なければ・なきゃ] (conditional negative)
+learn_before:
+  - ~なければならない・なきゃ (must do・have to)
+meaning: If (one) doesn't do; Unless
+pronunciation:
+  katakana: ナケレバ・ナキャ
+  romaji: nakereba・nakya
+formation:
+  Verb (ない-form, drop い) + なければ: Standard negative conditional. This form is derived from Verb + ない (negative)
+    + ば (conditional particle).
+  Verb (ない-form, drop い) + なきゃ: Casual contraction of なければ. Commonly used in everyday speech.
+jlpt: N4
+etymology: The expression なければ originates from the negative auxiliary verb ない (nai), meaning 'not,' combined
+  with the classical conditional particle ば (ba). Historically, the い of ない transformed into けれ when followed
+  by ば, leading to なければ, literally meaning 'if it is not.' The form なきゃ is a modern, phonetic contraction
+  of なければ, widely adopted in informal spoken Japanese due to its ease of pronunciation.
+writeup: |-
+  The grammar point Verb[なければ・なきゃ] is fundamental for expressing negative conditionals in Japanese. It translates to 'if (one) doesn't do X' or 'unless X is done.' You form it by attaching なければ or its casual contraction なきゃ to the stem of a verb's negative plain form (V-ない, dropping the い).
+
+  **なければ** is the standard form. It is versatile and appropriate for a wide range of situations, from casual conversation to more structured writing. It clearly establishes a condition where the absence of an action or state is a prerequisite for a subsequent event.
+
+  **なきゃ** is a casual, contracted form of なければ. It is extremely common in everyday spoken Japanese among friends, family, and peers. However, it should be avoided in formal contexts. Its use signals a relaxed and informal tone.
+
+  This conditional construction is essential for conveying logical dependencies where the non-occurrence of an action directly leads to a particular outcome. For example, if you don't turn off the lights, the electricity bill will be high. The conditional phrase precisely sets up this cause-and-effect relationship.
+false_friends:
+  - term: ~なければならない (must do・have to)
+    meaning: must do, have to do
+    kind: similar expression
+    nuance: 「〜なければならない」 expresses obligation or necessity, meaning 'one must do X.' In contrast, 「〜なければ」
+      simply states a negative condition 'if one does not do X,' without inherently implying obligation.
+      While a consequence often follows, the conditional form itself doesn't mean 'must.'
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: ~ないでください (please don't)
+    meaning: please don't do
+    kind: similar expression
+    nuance: 「〜ないでください」 is a direct negative request or command, telling someone 'please don't do X.' 「〜なければ」,
+      however, is a conditional clause ('if X doesn't happen'), not a direct command. The speaker is not
+      directly asking for the non-occurrence of X.
+    grammar_point: ないでください・ないで (please don't)
+  - term: Verb[ない]まま (without doing)
+    meaning: without doing, leaving something undone
+    kind: similar expression
+    nuance: 「〜ないまま」 describes a state where an action was not performed or a condition remained unchanged,
+      meaning 'without doing X' or 'leaving X undone.' This focuses on the state or manner, whereas 「〜なければ」
+      focuses on a conditional relationship where the non-action leads to a consequence.
+    grammar_point: 〜まま(に) (as is・unchanged)
+  - term: Verb[なかったら] (if not)
+    meaning: if (one) had not done, if (one) does not do (past/hypothetical)
+    kind: similar expression
+    nuance: Both 「〜なければ」 and 「〜なかったら」 express negative conditionals. However, 「〜なかったら」, using the た-form,
+      often carries a nuance of a hypothetical or completed negative action, or a stronger sense of consequence
+      tied to that non-action, particularly when referring to the past or a strong hypothetical future.
+      「〜なければ」 focuses more on the ongoing or general condition of not doing something.
+    grammar_point: たら (conditional, when・if A then B)
+post_false_friends_writeup: To effectively use these expressions, remember that 「〜なければ」 primarily sets
+  a condition where the non-occurrence of an action or state dictates a subsequent event. It is distinct
+  from expressing obligation, issuing direct negative requests, or merely describing a state of inaction.
+  While 「〜なかったら」 is very similar, consider 「〜なければ」 as a general 'if not' conditional, especially when
+  the consequence is a straightforward logical result. In contrast, 「〜なかったら」 can imply a more hypothetical
+  or completed non-action with a direct and often more emphasized consequence.
+examples:
+  - english: If you don't study, you won't pass the exam.
+    japanese:
+      - 勉強 し なけれ ば、試験 に 合格 でき ませ ん。
+      - 勉強 し なけれ ば、試験 に 合格 でき ない。
+    english_literally: If (you) don't study, (you) cannot pass the exam.
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 し なかっ たら、試験 に 合格 でき ませ ん。
+        english: If you hadn't studied, you wouldn't pass the exam.
+        hint: 「〜なかったら」 is often used for hypothetical or past negative conditions. We're looking for a
+          general conditional for not doing something.
+      - competing_japanese:
+          - 勉強 し ない で、試験 に 合格 でき ませ ん。
+        english: By not studying, you cannot pass the exam.
+        hint: 「〜ないで」 indicates 'without doing' or 'by not doing' and often describes a manner or state,
+          rather than a direct conditional like 'if not X, then Y.' We're looking for a conditional relationship.
+    scene: A teacher advising a student about an upcoming exam.
+    register: teineigo (polite)
+    setting: academic
+    nuance: This sentence uses the standard 「しなければ」 to present a clear, logical consequence of not studying.
+      The polite form 「できません」 is suitable for a teacher-student interaction. The usage implies a general
+      truth.
+    etymology: '「合格」 (gōkaku) meaning ''passing an exam'' or ''success'' combines 合 (gō: fit, suit) and
+      格 (kaku: status, rule), implying meeting the required standard.'
+  - english: If you don't hurry, you'll be late for the meeting.
+    japanese:
+      - 急が なけれ ば、会議 に 遅刻 し ます よ。
+      - 急が なけれ ば、会議 に 遅刻 する よ。
+    english_literally: If (you) don't hurry, (you) will be late for the meeting, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 急が ない なら、会議 に 遅刻 し ます よ。
+        english: If it's the case that you don't hurry, you'll be late for the meeting.
+        hint: 「〜ないなら」 emphasizes that the condition ('not hurrying') is a known or assumed fact, or a
+          specific scenario, rather than a general conditional consequence. We're looking for a general
+          conditional.
+    scene: A colleague reminding another colleague about a meeting.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The use of 「なければ」 here conveys a simple, direct conditional warning. The particle 「よ」 at the
+      end softens the warning and makes it sound more helpful, suitable between colleagues.
+    etymology: '「遅刻」 (chikoku) meaning ''lateness'' or ''being late'' combines 遅 (chi: late, slow) and
+      刻 (koku: time,刻む - to engrave time), literally meaning ''slow time'' or ''engraved late''.'
+  - english: If you don't clean your room, your mom will get mad.
+    japanese:
+      - 部屋 を 片付け なきゃ、お 母 さん 怒る よ。
+      - 部屋 を 片付け なけれ ば、お 母 さん 怒る よ。
+      - 部屋 を 片付け なけれ ば、お 母 さん 怒り ます よ。
+    english_literally: If (you) don't clean (your) room, Mom will get angry, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 を 片付け ない と、お 母 さん 怒る よ。
+        english: If you don't clean your room, your mom will get mad.
+        hint: 「〜ないと」 is a very common informal conditional that often implies a negative consequence.
+          It can sometimes be used interchangeably, but 「〜なければ」 (or 「なきゃ」) is the more grammatically complete
+          conditional form. We're looking for the standard conditional structure.
+      - competing_japanese:
+          - 部屋 を 片付け ない まま、お 母 さん 怒る よ。
+        english: With your room remaining uncleaned, your mom will get mad.
+        hint: 「〜ないまま」 describes a state of not doing something. It emphasizes the condition or manner
+          of remaining, rather than the 'if-then' conditional. We're looking for a conditional.
+    scene: An older sister talking to her younger brother.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「片付けなきゃ」 is a casual contraction, perfectly fitting for a conversation between siblings. The
+      use of 「怒る よ」 is also very casual and direct, implying a natural consequence that the listener is
+      aware of. The overall tone is natural for an older sister to a younger brother.
+    etymology: '「片付ける」 (katazukeru) meaning ''to tidy up'' or ''to put in order'' comes from 片 (kata:
+      one side, fragment) and 付ける (tsukeru: to attach), suggesting putting things together or in their
+      designated place.'
+  - english: If I don't go to work tomorrow, I won't get paid.
+    japanese:
+      - 明日 仕事 に 行か なきゃ、給料 が 出 ない。
+      - 明日 仕事 に 行か なけれ ば、給料 が 出 ない。
+      - 明日 仕事 に 行か なけれ ば、給料 が 出 ませ ん。
+    english_literally: If (I) don't go to work tomorrow, salary will not come out.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 仕事 に 行か ない なら、給料 が 出 ない。
+        english: If it's the case that I don't go to work tomorrow, I won't get paid.
+        hint: 「〜ないなら」 implies a decision or a given situation. We're looking for a more general 'if not'
+          conditional.
+    scene: A person lamenting their situation to themselves.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: This is an internal thought, so the casual 「出 ない」 (for 出ません) is natural. 「行かなければ」 states a
+      logical and unavoidable consequence directly tied to not going to work. The speaker is reflecting
+      on a personal necessity.
+    etymology: '「給料」 (kyūryō) meaning ''salary'' or ''wages'' combines 給 (kyū: supply, provide) and 料
+      (ryō: fee, material), literally referring to the ''provided materials'' or ''provided fees'' for
+      work.'
+  - english: If you don't leave soon, you'll miss the last train.
+    japanese:
+      - すぐ 出発 し なきゃ、終電 に 間に合わ ない よ。
+      - すぐ 出発 し なけれ ば、終電 に 間に合わ ない よ。
+      - すぐ 出発 し なけれ ば、終電 に 間に合い ませ ん よ。
+    english_literally: If (you) don't depart soon, (you) will not make the last train, you know.
+    competing_grammar:
+      - competing_japanese:
+          - すぐ 出発 し ない と、終電 に 間に合わ ない よ。
+        english: If you don't leave soon, you'll miss the last train.
+        hint: 「〜ないと」 is a common informal conditional, similar to 「なきゃ」 but sometimes with a stronger
+          implication of an undesirable outcome. We're focusing on the base 'if not' conditional.
+    scene: A friend urging another friend to leave.
+    register: casual
+    setting: commanding
+    nuance: The use of 「しなければ」 here, while slightly more formal than 「しなきゃ」, still conveys urgency with
+      the added 「よ」 particle. This register is often used when one friend gives a mild but firm warning
+      to another about an impending event.
+    etymology: '「終電」 (shūden) meaning ''last train'' combines 終 (shū: end) and 電 (den: electricity, short
+      for 電車 densha - electric car), literally ''end electric train''.'
+  - english: If you don't write it down, you'll forget it.
+    japanese:
+      - メモ し なきゃ、忘れ ちゃう よ。
+      - メモ し なけれ ば、忘れ ちゃう よ。
+      - メモ し なけれ ば、忘れ て しまい ます よ。
+    english_literally: If (you) don't make a memo, (you) will forget, you know.
+    competing_grammar:
+      - competing_japanese:
+          - メモ し ない と、忘れ ちゃう よ。
+        english: If you don't write it down, you'll forget it.
+        hint: 「〜ないと」 is a very common informal conditional that often implies a negative consequence,
+          and is frequently used colloquially. We're looking for the standard conditional structure.
+      - competing_japanese:
+          - メモ し なかっ たら、忘れ ちゃう よ。
+        english: If you had not written it down, you would forget it.
+        hint: 「〜なかったら」 emphasizes a hypothetical or past completed negative action, or a stronger sense
+          of consequence tied to that non-action. We're looking for a general conditional for not doing
+          something.
+    scene: Someone giving advice to a forgetful friend.
+    register: casual
+    setting: friendly
+    nuance: 「しなきゃ」 is the casual contraction, paired with 「忘れちゃう よ」, a casual contraction of 忘れてしまう. This
+      creates a very natural and friendly tone, common among close friends. The particle 「よ」 adds a touch
+      of emphasis and shared understanding.
+    etymology: 「忘れちゃう」 (wasurechau) is a colloquial contraction of 忘れてしまう (wasurete shimau). The てしまう
+      form often implies completion, or regret, but in casual speech can simply add emphasis to an action,
+      here, the forgetting.
+  - english: If you don't read the instructions, you won't understand how to use it.
+    japanese:
+      - 説明 書 を 読ま なけれ ば、使い 方 が 分かり ませ ん。
+      - 説明 書 を 読ま なけれ ば、使い 方 が 分から ない。
+    english_literally: If (you) don't read the instruction manual, (you) will not understand how to use.
+    competing_grammar:
+      - competing_japanese:
+          - 説明 書 を 読ま ない と、使い 方 が 分かり ませ ん。
+        english: If you don't read the instructions, you won't understand how to use it.
+        hint: 「〜ないと」 is a common colloquial alternative, often used in similar contexts, but 「〜なければ」 maintains
+          a slightly more formal or standard tone. We're looking for the standard conditional form.
+    scene: A customer service representative explaining something to a customer.
+    register: teineigo (polite)
+    setting: informative
+    nuance: This is a polite and informative statement. The use of 「読まなければ」 sets a clear prerequisite,
+      and 「分かりません」 maintains the polite register suitable for customer service. It's a straightforward
+      conditional with a practical implication.
+    etymology: '「説明書」 (setsumeisho) meaning ''instruction manual'' combines 説明 (setsumei: explanation)
+      and 書 (sho: document, book), literally ''explanation document''.'
+  - english: If you don't listen carefully, you'll miss the important parts.
+    japanese:
+      - よく 聞か なきゃ、大事 な ところ を 聞き逃し ちゃう よ。
+      - よく 聞か なけれ ば、大事 な ところ を 聞き逃し ちゃう よ。
+      - よく 聞か なけれ ば、大事 な ところ を 聞き逃し て しまい ます よ。
+    english_literally: If (you) don't listen well, (you) will miss important places, you know.
+    competing_grammar:
+      - competing_japanese:
+          - よく 聞か ない と、大事 な ところ を 聞き逃し ちゃう よ。
+        english: If you don't listen carefully, you'll miss the important parts.
+        hint: 「〜ないと」 is a common informal conditional often implying an undesirable outcome. It is frequently
+          interchangeable with 「なきゃ」 in casual speech. We're looking for the standard conditional structure.
+    scene: A senior student advising a junior student during a lecture.
+    register: casual
+    setting: academic
+    nuance: The informal 「なきゃ」 is used here, fitting for advice given by an older student to a younger
+      one. The contraction 「聞き逃しちゃう」 (from 聞き逃してしまう) reinforces the casual and slightly concerned tone
+      about missing something important.
+    etymology: '「聞き逃す」 (kikinogasu) meaning ''to miss hearing'' or ''to fail to catch what was said''
+      combines 聞き (kiki: listening, from 聞く kiku) and 逃す (nogasu: to let slip, to miss). The ''miss''
+      here refers to a missed opportunity for reception.'
+  - english: If he doesn't apologize, I won't forgive him.
+    japanese:
+      - 彼 が 謝ら なきゃ、許さ ない。
+      - 彼 が 謝ら なけれ ば、許さ ない。
+      - 彼 が 謝ら なけれ ば、許し ませ ん。
+    english_literally: If he doesn't apologize, (I) will not forgive (him).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が 謝ら ない と、許さ ない。
+        english: If he doesn't apologize, I won't forgive him.
+        hint: 「〜ないと」 is a common informal conditional, often used in similar contexts to express a negative
+          consequence. We're looking for the standard conditional structure.
+    scene: A person expressing their strong resolve.
+    register: casual
+    setting: serious
+    nuance: This sentence uses the plain negative conditional 「謝らなければ」 to express a firm condition. The
+      plain form 「許さない」 reinforces the speaker's resolve and seriousness. This directness is common when
+      expressing personal decisions in casual, yet serious, settings.
+    etymology: 「許す」 (yurusu) meaning 'to forgive' or 'to permit' originally comes from 緩す (yurusu), meaning
+      'to loosen' or 'to relax,' implying a release from a bond or obligation.
+  - english: If you don't confirm, there might be a mistake later.
+    japanese:
+      - 確認 し なけれ ば、後 で 間違い が ある か も しれ ませ ん。
+      - 確認 し なけれ ば、後 で 間違い が ある か も しれ ない。
+    english_literally: If (you) don't confirm, later a mistake might exist.
+    competing_grammar:
+      - competing_japanese:
+          - 確認 し ない と、後 で 間違い が ある か も しれ ませ ん。
+        english: If you don't confirm, there might be a mistake later.
+        hint: 「〜ないと」 is a common conditional expressing that if something isn't done, a negative outcome
+          will follow. It's often interchangeable in casual to semi-formal speech. We're looking for the
+          standard conditional structure.
+    scene: A mentor advising a mentee in a professional setting.
+    register: semi-formal
+    setting: professional
+    nuance: The polite 「しなければ」 is used for advice in a semi-formal context. The consequence 「間違いがあるかもしれません」
+      uses a polite speculative ending. This careful phrasing is suitable for a mentor advising a mentee,
+      indicating a potential negative outcome without being overly demanding.
+    etymology: '「確認」 (kakunin) meaning ''confirmation'' or ''verification'' combines 確 (kaku: certain,
+      firm) and 認 (nin: acknowledge, recognize), literally ''firmly acknowledge'' or ''certainly recognize''.'
+post_example_writeup: As seen in the examples, Verb[なければ・なきゃ] is highly versatile for expressing negative
+  conditions. The choice between the standard なければ and the casual なきゃ depends entirely on the formality
+  of the situation and the relationship with your listener. Pay close attention to the context to select
+  the most appropriate form. Mastering these forms allows for more nuanced and natural expression of conditional
+  statements in Japanese.

@@ -1,0 +1,254 @@
+grammar_point: あそこ (over there)
+matcher: ⌈ˢあそこᵖpron~⌉
+matcher_enforce_examples: true
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[えば] (conditional)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - ちょっと (adverb)
+  - どうぞ (here you are・please・invitation)
+  - にする (to decide or make)
+  - 背面 (back surface spatial)
+meaning: over there (distant from both speaker and listener)
+pronunciation:
+  katakana: アソコ
+  romaji: asoko
+formation:
+  あそこ: Refers to a location far from both the speaker and the listener.
+  あそこ + の + Noun: Modifies a noun, indicating something or someone located far from both.
+jlpt: N5
+etymology: The demonstrative pronoun series, known as the 'ko-so-a-do' series (ここ, そこ, あそこ, どこ), has roots
+  in Old Japanese. They are fundamentally spatial deictics, meaning their reference changes depending
+  on the speaker's and listener's positions. あそこ specifically refers to a location far from both the speaker
+  and the listener, emphasizing a shared understanding of a distant 'third' location.
+writeup: The Japanese language employs a system of demonstrative pronouns, the 'ko-so-a-do' series, to
+  indicate relative distance. Among these, あそこ (asoko) denotes a place that is distant from both the speaker
+  and the listener. It is used when referring to a location that is neither near the speaker (ここ - koko)
+  nor near the listener (そこ - soko), but rather further away, often out of immediate sight, or a place
+  mutually understood to be remote. While it primarily refers to physical locations, あそこ can also be used
+  abstractly to refer to a general 'area' or 'situation' that is distant or conceptually separate.
+false_friends:
+  - term: ここ (here)
+    meaning: this place, here (near speaker)
+    kind: antonym
+    nuance: ここ refers to a place close to the speaker, whereas あそこ refers to a place far from both the
+      speaker and the listener.
+    grammar_point: ここ (here)
+  - term: そこ (there)
+    meaning: that place, there (near listener)
+    kind: antonym
+    nuance: そこ refers to a place close to the listener, whereas あそこ refers to a place far from both the
+      speaker and the listener.
+    grammar_point: そこ (there)
+  - term: どこ (where)
+    meaning: where, what place (interrogative)
+    kind: similar expression
+    nuance: どこ is an interrogative pronoun used to ask about a location, whereas あそこ is a demonstrative
+      pronoun used to state a distant location.
+    grammar_point: どこ (where)
+  - term: あれ (that thing over there)
+    meaning: that thing over there (far from both speaker and listener)
+    kind: often confused with
+    nuance: あれ refers to a distant thing or object, while あそこ refers to a distant place.
+    grammar_point: あれ (that over there)
+  - term: あちら (that way over there, formal)
+    meaning: that way, over there (formal)
+    kind: similar expression
+    nuance: あちら is a more formal and polite way to refer to a distant place or direction, or a person,
+      compared to the neutral あそこ which refers specifically to a place.
+    grammar_point: あちら (that way over there, formal)
+post_false_friends_writeup: Understanding the 'ko-so-a-do' system is crucial for accurate spatial reference
+  in Japanese. Remember that こ-words (ここ, これ) indicate proximity to the speaker, そ-words (そこ, それ) proximity
+  to the listener, あ-words (あそこ, あれ) distance from both, and ど-words (どこ, どれ) are interrogative. Applying
+  this framework helps distinguish between similar-sounding demonstratives.
+examples:
+  - english: The restroom is over there.
+    japanese:
+      - お 手洗い は {あそこ} です。
+      - お 手洗い は {あそこ} に あり ます。
+    english_literally: Restroom, as for, over there, it is.
+    competing_grammar:
+      - competing_japanese:
+          - お 手洗い は ここ です。
+        english: The restroom is here (near me).
+        hint: 「ここ」 indicates a location near the speaker. We're looking for a place far from both speaker
+          and listener.
+      - competing_japanese:
+          - お 手洗い は そこ です。
+        english: The restroom is there (near you).
+        hint: 「そこ」 indicates a location near the listener. We're looking for a place far from both speaker
+          and listener.
+      - competing_japanese:
+          - お 手洗い は どこ です か。
+        english: Where is the restroom?
+        hint: 「どこ」 is an interrogative. We're looking to state the location, not ask for it.
+    scene: You are a hotel receptionist directing a guest to a restroom across the lobby.
+    register: teineigo (polite)
+    setting: informative
+  - english: The restaurant we visited last week is over there.
+    japanese:
+      - 先週 行っ た レストラン は {あそこ} です。
+      - 先週 行っ た レストラン は {あそこ} に あり ます。
+    english_literally: Last week went restaurant, as for, over there, it is.
+    competing_grammar:
+      - competing_japanese:
+          - 先週 行っ た レストラン は ここ です。
+        english: The restaurant we went to last week is here.
+        hint: This sentence places the restaurant near the speaker. We're indicating a place distant from
+          both speaker and listener.
+    scene: You are recalling a pleasant memory with a colleague while looking at a map.
+    register: teineigo (polite)
+    setting: friendly
+  - english: My ultimate dream is over there, across the ocean.
+    japanese:
+      - 私 の 究極 の 夢 は 海 の 向こう、{あそこ} に あり ます。
+      - 私 の 究極 の 夢 は 海 の 向こう、{あそこ} です。
+    english_literally: My ultimate dream, as for, ocean's other side, over there, exists.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 究極 の 夢 は 海 の 向こう、そこ に あり ます。
+        english: My ultimate dream is there, across the ocean (near listener).
+        hint: Using 「そこ」 would imply the dream is near the listener. We are expressing a distant, often
+          abstract, aspiration for both speaker and listener.
+    scene: A young artist shares their life ambitions with a close friend.
+    register: casual
+    setting: reflective
+  - english: Many systemic issues originate from over there, the capital.
+    japanese:
+      - 多く の 構造 的 な 問題 は 首都、{あそこ} から 生じ ます。
+      - 多く の 構造 的 な 問題 は 首都、{あそこ} から 発生 し ます。
+    english_literally: Many structural problems, as for, capital, over there, originate.
+    competing_grammar:
+      - competing_japanese:
+          - 多く の 構造 的 な 問題 は 首都、ここ から 生じ ます。
+        english: Many structural problems originate from here, the capital.
+        hint: 「ここ」 would mean the speaker is currently in the capital. We're referring to the capital
+          as a distant source of problems.
+    scene: A regional politician discusses national challenges with local constituents.
+    register: formal
+    setting: serious
+  - english: Hey, the cat is over there!
+    japanese:
+      - おい、猫 が {あそこ} に いる ぞ！
+      - 見 て、猫 が {あそこ} に いる！
+    english_literally: Hey, cat, as for, over there, exists, emphatic!
+    competing_grammar:
+      - competing_japanese:
+          - おい、猫 が ここ に いる ぞ！
+        english: Hey, the cat is here!
+        hint: 「ここ」 indicates the cat is near the speaker. We're looking for the cat to be far from both.
+      - competing_japanese:
+          - おい、猫 が そこ に いる ぞ！
+        english: Hey, the cat is there (near you)!
+        hint: 「そこ」 indicates the cat is near the listener. We're looking for the cat to be far from both.
+    scene: A father eagerly points out a distant cat to his child in a park.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「ぞ」 at the end of the sentence is a masculine and casual particle, often used to
+      add emphasis or a sense of declaration. Combined with 「あそこ」, it highlights the excitement of the
+      male speaker in pointing out something distant to his child.
+  - english: The new community center will be constructed over there.
+    japanese:
+      - 新しい コミュニティ センター は {あそこ} に 建設 さ れる 予定 です。
+      - 新しい コミュニティ センター は {あそこ} に 建つ 予定 です。
+    english_literally: New community center, as for, over there, built, planning is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい コミュニティ センター は ここ に 建設 さ れる 予定 です。
+        english: The new community center will be constructed here.
+        hint: 「ここ」 means 'here,' implying construction in the immediate vicinity. We're discussing a distant
+          site.
+    scene: A city planner presents future development plans to local residents.
+    register: formal
+    setting: informative
+  - english: Let's meet at that place over there tomorrow. You know the one.
+    japanese:
+      - 明日、{あそこ} で 会おう よ。分かる でしょう？
+      - 明日、{あそこ} で 会わ ない？あそこ の こと、分かる よ ね？
+    english_literally: Tomorrow, over there, at, meet, let's, you know, right?
+    competing_grammar:
+      - competing_japanese:
+          - 明日、そこ で 会おう よ。分かる でしょう？
+        english: Let's meet there (near you) tomorrow. You know the one.
+        hint: 「そこ」 suggests the meeting place is near the listener. We're referring to a mutually known,
+          but distant, spot.
+    scene: Two close friends making plans for the next day, referring to a well-known hangout spot.
+    register: casual
+    setting: friendly
+  - english: We finally arrived over there, after a long journey.
+    japanese:
+      - 長い 旅 の 後、ようやく {あそこ} に 着き まし た。
+      - 長い 旅 の 後、やっと {あそこ} に 到着 し まし た。
+    english_literally: Long journey's after, finally, over there, arrived.
+    competing_grammar:
+      - competing_japanese:
+          - 長い 旅 の 後、ようやく ここ に 着き まし た。
+        english: After a long journey, we finally arrived here.
+        hint: Using 「ここ」 would mean arriving at the speaker's current location. We're describing arrival
+          at a distant destination.
+    scene: A traveler recounts their adventures to a friend after returning home.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: Oh, that's just that place over there again. Nothing special.
+    japanese:
+      - ああ、また {あそこ} です か。別 に 何 も ない です よ。
+      - や だ、また {あそこ} じゃん。全然 面白く ない し。
+    english_literally: Oh, again, over there, it is, question. Separately, anything, not, it is.
+    competing_grammar:
+      - competing_japanese:
+          - ああ、また そこ です か。別 に 何 も ない です よ。
+        english: Oh, that's just there (near you) again. Nothing special.
+        hint: 「そこ」 implies proximity to the listener. The nuance here is dismissive of a place generally
+          understood to be distant or uninteresting.
+    scene: A local resident expresses their lack of enthusiasm for a well-known, but unremarkable, tourist
+      attraction.
+    register: casual
+    setting: sarcastic
+  - english: Please place the large boxes over there, by the far wall.
+    japanese:
+      - 大きい 箱 は {あそこ}、奥 の 壁際 に 置い て ください。
+      - 大きい 箱 は {あそこ} の 壁 の 横 に 置い て ください。
+    english_literally: Large boxes, as for, over there, deep wall side, place, please.
+    competing_grammar:
+      - competing_japanese:
+          - 大きい 箱 は ここ、手前 に 置い て ください。
+        english: Please place the large boxes here, in the front.
+        hint: 「ここ」 indicates placing boxes near the speaker. The instruction specifies a distant location.
+    scene: A supervisor instructs new workers on where to store items in a large warehouse.
+    register: semi-formal
+    setting: instructional
+  - english: The incident occurred over there, near the old bridge.
+    japanese:
+      - その 事件 は 古い 橋 の 近く、{あそこ} で 起き まし た。
+      - その 事件 は 古い 橋 の 近く の {あそこ} で 発生 し まし た。
+    english_literally: That incident, as for, old bridge's near, over there, at, occurred.
+    competing_grammar:
+      - competing_japanese:
+          - その 事件 は 古い 橋 の 近く、ここ で 起き まし た。
+        english: The incident occurred here, near the old bridge.
+        hint: 「ここ」 implies the speaker is at the incident site. We are reporting on a distant event.
+    scene: A news reporter delivers an update from their studio about a distant event.
+    register: formal
+    setting: informative
+  - english: She lives over there, in the next town.
+    japanese:
+      - 彼女 は 隣町 の {あそこ} に 住ん で い ます。
+      - 彼女 は 隣町 の {あそこ} に 暮らし て い ます。
+    english_literally: She, as for, next town's, over there, in, lives.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 隣町 の ここ に 住ん で い ます。
+        english: She lives here, in the next town.
+        hint: 「ここ」 would mean the speaker is currently in the next town. We are referring to a location
+          distant from both current speaker and listener.
+    scene: Two neighbors are chatting about a mutual acquaintance who resides elsewhere.
+    register: casual
+    setting: friendly
+post_example_writeup: The precise understanding and usage of あそこ, along with its counterparts ここ and そこ,
+  are fundamental to natural communication in Japanese. Paying attention to the relative distance between
+  speakers, listeners, and the subject of conversation will greatly enhance the accuracy and fluency of
+  your Japanese. Practice integrating these deictic terms into your daily conversations to internalize
+  their nuances.

@@ -1,0 +1,234 @@
+grammar_point: あんな (that kind of)
+learn_before:
+  - すこしも〜ない (not even a little)
+  - どうやって (how to do)
+meaning: that kind of, such a (thing/person/situation) over there (far from both speaker and listener)
+pronunciation:
+  katakana: アンナ
+  romaji: anna
+formation:
+  あんな + Noun: Modifies a noun, indicating it is 'that kind of' or 'such a', referring to something physically
+    or contextually distant from both the speaker and listener.
+jlpt: N5
+etymology: 「あんな」 is part of the 'ko-so-a-do' series of Japanese demonstratives, derived from 「あのような」 (a
+  no you na), meaning 'like that'. The 'あ' (a-) element universally indicates something far from both
+  the speaker and the listener, while 'ような' describes similarity or type. Over time, 「あのような」 was condensed
+  into the more casual and common 「あんな」.
+writeup: |-
+  「あんな」 is a demonstrative adjective (連体詞 - rentai-shi) used to refer to 'that kind of' or 'such a' thing, person, or situation that is physically distant from both the speaker and the listener, or conceptually distant (e.g., a past event, an abstract idea, something surprising or unbelievable). It always precedes a noun it modifies.
+
+  Like other 'a-' series words (e.g., 「あそこ」, 「あの」), 「あんな」 points to something outside the immediate vicinity or shared experience of the conversation participants. It often carries a nuance of surprise, disdain, admiration, or strong emotion, especially when referring to something extreme or unexpected. While it literally means 'that kind of (over there)', its usage can extend to 'such a' when expressing strong feelings about something that is mentally or emotionally 'far removed' from the speaker's norm or expectation.
+false_friends:
+  - term: こんな (this kind of)
+    meaning: this kind of, such a (near speaker)
+    kind: similar expression
+    nuance: 「こんな」 refers to things or situations physically close to the speaker or concepts just introduced
+      by the speaker. 「あんな」 refers to things or situations far from both speaker and listener.
+    grammar_point: こんな (this kind of)
+  - term: そんな (that kind of)
+    meaning: that kind of, such a (near listener or recent context)
+    kind: similar expression
+    nuance: 「そんな」 refers to things or situations physically close to the listener or concepts just introduced
+      by the listener. 「あんな」 refers to things or situations far from both speaker and listener.
+    grammar_point: <suggest>:そんな (that kind of)
+  - term: どんな (what kind of)
+    meaning: what kind of, what sort of
+    kind: similar expression
+    nuance: 「どんな」 is an interrogative word used to ask about the kind or nature of something. 「あんな」 provides
+      the answer, describing something far off or conceptually distant.
+    grammar_point: どんな (what kind of)
+  - term: あの (that)
+    meaning: that (over there)
+    kind: often confused with
+    nuance: 「あの」 modifies a specific noun that is distant from both parties. 「あんな」 modifies a noun to
+      describe its *type* or *kind* as being 'like that distant one' or 'such a (distant example)', often
+      implying an emotional reaction to that type.
+    grammar_point: <suggest>:この・その・あの・どの (demonstrative determiners)
+post_false_friends_writeup: The Japanese demonstratives 「こ・そ・あ・ど」 (ko-so-a-do) are fundamental for indicating
+  spatial, temporal, and conceptual relationships. 「こんな」 refers to something 'this' kind (near the speaker),
+  「そんな」 to 'that' kind (near the listener or just mentioned in context), 「あんな」 to 'that' kind (far from
+  both or conceptually distant/extreme), and 「どんな」 is the question word 'what' kind. Understanding their
+  respective 'zones' of reference—speaker's, listener's, distant, and interrogative—is key to distinguishing
+  their usage.
+examples:
+  - english: That kind of house over there is really big, isn't it?
+    japanese:
+      - '{あんな} 家 は 本当 に 大きい です ね。'
+      - '{あんな} 家、本当 に 大きい ね。'
+    english_literally: That kind of house truly big is, isn't it.
+    competing_grammar:
+      - competing_japanese:
+          - あの 家 は 本当 に 大きい です ね。
+        english: That specific house over there is really big, isn't it?
+        hint: 「あの」 refers to a specific house, while 「あんな」 describes its *type* or *kind*. We are commenting
+          on the type of house.
+    scene: Two friends are walking and see a very large house in the distance, commenting on its style
+      and size.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+  - english: I don't want to become that kind of person.
+    japanese:
+      - '{あんな} 人 に なり たく ない。'
+      - '{あんな} 人 に は なり たく あり ませ ん。'
+    english_literally: That kind of person to become don't want.
+    competing_grammar:
+      - competing_japanese:
+          - そんな 人 に なり たく ない。
+        english: I don't want to become that kind of person (like the one you just mentioned).
+        hint: 「そんな」 would refer to a person just discussed or known by the listener. 「あんな」 refers to someone
+          more abstractly or emotionally distant, perhaps someone observed from afar or in the past, or
+          a type of person strongly disliked.
+    scene: A young person is talking to their mentor about future aspirations, expressing distaste for
+      a certain type of behavior they observed in a public figure.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: male
+  - english: You really did something like that?!
+    japanese:
+      - '{あんな} こと を し た ん です か？'
+      - '{あんな} こと し た の？'
+    english_literally: That kind of thing did, is it?
+    competing_grammar:
+      - competing_japanese:
+          - そんな こと を し た ん です か？
+        english: You really did something like *that* (which you just mentioned)?!
+        hint: 「そんな」 refers to something the listener just mentioned or that is close to the listener's
+          immediate experience. 「あんな」 refers to something more distant or a situation that seems far-fetched/unbelievable
+          to the speaker. We're expressing shock about something that feels extreme.
+    scene: A friend is shocked by a story another friend is telling about a past, wild event they were
+      involved in.
+    register: teineigo (polite)
+    setting: humorous
+    speaker_gender: female
+    listener_gender: male
+  - english: I've never seen such a terrible accident.
+    japanese:
+      - '{あんな} ひどい 事故 は 見 た こと が ない。'
+      - '{あんな} ひどい 事故 は 見 た こと が あり ませ ん。'
+    english_literally: That kind of terrible accident have not seen.
+    competing_grammar:
+      - competing_japanese:
+          - ひどい 事故 は 見 た こと が ない。
+        english: I've never seen a terrible accident.
+        hint: The nuance of 'such a' emphasizes the extreme or unforgettable nature of the accident, using
+          「あんな」 to refer to something conceptually distant due to its impact. We need to express that
+          emphasis.
+    scene: Two people are discussing a particularly gruesome car accident they witnessed, and one expresses
+      their shock and disbelief.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: female
+  - english: Who would have thought he'd achieve such a great success?
+    japanese:
+      - '{あんな} 素晴らしい 成功 を 収める と は 誰 も 思わ なかっ た だろう。'
+      - '{あんな} 素晴らしい 成功 を 収める なんて、誰 も 思わ なかっ た だろう。'
+    english_literally: That kind of wonderful success would achieve, no one thought, probably.
+    competing_grammar:
+      - competing_japanese:
+          - あの 素晴らしい 成功 を 収める と は 誰 も 思わ なかっ た だろう。
+        english: Who would have thought he'd achieve that specific great success?
+        hint: While 「あの」 could refer to a specific success, 「あんな」 emphasizes the *kind* or *magnitude*
+          of success, implying it was beyond expectations or previously unimaginable. We are emphasizing
+          the nature of the success.
+    scene: Colleagues are surprised by a former peer's unexpected and grand achievements after he left
+      their company.
+    register: semi-formal
+    setting: reflective
+    speaker_gender: female
+    listener_gender: group
+  - english: Don't do such a dangerous thing.
+    japanese:
+      - '{あんな} 危険 な こと は し ない で ください。'
+      - '{あんな} 危険 な こと は する な。'
+    english_literally: That kind of dangerous thing please don't do.
+    competing_grammar:
+      - competing_japanese:
+          - この 危険 な こと は し ない で ください。
+        english: Don't do this dangerous thing (that is currently happening).
+        hint: 「この」 refers to something happening right now, in the speaker's immediate vicinity. 「あんな」
+          warns against a dangerous *type* of action, possibly observed previously or far away, or conceptually
+          very dangerous.
+    scene: A parent warns a child who is about to climb a tall, unstable structure in the park.
+    register: teineigo (polite)
+    setting: commanding
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+  - english: She was never such a quiet child.
+    japanese:
+      - 彼女 は 決して {あんな} 静か な 子供 で は なかっ た。
+      - 彼女 は 決して {あんな} 静か な 子供 で は あり ませ ん でし た。
+    english_literally: She never that kind of quiet child was not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 決して 静か な 子供 で は なかっ た。
+        english: She was never a quiet child.
+        hint: The inclusion of 「あんな」 here stresses the *degree* or *type* of quietness that is being denied,
+          implying a vivid memory of her being very different. It's not just 'not quiet', but 'not *that*
+          kind of quiet'.
+    scene: An adult is reminiscing about a friend's childhood, contrasting their current quiet demeanor
+      with their past lively self.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「あんな」 here refers to a past, perceived 'kind' of person, indicating a contrast
+      with the present. The phrase 「決してあんな静かな子供ではなかった」 (never that kind of quiet child) highlights the
+      speaker's memory of the person being very different, emphasizing the type of child she *wasn't*.
+  - english: I can't believe such a rude thing was said.
+    japanese:
+      - '{あんな} 失礼 な こと を 言わ れる と は 思わ なかっ た。'
+      - '{あんな} 失礼 な こと を 言わ れる と は 思い ませ ん でし た。'
+    english_literally: That kind of rude thing to be said did not think.
+    competing_grammar:
+      - competing_japanese:
+          - 失礼 な こと を 言わ れる と は 思わ なかっ た。
+        english: I didn't think something rude would be said.
+        hint: 「あんな」 adds a strong emotional emphasis, conveying the speaker's shock and disbelief at the
+          *extreme* or *unacceptable* nature of the rudeness. It's not just rude, but *that* rude.
+    scene: Someone is recounting an unpleasant conversation they had with a rude person, expressing their
+      indignation to a sympathetic friend.
+    register: casual
+    setting: melancholic
+    speaker_gender: female
+    listener_gender: female
+  - english: That kind of idea might be interesting, but it's not practical.
+    japanese:
+      - '{あんな} アイデア は 面白い か も しれ ない けど、現実 的 で は ない。'
+      - '{あんな} アイデア は 面白い か も しれ ませ ん が、現実 的 で は あり ませ ん。'
+    english_literally: That kind of idea interesting might be, but practical is not.
+    competing_grammar:
+      - competing_japanese:
+          - その アイデア は 面白い か も しれ ない けど、現実 的 で は ない。
+        english: That idea (you just mentioned) might be interesting, but it's not practical.
+        hint: 「その」 would refer to an idea just mentioned or currently being discussed. 「あんな」 suggests
+          the idea is somewhat distant, perhaps from a different context or time, or is being dismissed
+          as unrealistic.
+    scene: Two colleagues are brainstorming during a meeting, and one dismisses an idea that was proposed
+      earlier or in a different, perhaps overly ambitious, context.
+    register: bijinesu nihongo (business)
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+  - english: How can one live in such a cold place?
+    japanese:
+      - '{あんな} 寒い 場所 で どう やっ て 生き て いける の か。'
+      - '{あんな} 寒い 場所 で は、どう やっ て 生き て いける の でしょ う か。'
+    english_literally: That kind of cold place in how one can live?
+    competing_grammar:
+      - competing_japanese:
+          - あの 寒い 場所 で どう やっ て 生き て いける の か。
+        english: How can one live in that specific cold place?
+        hint: While 「あの」 points to a specific place, 「あんな」 emphasizes the *type* or *extreme nature* of
+          the cold place, expressing wonder or disbelief at the conditions rather than just the location.
+          We are expressing wonder about the conditions.
+    scene: Someone is watching a documentary about extreme environments (like Antarctica) and expresses
+      wonder at how people survive there.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: no one

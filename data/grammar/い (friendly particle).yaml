@@ -1,0 +1,239 @@
+grammar_point: い (friendly particle)
+learn_before:
+  - すごく (very・incredibly)
+meaning: a soft or gentle sentence-ending particle
+pronunciation:
+  katakana: イ
+  romaji: i
+formation:
+  Plain form + い: Attaches to the plain form of verbs, i-adjectives, na-adjectives, and nouns (omitting
+    だ) to soften the tone or add a gentle, emotive nuance.
+jlpt: N5
+etymology: The particle 「い」 as a sentence-ender is thought to have evolved from older interjections or
+  possibly a truncated form of other expressions that conveyed a softer, more intimate tone. Its development
+  is less about a direct etymological root and more about a phonetic and pragmatic drift towards a gentler,
+  more emotive expression, often serving to personalize the utterance.
+writeup: |-
+  The sentence-ending particle 「い」 is primarily used in casual Japanese, adding a soft, gentle, or emotive nuance to a statement. While historically and stereotypically associated with feminine speech, its usage has become more widespread in modern casual conversation, especially among younger speakers, and can sometimes be heard from men in very intimate contexts or specific dialects. It attaches directly to the plain form of verbs, i-adjectives, na-adjectives, and nouns. For nouns and na-adjectives, the 「だ」 (casual copula) is typically omitted before 「い」 (e.g., 「きれい」 + 「い」 instead of 「きれいだ」 + 「い」). This is a common point of confusion for learners.
+
+  Unlike 「ね」, which explicitly seeks agreement or confirmation from the listener, 「い」 tends to express a personal feeling or observation and gently invites the listener to share that sentiment or simply listen with empathy, without necessarily demanding a response. It's less assertive than 「よ」, which is used to provide new information or strong emphasis.
+
+  Consider 「い」 when you want to soften your speech, convey a sense of endearment, or share a feeling in a tender way. It's particularly common in expressions of affection or when talking about something pleasant or slightly melancholic.
+false_friends:
+  - term: ね
+    meaning: seeking agreement or confirmation
+    kind: similar expression
+    nuance: 「ね」 actively solicits agreement or confirmation from the listener. For example, 「これ、おいしいね」
+      (This is delicious, isn't it?). In contrast, 「い」 is softer and expresses a personal feeling, gently
+      inviting shared sentiment without demanding a response, like 「これ、おいしい い」 (Oh, this is delicious...).
+    grammar_point: ね (seeking agreement)
+  - term: よ
+    meaning: emphasis or assertion
+    kind: similar expression
+    nuance: 「よ」 is used to emphasize a statement or provide new information with a sense of assertion
+      or certainty. For example, 「これ、おいしいよ」 (This is delicious, I tell you!). 「い」, on the other hand,
+      is a softer, more emotive particle that softens the statement and often expresses a personal feeling
+      rather than a strong assertion.
+    grammar_point: よ (emphasis・information sharing)
+  - term: わ
+    meaning: feminine assertion or softening
+    kind: similar expression
+    nuance: 「わ」 is a traditionally feminine sentence-ending particle often used to express a personal
+      feeling or a mild assertion. While 「い」 can also convey softness or emotion, it is generally less
+      assertive and can sometimes sound more childlike or endearing. The usage of 「わ」 is more strongly
+      associated with traditional feminine speech than 「い」 in modern Japanese.
+    grammar_point: わ (feminine sentence-ending particle)
+post_false_friends_writeup: While 「い」, 「ね」, 「よ」, and 「わ」 are all sentence-ending particles, understanding
+  their subtle differences is key to natural Japanese. 「い」 is for gentle, emotive expressions; 「ね」 for
+  seeking agreement; 「よ」 for assertion; and 「わ」 for a distinct feminine tone. Choosing the right particle
+  depends heavily on the nuance you wish to convey and the relationship with your listener.
+examples:
+  - english: It's really good.
+    japanese:
+      - すごく おいしい い。
+      - とても おいしい い。
+      - めっちゃ おいしい い。
+      - すごく 美味し いい。
+    english_literally: Very delicious {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - すごく おいしい ね。
+        english: It's really delicious, isn't it?
+        hint: 「ね」 is used to seek agreement or confirmation. We're looking for a softer, more personal
+          expression of feeling.
+      - competing_japanese:
+          - すごく おいしい よ。
+        english: It's really delicious (I assure you).
+        hint: 「よ」 adds emphasis or provides new information. We're looking for a gentler, more emotive
+          nuance.
+    scene: A young child tastes a homemade cookie their grandmother baked.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「い」 here adds a sweet, slightly childlike tenderness to the expression, conveying
+      affection and personal enjoyment without demanding a response. This is common for younger female
+      speakers in intimate settings.
+  - english: It's a little cold.
+    japanese:
+      - ちょっと 寒い い。
+      - 少し 寒い い。
+    english_literally: A little cold {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - ちょっと 寒い ね。
+        english: It's a little cold, isn't it?
+        hint: 「ね」 is used to seek agreement or confirmation about the temperature. We're looking for a
+          more personal and emotive statement.
+      - competing_japanese:
+          - ちょっと 寒い よ。
+        english: It's a little cold, I just noticed.
+        hint: 「よ」 emphasizes the new information about the coldness. We're looking for a softer expression
+          of a feeling.
+    scene: A person sitting by a window feels a slight draft.
+    register: casual
+    setting: reflective
+  - english: Today is a beautiful day.
+    japanese:
+      - 今日 は いい 天気 い。
+      - 今日 は 良い 天気 い。
+      - 今日 は 気持ち いい 天気 い。
+    english_literally: Today good weather {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 は いい 天気 だ ね。
+        english: Today is good weather, isn't it?
+        hint: Adding 「だね」 makes it a direct assertion followed by seeking agreement. We're looking for
+          a simple, gentle expression of feeling the nice weather.
+    scene: Looking out the window at a bright, sunny sky.
+    register: casual
+    setting: optimistic
+  - english: I'm tired.
+    japanese:
+      - 疲れ た い。
+      - もう 疲れ た い。
+      - 疲れ ちゃっ た い。
+    english_literally: Got tired {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - 疲れ た ね。
+        english: I'm tired, aren't I?
+        hint: 「ね」 seeks empathy or agreement. We're looking for a more direct, yet softened, expression
+          of one's own state.
+      - competing_japanese:
+          - 疲れ た わ。
+        english: I'm tired (feminine).
+        hint: 「わ」 is a stronger, more traditional feminine marker. 「い」 offers a softer, less assertive
+          tone that can be used by more speakers.
+    scene: After a long day of work, a person collapses onto the couch.
+    register: casual
+    setting: reflective
+  - english: That was fun.
+    japanese:
+      - 楽しかっ た い。
+      - とても 楽しかっ た い。
+      - すごく 楽しかっ た い。
+    english_literally: Was fun {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - 楽しかっ た よ。
+        english: That was fun!
+        hint: 「よ」 makes the statement more emphatic. We want a gentler, more reflective expression of
+          enjoyment.
+    scene: Reflecting on a pleasant memory from the past.
+    register: casual
+    setting: melancholic
+  - english: It's cute.
+    japanese:
+      - かわいい い。
+      - とっても かわいい い。
+      - ほんと に かわいい い。
+    english_literally: Cute {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - かわいい ね。
+        english: It's cute, isn't it?
+        hint: 「ね」 asks for agreement. We're expressing a personal feeling of cuteness without directly
+          asking for validation.
+      - competing_japanese:
+          - かわいい わ。
+        english: It's cute (feminine).
+        hint: 「わ」 is a more assertive feminine particle. 「い」 maintains a softer, more understated emotional
+          expression.
+    scene: Seeing a small animal or a child.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: no one
+    nuance: The use of 「い」 here conveys a gentle, personal feeling of endearment, often used by female
+      speakers to express admiration for something cute. It's a soft, almost internal utterance, rather
+      than a direct statement to someone.
+  - english: I want to eat this.
+    japanese:
+      - これ 食べ たい い。
+      - これ、食べ たい い。
+      - なんか これ 食べ たい い。
+    english_literally: This want to eat {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - これ 食べ たい な。
+        english: I want to eat this, don't I?
+        hint: 「な」 can express desire or internal feeling, but 「い」 is often perceived as even softer or
+          more wistful here.
+    scene: Looking at a delicious meal in a display case.
+    register: casual
+    setting: reflective
+  - english: I'm going home now.
+    japanese:
+      - もう 帰る い。
+      - そろそろ 帰る い。
+      - もう そろそろ 帰る い。
+    english_literally: Already return {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - もう 帰る ね。
+        english: I'm going home now, okay?
+        hint: 「ね」 seeks confirmation or agreement. Here, we're simply stating a gentle intention to leave.
+    scene: A child tells their parent they are leaving a friend's house.
+    register: casual
+    setting: intimate
+    speaker_age: younger
+    nuance: Used by a child, 「もう帰るい」 expresses a gentle, almost timid, statement of their intention to
+      leave, often implying a slight sadness or reluctance. It's a common way children might soften such
+      statements to a parent.
+  - english: This is good, isn't it?
+    japanese:
+      - これ いい い？
+      - これ、いい い？
+      - これ って いい い？
+    english_literally: This good {friendly particle}?
+    competing_grammar:
+      - competing_japanese:
+          - これ いい の？
+        english: Is this good?
+        hint: 「の？」 is a more direct, often feminine, informal question. 「い？」 with rising intonation creates
+          a softer, more tentative inquiry, almost seeking gentle reassurance.
+    scene: A person asks for permission to use something, with a slight hesitation.
+    register: casual
+    setting: negotiating
+  - english: It's going to rain.
+    japanese:
+      - 雨 が 降る い。
+      - もう すぐ 雨 が 降る い。
+      - 雨、降る い。
+    english_literally: Rain falls {friendly particle}.
+    competing_grammar:
+      - competing_japanese:
+          - 雨 が 降る だろう。
+        english: It will probably rain.
+        hint: 「だろう」 expresses conjecture. 「い」 in this context conveys a gentle observation about an upcoming
+          event, sometimes with a touch of personal feeling about it.
+    scene: Looking at dark clouds gathering.
+    register: casual
+    setting: cautious
+post_example_writeup: The examples illustrate how 「い」 functions to soften expressions, convey personal
+  feelings, and sometimes add a touch of endearment or mild tentativeness. Pay attention to the context
+  and the speaker's implied emotion when using or interpreting this particle.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/い (friendly particle)

@@ -1,0 +1,318 @@
+grammar_point: 来 (duration up to present)
+learn_before:
+  - あの (that)
+  - といわれている (it is said that)
+  - を中心に (focused on)
+meaning: For a period of time; in a period of time; since a time
+pronunciation:
+  katakana: ライ
+  romaji: rai
+formation:
+  '[Duration Noun] + {来}': Used to indicate that an action or state has continued for a specified duration
+    up to the present.
+  '[Duration Noun] + {来} + の + [Noun]': Used to describe an event or state as being the first or most
+    significant in a specified duration.
+jlpt: N3
+etymology: 「来 (rai)」 literally means "coming" or "since." In this grammatical structure, it indicates
+  the period of time that has "come" or passed up to the present. Its usage as a suffix denoting duration
+  traces back to classical Japanese, often found in historical texts and formal documents to succinctly
+  express a timeframe leading up to the present.
+writeup: 'The suffix 「来」 is used to specify a duration of time that has continued up to the present moment.
+  It implies a sense of continuity or a significant event within that timeframe. While it translates broadly
+  to "for the past X years" or "in the last X months," its usage is more formal and often appears in written
+  contexts or formal spoken Japanese. There are two primary patterns for its use: **[Duration Noun] +
+  来**: This pattern emphasizes that an action, state, or relationship has continued uninterruptedly for
+  the specified period. For example, 「十年来 の 友人」 (friends for the past ten years) highlights a long-standing
+  friendship. **[Duration Noun] + 来 + の + [Noun]**: This pattern describes an an event or situation as
+  being the most significant, extreme, or unprecedented within the given duration. For instance, 「五十年来
+  の 大雪」 (the heaviest snow in fifty years) denotes a record-breaking occurrence. 「来」 is often used in
+  situations where one wants to convey a sense of historical significance, long-term commitment, or a
+  notable event that breaks a past record. It''s important to remember its formal tone, as more casual
+  expressions are typically used in everyday conversations.'
+false_friends:
+  - term: ぶり
+    meaning: For the first time in (a period of time); after (a lapse of time)
+    kind: often confused with
+    nuance: Unlike 「来」 which emphasizes continuity or a record up to the present, 「ぶり」 focuses on the
+      reappearance of something after a specified duration of absence. For example, 「五年 ぶり の 再会」 (reunion
+      after five years) implies five years since the last meeting.
+    grammar_point: ぶりに (for the first time in)
+  - term: 以来
+    meaning: Since (a point in time); ever since
+    kind: similar expression
+    nuance: While both can indicate a starting point leading to the present, 「以来」 is typically used with
+      a specific event or point in time (e.g., 「卒業 以来」 - since graduation), whereas 「来」 is combined directly
+      with a duration noun to indicate 'for the past X years/months'.
+    grammar_point: 以来 (since・ever since)
+  - term: 間
+    meaning: During; for a period of
+    kind: similar expression
+    nuance: 「間」 (written as 間に or 期間) is a more general term for duration without the inherent nuance
+      of continuity up to the present or historical significance that 「来」 carries. It simply states the
+      length of time something occurred.
+    grammar_point: あいだ (between・among・while・during)
+  - term: 前から
+    meaning: From before; since earlier
+    kind: similar expression
+    nuance: 「前から」 is a more casual and general way to express that something has been the case for a while.
+      It lacks the formality and specific duration-based emphasis of 「来」.
+    grammar_point: <suggest>:前から (since before)
+post_false_friends_writeup: When distinguishing between these expressions, consider the formality of the
+  context and the specific nuance you wish to convey. 「来」 is a more concise and formal way to describe
+  a duration leading to the present, especially when highlighting a long-standing state or a record-breaking
+  event. Other expressions offer broader or more casual ways to talk about time.
+examples:
+  - english: He has been chasing the same dream for the past 20 years.
+    japanese:
+      - 彼 は 20 年 {来} 同じ 夢 を 追いかけ て いる。
+      - 彼 は 20 年 {来} 同じ 夢 を 追いかけ て い ます。
+    english_literally: He for 20 years since, the same dream is chasing.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 20 年 {間} 同じ 夢 を 追いかけ て いる。
+        english: He has been chasing the same dream for 20 years.
+        hint: While 「年間」 also expresses duration, it lacks the formal nuance of continuity and historical
+          significance that 「来」 implies. We're looking for a formal expression highlighting a long-standing
+          pursuit up to the present.
+    scene: A mentor speaking about their dedicated student's unwavering pursuit of a long-term goal.
+    register: formal
+    setting: inspirational
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「来」 in this context implies a long-standing, significant pursuit, suggesting a
+      certain level of dedication and historical weight that would be appropriate for a mentor speaking
+      about a student. The phrase 「追いかけ て いる」 in progressive form emphasizes the ongoing nature of the
+      dream-chasing.
+    etymology: The verb 「追いかける」 combines 「追う」 (to chase) and 「かける」 (to begin, to attach), implying an
+      action that has been continuously pursued or dedicated to over time. The concept of chasing a dream
+      is deeply ingrained in Japanese culture, often associated with diligence and perseverance.
+  - english: This winter is the harshest it's been in 30 years.
+    japanese:
+      - 今年 の 冬 は 30 年 {来} の 厳し さ だ。
+      - 今年 の 冬 は 30 年 {来} の 厳し さ です。
+    english_literally: This year's winter is of 30 years since, harshness.
+    competing_grammar:
+      - competing_japanese:
+          - 今年 の 冬 は 30 年 {ぶり} の 厳し さ だ。
+        english: This winter is the harshest for the first time in 30 years.
+        hint: 「ぶり」 implies a significant gap or absence before something reappears. While the weather
+          might be harsh after a long time, 「来」 more directly signifies a record within the past duration.
+          We're looking for a phrase that indicates a record-breaking severity within the given timeframe.
+    scene: Two farmers discussing the unusually severe weather conditions during a cold season.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「30 年 来 の 厳し さ」 carries a formal and almost historical tone, suitable for reflecting
+      on significant, long-term events, which is common among those discussing environmental patterns
+      like farmers. The use of 「厳しさ」 as a noun emphasizes the quality of harshness.
+    etymology: The word 「厳しさ」 (kibishisa) is derived from the adjective 「厳しい」 (kibishii), meaning 'severe'
+      or 'strict.' Adding the nominalizing suffix 「さ」 allows the quality itself to be discussed, highlighting
+      the intensity of the winter conditions.
+  - english: She and I have been best friends for the past 15 years, since our student days.
+    japanese:
+      - 彼女 と 私 は 学生 時代 から 15 年 {来} の 親友 です。
+      - 彼女 と 私 は 学生 時代 から 15 年 {来} の 親友 だ。
+    english_literally: She and I, from student days, 15 years since, best friends are.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 と 私 は 学生 時代 から {ずっと} 親友 です。
+        english: She and I have been best friends ever since our student days.
+        hint: 「ずっと」 emphasizes continuous duration but doesn't specify the exact length of time or carry
+          the same formal nuance of a long-standing, significant relationship as 「来」 does. We're looking
+          for an an expression that quantifies the duration with a formal tone.
+    scene: A woman proudly introducing her long-standing best friend to a new acquaintance.
+    register: formal
+    setting: friendly
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: Using 「15 年 来 の 親友 です」 conveys a sense of deep, enduring connection and highlights the long
+      history of the friendship in a polite and somewhat formal manner. The polite ending 「です」 makes it
+      suitable for introductions to someone new.
+    etymology: The term 「親友」 (shin'yū) combines 「親」 (shin), meaning 'intimate' or 'close,' and 「友」 (yū),
+      meaning 'friend.' This combination emphasizes a friendship that is particularly close and cherished,
+      going beyond a mere acquaintance.
+  - english: The rain that started after midnight hasn't stopped, and it's pouring.
+    japanese:
+      - 夜半 {来} の 雨 が 止ま ず、土砂 降り に なっ て いる。
+      - 夜半 {来} の 雨 が 止ま ず、土砂 降り に なっ て い ます。
+    english_literally: Midnight since, rain has not stopped, becoming a downpour.
+    competing_grammar:
+      - competing_japanese:
+          - 夜半 {から} の 雨 が 止ま ず、土砂 降り に なっ て いる。
+        english: The rain from midnight hasn't stopped, and it's pouring.
+        hint: 「から」 indicates a starting point but is a more general and less formal expression for continuous
+          duration. 「来」 carries a more literary and official tone, especially when used in reports or
+          urgent announcements. We're looking for a formal, somewhat literary expression for continuous
+          rainfall since a specified time.
+    scene: A radio announcer giving an urgent weather update, describing continuous heavy rainfall.
+    register: formal
+    setting: emergency/alarm
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「夜半 来」 is a rather formal and literary expression for 'since midnight,' often used in official
+      reports or urgent announcements like a weather update. The phrase 「土砂 降り に なっ て いる」 vividly describes
+      the heavy downpour.
+    etymology: 「夜半」 (yahan) combines 「夜」 (yoru, night) and 「半」 (han, han, half), literally meaning 'middle
+      of the night.' It specifically refers to midnight or the period around it. 「土砂 降り」 (doshaburi) combines
+      「土砂」 (dosha, earth and sand) and 「降り」 (furi, falling), metaphorically describing rain so heavy it's
+      like earth and sand are falling.
+  - english: This is said to be the biggest disaster in 70 years since the war.
+    japanese:
+      - これ は 戦後 70 年 {来} の 大 惨事 だ と 言わ れ て い ます。
+      - これ は 戦後 70 年 {来} の 大 惨事 だ と 言わ れ て いる。
+    english_literally: This, post-war 70 years since, big disaster is said to be.
+    competing_grammar:
+      - competing_japanese:
+          - これ は 戦後 70 年 {ぶり} の 大 惨事 だ と 言わ れ て い ます。
+        english: This is said to be the biggest disaster for the first time in 70 years since the war.
+        hint: 「ぶり」 implies a significant period during which something was absent before reappearing.
+          While a disaster might be the 'first in 70 years,' 「来」 emphasizes it as the 'biggest within
+          the past 70 years,' implying a record-breaking event within that specific timeframe. We're looking
+          for an expression that highlights the event as a record within the past 70 years.
+    scene: A historian presenting findings on a major historical event, emphasizing its unprecedented
+      scale.
+    register: formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「70 年 来 の 大 惨事」 lends a strong, authoritative, and historical weight to the statement,
+      fitting for an academic context. The passive structure 「だ と 言わ れ て い ます」 (it is said to be) adds
+      an objective, report-like tone, suitable for academic discourse.
+    etymology: 「惨事」 (sanji) means 'disaster' or 'calamity,' combining 「惨」 (san), meaning 'tragic' or 'cruel,'
+      and 「事」 (ji), meaning 'event' or 'matter.' This term emphasizes the severity and unfortunate nature
+      of the event. 「戦後」 (sengo) literally means 'after the war,' and is commonly used in Japan to refer
+      to the post-World War II period.
+  - english: Our company has been developing this technology for five years.
+    japanese:
+      - 弊社 は 5 年 {来} この 技術 を 開発 し て おり ます。
+      - 弊社 は 5 年 {来} この 技術 を 開発 し て い ます。
+      - 弊社 は 5 年 {来} この 技術 を 開発 し て いる。
+    english_literally: Our company, five years since, this technology has been developing.
+    competing_grammar:
+      - competing_japanese:
+          - 弊社 は 5 年 {間} この 技術 を 開発 し て おり ます。
+        english: Our company has been developing this technology for 5 years.
+        hint: 「年間」 expresses a duration but lacks the formal nuance of sustained, continuous effort or
+          significance that 「来」 implies in a business context. We're looking for an expression that highlights
+          long-term commitment and progress.
+    scene: A company executive giving a presentation to potential investors about a long-term research
+      project.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「5 年 来」 in a corporate setting like 「弊社」 (our company) emphasizes the consistent,
+      dedicated effort over a significant period. The humble form 「おり ます」 (a polite form of います) further
+      adds to the professional and formal tone of the statement.
+    etymology: 「弊社」 (heisha) is a humble term for 'our company,' often used in business contexts to show
+      respect to the listener. It combines 「弊」 (hei), meaning 'our (humble),' and 「社」 (sha), meaning 'company.'
+  - english: He's been a friend of the family for thirty years.
+    japanese:
+      - 彼 は 30 年 {来} の 我が家 の 友人 です。
+      - 彼 は 30 年 {来} の 我が家 の 友人 だ。
+    english_literally: He, thirty years since, our family's friend is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 30 年 {間} 我が家 の 友人 です。
+        english: He has been a friend of our family for 30 years.
+        hint: While 「年間」 indicates duration, 「来」 specifically implies a continuous, long-standing relationship
+          that is significant to the speaker's family. We're looking for an expression that highlights
+          a deep, enduring connection.
+    scene: A parent introducing a long-time family friend to their child, emphasizing the length of their
+      relationship.
+    register: semi-formal
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 「30 年 来 の 我が家 の 友人 です」 conveys a sense of deep, enduring connection and highlights the long
+      history of the relationship within the family. 「我が家」 (wagaya) adds a warm, personal touch to 'our
+      family,' making the statement intimate yet still appreciative of the friend's long presence.
+    etymology: 「我が家」 (wagaya) literally means 'my house' or 'our house,' with 「我が」 being a somewhat literary
+      or traditional way of saying 'my/our.' It signifies a sense of belonging and intimacy.
+  - english: The city's downtown area has been undergoing revitalization for ten years.
+    japanese:
+      - 市 の 中心 部 は 10 年 {来} 再生 が 進め られ て い ます。
+      - 市 の 中心 部 は 10 年 {来} 再生 が 進め られ て いる。
+    english_literally: City's downtown area, ten years since, revitalization has been advanced.
+    competing_grammar:
+      - competing_japanese:
+          - 市 の 中心 部 は 10 年 {間} 再生 が 進め られ て い ます。
+        english: The city's downtown area has been undergoing revitalization for 10 years.
+        hint: 「年間」 is a general duration. 「来」 implies a continuous, large-scale, and significant project,
+          often with official implications. We're looking for a term that emphasizes an ongoing, impactful
+          urban development over a specific period.
+    scene: A city planner explaining urban development efforts in a public meeting or presentation.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「10 年 来」 for urban revitalization projects conveys the long-term, continuous, and
+      significant nature of the effort. The passive form 「進め られ て い ます」 (is being advanced) fits well
+      in an official or public announcement setting, suggesting a concerted effort by the city.
+    etymology: 「再生」 (saisei) means 'regeneration' or 'revitalization,' combining 「再」 (sai), meaning 'again,'
+      and 「生」 (sei), meaning 'life' or 'birth.' It denotes the process of bringing something back to life
+      or restoring it.
+  - english: That restaurant has been famous for its ramen for forty years.
+    japanese:
+      - あの 店 は 40 年 {来} の ラーメン の 名店 です。
+      - あの 店 は 40 年 {来} の ラーメン の 名店 だ。
+    english_literally: That restaurant, forty years since, ramen's famous shop is.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店 は 40 年 {間} ラーメン で 有名 です。
+        english: That restaurant has been famous for its ramen for 40 years.
+        hint: 「年間」 simply states the duration of fame. 「来」, especially with 「名店」, emphasizes a long-standing
+          and well-established reputation, almost a historical status. We're looking for an expression
+          that highlights a place's enduring reputation as a famous establishment.
+    scene: Two friends discussing a well-known local restaurant with a long history.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: Even in a casual conversation between friends, 「40 年 来 の 名店」 is used to emphasize the enduring
+      and historical fame of the restaurant, suggesting a place that has been continuously excellent for
+      decades. 「名店」 (meiten) specifically means 'famous/renowned shop,' highlighting its established status.
+    etymology: 「名店」 (meiten) combines 「名」 (mei), meaning 'name' or 'fame,' and 「店」 (ten), meaning 'shop'
+      or 'store.' It directly refers to a shop that is widely known and highly regarded.
+  - english: This issue has been a major challenge for the government for the last fifty years.
+    japanese:
+      - この 問題 は 政府 に とっ て 50 年 {来} の 主要 な 課題 と なっ て いる。
+      - この 問題 は 政府 に とっ て 50 年 {来} の 主要 な 課題 と なっ て い ます。
+    english_literally: This problem, for the government, fifty years since, major challenge has become.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は 政府 に とっ て 50 年 {間} 主要 な 課題 だ。
+        english: This problem has been a major challenge for the government for 50 years.
+        hint: 「年間」 indicates a simple duration. 「来」, especially with terms like 「主要 な 課題」, emphasizes
+          a persistent, significant, and long-standing problem that has continuously challenged the government.
+          We're looking for an expression that conveys a deep-rooted, ongoing challenge.
+    scene: A political analyst discussing long-standing policy issues on a news program or in a journal.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: Using 「50 年 来 の 主要 な 課題」 highlights a significant problem that has persisted for decades,
+      making it appropriate for analytical discourse on public policy. The phrase 「課題 と なっ て いる」 (has
+      become/is a challenge) formally describes the situation.
+    etymology: 「課題」 (kadai) means 'task,' 'issue,' or 'challenge.' It combines 「課」 (ka), meaning 'section'
+      or 'lesson,' and 「題」 (dai), meaning 'title' or 'topic.' In this context, it refers to a problem
+      that needs to be addressed or overcome.
+post_example_writeup: As these examples demonstrate, 「来」 consistently denotes a duration leading up to
+  the present, often implying a sense of continuity, historical significance, or record-breaking occurrence.
+  While other expressions like 「年間」 or 「から」 can also indicate duration, 「来」 carries a more formal, literary,
+  or official nuance, making it suitable for contexts where precision and a sense of historical weight
+  are desired. Pay attention to the combination with nouns that denote relationships, events, or qualities
+  to fully grasp its expressive power.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/来

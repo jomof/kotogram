@@ -1,0 +1,248 @@
+grammar_point: ように (purpose or desired state)
+learn_before:
+  - '[Verb-dictionary]ことがある (there are times when)'
+  - って (casual topic marker)
+  - っぽい (ish; characteristic of)
+  - ておく (to do in advance)
+  - に気をつける (to be careful of)
+  - まい〜のように (almost every time)
+  - ように言う (tell・request・order)
+  - 何 (what)
+  - 最も (most)
+meaning: To indicate purpose, goal, or a desired state, often implying an effort to achieve it or a change
+  toward a new condition.
+pronunciation:
+  katakana: ヨウニ
+  romaji: yō ni
+formation:
+  Verb[dictionary form] + ように: Indicates the purpose or goal of an action, focusing on the desired outcome
+    or state.
+  Verb[negative plain form] + ように: Indicates the purpose of preventing an action or state.
+  Verb[potential form] + ように: Indicates the purpose of enabling an ability or making something possible.
+jlpt: N4
+etymology: The particle ように (yō ni) is derived from 様 (yō), meaning 'appearance,' 'manner,' or 'state.'
+  When combined with に (ni), which indicates a target or result, it conveys the sense of 'in such a way
+  as to' or 'so that.' Over time, its usage evolved to specifically express a purpose or a desired state,
+  indicating that an action is taken to bring about a particular outcome or to facilitate a certain condition.
+  The core idea is aiming for a specific 'state' or 'manner' of being or doing.
+writeup: |-
+  The grammar point ように is used to express the purpose or desired outcome of an action. It typically follows a verb in its dictionary form, plain negative form, or potential form. The overarching nuance of ように is that the action is performed 'in such a way as to' achieve a particular result, or 'so that' a certain state is brought about. This often implies an effort or a conscious action directed towards that end.
+
+  When used with a plain non-past verb (dictionary form), ように indicates that the action preceding ように is done with the aim of achieving the verb's action. For instance, 「日本語が上手になる{ように}、毎日勉強しています。」(I study every day so that my Japanese will improve.) Here, the effort of studying is aimed at the result of Japanese becoming better.
+
+  With a plain negative verb, ように signifies taking action to prevent something. For example, 「忘れ物をしない{ように}、メモをしました。」(I made a memo so that I wouldn't forget anything.) The act of making a memo is done to ensure the non-occurrence of forgetting.
+
+  When combined with a potential verb, ように expresses doing something to enable an ability or make something possible. For example, 「よく見える{ように}、眼鏡をかけた。」(I put on my glasses so that I could see well.) The act of wearing glasses enables the ability to see clearly.
+
+  It is crucial to understand that ように often focuses on the *result* or *change in state* that an action brings about, rather than the direct, concrete purpose of an action.
+false_friends:
+  - term: 〜ために (for the purpose of)
+    meaning: for the purpose of, in order to, for the sake of
+    kind: often confused with
+    nuance: While both express purpose, ために focuses on the direct, often concrete, goal or reason for
+      an action. ように emphasizes the resulting state, condition, or ability, often implying an indirect
+      effort or a change.
+    grammar_point: '[Verb-casual・い-Adj・な-Adjな・Nounの]ため(に) (because of・due to)'
+  - term: Verb[dictionary]こと (formal imperative・rule)
+    meaning: the act of, it is a rule that, it is important to
+    kind: similar expression
+    nuance: こと states a rule, a general truth, or a strong suggestion, often with formality or a declarative
+      tone. ように expresses a desired state or purpose that one works towards, implying an effort or goal,
+      rather than a fixed rule.
+    grammar_point: <suggest>:Verb[dictionary]こと (formal imperative・rule)
+  - term: 〜ようになる (come to be able to do)
+    meaning: to come to be able to do, to reach a state where something happens
+    kind: similar expression
+    nuance: 〜ように is the 'aim' or 'effort' towards a state, while 〜ようになる describes the 'actual attainment'
+      or 'gradual development' of that state or ability. ように can be part of 〜ようになる constructions.
+    grammar_point: ようになる (to come to be)
+post_false_friends_writeup: The distinction between ように and ために is one of the most common points of confusion.
+  Think of ように as focusing on the *outcome* or *effect* of an action, especially when that outcome is
+  about ability, perception, or a change in state. It's like saying 'so that X happens' or 'in such a
+  way that Y becomes possible.' ために, on the other hand, points to the *direct objective* or *reason* for
+  an action. It's 'for the purpose of Z' or 'in order to do W.' If the goal is a change in ability or
+  state, ように is often more appropriate. If it's a direct action's objective, ために is likely better. For
+  example, 「日本語が話せる{ように}、毎日練習しています。」 (I practice every day *so that I can speak Japanese* - focuses on
+  the ability). Versus, 「日本語を勉強する{ために}、日本へ行った。」 (I went to Japan *in order to study Japanese* - focuses
+  on the direct objective).
+examples:
+  - english: I save money so that I can buy a house.
+    japanese:
+      - 家 を 買える {よう に}、貯金 し て い ます。
+      - 家 が 買える {よう に}、貯金 し てる。
+      - 家 を 買える {よう} に、貯金 し てん の。
+    english_literally: In order to be able to buy a house, I am saving money.
+    competing_grammar:
+      - competing_japanese:
+          - 家 を 買う ため に、貯金 し て い ます。
+        english: I am saving money for the purpose of buying a house.
+        hint: 「ために」 focuses on the direct purpose of an action. We're looking for an expression that emphasizes
+          gaining the ability to do something.
+    scene: A person discussing their financial goals.
+    register: teineigo (polite)
+    setting: serious
+    nuance: The potential form 「買える」 (be able to buy) combined with 「ように」 emphasizes the desired outcome
+      of gaining the ability to purchase a house. The speaker is taking action ('saving money') with this
+      specific result in mind.
+  - english: Please write in a way that is easy to understand.
+    japanese:
+      - 分かり やすい {よう に}、書い て ください。
+      - 分かり やすい {よう に}、書い て くれ。
+      - 分かり やすい {よう} に、書い て ね。
+    english_literally: So that it is easy to understand, please write.
+    competing_grammar:
+      - competing_japanese:
+          - 分かり やすく 書く こと。
+        english: Writing in an easy-to-understand way is a rule.
+        hint: 「こと」 can state a rule or general instruction. We're looking for a request to write in a
+          manner that achieves a specific state of clarity.
+    scene: A teacher instructing students on how to write an essay.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「分かりやすいように」 uses the i-adjective 「分かりやすい」 (easy to understand) with ように, indicating the desired
+      state or quality of the writing. The request is to make an effort to achieve this readability.
+  - english: I'm practicing so I don't make mistakes during the presentation.
+    japanese:
+      - プレゼン で 間違え ない {よう に}、練習 し て い ます。
+      - プレゼン で 間違え ない {よう に}、練習 し てる。
+      - プレゼン で 間違え ない {よう} に、練習 し て ん だ。
+    english_literally: So that I don't make mistakes in the presentation, I am practicing.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン で 間違え ない ため に、練習 し て い ます。
+        english: I am practicing for the purpose of not making mistakes in the presentation.
+        hint: 「ために」 can express purpose, but 「ように」 is more natural when emphasizing prevention or a desired
+          state.
+    scene: A student preparing for a class presentation.
+    register: teineigo (polite)
+    setting: academic
+    nuance: The negative form 「間違えない」 (don't make mistakes) before 「ように」 clearly indicates the purpose
+      of *avoiding* an undesirable outcome. The practice is done to prevent errors.
+  - english: I'll arrive early so I won't be late for the meeting.
+    japanese:
+      - 会議 に 遅れ ない {よう に}、早く 着き ます。
+      - 会議 に 遅れ ない {よう に}、早く 着く よ。
+      - 会議 に 遅れ ない {よう に}、早め に 着い とく。
+    english_literally: So that I don't be late for the meeting, I will arrive early.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 に 遅れ ない ため に、早く 着き ます。
+        english: I will arrive early for the purpose of not being late for the meeting.
+        hint: 「ために」 can express purpose, but 「ように」 is often used for preventive measures or to achieve
+          a desired state like 'not being late'.
+    scene: A colleague informing another about their plan for a meeting.
+    register: teineigo (polite)
+    setting: professional
+    nuance: Similar to the previous example, 「遅れないように」 uses the negative plain form to express the intention
+      of preventing lateness. The action of arriving early is for this specific preventative purpose.
+  - english: He studies hard so that he can pass the exam.
+    japanese:
+      - 試験 に 合格 できる {よう に}、彼 は 熱心 に 勉強 し ます。
+      - 試験 に 合格 できる {よう に}、彼 は 熱心 に 勉強 し てる。
+      - 試験 に 合格 できる {よう}、彼 は 熱心 に 勉強 し て ん だ。
+    english_literally: So that he can pass the exam, he studies diligently.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 に 合格 する ため に、彼 は 熱心 に 勉強 し ます。
+        english: He studies diligently for the purpose of passing the exam.
+        hint: We're looking for an expression that emphasizes gaining the ability to pass the exam, rather
+          than just the direct act of passing.
+    scene: Observing a diligent student.
+    register: teineigo (polite)
+    setting: academic
+    nuance: 「合格できる」 (can pass) is a potential verb, and 「ように」 indicates the effort is directed towards
+      gaining this ability. This highlights the goal-oriented effort.
+  - english: I bought a small mirror so I can check my appearance.
+    japanese:
+      - 身だしなみ を チェック できる {よう に}、小さい 鏡 を 買い まし た。
+      - 身だしなみ を チェック できる {よう に}、小さい 鏡 買っ た。
+      - 身だしなみ チェック できる {よう} に、小さい 鏡 買っ た ん だ。
+    english_literally: So that I can check my appearance, I bought a small mirror.
+    competing_grammar:
+      - competing_japanese:
+          - 身だしなみ を チェック する ため に、小さい 鏡 を 買い まし た。
+        english: I bought a small mirror for the purpose of checking my appearance.
+        hint: While 「ために」 is possible, 「ように」 is more natural when the purpose is to enable an ability
+          or create a condition.
+    scene: A person explaining a recent purchase.
+    register: teineigo (polite)
+    setting: casual slang
+    nuance: Here, 「チェックできる」 (can check) shows that the mirror was bought to enable the action of checking
+      one's appearance. The purchase serves the purpose of making this ability possible.
+  - english: Please be careful not to fall.
+    japanese:
+      - 転ば ない {よう に}、気 を つけ て ください。
+      - 転ば ない {よう に}、気 を つけ て ね。
+      - 転ば ない {よう に}、気 を つけ て くれ。
+    english_literally: So that you don't fall, please be careful.
+    competing_grammar:
+      - competing_japanese:
+          - 転ば ない こと。
+        english: Do not fall.
+        hint: 「こと」 might sound like a rule. We're looking for a softer request or advice to prevent an
+          outcome.
+    scene: Warning someone on a slippery surface.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: The negative plain form 「転ばない」 (not fall) used with 「ように」 conveys a cautionary purpose. The
+      instruction to be careful is given with the goal of preventing a fall.
+  - english: I speak slowly so that everyone can understand.
+    japanese:
+      - みんな が 理解 できる {よう に}、ゆっくり 話し ます。
+      - みんな が 理解 できる {よう に}、ゆっくり 話す よ。
+      - みんな に 分かる {よう に}、ゆっくり 話す ね。
+    english_literally: So that everyone can understand, I speak slowly.
+    competing_grammar:
+      - competing_japanese:
+          - みんな が 理解 する ため に、ゆっくり 話し ます。
+        english: I speak slowly for the purpose of everyone understanding.
+        hint: 「ために」 can express purpose, but 「ように」 emphasizes facilitating understanding or a desired
+          state.
+    scene: A speaker adapting their pace for an audience.
+    register: teineigo (polite)
+    setting: informative
+    nuance: 「理解できる」 (can understand) is a potential verb, and the speaker's action of speaking slowly
+      is for the purpose of enabling the listeners' understanding. This highlights the speaker's conscious
+      effort.
+  - english: She practices piano every day so that she can participate in the competition.
+    japanese:
+      - コンクール に 出 られる {よう に}、彼女 は 毎日 ピアノ を 練習 し て い ます。
+      - コンクール に 出 られる {よう に}、彼女 は 毎日 ピアノ 練習 し てる。
+      - コンクール 出れる {よう に}、毎日 ピアノ 練習 し て ん だ って。
+    english_literally: So that she can participate in the competition, she is practicing piano every day.
+    competing_grammar:
+      - competing_japanese:
+          - コンクール に 出る ため に、彼女 は 毎日 ピアノ を 練習 し て い ます。
+        english: She practices piano every day for the purpose of participating in the competition.
+        hint: We're looking for an expression that emphasizes gaining the ability to participate, rather
+          than just the direct act of participation.
+    scene: Describing someone's dedication to an activity.
+    register: teineigo (polite)
+    setting: serious
+    nuance: 「出られる」 (can participate) is the potential form, indicating that her daily piano practice is
+      aimed at acquiring the ability or permission to enter the competition. The effort is for this specific
+      enabling outcome.
+  - english: I'm writing down important points so I don't forget them.
+    japanese:
+      - 忘れ ない {よう に}、重要 な 点 を 書き留め て い ます。
+      - 忘れ ない {よう に}、大事 な こと 書い てる。
+      - 忘れ ない {よう に}、メモっ てる ん だ。
+    english_literally: So that I don't forget, I am writing down important points.
+    competing_grammar:
+      - competing_japanese:
+          - 忘れ ない ため に、重要 な 点 を 書き留め て い ます。
+        english: I am writing down important points for the purpose of not forgetting them.
+        hint: While 「ために」 is possible, 「ように」 is more natural for expressing preventive purposes or achieving
+          a desired state of 'not forgetting'.
+    scene: A person taking notes during a lecture or meeting.
+    register: teineigo (polite)
+    setting: academic
+    nuance: The negative plain form 「忘れない」 (not forget) with 「ように」 signifies a preventative purpose. The
+      act of writing notes serves to ensure that the information is not forgotten.
+post_example_writeup: As you can see from the examples, ように primarily expresses the idea of 'so that'
+  or 'in order to achieve a state/ability.' It's highly versatile and used across various contexts, from
+  daily conversations to more formal settings. Pay close attention to the verb form preceding ように, as
+  it dictates whether the purpose is to achieve something, prevent something, or enable an ability. Understanding
+  this nuance will significantly improve your comprehension and natural use of Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%82%88%E3%81%8B%E3%81%86%E3%81%AB

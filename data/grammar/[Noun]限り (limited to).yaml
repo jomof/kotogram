@@ -1,0 +1,214 @@
+grammar_point: '[Noun]限り (limited to)'
+learn_before:
+  - '[Adjective]限りだ (the utmost・peak of)'
+meaning: limited to (the scope of)
+pronunciation:
+  katakana: かぎり
+  romaji: kagiri
+formation:
+  Noun + 限り: Indicates that something is restricted or confined to the scope of the preceding noun.
+jlpt: N3
+etymology: The word 限り (kagiri) comes from the verb 限る (kagiru), meaning "to limit," "restrict," or "confine."
+  Historically, it refers to a boundary or the utmost extent of something. Its use as a phrasal component
+  signifies "up to the limit of" or "within the confines of," retaining this core meaning of setting a
+  demarcation. It often emphasizes the exclusivity of the condition or scope.
+writeup: |-
+  The grammar point 「Noun + 限り」 is used to specify that something is limited to, or applies only within, the scope of the preceding noun. It establishes a clear boundary or condition, beyond which something does not apply or is not permitted. This structure is often used when discussing rules, policies, conditions, or situations where there is a defined scope or restriction.
+
+  This expression implies that the situation or rule holds true *only* under the specified noun's conditions or *only* for the specified group/area. It sets a strict boundary. For example, if a rule applies 「会員限り」 (kaiin kagiri), it means "limited to members," and non-members are explicitly excluded.
+
+  It is crucial to understand that 「限り」 here acts as a boundary marker, not merely indicating quantity but defining the extent of applicability or existence. It is frequently encountered in written instructions, legal texts, or formal announcements, but can also appear in spoken language when conveying a clear, definitive limitation.
+false_friends:
+  - term: だけ (only・just)
+    meaning: only; just; merely
+    kind: similar expression
+    nuance: While 「だけ」also expresses limitation, 「限り」 often implies a more strict, defined, or conditional
+      boundary. 「だけ」 can be more about exclusion, whereas 「限り」 is about a specified scope.
+    grammar_point: だけ (only・just)
+  - term: しか〜ない (only, nothing but)
+    meaning: only; nothing but (used with negative)
+    kind: similar expression
+    nuance: 「しか〜ない」 also expresses exclusivity, but it inherently carries a negative nuance, suggesting
+      that something is insufficient or less than expected. 「限り」 simply defines a limit without this negative
+      implication.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: '[Verb-dictionary]限り (as long as・to the extent that)'
+    meaning: as long as; to the extent that; while
+    kind: similar expression
+    nuance: Although it uses the same word 「限り」, this grammar point functions differently. When preceded
+      by a dictionary-form verb, it means "as long as (a condition or state continues)" or "to the extent
+      that (one knows/can do)", indicating duration or scope of knowledge/ability. In contrast, 「Noun
+      + 限り」 specifically limits something *to* the scope of the noun, often a rule or condition.
+    grammar_point: <suggest>:[Verb-dictionary]限り (as long as・to the extent that)
+  - term: 範囲内 (within the range)
+    meaning: within the scope/range
+    kind: synonym
+    nuance: 「範囲内」 is a more direct and often more flexible way to say "within the range" or "within the
+      scope." While 「限り」 defines a precise limit or condition, 「範囲内」 can sometimes imply a broader, more
+      general area or category. 「限り」 tends to emphasize the condition itself.
+    grammar_point: <strongly-suggest>:範囲内 (within the range)
+post_false_friends_writeup: While 「だけ」 and 「しか〜ない」 both limit, 「限り」 sets a more formal or defined boundary,
+  particularly concerning rules, conditions, or specific groups. For instance, 「この割引は学生だけ」 means "this
+  discount is only for students," whereas 「この割引は学生限り」 implies "this discount is limited to students,"
+  often used in a more official context. The usage of 「限り」 with verbs to mean "as long as" is a distinct
+  grammar pattern, despite sharing the same word, so be careful not to confuse the two.
+examples:
+  - english: This discount is limited to members only.
+    japanese:
+      - この 割引 は 会員 {限り} です。
+      - この 割引 は 会員 {限り} と なり ます。
+      - 会員 {限り} の 割引 です。
+    english_literally: This discount is member limited.
+    competing_grammar:
+      - competing_japanese:
+          - この 割引 は 会員 だけ です。
+        english: This discount is only for members.
+        hint: 「だけ」 indicates 'only' or 'just' and is a broader limiter. We're looking for a more formal
+          expression that explicitly states a restriction or boundary.
+      - competing_japanese:
+          - この 割引 は 会員 の 範囲 内 です。
+        english: This discount is within the range of members.
+        hint: 「範囲内」 means 'within the range/scope' and is suitable for broader contexts. We're looking
+          for an expression that signifies a strict condition or exclusive group.
+    scene: A sign posted at the entrance of a store.
+    register: formal
+    setting: informative
+  - english: This special offer is limited to online purchases.
+    japanese:
+      - この 特別 オファー は オン ライン 購入 {限り} です。
+      - この 特別 オファー は オン ライン 購入 {限り} と なり ます。
+      - オン ライン 購入 {限り} の 特別 オファー です。
+    english_literally: This special offer is online purchase limited.
+    competing_grammar:
+      - competing_japanese:
+          - この 特別 オファー は オン ライン 購入 だけ です。
+        english: This special offer is only online purchases.
+        hint: 「だけ」 is a general 'only'. We need a phrase that explicitly states the restriction or condition
+          under which the offer applies.
+    scene: An advertisement for a limited-time sale.
+    register: formal
+    setting: informative
+  - english: Children under 12 years old are admitted free, but limited to one child per adult.
+    japanese:
+      - 12 歳 未満 の 子供 は 無料 です が、大人 お 一人 {限り} です。
+      - 12 歳 未満 の お 子 様 は 無料 です が、大人 お 一人 様 {限り} と なり ます。
+      - 子供 は 12 歳 未満 無料、ただし 大人 お 一人 {限り}。
+    english_literally: Children under 12 years old are free, but adult one limited.
+    competing_grammar:
+      - competing_japanese:
+          - 大人 お 一人 しか 入れ ませ ん。
+        english: Only one adult can enter.
+        hint: 「しか〜ない」 implies only but often with a negative connotation (e.g., 'only one, which is not
+          many'). We are simply stating a limit without negative implication.
+    scene: A ticket counter at an amusement park.
+    register: formal
+    setting: instructional
+  - english: The use of the pool is limited to hotel guests.
+    japanese:
+      - プール の ご 利用 は ご 宿泊 の お 客 様 {限り} です。
+      - 当 プール は ご 宿泊 の お 客 様 {限り} と なっ て おり ます。
+      - プール は ご 宿泊 の お 客 様 {限り} と さ せ て いただき ます。
+    english_literally: Pool's use is hotel guest limited.
+    competing_grammar:
+      - competing_japanese:
+          - プール の ご 利用 は ホテル の お 客 様 だけ です。
+        english: The use of the pool is only for hotel guests.
+        hint: While similar in meaning, 「限り」 is typically used for more formal or official restrictions.
+          We need a phrase that emphasizes the specific condition of use.
+    scene: A notice at a hotel swimming pool.
+    register: formal
+    setting: informative
+  - english: This special service is limited to customers who pre-ordered.
+    japanese:
+      - この 特別 サービス は、事前 予約 の お 客 様 {限り} と なり ます。
+      - 事前 予約 の お 客 様 {限り} の 特別 サービス です。
+      - 当 特別 サービス は、事前 予約 の お 客 様 {限り} と さ せ て いただき ます。
+    english_literally: This special service is, pre-order customer limited becomes.
+    competing_grammar:
+      - competing_japanese:
+          - この 特別 サービス は、事前 予約 の お 客 様 だけ です。
+        english: This special service is only for customers who pre-ordered.
+        hint: 「だけ」 is a general 'only'. We need a phrase to convey a more formal and strict condition
+          for a service.
+    scene: A customer service representative explaining terms to a client.
+    register: formal
+    setting: informative
+  - english: These goods are duty-free limited to foreigners.
+    japanese:
+      - これ ら の 商品 は、外国 人 {限り} 免税 です。
+      - 外国 人 {限り}、これ ら の 商品 は 免税 と なり ます。
+      - 本 商品 は、外国 人 の お 客 様 {限り}、免税 対象 です。
+    english_literally: These goods are, foreigner limited duty-free.
+    competing_grammar:
+      - competing_japanese:
+          - これ ら の 商品 は、外国 人 だけ 免税 です。
+        english: These goods are duty-free only for foreigners.
+        hint: 「だけ」 is a broader 'only'. We are expressing a condition set by law or regulation, which
+          calls for a more specific restrictive term.
+    scene: A sign in a duty-free shop at an airport.
+    register: formal
+    setting: instructional
+  - english: The use of the fitness center is limited to adults aged 18 and over.
+    japanese:
+      - フィットネス センター の ご 利用 は、18 歳 以上 の 成人 {限り} です。
+      - フィットネス センター は 18 歳 以上 の 成人 {限り} の ご 利用 と なり ます。
+      - 18 歳 以上 の 成人 {限り}、フィットネス センター を ご 利用 いただけ ます。
+    english_literally: Fitness center's use is, 18 years old or more adult limited.
+    competing_grammar:
+      - competing_japanese:
+          - フィットネス センター の ご 利用 は、18 歳 以上 の 成人 まで です。
+        english: The use of the fitness center is up to adults aged 18 and over.
+        hint: 「まで」 indicates 'up to' a certain point or limit, but 「限り」 emphasizes the exclusivity of
+          the condition. We need a phrase that states it applies *only* to this group.
+    scene: A regulation sign at a sports club.
+    register: formal
+    setting: instructional
+  - english: This information is confidential and is limited to authorized personnel.
+    japanese:
+      - この 情報 は 機密 で あり、許可 さ れ た 関係 者 {限り} です。
+      - 本 情報 は 機密 に つき、許可 さ れ た 関係 者 {限り} と なっ て おり ます。
+      - この 情報 は 許可 さ れ た 関係 者 {限り} と 厳しく 定め られ て い ます。
+    english_literally: This information is confidential, permitted related person limited.
+    competing_grammar:
+      - competing_japanese:
+          - この 情報 は 機密 で あり、許可 さ れ た 関係 者 だけ に 限ら れ ます。
+        english: This information is confidential and is limited only to authorized personnel.
+        hint: While correct, the use of 「だけ」 and 「限られる」 together can be redundant. We need a more concise
+          and direct way to express strict limitation.
+    scene: A manager explaining data access policies to new employees.
+    register: formal
+    setting: informative
+  - english: This sale price is limited to items in stock.
+    japanese:
+      - この セール 価格 は、在庫 品 {限り} です。
+      - セール 価格 は 在庫 品 {限り} と なり ます。
+      - 在庫 品 {限り} で、この 価格 です。
+    english_literally: This sale price is, in-stock item limited.
+    competing_grammar:
+      - competing_japanese:
+          - この セール 価格 は、在庫 品 の 範囲 内 です。
+        english: This sale price is within the range of in-stock items.
+        hint: 「範囲内」 is broader. We're looking for a phrase that specifically states the condition that
+          only *these* items, and no others, qualify.
+    scene: A notice in a retail store during a clearance sale.
+    register: formal
+    setting: informative
+  - english: Parking is limited to residents.
+    japanese:
+      - 駐車 場 は 居住 者 {限り} です。
+      - 駐車 場 は 居住 者 {限り} と なっ て おり ます。
+      - 当 駐車 場 は 居住 者 {限り} で ござい ます。
+    english_literally: Parking is resident limited.
+    competing_grammar:
+      - competing_japanese:
+          - 駐車 場 は 居住 者 しか 利用 でき ませ ん。
+        english: Only residents can use the parking lot.
+        hint: 「しか〜ない」 is often used when expressing that something is restricted to a small number or
+          quantity, or implies a sense of 'nothing but'. We are stating a rule about who is permitted,
+          without emphasizing scarcity.
+    scene: A sign in a residential parking area.
+    register: formal
+    setting: instructional
+post_example_writeup: In all these examples, 「限り」 emphasizes that the action, rule, or condition applies
+  *only* to the specified noun or within its defined scope, effectively setting an exclusive boundary.
+  This makes it a powerful tool for conveying precise limitations in Japanese.

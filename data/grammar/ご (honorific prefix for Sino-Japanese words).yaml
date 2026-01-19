@@ -1,0 +1,244 @@
+grammar_point: ご (honorific prefix for Sino-Japanese words)
+learn_before:
+  - お[Verb-stem]する・いたす (humble action - kenjougo)
+meaning: an honorific prefix used primarily with Sino-Japanese (on'yomi) words, conveying politeness or
+  respect
+pronunciation:
+  katakana: ゴ
+  romaji: Go
+formation:
+  ご + Sino-Japanese Noun: Forms an honorific noun (e.g., ご飯, ご連絡).
+  ご + Sino-Japanese Verb Stem + になる (respectful): Forms a respectful verb (e.g., ご理解になる).
+  ご + Sino-Japanese Verb Stem + する (humble): Forms a humble verb (e.g., ご連絡する).
+jlpt: N5
+etymology: The prefixes お and ご both originate from the honorific language used in the Imperial Court
+  and aristocratic society, emphasizing politeness and respect towards the emperor, nobles, and their
+  belongings. 「ご」 specifically derives from the Chinese character 御 (go), which also means "control" or
+  "manipulate," but was extensively used in Japan as an honorific prefix, especially for words of Chinese
+  origin (on'yomi). This usage reflects a historical tendency to incorporate Chinese linguistic elements
+  into formal and polite discourse, as Chinese culture often carried prestige.
+writeup: '「ご」 is an honorific prefix in Japanese, primarily used with Sino-Japanese words (words derived
+  from Chinese, often read with on''yomi). Its main function is to add a layer of politeness, respect,
+  or humility to the noun or verb it precedes. This prefix is an essential component of `keigo` (honorific
+  language) and is crucial for appropriate communication in various social contexts in Japan. 「ご」 can
+  be used in several ways: 1. **As a general politeness marker**: When attached to nouns, it elevates
+  the status of the item or concept, showing politeness to the listener. For example, 「ご飯」 (gohan, meal/rice)
+  is inherently more polite than just 「飯」 (meshi). 2. **In Sonkeigo (respectful language)**: When forming
+  respectful verbs or nouns related to the listener''s or a respected person''s actions or belongings.
+  For example, 「ご連絡」 (go-renraku) refers to "your contact" or "the contact made by a respected person."
+  3. **In Kenjōgo (humble language)**: When forming humble verbs or nouns related to the speaker''s own
+  actions, showing humility towards the listener. For example, 「ご説明」 (go-setsumei) can refer to "my explanation"
+  when used humbly. It''s important to differentiate 「ご」 from 「お」, its counterpart. While both are honorific
+  prefixes, 「お」 is generally used with native Japanese words (kun''yomi), and 「ご」 is used with Sino-Japanese
+  words (on''yomi). However, there are exceptions, and some words can take either, or have fixed forms
+  with one or the other (e.g., 「お電話」 is common, though 電話 is Sino-Japanese). Recognizing whether a word
+  is Sino-Japanese or native Japanese is key to choosing the correct prefix. Misusing these prefixes can
+  sound unnatural or even rude in some contexts.'
+false_friends:
+  - term: お (honorific prefix for native Japanese words)
+    meaning: an honorific prefix used primarily with native Japanese (kun'yomi) words.
+    kind: similar expression
+    nuance: 「お」 is used with native Japanese words (kun'yomi) like 「お水」 (omizu, water) or 「お名前」 (onamae,
+      name), whereas 「ご」 is used with Sino-Japanese words (on'yomi) like 「ご飯」 (gohan, meal/rice) or 「ご連絡」
+      (gorenraku, contact).
+    grammar_point: <suggest>:お (honorific prefix for native Japanese words)
+  - term: です (polite copula)
+    meaning: polite form of the copula 'to be'.
+    kind: similar expression
+    nuance: While 「です」 adds politeness to a sentence ending, 「ご」 adds politeness to specific nouns or
+      verb stems within the sentence, indicating respect for the item or action itself. They serve different
+      grammatical functions though both contribute to politeness.
+    grammar_point: です (polite copula)
+  - term: Verb[ます] (polite present)
+    meaning: polite form of verbs.
+    kind: similar expression
+    nuance: 「ます」 makes a verb polite, but 「ご」 adds honorific or humble nuance to the verb stem itself,
+      particularly when combined with respectful or humble auxiliary verbs (e.g., 「ご覧になる」 vs. 「見ます」).
+      「ご」 operates at the lexical level, modifying the noun or verb, while 「ます」 operates at the sentence
+      ending, modifying the verb's politeness level.
+    grammar_point: Verb[ます] (polite present)
+post_false_friends_writeup: The distinction between 「お」 and 「ご」 is fundamental to Japanese honorifics.
+  While both elevate the politeness of speech, their usage depends on the origin of the word they precede.
+  「お」 is typically for native Japanese words, and 「ご」 for Sino-Japanese words. 「です」 and 「ます」 are sentence-ending
+  politeness markers, whereas 「ご」 modifies specific words within the sentence, reflecting respect towards
+  the entity or action itself. Mastering these distinctions is crucial for accurate and natural Japanese
+  communication.
+examples:
+  - english: Please confirm the time.
+    japanese:
+      - '{ご} 時間 を {ご} 確認 ください。'
+      - '{ご} 時間 を {ご} 確認 いただけ ます でしょう か。'
+      - '{ご} 時間 の {ご} 確認 お 願い し ます。'
+    english_literally: Please confirm your time.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 を 確認 し て ください。
+        english: Please confirm the time.
+        hint: This is a more casual way to ask. We're looking for a formal, respectful request using an
+          honorific prefix.
+    scene: A hotel receptionist talking to a guest.
+    register: formal
+    setting: professional
+  - english: Is this your luggage?
+    japanese:
+      - こちら は {ご} 荷物 で いらっしゃい ます か？
+      - こちら は {ご} 荷物 です か？
+      - '{ご} 荷物 です か、こちら は？'
+    english_literally: As for here, is it your esteemed luggage?
+    competing_grammar:
+      - competing_japanese:
+          - これ は 荷物 です か？
+        english: Is this luggage?
+        hint: This is a very plain question. We're looking for a polite and respectful inquiry using an
+          honorific.
+    scene: An airline employee assisting a passenger at the baggage claim.
+    register: formal
+    setting: professional
+    nuance: The use of 「ご荷物」 respectfully refers to the listener's belongings, indicating politeness towards
+      them.
+  - english: Please contact us.
+    japanese:
+      - '{ご} 連絡 ください。'
+      - '{ご} 連絡 いただけ ませ ん でしょう か。'
+      - '{ご} 連絡 を お 願い いたし ます。'
+    english_literally: Please do contact.
+    competing_grammar:
+      - competing_japanese:
+          - 連絡 し て ください。
+        english: Please contact.
+        hint: This is a direct, polite request. We're looking for a more formal and respectful request
+          using an honorific.
+    scene: A business email or customer service representative giving instructions.
+    register: formal
+    setting: professional
+  - english: I will give you my explanation.
+    japanese:
+      - 私 が {ご} 説明 いたし ます。
+      - 私 が {ご} 説明 申し上げ ます。
+      - 私 が {ご} 説明 さ せ て いただき ます。
+    english_literally: I will do the explanation humbly.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 説明 し ます。
+        english: I will explain.
+        hint: This is polite but neutral. We're looking for a humble expression to show deference to the
+          listener.
+    scene: A junior employee offering to explain something to their superior.
+    register: kenjōgo (humble)
+    setting: professional
+    speaker_gender: male
+    nuance: The speaker uses 「ご説明いたします」 as humble language to show respect to the listener, emphasizing
+      their own humble action. 「いたします」 is the humble form of する.
+  - english: Please take a look at this document.
+    japanese:
+      - こちら の 書類 を {ご} 覧 ください。
+      - こちら の 書類 を {ご} 覧 いただけ ない でしょう か。
+      - こちら の 書類 を {ご} 覧 いただけ ます か？
+    english_literally: Please view this document respectfully.
+    competing_grammar:
+      - competing_japanese:
+          - こちら の 書類 を 見 て ください。
+        english: Please look at this document.
+        hint: This is a common polite request. We're looking for a respectful imperative form, elevating
+          the action of the listener.
+    scene: A manager presenting a document to their team.
+    register: sonkeigo (respectful)
+    setting: professional
+    nuance: 「ご覧ください」 is the respectful imperative form of 見る (miru), often paired with 「ご」 for Sino-Japanese
+      nouns like 覧 (ran).
+  - english: Thank you for your cooperation.
+    japanese:
+      - '{ご} 協力 ありがとう ござい ます。'
+      - '{ご} 協力 感謝 申し上げ ます。'
+      - '{ご} 協力 に 感謝 いたし ます。'
+    english_literally: Your cooperation, thank you very much.
+    competing_grammar:
+      - competing_japanese:
+          - 協力 ありがとう ござい ます。
+        english: Thank you for the cooperation.
+        hint: While polite, this lacks the additional layer of respect for the act of cooperation itself.
+          We're looking for a more formal and elevated expression.
+    scene: A public announcement or a sign at an event.
+    register: formal
+    setting: informative
+  - english: Are you in good health?
+    japanese:
+      - '{ご} 健康 で いらっしゃい ます か？'
+      - '{ご} 健康 です か？'
+      - '{ご} 健康 の こと、いかが です か？'
+    english_literally: Are you in esteemed good health?
+    competing_grammar:
+      - competing_japanese:
+          - 元気 です か？
+        english: Are you well?
+        hint: This is a very casual way to ask. We're looking for a highly respectful inquiry about someone's
+          health.
+    scene: One senior person inquiring about another senior person's well-being.
+    register: sonkeigo (respectful)
+    setting: friendly
+    nuance: 「ご健康」 respectfully refers to the listener's state of health, using 「いらっしゃいます」 for added respect.
+  - english: I have confirmed your request.
+    japanese:
+      - '{ご} 依頼 を 確認 いたし まし た。'
+      - '{ご} 依頼 の 件、承知 いたし まし た。'
+    english_literally: I humbly confirmed your request.
+    competing_grammar:
+      - competing_japanese:
+          - 依頼 を 確認 し まし た。
+        english: I confirmed the request.
+        hint: This is polite but doesn't convey the same level of humility or respect for the client's
+          request. We're looking for a humble way to state the action.
+    scene: A customer service representative replying to a client.
+    register: kenjōgo (humble)
+    setting: professional
+    nuance: The use of 「ご依頼」 respectfully refers to the client's request, and 「確認いたしました」 is humble language
+      for "I confirmed."
+  - english: Excuse me for my sudden visit.
+    japanese:
+      - 突然 の {ご} 訪問、失礼 いたし ます。
+      - 突然 の {ご} 訪問、申し訳 ござい ませ ん。
+      - 急 な {ご} 訪問 で 恐縮 です。
+    english_literally: A sudden visit, I humbly excuse myself.
+    competing_grammar:
+      - competing_japanese:
+          - 突然 の 訪問、すみ ませ ん。
+        english: Sorry for the sudden visit.
+        hint: This is an informal apology. We're looking for a more formal and humble way to apologize
+          for an unannounced visit.
+    scene: Someone arriving unannounced at another's house or office.
+    register: semi-formal
+    setting: apologetic
+    nuance: 「ご訪問」 politely refers to the act of visiting, emphasizing politeness to the host.
+  - english: How was your trip?
+    japanese:
+      - '{ご} 旅行 は いかが でし た か？'
+      - '{ご} 旅行 は どう でし た か？'
+      - '{ご} 旅行 は 楽しま れ まし た か？'
+    english_literally: As for your esteemed trip, how was it?
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 は どう でし た か？
+        english: How was the trip?
+        hint: This is a general polite question. We're looking for a question that respectfully refers
+          to the listener's experience.
+    scene: Friends or colleagues asking each other about a trip after they return.
+    register: formal
+    setting: friendly
+    nuance: 「ご旅行」 politely refers to the listener's trip.
+  - english: May I ask a question?
+    japanese:
+      - '{ご} 質問 さ せ て いただい て も よろしい です か？'
+      - '{ご} 質問 し て も よろしい です か？'
+      - '{ご} 質問 し て も よろしい でしょう か。'
+    english_literally: May I humbly be allowed to do a question?
+    competing_grammar:
+      - competing_japanese:
+          - 質問 し て も いい です か？
+        english: May I ask a question?
+        hint: This is a simple polite question. We're looking for a very humble and polite way to request
+          permission to ask a question.
+    scene: A student asking a teacher during class.
+    register: kenjōgo (humble)
+    setting: academic
+    nuance: 「ご質問」 is the noun for "question," and 「させて いただいて も よろしい です か？」 is a very polite and humble
+      way to ask for permission to ask.

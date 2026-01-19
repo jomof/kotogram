@@ -1,0 +1,246 @@
+grammar_point: 代わりに (instead of choosing)
+learn_before:
+  - 代わりに (instead of in return for)
+meaning: instead of; in place of; as a substitute for
+pronunciation:
+  katakana: カワリニ
+  romaji: kawari ni
+formation:
+  Noun の 代わりに: Indicates that an action is performed using a noun as a substitute for another, or that
+    something is chosen as an alternative to a noun.
+  Verb[dictionary] 代わりに: Indicates that an action is performed as an alternative to another action, or
+    that something is chosen instead of performing a certain action.
+jlpt: N3
+etymology: The grammar point 「代わりに」 derives from the noun 「代わり」 (kawari), meaning "substitute" or "replacement,"
+  combined with the particle 「に」 (ni), which here indicates purpose or location of substitution. The core
+  noun 「代わり」 originates from the verb 「代わる」 (kawaru), meaning "to replace" or "to substitute." This historical
+  root explains why 「代わりに」 fundamentally expresses the idea of one thing serving in the place of another.
+  While 「代わりに」 can also mean "in return for" (a concept of compensation), this specific grammar point
+  emphasizes the aspect of choosing an alternative instead of a primary or expected option, highlighting
+  a direct substitution.
+writeup: |-
+  The phrase 「代わりに」 is used to indicate that something is done **instead of** something else, or that one thing serves **in place of** another. It conveys the idea of substitution or an alternative choice. This grammar point is quite versatile and can be applied to both actions and items.
+
+  There are two primary ways to use 「代わりに」:
+
+  *   **Noun の 代わりに**: When attaching to a noun, it means "instead of [Noun]" or "in place of [Noun]". This structure is often used when you are making a choice to use one item or person as a substitute for another, or when an item takes the role of another.
+      *   Example: 砂糖 の 代わりに 蜂蜜 を 使う。 (I use honey instead of sugar.)
+
+  *   **Verb[dictionary] 代わりに**: When attaching to a verb in its dictionary form, it means "instead of doing [Verb action]" or "in place of [Verb action]". This is typically used when you choose to perform a different action than what was expected or an alternative action for convenience or necessity.
+      *   Example: 電車 に 乗る 代わりに 歩いた。 (I walked instead of taking the train.)
+
+  The nuance of 「代わりに」 often implies a situation where the initial, more obvious, or preferred option is not taken, and an alternative is chosen. It can suggest a compromise, a forced alternative, or simply a different choice made for a specific reason. It is important to distinguish this usage from the separate but homophonous grammar point 「代わりに」 which means "in return for" or "as compensation."
+false_friends:
+  - term: 代わりに (in return)
+    meaning: in return for; as compensation for
+    kind: similar expression
+    nuance: This expresses a reciprocal action or exchange, where something is given or done as a result
+      of a previous action or favor. It implies a cause-and-effect relationship for compensation, rather
+      than a choice of substitution.
+    grammar_point: 代わりに (in return)
+  - term: に代わって (in place of)
+    meaning: in place of; on behalf of
+    kind: synonym
+    nuance: While similar, 「に代わって」 often carries the nuance of acting on behalf of someone or something
+      else, or replacing something that is no longer present/functional. It can imply a more formal or
+      official substitution, or stepping into a role. 「代わりに」 is broader, covering simple choices or substitutions.
+    grammar_point: に代わって (in place of)
+  - term: 〜ではなくて・じゃなくて (not A but B)
+    meaning: not A, but B; it's not A, it's B
+    kind: similar expression
+    nuance: This structure explicitly denies one possibility and asserts another. While both express alternatives,
+      「代わりに」 implies "choosing B instead of A," whereas 「〜ではなくて」 means "it is B, it is not A." The latter
+      is more about correction or clarification of identity/truth.
+    grammar_point: ではなくて・じゃなくて (not A but B)
+post_false_friends_writeup: |-
+  It is crucial to differentiate the "instead of" meaning of 「代わりに」 from its "in return for" meaning. While they share the same form, the context will always clarify whether it's a substitution or a reciprocal action.
+
+  「に代わって」 is often interchangeable with 「代わりに」 when expressing "in place of," but it tends to be used for more formal or official substitutions, or when someone is acting on behalf of another. 「代わりに」 is more versatile for everyday substitutions and choices.
+
+  「〜ではなくて・じゃなくて」 directly negates one option and asserts another, focusing on clarification. 「代わりに」 highlights the choice of an alternative, often implying a reason or circumstance for that choice.
+examples:
+  - english: I ate fruit instead of cake.
+    japanese:
+      - ケーキ の {代わり に} フルーツ を 食べ まし た。
+      - ケーキ の {代わり に} フルーツ を 食べ た。
+      - ケーキ の {代わり に} フルーツ を 食し まし た。
+    english_literally: Of cake, instead, fruit ate.
+    competing_grammar:
+      - competing_japanese:
+          - ケーキ で は なく フルーツ を 食べ まし た。
+        english: I ate fruit, not cake.
+        hint: 「〜ではなく」 clarifies what was eaten versus what wasn't, focusing on correction. We're looking
+          for a choice of substitution.
+    scene: At a party, you are offered dessert, but you choose a healthier option.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I walked instead of taking the train.
+    japanese:
+      - 電車 に 乗る {代わり に} 歩い た。
+      - 電車 に 乗る {代わり に} 歩き まし た。
+    english_literally: Train to ride instead, walked.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 に 乗ら ず に 歩い た。
+        english: I walked without taking the train.
+        hint: 「〜ずに」 indicates doing something without performing the first action. We're looking for an
+          action chosen as a substitute.
+    scene: You decided to save money or get some exercise on your commute.
+    register: casual
+    setting: reflective
+  - english: We used paper cups instead of glass ones for the picnic.
+    japanese:
+      - ピクニック で は グラス の {代わり に} 紙 コップ を 使い まし た。
+      - ピクニック で は グラス の {代わり に} 紙 コップ を 使っ た。
+    english_literally: Picnic at, of glass, instead, paper cups used.
+    competing_grammar:
+      - competing_japanese:
+          - グラス じゃ なく 紙 コップ を 使い まし た。
+        english: We used paper cups, not glass ones.
+        hint: 「〜じゃなく」 specifies what was used, focusing on distinction. We're looking for a substitute
+          due to the situation.
+    scene: Preparing for an outdoor picnic, prioritizing convenience and safety.
+    register: teineigo (polite)
+    setting: informative
+  - english: She taught the lesson online instead of in person.
+    japanese:
+      - 彼女 は 対面 で 教える {代わり に} オン ライン で 授業 を し まし た。
+      - 彼女 は 対面 で 教える {代わり に} オン ライン で 授業 を し た。
+      - 彼女 は 対面 で 授業 を 行う {代わり に} オン ライン で 授業 を 行い まし た。
+    english_literally: She, face-to-face teach instead, online lesson did.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 対面 で は なく オン ライン で 教え た。
+        english: She taught online, not face-to-face.
+        hint: 「〜ではない」 emphasizes a factual difference. We're looking for a chosen alternative way of teaching.
+    scene: A teacher adapting to new circumstances.
+    register: formal
+    setting: professional
+  - english: I used my vacation days instead of working overtime.
+    japanese:
+      - 残業 する {代わり に} 有給 を 使っ た。
+      - 残業 する {代わり に} 有給 を 使い まし た。
+    english_literally: Overtime do instead, paid leave used.
+    competing_grammar:
+      - competing_japanese:
+          - 残業 せ ず に 有給 を 使っ た。
+        english: I used my vacation days without working overtime.
+        hint: 「〜ずに」 describes not doing something. We're looking for a deliberate choice of an alternative
+          action.
+    scene: You wanted to avoid working long hours.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: Male speakers might use this casually in conversation with friends. 「残業する代わりに」 implies a strategic
+      decision to utilize paid leave as an alternative to working overtime.
+  - english: My younger brother went to the meeting instead of me.
+    japanese:
+      - 私 の {代わり に} 弟 が 会議 に 行き まし た。
+      - 私 の {代わり に} 弟 が 会議 に 行っ た。
+    english_literally: My instead, younger brother meeting to went.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 行く の で は なく 弟 が 会議 に 行き まし た。
+        english: My younger brother went to the meeting, not me.
+        hint: 「〜のではない」 clarifies who went, emphasizing a correction. We're looking for an action performed
+          by someone as a replacement.
+      - competing_japanese:
+          - 私 に 代わっ て 弟 が 会議 に 行き まし た。
+        english: My younger brother went to the meeting on my behalf.
+        hint: 「に代わって」 often carries a nuance of acting officially or formally on someone's behalf, or
+          replacing a prior role. 「代わりに」 is a more general substitution.
+    scene: You couldn't attend a meeting, so someone else went.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The phrase 「私 の 代わりに」 highlights the younger brother taking the place of the speaker for a
+      specific task. While 「に代わって」 could also be used here, 「代わりに」 is more common for simpler, less formal
+      substitutions.
+  - english: Instead of going out to eat, we cooked at home.
+    japanese:
+      - 外食 する {代わり に} 家 で 料理 を し た。
+      - 外食 する {代わり に} 家 で 料理 を し まし た。
+    english_literally: Eating out do instead, home at cooking did.
+    competing_grammar:
+      - competing_japanese:
+          - 外食 し ない で 家 で 料理 を し た。
+        english: We cooked at home without eating out.
+        hint: 「〜しないで」 simply states what wasn't done. We're looking for a chosen alternative.
+    scene: Trying to save money or enjoy a cozy night in.
+    register: casual
+    setting: intimate
+  - english: He spent time with his family instead of playing video games.
+    japanese:
+      - テレビ ゲーム を する {代わり に} 家族 と 過ごし た。
+      - テレビ ゲーム を する {代わり に} 家族 と 過ごし まし た。
+    english_literally: Video games do instead, family with spent.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ ゲーム で は なく 家族 と 過ごし た。
+        english: He spent time with his family, not playing video games.
+        hint: 「〜ではない」 states a fact about what was done. We're looking for an action chosen as a replacement
+          for another.
+    scene: Making a conscious decision about how to spend leisure time.
+    register: casual
+    setting: reflective
+  - english: Instead of buying a new smartphone, I repaired my old one.
+    japanese:
+      - 新しい スマホ を 買う {代わり に} 古い スマホ を 修理 し た。
+      - 新しい スマホ を 買う {代わり に} 古い スマホ を 修理 し まし た。
+    english_literally: New smartphone to buy instead, old smartphone repaired.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい スマホ を 買わ ない で 古い スマホ を 修理 し た。
+        english: I repaired my old smartphone without buying a new one.
+        hint: 「〜ないで」 simply states what was avoided. We're looking for a deliberate alternative action.
+    scene: A pragmatic decision to save money.
+    register: casual
+    setting: informative
+  - english: Since I couldn't go to the concert, I listened to the live album instead.
+    japanese:
+      - コンサート に 行け ない {代わり に} ライブ アルバム を 聞い た。
+      - コンサート に 行け ない {代わり に} ライブ アルバム を 聞き まし た。
+    english_literally: Concert to cannot go instead, live album listened.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート に 行け なかっ た が、ライブ アルバム を 聞い た。
+        english: I couldn't go to the concert, but I listened to the live album.
+        hint: 「〜が」 simply connects two contrasting statements. We're looking for an action taken specifically
+          as a substitute for the first.
+    scene: Disappointed about missing an event, but finding an alternative.
+    register: casual
+    setting: melancholic
+  - english: The new system will be implemented instead of the old one.
+    japanese:
+      - 古い システム の {代わり に} 新しい システム が 導入 さ れ ます。
+      - 古い システム の {代わり に} 新しい システム が 導入 さ れる。
+      - 古い システム の {代わり に} 新しい システム が 導入 さ れる こと に なり ます。
+    english_literally: Old system instead, new system implemented is.
+    competing_grammar:
+      - competing_japanese:
+          - 古い システム で は なく 新しい システム が 導入 さ れ ます。
+        english: A new system will be implemented, not the old one.
+        hint: 「〜ではない」 emphasizes a factual replacement. We're looking for a new system serving as a substitute
+          for the old one.
+    scene: Discussing a technology upgrade at work.
+    register: formal
+    setting: professional
+  - english: Instead of complaining, let's try to find a solution.
+    japanese:
+      - 文句 を 言う {代わり に} 解決 策 を 探し て み ましょう。
+      - 文句 を 言う {代わり に} 解決 策 を 探し て みよう。
+    english_literally: Complaints to say instead, solution search let's try.
+    competing_grammar:
+      - competing_japanese:
+          - 文句 を 言う の で は なく 解決 策 を 探し て み ましょう。
+        english: Let's try to find a solution, not complain.
+        hint: 「〜のではない」 contrasts two actions, focusing on what should/shouldn't be done. We're looking
+          for replacing one action with another.
+    scene: A team struggling with a problem, encouraging proactive thinking.
+    register: semi-formal
+    setting: persuasive
+post_example_writeup: As you can see from these examples, 「代わりに」 is very flexible in indicating substitution,
+  whether it's for objects, people, or actions. The key is understanding that one thing is performing
+  the role or taking the place of another.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E4%BB%A3%E3%82%8F%E3%82%8A%E3%81%AB

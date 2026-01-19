@@ -1,0 +1,405 @@
+grammar_point: Verb[た] (past tense)
+learn_before:
+  - Verb[しました] (polite past)
+  - Verb[ました] (polite past)
+meaning: Plain past tense of verbs.
+conjugations:
+  - conjugation-type: past plain (～た)
+    form: た
+    rarity: common
+    meaning: plain past
+pronunciation:
+  katakana: タ ケイ
+  romaji: ta kei
+formation:
+  Godan Verb (dictionary form, last kana changes) + た: For verbs like 買う (かっ た), 待つ (待っ た), 飲む (飲ん だ),
+    etc., the final sound changes before adding た.
+  Ichidan Verb (stem) + た: For verbs like 食べる (食べ た), 見る (見 た), etc., remove る and add た.
+  Irregular Verb (する) + した: For する, it becomes した.
+  Irregular Verb (来る・くる) + 来た: For 来る, it becomes 来た.
+jlpt: N5
+etymology: The 「た」 form in Japanese verbs, marking the plain past tense, evolved from the 「て」 form. Historically,
+  「て」 indicated a sequential action or state, and over time, when used to complete a thought, it began
+  to convey a completed action. This led to its semantic shift to indicate past tense. The various sound
+  changes (音便 onbin) observed in 「た」 form conjugation (e.g., 書く -> 書いた, 読む -> 読んだ) are remnants of ancient
+  Japanese phonology that aimed for smoother pronunciation when the auxiliary verb 「た」 was appended.
+writeup: 'The Verb[た] form, or the plain past tense, is a fundamental conjugation in Japanese that indicates
+  a completed action or event, or a resulting state. It is widely used in casual speech, personal narratives,
+  and informal writing.The formation of the た form depends on the verb type: Godan (う-verbs): These verbs
+  undergo sound changes (音便 onbin) before た is attached. Verbs ending in -う, -つ, -る change to a small
+  っ before た (促音便 sokuonbin): e.g., 買う (かう) → 買った (かっ た); 待つ (まつ) → 待った (まっ た); 終わる (おわる) → 終わった (おわっ
+  た). Verbs ending in -む, -ぶ, -ぬ change to ん before だ (撥音便 hatsuonbin): e.g., 読む (よむ) → 読んだ (よん だ); 遊ぶ
+  (あそぶ) → 遊んだ (あそん だ); 死ぬ (しぬ) → 死んだ (しん だ). Note that た becomes だ for these verbs. Verbs ending in -く
+  change to い before た (イ音便 ionbin): e.g., 書く (かく) → 書いた (かい た). (Exception: 行く (いく) → 行った (いっ た)). Verbs
+  ending in -ぐ change to い before だ (イ音便 ionbin): e.g., 泳ぐ (およぐ) → 泳いだ (およい だ). Verbs ending in -す change
+  to し before た: e.g., 話す (はなす) → 話した (はなし た). Ichidan (る-verbs): For these verbs, simply remove the final
+  る and add た. e.g., 食べる (たべる) → 食べた (たべ た); 見る (みる) → 見た (み た). Irregular Verbs: する (する) → した (し た);
+  来る (くる) → 来た (き た).The た form is versatile and can indicate: 1. Simple Past Action: An action that was
+  completed in the past. (e.g., 昨日の夜、本を読んだ。 - Last night, I read a book.) 2. Completion/Resultant State:
+  An action that has been completed and its state continues. (e.g., ドアが開いた。 - The door is open/has opened.)
+  It is important to differentiate the plain past た form from other past tense expressions, such as the
+  polite past ました, the negative past なかった, or continuous past ていた.'
+false_friends:
+  - term: Verb[ます] (polite present)
+    meaning: Polite non-past tense
+    kind: often confused with
+    nuance: While the Verb[ます] form is polite and indicates present or future actions, Verb[た] (past tense)
+      specifically denotes completed actions in the plain past, used in casual settings.
+    grammar_point: Verb[ます] (polite present)
+  - term: Verb[て]
+    meaning: Te-form
+    kind: often confused with
+    nuance: Verb[て] connects actions or states, and can be part of a continuous or resulting state, but
+      it does not inherently express past tense on its own. Verb[た] expresses a completed action.
+    grammar_point: Verb[て] (and then)
+  - term: だった・でした
+    meaning: Past copula (was, were)
+    kind: often confused with
+    nuance: 「だった」 and 「でした」 are past forms of the copula for nouns and な-adjectives, indicating 'was'
+      or 'were'. Verb[た] is used exclusively for verbs to express past actions.
+    grammar_point: だった (past copula, casual)
+  - term: ていた
+    meaning: Past continuous or state
+    kind: often confused with
+    nuance: 「ていた」 describes an action that was ongoing in the past or a state that resulted from a past
+      action and continued. Verb[た] simply denotes a completed past action without emphasis on duration
+      or ongoing state.
+    grammar_point: Verb[ていた] (past progressive・resultative)
+  - term: Verb[ました] (polite past)
+    meaning: Polite past tense
+    kind: similar expression
+    nuance: Both express past tense, but Verb[た] is the plain form used in casual speech, while Verb[ました]
+      is the polite form for formal or respectful contexts.
+    grammar_point: Verb[しました] (polite past)
+  - term: Verb[なかった] (past negative)
+    meaning: Plain negative past tense
+    kind: similar expression
+    nuance: Verb[た] expresses affirmative past actions. Verb[なかった] expresses negative past actions in
+      the plain form.
+    grammar_point: Verb[なかった] (past negative)
+  - term: Verb[ませんでした] (polite past negative)
+    meaning: Polite negative past tense
+    kind: similar expression
+    nuance: Verb[た] expresses affirmative plain past actions. Verb[ませんでした] expresses negative past actions
+      in the polite form.
+    grammar_point: Verb[ませんでした] (polite past negative)
+post_false_friends_writeup: It is essential to distinguish the plain past 「た」 form from other related
+  grammatical structures. While Verb[ます] expresses present/future polite actions, and Verb[て] links actions
+  without denoting past tense on its own, だった/でした are past copulas for nouns/adjectives. ていた indicates
+  continuous or resultant states in the past. Furthermore, Verb[ました], Verb[なかった], and Verb[ませんでした] are
+  other past tense forms that differ in politeness or negation from the plain affirmative 「た」 form. Understanding
+  these distinctions is key to accurate and natural Japanese communication.
+examples:
+  - english: I bought a new book yesterday.
+    japanese:
+      - 昨日、新しい 本 を {買っ た}。
+      - 昨日、新しい 本 を {買っ た} よ。
+      - 昨日、新しい 本 を {買っ た} ん だ。
+      - 昨日、新しい 本 {買っ た} ぜ。
+      - 昨日、新しい 本 を {買っ た} ん だ よ。
+      - 昨日、新しい 本 を {買っ た} から ね。
+      - 昨日、新しい 本 {買っ た} な。
+    english_literally: Yesterday, a new book (I) bought.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、新しい 本 を {買い まし た}。
+        english: I bought a new book yesterday (polite).
+        hint: This uses the polite past form, suitable for formal contexts. We're looking for the plain
+          past, common in casual speech.
+      - competing_japanese:
+          - 昨日、新しい 本 を {買う つもり です}。
+        english: I intend to buy a new book yesterday.
+        hint: This describes future intention, not a completed past action. We're looking for a simple
+          completed action in the past.
+      - competing_japanese:
+          - 昨日、新しい 本 を {買う}。
+        english: I buy a new book yesterday.
+        hint: This uses the plain non-past form, indicating present or future action. We're looking for
+          a completed past action.
+      - competing_japanese:
+          - 新しい 本 を {買っ て} 読ん だ。
+        english: I bought a new book and read it.
+        hint: The て-form connects actions but doesn't explicitly state the past tense for the first verb.
+          We're looking for a simple past action.
+      - competing_japanese:
+          - 新しい 本 を {買っ て い た}。
+        english: I was buying a new book.
+        hint: This indicates an ongoing action in the past. We are looking for a completed past action.
+      - competing_japanese:
+          - 昨日、新しい 本 を {買わ なかっ た}。
+        english: I didn't buy a new book yesterday.
+        hint: This uses the plain negative past form. We're looking for a plain affirmative past action.
+      - competing_japanese:
+          - 昨日、新しい 本 を 読ん だ {だっ た}。
+        english: Yesterday, I was read a new book.
+        hint: 「だった」 is the past copula for nouns and な-adjectives, not used with verbs. We're looking
+          for the past tense of a verb.
+    scene: A man casually telling his friend about a recent purchase.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: The use of the plain past form 「買っ た」 is characteristic of casual speech among male friends.
+      Adding 「よ」, 「ん だ」, 「ぜ」, or 「から ね」 as sentence-ending particles further emphasizes the casual and
+      explanatory tone, common in informal conversation among male speakers. The phrase 「買っ た な」 adds
+      a reflective or slightly assertive nuance.
+  - english: I read that book until morning.
+    japanese:
+      - その 本 を 朝 まで {読ん だ}。
+      - その 本 を 朝 まで {読ん だ} よ。
+      - 朝 まで その 本 を {読ん だ} ん だ。
+      - 夜通し その 本 を {読ん だ}。
+      - あの 本 を 夜 が 明ける まで {読ん だ}。
+    english_literally: That book until morning (I) read.
+    competing_grammar:
+      - competing_japanese:
+          - その 本 を 朝 まで {読み まし た}。
+        english: I read that book until morning (polite).
+        hint: This uses the polite past form. We are looking for the plain, casual past tense.
+      - competing_japanese:
+          - その 本 を 朝 まで {読む}。
+        english: I will read that book until morning.
+        hint: This is the plain non-past form. We are looking for a completed action in the past.
+      - competing_japanese:
+          - その 本 を 朝 まで {読ま なかっ た}。
+        english: I didn't read that book until morning.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+    scene: A young man telling his friend about an all-nighter spent reading.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The plain past form 「読ん だ」 is casual and common among friends. The use of 「よ」 or 「ん だ」 adds
+      an explanatory or confirmatory nuance, typical in informal conversation, especially when sharing
+      personal experiences like staying up all night reading. 「夜通し」 means 'all night long'.
+  - english: We talked for a long time at the cafe.
+    japanese:
+      - カフェ で 長く {話し た}。
+      - カフェ で 長い 時間 {話し た} ね。
+      - 喫茶 店 で ずっと {話し た}。
+      - 喫茶 店 で 長く {話し た} よ。
+    english_literally: At the cafe, for a long time (we) talked.
+    competing_grammar:
+      - competing_japanese:
+          - カフェ で 長く {話し まし た}。
+        english: We talked for a long time at the cafe (polite).
+        hint: This is the polite past form. We are looking for the plain, casual past tense.
+      - competing_japanese:
+          - カフェ で 長く {話す だろう}。
+        english: We will probably talk for a long time at the cafe.
+        hint: This implies a future probability or conjecture. We are looking for a completed action in
+          the past.
+      - competing_japanese:
+          - カフェ で 長く {話さ なかっ た}。
+        english: We didn't talk for a long time at the cafe.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+    scene: A group of friends reminiscing about their time together.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: The plain past 「話し た」 is natural when telling a story casually among peers. Adding 「ね」 at
+      the end invites agreement and shared sentiment, emphasizing the friendly and reflective tone of
+      the conversation. 「長い 時間」 is a common way to express 'for a long time'.
+  - english: I waited for you at the station.
+    japanese:
+      - 駅 で あなた を {待っ た}。
+      - 駅 で 君 を {待っ た} よ。
+      - 駅 で ずっと {待っ た} ん だ。
+      - 駅 で 待ち伏せ {し た}。
+    english_literally: At the station, you (I) waited.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 で あなた を {待ち まし た}。
+        english: I waited for you at the station (polite).
+        hint: This is the polite past form. We are looking for the plain, casual past tense.
+      - competing_japanese:
+          - 駅 で あなた を {待つ}。
+        english: I will wait for you at the station.
+        hint: This is the plain non-past form. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 駅 で あなた を {待た なかっ た}。
+        english: I didn't wait for you at the station.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+      - competing_japanese:
+          - 駅 で あなた を {待っ て い た}。
+        english: I was waiting for you at the station.
+        hint: This indicates an ongoing action in the past. We are looking for a completed past action.
+    scene: A younger person expressing a slight frustration to a friend who was late.
+    register: casual
+    setting: intimate
+    conjugation: past plain (～た)
+    speaker_age: younger
+    nuance: The plain past form 「待っ た」 is used between close friends. 「君」 is a casual way to refer to
+      'you', often used by men to friends or younger individuals. Adding 「よ」 or 「ん だ」 can add a sense
+      of emphasis or explanation, reflecting a mild complaint or explanation of one's actions, common
+      in intimate conversation. 「ずっと」 indicates 'for a long time' or 'all the time'.
+  - english: The child cried when he got lost.
+    japanese:
+      - その 子 は 迷子 に なっ て {泣い た}。
+      - 子供 は 迷子 に なっ て {泣い た} ん だ。
+      - 迷子 に なっ たら、子供 は 大声 で {泣い た}。
+      - 迷子 に なっ たら、その 子 は {泣い た}。
+    english_literally: That child lost became and cried.
+    competing_grammar:
+      - competing_japanese:
+          - その 子 は 迷子 に なっ て {泣き まし た}。
+        english: The child cried when he got lost (polite).
+        hint: This is the polite past form. We are looking for a plain, direct statement about a past
+          event.
+      - competing_japanese:
+          - その 子 は 迷子 に なっ て {泣く だろう}。
+        english: The child will probably cry when he gets lost.
+        hint: This implies a future likelihood. We are looking for a completed action in the past.
+      - competing_japanese:
+          - その 子 は 迷子 に なっ て {泣か なかっ た}。
+        english: The child didn't cry when he got lost.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+    scene: A parent recounting a past incident to another parent.
+    register: casual
+    setting: storytelling
+    conjugation: past plain (～た)
+    nuance: The plain past form 「泣い た」 is natural when telling a story casually among peers. 「迷子 に なっ
+      て」 (became lost and...) describes the preceding event. Adding 「ん だ」 emphasizes the explanation or
+      confirms the event. 「大声 で」 means 'loudly', adding detail to the crying.
+  - english: I played outside with my friends all day yesterday.
+    japanese:
+      - 昨日 は 友達 と 外 で 一 日 中 {遊ん だ}。
+      - 昨日 は 友達 と 外 で ずっと {遊ん だ} よ。
+      - 昨日 は 友人 と 終日 外 で {遊ん だ}。
+    english_literally: Yesterday, with friends outside all day (I) played.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は 友達 と 外 で 一 日 中 {遊び まし た}。
+        english: I played outside with my friends all day yesterday (polite).
+        hint: This is the polite past form. We are looking for a plain, casual statement about a past
+          activity.
+      - competing_japanese:
+          - 昨日 は 友達 と 外 で 一 日 中 {遊ぶ つもり だ}。
+        english: Yesterday, I intend to play outside with my friends all day.
+        hint: This describes a future intention, not a completed past action. We are looking for a simple
+          past action.
+      - competing_japanese:
+          - 昨日 は 友達 と 外 で 一 日 中 {遊ば なかっ た}。
+        english: I didn't play outside with my friends all day yesterday.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+      - competing_japanese:
+          - 昨日 は 友達 と 外 で {遊ん で い た}。
+        english: I was playing outside with my friends.
+        hint: This indicates an ongoing action in the past. We are looking for a completed past action.
+    scene: A young boy excitedly telling his mother about his fun day.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: male
+    speaker_age: younger
+    nuance: The plain past form 「遊ん だ」 is typical for a child speaking casually to a parent. 「一日中」 (all
+      day long) emphasizes the duration of the activity. The addition of 「よ」 can make the statement more
+      emphatic or convey a sense of excitement and sharing, which is common in a child's speech.
+  - english: I saw a beautiful sunset from the window.
+    japanese:
+      - 窓 から 綺麗 な 夕焼け を {見 た}。
+      - 窓 から 美しい 夕焼け を {見 た} よ。
+      - 窓 から 素晴らしい 夕焼け を {見 た} ん だ。
+    english_literally: From window, beautiful sunset (I) saw.
+    competing_grammar:
+      - competing_japanese:
+          - 窓 から 綺麗 な 夕焼け を {見 まし た}。
+        english: I saw a beautiful sunset from the window (polite).
+        hint: This is the polite past form. We are looking for the plain, casual past tense.
+      - competing_japanese:
+          - 窓 から 綺麗 な 夕焼け を {見る}。
+        english: I will see a beautiful sunset from the window.
+        hint: This is the plain non-past form. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 窓 から 綺麗 な 夕焼け を {見 なかっ た}。
+        english: I didn't see a beautiful sunset from the window.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+    scene: A person casually sharing a pleasant memory with a friend.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: The plain past 「見 た」 is suitable for casual conversation. 「綺麗 な」 or 「美しい」 adds descriptive
+      detail. The particles 「よ」 or 「ん だ」 are used to add emphasis or an explanatory tone to the statement.
+  - english: I studied Japanese for three hours yesterday.
+    japanese:
+      - 昨日、日本 語 を 三 時間 {し た}。
+      - 昨日、三 時間 日本 語 を {勉強 し た}。
+      - 昨日 は 日本 語 を 三 時間 {し た} ん だ。
+    english_literally: Yesterday, Japanese for three hours (I) did.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、日本 語 を 三 時間 {し まし た}。
+        english: I studied Japanese for three hours yesterday (polite).
+        hint: This is the polite past form. We are looking for the plain, casual past tense.
+      - competing_japanese:
+          - 昨日、日本 語 を 三 時間 {する}。
+        english: I will study Japanese for three hours yesterday.
+        hint: This is the plain non-past form. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 昨日、日本 語 を 三 時間 {し なかっ た}。
+        english: I didn't study Japanese for three hours yesterday.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+    scene: A student telling a classmate about their study efforts.
+    register: casual
+    setting: academic
+    conjugation: past plain (～た)
+    nuance: The plain past 「し た」 is appropriate for casual speech. 「勉強 し た」 is a common alternative. Adding
+      「ん だ」 provides an explanatory tone, often used when sharing information about one's actions.
+  - english: My friend came to my house yesterday.
+    japanese:
+      - 昨日、友達 が 私 の 家 に {来 た}。
+      - 昨日、友人 が 家 に {来 た} よ。
+      - 昨日 は 友達 が 家 に {来 た} ん だ。
+    english_literally: Yesterday, friend (subject) my house to came.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日、友達 が 私 の 家 に {来 まし た}。
+        english: My friend came to my house yesterday (polite).
+        hint: This is the polite past form. We are looking for the plain, casual past tense.
+      - competing_japanese:
+          - 昨日、友達 が 私 の 家 に {来る}。
+        english: My friend will come to my house yesterday.
+        hint: This is the plain non-past form. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 昨日、友達 が 私 の 家 に {来 なかっ た}。
+        english: My friend didn't come to my house yesterday.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+    scene: A young woman talking to her roommate about a visitor.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    nuance: The plain past 「来 た」 is suitable for casual conversation between close acquaintances. The
+      use of 「よ」 or 「ん だ」 adds a natural conversational flow, providing emphasis or an explanatory nuance
+      common when relaying events.
+  - english: We swam in the river last summer.
+    japanese:
+      - 去年 の 夏、私 たち は 川 で {泳い だ}。
+      - 去年 の 夏、みんな で 川 で {泳い だ} ね。
+      - 去年 の 夏 は 川 で {泳い だ} ん だ。
+    english_literally: Last summer, we river in swam.
+    competing_grammar:
+      - competing_japanese:
+          - 去年 の 夏、私 たち は 川 で {泳ぎ まし た}。
+        english: We swam in the river last summer (polite).
+        hint: This is the polite past form. We are looking for the plain, casual past tense.
+      - competing_japanese:
+          - 去年 の 夏、私 たち は 川 で {泳ぐ}。
+        english: We will swim in the river last summer.
+        hint: This is the plain non-past form. We are looking for a completed action in the past.
+      - competing_japanese:
+          - 去年 の 夏、私 たち は 川 で {泳が なかっ た}。
+        english: We didn't swim in the river last summer.
+        hint: This is the plain negative past form. We are looking for a plain affirmative past action.
+    scene: A group of friends recalling summer memories.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    nuance: The plain past 「泳い だ」 is natural for reminiscing among friends. 「みんな で」 emphasizes the group
+      activity. The particle 「ね」 invites agreement, enhancing the friendly and shared memory aspect. 「ん
+      だ」 offers an explanatory tone.
+post_example_writeup: Remember that the specific sound changes (音便 onbin) for godan verbs, the simple
+  る drop for ichidan verbs, and the irregular conjugations for する and 来る are crucial for correctly forming
+  the plain past た form. Consistent practice with various verb types will help solidify these conjugation
+  patterns.

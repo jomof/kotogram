@@ -1,0 +1,205 @@
+grammar_point: どの (which)
+better_grammar_point_name:
+  - <suggest>:どの (which one of three or more)
+learn_before:
+  - い-Adjective[み] (abstract quality)
+meaning: Which (used as a determiner to specify one item from a group of three or more)
+pronunciation:
+  katakana: ドノ
+  romaji: dono
+formation:
+  どの + Noun: Used to ask 'which Noun?' when there are three or more options.
+jlpt: N5
+etymology: The interrogative series こ-そ-あ-ど (ko-so-a-do) is fundamental to Japanese demonstratives and
+  interrogatives. The 'ど' (do) component historically signifies 'which' or 'where,' stemming from ancient
+  Japanese forms that expressed questioning or uncertainty. Just as 「これ」 (this), 「それ」 (that), and 「あれ」
+  (that over there) are specific demonstratives, 「どれ」 (which one) and 「どの」 (which [noun]) are interrogatives
+  derived from this same system, used to inquire about identity or location among multiple options. 「どの」specifically
+  evolved to directly modify nouns, making it a determiner that points to a specific item within a larger
+  set.
+writeup: |-
+  「どの」 is an interrogative determiner in Japanese, meaning "which." It is used when you want to ask about a specific item from a group of three or more. It is crucial to remember that 「どの」 *always* precedes a noun and cannot stand alone. Think of it as functioning like the English word "which" in phrases like "which book?" or "which car?"
+
+  While English uses "which" for both two and more options, Japanese distinguishes between them. 「どの」 is reserved for situations where there are three or more choices. For situations with only two choices, you would typically use 「どちら」.
+
+  「どの」 specifies a particular item from a set, prompting the listener to identify it. For example, if there are multiple books on a table, you might ask 「どの本が好きですか？」 (Which book do you like?) to pinpoint one specific book.
+false_friends:
+  - term: どれ (which of 3 or more)
+    meaning: which one (among three or more)
+    kind: similar expression
+    nuance: 「どの」is a determiner and always precedes a noun, as in「どの本ですか？」. 「どれ」is a pronoun and stands
+      alone, as in「どれですか？」.
+    grammar_point: どれ (which of 3 or more)
+  - term: どちら (which way, polite)
+    meaning: which one (among two), which way (polite)
+    kind: similar expression
+    nuance: 「どちら」is used for choosing between two options or as a polite way to ask for direction/side,
+      e.g.,「AとB、どちらがいいですか？」. 「どの」is for three or more options.
+    grammar_point: どちら (which way, formal)
+  - term: 何 (what)
+    meaning: what
+    kind: often confused with
+    nuance: 「何」asks "what" or "what kind," e.g.,「何の本ですか？」 (What kind of book is it?). 「どの」asks "which
+      specific item" from a group, e.g.,「どの本が好きですか？」 (Which book do you like?).
+    grammar_point: 何 (what)
+post_false_friends_writeup: To differentiate between 「どの」、「どれ」、 and 「どちら」、 remember that 「どの」 modifies
+  a noun directly (e.g., "Which car?"), 「どれ」 stands alone as a pronoun for three or more items (e.g.,
+  "Which one?"), and 「どちら」 is for selecting between two items or as a polite way to ask for directions.
+  「何」 is a broader interrogative for "what" or "what kind of."
+examples:
+  - english: Which bus goes to Shibuya station?
+    japanese:
+      - 渋谷 駅 に 行く バス は {どの} バス です か？
+      - 渋谷 駅 に 行く バス は {どの} バス？
+      - 渋谷 駅 行き は {どの} バス です か？
+    english_literally: To Shibuya station going bus is which bus?
+    competing_grammar:
+      - competing_japanese:
+          - 渋谷 駅 に 行く バス は どれ です か？
+        english: Which one of the buses goes to Shibuya station?
+        hint: 「どれ」is a pronoun and cannot modify a noun directly. We're looking for a determiner here.
+      - competing_japanese:
+          - 渋谷 駅 に 行く バス は 何 です か？
+        english: What is the bus that goes to Shibuya station?
+        hint: 「何」asks for 'what' or 'what kind', not 'which specific one from a group'. We're looking
+          for a specific bus.
+    scene: You are at a bus stop with many buses, asking a station employee for directions.
+    register: formal
+    setting: informative
+  - english: Which color do you prefer, red, blue, or yellow?
+    japanese:
+      - 赤 と 青 と 黄色 の 中 で、{どの} 色 が 一番 好き です か？
+      - 赤 と 青 と 黄色 の 中 で、{どの} 色 が 一番 好き？
+      - 赤 と 青 と 黄色 の {どの} 色 が 一番 好き です か？
+    english_literally: Red and blue and yellow among, which color is most liked?
+    competing_grammar:
+      - competing_japanese:
+          - 赤 と 青 と 黄色 の 中 で、どれ が 一番 好き です か？
+        english: Among red, blue, and yellow, which one do you like the most?
+        hint: While technically possible, the question here focuses on the 'color' itself. 「どれ」would mean
+          'which one of these [colors]' but the phrasing implies selecting a specific color type. We're
+          looking for 'which color' specifically.
+    scene: A shop assistant is helping a customer choose a product available in multiple colors.
+    register: teineigo (polite)
+    setting: professional
+  - english: Which method is the most efficient?
+    japanese:
+      - '{どの} 方法 が 一番 効率 的 です か？'
+      - '{どの} 方法 が 一番 効率 的？'
+      - '{どの} 方法 が 最も 効率 的 で ござい ましょう か？'
+    english_literally: Which method is most efficient?
+    competing_grammar:
+      - competing_japanese:
+          - 方法 は どれ が 一番 効率 的 です か？
+        english: As for methods, which one is the most efficient?
+        hint: 「どれ」 functions as a pronoun, not directly modifying '方法'. We want to ask 'which method'.
+    scene: In a team meeting, brainstorming different approaches to a problem.
+    register: formal
+    setting: professional
+  - english: Which door leads to the exit?
+    japanese:
+      - 出口 へ 続く ドア は {どの} ドア です か？
+      - 出口 へ 続く ドア は {どの} ドア？
+      - 出口 は {どの} ドア です か？
+    english_literally: Exit to continue door is which door?
+    competing_grammar:
+      - competing_japanese:
+          - 出口 へ 続く ドア は どれ です か？
+        english: Which one of the doors leads to the exit?
+        hint: 「どれ」is used when the noun is omitted. Here, we want to explicitly refer to 'door'. We're
+          looking for 'which door'.
+    scene: You are in a large building with multiple doors and need to find your way out.
+    register: teineigo (polite)
+    setting: informative
+  - english: Which movie do you want to watch tonight?
+    japanese:
+      - 今夜 は {どの} 映画 を 見 たい です か？
+      - 今夜 は {どの} 映画 を 見 たい？
+      - 今夜 は {どの} 映画 を ご覧 に なり たい です か？
+    english_literally: Tonight, which movie want to watch?
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 は 映画 を どれ 見 たい です か？
+        english: Tonight, among movies, which one do you want to watch?
+        hint: This phrasing is slightly less natural. 「どの」is more direct when asking about a specific
+          movie from a selection. We're looking for 'which movie'.
+    scene: A couple is deciding which movie to watch from a list of options.
+    register: casual
+    setting: intimate
+  - english: Which train is going to Tokyo Station?
+    japanese:
+      - 東京 駅 に 行く 電車 は {どの} 電車 です か？
+      - 東京 駅 に 行く 電車 は {どの} 電車？
+      - 東京 駅 行き は {どの} 電車 です か？
+    english_literally: Tokyo Station to go train is which train?
+    competing_grammar:
+      - competing_japanese:
+          - 東京 駅 に 行く 電車 は どれ です か？
+        english: Which one of the trains is going to Tokyo Station?
+        hint: While functionally similar, 「どれ」omits the noun '電車'. We want to specify 'which train'.
+    scene: Standing on a train platform with multiple trains, asking a station attendant.
+    register: teineigo (polite)
+    setting: informative
+  - english: Which option seems most suitable?
+    japanese:
+      - '{どの} 選択 肢 が 最も 適切 だ と 思い ます か？'
+      - '{どの} 選択 肢 が 一番 適切 だ と 思い ます か？'
+      - '{どの} 選択 肢 が 一番 適切 だ と 思う？'
+    english_literally: Which option is most appropriate think?
+    competing_grammar:
+      - competing_japanese:
+          - 選択 肢 は どれ が 最も 適切 だ と 思い ます か？
+        english: As for options, which one do you think is the most appropriate?
+        hint: 「どれ」stands alone as a pronoun. We are asking about 'which option' directly. We're looking
+          for 'which option'.
+    scene: During a strategic planning meeting, evaluating various proposals.
+    register: formal
+    setting: professional
+  - english: Which road leads to the library?
+    japanese:
+      - 図書 館 へ 続く 道 は {どの} 道 です か？
+      - 図書 館 へ 続く 道 は {どの} 道？
+      - 図書 館 へ は {どの} 道 です か？
+    english_literally: Library to continue road is which road?
+    competing_grammar:
+      - competing_japanese:
+          - 図書 館 へ 続く 道 は どれ です か？
+        english: Which one of the roads leads to the library?
+        hint: 「どれ」is a pronoun, not a determiner. We are asking about 'which road' specifically.
+    scene: Asking for directions while looking at a map with several roads.
+    register: teineigo (polite)
+    setting: informative
+  - english: Which part did you not understand?
+    japanese:
+      - '{どの} 部分 が 分かり ませ ん でし た か？'
+      - '{どの} 部分 が 分から なかっ た？'
+      - '{どの} 部分 が ご 理解 いただけ ませ ん でし た か？'
+    english_literally: Which part was not understood?
+    competing_grammar:
+      - competing_japanese:
+          - 分かり ませ ん でし た の は どの 部分 です か？
+        english: What was the part that you didn't understand?
+        hint: The suggested alternative rephrases the sentence to emphasize the part. The original sentence
+          using 「どの 部分」is a direct and common way to ask 'which part?'.
+    scene: A teacher clarifying a lesson for a student after class.
+    register: semi-formal
+    setting: academic
+  - english: Which character is your favorite?
+    japanese:
+      - '{どの} キャラクター が 一番 好き です か？'
+      - '{どの} キャラクター が 一番 好き？'
+      - 一番 好き な {どの} キャラクター？
+    english_literally: Which character is most liked?
+    competing_grammar:
+      - competing_japanese:
+          - 好き な キャラクター は どれ です か？
+        english: As for favorite characters, which one is it?
+        hint: 「どれ」is a pronoun and would omit 'キャラクター'. We are explicitly asking 'which character'.
+    scene: Friends discussing a TV show or game with many characters.
+    register: casual
+    setting: friendly
+post_example_writeup: Notice how in all examples, 「どの」 is immediately followed by the noun it modifies,
+  such as 「どの バス」 (which bus), 「どの 色」 (which color), or 「どの 方法」 (which method). This direct relationship
+  is key to its usage and distinguishes it from pronouns like 「どれ」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A9%E3%81%AE

@@ -1,0 +1,264 @@
+grammar_point: 〜任せ (leaving to or relying on)
+learn_before:
+  - ぜ (male emphatic particle)
+  - ちょっと (adverb)
+meaning: to leave to or rely on; at the mercy of
+pronunciation:
+  katakana: マカセ
+  romaji: makase
+formation:
+  Noun + 任せ: Indicates that an action, decision, or outcome is left to or reliant upon the preceding noun.
+  Verb[stem] + 任せ: Indicates something is left to the action of the verb (less common, often in specific
+    phrases like 付け任せ).
+jlpt: N2
+etymology: The grammatical pattern 〜任せ derives from the verb 任せる (makaseru), which means 'to entrust,'
+  'to leave to someone else,' or 'to leave to chance.' The nominalized form 任せ retains this core meaning
+  but functions as a suffix, usually to a noun, to describe a state where an action, decision, or outcome
+  is surrendered to or dependent on that preceding noun. This evolution from an active verb to a descriptive
+  suffix highlights a shift from an active verb to the resulting condition of reliance or being at the
+  mercy of something.
+writeup: |-
+  「〜任せ」 is a grammatical pattern that indicates an action, decision, or outcome is **left to**, **reliant upon**, or **at the mercy of** the preceding noun. It often conveys a sense of relinquishing control, whether due to choice, necessity, or a lack of foresight.
+
+  This pattern is typically formed by attaching `任せ` to a noun. The noun describes the agent, factor, or circumstance to which something is being left. For example, `運任せ` means "leaving it to fate" or "at the mercy of luck." `人任せ` means "leaving things to others" or "relying on others."
+
+  The nuance of `〜任せ` can vary:
+  *   **Resignation/Fatalism**: When used with nouns like `運` (un, luck/fate) or `成り行き` (nariyuki, course of events), it often implies a sense of letting things unfold as they may, sometimes due to a lack of control or an inability to influence the outcome.
+  *   **Delegation/Trust**: While less common than the verb `任せる` in this context, it can subtly suggest trusting something to a particular entity or force.
+  *   **Irresponsibility/Lack of Planning**: With nouns like `気分` (kibun, mood) or `勢い` (ikioi, momentum/impetus), it can imply acting impulsively or without proper consideration, simply going with the flow.
+  *   **Dependence**: It can describe a state where something is heavily dependent on a specific element, such as `客任せ` (kyaku-makase, customer-dependent).
+
+  `〜任せ` is frequently encountered in compound nouns or fixed phrases. While `任せる` (the verb) is used for active entrusting, `〜任せ` (the nominalized phrase) describes a state or characteristic of being reliant on something. It's a versatile expression that highlights the passive acceptance or active delegation of control to an external factor.
+false_friends:
+  - term: 任せる
+    meaning: to entrust, to leave to, to rely on (verb)
+    kind: similar expression
+    nuance: This is the active verb form. While `〜任せ` describes a characteristic or state of being left
+      to an external factor, `任せる` is the action of actively entrusting. For instance, 「彼に{任せる}」 means
+      'I will leave it to him,' whereas 「彼{任せ}の仕事」 describes 'work left entirely to him.'
+    grammar_point: Verb[dictionary] (dictionary form)
+  - term: 〜次第
+    meaning: depending on, as soon as
+    kind: similar expression
+    nuance: While `〜任せ` conveys that something is *left to* or *at the mercy of* another, `〜次第` emphasizes
+      *dependency* or *conditionality*. For example, 「結果{次第}」 (depending on the result) implies the result
+      *determines* the next step. `次第` can also mean 'as soon as'.
+    grammar_point: <suggest>:[Noun]次第 (depending on)
+  - term: 〜に頼る
+    meaning: to rely on, to depend on
+    kind: similar expression
+    nuance: 〜任せ focuses on the *act or state of leaving something to* another, often with less personal
+      involvement. 「〜に頼る」 implies a more active *reliance* or *dependence* on someone or something for
+      support, help, or information. For instance, 「人{任せ}」 suggests one *lets others handle* things, possibly
+      due to laziness, while 「人に{頼る}」 implies one *seeks help from* others.
+    grammar_point: Verb[dictionary] (dictionary form)
+  - term: 〜に委ねる
+    meaning: to entrust, to commit, to surrender
+    kind: similar expression
+    nuance: Similar to `任せる`, but `〜に委ねる` often carries a stronger sense of surrendering control or entrusting
+      something entirely, especially to a higher power, fate, or someone with greater authority. It can
+      imply a more profound act of commitment or resignation than `任せる`. `〜任せ` describes the *state* of
+      being left, while `〜に委ねる` is the *act* of entrusting, often with significant implications.
+    grammar_point: Verb[dictionary] (dictionary form)
+post_false_friends_writeup: While `〜任せ`, `任せる`, `〜次第`, `〜に頼る`, and `〜に委ねる` all share some semantic overlap
+  in conveying reliance or delegation, their nuances are distinct. `任せる` is the active verb for entrusting.
+  `〜任せ` (as a nominalized phrase) describes a state where an outcome or action is passively left to a
+  specific factor, often highlighting a lack of personal control or a particular characteristic. `〜次第`
+  emphasizes direct dependency and conditionality, meaning the outcome is determined by something. `〜に頼る`
+  implies seeking support or help. `〜に委ねる` suggests a more complete surrender of control or deep trust
+  in significant matters. Understanding these distinctions is crucial for precise expression in Japanese.
+examples:
+  - english: We'll leave it to luck.
+    japanese:
+      - '{運任せ} だ。'
+      - '{運任せ} です。'
+      - '{運任せ} だ よ。'
+      - '{運任せ} です ね。'
+    english_literally: It is luck-leaving.
+    competing_grammar:
+      - competing_japanese:
+          - 運 {に 頼ろう}。
+        english: Let's rely on luck.
+        hint: 「〜に頼る」 implies actively depending on something for help. We're looking for a phrase that
+          describes leaving the outcome to chance.
+    scene: A casual conversation among friends facing an uncertain outcome after they've done all they
+      could.
+    register: casual
+    setting: serious
+    nuance: This sentence conveys a sense of resignation, indicating that the outcome is beyond their
+      control and they are simply leaving it to fate or chance. The phrase 「運任せ」 directly expresses this
+      fatalistic approach. This is commonly used when there are no other options but to rely on external
+      factors.
+  - english: Don't always leave everything to others.
+    japanese:
+      - いつ も {人任せ} に する な。
+      - いつ も {人任せ} に し ない で ください。
+      - いつ も {人任せ} に する ん じゃ ない よ。
+    english_literally: Always do not make it person-leaving.
+    competing_grammar:
+      - competing_japanese:
+          - いつ も 人 に {頼る} な。
+        english: Don't always rely on others.
+        hint: 「〜に頼る」 implies actively seeking help. We're looking for a phrase about ceding all responsibility
+          to others, often with a negative nuance of being irresponsible.
+    scene: A parent scolding their child about not taking responsibility.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The phrase 「人任せ」 highlights the act of relying completely on others, often with a negative
+      connotation of lacking independence or responsibility. The casual imperative 「〜な」 is typical for
+      a parent instructing a child, emphasizing a direct prohibition.
+  - english: He tends to do things just according to his mood.
+    japanese:
+      - 彼 は よく {気分 任せ} に 物事 を する。
+      - 彼 は よく {気分 任せ} に 物事 を し ます。
+      - 彼 は よく {気分 任せ} に 物事 を する ん だ。
+    english_literally: He often mood-leavingly does things.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は よく 気分 {で} 物事 を する。
+        english: He often does things based on his mood.
+        hint: The particle 「で」 here indicates the cause or means. We're looking for a phrase that describes
+          letting one's mood completely dictate actions, often implying inconsistency.
+    scene: Colleagues discussing someone's inconsistent work habits.
+    register: casual
+    setting: reflective
+    nuance: 「気分任せ」 implies acting impulsively or without proper consideration, simply following one's
+      current mood. This often carries a slightly negative or critical nuance, suggesting unreliability
+      or a lack of seriousness.
+  - english: I spoke out of sheer impulse.
+    japanese:
+      - '{勢い任せ} に 喋っ て しまっ た。'
+      - '{勢い任せ} に 喋っ て しまい まし た。'
+      - '{勢い任せ} に 喋っ ちゃっ た。'
+    english_literally: I spoke momentum-leavingly.
+    competing_grammar:
+      - competing_japanese:
+          - 勢い {で} 喋っ て しまっ た。
+        english: I spoke on impulse.
+        hint: While 「勢い で」 indicates the cause, 「勢い任せ」 emphasizes completely surrendering to that impulse
+          or momentum, implying a lack of conscious control over one's words.
+    scene: Someone confessing a regrettable outburst during a heated discussion.
+    register: casual
+    setting: apologetic
+    conjugation: past plain (～た)
+    nuance: 「勢い任せ」 describes acting solely on momentum, impulse, or enthusiasm, often leading to unforeseen
+      consequences or regret because the action wasn't carefully considered. The 「〜てしまった」 emphasizes the
+      completion and regret of the action.
+  - english: Just go with the flow.
+    japanese:
+      - '{流れ 任せ} で 行こう。'
+      - '{流れ 任せ} で 行き ましょう。'
+      - '{流れ 任せ} で いく ん だ。'
+    english_literally: Let's go flow-leavingly.
+    competing_grammar:
+      - competing_japanese:
+          - 流れ {に} 合わせ て 行こう。
+        english: Let's go along with the flow.
+        hint: 「〜に合わせる」 means to adjust to. We're looking for a phrase about passively allowing things
+          to unfold naturally, without trying to control or resist.
+    scene: A friend encouraging another to be flexible and not overthink things during a trip.
+    register: casual
+    setting: friendly
+    conjugation: volitional (～よう)
+    nuance: 「流れ任せ」 means to allow things to proceed naturally, without trying to control or interfere.
+      It suggests adaptability and non-resistance, emphasizing acceptance of how things are progressing.
+      The volitional 「行こう」 makes it a gentle, encouraging suggestion.
+  - english: We decided to leave it to chance.
+    japanese:
+      - '{成り行き 任せ} に する こと に し た。'
+      - '{成り行き 任せ} に する こと に し まし た。'
+    english_literally: We decided to make it course-of-events-leaving.
+    competing_grammar:
+      - competing_japanese:
+          - 成り行き {に} 従う こと に し た。
+        english: We decided to follow the course of events.
+        hint: 「〜に従う」 implies actively complying with something. We're looking for a phrase about passively
+          ceding control to the natural course of events.
+    scene: A project manager explaining a decision where the team couldn't agree on a specific plan.
+    register: formal
+    setting: informative
+    nuance: 「成り行き任せ」 is similar to `運任せ` but specifically emphasizes leaving things to the natural course
+      of events or how things turn out, often implying a decision not to intervene or a recognition of
+      a lack of control over the situation.
+  - english: Our outdoor event is weather-dependent.
+    japanese:
+      - 我々 の 野外 イベント は {お 天 気任せ} だ。
+      - 我々 の 野外 イベント は {お 天 気任せ} です。
+    english_literally: Our outdoor event is weather-leaving.
+    competing_grammar:
+      - competing_japanese:
+          - 我々 の 野外 イベント は 天気 {次第} だ。
+        english: Our outdoor event depends on the weather.
+        hint: While 「〜次第」 indicates the weather is the determining factor, we're looking for a phrase
+          that describes the event being completely at the mercy of the weather, with no influence possible.
+    scene: An event organizer explaining potential contingencies for an outdoor festival.
+    register: formal
+    setting: informative
+    nuance: 「お天気任せ」 specifically refers to an event or plan being entirely dependent on the weather, often
+      with a sense that there is nothing one can do to change the outcome, highlighting vulnerability
+      to natural elements.
+  - english: The purchase was determined purely by price.
+    japanese:
+      - その 購入 は {金額 任せ} だっ た。
+      - その 購入 は {金額 任せ} でし た。
+      - その 購入 は {金額 任せ} で あっ た。
+    english_literally: That purchase was amount-of-money-leaving.
+    competing_grammar:
+      - competing_japanese:
+          - その 購入 は 金額 {に よっ て} 決まっ た。
+        english: The purchase was decided by price.
+        hint: 「〜によって」 indicates the means or cause. We're looking for a phrase that means the decision
+          was entirely *left to* the price, often implying other factors were ignored.
+    scene: A business analyst describing a budget-driven purchasing decision.
+    register: formal
+    setting: technical
+    conjugation: past plain (～た)
+    nuance: 「金額任せ」 implies that the decision-making process was solely based on the price, with other
+      factors being secondary or completely ignored. It highlights a pragmatic, often limiting, approach
+      where cost is the only determinant.
+  - english: He's someone who just says whatever comes to mind.
+    japanese:
+      - 彼 は {口任せ} に 物 を 言う 人 だ。
+      - 彼 は {口任せ} に 物 を 言う 人 です。
+      - 彼 は {口任せ} に 物 を 言う タイプ だ。
+    english_literally: He is a person who says things mouth-leavingly.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は {思っ た こと} を 言う 人 だ。
+        english: He's someone who says what he thinks.
+        hint: While similar, 「思ったことを言う」 means 'saying what one thinks,' which doesn't necessarily carry
+          the nuance of carelessness or impulsiveness that 「口任せ」 does.
+    scene: Two colleagues gossiping about a third colleague's tendency to speak carelessly.
+    register: casual
+    setting: sarcastic
+    nuance: 「口任せ」 means speaking carelessly or impulsively, letting one's mouth just run without much
+      thought or control. It implies a lack of filter and often results in regrettable or inappropriate
+      comments. This usage conveys a critical tone towards the speaker's habit.
+  - english: He handles everything with sheer physical strength.
+    japanese:
+      - 彼 は 何 で も {腕 任せ} で やる。
+      - 彼 は 何 で も {腕 任せ} で やり ます。
+    english_literally: He handles everything strength-leavingly.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 何 で も 腕力 {で} やる。
+        english: He handles everything with physical strength.
+        hint: 「腕力でやる」 implies using physical strength. 「腕任せ」 emphasizes relying *solely* on strength,
+          often implying a lack of other considerations or finesse.
+    scene: Two workers commenting on a strong colleague's approach to tasks.
+    register: casual
+    setting: friendly
+    nuance: 「腕任せ」 means to rely solely on one's physical strength or skill, sometimes implying a lack
+      of finesse or planning. It suggests a direct, perhaps brute-force, approach to tasks where physical
+      capability is the primary factor. This can be either a neutral observation or carry a slight nuance
+      of thoughtlessness, depending on context.
+post_example_writeup: As these examples demonstrate, the `〜任せ` pattern is versatile, describing situations
+  where control is ceded to external factors, whether it's fate (`運任せ`), other people (`人任せ`), one's own
+  impulses (`気分任せ`, `勢い任せ`), or even one's own physical abilities (`腕任せ`). It can convey resignation,
+  irresponsibility, or simply a realistic acknowledgment of external influences. Pay attention to the
+  noun preceding `任せ` to grasp the specific nuance in each context.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/任せ

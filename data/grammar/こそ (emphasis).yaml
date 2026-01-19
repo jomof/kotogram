@@ -1,0 +1,273 @@
+grammar_point: こそ (emphasis)
+learn_before:
+  - '[Verb-て]こそ (only if or by)'
+meaning: For sure, For certain, Even more so, Precisely; Used to strongly emphasize a word or phrase.
+meaning_warning: こそ replaces particles を and が when used with nouns.
+pronunciation:
+  katakana: コソ
+  romaji: koso
+formation:
+  Noun + こそ: Emphasizes the preceding noun, often replacing が or を, to mean 'precisely X' or 'X above
+    all else'.
+  動詞て形 (verb te-form) + こそ: Indicates that something can only be realized or achieved after a specific
+    action is performed, meaning 'only when/after doing X'.
+  普通形 (plain form) + こそ: Used with plain forms (verbs, i-adjectives, na-adjectives, nouns + だ) to emphasize
+    a reason or circumstance, meaning 'precisely because X' or 'especially in X situation'.
+jlpt: N3
+etymology: The particle 「こそ」 evolved from the archaic adverb 「強し (こわし)」, meaning 'strong' or 'intense.'
+  Over time, its use broadened from simply indicating intensity to highlighting specific elements within
+  a sentence as being particularly significant or decisive. This transition reflects its role in linguistic
+  evolution as a marker of strong emphasis.
+writeup: |-
+  「こそ」 is an adverbial particle in Japanese used to intensely emphasize the preceding noun, verb (in て-form or plain form), or clause. Its primary function is to draw strong attention to the element it follows, suggesting it is *the* precise, definite, or most crucial piece of information in the context. This can be likened to bolding or underlining text in English for emphasis.
+
+  When 「こそ」 follows a noun, it often replaces the particles 「を」 or 「が」. This is because 「こそ」 takes on the role of marking the emphasized noun, making the explicit subject or object particles redundant. For instance, while 「が」 points to specific information, 「こそ」 elevates that specificity to a decisive declaration.
+
+  **Common Applications:**
+  *   **Strong Assertion:** Used to declare something with conviction, such as "This is *the* one!" or "*Now* is the time!"
+  *   **Mutual Obligation/Humility:** Often seen in polite exchanges, like 「こちらこそ」 (literally, "It is I who should be..."), to express that the speaker feels equally or more indebted/grateful than the other person. This is a common way to respond to thanks or apologies.
+  *   **Conditional/Causal Emphasis:** When following the て-form of a verb (～てこそ) or a plain form clause (～からこそ), it emphasizes a prerequisite or a precise reason, indicating that something is true *only when* or *precisely because* of the preceding condition or reason.
+
+  **Important Considerations:**
+  *   「こそ」 functions differently from 「は」 and 「が」. While 「は」 marks a general topic and 「が」 identifies specific subjects/objects, 「こそ」 *decisively* highlights the preceding element, often in contrast to other possibilities.
+  *   It conveys a sense of finality or strong determination, making the statement more impactful.
+false_friends:
+  - term: なら
+    meaning: If; in that case; as for
+    kind: similar expression
+    nuance: Unlike 「こそ」, 「なら」 introduces a conditional statement or shifts the topic to a specific scenario,
+      indicating a hypothetical situation or a specific case. It does not carry the same emphatic 'precisely'
+      or 'definitely' meaning as 「こそ」.
+    grammar_point: なら (conditional, if it's the case that A)
+  - term: より
+    meaning: More than; from (a point of origin)
+    kind: similar expression
+    nuance: 「より」 is used for comparisons or to indicate a starting point in time or space. It lacks the
+      emphasizing function of 「こそ」 and serves a fundamentally different grammatical role.
+    grammar_point: より (comparative)
+  - term: からこそ
+    meaning: Precisely because; only because
+    kind: similar expression
+    nuance: 「からこそ」 explicitly states a reason with strong emphasis, functioning as 'precisely because
+      X'. While 「こそ」 can emphasize an an element that forms a reason, it does not construct a full causal
+      clause in the same way 「からこそ」 does. 「からこそ」 always follows a reason or cause.
+    grammar_point: からこそ (emphasized reason)
+  - term: なんか・なんて
+    meaning: Such as, Things like, Emphasis, Disdain, Humility, Filler
+    kind: similar expression
+    nuance: 「なんか」 and 「なんて」 can add emphasis, but often convey a sense of dismissal, surprise, or self-deprecation,
+      reducing the importance of the preceding element. This contrasts sharply with 「こそ」, which *elevates*
+      importance.
+    grammar_point: 〜など・〜なんか (listing examples)
+  - term: あまり
+    meaning: Not very; not much (in negative sentences)
+    kind: similar expression
+    nuance: 「あまり」 indicates a lack or infrequency, primarily used with negative predicates to mean 'not
+      very' or 'not much'. It has no function of emphasis in the affirmative or of highlighting a specific
+      item's importance, unlike 「こそ」.
+    grammar_point: あまり ない (not very or much)
+  - term: 〜てこそ
+    meaning: Only when; only after (doing X); not until
+    kind: similar expression
+    nuance: 「〜てこそ」 specifically indicates that a certain outcome or understanding can *only* be achieved
+      after a particular action (expressed by the て-form) is completed. It sets a necessary precondition,
+      whereas 「こそ」 on its own emphasizes the preceding word or phrase without necessarily implying a sequential
+      prerequisite action.
+    grammar_point: '[Verb-て]こそ (only if or by)'
+post_false_friends_writeup: 'To effectively use 「こそ」, remember its core function: to decisively highlight
+  and emphasize the preceding word or phrase. It brings a strong sense of ''this, and only this'' or ''precisely
+  this''. While other particles or grammatical structures might convey aspects of condition or cause,
+  they do not offer the same direct and intense emphasis that 「こそ」 provides to a specific element.'
+examples:
+  - english: Today is definitely the day I'll get a perfect score on the test!
+    japanese:
+      - 今日 {こそ} テスト で 満点 取る ぞ！
+      - 今日 {こそ} テスト で 満点 取り ます！
+      - 今日 {こそ} テスト で 満点 取る。
+      - 今日 {こそ} テスト で 満点 取る わ！
+    english_literally: Today, for sure, on the test, a perfect score I'll get!
+    competing_grammar:
+      - competing_japanese:
+          - 今日 {は} テスト で 満点 取る ぞ！
+        english: As for today, I'll get a perfect score on the test!
+        hint: 「は」 marks a general topic. 「こそ」 emphasizes 'today' as the precise day, indicating strong
+          determination. We're looking for strong resolve for this specific day.
+      - competing_japanese:
+          - 今日 {が} テスト で 満点 取る ぞ！
+        english: Today is the day I'll get a perfect score on the test!
+        hint: 「が」 identifies the subject neutrally. 「こそ」 highlights 'today' as the crucial, unique day
+          for this achievement. We're looking for the emphasis on *this* particular day.
+    scene: A student stands before their mirror, looking determined, psyching themselves up for a big
+      exam.
+    register: casual
+    setting: inspirational
+  - english: No, no, it's I who should be thanking you.
+    japanese:
+      - いえ いえ、私 {こそ} ありがとう ござい ます。
+      - いえ いえ、こちら {こそ} ありがとう ござい ます。
+      - いえ いえ、私 {こそ} ありがとう！
+      - いえ いえ、こちら {こそ} ありがとう！
+    english_literally: No, no, I for sure thank you.
+    competing_grammar:
+      - competing_japanese:
+          - いえ いえ、私 {も} ありがとう ござい ます。
+        english: No, no, I also thank you.
+        hint: 「も」 means 'also' or 'too'. 「こそ」 expresses humility, indicating that *I* am the one who *really*
+          should be thanking you, implying a deeper level of gratitude or obligation from the speaker.
+          We're looking for an expression of profound, reciprocal gratitude.
+    scene: After a successful collaboration, a senior colleague expresses their gratitude to a junior
+      team member, who then humbly responds.
+    register: teineigo (polite)
+    setting: professional
+  - english: It is only after experiencing hardship that one can understand true joy.
+    japanese:
+      - 苦労 し て {こそ}、本当 の 喜び が わかる もの だ。
+      - 苦労 し て {こそ}、本当 の 喜び が わかる もの です。
+      - 苦労 し て {こそ}、真 の 喜び を 知る。
+      - 苦労 を 経験 し て {こそ}、真 の 喜び を 理解 できる。
+    english_literally: Having experienced hardship, for sure, true joy becomes understood.
+    competing_grammar:
+      - competing_japanese:
+          - 苦労 し {たら}、本当 の 喜び が わかる もの だ。
+        english: If you experience hardship, you can understand true joy.
+        hint: 「～たら」 is a general conditional. 「～てこそ」 emphasizes that hardship is the *necessary* and *sole*
+          precondition for understanding true joy. We're looking for a strong statement that one *must*
+          experience hardship to gain insight.
+      - competing_japanese:
+          - 苦労 する {時 に は}、本当 の 喜び が わかる もの だ。
+        english: When you experience hardship, you can understand true joy.
+        hint: 「～時には」 refers to a general time or circumstance. 「～てこそ」 highlights the direct consequence
+          and exclusive nature of the action of experiencing hardship. We're looking for a cause-and-effect
+          relationship where the action is the only path.
+    scene: An experienced teacher shares life lessons with their young students, emphasizing the value
+      of perseverance.
+    register: formal
+    setting: reflective
+  - english: It is precisely during difficult times that not giving up is important.
+    japanese:
+      - 難しい 時 {こそ}、諦め ない こと が 大切 だ。
+      - 難しい 時 {こそ}、諦め ない こと が 大切 です。
+      - 困難 な 時 {こそ}、諦め ず に いる こと が 大切 だ。
+    english_literally: Difficult times, for sure, not giving up is important.
+    competing_grammar:
+      - competing_japanese:
+          - 難しい 時 {は}、諦め ない こと が 大切 だ。
+        english: As for difficult times, not giving up is important.
+        hint: 「は」 marks a general topic. 「こそ」 puts strong emphasis on 'difficult times' as the *specific*
+          period when perseverance is crucial. We're looking for an emphasis that uniquely highlights
+          difficult times.
+    scene: A motivational speaker addresses an audience, encouraging them to persist through challenges.
+    register: formal
+    setting: inspirational
+  - english: This is precisely the answer I was looking for.
+    japanese:
+      - これ {こそ} 私 が 求め て い た 答え だ。
+      - これ {こそ} 私 が 求め て い た 答え です。
+      - これ {こそ}、私 が 探し て い た 答え だ。
+    english_literally: This, for sure, the answer I was seeking.
+    competing_grammar:
+      - competing_japanese:
+          - これ {が} 私 が 求め て い た 答え だ。
+        english: This is the answer I was seeking.
+        hint: 「が」 identifies the subject neutrally. 「こそ」 adds strong emphasis, meaning 'this and *only*
+          this' is the answer. We're looking for a definitive identification of the correct answer.
+    scene: A detective, after a long investigation, finds the crucial piece of evidence that solves the
+      case.
+    register: formal
+    setting: serious
+  - english: She is definitely the one who spread that rumor.
+    japanese:
+      - 彼女 {こそ} その 噂 を 広め た 張本 人 だ。
+      - 彼女 {こそ} その 噂 を 広め た 張本 人 です。
+      - あの 人 {こそ} その 噂 を 広め た 張本 人 だ。
+    english_literally: She, for sure, the person who spread that rumor.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 {が} その 噂 を 広め た 張本 人 だ。
+        english: She is the one who spread that rumor.
+        hint: 「が」 simply identifies the subject. 「こそ」 makes a strong, emphatic accusation, pinpointing
+          'her' as the *definite* culprit. We're looking for a strong, unambiguous accusation.
+    scene: Two friends are discussing a recent rumor. One friend, frustrated, points directly at the person
+      they believe is responsible.
+    register: casual
+    setting: serious
+  - english: Precisely because I trust you, I am telling you this secret.
+    japanese:
+      - あなた を 信頼 し て いる から {こそ}、この 秘密 を 打ち明ける。
+      - あなた を 信頼 し て いる から {こそ}、この 秘密 を 打ち明け ます。
+      - 君 を 信頼 し て いる から {こそ}、この 秘密 を 打ち明ける。
+      - あなた を 信用 し て いる から {こそ}、この 秘密 を 打ち明け ます。
+    english_literally: You trust am-doing because for-sure, this secret reveal.
+    competing_grammar:
+      - competing_japanese:
+          - あなた を 信頼 し て いる {から}、この 秘密 を 打ち明ける。
+        english: Because I trust you, I am telling you this secret.
+        hint: 「から」 states a general reason. 「からこそ」 emphasizes that trusting *you* is the precise and sole
+          reason for revealing the secret. We're looking for emphasis on the specific reason.
+    scene: A friend confides a deeply personal secret to another, highlighting the importance of their
+      bond.
+    register: casual
+    setting: intimate
+  - english: Now is the time to make a decision.
+    japanese:
+      - 今 {こそ} 決断 する 時 だ。
+      - 今 {こそ} 決断 する 時 です。
+      - 今 {こそ}、決断 の 時 だ。
+    english_literally: Now for-sure decision make time is.
+    competing_grammar:
+      - competing_japanese:
+          - '{今} 決断 する 時 だ。'
+        english: It is time to make a decision now.
+        hint: A simple statement without emphasis on the timing. 「こそ」 emphasizes *now* as the critical
+          moment for the decision. We're looking for strong emphasis on the urgency of the timing.
+    scene: A leader addresses their team during a critical moment, urging them to act decisively.
+    register: formal
+    setting: commanding
+    speaker_gender: male
+    listener_gender: group
+    nuance: The speaker uses 「今 {こそ}」 to convey a strong sense of urgency and importance, highlighting
+      that *this specific moment* is the absolute best or only time for action. This phrasing emphasizes
+      their authority and the critical nature of the situation to the group.
+  - english: Only after failing many times can you truly understand success.
+    japanese:
+      - 何 度 も 失敗 し て {こそ}、本当 の 成功 が わかる。
+      - 何 度 も 失敗 し て {こそ}、本当 の 成功 が わかり ます。
+      - 多く の 失敗 を 経験 し て {こそ}、真 の 成功 を 理解 できる。
+    english_literally: Many times fail having-done for-sure, true success is understood.
+    competing_grammar:
+      - competing_japanese:
+          - 何 度 も 失敗 し {たら}、本当 の 成功 が わかる。
+        english: If you fail many times, you can understand true success.
+        hint: 「たら」 is a general conditional, implying one path among others. 「てこそ」 signifies that repeated
+          failure is the necessary and indispensable condition for gaining true understanding of success.
+          We're looking for the necessity of the precondition.
+    scene: An elder advises a younger person about life, drawing from their own experiences.
+    register: semi-formal
+    setting: supportive
+  - english: This is precisely the kind of person we need for this project.
+    japanese:
+      - 彼 {こそ}、この プロジェクト に 必要 な 人材 だ。
+      - 彼 {こそ}、この プロジェクト に 必要 な 人材 です。
+      - この 人 {こそ}、この プロジェクト に 必要 な 人材 です。
+    english_literally: He for-sure, this project for necessary person is.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 {は} この プロジェクト に 必要 な 人材 だ。
+        english: He is the kind of person we need for this project.
+        hint: 「は」 marks a topic. 「こそ」 makes a strong assertion, identifying *him* as the uniquely perfect
+          candidate. We're looking for strong emphasis on his suitability above all others.
+    scene: A team leader discussing potential candidates for a new project with a colleague, emphasizing
+      a specific individual's qualifications.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker uses 「彼 {こそ}」 to strongly assert that *he, specifically*, is the most suitable
+      or ideal person for the project. This phrasing indicates a decisive and emphatic choice, implying
+      that his qualifications stand out significantly compared to others.
+post_example_writeup: The usage of 「こそ」 subtly but significantly alters the nuance of a sentence. It elevates
+  the preceding word or phrase beyond mere statement, imbuing it with a sense of certainty, exclusivity,
+  or critical importance. Mastering its application allows for more precise and impactful communication
+  in Japanese.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/こそ

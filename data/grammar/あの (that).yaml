@@ -1,0 +1,227 @@
+grammar_point: あの (that)
+learn_before:
+  - この (this)
+  - ぜ (male emphatic particle)
+  - たものだ (nostalgic recollection)
+  - だ (casual copula)
+  - って (casual topic marker)
+  - って (speaking of)
+  - つきましては (in connection with that)
+  - ときたら・と来たら (when it comes to)
+  - とても (very・extremely)
+  - ね (seeking agreement)
+  - もので・ものだから (because・as an excuse)
+  - よね (seeking strong agreement)
+  - を以て・をもって (by means of・with)
+  - 何[Counter]も (many of something)
+  - 形 (physical shape)
+  - 誰 (who)
+meaning: that (over there / far from both speaker and listener)
+pronunciation:
+  katakana: アノ
+  romaji: ano
+formation:
+  あの + Noun: Used to modify a noun, indicating that the noun is far from both the speaker and the listener.
+jlpt: N5
+etymology: The Japanese demonstrative system, often referred to as the こ・そ・あ・ど series, is a fundamental
+  aspect of the language's spatial and contextual referencing. The 'あ' series, including あの, あれ, あそこ,
+  and あちら, originates from ancient forms indicating something distant from both the speaker and the listener.
+  This 'a' sound historically conveyed a sense of 'over there' or 'away from both parties,' distinguishing
+  it from 'ko' (near speaker) and 'so' (near listener or previously mentioned). This system is deeply
+  ingrained in the language, reflecting a cognitive emphasis on relative distance in communication.
+writeup: あの (ano) is a demonstrative determiner, part of the こ・そ・あ・ど (ko, so, a, do) series. It is used
+  to refer to something that is physically or conceptually distant from **both** the speaker and the listener.
+  Unlike これ (kore) and この (kono) which refer to things near the speaker, or それ (sore) and その (sono) which
+  refer to things near the listener, あの points to something further away from both. When using あの, you
+  are effectively pointing to an object, person, or concept that is not in the immediate vicinity of either
+  participant in the conversation. It functions as an adjective, always preceding the noun it modifies,
+  such as あの 人 (ano hito, that person over there) or あの 山 (ano yama, that mountain over there). It can
+  also refer to something conceptually distant, like あの 時 (ano toki, that time in the past) or あの 件 (ano
+  ken, that matter we discussed earlier).
+false_friends:
+  - term: この (this)
+    meaning: this (near speaker)
+    kind: antonym
+    nuance: 「この」 refers to something physically or conceptually close to the speaker. 「あの」 refers to something
+      far from both speaker and listener.
+    grammar_point: この (this)
+  - term: その (that)
+    meaning: that (near listener)
+    kind: similar expression
+    nuance: 「その」 refers to something physically or conceptually close to the listener, or something previously
+      mentioned. 「あの」 refers to something physically far from both the speaker and the listener.
+    grammar_point: その (that)
+  - term: あれ (that over there)
+    meaning: that over there (pronoun, far from both)
+    kind: often confused with
+    nuance: 「あれ」 is a pronoun, meaning it can stand alone (e.g., 「あれ は 何 です か？」). 「あの」 is a determiner
+      and *must* be followed by a noun (e.g., 「あの 人」). Both refer to something far from both speaker and
+      listener.
+    grammar_point: あれ (that over there)
+  - term: どの (which)
+    meaning: which (determiner)
+    kind: similar expression
+    nuance: 「どの」 is an interrogative determiner, asking "which [noun]?". 「あの」 is a demonstrative determiner,
+      pointing to "that [noun]".
+    grammar_point: どの (which)
+post_false_friends_writeup: The key to distinguishing between あの and its counterparts lies in understanding
+  its role as a demonstrative determiner for distant objects or concepts, contrasted with こ・そ for proximity
+  and あ for general farness. Remember that あの always modifies a noun, while あれ, それ, これ, and どれ are pronouns
+  that stand alone. This grammatical difference is crucial for correct usage.
+examples:
+  - english: Who is that person over there?
+    japanese:
+      - あの 人 は 誰 です か？
+      - あの 人 誰？
+      - あの 人 って 誰？
+    english_literally: That person (over there) is who?
+    competing_grammar:
+      - competing_japanese:
+          - あれ は 誰 です か？
+        english: Who is that (thing/person) over there?
+        hint: 「あれ」 is a pronoun, used when you are not modifying a noun directly. We're looking for a
+          determiner that modifies '人'.
+    scene: You are at a social gathering and spot someone unfamiliar across the room.
+    register: formal
+    setting: informative
+  - english: That mountain over there is very beautiful, isn't it?
+    japanese:
+      - あの 山 が とても きれい です ね。
+      - あの 山、すごく きれい だ ね。
+      - あの 山 が 実 に 美しい です ね。
+    english_literally: That mountain (over there) is very beautiful, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - この 山 が とても きれい です ね。
+        english: This mountain (near us) is very beautiful, isn't it?
+        hint: 「この」 refers to something close to the speaker. We're looking for something far from both
+          speaker and listener.
+    scene: You are hiking with a friend, admiring the distant scenery.
+    register: teineigo (polite)
+    setting: friendly
+  - english: I can't forget about that time.
+    japanese:
+      - あの 時 の こと を 忘れ られ ませ ん。
+      - あの 時 の こと、忘れ られ ない な。
+      - あの 時 の こと は 忘れ られ ませ ん。
+    english_literally: That time's matter cannot be forgotten.
+    competing_grammar:
+      - competing_japanese:
+          - その 時 の こと を 忘れ られ ませ ん。
+        english: I can't forget about that time (you just mentioned).
+        hint: 「その」 refers to something near the listener or previously mentioned in conversation. We're
+          talking about a time more generally distant from both.
+    scene: You are reminiscing with an old friend about a shared memory from the distant past.
+    register: teineigo (polite)
+    setting: reflective
+  - english: The ramen at that restaurant over there is really delicious!
+    japanese:
+      - あの 店 の ラーメン は 本当 に 美味しい です よ。
+      - あの 店 の ラーメン、マジ で 美味い よ！
+      - あの 店 の ラーメン、本当 に 美味しい よ。
+    english_literally: That restaurant's ramen is truly delicious, you know.
+    competing_grammar:
+      - competing_japanese:
+          - そこ の ラーメン は 本当 に 美味しい です よ。
+        english: The ramen there (at that place you can see) is really delicious!
+        hint: 「そこ」 refers to a place near the listener. We're talking about a restaurant further away
+          from both, perhaps one you just passed or are pointing to in the distance.
+    scene: You are walking with a friend, passing by a street and pointing to a restaurant further down
+      the block.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Regarding that matter, I will contact you later.
+    japanese:
+      - あの 件 に つき まし て は、後日 ご 連絡 いたし ます。
+      - あの 件 に つい て は、後日 ご 連絡 し ます。
+    english_literally: That matter regarding, later day contact will do (humble).
+    competing_grammar:
+      - competing_japanese:
+          - その 件 に つき まし て は、後日 ご 連絡 いたし ます。
+        english: Regarding that matter (we just discussed), I will contact you later.
+        hint: 「その」 is used for something recently mentioned or near the listener. We are referring to
+          a matter that is generally understood but not necessarily just discussed or close to the listener's
+          immediate context.
+    scene: You are speaking with a business associate about a topic that was discussed some time ago.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: That child over there is my younger sister.
+    japanese:
+      - あの 子 が 私 の 妹 です。
+      - あの 子、俺 の 妹 だ よ。
+      - あの 子、私 の 妹 な の。
+    english_literally: That child (over there) is my younger sister.
+    competing_grammar:
+      - competing_japanese:
+          - これ が 私 の 妹 です。
+        english: This (person/thing) is my younger sister.
+        hint: 「これ」 specifies something close to the speaker. We need to modify '子' and indicate distance.
+    scene: You are introducing your younger sister to a friend, and she is playing some distance away.
+    register: teineigo (polite)
+    setting: informative
+  - english: The shape of that cloud over there is interesting, isn't it?
+    japanese:
+      - あの 雲 の 形 が 面白い ね。
+      - あの 雲、面白い 形 し てる ね。
+    english_literally: That cloud's shape is interesting, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - その 雲 の 形 が 面白い ね。
+        english: The shape of that cloud (you're pointing at) is interesting, isn't it?
+        hint: 「その」 implies the listener's proximity or focus. We're looking at a cloud high in the sky,
+          far from both.
+    scene: You and a friend are lying on the grass, looking up at the sky.
+    register: casual
+    setting: friendly
+  - english: That building over there is the new library.
+    japanese:
+      - あの 建物 が 新しい 図書 館 です。
+      - あの 建物 が 新しい 図書 館 だ よ。
+      - あの 建物 は 新しい 図書 館 で ござい ます。
+    english_literally: That building (over there) is the new library.
+    competing_grammar:
+      - competing_japanese:
+          - ここ に 新しい 図書 館 が あり ます。
+        english: There is a new library here.
+        hint: 「ここ」 specifies a location close to the speaker. We are identifying a specific distant building.
+    scene: You are giving directions to someone, pointing out a building far in the distance.
+    register: teineigo (polite)
+    setting: informative
+  - english: That TV drama, the final episode was amazing, wasn't it?
+    japanese:
+      - あの テレビ ドラマ、最終 回 が すごかっ た よ ね。
+      - あの テレビ ドラマ、最終 回 が すごかっ た です よ ね。
+      - あの ドラマ、ラスト マジ やばかっ た よ ね。
+    english_literally: That TV drama, the final episode was amazing, right?
+    competing_grammar:
+      - competing_japanese:
+          - 例 の テレビ ドラマ、最終 回 が すごかっ た よ ね。
+        english: That TV drama we know about, the final episode was amazing, wasn't it?
+        hint: 「例の」 (rei no) refers to something familiar or 'the usual' one. While similar, 「あの」 specifically
+          refers to something conceptually distant or already completed in the past.
+    scene: You are chatting with a friend about a TV drama that finished some time ago.
+    register: casual
+    setting: storytelling
+  - english: Back then, I used to play with friends every day.
+    japanese:
+      - あの 頃 は 毎日 友達 と 遊ん で い まし た。
+      - あの 頃 は 毎日 友達 と 遊ん で た よ。
+      - あの 頃 は 毎日 友達 と 遊ん で い た もの です。
+    english_literally: That time period, as for, every day friends with played.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 は 毎日 友達 と 遊ん で い まし た。
+        english: In the old days, I used to play with friends every day.
+        hint: 「昔」 (mukashi) means 'old times' or 'long ago' generally. 「あの 頃」 specifies a particular period
+          in the past that is mentally distant from the current moment.
+    scene: You are having a casual conversation with someone, recalling your childhood or younger days.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The use of 「あの 頃」 (ano koro) places the time period in the distant past, creating a nostalgic
+      or reflective tone. It's a common phrase used by older speakers when recalling their youth, conveying
+      a sense of temporal distance rather than physical. It could be used by any speaker or listener gender,
+      but the context of reminiscing childhood by an 'older' speaker fits well.

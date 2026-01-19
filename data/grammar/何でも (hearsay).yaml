@@ -1,0 +1,251 @@
+grammar_point: 何でも (hearsay)
+learn_before:
+  - か〜か (whether... or)
+  - 何でも (anything・everything)
+meaning: I heard that; I'm not sure, but; Apparently
+pronunciation:
+  katakana: ナンデモ
+  romaji: nandemo
+formation:
+  何でも + [Statement]: Indicates uncertainty or hearsay. Roughly translates to 'I heard that...', 'I'm not
+    sure, but...', or 'Apparently...'
+jlpt: N3
+etymology: Derived from the original meaning of 「何でも」 as 'anything' or 'whatever'. In this grammatical
+  context, it implies that the information is not verified and could be 'anything' someone said, suggesting
+  a degree of uncertainty about the source or veracity.
+writeup: 「何でも」 is used to convey information that the speaker has heard from someone else, but is not
+  entirely certain about. It is similar to saying "I heard that..." or "Apparently..." in English. This
+  usage indicates a level of uncertainty and that the information comes from an external source, thereby
+  implying that the speaker is not fully responsible for the truthfulness of the information. It is most
+  often used in casual conversation, providing a gentle way to introduce information without making a
+  strong assertion. While it can appear in more formal contexts, it generally maintains this nuance of
+  unconfirmed report.
+false_friends:
+  - term: 何でもかんでも
+    meaning: anything and everything; indiscriminately
+    kind: similar expression
+    nuance: While sharing '何でも', 「何でもかんでも」 means 'anything and everything' or 'indiscriminately', implying
+      a complete lack of selection or discretion, not hearsay.
+    grammar_point: <suggest>:何でもかんでも (anything and everything)
+  - term: 何でもいい
+    meaning: anything is fine; whatever works
+    kind: similar expression
+    nuance: 「何でもいい」 expresses that 'anything is acceptable' or 'I don't have a preference', showing willingness
+      to accept any option, rather than reporting unconfirmed information.
+    grammar_point: <suggest>:何でもいい (anything is fine)
+post_false_friends_writeup: It is important to distinguish this grammatical usage of 「何でも」 from its more
+  literal meaning of 'anything' or 'whatever'. When used to introduce a statement, it always implies hearsay
+  or uncertainty, rather than indicating a lack of preference or an exhaustive list.
+examples:
+  - english: I heard that Tanaka is going to quit the company this month.
+    japanese:
+      - '{何 で も}、田中 さん は 今月 で 会社 を 辞める そう だ。'
+      - '{何 で も}、田中 さん は 今月 で 会社 を 辞める そう です。'
+      - '{何 で も}、田中 さん は 今月 で 会社 を 辞める らしい。'
+      - '{何 で も}、田中 さん は 今月 で 会社 を 辞める らしい です。'
+    english_literally: Anything-is-said-to-be, Tanaka-san this month company quit it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は 今月 で 会社 を 辞める {そう だ}。
+        english: Tanaka is going to quit the company this month, I hear.
+        hint: While 「～だそうだ」 reports hearsay directly, 「何でも」 emphasizes that the information is unverified
+          and perhaps just a rumor. We're looking for a grammar point that highlights the speaker's uncertainty.
+    scene: Two coworkers gossiping about a colleague.
+    register: casual
+    setting: informative
+    nuance: 「何でも」 softens the statement about 「田中さん」 quitting, showing it is based on hearsay. The speaker
+      is simply relaying information.
+  - english: Apparently, that restaurant is very popular.
+    japanese:
+      - '{何 で も}、あの レストラン は とても 人気 が ある らしい よ。'
+      - '{何 で も}、あの レストラン は とても 人気 が ある らしい。'
+      - '{何 で も}、あの レストラン は とても 人気 が ある そう だ。'
+      - '{何 で も}、あの レストラン は とても 人気 が ある そう です。'
+      - '{何 で も}、あの レストラン は とても 人気 が ある らしい です よ。'
+    english_literally: Anything-is-said-to-be, that restaurant very popular seems-to-be.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は とても 人気 が ある {らしい よ}。
+        english: That restaurant seems very popular, I hear.
+        hint: 「らしい」 indicates something appears to be true based on evidence, but 「何でも」 specifically implies
+          the information came from someone else and might not be fully confirmed. We're looking for a
+          phrase that adds a layer of 'I just heard it from someone' to the information.
+    scene: Recommending a restaurant to a friend.
+    register: casual
+    setting: informative
+    nuance: The 「らしい よ」 at the end adds to the casual tone. The use of 「何でも」 indicates the speaker hasn't
+      personally confirmed how popular the restaurant is.
+  - english: I heard he was really popular with girls in college.
+    japanese:
+      - '{何 で も}、彼 は 大学 時代 に すごく モテ た らしい よ。'
+      - '{何 で も}、彼 は 大学 時代 に すごく モテ た らしい。'
+      - '{何 で も}、彼 は 大学 時代 に すごく モテ た そう だ。'
+      - '{何 で も}、彼 は 大学 時代 に すごく モテ た そう です。'
+    english_literally: Anything-is-said-to-be, he university era in really popular was seems-to-be.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 大学 時代 に すごく モテ た {と 聞い て いる}。
+        english: I've heard he was very popular with girls in college.
+        hint: 「と聞いている」 directly states you heard something, but 「何でも」 adds a sense of 'it's just a rumor'
+          or 'I'm not fully sure myself'. We're looking for a way to express that the information is unconfirmed
+          hearsay.
+    scene: Two friends talking about an acquaintance's past.
+    register: casual
+    setting: storytelling
+    nuance: The phrase 「モテ た らしい よ」 means 「I heard that he was popular」. The speaker is talking about
+      something from the past that they don't know for sure, emphasizing the hearsay with 「何でも」.
+  - english: I heard that the budget for the new project is going to be cut significantly.
+    japanese:
+      - '{何 で も}、新しい プロジェクト は 予算 が 大幅 に カット さ れる らしい。'
+      - '{何 で も}、新しい プロジェクト は 予算 が 大幅 に カット さ れる らしい です。'
+      - '{何 で も}、新しい プロジェクト は 予算 が 大幅 に カット さ れる そう だ。'
+      - '{何 で も}、新しい プロジェクト は 予算 が 大幅 に カット さ れる そう です。'
+    english_literally: Anything-is-said-to-be, new project budget significantly cut will-be seems-to-be.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい プロジェクト は 予算 が 大幅 に カット さ れる {と 言わ れ て いる}。
+        english: It is said that the budget for the new project will be cut significantly.
+        hint: 「～と言われている」 suggests a more widespread rumor or common knowledge, whereas 「何でも」 indicates
+          a single, possibly unverified, piece of information the speaker recently acquired. We're looking
+          for a way to state that this specific piece of information is hearsay.
+    scene: An employee sharing rumors with a colleague.
+    register: semi-formal
+    setting: informative
+    nuance: In a business setting, 「何でも」 softens the blow of potentially bad news, indicating that it's
+      unconfirmed and making the tone less confrontational.
+  - english: I heard that the president is scheduled to go on a business trip overseas next month.
+    japanese:
+      - '{何 で も}、社長 は 来月 海外 に 出張 する 予定 だ と 聞き まし た。'
+      - '{何 で も}、社長 は 来月 海外 に 出張 する 予定 らしい です。'
+      - '{何 で も}、社長 は 来月 海外 に 出張 する 予定 だ そう です。'
+      - '{何 で も}、社長 は 来月 海外 に 出張 する らしい。'
+    english_literally: Anything-is-said-to-be, president next-month overseas on business-trip to go plan
+      it-is I-heard.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 は 来月 海外 に 出張 する 予定 です {と の こと です}。
+        english: I was informed that the president is scheduled to go on a business trip overseas next
+          month.
+        hint: 「とのことです」 reports information formally and neutrally, whereas 「何でも」 conveys that the information
+          is based on informal hearsay, implying less certainty on the speaker's part. We're looking for
+          an expression that suggests the information is not fully verified by the speaker.
+    scene: An assistant informing their manager about the president's plans.
+    register: formal
+    setting: professional
+    nuance: The polite 「聞きました」 indicates that the information was received from someone and adds a layer
+      of respect, while 「何でも」 still maintains the nuance of information received indirectly or as hearsay.
+  - english: I heard that she got a new boyfriend recently.
+    japanese:
+      - '{何 で も}、彼女 は 最近 新しい 彼氏 が でき た らしい よ。'
+      - '{何 で も}、彼女 は 最近 新しい 彼氏 が でき た らしい。'
+      - '{何 で も}、彼女 は 最近 新しい 彼氏 が でき た そう だ。'
+      - '{何 で も}、彼女 は 最近 新しい 彼氏 が でき た らしい です。'
+      - '{何 で も}、彼女 は 最近 新しい 彼氏 が でき た そう です。'
+    english_literally: Anything-is-said-to-be, she recently new boyfriend got seems-to-be.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 最近 新しい 彼氏 が でき た {ん だ って}。
+        english: She got a new boyfriend recently, I hear.
+        hint: 「んだって」 is a casual way to report hearsay, but 「何でも」 places more emphasis on the information
+          being unconfirmed or a mere rumor, almost like 'I just heard it from someone'. We're looking
+          for a phrase that stresses the unverified nature of the information.
+    scene: A group of friends gossiping about someone's love life.
+    register: casual
+    setting: humorous
+    speaker_gender: female
+    nuance: The 「らしい よ」 at the end adds a casual, gossip-like tone and further emphasizes the hearsay
+      nature of the information, often used in casual conversations among friends, particularly by women.
+  - english: I heard that the company's new product will be unveiled next month.
+    japanese:
+      - '{何 で も}、来月、会社 の 新 製品 が 発表 さ れる らしい です よ。'
+      - '{何 で も}、来月、会社 の 新 製品 が 発表 さ れる らしい です。'
+      - '{何 で も}、来月、会社 の 新 製品 が 発表 さ れる らしい。'
+      - '{何 で も}、来月、会社 の 新 製品 が 発表 さ れる そう です よ。'
+      - '{何 で も}、来月、会社 の 新 製品 が 発表 さ れる そう です。'
+      - '{何 で も}、来月、会社 の 新 製品 が 発表 さ れる そう だ。'
+    english_literally: Anything-is-said-to-be, next month, company's new product will be announced it
+      seems.
+    competing_grammar:
+      - competing_japanese:
+          - 来月、会社 の 新 製品 が 発表 さ れる {と の こと です}。
+        english: I was informed that the company's new product will be unveiled next month.
+        hint: 「とのことです」 is more formal and implies a more reliable source, like an official announcement.
+          「何でも」 suggests the information is from informal channels and less confirmed. We're looking for
+          an expression that indicates casual hearsay.
+    scene: Two colleagues discussing company news during a break.
+    register: semi-formal
+    setting: informative
+    nuance: The use of 「何でも」 here introduces the news as something heard through informal channels or
+      a rumor, rather than an official statement. The 「らしい です よ」 adds a polite and slightly softer tone
+      suitable for sharing unconfirmed news.
+  - english: Apparently, my grandson found a really old coin.
+    japanese:
+      - '{何 で も}、うち の 孫 が すごく 古い 硬貨 を 見つけ た らしい ん だ。'
+      - '{何 で も}、うち の 孫 が すごく 古い 硬貨 を 見つけ た らしい。'
+      - '{何 で も}、うち の 孫 が すごく 古い 硬貨 を 見つけ た そう だ。'
+      - '{何 で も}、うち の 孫 が すごく 古い 硬貨 を 見つけ た らしい です。'
+      - '{何 で も}、うち の 孫 が すごく 古い 硬貨 を 見つけ た そう です。'
+    english_literally: Anything-is-said-to-be, my grandson very old coin found it seems.
+    competing_grammar:
+      - competing_japanese:
+          - うち の 孫 が すごく 古い 硬貨 を 見つけ た {ん だ って}。
+        english: My grandson found a really old coin, I heard.
+        hint: While 「んだって」 is casual hearsay, 「何でも」 can add a slightly more detached or unverified nuance,
+          like 'this is just what I'm hearing'. We're looking for a phrase that implies the speaker is
+          relaying something they were told, without full confirmation.
+    scene: An older person sharing a story with a friend over tea.
+    register: casual
+    setting: storytelling
+    speaker_age: older
+    nuance: The informal 「うち の 孫」 (my grandchild) is characteristic of an older speaker, and 「らしい ん だ」
+      combined with 「何でも」 gives a warm, slightly boasting, but unconfirmed tone, indicating the speaker
+      heard this from someone else, perhaps their grandchild directly or another family member.
+  - english: I heard that there's a new cafe opening up in front of the station.
+    japanese:
+      - '{何 で も}、駅前 に 新しい カフェ が できる そう です よ。'
+      - '{何 で も}、駅前 に 新しい カフェ が できる そう です。'
+      - '{何 で も}、駅前 に 新しい カフェ が できる そう だ。'
+      - '{何 で も}、駅前 に 新しい カフェ が できる らしい です よ。'
+      - '{何 で も}、駅前 に 新しい カフェ が できる らしい です。'
+      - '{何 で も}、駅前 に 新しい カフェ が できる らしい。'
+    english_literally: Anything-is-said-to-be, station front new cafe will be built it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 駅前 に 新しい カフェ が できる {らしい です よ}。
+        english: It seems a new cafe is opening in front of the station.
+        hint: 「らしい」 suggests evidence or observation. 「何でも」 implies the information is purely based on
+          what someone said, emphasizing it's unconfirmed. We're looking for a phrase that specifically
+          means 'I've just heard a rumor'.
+    scene: Friends chatting about local developments in their neighborhood.
+    register: casual
+    setting: informative
+    nuance: Here, 「何でも」 is used to share exciting but unconfirmed local news, making the speaker sound
+      like they are sharing a fresh rumor or a piece of gossip about something new and interesting. The
+      「そう です よ」 reinforces the hearsay.
+  - english: Apparently, the new policy caused quite a stir among employees.
+    japanese:
+      - '{何 で も}、その 新しい ポリシー は 従業 員 の 間 で かなり 波紋 を 呼ん だ よう だ。'
+      - '{何 で も}、その 新しい ポリシー は 従業 員 の 間 で かなり 波紋 を 呼ん だ よう です。'
+      - '{何 で も}、その 新しい ポリシー は 従業 員 の 間 で かなり 波紋 を 呼ん だ らしい。'
+      - '{何 で も}、その 新しい ポリシー は 従業 員 の 間 で かなり 波紋 を 呼ん だ らしい です。'
+      - '{何 で も}、その 新しい ポリシー は 従業 員 の 間 で かなり 波紋 を 呼ん だ そう だ。'
+      - '{何 で も}、その 新しい ポリシー は 従業 員 の 間 で かなり 波紋 を 呼ん だ そう です。'
+    english_literally: Anything-is-said-to-be, that new policy employees among quite stir caused it seems.
+    competing_grammar:
+      - competing_japanese:
+          - その 新しい ポリシー は 従業 員 の 間 で かなり 波紋 を 呼ん だ {と の こと だ}。
+        english: It is said that the new policy caused quite a stir among employees.
+        hint: 「とのことだ」 is a more direct way to report information from a source, often formal. 「何でも」 adds
+          a layer of uncertainty, suggesting the information is more like a rumor or a general impression
+          the speaker has picked up. We're looking for a phrase that conveys unverified hearsay.
+    scene: Two managers discussing the internal impact of a recent company decision.
+    register: semi-formal
+    setting: serious
+    nuance: The phrase 「波紋 を 呼ん だ」 (caused ripples/stir) indicates a significant impact. 「何でも」 softens
+      the assertion, suggesting the speaker is relaying what they heard from others or what appears to
+      be the case, rather than what they directly observed or confirmed themselves, maintaining a somewhat
+      detached, yet serious tone.
+post_example_writeup: As seen in the examples, 「何でも」 can be used across various registers, from casual
+  to more formal, though its core function of indicating hearsay and uncertainty remains consistent. The
+  surrounding sentence structure and other auxiliary verbs like 「そうだ」 or 「らしい」 further define the exact
+  nuance of the hearsay.

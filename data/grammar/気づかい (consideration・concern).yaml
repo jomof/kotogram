@@ -1,0 +1,267 @@
+grammar_point: 気づかい (consideration・concern)
+matcher: |-
+  ⌈ˢ気づかいᵖv:general:godan-waa:conjunctiveᵇ気づかうᵈ気遣うʳキズカイ⌉|
+  ⌈ˢ気づかいᵖn:common_nounᵇ気づかいᵈ気遣いʳキズカイ⌉
+
+learn_before:
+  - '[Verb-dictionary]ことがある (there are times when)'
+  - しかし (but・however)
+  - どうも (thanks・sorry・hello)
+  - なくてもいい (no need to)
+  - に対して (towards; in contrast)
+meaning: consideration, concern, thoughtfulness, care
+pronunciation:
+  katakana: キヅカイ
+  romaji: kizukai
+formation:
+  Noun + の + 気づかい: Expresses concern or consideration for that noun.
+  Verb[dictionary] + の + 気づかい: Expresses concern or consideration regarding the action of the verb.
+  〜に + 気づかい + する: To show consideration or concern towards someone/something.
+  気づかいがある / ない: To be considerate / inconsiderate.
+  気づかいなし: Without consideration (colloquial).
+jlpt: N3
+etymology: The word 「気づかい」 is formed from 「気」 (ki), meaning 'spirit, mind, feeling, attention,' and 「遣う」
+  (tsukau), meaning 'to use, to spend.' Therefore, it literally means 'to use one's spirit or attention,'
+  referring to the act of expending mental effort to consider others' feelings or situations. This emphasizes
+  the internal, often delicate, effort involved in being thoughtful.
+writeup: |-
+  「気づかい」 refers to the act of showing consideration or concern for others, often by anticipating their needs or feelings and taking subtle actions to make them comfortable. It's about being thoughtful and attentive.
+
+  While generally positive, implying kindness and politeness, 「気づかい」 can sometimes carry a nuance of excessive or unnecessary worry, especially when one is *overly* concerned about how others perceive them or about minor details. In such cases, it might lead to 「気疲れ」 (kizukare - mental fatigue from excessive concern) or feeling pressured.
+
+  It is often used with the verb 「する」 (to do) as 「気づかいする」, meaning 'to be considerate' or 'to show concern'. It can also describe a trait, as in 「気づかいがある人」 (a considerate person) or 「気づかいのない人」 (an inconsiderate person). The focus is on the *mental effort* and the *sensitivity* involved in caring for others.
+false_friends:
+  - term: 気配り (kikubari)
+    meaning: attentiveness, thoughtfulness
+    kind: similar expression
+    nuance: 「気配り」 emphasizes the active, outward manifestation of consideration, often in social or business
+      situations. It's about performing specific actions to ensure everyone is comfortable or things run
+      smoothly. While 「気づかい」 is the internal feeling of concern, 「気配り」 is the external action taken.
+    grammar_point: <suggest>:気配り (attentiveness)
+  - term: 心遣い (kokorozukai)
+    meaning: heartfelt consideration, kindness
+    kind: similar expression
+    nuance: 「心遣い」 suggests a deeper, more emotional and heartfelt level of care or kindness. It often
+      accompanies gestures like gifts or services, implying that the action comes from genuine affection
+      or profound consideration. It feels more personal and warm than 「気づかい」.
+    grammar_point: <suggest>:心遣い (heartfelt consideration)
+  - term: 思いやり (omoiyari)
+    meaning: empathy, compassion, thoughtfulness
+    kind: similar expression
+    nuance: 「思いやり」 is a broader term focusing on empathy—the ability to understand and share the feelings
+      of another. It's about being sensitive to others' emotional states and acting out of compassion.
+      While 「気づかい」 is about anticipating needs and acting carefully, 「思いやり」 is about connecting emotionally
+      and acting from that understanding.
+    grammar_point: <suggest>:思いやり (empathy)
+  - term: 気を使う (ki o tsukau)
+    meaning: to be careful, to worry about, to pay attention
+    kind: similar expression
+    nuance: 「気を使う」 is the verb form that directly relates to 「気づかい」. While 「気づかい」 is the noun describing
+      the 'act of showing consideration' or 'concern', 「気を使う」 is the action itself. For example, 「人に気を使う」
+      means 'to be considerate of others' or 'to worry about what others think'.
+    grammar_point: <suggest>:気を使う (to be considerate)
+post_false_friends_writeup: 'To differentiate these terms, consider the focus: 「気づかい」 is primarily about
+  the *internal state of concern* and the subtle actions that stem from it. 「気配り」 emphasizes the *outward,
+  active steps* taken to ensure comfort or smooth operations. 「心遣い」 conveys a *deeper, more heartfelt
+  emotional care*. 「思いやり」 is about *empathy and compassion*, acting from a place of shared feeling. Finally,
+  「気を使う」 is the *verb form* of acting thoughtfully or worrying about others'' perceptions. While they
+  share common ground in expressing attentiveness, their specific nuances highlight different facets of
+  consideration.'
+examples:
+  - english: Thank you for your kindness yesterday. It helped me a lot.
+    japanese:
+      - 昨日 は お {気づかい} いただき、ありがとう ござい まし た。とても 助かり まし た。
+      - 昨日 は {気づかい}、本当 に ありがとう ござい まし た。すごく 助かっ た よ。
+    english_literally: Yesterday, receiving your consideration, thank you very much. I was very helped.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 は ご 親切 に し て いただき、ありがとう ござい まし た。とても 助かり まし た。
+        english: Thank you for your kindness yesterday. It helped me a lot.
+        hint: 「親切」 (shinsetsu) means 'kindness' or 'gentleness,' focusing on an inherent disposition rather
+          than the specific act of anticipating needs. We're looking for an expression that emphasizes
+          thoughtful consideration.
+    scene: A person expressing gratitude for someone's thoughtfulness.
+    register: formal
+    setting: professional
+  - english: He is a very thoughtful person, always noticing small details.
+    japanese:
+      - 彼 は とても {気づかい} が ある 人 で、いつ も 細かい ところ に 気 が つく ん です。
+      - 彼 は すごく {気づかい} の ある 人 で、いつ も 小さい こと に 気づく から ね。
+    english_literally: He is a very person who has consideration, always notices small details.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は とても 親切 な 人 で、いつ も 困っ て いる 人 を 助ける ん です。
+        english: He is a very kind person, always helping people in trouble.
+        hint: 「親切」 means kind or gentle, focusing on inherent character and actions. We're looking for
+          a word that describes someone who is thoughtful and attentive to others' feelings.
+      - competing_japanese:
+          - 彼 は とても 気配り が できる 人 で、いつ も 周り を 見 て 動い て いる ん です。
+        english: He is a very attentive person, always observing his surroundings and acting accordingly.
+        hint: While similar, 「気配り」 (kikubari) emphasizes active attentiveness and action in a social context.
+          We're looking for a word that describes the internal state of being thoughtful and considerate.
+    scene: Describing someone's personality to a friend.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「気づかいがある」 describes someone who is inherently considerate. 「気 が つく」 implies they
+      are observant, noticing things that others might miss, which contributes to their thoughtfulness.
+      This is a positive description common among friends.
+  - english: There's no need to be so overly concerned; please relax.
+    japanese:
+      - そんな に {気づかい} する 必要 は あり ませ ん よ。楽 に し て ください。
+      - そんな に {気づかい} し なく て も いい から、もっと 楽 に し て ね。
+    english_literally: To such an extent consideration doing need is not, you know. Please make yourself
+      easy.
+    competing_grammar:
+      - competing_japanese:
+          - そんな に 心配 する 必要 は あり ませ ん よ。楽 に し て ください。
+        english: There's no need to worry so much. Please relax.
+        hint: 「心配」 means general worry or anxiety. While related, 「気づかい」 implies a more active, often
+          subtle, act of showing consideration. We're looking for a word related to showing consideration
+          rather than just worrying.
+    scene: Reassuring someone who is being excessively worried or careful.
+    register: semi-formal
+    setting: supportive
+    nuance: Here, 「気づかいする」 implies an excessive or unnecessary level of concern, hence the speaker's reassurance
+      「必要 は ありません よ」 (there's no need). The sentence conveys a gentle request to relax. The 「よ」 particle
+      adds a soft emphasis to the advice.
+  - english: Her consideration touched everyone's hearts.
+    japanese:
+      - 彼女 の {気づかい} が、みんな の 心 を 温め まし た。
+      - 彼女 の {気づかい} に、みんな 心 を 温め られ た ん です。
+    english_literally: Her consideration, everyone's heart warmed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 優し さ が、みんな の 心 を 温め まし た。
+        english: Her kindness touched everyone's hearts.
+        hint: 「優しさ」 (yasashisa) refers to general kindness or gentleness. While related, 「気づかい」 specifically
+          implies thoughtful attention to others' needs or feelings. We're looking for an expression that
+          highlights this specific type of care.
+      - competing_japanese:
+          - 彼女 の 思いやり が、みんな の 心 を 温め まし た。
+        english: Her compassion touched everyone's hearts.
+        hint: 「思いやり」 (omoiyari) emphasizes empathy and compassion. While both are positive, 「気づかい」 focuses
+          more on anticipating and addressing needs, rather than solely emotional understanding. We're
+          looking for the nuance of careful consideration.
+    scene: Narrating an act of kindness that had a positive impact.
+    register: formal
+    setting: reflective
+  - english: Sometimes, his excessive concern can be a bit tiring.
+    japanese:
+      - 時々、彼 の 過度 な {気づかい} は 少し 疲れる こと が あり ます。
+      - たまに、彼 の 行き 過ぎ た {気づかい} は ちょっと 疲れ ちゃう ん だ よ ね。
+    english_literally: Sometimes, his excessive consideration is a bit tiring thing there is.
+    competing_grammar:
+      - competing_japanese:
+          - 時々、彼 の 神経 質 さ は 少し 疲れる こと が あり ます。
+        english: Sometimes, his nervousness can be a bit tiring.
+        hint: 「神経質」 (shinkeishitsu) means 'nervous' or 'overly sensitive,' implying a person's own disposition
+          to worry. 「気づかい」 refers to the *act* of showing concern towards others, even if excessive. We're
+          describing his actions towards others, not just his personality.
+    scene: A private conversation between colleagues about a third person.
+    register: casual
+    setting: cautious
+    nuance: The term 「過度な」 (kado na - excessive) explicitly indicates that the 「気づかい」 is beyond what is
+      comfortable, leading to 「疲れる」 (tiring). This highlights the potentially negative side of over-consideration.
+  - english: I appreciate your concern, but please don't worry about me.
+    japanese:
+      - お {気づかい}、ありがとう ござい ます。で も、私 の こと は 気 に なさら ない で ください。
+      - お {気づかい}、感謝 いたし ます。しかし、どう か 私 の ごと に ご 心配 なさら ぬ よう お 願い いたし ます。
+    english_literally: Your consideration, thank you very much. But, as for me, please don't be concerned.
+    competing_grammar:
+      - competing_japanese:
+          - ご 心配、ありがとう ござい ます。で も、私 の こと は 気 に なさら ない で ください。
+        english: Your worry, thank you. But please don't be concerned about me.
+        hint: 「心配」 (shinpai) is simply 'worry' or 'concern.' While related, 「気づかい」 carries the nuance
+          of active consideration and thoughtfulness, not just a state of worry. We're acknowledging their
+          proactive care.
+    scene: Someone politely declining help or excessive worry from another.
+    register: teineigo (polite)
+    setting: apologetic
+    nuance: 「お気づかい」 is the honorific prefix used to show respect for the other person's thoughtfulness.
+      The second part, 「気 に なさらないで ください」, is a polite way to ask someone not to worry. This phrase is
+      commonly used to gently refuse someone's over-attentiveness.
+  - english: He doesn't have much consideration for others' feelings.
+    japanese:
+      - 彼 は 人 の 気持ち に 対し て あまり {気づかい} が ない です ね。
+      - あいつ は 人 の 気持ち を {気づかい} し ない から な。
+    english_literally: He, towards other people's feelings, not much consideration there isn't, right?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 人 の 気持ち に 対し て あまり 思いやり が ない です ね。
+        english: He doesn't have much compassion for others' feelings.
+        hint: 「思いやり」 (omoiyari) means empathy or compassion. While often overlapping, 「気づかい」 implies specific
+          actions taken out of consideration, whereas 「思いやり」 is more about the capacity for emotional
+          understanding. We're highlighting a lack of active thoughtfulness.
+      - competing_japanese:
+          - 彼 は 人 の 気持ち に 対し て とても 無 神経 です ね。
+        english: He is very insensitive to other people's feelings.
+        hint: 「無神経」 (mushinkei) means 'insensitive.' While it describes a similar outcome, 「気づかいがない」 specifically
+          refers to the *absence of consideration*, rather than simply being blunt or tactless. We're
+          focusing on the lack of thoughtful action.
+    scene: A conversation lamenting someone's lack of empathy.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「気づかいがない」 means 'inconsiderate' or 'lacking thoughtfulness'. The phrase 「人 の 気持ち に 対して」 clarifies
+      that the lack of consideration is specifically towards others' feelings. The 「ね」 at the end invites
+      agreement from the listener.
+  - english: It requires a lot of care to deal with these delicate materials.
+    japanese:
+      - この 繊細 な 材料 を 扱う に は、たくさん の {気づかい} が 必要 です。
+      - この デリケート な 材料 の 扱い に は、かなり の {気づかい} が いる ん です よ。
+    english_literally: These delicate materials to handle, a lot of consideration is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 繊細 な 材料 を 扱う に は、たくさん の 注意 が 必要 です。
+        english: It requires a lot of attention to deal with these delicate materials.
+        hint: 「注意」 (chūi) means 'attention' or 'caution,' which is more general. 「気づかい」 in this context
+          implies a nuanced, careful handling that considers the specific properties or fragility. We're
+          looking for the careful, delicate handling, not just general attention.
+    scene: Explaining the requirements for a task that involves delicate handling.
+    register: bijinesu nihongo (business)
+    setting: instructional
+  - english: I'm sorry for not being more considerate.
+    japanese:
+      - '{気づかい} が 足り なく て、申し訳 あり ませ ん でし た。'
+      - '{気づかい} が 足り ず、大変 申し訳 ござい ませ ん でし た。'
+    english_literally: Consideration was lacking, I am sorry.
+    competing_grammar:
+      - competing_japanese:
+          - 不 注意 で 申し訳 あり ませ ん でし た。
+        english: I'm sorry for my carelessness.
+        hint: 「不注意」 (fuchūi) means 'carelessness,' which is a broader term for making a mistake. 「気づかい
+          が 足りない」 specifically points to a lack of thoughtful attention to others or a situation. We're
+          apologizing for insufficient consideration, not just general sloppiness.
+    scene: Apologizing for a past oversight or inconsiderate action.
+    register: formal
+    setting: apologetic
+  - english: It was truly a thoughtful gesture, coming from you.
+    japanese:
+      - あなた から の {気づかい} は、本当 に 心 温まる もの でし た。
+      - あなた の {気づかい}、心 から 温まり まし た よ。
+    english_literally: From you, consideration was truly a heartwarming thing.
+    competing_grammar:
+      - competing_japanese:
+          - あなた から の 贈り物 は、本当 に 心 温まる もの でし た。
+        english: Your gift was truly a heartwarming thing.
+        hint: 「贈り物」 (okurimono) is a physical gift. 「気づかい」 refers to the intangible act of showing consideration
+          or thoughtfulness. We're expressing appreciation for an act of care, not a material item.
+      - competing_japanese:
+          - あなた の 親切 は、本当 に 心 温まる もの でし た。
+        english: Your kindness was truly a heartwarming thing.
+        hint: 「親切」 (shinsetsu) is general kindness. While positive, 「気づかい」 implies a more subtle and specific
+          form of attention to detail or consideration for feelings. We're appreciating their thoughtful
+          effort.
+    scene: Expressing deep appreciation for a personal act of thoughtfulness.
+    register: teineigo (polite)
+    setting: intimate
+    nuance: This sentence emphasizes the personal impact of the '気づかい' by using 「あなた から の」 (from you)
+      and describing it as 「心温まる もの」 (a heartwarming thing), highlighting the emotional warmth received
+      from the act of consideration.
+post_example_writeup: These examples demonstrate the versatility of 「気づかい」, from expressing gratitude
+  for thoughtfulness to describing someone's character or even the burden of excessive concern. Notice
+  how it can be used with various particles and verbs to convey nuanced meanings related to consideration
+  and attentiveness.

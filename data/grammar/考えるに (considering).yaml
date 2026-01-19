@@ -1,0 +1,227 @@
+grammar_point: 考えるに (considering)
+learn_before:
+  - 〜如し・〜ごとし (like・as if)
+  - に違いない (no doubt)
+meaning: considering; when one considers; thinking about it
+pronunciation:
+  katakana: カンガエルニ
+  romaji: kangaeru ni
+formation:
+  Verb[dictionary form] + に: Used with the dictionary form of a verb, most commonly 考える (kangaeru) or
+    思う (omou), followed by に, to introduce a reasoned conclusion.
+  Noun + を + 考えるに: Less common, but a noun followed by を and 考えるに can also be used, typically in more
+    formal or specific contexts.
+jlpt: N1
+etymology: The expression 「考えるに」 combines the dictionary form of the verb 「考える」 (kangaeru), meaning 'to
+  think' or 'to consider,' with the particle 「に」. In this context, 「に」 functions as a conjunctive particle,
+  similar to 'in' or 'upon,' indicating the basis or condition for the following statement. This usage
+  of 「に」 with verbs like 「考える」 and 「思う」 to denote a foundation for judgment is rooted in classical Japanese,
+  contributing to its formal and analytical tone. It signifies that the speaker's subsequent remark is
+  grounded in careful contemplation or analysis of the preceding matter.
+writeup: |-
+  「考えるに」 is a formal and somewhat literary expression used to introduce a statement that is the result of careful thought or consideration. It translates most closely to 'considering (that)...', 'when one considers...', or 'thinking about it...'. It suggests that the speaker or writer has deliberated on a certain matter and is now presenting a reasoned conclusion or opinion. This phrase often appears in formal speeches, essays, or analytical texts, indicating a logical progression of thought.
+
+  Unlike more direct expressions of opinion, 「考えるに」 implies a process of internal reflection or external evaluation. It positions the speaker's subsequent statement as a thoughtful deduction rather than a mere feeling or spontaneous idea. It's particularly useful when you want to convey that your conclusion is well-founded and has been arrived at through a rational process. While it can theoretically be used with other verbs ending in '-eru' followed by 'ni', its most common and natural usage is with 「考える」 and occasionally 「思う」.
+false_friends:
+  - term: 思うに
+    meaning: in my opinion; it seems to me
+    kind: similar expression
+    nuance: 「思うに」 is more about expressing a personal feeling or subjective impression, often without
+      as much emphasis on a logical or analytical process. 「考えるに」 implies a more deliberate and reasoned
+      consideration.
+    grammar_point: <suggest>:思うに (in my opinion・it seems to me)
+  - term: 考えれば
+    meaning: if one thinks about it
+    kind: similar expression
+    nuance: 「考えれば」 is a conditional form, setting up a hypothetical situation ('if you think about it,
+      then...'). 「考えるに」, conversely, introduces a conclusion that has already been considered, serving
+      as a formal introductory phrase for the resultant thought.
+    grammar_point: Verb[えば] (conditional)
+  - term: に照らして・に照らすと
+    meaning: in light of; in accordance with
+    kind: similar expression
+    nuance: 「に照らして」 means 'in light of' or 'according to' something, implying a comparison or judgment
+      against an existing standard, fact, or principle. While it also involves consideration, it's more
+      about conformity or assessment against a benchmark, whereas 「考えるに」 is about deriving a new conclusion
+      from internal deliberation.
+    grammar_point: に照らして・に照らすと (in light of)
+post_false_friends_writeup: While 「考えるに」 expresses a conclusion reached through careful deliberation,
+  「思うに」 conveys a personal impression. 「考えれば」 sets up a hypothetical condition, asking the listener to
+  consider 'if' something were true. Lastly, 「に照らして」 judges something against a known standard or principle.
+  Each phrase subtly guides the listener to interpret the following statement differently, reflecting
+  the nature of the preceding mental process or basis for the statement.
+examples:
+  - english: Considering the current economic situation, it's likely prices will continue to rise.
+    japanese:
+      - 現在 の 経済 状況 を {考える に}、物価 は 更に 上がる だろう。
+      - 現在 の 経済 情勢 を {考える に}、物価 は 更に 上昇 する だろう。
+    english_literally: Considering the current economic situation, prices will probably rise further.
+    competing_grammar:
+      - competing_japanese:
+          - 現在 の 経済 状況 から する と、物価 は 更に 上がる だろう。
+        english: From the current economic situation, prices will likely rise further.
+        hint: 「〜からすると」 means 'from the viewpoint of' and emphasizes the source of the information or judgment,
+          which is slightly different from the deliberative 'considering'.
+    scene: An economist delivering a forecast during a press conference.
+    register: formal
+    setting: informative
+    nuance: 「考えるに」 emphasizes that the prediction is based on a thoughtful, analytical assessment of the
+      economic situation, suggesting a well-reasoned conclusion.
+  - english: When one considers his past achievements, his current struggles are truly surprising.
+    japanese:
+      - 彼 の 過去 の 功績 を {考える に}、現在 の 苦戦 は 実 に 驚き だ。
+      - 彼 の 過去 の 功績 を {考える に}、現在 の 苦戦 は 実 に 驚く べき だ。
+    english_literally: Considering his past achievements, his current struggle is truly surprising.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 過去 の 功績 を 考えれ ば、現在 の 苦戦 は 実 に 驚き だ。
+        english: If one considers his past achievements, his current struggles are truly surprising.
+        hint: 「〜考えれば」 is a conditional form, suggesting a hypothetical consideration ('if you think about
+          it'). We are looking for a phrase that introduces a conclusion that *has already been* considered.
+    scene: Two colleagues discussing a prominent figure's career path.
+    register: semi-formal
+    setting: reflective
+    nuance: This usage bridges a past observation with a current surprising reality, implying a discrepancy
+      derived from thoughtful consideration of past performance.
+  - english: Considering the rapid progress of technology, there's no doubt that our lives will change
+      dramatically.
+    japanese:
+      - 技術 の 急速 な 進歩 を {考える に}、私 達 の 生活 は 劇的 に 変わる に 違い ない。
+      - 技術 の 急速 な 進歩 を {考える に}、私 達 の 生活 は 大きく 変化 する に 違い ない。
+    english_literally: Considering the rapid progress of technology, our lives will surely change dramatically.
+    competing_grammar:
+      - competing_japanese:
+          - 技術 の 急速 な 進歩 を 鑑みれ ば、私 達 の 生活 は 劇的 に 変わる に 違い ない。
+        english: If we consider the rapid progress of technology, our lives will surely change dramatically.
+        hint: While similar, 「鑑みれば」 (kangaemireba - 'if we consider/take into account') can be slightly
+          more formal or academic than 「考えるに」, often used when referencing specific precedents or existing
+          conditions. We're looking for a general 'considering' phrase.
+    scene: A panelist presenting at a technology conference.
+    register: formal
+    setting: academic
+    nuance: Indicates a conclusion drawn from observing current technological trends and projecting their
+      future impact, emphasizing a reasoned prediction.
+  - english: When one considers the vastness of the universe, our existence seems incredibly small.
+    japanese:
+      - 宇宙 の 広大 さ を {考える に}、私 達 の 存在 は あまり に も 小さく 思える。
+      - 宇宙 の 広大 さ を {考える に}、私 達 の 存在 は あまり に も 取る に 足り ない と 思える。
+    english_literally: Considering the vastness of the universe, our existence seems too small.
+    competing_grammar:
+      - competing_japanese:
+          - 宇宙 の 広大 さ を 思え ば、私 達 の 存在 は あまり に も 小さく 思える。
+        english: If one thinks about the vastness of the universe, our existence seems too small.
+        hint: 「思えば」 (if one thinks) is a conditional form that initiates a thought process. We are looking
+          for a phrase that introduces a conclusion that is already the result of consideration.
+    scene: A person reflecting alone while stargazing.
+    register: bungo (literary)
+    setting: reflective
+    nuance: This applies 「考えるに」 to a profound, abstract concept, leading to a personal realization or
+      philosophical insight, typical of a literary style.
+  - english: Considering the limited budget, we must choose the most cost-effective option.
+    japanese:
+      - 限ら れ た 予算 を {考える に}、最も 費用 対 効果 の 高い 選択 肢 を 選ぶ べき だ。
+      - 限ら れ た 予算 を {考える に}、最も 費用 対 効果 の 高い 選択 肢 を 選択 する 必要 が ある。
+    english_literally: Considering the limited budget, we should choose the most cost-effective option.
+    competing_grammar:
+      - competing_japanese:
+          - 限ら れ た 予算 を 考慮 する と、最も 費用 対 効果 の 高い 選択 肢 を 選ぶ べき だ。
+        english: When considering the limited budget, we should choose the most cost-effective option.
+        hint: 「考慮すると」 (kōryo suru to) is a more general phrase for 'when considering' or 'if we take into
+          account', often used in broader analytical contexts. We're looking for a more formal and slightly
+          more rhetorical 'considering' phrase.
+    scene: A project manager addressing their team about resource allocation.
+    register: formal
+    setting: negotiating
+    nuance: Used to justify a decision based on a critical constraint (limited budget), emphasizing that
+      the choice is a rational and necessary one derived from careful consideration.
+  - english: Considering the unexpected issues that arose, the project's delay was unavoidable.
+    japanese:
+      - 予期 せ ぬ 問題 が 発生 し た こと を {考える に}、プロジェクト の 遅延 は やむ を 得 なかっ た。
+      - 予期 せ ぬ 問題 が 生じ た 事態 を {考える に}、プロジェクト の 遅延 は やむ を 得 なかっ た。
+    english_literally: Considering that unexpected problems occurred, the project's delay was unavoidable.
+    competing_grammar:
+      - competing_japanese:
+          - 予期 せ ぬ 問題 が 発生 し た こと を 鑑みる と、プロジェクト の 遅延 は やむ を 得 なかっ た。
+        english: When taking into account the unexpected issues that arose, the project's delay was unavoidable.
+        hint: 「鑑みる」 (kangaemiru) is more about 'taking into consideration' or 'reflecting upon' external
+          facts or precedents, often used when explaining a conclusion or action based on those facts.
+          We're looking for a general 'considering' phrase.
+    scene: A manager explaining a project delay to stakeholders.
+    register: formal
+    setting: apologetic
+    nuance: Presents the delay as a logical and unavoidable outcome stemming from unforeseen circumstances,
+      conveying that the conclusion was reached through a process of understanding.
+  - english: Considering all the proposed solutions, this one seems to have the most merit.
+    japanese:
+      - 提示 さ れ た 全て の 解決 策 を {考える に}、これ が 最も 妥当 性 が 高い と 思わ れる。
+      - 提示 さ れ た 全て の 解決 策 を {考える に}、これ が 最も 適切 で ある と 思わ れる。
+    english_literally: Considering all the presented solutions, this one seems to have the highest validity.
+    competing_grammar:
+      - competing_japanese:
+          - 提示 さ れ た 全て の 解決 策 を 総合 する と、これ が 最も 妥当 性 が 高い と 思わ れる。
+        english: When synthesizing all the proposed solutions, this one seems to have the most merit.
+        hint: 「総合すると」 (sōgō suru to) means 'when synthesizing' or 'when summing up', implying a collection
+          and consolidation of information rather than a focused deliberation. We're looking for a phrase
+          that implies an internal consideration.
+    scene: A committee chairperson announcing a decision after reviewing multiple options.
+    register: formal
+    setting: informative
+    nuance: Conveys that the chosen solution was selected after a thorough and reasoned evaluation of
+      all available alternatives, giving weight to the decision.
+  - english: Considering the historical context, the decision made by the leaders at that time was understandable.
+    japanese:
+      - 当時 の 歴史 的 背景 を {考える に}、指導 者 たち の 判断 は 理解 できる もの だっ た。
+      - 当時 の 歴史 的 背景 を {考える に}、指導 者 たち の 判断 は 納得 できる もの だっ た。
+    english_literally: Considering the historical background of that time, the leaders' judgment was understandable.
+    competing_grammar:
+      - competing_japanese:
+          - 当時 の 歴史 的 背景 を 踏まえる と、指導 者 たち の 判断 は 理解 できる もの だっ た。
+        english: Based on the historical context of that time, the leaders' judgment was understandable.
+        hint: 「踏まえると」 (fumaeru to) means 'based on' or 'taking into account', suggesting that a conclusion
+          is drawn directly from established facts or conditions. We're looking for a phrase that implies
+          a process of mental deliberation.
+    scene: A history professor giving a lecture on a past era.
+    register: formal
+    setting: academic
+    nuance: Provides a nuanced understanding of past events by placing them within their proper context,
+      highlighting that the conclusion is a result of historical analysis.
+  - english: Considering the impact on future generations, we must act responsibly.
+    japanese:
+      - 将来 の 世代 へ の 影響 を {考える に}、私 達 は 責任 ある 行動 を とる べき だ。
+      - 将来 の 世代 へ の 影響 を {考える に}、私 達 は 責任 ある 行動 し なけれ ば なら ない。
+    english_literally: Considering the impact on future generations, we should take responsible action.
+    competing_grammar:
+      - competing_japanese:
+          - 将来 の 世代 へ の 影響 を 考える と、私 達 は 責任 ある 行動 を とる べき だ。
+        english: When thinking about the impact on future generations, we should act responsibly.
+        hint: 「考えると」 (kangaeru to) is a more general and often more casual way to say 'when thinking about',
+          used to introduce a thought or decision. We're looking for a more formal and deliberative 'considering'
+          phrase.
+    scene: A public speaker addressing an audience about environmental policy.
+    register: formal
+    setting: persuasive
+    nuance: Appeals to a sense of responsibility by highlighting long-term consequences, framing the call
+      to action as a conclusion reached through ethical consideration.
+  - english: Considering all the events of that day, it was truly a miracle.
+    japanese:
+      - あの 日 の 全て の 出来事 を {考える に}、まさに 奇跡 と しか 言い よう が ない。
+      - あの 日 の 全て の 出来事 を {考える に}、まさに 奇跡 と しか 表現 の しよう が ない。
+    english_literally: Considering all the events of that day, it can only be described as a miracle.
+    competing_grammar:
+      - competing_japanese:
+          - あの 日 の 全て の 出来事 を 思え ば、まさに 奇跡 と しか 言い よう が ない。
+        english: If one thinks back to all the events of that day, it can only be described as a miracle.
+        hint: 「思えば」 in this context implies a 'looking back and thinking about' (retrospection), leading
+          to a realization. 「考えるに」 emphasizes the analytical process of putting pieces together to reach
+          a conclusion.
+    scene: An individual recalling a significant and astonishing past event.
+    register: semi-formal
+    setting: reflective
+    nuance: Summarizes a series of events leading to a strong, often emotional or profound, conclusion,
+      implying that this conclusion is the result of deep reflection on the circumstances.
+post_example_writeup: As demonstrated by these examples, 「考えるに」 is versatile in conveying that a statement
+  is a product of careful thought, whether analyzing economic trends, reflecting on personal history,
+  or deliberating on ethical responsibilities. Its use elevates the tone, suggesting a well-reasoned and
+  considered perspective.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E8%80%83%E3%81%88%E3%82%8B%E3%81%AB

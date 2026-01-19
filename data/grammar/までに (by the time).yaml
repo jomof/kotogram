@@ -1,0 +1,300 @@
+grammar_point: までに (by the time)
+learn_before:
+  - Verb[stem] (continuative)
+  - Verb[たい] (desiderative)
+  - Verb[ておく・とく] (preparation・advance action)
+  - '[Noun]が欲しい (to want something)'
+  - '[Verb-dictionary]まで (until an action or state)'
+  - ~なければならない・なきゃ (must do・have to)
+  - 〜まま(に) (as is・unchanged)
+  - かもしれない (might・maybe)
+  - たい (want to do)
+  - に (adverbializer)
+  - んだって (I heard, casual)
+  - 変わる (to change)
+meaning: By (a certain time/event), by the time that, before (a certain event)
+pronunciation:
+  katakana: マデニ
+  romaji: madeni
+formation:
+  Noun (time) + までに: Indicates a deadline or a specific point in time by which an action must be completed.
+  Verb (non-past informal) + までに: Indicates an action must be completed before another action or event
+    occurs
+jlpt: N4
+etymology: 'The grammar point までに (madeni) is a combination of two particles: まで (made), meaning "until"
+  or "as far as," and に (ni), which functions as a target or directional marker. Historically, まで originally
+  meant "as far as" in terms of a temporal limit. When に is added, it specifies that this limit is a target
+  for completion, thus shifting the nuance from mere continuation to a deadline. This grammatical evolution
+  reflects the need to precisely distinguish between an action that continues *up to* a point and an action
+  that must be *completed by* a specific point.'
+writeup: |-
+  までに (madeni) is a crucial temporal particle combination in Japanese that signifies a **deadline** or a specific time **by which** an action must be completed. It is formed by attaching the case-marking particle に (ni) to the adverbial particle まで (made).
+
+  The key distinction lies in the role of に. While まで (made) on its own can mean "until" or "up to" a certain point, implying a continuous action or state leading to that point, までに adds the nuance of a *target* or *limit* for the *completion* of an action. Therefore, までに always implies that the action happens as a single event, or reaches completion, at or before the specified time.
+
+  **Formation:**
+  *   **Noun (time) + までに**: For example, 「明日までに」 (by tomorrow), 「5時までに」 (by 5 o'clock).
+  *   **Verb (non-past informal) + までに**: For example, 「終わるまでに」 (by the time it finishes), 「来るまでに」 (by the time someone comes).
+
+  **Important Considerations:**
+  *   **まで vs. までに**: This is the most common point of confusion. Consider the following:
+      *   「明日まで本を読む。」 (I will read books *until* tomorrow.) – Implies continuous reading that stops tomorrow.
+      *   「明日までに本を読む。」 (I will read a book *by* tomorrow.) – Implies completing the reading of a book by tomorrow.
+  *   **Ambiguity with broad events**: For general timeframes like 「夏までに」 (by summer), there can sometimes be ambiguity. It could mean "by the start of summer" or "before the end of summer." To avoid this, it's often clearer to specify: 「夏が始まるまでに」 (by the time summer starts) or 「夏が終わるまでに」 (by the time summer ends).
+
+  Understanding までに is essential for expressing deadlines and temporal constraints accurately in Japanese.
+false_friends:
+  - term: Noun + まで
+    meaning: Until, Till, Up to (a point in time or space)
+    kind: similar expression
+    nuance: Unlike までに, Noun + まで emphasizes the continuation of an action or state *up to* the specified
+      noun (time or place), rather than a deadline for completion. For example, 「図書館まで歩く」 (walk *to* the
+      library) or 「朝まで寝る」 (sleep *until* morning).
+    grammar_point: まで (limit extent)
+  - term: Verb (non-past informal) + まで
+    meaning: Until (something) happens
+    kind: similar expression
+    nuance: Similar to Noun + まで, Verb + まで indicates the continuation of an action or state *until* the
+      verb's action occurs. It highlights the duration or span of time an action covers. For instance,
+      「雨が止むまで待つ」 (wait *until* the rain stops).
+    grammar_point: <suggest>:Verb+まで (until an action or state)
+  - term: 前に (mae ni)
+    meaning: Before (doing something), Before (a certain time/event)
+    kind: often confused with
+    nuance: While both までに and 前に indicate something happening 'before' a point, 前に simply states temporal
+      precedence without the strong connotation of a deadline or a target for completion. までに explicitly
+      emphasizes that an action must be completed *by* the specified time or event, whereas 前に can imply
+      a broader window or simply sequence. For example, 「寝る前に歯を磨く」 (brush teeth *before* going to bed)
+      specifies a sequence, not a deadline for brushing teeth.
+    grammar_point: まえに (before・in front)
+post_false_friends_writeup: To differentiate までに from similar expressions, remember that までに always marks
+  a deadline or a target for completion. The action must be finished at or prior to the specified time
+  or event. Conversely, まで implies continuous action or state up to a point, and 前に denotes a simple temporal
+  sequence without the strong deadline implication. Choose までに when the emphasis is on completing an action
+  by a specific time or event.
+examples:
+  - english: Please submit the report by Friday.
+    japanese:
+      - レポート を 金曜 日 {まで に} 提出 し て ください。
+      - レポート を 金曜 日 {まで に} 提出 を お 願い し ます。
+      - レポート を 金曜 日 {まで に} 出し て ね。
+      - レポート を 金曜 日 {まで に} 提出 し なさい。
+    english_literally: Report, as for Friday by, please submit.
+    competing_grammar:
+      - competing_japanese:
+          - レポート を 金曜 日 {まで} 提出 し て ください。
+        english: Please continuously submit the report until Friday.
+        hint: まで implies a continuous action up to a point. We're looking for a deadline for completion.
+    scene: A university professor is giving instructions to their students about an upcoming assignment.
+    register: teineigo (polite)
+    setting: academic
+    nuance: The use of 「してください」 indicates a polite request or instruction, common in academic or professional
+      settings. The phrase 「金曜日までに」 clearly sets Friday as the deadline for the submission, emphasizing
+      that the action must be completed at or before this time.
+    etymology: 「提出」 means 'submission' and comes from Chinese roots. 「ください」 is a common polite request
+      form derived from 「くださる」 (to give, honorific).
+  - english: I'll buy the ticket by the time I arrive at the station.
+    japanese:
+      - 駅 に 着く {まで に}、切符 を 買っ て おき ます。
+      - 駅 に 着く {まで に}、切符 を 買っ て おく よ。
+      - 駅 に 着く {まで に}、切符 買っ とく わ。
+      - 駅 に 着く {まで に}、切符 買っ とく ね。
+    english_literally: To the station arrive by the time, ticket buy and keep in advance.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 に 着く {まで}、切符 を 買っ て おき ます。
+        english: I'll continuously buy tickets until I arrive at the station.
+        hint: まで implies an action continuing up to a point. We're looking for an action that is completed
+          before a specific event.
+    scene: A man is speaking to his wife, planning their travel arrangements.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The plain form 「着く」 and the volitional 「買っておきます」 (contracted from 買っておく) are appropriate for
+      casual speech between family members. The phrase 「駅に着くまでに」 specifies that the ticket purchase is
+      a discrete action to be completed prior to the arrival at the station.
+    etymology: 「切符」 (きっぷ) is a common word for 'ticket', derived from Chinese characters subjected to
+      Japanese sound changes and usage patterns, pronounced with the Japanese reading of the kanji.
+  - english: Please be at the meeting spot by departure time.
+    japanese:
+      - 出発 時間 {まで に}、必ず 集合 場所 に い て ください。
+      - 出発 時間 {まで に}、必ず 集合 場所 に い なさい。
+      - 出発 時間 {まで に}、集合 場所 に い て ね。
+    english_literally: Departure time by, certainly meeting place at, please be.
+    competing_grammar:
+      - competing_japanese:
+          - 出発 時間 {まで}、必ず 集合 場所 に い て ください。
+        english: Please continuously be at the meeting spot until departure time.
+        hint: まで implies continuous presence. We're looking for a time by which you should arrive and
+          be ready.
+    scene: A tour guide is addressing their group of tourists before a trip.
+    register: teineigo (polite)
+    setting: instructional
+    nuance: 「～てください」 is a standard polite request. The particle 「までに」 indicates a strict deadline, implying
+      that participants should arrive and be ready at the meeting spot *before* or *at* the moment of
+      departure.
+    etymology: 「集合場所」 (しゅうごうばしょ) means 'meeting place', a common compound noun in travel and event contexts,
+      reflecting the combination of 'gather' and 'place'.
+  - english: I wanted to find a new part-time job by summer vacation.
+    japanese:
+      - 夏休み {まで に}、新しい バイト を 見つけ たかっ た ん です。
+      - 夏休み {まで に}、新しい バイト を 見つけ たかっ た の。
+      - 夏休み {まで に}、新しい バイト 見つけ たかっ た ん だ。
+      - 夏休み {まで に}、新しい バイト を 見つけ たかっ た。
+    english_literally: Summer vacation by, new part-time job find wanted to do it, you see.
+    competing_grammar:
+      - competing_japanese:
+          - 夏休み {まで}、新しい バイト を 見つけ たかっ た ん です。
+        english: I wanted to continuously look for a new part-time job until summer vacation.
+        hint: まで implies an action continuing up to a time. We're looking for a target for completion
+          by that time.
+    scene: A young female university student is talking to a friend about her goals.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The plain past form 「見つけたかった」 expresses a desire from the past, while the ending 「んです」 adds
+      a nuance of explanation or emphasis, common in casual conversation. The use of 「夏休みまでに」 indicates
+      the summer vacation as the target deadline for completing the job search, not the duration of the
+      search itself.
+    etymology: 「バイト」 is a loanword from German 'Arbeit' (work), commonly used in Japanese for 'part-time
+      job', reflecting its foreign origin and colloquial use in youth speech.
+  - english: I want to pass the JLPT N3 by next year.
+    japanese:
+      - 来年 {まで に}、日本 語 能力 試験 N 3 に 合格 し たい です。
+      - 来年 {まで に}、日本 語 能力 試験 N 3 に 合格 し たい。
+      - 来年 {まで に}、日本 語 能力 試験 N 3 に 合格 し たい な。
+      - 来年 {まで に}、日本 語 能力 試験 N 3 に 合格 し たい ん だ。
+    english_literally: Next year by, Japanese Language Proficiency Test N3, want to pass.
+    competing_grammar:
+      - competing_japanese:
+          - 来年 {まで}、日本 語 能力 試験 N 3 に 合格 し たい です。
+        english: I want to continuously pass the JLPT N3 until next year.
+        hint: まで implies a continuous action. We're looking for a deadline for a discrete achievement
+          like passing an exam.
+    scene: A diligent language learner is discussing their study goals with a teacher.
+    register: teineigo (polite)
+    setting: optimistic
+    nuance: The polite desire form 「合格したいです」 expresses aspiration. 「来年までに」 specifies that the achievement
+      of passing the N3 exam is intended to be completed by the arrival of next year, highlighting the
+      deadline aspect of the goal.
+    etymology: 「日本語能力試験」 (にほんごのうりょくしけん) refers to the 'Japanese Language Proficiency Test', a standardized
+      test to evaluate and certify Japanese language proficiency for non-native speakers, reflecting Japan's
+      global engagement.
+  - english: Finish your homework by the time you take a bath.
+    japanese:
+      - お 風呂 に 入る {まで に}、宿題 を 終わら せ て おき なさい。
+      - お 風呂 に 入る {まで に}、宿題 を 終わら せ て おけ。
+      - お 風呂 に 入る {まで に}、宿題 を 終わら せ て おい て ね。
+      - お 風呂 に 入る {まで に}、宿題 を 終わら せ て おい て ください。
+    english_literally: Bath enter by the time, homework finish and keep in advance, なさい.
+    competing_grammar:
+      - competing_japanese:
+          - お 風呂 に 入る {まで}、宿題 を 終わら せ て おき なさい。
+        english: Continuously finish your homework until you take a bath.
+        hint: まで implies continuous action. We're looking for completion of a task by a specific point.
+    scene: A mother is firmly instructing her child before bath time.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    nuance: The command form 「～なさい」 is often used by parents or superiors to children, indicating a direct
+      instruction. 「お風呂に入るまでに」 clearly sets the bath time as the deadline for finishing the homework,
+      not merely the duration leading up to it. The use of 「おきなさい」 also implies doing something in advance
+      for later convenience.
+    etymology: 「おきなさい」 is a command form of 「～ておく」, meaning to do something in advance. 「宿題」 (しゅくだい) means
+      'homework', a common word for school assignments.
+  - english: I might not make it by the deadline.
+    japanese:
+      - 締切り {まで に}、間に合わ ない か も しれ ませ ん。
+      - 締切り {まで に}、間に合わ ない か も しれ ない。
+    english_literally: Deadline by, might not make it in time.
+    competing_grammar:
+      - competing_japanese:
+          - 締切り {まで}、間に合わ ない か も しれ ませ ん。
+        english: I might not continuously make it until the deadline.
+        hint: まで suggests an action or state that continues until a point. We're looking for a deadline
+          for a completed action.
+    scene: An employee explains to their manager why they are behind schedule.
+    register: teineigo (polite)
+    setting: apologetic
+    nuance: The phrase 「～かもしれません」 expresses uncertainty or possibility, often used to soften bad news.
+      「締切りまでに」 precisely states the deadline for making it in time, highlighting the risk of not completing
+      the task by that specific point. The polite 「です」 ending maintains formality.
+    etymology: 「締切り」 (しめきり) means 'deadline', a common term in business and project management, highlighting
+      the cultural importance of meeting deadlines in professional settings.
+  - english: I'll make coffee by the time the meeting starts.
+    japanese:
+      - 会議 が 始まる {まで に}、コーヒー を 淹れ て おき ます。
+      - 会議 が 始まる {まで に}、コーヒー を 淹れ て おく よ。
+      - 会議 が 始まる {まで に}、コーヒー 淹れ とく ね。
+      - 会議 が 始まる {まで に}、コーヒー を 淹れ て おく。
+    english_literally: Meeting starts by the time, coffee brew and keep in advance.
+    competing_grammar:
+      - competing_japanese:
+          - 会議 が 始まる {まで}、コーヒー を 淹れ て おき ます。
+        english: I'll continuously make coffee until the meeting starts.
+        hint: まで implies continuous action. We're looking for a preparatory action to be completed by
+          a specific event.
+    scene: An office assistant tells a colleague about their preparation for a meeting.
+    register: teineigo (polite)
+    setting: professional
+    nuance: The polite 「～ます」 form is used. 「淹れておきます」 indicates doing something in advance. 「会議が始まるまでに」
+      specifies that the coffee-making task should be completed by the time the meeting commences, focusing
+      on the deadline for this preparatory action.
+    etymology: 「淹れる」 (いれる) is the verb for 'to brew' or 'to make' beverages like coffee or tea, especially
+      pour-over coffee or tea, differentiating it from simply 'making' or 'heating'.
+  - english: I'll clean the room by the time she gets back.
+    japanese:
+      - 彼女 が 帰っ て くる {まで に}、部屋 を 綺麗 に し て おこう。
+      - 彼女 が 帰っ て くる {まで に}、部屋 を 綺麗 に し とく わ。
+      - 彼女 が 帰っ て くる {まで に}、部屋 を 綺麗 に し て おき ます。
+      - 彼女 が 帰っ て くる {まで に}、部屋 を 綺麗 に し とこう か な。
+    english_literally: She returns by the time, room clean and keep in advance, let's do.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 帰っ て くる {まで}、部屋 を 綺麗 に し て おこう。
+        english: I'll continuously clean the room until she gets back.
+        hint: まで implies continuous action up to a point. We're looking for a deadline for the completion
+          of a task.
+    scene: A man decides to tidy up the house before his girlfriend returns.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「～ておこう」 is a casual volitional form implying a decision to do something in advance. The phrase
+      「彼女が帰ってくるまでに」 sets her arrival as the deadline for completing the cleaning, reflecting a thoughtful
+      action to be finished prior to her return. The casual nature of the sentence suits intimate relationships.
+    etymology: 「綺麗にする」 (きれいにする) means 'to clean' or 'to make beautiful'. 「帰ってくる」 (かえってくる) implies coming
+      back towards the speaker's location, with 「くる」 indicating movement towards the speaker.
+  - english: I have to finish this report by Friday.
+    japanese:
+      - 金曜 日 {まで に} この レポート を 終わら せ なけれ ば なり ませ ん。
+      - 金曜 日 {まで に} この レポート を 終わら せ なきゃ。
+      - 金曜 日 {まで に} この レポート 終わら せ ない と ね。
+      - 金曜 日 {まで に} この レポート を 終わら せ ない と いけ ない ん だ。
+    english_literally: Friday by this report finish must do.
+    competing_grammar:
+      - competing_japanese:
+          - 金曜 日 {まで} この レポート を 終わら せ なけれ ば なり ませ ん。
+        english: I have to continuously finish this report until Friday.
+        hint: まで implies a continuous action up to a point. We're looking for a deadline for completion
+          of the report.
+    scene: A university student is discussing their workload with a friend in the library.
+    register: teineigo (polite)
+    setting: academic
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「～なければなりません」 indicates a strong obligation, often used in formal or academic contexts when
+      expressing duties or deadlines. The phrase 「金曜日までに」 clearly sets the deadline for completing the
+      report, emphasizing that the task must be finished on or before Friday.
+    etymology: 「レポート」 (report) is a common loanword from English. 「終わらせる」 is the causative form of 「終わる」
+      (to finish), meaning 'to make someone finish' or, reflexively, 'to finish something (transitive)'.
+post_example_writeup: The examples illustrate how までに functions as a precise marker for deadlines, whether
+  they are set by a specific time (e.g., 「金曜日までに」) or by the occurrence of another event (e.g., 「駅に着くまでに」).
+  In each case, the focus is on the completion of the action by the specified point, distinguishing it
+  from the continuous action implied by まで.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/までに

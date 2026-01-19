@@ -1,0 +1,435 @@
+grammar_point: 任せる (to entrust or leave to)
+learn_before:
+  - '[Noun・な-Adjective]で (conjunctive・cause)'
+  - '[Verb-ない]ほうがいい (it is better not to do)'
+  - い-Adjective[stem] (stem)
+  - い-Adjective[かった] (past tense)
+  - い-Adjective[ければ] (conditional)
+  - い-adjective (sentence-ending)
+  - かける・かけ (in process・incomplete・on the verge)
+  - が (subject marker)
+  - だから (so・therefore)
+  - だろう・でしょう (probably・right?)
+  - で (means・method)
+  - と (with)
+  - ところが (unexpected contrast)
+  - と同じ (exact sameness)
+  - ば (conditional, if A then B)
+  - も (addition or emphasis particle)
+  - ようがない・ようもない (no way to)
+  - 代わりに (instead of choosing)
+  - 代わりに (instead of in return for)
+  - 地面・天井 (ground・floor・ceiling)
+  - 超える (to exceed)
+meaning: Leave X up to Y, Entrust X to Y
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: を〜に任せる
+    rarity: common
+    meaning: to leave/entrust X to Y
+  - conjugation-type: non-past polite (～ます)
+    form: を〜に任せます
+    rarity: common
+    meaning: will leave/entrust X to Y
+  - conjugation-type: negative plain (～ない)
+    form: を〜に任せない
+    rarity: common
+    meaning: not to leave/entrust X to Y
+  - conjugation-type: negative non-past polite (～ません)
+    form: を〜に任せません
+    rarity: common
+    meaning: will not leave/entrust X to Y
+  - conjugation-type: past plain (～た)
+    form: を〜に任せた
+    rarity: common
+    meaning: left/entrusted X to Y
+  - conjugation-type: past polite (～ました)
+    form: を〜に任せました
+    rarity: common
+    meaning: left/entrusted X to Y
+  - conjugation-type: negative past plain (～なかった)
+    form: を〜に任せなかった
+    rarity: common
+    meaning: did not leave/entrust X to Y
+  - conjugation-type: negative past polite (～ませんでした)
+    form: を〜に任せませんでした
+    rarity: common
+    meaning: did not leave/entrust X to Y
+  - conjugation-type: te-form (～て)
+    form: を〜に任せて
+    rarity: common
+    meaning: leaving/entrusting X to Y (and...)
+  - conjugation-type: conditional (～ば)
+    form: を〜に任せれば
+    rarity: uncommon
+    meaning: if one leaves/entrusts X to Y
+  - conjugation-type: conditional (～たら)
+    form: を〜に任せたら
+    rarity: uncommon
+    meaning: if/when one leaves/entrusts X to Y
+  - conjugation-type: volitional (～よう)
+    form: を〜に任せよう
+    rarity: rare
+    meaning: let's leave/entrust X to Y
+  - conjugation-type: volitional polite (～ましょう)
+    form: を〜に任せましょう
+    rarity: uncommon
+    meaning: let's leave/entrust X to Y (polite)
+  - conjugation-type: imperative plain (～ろ/～え)
+    form: を〜に任せろ
+    rarity: rare
+    meaning: leave/entrust X to Y!
+  - conjugation-type: imperative polite (～なさい)
+    form: を〜に任せてください
+    rarity: common
+    meaning: please leave/entrust X to Y
+  - conjugation-type: potential (～られる/～える)
+    form: を〜に任せられる
+    rarity: uncommon
+    meaning: can leave/entrust X to Y
+  - conjugation-type: passive (～られる/～かれる)
+    form: を〜に任せられる
+    rarity: uncommon
+    meaning: X is left/entrusted to Y
+  - conjugation-type: causative (～させる)
+    form: を〜に任せさせる
+    rarity: very rare
+    meaning: to make/let someone leave/entrust X to Y
+pronunciation:
+  katakana: ヲ ニ マカセル
+  romaji: o ni makaseru
+formation:
+  '[Task/Matter] を + [Person/Entity] に + 任せる': Indicates entrusting a specific task or matter to a person
+    or entity.
+  '[Outcome/Result] を + [Chance/Fate] に + 任せる': Indicates leaving an outcome or result up to chance or
+    destiny.
+jlpt: N2
+etymology: 任せる (makaseru) is derived from 任 (nin), meaning 'responsibility' or 'duty,' and せる (seru),
+  the causative form suffix, indicating 'to cause to do' or 'to entrust.' Therefore, 任せる literally means
+  'to cause someone to take on a responsibility.' The particle を marks the object being entrusted, and
+  に indicates the recipient of the responsibility.
+writeup: The structure 「(A) を (B) に任せる」 highlights that something (A) is being "entrusted" or "left up
+  to" (B). This is a standard function of the verb 「任せる」, a る-verb meaning "to entrust". In this construction,
+  「(A) を」 identifies the task or matter being entrusted, while 「(B) に」 identifies the person, group, or
+  even abstract concept (like fate or luck) to whom (A) is being left. This expression is versatile; it
+  can be used for delegating a specific task to an individual, or for resigning oneself to the outcome
+  of a situation left to chance or destiny. It implies a complete transfer of responsibility or control.
+false_friends:
+  - term: 〜に頼む
+    meaning: to ask X to do Y, to request Y from X
+    kind: similar expression
+    nuance: 「〜に頼む」 implies asking for a favor or requesting a task. While it involves someone doing something,
+      it doesn't necessarily mean full responsibility or discretion is entrusted to them, unlike 「〜に任せる」.
+    grammar_point: <suggest>:頼む (to ask or request)
+  - term: 〜に預ける
+    meaning: to leave something in someone's care, to deposit
+    kind: similar expression
+    nuance: 「〜に預ける」 refers to temporarily leaving an item or person in someone's safekeeping or care.
+      It focuses on custody or temporary storage, whereas 「〜に任せる」 emphasizes the delegation of responsibility
+      for a task or outcome.
+    grammar_point: <strongly-suggest>:預ける (to leave in care)
+  - term: 〜に委ねる
+    meaning: to commit oneself to, to entrust (oneself) to, to leave (something) to
+    kind: synonym
+    nuance: 「〜に委ねる」 is a close synonym to 「〜に任せる」, often used in more formal or literary contexts, especially
+      when talking about committing oneself or a large entity to a higher power or fate. 「〜に任せる」 is more
+      common in everyday delegation.
+    grammar_point: <strongly-suggest>:委ねる (to entrust or commit)
+  - term: 〜任せ
+    meaning: leaving to or relying on
+    kind: similar expression
+    nuance: 「〜任せ」 is a compound noun or adjective that implies passively leaving things to someone/something
+      or a state of being dependent on them, often with a nuance of carelessness or lack of personal effort.
+      「任せる」 is the active verb of entrusting.
+    grammar_point: <strongly-suggest>:〜任せ (leaving to or relying on)
+post_false_friends_writeup: While 「〜に任せる」 focuses on delegating responsibility with implied trust or resignation,
+  「〜に頼む」 is simply making a request. 「〜に預ける」 is about placing something in temporary care, not necessarily
+  task delegation. 「〜に委ねる」 is a more formal or literary alternative, particularly when referring to a
+  surrender of control to abstract forces like fate or a higher power, whereas 「〜に任せる」 is more broadly
+  applicable to both tasks and abstract outcomes. Lastly, 「〜任せ」 often carries a nuance of carelessness
+  or lack of personal effort, in contrast to the active delegation implied by 「任せる」.
+examples:
+  - english: I decided to leave this important project up to him.
+    japanese:
+      - この 大事 な プロジェクト を 彼 に {任せる} こと に し た。
+      - この 大事 な プロジェクト は 彼 に {任せる} こと に し た。
+      - この 重要 な プロジェクト を 彼 に {任せる} こと に 決め まし た。
+    english_literally: This important project, to him, to entrust, I decided.
+    competing_grammar:
+      - competing_japanese:
+          - この 大事 な プロジェクト を 彼 に {頼む} こと に し た。
+        english: I decided to ask him for this important project.
+        hint: 「頼む」 means to ask for something or request a task. While it involves someone doing something,
+          it doesn't necessarily mean full responsibility is entrusted to them. We're looking for an expression
+          that signifies entrusting a task fully.
+    scene: A manager is deciding who will handle a crucial project. They have several capable team members
+      but need to select one to take full ownership.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: The use of 「した」 (shita) at the end of the sentence indicates a casual decision-making tone.
+      The nuance of 「この 大事 な プロジェクト を 彼 に 任せる」 (kono daiji na purojekuto o kare ni makaseru) conveys a
+      sense of confident delegation and trust from a manager to a subordinate, typical in a professional
+      but not overly formal setting.
+    etymology: The word 「プロジェクト」 (purojekuto) is a loanword from English 'project'.
+  - english: We will entrust the future to the next generation.
+    japanese:
+      - 次 の 世代 に 未来 を {任せ ます}。
+      - 未来 を 次 の 世代 に {任せ ます}。
+      - 我々 は 未来 を 次 の 世代 に {任せ ます}。
+    english_literally: Next generation to, future, entrust.
+    competing_grammar:
+      - competing_japanese:
+          - 次 の 世代 に 未来 を {委ね ます}。
+        english: We will commit the future to the next generation.
+        hint: 「委ねる」 is a very close synonym but often used in more formal or literary contexts, especially
+          when talking about committing something abstract like the future or oneself to a higher power
+          or fate. We're looking for a common, formal expression of entrusting something significant.
+    scene: A public speaker is addressing a graduating class or a group of young leaders, expressing hope
+      and confidence in their abilities.
+    register: formal
+    setting: inspirational
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The polite ending 「〜ます」 (masu) is suitable for a public address. The phrase 「次 の 世代 に 未来 を
+      任せます」 (tsugi no sedai ni mirai o makasemasu) carries a hopeful and somewhat solemn tone, emphasizing
+      the transfer of responsibility for the future. The speaker, likely an older male, uses a formal
+      and encouraging tone to a younger audience.
+    etymology: 「未来」 (mirai) combines 未 (mi), meaning 'not yet,' and 来 (rai), meaning 'come,' hence 'not
+      yet come' or 'future.'
+  - english: I left everything up to fate, so I have no regrets.
+    japanese:
+      - 僕 は 運命 に 全て を {任せ た} から 後悔 は ない。
+      - 運命 に 全て を {任せ た} から 後悔 は ない よ。
+      - 全て を 運命 に {任せ た} ん だ、だ から 後悔 は ない。
+    english_literally: I, fate to, all, entrusted, so regret not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 僕 は 運命 に 全て を {委ね た} から 後悔 は ない。
+        english: I committed everything to fate, so I have no regrets.
+        hint: 「委ねる」 is a more formal and literary verb for 'to entrust' when dealing with abstract concepts
+          like fate, often implying a deeper surrender. We're looking for a more common expression for
+          leaving things up to fate in casual speech.
+    scene: A man reflecting on a major life decision where the outcome was uncertain, but he chose to
+      let things unfold naturally.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+    speaker_gender: male
+    nuance: The use of 「僕」 (boku) is a common masculine first-person pronoun in casual speech. The phrasing
+      「運命 に 全て を 任せた」 (unmei ni subete o makaseta) implies a resignation to external forces, which is
+      common in philosophical or reflective contexts. The lack of a polite ending (e.g., 「〜ました」) reinforces
+      the casual, introspective nature of the statement.
+    etymology: 「運命」 (unmei) means 'fate' or 'destiny.' 運 (un) refers to 'luck' or 'fortune,' and 命 (mei)
+      refers to 'life' or 'command.'
+  - english: When busy, it's better not to leave the small details to her.
+    japanese:
+      - 忙しい 時 は、細かい こと は 彼女 に {任せ ない} 方 が いい。
+      - 忙しい 時 は、細かい こと を 彼女 に {任せ ない} 方 が いい です よ。
+      - 彼女 に 細かい こと を {任せ ない} 方 が いい、忙しい 時 は ね。
+    english_literally: Busy time is, small things, her to, not entrust, better.
+    competing_grammar:
+      - competing_japanese:
+          - 忙しい 時 は、細かい こと は 彼女 に {頼ま ない} 方 が いい。
+        english: When busy, it's better not to ask her for small details.
+        hint: 「頼む」 means to ask or request, implying a task is given to someone but not necessarily that
+          full responsibility is delegated. We're looking for an expression that indicates not entrusting
+          full responsibility for details.
+    scene: Two colleagues are discussing delegation strategies for their busy period, and one offers advice
+      about another's work habits.
+    register: semi-formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「〜ない 方 が いい」 (nai hou ga ii) indicates giving advice or a recommendation. The use
+      of 「彼女 に 任せない」 (kanojo ni makasenai) specifically refers to not delegating tasks, implying a lack
+      of confidence in her ability to handle details when under pressure. This sentence is spoken between
+      colleagues, suggesting a professional yet candid exchange.
+    etymology: 「細かい」 (komakai) implies minuteness or attention to detail.
+  - english: I left the baby's care to my mother and went shopping.
+    japanese:
+      - 赤ちゃん の 世話 を 母 に {任せ て}、買い物 に 行っ た。
+      - 母 に 赤ちゃん の 世話 を {任せ て}、買い物 に 行き まし た。
+      - 赤ちゃん の 世話 を 母 に {任せ て} おい て、買い物 に 出かけ た の。
+    english_literally: Baby's care, mother to, entrusted, went shopping.
+    competing_grammar:
+      - competing_japanese:
+          - 赤ちゃん の 世話 を 母 に {預け て}、買い物 に 行っ た。
+        english: I left the baby's care with my mother and went shopping.
+        hint: 「預ける」 implies temporarily leaving something or someone in someone's care, like depositing
+          an item. While it's about care, it doesn't carry the same nuance of entrusting full responsibility
+          for the care. We're looking for an expression of delegating the responsibility of care.
+    scene: A young mother explaining how she managed to get errands done while having a baby.
+    register: casual
+    setting: informative
+    conjugation: te-form (～て)
+    speaker_gender: female
+    nuance: The casual tone and use of 「行った」 (itta) for 'went' without a polite ending is characteristic
+      of casual female speech when informing someone. The use of 「任せて」 (makasete) implies the mother fully
+      entrusted the responsibility of childcare to her own mother, not just temporarily leaving the baby
+      with her.
+    etymology: 「世話」 (sewa) implies care, looking after, or aid. It is often written in hiragana when referring
+      to general caregiving.
+  - english: If we leave the work to him, it will surely succeed.
+    japanese:
+      - もし 彼 に 仕事 を {任せれ ば}、きっと 成功 する だろう。
+      - 彼 に 仕事 を {任せれ ば}、きっと 成功 する でしょう。
+      - もし 彼 に 仕事 を {任せれ ば}、必ず 成功 する と 思い ます。
+    english_literally: If him to work entrust, surely succeed, probably.
+    competing_grammar:
+      - competing_japanese:
+          - もし 彼 に 仕事 を {頼め ば}、きっと 成功 する だろう。
+        english: If we ask him for the work, it will surely succeed.
+        hint: 「頼む」 means to ask or request someone to do something. While this could lead to success,
+          it doesn't emphasize giving full discretion or responsibility for the work. We're looking for
+          an expression that implies delegating the task with trust in his ability.
+    scene: A team leader is trying to convince their supervisor that a particular team member is capable
+      of handling a new assignment.
+    register: formal
+    setting: persuasive
+    conjugation: conditional (～ば)
+    speaker_gender: female
+    listener_gender: male
+    nuance: The conditional 「〜ば」 (ba) here expresses a strong conviction about the outcome if the action
+      is taken. The use of 「きっと 成功 する だろう」 (kitto seikou suru darou) implies a persuasive tone from a
+      team leader to a supervisor. A female speaker using this structure conveys confidence and professionalism.
+      「だろう」 is slightly less formal than 「でしょう」 but still common in persuasive contexts.
+    etymology: 「成功」 (seikou) is formed from 成 (sei), meaning 'to become' or 'to achieve,' and 功 (kou),
+      meaning 'merit' or 'achievement.'
+  - english: Let's leave the success or failure of this mission to your skill.
+    japanese:
+      - この 任務 の 成否 は 君 の 腕 に {任せよう}。
+      - この 任務 の 成否 は 君 の 腕 に {お 任せ しよう}。
+      - 任務 の 成否 は 君 の 腕 に {任せる} こと に しよう。
+    english_literally: This mission's success or failure, your skill to, let's entrust.
+    competing_grammar:
+      - competing_japanese:
+          - この 任務 の 成否 は 君 の 腕 に {頼もう}。
+        english: Let's ask your skill for the success or failure of this mission.
+        hint: 「頼む」 means to ask for something, which doesn't convey the same level of confident delegation
+          and reliance on a person's abilities. We're looking for an expression that signifies entrusting
+          the outcome to someone's skill.
+    scene: A military commander giving a critical mission to a highly skilled soldier, emphasizing their
+      complete trust in the soldier's abilities.
+    register: formal
+    setting: commanding
+    conjugation: volitional (～よう)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「君 の 腕 に 任せよう」 (kimi no ude ni makaseyou) implies a direct and authoritative, yet
+      trusting, tone, common in military or mentor-mentee relationships. 「君」 (kimi) is typically used
+      by older males speaking to younger individuals. The volitional 「〜よう」 (you) signals a firm decision
+      or proposal by the speaker, emphasizing their trust and delegation to the subordinate.
+    etymology: 「成否」 (seihI) is a compound of 成 (sei), meaning 'to become' or 'to achieve,' and 否 (hi),
+      meaning 'failure,' indicating 'success or failure.'
+  - english: I can rest assured because this whole plan can be left to the CEO.
+    japanese:
+      - この 企画 は 全て 社長 に {任せ られる} から 安心 です。
+      - この 企画 は 全て 社長 に {お 任せ できる} の で 安心 です。
+      - 全て の 企画 を 社長 に {任せ られる} から 心配 ない です よ。
+    english_literally: This plan, all, CEO to, can be entrusted, so relieved.
+    competing_grammar:
+      - competing_japanese:
+          - この 企画 は 全て 社長 に {頼め る} から 安心 です。
+        english: I can rest assured because I can ask the CEO for this whole plan.
+        hint: 「頼める」 means 'can ask', focusing on the ability to make a request. It doesn't imply the comprehensive
+          delegation of the entire plan with full discretion. We're looking for an expression that denotes
+          the capability of entrusting a plan entirely.
+    scene: A team member expresses relief about a major company plan, knowing it's in capable hands.
+    register: formal
+    setting: professional
+    conjugation: potential (～られる/～える)
+    speaker_gender: female
+    listener_gender: group
+    nuance: The potential form 「任せられる」 (makaserareru) here indicates the capability of entrusting the
+      plan to the CEO, emphasizing the speaker's confidence and relief. The polite 「安心 です」 (anshin desu)
+      makes this suitable for a professional setting. The phrase 「お任せできる」 (omakase dekiru) is an honorific
+      form of 'can entrust,' showing respect towards the CEO, commonly used by a female employee.
+    etymology: 「企画」 (kikaku) combines 企 (ki), meaning 'to plan' or 'to undertake,' and 画 (kaku), meaning
+      'to draw' or 'to design,' referring to a 'plan' or 'project.'
+  - english: I'm terribly sorry to ask, but please leave everything about this matter to you.
+    japanese:
+      - 大変 恐縮 です が、この 件 は あなた に 全て {任せ て ください}。
+      - 誠 に 恐縮 です が、この 件 は あなた に 全て {お 任せ 願え ます か}。
+      - この 件、全て あなた に {任せ て} いただけ ませ ん でしょう か。
+    english_literally: Very sorry, but, this matter, you to, all, please entrust.
+    competing_grammar:
+      - competing_japanese:
+          - 大変 恐縮 です が、この 件 は あなた に 全て {頼ん で ください}。
+        english: I'm terribly sorry to ask, but please ask you for everything about this matter.
+        hint: 「頼む」 means to ask or request. While polite, it doesn't convey the sense of fully delegating
+          and entrusting the entire matter with all its responsibility. We're looking for an expression
+          that signifies delegating full control.
+    scene: An overwhelmed junior employee is asking a senior colleague for help with a difficult matter,
+      emphasizing their complete reliance.
+    register: semi-formal
+    setting: apologetic
+    conjugation: imperative polite (～なさい)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: The phrase 「大変 恐縮 です が」 (taihen kyoushuku desu ga) is a very polite and apologetic opening,
+      typical of a junior asking a significant favor from a senior. 「任せてください」 (makasete kudasai) is a
+      polite imperative, indicating a strong request for delegation, almost like pleading. This usage
+      highlights the junior employee's reliance and deferential attitude.
+    etymology: 「恐縮」 (kyoushuku) means 'feeling obliged' or 'apologetic.' It is often used to express gratitude
+      or embarrassment when someone has gone out of their way for you.
+  - english: She sometimes says she's leaving her life up to chance.
+    japanese:
+      - 彼女 は 時々、自分 の 人生 を 偶然 に {任せ て いる} と 言う。
+      - 彼女 は 時々、自分 の 人生 を 偶然 に {任せ て} いる と 言い ます ね。
+      - 時々、彼女 は 人生 を 偶然 に {任せ て} いる と 語る よ。
+    english_literally: She, sometimes, her own life, chance to, entrusting, says.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 時々、自分 の 人生 を 偶然 に {委ね て いる} と 言う。
+        english: She sometimes says she's committing her life to chance.
+        hint: 「委ねる」 is a more formal and literary verb for 'to entrust' or 'to commit,' especially when
+          dealing with abstract concepts like life or fate. While similar, 「任せる」 is more commonly used
+          in everyday speech for this idea. We're looking for the more common, natural expression.
+    scene: Two friends are discussing their mutual acquaintance's approach to life.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「言う」 (iu) in its plain form suggests a casual conversation between close friends.
+      The overall sentence structure and vocabulary are neutral, suitable for a female speaker in a casual
+      setting. The progressive form 「任せている」 (makasete iru) indicates an ongoing state of leaving things
+      to chance, reflecting a personal philosophy or habit.
+    etymology: 「偶然」 (guuzen) is formed from 偶 (guu), meaning 'by chance' or 'accidentally,' and 然 (zen),
+      meaning 'so' or 'like that,' implying 'being so by chance' or 'by accident.'
+  - english: I left the interior design completely up to the designer.
+    japanese:
+      - 私 は インテリア デザイン を 全て デザイナー に {任せ た}。
+      - インテリア デザイン は 全て デザイナー に {任せ た}。
+      - 私 は インテリア デザイン を 全部 デザイナー に {任せ た}。
+      - インテリア デザイン は 全部 デザイナー に {任せ た}。
+      - インテリア デザイン は 全部 デザイナー に {任せ た} ん だ。
+    english_literally: I, interior design, all, designer to, entrusted.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は インテリア デザイン を 全て デザイナー に {頼ん だ}。
+        english: I asked the designer for all the interior design.
+        hint: 「頼む」 means to ask or request. While you might ask a designer, 「任せる」 conveys the act of entrusting
+          the entire task and discretion to them. We're looking for an expression of full delegation.
+    scene: A homeowner talking to a friend about their newly renovated house, expressing satisfaction
+      with the results achieved by giving the designer free rein.
+    register: casual
+    setting: friendly
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The phrase 「全てデザイナーに任せた」 (subete dezainaa ni makaseta) highlights the complete trust and confidence
+      placed in the designer's professional skills and judgment. This is a common way to express giving
+      full artistic or professional freedom, typical in a casual conversation between friends.
+post_example_writeup: As you can see from these examples, 「任せる」 is quite flexible. It can be used for
+  delegating concrete tasks to people, for leaving abstract concepts like fate or future to external forces,
+  and across various registers from casual conversation to formal speeches. The key is the complete transfer
+  of responsibility or control.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/任せる

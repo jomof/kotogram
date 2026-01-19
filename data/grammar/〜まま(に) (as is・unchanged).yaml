@@ -1,0 +1,307 @@
+grammar_point: 〜まま(に) (as is・unchanged)
+learn_before:
+  - Verb[てしまう・ちゃう・じゃう] (completion・regret)
+  - ままに (as desired)
+meaning: As is; unchanged; while still; leaving something in a certain state.
+meaning_warning: Occasionally written as まんま
+pronunciation:
+  katakana: ママニ
+  romaji: mama ni
+formation:
+  Verb (plain past) + まま (に): Indicates an action performed while maintaining the state of a previous
+    action.
+  Noun + の + まま (に): Indicates remaining in the state described by the noun.
+  い-Adjective (dictionary) + まま (に): Indicates remaining in the state described by the い-adjective.
+  な-Adjective (stem) + な + まま (に): Indicates remaining in the state described by the な-adjective.
+  Verb (plain negative) + まま (に): Indicates not changing a state, often with the implication that it should
+    be changed.
+jlpt: N3
+etymology: The term 「まま」 originates from the kanji 「儘」, meaning "as it is" or "in its natural state."
+  This core concept reflects its use in describing situations where a state or condition persists without
+  alteration. Its evolution signifies a continuity or inaction, allowing for the expression of both neutral
+  observation and, at times, a nuanced sense of neglect or acceptance of an unchanging situation.
+writeup: |-
+  The grammar point **〜まま(に)** indicates that a certain state or action continues without alteration. It is used to express that something remains "as is" or that an action is performed while maintaining a previous condition. This can convey a sense of **acceptance**, **neglect**, or simply the **continuation** of a state. For instance, in 「ドア を 開けた まま」, it implies the door remains open. This construction connects two actions or states, where the second occurs while the first is maintained.
+
+  **まま** can be used neutrally, but it often carries a nuance, particularly when describing situations that *should* have been changed but were not, implying **carelessness** or **negligence**. It is widely used across various registers, from casual conversation to more formal writing, depending on the context and the preceding word.
+
+  While **まま** is a noun and can stand alone, it can also be followed by the case-marking particle **に**. The presence of **に** places extra emphasis on the following verb in the sentence, clearly indicating the manner or state in which the action is performed. For example, 「そのままにする」 (to leave it as it is) implies keeping it in that state.
+
+  In casual speech or writing, **まま** can sometimes be pronounced and written as **まんま**, especially to convey a more conversational tone.
+false_friends:
+  - term: とおり
+    meaning: As; in accordance with
+    kind: similar expression
+    nuance: Unlike 「まま(に)」, 「とおり」 indicates following a specific instruction or standard, rather than
+      maintaining a state. 「まま(に)」 is about something being left unchanged, whereas 「とおり」 is about following
+      a model.
+    grammar_point: とおり (exactly as)
+  - term: 〜っぱなし
+    meaning: Leaving something in a certain state; left as is; continuing to do something without interruption
+      (often implying negligence or an undesirable outcome)
+    kind: similar expression
+    nuance: Unlike 「まま(に)」, 「〜っぱなし」 often carries a stronger negative connotation, implying neglect, carelessness,
+      or leaving something unattended.
+    grammar_point: '[Verb-stem]っぱなし (leaving something in a state)'
+  - term: てある
+    meaning: Something is done, has been done, remaining state
+    kind: similar expression
+    nuance: Unlike 「まま(に)」, 「てある」 describes a state resulting from a deliberate action and often implies
+      purpose or preparation. 「まま(に)」 focuses on the mere continuation of a state.
+    grammar_point: てある (resultant state)
+  - term: きり
+    meaning: Only, just, since
+    kind: similar expression
+    nuance: 「きり」 indicates a limit or boundary, suggesting that an action or state has continued *only*
+      up to a certain point or that *only* one thing has happened. 「まま(に)」 describes an ongoing or unchanged
+      state without emphasizing limitation.
+    grammar_point: 〜きり (only・just)
+  - term: たなり・なり
+    meaning: While... ~ing, Remaining, Not or ever since, Keep or leave
+    kind: similar expression
+    nuance: 「たなり・なり」 is often a more literary or slightly archaic expression with a wider range of meanings
+      including 'as soon as' or 'ever since'. While it can describe a remaining state, 「まま(に)」 more specifically
+      refers to the simple continuation of a state.
+    grammar_point: たなり・なり (ever since・remaining)
+  - term: Verb[れる・られる]~ままに
+    meaning: Do as (one is told or ordered…), In accordance with, In compliance with, Just like
+    kind: similar expression
+    nuance: 「れる・られる+ままに」 indicates obedience or compliance with someone's instructions or circumstances.
+      In contrast, plain 「まま(に)」 refers to an existing, unaltered state of something, not an action taken
+      in accordance with something else.
+    grammar_point: '[Verb-(ら)れる]ままに (as one is told)'
+  - term: 如く・如き・如し
+    meaning: Like, Similar to, As if, The same as
+    kind: similar expression
+    nuance: 「如く・如き・如し」 describes similarity or resemblance, drawing a comparison between two things. 「まま(に)」
+      indicates the literal continuation of a state or condition, without drawing a comparison.
+    grammar_point: 〜如し・〜ごとし (like・as if)
+post_false_friends_writeup: To avoid confusing 「まま(に)」 with these similar expressions, remember that 「まま(に)」
+  focuses on an unchanged condition or state. The other expressions introduce nuances such as intentional
+  action, negligence, limitation, comparison, or compliance. Pay attention to the context to determine
+  the appropriate expression.
+examples:
+  - english: I fell asleep leaving the TV on.
+    japanese:
+      - テレビ を つけ た {まま} 寝 て しまっ た。
+      - テレビ を つけ た {まま に} 寝 て しまい まし た。
+      - テレビ を つけ た {まんま} 寝 ちゃっ た。
+    english_literally: Having left the TV on, I ended up falling asleep.
+    competing_grammar:
+      - competing_japanese:
+          - テレビ を {つけ っぱなし} で 寝 て しまっ た。
+        english: I fell asleep leaving the TV on (implying carelessness).
+        hint: 「っぱなし」 often carries a strong negative connotation of neglect or carelessness. We're looking
+          for a more neutral description of the state being maintained.
+      - competing_japanese:
+          - テレビ を つけ た {状態 で} 寝 て しまっ た。
+        english: I fell asleep with the TV on.
+        hint: 「状態で」 is a direct and formal way to say "in the state of". We're looking for a more colloquial
+          expression that emphasizes continuing a previous action's state.
+    scene: A person regrets a small oversight to their friend.
+    register: casual
+    setting: apologetic
+  - english: This room is just as it was in the old days; the furniture hasn't changed at all.
+    japanese:
+      - この 部屋 は 昔 の {まま} で、家具 も 全く 変わっ て い ない。
+      - この 部屋 は 昔 の {まま} で、家具 も 全く 変わっ て い ませ ん。
+    english_literally: This room, as it was in the old days, for furniture also has not changed at all.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 は 昔 の {とおり} で、家具 も 全く 変わっ て い ない。
+        english: This room is exactly as it was in the old days, following its old form.
+        hint: 「とおり」 emphasizes adherence to a model or expectation. We're looking for an expression that
+          highlights the persistence of an original state without alteration.
+      - competing_japanese:
+          - この 部屋 は 昔 と {同じ で}、家具 も 全く 変わっ て い ない。
+        english: This room is the same as in the old days, and the furniture hasn't changed at all.
+        hint: 「と同じ」 expresses simple sameness. We're looking for an expression that highlights the persistence
+          of the original state without alteration.
+    scene: Two old friends revisiting a cherished childhood home.
+    register: casual
+    setting: reflective
+  - english: The door is open.
+    japanese:
+      - ドア が 開い た {まま} に なっ て いる よ。
+      - ドア が 開い た {まま} に なっ て い ます よ。
+    english_literally: The door, remaining open, is like that, you know.
+    competing_grammar:
+      - competing_japanese:
+          - ドア が {開け っぱなし} に なっ て いる よ。
+        english: The door is left open (implying carelessness).
+        hint: 「っぱなし」 implies neglect or carelessness in leaving something as it is. We're looking for
+          a more neutral description of the door's state being maintained.
+      - competing_japanese:
+          - ドア が {開い て いる} よ。
+        english: The door is open.
+        hint: 「開いている」 simply describes the current state of the door. We're looking for an expression
+          that emphasizes it was opened and *remains* in that state, often implying it shouldn't be.
+    scene: A parent noticing their child left the door open and instructing them to close it.
+    register: casual
+    setting: instructional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The use of 「よ」 at the end makes the instruction feel familiar and slightly assertive, typical
+      of a parent addressing a child. While 「まま」 can be neutral, in this context, it often implies the
+      door *shouldn't* be left open, conveying a mild reproach.
+  - english: I drank the hot tea all at once, while it was still hot.
+    japanese:
+      - 熱い {まま} の お 茶 を 一気 に 飲ん で しまっ た。
+      - 熱い {まま} の お 茶 を 一気 に 飲ん で しまい まし た。
+    english_literally: The hot as-it-is tea, I drank all at once.
+    competing_grammar:
+      - competing_japanese:
+          - お 茶 を 冷め {て から} 飲ん だ。
+        english: I drank the tea after it had cooled down.
+        hint: 「てから」 emphasizes an action done *after* a previous state. We're looking for an expression
+          that means something remained in a certain state *while* an action was performed.
+      - competing_japanese:
+          - 熱い {うち に} お 茶 を 一気 に 飲ん で しまっ た。
+        english: I drank the tea quickly while it was still hot.
+        hint: 「うちに」 emphasizes an action done during a limited timeframe or condition. We're looking for
+          an expression that describes the state *at the time* of the action.
+    scene: Someone quickly finishing a hot drink before it cools down.
+    register: casual
+    setting: informative
+  - english: She is aging beautifully, remaining beautiful, isn't she?
+    japanese:
+      - 彼女 は きれい な {まま} で 年 を とっ て いく ね。
+      - 彼女 は きれい な {まま} で 年 を とっ て いき ます ね。
+      - 彼女 は きれい な {まま} で 年 を とっ て いく わ ね。
+    english_literally: She, beautiful as-she-is, is aging, isn't she?
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は {きれい で} 年 を とっ て いく ね。
+        english: She is beautiful and is aging, isn't she?
+        hint: Using 「で」 simply connects two states or actions. We're looking for an expression that specifically
+          emphasizes that the state of being beautiful is *maintained* while aging.
+    scene: Two female friends discussing a mutual acquaintance's graceful aging.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「ね」 at the end invites agreement and confirms a shared observation, common in casual
+      conversation between female friends. The phrase 「年 を とっ て いく」 emphasizes the ongoing process of
+      aging while maintaining beauty. The use of 「わ」 in 「年 を とっていく わ ね」 can indicate a softer, more feminine
+      nuance.
+  - english: I bought the book, but I still haven't read it.
+    japanese:
+      - 本 を 買っ た {まま}、まだ 読ん で い ない。
+      - 本 を 買っ た {まま に}、まだ 読ん で い ない。
+      - 本 を 買っ た {まま}、まだ 読ん で い ませ ん。
+    english_literally: Having bought the book, as it is, I still haven't read it.
+    competing_grammar:
+      - competing_japanese:
+          - 本 を {買っ て} 読ま なかっ た。
+        english: I bought the book and didn't read it.
+        hint: This expresses that the book was bought and then not read. We're looking for an expression
+          that emphasizes the state of the book *remaining* unread after being bought.
+      - competing_japanese:
+          - 本 を 買っ た {の に}、まだ 読ん で い ない。
+        english: I bought the book, but I haven't read it yet.
+        hint: 「のに」 emphasizes a contrast or unexpected outcome. We're looking for an expression that focuses
+          on the state of the book remaining unread after the purchase.
+    scene: A student confessing to their friend about a stack of unread books.
+    register: casual
+    setting: serious
+  - english: Please submit it as it is now.
+    japanese:
+      - 今 の {まま} で 提出 し て ください。
+      - 今 の {まま に} で 提出 し て ください。
+      - 今 の {まんま} で 提出 お 願い し ます。
+    english_literally: As it is now, please submit it.
+    competing_grammar:
+      - competing_japanese:
+          - 今 の {とおり に} 提出 し て ください。
+        english: Please submit it exactly as per the instructions.
+        hint: 「とおり」 emphasizes adherence to a specific instruction or example. We're looking for an expression
+          that means to submit it in its current, unchanged state.
+      - competing_japanese:
+          - 今 の {状態 で} 提出 し て ください。
+        english: Please submit it in its current state.
+        hint: 「状態で」 is a direct and formal way to say "in the state of". We're looking for a more colloquial
+          expression that implies leaving something as it is.
+    scene: A teacher giving instructions for homework submission to a student.
+    register: teineigo (polite)
+    setting: instructional
+  - english: I left the house having forgotten my wallet.
+    japanese:
+      - 財布 を 忘れ た {まま} 家 を 出 て しまっ た。
+      - 財布 を 忘れ た {まま に} 家 を 出 て しまっ た。
+      - 財布 を 忘れ た {まま} 家 を 出 て しまい まし た。
+    english_literally: Having forgotten my wallet, as it was, I left the house.
+    competing_grammar:
+      - competing_japanese:
+          - 財布 を {忘れ っぱなし で} 家 を 出 て しまっ た。
+        english: I left the house having carelessly forgotten my wallet.
+        hint: 「っぱなし」 implies neglect or carelessness in leaving something as it is. We're looking for
+          the action of leaving while a state persists, which can be neutral or have a mild negative nuance.
+      - competing_japanese:
+          - 財布 を {忘れ て} 家 を 出 て しまっ た。
+        english: I forgot my wallet and left the house.
+        hint: Using 「て」 simply indicates a sequence of actions. We're looking for an expression that highlights
+          that you left *while* the state of having forgotten your wallet persisted.
+    scene: A person realizing their mistake after already leaving home.
+    register: casual
+    setting: melancholic
+  - english: The student couldn't answer and remained silent.
+    japanese:
+      - 生徒 は 答え られ なく て、何 も 言わ ない {まま} でし た。
+      - 生徒 は 答え られ なく て、何 も 言わ ない {まま に} い まし た。
+      - 生徒 は 答え られ なく て、何 も 言わ ない {まま} だっ た。
+    english_literally: Student couldn't answer, and said nothing as is, was.
+    competing_grammar:
+      - competing_japanese:
+          - 生徒 は 何 も 言い {ませ ん でし た}。
+        english: The student didn't say anything.
+        hint: 「何も言いませんでした」 simply states that nothing was said. We're looking for an expression that implies
+          a state of silence *persisted*.
+    scene: A teacher reporting on a student's performance to their parents.
+    register: formal
+    setting: serious
+  - english: I like you just the way you are.
+    japanese:
+      - あり の {まま の} 君 が 好き だ。
+      - あり の {まま の} あなた が 好き です。
+      - 君 の あり の {まま が} 好き だ。
+    english_literally: As is, of you, I like.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が {好き だ}。
+        english: I like you.
+        hint: 「君が好きだ」 is a general statement of liking. We're looking for an expression that emphasizes
+          liking someone *as they are*, without change.
+    scene: Expressing romantic feelings in a heartfelt moment.
+    register: casual
+    setting: flirty
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: This expresses a direct and heartfelt sentiment, common in early romantic stages. The use
+      of 「君」 by a male speaker to a female listener adds a romantic, slightly endearing nuance.
+  - english: He started running and kept going without looking back.
+    japanese:
+      - 彼 は 走り 出す と 振り返ら ない {まま} 進ん だ。
+      - 彼 は 走り 出す と 振り返ら ない {まま に} 進ん だ。
+      - 彼 は 走り 出す と 振り返ら ない {まま} 進み まし た。
+    english_literally: He started running, and without looking back as is, advanced.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 走り 出す と 振り返ら {ず に} 進ん だ。
+        english: He started running and advanced without looking back.
+        hint: 「振り返らずに」 means he didn't look back before or while advancing. We're looking for an expression
+          that emphasizes the *continuous state* of not looking back as he progressed.
+    scene: Describing a character's dramatic exit in a story.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    nuance: Here, 「振り返らない」 (not looking back) combines with 「まま」 to describe the continuous state of not
+      turning around while the action of moving forward 「進んだ」 occurs. This adds a sense of determination
+      or urgency.
+post_example_writeup: The **〜まま(に)** grammar point indicates that a state or condition remains unchanged.
+  It can often be translated as "as is" or "in the same state." It is versatile, attaching to verbs (plain
+  past, plain negative), nouns, い-adjectives, and な-adjectives. The optional particle 「に」 can add emphasis
+  to the following verb or specify the manner of an action.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/まま

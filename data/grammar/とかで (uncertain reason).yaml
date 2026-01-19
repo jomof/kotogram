@@ -1,0 +1,260 @@
+grammar_point: とかで (uncertain reason)
+learn_before:
+  - Verb[imperative] (imperative)
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - '[Verb-よう]思う (intend to)'
+  - そう (like that)
+  - って (speaking of)
+  - どこ (where)
+  - 真上 (directly above)
+meaning: For reasons such as; supposedly because; something like ~
+pronunciation:
+  katakana: トカデ
+  romaji: tokade
+formation:
+  '[Sentence] + とかで': Indicates an uncertain or vague reason for something.
+jlpt: N2
+etymology: 「とか」 is used to list non-exhaustive examples, and 「で」 indicates a reason or cause. Together,
+  「とかで」 suggests that the reason given is one of several possibilities or is based on indirect information.
+writeup: 「とかで」 is used to indicate a reason or cause that is uncertain, based on hearsay, or presented
+  as just one possibility among others. It conveys a sense of vagueness or indirectness about the reason
+  being given. It's similar to saying "I heard that..." or "supposedly because..." You can also use 「とかで」
+  to introduce a suggestion or a possible reason when you're not entirely sure about it. It is primarily
+  used in casual speech.
+false_friends:
+  - term: とか
+    meaning: things like, and so on
+    kind: similar expression
+    nuance: 「とか」 is used to list non-exhaustive examples, while 「とかで」 introduces a reason based on uncertain
+      information. 「とか」 is a particle. 「とかで」 is a conjunction.
+    grammar_point: とか〜とか (listing examples)
+  - term: ～から
+    meaning: because
+    kind: often confused with
+    nuance: 「～から」 indicates a direct reason known to the speaker, whereas 「とかで」 suggests the reason is
+      based on hearsay or uncertainty. 「～から」 is a particle. 「とかで」 is a conjunction.
+    grammar_point: '[Clause]から (because・so)'
+  - term: ～ので
+    meaning: since, because
+    kind: often confused with
+    nuance: Similar to 「から」, 「～ので」 provides a direct reason, whereas 「とかで」 presents an uncertain or hearsay
+      reason. 「～の で」 is a particle. 「とかで」 is a conjunction.
+    grammar_point: '[Clause]から (because・so)'
+post_false_friends_writeup: When using 「とかで」, ensure that you are indeed conveying a sense of uncertainty
+  or indirectness about the reason you're providing. If you have direct knowledge or certainty, opt for
+  「から」 or 「ので」 instead. Remember that 「とか」 is used to list examples, not to provide reasons.
+examples:
+  - english: I heard Tanaka is sick or something, so he won't be coming today.
+    japanese:
+      - 田中 さん は 病気 {と か で}、今日 は 来 ませ ん。
+      - 田中 は 病気 {と か で}、今日 来 ない。
+    english_literally: Tanaka is sick or something, so today won't come.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん は 病気 だ {から}、今日 は 来 ませ ん。
+        english: Tanaka won't be coming today because he's sick.
+        hint: Using 「から」 indicates that the speaker is certain about the reason. We're looking for a phrasing
+          that implies the reason is uncertain or based on hearsay.
+    scene: Telling someone why a colleague is absent.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    nuance: The speaker, a man, is informing a woman about Tanaka's absence. The phrasing itself does
+      not contain gender-specific language, making it suitable for a general exchange of information between
+      individuals. The use of 「とかで」 implies that the information about Tanaka's sickness is based on something
+      the speaker heard, not a confirmed fact.
+  - english: I'm thinking of trying out the new restaurant because I heard it's good or something.
+    japanese:
+      - 新しい レストラン が 美味しい {と か で}、行っ て みよう と 思っ て い ます。
+      - 新しい レストラン が 美味しい {と か で}、行っ て みよう と 思っ てる。
+    english_literally: New restaurant is delicious or something, so am thinking of trying to go.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい レストラン が 美味しい {らしい から}、行っ て みよう と 思っ て い ます。
+        english: I'm thinking of trying out the new restaurant because it seems it's good.
+        hint: 「らしい から」 indicates a reason based on reliable hearsay. We're looking for a vaguer, more
+          uncertain reason, implying 'something like that'.
+    scene: Suggesting a place to eat based on a rumor.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The speaker, a woman, is sharing her thoughts with a man. The phrase 「～と 思って い ます」 is a polite
+      way to express one's intention or thought, usable by any gender. The use of 「とかで」 implies the information
+      about the restaurant's deliciousness is based on informal reports, adding a speculative tone.
+  - english: She's been saying she's busy with work or something, so she hasn't been hanging out with
+      me lately.
+    japanese:
+      - 彼女 は 仕事 が 忙しい {と か で}、最近 全然 遊ん で くれ ませ ん。
+      - 彼女 は 仕事 が 忙しい {と か で}、最近 全然 遊ん で くれ ない。
+    english_literally: She is busy with work or something, so recently does not hang out with me at all.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 仕事 が 忙しい {って}、最近 全然 遊ん で くれ ませ ん。
+        english: She says she's busy with work, so she hasn't been hanging out with me lately.
+        hint: 「って」 is a casual way to quote what someone said, but it doesn't carry the nuanced uncertainty
+          of 「とかで」 regarding the truth of the reason.
+    scene: Complaining to a friend about someone's unavailability.
+    register: casual
+    setting: melancholic
+    speaker_gender: male
+    listener_gender: female
+    nuance: A man is expressing his dissatisfaction to a woman regarding his friend's unavailability.
+      The phrasing 「遊ん で くれ ませ ん」 conveys a feeling of being let down, and the use of 「とかで」 suggests the
+      speaker views the reason provided for the friend's busyness with some skepticism or as an unverified
+      excuse.
+  - english: I heard he got a new girlfriend or something, he seems really happy lately.
+    japanese:
+      - 彼 は 新しい 彼女 が でき た {と か で}、最近 すごく 幸せ そう だ ね。
+      - 彼 は 新しい 彼女 が でき た {と か で}、最近 すごく 幸せ そう だ よ。
+    english_literally: He got a new girlfriend or something, so he seems very happy lately, right?
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 新しい 彼女 が でき た {らしい}、最近 すごく 幸せ そう だ ね。
+        english: It seems he got a new girlfriend, he seems really happy lately.
+        hint: 「らしい」 conveys a sense of probability or conjecture based on indirect evidence. While similar,
+          「とかで」 emphasizes the reason for an outcome, often with a hint of vagueness or hearsay about
+          that reason.
+    scene: Gossiping about a friend's happiness.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: A woman is discussing a mutual friend with a man. The informal ending 「～ね」 is typical for
+      casual conversation between friends. By using 「とかで」, the speaker indicates that the information
+      about the friend's new girlfriend is based on hearsay or rumor, rather than direct confirmation.
+  - english: That store clerk always gives me extra service, saying it's because I'm cute or something.
+    japanese:
+      - あの 店員 さん は 私 が 可愛い {と か で}、いつ も サービス し て くれる ん だ。
+      - あの 店員 さん は 私 が 可愛い {と か で}、いつ も サービス し て くれる の。
+    english_literally: That clerk is because I am cute or something, always gives service to me.
+    competing_grammar:
+      - competing_japanese:
+          - あの 店員 さん は 私 が 可愛い {から}、いつ も サービス し て くれる ん だ。
+        english: That store clerk always gives me extra service because I'm cute.
+        hint: Using 「から」 implies that the speaker is stating the reason as a definite fact. We're looking
+          for a phrasing that expresses the reason with uncertainty or as a possible, perhaps flattered,
+          interpretation.
+    scene: A woman hinting at her appeal.
+    register: casual
+    setting: flirty
+    speaker_gender: female
+    listener_gender: female
+    nuance: A woman is playfully sharing an observation with another woman. The casual ending 「～ん だ」 adds
+      an informal, explanatory tone. The phrase 「私 が 可愛い とか で」 suggests the reason given by the store
+      clerk is either an unconfirmed rumor or a lighthearted pretense by the speaker about the clerk's
+      intentions, used to convey a modest or self-deprecating tone.
+  - english: I heard you're very kind, so I was looking forward to meeting you.
+    japanese:
+      - 君 が すごく 優しい {と か で}、会う の が 楽しみ だっ た ん だ。
+      - 君 が すごく 優しい {と か で}、お 会い する の が 楽しみ だっ た ん だ。
+    english_literally: You are very kind or something, so meeting was fun.
+    competing_grammar:
+      - competing_japanese:
+          - 君 が すごく 優しい と 聞い て い た {の で}、会う の が 楽しみ だっ た ん だ。
+        english: Because I heard you were very kind, I was looking forward to meeting you.
+        hint: 「と 聞い て い た の で」 states explicitly that the reason is based on what was heard. 「とかで」 implies
+          a less direct, more vague source of information, often just a general sense or rumor.
+    scene: Meeting someone new at a social gathering.
+    register: shitashii kuchō (intimate)
+    setting: first-date
+    speaker_gender: male
+    listener_gender: female
+    nuance: A man is expressing his anticipation to a woman on a first date. The casual 「～だっ た ん だ」 adds
+      a touch of personal sincerity. The use of 「とかで」 indicates the speaker heard about the listener's
+      kindness indirectly, perhaps through their reputation or casual mentions, setting a warm, personal
+      tone for their first interaction.
+  - english: I heard that you are graduating, I'm going to be lonely.
+    japanese:
+      - 先輩 は 卒業 する {と か で}、寂しく なり ます ね。
+      - 先輩 は ご 卒業 なさる {と か で}、寂しく なり ます ね。
+    english_literally: Senior is graduating or something, so I will become lonely, right?
+    competing_grammar:
+      - competing_japanese:
+          - 先輩 は 卒業 する {と いう こと な の で}、寂しく なり ます ね。
+        english: Since it is said that our senior is graduating, I'm going to be lonely.
+        hint: 「と いう こと な の で」 expresses a reason based on information or a fact, which can be hearsay
+          but sounds more formal and factual than the vaguer 「とかで」.
+    scene: A junior expressing sadness at a senior's departure.
+    register: semi-formal
+    setting: sympathetic
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: A younger female student expresses sadness to an older female senior about her graduation.
+      The phrase 「寂しく なり ます ね」 conveys a sympathetic and somewhat wistful feeling. The use of 「とかで」 implies
+      the information about the graduation is based on hearsay, perhaps something overheard or passed
+      around among students, rather than a direct announcement.
+  - english: The president is supposedly expecting a lot from the new project, so everyone is working
+      hard with enthusiasm.
+    japanese:
+      - 社長 が 新しい プロジェクト に 期待 し て いる {と か で}、皆 熱心 に 取り組ん で い ます。
+      - 社長 が 新しい プロジェクト に 期待 なさっ て いる {と か で}、皆 熱心 に 取り組ん で い ます。
+    english_literally: The president is expecting for the new project or something, so everyone is enthusiastically
+      working on it.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 が 新しい プロジェクト に 期待 し て いる と 聞い て い ます {の で}、皆 熱心 に 取り組ん で い ます。
+        english: Because I have heard that the president is expecting a lot from the new project, everyone
+          is working hard with enthusiasm.
+        hint: 「と 聞い て い ます の で」 is a more direct and formal way to state a reason based on what one has
+          heard. 「とかで」 maintains a slightly more informal tone, even in a formal context, implying the
+          information is 'rumored' or 'something like that'.
+    scene: An employee discussing company expectations.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    nuance: A male employee is discussing company expectations with a male colleague. The sentence uses
+      polite 「～て い ます」, appropriate for a professional setting. The phrase 「期待 し て いる とか で」 indicates
+      that the information about the president's high expectations is based on workplace chatter or indirect
+      communication, rather than direct instruction, adding a subtle nuance of unconfirmed information.
+  - english: He said he had a cold or something, so he didn't come to school today.
+    japanese:
+      - 彼 は 風邪 を 引い た {と か で}、今日 は 学校 に 来 ませ ん でし た。
+      - 彼 は 風邪 引い た {と か で}、今日 学校 来 なかっ た。
+    english_literally: He caught a cold or something, so today didn't come to school.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 風邪 を 引い た {の で}、今日 は 学校 に 来 ませ ん でし た。
+        english: He didn't come to school today because he caught a cold.
+        hint: 「の で」 states the reason directly and clearly. 「とかで」 suggests the reason is reported by someone
+          else, or is not fully confirmed by the speaker.
+    scene: A classmate explaining why another friend is absent.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    nuance: A female student explaining a classmate's absence to another female student. The use of 「とかで」
+      implies that she heard this reason from someone else (maybe the absent student themselves, or another
+      friend), and it's not her direct observation of their illness. It conveys a slight distance from
+      the certainty of the reason.
+  - english: The department store is having a big sale or something, so it's really crowded today.
+    japanese:
+      - デパート で 大 バーゲン {と か で}、今日 は すごく 混ん で いる ね。
+      - デパート で 大 バーゲン {と か で}、今日 すごい 混ん でる よ。
+    english_literally: At the department store, big bargain or something, so today is very crowded, right?
+    competing_grammar:
+      - competing_japanese:
+          - デパート で 大 バーゲン {な の で}、今日 は すごく 混ん で いる ね。
+        english: The department store is having a big sale, so it's really crowded today.
+        hint: 「な の で」 directly states a known reason. 「とかで」 implies the speaker is guessing the reason
+          or heard it vaguely, rather than confirming it.
+    scene: Two friends walking past a crowded department store.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: male
+    nuance: Two male friends observing a busy department store. The use of 「とかで」 here indicates that the
+      speaker is inferring the reason for the crowd (a big sale) or has heard it vaguely, rather than
+      having confirmed it. It adds a touch of speculation to the observation. The sentence ending 「ね」
+      seeks agreement.
+post_example_writeup: The examples illustrate how 「とかで」 is used across various contexts, from informal
+  daily conversations to more formal professional settings, always retaining its core nuance of providing
+  a reason that is uncertain, based on hearsay, or presented with a degree of vagueness. It allows the
+  speaker to convey information without fully committing to the veracity of the reason, often implying
+  that the information was acquired indirectly. Pay attention to the subtle differences in nuance when
+  comparing it with more direct causal expressions like 「から」 and 「の で」.
+sources:
+  bunpro: resources/original/dojg/all/とかで.yaml

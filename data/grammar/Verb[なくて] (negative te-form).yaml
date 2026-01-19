@@ -1,0 +1,291 @@
+grammar_point: Verb[なくて] (negative te-form)
+learn_before:
+  - なくて (negative te-form)
+  - なくてもいい (no need to)
+  - 間もなく (shortly・in a moment・very soon)
+meaning: not doing X, and/because; without X
+pronunciation:
+  katakana: ナクテ
+  romaji: nakute
+formation:
+  Verb[ない] form (drop い) + くて: Connects two clauses, indicating that the action of the first verb is not
+    performed, leading to or accompanying the second action/state.
+  Verb[ない] form (drop い) + くて + はならない / いけない: Forms expressions meaning 'must do' (e.g., 行かなくてはいけない -
+    must go).
+jlpt: N4
+etymology: The form 「なくて」 is derived from the negative auxiliary adjective 「ない」, which itself is the plain
+  negative form of verbs. By taking the 「て」 form of this auxiliary adjective (just as one would with regular
+  い-adjectives, e.g., 楽しい -> 楽しくて), it creates a conjunctive form. This structure highlights its function
+  as linking a negated state or action to a subsequent clause, often indicating cause or simply listing
+  conditions.
+writeup: |-
+  The grammar point 「なくて」 is the negative te-form of a verb. It connects two clauses, expressing that the action of the first verb is not performed, and this non-performance either leads to the second action/state or is simply a preceding condition. It is formed by taking the plain negative form of a verb (〜ない) and changing the final い to くて.
+
+  There are two primary ways 「なくて」 is used:
+
+  1.  **To express a reason or cause:** When the non-performance of the first action directly results in or causes the state or action in the second clause. In this case, it functions similarly to 「〜ないから」 or 「〜ないので」, but often with a slightly more direct or less formal tone for the cause.
+      Example: お金がなくて、何も買えない。(Because I don't have money, I can't buy anything.)
+
+  2.  **To simply connect two clauses with a negative preceding action:** The second action or state occurs after, or concurrently with, the non-performance of the first. This usage doesn't necessarily imply cause and effect but rather describes the circumstances.
+      Example: 宿題をしなくて、テレビを見た。(I didn't do my homework, and then watched TV.)
+
+  「なくて」 is also a crucial component of several common grammatical patterns, such as 「〜なくてはいけない」 or 「〜なくちゃいけない」 (must/have to do something) and 「〜なくてもいい」 (do not have to do something / it's okay not to do something). These fixed expressions are very common in daily conversation.
+
+  It's important to distinguish 「なくて」 from 「ないで」, as they share similarities but also have distinct nuances and usages. While both relate to negative actions, 「なくて」 tends to focus on the state of not doing and its consequence, whereas 「ないで」 often implies intentional avoidance or is used in negative commands. 「なくて」 itself cannot be used as a negative command.
+false_friends:
+  - term: Verb[ない]で
+    meaning: without doing X; don't do X (command)
+    kind: similar expression
+    nuance: 「ないで」 often implies an intentional action of not doing something, or is used to give a negative
+      command. It can mean 'without doing (something)' (emphasizing the lack of action as a manner) or
+      'please don't do (something)'. Unlike 「なくて」, 「ないで」 can stand alone as a negative imperative or indicate
+      an action done while refraining from another. 「なくて」 cannot be a command and focuses more on the
+      reason for a subsequent state.
+    grammar_point: ないでください・ないで (please don't)
+  - term: Verb[ない]と
+    meaning: if not doing X (then something bad will happen)
+    kind: similar expression
+    nuance: 「ないと」 is a conditional form, usually implying a negative consequence if an action is not taken.
+      It's often followed by words like 「いけない」 or 「だめ」. It emphasizes a necessary action, whereas 「なくて」
+      states a fact of non-action or a reason. 「ないと」 sets up a condition, 「なくて」 describes a state or cause.
+    grammar_point: と (conditional, inevitable result)
+  - term: Verb[ない]から
+    meaning: because X is not done
+    kind: synonym
+    nuance: 「ないから」 is a direct and explicit way to state a reason. While 「なくて」 can also express reason,
+      「ないから」 is more general and can be used in more contexts where a clear causal link is needed. 「なくて」
+      can sometimes just be a sequential negative action without strong causality.
+    grammar_point: <suggest>:Clauseから (because・so)
+  - term: Verb[ず]に
+    meaning: without doing X (formal)
+    kind: similar expression
+    nuance: 「ずに」 is a more formal or literary equivalent of 「ないで」 and 「なくて」, typically found in written
+      Japanese or more formal speech. It explicitly means 'without doing X'. While 「なくて」 can imply 'without
+      X' as a reason, 「ずに」 explicitly states 'not doing X' as a manner or preceding condition, similar
+      to 「ないで」.
+    grammar_point: ずに・ないで・ことなく (without doing)
+post_false_friends_writeup: The distinction between 「なくて」 and 「ないで」 is particularly crucial. While both
+  derive from the negative form of verbs, 「ないで」 often carries a nuance of intention or conscious omission,
+  or it functions as a direct negative command. For example, 「食べないで」 can mean 'without eating' (as a manner)
+  or 'please don't eat'. In contrast, 「なくて」 cannot be used for direct commands and primarily conveys that
+  an action was not performed, leading to a consequence or simply preceding another event. When expressing
+  cause, 「なくて」 is more natural when the non-action is the reason for the subsequent state (e.g., 'no money,
+  therefore troubled'), whereas 「ないから」 explicitly states the reason without the sequential or conditional
+  nuance of 「なくて」.
+examples:
+  - english: Because I don't have time, I can't go to the party.
+    japanese:
+      - 時間 が {なく て}、パーティー に 行け ませ ん。
+      - 時間 が {なく て}、パーティー に 行け ない。
+    english_literally: Time not having, to party cannot go.
+    competing_grammar:
+      - competing_japanese:
+          - 時間 が ない から、パーティー に 行け ませ ん。
+        english: Because I don't have time, I can't go to the party.
+        hint: 「ないから」 is a more explicit statement of reason. We're looking for a slightly softer, conjunctive
+          form often used when the non-action directly leads to the consequence.
+      - competing_japanese:
+          - 時間 を 取ら ない で、パーティー に 行け ませ ん。
+        english: Without taking time, I can't go to the party.
+        hint: 「ないで」 implies a conscious decision not to take time. We're looking for a statement about
+          the state of 'not having time' rather than intentionally 'not taking time'.
+    scene: A student explaining why they cannot attend an event.
+    register: teineigo (polite)
+    setting: informative
+  - english: I didn't eat breakfast, so I'm hungry.
+    japanese:
+      - 朝ごはん を {食べ なく て}、お腹 が 空き まし た。
+      - 朝ごはん を {食べ なく て}、お腹 が 空い た。
+    english_literally: Breakfast not eating, stomach became empty.
+    competing_grammar:
+      - competing_japanese:
+          - 朝ごはん を 食べ ない で、お腹 が 空き まし た。
+        english: Without eating breakfast, I became hungry.
+        hint: 「ないで」 emphasizes the manner (without eating). We're looking for a causal link where the
+          fact of not eating led to hunger.
+      - competing_japanese:
+          - 朝ごはん を 食べ なかっ た の で、お腹 が 空き まし た。
+        english: Since I didn't eat breakfast, I became hungry.
+        hint: 「なかったので」 is a more explicitly past tense reason. We're looking for a more concise conjunctive
+          form.
+    scene: Someone recounting their morning to a friend.
+    register: teineigo (polite)
+    setting: friendly
+  - english: You must not forget your passport.
+    japanese:
+      - パスポート を {忘れ なく て は} いけ ませ ん。
+      - パスポート を {忘れ なく ちゃ} いけ ない。
+      - パスポート を {忘れ なく て は} いけ ない。
+      - パスポート を {忘れ なく て は} なり ませ ん。
+    english_literally: Passport not forgetting must not.
+    competing_grammar:
+      - competing_japanese:
+          - パスポート を 忘れ て は いけ ませ ん。
+        english: You must not forget your passport.
+        hint: 「忘れては」 is the positive te-form leading to a prohibition. We're looking for the negative
+          form of 'must not forget'.
+      - competing_japanese:
+          - パスポート を 忘れ て は なら ない。
+        english: You must not forget your passport (more formal).
+        hint: 「てはならない」 is a more formal prohibition. We're looking for a common, slightly less formal
+          expression.
+    scene: A parent reminding their child before a trip.
+    register: casual
+    setting: instructional
+    nuance: The phrase 「なくてはいけない」 (or 「なくちゃいけない」 in casual speech) is a common way to express obligation
+      or necessity. Here, 「忘れなくては」 forms the first part of that construction. While the literal translation
+      seems double-negative, it effectively means 'must not forget'.
+  - english: You don't have to worry.
+    japanese:
+      - 心配 {し なく て} も 大丈夫 です。
+      - 心配 {し なく て} も 大丈夫 だ よ。
+      - 心配 {し なく て} も 大丈夫。
+    english_literally: Worry not doing also is okay.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し ない で も 大丈夫 です。
+        english: It's okay even if you don't worry (intentional).
+        hint: 「ないで」 here implies an intentional 'not worrying'. We're looking for the sense of 'there
+          is no need to worry'.
+      - competing_japanese:
+          - 心配 する 必要 は あり ませ ん。
+        english: There is no need to worry.
+        hint: This is a more direct way to say 'no need'. We're looking for the common phrasing with 「なくてもいい」.
+    scene: A friend comforting another who is feeling anxious.
+    register: teineigo (polite)
+    setting: supportive
+  - english: If you don't try, you won't know.
+    japanese:
+      - やっ て {み なく て は} わかり ませ ん。
+      - やっ て {み なく ちゃ} わから ない。
+      - やっ て {み なく て は} わから ない。
+    english_literally: Trying not doing, cannot understand.
+    competing_grammar:
+      - competing_japanese:
+          - やら ない と わかり ませ ん。
+        english: If you don't do it, you won't understand.
+        hint: 「ないと」 implies a direct conditional. We're looking for the nuance of 'if you don't try it
+          (as a condition), you won't know'.
+      - competing_japanese:
+          - 試さ ない かぎり、分かり ませ ん。
+        english: Unless you try, you won't understand.
+        hint: 「限り」 is a strong conditional for 'unless'. We're looking for a more common and simple conditional
+          expression involving 'try'.
+    scene: A mentor advising a mentee.
+    register: teineigo (polite)
+    setting: inspirational
+    nuance: This sentence uses 「なくては」 in a conditional sense, meaning 'if X is not done, then Y will not
+      happen'. It's a slightly more nuanced way of expressing necessity or consequence than a direct 'if...
+      then' construction.
+  - english: It's cold because there's no heating.
+    japanese:
+      - 暖房 が {なく て}、寒い です。
+      - 暖房 が {なく て}、寒い。
+    english_literally: Heating not having, is cold.
+    competing_grammar:
+      - competing_japanese:
+          - 暖房 が ない から、寒い です。
+        english: Because there is no heating, it is cold.
+        hint: 「ないから」 is a straightforward reason. We're looking for a conjunctive form that expresses
+          cause and effect more seamlessly.
+    scene: Someone describing the conditions in a room.
+    register: teineigo (polite)
+    setting: informative
+  - english: Since I didn't get enough sleep, I'm sleepy.
+    japanese:
+      - 睡眠 が 十分 に {取れ なく て}、眠い です。
+      - 睡眠 が 十分 に {取れ なく て}、眠い。
+    english_literally: Sleep sufficiently not taking, am sleepy.
+    competing_grammar:
+      - competing_japanese:
+          - 睡眠 が 十分 に 取れ なかっ た の で、眠い です。
+        english: Since I couldn't get enough sleep, I'm sleepy.
+        hint: 「なかったので」 is more explicit past tense reason. We're looking for a concise conjunctive form.
+    scene: A person explaining their tiredness to a colleague.
+    register: teineigo (polite)
+    setting: professional
+  - english: I didn't understand the instructions, so I couldn't finish the work.
+    japanese:
+      - 指示 が {わから なく て}、仕事 を 終え られ ませ ん でし た。
+      - 指示 が {わから なく て}、仕事 を 終え られ なかっ た。
+    english_literally: Instructions not understanding, work could not finish.
+    competing_grammar:
+      - competing_japanese:
+          - 指示 が 分から なかっ た の で、仕事 を 終え られ ませ ん でし た。
+        english: Since I didn't understand the instructions, I couldn't finish the work.
+        hint: 「なかったので」 is an explicit past tense reason. We're looking for a more direct, causative conjunctive
+          form.
+    scene: An employee reporting to their boss.
+    register: teineigo (polite)
+    setting: professional
+  - english: You don't have to apologize.
+    japanese:
+      - 謝ら {なく て} も いい です よ。
+      - 謝ら {なく て} も いい よ。
+      - 謝ら {なく て} も いい。
+    english_literally: Apologize not doing also is good, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 謝る 必要 は あり ませ ん。
+        english: There's no need to apologize.
+        hint: This is a direct statement of no necessity. We're looking for the common phrasing with 「なくてもいい」.
+    scene: A friend reassuring another after a minor misunderstanding.
+    register: casual
+    setting: friendly
+    nuance: The phrase 「なくてもいい」 indicates that something is not necessary or that it's permissible not
+      to do something. The final 「よ」 adds a gentle, reassuring tone.
+  - english: I'm sorry I couldn't help.
+    japanese:
+      - お 手伝い {でき なく て}、すみ ませ ん。
+      - お 手伝い {でき なく て}、ごめん。
+    english_literally: Help not being able to, sorry.
+    competing_grammar:
+      - competing_japanese:
+          - お 手伝い でき ない の で、すみ ませ ん。
+        english: Because I cannot help, I'm sorry.
+        hint: 「できないので」 explicitly states the reason. We're looking for a concise conjunctive form often
+          used in apologies.
+    scene: Someone apologizing for being unable to assist.
+    register: teineigo (polite)
+    setting: apologetic
+  - english: You don't have to wait for me.
+    japanese:
+      - 私 を {待た なく て} も 大丈夫 です よ。
+      - 私 を {待た なく て} も 大丈夫 だ よ。
+    english_literally: Me not waiting also is okay, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 私 を 待た ない で 大丈夫 だ よ。
+        english: Without waiting for me, it's okay (implies intentionality).
+        hint: 「ないで」 here might suggest intentionally not waiting. We're looking for the sense of 'it's
+          not necessary to wait'.
+    scene: A friend leaving early, telling another they don't need to stay.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence ending 「〜だよ」 is a casual, softening particle often used by female speakers, conveying
+      information or reassurance to a close friend.
+  - english: He wasn't feeling well, so he went home early.
+    japanese:
+      - 彼 は 気分 が {良く なく て}、早く 帰り まし た。
+      - 彼 は 気分 が {良く なく て}、早く 帰っ た。
+    english_literally: He feeling not good, early went home.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 気分 が 良く なかっ た の で、早く 帰り まし た。
+        english: He went home early because he wasn't feeling well.
+        hint: 「なかったので」 is a more explicit past tense reason. We're looking for a conjunctive form often
+          used to link a state to a subsequent action.
+    scene: A colleague explaining why another colleague left early.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    nuance: While 「良くなかったので」 is also correct, 「良くなくて」 provides a smoother flow, directly linking the negative
+      state to the consequence. The choice implies a slightly more direct cause-and-effect relationship
+      in a narrative.
+post_example_writeup: Understanding the subtle differences in nuance and usage contexts for 「なくて」 versus
+  other negative constructions like 「ないで」, 「ないから」, or 「ずに」 is key to achieving natural-sounding Japanese.
+  While many of these forms can express similar ideas, their specific implications regarding causality,
+  intentionality, or formality vary. Practice with diverse examples helps solidify these distinctions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/Verb%5Bなくて%5D-(negative-te-form)

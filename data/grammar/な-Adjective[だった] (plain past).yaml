@@ -1,0 +1,210 @@
+grammar_point: な-Adjective[だった] (plain past)
+learn_before:
+  - だった (past copula, casual)
+  - な-Adjective[でした] (polite past)
+meaning: was/were [na-adjective]
+meaning_warning: While similar in function to the past tense of i-adjectives, the formation and underlying
+  grammatical behavior are distinct. な-adjectives function like nouns in predicative positions, requiring
+  a form of the copula.
+pronunciation:
+  katakana: ダッタ
+  romaji: datta
+formation:
+  な-Adjective (stem) + だった: Used to express the past state or quality of a na-adjective in its plain,
+    casual form.
+jlpt: N4
+etymology: The plain past form だった (datta) is a combination of だ (da), the plain form of the copula です
+  (desu), and the past tense auxiliary verb た (ta). This structure mirrors the plain past conjugation
+  of regular verbs, where the dictionary form stem is followed by た. In the case of な-adjectives, they
+  behave similarly to nouns in that they take a copula when used predicatively, hence borrowing the past
+  copula form.
+writeup: |-
+  The grammar point な-Adjective[だった] is the plain past tense form used with な-adjectives (adjectival nouns) to describe a past state or quality. It is the casual equivalent of な-Adjective[でした]. Just as だ is the casual form of です, だった is the casual form of でした.
+
+  To form the plain past tense of a な-adjective, you take the adjective stem (the part without な when it modifies a noun) and attach だった. For example, from 綺麗 (kirei・beautiful/clean), you get 綺麗だった (kirei datta・was beautiful/clean).
+
+  This form is primarily used in informal settings such as casual conversations among friends and family, personal diaries, and informal narratives. It is essential for speaking natural, casual Japanese. When speaking to superiors, strangers, or in formal situations, you would typically use な-Adjective[でした] instead.
+
+  Understanding the plain past is crucial for building more complex sentence structures later on, especially when embedding clauses or reporting speech in a casual context.
+false_friends:
+  - term: な-Adjective[でした]
+    meaning: was/were [na-adjective]
+    kind: synonym
+    nuance: This is the polite past form, used in formal or polite contexts, unlike な-Adjective[だった] which
+      is casual.
+    grammar_point: <strongly-suggest>:な-Adjective[でした] (polite past)
+  - term: い-adjective (past)
+    meaning: was/were [i-adjective]
+    kind: similar expression
+    nuance: While similar in meaning, this applies to い-adjectives and follows a different conjugation
+      rule (e.g., 暑い → 暑かった), whereas な-adjectives add だった.
+    grammar_point: い-Adjective[かった] (past tense)
+  - term: じゃなかった
+    meaning: was/were not [noun/na-adjective]
+    kind: antonym
+    nuance: This is the plain past negative form, meaning 'was not', which is the opposite of な-Adjective[だった].
+    grammar_point: じゃなかった (was not)
+post_false_friends_writeup: When distinguishing between な-Adjective[だった] and な-Adjective[でした], remember
+  that だった is for casual, everyday interactions, while でした is for polite and formal situations. For い-adjectives,
+  the past tense forms are different; you append かった directly to the adjective stem (e.g., 寒かった for 'was
+  cold'), unlike the だった form used for な-adjectives. Finally, じゃなかった expresses the negative past state,
+  meaning 'was not,' which is the direct opposite of だった.
+examples:
+  - english: Yesterday's weather was really nice.
+    japanese:
+      - 昨日 の 天気 は とても {綺麗 だっ た}。
+      - 昨日 の 天気 は とても 綺麗 でし た。
+    english_literally: Yesterday's weather, very was beautiful/nice.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 天気 は とても 綺麗 でし た。
+        english: Yesterday's weather was very nice (polite).
+        hint: The nuance here is casual. 「綺麗でした」is polite. We're looking for the plain, casual form.
+    scene: You're chatting with a close friend about the weather.
+    register: casual
+    setting: friendly
+    nuance: The use of 「綺麗だった」is the plain past form of the な-adjective 綺麗, suitable for casual conversation.
+      This sentence is naturally spoken among close friends, with no specific gender or age connotations
+      in the phrase itself.
+  - english: That restaurant was really quiet.
+    japanese:
+      - あの レストラン は とても {静か だっ た}。
+      - あの レストラン は とても 静か でし た。
+    english_literally: That restaurant, very was quiet.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は とても 静か じゃ なかっ た。
+        english: That restaurant was not very quiet.
+        hint: This sentence means 'was not quiet', which is the opposite of what we want. We're looking
+          for 'was quiet'.
+    scene: You're telling your sibling about a restaurant you visited.
+    register: casual
+    setting: informative
+    nuance: 「静かだった」uses the plain past form of the な-adjective 静か, fitting a casual description between
+      family members.
+  - english: The previous apartment was very convenient.
+    japanese:
+      - 前 の アパート は とても {便利 だっ た}。
+      - 前 の アパート は とても 便利 でし た。
+    english_literally: Previous apartment, very was convenient.
+    competing_grammar:
+      - competing_japanese:
+          - 前 の アパート は とても 便利 でしょう。
+        english: The previous apartment was probably very convenient.
+        hint: 「便利でしょう」is a polite conjecture ('probably convenient'). We need a simple, casual statement
+          of fact about the past.
+    scene: A student is talking to their roommate about their old living situation.
+    register: casual
+    setting: informative
+    nuance: 「便利だった」is the plain past of the な-adjective 便利, used here in a casual context between roommates.
+  - english: That movie was quite famous.
+    japanese:
+      - あの 映画 は かなり {有名 だっ た}。
+      - あの 映画 は かなり 有名 でし た。
+    english_literally: That movie, quite was famous.
+    competing_grammar:
+      - competing_japanese:
+          - あの 映画 は かなり 有名 らしい。
+        english: That movie seems to be quite famous.
+        hint: 「有名らしい」means 'seems famous' or 'I heard it's famous'. We need a direct past statement.
+    scene: A young man is discussing an old movie with his friend.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The plain past form 「有名だった」is used, appropriate for casual discussion. The phrase 「かなり」('quite')
+      is often used in casual conversation.
+  - english: The exam was easy, so I was relieved.
+    japanese:
+      - 試験 は {簡単 だっ た} から、安心 し た。
+      - 試験 は 簡単 でし た から、安心 し まし た。
+    english_literally: Exam, was easy, so I was relieved.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 簡単 な こと だ から、安心 し た。
+        english: The exam is a simple thing, so I was relieved.
+        hint: 「簡単なことだ」means 'it is a simple thing'. We need 'was simple' in the past tense.
+    scene: A student tells their friend about how an exam went.
+    register: casual
+    setting: casual slang
+    nuance: 「簡単だった」 is the plain past of 簡単, forming a causal connection with 「から」. This is a common structure
+      in casual speech when explaining a reason.
+  - english: When I was little, I was very bad at sports.
+    japanese:
+      - 小さい 時、スポーツ が とても {苦手 だっ た}。
+      - 小さい 時、スポーツ が とても 苦手 でし た。
+    english_literally: Small time (when small), sports, very was bad at.
+    competing_grammar:
+      - competing_japanese:
+          - 小さい 時、スポーツ が とても 苦手 でし た。
+        english: When I was little, I was very bad at sports (polite).
+        hint: This is the polite form. We are looking for the casual form.
+    scene: An adult is sharing a childhood memory with a younger family member.
+    register: casual
+    setting: storytelling
+    speaker_age: older
+    nuance: 「苦手だった」 is the plain past of the な-adjective 苦手, fitting a personal anecdote shared in a casual,
+      familiar setting. The phrase 「小さい時」 (when I was little) naturally sets a past, reflective tone.
+  - english: The park was empty that day.
+    japanese:
+      - その 日 公園 は {空っぽ だっ た}。
+      - その 日 公園 は 空っぽ でし た。
+    english_literally: That day, park, was empty.
+    competing_grammar:
+      - competing_japanese:
+          - その 日 公園 は 空っぽ に する。
+        english: That day, I will empty the park.
+        hint: 「空っぽにする」means 'to make empty'. We need 'was empty' as a past state.
+    scene: You're recalling a quiet moment to yourself in a diary entry.
+    register: casual
+    setting: reflective
+    listener_gender: no one
+    nuance: 「空っぽだった」 is the plain past of the な-adjective 空っぽ, used here for personal reflection. The
+      internal monologue nature means no specific politeness level is needed.
+  - english: Her story was very unique.
+    japanese:
+      - 彼女 の 話 は とても {ユニーク だっ た}。
+      - 彼女 の 話 は とても ユニーク でし た。
+    english_literally: Her story, very was unique.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 話 は とても ユニーク に 聞こえ た。
+        english: Her story sounded very unique.
+        hint: 「ユニークに聞こえた」means 'sounded unique'. We need a direct statement 'was unique'.
+    scene: A group of friends are discussing someone they all know.
+    register: casual
+    setting: friendly
+    nuance: 「ユニークだった」 utilizes the plain past form of the な-adjective ユニーク, suitable for casual conversation
+      about a shared experience or person. The use of katakana for 'unique' (ユニーク) is common for loanwords.
+  - english: The situation was safe.
+    japanese:
+      - 状況 は {安全 だっ た}。
+      - 状況 は 安全 でし た。
+    english_literally: Situation, was safe.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 は 安全 です。
+        english: The situation is safe (polite).
+        hint: 「安全です」is present tense and polite. We need the casual past tense.
+    scene: Someone reassures a worried friend about a past event.
+    register: casual
+    setting: supportive
+    nuance: 「安全だった」 is the plain past of the な-adjective 安全, used in a direct, reassuring manner among
+      friends.
+  - english: The weather was strange yesterday.
+    japanese:
+      - 昨日 の 天気 は {変 だっ た}。
+      - 昨日 の 天気 は 変 でし た。
+    english_literally: Yesterday's weather, was strange.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 の 天気 は 変 でし た。
+        english: Yesterday's weather was strange (polite).
+        hint: 「変でした」is the polite form. We need the plain, casual form.
+    scene: A person complains to their family member about unusual weather.
+    register: casual
+    setting: casual slang
+    nuance: 「変だった」is the plain past form of the な-adjective 変, used here to casually express an unusual
+      past state. It's common in informal complaints or observations.
+post_example_writeup: Notice how each example uses the な-adjective stem directly followed by だった. This
+  consistency makes it relatively straightforward to form. Pay attention to the context and relationship
+  with the listener to choose between the casual 「だった」 and the polite 「でした」.

@@ -1,0 +1,261 @@
+grammar_point: さえ (even・if only)
+learn_before:
+  - さえ〜ば (if only; as long as)
+meaning: even; if only; as long as
+pronunciation:
+  katakana: サエ
+  romaji: sae
+formation:
+  Noun + さえ: Emphasizes the noun as an extreme or minimal example.
+  Verb[て形] + さえ: Used to express a minimal condition, often followed by ば or たら.
+  Verb[ます-stem] + さえ: Used to express a minimal condition, often followed by すれば.
+jlpt: N2
+etymology: The origin of 「さえ」 is thought to be related to the verb 添える (そえる - soeru), meaning "to add
+  to" or "to accompany." Over time, the meaning evolved from simply adding something to emphasizing the
+  inclusion of even an extreme or minimal item. This core concept of "adding on" or "including" is key
+  to its various uses, whether it's "even this" or "this much is sufficient," setting a baseline or highlighting
+  an unexpected presence.
+writeup: |-
+  The particle 「さえ」 is a versatile particle that adds nuance to sentences, primarily functioning in two main ways: to emphasize the inclusion of something surprising or extreme, and to express a minimal condition for something to occur.
+
+  When used for **emphasis**, 「さえ」 means "even" and typically highlights an unexpected or extreme example. This usage often appears in negative sentences to underscore the complete absence of something, implying "not even this minimal thing exists." For instance, if you say 「子供 さえ 分かる」, it implies that the concept is so simple that "even a child can understand it," thereby emphasizing its simplicity.
+
+  The second primary function of 「さえ」 is to set a **minimal condition**, translating to "if only" or "as long as." In this context, it usually combines with conditional forms like 「〜ば」 or 「〜たら」 (e.g., 「〜さえ〜ば」 or 「〜さえ〜たら」). This construction implies that if a stated minimal condition is met, a certain outcome will follow. For example, 「お金 さえ あれば、買える」 means "If only I had money, I could buy it," indicating that money is the sole necessary condition.
+false_friends:
+  - term: も
+    meaning: also; even
+    kind: similar expression
+    nuance: 「も」 is a general additive particle, indicating "also" or "even" without the strong emphasis
+      on extremity or minimum condition that 「さえ」 carries. 「さえ」 often implies that something else is true
+      or will happen given the stated condition.
+    grammar_point: も (addition or emphasis particle)
+  - term: だけ
+    meaning: only; just
+    kind: similar expression
+    nuance: 「だけ」 simply limits something to a certain extent. 「さえ」, while also limiting, adds the nuance
+      of "even something as minimal as this" or "even something as surprising as this."
+    grammar_point: だけ (only・just)
+  - term: すら
+    meaning: even (literary, strong negative nuance)
+    kind: synonym
+    nuance: 「すら」 is a more formal and often carries a stronger, sometimes negative, nuance than 「さえ」,
+      especially when implying that even a minimal thing isn't possible or happened unexpectedly. It's
+      often used in literary or more dramatic contexts.
+    grammar_point: すら (even)
+  - term: まで
+    meaning: even to the extent; until
+    kind: similar expression
+    nuance: 「まで」 can mean "even" in the sense of including something up to a certain limit or extent.
+      While similar to 「さえ」 in conveying "even X", 「さえ」 specifically highlights X as a surprising or minimal
+      example, whereas 「まで」 often implies a progression or a point reached.
+    grammar_point: まで (even to the extent)
+post_false_friends_writeup: 「さえ」 is most distinctive in its use to express a minimal condition ("if only"
+  / "as long as"). While 「も」, 「だけ」, 「すら」, and 「まで」 can all express forms of "even" or limitation, 「さえ」
+  often implies a subsequent consequence that relies on that minimal condition, or highlights the unexpected
+  nature of what is included. Pay close attention to whether the particle is emphasizing an extreme example
+  or setting a baseline for something else to occur.
+examples:
+  - english: Even a child can understand this.
+    japanese:
+      - '{子供 さえ} これ が 分かる。'
+      - 子供 さえ これ が 分かり ます。
+      - 子供 さえ これ が 分かっ ちゃう。
+    english_literally: Even a child, this, understands.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 も これ が 分かる。
+        english: A child also understands this.
+        hint: While 「も」 can mean "also" or "even", 「さえ」 adds a stronger emphasis, highlighting the surprising
+          or minimal nature of the subject. We're emphasizing that this is so easy, even a child gets
+          it.
+    scene: A teacher explaining a very simple concept.
+    register: casual
+    setting: informative
+    nuance: 「子供さえ」 emphasizes that even someone as seemingly unqualified as a child can understand it,
+      implying it's very simple. The phrase does not have gender-specific or age-specific Japanese elements,
+      but the context implies the speaker is an adult talking about a child.
+  - english: He didn't even say goodbye.
+    japanese:
+      - 彼 は {さようなら さえ} 言わ なかっ た。
+      - 彼 は さようなら さえ 言い ませ ん でし た。
+      - あいつ は さようなら さえ 言わ なかっ た ん だ。
+    english_literally: He, goodbye even, did not say.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は さよう なら も 言わ なかっ た。
+        english: He also did not say goodbye.
+        hint: 「も」 is more neutral. 「さえ」 provides a stronger sense of surprise or disappointment that even
+          the most basic courtesy was omitted. We're stressing the lack of even a simple goodbye.
+    scene: Someone left abruptly, causing disappointment.
+    register: casual
+    setting: serious
+    nuance: Here, 「さえ」 stresses the lack of even the most basic courtesy of saying goodbye, highlighting
+      the speaker's disappointment or surprise at the extreme omission.
+  - english: There isn't even a single person here.
+    japanese:
+      - ここ に は {一人 さえ} い ませ ん。
+      - ここ に は 一人 さえ い ない。
+      - こちら に は 一人 さえ おり ませ ん。
+    english_literally: Here, one person even, is not present.
+    competing_grammar:
+      - competing_japanese:
+          - ここ に は 一人 も い ませ ん。
+        english: There isn't even one person here.
+        hint: Both 「一人さえ」 and 「一人も」 can express "not even one person". However, 「さえ」 often implies a stronger
+          sense of unexpected emptiness or a more surprising lack. We want to emphasize the complete absence,
+          even of a minimal number.
+    scene: Arriving at a place that was expected to be busy, but finding it completely deserted.
+    register: casual
+    setting: reflective
+    nuance: 「さえ」 with a negative verb emphasizes the complete absence, noting that not even the smallest
+      number (one person) is present, implying an unexpected level of emptiness.
+  - english: If only I had money, I could buy it.
+    japanese:
+      - '{お 金 さえ} あれ ば、それ が 買える の に。'
+      - お 金 さえ あれ ば、それ が 買え ます の に。
+      - 金 さえ あれ ば、それ 買えん の に。
+    english_literally: Money even, if exists, that can be bought, even though.
+    competing_grammar:
+      - competing_japanese:
+          - お 金 が あれ ば、それ が 買える の に。
+        english: If I had money, I could buy it.
+        hint: While 「が」 simply marks the subject, 「さえ」 emphasizes that money is the minimal and sufficient
+          condition. We're highlighting that money is the *only* thing needed.
+    scene: A person looking at an expensive item they really want but cannot afford.
+    register: casual
+    setting: melancholic
+    nuance: 「お金さえあれば」 emphasizes that money is the sole necessary condition to achieve the desire. The
+      「さえ」 combined with 「あれば」 (conditional form of ある) underscores that if this minimal condition is
+      met, the outcome follows.
+  - english: As long as you try, you can do it.
+    japanese:
+      - '{努力 し さえ} すれ ば、できる よ。'
+      - 努力 し さえ すれ ば、でき ます よ。
+      - 努力 し さえ すれ ば、できる ぜ。
+    english_literally: Effort do even if, can do, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 努力 すれ ば、できる よ。
+        english: If you try, you can do it.
+        hint: Adding 「さえ」 emphasizes that *just* trying is the key, simplifying the condition to the bare
+          minimum. We want to stress that effort is the crucial factor.
+    scene: A coach giving encouragement to an athlete who is feeling discouraged.
+    register: casual
+    setting: supportive
+    nuance: 「努力しさえすれば」 highlights that simply making an effort (努力する) is the minimal and sufficient requirement
+      for success. The 「し」 here is the ます-stem of する, forming a common phrase with 「さえ」 to mean "if only
+      one does X".
+  - english: If only you listen to what I say, everything will be fine.
+    japanese:
+      - '{私 の 言う こと を 聞き さえ} すれ ば、すべて うまく いく。'
+      - 私 の 言う こと を 聞き さえ すれ ば、すべて うまく いき ます。
+      - 俺 の 言う こと 聞き さえ すれ ば、全部 うまく いく って。
+    english_literally: My say thing listen even if, everything well go.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 言う こと を 聞け ば、すべて うまく いく。
+        english: If you listen to what I say, everything will be fine.
+        hint: Adding 「さえ」 emphasizes that *just* listening is the singular condition needed for a positive
+          outcome. We're saying that only this one action is required.
+    scene: An older sibling advising a younger sibling, who tends to be stubborn.
+    register: casual
+    setting: persuasive
+    nuance: 「聞きさえすれば」 highlights that listening (聞く) is the one crucial action required for things to
+      go well, implying that this simple act alone guarantees success. 「聞き」 is the ます-stem of 聞く.
+  - english: Even something simple can be difficult for me sometimes.
+    japanese:
+      - '{簡単 な こと さえ} 時々 私 に は 難しい。'
+      - 簡単 な こと さえ 時々 私 に は 難しい です。
+      - 簡単 な こと さえ 時々 俺 に は 難しい ん だ。
+    english_literally: Simple thing even, sometimes for me is difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 簡単 な こと も 時々 私 に は 難しい。
+        english: Simple things are also sometimes difficult for me.
+        hint: 「も」 is more generalized. 「さえ」 adds a nuance of surprise or unexpected difficulty, emphasizing
+          that even the simplest things pose a challenge. We're highlighting the surprising nature of
+          the difficulty.
+    scene: A student struggling with a basic task, reflecting on their own abilities.
+    register: casual
+    setting: reflective
+    nuance: 「簡単なことさえ」 emphasizes that even tasks considered easy by others can be challenging for the
+      speaker, highlighting a personal difficulty or struggle that might be surprising to others.
+  - english: He was so tired that he couldn't even speak.
+    japanese:
+      - 彼 は 疲れ て {話す こと さえ} でき なかっ た。
+      - 彼 は 疲れ て 話す こと さえ でき ませ ん でし た。
+      - あいつ は 疲れ て 話す こと さえ でき なかっ た ん だ。
+    english_literally: He was tired and, speak thing even, could not do.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 疲れ て 話す こと も でき なかっ た。
+        english: He also couldn't speak because he was tired.
+        hint: While 「も」 indicates 'also couldn't', 「さえ」 strongly emphasizes that the speaker was so exhausted
+          they couldn't perform even the basic act of speaking. We're stressing the extreme level of inability.
+    scene: Describing someone who has had an incredibly demanding day.
+    register: casual
+    setting: serious
+    conjugation: potential (～られる/～える)
+    nuance: 「話すことさえ」 emphasizes that even the basic act of speaking was impossible due to extreme fatigue.
+      「できなかった」 is the plain past negative potential form of する.
+  - english: As long as it's you, I don't care about anything else.
+    japanese:
+      - '{あなた で さえ} いれ ば、他 に 何 も いら ない。'
+      - あなた で さえ いらっしゃれ ば、他 に 何 も いり ませ ん。
+      - お前 で さえ いれ ば、他 なんて 何 も いら ない。
+    english_literally: You even, if present, other anything, not needed.
+    competing_grammar:
+      - competing_japanese:
+          - あなた が いれ ば、他 に 何 も いら ない。
+        english: If you are here, nothing else is needed.
+        hint: The addition of 「さえ」 emphasizes that the presence of *just you* is the only crucial condition,
+          making everything else secondary. We're highlighting that *you* are the sole necessity.
+    scene: A heartfelt confession of deep affection or devotion.
+    register: shitashii kuchō (intimate)
+    setting: flirty
+    nuance: 「あなたでさえいれば」 signifies that the presence of the beloved "you" is the only thing needed, making
+      everything else unimportant. The 「で」 here functions to connect the noun 「あなた」 to the state of being,
+      which is then emphasized by 「さえ」.
+  - english: He even forgot that.
+    japanese:
+      - 彼 は {それ さえ} 忘れ て しまっ た。
+      - 彼 は それ さえ 忘れ て しまい まし た。
+      - あいつ は それ さえ 忘れ ちゃっ た。
+    english_literally: He, that even, ended up forgetting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は それ も 忘れ て しまっ た。
+        english: He also forgot that.
+        hint: 「も」 is a general 'also'. 「さえ」 emphasizes a greater degree of forgetfulness, implying that
+          'that' was something particularly important or basic. We're conveying surprise or concern about
+          him forgetting even this specific thing.
+    scene: Two friends discussing someone's recent forgetfulness, implying it's becoming a problem.
+    register: casual
+    setting: friendly
+    nuance: 「それさえ」 implies that "that" was something important or basic, and forgetting it is surprising
+      or concerning, perhaps hinting at a higher level of forgetfulness than expected.
+  - english: If only you contact me, I will come right away.
+    japanese:
+      - '{連絡 し て さえ} くれれ ば、すぐ に 行く から。'
+      - 連絡 し て さえ くだされ ば、すぐ に 参り ます から。
+      - 連絡 し て さえ くれりゃあ、すぐ に 行く ぜ。
+    english_literally: Contact do even if give, immediately will go because.
+    competing_grammar:
+      - competing_japanese:
+          - 連絡 し て くれれ ば、すぐ に 行く から。
+        english: If you contact me, I will come right away.
+        hint: Adding 「さえ」 emphasizes that simply making contact is the minimal and sufficient action for
+          the speaker to come. We want to stress that nothing more than contacting is needed.
+    scene: A person assuring a worried friend that they are always available to help.
+    register: casual
+    setting: supportive
+    conjugation: conditional (～ば)
+    nuance: 「連絡してさえくれれば」 implies that mere contact (連絡する - to contact) is the sufficient and only required
+      action for the speaker to come. The 「〜てさえくれれば」 structure shows that the speaker is willing to act
+      based on this minimal condition.
+post_example_writeup: As you can see from the examples, 「さえ」 powerfully emphasizes either a surprising
+  inclusion or a bare minimum condition. When it marks a minimal condition, it is almost always paired
+  with a conditional form like 「〜ば」 or 「〜たら」, reinforcing the idea of "if only this one thing happens."
+  Understanding this dual function will greatly improve your ability to use 「さえ」 naturally.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/さえ

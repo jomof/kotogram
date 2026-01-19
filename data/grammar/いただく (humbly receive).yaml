@@ -1,0 +1,304 @@
+grammar_point: いただく (humbly receive)
+learn_before:
+  - '[Clause]ので (because・so)'
+  - '[Phrase]まで(のこと)だ (nothing more)'
+  - '[Verb-stem]かねる (unable to・hesitant to)'
+  - '[Verb-て]くれる (to do for me・in-group)'
+  - '[Verb-て]もいい (it''s okay to)'
+  - からする (at least)
+  - できない (cannot do・unable to do)
+  - どなた (polite who)
+  - な-Adjective[で] (te-form)
+  - な-Adjective[でも] (concessive)
+  - わ〜わ (overwhelming or cumulative listing)
+  - 代わりに (instead of in return for)
+  - 決める (to decide)
+  - 真(っ) (completely)
+  - ～てでも (even if I have to・no matter what it takes)
+meaning: to humbly receive; to eat; to drink
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: いただく
+    rarity: common
+    meaning: to humbly receive; to eat; to drink
+  - conjugation-type: non-past polite (～ます)
+    form: いただきます
+    rarity: common
+    meaning: humbly receive; eat; drink
+  - conjugation-type: past plain (～た)
+    form: いただいた
+    rarity: common
+    meaning: humbly received; ate; drank
+  - conjugation-type: past polite (～ました)
+    form: いただきました
+    rarity: common
+    meaning: humbly received; ate; drank
+  - conjugation-type: te-form (～て)
+    form: いただいて
+    rarity: common
+    meaning: humbly receiving; eating; drinking (and then)
+  - conjugation-type: negative plain (～ない)
+    form: いただかない
+    rarity: common
+    meaning: do not humbly receive; do not eat; do not drink
+  - conjugation-type: negative non-past polite (～ません)
+    form: いただきません
+    rarity: common
+    meaning: do not humbly receive; do not eat; do not drink
+  - conjugation-type: negative past plain (～なかった)
+    form: いただかなかった
+    rarity: common
+    meaning: did not humbly receive; did not eat; did not drink
+  - conjugation-type: negative past polite (～ませんでした)
+    form: いただきませんでした
+    rarity: common
+    meaning: did not humbly receive; did not eat; did not drink
+  - conjugation-type: potential (～られる/～える)
+    form: いただける
+    rarity: common
+    meaning: can humbly receive; can eat; can drink
+  - conjugation-type: volitional (～よう)
+    form: いただこう
+    rarity: common
+    meaning: let's humbly receive; let's eat; let's drink
+  - conjugation-type: volitional polite (～ましょう)
+    form: いただきましょう
+    rarity: common
+    meaning: let's humbly receive; let's eat; let's drink
+pronunciation:
+  katakana: イタダク
+  romaji: itadaku
+formation:
+  Verb[te-form] + いただく: To humbly receive the favor of someone doing an action for the speaker.
+  Noun + を + いただく: To humbly receive a noun (e.g., an object, food, or drink).
+  いただく (as a main verb): Humble equivalent of 食べる (taberu) 'to eat' or 飲む (nomu) 'to drink'.
+jlpt: N4
+etymology: The word 「いただく」 (itadaku) literally means 'to place on one's head,' deriving from the act of
+  receiving something from a superior and respectfully raising it to one's head before accepting it. This
+  physical gesture of reverence evolved into the humble verbal expression for receiving, eating, and drinking,
+  signifying the speaker's deference and gratitude.
+writeup: |-
+  「いただく」 (itadaku) is a verb belonging to Kenjōgo, or humble language, which Japanese speakers use to lower themselves to show respect to others. It has two primary uses:
+
+  1.  **As a humble main verb**: It functions as the humble equivalent of 食べる (taberu, to eat), 飲む (nomu, to drink), and もらう (morau, to receive). This usage is very common, especially when accepting food or drink, or when receiving an object from someone in a higher position or someone you want to show respect to.
+
+  2.  **As a humble auxiliary verb**: When attached to the te-form of another verb (Verb-te + いただく), it means 'to humbly receive the favor of someone doing [Verb] for me.' This construction indicates that the speaker is gratefully receiving an action or service from another person. The subject of the te-form verb is the person performing the action for the speaker, and the speaker is the one benefiting from it.
+
+  It is crucial to remember that 「いただく」 is **always** used from the perspective of the speaker (or the speaker's in-group) receiving something or benefiting from an action. It is never used to describe someone else receiving something, nor is it used when the speaker is giving something. The usage implicitly acknowledges a social hierarchy, where the speaker is in a lower position relative to the person giving or doing the action.
+false_friends:
+  - term: もらう (to receive)
+    meaning: to receive
+    kind: similar expression
+    nuance: While both 「いただく」 and 「もらう」 mean 'to receive,' 「いただく」 is humble language (kenjōgo), used to
+      show extreme respect and humility towards the giver or the person performing an action for you.
+      「もらう」 is polite but does not carry the same degree of humility. You use 「もらう」 when referring to
+      receiving from peers or when less deference is needed.
+    grammar_point: もらう (to receive)
+  - term: くださる (to give, honorific)
+    meaning: to give (honorific)
+    kind: antonym
+    nuance: 「いただく」 expresses the humble act of *receiving*, while 「くださる」 is the honorific (sonkeigo) verb
+      for *giving*. 「くださる」 is used when someone of higher status gives something to you or performs an
+      action for you, emphasizing their graciousness.
+    grammar_point: <suggest>:くださる (honorific give)
+  - term: 謙譲語 (humble language)
+    meaning: humble language
+    kind: similar expression
+    nuance: 「いただく」 is a specific example of humble language (kenjōgo). Kenjōgo is a broader category of
+      respectful Japanese that lowers the speaker's status to elevate the listener's or a third party's
+      status. While 「いただく」 is a key component, there are many other forms of kenjōgo.
+    grammar_point: <suggest>:謙譲語 (humble language)
+post_false_friends_writeup: When distinguishing between 「いただく」 and 「もらう」, consider the level of respect
+  you wish to convey. If the person giving or doing the action is a superior, or if you want to express
+  profound gratitude, 「いただく」 is appropriate. For peers or less formal situations, 「もらう」 is sufficient.
+  As for 「くださる」, remember it's about the other person giving, not you receiving, and it also uses a high
+  level of respect for the giver.
+examples:
+  - english: Well then, I'll humbly eat.
+    japanese:
+      - で は、{いただき ます}。
+      - で は、{いただく}。
+      - で は、{いただこう}。
+      - で は、{いただき ましょう}。
+    english_literally: Well then, I will humbly receive/eat.
+    competing_grammar:
+      - competing_japanese:
+          - で は、食べ ます。
+        english: Well then, I will eat.
+        hint: 「食べます」 is polite but does not convey the same level of humility or gratitude as 「いただきます」.
+          We're looking for a humble expression before a meal.
+    scene: A common phrase said before starting a meal.
+    register: formal
+    setting: friendly
+    conjugation: non-past polite (～ます)
+  - english: I humbly received a very nice present from my boss.
+    japanese:
+      - 部 長 から 素敵 な プレゼント を {いただき まし た}。
+      - 部 長 から 素敵 な プレゼント を {いただい た}。
+    english_literally: From section chief, a wonderful present, I humbly received.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 から 素敵 な プレゼント を もらい まし た。
+        english: I received a wonderful present from my boss.
+        hint: 「もらいました」 is polite, but 「いただきました」 is humble language, more appropriate when receiving something
+          from a superior like a boss. We're looking for a humble reception.
+      - competing_japanese:
+          - 部 長 が 素敵 な プレゼント を くれ まし た。
+        english: My boss gave me a wonderful present.
+        hint: 「くれました」 focuses on the boss giving, but the sentence structure asks about *your* reception.
+          We're looking for humble reception.
+    scene: A new employee is talking about their boss.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: Could you please humbly do this translation for me?
+    japanese:
+      - この 翻訳 を {し て いただく} こと は 可能 でしょう か？
+      - この 翻訳 を {し て いただく} こと は 可能 か？
+      - この 翻訳 を {し て いただき たい} の です が。
+      - この 翻訳、{し て いただけ ます か}？
+    english_literally: This translation, to humbly receive the favor of doing, is it possible?
+    competing_grammar:
+      - competing_japanese:
+          - この 翻訳 を し て もらう こと は 可能 でしょう か？
+        english: Is it possible to have this translation done?
+        hint: While 「してもらう」 is correct, 「していただく」 expresses greater humility and politeness, especially
+          in a business context. We're looking for a humble request.
+    scene: A junior colleague asks a senior colleague for a favor.
+    register: semi-formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: The phrase 「していただくことは可能でしょうか？」 uses 「いただく」 as an auxiliary verb to humbly ask for a favor,
+      indicating respect for the person whose action is being received. This indirect, polite phrasing
+      is common in formal and professional settings to show deference.
+  - english: My teacher kindly wrote a letter of recommendation for me.
+    japanese:
+      - 先生 に 推薦 状 を 書い て {いただき まし た}。
+      - 先生 に 推薦 状 を 書い て {いただい た}。
+    english_literally: From teacher, a recommendation letter, writing, I humbly received.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 に 推薦 状 を 書い て もらい まし た。
+        english: My teacher wrote a letter of recommendation for me.
+        hint: Both are grammatically correct, but 「書いていただきました」 is more humble and respectful, acknowledging
+          the favor from a teacher. We're looking for humble reception of an action.
+      - competing_japanese:
+          - 先生 が 推薦 状 を 書い て ください まし た。
+        english: My teacher graciously wrote a letter of recommendation for me.
+        hint: 「書いてくださいました」 is also polite, but it focuses on the teacher's gracious action, whereas the
+          original sentence implies *you* receiving the benefit. We're looking for humble reception of
+          an action.
+    scene: A student expressing gratitude to their teacher for help with college applications.
+    register: formal
+    setting: academic
+    conjugation: past polite (～ました)
+  - english: I'm sorry, I can't humbly receive that.
+    japanese:
+      - 申し訳 あり ませ ん、それ は {いただき かね ます}。
+      - 申し訳 ない、それ は {いただき かねる}。
+      - それ は ちょっと {いただく} こと が でき ませ ん。
+    english_literally: I am terribly sorry, that, I humbly cannot receive.
+    competing_grammar:
+      - competing_japanese:
+          - 申し訳 あり ませ ん、それ は 受け取れ ませ ん。
+        english: I'm sorry, I cannot receive that.
+        hint: 「いただきかねます」 is a more formal and indirect way to express inability to accept, often used
+          in business or polite refusal. 「受け取れません」 is direct. We're looking for a humble refusal.
+    scene: A businessperson politely declining an offer.
+    register: semi-formal
+    setting: professional
+    conjugation: potential (～られる/～える)
+    nuance: The phrase 「いただきかねます」 uses the auxiliary verb form 「いただく」 combined with 「かねる」 (kaneru, to
+      be unable to), creating a very polite and indirect refusal. This phrasing is common in formal situations
+      where a direct 'no' would be considered impolite, showing consideration for the other party.
+  - english: May I humbly receive a copy of the minutes?
+    japanese:
+      - 議事 録 を {いただい て} も よろしい でしょう か？
+      - 議事 録、{いただい て も} いい です か？
+    english_literally: Minutes, humbly receiving, is it alright?
+    competing_grammar:
+      - competing_japanese:
+          - 議事 録 を もらっ て も よろしい でしょう か？
+        english: May I receive a copy of the minutes?
+        hint: 「もらってもよろしいでしょうか」 is polite, but 「いただいてもよろしいでしょうか」 is more humble and formal, appropriate
+          when asking for something in a business context. We're looking for a humble request to receive.
+    scene: During a meeting, a participant asks for a document.
+    register: formal
+    setting: professional
+    conjugation: te-form (～て)
+  - english: I received valuable advice from the CEO.
+    japanese:
+      - 社長 から 貴重 な ご 意見 を {いただき まし た}。
+      - 社長 から 貴重 な ご 意見 を {いただい た}。
+    english_literally: From president, valuable opinions, I humbly received.
+    competing_grammar:
+      - competing_japanese:
+          - 社長 から 貴重 な ご 意見 を もらい まし た。
+        english: I received valuable opinions from the CEO.
+        hint: When receiving something as significant as 'valuable advice' from a high-ranking person
+          like a CEO, 「いただきました」 is the more appropriate humble expression. We're looking for a humble
+          reception.
+    scene: An employee reporting on a meeting with the company president.
+    register: formal
+    setting: professional
+    conjugation: past polite (～ました)
+  - english: My parents bought me a new car.
+    japanese:
+      - 両親 に 新しい 車 を {買っ て いただき まし た}。
+      - 両親 に 新しい 車 を {買っ て いただい た}。
+    english_literally: From my parents, a new car, buying, I humbly received.
+    competing_grammar:
+      - competing_japanese:
+          - 両親 に 新しい 車 を 買っ て もらい まし た。
+        english: My parents bought me a new car.
+        hint: While 「買ってもらいました」 is acceptable, 「買っていただきました」 adds a layer of humility and gratitude towards
+          one's parents. We're looking for humble reception of an action.
+    scene: A young adult casually discussing a recent gift from their parents.
+    register: casual
+    setting: friendly
+    conjugation: past polite (～ました)
+    nuance: Even in a casual setting, using 「買っていただきました」 (katte itadakimashita) when speaking about parents
+      implies respect and gratitude. While 「買ってもらいました」 (katte moraimashita) is also correct, 「いただく」 shows
+      a deeper sense of appreciation for the parents' favor, reflecting traditional Japanese family dynamics.
+  - english: We will humbly receive your opinions and use them as reference.
+    japanese:
+      - 皆 様 の ご 意見 を {いただき}、参考 に さ せ て いただき ます。
+      - 皆 様 の ご 意見 を {頂戴 し}、参考 に さ せ て いただき ます。
+      - 皆 様 の ご 意見 を {いただき}、参考 に いたし ます。
+    english_literally: Everyone's opinions, humbly receiving, we will make reference.
+    competing_grammar:
+      - competing_japanese:
+          - 皆 様 の ご 意見 を 参考 に し て、活用 さ せ て いただき ます。
+        english: We will refer to everyone's opinions and utilize them.
+        hint: The use of 「いただき」 here is a humble way to acknowledge receiving input, emphasizing respect
+          for the contributors. We're looking for humble reception of opinions.
+    scene: A moderator concluding a feedback session.
+    register: formal
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: In this formal context, 「ご意見をいただく」 is standard business Japanese for 'to receive opinions.'
+      It demonstrates humility on the part of the receiver (the company/presenter) towards the givers
+      (the audience/customers). This formulation is common in situations where soliciting feedback is
+      part of a respectful exchange.
+  - english: I humbly ate the delicious cake my grandmother made.
+    japanese:
+      - 祖母 が 作っ て くれ た 美味しい ケーキ を {いただき まし た}。
+      - 祖母 が 作っ て くれ た 美味しい ケーキ を {いただい た}。
+    english_literally: Grandmother made for me, delicious cake, I humbly ate.
+    competing_grammar:
+      - competing_japanese:
+          - 祖母 が 作っ て くれ た 美味しい ケーキ を 食べ まし た。
+        english: I ate the delicious cake my grandmother made.
+        hint: While 「食べました」 is correct, 「いただきました」 conveys a greater sense of gratitude and humility, fitting
+          for a delicious homemade treat from a grandparent. We're looking for humble eating.
+    scene: A person recalling a pleasant memory.
+    register: casual
+    setting: friendly
+    conjugation: past polite (～ました)
+post_example_writeup: As illustrated in the examples, 「いただく」 is a versatile humble verb. It's used not
+  only for receiving objects or food but also, very importantly, as an auxiliary verb for humbly receiving
+  an action or favor from someone. Mastering its usage will significantly elevate your politeness and
+  communication skills in Japanese, particularly in situations involving superiors or individuals you
+  wish to show deference to.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%84%E3%81%9F%E3%81%A0%E3%81%8F

@@ -1,0 +1,308 @@
+grammar_point: にほかならない (nothing but)
+learn_before:
+  - そのもの (itself)
+  - ぬ (classical negative auxiliary)
+  - 単なる (mere・simple)
+meaning: Nothing but, none other than, simply
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: にほかならない
+    rarity: common
+    meaning: nothing but
+  - conjugation-type: non-past polite (～ます)
+    form: にほかなりません
+    rarity: common
+    meaning: nothing but (polite)
+  - conjugation-type: past plain (～た)
+    form: にほかならなかった
+    rarity: common
+    meaning: was nothing but
+  - conjugation-type: negative plain (～ない)
+    form: に他ならぬ
+    rarity: less common
+    meaning: is nothing but (formal, archaic)
+pronunciation:
+  katakana: ニホカナラナイ
+  romaji: ni hoka naranai
+formation:
+  Noun + にほかならない: Used to assert that something is definitively or exclusively the stated noun.
+  Clause (plain form) + にほかならない: Used to emphasize that a situation or outcome is solely attributable
+    to the preceding clause.
+  X のは Y から + にほかならない: Used to strongly emphasize that the reason (Y) for a state or action (X) is singular
+    and undeniable.
+jlpt: N2
+etymology: This grammar point comes from combining the noun 他 (hoka, "other") with the negative form of
+  the verb なる (naru, "to become"). Literally, it means "it will not become anything other than this,"
+  implying that the stated fact is the only possible explanation or description.
+writeup: '**にほかならない** (ni hoka naranai) is a formal expression used to emphasize a statement, reason,
+  or cause. It conveys that something is "nothing but," "none other than," or "simply" what is being stated.
+  It is a combination of the noun 他 (hoka, "other") and the negative form of the verb なる (naru, "to become").
+  This phrase literally means "it will not become anything other than what it is," highlighting that the
+  given definition or reason is the most accurate and sole explanation. Because of its definitive and
+  conclusive nature, it is often found in written Japanese or formal speeches. It indicates a strong assertion,
+  leaving no room for alternative interpretations. In particularly formal situations, especially formal
+  writing, you might encounter **に他ならぬ** (ni hoka naranu), which carries a similar meaning but has a slightly
+  more archaic or literary feel.'
+false_friends:
+  - term: にすぎない
+    meaning: No more than, just, merely
+    kind: similar expression
+    nuance: Unlike にほかならない, にすぎない implies that something is limited or insignificant, often downplaying
+      its importance.
+    grammar_point: にすぎない (no more than)
+  - term: しか〜ない
+    meaning: There's only, nothing but
+    kind: similar expression
+    nuance: While similar, しか〜ない often carries a sense of limitation or lack of alternatives, emphasizing
+      scarcity or restriction, which is less pronounced in にほかならない. It implies 'only X is available/possible'.
+    grammar_point: しか〜ない (only, nothing but)
+  - term: よりほかない
+    meaning: To have no choice but, No other way than, Have to
+    kind: similar expression
+    nuance: よりほかない indicates a lack of alternatives or options, signifying that there is no other course
+      of action, whereas にほかならない emphasizes a singular reason or explanation for a fact or outcome.
+    grammar_point: よりほかない・よりしかたがない (no choice but)
+  - term: だらけ
+    meaning: Completely covered in, Full of
+    kind: often confused with
+    nuance: Unlike にほかならない, which states something is *exclusively* something else (often a cause or reason),
+      だらけ describes a state of being completely full of or covered in something, typically undesirable
+      items or elements. It's a descriptive state, not an assertion of cause.
+    grammar_point: '[Noun]だらけ (full of, negative nuance)'
+post_false_friends_writeup: While expressions like 「にすぎない」, 「しか〜ない」, 「よりほかない」, and 「だらけ」share some conceptual
+  overlaps with 「にほかならない」, it's important to recognize their subtle differences. The grammar point 「にほかならない」
+  is best used when emphasizing a definitive, singular reason or cause for a particular state or outcome,
+  conveying an absolute truth. The others often convey a sense of limitation, lack of options, insignificance,
+  or a state of being filled with something specific.
+examples:
+  - english: His statement is nothing but a misunderstanding.
+    japanese:
+      - 彼 の 発言 は 誤解 に {ほか なら ない}。
+      - 彼 の 発言 は 誤解 に {他 なら ない}。
+      - 彼 の 発言 は 誤解 その もの に {ほか なら ない}。
+    english_literally: His statement is exclusively a misunderstanding.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 発言 は 誤解 {で ある}。
+        english: His statement is a misunderstanding.
+        hint: 「である」 is a straightforward factual statement. 「にほかならない」 provides strong emphasis and implies
+          it is solely a misunderstanding, whereas 「である」 is a more neutral assertion. We're looking for
+          strong emphasis.
+    scene: A colleague is clarifying a situation after someone made a confusing remark, ensuring everyone
+      understands the true nature of the statement.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: group
+    nuance: This example uses the plain form of the grammar point, appropriate for a serious and direct
+      explanation. The phrase 「誤解」 (misunderstanding) is presented as the singular and exclusive nature
+      of the statement, leaving no doubt.
+  - english: The success of this project is none other than the team's dedicated efforts.
+    japanese:
+      - この プロジェクト の 成功 は、チーム の 熱心 な 努力 に {ほか なり ませ ん}。
+      - この プロジェクト の 成功 は、チーム の 熱心 な 努力 の 結果 に {ほか なり ませ ん}。
+      - 当 プロジェクト の 成功 は、チーム の 熱心 な 努力 に {ほか なり ませ ん}。
+    english_literally: The success of this project is exclusively the team's dedicated efforts.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト の 成功 は、チーム の 熱心 な 努力 の {おかげ です}。
+        english: The success of this project is thanks to the team's dedicated efforts.
+        hint: 「～のおかげです」 expresses gratitude and attributes success to an effort, but 「にほかなりません」 definitively
+          states that nothing else but that effort was the cause. We're looking for a definitive, singular
+          cause.
+    scene: A team leader is presenting a report to management about a recently completed successful project.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: group
+    nuance: The use of 「ほかなりません」 demonstrates politeness and formality, making it suitable for a business
+      presentation. It attributes the success solely to the team's 「熱心な努力」 (dedicated efforts), emphasizing
+      that this was the singular cause.
+  - english: What happened that day was truly nothing but a trick of fate.
+    japanese:
+      - あの 日 の 出来事 は、まさに 運命 の いたずら に {ほか なら なかっ た}。
+      - あの 日 の 出来事 は、運命 の 悪戯 に {ほか なら なかっ た}。
+      - その 日 の 出来事 は、まさに 運命 の いたずら に {ほか なら なかっ た}。
+    english_literally: That day's event was truly exclusively a trick of fate.
+    competing_grammar:
+      - competing_japanese:
+          - あの 日 の 出来事 は、運命 の いたずら {で し た}。
+        english: What happened that day was a trick of fate.
+        hint: 「でした」 is a simple past assertion. 「にほかならなかった」 conveys a strong, conclusive judgment that
+          it was *only* a trick of fate, while 「でした」 is a simpler past assertion without that emphasis.
+          We're looking for a strong, singular explanation.
+    scene: A person is reflecting on a significant past incident with a sense of inevitability, feeling
+      that circumstances were entirely beyond their control.
+    register: formal
+    setting: reflective
+    conjugation: past plain (～た)
+    nuance: The use of 「ほかならなかった」 places this sentence in the past tense, indicating a definitive conclusion
+      about a past event. The phrase 「まさに運命のいたずら」 (truly a trick of fate) emphasizes the speaker's belief
+      that it was the only explanation for what transpired.
+  - english: His actions stem from nothing but pure goodwill.
+    japanese:
+      - 彼 の 行動 は、真 の 善意 から 出 た もの に {他 なら ぬ}。
+      - 彼 の 行動 は、純粋 な 善意 から 出 た もの に {他 なら ぬ}。
+      - 彼 の 行為 は、真 の 善意 から 出 た もの に {他 なら ぬ}。
+    english_literally: His actions are exclusively things that came from true goodwill.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 行動 は、真 の 善意 から 出 た もの {で ある}。
+        english: His actions are things that came from true goodwill.
+        hint: 「である」 is a more common assertion. 「に他ならぬ」 is a highly formal and literary expression, conveying
+          an absolute and undeniable truth, whereas 「である」 is a more common assertion. We're looking for
+          a very strong, formal declaration of truth.
+    scene: A narrator is describing a character's motivation in a historical or literary context, emphasizing
+      the singular, underlying purity of their intentions.
+    register: bungo (literary)
+    setting: storytelling
+    conjugation: negative plain (～ない)
+    nuance: The use of 「に他ならぬ」 is a more formal and slightly archaic variant of 「にほかならない」, often found
+      in literary or highly formal prose. It emphasizes the singular, undeniable nature of 「真の善意」 (true
+      goodwill) as the sole origin of his actions.
+    etymology: 「他ならぬ」 directly utilizes the kanji for 「他」 (other), more explicitly tying the grammar point
+      to its etymological root of "not being anything other than."
+  - english: The reason he was able to grow this much is simply due to his ceaseless effort.
+    japanese:
+      - 彼 が ここ まで 成長 でき た の は、絶え間 ない 努力 から に {ほか なら ない}。
+      - 彼 が ここ まで 成長 し た の は、絶え間 ない 努力 から に {ほか なら ない}。
+      - 彼 の 成長 は、絶え間 ない 努力 から に {ほか なら ない}。
+    english_literally: His being able to grow this much is exclusively from ceaseless effort.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が ここ まで 成長 でき た の は、絶え間 ない 努力 の {結果 です}。
+        english: The reason he was able to grow this much is the result of his ceaseless effort.
+        hint: 「の結果です」 indicates it's a result, but doesn't necessarily exclude other factors. 「にほかならない」
+          asserts that the ceaseless effort is the *only* reason for his growth, emphasizing singular
+          causality. We're looking for the singular cause.
+    scene: A mentor is commenting on a protégé's significant personal development, highlighting the core
+      reason behind their progress.
+    register: formal
+    setting: supportive
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: 'This sentence employs the grammar point to attribute the growth 「成長」 to a single, undisputed
+      cause: 「絶え間ない努力」 (ceaseless effort). The emphasis is on this being the *only* reason for his remarkable
+      progress. The female speaker''s choice of formal language 「にほかならない」 rather than a more casual form
+      reinforces the supportive yet instructive tone of a mentor speaking to a younger male.'
+  - english: True friendship is nothing but trusting each other.
+    japanese:
+      - 真 の 友情 と は、互い に 信頼 し 合う こと に {ほか なら ない}。
+      - 真 の 友情 と は、相互 に 信頼 する こと に {ほか なら ない}。
+      - 真 の 友情 と は、互い を 信頼 し 合う こと に {ほか なら ない}。
+    english_literally: True friendship is exclusively the act of trusting each other.
+    competing_grammar:
+      - competing_japanese:
+          - 真 の 友情 と は、互い に 信頼 し 合う こと {で ある}。
+        english: True friendship is trusting each other.
+        hint: 「である」 is a straightforward definitional statement. 「にほかならない」 provides a strong, emphatic
+          definition, stating that true friendship is *nothing other than* mutual trust. We're looking
+          for an emphatic, essential definition.
+    scene: A philosopher is explaining the essence of friendship to students during a lecture, providing
+      a concise and definitive definition.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: This sentence asserts a fundamental truth or definition. 「真の友情」 (true friendship) is defined
+      exclusively by 「互いに信頼し合うこと」 (trusting each other), emphasizing this as its sole and essential characteristic.
+      The use of 「～とは」 sets up a definition, making 「にほかならない」 a fitting conclusion to state the definitive
+      nature of that definition.
+  - english: That failure was nothing but a result of insufficient planning.
+    japanese:
+      - あの 失敗 は、計画 不足 に {ほか なら なかっ た}。
+      - あの 失敗 は、計画 の 不備 に {ほか なら なかっ た}。
+      - その 失敗 は、単なる 計画 不足 に {ほか なら なかっ た}。
+    english_literally: That failure was exclusively a result of insufficient planning.
+    competing_grammar:
+      - competing_japanese:
+          - あの 失敗 は、計画 不足 が {原因 で し た}。
+        english: That failure was caused by insufficient planning.
+        hint: 「が原因でした」 indicates a cause, but not necessarily the *only* one. 「にほかならなかった」 emphasizes that
+          insufficient planning was the *sole* and *absolute* reason for the failure. We're looking for
+          an assertion of a singular, undeniable cause.
+    scene: A project manager reviewing a past project's failure with their team, clearly identifying the
+      primary issue.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    nuance: Using 「にほかならなかった」 in the past tense firmly asserts that the failure's root cause was undeniably
+      「計画不足」 (insufficient planning), leaving no room for other interpretations regarding the past event.
+      This emphasizes accountability.
+  - english: His kindness is nothing but true compassion.
+    japanese:
+      - 彼 の 優し さ は、真 の 思いやり に {ほか なら ない}。
+      - 彼 の 優し さ は、まさ に 真 の 思いやり に {ほか なら ない}。
+      - 彼 の 優し さ は、本当 の 思いやり に {ほか なら ない}。
+    english_literally: His kindness is exclusively true compassion.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 優し さ は、真 の 思いやり {だ}。
+        english: His kindness is true compassion.
+        hint: 「だ」 states a fact. While 「だ」 states a fact, 「にほかならない」 adds a strong emphasis, suggesting
+          that his kindness *cannot be anything other than* true compassion, making it a definitive and
+          exclusive description. We're looking for an emphatic, conclusive statement about his character.
+    scene: Two friends discussing a mutual acquaintance, affirming the genuine nature of his character.
+    register: formal
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: male
+    nuance: Even in a friendly setting, using 「にほかならない」 elevates the statement, giving it a profound and
+      conclusive feel. The speaker is not just saying he is compassionate, but that his kindness *is*
+      compassion itself, in its purest form. The female speaker's use suggests a thoughtful and definitive
+      observation.
+  - english: Art, in its essence, is nothing but a reflection of the human spirit.
+    japanese:
+      - 芸術 と は、人間 の 精神 の 投影 に {ほか なら ない}。
+      - 芸術 と は、人間 の 精神 の 表現 に {ほか なら ない}。
+      - 芸術 と は、人類 の 精神 の 反映 に {ほか なら ない}。
+    english_literally: Art is exclusively a reflection of the human spirit.
+    competing_grammar:
+      - competing_japanese:
+          - 芸術 と は、人間 の 精神 の 投影 {で ある}。
+        english: Art is a reflection of the human spirit.
+        hint: 「である」 is a standard factual statement. 「にほかならない」 provides a stronger, more assertive definition,
+          implying that art *cannot be anything other than* a reflection of the human spirit. We're looking
+          for a definitive, fundamental assertion.
+    scene: An art critic giving a lecture to a group of students, articulating a core philosophical concept
+      about art.
+    register: formal
+    setting: academic
+    conjugation: dictionary (plain non-past)
+    listener_gender: group
+    nuance: The structure 「X とは Y にほかならない」 is common for defining concepts. Here, it establishes a foundational
+      truth about art, positing that its sole essence is to reflect the human spirit. This phrasing is
+      perfectly suited for academic or philosophical discourse, lending weight and conclusiveness to the
+      definition.
+  - english: The true essence of this problem is nothing but a lack of communication.
+    japanese:
+      - この 問題 の 本質 は、意思 疎通 の 欠如 に {ほか なら ない}。
+      - この 問題 の 核心 は、コミュニケーション 不足 に {ほか なら ない}。
+      - 本件 の 問題 は、コミュニケーション の 欠如 に {ほか なら ない}。
+    english_literally: The essence of this problem is exclusively a lack of communication.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 の 本質 は、意思 疎通 の 欠如 {だ と 思う}。
+        english: I think the essence of this problem is a lack of communication.
+        hint: 「だと思う」 expresses a personal thought. 「にほかならない」 makes a definitive, objective statement that
+          the lack of communication *is* the problem's essence, removing any doubt or personal opinion.
+          We're looking for a conclusive, objective declaration.
+    scene: During a business meeting, a consultant analyzes a complex issue, pinpointing its singular,
+      underlying cause.
+    register: bijinesu nihongo (business)
+    setting: professional
+    conjugation: dictionary (plain non-past)
+    nuance: In a professional context, using 「にほかならない」 allows the speaker to present a conclusion with
+      strong authority and certainty. It implies that after thorough analysis, the only possible and undeniable
+      truth about the problem's nature is 「意思疎通の欠如」 (lack of communication), thereby guiding the discussion
+      towards that specific solution.
+post_example_writeup: When using にほかならない, ensure that the noun or phrase it connects to is the *only*
+  explanation or reason for the situation. Avoid using it when there could be other contributing factors
+  or interpretations.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/にほかならない

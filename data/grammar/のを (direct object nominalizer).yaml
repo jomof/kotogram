@@ -1,0 +1,324 @@
+grammar_point: のを (direct object nominalizer)
+learn_before:
+  - が (subject marker)
+  - を (direct object marker)
+  - を気にする (to mind)
+  - 地面・天井 (ground・floor・ceiling)
+  - 気 (feeling・inclination・atmosphere)
+  - 知る (to know or find out)
+  - 込む (to do thoroughly)
+meaning: nominalizing a clause to be used as a direct object
+pronunciation:
+  katakana: ノ オ
+  romaji: no o
+formation:
+  '[Verb-plain form] + のを': Used to nominalize a verb clause and mark it as a direct object.
+  '[い-Adjective-plain form] + のを': Used to nominalize an adjective clause and mark it as a direct object.
+  '[な-Adjective-な] + のを': Used to nominalize an adjective clause and mark it as a direct object.
+  '[Noun-の] + のを': Used to nominalize a noun clause and mark it as a direct object.
+jlpt: N3
+etymology: The particle 「の」 (no) functions as a nominalizer, evolving from a noun meaning 'thing' or 'entity.'
+  This allows it to transform a clause or phrase into a noun. The particle 「を」 (o) is a direct object
+  marker. Together, 「のを」 effectively reifies an action, state, or event, turning it into something that
+  can be directly acted upon by a transitive verb. This combination allows for a precise focus on the
+  perceived or intended action itself.
+writeup: |-
+  The grammatical structure 「のを」 is formed by combining the nominalizer 「の」 with the direct object particle 「を」. This combination allows you to treat a verb phrase, adjective phrase, or even a noun phrase (with 「の」) as a single noun, which then becomes the direct object of a transitive verb.
+
+  Think of 「の」 as turning the preceding clause into 'the act of doing X,' 'the state of being Y,' or 'the fact that Z.' When followed by 「を」, it specifies *that act, state, or fact* as what the transitive verb is acting upon.
+
+  This construction is frequently used with verbs of perception such as 「見る」 (miru - to see), 「聞く」 (kiku - to hear), 「感じる」 (kanjiru - to feel), and verbs that imply an action being carried out or remembered, like 「手伝う」 (tetsudau - to help), 「忘れる」 (wasureru - to forget), 「覚える」 (oboeru - to remember), or 「知る」 (shiru - to know). It highlights the specific event or action being objectified, rather than just the general concept.
+
+  For example, instead of saying 「犬を見ます」 (inu o mimasu - I see a dog), which focuses on the dog, you might say 「犬が走るのを{見ます}」 (inu ga hashiru no o mimasu - I see the dog running), where the focus is on the *act of running* that the dog is doing. This distinction is crucial for expressing what you perceive or act upon.
+false_friends:
+  - term: のが
+    meaning: nominalizing a clause to be used as a subject
+    kind: similar expression
+    nuance: While 「のを」 marks the nominalized clause as a direct object, 「のが」 marks it as the subject of
+      the sentence. The choice between them depends entirely on the grammatical role the nominalized clause
+      plays.
+    grammar_point: <suggest>:のが上手だ・下手だ (to be good at・bad at doing)
+  - term: のは
+    meaning: nominalizing a clause to be used as a topic or for contrast
+    kind: similar expression
+    nuance: 「のは」 marks the nominalized clause as the topic of the sentence or introduces it for contrast.
+      It sets the stage for a comment or comparison, unlike 「のを」 which directly specifies the object of
+      an action.
+    grammar_point: のは (emphasis and identification)
+  - term: ことを
+    meaning: nominalizing a clause with 'koto' as a direct object
+    kind: similar expression
+    nuance: 「ことを」 also nominalizes a clause to function as a direct object. However, 「こと」 often refers
+      to more abstract concepts, general facts, or experiences. 「の」 tends to refer to more specific, concrete
+      events or actions, especially those involving sensory perception.
+    grammar_point: '[Verb-dictionary]こと (nominalization)'
+  - term: もの
+    meaning: nominalizing a clause with 'mono' for explanation or natural tendency
+    kind: similar expression
+    nuance: When used with 「を」 (i.e., 「ものを」), 「もの」 nominalizes a clause with additional nuances such as
+      expressing a natural or logical outcome, an explanation, or regret. It implies a deeper, often more
+      emotional, connection to the action or state compared to the more neutral or direct observation
+      conveyed by 「のを」.
+    grammar_point: '[Verb-dictionary]もの (nominalization)'
+post_false_friends_writeup: To differentiate between 「のを」 and other similar nominalizing structures, focus
+  on the particle that follows 「の」. If it's 「を」, the nominalized clause is the direct object. If it's
+  「が」, it's the subject. If it's 「は」, it's the topic. 「こと」 and 「もの」 are also nominalizers, but 「こと」 leans
+  towards abstract facts or experiences, while 「もの」 often carries explanatory or emotional undertones.
+  「の」 with 「を」 is for specific, often perceived, actions or states as objects.
+examples:
+  - english: I saw my friend cross the street.
+    japanese:
+      - 友達 が 道 を {渡る の を} 見 まし た。
+      - 友達 が 道 を {渡る の を} 見 た。
+    english_literally: Friend, street, crossing, that act, saw.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 道 を 渡る の が 見え まし た。
+        english: My friend crossing the street was visible.
+        hint: 「見えました」 uses the potential form of 見る, meaning 'to be visible' or 'to be able to see', which
+          focuses on the natural appearance of something rather than an active viewing. We're looking
+          for an active perception.
+      - competing_japanese:
+          - 友達 が 道 を 渡っ て いる こと を 見 まし た。
+        english: I saw the fact that my friend was crossing the street.
+        hint: 「こと」 often nominalizes a clause more abstractly, referring to the 'fact' or 'circumstance'.
+          We're looking for direct observation of a specific action.
+    scene: You are telling someone about what you observed on your way home.
+    register: casual
+    setting: informative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    nuance: The use of 「渡る の を」 highlights the action of 'crossing' itself as the object that was seen.
+      The speaker is casually recounting an observation to a friend.
+  - english: She heard the baby crying.
+    japanese:
+      - 彼女 は 赤ちゃん が 泣く {の を} 聞き まし た。
+      - 彼女 は 赤ちゃん が 泣く {の を} 聞い た。
+    english_literally: She, baby, crying, that sound, heard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 赤ちゃん が 泣い て いる 声 を 聞き まし た。
+        english: She heard the baby's crying voice.
+        hint: This focuses on the 'voice' (声) as the direct object, rather than the 'act of crying' itself.
+          We're looking for an active perception of the nominalized action.
+      - competing_japanese:
+          - 彼女 は 赤ちゃん が 泣く こと を 聞き まし た。
+        english: She heard (about) the fact that the baby was crying.
+        hint: 「こと」 here suggests hearing *about* something or a general fact, not directly perceiving
+          the sound of the action. We're looking for direct auditory perception of the action.
+    scene: A mother is describing an incident with her child.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「泣く の を」 emphasizes the specific 'act of crying' that was heard. This sentence, using polite
+      forms, suggests a respectful or somewhat formal recounting of an event.
+  - english: I forgot to turn off the lights.
+    japanese:
+      - 電気 を 消す {の を} 忘れ まし た。
+      - 電気 を 消す {の を} 忘れ た。
+    english_literally: Electricity, turning off, that act, forgot.
+    competing_grammar:
+      - competing_japanese:
+          - 電気 を 消す こと を 忘れ まし た。
+        english: I forgot the fact of turning off the lights.
+        hint: While similar, 「こと」 can imply a more abstract concept or general event. 「の」 is often preferred
+          for concrete, specific actions one forgets to do. We're looking for forgetting a specific act.
+      - competing_japanese:
+          - 電気 を 消し 忘れ まし た。
+        english: I forgot to turn off the lights.
+        hint: This uses a compound verb structure which is more concise but doesn't explicitly nominalize
+          the action. We're looking for the full nominalization using の.
+    scene: You are rushing out of the house and suddenly remember something.
+    register: casual
+    setting: apologetic
+    conjugation: past polite (～ました)
+    listener_gender: no one
+    nuance: The phrase 「消す の を」 nominalizes the action 'to turn off' making it the object of 'forgot'.
+      This is a common phrase to express forgetting an action. This casual self-talk shows a moment of
+      realization.
+  - english: Did you feel the ground shaking?
+    japanese:
+      - 地面 が 揺れる {の を} 感じ まし た か？
+      - 地面 が 揺れる {の を} 感じ た？
+    english_literally: Ground, shaking, that sensation, felt?
+    competing_grammar:
+      - competing_japanese:
+          - 地面 が 揺れ て いる と 感じ まし た か？
+        english: Did you feel that the ground was shaking?
+        hint: The use of 「と」 here implies feeling *that* something is happening, which is more a realization
+          or thought, rather than a direct physical sensation. We're looking for direct sensation of the
+          action.
+      - competing_japanese:
+          - 地面 の 揺れ を 感じ まし た か？
+        english: Did you feel the shaking of the ground?
+        hint: This phrasing uses the noun 「揺れ」 (yure - shake) as the object, rather than nominalizing
+          the verb. We're looking for the nominalized action.
+    scene: After a slight tremor, one person asks another if they noticed it.
+    register: casual
+    setting: interrogative
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「揺れる の を」 objectifies the 'act of shaking'. The casual tone and question form make this a
+      direct inquiry about a shared sensory experience.
+  - english: He helps me study Japanese.
+    japanese:
+      - 彼 は 私 が 日本 語 を 勉強 する {の を} 手伝っ て くれ ます。
+      - 彼 は 私 が 日本 語 を 勉強 する {の を} 手伝っ て くれる。
+    english_literally: He, I, Japanese, studying, that act, helps (for me).
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 が 日本 語 を 勉強 する こと を 手伝っ て くれ ます。
+        english: He helps me with the fact of studying Japanese.
+        hint: While sometimes interchangeable, 「こと」 can sound slightly more abstract or formal here. 「の」
+          is often preferred for specific activities. We're looking for the direct nominalization of the
+          action.
+      - competing_japanese:
+          - 彼 は 私 の 日本 語 の 勉強 を 手伝っ て くれ ます。
+        english: He helps my Japanese study.
+        hint: This phrasing uses 「勉強」 as a noun modified by 「日本語 の」, rather than nominalizing the verb
+          「勉強する」. We're looking for the verb's nominalized form.
+    scene: You are talking about someone who regularly helps you.
+    register: teineigo (polite)
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「勉強する の を」 transforms 'to study' into the object of 'helps', emphasizing the activity itself.
+      The use of 「～てくれます」 indicates that the helper does this *for* the speaker, adding a nuance of gratitude
+      or benefit. The polite form is suitable for informing a group.
+  - english: I didn't know that you could speak Japanese.
+    japanese:
+      - あなた が 日本 語 を 話せる {の を} 知り ませ ん でし た。
+      - あなた が 日本 語 を 話せる {の を} 知ら なかっ た。
+    english_literally: You, Japanese, can speak, that fact, didn't know.
+    competing_grammar:
+      - competing_japanese:
+          - あなた が 日本 語 を 話せる と は 知り ませ ん でし た。
+        english: I didn't know that you could speak Japanese.
+        hint: Using 「と は」 emphasizes the surprising nature of the fact being learned, rather than simply
+          stating the object of one's knowledge. We're looking for the nominalized action/ability as a
+          direct object.
+      - competing_japanese:
+          - あなた が 日本 語 を 話す こと が できる と は 知り ませ ん でし た。
+        english: I didn't know that you were able to speak Japanese.
+        hint: This is a more verbose way to express ability and knowledge, using 「こと」 for nominalization
+          and emphasizing 'ability'. We're looking for the simpler and more direct nominalization with
+          「の」.
+    scene: You just heard someone speak Japanese for the first time.
+    register: casual
+    setting: excited
+    conjugation: negative past polite (～ませんでした)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「話せる の を」 nominalizes the ability 'to speak Japanese', making it the object of 'didn't know'.
+      The casual tone conveys surprise and excitement upon learning this new information.
+  - english: I remember seeing that movie with you.
+    japanese:
+      - あなた と あの 映画 を {見る の を} 覚え て い ます。
+      - あなた と あの 映画 を {見る の を} 覚え て いる。
+    english_literally: You, that movie, seeing, that act, remember.
+    competing_grammar:
+      - competing_japanese:
+          - あなた と あの 映画 を 見 た こと を 覚え て い ます。
+        english: I remember having seen that movie with you.
+        hint: 「こと」 here emphasizes the *experience* of having done something in the past. 「の」 is more
+          direct, referring to the specific act itself. We're looking for remembering the specific act.
+      - competing_japanese:
+          - あなた と あの 映画 を 見 た の が 印象 的 でし た。
+        english: The fact that I saw that movie with you was impressive.
+        hint: This sentence shifts the grammatical role, making the nominalized clause the subject of
+          「印象的でした」 (was impressive), not the object of remembering. We're looking for the nominalized
+          act as the object of memory.
+    scene: You are reminiscing with a friend about past events.
+    register: casual
+    setting: intimate
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「見る の を」 specifies the 'act of watching the movie' as the memory being recalled. The casual,
+      intimate setting fits the use of the plain form 「覚えている」 in a conversation between close friends.
+  - english: He tried to prevent the car from leaving.
+    japanese:
+      - 彼 は 車 が 出る {の を} 止めよう と し まし た。
+      - 彼 は 車 が 出る {の を} 止めよう と し た。
+    english_literally: He, car, leaving, that act, tried to stop.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 車 が 出る こと を 止めよう と し まし た。
+        english: He tried to prevent the fact that the car would leave.
+        hint: 「こと」 tends to be more abstract, referring to facts or general occurrences. 「の」 is used for
+          the direct perception or manipulation of an action. We're looking for preventing a specific
+          action.
+      - competing_japanese:
+          - 彼 は 車 の 発進 を 止めよう と し まし た。
+        english: He tried to stop the car's departure.
+        hint: This uses a noun 「発進」 (hasshin - departure/start) instead of a nominalized verb. We're looking
+          for the nominalized verbal action.
+    scene: Someone is recounting a dramatic event where an attempt was made to stop something.
+    register: formal
+    setting: storytelling
+    conjugation: past polite (～ました)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「出る の を」 nominalizes the 'act of the car leaving', which is then the object of the attempt
+      to stop. The formal register and explanatory tone are suitable for recounting a past event to an
+      audience.
+  - english: We noticed that the sky was getting dark.
+    japanese:
+      - 空 が 暗く なる {の を} 気づき まし た。
+      - 空 が 暗く なる {の を} 気づい た。
+    english_literally: Sky, becoming dark, that state, noticed.
+    competing_grammar:
+      - competing_japanese:
+          - 空 が 暗く なる と 気づき まし た。
+        english: I realized that the sky was getting dark.
+        hint: Using 「と」 here implies a realization or a thought, rather than a direct perception of the
+          change itself. We're looking for direct observation of the changing state.
+      - competing_japanese:
+          - 空 の 暗く なる 様子 に 気づき まし た。
+        english: I noticed the way the sky was getting dark.
+        hint: This uses 「様子」 (yousu - appearance/state) as the object of notice, which is a noun. We're
+          looking for the nominalized verbal action.
+    scene: You are talking about a change in the weather you observed.
+    register: casual
+    setting: informative
+    conjugation: past polite (～ました)
+    listener_gender: female
+    nuance: 「暗くなる の を」 nominalizes the changing state of the sky. This phrasing is used for noticing a
+      gradual process or a change in condition, making the transformation itself the object of perception.
+  - english: I don't mind you using my PC.
+    japanese:
+      - 私 の パソコン を 使う {の を} 気 に し ませ ん。
+      - 私 の パソコン を 使う {の を} 気 に し ない。
+    english_literally: My PC, using, that act, don't mind.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の パソコン を 使う こと を 気 に し ませ ん。
+        english: I don't mind the fact of you using my PC.
+        hint: 「こと」 often indicates a general fact or concept, which can be acceptable here but 「の」 feels
+          more natural for a specific action being granted permission for. We're looking for the direct
+          nominalization of the specific action.
+      - competing_japanese:
+          - 私 の パソコン を 使っ て も いい です。
+        english: It's fine even if you use my PC.
+        hint: This is a direct expression of permission, rather than nominalizing an action as an object
+          of 'not minding'. We're looking for the nominalized action as the object.
+    scene: Someone asks for permission to use your computer.
+    register: semi-formal
+    setting: friendly
+    conjugation: negative non-past polite (～ません)
+    speaker_gender: female
+    listener_gender: male
+    nuance: 「使う の を」 nominalizes the act of 'using' the computer, which is the object of '気にしない' (ki ni
+      shinai - don't mind). This polite but approachable expression conveys a friendly permission.
+post_example_writeup: The examples provided demonstrate how 「のを」 allows you to treat entire actions, states,
+  or events as concrete objects that can be acted upon by verbs like seeing, hearing, forgetting, or helping.
+  This construction is incredibly versatile and essential for expressing nuanced perceptions and interactions
+  in Japanese. Notice how the nominalized clause, typically marked with 「が」 for its subject, clearly defines
+  *what* is being perceived or acted upon by the main verb.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/のを

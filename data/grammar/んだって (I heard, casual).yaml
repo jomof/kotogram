@@ -1,0 +1,228 @@
+grammar_point: んだって (I heard, casual)
+learn_before:
+  - だって (because・since)
+meaning: I heard that...
+pronunciation:
+  katakana: ンダッテ
+  romaji: ndatte
+formation:
+  Verb[plain] + んだって: Used to convey information heard from someone or somewhere else, emphasizing the
+    explanatory 'n' component.
+  い-Adjective[plain] + んだって: Used to convey information heard from someone or somewhere else, emphasizing
+    the explanatory 'n' component.
+  な-Adjective[だ] + んだって: Used to convey information heard from someone or somewhere else, emphasizing
+    the explanatory 'n' component. The 'da' before 'ndatte' can be dropped in very casual speech.
+  Noun[だ] + んだって: Used to convey information heard from someone or somewhere else, emphasizing the explanatory
+    'n' component. The 'da' before 'ndatte' can be dropped in very casual speech.
+jlpt: N3
+etymology: The expression 「んだって」 is a casual contraction of 「のだそうだ」 or 「ということだ」. The 「ん」 part is a contraction
+  of 「の」, which serves an explanatory or emphatic function, indicating that the speaker is presenting
+  a reason or understanding. The final 「って」 is a casual quotation marker, derived from 「と言う」 (to say).
+  Thus, it literally means 'It is that one says' or 'It is said that...', making it a direct way to report
+  heard information.
+writeup: 「んだって」 is a highly common and versatile casual expression used to report information that the
+  speaker has heard from someone else, or from a general source like news or rumors. It functions as a
+  direct, informal equivalent to more formal hearsay expressions such as 「〜そうだ」 or 「〜とのことです」. The 「ん」
+  (a contraction of 「の」) adds an explanatory or emphatic nuance, suggesting that the speaker is presenting
+  information they've come to understand or are explaining a situation based on what they've learned.
+  It is frequently employed in everyday conversations among friends, family, or close colleagues in informal
+  settings. While its primary role is to indicate reported speech, it can also subtly convey surprise,
+  skepticism, or simply a straightforward relay of information. Due to its casual nature, it should be
+  strictly avoided in formal or polite contexts. Its usage is pervasive across all genders and ages in
+  casual speech.
+false_friends:
+  - term: 〜らしい (it seems, based on evidence・I hear)
+    meaning: It seems that... / I hear that...
+    kind: similar expression
+    nuance: Unlike 「んだって」, which directly reports what was heard, 「らしい」 implies information gathered from
+      indirect evidence or general rumor, often conveying a sense of probability or conjecture rather
+      than a direct report.
+    grammar_point: らしい (it seems, based on evidence・I hear)
+  - term: 〜そうだ (it is said)
+    meaning: I hear that... / It is said that...
+    kind: similar expression
+    nuance: While both convey hearsay, 「そうだ」 is typically more direct and can apply to general news or
+      direct observation (appearance). 「んだって」, being a contraction of 「のだそうだ」, often carries a stronger
+      explanatory or empathetic nuance, implying the speaker has processed or understood the information.
+    grammar_point: <suggest>:[Sentence]そうだ (I heard・it is said)
+  - term: 〜って (quotation marker, casual)
+    meaning: They said... / (Topic marker, casual)
+    kind: similar expression
+    nuance: The simple 「って」 functions as a general casual quotation marker, directly citing someone's
+      words or introducing a topic. It lacks the explanatory 「ん」 nuance of 「んだって」, which specifically
+      indicates that the speaker has understood or is explaining the reported information.
+    grammar_point: って (quotation marker, casual)
+post_false_friends_writeup: When distinguishing between these expressions, consider the source and the
+  speaker's nuance. 「んだって」 is a casual, often explanatory, report of what was heard. 「らしい」 suggests information
+  based on inference or less direct evidence, often with a hint of uncertainty. 「そうだ」 (hearsay) is a more
+  straightforward report of information, frequently used for general news. The bare 「って」 is a simple,
+  casual quotation or topic marker, lacking the deeper explanatory context of 「んだって」.
+examples:
+  - english: Hey, the exam for tomorrow is canceled, I heard.
+    japanese:
+      - ねえ、明日 の 試験 {中止 な ん だ って}。
+      - ねえ、明日 の 試験 {中止 だ って}。
+    english_literally: Hey, tomorrow's exam is canceled, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - ねえ、明日 の 試験 中止 らしい よ。
+        english: Hey, it seems tomorrow's exam is canceled.
+        hint: 「らしい」 indicates probability or inference based on indirect information. We're looking for
+          a direct report of something heard, often with a slight explanatory tone.
+    scene: A student tells their friend about a change in their school schedule.
+    register: casual
+    setting: friendly
+    nuance: The use of 「中止なんだって」 conveys a casual report of information heard, with 「ん」 adding a slight
+      nuance of explaining the situation. It's typical speech between close friends.
+  - english: I heard that the new restaurant by the station is really delicious.
+    japanese:
+      - 駅前 の 新しい レストラン、{すごく おいしい ん だ って}。
+      - 駅前 の 新しい レストラン、{すごく おいしい って}。
+    english_literally: The new restaurant in front of the station, is very delicious, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 駅前 の 新しい レストラン、すごく おいしい そう です。
+        english: I heard the new restaurant in front of the station is very delicious.
+        hint: 「そうです」 is more formal for hearsay. We're looking for a casual way to report something heard.
+    scene: Two friends are discussing places to eat.
+    register: casual
+    setting: friendly
+    nuance: The speaker is relaying a casual rumor or tip they've received about the restaurant's quality.
+      「おいしいんだって」 is a natural way to share this kind of hearsay.
+  - english: My friend said he is going to travel to Hokkaido next month, I heard.
+    japanese:
+      - 友達 が 来月 北海道 {に 旅行 する ん だ って}。
+      - 友達 が 来月 北海道 {に 旅行 する って}。
+    english_literally: My friend, next month Hokkaido to travel will do, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 友達 が 来月 北海道 に 旅行 する と 言っ て まし た。
+        english: My friend said he would travel to Hokkaido next month.
+        hint: 「〜と 言ってました」 is a more direct and slightly more formal way to report what someone said. We're
+          looking for a casual, contracted form.
+    scene: One person is updating another on a mutual friend's plans.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: This phrasing, 「旅行するんだって」, is commonly used by female speakers in casual conversation when
+      relaying information about someone else's plans. It implies a direct report of what the friend said.
+  - english: Did you hear that Ms. Tanaka got married?
+    japanese:
+      - 田中 さん、{結婚 し た ん だ って}？
+      - 田中 さん、{結婚 し たって}？
+    english_literally: Tanaka-san, got married, I heard?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん、結婚 し たって？
+        english: Tanaka-san, did you hear she got married?
+        hint: Using just 「って」 here would be a simple casual question confirming information. The addition
+          of 「ん」 in 「結婚したんだって」 adds a nuance of mild surprise or seeking explanation.
+    scene: Two colleagues are casually chatting during a break.
+    register: casual
+    setting: friendly
+    nuance: The rising intonation on 「んだって？」 turns it into a question, seeking confirmation about something
+      the speaker has heard, often with a hint of surprise or curiosity. This is very common in informal
+      conversations.
+  - english: It seems he can't swim at all, I heard.
+    japanese:
+      - 彼、{全然 泳げ ない ん だ って}。
+      - 彼、{全然 泳げ ない って}。
+    english_literally: He, totally cannot swim, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 彼、全然 泳げ ない そう です。
+        english: I hear he can't swim at all.
+        hint: 「そうです」 is more formal. We're looking for a casual expression used when sharing information
+          about someone.
+    scene: A group of friends are planning a trip to the beach, and one is revealing a fact about another.
+    register: casual
+    setting: friendly
+    nuance: 「泳げないんだって」 casually conveys a piece of personal information about someone that the speaker
+      has learned. The explanatory 「ん」 can add a slight emphasis to the surprising nature of the fact.
+  - english: I heard that the concert tickets are already sold out.
+    japanese:
+      - コンサート の チケット、もう {売り切れ な ん だ って}。
+      - コンサート の チケット、もう {売り切れ だ って}。
+    english_literally: Concert tickets, already sold out, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - コンサート の チケット、もう 売り切れ らしい よ。
+        english: It seems the concert tickets are already sold out.
+        hint: 「らしい」 implies inference or rumor. We're looking for a more direct report of information,
+          like a status update that has been confirmed.
+    scene: One friend shares unfortunate news about concert tickets to another.
+    register: casual
+    setting: friendly
+    nuance: This usage is typical when relaying news, especially bad news, that the speaker has just confirmed
+      or heard. 「売り切れなんだって」 emphasizes the unfortunate situation they've learned.
+  - english: The teacher said our homework is due by Friday, I heard.
+    japanese:
+      - 先生 が 宿題 {金曜 日 まで な ん だ って}。
+      - 先生 が 宿題 {金曜 日 まで だ って}。
+    english_literally: Teacher, homework until Friday, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 先生 が 宿題 金曜 日 まで だ と 言っ て まし た。
+        english: The teacher said the homework is due by Friday.
+        hint: This is a more formal and complete way to report speech. We're looking for a casual, concise
+          way to convey the information.
+    scene: A student relays instructions from their teacher to a classmate.
+    register: casual
+    setting: academic
+    nuance: 「金曜日までなんだって」 is a very common way for students to relay instructions or information from a
+      teacher to peers in a casual school setting. The 「ん」 adds a sense of explaining the requirement.
+  - english: I heard they're building a new shopping mall there.
+    japanese:
+      - あそこ {に 新しい ショッピング モール を 建てる ん だ って}。
+      - あそこ {に 新しい ショッピング モール を 建てる って}。
+    english_literally: There, new shopping mall build, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - あそこ に 新しい ショッピング モール を 建てる そう です。
+        english: I hear they will build a new shopping mall there.
+        hint: 「そうです」 is a common hearsay form, but 「んだって」 is more casual and often implies a piece of
+          information that has been recently understood or is explanatory.
+    scene: Two people are discussing local development or rumors in their neighborhood.
+    register: casual
+    setting: informative
+    nuance: 「建てるんだって」 is used to casually report a future event or plan that has been heard through informal
+      channels. It makes the statement sound like an interesting piece of news or gossip.
+  - english: I heard the boss is going to quit next month.
+    japanese:
+      - 部 長、来月 {辞める ん だ って}。
+      - 部 長、来月 {辞める って}。
+    english_literally: Boss, next month quit, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長、来月 辞める と か。
+        english: The boss is quitting next month, or something.
+        hint: 「とか」 implies more uncertainty or an incomplete list of possibilities. We're looking for
+          a direct, albeit casual, report of information heard.
+    scene: Two colleagues are discreetly discussing workplace rumors.
+    register: casual
+    setting: professional
+    nuance: When sharing sensitive or gossipy information like this, 「辞めるんだって」 is often used in a hushed,
+      casual tone, as if to say 'You know what I heard?'
+  - english: Apparently, it will be sunny tomorrow.
+    japanese:
+      - 明日 {は 晴れる ん だ って}。
+      - 明日 {は 晴れる って}。
+    english_literally: Tomorrow, will be sunny, I heard.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 は 晴れる らしい よ。
+        english: It seems it will be sunny tomorrow.
+        hint: 「らしい」 implies general observation or common knowledge. We're looking for a specific report,
+          perhaps from a weather forecast heard on TV or radio.
+    scene: Someone is relaying the weather forecast they just heard.
+    register: casual
+    setting: informative
+    nuance: Used to report information like weather forecasts or other general news. The 「ん」 adds the
+      nuance that this is information the speaker has taken in and is now sharing.
+post_example_writeup: As these examples demonstrate, 「んだって」 is highly versatile for conveying information
+  that has been heard or learned in a casual context. It can express simple reports, rumors, confirmed
+  news, or even questions seeking confirmation. The explanatory 「ん」 often makes the listener feel as though
+  they are being let in on some newly understood information or an explanation of a situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/んだって

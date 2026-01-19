@@ -1,0 +1,288 @@
+grammar_point: い-Adjective[かったら] (past conditional)
+learn_before:
+  - Verb[たら] (conditional)
+  - Verb[ませんでした] (polite past negative)
+meaning: if (it) was/were (an i-adjective)
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: い-Adjective (dictionary form)
+    rarity: common
+    meaning: (it) is (an i-adjective)
+  - conjugation-type: negative plain (～ない)
+    form: い-Adjective (minus い) + くない
+    rarity: common
+    meaning: (it) is not (an i-adjective)
+  - conjugation-type: past plain (～た)
+    form: い-Adjective (minus い) + かった
+    rarity: common
+    meaning: (it) was (an i-adjective)
+  - conjugation-type: negative past plain (～なかった)
+    form: い-Adjective (minus い) + くなかった
+    rarity: common
+    meaning: (it) was not (an i-adjective)
+  - conjugation-type: conditional (～たら)
+    form: い-Adjective (minus い) + かったら
+    rarity: common
+    meaning: if (it) was/were (an i-adjective)
+  - conjugation-type: conditional (～ば)
+    form: い-Adjective (minus い) + ければ
+    rarity: common
+    meaning: if (it) is (an i-adjective)
+  - conjugation-type: concessive (～ても)
+    form: い-Adjective (minus い) + くても
+    rarity: common
+    meaning: even if (it) is (an i-adjective)
+pronunciation:
+  katakana: イ カッタラ
+  romaji: i kattara
+formation:
+  い-Adjective (minus い) + かったら: Used to express a conditional statement based on a past or hypothetical
+    past state of an い-adjective. The result clause follows.
+jlpt: N4
+etymology: The formation combines the past tense form of い-adjectives (formed by dropping the final い
+  and adding かった) with the conditional particle たら. The かった ending itself evolved from a combination of
+  the stem form of the adjective and the past auxiliary けり. The たら conditional evolved from the past auxiliary
+  た followed by the particle ら, which indicates an assumption or possibility. Thus, い-Adjective[かったら]
+  literally means 'if it was (such an adjective)' or 'if it had been (such an adjective)'.
+writeup: |-
+  The い-Adjective[かったら] form is used to express a conditional statement about a past or hypothetical past situation involving an い-adjective. It is constructed by taking an い-adjective, dropping its final い, and adding かったら. This structure creates a clause that sets up a condition, with the subsequent clause describing the result or consequence of that condition.
+
+  This form is highly versatile and can be used in several scenarios:
+
+  *   **Past factual condition**: When the speaker is referring to a condition that actually occurred in the past, and a consequence followed.
+  *   **Hypothetical past condition**: When the speaker is imagining a past situation that did not happen (a counterfactual condition), and discussing what would have happened if it had.
+  *   **Suggestion/Request**: When politely making a suggestion or request based on a potential past or current state that is implicitly assumed as past for the sake of the conditional (e.g., if it was good, then...). While the 'past' element is present, the nuance is often about an *option* or *possibility*.
+
+  It is important to remember that the consequence clause can be in any tense, depending on whether the result is past, present, or future relative to the condition.
+false_friends:
+  - term: い-Adjective[ければ] (conditional)
+    meaning: if (it) is (an i-adjective)
+    kind: similar expression
+    nuance: 「い-Adjective[かったら]」 specifies a past or hypothetical past condition, whereas 「い-Adjective[ければ]」
+      is a general conditional for present or future states, often implying a stronger logical or habitual
+      connection, or used for recommendations and negative conditions.
+    grammar_point: Verb[えば] (conditional)
+  - term: い-Adjective[ても] (concessive)
+    meaning: even if (it) is (an i-adjective)
+    kind: similar expression
+    nuance: 「い-Adjective[かったら]」 sets a condition where the consequence depends on the condition, while
+      「い-Adjective[ても]」 expresses concession, meaning the consequence is true regardless of the adjectival
+      state.
+    grammar_point: ても (even if・even though)
+  - term: い-Adjective[のに] (unexpected result)
+    meaning: despite (it) being (an i-adjective)
+    kind: similar expression
+    nuance: 「い-Adjective[かったら]」 introduces a conditional clause, suggesting a cause-and-effect or hypothetical
+      relationship. In contrast, 「い-Adjective[のに]」 expresses a sense of surprise, dissatisfaction, or
+      unfulfilled expectation regarding a state that already exists or existed.
+    grammar_point: のに (unexpected result)
+post_false_friends_writeup: 'When distinguishing between these forms, focus on the speaker''s intent:
+  Is it a direct ''if...then'' statement about a past state (かったら)? Is it a general ''if...then'' for
+  present/future (ければ)? Is it ''even if...'' regardless of the condition (ても)? Or is it ''despite...''
+  expressing an unexpected outcome (のに)? Paying attention to the context and desired nuance will help
+  clarify which form to use.'
+examples:
+  - english: If it was hot, I would open the window.
+    japanese:
+      - 暑かっ たら 窓 を 開け た でしょう。
+      - 暑かっ たら 窓 を 開け て い た でしょう。
+      - 暑かっ たら 窓 を 開け まし た でしょう。
+    english_literally: If it was hot, probably opened the window.
+    competing_grammar:
+      - competing_japanese:
+          - 暑けれ ば 窓 を 開け ます。
+        english: If it's hot, I will open the window.
+        hint: 「〜ければ」 is used for general or habitual conditions in the present/future. We're looking for
+          a conditional statement about a past or hypothetical past situation.
+      - competing_japanese:
+          - 暑く て も 窓 を 開け ませ ん。
+        english: Even if it's hot, I won't open the window.
+        hint: 「〜ても」 means 'even if'. We're looking for a simple 'if' condition.
+    scene: You are talking about your past habits during summer.
+    register: casual
+    setting: informative
+    conjugation: conditional (～たら)
+  - english: If the movie was good, I would have recommended it to you.
+    japanese:
+      - もし 映画 が {よかっ たら}、あなた に 勧め て い た でしょう。
+      - もし 映画 が {よかっ たら}、あなた に 勧め て い た と 思い ます。
+      - 映画 が {よかっ たら}、勧め とい た はず だ よ。
+    english_literally: If the movie was good, probably would have recommended to you.
+    competing_grammar:
+      - competing_japanese:
+          - 映画 が いい の に、あなた に 勧め なかっ た。
+        english: Despite the movie being good, I didn't recommend it to you.
+        hint: 「〜のに」 expresses an unexpected outcome. We're looking for a hypothetical past condition.
+    scene: You're discussing a movie you saw recently, expressing regret for not having recommended it.
+    register: casual
+    setting: reflective
+    conjugation: conditional (～たら)
+  - english: If the food wasn't delicious, I wouldn't have eaten it all.
+    japanese:
+      - 食べ物 が {おいしく なかっ たら}、全部 食べ なかっ た よ。
+      - 食べ物 が {おいしく なかっ たら}、全部 食べ ませ ん でし た よ。
+      - 食べ物 が {おいしく なかっ たら}、全部 食わ なかっ た ぜ。
+    english_literally: If the food was not delicious, I did not eat all.
+    competing_grammar:
+      - competing_japanese:
+          - 食べ物 が おいしく ない の に、全部 食べ た。
+        english: Even though the food wasn't delicious, I ate it all.
+        hint: 「〜のに」 implies a contrast or unexpected situation. We need a conditional statement about
+          a past state.
+    scene: A friend comments on how much you ate, and you explain why.
+    register: casual
+    setting: friendly
+    conjugation: conditional (～たら)
+    speaker_gender: male
+    nuance: The sentence-final particle 「よ」 adds a casual, assertive, and slightly explanatory nuance,
+      often used by male speakers to confirm something or give new information. In this context, it reinforces
+      the statement about the food's deliciousness.
+  - english: If the room was small, we could have used a different one.
+    japanese:
+      - もし 部屋 が {狭かっ たら}、違う 部屋 を 使え た の に。
+      - もし 部屋 が {狭かっ たら}、違う 部屋 を 使う こと が でき た の に。
+      - 部屋 が {狭かっ たら}、別 の 部屋 を 使え ば よかっ た の に。
+    english_literally: If the room was small, could have used a different room.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 が 狭く て も、この 部屋 を 使い ます。
+        english: Even if the room is small, I will use this room.
+        hint: 「〜ても」 means 'even if'. We're talking about a hypothetical past situation where an alternative
+          was possible.
+    scene: You are retrospectively discussing a past event where you had to choose a room.
+    register: semi-formal
+    setting: informative
+  - english: If it was busy yesterday, I would not have gone out.
+    japanese:
+      - 昨日 {忙しかっ たら}、出かけ なかっ た と 思う。
+      - 昨日 {忙しかっ たら}、出かけ なかっ た と 思い ます。
+      - 昨日 {忙しかっ たら}、外 に 行か なかっ た と 思う わ。
+    english_literally: If yesterday was busy, I think did not go out.
+    competing_grammar:
+      - competing_japanese:
+          - 昨日 忙しい けど、出かけ まし た。
+        english: Yesterday I was busy, but I went out.
+        hint: 「〜けど」 is a simple conjunction for contrast. We need a conditional 'if' statement.
+    scene: You're reflecting on your schedule from the previous day.
+    register: casual
+    setting: reflective
+    speaker_gender: female
+    nuance: While not exclusively feminine, the sentence structure using 「と思う」 to express a thought or
+      belief after a past conditional can sound slightly more reflective and less direct, common in casual
+      conversation for both genders.
+  - english: If the book was interesting, I would have finished reading it.
+    japanese:
+      - その 本 が {面白かっ たら}、最後 まで 読ん で い た でしょう。
+      - その 本 が {面白かっ たら}、最後 まで 読み 終え て い た と 思い ます。
+      - 本 が {面白かっ たら}、最後 まで 読ん で た はず だ よ。
+    english_literally: If that book was interesting, probably would have read until the end.
+    competing_grammar:
+      - competing_japanese:
+          - 本 が 面白けれ ば、最後 まで 読み ます。
+        english: If a book is interesting, I will read it to the end.
+        hint: 「〜ければ」 expresses a general condition. We're talking about a specific book and a past hypothetical
+          situation.
+    scene: You're explaining why you didn't finish a particular book.
+    register: semi-formal
+    setting: informative
+  - english: If the price was cheaper, I definitely would have bought it.
+    japanese:
+      - 値段 が {安かっ たら}、絶対 買っ て い た わ。
+      - 値段 が {安かっ たら}、きっと 買っ て い まし た よ。
+      - 値段 が {安かっ たら}、絶対 買っ て た はず！
+    english_literally: If the price was cheap, absolutely would have bought it.
+    competing_grammar:
+      - competing_japanese:
+          - 値段 が 安い の に、買わ なかっ た。
+        english: Even though the price was cheap, I didn't buy it.
+        hint: 「〜のに」 expresses an unexpected outcome. We need a conditional sentence where the purchase
+          depends on the price.
+    scene: You're telling a friend about something you almost bought but didn't.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The sentence-final particle 「わ」 adds a soft, emotional, and often feminine nuance, emphasizing
+      the speaker's feeling about the missed opportunity to buy the item.
+  - english: If the weather was bad, the event would have been cancelled.
+    japanese:
+      - 天気 が {悪かっ たら}、イベント は 中止 に なっ て い た はず だ。
+      - 天気 が {悪かっ たら}、イベント は 中止 に なっ て い た で あろう。
+      - 天気 が {悪かっ たら}、イベント は 中止 に なっ て い た はず です。
+    english_literally: If the weather was bad, the event probably would have been cancelled.
+    competing_grammar:
+      - competing_japanese:
+          - 天気 が 悪い けど、イベント は 開催 さ れ た。
+        english: The weather was bad, but the event was held.
+        hint: 「〜けど」 simply connects two contrasting statements. We need to express a conditional relationship.
+    scene: You are discussing a past event and considering what might have happened under different circumstances.
+    register: formal
+    setting: informative
+  - english: If my schedule was free, I definitely would have participated.
+    japanese:
+      - もし 私 の 予定 が {暇 だっ たら}、ぜひ 参加 し て い た です。
+      - もし 私 の 予定 が {暇 だっ たら}、ぜひ 参加 し て い まし た。
+      - 予定 が {暇 だっ たら}、参加 し て た よ。
+    english_literally: If my schedule was free, certainly would have participated.
+    competing_grammar:
+      - competing_japanese:
+          - 予定 が 暇 な の に、参加 し なかっ た。
+        english: Despite my schedule being free, I didn't participate.
+        hint: 「〜のに」 implies contrast. We are stating a condition that, if true, would have led to participation.
+    scene: You're politely explaining to a colleague why you couldn't attend an event.
+    register: semi-formal
+    setting: apologetic
+  - english: If the road was dangerous, I shouldn't have driven alone.
+    japanese:
+      - 道 が {危なかっ たら}、一人 で 運転 す べき で は なかっ た。
+      - 道 が {危なかっ たら}、一人 で 運転 する べき じゃ なかっ た。
+      - 道 が {危なかっ たら}、一人 で 運転 す べき じゃ なかっ た ね。
+    english_literally: If the road was dangerous, should not have driven alone.
+    competing_grammar:
+      - competing_japanese:
+          - 道 が 危ない から、運転 し ませ ん。
+        english: Because the road is dangerous, I won't drive.
+        hint: 「〜から」 states a reason. We're looking for a conditional statement about a past situation.
+    scene: You're reflecting on a past decision and its potential risks.
+    register: formal
+    setting: reflective
+  - english: If the exam was difficult, many students would have failed.
+    japanese:
+      - 試験 が {難しかっ たら}、多く の 学生 が 落ち て い た だろう。
+      - 試験 が {難しかっ たら}、たくさん の 学生 が 落ち て い た と 考え られ ます。
+      - 試験 が {難しかっ たら}、多く の 学生 が 不 合格 に なっ た でしょう。
+    english_literally: If the exam was difficult, many students probably would have failed.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 が 難しく て も、学生 は 合格 し た。
+        english: Even if the exam was difficult, the students passed.
+        hint: 「〜ても」 means 'even if'. We are predicting a consequence if the exam had been difficult.
+    scene: A teacher is discussing the difficulty level of a past exam and its potential impact.
+    register: formal
+    setting: academic
+    speaker_age: older
+  - english: If the service was bad, I wouldn't have left a tip.
+    japanese:
+      - サービス が {悪かっ たら}、チップ を 置か なかっ た です よ。
+      - サービス が {悪かっ たら}、チップ を 置き ませ ん でし た よ。
+      - サービス が {悪かっ たら}、チップ は 置か なかっ た よ。
+    english_literally: If the service was bad, I did not leave a tip.
+    competing_grammar:
+      - competing_japanese:
+          - サービス が 悪く て も、チップ を 置き まし た。
+        english: Even if the service was bad, I left a tip.
+        hint: 「〜ても」 expresses concession. We are stating a condition that would have prevented leaving
+          a tip.
+    scene: You're explaining your tipping policy to a friend.
+    register: casual
+    setting: friendly
+    listener_gender: male
+    nuance: The use of 「です よ」 at the end, while polite, also carries a nuance of assertion or confirmation,
+      common in informal discussions, and can be used by speakers of various ages and genders when explaining
+      something.
+post_example_writeup: The examples illustrate how い-Adjective[かったら] can be used to describe various past
+  or hypothetical past scenarios. It consistently forms a conditional clause that sets up a specific adjectival
+  state, leading to a consequent action or outcome. The nuance often implies a direct relationship, whether
+  factual or counterfactual. Pay close attention to the context to determine if a past, current, or hypothetical
+  result is intended after the past adjectival condition.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/い-Adjective[かったら]

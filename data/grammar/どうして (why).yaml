@@ -1,0 +1,266 @@
+grammar_point: どうして (why)
+learn_before:
+  - Verb[て] (non-sequential events)
+  - Verb[ている・てる] (progressive・resultative)
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - あんなに (that much over there)
+  - そんなに (that much)
+  - どう (how)
+  - 知る (to know or find out)
+meaning: Why; how come; how
+pronunciation:
+  katakana: ドウシテ
+  romaji: doushite
+formation:
+  '[Sentence/Clause] + どうして': Indicates the reason for an action or state.
+  どうして + [Verb]: Asks about the method or process of an action.
+jlpt: N5
+etymology: 'The word 「どうして」(doushite) is formed from 「どう」(dou), meaning ''how,'' and 「して」(shite), which
+  is the te-form of the verb 「する」(suru), meaning ''to do.'' Therefore, literally, it means ''how doing''
+  or ''by what means.'' This etymological root explains its dual function in Japanese: asking ''why''
+  (by what reason or cause) and ''how'' (by what method or means). The ''how'' meaning is a direct descendant
+  of its literal components, while the ''why'' meaning evolved from asking ''by what means did this happen?''
+  which naturally extends to ''for what reason did this happen?'''
+writeup: |-
+  「どうして」(Doushite) is a versatile interrogative word in Japanese that can be used to ask both "why" and "how." Its primary usage in everyday conversation leans towards "why," making it a fundamental word for inquiring about reasons and causes.
+
+  When asking "why," 「どうして」 is generally more common and feels softer or more conversational than 「なぜ」(naze). It is often used to express a genuine desire to understand someone's actions or a situation, sometimes carrying a subtle nuance of surprise, confusion, or even a gentle complaint.
+
+  For instance, if someone is late, you might ask, 「どうして遅れたの？」("Why were you late?"). This sounds more natural and less accusatory than using 「なぜ」. The question seeks an explanation, implying a personal curiosity or mild perplexity.
+
+  Although less frequent, 「どうして」 can also be used to ask "how" something is done. In this sense, it is functionally similar to 「どのように」(donoyouni) or simply 「どう」(dou), which strictly mean "how." For example, 「どうしてこれを作るの？」 could mean "How do you make this?" or "Why do you make this?" depending on context. However, for a clear inquiry about method, 「どうやって」(douyatte) or 「どう」 are often preferred to avoid ambiguity.
+
+  In practical use, remember that the context and your tone of voice often determine whether 「どうして」 is interpreted as "why" or "how." When in doubt and specifically asking about a method, opting for 「どうやって」 or 「どう」 can provide more clarity.
+false_friends:
+  - term: なぜ (why)
+    meaning: Why; for what reason
+    kind: similar expression
+    nuance: 「なぜ」(Naze) is a more formal and objective way to ask 'why.' It often seeks a factual or logical
+      explanation and is commonly used in written contexts, official settings, or when you want to sound
+      more direct and less emotional. Unlike 「どうして」, it rarely carries a nuance of surprise or personal
+      feeling; it's a straightforward inquiry for a reason. We're looking for a softer, more conversational
+      way to ask 'why.'
+    grammar_point: <suggest>:なぜ (why)
+  - term: どう (how)
+    meaning: How; what way
+    kind: similar expression
+    nuance: 「どう」(Dou) exclusively means 'how' or 'in what way,' inquiring about a method or state. It
+      does not carry the meaning of 'why.' While 「どうして」 can sometimes mean 'how,' 「どう」 is a more direct
+      and unambiguous choice when only asking about the method. We're looking for a word that can also
+      express 'why.'
+    grammar_point: どう (how)
+  - term: なんで (why, casual)
+    meaning: Why; how come (very casual)
+    kind: similar expression
+    nuance: 「なんで」(Nande) is a highly casual and frequently used equivalent of 「どうして」 and 「なぜ」. It is very
+      common in informal speech among friends and family, but might be considered too blunt or informal
+      in more polite or formal situations. It can sometimes sound impatient or demanding, depending on
+      the tone. We're looking for a slightly less casual, but still conversational, 'why.'
+    grammar_point: <suggest>:なんで (why, casual)
+  - term: どういうこと (what do you mean)
+    meaning: What do you mean?; How come?; What's going on?
+    kind: similar expression
+    nuance: 「どういうこと」(Dou iu koto) is used to ask for clarification or an explanation of a situation or
+      statement, often because it's confusing or unexpected. It's more about understanding the nature
+      or meaning of something rather than just the reason for an action. It can express confusion or bewilderment.
+      We're looking for a single word to ask 'why' or 'how.'
+    grammar_point: <suggest>:どういうこと (what do you mean)
+post_false_friends_writeup: 'To differentiate between these expressions: 「どうして」 is your go-to for a general,
+  conversational ''why,'' which can also imply ''how'' in some contexts. 「なぜ」 is for a more direct, objective,
+  or formal ''why.'' 「どう」 is strictly ''how,'' asking about method. 「なんで」 is the very casual form of ''why.''
+  「どういうこと」 asks for clarification on a situation or statement, meaning ''what do you mean?'' or ''what''s
+  the meaning of this?'' Choose wisely based on context, formality, and the specific nuance you wish to
+  convey.'
+examples:
+  - english: Why did you come to Japan?
+    japanese:
+      - 日本 に {どう し て} 来 た ん です か？
+      - 日本 に {どう し て} 来 た の？
+    english_literally: To Japan, why did you come?
+    competing_grammar:
+      - competing_japanese:
+          - 日本 に なぜ 来 た の です か？
+        english: Why did you come to Japan? (more formal)
+        hint: 「なぜ」 is more formal and objective, often used in written language or serious inquiries.
+          We're looking for a common, conversational 'why.'
+      - competing_japanese:
+          - 日本 に なん で 来 た の？
+        english: Why did you come to Japan? (very casual)
+        hint: 「なんで」 is very casual and can sometimes sound a bit blunt. We're looking for a standard,
+          conversational 'why.'
+    scene: You are meeting a new friend from overseas and want to know their reason for moving to Japan.
+    register: casual
+    setting: friendly
+  - english: How come you know my name?
+    japanese:
+      - 私 の 名前 を {どう し て} 知っ て いる ん です か？
+      - 私 の 名前、{どう し て} 知っ てる の？
+      - 私 の 名前 を {どう し て} ご 存知 な の です か？
+    english_literally: My name, how did you know?
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 名前 を なぜ 知っ て いる の です か？
+        english: Why do you know my name? (formal, direct)
+        hint: 「なぜ」 is more direct and less about personal surprise. We're looking for a 'how come' that
+          expresses slight bewilderment.
+      - competing_japanese:
+          - 私 の 名前 を どう やっ て 知っ た ん です か？
+        english: How did you come to know my name? (focus on method)
+        hint: 「どうやって」 specifically asks for the method. Here, 'how come' implies surprise at the fact,
+          not just the method. We're looking for a more general 'how come'.
+    scene: You've just met someone for the first time, and they unexpectedly use your name.
+    register: semi-formal
+    setting: interrogative
+  - english: Why did the train stop?
+    japanese:
+      - 電車 は {どう し て} 止まっ た ん です か？
+      - 電車、{どう し て} 止まっ た の？
+      - 電車 は {どう し て} 止まり まし た か？
+    english_literally: The train, why did it stop?
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は なぜ 止まっ た の です か？
+        english: Why did the train stop? (more formal/objective)
+        hint: 「なぜ」 is a more objective inquiry. Here, 'どうして' conveys a more immediate, personal query,
+          perhaps with a touch of anxiety.
+    scene: You are on a train that suddenly comes to a halt between stations.
+    register: teineigo (polite)
+    setting: emergency/alarm
+  - english: Why is the door open?
+    japanese:
+      - ドア は {どう し て} 開い て いる の？
+      - ドア は {どう し て} 開い て いる ん です か？
+      - ドア、{どう し て} 開い てる の？
+    english_literally: The door, why is it open?
+    competing_grammar:
+      - competing_japanese:
+          - ドア は なん で 開い てる の？
+        english: Why is the door open? (very casual)
+        hint: 「なんで」 is very informal. 「どうして」 fits a general casual inquiry better.
+    scene: You walk into a room and notice the door is unexpectedly ajar.
+    register: casual
+    setting: interrogative
+  - english: How did you manage to fix this difficult problem?
+    japanese:
+      - この 難しい 問題 を {どう し て} 解決 でき た の です か？
+      - この 難しい 問題、{どう し て} 解決 でき た ん です か？
+      - この 難しい 問題、{どう し て} 解決 でき た の？
+    english_literally: This difficult problem, how did you manage to solve it?
+    competing_grammar:
+      - competing_japanese:
+          - この 難しい 問題 を どう やっ て 解決 でき た の です か？
+        english: How did you solve this difficult problem? (focus on method)
+        hint: 「どうやって」 more explicitly asks for the method. Here, 'どうして' implies surprise at the achievement
+          itself, perhaps mixed with curiosity about the method. We're looking for a sense of 'how did
+          you even manage that?'
+    scene: Your colleague has successfully solved a complex issue that everyone else struggled with.
+    register: formal
+    setting: professional
+  - english: Why do you think so?
+    japanese:
+      - '{どう し て} そう 思う ん です か？'
+      - '{どう し て} そう 思う の？'
+      - '{どう し て} そう 思い ます か？'
+    english_literally: Why do you think so?
+    competing_grammar:
+      - competing_japanese:
+          - なぜ そう 思う の です か？
+        english: Why do you think so? (more formal/academic)
+        hint: 「なぜ」 is more often used in academic or highly formal discussions. We're looking for a general
+          conversational tone.
+    scene: During a casual discussion, someone expresses an opinion you find interesting, and you want
+      to understand their reasoning.
+    register: semi-formal
+    setting: informative
+  - english: Why aren't you eating?
+    japanese:
+      - '{どう し て} 食べ ない の？'
+      - '{どう し て} 食べ ない ん です か？'
+      - '{どう し て} 食べ ない ん だ？'
+    english_literally: Why not eat?
+    competing_grammar:
+      - competing_japanese:
+          - なん で 食べ ない の？
+        english: Why aren't you eating? (very casual, can be blunt)
+        hint: 「なんで」 can sometimes sound a bit demanding in this context. 「どうして」 is a softer, more inquiring
+          tone for a friend.
+    scene: You are at a meal with a friend, and they are not touching their food.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The use of the plain form 「食べないの？」 combined with 「どうして」 makes this a gentle, concerned inquiry
+      typically used among close friends or family. A male speaker might also use this, but the intonation
+      and use of の makes it slightly softer, which is common for female speech.
+  - english: Why did you lie?
+    japanese:
+      - '{どう し て} 嘘 を つい た の？'
+      - '{どう し て} 嘘 を つい た ん です か？'
+    english_literally: Why did you tell a lie?
+    competing_grammar:
+      - competing_japanese:
+          - なぜ 嘘 を つい た の です か？
+        english: Why did you lie? (more accusatory)
+        hint: 「なぜ」 would sound more like an accusation. 「どうして」, while still serious, can convey a sense
+          of disappointment or a plea for understanding.
+    scene: You are confronting someone about a lie they told.
+    register: casual
+    setting: serious
+  - english: Why is the sky blue?
+    japanese:
+      - 空 は {どう し て} 青い の です か？
+      - 空、{どう し て} 青い の？
+      - 空 は {どう し て} 青い です か？
+    english_literally: The sky, why is it blue?
+    competing_grammar:
+      - competing_japanese:
+          - 空 は なぜ 青い の です か？
+        english: Why is the sky blue? (more scientific/objective)
+        hint: 「なぜ」 is often preferred for factual, scientific questions. 「どうして」 is also acceptable, but
+          sounds more like general curiosity rather than a search for a detailed explanation.
+    scene: A child asks a curious question about a natural phenomenon to their parent.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: younger
+    nuance: A young male speaker asking a question to an older female listener. The use of 「のですか」 makes
+      the question polite and slightly inquisitive, fitting a child's natural curiosity. While not exclusively
+      male, this phrasing is common for children learning about the world, and there is no strong gendered
+      language in this specific sentence.
+  - english: How come you bought such a big TV?
+    japanese:
+      - '{どう し て} そんな に 大きい テレビ を 買っ た の？'
+      - '{どう し て} そんな に 大きい テレビ を 買っ た ん です か？'
+      - '{どう し て} そんな に 大きい テレビ を 買い まし た か？'
+    english_literally: How come you bought such a big TV?
+    competing_grammar:
+      - competing_japanese:
+          - な ん で そんな に 大きい テレビ を 買っ た の？
+        english: Why did you buy such a big TV? (very casual, possibly critical)
+        hint: 「なんで」 can sound more critical or judgemental. 「どうして」 here expresses simple surprise and
+          curiosity without strong judgement.
+    scene: You visit a friend's house and see a surprisingly large new television.
+    register: casual
+    setting: friendly
+  - english: Why did you get so angry?
+    japanese:
+      - '{どう し て} あんな に 怒っ た ん です か？'
+      - '{どう し て} あんな に 怒っ た の？'
+      - '{どう し て} あんな に 怒り まし た か？'
+    english_literally: Why did you get so angry?
+    competing_grammar:
+      - competing_japanese:
+          - なぜ あんな に 怒っ た の です か？
+        english: Why did you get so angry? (more formal, detached)
+        hint: 「なぜ」 tends to be more detached. 「どうして」 conveys a more empathetic or personal inquiry into
+          the other person's emotions.
+    scene: You are discussing a past event where someone became very upset.
+    register: semi-formal
+    setting: reflective
+post_example_writeup: As seen in the examples, 「どうして」 is highly flexible and commonly appears in various
+  registers and settings. It's particularly useful when you want to ask 'why' in a conversational and
+  less formal manner, or when expressing a personal sense of surprise or confusion. Pay attention to the
+  subtle differences in nuance compared to its false friends to choose the most appropriate word for each
+  situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/どうして

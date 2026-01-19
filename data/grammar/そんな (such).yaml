@@ -1,0 +1,282 @@
+grammar_point: そんな (such)
+learn_before:
+  - 十分 (enough・sufficient・ample)
+meaning: such; that kind of; that sort of
+pronunciation:
+  katakana: ソンナ
+  romaji: sonna
+formation:
+  そんな + Noun: Indicates 'such a X' or 'that kind of X', where X is a noun, referring to something previously
+    mentioned or known to the listener.
+jlpt: N4
+etymology: The term 「そんな」 is a *rentaishi* (連体詞 - pre-noun adjectival) formed by combining the demonstrative
+  pronoun 「そう」 (that way, like that) with the particle 「な」 (an older attributive particle similar to the
+  modern 「の」 or 「である」). 「そう」 itself points to something previously referred to or understood in context,
+  making 「そんな」 signify "that kind of" or "such a thing" based on prior discourse or the listener's immediate
+  understanding.
+writeup: "「そんな」 is a *rentaishi* (連体詞), a type of word that always directly modifies a noun. It means\
+  \ \"such,\" \"that kind of,\" or \"that sort of,\" and refers to something that is related to the listener\
+  \ or has been previously mentioned in the conversation or context. It belongs to the *ko-so-a-do* series\
+  \ of demonstratives. \n\nWhile generally neutral, 「そんな」 can also carry a nuance of surprise, disbelief,\
+  \ disapproval, or strong emphasis, especially when used in exclamations or rhetorical questions. For\
+  \ example, 「そんなこと！」 (Such a thing!) can express exasperation or shock. It is less formal than 「そういう」\
+  \ or 「そういった」, though in many contexts they can be interchangeable."
+false_friends:
+  - term: こんな
+    meaning: this kind of; such (near speaker)
+    kind: similar expression
+    nuance: 「こんな」 refers to something close to the speaker, or a situation directly involving the speaker,
+      expressing "this kind of" or "such a (thing here).".
+    grammar_point: こんな (this kind of)
+  - term: あんな
+    meaning: that kind of; such (far from both)
+    kind: similar expression
+    nuance: 「あんな」 refers to something far from both speaker and listener, or a situation distant in context,
+      expressing "that kind of (thing over there)."
+    grammar_point: <suggest>:あんな (that kind of, over there)
+  - term: どんな
+    meaning: what kind of; what sort of
+    kind: similar expression
+    nuance: 「どんな」 is an interrogative, asking about the nature or kind of something.
+    grammar_point: どんな (what kind of)
+  - term: そういう
+    meaning: that kind of; that sort of (general/specific)
+    kind: similar expression
+    nuance: While often interchangeable, 「そういう」 can feel slightly more formal or refer to a broader category
+      or manner, whereas 「そんな」 can feel more direct and sometimes imply a negative connotation or surprise.
+      「そういう」 can also modify phrases or sentences, unlike 「そんな」 which modifies nouns.
+    grammar_point: そういう (that kind of)
+  - term: そういった
+    meaning: that kind of; those types of (abstract/formal)
+    kind: similar expression
+    nuance: Similar to 「そういう」, but often used to refer to abstract concepts, categories, or types, especially
+      in more formal or written contexts. It emphasizes a grouping or classification.
+    grammar_point: <suggest>:そういった (that kind of, abstract)
+post_false_friends_writeup: The demonstrative series 「こ・そ・あ・ど」 (ko-so-a-do) is fundamental to Japanese.
+  「こんな」, 「そんな」, 「あんな」, and 「どんな」 all function as *rentaishi*, modifying nouns to specify "this kind of,"
+  "that kind of (near listener)," "that kind of (far from both)," and "what kind of," respectively. The
+  distinction primarily lies in the spatial or contextual distance from the speaker and listener. 「そういう」
+  and 「そういった」 are often interchangeable with 「そんな」 when modifying nouns, but they can also refer to broader
+  concepts or manners, or be used in more formal settings. 「そんな」 tends to be more direct and can carry
+  emotional nuances like surprise or disapproval more readily.
+examples:
+  - english: I can't believe he said such a thing!
+    japanese:
+      - 彼 が {そんな} こと 言う なんて 信じ られ ない！
+      - 彼 が {そんな} こと を 言う なんて、本当 に 信じ られ ませ ん。
+      - 彼 が {そんな} こと 言う と は、まさか ね！
+    english_literally: Him such a thing say, unbelievable!
+    competing_grammar:
+      - competing_japanese:
+          - 彼 が こう いう こと 言う なんて 信じ られ ない！
+        english: I can't believe he said this kind of thing!
+        hint: 「こういう」 refers to something immediately present or just mentioned by the speaker. We're looking
+          for 'such a thing' that is known to the listener or previously established.
+      - competing_japanese:
+          - 彼 が そう いっ た こと 言う なんて 信じ られ ない！
+        english: I can't believe he said those types of things!
+        hint: 「そういった」 is more formal and often refers to abstract types or categories. We're looking for
+          a more direct, emotionally charged 'such a thing'.
+    scene: A friend expressing shock and disbelief about something someone else said.
+    register: casual
+    setting: serious
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「そんなこと」 expresses strong disbelief and surprise at the statement, conveying a sense
+      of 'such an unbelievable thing'. The casual 「言うなんて」 (nantena) emphasizes the speaker's astonishment
+      at 'such' an action, fitting the informal setting.
+  - english: Such rudeness is unacceptable.
+    japanese:
+      - '{そんな} 失礼 な 態度 は 許さ れ ない。'
+      - '{そんな} 失礼 な 態度 は 許さ れ ませ ん。'
+      - '{そんな} 失礼 な 態度 は、容認 でき ませ ん。'
+    english_literally: Such rude attitude is not allowed.
+    competing_grammar:
+      - competing_japanese:
+          - こう いっ た 失礼 な 態度 は 許さ れ ない。
+        english: This kind of rudeness is unacceptable.
+        hint: 「こういった」 is more formal and points to rudeness immediately present or just observed by the
+          speaker. We need 'such rudeness' referring to something known or understood in context.
+      - competing_japanese:
+          - そう いう 失礼 な 態度 は 許さ れ ない。
+        english: That kind of rudeness is unacceptable.
+        hint: 「そういう」 can be used, but 「そんな」 often carries a more direct or emphatic tone when expressing
+          disapproval of 'such' behavior, especially if it refers to a particular instance.
+    scene: A manager addressing an employee's inappropriate behavior in a meeting.
+    register: formal
+    setting: professional
+  - english: Such a small amount isn't enough.
+    japanese:
+      - '{そんな} 少ない 量 じゃ 足り ない よ。'
+      - '{そんな} 少ない 量 で は 足り ませ ん。'
+      - '{そんな} わずか な 量 で は 不 十分 だ。'
+    english_literally: Such small amount isn't enough.
+    competing_grammar:
+      - competing_japanese:
+          - これ ぐらい の 量 じゃ 足り ない よ。
+        english: This much amount isn't enough.
+        hint: 「これぐらい」 indicates 'about this much'. We're looking for 'such a small amount' implying a
+          qualitative judgment about the quantity itself.
+      - competing_japanese:
+          - こんな 少ない 量 じゃ 足り ない よ。
+        english: This kind of small amount isn't enough.
+        hint: 「こんな」 refers to something physically close to the speaker. 「そんな」 points to the listener's
+          understanding or a contextually known quantity.
+    scene: A chef commenting on the inadequate portion of an ingredient.
+    register: casual
+    setting: professional
+  - english: I don't like such sudden changes.
+    japanese:
+      - '{そんな} 急 な 変更 は 好き じゃ ない。'
+      - '{そんな} 急 な 変更 は 好き で は あり ませ ん。'
+      - '{そんな} 突然 の 変更 は 好ましく ない。'
+    english_literally: Such sudden changes I don't like.
+    competing_grammar:
+      - competing_japanese:
+          - こう いう 急 な 変更 は 好き じゃ ない。
+        english: I don't like these kinds of sudden changes.
+        hint: 「こういう」 specifies 'these kinds of' changes, often pointing to concrete examples just mentioned.
+          We need 'such' changes, implying a general dislike for that nature of change.
+      - competing_japanese:
+          - あの よう な 急 な 変更 は 好き じゃ ない。
+        english: I don't like those kinds of sudden changes (over there/in the past).
+        hint: 「あのような」 refers to something distant. We're expressing a general dislike for 'such' changes
+          in an active conversation.
+    scene: Someone expressing their dislike for last-minute alterations to plans.
+    register: casual
+    setting: friendly
+  - english: Why are you saying such depressing things?
+    japanese:
+      - どう し て {そんな} 暗い こと ばかり 言う の？
+      - どう し て {そんな} に 暗い こと ばかり 言う の です か？
+      - なぜ {そんな} 陰気 な こと ばかり 口 に する の？
+    english_literally: Why such dark things only say?
+    competing_grammar:
+      - competing_japanese:
+          - どう し て そう いう 暗い こと ばかり 言う の？
+        english: Why are you saying those kind of depressing things?
+        hint: 「そういう」 can be used but might sound slightly more general. 「そんな」 is often used to directly
+          refer to the current instance of 'such depressing things' with a hint of reproach or concern.
+      - competing_japanese:
+          - どう し て こんな 暗い こと ばかり 言う の？
+        english: Why are you saying these kinds of depressing things (right now, close to me)?
+        hint: 「こんな」 implies the things are very close to the speaker or listener in the immediate present.
+          We are referring to the nature of the remarks already being made.
+    scene: A friend trying to cheer up another who is being pessimistic.
+    register: casual
+    setting: supportive
+    speaker_gender: female
+    listener_gender: female
+  - english: I've never heard such a story before.
+    japanese:
+      - '{そんな} 話 は 今 まで 聞い た こと が ない。'
+      - '{そんな} 話 は 今 まで 聞い た こと が あり ませ ん。'
+      - '{そんな} 物語 は、前代 未聞 だ。'
+    english_literally: Such a story, until now, I have not heard.
+    competing_grammar:
+      - competing_japanese:
+          - そう いう 話 は 今 まで 聞い た こと が ない。
+        english: I've never heard that kind of story before.
+        hint: 「そういう」 is also correct and perhaps slightly more formal or general. 「そんな」 conveys a sense
+          of surprise or uniqueness about 'such a story'.
+      - competing_japanese:
+          - こんな 話 は 今 まで 聞い た こと が ない。
+        english: I've never heard this kind of story before (pointing to the immediate one).
+        hint: 「こんな」 would refer specifically to the story being told right now, implying it's new to the
+          speaker. 「そんな」 is more general, referring to the nature of the story, as in 'a story of that
+          nature'.
+    scene: Someone reacting to an intriguing or unbelievable anecdote.
+    register: semi-formal
+    setting: storytelling
+  - english: Such an easy problem, even a child could solve it.
+    japanese:
+      - '{そんな} 簡単 な 問題、子供 で も 解ける よ。'
+      - '{そんな} 簡単 な 問題 なら、子供 で も 解け ます よ。'
+      - '{そんな} 易しい 問題 は、子供 で も 解決 できる だろう。'
+    english_literally: Such easy problem, even a child can solve.
+    competing_grammar:
+      - competing_japanese:
+          - これ ほど 簡単 な 問題、子供 で も 解ける よ。
+        english: A problem this easy, even a child could solve it.
+        hint: 「これほど」 means 'to this extent' or 'this much'. We're emphasizing the nature of the problem,
+          'such' an easy one.
+      - competing_japanese:
+          - あんな 簡単 な 問題、子供 で も 解ける よ。
+        english: That kind of easy problem (over there), even a child could solve it.
+        hint: 「あんな」 refers to something distant. 「そんな」 refers to something in the listener's context or
+          a general understanding of the problem's nature.
+    scene: A teacher encouraging a struggling student by highlighting the simplicity of a task.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+  - english: There's no such thing as a free lunch.
+    japanese:
+      - '{そんな} うまい 話 は ない よ。'
+      - '{そんな} に うまい 話 は あり ませ ん。'
+      - '{そんな} 都合 の 良い 話 は 存在 し ない。'
+    english_literally: Such good story doesn't exist.
+    competing_grammar:
+      - competing_japanese:
+          - 都合 の いい 話 は ない よ。
+        english: There's no convenient story (or deal).
+        hint: This is a direct translation of the meaning but lacks the emphasis of 'such a' good story
+          or 'too good to be true' deal. We're looking for an expression that implies skepticism towards
+          'that kind of' overly favorable situation.
+      - competing_japanese:
+          - そんな 甘い 話 は ない よ。
+        english: Such a sweet/naive story doesn't exist.
+        hint: 「甘い話」 (amai hanashi) means a 'sweet' or 'easy' deal, similar to 「うまい話」. It's a valid alternative
+          but uses a different adjective.
+    scene: An older, wiser person advising a younger, naive person about life.
+    register: casual
+    setting: informative
+    speaker_age: older
+    nuance: 「うまい話」 means a 'good deal' or 'too good to be true story'. The phrase 「そんなうまい話は ないよ」 is a
+      common idiom meaning 'there's no such thing as a free lunch,' indicating skepticism towards something
+      that sounds too favorable to be true.
+  - english: Don't look at me with such a sad face.
+    japanese:
+      - '{そんな} 悲しい 顔 で 私 を 見 ない で。'
+      - '{そんな} 悲し そう な 顔 で 私 を 見 ない で ください。'
+      - '{そんな} に 悲しい 顔 を し ない で。'
+    english_literally: Such sad face with me don't look.
+    competing_grammar:
+      - competing_japanese:
+          - これ ほど 悲しい 顔 で 私 を 見 ない で。
+        english: Don't look at me with a face this sad.
+        hint: 「これほど」 means 'to this extent'. We're looking for 'such a sad face' to express the quality
+          of the face itself, often with an emotional nuance.
+      - competing_japanese:
+          - そんな 風 に 悲しい 顔 で 私 を 見 ない で。
+        english: Don't look at me in such a sad way with that face.
+        hint: 「そんな風に」 would mean 'in such a way' or 'like that'. While grammatically correct, it focuses
+          on the manner rather than the characteristic of the face itself.
+    scene: Someone comforting a loved one who looks distressed.
+    register: shitashii kuchō (intimate)
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    nuance: In this intimate context, 「そんな悲しい顔で」 directly addresses the listener's expression, emphasizing
+      the speaker's emotional response to 'such' a sad face. The casual 「見ないで」 softens the command.
+  - english: I understand such situations well.
+    japanese:
+      - '{そんな} 状況 は よく わかる。'
+      - '{そんな} 状況 は よく わかり ます。'
+      - '{そんな} 事態 は よく 理解 できる。'
+    english_literally: Such situations I understand well.
+    competing_grammar:
+      - competing_japanese:
+          - こう いう 状況 は よく わかる。
+        english: I understand these kinds of situations well (situations at hand).
+        hint: 「こういう」 refers to situations that are currently present or have just been explained by the
+          speaker. 「そんな」 refers to situations known to the listener or contextually understood.
+      - competing_japanese:
+          - そう いっ た 状況 は よく わかる。
+        english: I understand those types of situations well (more formal/abstract).
+        hint: 「そういった」 is more formal and often used for general categories of situations. 「そんな」 is more
+          direct and conversational when referring to 'such' specific situations.
+    scene: A counselor listening empathetically to a client's struggles.
+    register: semi-formal
+    setting: supportive

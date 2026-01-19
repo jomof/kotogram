@@ -1,0 +1,257 @@
+grammar_point: い-Adjective[くない] (negative)
+matcher: '{i-adjective-negative}'
+matcher_enforce_examples: true
+learn_before:
+  - い-Adjective (past negative)
+meaning: not (i-adjective)
+conjugations:
+  - conjugation-type: negative plain (～ない)
+    form: くない
+    rarity: common
+    meaning: not (i-adjective)
+  - conjugation-type: negative past plain (～なかった)
+    form: くなかった
+    rarity: common
+    meaning: was not (i-adjective)
+  - conjugation-type: non-past polite (～ます)
+    form: くないです
+    rarity: common
+    meaning: is not (i-adjective), polite
+  - conjugation-type: past polite (～ました)
+    form: くなかったです
+    rarity: common
+    meaning: was not (i-adjective), polite
+pronunciation:
+  katakana: クナイ
+  romaji: kunai
+formation:
+  い-Adjective (stem) + くない: Forms the plain negative of an i-adjective. Remove the final 「い」 from the
+    i-adjective and add 「くない」.
+jlpt: N5
+etymology: The suffix 「くない」 is formed by combining the adverbial form 「く」 of an i-adjective with the negative
+  adjective 「ない」. This structure reflects how qualities (i-adjectives) are negated by modifying them adverbially
+  (using 「く」) before attaching the negative concept of 'non-existence' or 'absence' (「ない」). For instance,
+  「寒い」 (samui - cold) becomes 「寒く」 (samuku - adverbial form, 'coldly') + 「ない」 (nai - not existing), thus
+  「寒くない」 (samukunai - not cold).
+writeup: The 「くない」 form is the plain negative conjugation for い-adjectives. It is used to express that
+  something is **not** a certain quality. To form it, you simply remove the final 「い」 from the い-adjective
+  and attach 「くない」. For example, 「高い」 (takai - expensive/tall) becomes 「高くない」 (takakunai - not expensive/not
+  tall). This form is casual and commonly used in everyday conversation. To make it polite, you can add
+  「です」 after 「くない」, as in 「高くないです」 (takakunai desu). While grammatically 「くありません」 is also a polite negative
+  form for い-adjectives, 「くないです」 is more frequently used, especially in modern conversational Japanese.
+false_friends:
+  - term: じゃない
+    meaning: is not (noun/na-adjective)
+    kind: similar expression
+    nuance: 「じゃない」 is used to negate nouns or な-adjectives, while 「くない」 is specifically for い-adjectives.
+      For example, 「学生じゃない」 (gakusei janai - not a student) or 「元気じゃない」 (genki janai - not well).
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: ではない
+    meaning: is not (noun/na-adjective), formal
+    kind: similar expression
+    nuance: 「ではない」 is the more formal equivalent of 「じゃない」, used for negating nouns and な-adjectives in
+      polite or written contexts. It holds the same fundamental distinction as 「じゃない」 when compared to
+      「くない」.
+    grammar_point: ではない (formal negative copula)
+  - term: くありません
+    meaning: is not (i-adjective), polite formal
+    kind: similar expression
+    nuance: While 「くありません」 negates い-adjectives and has the same meaning as 「くないです」, its formation is
+      slightly different. It combines the adverbial form 「く」 with 「ありません」, the polite negative of 「ある」
+      (to exist). This form, although correct, is generally considered more formal or slightly stiffer
+      than 「くないです」 in casual conversation.
+    grammar_point: い-Adjective[くありません] (polite negative form)
+post_false_friends_writeup: 'When negating, remember the fundamental difference: い-adjectives use 「くない」
+  (or 「くありません」), while nouns and な-adjectives use 「じゃない」 (or 「ではない」). The choice between 「くないです」 and 「くありません」
+  often comes down to formality and personal preference, with 「くないです」 being more common in spoken Japanese.'
+examples:
+  - english: This book is not interesting.
+    japanese:
+      - この 本 は 面白く {ない}。
+      - この 本 は 面白く {ない} です。
+    english_literally: This book, as for it, is not interesting.
+    competing_grammar:
+      - competing_japanese:
+          - この 本 は 面白く なかっ た。
+          - この 本 は 面白く なかっ た です。
+        english: This book was not interesting.
+        hint: We are talking about the present state of the book, not its past state. We're looking for
+          the non-past negative.
+      - competing_japanese:
+          - この 本 は 面白い じゃ ない。
+        english: This book is not interesting, is it?
+        hint: While 「じゃない」 is for negation, it's typically for nouns/na-adjectives. For い-adjectives,
+          the direct negative is formed differently. Also, the 「じゃない」 here adds a confirmatory nuance.
+          We're looking for a simple negative statement.
+      - competing_japanese:
+          - この 本 は 面白く あり ませ ん。
+        english: This book is not interesting (polite).
+        hint: This is another polite negative form, but the common casual form uses a different ending.
+          We're looking for the simple negative ending.
+    scene: A student giving their opinion on a textbook.
+    register: casual
+    setting: academic
+    conjugation: negative plain (～ない)
+  - english: The weather today isn't very good.
+    japanese:
+      - 今日 の 天気 は あまり 良く {ない}。
+      - 今日 の 天気 は あまり 良く {ない} です。
+    english_literally: Today's weather, as for it, is not very good.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 の 天気 は あまり 良く なかっ た。
+        english: The weather today wasn't very good.
+        hint: The sentence is about the current weather, not the past. We need the non-past negative.
+    scene: Two friends discussing the gloomy weather.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    nuance: The use of 「良くない」 (yokunai) is the negative of 「良い」 (ii/yoi - good). While 「良い」 is an い-adjective,
+      its negative form consistently uses 「良くない」. The word 「あまり」 (amari - not very) naturally collocates
+      with negative forms to soften the statement.
+  - english: My room is not big.
+    japanese:
+      - 私 の 部屋 は 広く {ない}。
+      - 私 の 部屋 は 広く {ない} です。
+    english_literally: My room, as for it, is not wide.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 部屋 は 広く なかっ た。
+        english: My room was not big.
+        hint: We are describing the current state of the room, not its past state.
+    scene: Someone describing their living space.
+    register: casual
+    setting: informative
+    conjugation: negative plain (～ない)
+  - english: He isn't busy today.
+    japanese:
+      - 彼 は 今日 忙しく {ない}。
+      - 彼 は 今日 忙しく {ない} です。
+    english_literally: He, as for him, today is not busy.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 昨日 忙しく なかっ た。
+          - 彼 は 昨日 忙しく なかっ た です。
+        english: He wasn't busy yesterday.
+        hint: The original sentence referred to 'yesterday,' requiring the past negative form. We are
+          looking for the non-past negative for today.
+    scene: Two colleagues discussing a third colleague's schedule today.
+    register: casual
+    setting: professional
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: male
+    nuance: Using 「忙しくない」 (isogashikunai) correctly places the negation in the present. The addition of
+      「です」 makes it polite casual, suitable for conversation among colleagues.
+  - english: That restaurant isn't delicious.
+    japanese:
+      - あの レストラン は 美味しく {ない}。
+      - あの レストラン は 美味しく {ない} です。
+    english_literally: That restaurant, as for it, is not delicious.
+    competing_grammar:
+      - competing_japanese:
+          - あの レストラン は 美味しく なかっ た。
+        english: That restaurant wasn't delicious.
+        hint: The current quality of the restaurant is being discussed, not its past quality.
+    scene: A young woman sharing her opinion on a restaurant with a friend.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: female
+    nuance: 「美味しくない」 (oishikunai) is the standard negative of 「美味しい」 (oishii - delicious). This is a common
+      phrase when giving opinions on food. The casual 「ない」 ending is appropriate for friends.
+  - english: These shoes are not cheap.
+    japanese:
+      - この 靴 は 安く {ない}。
+      - この 靴 は 安く {ない} です。
+    english_literally: These shoes, as for them, are not cheap.
+    competing_grammar:
+      - competing_japanese:
+          - この 靴 は 安く なかっ た。
+          - この 靴 は 安く なかっ た です。
+        english: These shoes weren't cheap.
+        hint: The original sentence clearly stated a past condition ('weren't cheap'). We are looking
+          for the present negative form.
+    scene: Someone commenting on the price of shoes.
+    register: casual
+    setting: casual slang
+    conjugation: negative plain (～ない)
+  - english: The test is not easy.
+    japanese:
+      - 試験 は 易しく {ない}。
+      - 試験 は 易しく {ない} です。
+    english_literally: The test, as for it, is not easy.
+    competing_grammar:
+      - competing_japanese:
+          - 試験 は 易しく なかっ た。
+          - 試験 は 易しく なかっ た です。
+        english: The test wasn't easy.
+        hint: The original context implied the test was over, thus needing a past tense. We are looking
+          for the present negative form.
+    scene: A group of students talking about an upcoming exam.
+    register: casual
+    setting: academic
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「易しくない」 (yasashikunai) is the present negative of 「易しい」 (yasashii - easy). This is a common
+      sentiment among students regarding a difficult exam. The casual plain form is natural in a group
+      discussion among peers.
+  - english: That plan is not bad.
+    japanese:
+      - その 計画 は 悪く {ない}。
+      - その 計画 は 悪く {ない} です。
+    english_literally: That plan, as for it, is not bad.
+    competing_grammar:
+      - competing_japanese:
+          - その 計画 は 悪く なかっ た。
+        english: That plan wasn't bad.
+        hint: The statement is about the present state of the plan, not its past state.
+    scene: A manager giving feedback on a team's proposal.
+    register: semi-formal
+    setting: professional
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「悪くない」 (warukunai) is the negative of 「悪い」 (warui - bad). Saying something is 'not bad' can
+      often imply it's actually quite good in Japanese. The polite 「です」 is appropriate for a manager addressing
+      their team.
+  - english: The movie tonight doesn't seem long.
+    japanese:
+      - 今夜 の 映画 は 長く {ない}。
+      - 今夜 の 映画 は 長く {ない} です。
+    english_literally: Tonight's movie, as for it, is not long.
+    competing_grammar:
+      - competing_japanese:
+          - 今夜 の 映画 は 長く なかっ た。
+        english: The movie tonight wasn't long.
+        hint: We are referring to the movie's expected length (future/present), not a past viewing.
+    scene: Friends deciding on a movie to watch.
+    register: casual
+    setting: friendly
+    conjugation: negative plain (～ない)
+  - english: His story is not interesting at all.
+    japanese:
+      - 彼 の 話 は 全然 面白く {ない}。
+      - 彼 の 話 は 全然 面白く {ない} です。
+    english_literally: His story, as for it, completely is not interesting.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 話 は 全然 面白く なかっ た。
+          - 彼 の 話 は 全然 面白く なかっ た です。
+        english: His story wasn't interesting at all.
+        hint: The original sentence referred to a past event. We are looking for the present negative
+          form.
+    scene: A younger person describing a currently boring story.
+    register: casual
+    setting: casual slang
+    conjugation: negative plain (～ない)
+    speaker_age: younger
+    nuance: The phrase 「全然 面白くない」 (zenzen omoshirokunai) uses 「全然」 (zenzen - not at all), an intensifier
+      often used with negative expressions. The casual present negative is typical for sharing opinions
+      with friends, especially among younger speakers.
+post_example_writeup: The examples provided illustrate the various ways 「くない」 and its past form 「くなかった」
+  are used to negate い-adjectives, ranging from simple descriptions to expressing opinions. Pay attention
+  to the context and tense when choosing between the present and past negative forms. The addition of
+  「です」 makes these expressions polite, suitable for broader situations.

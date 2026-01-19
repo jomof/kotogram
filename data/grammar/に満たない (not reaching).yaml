@@ -1,0 +1,204 @@
+grammar_point: に満たない (not reaching)
+learn_before:
+  - しか〜ない (only, nothing but)
+meaning: not reaching (a certain amount or standard); less than; insufficient.
+pronunciation:
+  katakana: ニミタナイ
+  romaji: ni mitanai
+formation:
+  Noun + に + 満たない: Indicates that a noun (e.g. quantity, standard, expectation) is not reached.
+  Verb[dictionary form] + に + 満たない: Less common, but can express not reaching a sufficient level to perform
+    the action implied by the verb.
+jlpt: N1
+etymology: The phrase combines the particle に (ni), indicating a target or standard, with the verb 満たない
+  (mitanai), the negative form of 満つ (mitsu), meaning "to be full," "to be satisfied," or "to reach."
+  Thus, literally, "not reaching to" or "not being full to" a certain point. This construction emphasizes
+  falling short of a benchmark.
+writeup: 「に満たない」 is a grammatical expression used to indicate that something **does not reach a certain
+  quantity, level, or standard**. It's commonly translated as "less than," "not amounting to," or "insufficient."
+  This phrase carries a nuanced implication of falling short of a minimum requirement or a desired benchmark.
+  It is often used in more formal or written contexts, particularly when dealing with numerical values,
+  specific criteria, or established expectations. For instance, when describing a quantity that is below
+  a certain threshold, such as 「１０人に満たない」 (less than 10 people), it's a precise way to state the deficiency.
+  Beyond mere numbers, 「に満たない」 can also be applied to abstract standards or goals. For example, if a performance
+  「期待に満たない」 (does not meet expectations), it means it fell short of the anticipated quality. While straightforward
+  in its core meaning, the expression sometimes carries a subtle tone of inadequacy or even disappointment,
+  especially when the "not reaching" implies a negative outcome or a failure to achieve something desirable.
+false_friends:
+  - term: 未満
+    meaning: Strictly less than; under.
+    kind: similar expression
+    nuance: 「未満」 is typically used only for numerical values and is a more direct, factual statement of
+      "less than." 「に満たない」 can be used for both numerical and abstract standards (like expectations or
+      qualifications) and can carry a slightly more evaluative or judgmental nuance of "falling short"
+      rather than just being quantitatively less.
+    grammar_point: 未満 (strictly less than)
+  - term: 以下
+    meaning: Less than or equal to; the following.
+    kind: similar expression
+    nuance: 「以下」 includes the specified numerical value, whereas 「に満たない」 strictly means "less than" that
+      value. Like 「未満」, 「以下」 is primarily numerical.
+    grammar_point: 〜以下 (less than or equal to・the following)
+  - term: に足りない
+    meaning: To not be worthy, to not be sufficient, to lack.
+    kind: similar expression
+    nuance: While both express a lack, 「に足りない」 often implies a qualitative deficiency or a lack of qualification/worthiness
+      (e.g. 「プロと呼ぶに足りない」 - not good enough to be called a pro), rather than merely not reaching a quantity
+      or a general standard. 「に満たない」 can be used for both quantitative and qualitative shortages.
+    grammar_point: に足りない (not worthy or sufficient)
+post_false_friends_writeup: When distinguishing 「に満たない」 from 「未満」 or 「以下」, remember that 「未満」 and 「以下」
+  are precise mathematical terms strictly for numbers. 「に満たない」 is similar to 「未満」 when referring to numbers
+  (meaning "less than"), but it extends to abstract concepts and can subtly imply a judgment of falling
+  short of a standard or expectation, not just a numerical deficiency. 「に足りない」 specifically speaks to
+  a lack of worthiness or qualification, which is a narrower focus than 「に満たない」's broader application
+  to any kind of standard or quantity.
+examples:
+  - english: The number of participants was less than five.
+    japanese:
+      - 参加 者 は ５ 人 に {満た ない} 数 だっ た。
+      - 参加 者 は ５ 人 に {満た ない} 数 でし た。
+    english_literally: Participants as for 5 people to not reaching number was.
+    competing_grammar:
+      - competing_japanese:
+          - 参加 者 は ５ 人 {未満} だっ た。
+        english: The number of participants was under five.
+        hint: 「未満」 is strictly numerical and implies a precise cutoff. 「に満たない」 can also apply to non-numerical
+          standards.
+    scene: A team leader reporting attendance.
+    register: formal
+    setting: professional
+  - english: His work isn't up to standard yet.
+    japanese:
+      - 彼 の 仕事 は まだ 基準 に {満た ない}。
+      - 彼 の 仕事 は まだ 基準 に {満た ない} です。
+    english_literally: His work as for still standard to not reaching.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 仕事 は まだ 基準 に {達し て ない}。
+        english: His work has not yet reached the standard.
+        hint: 「達する」 means "to reach" or "to attain." While similar, 「満たない」 specifically emphasizes falling
+          short of sufficiency.
+    scene: A supervisor giving feedback to a subordinate.
+    register: semi-formal
+    setting: professional
+  - english: If sales don't reach 10 million yen, we can't achieve our goal.
+    japanese:
+      - 売上 が １０００ 万 円 に {満た ない} なら ば、目標 を 達成 でき ませ ん。
+      - 売上 が １０００ 万 円 に {満た ない} なら、目標 を 達成 でき ませ ん。
+      - 売上 が １０００ 万 円 に {満た ない} なら、目標 を 達成 でき ない。
+    english_literally: Sales as for 10 million yen to not reaching if, goal object particle achieve cannot.
+    competing_grammar:
+      - competing_japanese:
+          - 売上 が １０００ 万 円 {以下} なら ば、目標 を 達成 でき ませ ん。
+        english: If sales are 10 million yen or less, we cannot achieve our goal.
+        hint: 「以下」 includes the 10 million yen mark, whereas 「に満たない」 means strictly less than.
+    scene: A business meeting discussing quarterly targets.
+    register: formal
+    setting: professional
+  - english: Applicants whose scores don't meet the minimum won't be considered.
+    japanese:
+      - 最低 点 に {満た ない} 応募 者 は 考慮 さ れ ない。
+      - 最低 点 に {満た ない} 応募 者 は 考慮 さ れ ませ ん。
+    english_literally: Minimum score to not reaching applicants as for consideration not done.
+    competing_grammar:
+      - competing_japanese:
+          - 最低 点 を {クリア でき ない} 応募 者 は 考慮 さ れ ない。
+        english: Applicants who cannot clear the minimum score will not be considered.
+        hint: 「クリアできない」 focuses on the inability to pass, while 「に満たない」 highlights the inadequacy of the
+          score itself.
+    scene: An announcement for job applications.
+    register: formal
+    setting: academic
+  - english: His courage was not enough to face the challenge.
+    japanese:
+      - 彼 の 勇気 は その 困難 に 立ち向かう に {満た ない} もの だっ た。
+      - 彼 の 勇気 は その 困難 に 立ち向かう に {満た ない} もの でし た。
+    english_literally: His courage as for that difficulty to face to not reaching thing was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 勇気 は その 困難 に 立ち向かう に {足り ない} もの だっ た。
+        english: His courage was not sufficient to face that difficulty.
+        hint: 「に足りない」 often implies a qualitative insufficiency or lack of worthiness, fitting well here,
+          but 「に満たない」 can also apply to a general standard of "enough."
+    scene: A narrator describing a character's internal struggle.
+    register: bungo (literary)
+    setting: storytelling
+    speaker_gender: male
+    listener_gender: no one
+    nuance: The literary register and the structure emphasize the character's internal state. While 「に足りない」
+      would also fit, 「に満たない」 here suggests a concrete failing to reach a required level of courage.
+  - english: His efforts were insufficient to achieve the desired result.
+    japanese:
+      - 彼 の 努力 は 望む 結果 に {満た ない} もの だっ た。
+      - 彼 の 努力 は 望む 結果 に {満た ない} もの でし た。
+    english_literally: His efforts as for desired result to not reaching thing was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 努力 は 望む 結果 に {及ば ない} もの だっ た。
+        english: His efforts did not reach the desired result.
+        hint: 「に及ばない」 emphasizes inability to reach a specific level or compare favorably, whereas 「に満たない」
+          implies a general inadequacy or falling short of a set standard.
+    scene: A post-mortem analysis of a project.
+    register: formal
+    setting: professional
+  - english: The preparation period was less than a week.
+    japanese:
+      - 準備 期間 は 一 週間 に {満た ない} ほど しか なかっ た。
+      - 準備 期間 は 一 週間 に {満た ない} ほど しか あり ませ ん でし た。
+    english_literally: Preparation period as for one week to not reaching extent only existed.
+    competing_grammar:
+      - competing_japanese:
+          - 準備 期間 は 一 週間 {未満} だっ た。
+        english: The preparation period was less than a week.
+        hint: Both are acceptable here, but 「未満」 is strictly numerical. 「に満たない」 can feel slightly more
+          formal even with numbers, but it's not exclusively formal.
+    scene: Two colleagues discussing a rushed project.
+    register: casual
+    setting: friendly
+  - english: The quality of the merchandise does not meet current standards.
+    japanese:
+      - 商品 の 品質 は 現在 の 基準 に {満た ない}。
+      - 商品 の 品質 は 現在 の 基準 に {満た ない} です。
+    english_literally: Merchandise of quality as for current standard to not reaching.
+    competing_grammar:
+      - competing_japanese:
+          - 商品 の 品質 は 現在 の 基準 に {達し て い ませ ん}。
+        english: The quality of the merchandise has not reached current standards.
+        hint: 「達していない」 simply states that it hasn't arrived at the standard, while 「に満たない」 implies it's
+          below the standard and insufficient.
+    scene: A product review meeting.
+    register: formal
+    setting: professional
+  - english: Due to a lack of funds, the project could not proceed.
+    japanese:
+      - 予算 が 必要 額 に {満た ない} ため、プロジェクト は 進め られ なかっ た。
+      - 予算 が 必要 額 に {満た ない} ため、プロジェクト は 進め られ ませ ん でし た。
+    english_literally: Budget subject necessary amount to not reaching because, project as for could not
+      be advanced.
+    competing_grammar:
+      - competing_japanese:
+          - 予算 が 必要 額 に {足り ない} ため、プロジェクト は 進め られ なかっ た。
+        english: Because the budget was insufficient for the necessary amount, the project could not proceed.
+        hint: 「に足りない」 is a strong alternative here, both meaning insufficient. 「に満たない」 is slightly more
+          formal and about "not reaching" the amount, while 「に足りない」 is about "not having enough of."
+    scene: A project manager explaining a delay.
+    register: formal
+    setting: professional
+  - english: Her explanation was not detailed enough for everyone to understand.
+    japanese:
+      - 彼女 の 説明 は 皆 が 理解 する に {満た ない} もの だっ た。
+      - 彼女 の 説明 は 皆 が 理解 する に {満た ない} もの でし た。
+    english_literally: Her explanation as for everyone subject understand to not reaching thing was.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 説明 は 皆 が 理解 する に {不 十分} だっ た。
+        english: Her explanation was insufficient for everyone to understand.
+        hint: 「不十分」 (fujūbun) is a general adjective for insufficient. 「に満たない」 is a more specific verbal
+          expression indicating it "falls short of" the required understanding.
+    scene: A debriefing after a presentation.
+    register: semi-formal
+    setting: academic
+    speaker_gender: female
+    listener_gender: group
+    nuance: The phrase 「理解 する に 満たない」 suggests that the explanation truly 「did not meet」 the level required
+      for general understanding, implying a significant gap rather than just being a little unclear.

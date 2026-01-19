@@ -1,0 +1,258 @@
+grammar_point: '[Noun]によって (cause・reason)'
+learn_before:
+  - Verb[(ら)れる] (direct passive)
+  - Verbて (uncontrollable consequence)
+  - '[Noun]によって (means・method)'
+  - おきに (at intervals of)
+  - たものだ (nostalgic recollection)
+  - で (cause・reason)
+  - に (agent・source)
+  - を契機に (as a turning point)
+  - 憎む (to hate・to detest)
+meaning: due to, because of, as a result of
+conjugations:
+  - conjugation-type: te-form (～て)
+    form: によって
+    rarity: common
+    meaning: due to, because of, as a result of
+pronunciation:
+  katakana: ニヨッテ
+  romaji: ni yotte
+formation:
+  Noun + によって: Indicates the cause or reason for an event or situation.
+jlpt: N3
+etymology: The expressions 「によって」, 「による」, and 「により」 all stem from the verb 「よる」. This verb carries meanings
+  such as "to depend on," "to be based on," or "to come from." When used to express cause or reason, the
+  particle 「に」 signifies the base, origin, or cause. Therefore, 「によって」 in this context signifies an action
+  or event being "caused by" or "due to" something.
+writeup: |-
+  The grammar point 「によって」, when used to express cause or reason, indicates that the preceding noun is the direct source or origin of a subsequent event, situation, or outcome. It functions adverbially, connecting the cause to the effect. This usage is common in formal, written, or academic contexts, making it more objective and often more emphatic than simpler causal expressions like 「から」 or 「ので」.
+
+  While 「によって」 can also indicate means, agent, or dependency in other contexts, this specific usage focuses purely on causality. It is particularly useful when the cause is a significant factor, an external force, or a systemic reason, rather than a personal or immediate one.
+false_friends:
+  - term: ため・ために (for the purpose of・because of)
+    meaning: due to, because of, as a result of
+    kind: similar expression
+    nuance: Unlike によって, ために focuses more on the direct reason or purpose, often with a sense of consequence
+      or intention.
+    grammar_point: '[Verb-dictionary・Nounの]ために (for the purpose of)'
+  - term: によると・によれば
+    meaning: according to
+    kind: often confused with
+    nuance: Unlike によって・による, によると・によれば specifically indicates that information is sourced from something
+      or someone, functioning as a citation.
+    grammar_point: によると・によれば (according to)
+  - term: で (by means of・method)
+    meaning: by, with (means, instrument)
+    kind: often confused with
+    nuance: While で generally marks the means or instrument, によって emphasizes a more significant, active,
+      or formal cause, or a cause with broader impact. で is typically a simple tool or method marker.
+    grammar_point: で (means・method)
+  - term: から (reason cause)
+    meaning: because, since
+    kind: often confused with
+    nuance: While から indicates a direct and often personal reason, によって is more formal and objective,
+      often used for causes leading to significant events, especially in written or official contexts.
+    grammar_point: '[Clause]から (because・so)'
+  - term: せい (because of・blame)
+    meaning: because of, due to, blame
+    kind: similar expression
+    nuance: Unlike によって which is neutral, せい almost always implies a negative cause or blames something
+      for an undesirable outcome.
+    grammar_point: 〜おかげで・〜せいで (because of, positive・negative result)
+  - term: にもとづいて
+    meaning: based on, in accordance with
+    kind: similar expression
+    nuance: While にもとづいて strictly means 'based on' a foundation (like facts or rules), によって signifies
+      causation *by* something, implying a more direct influence or origin rather than just a foundational
+      basis.
+    grammar_point: にもとづいて (based on)
+post_false_friends_writeup: To effectively distinguish between these expressions, consider the precise
+  relationship you wish to convey. Use 「によって」 when the preceding noun is the cause or origin of an event.
+  Choose 「ために」 for direct reasons or purposes. Reserve 「によると」 and 「によれば」 specifically for citing sources
+  of information. Use 「で」 for general means, 「から」 for direct reasons, and 「せい」 when assigning blame. When
+  referring to a foundation, 「にもとづいて」 might be used, whereas 「によって」 is for direct causation.
+examples:
+  - english: Due to heavy snow, all trains were suspended.
+    japanese:
+      - 大雪 {に よっ て}、電車 は 全て 運休 と なっ た。
+      - 大雪 {に よっ て}、電車 は 全て 運休 と なり まし た。
+    english_literally: Heavy snow due to, trains all suspended became.
+    competing_grammar:
+      - competing_japanese:
+          - 大雪 の {ため}、電車 は 全て 運休 と なっ た。
+        english: Due to heavy snow, all trains were suspended.
+        hint: '`のため` is a general formal expression for cause or reason. `によって` specifically highlights
+          the cause as the direct origin of the outcome, often used in official announcements. We''re
+          looking for the specific origin here.'
+    scene: A public announcement is made at a train station.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「によって」 is used to state the cause of the suspension in a formal, official context. 「運休と なった」
+      (unkyū to natta) emphasizes the official decision of suspension. This usage clearly identifies heavy
+      snow as the reason for the train suspension.
+  - english: That failure is due to insufficient preparation.
+    japanese:
+      - その 失敗 は、準備 不足 {に よっ て} 起き た もの だ。
+      - その 失敗 は、準備 不足 {に よっ て} 起き た もの です。
+    english_literally: That failure, insufficient preparation due to, occurred thing.
+    competing_grammar:
+      - competing_japanese:
+          - その 失敗 は、準備 不足 の {せい} で ある。
+        english: That failure is because of insufficient preparation.
+        hint: '`の せい で` indicates a negative cause or fault. `によって` is more neutral and formally attributes
+          something to its cause. We''re looking for a neutral, objective statement of cause here.'
+    scene: A project manager is explaining the cause of a setback to their team.
+    register: formal
+    setting: serious
+    conjugation: te-form (～て)
+    nuance: 「準備 不足 に よっ て 起き た もの だ」 (junbi busoku ni yotte okita mono da) attributes the failure directly
+      to a lack of preparation, presenting it as a professional and objective analysis of the cause.
+  - english: Many buildings collapsed due to the earthquake.
+    japanese:
+      - 地震 {に よっ て}、多く の 建物 が 倒壊 し た。
+      - 地震 {に よっ て}、多く の 建物 が 倒壊 し まし た。
+    english_literally: Earthquake due to, many buildings collapsed.
+    competing_grammar:
+      - competing_japanese:
+          - 地震 {で}、多く の 建物 が 倒壊 し た。
+        english: Many buildings collapsed because of the earthquake.
+        hint: '`で` is a common particle for cause, but `によって` emphasizes a more significant or impactful
+          cause, often used for natural disasters or major events. We''re looking for a formal cause here.'
+    scene: A news reporter is giving an update on a recent natural disaster.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「地震によって」 clearly identifies the earthquake as the powerful and undeniable cause of the widespread
+      building collapse. This is typical for formal reports of major incidents.
+  - english: The economy fluctuated greatly due to the government's policies.
+    japanese:
+      - 政府 の 政策 {に よっ て}、経済 は 大きく 変動 し た。
+      - 政府 の 政策 {に よっ て}、経済 は 大きく 変動 し まし た。
+    english_literally: Government's policies due to, economy greatly fluctuated.
+    competing_grammar:
+      - competing_japanese:
+          - 政府 の 政策 {の ため に}、経済 は 大きく 変動 し た。
+        english: Because of the government's policies, the economy fluctuated greatly.
+        hint: While `のために` can indicate cause, `によって` often carries a nuance of the cause being a direct
+          determinant or the origin of a significant change. We're highlighting the direct impact of policies.
+    scene: An economist is presenting an analysis of recent economic trends.
+    register: formal
+    setting: academic
+    conjugation: te-form (～て)
+    nuance: 「政府の政策によって」 attributes the economic fluctuations directly to the government's policies, implying
+      a clear cause-and-effect relationship often discussed in economic analyses.
+  - english: The project succeeded due to his efforts.
+    japanese:
+      - 彼 の 努力 {に よっ て}、プロジェクト は 成功 し た。
+      - 彼 の 努力 {に よっ て}、プロジェクト は 成功 し まし た。
+    english_literally: His efforts due to, project succeeded.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 努力 {の おかげ で}、プロジェクト は 成功 し た。
+        english: Thanks to his efforts, the project succeeded.
+        hint: '`のおかげで` implies a positive outcome thanks to someone''s efforts. `によって` is a more neutral
+          way to state the cause, simply indicating that the success originated from his efforts. We''re
+          looking for a direct causal link.'
+    scene: A team leader is acknowledging an individual's contribution to a successful project.
+    register: semi-formal
+    setting: professional
+    conjugation: te-form (～て)
+    nuance: 「彼の努力によって」 formally recognizes the individual's efforts as the direct cause of the project's
+      success. This phrase is suitable for professional acknowledgments.
+  - english: The ecosystem is being destroyed due to environmental pollution.
+    japanese:
+      - 環境 汚染 {に よっ て}、生態 系 が 破壊 さ れ て いる。
+      - 環境 汚染 {に よっ て}、生態 系 が 破壊 さ れ て い ます。
+    english_literally: Environmental pollution due to, ecosystem is being destroyed.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 汚染 {が 原因 で}、生態 系 が 破壊 さ れ て いる。
+        english: The ecosystem is being destroyed because environmental pollution is the cause.
+        hint: '`が原因で` explicitly states ''is the cause''. `によって` simply states the cause, often used for
+          broader, systemic issues like environmental problems. We''re looking for a formal cause.'
+    scene: A scientist is discussing global environmental issues at a conference.
+    register: formal
+    setting: academic
+    conjugation: te-form (～て)
+    nuance: 「環境汚染によって」 clearly identifies environmental pollution as the root cause of ecosystem destruction,
+      highlighting a significant, ongoing negative impact.
+  - english: Many lives were lost due to the war.
+    japanese:
+      - 戦争 {に よっ て}、多く の 命 が 失わ れ た。
+      - 戦争 {に よっ て}、多く の 命 が 失わ れ まし た。
+    english_literally: War due to, many lives lost.
+    competing_grammar:
+      - competing_japanese:
+          - 戦争 {の ため に}、多く の 命 が 失わ れ た。
+        english: Because of the war, many lives were lost.
+        hint: While `のために` can express cause, `によって` is often used when the cause is a large-scale, impactful
+          event, like a war, that directly leads to a significant outcome. We're emphasizing the direct
+          link between war and loss of life.
+    scene: A historian is giving a lecture on the impact of a historical conflict.
+    register: formal
+    setting: academic
+    conjugation: te-form (～て)
+    nuance: 「戦争によって」 concisely and gravely states the war as the direct and undeniable cause of the widespread
+      loss of life, a common phrasing in historical and solemn contexts.
+  - english: The game was canceled due to the weather.
+    japanese:
+      - 天候 {に よっ て}、試合 は 中止 に なっ た。
+      - 天候 {に よっ て}、試合 は 中止 に なり まし た。
+    english_literally: Weather due to, game canceled became.
+    competing_grammar:
+      - competing_japanese:
+          - 天候 {が 悪かっ た の で}、試合 は 中止 に なっ た。
+        english: Because the weather was bad, the game was canceled.
+        hint: '`ので` is a common, slightly softer way to state a reason. `によって` is more formal and states
+          the weather as the definitive, objective cause of the cancellation. We''re looking for a formal,
+          objective reason.'
+    scene: An announcement is made at a sports event venue.
+    register: formal
+    setting: informative
+    conjugation: te-form (～て)
+    nuance: 「天候によって」 specifies that the weather conditions were the direct and formal reason for the game's
+      cancellation, typical for official announcements.
+  - english: I got sick due to overwork.
+    japanese:
+      - 過労 {に よっ て}、体調 を 崩し た。
+      - 過労 {に よっ て}、体調 を 崩し まし た。
+    english_literally: Overwork due to, my physical condition broke down.
+    competing_grammar:
+      - competing_japanese:
+          - 過労 {で}、体調 を 崩し た。
+        english: I got sick from overwork.
+        hint: '`で` can indicate cause, but `によって` often highlights a more significant or severe cause,
+          especially when it leads to a serious consequence like illness. We''re emphasizing a more direct
+          and serious cause here.'
+    scene: An office worker is explaining their absence from work to a colleague.
+    register: semi-formal
+    setting: serious
+    conjugation: te-form (～て)
+    nuance: 「過労によって」 identifies overwork as the specific and underlying cause of the speaker's deteriorating
+      health. This phrasing emphasizes the direct causal link.
+  - english: An accident occurred due to carelessness.
+    japanese:
+      - 不 注意 {に よっ て}、事故 が 起こっ た。
+      - 不 注意 {に よっ て}、事故 が 起こり まし た。
+    english_literally: Carelessness due to, accident occurred.
+    competing_grammar:
+      - competing_japanese:
+          - 不 注意 {から}、事故 が 起こっ た。
+        english: An accident occurred from carelessness.
+        hint: '`から` can indicate a source or reason. `によって` specifically highlights the cause as the definitive
+          origin or determinant of the accident. We''re looking for a more formal or precise statement
+          of cause.'
+    scene: A safety instructor is explaining the causes of common accidents.
+    register: formal
+    setting: instructional
+    conjugation: te-form (～て)
+    nuance: 「不注意によって」 assigns carelessness as the direct and principal cause of the accident, a common
+      phrasing in reports or explanations of incidents.
+post_example_writeup: As these examples demonstrate, 「によって」 is a powerful and versatile way to express
+  cause or reason in Japanese. It is particularly prevalent in formal communication, such as news reports,
+  academic papers, and official statements, where precise and objective identification of causes is crucial.
+  Always consider the context and the level of formality required when choosing this expression.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/によって-による

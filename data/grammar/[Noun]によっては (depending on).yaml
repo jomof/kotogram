@@ -1,0 +1,254 @@
+grammar_point: '[Noun]によっては (depending on)'
+learn_before:
+  - ばあいは (in the event of)
+meaning: depending on
+pronunciation:
+  katakana: ニヨッテハ
+  romaji: niyotte wa
+formation:
+  Noun + によっては: Indicates that something varies or differs depending on the noun.
+jlpt: N2
+etymology: The expression 「によっては」 combines the particle 「に」, the te-form of the verb 「よる」 (to depend on,
+  to be due to), and the topic/contrast particle 「は」. 「よる」 fundamentally refers to the origin or basis
+  of something. Thus, 「によって」 means 'by means of', 'due to', or 'depending on'. The addition of 「は」 specifically
+  highlights the 'depending on' aspect and introduces a nuance of variability or exceptions. It implies
+  that while a certain condition may lead to one outcome, other conditions within the same category (e.g.,
+  other people, other situations) may lead to different outcomes.
+writeup: |-
+  The grammar point 「[Noun]によっては」 is used to indicate that something varies or differs depending on the preceding noun. This phrase is a common way to acknowledge that a situation, outcome, or opinion is not universal but contingent on specific factors.
+
+  The particle 「は」 in 「によっては」 adds a crucial nuance of contrast or emphasis. It often implies "in some cases, depending on..." or "it depends on..." This highlights that while a particular outcome might occur in one situation, other outcomes are possible in different situations, all contingent on the `Noun`.
+
+  For example, if you say 「人によっては意見が違う」, it suggests that opinions differ *among people*, implying that *some* people will have different opinions, not necessarily everyone. This usage avoids making absolute statements and is excellent for discussing diverse results, conditions, or situations.
+
+  It is frequently used when describing policies that may have exceptions, or when explaining phenomena that are not consistently true across all instances. It's a useful phrase for expressing nuance and acknowledging complexity in various contexts.
+false_friends:
+  - term: によって
+    meaning: by means of, due to, depending on
+    kind: similar expression
+    nuance: 「によって」 is a more general phrase indicating means, cause, or a direct dependency without the
+      specific implication of variability or 'in some cases'. It can be used to state a general rule or
+      cause. In contrast, 「によっては」 specifically highlights that variability exists and that different outcomes
+      *may* arise based on the condition.
+    grammar_point: <suggest>:によって (cause・reason)
+  - term: にかかわらず
+    meaning: regardless of, irrespective of
+    kind: antonym
+    nuance: 「にかかわらず」 expresses that something is true *irrespective* of the condition or factor mentioned,
+      meaning the outcome is constant despite the variation. This is the direct opposite of 「によっては」, which
+      states that the outcome *depends* on the condition.
+    grammar_point: にかかわらず (regardless of)
+  - term: いかん
+    meaning: depending on, according to
+    kind: synonym
+    nuance: 「いかん」 is a more formal and less common way to express dependency, often found in written Japanese
+      or highly formal contexts. 「によっては」 is generally more common in everyday spoken and written language.
+    grammar_point: いかん (depending on)
+post_false_friends_writeup: To avoid confusion, remember that 「によっては」 emphasizes that things *vary* based
+  on the noun, implying 'sometimes, depending on X'. 「によって」 indicates a direct causal relationship or
+  means ('due to X', 'by means of X'). Finally, 「にかかわらず」 is the inverse, meaning 'regardless of X', suggesting
+  constancy despite a factor. 「いかん」 serves a similar meaning to 「によっては」 but is much more formal.
+examples:
+  - english: Depending on the person, opinions differ.
+    japanese:
+      - 人 {に よっ て は} 意見 が 違う。
+      - 人 {に よっ て は} 意見 が 異なり ます。
+      - 人 {に よっ て は} 意見 が 相違 いたし ます。
+    english_literally: Depending on people, opinions are different.
+    competing_grammar:
+      - competing_japanese:
+          - 人 に よっ て 意見 が 違う。
+        english: Opinions differ by person.
+        hint: Using 「によって」 generally states a fact that opinions vary per person. The nuance of 「によっては」
+          is to specifically highlight that *some* people will have different opinions, implying a range
+          or variability. We're looking for the variability of opinions among different people.
+    scene: Discussing how different individuals perceive an issue.
+    register: casual
+    setting: informative
+  - english: The necessary preparation differs depending on the trip.
+    japanese:
+      - 旅行 {に よっ て は} 必要 な 準備 が 異なり ます。
+      - 旅行 {に よっ て は} 必要 な 準備 が 違う。
+      - 旅行 {に よっ て は} 準備 が 必要 と なり ます。
+    english_literally: Depending on trips, necessary preparations differ.
+    competing_grammar:
+      - competing_japanese:
+          - 旅行 に よっ て 必要 な 準備 が 異なり ます。
+        english: Necessary preparations differ due to the trip.
+        hint: While 「によって」 can indicate 'depending on', 「によっては」 adds a nuance of 'in some cases' or 'sometimes
+          it varies', highlighting the individual trip's impact on preparation. We're looking for an expression
+          that suggests preparations vary from trip to trip.
+    scene: A travel agent explaining general travel requirements.
+    register: formal
+    setting: professional
+  - english: Depending on the weather, the event might be canceled.
+    japanese:
+      - 天気 {に よっ て は} イベント が 中止 に なる こと も あり ます。
+      - 天気 {に よっ て は} イベント が 中止 に なる こと も ある。
+      - お 天気 {に よっ て は} イベント が 中止 に なる 場合 も ござい ます。
+    english_literally: Depending on weather, there are also cases where the event becomes canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 天気 に かかわら ず イベント は 開催 さ れ ます。
+        english: Regardless of the weather, the event will be held.
+        hint: This sentence states that the event *will be held regardless* of the weather, which is the
+          opposite of indicating a dependency. We're looking for an expression that says the event's status
+          *depends* on the weather.
+    scene: An event organizer explaining contingency plans to participants.
+    register: semi-formal
+    setting: professional
+  - english: It gets cold, especially depending on the season.
+    japanese:
+      - 季節 {に よっ て は} 特に 寒く なり ます。
+      - 季節 {に よっ て は} 特に 寒く なる。
+      - 季節 {に よっ て は} 気温 が 下がる こと も あり ます。
+    english_literally: Depending on seasons, it especially becomes cold.
+    competing_grammar:
+      - competing_japanese:
+          - 季節 関係 なく 寒い です。
+        english: It's cold regardless of the season.
+        hint: This expression means it's cold *regardless* of the season, not that the coldness *depends*
+          on the season. We're looking for a phrase that implies the coldness varies with the season.
+    scene: Explaining climate variations in a certain region to a newcomer.
+    register: casual
+    setting: informative
+  - english: The delivery time varies depending on the product.
+    japanese:
+      - 商品 {に よっ て は} 配送 まで の 時間 が かかり ます。
+      - 商品 {に よっ て は} 配送 に 時間 が かかる こと も あり ます。
+      - 商品 {に よっ て は} お 届け まで に お 時間 を 頂戴 いたし ます。
+    english_literally: Depending on products, time until delivery takes.
+    competing_grammar:
+      - competing_japanese:
+          - 商品 に よら ず 配送 は 迅速 です。
+        english: Delivery is quick regardless of the product.
+        hint: This competing grammar states that delivery is quick *regardless* of the product. We're
+          looking for a phrase that expresses variability in delivery time *depending* on the product.
+    scene: A customer service representative explaining shipping policies.
+    register: formal
+    setting: professional
+  - english: Depending on the store, the price can be quite different.
+    japanese:
+      - お 店 {に よっ て は} 値段 が だいぶ 違う ん だ よ。
+      - お 店 {に よっ て は} 値段 が だいぶ 違う わ よ。
+      - お 店 {に よっ て は} 価格 が だいぶ 異なり ます。
+    english_literally: Depending on shops, the price is quite different, you know.
+    competing_grammar:
+      - competing_japanese:
+          - お 店 よっ て 値段 が 違う。
+        english: Prices differ by store.
+        hint: While technically correct, 「によって」 lacks the emphasis on the variability and possibility
+          of exceptions that 「によっては」 provides. We're looking for a phrase that highlights that prices
+          *can* be quite different *in some cases* depending on the store.
+    scene: Two friends discussing their shopping experiences and price discrepancies.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of the sentence-ending particle 「だよ」 adds a casual and informative tone, often used
+      by female speakers to explain something gently or to share personal observations with a friend.
+      It indicates a soft assertion.
+  - english: Depending on the situation, we may need to make adjustments.
+    japanese:
+      - 状況 {に よっ て は} 調整 が 必要 と なる 場合 も ござい ます。
+      - 状況 {に よっ て は} 調整 が 必要 と なる こと も あり ます。
+      - 状況 {に よっ て は} 調整 が 必要 だ。
+    english_literally: Depending on situations, there are also cases where adjustments become necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 状況 に かかわら ず 調整 は し ませ ん。
+        english: We won't make adjustments regardless of the situation.
+        hint: This phrase explicitly states that no adjustments will be made, *regardless* of the situation.
+          We need a phrase that suggests adjustments *might* be necessary, *depending* on the situation.
+    scene: A manager addressing their team about project flexibility and potential changes.
+    register: teineigo (polite)
+    setting: professional
+  - english: Depending on the student, progress can be very fast.
+    japanese:
+      - 学生 {に よっ て は} 上達 が とても 早い です ね。
+      - 学生 {に よっ て は} 上達 が とても 早い です。
+      - 学生 {に よっ て は} 上達 が 著しい 者 も い ます。
+    english_literally: Depending on students, improvement is very fast, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 学生 の いかん で 上達 は 変わる。
+        english: Progress changes depending on the student (formal).
+        hint: This is a more formal and less conversational synonym. We're looking for a phrase that's
+          suitable for a teacher reflecting on general student progress in a slightly softer tone. 「いかん」is
+          often used in written or highly formal contexts.
+    scene: A teacher reflecting on the diverse learning paces of their students.
+    register: formal
+    setting: academic
+  - english: The interpretation differs depending on the context.
+    japanese:
+      - 文脈 {に よっ て は} 解釈 が 異なり ます。
+      - 文脈 {に よっ て は} 解釈 が 違う。
+      - 文脈 {に よっ て は} 解釈 に 相違 が 生じ ます。
+    english_literally: Depending on contexts, interpretation differs.
+    competing_grammar:
+      - competing_japanese:
+          - 文脈 に かかわら ず 解釈 は 一定 です。
+        english: Interpretation is constant regardless of context.
+        hint: This means the interpretation is fixed *regardless* of context. We need to convey that the
+          interpretation *changes* with the context.
+    scene: Academics discussing a complex text or theory.
+    register: formal
+    setting: academic
+  - english: Depending on the diet, it might not be healthy.
+    japanese:
+      - 食事 {に よっ て は} 健康 的 で ない こと も あり ます。
+      - 食事 {に よっ て は} 不 健康 に なる こと も ある。
+      - 食事 {に よっ て は} 体 に 良く ない 場合 も あり ます。
+    english_literally: Depending on diets, there are also cases where it is not healthy.
+    competing_grammar:
+      - competing_japanese:
+          - 食事 に よっ て 健康 的 か どう か が 決まり ます。
+        english: Whether it's healthy or not is decided by diet.
+        hint: This implies a clear decision. We're looking for a phrase that suggests a *possibility*
+          of not being healthy in *some cases* depending on the diet, rather than a definitive determination.
+    scene: A nutritionist giving advice on healthy eating habits.
+    register: formal
+    setting: informative
+  - english: Depending on the country, the customs are completely different.
+    japanese:
+      - 国 {に よっ て は} 習慣 が 全然 違う ん です。
+      - 国 {に よっ て は} 習慣 が 全然 違う。
+      - 国 {に よっ て は} 風習 が 大きく 異なり ます。
+    english_literally: Depending on countries, customs are completely different.
+    competing_grammar:
+      - competing_japanese:
+          - 国 に よっ て 習慣 は 違い ます。
+        english: Customs differ by country.
+        hint: While 「によって」 is correct here, 「によっては」 specifically emphasizes the instances where customs
+          are different, suggesting a range of distinct variations rather than just a general difference.
+          We're highlighting specific cases of difference.
+    scene: Someone sharing their travel experiences and cultural observations.
+    register: semi-formal
+    setting: friendly
+  - english: Depending on the time, the train can be really crowded.
+    japanese:
+      - 時間 帯 {に よっ て は} 電車 が すごく 混ん でる よ。
+      - 時間 帯 {に よっ て は} 電車 が すごく 混ん で いる よ。
+      - 時間 帯 {に よっ て は} 電車 が かなり 混雑 いたし ます。
+    english_literally: Depending on time zones, trains are very crowded, you know.
+    competing_grammar:
+      - competing_japanese:
+          - いつ も 電車 は 混ん で いる。
+        english: The train is always crowded.
+        hint: This implies the train is *always* crowded, which contradicts the idea of it being crowded
+          *only at certain times*. We're looking for a phrase that indicates the crowding *depends* on
+          the time.
+    scene: A person explaining commuting conditions to a friend who is new to the area.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The use of 「よ」at the end, common in male casual speech, adds a sense of informing or asserting
+      a fact to the listener. It conveys a direct and straightforward observation.
+post_example_writeup: As seen in these examples, 「によっては」 is versatile and can be applied across various
+  contexts to express variability. It is a key phrase for adding nuance to your Japanese, allowing you
+  to acknowledge exceptions or differing situations without making overly broad statements. Pay attention
+  to the particle 「は」, as it is essential for conveying the 'in some cases' or 'depending on the instance'
+  meaning.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/によっては

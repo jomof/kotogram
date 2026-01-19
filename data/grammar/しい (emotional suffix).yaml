@@ -1,0 +1,270 @@
+grammar_point: しい (emotional suffix)
+learn_before:
+  - 〜如し・〜ごとし (like・as if)
+meaning: Marks an adjective as expressing a strong, often deeply felt, emotion or sentiment.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: しい
+    rarity: common
+    meaning: is emotional/sentimental
+  - conjugation-type: non-past polite (～ます)
+    form: しいです
+    rarity: common
+    meaning: is emotional/sentimental (polite)
+  - conjugation-type: negative plain (～ない)
+    form: しくない
+    rarity: common
+    meaning: is not emotional/sentimental
+  - conjugation-type: negative non-past polite (～ません)
+    form: しくありません
+    rarity: common
+    meaning: is not emotional/sentimental (polite)
+  - conjugation-type: past plain (～た)
+    form: しかった
+    rarity: common
+    meaning: was emotional/sentimental
+  - conjugation-type: past polite (～ました)
+    form: しいでした
+    rarity: common
+    meaning: was emotional/sentimental (polite)
+  - conjugation-type: negative past plain (～なかった)
+    form: しくなかった
+    rarity: common
+    meaning: was not emotional/sentimental
+  - conjugation-type: negative past polite (～ませんでした)
+    form: しくありませんでした
+    rarity: common
+    meaning: was not emotional/sentimental (polite)
+  - conjugation-type: te-form (～て)
+    form: しくて
+    rarity: common
+    meaning: being emotional/sentimental, and then...
+  - conjugation-type: concessive (～ても)
+    form: しくても
+    rarity: common
+    meaning: even if emotional/sentimental
+pronunciation:
+  katakana: シイ
+  romaji: shii
+formation:
+  i-Adjectives ending in しい: Indicates an inherent strong emotional or sentimental quality. These adjectives
+    are not formed by adding しい to other words, but rather are part of the lexicon with this ending. Examples
+    include 懐かしい (natsukashii), 恋しい (koishii), 嬉しい (ureshii), 悲しい (kanashii), 美しい (utsukushii).
+jlpt: N2
+etymology: The 'しい' ending in Japanese adjectives has roots in classical Japanese, where it often denoted
+  an intense or deeply felt emotional state. It evolved from older forms and can be linked to the classical
+  emotional particle 'し' (shi), which was used to express personal sentiment or reflection. Over time,
+  it became an integral and non-separable part of many modern i-adjectives that convey strong subjective
+  feelings, rather than a productive suffix to be freely attached to any adjective.
+writeup: |-
+  The 'しい' ending is not a productive suffix in modern Japanese, meaning you cannot freely attach it to any adjective or verb stem to create new words. Instead, it is a characteristic ending for a significant group of i-adjectives that inherently convey strong, often deeply personal, emotions or sentiments. These adjectives are part of the lexicon and include words like 懐かしい (natsukashii - nostalgic, dearly remembered), 恋しい (koishii - longed for, yearned for), 嬉しい (ureshii - happy, glad), 悲しい (kanashii - sad), and 美しい (utsukushii - beautiful). The presence of 'しい' in these words serves to emphasize the profoundness or intensity of the emotion or state being described.
+
+  While the primary function of adjectives ending in 'しい' is to describe qualities, this specific ending imbues them with an added layer of emotional depth. For instance, while other adjectives might describe a state, words like 恋しい inherently carry a strong sense of longing that is distinct. This nuance can make expressions feel more poignant or heartfelt.
+
+  It is often associated with female speech, lending a softer or more endearing tone to expressions of strong emotion. However, it is not exclusively used by women and can appear in various contexts to convey a heightened emotional register.
+false_friends:
+  - term: なあ
+    meaning: expresses strong emotion, often seeking agreement or confirmation.
+    kind: similar expression
+    nuance: While both add emotional emphasis, adjectives ending in 「しい」 often convey a softer, more personal,
+      and sometimes slightly nostalgic or longing sentiment. 「なあ」 is a more general, direct emotional
+      exclamation that can be used by anyone.
+    grammar_point: なあ (emotional emphasis)
+  - term: 〜てたまらない
+    meaning: Cannot bear something; extremely.
+    kind: similar expression
+    nuance: 「〜てたまらない」 expresses an unbearable or irresistible degree of feeling, often implying a negative
+      or overwhelming sensation that cannot be controlled. Adjectives ending in 「しい」 simply describe the
+      intensity of the emotion, which can be positive or negative, without implying lack of control.
+    grammar_point: てならない (cannot help but feel)
+  - term: 堪らない
+    meaning: unbearable・irresistible
+    kind: similar expression
+    nuance: 「堪らない」 conveys an overwhelming emotion that is difficult to endure. Adjectives ending in 「しい」,
+      by contrast, focus on the inherent emotional quality of the subject, without necessarily implying
+      a struggle against an uncontrollable feeling.
+    grammar_point: 堪らない (unbearable・irresistible)
+post_false_friends_writeup: Understanding the subtle differences between adjectives ending in 'しい' and
+  other expressions of strong emotion is key. While expressions like 'なあ' add a general emotional tone
+  and '〜てたまらない' or '堪らない' describe an emotion's overwhelming nature, the 'しい' ending is ingrained in the
+  adjective itself, defining the inherent emotional character of the word rather than a speaker's reaction
+  to it.
+examples:
+  - english: This old photo brings back so many memories; it's so nostalgic.
+    japanese:
+      - この 古い 写真 を 見る と、とても {懐かしい} です。
+      - この 古い 写真 を 見る と、とても {懐かしい}。
+    english_literally: When I see this old photo, it is very nostalgic.
+    competing_grammar:
+      - competing_japanese:
+          - この 古い 写真 を 見る と、昔 を よく 思い出し ます。
+        english: When I see this old photo, I often recall the past.
+        hint: 「思い出します」 means 'to recall memories'. We're looking for an adjective that expresses a feeling
+          of fondness for the past itself.
+    scene: A person looking at an old photo album with a friend.
+    register: teineigo (polite)
+    setting: reflective
+    conjugation: non-past polite (～ます)
+  - english: I miss my hometown.
+    japanese:
+      - 故郷 が とても {恋しい} です。
+      - 故郷 が とても {恋しい}。
+    english_literally: My hometown is very longed-for.
+    competing_grammar:
+      - competing_japanese:
+          - 故郷 に 帰り たい です。
+        english: I want to return to my hometown.
+        hint: 「帰りた」 expresses a desire to return. We're looking for an adjective that conveys a longing
+          or yearning for the hometown itself.
+    scene: Someone living far from home.
+    register: teineigo (polite)
+    setting: melancholic
+    conjugation: non-past polite (～ます)
+  - english: I was truly happy to receive your message.
+    japanese:
+      - あなた から の メッセージ、本当 に {嬉しかっ た} です。
+      - あなた から の メッセージ、本当 に {嬉しかっ た}。
+    english_literally: Your message, it was truly happy.
+    competing_grammar:
+      - competing_japanese:
+          - あなた から の メッセージ を もらっ て、とても 喜び まし た。
+        english: I received your message and was very pleased.
+        hint: 「喜びました」 means 'was pleased/rejoiced'. We're looking for an adjective to describe the feeling
+          of happiness.
+    scene: A friend receiving a thoughtful message.
+    register: teineigo (polite)
+    setting: friendly
+    conjugation: past polite (～ました)
+  - english: It's sad that the summer vacation is already over.
+    japanese:
+      - 夏休み が もう 終わる の は {悲しい} です ね。
+      - 夏休み が もう 終わる の は {悲しい} ね。
+    english_literally: That summer vacation is already ending is sad, isn't it?
+    competing_grammar:
+      - competing_japanese:
+          - 夏休み が もう 終わる の は 残念 です ね。
+        english: It's regrettable that summer vacation is already ending, isn't it?
+        hint: 「残念」 expresses regret or disappointment. We're looking for an adjective that conveys a feeling
+          of sadness.
+    scene: Two students talking at the end of summer break.
+    register: teineigo (polite)
+    setting: melancholic
+    conjugation: non-past polite (～ます)
+    nuance: 「悲しい」 conveys a sense of sorrow. The added 「ね」 at the end seeks agreement, making the expression
+      softer and more relatable.
+  - english: The night sky filled with stars was incredibly beautiful.
+    japanese:
+      - 星 で いっぱい の 夜空 は 本当 に {美しかっ た} です。
+      - 星 で いっぱい の 夜空 は 本当 に {美しかっ た}。
+    english_literally: The night sky full of stars was truly beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - 星 で いっぱい の 夜空 は 本当 に きれい でし た。
+        english: The night sky full of stars was truly pretty.
+        hint: 「きれい」 means 'pretty' or 'clean'. We're looking for an adjective that conveys a deeper sense
+          of beauty or aesthetic appreciation.
+    scene: Describing a view of the night sky.
+    register: teineigo (polite)
+    setting: creative
+    conjugation: past polite (～ました)
+  - english: The storm that hit last night was terrifying.
+    japanese:
+      - 昨夜 襲っ た 嵐 は {恐ろしかっ た} です。
+      - 昨夜 襲っ た 嵐 は {恐ろしかっ た}。
+    english_literally: The storm that hit last night was terrifying.
+    competing_grammar:
+      - competing_japanese:
+          - 昨夜 襲っ た 嵐 は とても 怖かっ た です。
+        english: The storm that hit last night was very scary.
+        hint: 「怖い」 means 'scary'. We're looking for an adjective that conveys a more profound sense of
+          dread or terror.
+    scene: Discussing a recent natural disaster.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: past polite (～ました)
+  - english: It's embarrassing to be praised in front of so many people.
+    japanese:
+      - こんな に たくさん の 人 の 前 で 褒め られる と {恥ずかしい} です。
+      - こんな に たくさん の 人 の 前 で 褒め られる と {恥ずかしい}。
+    english_literally: When praised in front of so many people like this, it is embarrassing.
+    competing_grammar:
+      - competing_japanese:
+          - こんな に たくさん の 人 の 前 で 褒め られる と 照れ ます。
+        english: When praised in front of so many people, I feel shy.
+        hint: 「照れる」 means 'to feel shy/embarrassed'. We're looking for an adjective to describe the state
+          of being embarrassed.
+    scene: Someone receiving public praise.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: non-past polite (～ます)
+  - english: Our new team leader is very reliable and dependable.
+    japanese:
+      - 私 たち の 新しい チーム リーダー は とても {頼もしい} です。
+      - 私 たち の 新しい チーム リーダー は とても {頼もしい}。
+    english_literally: Our new team leader is very reliable.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち の 新しい チーム リーダー は とても 信頼 でき ます。
+        english: Our new team leader is very trustworthy.
+        hint: 「信頼 できます」 means 'can be trusted'. We're looking for an adjective that describes someone
+          as reliable or dependable, inspiring a feeling of security.
+    scene: Coworkers discussing their new boss.
+    register: teineigo (polite)
+    setting: professional
+    conjugation: non-past polite (～ます)
+  - english: The performance was absolutely wonderful; I was deeply moved.
+    japanese:
+      - その パフォーマンス は 本当 に {素晴らしかっ た} です。深く 感動 し まし た。
+      - その パフォーマンス は 本当 に {素晴らしかっ た}。深く 感動 し まし た。
+    english_literally: That performance was truly wonderful. I was deeply moved.
+    competing_grammar:
+      - competing_japanese:
+          - その パフォーマンス は 本当 に 良かっ た です。深く 感動 し まし た。
+        english: That performance was truly good. I was deeply moved.
+        hint: 「良かった」 means 'was good'. We're looking for an adjective that conveys a sense of wonder,
+          admiration, or splendor.
+    scene: Discussing a concert or show.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: past polite (～ました)
+  - english: Wow, this song takes me back! So nostalgic.
+    japanese:
+      - うわ、この 曲 {懐かしい} なあ！
+      - うわ、この 曲、{懐かしい} です ね！
+    english_literally: Wow, this song is nostalgic, isn't it!
+    competing_grammar:
+      - competing_japanese:
+          - うわ、この 曲、昔 を 思い出す よ！
+        english: Wow, this song makes me remember the past!
+        hint: 「思い出す」 means 'to recall'. We're looking for an adjective that expresses the feeling of nostalgia
+          itself, rather than the action of remembering.
+    scene: Two male friends listening to old music.
+    register: casual
+    setting: friendly
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    nuance: 「懐かしい」 conveys a strong emotional bond to the past. The sentence-final particle 「なあ」, often
+      used by male speakers and in casual contexts, adds a reflective and slightly wistful tone, while
+      also seeking shared sentiment.
+  - english: These complicated procedures are truly troublesome.
+    japanese:
+      - こんな 複雑 な 手続き は 本当 に {煩わしい} です。
+      - こんな 複雑 な 手続き は 本当 に {煩わしい}。
+    english_literally: Such complicated procedures are truly troublesome.
+    competing_grammar:
+      - competing_japanese:
+          - こんな 複雑 な 手続き は 本当 に めんど くさい です。
+        english: These complicated procedures are truly bothersome/a hassle.
+        hint: 「めんどくさい」 is more colloquial for 'bothersome' or 'hassle'. We're looking for an adjective
+          that expresses a feeling of being annoyed or troubled by something intricate.
+    scene: Someone complaining about bureaucracy.
+    register: teineigo (polite)
+    setting: serious
+    conjugation: non-past polite (～ます)
+post_example_writeup: The examples illustrate how adjectives ending in 'しい' convey a heightened sense
+  of emotion, whether positive (嬉しい, 美しい, 頼もしい, 素晴らしい), negative (悲しい, 恐ろしい, 恥ずかしい, 煩わしい), or nuanced
+  (懐かしい, 恋しい). While these words conjugate like regular i-adjectives, their 'しい' ending signals an inherent
+  depth of feeling, differentiating them from more neutral descriptions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/しい

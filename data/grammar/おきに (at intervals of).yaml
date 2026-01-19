@@ -1,0 +1,345 @@
+grammar_point: おきに (at intervals of)
+learn_before:
+  - する (cost)
+  - ちょっと (adverb)
+meaning: Repeated at intervals, Every other, Every, At intervals of
+pronunciation:
+  katakana: オキニ
+  romaji: okini
+formation:
+  '[Number] + [Counter] + おきに': Indicates something happens at intervals of the number and counter specified.
+  '[Time Period] + おきに': Indicates something happens every other time period.
+jlpt: N3
+etymology: 「おきに」 comes from the verb 「置く (おく)」 (to place, to put) and the particle 「に」. The nuance is
+  placing something at an interval or leaving space between occurrences, conceptually deriving from the
+  idea of 'placing' or 'leaving' a space.
+writeup: |-
+  「おきに」 indicates that something happens at consistent intervals. It's a combination of 「置き」, meaning "opening" or "interval", and the case-marking particle 「に」. It is primarily written in hiragana. The core concept of 「おきに」 is to highlight that an event (B) occurs **after** or **outside** of a specified interval (A).
+
+  The distinction between whether it means "every" or "at intervals of" can be nuanced, often depending on the length of the interval:
+
+  *   **For large time frames or distances (e.g., days, months, years, kilometers):** 「おきに」 generally means "at intervals of" or "every other". For example, 「二日おきに」 means "every third day" (after an interval of two full days). In contrast, 「ごとに」 would mean "every" (e.g., 「毎日」 or 「毎年」).
+
+  *   **For small time frames or distances (e.g., seconds, minutes, centimeters):** Both 「ごとに」 and 「おきに」 can sometimes translate to "every", though their underlying nuance differs. When the interval is very short, the exact point within that interval often doesn't matter. So, 「一秒おきに」 often means "every second", because the 'space' between occurrences is effectively the entire second, and it's less common to distinguish where within that second something happens. This is because the focus remains on the *interval* itself being the primary unit.
+
+  To summarize: 「おきに」 consistently points to the occurrence of (B) *after* an interval of (A). For very short intervals, this effectively translates to "every (A)" because the concept of a precise point within that tiny interval becomes less relevant. For longer intervals, it clearly implies a gap.
+
+  It is important to understand the distinction from 「ごとに」, which emphasizes (B) happening *within* or *for each* unit of (A). For instance, 「一時間ごとに」 means something happens at some point during every hour, whereas 「一時間おきに」 emphasizes the occurrence after the hour interval has passed. There is sometimes a debate among native speakers regarding phrases like 「一時間おきに」, where some might interpret it as "every hour" while others as "every two hours", depending on their focus on the immediate next hour or the full interval. However, the consistent meaning of 「おきに」 always refers to the event happening after the specified interval. If unsure, think of 「おきに」 as "leaving intervals of (A), then (B)" for most contexts.
+
+  **Fun Fact:** This grammatical nuance, particularly the distinction between 「おきに」 and 「ごとに」 for certain time frames, is a topic that even native speakers sometimes find tricky or debate among themselves. So, do not be discouraged if it takes time to grasp fully.
+false_friends:
+  - term: に (frequency)
+    meaning: Times (In each time period), Every, Frequency of
+    kind: similar expression
+    nuance: Unlike 「おきに」 which emphasizes a distinct interval or gap between occurrences, 「〜に」 (when indicating
+      frequency) focuses on occurrences within a specified period or unit without explicitly highlighting
+      the space between them.
+    grammar_point: に (frequency)
+  - term: ごとに
+    meaning: Each, Every
+    kind: often confused with
+    nuance: 「ごとに」 focuses on something happening *each time* or *within every* unit (e.g., 'every day',
+      'every year'), whereas 「おきに」 highlights the *interval* or *gap* between occurrences, often implying
+      'every other' or 'every Nth'.
+    grammar_point: ごとに (each・every)
+  - term: たびに
+    meaning: Each time, Every time, Whenever
+    kind: similar expression
+    nuance: Similar to 「ごとに」, 「たびに」 means 'each time' or 'whenever' something happens, emphasizing the
+      individual instances that trigger an event rather than the space between them, as 「おきに」 does.
+    grammar_point: たびに (each time)
+  - term: ずつ
+    meaning: Each; per; one at a time; little by little
+    kind: often confused with
+    nuance: 「ずつ」 emphasizes distribution, increment, or doing things 'one by one' or 'little by little'
+      without necessarily implying a fixed *skipped* interval between items or actions. 「おきに」 specifically
+      highlights a distinct, repeated *gap* or *space* between occurrences, indicating that something
+      happens *after* a specific number or period has been skipped.
+    grammar_point: ずつ (each; one at a time; little by little)
+post_false_friends_writeup: While these expressions all relate to frequency or repetition, 「おきに」 uniquely
+  emphasizes the *interval* or *gap* between occurrences. Expressions like 「ごとに」 and 「たびに」 typically focus
+  on each instance of an event, often implying it happens *within* a period or *each time* something else
+  happens. 「〜に」 when denoting frequency points to occurrences within a time period, and 「ずつ」 emphasizes
+  incremental distribution. To avoid confusion, remember that 「おきに」 is about the space *left between*
+  things, not necessarily what happens *during* each period or instance.
+examples:
+  - english: Please take this medicine every fourth day.
+    japanese:
+      - この 薬 は ３ 日 {おき に} 飲ん で ください。
+      - この 薬 は ３ 日 {おき に} 服用 し て ください。
+      - この 薬 は ３ 日 {おき に} 飲ん で。
+    english_literally: Please drink this medicine leaving an interval of three days.
+    competing_grammar:
+      - competing_japanese:
+          - この 薬 は {毎日} 飲ん で ください。
+        english: Please take this medicine every day.
+        hint: The scene implies a specific, less frequent dosage schedule. We are looking for a phrase
+          that indicates taking the medicine with an interval, not every day.
+      - competing_japanese:
+          - この 薬 は ３ 日 {ごと に} 飲ん で ください。
+        english: Please take this medicine every three days.
+        hint: The nuance of 'おきに' highlights the *gap* or *interval* between occurrences, implying the
+          medicine is taken after three days have passed, effectively on the fourth day. We are looking
+          for the expression that emphasizes this exact interval.
+    scene: A doctor is explaining medication instructions to a patient during a consultation.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The polite command 「〜てください」 is used. The phrase 「３日おきに」 specifically conveys that the medicine
+      should be taken after an interval of three full days has passed. This implies a precise schedule
+      for an older male doctor giving medical advice to a patient.
+  - english: This express train stops every third station.
+    japanese:
+      - この 急行 列車 は 二 駅 {おき に} 停車 し ます。
+      - この 急行 列車 は 二 駅 {おき に} 停車 する。
+      - この 急行 列車 は 二 駅 {おき に} 停車 いたし ます。
+    english_literally: This express train stops leaving an interval of two stations.
+    competing_grammar:
+      - competing_japanese:
+          - この 急行 列車 は {各駅 停車} です。
+        english: This express train is a local train (stops at every station).
+        hint: The scene clearly indicates an express train, meaning it doesn't stop at every station.
+          We need a phrase that describes stopping at specific intervals, not all stations.
+      - competing_japanese:
+          - この 急行 列車 は 二 駅 {ごと に} 停車 し ます。
+        english: This express train stops every two stations.
+        hint: The scene highlights the intentional skipping of stations, emphasizing the spatial 'gap'
+          or 'interval' between stops, which is the core nuance of 'おきに'. We're looking for the phrase
+          that clearly indicates stopping after a specific number of stations are skipped.
+    scene: A train conductor announces the stopping pattern of a particular express train over the intercom.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「停車します」 is a standard polite way to announce train stops. 「二駅おきに」 indicates that
+      the train stops, skips two stations, and then stops again. This clear, interval-based stopping pattern
+      is typical for an older male conductor informing a group of passengers.
+  - english: For your health, let's do light exercise every hour.
+    japanese:
+      - 健康 の ため に、１ 時間 {おき に} 軽い 運動 を し ましょう。
+      - 健康 の ため に、１ 時間 {おき に} 軽い 運動 を し よう。
+    english_literally: For your health, let's do light exercise at every one-hour interval.
+    competing_grammar:
+      - competing_japanese:
+          - 健康 の ため に、{毎日} 軽い 運動 を し ましょう。
+        english: For your health, let's do light exercise every day.
+        hint: The scene emphasizes frequent, short exercises throughout the day, not just once daily.
+          We are looking for a phrase that expresses regular intervals within a day.
+      - competing_japanese:
+          - 健康 の ため に、１ 時間 {ごと に} 軽い 運動 を し ましょう。
+        english: For your health, let's do light exercise every hour.
+        hint: While both can translate to 'every hour', 'おきに' highlights that the exercise happens *after*
+          the hour interval has passed, emphasizing the space. We are looking for the phrase that captures
+          this specific temporal spacing, which is appropriate when the exact timing within that hour
+          doesn't matter, only that a break happens regularly.
+    scene: A fitness instructor is encouraging a class of students to take regular short breaks for light
+      exercise during a long work session.
+    register: semi-formal
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: younger
+    nuance: The volitional form 「〜しましょう」 invites participation. For short time frames like 「１時間」, 「おきに」
+      often means 'every', implying a consistent, regular occurrence after each interval. This example
+      is suitable for a younger female instructor suggesting a health routine to a group.
+  - english: I do a big cleaning of my room once every six months, that is, every seventh month.
+    japanese:
+      - 半年 に 一 度、つまり ６ ヶ月 {おき に} 部屋 を 大 掃除 し ます。
+      - 半年 に 一 度、つまり ６ ヶ月 {おき に} 部屋 を 大 掃除 する。
+      - 半年 に 一 度、つまり ６ ヶ月 {おき に} 部屋 を 大 掃除 する ん だ。
+    english_literally: Once every half year, that is, leaving an interval of six months, I do a big cleaning
+      of my room.
+    competing_grammar:
+      - competing_japanese:
+          - '{半年 ごと に} 部屋 を 大 掃除 し ます。'
+        english: I clean my room thoroughly every six months.
+        hint: The phrasing '半年 に 一度、つまり' highlights the deliberate spacing and the 'interval' aspect of
+          'おきに'. We need the phrase that precisely conveys that the cleaning happens after a full six-month
+          gap.
+      - competing_japanese:
+          - '{毎月} 部屋 を 大 掃除 し ます。'
+        english: I clean my room thoroughly every month.
+        hint: The scene describes a less frequent, significant cleaning, leading us to understand that
+          it's a longer, distinct interval, not a monthly routine. We are looking for the phrase that
+          accurately describes this longer interval.
+    scene: A meticulous college student is proudly describing their extensive cleaning routine to a new
+      roommate.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The direct statement 「大掃除します」 is casual. 「６ヶ月おきに」 clearly states the long interval, meaning
+      a big cleaning occurs after every six-month gap, effectively every seventh month. This is typical
+      for a younger female student sharing her habits with a peer.
+  - english: Surveillance cameras are installed every five meters.
+    japanese:
+      - 防犯 カメラ は ５ メートル {おき に} 設置 さ れ て い ます。
+      - 防犯 カメラ は ５ メートル {おき に} 設置 さ れ て いる。
+    english_literally: Surveillance cameras are installed leaving an interval of five meters.
+    competing_grammar:
+      - competing_japanese:
+          - 防犯 カメラ は ５ メートル {ごと に} 設置 さ れ て い ます。
+        english: Surveillance cameras are installed every five meters.
+        hint: The professional context and precise spacing imply that the cameras are placed at exact
+          intervals, emphasizing the fixed 'gap' between each camera, which aligns with the nuance of
+          'おきに'. We are looking for the phrase that captures this specific spatial arrangement, highlighting
+          the space left between installations.
+    scene: A security consultant is explaining the technical specifications and layout of a new security
+      system to a potential client.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The passive form 「設置されています」 is formal and objective, suitable for a technical explanation.
+      「５メートルおきに」 describes a consistent spatial interval, indicating that a camera is placed, then five
+      meters of space, then another camera. This is appropriate for an older male consultant explaining
+      system details to a group.
+  - english: This art museum holds special exhibitions every few years.
+    japanese:
+      - この 美術 館 で は 数 年 {おき に} 特別 な 企画 展 が 開催 さ れ ます。
+      - この 美術 館 で は 数 年 {おき に} 特別 な 企画 展 が 開催 さ れ る。
+      - この 美術 館 は 数 年 {おき に} 特別 な 企画 展 を 開催 し ます。
+    english_literally: In this art museum, special exhibitions are held leaving an interval of several
+      years.
+    competing_grammar:
+      - competing_japanese:
+          - この 美術 館 で は {毎年} 特別 な 企画 展 が 開催 さ れ ます。
+        english: This art museum holds special exhibitions every year.
+        hint: The scene implies a less frequent, more significant event, directing us to understand that
+          exhibitions occur with gaps of several years, not annually. We are looking for the phrase that
+          describes this less frequent interval.
+      - competing_japanese:
+          - この 美術 館 で は 数 年 {ごと に} 特別 な 企画 展 が 開催 さ れ ます。
+        english: This art museum holds special exhibitions every few years.
+        hint: The scene emphasizes the intermittent nature and distinct breaks between major exhibitions,
+          highlighting the 'interval' nuance of 'おきに'. We are looking for the phrase that specifically
+          conveys that exhibitions are held after an interval of several years.
+    scene: A curator is discussing the museum's long-term exhibition schedule during an interview with
+      a journalist.
+    register: formal
+    setting: informative
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The passive and formal 「開催されます」 is standard for describing museum activities. 「数年おきに」 indicates
+      that special exhibitions occur with a gap of several years in between, emphasizing the less frequent
+      but regular occurrence. This is suitable for an older female curator explaining the museum's schedule
+      to a male journalist.
+  - english: The bus comes every 15 minutes.
+    japanese:
+      - バス は １５ 分 {おき に} 来 ます。
+      - バス は １５ 分 {おき に} 来 る。
+      - バス は １５ 分 {おき に} 運行 し て おり ます。
+    english_literally: The bus comes leaving an interval of 15 minutes.
+    competing_grammar:
+      - competing_japanese:
+          - バス は １５ 分 {ごと に} 来 ます。
+        english: The bus comes every 15 minutes.
+        hint: Both 'おきに' and 'ごとに' can translate to 'every' for short intervals, but 'おきに' emphasizes
+          the distinct 15-minute 'gap' between arrivals. We are looking for the phrase that highlights
+          this specific interval.
+      - competing_japanese:
+          - バス は {いつ で も} 来 ます。
+        english: The bus comes anytime.
+        hint: The scene indicates a fixed schedule, not an irregular arrival. We are looking for a phrase
+          that expresses a consistent interval.
+    scene: Two friends are waiting at a bus stop, checking the schedule.
+    register: casual
+    setting: informative
+    speaker_gender: female
+    listener_gender: female
+    speaker_age: younger
+    nuance: The use of 「来ます」 is a simple, polite way to state a fact. 「１５分おきに」 is naturally used for frequent,
+      regular intervals like bus schedules, meaning a bus arrives after every 15-minute interval. This
+      is appropriate for younger females discussing a bus schedule.
+  - english: We planted trees every two meters.
+    japanese:
+      - 木 を ２ メートル {おき に} 植え まし た。
+      - 木 を ２ メートル {おき に} 植え た。
+      - 木 を ２ メートル {おき に} 植え て いっ た よ。
+    english_literally: We planted trees leaving an interval of two meters.
+    competing_grammar:
+      - competing_japanese:
+          - 木 を ２ メートル {ごと に} 植え まし た。
+        english: We planted trees every two meters.
+        hint: While 'ごとに' can also mean 'every', 'おきに' precisely conveys that a tree was planted, then
+          a 2-meter space was left, then another tree. We are looking for the phrase that clearly indicates
+          this fixed spacing or 'gap'.
+      - competing_japanese:
+          - 木 を {並べ て} 植え まし た。
+        english: We planted trees in a row.
+        hint: The scene specifies a precise, consistent spacing, not just an arrangement in a line. We
+          are looking for a phrase that indicates a measured interval between each tree.
+    scene: A gardener is describing how they arranged the new plants in a symmetrical pattern.
+    register: semi-formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: 「植えました」 is a polite past tense, suitable for an older male gardener explaining their work.
+      「２メートルおきに」 emphasizes the consistent two-meter gap between each tree, a common and precise usage
+      for spatial arrangements.
+  - english: I check my email every other day.
+    japanese:
+      - メール を １ 日 {おき に} チェック し ます。
+      - メール を １ 日 {おき に} チェック する。
+      - １ 日 {おき に} メール の 確認 を し ます。
+    english_literally: I check my email leaving an interval of one day.
+    competing_grammar:
+      - competing_japanese:
+          - メール を {毎日} チェック し ます。
+        english: I check my email every day.
+        hint: The scene implies less frequent checking, specifically 'every other day', not daily. We
+          are looking for the phrase that accurately describes this pattern.
+      - competing_japanese:
+          - メール を １ 日 {ごと に} チェック し ます。
+        english: I check my email every day.
+        hint: For 'every other day', 'おきに' is the precise choice, indicating a full day's gap between
+          checks. 'ごとに' would imply daily checking, potentially at varying times each day. We are looking
+          for the phrase that clearly indicates a skipped day.
+    scene: A busy student is explaining their strategy for managing their inbox.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: younger
+    nuance: The use of 「チェックします」 is common for email. 「１日おきに」 explicitly means 'every other day' or 'after
+      a one-day interval', suitable for a younger female explaining her routine to a friend.
+  - english: The security guard patrols the building every three hours.
+    japanese:
+      - 警備 員 は ３ 時間 {おき に} ビル を 巡回 し ます。
+      - 警備 員 は ３ 時間 {おき に} ビル を 巡回 する。
+    english_literally: The security guard patrols the building leaving an interval of three hours.
+    competing_grammar:
+      - competing_japanese:
+          - 警備 員 は ３ 時間 {ごと に} ビル を 巡回 し ます。
+        english: The security guard patrols the building every three hours.
+        hint: Both 'おきに' and 'ごと に' can mean 'every' for time intervals, but 'おきに' emphasizes the distinct
+          three-hour 'gap' between patrols. We are looking for the phrase that highlights this specific
+          interval.
+      - competing_japanese:
+          - 警備 員 は {常 に} ビル を 巡回 し て い ます。
+        english: The security guard is constantly patrolling the building.
+        hint: The scene indicates a scheduled, intermittent patrol, not a continuous one. We are looking
+          for a phrase that describes patrols at fixed intervals.
+    scene: A building manager is explaining the security protocols to new tenants.
+    register: formal
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The verb 「巡回します」 is formal and appropriate for a security context. 「３時間おきに」 clearly states
+      the fixed, repeated interval, implying that a patrol occurs, then three hours pass, then another
+      patrol. This is suitable for an older male manager explaining regulations to a group.
+post_example_writeup: As you can see from these examples, 「おきに」 is quite versatile and can be applied
+  to both time and spatial intervals. The key is always to remember that it emphasizes the 'gap' or 'interval'
+  between occurrences. Whether it translates to 'every' or 'every other' often depends on the length of
+  the interval and context, but the underlying concept of a distinct space or time left between events
+  remains constant.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/おきに

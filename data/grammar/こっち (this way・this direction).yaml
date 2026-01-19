@@ -1,0 +1,226 @@
+grammar_point: こっち (this way・this direction)
+learn_before:
+  - Verb[imperative] (imperative)
+  - Verb[て] (casual request)
+  - Verb[よう] (volitional)
+  - '[Clause]ので (because・so)'
+  - '[Noun]をください (please give me)'
+  - か (or)
+  - ちょっと (adverb)
+  - でできる (made of)
+  - どっち (which way・which direction)
+  - 近く,遠く (proximity・distance spatial)
+meaning: This way, this direction, or this side; used informally to refer to a location or direction closer
+  to the speaker.
+pronunciation:
+  katakana: コッチ
+  romaji: kocchi
+formation:
+  こっち: Informal demonstrative for direction or location near the speaker.
+  こっち + へ/に: Indicates movement towards the speaker's location/direction.
+jlpt: N5
+etymology: The Japanese demonstrative system, known as the Kosoado series, expresses spatial and psychological
+  distance from the speaker and listener. 「こっち」 is a more colloquial and less formal version of 「こちら」.
+  The root 「こ」 indicates proximity to the speaker, and the suffix 「ら」 originally had a pluralizing or
+  directional meaning in old Japanese, evolving to denote direction or a group/side. Thus, 「こっち」 retains
+  this core meaning of "this side/direction" but with a relaxed tone compared to its formal counterpart.
+writeup: |-
+  「こっち」 is an informal demonstrative pronoun meaning "this way," "this direction," or "this side." It is part of the Kosoado system, specifically belonging to the 'ko' series, which indicates proximity to the speaker. It's the casual equivalent of 「こちら」.
+
+  You'll hear 「こっち」 used frequently in everyday conversations among friends, family members, or in informal settings. It can refer to:
+  *   **A physical direction**: For example, inviting someone to "Come this way."
+  *   **A physical location**: Referring to "this side (of a table, street, etc.)."
+  *   **A person or group (informal)**: Indicating "this person/group (my side, our team)." This usage is more common for groups or teams rather than individuals.
+  *   **A topic or matter**: Referring to "this matter" or "My end of things" in a discussion.
+
+  While 「こっち」 is highly versatile in casual speech, it's important to remember its informal nature. In formal or business situations, 「こちら」 should be used instead to maintain appropriate politeness. Unlike 「こちら」, which can also be used as a polite first-person pronoun (e.g., 「こちら田中です」 - "This is Tanaka [speaking]"), 「こっち」 is generally not used to refer to oneself in that manner.
+false_friends:
+  - term: こちら (this way・here, polite)
+    meaning: This way, this direction, here (polite). It can also be a polite first-person pronoun.
+    kind: similar expression
+    nuance: 「こちら」 is the polite and more formal equivalent of 「こっち」. While 「こっち」 is casual and direct,
+      「こちら」 conveys respect and is suitable for business or formal social interactions. 「こちら」 can also
+      be used to refer to oneself or one's group politely, a function 「こっち」 does not share.
+    grammar_point: <suggest>:こちら (this way・here, polite)
+  - term: どちら (which way, polite)
+    meaning: Which way, where (polite). Used to ask for a direction or location among several options.
+    kind: similar expression
+    nuance: Both 「こっち」 and 「どちら」 relate to direction. 「こっち」 indicates "this specific way (near me)," while
+      「どちら」 is a polite interrogative for "which way?" or "where?". 「どちら」 is also the polite counterpart
+      to 「どっち」.
+    grammar_point: どちら (which way, formal)
+  - term: あっち (that way over there, casual)
+    meaning: That way over there, that direction (casual).
+    kind: similar expression
+    nuance: 「あっち」, like 「こっち」, is a casual demonstrative for direction, but it refers to something far
+      from both the speaker and the listener. It's the casual form of 「あちら」, contrasting with the speaker's
+      immediate vicinity.
+    grammar_point: <suggest>:あっち (that way over there, casual)
+  - term: そっち (that way, casual)
+    meaning: That way, that direction (casual).
+    kind: similar expression
+    nuance: 「そっち」 is a casual demonstrative for direction, referring to something near the listener. It's
+      the casual form of 「そちら」, distinguishing it from things near the speaker (こっち) or far from both
+      (あっち).
+    grammar_point: <suggest>:そっち (that way, casual)
+post_false_friends_writeup: The Kosoado series of demonstratives is crucial for understanding spatial
+  and referential relationships in Japanese. Remember that 「こっち」, 「そっち」, 「あっち」, and 「どっち」 are all casual
+  forms, while their '-ちら' counterparts (こちら, そちら, あちら, どちら) are polite and more formal. Mastering the
+  appropriate level of formality when indicating direction or location is key to natural communication
+  in Japanese. The choice between these forms depends heavily on the social context and your relationship
+  with the person you are speaking to.
+examples:
+  - english: Come this way.
+    japanese:
+      - こっち へ 来 て。
+      - こっち 来 て よ。
+    english_literally: This way toward come.
+    competing_grammar:
+      - competing_japanese:
+          - こちら へ 来 て ください。
+        english: Please come this way (polite).
+        hint: The request is casual, not polite. We're looking for an informal expression.
+    scene: A friend is calling another friend who is a short distance away.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+  - english: Which team are you on? I'm on this side.
+    japanese:
+      - どっち の チーム？私 は こっち。
+      - どっち の チーム？私 は こっち だ よ。
+    english_literally: Which team? I as for this side.
+    competing_grammar:
+      - competing_japanese:
+          - どっち の チーム？私 は こちら です。
+        english: Which team? I'm on this side (polite).
+        hint: The conversation is casual, not polite. We're looking for an informal expression.
+    scene: Two friends picking teams for a game.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+  - english: Do you want this one? No, I'll take this one here.
+    japanese:
+      - これ で いい？ううん、こっち に する。
+      - これ で いい？ううん、こっち に する わ。
+    english_literally: Is this good? No, this way will do.
+    competing_grammar:
+      - competing_japanese:
+          - あれ に する。
+        english: I'll take that one (far away).
+        hint: We are referring to an item that is closer to the speaker, not far away.
+    scene: A person is choosing an item from a selection.
+    register: casual
+    setting: informative
+  - english: Let's eat over here. It's quieter.
+    japanese:
+      - こっち で 食べよう。静か だ から。
+      - こっち で 食べよう よ。静か だ から。
+    english_literally: This way at let's eat. Quiet so.
+    competing_grammar:
+      - competing_japanese:
+          - あそこ で 食べ ましょう。静か です から。
+        english: Let's eat over there. It's quiet.
+        hint: The suggestion is for a place closer to the speaker, not a distant spot.
+    scene: Two people looking for a place to sit and eat in a noisy cafeteria.
+    register: casual
+    setting: friendly
+  - english: On my end, everything is ready.
+    japanese:
+      - こっち は 準備 が でき て いる よ。
+      - こっち は 準備 が でき て いる。
+    english_literally: This side as for preparation is ready (emphasis).
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 方 は 準備 が でき て おり ます。
+        english: On my end, everything is ready (humble).
+        hint: The context implies a casual conversation between colleagues, not formal or humble speech.
+    scene: Two colleagues checking on the progress of a project, speaking informally.
+    register: casual
+    setting: professional
+    speaker_gender: male
+  - english: Which one do you want? This one?
+    japanese:
+      - どっち が いい？こっち？
+      - どっち が いい？こっち か な？
+    english_literally: Which is good? This way?
+    competing_grammar:
+      - competing_japanese:
+          - どちら が よろしい です か？こちら です か？
+        english: Which one would you prefer? This one? (polite)
+        hint: The speaker is a parent talking to a child. The context is informal and intimate, not polite.
+    scene: A parent asking a child which toy they want.
+    register: casual
+    setting: intimate
+    listener_gender: male
+    speaker_age: older
+    nuance: The casual interrogative 「どっち」 and the direct reference 「こっち」 are typical in conversations
+      between a parent and a child. The ending particle 「？」 makes it a simple question.
+  - english: Just go straight this way, and you'll find the station.
+    japanese:
+      - こっち へ まっすぐ 行け ば、駅 が ある よ。
+      - こっち を まっすぐ 行け ば、駅 が ある よ。
+    english_literally: This way straight go if, station exists (emphasis).
+    competing_grammar:
+      - competing_japanese:
+          - こちら へ まっすぐ 行っ て いただけれ ば、駅 が ござい ます。
+        english: If you go straight this way, you will find the station (polite).
+        hint: The directions are given casually to a friend, not in a formal or humble manner.
+    scene: Giving directions to a friend in a casual manner.
+    register: casual
+    setting: instructional
+  - english: I prefer this one over that one.
+    japanese:
+      - あれ より こっち の 方 が 好き だ な。
+      - あれ より こっち の 方 が 好き だ よ。
+    english_literally: That than this way's side is liked (interjection).
+    competing_grammar:
+      - competing_japanese:
+          - あれ より こちら の 方 が 好き です ね。
+        english: I prefer this one over that one (polite).
+        hint: The speaker is expressing a personal preference informally, not politely.
+    scene: Someone is comparing two items, one is closer to them.
+    register: casual
+    setting: reflective
+  - english: Why is everyone coming this way?
+    japanese:
+      - な ん で みんな こっち に 来る の？
+      - な ん で みんな こっち に 来る ん だ？
+    english_literally: Why everyone this way toward comes (question particle)?
+    competing_grammar:
+      - competing_japanese:
+          - どう し て 皆 さん こちら に いらっしゃる の です か？
+        english: Why is everyone coming this way? (polite)
+        hint: The speaker is asking a question in a casual tone, not a formal or polite one.
+    scene: Someone is at a crowded event, wondering why people are congregating in their immediate area.
+    register: casual
+    setting: pessimistic
+  - english: Can you move this way a little?
+    japanese:
+      - ちょっと こっち に 寄っ て くれる？
+      - ちょっと こっち に 寄っ て くん ない？
+    english_literally: A little this way toward move give (request)?
+    competing_grammar:
+      - competing_japanese:
+          - 少し こちら に お 寄り いただけ ませ ん か？
+        english: Could you please move a little this way? (very polite)
+        hint: The request is casual, indicating familiarity with the listener, not formal politeness.
+    scene: Asking someone to shift their position slightly closer to the speaker.
+    register: casual
+    setting: friendly
+    nuance: 「寄って くれる」 implies moving "towards me" or "to my side," reinforcing the directional meaning
+      of 「こっち」. The casual request form 「〜くれる？」 is suitable among friends.
+  - english: My situation isn't looking good either.
+    japanese:
+      - こっち の 方 も 厳しく なっ て き た な。
+      - こっち の 方 も 厳しく なっ て き た よ。
+    english_literally: This side's way also strict becoming came (interjection).
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 方 も 状況 が 厳しく なっ て まいり まし た。
+        english: My situation has also become severe (humble).
+        hint: The context is an informal discussion with a friend, not a formal report of one's situation.
+    scene: A person informally discussing a difficult situation with a friend.
+    register: casual
+    setting: serious
+    nuance: 「こっち の 方」 emphasizes "my side" or "my situation," highlighting the speaker's own circumstances
+      in relation to others. The use of 「な」 adds a sense of personal reflection or mild lament.

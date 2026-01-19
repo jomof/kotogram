@@ -1,0 +1,246 @@
+grammar_point: 自分 (oneself)
+better_grammar_point_name:
+  - <suggest>:自分 (reflexive pronoun)
+learn_before:
+  - Verb[stem] (continuative)
+  - 〜ようだ・〜みたいだ (seems・like)
+  - お (honorific prefix)
+  - 決して〜ない (emphatic never)
+  - 決める (to decide)
+  - 考えるに (considering)
+  - 自分・じぶん (one's own)
+  - 自分・じぶん (self - independent action)
+meaning: oneself; myself; yourself; himself; herself; itself; themselves; one's own (property, thoughts,
+  etc.)
+pronunciation:
+  katakana: ジブン
+  romaji: jibun
+formation:
+  '[Verb-casual] + 自分': Describes a person's state or appearance related to an action (e.g., 好きな自分 - my
+    favorite self).
+  自分 + Verb: The subject performs an action on or for oneself (e.g., 自分 で 決める - to decide by oneself).
+  自分 + の + Noun: Indicates possession by oneself (e.g., 自分 の 部屋 - one's own room).
+  '[Noun] + 自分': Refers to one's personal state or role (e.g., 学生の自分 - myself as a student).
+jlpt: N4
+etymology: The word 「自分」 (じぶん) is composed of 「自」 (ji), meaning 'self,' and 「分」 (bun), meaning 'part'
+  or 'share.' Historically, it referred to 'one's own part' or 'one's own portion.' Over time, its meaning
+  broadened to encompass the entire individual 'self' or 'oneself,' reflecting a general reflexive nature.
+  This evolution from a specific 'part' to the comprehensive 'self' highlights its role in denoting personal
+  identity and individual action.
+writeup: |-
+  The Japanese word 「自分」 (じぶん) is a versatile pronoun primarily used to refer to "oneself" or "myself/yourself/himself/herself" reflexively. It acts as a general reflexive pronoun that can stand in for any person, much like "-self" pronouns in English.
+
+  When used with the possessive particle 「の」 (no) as 「自分の」, it means "one's own" or "my/your/his/her own," indicating a close connection or ownership. For example, 「自分の部屋」 (jibun no heya) means "one's own room" or "my own room."
+
+  Beyond its reflexive use, 「自分」 also functions as a first-person pronoun, meaning "I" or "me." This usage is generally casual and is more commonly associated with male speech. For instance, athletes often refer to themselves as 「自分」. It can also be employed in humble or self-effacing contexts when speaking to superiors, similar to how one might refer to themselves as "this one" or "your servant" in English to show deference.
+
+  Furthermore, 「自分」 can describe an inherent aspect of one's identity or a particular state of being. Phrases like 「昔の自分」 (mukashi no jibun) meaning "my past self," or 「今の自分」 (ima no jibun) meaning "my current self," illustrate this usage, emphasizing a personal facet or state rather than just the physical person.
+false_friends:
+  - term: 私 (watashi)
+    meaning: I, me (general, polite)
+    kind: similar expression
+    nuance: 「私」 is a gender-neutral and polite first-person pronoun, suitable for most situations. In
+      contrast, 「自分」 as a first-person pronoun is typically casual and often used by men or in contexts
+      of self-reflection or humility.
+    grammar_point: <suggest>:私 (i)
+  - term: 僕 (boku)
+    meaning: I, me (male, polite/casual)
+    kind: similar expression
+    nuance: 「僕」 is a first-person pronoun primarily used by males, conveying a softer or more humble tone
+      than 「俺」 but still less formal than 「私」. 「自分」, when used as a first-person pronoun, shares a casual
+      male association but often carries a nuance of self-reliance or even slight roughness, or humility
+      in specific contexts, distinguishing it from the more generalized "I" of 「僕」.
+    grammar_point: <suggest>:僕 (i, male)
+  - term: 俺 (ore)
+    meaning: I, me (male, very casual/rough)
+    kind: similar expression
+    nuance: 「俺」 is a very casual, often rough, male first-person pronoun. While 「自分」 can also be a casual
+      male pronoun, it doesn't carry the same degree of roughness or strong assertion as 「俺」. 「自分」 is
+      more about the 'self' in a reflexive or personal sense.
+    grammar_point: <suggest>:俺 (i, male)
+  - term: 自己 (jiko)
+    meaning: self- (prefix for compounds)
+    kind: similar expression
+    nuance: 「自己」 is primarily used as a prefix to form compound nouns or concepts related to the 'self'
+      (e.g., 自己紹介 - self-introduction, 自己分析 - self-analysis). It rarely stands alone as a pronoun. 「自分」,
+      on the other hand, is a standalone pronoun/noun that can refer to the 'self' directly.
+    grammar_point: <suggest>:自己 (self-prefix)
+  - term: 自身 (jishin)
+    meaning: oneself, itself (emphatic)
+    kind: similar expression
+    nuance: 「自身」 is an emphatic reflexive pronoun, used to stress that the action is performed by the
+      person or thing 'themselves' (e.g., 社長自身 - the president himself). It adds emphasis or confirmation.
+      「自分」 is a more general reflexive pronoun, focusing on the act of self-reference rather than emphasizing
+      the identity of the actor.
+    grammar_point: <suggest>:自身 (oneself, emphatic)
+post_false_friends_writeup: While 「自分」, 「私」, 「僕」, and 「俺」 all refer to a person, their usage depends heavily
+  on formality, gender, and the speaker's desired nuance. 「自分」 is versatile, serving as a general reflexive
+  pronoun (like 'oneself'), or as a first-person pronoun with specific male or humble connotations. 「私」
+  is the safest and most general 'I.' 「僕」 is a softer, more common 'I' for males, while 「俺」 is a very
+  casual, often assertive 'I' for males. 「自己」 and 「自身」 are less about being a direct substitute for 'I'
+  and more about specific concepts or emphasis regarding the self.
+examples:
+  - english: She bought a book for herself.
+    japanese:
+      - 彼女 は {自分} の ため に 本 を 買っ た。
+      - 彼女 は {自分} の ため に 本 を 買い まし た。
+    english_literally: As for her, for herself, a book she bought.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 彼女 の ため に 本 を 買っ た。
+        english: She bought a book for her (other person).
+        hint: Using '彼女' (kanojo) twice implies she bought it for *another* female. We're looking for
+          an action she did *for herself*.
+    scene: A young woman is at a bookstore, carefully selecting a novel.
+    register: casual
+    setting: informative
+  - english: Please decide for yourself.
+    japanese:
+      - '{自分} で 決め て ください。'
+      - '{自分} で 決め て。'
+      - '{自分} で お 決め ください。'
+    english_literally: By oneself, please decide.
+    competing_grammar:
+      - competing_japanese:
+          - 私 が 決め て ください。
+        english: Please decide for me.
+        hint: This means 'Please decide *for me*.' We're looking for an instruction to decide *by oneself*.
+    scene: A mother is encouraging her child to make their own choice about their future.
+    register: teineigo (polite)
+    setting: instructional
+  - english: I want to change my current self.
+    japanese:
+      - 私 は 今 の {自分} を 変え たい。
+      - 私 は 今 の {自分} を 変え たい です。
+    english_literally: As for me, current self, I want to change.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 今 の 私 を 変え たい。
+        english: I want to change my current 'I' (as a general pronoun).
+        hint: While technically understandable, '私' (watashi) here sounds less natural for reflecting
+          on one's identity. We're looking for 'current self' as an aspect of identity.
+    scene: Someone reflecting on their habits and desiring personal growth.
+    register: casual
+    setting: reflective
+    nuance: The use of 「今の自分」 emphasizes the current state or identity of the speaker's 'self' that they
+      wish to change, rather than simply 'me' as a pronoun.
+  - english: The athlete said he will never give up.
+    japanese:
+      - その 選手 は『{自分} は 決して 諦め ない』と 言っ た。
+      - その 選手 は {自分} は 決して 諦め ない と 言い まし た。
+    english_literally: That athlete, 'As for myself, never give up' said.
+    competing_grammar:
+      - competing_japanese:
+          - その 選手 は『私 は 決して 諦め ない』と 言っ た。
+        english: The athlete said, "I will never give up." (Standard 'I')
+        hint: While '私' (watashi) is grammatically correct, '自分' (jibun) is often used by athletes to
+          refer to themselves, conveying determination and a focus on their own performance. We're looking
+          for that specific nuance.
+    scene: A determined athlete speaks to reporters after a tough competition.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    nuance: In athletic contexts, male speakers often use 「自分」 to refer to themselves, as in 「自分は」, which
+      emphasizes personal resolve and a focus on their own performance. This is a common pattern in sports
+      interviews.
+  - english: I heard that he is very strict with himself.
+    japanese:
+      - 彼 は {自分} に とても 厳しい そう です。
+      - 彼 は {自分} に とても 厳しい そう だ。
+    english_literally: He, to himself, very strict it seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 彼 に とても 厳しい そう です。
+        english: I heard that he is very strict with him (another person).
+        hint: Using '彼' (kare) twice would mean he is strict with *another* male. We're looking for him
+          being strict with *himself*.
+    scene: Two colleagues are discussing their manager's work ethic.
+    register: teineigo (polite)
+    setting: informative
+  - english: She values her own time.
+    japanese:
+      - 彼女 は {自分} の 時間 を 大切 に する。
+      - 彼女 は {自分} の 時間 を 大切 に し ます。
+    english_literally: As for her, one's own time, she values.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 は 彼女 の 時間 を 大切 に する。
+        english: She values her (another person's) time.
+        hint: Using '彼女' (kanojo) twice would suggest she values *another female's* time. We want to say
+          she values *her own* time.
+    scene: A friend talks about another friend's priorities.
+    register: casual
+    setting: informative
+  - english: I usually think about myself first.
+    japanese:
+      - '{自分} の こと を まず 考える タイプ だ。'
+      - '{自分} の こと を まず 考える タイプ です。'
+      - 私 は {自分} の こと を まず 考える タイプ だ。
+    english_literally: As for myself, first think, type is.
+    competing_grammar:
+      - competing_japanese:
+          - 僕 の こと を まず 考える タイプ だ。
+        english: I (male speaker) usually think about myself first. (Standard 'I' for male)
+        hint: While '僕' (boku) is common, '自分' (jibun) here slightly emphasizes the 'self-centered' aspect.
+          We are looking for this nuance.
+    scene: A man is describing his personality to a close friend.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    nuance: A male speaker might use 「自分」 as the first-person pronoun 「自分のこと」 to describe a characteristic
+      related to their inner 'self' or personality, often implying a focus on one's own thoughts or needs.
+      This highlights a subtle self-referential nuance.
+  - english: It's important to understand your own strengths and weaknesses.
+    japanese:
+      - '{自分} の 長所 と 短所 を 理解 する こと が 大切 だ。'
+      - '{自分} の 長所 と 短所 を 理解 する こと が 大切 です。'
+    english_literally: One's own strengths and weaknesses to understand, that is important.
+    competing_grammar:
+      - competing_japanese:
+          - あなた の 長所 と 短所 を 理解 する こと が 大切 だ。
+        english: It's important to understand your (the listener's) strengths and weaknesses.
+        hint: This phrasing addresses 'your' (the listener's) strengths. We're looking for a general statement
+          about 'one's own' strengths.
+    scene: A mentor advises a junior colleague on personal development.
+    register: formal
+    setting: academic
+  - english: He seems to have lost himself.
+    japanese:
+      - 彼 は {自分} を 見失っ た よう だ。
+      - 彼 は {自分} を 見失っ た よう です。
+    english_literally: He, himself lost sight of, seems.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 彼 を 見失っ た よう だ。
+        english: He seems to have lost sight of him (another person).
+        hint: Using '彼' (kare) twice implies he lost sight of *another* male. We're looking for him losing
+          his *own* identity.
+    scene: Friends are discussing someone who has changed drastically.
+    register: casual
+    setting: serious
+  - english: I will take responsibility for this.
+    japanese:
+      - この 件 は {自分} が 責任 を 取り ます。
+      - この 件 は {自分} が 責任 を 取ら せ て いただき ます。
+    english_literally: This matter, myself, responsibility will take.
+    competing_grammar:
+      - competing_japanese:
+          - この 件 は 私 が 責任 を 取り ます。
+        english: I (female speaker) will take responsibility for this. (Standard polite 'I')
+        hint: While '私' (watashi) is polite, '自分' (jibun) can be used by female speakers in humble contexts,
+          especially in formal business settings, to convey self-effacement when taking responsibility.
+          We're looking for that specific nuance.
+    scene: A female employee addresses her manager about a mistake.
+    register: bijinesu nihongo (business)
+    setting: apologetic
+    speaker_gender: female
+    nuance: While less common for female speakers in general conversation, using 「自分」 as a first-person
+      pronoun, such as 「自分が責任を取ります」, can convey a sense of humility and responsibility in a formal or
+      business context, especially when addressing a superior. It shifts focus to the individual's direct
+      involvement in taking accountability.
+post_example_writeup: The examples illustrate how 「自分」 functions not only as a simple reflexive pronoun
+  but also how its usage can imbue sentences with nuances of self-reliance, personal ownership, and even
+  specific registers or gender associations, depending on the context and the speaker's intent.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/自分

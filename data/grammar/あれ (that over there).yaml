@@ -1,0 +1,309 @@
+grammar_point: あれ (that over there)
+learn_before:
+  - あれ? (surprise・confusion)
+meaning: that (over there), referring to something or someone far from both the speaker and the listener.
+pronunciation:
+  katakana: アレ
+  romaji: are
+formation:
+  あれ alone: Used as a demonstrative pronoun to refer to something far from both the speaker and the listener.
+  あれ + Clause/Phrase: Refers to something abstract or previously mentioned, or acts as a hesitant filler.
+jlpt: N5
+etymology: 'The Japanese demonstrative system, known as the ''Ko-So-A-Do'' series, is deeply rooted in
+  spatial deixis. 「あれ」, belonging to the ''A'' series, indicates a referent that is distant from both
+  the speaker (ko-series: here/this) and the listener (so-series: there/that). Historically, this system
+  developed to clearly distinguish proximity to the speaker, proximity to the listener, and distance from
+  both. The ''A'' series (あれ, あの, あそこ, あちら, etc.) consistently points to something spatially or psychologically
+  removed from the immediate interaction of the speaker and listener. This consistent spatial logic underpins
+  its usage for both tangible objects far away and abstract concepts that are ''distant'' or ''out of
+  reach'' in a conversational context.'
+writeup: 「あれ」 is a demonstrative pronoun that points to something or someone that is far away from both
+  the speaker and the listener. It is part of the fundamental こ・そ・あ・ど (ko-so-a-do) series of demonstratives,
+  where 「こ-」 (kore, kono, koko) indicates proximity to the speaker, 「そ-」 (sore, sono, soko) indicates
+  proximity to the listener, and 「あ-」 (are, ano, asoko) indicates distance from both. 「ど-」 (dore, dono,
+  doko) is used for questions. This word is versatile and can refer to physical objects, people, or even
+  abstract concepts or events that are not immediately present in the conversation. When referring to
+  a tangible item, imagine pointing to something across a large room or across the street. In informal
+  conversation, 「あれ」 can also be used as a filler word when someone is trying to recall a word or phrase,
+  much like "that thingy" or "you know" in English. It can also be used to refer to a topic or person
+  that is generally known to both parties but is not being explicitly named, often with a conspiratorial
+  or intimate nuance. For example, if two friends are talking about a mutual acquaintance without saying
+  their name directly, they might use 「あれ」.
+false_friends:
+  - term: これ
+    meaning: this (near speaker)
+    kind: antonym
+    nuance: 「これ」 refers to something physically close to the speaker. 「あれ」 refers to something physically
+      distant from both.
+    grammar_point: <suggest>:これ・それ・あれ・どれ (demonstrative pronouns)
+  - term: それ
+    meaning: that (near listener)
+    kind: similar expression
+    nuance: 「それ」 refers to something physically close to the listener. 「あれ」 refers to something physically
+      distant from both.
+    grammar_point: <suggest>:これ・それ・あれ・どれ (demonstrative pronouns)
+  - term: どれ
+    meaning: which one
+    kind: similar expression
+    nuance: 「どれ」 is an interrogative pronoun asking "which one?" among several options. 「あれ」 is a declarative
+      pronoun pointing to a specific distant item.
+    grammar_point: <suggest>:これ・それ・あれ・どれ (demonstrative pronouns)
+  - term: あの
+    meaning: that (far from both, modifies noun)
+    kind: similar expression
+    nuance: 「あの」 is an adjectival demonstrative that modifies a noun (e.g., あの人 - "that person"). 「あれ」
+      is a pronoun that stands alone (e.g., あれは本です - "That is a book."). They both refer to distant objects.
+    grammar_point: この (this)
+  - term: あそこ
+    meaning: over there (far from both, location)
+    kind: similar expression
+    nuance: 「あそこ」 refers specifically to a distant location ("over there"). 「あれ」 refers to a distant object,
+      person, or concept.
+    grammar_point: ここ (here)
+  - term: あちら
+    meaning: that way (polite direction/person)
+    kind: similar expression
+    nuance: 「あちら」 is the polite form of 「あそこ」, referring to a distant direction or a polite way to refer
+      to a person/group. 「あれ」 refers to a distant object or concept.
+    grammar_point: あちら (that way over there, formal)
+post_false_friends_writeup: When using the Ko-So-A-Do series, remember that 「あれ」 refers to items or concepts
+  distant from both the speaker and the listener. Distinguish it from 「これ」 (near speaker) and 「それ」 (near
+  listener). Crucially, 「あれ」 is a pronoun and stands alone, unlike 「あの」 which modifies a noun (e.g., 「あの本」
+  - that book). Similarly, 「あそこ」 refers to a distant place, while 「あれ」 refers to a distant thing or idea.
+  Understanding the subtle spatial and functional distinctions will help you choose the correct demonstrative.
+examples:
+  - english: What is that over there?
+    japanese:
+      - '{あれ} は 何 です か。'
+      - '{あれ} 何？'
+      - '{あれ} は 何 だ？'
+    english_literally: That (over there) is what?
+    competing_grammar:
+      - competing_japanese:
+          - これ は 何 です か。
+        english: What is this?
+        hint: 「これ」 refers to something close to the speaker. We're looking for something far away from
+          both of you.
+      - competing_japanese:
+          - それ は 何 です か。
+        english: What is that? (near you)
+        hint: 「それ」 refers to something close to the listener. We're looking for something far away from
+          both of you.
+    scene: You and a friend are standing on a hill, looking at something far in the distance.
+    register: formal
+    setting: informative
+  - english: That building over there is a famous temple.
+    japanese:
+      - '{あれ} は 有名 な お 寺 です。'
+      - '{あれ} は 有名 な お 寺 だ。'
+    english_literally: That (over there) is a famous temple.
+    competing_grammar:
+      - competing_japanese:
+          - あの 建物 は 有名 な お 寺 です。
+        english: That building is a famous temple.
+        hint: 「あの」 is used to modify a noun like 建物 (building). We're looking for a pronoun that stands
+          alone.
+      - competing_japanese:
+          - あそこ は 有名 な お 寺 です。
+        english: Over there is a famous temple.
+        hint: 「あそこ」 refers to a location. We're looking for a pronoun referring to an object.
+    scene: A tourist guide is pointing out a landmark to a group of visitors from a distance.
+    register: formal
+    setting: informative
+    nuance: This uses 「あれ」 to refer to a distinct, distant object. The politeness of 「です」 suits the informative
+      and formal setting of a tour guide.
+  - english: That thing that happened last week, what was it called again?
+    japanese:
+      - 先週 の {あれ}、何 て 言う ん だ っけ？
+      - 先週 の {あれ} は 何 と 言う の でし た か。
+    english_literally: Last week's that thing, what do you say (it was)?
+    competing_grammar:
+      - competing_japanese:
+          - 先週 の イベント、何 て 言う ん だ っけ？
+        english: Last week's event, what was it called again?
+        hint: Using a specific noun like イベント (event) is clearer. We're looking for a vague reference
+          using 'that thing'.
+      - competing_japanese:
+          - 先週 の それ、何 て 言う ん だ っけ？
+        english: That from last week, what was it called again?
+        hint: 「それ」 refers to something known or recently mentioned, often with closer proximity in conversation.
+          We're looking for something that implies more distance or vagueness.
+    scene: Two friends are trying to recall an event from the previous week.
+    register: casual
+    setting: friendly
+    nuance: 「あれ」 here refers to an abstract or unstated event. The casual 「んだっけ」 (remember?) indicates
+      a close relationship and shared context between speakers.
+  - english: You know, that guy with the red hat...
+    japanese:
+      - '{あれ}、あの 赤い 帽子 の 人...'
+      - '{あれ}、あの 赤い 帽子 の 方...'
+    english_literally: That thing, that red hat's person...
+    competing_grammar:
+      - competing_japanese:
+          - あの 赤い 帽子 の 人...
+        english: That person with the red hat...
+        hint: You could just use 「あの人」 without the preceding 「あれ」. We're looking for the hesitant, filler
+          usage of 「あれ」.
+      - competing_japanese:
+          - 誰 だ っけ、赤い 帽子 の 人...
+        english: Who was it, the person with the red hat...
+        hint: This directly asks 'who' and implies forgetting. We're looking for a phrase that uses 「あれ」
+          as a placeholder.
+    scene: Two friends are discussing someone they both know, but the speaker is struggling to recall
+      the person's name or exact details.
+    register: casual
+    setting: friendly
+    nuance: 「あれ」 is used as a hesitation marker or a placeholder for a known but currently unnamable person,
+      followed by a more specific description. The casual tone implies familiarity.
+  - english: Oh, that's not what I meant.
+    japanese:
+      - ああ、{あれ} じゃ なく て。
+      - ああ、{あれ} で は あり ませ ん。
+    english_literally: Ah, not that (thing).
+    competing_grammar:
+      - competing_japanese:
+          - ああ、それ じゃ なく て。
+        english: Oh, not that.
+        hint: 「それ」 would be used if you were directly correcting something the listener just said. We're
+          looking for 「あれ」 to refer to a more general or distant misconception.
+      - competing_japanese:
+          - ああ、違い ます。
+        english: Oh, that's wrong.
+        hint: 「違います」 is a direct denial. We're looking for a phrase that implies 'that's not what I was
+          referring to'.
+    scene: Someone misunderstood your previous statement, and you are correcting them.
+    register: casual
+    setting: friendly
+    nuance: 「あれ」 refers to a previous statement or idea that was misunderstood. 「じゃなくて」 is a common casual
+      way to correct.
+  - english: That reminds me, what about that matter?
+    japanese:
+      - そう いえ ば、あの 件 は {あれ} どう なっ た？
+      - そう いえ ば、あの 件 は {あれ} は どう なり まし た か。
+    english_literally: Speaking of which, that matter, that (thing) how did it become?
+    competing_grammar:
+      - competing_japanese:
+          - そう いえ ば、あの 件 は どう なっ た？
+        english: Speaking of which, what happened with that matter?
+        hint: The use of 「あれ」 here is for extra emphasis or a slight pause. We're looking for the inclusion
+          of 「あれ」.
+      - competing_japanese:
+          - そう いえ ば、例 の 件 は どう なっ た？
+        english: Speaking of which, what happened with that particular matter?
+        hint: 「例の件」 (the usual/that particular matter) is a more specific way to refer to a known topic.
+          We're looking for the more vague and sometimes hesitant use of 「あれ」.
+    scene: A manager is asking a subordinate about the status of a project or issue they discussed earlier,
+      using a vague reference.
+    register: semi-formal
+    setting: professional
+    nuance: Using 「あれ」 in this context implies a topic that has been previously discussed and is mutually
+      understood, allowing for a more concise (though vague) reference in a professional setting.
+  - english: That's probably the most difficult thing.
+    japanese:
+      - '{あれ} が 多分 一番 難しい こと だ。'
+      - '{あれ} が 多分 一番 難しい こと です。'
+    english_literally: That (thing) is probably the most difficult thing.
+    competing_grammar:
+      - competing_japanese:
+          - それ が 多分 一番 難しい こと だ。
+        english: That is probably the most difficult thing.
+        hint: 「それ」 would be used if the difficult thing was recently discussed or is closer in conversational
+          proximity. We're looking for 「あれ」 to imply a more distant or abstract concept.
+      - competing_japanese:
+          - この 問題 が 多分 一番 難しい こと だ。
+        english: This problem is probably the most difficult thing.
+        hint: Using a specific noun like 問題 (problem) makes the reference clear. We're looking for the
+          general, abstract reference of 「あれ」.
+    scene: Two colleagues are discussing a complex problem, and one points out the core difficulty without
+      explicitly naming it.
+    register: formal
+    setting: academic
+    nuance: 「あれ」 is used to refer to a complex, abstract concept or situation that is understood by both
+      parties, indicating it as the main point of difficulty. The formal 「だ」 fits the academic discussion.
+  - english: Is that over there yours?
+    japanese:
+      - '{あれ} は あなた の です か？'
+      - '{あれ}、君 の？'
+    english_literally: That (over there) is yours?
+    competing_grammar:
+      - competing_japanese:
+          - これ は あなた の です か？
+        english: Is this yours?
+        hint: 「これ」 is used for something near the speaker. We're looking for something far from both speaker
+          and listener.
+      - competing_japanese:
+          - それ は あなた の です か？
+        english: Is that yours? (near listener)
+        hint: 「それ」 is used for something near the listener. We're looking for something far from both.
+    scene: You see an item on the other side of a room and ask its owner.
+    register: formal
+    setting: informative
+    nuance: A straightforward use of 「あれ」 to ask about possession of a distant item. The use of 「あなた」
+      and 「です か」 maintains politeness.
+  - english: Look, that is amazing!
+    japanese:
+      - 見 て、{あれ}、すごい！
+      - 見 て ください、{あれ} は すごい です！
+    english_literally: Look, that (thing), amazing!
+    competing_grammar:
+      - competing_japanese:
+          - 見 て、あの 雲、すごい！
+        english: Look, that cloud is amazing!
+        hint: Using 「あの」 + noun (雲 - cloud) is more specific. We're looking for the use of 「あれ」 as a general
+          demonstrative for a distant object.
+      - competing_japanese:
+          - 見 て、あそこ、すごい！
+        english: Look, over there, it's amazing!
+        hint: 「あそこ」 refers to a place. We're looking for 「あれ」 referring to a specific thing (like a cloud
+          formation) within that distant area.
+    scene: Two friends are watching a cloud formation from a distance, and one points out an impressive
+      sight.
+    register: casual
+    setting: friendly
+    nuance: Used in an exclamatory way to point out something remarkable that is far away. The truncated,
+      casual speech ("すごい" instead of "すごいです") emphasizes the immediate reaction.
+  - english: What's that again?
+    japanese:
+      - '{あれ}、また 変 な 音 が する。'
+      - '{あれ}、また 変 な 音 が し ます。'
+    english_literally: That (thing), again strange sound happens.
+    competing_grammar:
+      - competing_japanese:
+          - 何？また 変 な 音 が する。
+        english: What? A strange sound again.
+        hint: Using 「何」 (what) is a direct question. We're looking for 「あれ」 as an exclamation of realization
+          or slight confusion.
+      - competing_japanese:
+          - その 音 は 何？
+        english: What is that sound?
+        hint: 「その音」 is used if the sound is closer or more directly related to the listener. We're looking
+          for a sound that is distant or ambiguous enough to warrant 「あれ」.
+    scene: You are at home and hear a recurring, strange noise coming from a distant part of the house,
+      prompting a moment of realization.
+    register: casual
+    setting: reflective
+    nuance: 「あれ」 is used here as an interjection expressing mild surprise or realization, often followed
+      by a thought or observation. It refers to something intangible (the sound) that is 'there' but not
+      immediately identifiable.
+  - english: That's a secret.
+    japanese:
+      - '{あれ} は 秘密 です。'
+      - '{あれ} は 秘密 だ。'
+    english_literally: That (thing) is a secret.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 秘密 です。
+        english: That is a secret.
+        hint: 「それ」 implies the secret was just mentioned or is closer in context. We're looking for 「あれ」
+          to maintain a slight distance or vagueness about the topic.
+      - competing_japanese:
+          - 私 に は 言え ませ ん。
+        english: I cannot tell you.
+        hint: This phrase directly states inability to disclose. We're looking for a response that labels
+          the information itself as a secret using 「あれ」.
+    scene: Someone asks about a sensitive topic, and you respond by saying it's a secret, implicitly referring
+      to the topic with "are."
+    register: formal
+    setting: serious
+    nuance: 「あれ」 subtly refers to the undisclosed information, maintaining politeness in a slightly evasive
+      response.

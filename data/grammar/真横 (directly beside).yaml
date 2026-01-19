@@ -1,0 +1,238 @@
+grammar_point: 真横 (directly beside)
+learn_before:
+  - '[Noun]をください (please give me)'
+  - '[Verb-よう]としたが (thwarted attempt)'
+  - しばらく (for a while・for some time)
+  - に (target・destination)
+  - ような気がする (to have a feeling or hunch)
+  - 中・外 (spatial and temporal reference)
+  - 誰か (someone・somebody)
+meaning: directly beside; right next to
+pronunciation:
+  katakana: マヨコ
+  romaji: mayoko
+formation:
+  '[Noun]の真横': Directly beside [Noun]
+  真横に + [Verb]: To [Verb] directly beside (something/someone)
+jlpt: N3
+etymology: 「真横」 (まよこ) combines 「真」 (ま), meaning "true," "real," or "exactly," and 「横」 (よこ), meaning "side"
+  or "horizontal." The prefix 「真」 is used to add emphasis, implying "exactly to the side" or "directly
+  beside," highlighting a precise lateral position. This formation is common in Japanese to intensify
+  spatial or directional terms, such as 「真上」 (まうえ - directly above) or 「真下」 (ました - directly below). The
+  historical development reflects a need for more specificity than the simpler 「横」 provides.
+writeup: 「真横」 (まよこ) is a spatial term used to describe something that is directly at one's side, often
+  emphasizing a precise lateral alignment or immediate proximity. While 「横」 generally means "side" or
+  "horizontal," and 「隣」 means "next door" or "adjacent," 「真横」 specifically implies being *right next to*
+  something on its side, without any significant space in between. This word is often used when the exact
+  lateral position is important, or when one wants to convey a sense of close, parallel arrangement. For
+  instance, if a car is driving right beside another car, or a person is standing immediately to your
+  side, 「真横」 is the most appropriate term. It conveys a more precise and immediate sense of adjacency
+  than the more general 「横」. 「真横」 is typically used with the particle 「に」 to indicate the location, as
+  in 「〜の真横に」 (right beside ~). It can also function as a noun modified by 「の」 when describing something.
+false_friends:
+  - term: 横 (よこ)
+    meaning: side; horizontal
+    kind: similar expression
+    nuance: 「横」 is a general term for "side" or "horizontal direction." It does not necessarily imply
+      direct adjacency or precise alignment, whereas 「真横」 strongly emphasizes being *directly* at the
+      side. We're looking for exact, immediate lateral position here.
+    grammar_point: 横 (side・horizontal)
+  - term: 隣 (となり)
+    meaning: next door; adjacent
+    kind: similar expression
+    nuance: 「隣」 indicates something is adjacent or next to something else, often implying a contiguous
+      position in a sequence (e.g., houses next door, seats next to each other). While it can be lateral,
+      it doesn't carry the same precise "directly at the side" meaning of 「真横」. 「真横」 focuses on the lateral
+      plane. We're looking for directly beside, on the side.
+    grammar_point: 隣 (immediately next to)
+  - term: そば
+    meaning: near; by; close to
+    kind: similar expression
+    nuance: 「そば」 is a more general term for "near" or "close to," implying proximity without specifying
+      the exact angle or side. It can mean being close from any direction, while 「真横」 is specifically
+      about being at the side. We're looking for a precise lateral position.
+    grammar_point: そば (near・nearby・close by)
+post_false_friends_writeup: While 「横」, 「隣」, and 「そば」 all relate to proximity, 「真横」 sets itself apart by
+  its precise meaning of being exactly and immediately at the side. Use 「真横」 when you want to strongly
+  convey a direct, lateral alignment with no space in between.
+examples:
+  - english: The bus stopped right next to the car.
+    japanese:
+      - バス は 車 の {真横} に 止まっ た。
+      - バス は 車 の {真横} に 止まり まし た。
+      - バス、車 の {真横} に 止まっ た よ。
+      - バス は 車両 の {真横} に 停車 し まし た。
+    english_literally: As for the bus, it stopped directly beside the car.
+    competing_grammar:
+      - competing_japanese:
+          - バス は 車 の 横 に 止まっ た。
+        english: The bus stopped by the side of the car.
+        hint: 「横」 is more general and could imply some distance, whereas we are looking for a term that
+          means "right next to" on the side.
+      - competing_japanese:
+          - バス は 車 の そば に 止まっ た。
+        english: The bus stopped near the car.
+        hint: 「そば」 implies proximity but doesn't specify the exact lateral position, whereas we are looking
+          for a term that means "right next to" on the side.
+    scene: A busy street in a city.
+    register: casual
+    setting: informative
+  - english: He stood directly beside me.
+    japanese:
+      - 彼 は 私 の {真横} に 立っ た。
+      - 彼 は 私 の {真横} に 立ち まし た。
+      - 彼 は 俺 の {真横} に 立っ て た よ。
+      - 彼 は 私 の {真横} に お 立ち に なり まし た。
+    english_literally: As for him, he stood directly beside me.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 私 の 横 に 立っ た。
+        english: He stood by my side.
+        hint: This is less precise. We're looking for the phrase that means he stood *exactly* beside
+          you, on the flank.
+      - competing_japanese:
+          - 彼 は 私 の 隣 に 立っ た。
+        english: He stood next to me.
+        hint: 「隣」 often implies a position in a row or adjacent, not necessarily emphasizing the direct
+          side-by-side alignment. We're looking for precise lateral position.
+      - competing_japanese:
+          - 彼 は 私 の そば に 立っ た。
+        english: He stood near me.
+        hint: This is a general term for proximity. We're looking for a term that means he stood *directly*
+          beside you.
+    scene: Two friends meeting up.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: The use of 「真横」 highlights that he was standing very closely, right at the speaker's side,
+      possibly in a crowded place or for a specific purpose. 「俺」 is a masculine casual pronoun for "I".
+  - english: The ball flew right past my ear.
+    japanese:
+      - ボール が 私 の 耳 の {真横} を 飛ん で 行っ た。
+      - ボール が 私 の 耳 の {真横} を 飛ん で 行き まし た。
+      - ボール が 俺 の 耳 の {真横} を 飛ん でっ た。
+    english_literally: The ball flew past the direct side of my ear.
+    competing_grammar:
+      - competing_japanese:
+          - ボール が 私 の 耳 の そば を 飛ん で 行っ た。
+        english: The ball flew near my ear.
+        hint: 「そば」 means generally near. We want to emphasize how close it was, literally right next to
+          the ear.
+    scene: Playing baseball in a park.
+    register: casual
+    setting: excited
+  - english: Place the vase directly beside the window.
+    japanese:
+      - 花瓶 を 窓 の {真横} に 置い て ください。
+      - 花瓶 を 窓 の {真横} に お 置き ください。
+      - 花瓶 を 窓 の {真横} に 設置 し て ください。
+    english_literally: Please place the vase directly beside the window.
+    competing_grammar:
+      - competing_japanese:
+          - 花瓶 を 窓 の 横 に 置い て ください。
+        english: Please place the vase by the side of the window.
+        hint: This is less specific. We're looking for the phrase that means *exactly* beside the window.
+      - competing_japanese:
+          - 花瓶 を 窓 の そば に 置い て ください。
+        english: Please place the vase near the window.
+        hint: This is a general term for proximity. We're looking for a term that means *directly* beside
+          the window.
+    scene: Giving instructions for interior decoration.
+    register: formal
+    setting: instructional
+  - english: The two cars drove directly side-by-side for a while.
+    japanese:
+      - 2 台 の 車 が しばらく の 間、互い に の {真横} を 走っ た。
+      - 2 台 の 車 が しばらく の 間、互い に の {真横} を 走り まし た。
+      - 車 2 台 が しばらく の 間、互い の {真横} を 走っ て た。
+      - 2 台 の 車両 が 暫く の 間、相互 の {真横} を 走行 いたし まし た。
+    english_literally: Two cars ran for a while, mutually directly beside each other.
+    competing_grammar:
+      - competing_japanese:
+          - 2 台 の 車 が しばらく の 間、横 を 走っ た。
+        english: The two cars drove side-by-side for a while.
+        hint: This is less precise and doesn't emphasize the immediate, exact lateral alignment. We're
+          looking for a term that means *directly* side-by-side.
+    scene: Two drivers on a highway.
+    register: semi-formal
+    setting: informative
+    nuance: 「互いに の 真横 を 走った」 emphasizes their parallel movement in close proximity, suggesting they were
+      driving abreast of each other for an extended period.
+  - english: A stray cat appeared right next to the door.
+    japanese:
+      - ドア の {真横} に 野良猫 が 現れ た。
+      - ドア の {真横} に 野良猫 が 現れ まし た。
+      - ドア の {真横} に、ひょっこり 野良猫 が 現れ た。
+    english_literally: A stray cat appeared directly beside the door.
+    competing_grammar:
+      - competing_japanese:
+          - ドア の そば に 野良猫 が 現れ た。
+        english: A stray cat appeared near the door.
+        hint: This means general proximity. We're looking for a phrase that means it appeared *exactly*
+          beside the door, on the flank.
+    scene: Someone looking out their front door.
+    register: casual
+    setting: reflective
+  - english: A huge tree stood directly beside the house.
+    japanese:
+      - 家 の {真横} に 大きな 木 が 立っ て い た。
+      - 家 の {真横} に 大きな 木 が 立っ て い まし た。
+      - 家 の {真横} に、どっしり と し た 大きな 木 が 立っ て い た。
+    english_literally: A big tree was standing directly beside the house.
+    competing_grammar:
+      - competing_japanese:
+          - 家 の 横 に 大きな 木 が 立っ て い た。
+        english: A huge tree stood by the side of the house.
+        hint: This is less specific about the precise positioning. We're looking for a term that means
+          it stood *exactly* beside the house.
+    scene: Describing a landscape to someone.
+    register: casual
+    setting: informative
+  - english: The rescue boat approached directly beside the capsized yacht.
+    japanese:
+      - 救助 艇 は 転覆 し た ヨット の {真横} に 近づい た。
+      - 救助 艇 は 転覆 し た ヨット の {真横} に 近づき まし た。
+      - 救助 艇 は 転覆 し た ヨット の {真横} に 接近 いたし まし た。
+    english_literally: The rescue boat approached directly beside the capsized yacht.
+    competing_grammar:
+      - competing_japanese:
+          - 救助 艇 は 転覆 し た ヨット の そば に 近づい た。
+        english: The rescue boat approached near the capsized yacht.
+        hint: This implies general proximity, not necessarily a precise lateral alignment for a rescue.
+          We're looking for the phrase that means *directly* beside it.
+    scene: A marine rescue operation.
+    register: formal
+    setting: serious
+  - english: I felt like someone was standing right beside me.
+    japanese:
+      - 誰 か が 自分 の {真横} に 立っ て いる よう な 気 が し た。
+      - 誰 か が 自分 の {真横} に 立っ て いる よう な 気 が し まし た。
+      - 誰 か が 俺 の {真横} に 立っ てる 気 が し た。
+    english_literally: I felt like someone was standing directly beside my own self.
+    competing_grammar:
+      - competing_japanese:
+          - 誰 か が 自分 の 横 に 立っ て いる よう な 気 が し た。
+        english: I felt like someone was standing by my side.
+        hint: This is less emphatic about the exact closeness and alignment. We're looking for the phrase
+          that suggests they were *directly* beside you.
+    scene: Walking alone at night.
+    register: casual
+    setting: cautious
+  - english: He suddenly ran up and stood right next to the referee.
+    japanese:
+      - 彼 は 突然 走っ て き て、審判 の {真横} に 立っ た。
+      - 彼 は 突然 走っ て き て、審判 の {真横} に 立ち まし た。
+      - 彼 は 突然 走っ て き て、審判 の {真横} に 仁王 立ち し た。
+    english_literally: He suddenly ran and came, and stood directly beside the referee.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 突然 走っ て き て、審判 の そば に 立っ た。
+        english: He suddenly ran up and stood near the referee.
+        hint: This implies general proximity, not necessarily an assertive or direct lateral positioning.
+          We're looking for a term that means *right* next to him.
+    scene: A heated moment during a sports game.
+    register: casual
+    setting: excited
+post_example_writeup: The precision of 「真横」 makes it particularly useful in situations where the exact
+  lateral placement or movement is critical. It often implies a very narrow or zero gap between the two
+  objects or entities, highlighting their close, side-by-side relationship.

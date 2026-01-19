@@ -1,0 +1,302 @@
+grammar_point: ならいざ知らず (I don't know about... but)
+learn_before:
+  - さすが (as expected even)
+  - する (cost)
+  - せっかく (making the most of effort or opportunity)
+meaning: I don't know about (A), but (B) / Maybe (A), but (B) / It might be possible for (A), but (B).
+pronunciation:
+  katakana: ナライザシラズ
+  romaji: narai za shirazu
+formation:
+  Noun + なら {いざ 知ら ず}: Indicates that while a certain noun or situation might be understandable or acceptable,
+    other situations are not considered or are unknown.
+  Verb (dictionary form) + なら {いざ 知ら ず}: Signifies that an action or state described by the verb might
+    be acceptable or understandable in a specific context, but other contexts are either unknown or unacceptable.
+  な-Adjective stem + なら {いざ 知ら ず}: Emphasizes that while a quality described by a な-adjective might be
+    understood in a particular situation, other situations are uncertain or different.
+  い-Adjective (nominalized with の) + なら {いざ 知ら ず}: Used when an い-adjective describes a quality that is
+    then treated as a noun, implying that while this specific condition is comprehensible, other conditions
+    are not.
+jlpt: N1
+etymology: The grammar point 「ならいざ知らず」 combines the hypothetical form of the auxiliary verb 「だ」 (nara),
+  the adverb 「いざ」 (iza) meaning 'now' or 'well then', and the classically-negated form of the verb 「知る」
+  (shiru), 「知らず」 (shirazu) meaning 'to not know'.
+writeup: 「ならいざ知らず」 is a complex expression combining the hypothetical form 「なら」, the adverb 「いざ」, and
+  the negated form 「知らず」. It is often translated as “I don’t know about (A), but (B)” or “maybe (A), but
+  (B).” This phrase is often considered formal or semi-formal and typically used to emphasize that, regardless
+  of situation (A), situation (B) is definitely the case or fits a specific description. It follows verbs
+  in their dictionary forms, as well as な-adjectives or nouns where their terminal 「だ」 is replaced with
+  「なら」. It can also follow nominalized い-adjectives using 「の」, though this is less common with verbs.
+  This structure highlights that while (A) may or may not be the case or is an extreme example, used to
+  set up (B) as a more surprising or irritating counterpoint. The contrast between (A) being unknown or
+  less significant and (B) being definite is key to its meaning. In many instances, (A) is an extreme
+  or unlikely example, used to set up (B) as a more surprising or irritating counterpoint. While not directly
+  translating to 'but', the contrasting meaning arises from the assertion of (B) in light of the uncertainty
+  of (A). Occasionally, 「は」 may be used instead of 「なら」 (e.g., 「〜はいざ知らず」), but the overall meaning of
+  the phrase remains the same, maintaining the emphasis on the contrast.
+false_friends:
+  - term: はともかく (setting aside)
+    meaning: Setting aside, leaving aside
+    kind: similar expression
+    nuance: While 「〜はともかく」 also sets aside a certain condition to focus on another, it implies that the
+      first condition is less important or irrelevant to the main point, rather than expressing uncertainty
+      or a sharp, contrasting hypothetical situation like 「ならいざ知らず」.
+    grammar_point: はともかく (setting aside・leaving aside)
+  - term: はさておき (setting aside)
+    meaning: Leaving aside, putting aside for now
+    kind: similar expression
+    nuance: Similar to 「〜はともかく」, 「〜はさておき」 suggests deferring discussion or consideration of the first
+      point for the moment. It does not carry the same nuance of 'I don't know about that (extreme case)'
+      or 'that might be understandable' as 「ならいざ知らず」 does, which establishes a more direct, often surprising,
+      contrast.
+    grammar_point: はさておき・はさておいて (setting aside)
+  - term: ならまだしも (if...then ok・but not...)
+    meaning: If it were ~, that would be one thing, but...
+    kind: similar expression
+    nuance: 「〜ならまだしも」, like 「ならいざ知らず」, introduces a hypothetical or extreme situation, but it often implies
+      that the preceding condition would be acceptable or understandable, contrasting it with the current
+      unacceptable or surprising reality. 「ならいざ知らず」 often carries a stronger sense of dismissal or uncertainty
+      about the first part.
+    grammar_point: ならまだしも (if...then ok・but not...)
+post_false_friends_writeup: 「ならいざ知らず」は、Aの状況は理解できる、あるいは極端な例として置くが、Bの状況は明確に違う、または受け入れられないという強い対比を示します。一方、「〜はともかく」や「〜はさておき」は、Aのことは一旦置いておき、Bについて話を進める、というニュアンスです。Aを議論の対象から外すという点で共通しますが、「ならいざ知らず」の方がAとBの間の明確な断絶と、Bに対する話者の確固たる意見を強く表します。「〜ならまだしも」は「ならいざ知らず」と非常に似ていますが、「〜ならまだしも」の方が、前件が「それならまだ理解できる」というニュアンスが強く、後件の不合理さを強調する傾向があります。
+examples:
+  - english: I don't know about elementary school students, but it's unbelievable for an adult to make
+      such a simple mistake.
+    japanese:
+      - 小学 生 {なら いざ 知ら ず}、大人 が そんな 単純 な 間違い を する と は 信じ られ ない。
+      - 小学 生 {なら いざ 知ら ず}、大人 が そんな 単純 な 間違い を する と は 信じ られ ませ ん。
+      - 小学 生 {なら いざ 知ら ず}、まさか 大人 が これ ほど 単純 な ミス を する と は。
+    english_literally: If it's an elementary student, well then, I don't know, but for an adult to make
+      such a simple mistake is unbelievable.
+    competing_grammar:
+      - competing_japanese:
+          - 小学 生 {は ともかく}、大人 が そんな 単純 な 間違い を する と は 信じ られ ない。
+        english: Setting aside elementary school students, it's unbelievable for an adult to make such
+          a simple mistake.
+        hint: 「〜はともかく」 implies that the first point is less important or irrelevant to the main issue,
+          which is the adult's mistake. We're looking for a phrase that contrasts an extreme or uncertain
+          possibility with a definite situation.
+    scene: A manager is reviewing a report from a senior employee and finds a basic error that surprises
+      them.
+    register: casual
+    setting: serious
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: older
+    nuance: The phrase 「信じられない」 (shinjirarenai) expresses strong disbelief, which can be characteristic
+      of an older male in a managerial position reflecting on a subordinate's error. The tone is exasperated
+      and emphasizes the clear distinction between expected behavior from an elementary student versus
+      a working adult.
+  - english: For a professional, it's unacceptable to make such a trivial mistake. I don't know about
+      an amateur.
+    japanese:
+      - 素人 {なら いざ 知ら ず}、プロ が そんな 初歩 的 な ミス を する の は 許さ れ ない。
+      - 素人 {なら いざ 知ら ず}、プロ が そんな 初歩 的 な ミス を する の は 許さ れ ませ ん。
+      - 素人 {なら いざ 知ら ず}、プロ が その よう な 初歩 的 な ミス を 犯す なんて。
+    english_literally: If it's an amateur, well then, I don't know, but for a professional to make such
+      a basic mistake is unforgivable.
+    competing_grammar:
+      - competing_japanese:
+          - 素人 {は ともかく}、プロ が そんな 初歩 的 な ミス を する の は 許さ れ ない。
+        english: Setting aside amateurs, for a professional to make such a basic mistake is unforgivable.
+        hint: 「〜はともかく」 implies that the first point is less important or irrelevant. We're looking for
+          a phrase that contrasts a hypothetical or extreme possibility with a definite, unacceptable
+          situation.
+    scene: A strict boss scolding an employee about a professional standard.
+    register: formal
+    setting: professional
+    nuance: The use of 「許されない」 (yurusarenai) reflects a strong, often impersonal, professional judgment,
+      common in formal or business settings regardless of gender. The emphasis is on the professional
+      standard rather than personal feelings.
+  - english: I don't know about someone else's child, but I can't let my own child run around naked.
+    japanese:
+      - 他 の 子ども {なら いざ 知ら ず}、うち の 子 が 裸 で 走り回る の は 許せ ない。
+      - 他 の 子ども {なら いざ 知ら ず}、うち の 子 が 裸 で 走り回る の は 許せ ませ ん。
+      - 他 の 子ども {なら いざ 知ら ず}、うち の 子 が 裸 で 走り回っ たり する なんて。
+    english_literally: If it's another child, well then, I don't know, but my own child running around
+      naked is unforgivable.
+    competing_grammar:
+      - competing_japanese:
+          - 他 の 子ども {は ともかく}、うち の 子 が 裸 で 走り回る の は 許せ ない。
+        english: Setting aside other children, I can't let my own child run around naked.
+        hint: 「〜はともかく」 would mean 'putting aside other children,' without the implied uncertainty or dismissiveness
+          about their actions. We need a phrase that contrasts a scenario you're not concerned with against
+          a strict personal rule.
+    scene: A mother talking to a friend about parenting styles and personal boundaries.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「うちの子」 (uchi no ko) is a common, endearing, and sometimes possessive way for a
+      parent to refer to their own child, typical in casual conversation between mothers. The phrase 「許せない」
+      (yurusenai) here expresses a strong personal boundary set by the mother.
+  - english: If it were just a small scratch, I wouldn't care, but this damage is beyond repair.
+    japanese:
+      - 小さな 傷 {なら いざ 知ら ず}、これ は 修理 不 可能 な 損害 だ。
+      - 小さな 傷 {なら いざ 知ら ず}、これ は 修理 不 可能 な 損害 です。
+      - 小さな 傷 {なら いざ 知ら ず}、これ は もう 手 の 施し よう が ない 損害 だ。
+    english_literally: If it's a small scratch, well then, I don't know, but this is irreparable damage.
+    competing_grammar:
+      - competing_japanese:
+          - 小さな 傷 {なら まだ しも}、これ は 修理 不 可能 な 損害 だ。
+        english: If it were just a small scratch, it would be acceptable, but this damage is beyond repair.
+        hint: 「ならまだしも」 implies that the small scratch would be acceptable or understandable, which is
+          a slightly different nuance from expressing uncertainty about even caring about it. We're looking
+          for a phrase that sets up an irrelevant or less impactful hypothetical case against a truly
+          serious one.
+    scene: A car owner inspecting severe damage after an accident, expressing dismay.
+    register: casual
+    setting: serious
+    nuance: The direct statement 「修理不可能だ」 (shūri fukanō da) conveys a blunt, frustrated reality, common
+      in a serious setting where an objective assessment of damage is being made.
+  - english: I don't know about not going at all, but if you're going, you should at least say hello.
+    japanese:
+      - 全く 行か ない {なら いざ 知ら ず}、行く の なら 挨拶 ぐらい する べき だ。
+      - 全く 行か ない {なら いざ 知ら ず}、行く の なら 挨拶 ぐらい する べき です。
+      - 全く 行か ない {なら いざ 知ら ず}、せっかく 行く の なら 挨拶 くらい は しろ よ。
+    english_literally: If it's not going at all, well then, I don't know, but if you go, you should at
+      least greet.
+    competing_grammar:
+      - competing_japanese:
+          - 全く 行か ない の {は ともかく}、行く の なら 挨拶 ぐらい する べき だ。
+        english: Setting aside not going at all, if you're going, you should at least say hello.
+        hint: 「〜はともかく」 would imply 'putting aside the option of not going at all.' The nuance of 「ならいざ知らず」
+          is more about how the speaker doesn't care about the initial, less important action or reason
+          behind it, focusing on the crucial subsequent action.
+    scene: A senior colleague giving advice to a junior one about office etiquette for social gatherings.
+    register: semi-formal
+    setting: professional
+    nuance: The strong recommendation 「〜するべきだ」 (suru beki da) combined with 「ぐらい」 (gurai) to indicate
+      a minimum expectation, is typical for advice given by an older, more experienced person to a junior,
+      focusing on essential social conduct in a professional context.
+  - english: I don't know about a normal person, but for someone with special training, this task should
+      be easy.
+    japanese:
+      - 普通 の 人間 {なら いざ 知ら ず}、特殊 な 訓練 を 受け た 彼 に とっ て この 作業 は 簡単 な はず だ。
+      - 普通 の 人間 {なら いざ 知ら ず}、特殊 な 訓練 を 受け た 彼 に とっ て この 作業 は 簡単 な はず です。
+      - 普通 の 人間 {なら いざ 知ら ず}、あれ だけ の 訓練 を 受け た 彼 なら この 作業 は 楽 勝 の はず だ。
+    english_literally: If it's a normal human, well then, I don't know, but for him who received special
+      training, this task should be easy.
+    competing_grammar:
+      - competing_japanese:
+          - 普通 の 人間 {なら まだ しも}、特殊 な 訓練 を 受け た 彼 に とっ て この 作業 は 簡単 な はず だ。
+        english: If it were a normal person, it would be understandable, but for someone with special
+          training, this task should be easy.
+        hint: 「ならまだしも」 implies that the normal person's difficulty would be acceptable. We're looking
+          for a phrase that dismisses the first case as irrelevant to the expectation placed on the second,
+          more capable, party.
+    scene: A team leader discussing a challenging project and the capabilities of a specific team member.
+    register: formal
+    setting: professional
+    speaker_gender: male
+    nuance: The phrase 「〜はずだ」 (hazu da) expresses a strong expectation based on logic and known facts
+      (the special training), characteristic of an objective assessment in a professional or academic
+      setting.
+  - english: I don't know about ancient times, but in modern society, such customs are simply outdated.
+    japanese:
+      - 古代 {なら いざ 知ら ず}、現代 社会 で は その よう な 習慣 は もはや 時代 遅れ だ。
+      - 古代 {なら いざ 知ら ず}、現代 社会 で は その よう な 習慣 は もはや 時代 遅れ です。
+      - 古代 {なら いざ 知ら ず}、今日 の 世の中 で は その よう な 慣習 は 全く 通用 し ない。
+    english_literally: If it's ancient times, well then, I don't know, but in modern society, such customs
+      are already outdated.
+    competing_grammar:
+      - competing_japanese:
+          - 古代 の こと {は ともかく}、現代 社会 で は その よう な 習慣 は もはや 時代 遅れ だ。
+        english: Setting aside ancient times, in modern society such customs are already outdated.
+        hint: 「〜はともかく」 would focus on 'setting aside' the past, rather than expressing a dismissive 'I
+          don't know about that era' kind of contrast with the present. We're emphasizing how irrelevant
+          or inapplicable the first case is now.
+    scene: A historian giving a lecture on social evolution and outdated practices.
+    register: formal
+    setting: informative
+    nuance: The term 「もはや」 (mohaya) meaning "no longer" or "already," coupled with 「時代遅れ」 (jidaiokure),
+      meaning "outdated," contributes to a conclusive and authoritative tone often found in academic discussions
+      about societal evolution.
+  - english: I don't know about theory, but in practice, this method is completely useless.
+    japanese:
+      - 理論 {なら いざ 知ら ず}、実践 で は この 方法 は 全く 役 に 立た ない。
+      - 理論 {なら いざ 知ら ず}、実践 で は この 方法 は 全く 役 に 立ち ませ ん。
+      - 理論 {なら いざ 知ら ず}、実際 に は この 方法 は まるで 使え ない。
+    english_literally: If it's theory, well then, I don't know, but in practice, this method is completely
+      useless.
+    competing_grammar:
+      - competing_japanese:
+          - 理論 の こと {は ともかく}、実践 で は この 方法 は 全く 役 に 立た ない。
+        english: Setting aside theory, in practice this method is completely useless.
+        hint: 「〜はともかく」 focuses on putting something aside to focus on another. 「ならいざ知らず」 emphasizes that
+          the theoretical aspect is irrelevant or uncertain compared to the undeniable practical failure.
+    scene: Scientists discussing experimental results, emphasizing the practical failure of a method.
+    register: formal
+    setting: academic
+    nuance: The blunt 「全く役に立たない」 (mattaku yakunitatanai) conveys a definitive negative judgment, common
+      in critical scientific or technical discussions where practical application fails theory.
+  - english: I don't know about it being a little expensive, but 10,000 yen for a cup of coffee is just
+      ridiculous.
+    japanese:
+      - 少し 高い の {なら いざ 知ら ず}、コーヒー 一杯 に 一 万 円 は 馬鹿げ て いる。
+      - 少し 高い の {なら いざ 知ら ず}、コーヒー 一杯 に 一 万 円 は 馬鹿げ て い ます。
+      - 少し 高い の {なら いざ 知ら ず}、一杯 に 一 万 円 なんて、あり え ない！
+    english_literally: If it's being a little expensive, well then, I don't know, but 10,000 yen for one
+      cup of coffee is ridiculous.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 高い の {なら まだ しも}、コーヒー 一杯 に 一 万 円 は 馬鹿げ て いる。
+        english: If it were a little expensive, it would be acceptable, but 10,000 yen for a cup of coffee
+          is ridiculous.
+        hint: 「ならまだしも」 implies that being 'a little expensive' would be acceptable. 「ならいざ知らず」 conveys
+          more of an 'I don't even care about that' dismissiveness for the 'little expensive' part, contrasted
+          with the outrageous price.
+    scene: Friends discussing exorbitant prices at a new cafe.
+    register: casual
+    setting: humorous
+    nuance: The expression 「馬鹿げている」 (bakagete iru) literally meaning "it's foolish" or "ridiculous," indicates
+      strong disapproval and a sense of absurdity, often used casually among friends when complaining
+      about something excessively unreasonable.
+  - english: I don't know about me, but for my mother, it's impossible to remember that many names.
+    japanese:
+      - 私 {なら いざ 知ら ず}、母 に は そんな に たくさん の 名前 を 覚える の は 無理 だ。
+      - 私 {なら いざ 知ら ず}、母 に は そんな に たくさん の 名前 を 覚える の は 無理 です。
+      - 私 {なら いざ 知ら ず}、うち の お 母 さん に は さすが に そんな に 覚え られ ない だろう。
+    english_literally: If it's me, well then, I don't know, but for my mother, remembering that many names
+      is impossible.
+    competing_grammar:
+      - competing_japanese:
+          - 私 {は ともかく}、母 に は そんな に たくさん の 名前 を 覚える の は 無理 だ。
+        english: Setting aside me, for my mother, remembering that many names is impossible.
+        hint: 「〜はともかく」 would imply 'putting me aside' as a less important factor. 「ならいざ知らず」 here highlights
+          the speaker's unconcern about their own ability, contrasting it with the mother's definite inability.
+    scene: A conversation between siblings about their mother's declining memory.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    listener_gender: male
+    nuance: The use of 「〜には無理だ」 (ni wa muri da) emphasizes the personal impossibility for the mother,
+      indicating a sympathetic and understanding tone common in conversations about family members, particularly
+      from a younger generation speaking about an older one.
+  - english: I don't know about children, but adults shouldn't be so easily fooled by such simple tricks.
+    japanese:
+      - 子供 {なら いざ 知ら ず}、大人 が こんな 単純 な 騙し に 簡単 に 引っかかる べき で は ない。
+      - 子供 {なら いざ 知ら ず}、大人 が こんな 単純 な 騙し に 簡単 に 引っかかる べき で は あり ませ ん。
+      - 子供 {なら いざ 知ら ず}、良い 大人 が こんな 手口 に 引っかかる なんて 恥ずかしい 話 だ。
+    english_literally: If it's children, well then, I don't know, but adults should not be easily tricked
+      by such simple deception.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 {なら まだ しも}、大人 が こんな 単純 な 騙し に 簡単 に 引っかかる べき で は ない。
+        english: If it were children, it would be understandable, but adults shouldn't be so easily fooled
+          by such simple tricks.
+        hint: 「ならまだしも」 suggests that it would be acceptable for children to be fooled. 「ならいざ知ら ず」 implies
+          a stronger dismissal of the children's case as irrelevant to the high expectations for adults.
+    scene: A detective commenting on a crime where adults were easily deceived.
+    register: semi-formal
+    setting: serious
+    nuance: The phrase 「〜べきではない」 (beki de wa nai) conveys a strong sense of moral obligation or propriety,
+      suggesting that adults, unlike children, should possess discernment and not fall for simple deceptions.
+      This serious and analytical tone is fitting for a detective's observation.
+post_example_writeup: As you can see from the examples, 「ならいざ知らず」 is a versatile expression used to draw
+  a sharp contrast. The preceding clause (A) is often an extreme or hypothetical scenario, making the
+  following clause (B) stand out as unexpected or problematic. Pay close attention to the context and
+  the speaker's tone, as it frequently conveys surprise, frustration, or a strong opinion regarding the
+  second situation.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ならいざ知らず

@@ -1,0 +1,281 @@
+grammar_point: 必要がある (it is necessary to)
+learn_before:
+  - に伴って・に伴い (along with・as a result of)
+  - 引き出す (to draw out)
+meaning: It is necessary to do something or there is a need for something
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: 必要がある
+    rarity: common
+    meaning: It is necessary / There is a need
+  - conjugation-type: negative plain (～ない)
+    form: 必要がない
+    rarity: common
+    meaning: It is not necessary / There is no need
+  - conjugation-type: past plain (～た)
+    form: 必要があった
+    rarity: common
+    meaning: It was necessary / There was a need
+  - conjugation-type: negative past plain (～なかった)
+    form: 必要がなかった
+    rarity: common
+    meaning: It was not necessary / There was no need
+  - conjugation-type: non-past polite (～ます)
+    form: 必要があります
+    rarity: common
+    meaning: It is necessary / There is a need (polite)
+  - conjugation-type: negative non-past polite (～ません)
+    form: 必要がありません
+    rarity: common
+    meaning: It is not necessary / There is no need (polite)
+  - conjugation-type: past polite (～ました)
+    form: 必要がありました
+    rarity: common
+    meaning: It was necessary / There was a need (polite)
+  - conjugation-type: negative past polite (～ませんでした)
+    form: 必要がありませんでした
+    rarity: common
+    meaning: It was not necessary / There was no need (polite)
+pronunciation:
+  katakana: ヒツヨウ ガ アル
+  romaji: hitsuyou ga aru
+formation:
+  Verb[dictionary form] + 必要がある: Indicates that the action of the verb is necessary.
+  Noun + が + 必要がある: Indicates that the noun is needed.
+jlpt: N4
+etymology: The phrase combines 必要 (hitsuyou), meaning "necessity" or "need," which is derived from Chinese
+  characters meaning "definitely" and "to want/require," with がある (ga aru), an existential phrase literally
+  meaning "there exists." Thus, the phrase literally means "there is a necessity" or "a need exists."
+writeup: |-
+  The grammar point 「必要がある」 directly translates to "there is a necessity" or "a need exists." It is used to express that something is required or necessary, whether that necessity is objective or subjective. This phrase places emphasis on the *existence* of a need or requirement. For example, if you say 「毎日、日本語を勉強する必要がある」(Mainichi, Nihongo o benkyō suru hitsuyō ga aru), you are stating that "there is a necessity to study Japanese every day."
+
+  This expression is generally versatile and can be used in both formal and informal contexts, though its nuance often leans towards a more objective or explanatory tone compared to other ways of expressing obligation. It is commonly found in instructional materials, official documents, or when providing explanations for why something must be done.
+
+  When using 「必要がある」, the subject of the necessity is typically marked by 「が」, and the action or thing that is needed is often introduced by a plain form verb or a noun followed by 「が」. It is a straightforward way to convey that a certain condition, action, or item is indispensable.
+false_friends:
+  - term: ~なければならない・なきゃ
+    meaning: must do・have to
+    kind: similar expression
+    nuance: This expression implies a strong, often unavoidable, obligation or duty, stemming from an
+      external rule, personal conviction, or circumstantial pressure. It's more about "what *has* to be
+      done." In contrast, 「必要がある」 focuses on "what *is* needed," which can be a more objective statement
+      about the existence of a requirement.
+    grammar_point: ~なければならない・なきゃ (must do・have to)
+  - term: ~ないといけない・なくちゃ
+    meaning: must do・have to
+    kind: similar expression
+    nuance: Similar to 「〜なければならない」, this phrase also signifies necessity or obligation, but it's often
+      used in more conversational or casual settings. While both express compulsion, 「必要がある」 simply states
+      that a need exists, whereas 「〜ないといけない」 emphasizes the compulsory nature of the action itself.
+    grammar_point: ~なくてはいけない・なくちゃ (must do・have to)
+  - term: ~べき
+    meaning: should do・ought to
+    kind: similar expression
+    nuance: This expression conveys a moral, logical, or social obligation or expectation, suggesting
+      that something is the right or proper course of action. It carries a sense of advice or strong recommendation.
+      「必要がある」 merely indicates that a need exists, without necessarily implying a moral judgment or a
+      strong recommendation of how one *should* act.
+    grammar_point: <suggest>:Verb[dictionary]べき・べきではない (should・should not)
+post_false_friends_writeup: While 「必要がある」, 「〜なければならない」, 「〜ないといけない」, and 「〜べき」 all relate to necessity
+  or obligation, their nuances differ significantly. 「必要がある」 highlights that a requirement exists, presenting
+  it as a factual or objective statement. 「〜なければならない」 and 「〜ないといけない」 convey a stronger sense of compulsion
+  or duty, emphasizing that an action *must* be performed. 「〜べき」, on the other hand, focuses on what is
+  morally or logically appropriate, serving as a strong recommendation or an indication of what is right.
+  Understanding these distinctions is crucial for accurate and natural expression in Japanese.
+examples:
+  - english: It is necessary to study Japanese every day.
+    japanese:
+      - 毎日、日本 語 を {勉強 する 必要 が ある}。
+      - 毎日、日本 語 を 勉強 する 必要 が あり ます。
+      - 毎日、日本 語 を 学習 する 必要 が ござい ます。
+    english_literally: Every day, Japanese to study necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 毎日、日本 語 を 勉強 し なきゃ なら ない。
+        english: I have to study Japanese every day.
+        hint: This phrase, 「〜なきゃならない」, emphasizes a strong personal obligation, often feeling more demanding.
+          We're looking for a more objective statement that a need exists.
+    scene: A teacher is advising students about effective language learning.
+    register: formal
+    setting: academic
+  - english: This project requires a lot of effort.
+    japanese:
+      - この プロジェクト に は たくさん の 努力 が {必要 が ある}。
+      - この プロジェクト に は たくさん の 努力 が 必要 が あり ます。
+      - この プロジェクト に は 多く の 努力 が 必要 で ござい ます。
+    english_literally: For this project, a lot of effort necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - この プロジェクト に は たくさん の 努力 が 必要 だ。
+        english: This project requires a lot of effort.
+        hint: While 「必要だ」 can also convey need, 「必要がある」 specifically highlights the *existence* of that
+          need, making it sound slightly more formal or objective. We're looking for the full phrase.
+    scene: A team leader explains the demanding nature of a new project to their team.
+    register: casual
+    setting: serious
+    nuance: The use of 「には」 (ni wa) emphasizes the project as the specific entity for which the effort
+      is required, highlighting the recipient of the necessity. The overall phrase is objective.
+  - english: You need to confirm the reservation before you go.
+    japanese:
+      - 行く 前 に 予約 を {確認 する 必要 が ある}。
+      - 行く 前 に 予約 を 確認 する 必要 が あり ます。
+      - 行か れる 前 に ご 予約 を 確認 する 必要 が あり ます。
+    english_literally: Before going, reservation to confirm necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 行く 前 に 予約 を 確認 す べき だ。
+        english: You should confirm the reservation before you go.
+        hint: 「〜べきだ」 suggests what is advisable or morally correct. We're looking for an expression that
+          states that the confirmation is a requirement.
+    scene: A travel agent is advising a client about their upcoming trip.
+    register: formal
+    setting: informative
+  - english: I need to buy new shoes.
+    japanese:
+      - 新しい 靴 を {買う 必要 が ある}。
+      - 新しい 靴 を 買う 必要 が あり ます。
+      - 新しい 靴 を 買う 必要 が ある ん だ。
+    english_literally: New shoes to buy necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい 靴 を 買わ なけれ ば いけ ない。
+        english: I have to buy new shoes.
+        hint: This phrase, 「〜なければいけない」, implies a stronger, more personal compulsion. We're looking for
+          a more general statement about the existence of a need.
+    scene: A person casually mentions to a friend that their old shoes are worn out.
+    register: casual
+    setting: friendly
+  - english: In order to save the environment, collective action is necessary.
+    japanese:
+      - 環境 を 守る ため に は、皆 の 行動 が {必要 が ある}。
+      - 環境 を 守る ため に は、皆 の 行動 が 必要 が あり ます。
+      - 環境 保全 の ため に は、国民 一人一人 の 行動 が 必要 で ござい ます。
+    english_literally: For environment to protect, everyone's action necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 環境 を 守る ため に は、皆 の 行動 が 不可欠 だ。
+        english: In order to save the environment, collective action is indispensable.
+        hint: 「不可欠だ」 means indispensable or essential, which is a stronger statement than simply stating
+          a need exists. We're looking for the phrase 「必要がある」.
+    scene: An environmental activist is giving a passionate speech to a large audience.
+    register: formal
+    setting: persuasive
+  - english: It is necessary to stop the spread of fake news.
+    japanese:
+      - 偽 の ニュース の 拡散 を {止める 必要 が ある}。
+      - 偽 の ニュース の 拡散 を 止める 必要 が あり ます。
+      - 偽 情報 の 拡散 は 阻止 する 必要 が あり ます。
+    english_literally: Fake news's spread to stop necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - 偽 の ニュース の 拡散 を 止める べき だ。
+        english: One should stop the spread of fake news.
+        hint: 「〜べきだ」 implies a moral or logical obligation. We're looking for a statement about the existence
+          of a need, not just a recommendation.
+    scene: A journalist is discussing pressing societal issues during a news interview.
+    register: formal
+    setting: serious
+  - english: It was necessary to apologize.
+    japanese:
+      - 謝る {必要 が あっ た}。
+      - 謝る 必要 が あり まし た。
+      - 謝る 必要 あっ た ん だ。
+    english_literally: To apologize necessity existed.
+    competing_grammar:
+      - competing_japanese:
+          - 謝ら なけれ ば なら なかっ た。
+        english: I had to apologize.
+        hint: 「〜なければならなかった」 expresses a stronger, more unavoidable past obligation. We're looking for
+          a statement that a need to apologize existed.
+    scene: Someone reflects on a past argument with a friend, realizing they should have apologized.
+    register: casual
+    setting: reflective
+    conjugation: past plain (～た)
+  - english: Is it necessary to print this document?
+    japanese:
+      - この 書類 を {印刷 する 必要 が ある} の か。
+      - この 書類 を 印刷 する 必要 は あり ます か。
+      - この 書類、印刷 する 必要 あん の か な？
+    english_literally: This document to print necessity exists or not?
+    competing_grammar:
+      - competing_japanese:
+          - この 書類 を 印刷 し ない と いけ ませ ん か。
+        english: Do I have to print this document?
+        hint: 「〜ないといけませんか」 asks about a personal obligation or compulsion. We're looking for a question
+          about whether a need exists for printing.
+    scene: A junior colleague asks a senior colleague about a task.
+    register: semi-formal
+    setting: interrogative
+  - english: There's no need to worry.
+    japanese:
+      - 心配 する {必要 は ない}。
+      - 心配 する 必要 は あり ませ ん。
+      - 心配 する 必要 ない よ。
+    english_literally: To worry necessity does not exist.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し なく て いい よ。
+        english: You don't need to worry.
+        hint: 「〜なくていい」 indicates permission not to do something. We're looking for a statement that the
+          *need* itself does not exist.
+    scene: A parent reassures their child before a school exam.
+    register: casual
+    setting: supportive
+    conjugation: negative plain (～ない)
+  - english: There is no need for extra expenses.
+    japanese:
+      - 余分 な 費用 は {必要 が ない}。
+      - 余分 な 費用 は 必要 が あり ませ ん。
+      - 余分 な 費用 は 必要 ござい ませ ん。
+    english_literally: Extra expenses does not have necessity.
+    competing_grammar:
+      - competing_japanese:
+          - 余分 な 費用 は いら ない。
+        english: Extra expenses are not needed.
+        hint: 「いらない」 means not needed or not wanted, which is a simpler statement. We're looking for the
+          phrase 「必要がない」 to emphasize the lack of necessity.
+    scene: A manager is reviewing the budget with their team, emphasizing cost-saving measures.
+    register: formal
+    setting: professional
+    conjugation: negative plain (～ない)
+  - english: It will be necessary to review the safety protocols.
+    japanese:
+      - 安全 プロトコル を {見直す 必要 が} ござい ます。
+      - 安全 プロトコル を 見直す 必要 が あり ます。
+      - 安全 プロトコル の 見直し が 必要 です。
+    english_literally: Safety protocols to review necessity exist.
+    competing_grammar:
+      - competing_japanese:
+          - 安全 プロトコル を 見直さ なけれ ば なり ませ ん。
+        english: We must review the safety protocols.
+        hint: 「〜なければなりません」 expresses a strong obligation. We're looking for a more formal and objective
+          statement about the existence of a need for review.
+    scene: A safety inspector presents their findings to a corporate board.
+    register: formal
+    setting: professional
+    nuance: The use of 「ございます」 instead of 「あります」 makes the phrase more formal and polite, typical in professional
+      presentations or very respectful communication.
+  - english: For this research, it is necessary to conduct extensive field surveys.
+    japanese:
+      - この 研究 の ため に は、広範 な 現地 調査 を {行う 必要 が ある}。
+      - この 研究 の ため に は、広範 な 現地 調査 を 行う 必要 が あり ます。
+      - 本 研究 に おい て は、広範 な 現地 調査 を 実施 する 必要 が ござい ます。
+    english_literally: For this research, extensive field surveys to conduct necessity exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 研究 の ため に は、広範 な 現地 調査 を 行わ なけれ ば なら ない。
+        english: For this research, extensive field surveys must be conducted.
+        hint: This implies a stronger compulsion or rule. We are looking for an expression that states
+          the existence of a need for the surveys.
+    scene: A researcher explains the methodology of their study during a university lecture.
+    register: formal
+    setting: academic
+    nuance: The phrase 「この研究のためには」 clearly sets the context, indicating that the necessity arises specifically
+      for the purpose of 'this research'.
+post_example_writeup: As seen in the examples, 「必要がある」 is a versatile expression used to state that something
+  is required or needed. It can be applied to actions (using the dictionary form of verbs) or to items/concepts
+  (using nouns). Its various conjugations allow it to fit different tenses and polarities. Pay attention
+  to how it contrasts with other expressions of obligation or suggestion; 「必要がある」 often implies a more
+  objective or inherent need, rather than a personal compulsion or moral imperative.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/257

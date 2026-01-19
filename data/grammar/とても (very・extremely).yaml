@@ -1,0 +1,238 @@
+grammar_point: とても (very・extremely)
+better_grammar_point_name:
+  - <suggest>:とても (very)
+learn_before:
+  - Verb[なくて] (negative te-form)
+  - けっこう (quite・ample・no thanks)
+  - けれど (but・however)
+  - って (speaking of)
+  - とても〜ない (cannot possibly ~)
+  - どうぞ (here you are・please・invitation)
+  - な-Adjective[だった] (plain past)
+  - 一番 (superlative)
+  - 全然 (not at all; totally)
+meaning: Very; extremely; terribly
+pronunciation:
+  katakana: トテモ
+  romaji: totemo
+formation:
+  とても + い-Adjective: 'To intensely describe the quality of an い-adjective. Example: とても {美味しい} (very delicious).'
+  とても + な-Adjective: 'To intensely describe the quality of a な-adjective. Example: とても {静か} (very quiet).'
+  とても + Verb: 'To intensely describe the action or state of a verb. Example: とても {疲れた} (very tired).'
+  とても + [Negative form]: 'To express extreme difficulty or impossibility. Example: とても {できない} (cannot
+    possibly do it).'
+jlpt: N5
+etymology: The adverb 「とても」 originates from a combination of the old particle 「とて」 (which indicated cause,
+  reason, or condition, similar to 'even if' or 'no matter how') and the inclusive particle 「も」. This
+  etymology is particularly evident in its usage with negative forms, such as 「とてもできない」, which literally
+  conveys 'even if (I try), I cannot do it,' thereby signifying 'it is utterly impossible.' Over time,
+  its meaning broadened to a general intensifier for positive statements, indicating 'very' or 'extremely,'
+  dropping the conditional nuance from its positive use but retaining the strong emphasis. This evolution
+  from a conditional/concessive particle to an intensifier highlights its versatility in expressing high
+  degree or absolute impossibility.
+writeup: |-
+  「とても」 is a highly versatile and common Japanese adverb used primarily to intensify the meaning of adjectives, verbs, and other adverbs. It translates to "very," "extremely," or "terribly" in English. When used with positive statements, it simply emphasizes a high degree of a quality or action. For example, saying 「とても美味しい」 means "(It's) very delicious," indicating a strong positive impression.
+
+  Its usage extends to modifying な-adjectives (e.g., 「とても静か」 - "very quiet") and verbs (e.g., 「とても疲れた」 - "very tired"). 「とても」 can be used across various registers, from casual to polite, making it a fundamental word in everyday conversation.
+
+  A crucial aspect of 「とても」 is its interaction with negative forms. When paired with a negative verb or adjective, it expresses a strong sense of impossibility or extreme difficulty, often translating to "cannot possibly" or "not at all." For instance, 「とてもできない」 means "(I) absolutely cannot do it," or "(It's) utterly impossible." This nuanced usage stemming from its etymological roots is important to grasp for accurate comprehension and natural expression. The implied meaning is 'no matter how much I try, it's not possible.'
+false_friends:
+  - term: すごく
+    meaning: Very; amazingly
+    kind: synonym
+    nuance: 「すごく」 is generally more casual and often implies a sense of surprise or strong emotional reaction
+      from the speaker. While 「とても」 is also strong, 「すごく」 can convey a more personal, subjective feeling.
+    grammar_point: <suggest>:すごく (very)
+  - term: 大変
+    meaning: Very; serious; difficult
+    kind: synonym
+    nuance: While 「大変」 can mean 'very' (e.g., 「大変嬉しい」 - 'very happy'), it often carries an additional
+      connotation of 'difficulty,' 'seriousness,' or 'trouble.' It's generally more formal than 「とても」
+      when used as an intensifier.
+    grammar_point: <suggest>:大変 (very・difficult)
+  - term: 非常に
+    meaning: Extremely; remarkably
+    kind: synonym
+    nuance: 「非常に」 is a more formal and objective intensifier than 「とても」. It's often used in written language
+      or formal speeches and lacks the more colloquial feel that 「とても」 can sometimes have.
+    grammar_point: <suggest>:非常に (extremely)
+  - term: あまり〜ない
+    meaning: Not very; not much
+    kind: similar expression
+    nuance: 「あまり〜ない」 indicates 'not very' or 'not much,' suggesting a low degree or partial negation.
+      In contrast, 「とても〜ない」 expresses a complete or extreme impossibility/difficulty. For example, 「あまり美味しくない」
+      (not very delicious) vs. 「とても美味しくない」 (terribly not delicious, often implying impossible to eat).
+    grammar_point: あまり ない (not very or much)
+post_false_friends_writeup: When choosing between 「とても」 and other intensifiers like 「すごく」, 「大変」, or 「非常に」,
+  consider the level of formality and the nuance of your emotion. 「すごく」 is suitable for casual, emotional
+  emphasis. 「大変」 is used for situations requiring a strong emphasis due to difficulty or seriousness.
+  「非常に」 is reserved for formal and objective contexts. For negations, remember that 「とても〜ない」 conveys absolute
+  impossibility or extreme difficulty, a much stronger sentiment than the partial negation implied by
+  「あまり〜ない」.
+examples:
+  - english: This cake is very delicious.
+    japanese:
+      - この ケーキ は {とても} 美味しい です。
+      - この ケーキ は {とても} 美味しい。
+      - この ケーキ は {とても} 美味しい よ。
+      - この ケーキ は {とても} 美味しい ね。
+    english_literally: This cake is very delicious.
+    competing_grammar:
+      - competing_japanese:
+          - この ケーキ は すごく 美味しい です。
+        english: This cake is amazingly delicious.
+        hint: While すごく is also 'very', とても offers a more neutral, slightly formal tone, whereas すごく implies
+          a stronger, more emotional reaction. We're looking for a common, general intensifier.
+    scene: A person tastes a freshly baked cake and expresses their genuine enjoyment.
+    register: teineigo (polite)
+    setting: friendly
+  - english: Studying Japanese is very interesting.
+    japanese:
+      - 日本 語 の 勉強 は {とても} 面白い です。
+      - 日本 語 の 勉強 は {とても} 面白い。
+      - 日本 語 の 勉強 は {とても} 面白い よ。
+      - 日本 語 の 勉強 は {とても} 面白い ね。
+    english_literally: Japanese study is very interesting.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 語 の 勉強 は 大変 面白い です。
+        english: Studying Japanese is remarkably interesting.
+        hint: 大変 can mean 'very', but often carries a nuance of 'serious' or 'difficult' which isn't present
+          here. We're looking for a straightforward 'very'.
+    scene: A student reflects on their experience learning Japanese.
+    register: teineigo (polite)
+    setting: academic
+  - english: My grandfather walks very slowly.
+    japanese:
+      - 祖父 は {とても} ゆっくり 歩き ます。
+      - 祖父 は {とても} ゆっくり 歩く。
+      - 祖父 は {とても} ゆっくり 歩く ん だ。
+    english_literally: Grandfather very slowly walks.
+    competing_grammar:
+      - competing_japanese:
+          - 祖父 は のんびり 歩き ます。
+        english: My grandfather walks leisurely.
+        hint: のんびり describes the *manner* of walking as leisurely, but doesn't intensify the *slowness*.
+          We need an adverb that means 'very'.
+    scene: A grandchild observes their elderly grandfather walking through a park.
+    register: teineigo (polite)
+    setting: reflective
+  - english: I'm so sleepy that I can't study anymore.
+    japanese:
+      - '{とても} 眠く て、もう 勉強 でき ませ ん。'
+      - '{とても} 眠く て、もう 勉強 でき ない。'
+      - '{とても} 眠く て、もう 勉強 でき ない よ。'
+      - '{とても} 眠く て、もう 勉強 が でき ない。'
+    english_literally: Very sleepy, already cannot study.
+    competing_grammar:
+      - competing_japanese:
+          - 眠く て、もう 勉強 でき ませ ん。
+        english: I'm sleepy, so I can't study anymore.
+        hint: The original sentence emphasizes the *degree* of sleepiness being extreme. We need a word
+          to convey 'so sleepy' or 'too sleepy'.
+      - competing_japanese:
+          - 少し 眠く て、もう 勉強 でき ませ ん。
+        english: I'm a little sleepy, so I can't study anymore.
+        hint: 少し means 'a little', which doesn't convey the extreme degree of sleepiness required by the
+          English sentence. We're looking for 'very'.
+    scene: A student struggles to stay awake while preparing for an exam late at night.
+    register: teineigo (polite)
+    setting: academic
+  - english: It's so cold that I can't go outside.
+    japanese:
+      - '{とても} 寒く て、外 に 出 られ ませ ん。'
+      - '{とても} 寒く て、外 に 出 られ ない。'
+      - '{とても} 寒く て、外 に 出 られ ない よ。'
+    english_literally: Very cold, outside cannot go out.
+    competing_grammar:
+      - competing_japanese:
+          - あまり 寒く なく て、外 に 出 られ ませ ん。
+        english: It's not very cold, so I can't go outside.
+        hint: あまり〜ない implies a low degree of coldness, which contradicts the English meaning. We're looking
+          for 'so cold that I can't'.
+    scene: A person looks out the window at a freezing winter day.
+    register: teineigo (polite)
+    setting: casual slang
+  - english: This problem is extremely difficult; I can't solve it.
+    japanese:
+      - この 問題 は {とても} 難しく て、解け ませ ん。
+      - この 問題 は {とても} 難しく て、解け ない。
+      - この 問題 は {とても} 難しく て、解け ない よ。
+    english_literally: This problem is very difficult, cannot solve.
+    competing_grammar:
+      - competing_japanese:
+          - この 問題 は やや 難しく て、解け ませ ん。
+        english: This problem is slightly difficult, I can't solve it.
+        hint: やや means 'slightly', which doesn't convey the extreme difficulty of the problem that prevents
+          solving it. We're looking for 'extremely'.
+    scene: A student is stuck on a math problem, finding it exceptionally challenging.
+    register: teineigo (polite)
+    setting: academic
+  - english: I'm very sorry, but I can't help you.
+    japanese:
+      - '{とても} 申し訳 あり ませ ん が、お 手伝い でき ませ ん。'
+      - '{とても} 申し訳 ない の です が、お 手伝い でき ませ ん。'
+    english_literally: Very sorry, but, help cannot do.
+    competing_grammar:
+      - competing_japanese:
+          - 少し 申し訳 あり ませ ん が、お 手伝い でき ませ ん。
+        english: I'm a little sorry, but I can't help you.
+        hint: 少し (a little) doesn't convey the strong sense of apology needed here. We're looking for
+          'very sorry'.
+    scene: A person politely declines a request for assistance due to circumstances.
+    register: formal
+    setting: professional
+  - english: He's very fast, so it's impossible to catch him.
+    japanese:
+      - 彼 は {とても} 速い の で、捕まえ られ ませ ん。
+      - 彼 は {とても} 速い から、捕まえ られ ない。
+      - 彼 は {とても} 速い から、捕まえ られ ない よ。
+    english_literally: He is very fast, so cannot catch.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は まあまあ 速い の で、捕まえ られ ませ ん。
+        english: He's moderately fast, so I can't catch him.
+        hint: まあまあ (moderately) does not convey the extreme speed that makes catching impossible. We need
+          an intensifier for 'very fast'.
+    scene: Two friends are watching a runner compete, marveling at his speed.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker is a male using casual speech with a male friend, observing another male. 「とても」
+      is a neutral intensifier here, indicating an objective assessment of speed.
+  - english: This story is very sad.
+    japanese:
+      - この 物語 は {とても} 悲しい です。
+      - この 物語 は {とても} 悲しい。
+      - この 物語 は {とても} 悲しい よ。
+      - この 物語 は {とても} 悲しい ね。
+    english_literally: This story is very sad.
+    competing_grammar:
+      - competing_japanese:
+          - この 物語 は 少々 悲しい です。
+        english: This story is a little sad.
+        hint: 少々 means 'a little' or 'a bit', which does not match the intensity of 'very sad'. We're
+          looking for a strong intensifier.
+    scene: Someone has just finished reading a novel and is describing their feelings about it.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: female
+    listener_gender: group
+    nuance: The speaker is a female expressing a strong emotion using polite speech. 「とても悲しいです」 sounds
+      heartfelt and conveys genuine sadness.
+  - english: The view from the top of the mountain was absolutely beautiful.
+    japanese:
+      - 山 の 頂上 から の 景色 は {とても} 綺麗 でし た。
+      - 山 の 頂上 から の 景色 は {とても} 綺麗 だっ た。
+      - 山 の 頂上 から の 景色 は {とても} 綺麗 だっ た よ。
+    english_literally: Mountain top from view was very beautiful.
+    competing_grammar:
+      - competing_japanese:
+          - 山 の 頂上 から の 景色 は いと 綺麗 でし た。
+        english: The view from the top of the mountain was exceedingly beautiful.
+        hint: 「いと」 is an archaic adverb meaning 'very' or 'exceedingly,' typically found in classical
+          Japanese literature. We're looking for a modern, common intensifier.
+    scene: Someone recounts their experience hiking a mountain to a friend.
+    register: teineigo (polite)
+    setting: storytelling

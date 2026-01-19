@@ -1,0 +1,239 @@
+grammar_point: な-Adjective[ではなかった・じゃなかった] (plain past negative)
+learn_before:
+  - じゃなかった (was not)
+meaning: was not (for na-adjectives)
+conjugations:
+  - conjugation-type: negative past plain (～なかった)
+    form: な-Adjective + ではなかった / な-Adjective + じゃなかった
+    rarity: common
+    meaning: was not (for na-adjectives)
+pronunciation:
+  katakana: デハナカッタ・ジャナカッタ
+  romaji: de wa nakatta・ja nakatta
+formation:
+  な-Adjective (stem) + ではなかった: Used for formal or standard plain past negative of na-adjectives.
+  な-Adjective (stem) + じゃなかった: Used for casual plain past negative of na-adjectives, more common in spoken
+    Japanese.
+jlpt: N4
+etymology: The construction 「ではなかった」 is derived from the particle 「で」 (which here functions similarly
+  to the copula 「だ」 in its conjunctive form), followed by the negative auxiliary verb 「ない」, and then the
+  past tense auxiliary verb 「あった」 (the past form of 「ある」). 「あった」 combines with 「ない」 to form 「なかった」. The
+  more casual 「じゃなかった」 is a phonetic contraction of 「ではなかった」, where 「では」 has naturally slurred into 「じゃ」
+  in spoken language over time, a common phenomenon in Japanese for ease of pronunciation.
+writeup: The grammar point 「な-Adjective[ではなかった・じゃなかった]」 is used to express the past negative state of
+  a な-adjective. It essentially means "was not [na-adjective]". The primary form is 「な-Adjective (stem)
+  + ではなかった」. For example, if you want to say "was not convenient," you would use 「便利ではなかった」. This form
+  is grammatically standard and can be used in a wide range of contexts, from slightly formal to casual,
+  though it retains a more deliberate or literary feel compared to its contracted counterpart. The more
+  colloquial and frequently used form, especially in everyday conversation, is 「な-Adjective (stem) + じゃなかった」.
+  This is a contraction of 「ではなかった」, where the 「では」 sound has naturally morphed into 「じゃ」. So, 「便利ではなかった」
+  becomes 「便利じゃなかった」. While both mean the same thing, 「じゃなかった」 sounds much more natural and casual in
+  spoken Japanese. Remember that な-adjectives, when used predicatively, effectively function like nouns
+  in this construction, as the negative copula 「ではない」 and its past form 「ではなかった」 are applied. The adjective
+  stem is used directly, without the final 「な」 that appears when a な-adjective directly modifies a noun
+  (e.g., 「便利な本」 vs. 「本は便利ではなかった」).
+false_friends:
+  - term: い-Adjective (past negative)
+    meaning: was not (i-adjective)
+    kind: similar expression
+    nuance: This applies to い-adjectives, which conjugate differently. For example, 「高かった」 (was expensive)
+      becomes 「高くなかった」 (was not expensive), whereas a な-adjective like 「静か」 (quiet) becomes 「静かじゃなかった」
+      (was not quiet).
+    grammar_point: い-Adjective (past negative)
+  - term: ではない
+    meaning: is not (for nouns and na-adjectives)
+    kind: similar expression
+    nuance: 「ではない」 or 「じゃない」 is the present negative form, meaning "is not." This grammar point, 「ではなかった」
+      or 「じゃなかった」, specifically refers to the past tense, meaning "was not."
+    grammar_point: な-Adjective[ではない・じゃない] (plain negative)
+  - term: Verb[なかった]
+    meaning: did not (verb)
+    kind: similar expression
+    nuance: This is the plain past negative for verbs, e.g., 「食べなかった」 (did not eat). It's distinct from
+      the na-adjective conjugation for "was not."
+    grammar_point: Verb[なかった] (past negative)
+  - term: Noun[ではなかった・じゃなかった]
+    meaning: was not (noun)
+    kind: similar expression
+    nuance: While the form is the same for nouns, this grammar point specifically addresses its application
+      to な-adjectives. For nouns, it functions as "was not a [noun]," e.g., 「医者じゃなかった」 (was not a doctor).
+    grammar_point: <strongly-suggest>:Noun[ではなかった・じゃなかった] (plain past negative)
+post_false_friends_writeup: It is important to differentiate 「な-Adjective[ではなかった・じゃなかった]」 from other negative
+  past forms. While the structure 「Xではなかった」 or 「Xじゃなかった」 can also apply to nouns (e.g., 「学生ではなかった」 - was
+  not a student), this grammar point focuses specifically on its usage with な-adjectives. Remember that
+  い-adjectives and verbs have their own distinct past negative conjugations. Pay attention to the part
+  of speech to ensure correct negation and tense.
+examples:
+  - english: The room wasn't quiet.
+    japanese:
+      - 部屋 は {静か じゃ なかっ た}。
+      - 部屋 は {静か で は なかっ た}。
+    english_literally: Room topic quiet was not.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 は 静か じゃ ない。
+        english: The room isn't quiet.
+        hint: This is the present negative. We're looking for the past negative.
+      - competing_japanese:
+          - 部屋 は 静か で は なかっ た。
+        english: The room was not quiet.
+        hint: While grammatically correct, this sounds more formal. We're looking for a casual way to
+          say "wasn't quiet."
+    scene: A student tells their friend about their noisy dormitory room.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of 「じゃなかった」 is typical in casual conversation among friends, particularly among younger
+      speakers. 「静かじゃなかった」 emphasizes the casual tone.
+  - english: The presentation wasn't simple.
+    japanese:
+      - プレゼン は {簡単 で は なかっ た}。
+      - プレゼン は {簡単 じゃ なかっ た}。
+    english_literally: Presentation topic simple was not.
+    competing_grammar:
+      - competing_japanese:
+          - プレゼン は 簡単 じゃ ない。
+        english: The presentation isn't simple.
+        hint: This is the present negative. We're looking for the past negative.
+      - competing_japanese:
+          - プレゼン は 簡単 じゃ なかっ た。
+        english: The presentation wasn't simple.
+        hint: This sounds more casual. We're looking for a slightly more formal or standard way to say
+          "wasn't simple."
+    scene: A colleague discusses a difficult project with a teammate.
+    register: semi-formal
+    setting: professional
+    conjugation: negative past plain (～なかった)
+  - english: That concert wasn't lively at all.
+    japanese:
+      - あの コンサート は 全然 {賑やか じゃ なかっ た}。
+      - あの コンサート は 全然 {賑やか で は なかっ た}。
+    english_literally: That concert topic entirely lively was not.
+    competing_grammar:
+      - competing_japanese:
+          - あの コンサート は 全然 賑やか じゃ ない。
+        english: That concert isn't lively at all.
+        hint: This is the present tense. We are looking for the past tense.
+      - competing_japanese:
+          - あの コンサート は 全然 賑やか で は なかっ た。
+        english: That concert was not lively at all.
+        hint: This form is more formal. The speaker's use of 「全然」 and the context suggests a more casual
+          tone.
+    scene: A friend complains about a dull event they attended.
+    register: casual
+    setting: friendly
+    conjugation: negative past plain (～なかった)
+  - english: His explanation was not clear.
+    japanese:
+      - 彼 の 説明 は {明確 で は なかっ た}。
+      - 彼 の 説明 は {明確 じゃ なかっ た}。
+    english_literally: His explanation topic clear was not.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 説明 は 明確 じゃ ない。
+        english: His explanation isn't clear.
+        hint: This is the present tense. We need the past tense.
+      - competing_japanese:
+          - 彼 の 説明 は 明確 じゃ なかっ た。
+        english: His explanation wasn't clear.
+        hint: This sounds too casual for an academic presentation. We are looking for a more formal expression.
+    scene: A researcher presents findings from an academic review.
+    register: formal
+    setting: academic
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+  - english: I wasn't diligent, so I couldn't finish my homework.
+    japanese:
+      - 私 は {真面目 じゃ なかっ た} から、宿題 が 終わら なかっ た。
+      - 私 は {真面目 で は なかっ た} から、宿題 が 終わら なかっ た。
+    english_literally: I topic diligent was not because, homework object finished not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は 真面目 じゃ あり ませ ん でし た から、宿題 が 終わら なかっ た。
+        english: I wasn't diligent, so I couldn't finish my homework.
+        hint: This is polite past negative. We are looking for the plain (casual) past negative.
+      - competing_japanese:
+          - 私 は 真面目 で は なかっ た から、宿題 が 終わら なかっ た。
+        english: I was not diligent, so I couldn't finish my homework.
+        hint: This sounds a bit stiff for a casual confession to a teacher. The casual contraction is
+          more natural here.
+    scene: A student confesses to their teacher why their homework isn't done.
+    register: casual
+    setting: apologetic
+    conjugation: negative past plain (～なかった)
+  - english: The previous manager was not very well-known.
+    japanese:
+      - 前 の 部長 は あまり {有名 で は なかっ た}。
+      - 前 の 部長 は あまり {有名 じゃ なかっ た}。
+    english_literally: Previous manager topicあまり famous was not.
+    competing_grammar:
+      - competing_japanese:
+          - 前 の 部長 は あまり 有名 じゃ なかっ た。
+        english: The previous manager wasn't very well-known.
+        hint: While correct, 「じゃなかった」 is more informal. We're looking for a slightly more formal phrasing
+          suitable for discussing business matters.
+    scene: An employee discusses past company leadership with a new hire.
+    register: semi-formal
+    setting: professional
+    conjugation: negative past plain (～なかった)
+    speaker_gender: male
+    listener_gender: male
+  - english: The path we took wasn't safe.
+    japanese:
+      - 私 たち が 通っ た 道 は {安全 じゃ なかっ た}。
+      - 私 たち が 通っ た 道 は {安全 で は なかっ た}。
+    english_literally: We subject passed path topic safe was not.
+    competing_grammar:
+      - competing_japanese:
+          - 私 たち が 通っ た 道 は 安全 で は ない。
+        english: The path we took isn't safe.
+        hint: This is present tense. We are recounting a past event.
+    scene: Friends recounting a hiking trip.
+    register: casual
+    setting: storytelling
+    conjugation: negative past plain (～なかった)
+  - english: The decision made at that time was not appropriate.
+    japanese:
+      - あの 時 の 決定 は {適切 で は なかっ た}。
+      - あの 時 の 決定 は {適切 じゃ なかっ た}。
+    english_literally: That time possessive decision topic appropriate was not.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 の 決定 は 適切 じゃ なかっ た。
+        english: The decision made at that time wasn't appropriate.
+        hint: This is too casual for an academic analysis. The more formal form is required.
+    scene: A historian analyzing a past political event.
+    register: formal
+    setting: academic
+    conjugation: negative past plain (～なかった)
+  - english: Ah, it wasn't true!
+    japanese:
+      - あ、{本当 じゃ なかっ た}！
+      - あ、{本当 で は なかっ た}！
+    english_literally: Oh, true was not!
+    competing_grammar:
+      - competing_japanese:
+          - あ、本当 で は なかっ た！
+        english: Oh, it was not true!
+        hint: This is grammatically correct but sounds overly formal for a spontaneous exclamation of
+          surprise.
+    scene: Someone realizes they were misled.
+    register: casual
+    setting: excited
+    conjugation: negative past plain (～なかった)
+  - english: The response from the government agency was not sufficient.
+    japanese:
+      - 政府 機関 から の 回答 は {十分 で は なかっ た}。
+      - 政府 機関 から の 回答 は {十分 じゃ なかっ た}。
+    english_literally: Government agency from possessive response topic sufficient was not.
+    competing_grammar:
+      - competing_japanese:
+          - 政府 機関 から の 回答 は 十分 じゃ なかっ た。
+        english: The response from the government agency wasn't sufficient.
+        hint: The context of reporting on a government agency requires a more formal tone.
+    scene: A journalist reporting on public affairs.
+    register: formal
+    setting: informative
+    conjugation: negative past plain (～なかった)

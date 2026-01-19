@@ -1,0 +1,300 @@
+grammar_point: には及ばない (cannot compare・no need to)
+better_grammar_point_name:
+  - <suggest>:には及ばない (cannot compare)
+  - <suggest>:には及ばない (no need to)
+learn_before:
+  - '[Noun]には及ばない (no match for)'
+meaning: Used to express that something does not reach a certain level or cannot compare to something
+  else, or that a certain action or effort is unnecessary.
+pronunciation:
+  katakana: ニワオヨバナイ
+  romaji: ni wa oyobanai
+formation:
+  Noun + には及ばない: To express that something does not reach the level of a noun or cannot compare to it.
+  Verb[dictionary] + には及ばない: To express that a certain action is unnecessary or not required.
+jlpt: N2
+etymology: The verb 及ぶ (oyobu) means 'to reach; to extend; to amount to'. The form '及ばない' is its negative
+  plain form, meaning 'does not reach' or 'is inferior'. When combined with 'には', it emphasizes the target
+  of the comparison or the action that is not reached/necessary. This grammatical construction thus directly
+  reflects the literal meaning of 'not reaching' a certain state or level, which then extends metaphorically
+  to 'not being comparable' or 'not being necessary' (because the need for that action is not reached).
+writeup: 'This grammar point, 「には及ばない」, carries two primary nuances: it can indicate that something **cannot
+  compare** to a certain standard or entity, or that an action is **not necessary** or superfluous. When
+  used for comparison, it often suggests inferiority. For example, 「彼の日本語はネイティブには及ばない」(His Japanese cannot
+  compare to a native speaker''s) implies his Japanese is not as good. It emphasizes a gap in ability,
+  quality, or scale. When expressing lack of necessity, it means that there is no need to perform a particular
+  action. For instance, 「ご心配には及びません」(There''s no need to worry) is a common polite phrase. This usage
+  conveys reassurance that the situation does not require the specified action. It is a relatively formal
+  expression, often used in written language or polite speech. The specific meaning is usually clear from
+  context.'
+false_friends:
+  - term: なくてはいけない (must do)
+    meaning: must do; have to
+    kind: antonym
+    nuance: 「なくてはいけない」expresses obligation or necessity, which is the opposite of 「には及ばない」in its 'no need
+      to' sense. We are looking for something that indicates an action is not required.
+    grammar_point: ~なくてはいけない・なくちゃ (must do・have to)
+  - term: と同じくらい (about the same as)
+    meaning: about the same as
+    kind: similar expression
+    nuance: 「と同じくらい」indicates equality or similarity in degree, contrasting with「には及ばない」's implication
+      of inferiority or lack of equality. We are looking for something that cannot reach the same level.
+    grammar_point: と同じくらい (about the same as)
+  - term: ほど〜ない (not as... as)
+    meaning: not as... as
+    kind: similar expression
+    nuance: While both 「には及ばない」 and 「ほど〜ない」 express a lesser degree, 「には及ばない」 often implies a more significant
+      gap or complete inability to reach the level of comparison. 「ほど〜ない」 is a direct comparison of degree.
+    grammar_point: ほど〜ない (not as... as)
+  - term: より (comparative)
+    meaning: more... than
+    kind: similar expression
+    nuance: 「より」is a general comparative marker that can express superiority or inferiority, whereas 「には及ばない」specifically
+      denotes failure to meet a standard or comparison. We are looking for a term that means 'cannot reach'
+      rather than just a general comparison.
+    grammar_point: より (comparative)
+  - term: この上ない (unbeatable)
+    meaning: unbeatable; supreme; utmost
+    kind: antonym
+    nuance: 「この上ない」expresses the highest possible degree or quality, which is the direct opposite of 「には及ばない」when
+      used for comparison. We are looking for something that is not excellent.
+    grammar_point: この上ない (unbeatable)
+  - term: の極み (ultimate degree)
+    meaning: the ultimate degree of; extreme
+    kind: antonym
+    nuance: Similar to 「この上ない」, 「の極み」indicates an extreme or ultimate state, contrasting with the inability
+      to reach a certain level implied by 「には及ばない」. We are looking for something that is not ultimate.
+    grammar_point: の極み (ultimate degree)
+post_false_friends_writeup: 「には及ばない」is distinct from simple comparative forms like 「より」or 「ほど〜ない」because
+  it carries a stronger implication of **failure to reach a standard** or **complete lack of necessity**.
+  While 「ほど〜ない」might mean 'not as good as,' 「には及ばない」often means 'cannot *even* compare' or 'is *far* from
+  reaching.' Similarly, when expressing necessity, it goes beyond simply 'not needing' something; it suggests
+  that the action would be **superfluous or unwarranted**. Pay close attention to context to discern whether
+  comparison or necessity is implied, though the construction remains the same.
+examples:
+  - english: His ability is still far from comparing to a professional's.
+    japanese:
+      - 彼 の 実力 は プロ に は {及ば ない}。
+      - 彼 の 実力 は プロ に は {及び ませ ん}。
+    english_literally: His ability, as for professional's, does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 実力 は プロ より {劣る}。
+          - 彼 の 実力 は プロ より {劣り ます}。
+        english: His ability is inferior to a pro's.
+        hint: 「劣る」means to be inferior or worse than, a direct comparison. We're looking for an expression
+          that means 'cannot reach' or 'cannot compare'.
+      - competing_japanese:
+          - 彼 の 実力 は プロ {ほど} 良く ない。
+          - 彼 の 実力 は プロ {ほど} 良く あり ませ ん。
+        english: His ability is not as good as a pro's.
+        hint: 「ほど〜ない」is a common comparative structure indicating 'not as... as'. We're looking for an
+          expression that suggests an inability to reach a certain level.
+    scene: A sports commentator discussing an up-and-coming athlete.
+    register: formal
+    setting: informative
+    nuance: 「プロには及ばない」highlights a significant gap in skill, implying the person is not yet at a professional
+      level.
+  - english: There is no need to worry.
+    japanese:
+      - ご 心配 に は {及び ませ ん}。
+      - ご 心配 に は {及ば ない}。
+    english_literally: Regarding your worry, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - 心配 し なく て いい です。
+          - 心配 し なく て いい わ。
+        english: You don't have to worry.
+        hint: 「〜なくていい」is a common way to say 'don't have to'. We're looking for a more formal expression
+          that implies a lack of necessity.
+      - competing_japanese:
+          - 心配 する 必要 は ない です。
+          - 心配 する 必要 は あり ませ ん。
+        english: There is no need to worry.
+        hint: 「必要は無い」directly states 'there is no need'. We're looking for a slightly more nuanced, polite
+          way to express the same.
+    scene: A doctor reassuring a patient's family.
+    register: formal
+    setting: supportive
+    conjugation: non-past polite (～ます)
+    nuance: 「ご心配には及びません」is a common polite expression to reassure someone that their concern or action
+      is unnecessary. It's a humble way of saying 'don't worry'.
+  - english: My cooking can't compare to Mom's.
+    japanese:
+      - 私 の 料理 は 母 の に は {及ば ない} わ。
+      - 私 の 料理 は 母 の に は {及び ませ ん}。
+    english_literally: My cooking, as for mother's, does not reach, you see.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 料理 は 母 の 料理 {ほど} 良く ない わ。
+          - 私 の 料理 は 母 の 料理 {ほど} 良く あり ませ ん わ。
+        english: My cooking isn't as good as my mom's cooking.
+        hint: 「ほど〜ない」is a direct comparison. We're looking for a phrase that implies a greater gap or
+          inability to reach that level.
+    scene: A daughter talking to her friend about her cooking skills.
+    register: casual
+    setting: friendly
+    speaker_gender: female
+    nuance: The casual feminine ending particle 「わ」adds a soft, slightly wistful tone to the self-deprecating
+      comparison.
+  - english: Don't bother coming all this way.
+    japanese:
+      - わざわざ 来る に は {及ば ない} よ。
+      - わざわざ 来る に は {及び ませ ん} よ。
+    english_literally: Purposely coming, there is no need.
+    competing_grammar:
+      - competing_japanese:
+          - わざわざ 来る 必要 は ない よ。
+          - わざわざ 来る 必要 は あり ませ ん よ。
+        english: There's no need to purposely come.
+        hint: 「必要はない」is a straightforward way to say 'no need'. We're looking for a slightly more nuanced
+          and idiomatic expression.
+    scene: A man telling a friend not to make a special trip for a minor issue.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    nuance: 「わざわざ」emphasizes that the effort is unnecessary. The 「よ」particle makes it a gentle, friendly
+      suggestion from a male speaker.
+  - english: The beauty of the painting cannot compare to the real thing.
+    japanese:
+      - その 絵 の 美し さ は 実物 に は {及ば ない}。
+      - その 絵 の 美し さ は 実物 に は {及び ませ ん}。
+    english_literally: That painting's beauty, as for the real thing, does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - その 絵 の 美し さ は 実物 と 比べる と {劣る}。
+          - その 絵 の 美し さ は 実物 と 比べる と {劣り ます}。
+        english: The beauty of that painting is inferior when compared to the real thing.
+        hint: 「劣る」directly states inferiority. We're looking for an expression that implies a failure
+          to reach a certain standard.
+    scene: An art critic's commentary on a reproduction.
+    register: formal
+    setting: informative
+    nuance: This sentence emphasizes that even a beautiful painting falls short when compared to the natural
+      beauty of the real object.
+  - english: There is no need for immediate action regarding this matter.
+    japanese:
+      - この 件 に つい て は 早急 に 手 を 下す に は {及ば ない}。
+      - この 件 に つい て は 早急 に 手 を 下す に は {及び ませ ん}。
+    english_literally: Regarding this matter, as for taking immediate action, it is not necessary.
+    competing_grammar:
+      - competing_japanese:
+          - この 件 に つい て は 早急 に 手 を 下す 必要 は ない。
+          - この 件 に つい て は 早急 に 手 を 下す 必要 は あり ませ ん。
+        english: Regarding this matter, there's no need to take immediate action.
+        hint: 「必要は無い」is a direct statement of 'no need'. We're looking for a slightly more formal and
+          nuanced way to convey this.
+    scene: A manager instructing their team about a project.
+    register: formal
+    setting: instructional
+    nuance: 「早急に手を下す」means to take immediate action. The phrase clarifies that such swift action is not
+      required, suggesting a more measured approach.
+  - english: You can't compare these modern gadgets to the old tools. They're built differently.
+    japanese:
+      - 最近 の ガジェット は 昔 の 道具 に は {及ば ない} な。
+      - 最近 の ガジェット は 昔 の 道具 に は {及び ませ ん} な。
+    english_literally: Recent gadgets, as for old tools, do not reach, huh.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 の ガジェット は 昔 の 道具 {ほど} 良く ない な。
+          - 最近 の ガジェット は 昔 の 道具 {ほど} 良く あり ませ ん な。
+        english: Modern gadgets aren't as good as old tools, huh.
+        hint: 「ほど〜ない」expresses that something is 'not as... as' something else. We're looking for a stronger
+          statement implying a significant qualitative difference.
+    scene: An older man reminiscing about the quality of older products.
+    register: casual
+    setting: reflective
+    speaker_gender: male
+    speaker_age: older
+    nuance: The male sentence-final particle 「な」adds a contemplative, slightly nostalgic or definitive
+      tone typical of an older male speaker expressing a personal opinion.
+  - english: There is no need to stand on ceremony.
+    japanese:
+      - お 気遣い に は {及び ませ ん}。
+      - お 気遣い に は {及ば ない}。
+    english_literally: Regarding your consideration, it does not reach.
+    competing_grammar:
+      - competing_japanese:
+          - お 気遣い は {ご 無用} です。
+          - お 気遣い は {ご 無用} だ。
+        english: No need for your concern.
+        hint: 「ご無用」means 'unnecessary' or 'forbidden for use'. We're looking for a phrase that specifically
+          indicates that someone's thoughtfulness is not required.
+    scene: A host addressing guests who are being overly polite.
+    register: semi-formal
+    setting: friendly
+    conjugation: non-past polite (～ます)
+    nuance: A common polite phrase to encourage guests to relax and not feel obligated to be overly considerate.
+  - english: The new product's performance still doesn't compare to our competitor's flagship model.
+    japanese:
+      - 新 製品 の 性能 は 競合 他社 の フラッグシップ モデル に は {及ば ない}。
+      - 新 製品 の 性能 は 競合 他社 の フラッグシップ モデル に は {及び ませ ん}。
+    english_literally: The new product's performance, as for rival company's flagship model, does not
+      reach.
+    competing_grammar:
+      - competing_japanese:
+          - 新 製品 の 性能 は 競合 他社 の フラッグシップ モデル {ほど} 良く ない。
+          - 新 製品 の 性能 は 競合 他社 の フラッグシップ モデル {ほど} 良く あり ませ ん。
+        english: The new product's performance is not as good as the competitor's flagship model.
+        hint: 「ほど〜ない」is a less emphatic comparison. We're looking for a stronger statement of inability
+          to meet a benchmark.
+    scene: A marketing team discussing a product launch.
+    register: formal
+    setting: informative
+    nuance: A straightforward comparison indicating that the new product is technologically inferior to
+      a leading competitor.
+  - english: You really don't need to apologize.
+    japanese:
+      - 謝る に は {及ば ない} よ。
+      - 謝る に は {及び ませ ん} よ。
+    english_literally: As for apologizing, it is not necessary, you see.
+    competing_grammar:
+      - competing_japanese:
+          - 謝る 必要 は ない よ。
+          - 謝る 必要 は あり ませ ん よ。
+        english: There's no need to apologize.
+        hint: 「必要は無い」is a direct and common way to state 'no need'. We're looking for a slightly more
+          idiomatic and empathetic expression.
+    scene: A friend comforting another after a minor mistake.
+    register: casual
+    setting: supportive
+    nuance: The informal tone, with the particle 「よ」, emphasizes that the apology is truly unnecessary
+      and perhaps even unwanted, conveying genuine forgiveness or understanding.
+  - english: My scores can't hold a candle to his.
+    japanese:
+      - 俺 の 成績 じゃ 彼 の に は {及ば ない} って。
+      - 僕 の 成績 じゃ 彼 の に は {及び ませ ん} って。
+    english_literally: My grades, they don't even reach his, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 俺 の 成績 は 彼 の 成績 {より} {劣る} って。
+          - 僕 の 成績 は 彼 の 成績 {より} {劣り ます} って。
+        english: My grades are inferior to his, you know.
+        hint: 「劣る」expresses inferiority, which is related but less common in this specific context than
+          the inability to reach someone else's level. We're looking for a phrase implying a complete
+          inability to match.
+    scene: A male student complaining to a friend about a difficult exam.
+    register: casual
+    setting: casual slang
+    speaker_gender: male
+    speaker_age: younger
+    nuance: 「俺」is a casual male pronoun. The 「って」particle adds a casual, slightly exasperated or explanatory
+      tone, common among younger speakers.
+  - english: There is no need for additional explanations.
+    japanese:
+      - これ 以上 の 説明 に は {及び ませ ん}。
+      - これ 以上 の 説明 に は {及ば ない}。
+    english_literally: More than this explanation, it is not necessary.
+    competing_grammar:
+      - competing_japanese:
+          - これ 以上 の 説明 は {不要} です。
+          - これ 以上 の 説明 は {不要} だ。
+        english: Further explanations are unnecessary.
+        hint: 「不要」is a direct and strong statement meaning 'unnecessary'. We're looking for a phrase that
+          implies the extent of a certain action is not required.
+    scene: A judge making a ruling in a courtroom.
+    register: formal
+    setting: legal
+    conjugation: non-past polite (～ます)
+    nuance: Used in formal or official contexts to definitively state that no further information or action
+      is required, often implying finality.

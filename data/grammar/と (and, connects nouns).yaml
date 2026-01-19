@@ -1,0 +1,479 @@
+grammar_point: と (and, connects nouns)
+learn_before:
+  - Verb[imperative] (imperative)
+  - どうぞ (here you are・please・invitation)
+meaning: And
+meaning_warning: The last と in a group is generally omitted.
+pronunciation:
+  katakana: ト
+  romaji: to
+formation:
+  Noun A + と + Noun B: Connects two nouns exhaustively, meaning 'A and B'. This indicates that only the
+    specified items are included.
+  Noun A + と + Noun B + と + Noun C (and so on): Connects three or more nouns exhaustively. When listing
+    multiple items, 「と」 is placed after each noun, but the final 「と」 in the series is commonly omitted,
+    especially in conversation. This still implies an exhaustive list of the mentioned items.
+jlpt: N5
+etymology: The particle 「と」 is believed to have originated from the verb 「共にする (tomo ni suru)」, meaning
+  "to do together" or "to share." Over time, it evolved into a particle used to connect nouns, indicating
+  that they are related or exist together, particularly in an exhaustive list. Its modern use as a simple
+  conjunctive particle for nouns highlights a historical progression from more active, shared meanings
+  to a static, connective function.
+writeup: The particle 「と」 is used to exhaustively list nouns, functioning similarly to "and" in English.
+  It connects two or more items, indicating that all mentioned items are included in the group or action.
+  When listing multiple items, 「と」 is placed after each noun, although the final 「と」 in the series is
+  commonly omitted in casual speech and often in polite conversation. It is crucial to understand that
+  「と」 signifies an **exhaustive** list. This means that only the items explicitly mentioned with 「と」 are
+  part of the group. This contrasts with particles like 「や」, which implies a non-exhaustive list, suggesting
+  "things like A, B, and so on." While 「と」 can also indicate an action performed "with" someone or something,
+  that specific usage, such as 「友達 と 映画 に 行く (tomodachi to eiga ni iku - to go to a movie with a friend)」,
+  is distinct and typically covered under a separate grammar point. This current explanation focuses solely
+  on 「と」 as a conjunctive particle for listing nouns. In terms of formality, 「と」 itself is quite neutral
+  and can be used across various registers, from casual to formal. The overall politeness of the sentence
+  will depend on the verb endings and other particles used.
+false_friends:
+  - term: も
+    meaning: Also, Too, As well, Even, Either, Neither
+    kind: similar expression
+    nuance: Unlike 「と」, 「も」 indicates addition to a previous statement or item rather than exclusively
+      connecting two separate items. It suggests 'this, *too*, in addition to something else' or 'even
+      this'.
+    grammar_point: も (addition or emphasis particle)
+  - term: や
+    meaning: Things like, And so on
+    kind: similar expression
+    nuance: 「や」 implies that the list is not exhaustive, suggesting there might be other items in the
+      same category. 「と」 indicates an exhaustive list, including everything mentioned, leaving no room
+      for unmentioned items of the same category.
+    grammar_point: や (non-exhaustive list)
+  - term: と共に
+    meaning: Together with, At the same time, As well as
+    kind: similar expression
+    nuance: While 「と」 can indicate being 'with' someone when paired with verbs of action, 「と共に」 more explicitly
+      expresses simultaneous actions, shared circumstances, or collaboration, often with a more formal
+      or literary tone than simple 「と」. It doesn't just list items.
+    grammar_point: と共に (together with)
+  - term: 及び
+    meaning: And; as well as
+    kind: synonym
+    nuance: 「および」 is a more formal and written equivalent of 「と」, primarily used in official documents,
+      legal texts, or very formal speech. While both mean 'and', 「と」 is common in everyday conversation,
+      whereas 「および」 is not.
+    grammar_point: 及び (and・formal)
+  - term: とか
+    meaning: Among other things, for example, such as
+    kind: similar expression
+    nuance: Like 「や」, 「とか」 also indicates a non-exhaustive list and is more colloquial. However, 「とか」
+      can also imply uncertainty or provide examples, making the list sound more casual or less definitive
+      than 「や」. 「と」 is for definitive, exhaustive lists.
+    grammar_point: とか〜とか (listing examples)
+  - term: も~も
+    meaning: Both ~ and ~; neither ~ nor ~; also; (not) either
+    kind: similar expression
+    nuance: While 「と」 simply lists items exhaustively, 「も〜も」 emphasizes that *each* item in the list possesses
+      a certain quality or is included, often conveying a sense of "both A and B" or "neither A nor B"
+      with a stronger rhetorical force than a simple 「と」 list.
+    grammar_point: も~も (both neither ~ nor)
+  - term: そして
+    meaning: And; and then
+    kind: similar expression
+    nuance: 「そして」 connects sentences or clauses, indicating a sequence of events or additional information.
+      It does not connect nouns within a single clause in an exhaustive listing like 「と」 does.
+    grammar_point: そして (and・and then)
+post_false_friends_writeup: To avoid confusing 「と」 with similar expressions, remember that 「と」 is used
+  for exhaustively listing nouns, defining a complete set of items. In contrast, 「や」 and 「とか」 both offer
+  examples from a larger, open-ended list, with 「とか」 being more casual and sometimes implying uncertainty.
+  While 「と」 simply lists, 「も〜も」 emphasizes that *each* item in the list possesses a certain quality or
+  is included, often conveying a sense of "both A and B" or "neither A nor B" with a stronger rhetorical
+  force. 「と共に」 explicitly expresses togetherness or simultaneity, a more complex relationship than simple
+  listing. For connecting sentences or clauses, 「そして」 is used, not 「と」。 Finally, while 「および」 is a formal
+  synonym for 'and', it is primarily used in written or official contexts, whereas 「と」 is common in everyday
+  speech.
+examples:
+  - english: In my room, there is a book and a pen.
+    japanese:
+      - 私 の 部屋 に は、本 {と} ペン が ある。
+      - 私 の 部屋 に は、本 {と} ペン が あり ます。
+      - 私 の 部屋 に 本 {と} ペン が ある。
+      - 私 の 部屋 に は、本 {と} ペン が ある よ。
+    english_literally: My room's inside book and pen exist.
+    competing_grammar:
+      - competing_japanese:
+          - 本 {や} ペン が ある。
+        english: There are books and pens and so on.
+        hint: The particle 「や」 suggests an incomplete list, implying there might be other unmentioned
+          items. We're looking for an exhaustive list.
+      - competing_japanese:
+          - 私 の 部屋 に は、本 {および} ペン が ある。
+        english: In my room, there is a book as well as a pen.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common, everyday speech.
+      - competing_japanese:
+          - 私 の 部屋 に {も} 本 と ペン が ある。
+        english: In my room, there's also a book and a pen.
+        hint: 「も」 means 'also' or 'too', implying something else was mentioned previously. We're looking
+          to simply list items exhaustively, not add to a previous statement.
+    scene: A student quickly listing the only two items on their desk, making it clear that these are
+      the entire contents.
+    register: casual
+    setting: informative
+  - english: I like both coffee and tea.
+    japanese:
+      - 私 は コーヒー {と} 紅茶 が 好き です。
+      - 私 は コーヒー {と} 紅茶 が 好き だ。
+      - コーヒー {と} 紅茶、両方 好き です。
+    english_literally: I coffee and tea like.
+    competing_grammar:
+      - competing_japanese:
+          - コーヒー {や} 紅茶 が 好き です。
+        english: I like coffee, tea, and so on.
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting other drinks are liked
+          too. We're looking for an exhaustive list of preferences.
+      - competing_japanese:
+          - 私 は コーヒー {および} 紅茶 が 好き です。
+        english: I like coffee as well as tea.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for casual, polite conversation.
+      - competing_japanese:
+          - 私 は コーヒー {も} 紅茶 {も} 好き です。
+        english: I like both coffee and tea (with emphasis).
+        hint: 「も」 implies 'both' or 'also' with emphasis, perhaps in response to a choice or a prior statement.
+          We're looking for a simple, exhaustive list of preferences.
+    scene: Someone asked about preferred beverages, and the speaker states their preference for only these
+      two, excluding others.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    nuance: 「コーヒー {と} 紅茶」 exhaustively lists the speaker's preferred beverages, implying that these are
+      the only two specifically liked. The use of 「好きです」 is a standard polite way to express preference.
+  - english: My daily routine involves studying and exercising.
+    japanese:
+      - 私 の 日課 は 勉強 {と} 運動 です。
+      - 僕 の 日課 は 勉強 {と} 運動 だ。
+      - 日課 は 勉強 {と} 運動 だけ です。
+    english_literally: My daily routine is studying and exercising.
+    competing_grammar:
+      - competing_japanese:
+          - 勉強 {や} 運動 です。
+        english: It's studying, exercising, and so on.
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting other routines exist.
+          We're looking for an exhaustive list of daily habits.
+      - competing_japanese:
+          - 私 の 日課 は 勉強 {および} 運動 です。
+        english: My daily routine is studying as well as exercising.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for casual, personal conversation.
+      - competing_japanese:
+          - 私 の 日課 は 勉強 {も} 運動 {も} です。
+        english: My daily routine is both studying and exercising (with emphasis).
+        hint: 「も」 implies 'both' or 'also' with emphasis, perhaps indicating that these are the only two
+          activities worth mentioning. We're looking for a simple, exhaustive list.
+    scene: A student describing the consistent and limited activities that make up their daily schedule,
+      indicating these are the main two things they do.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    nuance: 「勉強 {と} 運動」 provides an exhaustive list of the two primary components of the speaker's daily
+      routine. The casual 「です」 is appropriate for discussing personal habits with a friend. If a male
+      speaker uses 「僕 (boku)」, it further reinforces the casual male speech.
+  - english: At the supermarket, buy water and bread, okay?
+    japanese:
+      - スーパー で、水 {と} パン を 買っ て き て ね。
+      - スーパー で、水 {と} パン を 買っ て き て。
+      - スーパー で、水 {と} パン を 買っ て き て ください ね。
+      - スーパー で、水 {と} パン を 買っ て き て いただけ ます か。
+      - スーパー で、水 {と} パン を 買っ て き て ほしい の だ けど。
+      - スーパー で、水 {と} パン 買っ て き て くれる？
+      - 水 {と} パン、スーパー で 買っ て き て ほしい な。
+    english_literally: Supermarket at, water and bread buy come okay.
+    competing_grammar:
+      - competing_japanese:
+          - 水 {や} パン を 買っ て き て ね。
+        english: Buy water and bread and so on, okay?
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting other items might also
+          be needed. We're looking for a specific, exhaustive list of groceries for this trip.
+      - competing_japanese:
+          - スーパー で、水 {および} パン を 買っ て き て ください。
+        english: Please buy water as well as bread at the supermarket.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for casual request.
+      - competing_japanese:
+          - スーパー で、水 {も} パン {も} 買っ て き て ね。
+        english: Buy both water and bread at the supermarket, okay?
+        hint: 「も」 implies 'both' or 'even', potentially adding emphasis. We're looking for a simple, exhaustive
+          list of items to buy.
+    scene: A parent asking their child to pick up specific groceries, making it clear these are the only
+      items needed from the store for this trip.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The final 「と」 is omitted after 「パン」, which is common in casual speech, yet 「と」 still clearly
+      indicates an exhaustive list of items to be bought. The ending 「～て ね」 softens the request, appropriate
+      for a parent speaking to a child. Adding 「ください」 would make it more polite, still with the same exhaustive
+      meaning.
+  - english: Tomorrow, Mr. Tanaka and Mr. Yamada will come to school.
+    japanese:
+      - 明日 は、田中 さん {と} 山田 さん が 学校 に 来 ます。
+      - 明日 は、田中 さん {と} 山田 さん が 学校 に 来る。
+      - 明日 は、田中 さん {と} 山田 さん が 学校 に いらっしゃい ます。
+      - 明日、田中 さん {と} 山田 さん が 学校 に 来 ます。
+      - 明日 は、田中 さん {と} 山田 さん が 学校 に 来る 予定 です。
+    english_literally: Tomorrow, Mr. Tanaka and Mr. Yamada school to come.
+    competing_grammar:
+      - competing_japanese:
+          - 田中 さん {や} 山田 さん が 学校 に 来 ます。
+        english: Tomorrow, Mr. Tanaka, Mr. Yamada, and others will come to school.
+        hint: The particle 「や」 suggests an incomplete list, implying other students might also come. We're
+          looking for a definitive, exhaustive list of attendees.
+      - competing_japanese:
+          - 明日 は、田中 さん、{および} 山田 さん が 学校 に 来 ます。
+        english: Tomorrow, Mr. Tanaka, as well as Mr. Yamada, will come to school.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common, polite speech appropriate for a teacher's announcement.
+      - competing_japanese:
+          - 明日 は 田中 さん {も} 山田 さん {も} 学校 に 来 ます。
+        english: Tomorrow, both Mr. Tanaka and Mr. Yamada will come to school.
+        hint: While 「も」 can imply 'both', it often adds emphasis or inclusion, suggesting they are coming
+          in addition to other implied individuals or conditions. We're looking for a simple, exhaustive
+          list of attendees.
+    scene: A teacher announcing to the class exactly which two students will be presenting the next day,
+      emphasizing that these are the only two scheduled.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The usage of 「と」 clearly states that *only* Tanaka-san and Yamada-san are expected to come,
+      making it an exhaustive list of attendees. The polite verb 「来ます」 is appropriate for a teacher in
+      an instructional setting. The use of honorifics 「さん」 is standard polite address.
+  - english: For this cake, you will need flour, eggs, and sugar.
+    japanese:
+      - この ケーキ に は、小麦 粉 {と} 卵 {と} 砂糖 が 必要 です。
+      - この ケーキ に は、小麦 粉 {と} 卵 {と} 砂糖 が 必要 だ。
+      - ケーキ は 小麦 粉 {と} 卵 {と} 砂糖 が あれ ば 作れる。
+    english_literally: This cake for, flour and egg and sugar is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 小 麦粉 {や} 卵 {や} 砂糖 が 必要 です。
+        english: You will need flour, eggs, sugar, and so on.
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting other ingredients.
+          We're looking for an exhaustive list of essential ingredients.
+      - competing_japanese:
+          - この ケーキ に は、小麦 粉 {および} 卵 {および} 砂糖 が 必要 です。
+        english: For this cake, flour as well as eggs as well as sugar are necessary.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common, polite instructions.
+      - competing_japanese:
+          - この ケーキ に は、小麦 粉 {も} 卵 {も} 砂糖 {も} 必要 です。
+        english: For this cake, flour, eggs, and sugar are all necessary (with emphasis).
+        hint: 「も」 implies 'both' or 'even', potentially adding stronger emphasis to each item. We're looking
+          for a simple, exhaustive list of ingredients.
+    scene: A chef giving precise instructions for a simple recipe, listing only the core ingredients that
+      are essential.
+    register: teineigo (polite)
+    setting: instructional
+    speaker_gender: female
+    listener_gender: group
+    nuance: The exhaustive list 「小麦粉 {と} 卵 {と} 砂糖」 clearly states the *only* three required ingredients
+      for the cake, ensuring no ambiguity for the listener. The use of 「です」 maintains a polite and clear
+      instructional tone.
+  - english: In the store, there are apples, oranges, and bananas.
+    japanese:
+      - お 店 に は、りんご {と} みかん {と} バナナ が あり ます。
+      - お 店 に は、りんご {と} みかん {と} バナナ が ある よ。
+      - お 店 に は、りんご {と} みかん {と} バナナ が ござい ます。
+      - お 店 に は、りんご、みかん {と} バナナ が あり ます。
+      - お 店 に は、りんご、みかん {と} バナナ が ある よ。
+      - お 店 に は、りんご、みかん {と} バナナ が ござい ます。
+    english_literally: Store in apples and oranges and bananas exist.
+    competing_grammar:
+      - competing_japanese:
+          - りんご {や} みかん {や} バナナ が あり ます。
+        english: There are apples, oranges, bananas, and so on.
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting there might be other
+          unmentioned fruits. We're looking for a complete inventory of the fruits.
+      - competing_japanese:
+          - お 店 に は、りんご、みかん、{および} バナナ が あり ます。
+        english: In the store, there are apples, oranges, as well as bananas.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common, polite speech.
+      - competing_japanese:
+          - お 店 に {も} りんご {と} みかん {と} バナナ が あり ます。
+        english: In the store, there are also apples, oranges, and bananas.
+        hint: 「も」 means 'also' or 'too', implying something else was mentioned previously. We're looking
+          to simply list items exhaustively, not add to a previous statement.
+    scene: A shopkeeper listing all the kinds of fruit they currently have in stock, emphasizing that
+      these are the only fruits available at the moment.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+  - english: My family members are my father, mother, and me.
+    japanese:
+      - 私 の 家 の 人 は、父 {と} 母 {と} 私 です。
+      - 私 の 家 の 人 は、お 父 さん {と} お 母 さん {と} 私 です。
+      - 私 の 家 の 人 は、父、母 {と} 私 です。
+      - 私 の 家 の 人 は、お 父 さん、お 母 さん {と} 私 です。
+      - 私 の 家 の 人 は、父 {と} 母 {と} 私 だ よ。
+      - 家 の 人 は ね、父 {と} 母 {と} 私 な ん だ。
+    english_literally: My house's people are father and mother and me.
+    competing_grammar:
+      - competing_japanese:
+          - 父 {や} 母 {や} 私 です。
+        english: My family members are father, mother, me, and so on.
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting there are other family
+          members beyond those mentioned. We're looking for an exhaustive list of immediate household
+          members.
+      - competing_japanese:
+          - 私 の 家 の 人 は、父、母、{および} 私 です。
+        english: My family members are my father, mother, as well as me.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common, polite speech appropriate for a child's introduction.
+      - competing_japanese:
+          - 私 の 家 の 人 に {も} 父 {と} 母 {と} 私 が い ます。
+        english: My family also includes my father, mother, and me.
+        hint: 「も」 means 'also' or 'too', implying something else was mentioned previously. We're looking
+          to simply list family members exhaustively, not add to a previous statement.
+    scene: A child introducing their immediate family members to a new friend, clarifying everyone who
+      lives in their household.
+    register: teineigo (polite)
+    setting: friendly
+    speaker_gender: female
+    speaker_age: younger
+    nuance: 「父 {と} 母 {と} 私」 exhaustively lists the immediate family members, clarifying who constitutes
+      the "family members" for the speaker. The polite 「です」 is appropriate for polite introduction to
+      a new friend. The usage of honorifics 「お父さん と お母さん」 can also be natural for a child, depending on
+      family custom.
+  - english: This project requires both careful planning and effective execution.
+    japanese:
+      - この プロジェクト に は 綿密 な 計画 {と} 効果 的 な 実行 が 必要 です。
+      - この プロジェクト に は 綿密 な 計画 {と} 効果 的 な 実行 が 求め られ ます。
+      - 綿密 な 計画 {と} 効果 的 な 実行 が この プロジェクト の 成功 の 鍵 です。
+    english_literally: This project for careful planning and effective execution is necessary.
+    competing_grammar:
+      - competing_japanese:
+          - 綿密 な 計画 {や} 効果 的 な 実行 が 必要 です。
+        english: This project requires careful planning, effective execution, and so on.
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting other requirements.
+          We're looking for a definitive, exhaustive list of crucial aspects.
+      - competing_japanese:
+          - この プロジェクト に は 綿密 な 計画 {および} 効果 的 な 実行 が 必要 です。
+        english: This project requires careful planning as well as effective execution.
+        hint: 「および」 is a more formal equivalent of 'and', often preferred in written or highly official
+          contexts. We're looking for common professional speech.
+      - competing_japanese:
+          - この プロジェクト に は 綿密 な 計画 {も} 効果 的 な 実行 {も} 必要 です。
+        english: This project requires both careful planning and effective execution (with emphasis).
+        hint: 「も」 implies 'both' or 'also' with strong emphasis, perhaps adding these requirements to
+          a previous discussion. We're looking for a simple, exhaustive statement.
+    scene: A team leader outlining the two crucial aspects for the success of a new project, emphasizing
+      that both are indispensable.
+    register: semi-formal
+    setting: serious
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「綿密 な 計画 {と} 効果 的 な 実行」 emphatically states that both elements are equally essential and exhaustive
+      for the project's success. The use of 「必要です」 conveys necessity in a polite and clear manner appropriate
+      for a team briefing.
+  - english: Mr. Sato and Ms. Suzuki will attend tomorrow's meeting.
+    japanese:
+      - 明日 の 会議 に は、佐藤 さん {と} 鈴木 さん が 出席 し ます。
+      - 明日 の 会議 に は、佐藤 さん {と} 鈴木 さん が ご 出席 なさ い ます。
+      - 明日 は、佐藤 さん {と} 鈴木 さん が 会議 に 来ら れ ます。
+    english_literally: Tomorrow's meeting for, Mr. Sato and Ms. Suzuki attend.
+    competing_grammar:
+      - competing_japanese:
+          - 明日 の 会議 に は、佐藤 さん {や} 鈴木 さん が 出席 し ます。
+        english: Tomorrow's meeting will be attended by Mr. Sato, Ms. Suzuki, and others.
+        hint: The particle 「や」 suggests an incomplete list, implying other attendees. We're looking for
+          a definitive, exhaustive list of specific attendees.
+      - competing_japanese:
+          - 明日 の 会議 に は、佐藤 さん {および} 鈴木 さん が 出席 し ます。
+        english: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common professional speech in a conversational setting.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common professional speech in a conversational setting.
+      - competing_japanese:
+          - 明日 の 会議 に は、佐藤 さん {も} 鈴木 さん {も} 出席 し ます。
+        english: Tomorrow's meeting will be attended by both Mr. Sato and Ms. Suzuki (with emphasis).
+        hint: 「も」 implies 'both' or 'also' with emphasis, perhaps indicating their attendance in addition
+          to others or despite certain conditions. We're looking for a simple, exhaustive list.
+    scene: A project manager informing their team about key attendees for an upcoming meeting, emphasizing
+      that these are the only two specific individuals who will be present from outside the immediate
+      team.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「佐藤さん {と} 鈴木さん」 explicitly states that these two are the only specific individuals being highlighted
+      as attendees. The use of 「出席します」 is standard polite business language. 「ご出席なさいます」 is a more honorific
+      form, showing even greater respect to the attendees.
+  - english: My hobbies are reading, drawing, and cooking.
+    japanese:
+      - 私 の 趣味 は 読書 {と} 絵 を 描く こと {と} 料理 です。
+      - 私 の 趣味 は 読書 {と} 絵 を 描く こと {と} 料理 だ。
+    english_literally: My hobby is reading and drawing and cooking.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 趣味 は 読書 {や} 絵 を 描く こと {や} 料理 です。
+        english: My hobbies are reading, drawing, cooking, and so on.
+        hint: The particle 「や」 implies that the list is not exhaustive, suggesting other hobbies exist.
+          We're looking for an exhaustive list of primary hobbies.
+      - competing_japanese:
+          - 私 の 趣味 は 読書 {および} 絵 を 描く こと {および} 料理 です。
+        english: My hobbies are reading as well as drawing as well as cooking.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common, polite conversation for a self-introduction.
+      - competing_japanese:
+          - 私 の 趣味 は 読書 {も} 絵 を 描く こと {も} 料理 {も} です。
+        english: My hobbies are both reading, drawing, and cooking (with emphasis).
+        hint: 「も」 implies 'both' or 'also' with strong emphasis, perhaps indicating that each hobby is
+          equally important. We're looking for a simple, exhaustive list.
+    scene: A student introducing their three main hobbies during a self-introduction, clarifying all their
+      primary interests.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: 「読書 {と} 絵 を 描く こと {と} 料理」 lists all three hobbies exhaustively, implying these are the speaker's
+      main and perhaps only hobbies for now. The use of 「です」 keeps the sentence polite and appropriate
+      for an introduction.
+  - english: In my pencil case, there are pencils and erasers.
+    japanese:
+      - 私 の ペン ケース に は、鉛筆 {と} 消し ゴム が 入っ て い ます。
+      - 私 の ペン ケース に は、鉛筆 {と} 消し ゴム が 入っ て いる。
+      - 私 の ペン ケース に 鉛筆 {と} 消し ゴム が ある。
+      - ペン ケース に 鉛筆 {と} 消し ゴム が ある。
+      - ペン ケース に 鉛筆 {と} 消し ゴム 入っ てる。
+    english_literally: My pencil case's inside, pencil and eraser are entered.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の ペン ケース に は、鉛筆 {や} 消し ゴム が 入っ て い ます。
+        english: In my pencil case, there are pencils and erasers and so on.
+        hint: The particle 「や」 suggests an incomplete list, implying there might be other items. We're
+          looking for an exhaustive list of essential items.
+      - competing_japanese:
+          - 私 の ペン ケース に は、鉛筆 {および} 消し ゴム が 入っ て い ます。
+        english: In my pencil case, there are pencils as well as erasers.
+        hint: 「および」 is a more formal equivalent of 'and', typically used in written or official contexts.
+          We're looking for common, polite speech.
+      - competing_japanese:
+          - 私 の ペン ケース に は、鉛筆 {も} 消し ゴム {も} 入っ て い ます。
+        english: In my pencil case, both pencils and erasers are included.
+        hint: 「も」 implies 'both' or 'also' with emphasis, perhaps indicating that these are the only two
+          items. We're looking for a simple, exhaustive list.
+    scene: A student showing the only two essential items they have in their pencil case to a friend.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: 「鉛筆 {と} 消しゴム」 exhaustively lists the essential items in the pencil case. The polite 「入っています」
+      is used. The sentence structure is straightforward and informative, suitable for a young student
+      talking to peers.
+post_example_writeup: The examples provided demonstrate how 「と」 is used to create an exhaustive list of
+  nouns. Notice how the politeness level can change with the verb ending (e.g., 「ある」 vs. 「あります」 vs. 「ございます」)
+  while the fundamental function of 「と」 remains consistent. In casual speech, the final 「と」 in a series
+  is often omitted, making the expression more natural.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%A8-(and)

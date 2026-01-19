@@ -1,0 +1,429 @@
+grammar_point: かと言うと (contrary to expectation)
+matcher: |-
+  ⌈ˢかᵖprt:sentence_final_particleᵇかʳカ⌉
+  ⌈ˢとᵖprt:case_particleᵇとʳト⌉
+  ⌈ˢ言うᵖv:general:godan-waa:terminalᵇ言うʳユー⌉
+  ⌈ˢとᵖprt:conjunctive_particleᵇとʳト⌉
+learn_before:
+  - 切れない (unable to finish fully)
+meaning: you might think, but actually...
+pronunciation:
+  katakana: カトイウ ト
+  romaji: ka to iu to
+formation:
+  Plain form (Verb) + かと言うと: Used to question a common assumption about a verb's action (e.g., '話す かと言うと'
+    - 'You might think one talks...').
+  Plain form (い-Adjective) + かと言うと: Used to question a common assumption about an い-adjective quality
+    (e.g., '高い かと言うと' - 'You might think it's expensive...').
+  な-Adjective stem + だ/だった + かと言うと: Used to question a common assumption about a な-adjective state or
+    quality (e.g., '静か だ かと言うと' - 'You might think it's quiet...').
+  Noun + だ/だった + かと言うと: Used to question a common assumption about a noun's identity or state (e.g., '先生
+    だ かと言うと' - 'You might think they are a teacher...').
+jlpt: N2
+etymology: The phrase 「かと言うと」 is derived from 「と言う」 (to say), combined with the question particle 「か」.
+  It suggests a hypothetical statement or assumption that is then contradicted by what follows. Think
+  of it as setting up a 'What if we said...' scenario before presenting the real situation.
+writeup: 「かと言うと」 is used to introduce a statement that contradicts a common belief or expectation. It's
+  similar to saying "You might think... but actually..." or "Contrary to what one might expect..." The
+  phrase sets up a contrast between what is commonly assumed and what is actually the case. This grammar
+  point is useful for pointing out exceptions to general rules, correcting misunderstandings, or highlighting
+  unexpected realities.
+false_friends:
+  - term: というと
+    meaning: Speaking of which; when you say
+    kind: similar expression
+    nuance: Unlike 「かと言うと」, 「というと」 introduces a topic based on a previous statement without necessarily
+      contradicting it. It's more about association than contradiction.
+    grammar_point: と言えば・と言うと・と言ったら (speaking of)
+  - term: とは限らない
+    meaning: Not necessarily so, is not always true, there is no guarantee that
+    kind: similar expression
+    nuance: 「かと言うと」 explicitly sets up a hypothetical "if you were to say X" before contradicting it,
+      often implying a widely held but mistaken belief. In contrast, 「とは限らない」 simply states that something
+      is not always the case, without necessarily implying a prior assumption or question.
+    grammar_point: とは限らない (not necessarily)
+  - term: わけではない
+    meaning: It doesn't mean that, It is not the case, It's not like
+    kind: similar expression
+    nuance: 「かと言うと」 poses a hypothetical assumption as a direct question before presenting the reality.
+      「わけではない」 is a direct statement denying a general assumption or implication, often used to clarify
+      that something is not entirely true.
+    grammar_point: (という)わけではない (it's not that...)
+post_false_friends_writeup: To avoid confusing 「かと言うと」 with similar expressions, remember that 「かと言うと」
+  always implies a contrast or contradiction by first raising a common assumption as a hypothetical question.
+  If you're simply elaborating on a topic, 「というと」 might be more appropriate. When negating a general truth
+  or clarifying that something isn't always the case, 「とは限らない」 or 「わけではない」 are used, but they do not carry
+  the interrogative nuance of setting up a hypothetical 'if you were to say...' before the contradiction.
+examples:
+  - english: You might think all Japanese food is delicious, but that's not actually the case.
+    japanese:
+      - 日本 の 食べ物 は 全部 美味しい {か と 言う と}、実 は そう で も ない ん です。
+      - 日本 の 食べ物 は 全部 美味しい {か と 言う と}、実 は そう で も ない ん だ。
+      - 日本 の 食べ物 は 全部 美味しい {か と 言う と}、実 は そう で は あり ませ ん。
+      - 日本 の 食べ物 は 全部 美味しい {か と 言う と}、そう で は あり ませ ん。
+      - 日本 の 食べ物 は 全部 美味しい {か と 言う と}、全て が そう で は ない。
+    english_literally: Speaking of whether all Japanese food is delicious, actually, it's not really so.
+    competing_grammar:
+      - competing_japanese:
+          - 日本 の 食べ物 は 全部 美味しい と {思わ れる} が
+        english: It is thought that all Japanese food is delicious, but...
+        hint: This phrase suggests a general opinion or belief, which might then be contradicted. We're
+          looking for a setup where a common assumption is explicitly questioned before being contradicted.
+      - competing_japanese:
+          - 日本 の 食べ物 は 全部 美味しい の {だろう か}
+        english: I wonder if all Japanese food is delicious?
+        hint: This is a direct question or reflection. We're looking for a structure that sets up an expectation
+          that is then revealed to be incorrect, not a simple inquiry.
+    scene: A Japanese food blogger shares a less-than-glamorous reality about local cuisine.
+    register: semi-formal
+    setting: informative
+  - english: You might think that if you live abroad, you'll become fluent in English, but it won't happen
+      unless you make an effort.
+    japanese:
+      - 海外 に 住め ば 英語 が ペラペラ に なる {か と 言う と}、努力 し ない と そう は なら ない。
+      - 海外 に 住め ば 英語 が ペラペラ に なる {か と 言う と}、努力 し ない と そう は なり ませ ん。
+      - 海外 に 住め ば 英語 が ペラペラ に なる {か と 言う と}、努力 なし に は そう は なら ない。
+      - 海外 に 住め ば 英語 が ペラペラ に なる {か と 言う と}、そんな こと は ない。
+      - 海外 に 住め ば 英語 が ペラペラ に なる {か と 言う と}、そんな こと は あり ませ ん。
+    english_literally: Speaking of whether you become fluent in English if you live abroad, it won't happen
+      unless you make an effort.
+    competing_grammar:
+      - competing_japanese:
+          - 海外 に 住め ば 英語 が ペラペラ に なる {と は 限ら ない}
+        english: It's not necessarily true that if you live abroad, you'll become fluent in English.
+        hint: This implies a limitation or an exception to a general rule. We're looking for a phrase
+          that sets up a common expectation before introducing a contradicting reality.
+      - competing_japanese:
+          - 海外 に 住め ば 英語 が ペラペラ に なる {わけ で は ない}
+        english: It's not that if you live abroad, you'll become fluent in English.
+        hint: This is a statement of negation, clarifying that something isn't the case. We're looking
+          for a phrase that first acknowledges a widely held belief before presenting the opposite truth.
+    scene: A language learner shares a common misconception about achieving fluency.
+    register: casual
+    setting: informative
+  - english: You might think that all samurai upheld Bushido in the past, but in reality, it was a harsh
+      era, so it was difficult.
+    japanese:
+      - 昔 は 侍 が みんな 武士 道 を 守っ て い た {か と 言う と}、実際 に は 厳しい 時代 だっ た の で 難しい。
+      - 昔 は 侍 が みんな 武士 道 を 守っ て い た {か と 言う と}、実際 に は 厳しい 時代 だっ た の で 難しかっ た です。
+      - 昔 は 侍 が みんな 武士 道 を 守っ て い た {か と 言う と}、実際 は 厳しい 時代 だっ た から 難しい ん だ。
+      - 昔 は 侍 が みんな 武士 道 を 守っ て い た {か と 言う と}、それ は 不 可能 だっ た。
+      - 昔 は 侍 が みんな 武士 道 を 守っ て い た {か と 言う と}、それ は 不 可能 でし た。
+    english_literally: Speaking of whether all samurai upheld Bushido in the past, in reality, it was
+      a difficult time, so it was hard.
+    competing_grammar:
+      - competing_japanese:
+          - 昔 は 侍 が みんな 武士 道 を 守っ て い た と いう {わけ で は ない}
+        english: It's not that all samurai upheld Bushido in the past.
+        hint: This construction clarifies that something is not true or not the case. We're looking for
+          a phrase that sets up an expectation, then challenges it with a specific reality.
+      - competing_japanese:
+          - 昔 は 侍 が みんな 武士 道 を 守っ て い た と は {思わ れる}
+        english: It is not thought that all samurai upheld Bushido in the past.
+        hint: This indicates that something is unlikely or not commonly believed. We're looking for a
+          phrase that acknowledges a potential belief before presenting a factual contradiction.
+    scene: A history professor challenges a romanticized view of samurai in a lecture.
+    register: formal
+    setting: academic
+  - english: You might think the department manager's instructions are all correct, but sometimes they're
+      wrong too.
+    japanese:
+      - 部 長 の 指示 は 全て 正しい {か と 言う と}、時 に は 間違っ て いる こと も ある。
+      - 部 長 の 指示 は 全て 正しい {か と 言う と}、時 に は 間違っ て いる こと も あり ます。
+      - 部 長 の 指示 は 全て 正しい {か と 言う と}、時 に は 間違っ て いる こと も ある ん だ。
+      - 部 長 の 指示 は 全て 正しい {か と 言う と}、たまに 間違っ てる よ。
+      - 部 長 の 指示 は 全て 正しい {か と 言う と}、必ず しも そう で は あり ませ ん。
+    english_literally: Speaking of whether the department manager's instructions are all correct, sometimes
+      there are wrong things too.
+    competing_grammar:
+      - competing_japanese:
+          - 部 長 の 指示 は 全て 正しい {わけ で は ない}
+        english: It's not that all the department manager's instructions are correct.
+        hint: This is a general statement of partial negation, indicating something isn't universally
+          true. We're looking for a phrase that sets up a perceived absolute before presenting a counterexample.
+      - competing_japanese:
+          - 部 長 の 指示 は 全て 正しい と は {言える}
+        english: One cannot say that all the department manager's instructions are correct.
+        hint: This indicates an inability to make a definitive statement. We're looking for a phrase that
+          implies a common assumption and then contrasts it with a different reality.
+    scene: Two colleagues commiserate about their boss's directives over coffee.
+    register: casual
+    setting: professional
+  - english: You might think I was miserable at that time, but strangely, I also felt a sense of fulfillment.
+    japanese:
+      - あの 時 の 私 は 辛かっ た {か と 言う と}、不思議 と 充実 感 も あっ た ん だ。
+      - あの 時 の 私 は 辛かっ た {か と 言う と}、不思議 と 充実 感 も あり まし た。
+      - あの 時 の 私 は 辛かっ た {か と 言う と}、不思議 と 充実 感 も 感じ て い た。
+      - あの 時 の 私 は 辛かっ た {か と 言う と}、なぜ か 充実 感 も あっ た。
+      - あの 時 の 私 は 辛かっ た {か と 言う と}、必ず しも そう で は なかっ た。
+    english_literally: Speaking of whether I was miserable at that time, strangely, I also had a sense
+      of fulfillment.
+    competing_grammar:
+      - competing_japanese:
+          - あの 時 の 私 は 辛かっ た {わけ で は ない}
+        english: It's not that I was miserable at that time.
+        hint: This is a statement of general negation. We're looking for a phrase that introduces a common
+          perception before revealing a nuanced or contradictory personal experience.
+      - competing_japanese:
+          - あの 時 の 私 は 辛かっ た と は {言い切れ ない}
+        english: One cannot say that I was miserable at that time.
+        hint: This expresses that a definitive statement cannot be made. We're looking for a phrase that
+          sets up an expected emotional state, then counters it with an unexpected feeling.
+    scene: A woman reflects on a challenging period in her life, revealing an unexpected positive side.
+    register: casual
+    setting: reflective
+  - english: You might think our company is a major player and secure, but market changes are rapid, so
+      we can't let our guard down.
+    japanese:
+      - 当社 は 大手 で 安泰 だ {か と 言う と}、市場 の 変化 が 激しい の で 油断 は でき ませ ん。
+      - 当社 は 大手 で 安泰 だ {か と 言う と}、市場 の 変化 が 激しい の で 油断 は でき ませ ん。
+      - 当社 は 大手 で 安泰 だ {か と 言う と}、市場 の 変化 が 激しい から 油断 は でき ない。
+      - 当社 は 大手 で 安泰 だ {か と 言う と}、決して 油断 は 禁物 です。
+      - 当社 は 大手 で 安全 だ {か と 言う と}、市場 の 変化 が 激しい の で 油断 は でき ませ ん。
+    english_literally: Speaking of whether our company is a major player and secure, market changes are
+      rapid, so we cannot be negligent.
+    competing_grammar:
+      - competing_japanese:
+          - 当社 は 大手 で 安泰 だ {と は 限ら ない}
+        english: It's not necessarily true that our company is a major player and secure.
+        hint: This expresses that something isn't always true or isn't necessarily the case. We're looking
+          for a phrase that takes a perceived truth and introduces a specific reason for its falsehood.
+      - competing_japanese:
+          - 当社 は 大手 で 安泰 だ と {言い切れ ない}
+        english: One cannot definitively say that our company is a major player and secure.
+        hint: This conveys an inability to make a conclusive statement. We're looking for a phrase that
+          presents a common perception of stability and then counters it with a specific reality of instability.
+    scene: A CEO addresses shareholders, cautioning against complacency despite the company's status.
+    register: bijinesu nihongo (business)
+    setting: professional
+  - english: You might think that just because someone is a native speaker, they are good at Japanese,
+      but that's not always the case.
+    japanese:
+      - ネイティブ だ から と 言っ て 日本 語 が 上手い {か と 言う と}、そう と は 限ら ない よ。
+      - ネイティブ だ から と 言っ て 日本 語 が 上手い {か と 言う と}、そう と は 限ら ない ませ ん。
+      - ネイティブ だ から と 言っ て 日本 語 が 上手い {か と 言う と}、必ず しも そう で は ない。
+      - ネイティブ だ から と 言っ て 日本 語 が 上手い {か と 言う と}、必ず しも そう で は あり ませ ん。
+      - ネイティブ だ から と 言っ て 日本 語 が 上手い {か と 言う と}、そんな こと は 全く ない。
+    english_literally: Speaking of whether just because one is a native speaker, their Japanese is good,
+      it's not necessarily so.
+    competing_grammar:
+      - competing_japanese:
+          - ネイティブ だ から 日本 語 が 上手い {と は 限ら ない}
+        english: This phrase directly states a limitation, whereas 「かと言うと」 first poses the expectation
+          as a question before refuting it. We're looking for a setup where a common assumption is explicitly
+          questioned.
+        hint: This phrase directly states a limitation, whereas 「かと言うと」 first poses the expectation as
+          a question before refuting it. We're looking for a setup where a common assumption is explicitly
+          questioned.
+      - competing_japanese:
+          - ネイティブ だ から 日本 語 が 上手い と いう {わけ で は ない}
+        english: This phrase provides a straightforward negation of a general assumption. We're looking
+          for a setup that first introduces a potential belief before presenting the counter-reality.
+        hint: This phrase provides a straightforward negation of a general assumption. We're looking for
+          a setup that first introduces a potential belief before presenting the counter-reality.
+    scene: A Japanese language exchange partner discusses a common misconception with a learner.
+    register: casual
+    setting: informative
+  - english: You might think that living in the city is convenient, but there are also many inconveniences.
+    japanese:
+      - 都会 に 住む の は 便利 だ {か と 言う と}、不便 な こと も 多い ん だ。
+      - 都会 に 住む の は 便利 だ {か と 言う と}、不便 な こと も 多い ん です。
+      - 都会 に 住む の は 便利 だ {か と 言う と}、不便 な 点 も 少なく あり ませ ん。
+      - 都会 に 住む の は 便利 だ {か と 言う と}、不便 な こと だらけ だ よ。
+      - 都会 に 住む の は 便利 だ {か と 言う と}、意外 と 不便 な 面 も ある。
+    english_literally: Speaking of whether living in the city is convenient, there are also many inconvenient
+      things.
+    competing_grammar:
+      - competing_japanese:
+          - 都会 に 住む の は 便利 {ばかり で は ない}
+        english: Living in the city is not only convenient.
+        hint: This suggests that there are other aspects beyond just ease and enjoyment. We're looking
+          for a phrase that first presents the common positive assumption about living alone before introducing
+          the contrasting negative reality.
+      - competing_japanese:
+          - 都会 に 住む の は 便利 だ {けど}、不便 な こと も ある
+        english: Living in the city is convenient, but there are also inconvenient things.
+        hint: This uses a simple conjunction 'けど' to connect two opposing ideas. We're looking for a structure
+          that directly questions the initial assumption before providing the contrast.
+    scene: Two friends are chatting about their living situations, one from the city and one from the
+      countryside.
+    register: casual
+    setting: friendly
+  - english: You might think that company is always hiring, but actually, they are very selective about
+      who they take.
+    japanese:
+      - あの 会社 は いつ も 募集 し て いる {か と 言う と}、実 は とても 人 を 選ぶ ん だ。
+      - あの 会社 は いつ も 募集 し て いる {か と 言う と}、実 は とても 人 を 選ぶ ん です。
+      - あの 会社 は いつ も 募集 し て いる {か と 言う と}、実際 に は 選考 が 非常 に 厳しい です。
+      - あの 会社 は いつ も 募集 し て いる {か と 言う と}、実際 は かなり 人 を 選 ん で いる よ。
+      - あの 会社 は いつ も 募集 し て いる {か と 言う と}、選り好み が 激しい ん です。
+    english_literally: Speaking of whether that company is always recruiting, actually, they are very
+      selective about people.
+    competing_grammar:
+      - competing_japanese:
+          - あの 会社 は いつ も 募集 し て いる {わけ で は ない}
+        english: It's not that that company is always hiring.
+        hint: This implies a general negation of the statement 'always hiring'. We're looking for a phrase
+          that challenges the common perception by presenting the actual, often surprising, reality.
+      - competing_japanese:
+          - あの 会社 は いつ も 募集 し て いる と は {思わ れる}
+        english: It is not thought that that company is always hiring.
+        hint: This indicates that a particular belief about the company's hiring practices is not widely
+          held. We're looking for a phrase that sets up a seemingly obvious conclusion and then reveals
+          a surprising counterpoint.
+    scene: A career counselor advises a student about job applications, clarifying a common misunderstanding
+      about a particular company.
+    register: semi-formal
+    setting: informative
+  - english: You might think that living alone is easy and enjoyable, but in reality, there are times
+      when you feel very lonely.
+    japanese:
+      - 一人暮らし は 気楽 で 楽しい {か と 言う と}、実 は とても 寂しい とき も ある ん だ。
+      - 一人暮らし は 気楽 で 楽しい {か と 言う と}、実 は とても 寂しい とき も あり ます。
+      - 一人暮らし は 気楽 で 楽しい {か と 言う と}、寂し さ を 感じる こと も 少なく ない。
+      - 一人暮らし は 気楽 で 楽しい {か と 言う と}、意外 と 孤独 を 感じる こと も 多い よ。
+      - 一人暮らし は 気楽 で 楽しい {か と 言う と}、必ず しも そう と は 言い 切れ ない。
+    english_literally: Speaking of whether living alone is easy and enjoyable, actually, there are times
+      when you feel very lonely.
+    competing_grammar:
+      - competing_japanese:
+          - 一人暮らし は 気楽 で 楽しい {だけ で は ない}
+        english: Living alone is not only easy and enjoyable.
+        hint: This suggests that there are other aspects beyond just ease and enjoyment. We're looking
+          for a phrase that first presents the common positive assumption about living alone before introducing
+          the contrasting negative reality.
+      - competing_japanese:
+          - 一人暮らし は 気楽 で 楽しい と いう {わけ で は ない}
+        english: It's not that living alone is easy and enjoyable.
+        hint: This is a straightforward negation of a general statement. We're looking for a phrase that
+          sets up a common expectation about a lifestyle before revealing a more complex truth.
+    scene: A young adult shares their experiences of living alone with a friend considering moving out.
+    register: casual
+    setting: friendly
+  - english: You might think he's a genius, but actually he just practices a lot.
+    japanese:
+      - 彼 は 天才 だ {か と 言う と}、実 は 努力 家 な ん だ。
+      - 彼 は 天才 だ {か と 言う と}、実 は 努力 家 な ん です。
+      - 彼 は 天才 だ {か と 言う と}、単に 努力 し て いる だけ だ。
+      - 彼 は 天才 だ {か と 言う と}、努力 の 賜物 です。
+    english_literally: Speaking of whether he is a genius, actually, he is a hard worker.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は 天才 だ と いう {わけ で は ない}
+        english: It's not that he's a genius.
+        hint: This is a direct negation. We're looking for a phrase that sets up an assumption before
+          contradicting it.
+      - competing_japanese:
+          - 彼 は 天才 だ {と は 限ら ない}
+        english: It's not necessarily true that he's a genius.
+        hint: This implies a limitation. We're looking for a phrase that explicitly questions a common
+          perception.
+    scene: A coach explains the true nature of a successful athlete's talent.
+    register: casual
+    setting: informative
+  - english: You might think I'm always cheerful, but sometimes I feel sad, you know.
+    japanese:
+      - 私 は いつ も 明るい {か と 言う と}、時々 は 寂しい こと も ある の よ。
+      - 私 は いつ も 明るい {か と 言う と}、たまに は 落ち込む こと も ある の よ。
+      - 私 は いつ も 明るい {か と 言う と}、実際 は 寂しい とき だ って ある ん だ から。
+      - 私 は いつ も 明るい {か と 言う と}、本当 は 寂しい とき も ある の よ ね。
+      - 私 は いつ も 明るい {か と 言う と}、そう いう わけ で も ない の よ。
+    english_literally: Speaking of whether I am always cheerful, sometimes there are sad things, you know.
+    competing_grammar:
+      - competing_japanese:
+          - 私 は いつ も 明るい {わけ で は ない} わ
+        english: It's not that I'm always cheerful, you know.
+        hint: This is a direct negation. We're looking for a phrase that sets up an assumption before
+          contradicting it.
+      - competing_japanese:
+          - 私 は いつ も 明るい {と は 限ら ない} わ
+        english: It's not necessarily true that I'm always cheerful, you know.
+        hint: This implies a limitation. We're looking for a phrase that explicitly questions a common
+          perception.
+    scene: A woman confides in a close friend about her true feelings.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: female
+    nuance: The use of the sentence-final particle 「のよ」 is characteristic of feminine speech, adding a
+      gentle emphasis or explanation.
+  - english: This job is easy money, or so you might think, but it's actually really tough, man.
+    japanese:
+      - この 仕事 は 楽 な 金儲け だ {か と 言う と}、実際 は かなり きつい ん だ ぜ。
+      - この 仕事 は 楽 な 金儲け だ {か と 言う と}、マジ で しんどい ん だ ぜ。
+      - この 仕事 は 楽 な 金儲け だ {か と 言う と}、甘く ない ん だ よ な。
+      - この 仕事 は 楽 な 金儲け だ {か と 言う と}、そう じゃ ない ん だ よ。
+      - この 仕事 は 楽 な 金儲け だ {か と 言う と}、結構 ハード だ ぜ。
+    english_literally: Speaking of whether this job is easy money, actually, it's quite tough, man.
+    competing_grammar:
+      - competing_japanese:
+          - この 仕事 は 楽 な 金儲け {わけ で は ない} ぜ
+        english: It's not that this job is easy money, man.
+        hint: This is a direct negation. We're looking for a phrase that sets up an assumption before
+          contradicting it.
+      - competing_japanese:
+          - この 仕事 は 楽 な 金儲け {と は 限ら ない} ぜ
+        english: It's not necessarily true that this job is easy money, man.
+        hint: This implies a limitation. We're looking for a phrase that explicitly questions a common
+          perception.
+    scene: A seasoned worker gives honest advice to a new recruit.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The sentence-final particle 「ぜ」 is typically used by male speakers to express strong assertion
+      or emphasis in casual conversation. The contraction 「きつい ん だ ぜ」 is also very masculine.
+  - english: The new AI system will solve all our problems, or so you might think, but it actually creates
+      new challenges.
+    japanese:
+      - 新しい AI システム で 全て の 問題 が 解決 する {か と 言う と}、実際 に は 新た な 課題 も 生まれる ん です。
+      - 新しい AI システム で 全て の 問題 が 解決 する {か と 言う と}、実際 に は 新た な 課題 も 生まれ ます。
+      - 新しい AI システム で 全て の 問題 が 解決 する {か と 言う と}、それ は 幻想 に 過ぎ ない。
+      - 新しい AI システム で 全て の 問題 が 解決 する {か と 言う と}、そう 簡単 な 話 で は ない。
+      - 新しい AI システム で 全て の 問題 が 解決 する {か と 言う と}、むしろ 問題 が 増える こと も ある ん です。
+    english_literally: Speaking of whether all problems will be solved with the new AI system, actually,
+      new challenges are also born.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい AI システム で 全て の 問題 が 解決 する {と は 限ら ない}
+        english: It's not necessarily true that the new AI system will solve all our problems.
+        hint: This implies a limitation. We're looking for a phrase that sets up an expectation before
+          contradicting it with a more complex reality.
+      - competing_japanese:
+          - 新しい AI システム で 全て の 問題 が 解決 する {わけ で は ない}
+        english: It's not that the new AI system will solve all our problems.
+        hint: This is a direct negation. We're looking for a phrase that first acknowledges a potential
+          belief before presenting the counter-reality.
+    scene: A tech lead discusses the implementation of new AI with their team, tempering expectations.
+    register: formal
+    setting: professional
+  - english: You might think that children these days don't play outside, but surprisingly, they still
+      do in some areas.
+    japanese:
+      - 最近 の 子ども は 外 で 遊ば ない {か と 言う と}、意外 と まだ 遊ぶ 地域 も ある ん です。
+      - 最近 の 子ども は 外 で 遊ば ない {か と 言う と}、意外 と まだ 外 で 遊ぶ 子 も い ます。
+      - 最近 の 子ども は 外 で 遊ば ない {か と 言う と}、一概 に は そう 言い 切れ ない。
+      - 最近 の 子ども は 外 で 遊ば ない {か と 言う と}、実 は まだまだ 外遊び が 盛ん な ところ も ある ん だ。
+      - 最近 の 子ども は 外 で 遊ば ない {か と 言う と}、公園 に は たくさん いる よ。
+    english_literally: Speaking of whether children these days don't play outside, surprisingly, there
+      are still areas where they play.
+    competing_grammar:
+      - competing_japanese:
+          - 最近 の 子ども は 外 で 遊ば ない {わけ で は ない}
+        english: It's not that children these days don't play outside.
+        hint: This is a general negation. We're looking for a phrase that challenges a common perception
+          by presenting a surprising counter-example.
+      - competing_japanese:
+          - 最近 の 子ども は 外 で 遊ば ない と は {言い切れ ない}
+        english: One cannot assert that children these days don't play outside.
+        hint: This indicates an inability to make a definitive statement. We're looking for a phrase that
+          sets up a perceived truth and then offers evidence to the contrary.
+    scene: A sociologist discusses common stereotypes about modern children's play habits.
+    register: semi-formal
+    setting: informative
+post_example_writeup: As these examples demonstrate, 「かと言うと」 is a versatile phrase for challenging assumptions.
+  It's particularly effective when you want to acknowledge a common perception before introducing a nuanced
+  reality or a surprising contradiction. Remember its primary function is to set up a 'you might think
+  this, but actually...' scenario.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E3%81%8B%E3%81%A8%E8%A8%80%E3%81%86%E3%81%A8

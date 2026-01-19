@@ -1,0 +1,367 @@
+grammar_point: 周り・辺り・周辺 (surroundings)
+learn_before:
+  - Verb[えば] (conditional)
+  - '[Verb-て]いる (ongoing state・habitual action・resultant state)'
+  - 一人で (physically alone)
+  - 裏 (back side)
+  - 風 (style・manner)
+meaning: surroundings, vicinity, area
+pronunciation:
+  katakana: マワリ、アタリ、シュウヘン
+  romaji: mawari, atari, shūhen
+formation:
+  Noun + の + 周り/辺り/周辺: Indicates the area around a specific noun.
+  ～の周り/辺り/周辺に: Expresses 'around' a place, often with verbs of existence or movement.
+  ～の周り/辺り/周辺を: Indicates movement or action 'around' a place.
+jlpt: N3
+etymology: The word 「周り」 (mawari) comes from the verb 「回る」 (mawaru), meaning 'to go around' or 'to revolve',
+  directly reflecting its meaning of 'the area around something' or 'a circumference'. 「辺り」 (atari) is
+  derived from 「当たる」 (ataru), which implies 'to hit' or 'to be near', thus evolving to mean 'vicinity'
+  or 'the place where something is near'. 「周辺」 (shūhen) is a compound noun, combining 「周」 (shū), also
+  meaning 'circumference' or 'around', and 「辺」 (hen), meaning 'side' or 'area'. This compound creates
+  a more formal and defined sense of 'surrounding area' or 'environs'.
+writeup: |-
+  The Japanese words 周り (mawari), 辺り (atari), and 周辺 (shūhen) all translate to concepts like "surroundings," "vicinity," or "area." While they share a core meaning, each carries distinct nuances in usage, register, and the type of area they describe. Understanding these differences is key to using them naturally.
+
+  周り (mawari) is the most common and flexible of the three. It generally refers to the immediate physical area or perimeter around something. You can use it for anything from the space around a person to the area around a building. It's often used in casual and general contexts.
+
+  辺り (atari) implies a more approximate or somewhat broader vicinity, a "neighborhood" or "around there." It suggests a less defined boundary than 「周り」, often used when speaking vaguely about a general area. It can also imply a sense of 'about' or 'approximately' when referring to time or quantity.
+
+  周辺 (shūhen) is generally more formal and often refers to a larger, more clearly defined surrounding area, suchs as the "outskirts" or "environs" of a city, a specific landmark, or a facility. It's frequently encountered in written language, news reports, or more formal discussions.
+
+  In essence, while all three denote 'aroundness,' think of 周り as the most general and immediate, 辺り as a looser, more approximate vicinity, and 周辺 as a more defined, often larger, and more formal surrounding area.
+false_friends:
+  - term: 周る (mawaru)
+    meaning: to go around, to revolve
+    kind: similar expression
+    nuance: 「周る」 is a verb indicating the action of revolving or circulating, whereas 「周り」 is a noun referring
+      to the area or circumference. The nuance is the difference between an action and a location.
+    grammar_point: <suggest>:Verbs (non-past plain)
+  - term: 付近 (fukin)
+    meaning: vicinity, neighborhood
+    kind: synonym
+    nuance: 「付近」 is very similar to 「周辺」 in meaning, often referring to a nearby area. However, 「付近」 can
+      sometimes feel slightly more neutral or slightly less formal than 「周辺」, especially in casual spoken
+      language, while still denoting a defined area.
+    grammar_point: <suggest>:付近 (vicinity)
+  - term: 近辺 (kinpen)
+    meaning: vicinity, neighborhood, environs
+    kind: synonym
+    nuance: 「近辺」 is another near-synonym, particularly for 「辺り」 and 「付近」, also meaning 'vicinity.' It
+      often emphasizes the 'nearby' aspect, but without the precise boundaries that 「周辺」 might imply.
+      It can be used for both small and somewhat larger areas.
+    grammar_point: <suggest>:近辺 (vicinity)
+  - term: 周回 (shūkai)
+    meaning: circling, going around (a course)
+    kind: similar expression
+    nuance: While related to movement around an object, 「周回」 specifically implies completing a circuit
+      or path, often in sports or astronomy. It's a noun that typically pairs with する to become a verb,
+      unlike the more general verb 「周る」 or the noun 「周り」.
+    grammar_point: <suggest>:周回 (circling)
+post_false_friends_writeup: When distinguishing between these similar terms, consider the level of formality
+  and the specificity of the area you want to describe. If you're talking about movement or an action
+  of going around, you'll likely use the verb 「周る」. For a general, informal sense of 'around' or 'perimeter',
+  「周り」 is your best choice. When you mean a vague 'vicinity' or 'neighborhood', 「辺り」 is appropriate. For
+  more defined or formal surrounding areas, especially in written contexts, 「周辺」 or 「付近」 are often used.
+  「近辺」 is a good option when emphasizing 'nearby' in a general sense.
+examples:
+  - english: There are many trees around the house.
+    japanese:
+      - 家 の {周り} に 木 が たくさん あり ます。
+      - 家 の {あたり} に 木 が たくさん あり ます。
+      - 家 の {周辺} に 木 が たくさん あり ます。
+    english_literally: House's surroundings, trees many are.
+    competing_grammar:
+      - competing_japanese:
+          - 家 の {中} に 木 が たくさん あり ます。
+        english: There are many trees inside the house.
+        hint: This sentence says 'inside' the house. We're looking for 'around' the house.
+      - competing_japanese:
+          - 家 を {周り} ます。
+        english: I go around the house.
+        hint: This uses the verb 'to go around'. We're looking for a noun meaning 'around' or 'surroundings'.
+      - competing_japanese:
+          - 家 の {付近} に 木 が たくさん あり ます。
+        english: There are many trees in the vicinity of the house.
+        hint: This implies a slightly broader or more formally defined 'vicinity' than a general 'around
+          the house'. We're looking for a more immediate 'around'.
+      - competing_japanese:
+          - 家 の {近辺} に 木 が たくさん あり ます。
+        english: The children are playing around the fountain.
+        hint: This emphasizes a general 'nearby area' rather than the immediate 'surroundings' or approximate
+          'vicinity' of the house.
+    scene: You're describing a scenic property to a friend.
+    register: casual
+    setting: informative
+  - english: Is there a convenience store around this area?
+    japanese:
+      - この {辺り} に コンビニ は あり ます か？
+      - この {周り} に コンビニ は あり ます か？
+      - この {周辺} に コンビニ は あり ます か？
+    english_literally: This vicinity, convenience store is there?
+    competing_grammar:
+      - competing_japanese:
+          - この {中} に コンビニ は あり ます か？
+        english: Is there a convenience store inside this?
+        hint: This asks about 'inside' a place. We're looking for 'around this area'.
+      - competing_japanese:
+          - この {付近} に コンビニ は あり ます か？
+        english: Is there a convenience store in this vicinity?
+        hint: This uses 'vicinity' but the nuance is slightly different. We're looking for a more general
+          'around this area'.
+      - competing_japanese:
+          - この {近辺} に コンビニ は あり ます か？
+        english: Is there a convenience store in this nearby area?
+        hint: This refers to a general 'nearby area'. We're looking for a general 'around this area' or
+          'vicinity'.
+    scene: You've just arrived at a new location and are asking for directions.
+    register: semi-formal
+    setting: interrogative
+  - english: There's a lot of traffic congestion in the station's vicinity.
+    japanese:
+      - 駅 の {周辺} は 交通 渋滞 が ひどい です。
+      - 駅 の {周り} は 交通 渋滞 が ひどい です。
+      - 駅 の {辺り} は 交通 渋滞 が ひどい です。
+    english_literally: Station's surroundings, traffic congestion is severe.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 の {中} で 交通 渋滞 が ひどい です。
+        english: There is terrible traffic congestion inside the station.
+        hint: This indicates 'inside' the station. We're talking about the area 'around' the station.
+      - competing_japanese:
+          - 駅 の {付近} は 交通 渋滞 が ひどい です。
+        english: The station's vicinity has terrible traffic congestion.
+        hint: This uses 'vicinity' but has a slightly different shade of meaning. We're looking for a
+          more formal or defined 'surrounding area'.
+      - competing_japanese:
+          - 駅 の {近辺} は 交通 渋滞 が ひどい です。
+        english: The station's nearby area has terrible traffic congestion.
+        hint: This refers to the general 'nearby area'. We're looking for a more specific 'vicinity' or
+          'surrounding area' often implying a defined perimeter, like around a station.
+    scene: You're discussing urban planning or reporting on traffic conditions.
+    register: formal
+    setting: informative
+  - english: The police are searching the forest's surroundings.
+    japanese:
+      - 警察 は 森 の {周辺} を 捜索 し て い ます。
+      - 警察 は 森 の {周り} を 捜索 し て い ます。
+      - 警察 は 森 の {辺り} を 捜索 し て い ます。
+    english_literally: Police forest's surroundings searching are.
+    competing_grammar:
+      - competing_japanese:
+          - 警察 は 森 の {中} を 捜索 し て い ます。
+        english: This refers to 'inside' the forest. We need to say 'around' it.
+        hint: This refers to 'inside' the forest. We need to say 'around' it.
+      - competing_japanese:
+          - 警察 は 森 の {付近} を 捜索 し て い ます。
+        english: The police are searching the forest's vicinity.
+        hint: This implies a slightly broader, less defined 'vicinity'. We're looking for the immediate
+          'surroundings' or more formalized 'environs' where a search might occur.
+      - competing_japanese:
+          - 警察 は 森 の {近辺} を 捜索 し て い ます。
+        english: The police are searching the forest's nearby area.
+        hint: This suggests a general 'nearby area'. We're looking for a more focused 'surroundings' for
+          a police search.
+    scene: A news reporter is giving an update on a search operation.
+    register: formal
+    setting: informative
+    speaker_gender: female
+  - english: The park's surroundings are very quiet.
+    japanese:
+      - 公園 の {辺り} は とても 静か です。
+      - 公園 の {周辺} は とても 静か です。
+      - 公園 の {周り} は とても 静か です。
+    english_literally: Park's vicinity is very quiet.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 の {中} は とても 静か です。
+        english: Inside the park is very quiet.
+        hint: This talks about 'inside' the park. We're looking for the area 'around' it.
+      - competing_japanese:
+          - 公園 の {付近} は とても 静か です。
+        english: The park's vicinity is very quiet.
+        hint: This suggests a slightly more formal 'vicinity'. We're looking for a more general 'around'
+          or 'approximate area'.
+      - competing_japanese:
+          - 公園 の {近辺} は とても 静か です。
+        english: The park's nearby area is very quiet.
+        hint: This refers to the general 'nearby area'. We're looking for a more encompassing 'surroundings'
+          or 'vicinity' of the park.
+    scene: You're appreciating the peaceful atmosphere near a park.
+    register: teineigo (polite)
+    setting: reflective
+    speaker_gender: male
+  - english: The children are playing around the fountain.
+    japanese:
+      - 子供 たち は 噴水 の {周り} で 遊ん で い ます。
+      - 子供 たち は 噴水 の {あたり} で 遊ん で い ます。
+      - 子供 たち は 噴水 の {周辺} で 遊ん で い ます。
+    english_literally: Children fountain's surroundings at playing are.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち は 噴水 の {中} で 遊ん で い ます。
+        english: The children are playing inside the fountain.
+        hint: This suggests the children are playing 'inside' the fountain. We're looking for 'around'
+          the fountain.
+      - competing_japanese:
+          - 子供 たち は 噴水 を {周回} し て い ます。
+        english: The children are circling the fountain.
+        hint: This implies a more defined action of 'circling'. We're looking for playing in the general
+          'area around' the fountain.
+      - competing_japanese:
+          - 子供 たち は 噴水 の {そば} で 遊ん で い ます。
+        english: This means 'near' the fountain, not necessarily 'around' it in a broader sense. We're
+          looking for the general surroundings.
+        hint: This means 'near' the fountain, not necessarily 'around' it in a broader sense. We're looking
+          for the general surroundings.
+    scene: You are observing kids having fun in a park.
+    register: casual
+    setting: friendly
+    conjugation: progressive (～ている)
+    speaker_gender: female
+    listener_gender: no one
+    nuance: 「周り」 is the most natural here for the general area around the fountain where children play.
+      「辺り」 would also work, implying a slightly more vague vicinity. 「周辺」 would be less common and sound
+      overly formal for describing children playing, implying a more formally defined zone.
+  - english: It's dangerous to walk alone around here at night.
+    japanese:
+      - 夜、この {辺り} を 一人 で 歩く の は 危険 です。
+      - 夜、この {周り} を 一人 で 歩く の は 危険 です。
+      - 夜、この {周辺} を 一人 で 歩く の は 危険 です。
+    english_literally: Night, this vicinity alone walking is dangerous.
+    competing_grammar:
+      - competing_japanese:
+          - 夜、この {場所} で 一人 で 歩く の は 危険 です。
+        english: This uses 'place' which is too general. We're looking for 'around this area' or 'vicinity'.
+        hint: This uses 'place' which is too general. We're looking for 'around this area' or 'vicinity'.
+      - competing_japanese:
+          - 夜、この {付近} を 一人 で 歩く の は 危険 です。
+        english: It's dangerous to walk alone in this vicinity at night.
+        hint: 「付近」 (fukin) is very similar, but 「辺り」 (atari) often conveys a slightly more approximate
+          or informal sense of 'around here'.
+    scene: You are warning a friend about safety in a particular neighborhood.
+    register: semi-formal
+    setting: cautious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「辺り」 is very natural here to describe a general, somewhat ill-defined "neighborhood" or "area"
+      that might be unsafe. While 「周り」 could also work but might imply a more immediate, direct perimeter.
+      「周辺」 would make it sound like a specific, formally designated dangerous zone, which might be too
+      strong or formal for this context.
+  - english: Smoking is prohibited in the hospital's vicinity.
+    japanese:
+      - 病院 の {周辺} は 禁煙 です。
+      - 病院 の {周り} は 禁煙 です。
+      - 病院 の {辺り} は 禁煙 です。
+    english_literally: Hospital's surroundings smoking prohibition is.
+    competing_grammar:
+      - competing_japanese:
+          - 病院 の {中} は 禁煙 です。
+        english: Smoking is prohibited inside the hospital.
+        hint: This indicates 'inside' the hospital. We are talking about the area 'around' it.
+      - competing_japanese:
+          - 病院 の {近く} は 禁煙 です。
+        english: Smoking is prohibited near the hospital.
+        hint: This means 'near' but might not imply the same designated zone as 'vicinity'. We're looking
+          for a defined surrounding area.
+      - competing_japanese:
+          - 病院 の {付近} は 禁煙 です。
+        english: Smoking is prohibited in the hospital's vicinity.
+        hint: 「付近」 (fukin) is also appropriate here and quite formal, but 「周辺」 (shūhen) often implies
+          a slightly more officially designated or larger 'surrounding area' in regulation contexts.
+    scene: You are reading a public sign or explaining rules for visitors.
+    register: formal
+    setting: informative
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「周辺」 is the most appropriate and formal choice here for an official regulation, clearly defining
+      a specific zone around the hospital where smoking is not allowed. While 「周り」 and 「辺り」 could be understood,
+      they lack the official and precise nuance that 「周辺」 conveys in such a context.
+  - english: The new café has become very popular in this area.
+    japanese:
+      - 新しい カフェ は この {周り} で 大 人気 です。
+      - 新しい カフェ は この {辺り} で 大 人気 です。
+      - 新しい カフェ は この {周辺} で 大 人気 です。
+    english_literally: New cafe this surrounding/vicinity/area in very popular is.
+    competing_grammar:
+      - competing_japanese:
+          - 新しい カフェ は この {場所} で 大 人気 です。
+        english: This uses 'place' which is too general. We're looking for 'around this area' or 'vicinity'.
+        hint: This uses 'place' which is too general. We're looking for 'around this area' or 'vicinity'.
+      - competing_japanese:
+          - 新しい カフェ は この {近く} で 大 人気 です。
+        english: This means 'nearby' generally, not necessarily emphasizing the surrounding area or vicinity.
+        hint: This means 'nearby' generally, not necessarily emphasizing the surrounding area or vicinity.
+    scene: You are chatting with a friend about local trends.
+    register: casual
+    setting: informative
+    conjugation: non-past polite (～ます)
+    speaker_gender: male
+    listener_gender: female
+    nuance: 「周り」 is the most general and flexible, implying the immediate area or neighborhood. 「辺り」 suggests
+      a slightly broader, more approximate vicinity, suitable for a general neighborhood context. 「周辺」
+      is more formal and specific, often used for a more defined area around a landmark or district, making
+      it suitable if the area is clearly delineated, like a business district.
+  - english: There was a loud noise around the back of the building.
+    japanese:
+      - 建物 の 裏 の {辺り} で 大きな 音 が し まし た。
+      - 建物 の 裏 の {周り} で 大きな 音 が し まし た。
+      - 建物 の 裏 の {周辺} で 大きな 音 が し まし た。
+    english_literally: Building's back's vicinity at big sound occurred.
+    competing_grammar:
+      - competing_japanese:
+          - 建物 の {裏側} で 大きな 音 が し まし た。
+        english: This specifically means 'at the back side'. We're looking for the general area 'around
+          the back'.
+        hint: This specifically means 'at the back side'. We're looking for the general area 'around the
+          back'.
+      - competing_japanese:
+          - 建物 の 裏 の {近く} で 大きな 音 が し まし た。
+        english: This means 'near' the back, which is less specific than 'around the area of the back'.
+          We're looking for a more approximate vicinity.
+        hint: This means 'near' the back, which is less specific than 'around the area of the back'. We're
+          looking for a more approximate vicinity.
+    scene: You are recounting an event that happened recently.
+    register: semi-formal
+    setting: storytelling
+    conjugation: past polite (～ました)
+    speaker_gender: female
+    listener_gender: group
+    nuance: 「辺り」 is very natural here to describe an approximate location for an event, suggesting "around
+      the area of the back." While 「周り」 could also work, 「周辺」 would sound overly formal and precise for
+      a casual observation of a noise.
+  - english: The company is considering expanding its business into the surrounding regions.
+    japanese:
+      - 会社 は {周辺} 地域 へ の 事業 拡大 を 検討 し て い ます。
+      - 会社 は {周り} 地域 へ の 事業 拡大 を 検討 し て い ます。
+      - 会社 は {辺り} 地域 へ の 事業 拡大 を 検討 し て い ます。
+    english_literally: Company surrounding regions toward business expansion considering is.
+    competing_grammar:
+      - competing_japanese:
+          - 会社 は {近く} の 地域 へ の 事業 拡大 を 検討 し て い ます。
+        english: This uses 'nearby regions', which is less formal and specific than 'surrounding regions'
+          in a business context. We're looking for a more comprehensive term for adjacent areas.
+        hint: This uses 'nearby regions', which is less formal and specific than 'surrounding regions'
+          in a business context. We're looking for a more comprehensive term for adjacent areas.
+      - competing_japanese:
+          - 会社 は {周り} の 地域 へ の 事業 拡大 を 検討 し て い ます。
+        english: Using 「周り」 for 'regions' sounds less formal and appropriate for administrative or strategic
+          discussions. We're looking for a more formal term for a defined set of surrounding areas.
+        hint: Using 「周り」 for 'regions' sounds less formal and appropriate for administrative or strategic
+          discussions. We're looking for a more formal term for a defined set of surrounding areas.
+    scene: You are discussing a business strategy in a meeting.
+    register: formal
+    setting: negotiating
+    conjugation: progressive (～ている)
+    speaker_gender: male
+    listener_gender: group
+    nuance: 「周辺」 is the best fit here for describing larger, often administratively or geographically
+      defined "surrounding regions." Its formal and precise nuance is suitable for business and strategic
+      discussions. 「周り」 and 「辺り」 would sound too informal or vague in this context.
+post_example_writeup: As you can see from the examples, while all three terms can often be used interchangeably,
+  paying attention to the context and the specific nuance of formality or precision can help you choose
+  the most natural expression. For example, for official reports or large, defined areas, 「周辺」 is often
+  preferred. For casual, vague descriptions of 'around', 「周り」 and 「辺り」 are more suitable, with 「辺り」 leaning
+  slightly more towards an approximate 'vicinity'.

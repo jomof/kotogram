@@ -1,0 +1,543 @@
+grammar_point: 上、下 (vertical position)
+learn_before:
+  - Verb[dictionary] (dictionary form)
+  - Verb[imperative] (imperative)
+  - Verb[よう] (volitional)
+  - '[Noun]をください (please give me)'
+  - い-Adjective[み] (abstract quality)
+  - どうぞ (here you are・please・invitation)
+  - な (prohibitive particle)
+  - にする (to decide or make)
+  - 側 (side or flank)
+  - 背面 (back surface spatial)
+meaning: above, on, upper / below, under, lower
+pronunciation:
+  katakana: ウエ, シタ
+  romaji: ue, shita
+formation:
+  Noun + の + 上: Indicates a position vertically higher than the specified noun.
+  Noun + の + 下: Indicates a position vertically lower than the specified noun.
+jlpt: N5
+etymology: The kanji 上 originally depicted a line with a mark above it, symbolizing 'up' or 'above.' Similarly,
+  下 showed a line with a mark below it, symbolizing 'down' or 'below.' These visual representations directly
+  convey their core spatial meanings, which have been consistently maintained throughout the history of
+  Japanese.
+writeup: The Japanese words **上** (ue) and **下** (shita) are fundamental for expressing vertical spatial
+  relationships. They function much like the English 'above/on' and 'below/under,' respectively. When
+  referring to the position of one noun relative to another, they are typically connected using the particle
+  **の** (no), as in 「椅子の {上}」 (isu no ue - 'above the chair') or 「テーブルの {下}」 (teeburu no shita - 'under
+  the table'). This Noun + の + 上/下 structure is very common and straightforward. It's important to remember
+  that 上 and 下 specifically refer to vertical orientation. While their primary use is for literal physical
+  positioning, they can also appear in more abstract or idiomatic expressions, such as 「法律の {上}」 (hōritsu
+  no ue - 'above the law' or 'according to law') or 「管理職の {下}」 (kanrishoku no shita - 'under management').
+  However, for this grammar point, we will focus on their core **vertical spatial** meaning.
+false_friends:
+  - term: 〜の上で (~no ue de)
+    meaning: on the basis of, in the context of, after (doing something)
+    kind: similar expression
+    nuance: While it contains {上}, this usage of {上} is abstract and indicates a basis or context, not
+      a physical 'on top of'. We're looking for physical verticality.
+    grammar_point: 〜の上で (on the basis of)
+  - term: 〜の下で (~no shita de)
+    meaning: under the guidance of, under the circumstances of
+    kind: similar expression
+    nuance: Similar to {〜の上で}, this {下} implies an abstract condition or influence, not a physical 'underneath'.
+      We're looking for physical verticality.
+    grammar_point: <suggest>:〜の下で (abstract circumstances)
+  - term: 手前 (temae)
+    meaning: in front of, just before
+    kind: similar expression
+    nuance: 手前 indicates a position *in front of* something, horizontally, or just *before* a point in
+      time or space. It does not indicate vertical spatial relationships like {上} or {下}.
+    grammar_point: 手前 (before; in front of; on account of)
+  - term: 真上 (mau)
+    meaning: directly above
+    kind: similar expression
+    nuance: 「真上」 is more precise than 「上」, specifically indicating a position *directly* above. 「上」 can
+      be more general, referring to anything in a higher vertical plane.
+    grammar_point: 真上 (directly above)
+  - term: 真下 (mashita)
+    meaning: directly below
+    kind: similar expression
+    nuance: 「真下」 is more precise than 「下」, specifically indicating a position *directly* below. 「下」 can
+      be more general, referring to anything in a lower vertical plane.
+    grammar_point: 真下 (directly below)
+post_false_friends_writeup: Understanding the core spatial meaning of **上** and **下** is crucial. When
+  you see them used in phrases like **〜の上で** or **〜の下で** in an abstract sense, remember that the meaning
+  has shifted from literal physical location to a more conceptual 'basis' or 'circumstance.' Pay close
+  attention to the surrounding context to determine if it's a physical or abstract meaning. Hand signals
+  can help too!
+examples:
+  - english: The cat is on the table.
+    japanese:
+      - 猫 は テーブル の {上} に い ます。
+      - テーブル の {上} に 猫 が い ます。
+      - 猫 は テーブル の {上} に いる。
+      - テーブル の {上} に 猫 が いる。
+      - 猫、テーブル の {上} だ よ。
+      - テーブル の {上} に 猫 が いる よ。
+      - 猫 が テーブル の {上} に いる ん だ。
+      - テーブル の {上} に 猫 いる。
+      - 猫 は テーブル の {上} に いる ぜ。
+      - 猫 は テーブル の {上} に いる わ よ。
+      - テーブル の {上} に 猫 が いる じゃ ない。
+      - 猫、テーブル の {上}。
+      - テーブル の {上} だ な。
+      - テーブル の {上} よ。
+      - 猫 は テーブル の {上} に いる ん です よ。
+    english_literally: Cat is table's top/above at exists.
+    competing_grammar:
+      - competing_japanese:
+          - 猫 は テーブル の {手前} に い ます。
+        english: The cat is in front of the table.
+        hint: 手前 indicates a position horizontally in front of something, not vertically on top of it.
+          We're looking for 'on the table'.
+      - competing_japanese:
+          - 会議 は 報告 書 の {上} で 行 わ れ た。
+        english: The meeting was held based on the report.
+        hint: The grammar point refers to a physical 'on top of'. This sentence uses {上} to mean 'on the
+          basis of' or 'in the context of', which is an abstract usage. We're looking for physically placing
+          the cat onto the table.
+      - competing_japanese:
+          - 猫 が テーブル {で} い ます。
+        english: The cat exists doing something at the table.
+        hint: The particle {で} indicates the location where an action occurs, not just where something
+          exists. We're looking for where the cat exists.
+      - competing_japanese:
+          - 猫 は テーブル の {真上} に い ます。
+        english: The cat is directly above the table.
+        hint: 「真上」 implies the cat is floating directly above the table, not physically on its surface.
+          We're looking for the cat being physically on the table.
+      - competing_japanese:
+          - 猫 は テーブル の {横} に い ます。
+        english: The cat is beside the table.
+        hint: 横 (yoko) indicates a horizontal position next to something. We're looking for the cat being
+          *on top of* the table.
+    scene: A typical home setting, a cat has found its way onto a piece of furniture.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: male
+    nuance: The casual sentence ending 「だよ」 (da yo) is often used by male speakers to state a fact assertively.
+      Phrases like 「いる ぜ」 (iru ze) or 「いる ん だ ぜ」 (iru n da ze) are strong, assertive male speech patterns.
+      For females, 「いる わ よ」 (iru wa yo) expresses a gentle assertion or emphasis.
+  - english: The book is under the bed.
+    japanese:
+      - 本 は ベッド の {下} に あ り ま す。
+      - ベッド の {下} に 本 が あ り ま す。
+      - 本 は ベッド の {下} に ある。
+      - ベッド の {下} に 本 が ある。
+      - 本、ベッド の {下} だ よ。
+      - ベッド の {下} に 本 が ある よ。
+      - 本 が ベッド の {下} に ある ん だ。
+      - ベッド の {下} に 本 ある。
+      - 本 は ベッド の {下} に ある ぜ。
+      - 本 は ベッド の {下} に ある わ よ。
+      - ベッド の {下} に 本 が ある じゃ ない。
+      - 本、ベッド の {下}。
+      - ベッド の {下} だ な。
+      - ベッド の {下} よ。
+      - 本 は ベッド の {下} に ある ん です よ。
+    english_literally: Book is bed's bottom/below at exists.
+    competing_grammar:
+      - competing_japanese:
+          - 本 は ベッド の {手前} に あ り ま す。
+        english: The book is in front of the bed.
+        hint: 手前 indicates a position horizontally in front of something, not vertically under it. We're
+          looking for 'under the bed'.
+      - competing_japanese:
+          - 彼 は 上司 の {下} で 働 い て い る。
+        english: He is working under his boss's guidance.
+        hint: The grammar point refers to a physical 'below' or 'under'. This sentence uses {下} to mean
+          'under the guidance of' or 'under the circumstances of', which is an abstract usage. We're looking
+          for physically placing the book under the bed.
+      - competing_japanese:
+          - 本 が ベッド {で} あ り ま す。
+        english: The book exists doing something at the bed.
+        hint: The particle {で} indicates the location where an action occurs, not just where something
+          exists. We're looking for where the book exists.
+      - competing_japanese:
+          - 本 は ベッド の {真下} に あ り ま す。
+        english: The book is directly below the bed.
+        hint: 「真下」 implies the book is vertically aligned directly beneath the bed. While possible, 「下」
+          is more general and often used for "under" or "below" without needing perfect vertical alignment.
+          We're looking for the book being generally under the bed.
+      - competing_japanese:
+          - 本 は ベッド の {後ろ} に あ り ま す。
+        english: The book is behind the bed.
+        hint: 後 ろ (ushiro) indicates a horizontal position behind something. We're looking for the book
+          being *under* the bed.
+    scene: You're searching for a misplaced item in a bedroom.
+    register: teineigo (polite)
+    setting: informative
+  - english: Please put the box on top of the shelf.
+    japanese:
+      - 箱 を 棚 の {上} に 置 い て く だ さ い。
+      - 棚 の {上} に 箱 を 置 い て く だ さ い。
+      - 箱 を 棚 の {上} に 置 い て。
+      - 棚 の {上} に 箱 を 置 い て ね。
+      - 箱 を 棚 の {上} に 置 い て く れ。
+      - 箱 を 棚 の {上} に 載 せ て く だ さ い。
+      - 箱、棚 の {上} に 置 い と い て。
+      - 箱 を 棚 の {上} に 置 い て ほ し い ん だ。
+      - 棚 の {上} に 箱 置 こ う か。
+      - 箱 を 棚 の {上} に 置 い て ください ませ。
+      - 箱 を 棚 の {上} に 置 い て くれる？
+      - 棚 の {上} に 箱 置 け。
+      - 箱 を 棚 の {上} に 置 い て い た だけ ま す か。
+      - 箱 を 棚 の {上} に 載 せ て。
+      - 箱 を 棚 の {上} に 置 い と い て よ。
+    english_literally: Box shelf's top/above at put please.
+    competing_grammar:
+      - competing_japanese:
+          - 箱 を 棚 の {手前} に 置 い て く だ さ い。
+        english: Please put the box in front of the shelf.
+        hint: 手前 indicates a position horizontally in front of something, not vertically on top of it.
+          We're looking for 'on top of the shelf'.
+      - competing_japanese:
+          - 箱 を 報告 書 の {上} で 置 い て く だ さ い。
+        english: Please put the box on the basis of the report.
+        hint: The grammar point refers to a physical 'on top of'. This sentence uses {上} to mean 'on the
+          basis of' or 'in the context of', which is an abstract usage. We're looking for physically placing
+          the box onto the shelf.
+      - competing_japanese:
+          - 箱 を 棚 の 上 {で} 置 い て く だ さ い。
+        english: Please put the box while doing something on the shelf.
+        hint: The particle {で} indicates the location where an action occurs, suggesting that the act
+          of putting the box happens at the shelf, possibly implying you are on the shelf while putting
+          it down. We're looking for placing the box onto the shelf.
+      - competing_japanese:
+          - 箱 を 棚 の {真上} に 置 い て く だ さ い。
+        english: Please put the box directly above the shelf.
+        hint: 「真上」 suggests placing it floating directly above the shelf, not physically on its surface.
+          We're looking for placing the box *on* the shelf.
+      - competing_japanese:
+          - 箱 を 棚 の {奥} に 置 い て く だ さ い。
+        english: Please put the box at the back of the shelf.
+        hint: 奥 (oku) indicates a position at the back or inside. We're looking for putting the box *on
+          top of* the shelf.
+    scene: You are organizing a room and giving instructions.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    nuance: The imperative ending 「くれ」 (kure) is a casual, direct command primarily used by male speakers,
+      or by superiors to inferiors, and implies a certain level of familiarity or authority. More formal
+      requests like 「ください ませ」 (kudasai mase) or 「いただけ ます か」 (itadakemasu ka) are suitable for a formal
+      setting. 「載せる」 (noseru) implies placing something *on* a surface, which is a good alternative to
+      general 「置く」 (oku - to put).
+  - english: The train passed under the bridge.
+    japanese:
+      - 電車 は 橋 の {下} を 通 り ま し た。
+      - 電車 が 橋 の {下} を 通 り ま し た。
+      - 電車 は 橋 の {下} を 通っ た よ。
+      - 橋 の {下} を 電車 が 通 り ま し た。
+      - 橋 の {下} を 電車 が 通っ た。
+      - 電車 は 橋 の {下} を 走っ て いっ た。
+      - 橋 の {下} を 電車 が 通 り 過 ぎ ま し た。
+      - 電車、橋 の {下} を 通っ た よ。
+      - 電車 が 橋 の {下} を 通っ た ん だ よ。
+      - 橋 の {下} を 電車 が 抜け た よ。
+      - 電車、橋 の {下} 通っ た よ ね。
+      - 電車 が 橋 の {下} を 通 り 過ぎ た ん だ。
+      - 橋 の {下} を 電車 が 通っ た な。
+      - 電車 は 橋 の {下} 通っ た の ね。
+      - 電車 が 橋 の {下} 走っ て いっ た。
+    english_literally: Train is bridge's bottom/below through passed.
+    competing_grammar:
+      - competing_japanese:
+          - 電車 は 橋 の {手前} を 通 り ま し た。
+        english: The train passed just before the bridge.
+        hint: 手前 indicates a position horizontally in front of something, not vertically underneath it.
+          We're looking for 'under the bridge'.
+      - competing_japanese:
+          - 電車 は 規制 の {下} で 通 り ま し た。
+        english: The train passed under regulation.
+        hint: The grammar point refers to a physical 'underneath'. This sentence uses {下} to mean 'under
+          the guidance of' or 'under the circumstances of', which is an abstract usage. We're looking
+          for the train physically passing underneath the bridge.
+      - competing_japanese:
+          - 電車 は 橋 の 下 {で} 通 り ま し た。
+        english: The train passed while doing something under the bridge.
+        hint: The particle {で} indicates the location where an action occurs, suggesting that the act
+          of putting the box happens at the shelf, possibly implying you are on the shelf while putting
+          it down. We're looking for passing through the space under the bridge.
+      - competing_japanese:
+          - 電車 は 橋 の {真下} に 通 り ま し た。
+        english: The train passed directly underneath the bridge.
+        hint: 「真下」 implies the train is passing *directly* beneath the center. While technically correct,
+          「下」 is more general and often used for "under" or "below" without needing perfect vertical alignment.
+          We're looking for the train passing generally under the bridge.
+      - competing_japanese:
+          - 電車 は 橋 の {横} を 通 り ま し た。
+        english: The train passed beside the bridge.
+        hint: 横 (yoko) indicates a horizontal position next to something. We're looking for the train
+          passing *under* the bridge.
+    scene: Describing a common scene you witnessed during your commute.
+    register: teineigo (polite)
+    setting: storytelling
+  - english: There's an attic above this room.
+    japanese:
+      - この 部屋 の {上} に 屋根裏 が あ り ます。
+      - この 部屋 の {上} に 屋根裏 が ある よ。
+      - 屋根裏 は この 部屋 の {上} だ よ。
+      - この 部屋 の {上} に 屋根裏 が ある。
+      - この 部屋 の {上} に 屋根裏 が ある の。
+      - 屋根裏 が この 部屋 の {上} だ。
+      - この 部屋 の {上} に 屋根裏 が ある わ よ。
+      - 屋根裏、この 部屋 の {上} に ある よ。
+      - この 部屋 の {上} だ よ、屋根裏 は。
+      - この 部屋 の {上} に 屋根裏 が あ り ま す ね。
+      - この 部屋 の {上} に 屋根裏 が ある ん です よ。
+      - 屋根裏 は この 部屋 の {上} です よ。
+      - この 部屋 の {上} に 屋根裏 が ある よ ね。
+      - この 部屋 の {上} に 屋根裏。
+      - この 部屋 の {上} に 屋根裏 が ある っけ？
+    english_literally: This room's above at attic exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 部屋 の {手前} に 屋根裏 が あ り ま す。
+        english: There's an attic in front of this room.
+        hint: 手前 indicates a position horizontally in front of something, not vertically above it. We're
+          looking for 'above this room'.
+      - competing_japanese:
+          - 法律 の {上} で 屋根裏 が あ り ま す。
+        english: An attic exists on the basis of the law.
+        hint: The grammar point refers to a physical 'above'. This sentence uses {上} to mean 'according
+          to' or 'on the basis of the law', which is an abstract usage. We're describing the physical
+          location of the attic.
+      - competing_japanese:
+          - この 部屋 の 上 {で} 屋根裏 が あ り ま す。
+        english: A basement exists at (performing action at) the top of this house.
+        hint: The particle に indicates location of existence, while {で} indicates the location where an
+          action occurs. We're describing the location of the attic's existence. We're looking for 'there
+          is an attic above this room'.
+      - competing_japanese:
+          - この 部屋 の {真上} に 屋根裏 が あ り ま す。
+        english: There's an attic directly above this room.
+        hint: 「真上」 implies the attic is precisely aligned directly above the room. While possible, 「上」
+          is more general for "above" when discussing floors or general vertical positioning. We're looking
+          for an attic that is simply above the room.
+      - competing_japanese:
+          - この 部屋 の {隣} に 屋根裏 が あ り ま す。
+        english: There's an attic next to this room.
+        hint: 隣 (tonari) indicates a position next to something, horizontally. We're looking for an attic
+          that is *above* the room.
+    scene: Describing the layout of a house to someone.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The sentence ending particle 「の」 (no) in this context, when used to state a fact or provide
+      new information, often lends a softer, more explanatory or feminine nuance, and can also seek subtle
+      confirmation from the listener. Female speakers also commonly use 「わ」 (wa) to add a gentle assertion
+      or 「かしら」 (kashira) for a softer inquiry. 「っけ」 (kke) is a casual, self-confirming query.
+  - english: There's a basement below this house.
+    japanese:
+      - この 家 の {下} に 地下 室 が あ り ま す。
+      - この 家 の {下} に 地下 室 が ある よ。
+      - 地下 室 は この 家 の {下} だ よ。
+      - この 家 の {下} に 地下 室 が ある。
+      - この 家 の {下} に 地下 室 が ある の。
+      - 地下 室 が この 家 の {下} だ。
+      - この 家 の {下} に 地下 室 が ある わ よ。
+      - 地下 室、この 家 の {下} に ある よ。
+      - この 家 の {下} だ よ、地下 室 は。
+      - この 家 の {下} に 地下 室 が あ り ま す か。
+      - この 家 の {下} に 地下 室 が ある ん です よ。
+      - 地下 室 は この 家 の {下} です よ。
+      - この 家 の {下} に 地下 室 が ある よ ね。
+      - この 家 の {下} に 地下 室。
+      - この 家 の {下} に 地下 室 が ある っけ？
+    english_literally: This house's below at basement exists.
+    competing_grammar:
+      - competing_japanese:
+          - この 家 の {手前} に 地下 室 が あ り ま す。
+        english: There's a basement in front of this house.
+        hint: 手前 indicates a position horizontally in front of something, not vertically below it. We're
+          looking for 'below this house'.
+      - competing_japanese:
+          - 管理 職 の {下} で 地下 室 が あ り ま す。
+        english: A basement exists under management.
+        hint: The grammar point refers to a physical 'below'. This sentence uses {下} to mean 'under the
+          guidance of' or 'under the control of', which is an abstract usage. We're describing the physical
+          location of the basement.
+      - competing_japanese:
+          - この 家 の 下 {で} 地下 室 が あ り ま す。
+        english: A basement exists at (performing action at) the bottom of this house.
+        hint: The particle に indicates location of existence, while {で} indicates the location where an
+          action occurs. We're describing the location of the basement's existence. We're looking for
+          'there is a basement below this house'.
+      - competing_japanese:
+          - この 家 の {真下} に 地下 室 が あ り ま す。
+        english: There's a basement directly below this house.
+        hint: 「真下」 implies the basement is precisely aligned directly beneath the house. While possible,
+          「下」 is more general for "below" when discussing floors or general vertical positioning. We're
+          looking for a basement that is simply below the house.
+      - competing_japanese:
+          - この 家 の {中} に 地下 室 が あ り ま す。
+        english: There's a basement inside this house.
+        hint: 中 (naka) indicates a position inside something. We're looking for a basement that is *below*
+          the house.
+    scene: Describing the structure of a building.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The particle 「の」 (no) at the end of this statement adds a softer, more explanatory or feminine
+      tone, often used when sharing information or seeking gentle agreement. Female speakers also commonly
+      use 「わ」 (wa) to add a gentle assertion or 「かしら」 (kashira) for a softer inquiry. 「っけ」 (kke) is a
+      casual, self-confirming query.
+  - english: The area below my knee is sore.
+    japanese:
+      - 膝 の {下} が 痛 い です。
+      - 膝 の {下} が 痛 い。
+      - 膝 の {下} が 痛 い ん だ。
+      - 膝 の {下} が 痛 い わ。
+      - 膝 の {下} が 痛 い ん だ よ。
+    english_literally: Knee's below is painful.
+    competing_grammar:
+      - competing_japanese:
+          - 膝 の {中} が 痛 い です。
+        english: The inside of my knee is sore.
+        hint: 「中」 (naka) indicates an internal position. We're looking for the area *below* the knee.
+      - competing_japanese:
+          - 膝 の {奥} が 痛 い です。
+        english: Deep inside my knee is sore.
+        hint: 「奥」 (oku) indicates a deeper, inner part. We're looking for the area *below* the knee.
+      - competing_japanese:
+          - 膝 の {あたり} が 痛 い です。
+        english: The area around my knee is sore.
+        hint: 「あたり」 (atari) indicates an approximate area. We're looking for the specific area *below*
+          the knee.
+      - competing_japanese:
+          - 膝 の {真下} が 痛 い です。
+        english: Directly below my knee is sore.
+        hint: 「真下」 (mashita) specifies a position *directly* beneath something. While close, 「下」 is more
+          general for 'below' or 'under'.
+    scene: You are telling a friend about a minor ache.
+    register: semi-formal
+    setting: informative
+    speaker_gender: female
+    nuance: The sentence ending 「痛い わ」 (itai wa) is commonly used by female speakers to express a personal
+      feeling or observation with a softer tone.
+  - english: The children are playing under the desk.
+    japanese:
+      - 子供 たち が 机 の {下} で 遊ん で い ます。
+      - 子供 たち が 机 の {下} で 遊ん でる。
+      - 子供 たち が 机 の {下} で 遊ん でる よ。
+      - 机 の {下} で 子供 たち が 遊ん でる わ。
+    english_literally: Children desk's below at playing are.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 たち が 机 の {横} で 遊ん で い ます。
+        english: The children are playing beside the desk.
+        hint: 「横」 (yoko) indicates a horizontal position next to something. We're looking for 'under the
+          desk'.
+      - competing_japanese:
+          - 子供 たち が 机 の {前} で 遊ん で い ます。
+        english: The children are playing in front of the desk.
+        hint: 「前」 (mae) indicates a position in front. We're looking for 'under the desk'.
+      - competing_japanese:
+          - 子供 たち が 机 の {後ろ} で 遊ん で い ます。
+        english: The children are playing behind the desk.
+        hint: 「後ろ」 (ushiro) indicates a position behind. We're looking for 'under the desk'.
+      - competing_japanese:
+          - 子供 たち が 机 の {真下} で 遊ん で い ます。
+        english: The children are playing directly under the desk.
+        hint: 「真下」 (mashita) implies a position *directly* beneath. While similar, 「下」 is more general
+          for 'under'.
+    scene: You peek into a room and notice the kids.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The sentence ending 「遊んでる わ」 (asonderu wa) is a common feminine speech pattern used to express
+      observation or slight surprise in a softer manner.
+  - english: Look, a bird is flying above the clouds!
+    japanese:
+      - 見 て、鳥 が 雲 の {上} を 飛ん で い ま す！
+      - 見 て、鳥 が 雲 の {上} 飛ん でる！
+      - 見 て、鳥 が 雲 の {上} を 飛ん でる よ！
+      - 雲 の {上} を 鳥 が 飛ん でる！
+    english_literally: Look, bird clouds' above flying is!
+    competing_grammar:
+      - competing_japanese:
+          - 見 て、鳥 が 雲 の {中} を 飛ん で い ま す！
+        english: Look, a bird is flying in the clouds!
+        hint: 「中」 (naka) indicates a position *inside*. We're looking for 'above the clouds'.
+      - competing_japanese:
+          - 見 て、鳥 が 雲 の {手前} を 飛ん で い ま す！
+        english: Look, a bird is flying just before the clouds!
+        hint: 「手前」 (temae) indicates a position just *before* something. We're looking for 'above the
+          clouds'.
+      - competing_japanese:
+          - 見 て、鳥 が 雲 の {向こう} を 飛ん で い ま す！
+        english: Look, a bird is flying beyond the clouds!
+        hint: 「向こう」 (mukou) indicates a position *beyond* or *on the other side*. We're looking for 'above
+          the clouds'.
+      - competing_japanese:
+          - 見 て、鳥 が 雲 の {真上} を 飛ん で い ま す！
+        english: Look, a bird is flying directly above the clouds!
+        hint: 「真上」 (mau) implies precise vertical alignment. 「上」 is more general for 'above'.
+    scene: You are pointing out something amazing in the sky to a friend.
+    register: casual
+    setting: excited
+    speaker_gender: male
+    listener_gender: group
+    nuance: The exclamation 「見て！」 (Mite!) sets an excited, informal tone. The use of 「飛んでいる」 (tonde iru)
+      with particle 「を」 emphasizes the bird's movement *through* the space above the clouds. The casual
+      「よ」 (yo) adds emphasis and often implies sharing new information.
+  - english: There is a bird perched on the top branch of the tree.
+    japanese:
+      - 木 の {上} の 枝 に 鳥 が 止 まっ て い ま す。
+      - 木 の {上} の 枝 に 鳥 が 止 まっ てる よ。
+      - 木 の 枝 の {上} に 鳥 が いる。
+      - 鳥 が 木 の {上} の 枝 に 止 まっ て いる わ よ。
+      - 木 の {上} に 鳥 が いる ね。
+    english_literally: Tree's above branch on bird is perched.
+    competing_grammar:
+      - competing_japanese:
+          - 木 の {隣} の 枝 に 鳥 が 止 まっ て い ま す。
+        english: There is a bird perched on the branch next to the tree.
+        hint: 「隣」 (tonari) indicates a horizontal position next to something. We're looking for 'on the
+          top branch'.
+      - competing_japanese:
+          - 木 の {真上} に 鳥 が 飛 ん で い ま す。
+        english: A bird is flying directly above the tree.
+        hint: 「真上」 (mau) implies precise vertical alignment and often refers to something *floating* above,
+          not perched *on* it. We're looking for the bird being perched on a branch on the tree's upper
+          part.
+    scene: You are observing nature in a park or garden.
+    register: teineigo (polite)
+    setting: informative
+    speaker_gender: female
+    nuance: The use of 「止まっている」 (tomatte iru) clearly indicates the bird is perched. The phrase 「木 の 上
+      の 枝」 specifies 'a branch on the upper part of the tree'. The feminine 「わ よ」 (wa yo) adds a soft
+      assertion.
+  - english: They found an old map hidden under the floorboards.
+    japanese:
+      - 彼 ら は 床 {下} に 隠 さ れ た 古 い 地 図 を 見 つ け ま し た。
+      - 床 {下} に 隠 さ れ た 古 い 地 図 を 見 つ け た。
+      - 床 {下} に 古 い 地 図 が 隠 さ れ て い た ん だ よ。
+      - 古 い 地 図 が 床 {下} に 隠 さ れ て い た の を 見 つ け た ね。
+    english_literally: They floor's below hidden old map found.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら は 床 の {奥} に 隠 さ れ た 古 い 地 図 を 見 つ け ま し た。
+        english: They found an old map hidden deep inside the floor.
+        hint: 「奥」 (oku) implies a deeper, inner part, rather than simply 'underneath' the surface. We're
+          looking for 'under the floorboards'.
+      - competing_japanese:
+          - 彼 ら は 床 の {手前} に 隠 さ れ た 古 い 地 図 を 見 つ け ま し た。
+        english: They found an old map hidden in front of the floorboards.
+        hint: 「手前」 (temae) indicates a position in front, not underneath. We're looking for 'under the
+          floorboards'.
+    scene: Someone recounting a discovery made during a renovation or exploration.
+    register: casual
+    setting: storytelling
+    speaker_gender: male
+    nuance: Using just 「床下」 (yukashita) without 「の」 is common for fixed expressions like 'under the floor'.
+      The casual 「〜たんだよ」 (tanda yo) is a common male explanatory or confirming tone. The passive voice
+      「隠された」 (kakusareta) or 「隠されていた」 (kakusarete ita) effectively describes the state of the map.
+post_example_writeup: The usage of particles with 上 and 下 is crucial. Remember that **に** often marks
+  the location of existence, while **を** indicates movement through or along a location. The particle
+  **で** would imply an an action *occurring* at that location, which is usually not the primary focus
+  when describing simple spatial relationships with 上 and 下. Pay close attention to the verb used in the
+  sentence to ensure the particle choice aligns with the intended meaning. When expressing location, `に`
+  is typically used with verbs of existence like `いる` (for animate objects) and `ある` (for inanimate objects).

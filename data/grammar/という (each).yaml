@@ -1,0 +1,292 @@
+grammar_point: という (each)
+learn_before:
+  - '[Noun]で有名 (famous for)'
+  - ある (to exist, inanimate・to have)
+  - い-Adjective[かったら] (past conditional)
+  - たびに (each time)
+  - どういうわけか (for some reason or other)
+  - なぜか (for some reason)
+  - に限って (ironic exception or disbelief)
+  - 横 (side・horizontal)
+  - 決して〜ない (emphatic never)
+meaning: Each and every, Emphasis
+pronunciation:
+  katakana: トイウ
+  romaji: to iu
+formation:
+  Noun + という + Same Noun: Indicates 'each and every' or emphasizes 'everything that could be called' a
+    certain noun.
+jlpt: N1
+etymology: 「という」 is derived from the verb 「言う (iu)」 (to say). In this grammar point, it's used to specify
+  or emphasize each and every instance of the preceding noun. Its origin links to the idea of 'that which
+  is called Noun', reinforcing the definition of the noun itself in a complete sense.
+writeup: |-
+  The structure 「Noun という Noun」 is a highly effective way to convey the meaning of 'every single (Noun)' or 'each and every (Noun)' in Japanese. While often used for simple emphasis, its literal meaning can be understood as 'every (Noun) that could be called an (Noun)', underscoring the comprehensive nature of the statement.
+
+  The repetition of the noun linked by 「という」 draws attention to the totality or exceptional nature of the item being discussed.
+
+  When this structure is applied to abstract concepts like 「今日 (kyō)」 (today) or 「今度 (kondo)」 (next time), it takes on a more specific emphatic meaning, akin to 'Today of all days' or 'This time, above all others'. This highlights that among all possible instances of that abstract concept, the current one holds particular significance, usually indicating a heightened sense of determination, finality, or exasperation. The specific implication is typically made clear by the context that immediately follows in the sentence.
+
+  This grammatical pattern is versatile and can be found across various registers, from casual conversation to more formal declarations, its exact nuance being shaped by the surrounding vocabulary and context. It is a powerful tool for adding weight and comprehensiveness to one's expressions.
+false_friends:
+  - term: 全て
+    meaning: All
+    kind: similar expression
+    nuance: 「全て」 is a general term for 'all' and lacks the strong emphasis on 'each and every' or 'this
+      particular one' that 「Noun という Noun」 conveys.
+    grammar_point: <suggest>:全て (all)
+  - term: あらゆる
+    meaning: Every conceivable; all sorts of
+    kind: similar expression
+    nuance: 「あらゆる」 emphasizes a wide range or variety, suggesting 'every conceivable kind'. In contrast,
+      「Noun という Noun」 stresses comprehensive application to *every single instance* of a specific noun.
+    grammar_point: <suggest>:あらゆる (every conceivable type)
+  - term: どの〜も
+    meaning: Every; any ~ also
+    kind: similar expression
+    nuance: 「どの〜も」 also means 'every' and can indicate totality. However, 「Noun という Noun」 carries a stronger,
+      more emphatic, and often emotionally charged nuance of 'without exception' or 'especially this one'.
+    grammar_point: <suggest>:どの〜も (every single)
+post_false_friends_writeup: While expressions like 「全てのNoun」, 「あらゆるNoun」, and 「どのNounも」 can also convey
+  a sense of totality, 「Noun という Noun」 uniquely adds a heightened degree of emphasis or singularity. It
+  implies that a characteristic applies to 'every single instance without exception' or, in specific idiomatic
+  cases like 「今日という今日」, it singles out 'this specific one above all others'. This pattern intensifies
+  the noun's meaning in a way that other expressions typically do not, often reflecting the speaker's
+  strong feeling or observation about the comprehensive nature of what is being described.
+examples:
+  - english: When I started the big cleaning, I was surprised to find that every single book in the room
+      was covered in dust.
+    japanese:
+      - 大 掃除 を 始め たら、部屋 中 の 本 {と いう} 本 が 埃 を 被っ て い た の で 驚い た。
+      - 大 掃除 を 始め たら、部屋 中 の 本 {と いう} 本 が 埃 だらけ で びっくり し た。
+    english_literally: When big cleaning began, books books inside room all dust had covered, so was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 大 掃除 を 始め たら、部屋 中 の {全て の} 本 が 埃 を 被っ て い た の で 驚い た。
+        english: When I started the big cleaning, I was surprised to find that all the books in the room
+          were covered in dust.
+        hint: 「全ての～」 is a general term for 'all' and lacks the strong emphasis on 'each and every' that
+          「～という～」 provides. We're looking for emphasis on *every single* item.
+    scene: A person cleaning their room and discovering the extent of the dust.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This casual example uses plain forms like 「驚いた」 and 「びっくりした」, reflecting a personal observation.
+      The use of 「本という本」 emphasizes the speaker's surprise at the sheer quantity of dusty books, implying
+      'every single book without exception'. The use of plain forms is natural for a younger speaker speaking
+      to themselves.
+  - english: Every single street in the tourist area is lined with souvenir shops, making it hard to even
+      walk.
+    japanese:
+      - 観光 地 の 道 {と いう} 道 に は、お 土産 屋 が 立ち並ん で い て、歩く の も 大変 だ。
+      - 観光 地 の 道 {と いう} 道 に は、お 土産 屋 が ぎっしり と 立ち並ん で い て、歩く の も 困難 だ。
+    english_literally: Tourist place's streets street are souvenir shops lined up, walking even difficult.
+    competing_grammar:
+      - competing_japanese:
+          - 観光 地 の {全て の} 道 に は、お 土産 屋 が 立ち並ん で い て、歩く の も 大変 だ。
+          - 観光 地 の {あらゆる} 道 に は、お 土産 屋 が ぎっしり と 立ち並ん で い て、歩く の も 困難 だ。
+        english: All the streets in the tourist area are lined with souvenir shops, making it hard to
+          even walk.
+        hint: 「全ての道」 simply means 'all roads'. 「あらゆる道」 implies 'every conceivable type of road'. 「～という～」
+          highlights that *every single instance* of a street is like this, emphasizing a comprehensive
+          observation.
+    scene: A tourist describing a crowded and commercialized area.
+    register: casual
+    setting: informative
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: younger
+    nuance: This statement uses the plain form 「大変だ」, which is common among adult male speakers in casual
+      conversation. 「道という道」 strongly conveys that *every single street* in the area is packed, highlighting
+      the overwhelming nature of the situation.
+  - english: For the success of this plan, every single participant should exert their utmost effort.
+    japanese:
+      - この 計画 の 成功 の ため に、参加 者 {と いう} 参加 者 が 全力 を 尽くす べき だ。
+      - この 計画 の 成功 に は、参加 者 {と いう} 参加 者 が 全力 を 尽くす べき だ と 思う。
+    english_literally: This plan's success's for, participants participant should utmost effort exert.
+    competing_grammar:
+      - competing_japanese:
+          - この 計画 の 成功 の ため に、参加 者 全員 が 全力 を 尽くす べき だ。
+          - この 計画 の 成功 の ため に、{全て の} 参加 者 が 全力 を 尽くす べき だ。
+        english: For the success of this plan, all participants should exert their utmost effort.
+        hint: While 「参加者全員」 means 'all participants', 「～という～」 emphasizes the individual responsibility
+          of 'each and every' participant, highlighting a strong expectation.
+    scene: A project manager addressing their team with a clear expectation for high performance.
+    register: formal
+    setting: persuasive
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: The use of 「べきだ」 and the formal context make this suitable for an older male in a leadership
+      role addressing a group. 「参加者という参加者」 emphasizes that *each and every participant*, without exception,
+      is expected to contribute fully to the project's success.
+  - english: Today of all days, I won't run away anymore. I'll tell the truth.
+    japanese:
+      - 今日 {と いう} 今日 は、もう 逃げ ない。真実 を 話そう。
+      - 今日 {と いう} 今日 に 限っ て、もう 逃げ ませ ん。真実 を 話し ましょう。
+    english_literally: Today of all days, anymore won't run away. Truth will speak.
+    competing_grammar:
+      - competing_japanese:
+          - 今日 {は}、もう 逃げ ない。真実 を 話そう。
+        english: Today, I won't run away anymore. I'll tell the truth.
+        hint: Simply saying 「今日は」 means 'today'. 「今日という今日」 specifically emphasizes 'today of all days'
+          or 'this very day', indicating a critical and decisive moment.
+    scene: A person gathering their courage to reveal something important after a long period of avoidance.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: 「今日という今日」 is an idiomatic expression that strongly emphasizes 'this particular day, above
+      all others'. The plain form 「逃げない」 and the volitional 「話そう」 are common in female speech when expressing
+      strong personal resolve. The second Japanese sentence uses more polite forms 「逃げません」 and 「話しましょう」,
+      which can be used by female speakers to express a softer, yet firm, resolve, even in an internal
+      monologue.
+  - english: This time of all times, I will definitely finish my homework by the deadline.
+    japanese:
+      - 今度 {と いう} 今度 は、必ず 宿題 を 期限 まで に 終わら せる。
+      - 今度 {と いう} 今度 こそ、必ず 宿題 を 期限 まで に 終わら せ ます。
+    english_literally: This time of all times, surely homework by deadline will finish.
+    competing_grammar:
+      - competing_japanese:
+          - 今度 {は}、必ず 宿題 を 期限 まで に 終わら せる。
+        english: Next time, I will definitely finish my homework by the deadline.
+        hint: 「今度は」 means 'next time'. 「今度という今度」 adds strong emphasis, meaning 'this time, above all others',
+          conveying a sense of finality or strong resolve.
+    scene: A student making a firm resolution after struggling with deadlines in the past.
+    register: casual
+    setting: serious
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: Similar to 「今日という今日」, 「今度という今度」 is an emphatic phrase meaning 'this time, above all others'.
+      The plain form 「終わらせる」 indicates a firm personal resolve, typical of a younger male speaker. The
+      second Japanese sentence adds 「こそ」 for even stronger emphasis and uses the polite form 「終わらせます」,
+      making the resolve more definite and potentially directed at someone else.
+  - english: When I entered her room, I was surprised to see that every single window had lace curtains.
+    japanese:
+      - 彼女 の 部屋 に 入る と、窓 {と いう} 窓 に レース の カーテン が かかっ て い て 驚い た。
+      - 彼女 の 部屋 に 入っ たら、窓 {と いう} 窓 に レース の カーテン が 付い て い て びっくり し た。
+    english_literally: Her room entered, windows windows had lace curtains hanging, was surprised.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 部屋 に 入る と、{全て の} 窓 に レース の カーテン が かかっ て い て 驚い た。
+        english: When I entered her room, I was surprised to see that all the windows had lace curtains.
+        hint: 「全ての窓」 is a general term for 'all windows'. 「窓という窓」 stresses that *every single window*
+          was like this, implying a comprehensive and perhaps surprising observation about the uniform
+          decoration.
+    scene: A friend visiting another's uniquely decorated room.
+    register: casual
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: younger
+    nuance: This casual expression uses plain past forms like 「驚いた」 and 「びっくりした」 for a personal observation.
+      「窓という窓」 highlights that *every single window* was adorned with the curtains, emphasizing the comprehensive
+      and perhaps unusual decoration choice. This kind of descriptive observation is common in casual
+      female speech.
+  - english: Every single celebrity seems to be destined to have their private life exposed for some reason.
+    japanese:
+      - 有名 人 {と いう} 有名 人 は、なぜ か プライベート を 暴か れる 運命 に ある。
+      - 有名 人 {と いう} 有名 人 は、どう いう わけ か プライベート が 暴か れる 宿命 だ。
+    english_literally: Celebrities celebrity, for some reason, private life exposed destiny has.
+    competing_grammar:
+      - competing_japanese:
+          - '{全て の} 有名 人 は、なぜ か プライベート を 暴か れる 運命 に ある。'
+          - 有名 人 全員 は、なぜ か プライベート を 暴か れる 運命 に ある。
+        english: All celebrities seem to be destined to have their private life exposed for some reason.
+        hint: While 「有名人全員」 means 'all participants', 「有名人という有名人」 adds a strong sense of 'every single
+          celebrity without exception', emphasizing the universality of the observation in a more impactful
+          way.
+    scene: Two friends discussing the lack of privacy faced by public figures.
+    register: casual
+    setting: reflective
+    conjugation: dictionary (plain non-past)
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: younger
+    nuance: This casual reflection uses plain forms like 「ある」 and 「だ」, typical of casual conversation
+      between adult male friends. 「有名人という有名人」 strongly emphasizes that *all individuals* who are considered
+      celebrities share this fate, highlighting a perceived universal truth about public figures.
+  - english: Every single tree in the park was colored with beautiful autumn leaves, captivating visitors.
+    japanese:
+      - 公園 の 木々 {と いう} 木々 が 美しい 紅葉 で 色づい て おり、訪れる 人々 を 魅了 し た。
+      - 公園 の 木々 {と いう} 木々 が 見事 な 紅葉 で 彩ら れ て おり、多く の 人々 を 魅了 し まし た。
+    english_literally: Park's trees trees beautiful autumn leaves colored, visitors captivated.
+    competing_grammar:
+      - competing_japanese:
+          - 公園 の {全て の} 木々 が 美しい 紅葉 で 色づい て おり、訪れる 人々 を 魅了 し た。
+        english: All the trees in the park were colored with beautiful autumn leaves, captivating visitors.
+        hint: 「全ての木々」 is general 'all trees'. 「木々という木々」 emphasizes the comprehensive beauty of 'each and
+          every tree', suggesting that the entire park was uniformly stunning.
+    scene: Describing the breathtaking beauty of a park during autumn.
+    register: formal
+    setting: informative
+    conjugation: past plain (～た)
+    speaker_gender: female
+    listener_gender: group
+    speaker_age: older
+    nuance: This formal description uses forms like 「魅了しました」, suitable for an older female speaker providing
+      a refined observation to a group. 「木々という木々」 emphasizes that *every single tree* in the park contributed
+      to the stunning display, highlighting the comprehensive beauty of the scene.
+  - english: Today of all days, I will absolutely not forget this failure.
+    japanese:
+      - この 失敗 を 今日 {と いう} 今日 は 絶対 に 忘れ ない。
+      - この 失敗 を 今日 {と いう} 今日 だけ は、決して 忘れ ませ ん。
+    english_literally: This failure today of all days absolutely will not forget.
+    competing_grammar:
+      - competing_japanese:
+          - この 失敗 を 今日 {は} 絶対 に 忘れ ない。
+        english: I will absolutely not forget this failure today.
+        hint: Simply using 「今日は」 means 'today'. 「今日という今日」 makes the day profoundly significant, emphasizing
+          'this specific day, above all others' as a pivotal moment for remembering the failure.
+    scene: A person reflecting on a significant mistake, vowing to learn a lasting lesson from it.
+    register: casual
+    setting: serious
+    conjugation: negative plain (～ない)
+    speaker_gender: male
+    listener_gender: no one
+    speaker_age: younger
+    nuance: The emphatic use of 「今日という今日」 marks this specific day as pivotal for learning from a mistake.
+      The plain negative 「忘れない」 expresses a strong, personal resolve, often heard from younger male speakers.
+      The second Japanese sentence uses 「決して」 for an even stronger negation and the polite form 「忘れません」,
+      suitable for a more formal or reflective context.
+  - english: Every time I go back to my hometown, every single landscape has changed due to development,
+      and there's no trace of how it used to be.
+    japanese:
+      - 地元 に 帰る たび に、景色 {と いう} 景色 が 開発 で 変わっ て しまい、昔 の 面影 が ない。
+      - 地元 に 帰省 する たび に、景色 {と いう} 景色 が 一変 し、昔 の 面影 が 全く ない。
+    english_literally: Hometown to return whenever, landscapes landscape development by changed, old traces
+      not.
+    competing_grammar:
+      - competing_japanese:
+          - 地元 に 帰る たび に、{全て の} 景色 が 開発 で 変わっ て しまい、昔 の 面影 が ない。
+          - 地元 に 帰る たび に、{あらゆる} 景色 が 開発 で 変わっ て しまい、昔 の 面影 が ない。
+        english: Every time I go back to my hometown, all the landscapes have changed due to development,
+          and there's no trace of how it used to be.
+        hint: 「全ての景色」 is general 'all scenery'. 「あらゆる景色」 implies 'every possible kind of scenery'. 「景色という景色」
+          emphasizes the comprehensive change affecting 'every single part' of the familiar landscape,
+          highlighting the feeling of loss more intensely.
+    scene: An adult visiting their childhood hometown and feeling a sense of loss due to widespread modernization.
+    register: casual
+    setting: melancholic
+    conjugation: dictionary (plain non-past)
+    speaker_gender: female
+    listener_gender: no one
+    speaker_age: older
+    nuance: The plain form 「変わってしまい」 conveys a sense of regret or disappointment common in casual female
+      reflections. 「景色という景色」 vividly paints a picture of comprehensive change, emphasizing that *every
+      single part* of the familiar landscape has been altered, leading to a feeling of nostalgia and loss.
+      The second Japanese sentence uses more formal vocabulary like 「帰省する」 and 「一変し」, while maintaining
+      a casual tone with 「全くない」.
+post_example_writeup: The usage of 「～という～」 in these examples demonstrates its versatility in emphasizing
+  either the totality of a noun or the singular importance of an instance. Pay close attention to the
+  context, particularly the following verbs and adverbs, to grasp the full nuance, especially when it
+  is used with temporal nouns like 「今日」 or 「今度」.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/という

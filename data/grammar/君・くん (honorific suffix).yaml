@@ -1,0 +1,329 @@
+grammar_point: 君・くん (honorific suffix)
+learn_before:
+  - Verb[えば] (conditional)
+  - Verb[て] (casual request)
+  - 〜にせよ・〜にしろ・〜であれ (even if・no matter what)
+  - ご (honorific prefix for Sino-Japanese words)
+  - ておく (to do in advance)
+  - でございます (polite copula, formal)
+  - ないといけない (must do・have to)
+  - 背面 (back surface spatial)
+meaning: Suffix added to names, primarily for males, expressing familiarity, a slightly informal tone,
+  or a hierarchical relationship.
+pronunciation:
+  katakana: クン
+  romaji: kun
+formation:
+  '[Last Name] + 君': Used with a surname, often by a superior or elder addressing a junior or younger
+    male, or among male peers.
+  '[First Name] + 君': Used with a given name, typically conveying familiarity or endearment, common among
+    peers, or by parents to their sons.
+  '[Full Name] + 君': Used with a full name, often in formal announcements or official contexts, indicating
+    respect for the person's identity while maintaining a subtle hierarchical or formal tone.
+jlpt: N5
+etymology: The kanji 君 originally meant "lord" or "ruler." While it retains some sense of respect, as
+  a suffix, it softens and conveys familiarity. It can also be used when addressing young children of
+  either gender, implying a form of gentle authority or endearment.
+writeup: |-
+  The suffix 君・くん is an honorific primarily used to address males, conveying a sense of familiarity, informality, or a subtle hierarchical relationship. It is commonly attached to the first or last name of someone of equal or lower status than the speaker. For example, a male teacher might address a male student as 田中{君}・たなかくん. However, it's important to note that its usage can be more complex and is not always strictly limited to male-to-male interactions.
+
+  While predominantly used for males, there are specific contexts where 君・くん can be applied to females. A male of higher status (e.g., a male teacher or senior colleague) might address a female of lower rank or age with 君・くん. Similarly, a female student might use 君・くん to address a male student of equal or lower rank.
+
+  君・くん is frequently encountered in schools, workplaces, and various informal social settings where there's a clear understanding of hierarchy or a close relationship. It is considered less formal or universally polite than さん, but it carries more respect than completely omitting an honorific (呼び捨て・よびすて).
+
+  Its usage often implies a gentle authority or a sense of caring from the speaker's perspective, especially when used by parents towards their sons or by superiors towards their subordinates. Understanding these nuanced applications based on context and speaker/listener relationship is crucial for proper usage.
+false_friends:
+  - term: さん
+    meaning: Mr., Ms., Mrs., honorific suffix
+    kind: similar expression
+    nuance: さん is a universally polite and gender-neutral honorific used for adults. Unlike 君, it does
+      not carry implications of hierarchy or a specific level of familiarity; it is generally safe to
+      use in most situations where politeness is required.
+    grammar_point: <suggest>:さん (honorific suffix)
+  - term: ちゃん
+    meaning: Suffix used for young children, close female friends, or lovers
+    kind: similar expression
+    nuance: ちゃん conveys a strong sense of endearment and closeness. It is most commonly used for young
+      children (especially girls), pets, or among very close female friends and romantic partners. It
+      is more intimate and less formal than 君, and generally not used in hierarchical or professional
+      contexts.
+    grammar_point: <suggest>:ちゃん (honorific suffix)
+  - term: 様・さま
+    meaning: Mr., Ms., Sir, Ma'am (highly respectful)
+    kind: similar expression
+    nuance: 様・さま is a highly formal and respectful honorific used for customers, superiors, deities, or
+      in very formal written communication. It expresses a much higher degree of respect than 君 and implies
+      a significant distance in status.
+    grammar_point: 様・さま (honorific suffix)
+  - term: 呼び捨て (yobisute)
+    meaning: Calling someone by their name without an honorific
+    kind: antonym
+    nuance: 呼び捨て is the act of calling someone by their name without any suffix, implying extreme closeness
+      or, if misused, extreme rudeness. It contrasts with 君 which, even when informal, still retains a
+      degree of honorific function.
+    grammar_point: <suggest>:呼び捨て (yobisute)
+  - term: 君 (pronoun)
+    meaning: You (casual, often masculine or used by superiors)
+    kind: often confused with
+    nuance: Unlike the suffix 君, which attaches to a name, the independent pronoun 君 directly refers to
+      the listener. While both can carry a sense of informality or implied hierarchy, the pronoun functions
+      as a direct address and is often used by males or superiors towards subordinates/juniors.
+    grammar_point: <suggest>:君 (pronoun)
+post_false_friends_writeup: To effectively differentiate between these honorifics and 君・くん, consider the
+  context, gender, and relationship dynamic. 君 is specifically tailored for addressing males, often with
+  a subtle nuance of hierarchy or familiarity. さん is a default polite choice for general respect. ちゃん
+  signifies deep affection, especially for children or close relationships. 様 is reserved for the highest
+  level of respect. Finally, 呼び捨て is the complete absence of honorifics, reserved for very intimate or
+  disrespectful interactions.
+examples:
+  - english: Sato, please submit today's assignment by tomorrow morning.
+    japanese:
+      - 佐藤 {君}、今日 の 課題 は 明日 の 午前 中 まで に 提出 し て ください。
+      - 佐藤 {君}、本日 の 課題 は 明朝 まで に 提出 を お 願い し ます。
+    english_literally: Sato-kun, today's assignment please submit by tomorrow morning.
+    competing_grammar:
+      - competing_japanese:
+          - 佐藤 {さん}、今日 の 課題 は 明日 の 午前 中 まで に 提出 し て ください。
+        english: Mr. Sato, please submit today's assignment by tomorrow morning.
+        hint: さん is a universally polite honorific without the implied hierarchical relationship that
+          君 carries from a professor to a student. We're focusing on the professor's subtle authority
+          here.
+    scene: A university professor is reminding a male student about an upcoming deadline.
+    register: formal
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The professor uses 「佐藤 {君} 」 to address the male student, which is common in academic settings
+      to denote a hierarchical relationship while still being respectful. The use of 「して ください 」 indicates
+      a polite command from a superior. This example demonstrates the use of 「君」 with a last name in a
+      formal, instructional context.
+    etymology: The phrase 「午前中 」 (gozenchū) means "during the morning," with 「午前 」 referring to the period
+      before noon and 「中 」 indicating "during" or "within."
+  - english: Hey, Kenta! Wanna play a game together?
+    japanese:
+      - おい、健太 {君}！一緒 に ゲーム し ない？
+      - おい、健太 {君}！一緒 に ゲーム やら ない か？
+      - よう、健太 {君}！一緒 に ゲーム し ない？
+    english_literally: Hey, Kenta-kun! Game together won't you?
+    competing_grammar:
+      - competing_japanese:
+          - おい、健太 {ちゃん}！一緒 に ゲーム し ない？
+        english: Hey, Kenta-chan! Wanna play a game together?
+        hint: ちゃん is typically used for young children or female friends and carries a much stronger sense
+          of endearment or cuteness. Here, we're looking for a casual but slightly less intimate address
+          among male friends.
+    scene: A high school boy casually inviting his male friend to play video games at his house.
+    register: casual
+    setting: friendly
+    speaker_gender: male
+    listener_gender: male
+    nuance: The speaker uses 「おい 」 to get his friend's attention, a common casual address among young
+      males. Following it with 「健太 {君} 」 for his male peer adds a friendly, familiar tone, common among
+      friends who are not necessarily the absolute closest, or to slightly soften the casual address.
+      This example uses 「君」 with a first name in a casual setting among peers.
+    etymology: The interjection 「おい 」 is an onomatopoeic word, stemming from the sound used to call attention,
+      similar to "hey" or "hoi."
+  - english: Tanaka, could you please check these documents soon?
+    japanese:
+      - 田中 {君}、この 資料、早め に 確認 し て おい て くれる か な？
+      - 田中 {君}、この 資料、早め に 確認 し て おい て ください。
+      - 田中 {君}、こちら の 資料 を 早め に ご 確認 いただけ ます でしょう か。
+    english_literally: Tanaka-kun, these documents, soon check will you?
+    competing_grammar:
+      - competing_japanese:
+          - 田中 {さん}、この 資料、早め に 確認 し て おい て くれる か な？
+        english: Mr. Tanaka, could you please check these documents soon?
+        hint: While さん is generally polite, using 君 by a senior colleague to a junior male colleague subtly
+          emphasizes the internal company hierarchy. We're illustrating that specific dynamic.
+    scene: A senior colleague asking a male junior colleague to review documents quickly.
+    register: semi-formal
+    setting: professional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: Here, a senior male colleague addresses a junior male colleague with 「田中 {君} 」. This is a
+      common practice in Japanese companies to address subordinates, showing their position while still
+      maintaining a professional tone. 「して くれる かな ？ 」 is a semi-formal, slightly softer way to make a
+      request. This demonstrates 「君」 with a last name in a professional, hierarchical context.
+    etymology: The phrase 「早め に 」 combines 「早い 」 (hayai, early/fast) and the suffix 「め 」 (me), indicating
+      "to some extent" or "a bit more," thereby meaning "a bit early" or "sooner rather than later."
+  - english: Taro, dinner's ready! Come quickly.
+    japanese:
+      - 太郎 {君}、ご飯 だ よ！早く おい で。
+      - 太郎 {君}、ご飯 だ よ。早く 来 て ね。
+      - 太郎 {君}、ごはん でき た よ！早く お いでー！
+    english_literally: Taro-kun, it's meal! Quickly come here.
+    competing_grammar:
+      - competing_japanese:
+          - 太郎 {ちゃん}、ご飯 だ よ！早く おい で。
+        english: Taro-chan, dinner's ready! Come quickly.
+        hint: ちゃん is very commonly used for children, especially young boys, for extreme cuteness, while
+          君 from a parent to a son can subtly imply a parental authority or more traditional endearment,
+          rather than just cuteness.
+    scene: A mother calling her young son to the dinner table.
+    register: casual
+    setting: intimate
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: The mother uses 「太郎 {君} 」 to address her young son, which is a common and affectionate way
+      for parents to call their children. The use of 「だ よ 」 and 「おいで 」 are casual and direct. This showcases
+      「君」 with a first name in a familial, intimate setting, conveying endearment from a parent to a child.
+    etymology: The phrase 「ご飯 だ よ 」 uses 「ご飯 」 (gohan), originally meaning cooked rice, but commonly extended
+      to mean "meal." 「だ よ 」 is a casual sentence-ending particle combination for assertion and emphasis.
+  - english: Today, to Yamada Taro, who shone with the excellence award, congratulations.
+    japanese:
+      - 本日、優秀 賞 に 輝い た 山田 太郎 {君}、お めでとう ござい ます。
+      - 優秀 賞 受賞 の 山田 太郎 {君}、お めでとう ござい ます。
+      - 本日、優秀 賞 を 受賞 さ れ た 山田 太郎 {君}、誠 に お めでとう ござい ます。
+    english_literally: Today, Yamada Taro-kun, who shined with the excellence award, congratulations.
+    competing_grammar:
+      - competing_japanese:
+          - 本日、優秀 賞 に 輝い た 山田 太郎 {さん}、お めでとう ござい ます。
+        english: Today, to Yamada Taro-san, who shone with the excellence award, congratulations.
+        hint: In formal public announcements like this, especially for younger awardees, 君 is often preferred
+          over the more general さん to acknowledge their age or student status in a more specific, traditionally
+          formal manner.
+    scene: An announcer congratulating a male student during a school award ceremony.
+    register: formal
+    setting: cautious
+    speaker_gender: male
+    listener_gender: group
+    speaker_age: older
+    nuance: In this formal announcement at an award ceremony, 「山田太郎 {君} 」 is used to acknowledge the male
+      recipient. This usage is common in public settings (like schools or certain competitions) where
+      a full name with 「君」 is used to formally recognize an individual, often a younger person, while
+      maintaining a sense of formality and a subtle traditional hierarchical context. The phrase 「おめでとう
+      ございます 」 is a formal congratulation.
+    etymology: 「優秀賞 」 (yūshūshō) combines 「優秀 」 (yūshū, excellence/superiority) and 「賞 」 (shō, award/prize),
+      directly translating to "excellence award."
+  - english: Aoi, your report was well-researched, but try to summarize your findings more concisely next
+      time.
+    japanese:
+      - 蒼井 {君}、レポート は よく 調べ られ て い まし た が、次回 は もう 少し 簡潔 に まとめ て み て ください。
+      - 蒼井 {君}、レポート は よく 調べ られ て い まし た が、次回 は もう 少し 簡潔 に まとめ て いただけ ます でしょう か。
+      - 蒼井 {君}、レポート は 非常 に よく 分析 さ れ て い まし た が、次回 は もう 少し 簡潔 に まとめ て ください。
+    english_literally: Aoi-kun, report was well-researched, but next time try to summarize more concisely
+      please.
+    competing_grammar:
+      - competing_japanese:
+          - 蒼井 {さん}、レポート は よく 調べ られ て い まし た が、次回 は もう 少し 簡潔 に まとめ て み て ください。
+        english: Ms. Aoi, your report was well-researched, but try to summarize your findings more concisely
+          next time.
+        hint: While さん is a safe, polite option for anyone, the professor's use of 君 for a female student
+          emphasizes the hierarchical relationship often found in academic settings, particularly from
+          an older male superior.
+    scene: A male university professor giving feedback to a female student after reviewing her term paper.
+    register: formal
+    setting: academic
+    speaker_gender: male
+    listener_gender: female
+    speaker_age: older
+    nuance: The professor's use of 「蒼井 {君}」 toward a female student implies a traditional hierarchical
+      relationship, where the male superior gently guides the female subordinate. This usage, though decreasing,
+      still occurs in some educational or professional settings. The polite request 「まとめ て み て ください」 softens
+      the instruction.
+    etymology: The verb 「まとめる 」 (matomeru) means "to gather, to summarize." It combines with 「簡潔 」 (kanketsu),
+      meaning "concise" or "brief," to form the nuance of summarizing something succinctly.
+  - english: Suzuki, please prepare the agenda for tomorrow's meeting.
+    japanese:
+      - 鈴木 {君}、明日 の 会議 の 議題 を 準備 し て ください。
+      - 鈴木 {君}、明日 の 会議 の 議題 を お 願い し ます。
+    english_literally: Suzuki-kun, tomorrow's meeting's agenda please prepare.
+    competing_grammar:
+      - competing_japanese:
+          - 鈴木 {さん}、明日 の 会議 の 議題 を 準備 し て ください。
+        english: Mr. Suzuki, please prepare the agenda for tomorrow's meeting.
+        hint: While さん is the standard polite honorific, a female manager might use 君 to a male subordinate
+          to clearly assert her professional authority within the company hierarchy, a nuance not present
+          with さん.
+    scene: A female manager instructing a male subordinate in an office setting.
+    register: semi-formal
+    setting: professional
+    speaker_gender: female
+    listener_gender: male
+    speaker_age: older
+    nuance: A female manager using 「鈴木 {君}」 to address a male subordinate is less common than a male manager
+      doing so, but it is not incorrect. It emphasizes the manager's authority within the workplace hierarchy
+      in a semi-formal but direct manner. 「準備 し て ください」 is a clear directive.
+    etymology: The noun 「議題 」 (gidai) means "agenda" or "topic for discussion." It combines 「議 」 (gi),
+      meaning "deliberation" or "council," and 「題 」 (dai), meaning "topic" or "subject."
+  - english: Yuki, don't forget to clean your room before dad gets home.
+    japanese:
+      - 勇気 {君}、お 父 さん が 帰っ て くる 前 に 部屋 を 掃除 する の を 忘れ ない で ね。
+      - 勇気 {君}、お 父 さん が 帰る 前 に 部屋 を 片付け て おい て ね。
+    english_literally: Yuki-kun, dad comes home before room cleaning to forget don't, okay?
+    competing_grammar:
+      - competing_japanese:
+          - 勇気 {ちゃん}、お 父 さん が 帰っ て くる 前 に 部屋 を 掃除 する の を 忘れ ない で ね。
+        english: Yuki-chan, don't forget to clean your room before dad gets home.
+        hint: While ちゃん is often used for younger children, especially boys, for extreme cuteness, 君 from
+          an older brother to a younger brother maintains a sense of fraternal affection while also implying
+          a slight seniority or responsibility.
+    scene: An older brother reminding his younger brother about a chore while they are playing video games.
+    register: casual
+    setting: intimate
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: The older brother addresses his younger brother as 「勇気 {君}」. This is a common and affectionate
+      way to address younger male siblings, combining familiarity with a slight sense of seniority. The
+      phrase 「忘れ ない で ね 」 is a gentle reminder typical of sibling interactions.
+    etymology: The phrase 「掃除 する 」 (sōji suru) means "to clean." 「掃除 」 (sōji) combines 「掃 」 (sō), meaning
+      "to sweep," and 「除 」 (ji), meaning "to remove" or "to clean."
+  - english: Koga, keep your eyes on the ball, focus!
+    japanese:
+      - 古賀 {君}、ボール から 目 を 離さ ない で、集中 だ！
+      - 古賀 {君}、ボール を よく 見 て！集中 しろ！
+    english_literally: Koga-kun, from the ball eyes don't release, focus!
+    competing_grammar:
+      - competing_japanese:
+          - '{古賀}、ボール から 目 を 離さ ない で、集中 だ！'
+        english: Koga, keep your eyes on the ball, focus!
+        hint: Calling someone by their name without an honorific (呼び捨て) can be too blunt or disrespectful,
+          especially from a coach to a player. 君 maintains the coach's authority while still showing a
+          degree of respect suitable for the player.
+    scene: A baseball coach yelling instructions to a male player during practice after he missed a catch.
+    register: casual
+    setting: instructional
+    speaker_gender: male
+    listener_gender: male
+    speaker_age: older
+    nuance: A male coach using 「古賀 {君}」 to address a male player is very common in Japanese sports. It's
+      a direct, instructional address that asserts the coach's authority while maintaining a team dynamic.
+      「集中 だ！」 is a forceful but encouraging command. The phrase 「ボール から 目 を 離さ ない で 」 (don't take your
+      eyes off the ball) is a common idiom.
+    etymology: The verb 「離す 」 (hanasu) means "to separate, to release." In the context of 「目 を 離す 」, it
+      means "to take one's eyes off." 「集中 」 (shūchū) means "concentration" and comes from 「集 」 (shū, to
+      gather) and 「中 」 (chū, middle/center).
+  - english: The list of successful applicants includes Mr. Hiroshi Tanaka.
+    japanese:
+      - 合格 者 一覧 に は、田中 広司 {君} の 名前 が あり ます。
+      - 合格 者 リスト に は、田中 広司 {君} が 含ま れ ます。
+    english_literally: Successful applicants list includes, Hiroshi Tanaka-kun's name is there.
+    competing_grammar:
+      - competing_japanese:
+          - 合格 者 一覧 に は、田中 広司 {さん} の 名前 が あり ます。
+        english: The list of successful applicants includes Mr. Hiroshi Tanaka.
+        hint: While さん is generally used for formal references, in official documents or public announcements
+          listing younger individuals (like students or new hires), 君 with the full name is a specific
+          formal convention to denote their status without implying familiarity.
+    scene: A school official reading out names from a formal school document during a public announcement
+      of new admissions.
+    register: formal
+    setting: informative
+    nuance: In formal written documents, especially in educational or official contexts, 「君」 is used after
+      a full name to refer to younger male individuals, such as students or new recruits, in an objective
+      and formal manner. This usage differs from spoken usage as it is more about categorization and official
+      designation rather than direct address.
+    etymology: 「合格 者 」 (gōkakusha) means "successful applicant." It combines 「合格 」 (gōkaku, passing an
+      exam) and 「者 」 (sha, person). 「一覧 」 (ichiran) means "list" or "summary," literally "one glance."
+post_example_writeup: Each example demonstrates how 君・くん is used to address males across various contexts
+  and relationships, from formal academic settings to intimate family interactions. Pay attention to the
+  subtle hierarchical or affectionate nuances it carries depending on the speaker's and listener's relationship
+  and the context. For instance, while a professor might use 君 to a student to maintain authority, a mother
+  uses it to her son out of endearment. Understanding these situational distinctions is key to mastering
+  its appropriate use.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/君・くん

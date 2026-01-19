@@ -1,0 +1,282 @@
+grammar_point: '[Verb-stem]やすい (easy to do)'
+learn_before:
+  - '[Verb-stem]にくい (difficult to do)'
+meaning: Indicates that an action is easy or difficult to perform, often due to inherent characteristics
+  of the subject or object.
+conjugations:
+  - conjugation-type: dictionary (plain non-past)
+    form: やすい / にくい
+    rarity: common
+    meaning: easy to do / difficult to do
+  - conjugation-type: negative plain (～ない)
+    form: やすくない / にくくない
+    rarity: common
+    meaning: not easy to do / not difficult to do
+  - conjugation-type: past plain (～た)
+    form: やすかった / にくかった
+    rarity: common
+    meaning: was easy to do / was difficult to do
+  - conjugation-type: negative past plain (～なかった)
+    form: やすくなかった / にくくなかった
+    rarity: common
+    meaning: was not easy to do / was not difficult to do
+  - conjugation-type: te-form (～て)
+    form: やすくて / にくくて
+    rarity: common
+    meaning: being easy to do / being difficult to do
+  - conjugation-type: concessive (～ても)
+    form: やすくても / にくくても
+    rarity: common
+    meaning: even if easy to do / even if difficult to do
+pronunciation:
+  katakana: ヤスイ・ニクイ
+  romaji: yasui・nikui
+formation:
+  Verb-stem + やすい: Expresses ease of action or a tendency for something to happen.
+  Verb-stem + にくい: Expresses difficulty of action or resistance to something happening.
+jlpt: N3
+etymology: 「やすい」 (易い) comes from 易しい (やさしい), meaning "easy" or "gentle," implying "easy to handle" or
+  "easily done." 「にくい」 (難い) comes from 難い (かたい/がたい), meaning "hard" or "difficult," implying "difficult
+  to do" or "hard to accomplish." These affixes attach to verb stems, extending the meaning of ease or
+  difficulty directly to the action itself.
+writeup: |-
+  〜やすい and 〜にくい are auxiliary adjectives that attach to the stem form of verbs to express the ease or difficulty of performing an action. They behave grammatically just like い-adjectives.
+
+  When using 〜やすい, it indicates that the action is easy to perform, or that something is prone to happen. For example, a pen that writes smoothly is "書きやすい" (kaki-yasui, easy to write with). A mistake that happens often might be described as "間違いやすい" (machigai-yasui, easy to make a mistake, or prone to mistakes). It can also describe a tendency, like someone who is "怒りやすい" (okori-yasui, easily angered).
+
+  Conversely, 〜にくい signifies that an action is difficult to perform, or that something is resistant to happening. A dish that is hard to eat might be "食べにくい" (tabe-nikui, difficult to eat). A problem that is hard to solve is "解きにくい" (toki-nikui, difficult to solve). It can also indicate resistance or an unpleasant nature, such as a texture that is "飲みにくい" (nomi-nikui, difficult to drink, or unpleasant to drink).
+
+  These expressions often describe inherent qualities or objective properties of the subject or object involved in the action. They are widely used in both casual and formal Japanese.
+false_friends:
+  - term: Verb[dictionary] + ことができる
+    meaning: can do, be able to do
+    kind: often confused with
+    nuance: 「〜ことができる」 indicates the ability or permission to do something. 「〜やすい」 and 「〜にくい」 describe
+      the ease or difficulty of an action, often an inherent quality. For example, 「この本は読{みやすい}です」 (This
+      book is easy to read) describes the book's readability, whereas 「この本は読む{ことができる}」 (I can read this
+      book) describes one's ability to read it.
+    grammar_point: することができる (can・be able to)
+  - term: Verb[stem] + がたい
+    meaning: hard to do, difficult to do (often emotionally or morally)
+    kind: similar expression
+    nuance: 「〜がたい」 also expresses difficulty, but it often carries a stronger nuance of emotional or moral
+      difficulty, or that something is almost impossible or extremely hard. It is more formal and less
+      common than 「〜にくい」. For example, 「信じ{がたい}話」 (a hard-to-believe story) versus 「読{みにくい}字」 (hard-to-read
+      handwriting). 「〜がたい」 suggests that the action is difficult due to internal resistance or a high
+      degree of impossibility, while 「〜にくい」 can refer to practical or objective difficulty.
+    grammar_point: がたい (hard to do)
+  - term: Verb[stem] + づらい
+    meaning: difficult to do, hard to do (often physically or emotionally unpleasant)
+    kind: similar expression
+    nuance: 「〜づらい」 is very similar to 「〜にくい」, but it tends to be used when the difficulty causes some
+      form of unpleasantness or discomfort for the doer, either physically or mentally. For example, 「この椅子は座{りづらい}」
+      (This chair is difficult/uncomfortable to sit on). While 「〜にくい」 can also imply discomfort, 「〜づらい」
+      emphasizes the unpleasant aspect more directly.
+    grammar_point: <suggest>:Verb[stem] + づらい (difficult to do, unpleasant)
+  - term: Verb[stem] + そう
+    meaning: looks like, seems like (from appearance)
+    kind: often confused with
+    nuance: 「〜そう」 (looks like) expresses that something appears easy or difficult based on observation.
+      「〜やすい」 and 「〜にくい」 state that something is easy or difficult. For example, 「この問題は簡単そうですね」 (This problem
+      looks easy, doesn't it?) vs. 「この問題は解き{やすい}です」 (This problem is easy to solve).
+    grammar_point: '[Verb-stem]・[い-Adjective-stem]・[な-Adjective]そうだ (it seems・looks like)'
+post_false_friends_writeup: While 〜やすい and 〜にくい describe the inherent ease or difficulty of an action,
+  other expressions convey similar ideas with different nuances. 〜ることができる refers to physical ability or
+  permission. 〜がたい expresses a high degree of difficulty, often emotional or moral, making an action almost
+  impossible. 〜づらい emphasizes that the difficulty causes discomfort or unpleasantness. Lastly, 〜そう indicates
+  a superficial judgment based on appearance rather than an inherent quality. Understanding these distinctions
+  is crucial for accurate and natural expression.
+examples:
+  - english: This pen is easy to write with.
+    japanese:
+      - この ペン は 書 {きやすい} です。
+      - この ペン は 書 {きやすい}。
+      - この ペン は 大変 書 {きやすい} です。
+    english_literally: As for this pen, it is easy to write.
+    competing_grammar:
+      - competing_japanese:
+          - この ペン で 書く こと が でき ます。
+        english: You can write with this pen.
+        hint: 「〜ことができる」 indicates ability or permission, not the inherent ease of use. We're looking for
+          a phrase that describes how easy the pen is to use.
+    scene: A student trying out a new pen.
+    register: teineigo (polite)
+    setting: academic
+    conjugation: dictionary (plain non-past)
+  - english: This soup is difficult to eat with chopsticks.
+    japanese:
+      - この スープ は 箸 で 食 {べ にくい} です。
+      - この スープ は 箸 で 食 {べ にくい}。
+      - この スープ は 箸 じゃ 食 {べ にくい} です ね。
+    english_literally: As for this soup, it is difficult to eat with chopsticks.
+    competing_grammar:
+      - competing_japanese:
+          - この スープ は 箸 で 食べる の が 大変 です。
+        english: This soup is hard to eat with chopsticks (it's a lot of trouble).
+        hint: While 「大変」 describes the action as troublesome or difficult, 「〜にくい」 specifically conveys
+          the inherent difficulty of the action itself. We're looking for a word that means "difficult
+          to eat" in terms of its nature.
+    scene: A person struggling to eat soup with chopsticks.
+    register: teineigo (polite)
+    setting: casual slang
+    conjugation: dictionary (plain non-past)
+  - english: Children are prone to catching colds.
+    japanese:
+      - 子供 は 風邪 を 引 {きやすい} です。
+      - 子供 は 風邪 を 引 {きやすい}。
+      - お 子 さん は 風邪 を 引 {きやすい} です。
+    english_literally: As for children, they are easy to catch colds.
+    competing_grammar:
+      - competing_japanese:
+          - 子供 は 風邪 を よく 引き ます。
+        english: Children often catch colds.
+        hint: 「よく引きます」 means "often catch," but 「〜やすい」 specifically implies a tendency or susceptibility.
+          We're looking for a word that means "prone to."
+    scene: A doctor explaining something to a parent.
+    register: teineigo (polite)
+    setting: informative
+  - english: This car is difficult to drive for beginners.
+    japanese:
+      - この 車 は 初心 者 に は 運転 {し にくい} です。
+      - この 車 は 初心 者 に は 運転 {し にくい}。
+      - この 車 は 初心 者 に とっ て 運転 {し にくい} です。
+    english_literally: As for this car, for beginners, it is difficult to drive.
+    competing_grammar:
+      - competing_japanese:
+          - この 車 は 初心 者 に は 運転 する の が 難しい です。
+        english: This car is difficult for beginners to drive.
+        hint: While 「難しい」 (difficult) expresses the general difficulty, 「〜にくい」 focuses on the inherent
+          characteristic of the car making it difficult to operate. We're looking for a phrase emphasizing
+          the car's driving difficulty.
+    scene: A driving instructor explaining a car's characteristics.
+    register: teineigo (polite)
+    setting: instructional
+  - english: This material stains easily.
+    japanese:
+      - この 素材 は 汚れ {やすい} です。
+      - この 素材 は 汚れ {やすい}。
+      - この 素材 は 汚れ {やすい} 性質 が あり ます。
+    english_literally: As for this material, it is easy to get dirty.
+    competing_grammar:
+      - competing_japanese:
+          - この 素材 は すぐ 汚れ ます。
+        english: This material gets dirty quickly.
+        hint: 「すぐ汚れます」 indicates speed, but 「〜やすい」 describes the material's susceptibility to getting
+          dirty. We're looking for a phrase indicating a tendency to stain.
+    scene: A salesperson describing fabric care to a customer.
+    register: teineigo (polite)
+    setting: professional
+  - english: This jacket is difficult to put on and take off.
+    japanese:
+      - この ジャケット は 脱ぎ着 {し にくい}。
+      - この ジャケット は 脱ぎ着 {し にくい} です。
+      - この ジャケット、脱ぎ着 {し にくい} なあ。
+    english_literally: As for this jacket, it is difficult to put on and take off.
+    competing_grammar:
+      - competing_japanese:
+          - この ジャケット は 脱ぎ着 する の が 大変 です。
+        english: This jacket is a lot of trouble to put on and take off.
+        hint: 「大変」 describes the overall effort, but 「〜にくい」 points to the physical difficulty of the action
+          itself, often implying discomfort. We're looking for a phrase describing the inherent difficulty
+          of wearing the jacket.
+    scene: Someone trying on a jacket in a changing room.
+    register: casual
+    setting: friendly
+  - english: His explanation is easy to understand.
+    japanese:
+      - 彼 の 説明 は 分かり {やすい} です。
+      - 彼 の 説明 は 分かり {やすい}。
+      - 彼 の 説明 は とても 分かり {やすい} です。
+    english_literally: His explanation is easy to understand.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 説明 は よく 分かり ます。
+        english: His explanation is easy to understand (I understand it well).
+        hint: 「よく分かります」 emphasizes the result of understanding well, while 「〜やすい」 describes the explanation's
+          inherent clarity. We're looking for a phrase emphasizing the ease of comprehension of the explanation.
+    scene: Students discussing a lecture.
+    register: teineigo (polite)
+    setting: academic
+  - english: The meaning of this sentence is difficult to grasp.
+    japanese:
+      - この 文 の 意味 は 理解 {し にくい} です。
+      - この 文 の 意味 は 理解 {し にくい}。
+      - この 文 の 意味 は なかなか 理解 {し にくい} です。
+    english_literally: As for this sentence's meaning, it is difficult to understand.
+    competing_grammar:
+      - competing_japanese:
+          - この 文 の 意味 は 難しい です。
+        english: The meaning of this sentence is difficult.
+        hint: 「難しい」 is a general term for difficult, but 「〜にくい」 specifically refers to the difficulty
+          in performing the action of understanding it. We're looking for a phrase that emphasizes the
+          difficulty of grasping the meaning.
+    scene: A student struggling with a difficult text.
+    register: teineigo (polite)
+    setting: academic
+  - english: This store is easy to get to from the station.
+    japanese:
+      - この 店 は 駅 から 行 {きやすい}。
+      - この 店 は 駅 から 行 {きやすい} です。
+      - 駅 から 行 {きやすい} 店 です。
+    english_literally: As for this store, from the station, it is easy to go.
+    competing_grammar:
+      - competing_japanese:
+          - この 店 は 駅 から 近い です。
+        english: This store is close to the station.
+        hint: 「近い」 means "close," but 「〜やすい」 specifically means "easy to go to," implying convenience
+          of access. We're looking for a phrase emphasizing ease of access.
+    scene: Two friends planning to meet up.
+    register: casual
+    setting: friendly
+  - english: This glass is hard to break.
+    japanese:
+      - この コップ は 割れ {にくい} です。
+      - この コップ は 割れ {にくい}。
+      - この コップ は なかなか 割れ {にくい} です。
+    english_literally: As for this cup, it is difficult to break.
+    competing_grammar:
+      - competing_japanese:
+          - この コップ は 丈夫 です。
+        english: This cup is durable.
+        hint: 「丈夫」 means "durable" generally, but 「〜にくい」 specifically describes its resistance to breaking.
+          We're looking for a phrase that indicates difficulty in breaking the cup.
+    scene: A parent showing a child a durable cup.
+    register: teineigo (polite)
+    setting: instructional
+  - english: That person's name is easy to forget.
+    japanese:
+      - あの 人 の 名前 は 忘れ {やすい} です。
+      - あの 人 の 名前 は 忘れ {やすい}。
+      - あの 人 の 名前 って 忘れ {やすい} よ ね。
+    english_literally: As for that person's name, it is easy to forget.
+    competing_grammar:
+      - competing_japanese:
+          - あの 人 の 名前 は よく 忘れ ます。
+        english: I often forget that person's name.
+        hint: 「よく忘れます」 means "often forget," but 「〜やすい」 implies an inherent quality of the name itself
+          that makes it prone to being forgotten. We're looking for a phrase that suggests the name is
+          inherently forgettable.
+    scene: Two colleagues chatting about a new acquaintance.
+    register: teineigo (polite)
+    setting: professional
+  - english: My feelings are difficult to put into words.
+    japanese:
+      - 私 の 気持ち は 言葉 に 出 {し にくい}。
+      - 私 の 気持ち は 言葉 に 出 {し にくい} です。
+      - 私 の 気持ち、言葉 に 出 {し にくい} なぁ。
+    english_literally: As for my feelings, it is difficult to put them into words.
+    competing_grammar:
+      - competing_japanese:
+          - 私 の 気持ち は 言葉 に 出す の が 難しい です。
+        english: It is difficult to put my feelings into words.
+        hint: While 「難しい」 (difficult) is a general term, 「〜にくい」 emphasizes the specific difficulty in
+          expressing the feelings, implying a resistance to being articulated. We're looking for a phrase
+          that describes the difficulty in giving voice to one's emotions.
+    scene: Someone confiding in a close friend.
+    register: casual
+    setting: intimate
+post_example_writeup: As seen in these examples, 〜やすい and 〜にくい are versatile expressions. They can describe
+  objective qualities of objects (e.g., pen, soup, material, glass), characteristics of actions (e.g.,
+  driving, explaining, understanding), or even tendencies and susceptibilities of subjects (e.g., children
+  catching colds, names being forgotten). Pay attention to the verb stem and the context to fully grasp
+  the nuance of ease, difficulty, or inclination.

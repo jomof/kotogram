@@ -1,0 +1,224 @@
+grammar_point: ところに・ところへ (timing a new event)
+learn_before:
+  - ところを (while or in circumstances)
+meaning: just as, at the moment when (something happens), something else happens
+pronunciation:
+  katakana: トコロニ・トコロエ
+  romaji: tokoro ni・tokoro e
+formation:
+  '[Verb-dictionary form] + ところに・ところへ': Indicates a new event occurring at the very point an action is
+    about to happen.
+  '[Verb-ている form] + ところに・ところへ': Indicates a new event occurring right in the middle of an ongoing action.
+  '[Verb-た form] + ところに・ところへ': Indicates a new event occurring just after an action has been completed.
+  '[Nounの] + ところに・ところへ': Indicates a new event occurring at a specific situation or stage (often used
+    with nouns indicating a state or phase).
+jlpt: N3
+etymology: The core concept comes from 「所」(ところ), originally meaning "place" but also used to denote "point
+  in time" or "state/moment." The particles 「に」 (at/in) and 「へ」 (to/towards) specify the exact temporal
+  juncture or the direction towards which the new event occurs within that time. This construction highlights
+  the precise intersection of two events.
+writeup: |-
+  This grammar point, 「ところに・ところへ」, is used to specify that a new event takes place at a very precise moment or stage of another action or state. It highlights the timing of an occurrence, often implying that the new event is sudden, opportune, or happens right into a certain situation.
+
+  Think of it as "just as X was happening," or "right when Y occurred." The nuance between 「に」 and 「へ」 is subtle but important: 「に」 emphasizes the *point* in time or situation, marking where the new event occurs, while 「へ」 suggests a *movement towards* or *into* that moment or state, often implying an unexpected arrival or intervention by the new event. It's frequently used to describe opportune or coincidental timing.
+false_friends:
+  - term: 最中に
+    meaning: in the very midst of, right in the middle of
+    kind: similar expression
+    nuance: 「最中に」 emphasizes that the new event interrupts or happens *during* the peak or busiest part
+      of an ongoing action, suggesting a stronger sense of being "in the middle of" something. 「ところに・ところへ」
+      is broader, simply indicating the timing *at which* an event occurs, which could be at any stage,
+      not necessarily the peak.
+    grammar_point: <suggest>:〜最中に (in the middle of)
+  - term: たばかり
+    meaning: just did, just finished doing
+    kind: similar expression
+    nuance: 「〜たばかり」 refers to an action that has *just been completed* and is still very recent. 「ところに・ところへ」
+      describes an event happening *at* a specific moment, which could be during an action (dictionary/te-iru
+      form) or after one has finished (ta-form), but its focus is on the coincidental or opportune timing
+      of the *new* event relative to the first.
+    grammar_point: たばかり (just did)
+  - term: ところだ
+    meaning: about to do, in the process of doing, just finished doing
+    kind: similar expression
+    nuance: While 「ところだ」 (without に/へ) indicates a stage of an action (about to, in process, just finished),
+      「ところに・ところへ」 is used to introduce a *new, secondary event* that happens *at* that stage. It's about
+      how two events coincide, rather than just stating the stage of one action.
+    grammar_point: '[Verb-dictionary]ところだ (about to do)'
+post_false_friends_writeup: While all these expressions relate to timing, 「ところに・ところへ」 specifically describes
+  a new event occurring at a particular moment in another process or state. 「最中に」 implies an interruption
+  during the peak of an action, focusing on what's happening concurrently. 「〜たばかり」 speaks to the recency
+  of a completed action, without necessarily connecting it to another simultaneous event. And 「ところだ」 (on
+  its own) simply states the current phase of an action, not the coincidence of a separate event. The
+  key distinction for 「ところに・ところへ」 is the dynamic of two events intersecting at a specific temporal point.
+examples:
+  - english: Just as I was about to leave the house, my phone rang.
+    japanese:
+      - 家 を 出る {ところ に}、電話 が 鳴っ た。
+      - 家 を 出る {ところ に}、電話 が 鳴り まし た。
+      - 家 を 出る {ところ へ}、電話 が 鳴っ た。
+      - 家 を 出る {とこ に}、電話 鳴っ た ん だ。
+    english_literally: As for home, leave at the moment, phone rang.
+    competing_grammar:
+      - competing_japanese:
+          - 家 を 出よう と し たら、電話 が 鳴っ た。
+        english: When I was about to leave the house, the phone rang.
+        hint: 「〜ようとしたら」 indicates an action about to happen, followed by another event. We're looking
+          for a phrase that emphasizes the precise moment of intersection.
+    scene: A person is about to step out the door.
+    register: casual
+    setting: casual slang
+  - english: Just as I was eating dinner, my friend came over.
+    japanese:
+      - 夕飯 を 食べ て いる {ところ へ}、友達 が やっ て 来 た。
+      - 夕飯 を 食べ て いる {ところ へ}、友達 が やっ て 来 まし た。
+      - 夕飯 を 食べ て いる {ところ に}、友達 が やっ て 来 た。
+      - 晩御飯 食べ てる {とこ に}、友達 来 た ん だ。
+    english_literally: As for dinner, eating at the moment, friend came.
+    competing_grammar:
+      - competing_japanese:
+          - 夕飯 を 食べ て いる 最中 に、友達 が やっ て 来 た。
+        english: In the middle of eating dinner, my friend came over.
+        hint: 「最中に」 implies an interruption during the peak of an activity. We're looking for a phrase
+          that simply indicates a new event happened at that point in time.
+    scene: You are having a meal alone.
+    register: casual
+    setting: friendly
+  - english: Right after I arrived at the station, it started raining.
+    japanese:
+      - 駅 に 着い た {ところ に}、雨 が 降り 出し た。
+      - 駅 に 着い た {ところ に}、雨 が 降り 出し まし た。
+      - 駅 に 着い た {ところ へ}、雨 が 降り 出し た。
+      - 駅 に 着い た {ところ に}、雨 が 降り 始め た。
+    english_literally: As for station, arrived at the moment, rain began to fall.
+    competing_grammar:
+      - competing_japanese:
+          - 駅 に 着い たら、雨 が 降り 出し た。
+        english: When I arrived at the station, it started raining.
+        hint: 「〜たら」 is a general conditional or temporal connector. We're looking for an expression that
+          highlights the specific timing of the second event relative to the first.
+    scene: You've just gotten off the train.
+    register: teineigo (polite)
+    setting: melancholic
+  - english: At the climax of the story, the main character suddenly appeared.
+    japanese:
+      - 物語 の クライマックス の {ところ に}、主人 公 が 突然 現れ た。
+      - 物語 の クライマックス の {ところ に}、主人 公 が 突然 現れ まし た。
+      - 物語 の クライマックス の {ところ へ}、主人 公 が 突然 現れ た。
+      - 物語 の ヤマ場 の {ところ に}、主人 公 が 突然 現れ た。
+    english_literally: As for story, climax's moment, main character suddenly appeared.
+    competing_grammar:
+      - competing_japanese:
+          - 物語 の クライマックス で、主人 公 が 突然 現れ た。
+        english: At the climax of the story, the main character suddenly appeared.
+        hint: 「で」 indicates a location or general state. We're looking for a phrase that emphasizes the
+          specific *point* or *stage* at which the event occurred.
+    scene: You are discussing a novel in a literature class.
+    register: formal
+    setting: academic
+  - english: I was struggling with the math problem when the teacher came to help me.
+    japanese:
+      - 数学 の 問題 で 困っ て いる {ところ へ}、先生 が 助け に 来 て くれ た。
+      - 数学 の 問題 で 困っ て いる {ところ へ}、先生 が 助け に 来 て くれ まし た。
+      - 数学 の 問題 で 困っ て いる {ところ に}、先生 が 助け に 来 て くれ た。
+      - 数学 の 問題 で 困っ てる {とこ に}、先生 助け に 来 て くれ た ん だ。
+    english_literally: As for math problem, troubled at the moment, teacher came to help.
+    competing_grammar:
+      - competing_japanese:
+          - 数学 の 問題 で 困っ て い たら、先生 が 助け に 来 て くれ た。
+        english: If I was troubled by the math problem, the teacher came to help me.
+        hint: 「〜たら」 can indicate a condition or trigger. We're looking for a phrase that expresses an
+          event happening *at* a specific, often opportune, moment.
+    scene: A student is working on homework at their desk.
+    register: teineigo (polite)
+    setting: supportive
+  - english: Just as I was trying to figure out what to do, a good idea popped into my head.
+    japanese:
+      - どう すれ ば いい か 考え て いる {ところ に}、良い アイデア が 浮かん だ。
+      - どう すれ ば いい か 考え て いる {ところ に}、良い アイデア が 浮かび まし た。
+      - どう すれ ば いい か 考え て いる {ところ へ}、良い アイデア が 浮かん だ。
+      - どう すれ ば いい か 考え てる {とこ に}、良い アイデア 浮かん だ ん だ。
+    english_literally: How should do, thinking at the moment, good idea floated up.
+    competing_grammar:
+      - competing_japanese:
+          - どう すれ ば いい か 考え て い た 時、良い アイデア が 浮かん だ。
+        english: When I was thinking about what to do, a good idea popped into my head.
+        hint: 「時」 is a general temporal conjunction. We're looking for a phrase that conveys a more precise,
+          often coincidental or sudden, timing.
+    scene: Someone is deep in thought, trying to solve a problem.
+    register: casual
+    setting: reflective
+  - english: I had just finished cleaning the entire room when the kids came in and made a huge mess.
+    japanese:
+      - 部屋 全体 を 掃除 し 終え た {ところ へ}、子供 たち が 入っ て 来 て ぐちゃぐちゃ に し た。
+      - 部屋 全体 を 掃除 し 終え た {ところ へ}、子供 たち が 入っ て 来 て ぐちゃぐちゃ に し まし た。
+      - 部屋 全体 を 掃除 し 終え た {ところ に}、子供 たち が 入っ て 来 て ぐちゃぐちゃ に し た。
+      - 部屋 全体 を 掃除 し 終え た {ところ へ}、子供 たち が 走り込ん で 来 て ぐちゃぐちゃ に し ちゃっ た。
+    english_literally: Room whole, cleaning finished at the moment, children came in and made a mess.
+    competing_grammar:
+      - competing_japanese:
+          - 部屋 全体 を 掃除 し 終え た ばかり な の に、子供 たち が 入っ て 来 て ぐちゃぐちゃ に し た。
+        english: Even though I had just finished cleaning the entire room, the kids came in and made a
+          huge mess.
+        hint: 「〜たばかり」 emphasizes recency. We're looking for a phrase that describes a new, often unfortunate,
+          event occurring *at* the moment the first action concluded.
+    scene: A parent sighs as their tidy room is instantly ruined.
+    register: casual
+    setting: melancholic
+  - english: She was diligently studying for the exam when her phone vibrated, distracting her.
+    japanese:
+      - 彼女 が 試験 の ため に 一生 懸命 勉強 し て いる {ところ に}、携帯 が 震え、彼女 の 気 を 散らし た。
+      - 彼女 が 試験 の ため に 一生 懸命 勉強 し て いる {ところ に}、携帯 が 震え、彼女 の 気 を 散らし まし た。
+      - 彼女 が 試験 の ため に 一生 懸命 勉強 し て いる {ところ へ}、携帯 が 震え、彼女 の 気 を 散らし た。
+      - 彼女 が 試験 の ため に 必死 に 勉強 し て いる {ところ に}、携帯 が 震え て、集中 が 途切れ た。
+    english_literally: She, as for exam's sake, diligently studying at the moment, phone vibrated, her
+      attention scattered.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 が 試験 の ため に 一生 懸命 勉強 し て いる 間 に、携帯 が 震え た。
+        english: While she was diligently studying for the exam, her phone vibrated.
+        hint: 「間に」 indicates an event happening *during* a period. We're looking for a phrase that points
+          to a more specific *moment* within that period.
+    scene: A student is focused on her studies at a library.
+    register: formal
+    setting: informative
+  - english: Right in the middle of their heated argument, their mother suddenly walked in.
+    japanese:
+      - 彼 ら の 激しい 口論 の {ところ へ}、母親 が 突然、入っ て 来 た。
+      - 彼 ら の 激しい 口論 の {ところ へ}、母親 が 突然、入っ て 来 まし た。
+      - 彼 ら の 激しい 口論 の {ところ に}、母親 が 突然、入っ て 来 た。
+      - 彼 ら の 激しい 口論 の {ところ へ}、突然 母親 が 姿 を 現し た。
+    english_literally: Their heated argument's moment, mother suddenly walked in.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら の 激しい 口論 の 真っ 最中 に、母親 が 突然、入っ て 来 た。
+        english: Right in the very middle of their heated argument, their mother suddenly walked in.
+        hint: 「真っ最中に」 emphasizes being at the absolute peak of an activity. We're looking for a phrase
+          that indicates a new event occurring at a specific point or situation, without necessarily implying
+          the peak.
+    scene: Two siblings are having a loud argument.
+    register: casual
+    setting: serious
+  - english: Just as I was about to give up on my dream, a small glimmer of hope appeared.
+    japanese:
+      - 夢 を 諦めよう と し て いる {ところ に}、わずか な 希望 の 光 が 見え た。
+      - 夢 を 諦めよう と し て いる {ところ に}、わずか な 希望 の 光 が 見え まし た。
+      - 夢 を 諦めよう と し て いる {ところ へ}、わずか な 希望 の 光 が 見え た。
+      - 夢 を 諦めよう と し て いる {ところ に}、一筋 の 希望 の 光 が 現れ た。
+    english_literally: Dream, giving up at the moment, slight hope's light appeared.
+    competing_grammar:
+      - competing_japanese:
+          - 夢 を 諦めよう と し て い た とき、わずか な 希望 の 光 が 見え た。
+        english: When I was thinking about what to do, a small glimmer of hope appeared.
+        hint: 「〜とき」 is a neutral temporal marker. We're looking for a phrase that emphasizes the precise
+          moment or stage at which a new, often unexpected, event occurs.
+    scene: A person feels discouraged and is contemplating quitting.
+    register: casual
+    setting: optimistic
+post_example_writeup: 'As seen in the examples, 「ところに」 and 「ところへ」 are versatile for describing events
+  that coincide. Pay attention to the form preceding 「ところ」: the dictionary form implies an event *about
+  to happen*, the ている form means *during an ongoing action*, the た form suggests *just after completion*,
+  and a noun with の places the new event *at a specific stage or situation*. The choice between に and
+  へ often comes down to emphasizing the precise point versus the movement into that point, respectively.'
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ところに・ところへ

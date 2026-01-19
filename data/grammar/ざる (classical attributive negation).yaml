@@ -1,0 +1,365 @@
+grammar_point: ざる (classical attributive negation)
+learn_before:
+  - つつも (even though, despite・internal conflict or contradiction)
+  - なお (still; even; yet; still more)
+  - に伴って・に伴い (along with・as a result of)
+  - に対して (towards; in contrast)
+  - めったに〜ない (rarely)
+  - を経て (after process or experience)
+  - 姿 (figure・appearance)
+  - 遂に (finally・at last)
+meaning: To not ~, Un~
+pronunciation:
+  katakana: ザル
+  romaji: zaru
+formation:
+  Verb[imperfective] + ざる: Indicates a state of not doing something, often emphasizing the unchanging
+    or continuous nature of the action.
+jlpt: N2
+etymology: 「ざる」 is the attributive form of the classical auxiliary verb 「ず」, indicating negation. 「ず」
+  itself is derived from older forms of negation in Japanese. It carries the same 'not' meaning as 「ない」,
+  but is more formal and literary. Its attributive nature means it modifies nouns, functioning similarly
+  to an adjective.
+writeup: The grammar point 「Verb[imperfective]+ざる」 represents the attributive form of the classical auxiliary
+  verb 「ず」, expressing negation. It holds a meaning equivalent to 「ない」, but carries a significantly more
+  formal, literary, and sometimes archaic tone. You will primarily encounter 「ざる」 in written contexts
+  such as historical texts, news articles, academic papers, or established idiomatic expressions. While
+  「ざる」 functions similarly to 「ない」, its use in modern spoken Japanese is largely confined to specific
+  set phrases. For instance, it is a key component of the common grammar structure 「〜ざるを得ない」 (to have
+  no choice but to...). Using 「ざる」 in casual conversation outside of these fixed expressions would sound
+  unnatural or overly stiff. Characteristic of its older grammatical origins, when combined with the irregular
+  verb 「する」, 「ざる」 connects to its classical 「せ」 stem, resulting in 「せざる」, rather than the more common
+  modern 「し」 stem.
+false_friends:
+  - term: 〜ない
+    meaning: not
+    kind: similar expression
+    nuance: Unlike 「〜ざる」, 「〜ない」 is the standard and most common negative form used in everyday conversation.
+      While both express negation, 「〜ざる」 is considerably more formal and literary.
+    grammar_point: <suggest>:ない (plain negative)
+  - term: 〜ず
+    meaning: not (classical negative)
+    kind: similar expression
+    nuance: 「〜ず」 is the general negative form of classical Japanese, from which 「〜ざる」 (its attributive
+      form) is derived. 「〜ず」 is used predicatively or adverbially, whereas 「〜ざる」 directly modifies a noun.
+      Both are classical, but 「〜ざる」 specifically functions as an an attributive, characterizing the noun.
+    grammar_point: <suggest>:ず (classical negative)
+  - term: 〜ざるを得ない
+    meaning: cannot help but do ~, have no choice but to do ~
+    kind: similar expression
+    nuance: Although 「〜ざるを得ない」 contains 「ざる」, it is an idiomatic expression that conveys obligation or
+      unavoidability, entirely different from the simple attributive negation of 「〜ざる」. Do not confuse
+      their meanings.
+    grammar_point: ざるを得ない (have no choice but to)
+post_false_friends_writeup: While 「〜ざる」, 「〜ない」, and 「〜ず」 all convey negation, their usage contexts and
+  nuances differ significantly. 「〜ない」 is the modern, ubiquitous negative. 「〜ず」 is a classical negative
+  that functions adverbially or predicatively. 「〜ざる」, on the other hand, is the *attributive* form of
+  「〜ず」, meaning it directly modifies a noun. Therefore, while you might say 「彼 は 来 ず」 (He didn't come)
+  or 「彼 は 来 ない」 (He doesn't come), you would use 「来 ざる 者」 (a person who does not come) to describe someone
+  in a literary context. Choosing the correct form depends on the desired register, context, and grammatical
+  function. Furthermore, while 「〜ざるを得ない」 includes 「ざる」, it's a distinct idiom meaning 'cannot help but
+  do', so it's crucial not to conflate its meaning with the attributive negation of 「ざる」.
+examples:
+  - english: Her undiscovered talent was very useful in this project.
+    japanese:
+      - 彼女 の {知ら れ ざる} 才能 が、今回 の プロジェクト で 大きく 役立っ た。
+      - 彼女 の {知ら れ ざる} 才能 が、今回 の プロジェクト で 大きく 役 に 立ち まし た。
+      - 今回 の プロジェクト に、彼女 の {知ら れ ざる} 才能 が 大いに 貢献 し まし た。
+      - 今回 の プロジェクト に は、彼女 の {知ら れ ざる} 才能 が 大いに 貢献 し た。
+    english_literally: Her unknown talent, this time's project at, greatly was useful.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 知ら {ない} 才能 が、今回 の プロジェクト で 大きく 役立っ た。
+        english: Her unknown talent (to others) was very useful in this project.
+        hint: 「知ら れ ざる」 implies an inherent, perhaps latent, talent that existed but was not yet brought
+          to light, fitting the context of blooming and becoming useful. 「知ら ない」 would simply mean 'unknown'
+          to others, which is less precise for describing a deep-seated ability. We're looking for an
+          inherent lack of discovery.
+      - competing_japanese:
+          - 彼女 の 知ら れ {ず} 才能 が、今回 の プロジェクト で 大きく 役立っ た。
+        english: Her talent, without being known, was very useful in this project.
+        hint: 「知ら れ ず」 is an adverbial form, meaning 'without being known.' We're looking for an attributive
+          form that modifies 'talent' to mean 'undiscovered,' implying an inherent quality.
+    scene: A team leader praising a member who showed unexpected skills during a review meeting.
+    register: formal
+    setting: informative
+  - english: He continued his relentless research and finally discovered a new medicine.
+    japanese:
+      - 彼 は {たゆま ざる} 研究 を 続け、遂に 新薬 を 発見 し た。
+      - 彼 は {たゆま ざる} 研究 を 続け、遂に 新薬 を 発見 いたし まし た。
+      - '{たゆま ざる} 研究 を 続け た 結果、彼 は 新薬 を 発見 し た。'
+      - 彼 は {たゆま ざる} 研究 に 励み、ついに 新薬 を 発見 し まし た。
+    english_literally: He unrelenting research continued, finally new medicine discovered.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 は たゆま {ない} 研究 を 続け、遂に 新薬 を 発見 し た。
+        english: He continued his unfaltering research, and finally discovered a new medicine.
+        hint: 「たゆま ざる」 in this formal context emphasizes the continuous and unwavering nature of his research,
+          highlighting his exceptional dedication, more so than the simple descriptive 「たゆま ない」. It conveys
+          a more profound sense of perseverance. We're looking for a word that highlights a profound sense
+          of perseverance.
+      - competing_japanese:
+          - 彼 は たゆま {ず} 研究 を 続け、遂に 新薬 を 発見 し た。
+        english: He continued his research without resting, and finally discovered a new medicine.
+        hint: 「たゆま ず」 means 'without resting' and functions adverbially. We're looking for a form that
+          modifies 'research' to mean 'relentless' or 'unwavering,' describing a characteristic of the
+          research itself.
+    scene: A scientific community discussing the unwavering dedication of a researcher.
+    register: formal
+    setting: serious
+    speaker_gender: male
+    nuance: The male speaker uses 「たゆま ざる」 (たゆむ + ざる) to convey the unrelenting and persistent nature
+      of the researcher's work, which is typical in formal academic or scientific discourse to express
+      admiration for profound dedication.
+    etymology: 「たゆむ」 means to slacken or falter. Combined with 「ざる」, it forms a classical negative emphasizing
+      an unyielding quality.
+  - english: Due to an unforeseen accident, today's ceremony was canceled.
+    japanese:
+      - '{予期 せ ざる} 事故 に より、本日 の 式典 は 中止 と なっ た。'
+      - '{予期 せ ざる} 事故 に より、本日 の 式典 は 中止 と なり まし た。'
+      - '{予期 せ ざる} 事故 の ため、本日 の 式典 は 中止 と なっ た。'
+      - 本日 の 式典 は、{予期 せ ざる} 事故 が 発生 し た こと に 伴い、中止 と なり まし た。
+    english_literally: Unforeseen accident by, today's ceremony was canceled.
+    competing_grammar:
+      - competing_japanese:
+          - 予期 し {ない} 事故 に より、本日 の 式典 は 中止 と なっ た。
+        english: Due to an unexpected accident, today's ceremony was canceled.
+        hint: 「予期 せ ざる」 implies a formal and serious tone regarding an unexpected event, suitable for
+          an official announcement, conveying a sense of unavoidable external circumstances beyond control.
+          「予期 し ない」 is less formal. We're looking for a more formal and official term.
+      - competing_japanese:
+          - 予期 せ {ず} 事故 に より、本日 の 式典 は 中止 と なっ た。
+        english: Due to an accident without foreseeing, today's ceremony was canceled.
+        hint: 「予期 せ ず」 means 'without foreseeing' and functions adverbially. We need an attributive form
+          that modifies 'accident' to mean 'unforeseen' as an inherent quality of the accident.
+    scene: An official making a formal announcement about an emergency.
+    register: formal
+    setting: informative
+  - english: That old man, though not one to speak much, possesses deep wisdom.
+    japanese:
+      - あの 老人 は、多く を {言わ ざる} もの の、深い 賢 さ を 持っ て いる。
+      - あの 老人 は、多く を {言わ ざる} もの の、深い 賢 さ を お 持 ち です。
+      - 多く を {言わ ざる} あの 老人 は、深い 賢 さ を 兼ね備え て いる。
+      - あの 老人 は {言わ ざる} 人物 ながら も、深い 賢 さ を 備え て いる。
+    english_literally: That old man, many things not speaking, deep wisdom possesses.
+    competing_grammar:
+      - competing_japanese:
+          - あの 老人 は、多く を 言わ {ない} もの の、深い 賢 さ を 持っ て いる。
+        english: That old man, though not saying much, possesses deep wisdom.
+        hint: 「言わ ざる」 is a more literary and respectful way to describe someone who inherently chooses
+          not to speak much, fitting the portrayal of a wise elder whose silence implies depth rather
+          than just a simple lack of talkativeness. We're looking for a term that conveys inherent quietness.
+      - competing_japanese:
+          - あの 老人 は、多く を 言わ {ず} もの の、深い 賢 さ を 持っ て いる。
+        english: That old man, though not speaking much, possesses deep wisdom.
+        hint: 「言わ ず」 means 'without speaking' or 'not speaking' in an adverbial sense. We need an attributive
+          form that describes the old man as 'not one to speak much,' characterizing him as such.
+    scene: A young person reflecting on an elderly mentor.
+    register: semi-formal
+    setting: reflective
+    speaker_age: younger
+    nuance: The younger speaker uses 「言わ ざる」 (言う + ざる) to describe the elder as someone who is inherently
+      not talkative, adding a tone of respect and reverence for their quiet, profound wisdom. This choice
+      reflects a mature and contemplative observation.
+    etymology: 「言う」 means to say or speak. With 「ざる」, it forms a classical negative describing a quality
+      of not speaking or being silent.
+  - english: Her unshakable determination became the strength to overcome difficult situations.
+    japanese:
+      - 彼女 の {動じ ざる} 決意 が、困難 な 状況 を 乗り越える 力 と なっ た。
+      - 彼女 の {動じ ざる} 決意 が、困難 な 状況 を 乗り越える 力 と なり まし た。
+      - 困難 な 状況 を 乗り越える 力 は、彼女 の {動じ ざる} 決意 に あっ た。
+      - 彼女 の {動じ ざる} 決意 が、あらゆる 困難 を 乗り越える 原動 力 と なっ た。
+    english_literally: Her unshakable determination, difficult situations overcoming power became.
+    competing_grammar:
+      - competing_japanese:
+          - 彼女 の 動じ {ない} 決意 が、困難 な 状況 を 乗り越える 力 と なっ た。
+        english: Her unflinching determination became the strength to overcome difficult situations.
+        hint: 「動じ ざる」 emphasizes an inherent, unwavering quality of determination, making the description
+          more profound and inspiring than the simpler descriptive 「動じ ない」. It highlights her fundamental
+          strength of character. We're looking for a word that emphasizes a fundamental strength.
+      - competing_japanese:
+          - 彼女 の 動じ {ず} 決意 が、困難 な 状況 を 乗り越える 力 と なっ た。
+        english: Her determination, without flinching, became the strength to overcome difficult situations.
+        hint: 「動じ ず」 means 'without flinching' and functions adverbially. We're looking for a form that
+          modifies 'determination' to mean 'unshakable' as an inherent characteristic.
+    scene: A group of colleagues discussing the inspiring leadership of a female manager.
+    register: formal
+    setting: supportive
+    speaker_gender: female
+    nuance: The female speaker uses 「動じ ざる」 (動じる + ざる) to describe the manager's unwavering determination,
+      conveying a sense of deep respect and admiration for her inherent strength. This formal expression
+      elevates the compliment.
+    etymology: 「動じる」 means to be disturbed or flustered. With 「ざる」, it creates a classical negative describing
+      a state of being undisturbed or resolute.
+  - english: This is a precious experience rarely obtained. Please participate.
+    japanese:
+      - これ は めった に {得 ざる} 貴重 な 経験 です。ぜひ 参加 し て ください。
+      - これ は めった に {得 ざる} 貴重 な 経験 で ござい ます。ぜひ ご 参加 ください。
+      - めった に {得 ざる} 貴重 な 経験 です から、ぜひ ご 参加 ください。
+      - この よう な めった に {得 ざる} 経験 です。皆 さま ぜひ ご 参加 ください。
+    english_literally: This is rarely obtained precious experience. By all means participate.
+    competing_grammar:
+      - competing_japanese:
+          - これ は めった に 得 られ {ない} 貴重 な 経験 です。ぜひ 参加 し て ください。
+        english: This is a precious experience rarely obtained. Please participate.
+        hint: 「得 ざる」 expresses the rarity and difficulty of gaining such an experience in a more formal
+          and slightly archaic tone, fitting the gravity of a unique opportunity better than the more
+          common 「得 られ ない」. It emphasizes the exclusivity. We're looking for a word that emphasizes rarity
+          and exclusivity.
+      - competing_japanese:
+          - これ は めった に 得 {ず} 貴重 な 経験 です。ぜひ 参加 し て ください。
+        english: This is a precious experience, rarely obtaining. Please participate.
+        hint: 「得 ず」 means 'without obtaining' and functions adverbially. We're looking for an attributive
+          form that modifies 'experience' to mean 'rarely obtained' or 'unobtainable' as a characteristic
+          of the experience itself.
+    scene: A teacher advising a student about a unique learning opportunity.
+    register: formal
+    setting: persuasive
+  - english: The unseen enemy posed a grave threat to the nation's security.
+    japanese:
+      - '{見え ざる} 敵 が 国家 の 安全 に 深刻 な 脅威 を もたらし た。'
+      - '{見え ざる} 敵 が 国家 の 安全 に 深刻 な 脅威 を もたらし まし た。'
+      - 国家 の 安全 に 対し、{見え ざる} 敵 が 深刻 な 脅威 を もたらし て いる。
+      - '{見え ざる} 敵 は、国家 の 安全 に とっ て 深刻 な 脅威 で あっ た。'
+    english_literally: Unseen enemy, nation's security to serious threat brought.
+    competing_grammar:
+      - competing_japanese:
+          - 見え {ない} 敵 が 国家 の 安全 に 深刻 な 脅威 を もたらし た。
+        english: The invisible enemy posed a grave threat to the nation's security.
+        hint: 「見え ざる」 conveys a more abstract, inherent, or mysterious quality of being unseen, often
+          used in formal or literary contexts to describe a concept or a formidable, undefined opponent.
+          「見え ない」 simply means 'cannot be seen' and is less formal. We're looking for an enemy whose essence
+          is its unseen nature.
+      - competing_japanese:
+          - 見え {ぬ} 敵 が 国家 の 安全 に 深刻 な 脅威 を もたらし た。
+        english: The enemy that cannot be seen posed a grave threat to the nation's security.
+        hint: While 「見え ぬ」 is also classical, 「見え ざる」 specifically functions as an attributive form, directly
+          modifying the noun '敵' to imply a deeper, intrinsic state of being unseen. 「見え ぬ」 can sometimes
+          function more adverbially or predicatively depending on context. We're looking for an attributive
+          form.
+    scene: A military analyst presents a briefing on potential threats.
+    register: formal
+    setting: informative
+    etymology: 「見える」 means to be visible or able to be seen. With 「ざる」, it denotes an inherent quality
+      of being unseen or invisible.
+  - english: Their unbreakable bond of friendship endured through all hardships.
+    japanese:
+      - 彼 ら の {破れ ざる} 友情 が、あらゆる 困難 を 乗り越え て 続い た。
+      - 彼 ら の {破れ ざる} 友情 が、あらゆる 困難 を 乗り越え て 続き まし た。
+      - あらゆる 困難 を 乗り越え て も、彼 ら の {破れ ざる} 友情 は 続い た。
+      - 彼 ら の {破れ ざる} 友情 は、いかなる 困難 に も 屈せ ず 続い た。
+    english_literally: Their unbreakable friendship, all hardships overcoming continued.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 ら の 破れ {ない} 友情 が、あらゆる 困難 を 乗り越え て 続い た。
+        english: Their unbreakable friendship endured through all hardships.
+        hint: 「破れ ざる」 evokes a more profound and literary sense of an intrinsic, destined, or incredibly
+          strong bond that cannot be broken by anything. 「破れ ない」 is a more common and direct way to say
+          'cannot be broken' but lacks the literary weight. We're looking for a term that conveys a profound
+          sense of intrinsic strength.
+      - competing_japanese:
+          - 彼 ら の 破れ {ぬ} 友情 が、あらゆる 困難 を 乗り越え て 続い た。
+        english: Their unbroken friendship endured through all hardships.
+        hint: 「破れ ぬ」 also means 'unbroken' or 'cannot be broken' and is classical. However, 「破れ ざる」 specifically
+          functions as the attributive form of this classical negative, strongly characterizing the noun
+          with that quality. We're looking for a strong attributive form.
+    scene: A documentary narrator describes the resilience of a historical group.
+    register: formal
+    setting: storytelling
+    etymology: 「破れる」 means to break or be torn. With 「ざる」, it describes something that cannot be broken,
+      emphasizing its enduring nature.
+  - english: Even after many years, the old castle stood with its unchanged appearance, quietly watching
+      the town.
+    japanese:
+      - 長年 の 時 を 経 て も、あの 古城 は {変わら ざる} 姿 で 静か に 街 を 見守っ て い た。
+      - 長年 の 時 を 経 て も、あの 古城 は {変わら ざる} 姿 で 静か に 街 を 見守っ て おり まし た。
+      - '{変わら ざる} 姿 の まま、あの 古城 は 長年 に わたり 街 を 静か に 見守っ た。'
+      - 年 月 を 経 て も なお、あの 古城 は {変わら ざる} その 姿 で 街 を 見守り 続け た。
+    english_literally: Many years time passing even, that old castle unchanged appearance with quietly
+      town watched.
+    competing_grammar:
+      - competing_japanese:
+          - 長年 の 時 を 経 て も、あの 古城 は 変わら {ない} 姿 で 静か に 街 を 見守っ て い た。
+        english: Even after many years, the old castle stood with its unchanged appearance, quietly watching
+          the town.
+        hint: 「変わら ざる」 imbues the castle's appearance with a sense of timelessness and permanence, often
+          used to emphasize an inherent, almost mystical, unchangeability. 「変わら ない」 is a simple descriptive
+          term for 'not changing' and is less evocative. We're looking for a word that emphasizes a timeless,
+          inherent quality.
+      - competing_japanese:
+          - 長年 の 時 を 経 て も、あの 古城 は 変わら {ぬ} 姿 で 静か に 街 を 見守っ て い た。
+        english: Even after many years, the old castle stood with its unchanged appearance, quietly watching
+          the town.
+        hint: 「変わら ぬ」 is a classical negative, often used in literary contexts. While similar, 「変わら ざる」
+          is specifically the attributive form of this classical negative, emphasizing the noun-modifying
+          aspect. We're looking for a specific attributive form.
+    scene: A local historian giving a lecture about a historical landmark.
+    register: formal
+    setting: academic
+    etymology: 「変わる」 means to change. With 「ざる」, it describes something that remains unchanged or constant,
+      often implying an intrinsic, timeless quality.
+  - english: Though it was an unattainable dream, he continued to pursue it with all his might.
+    japanese:
+      - それ は {届か ざる} 夢 で あっ た が、彼 は 全力 で 追い 続け た。
+      - それ は {届か ざる} 夢 で は ござい まし た が、彼 は 全力 で 追い 続け まし た。
+      - '{届か ざる} 夢 と 承知 し つつ も、彼 は 全力 で それ を 追い 続け た。'
+      - 彼 は {届か ざる} 夢 を 全力 で 追い 続け た。
+    english_literally: That unattainable dream was, but he full effort with pursued continued.
+    competing_grammar:
+      - competing_japanese:
+          - それ は 届 か {ない} 夢 で あっ た が、彼 は 全力 で 追い 続け た。
+        english: Though it was an unreachable dream, he continued to pursue it with all his might.
+        hint: 「届か ざる」 adds a literary and somewhat dramatic flair, highlighting the inherent impossibility
+          or extreme difficulty of reaching the dream, making the pursuit more heroic. 「届か ない」 is more
+          mundane and simply states it's out of reach. We're looking for a word that conveys a sense of
+          inherent impossibility.
+      - competing_japanese:
+          - それ は 届 か {ぬ} 夢 で あっ た が、彼 は 全力 で 追い 続け た。
+        english: Though it was an unreachable dream, he continued to pursue it with all his might.
+        hint: 「届か ぬ」 is also a classical negative. 「届か ざる」 is its attributive form, specifically used
+          to describe the noun '夢' as 'unattainable.' We're looking for a clear attributive modification.
+    scene: A motivational speaker shares a story of perseverance.
+    register: semi-formal
+    setting: inspirational
+    etymology: 「届く」 means to reach. With 「ざる」, it describes something that cannot be reached or is unattainable,
+      often referring to dreams or goals.
+  - english: His insatiable spirit of inquiry finally revealed the truth.
+    japanese:
+      - 彼 の {飽き ざる} 探求 心 は、ついに その 真実 を 明らか に し た。
+      - 彼 の {飽き ざる} 探求 心 が、ついに その 真実 を 明らか に し まし た。
+      - '{飽き ざる} 探求 心 が あっ た から こそ、彼 は ついに その 真実 を 見つけ 出し た。'
+      - ついに その 真実 は、彼 の {飽き ざる} 探求 心 に よっ て 明らか に さ れ た。
+    english_literally: His insatiable spirit of inquiry, finally that truth revealed.
+    competing_grammar:
+      - competing_japanese:
+          - 彼 の 飽き {ない} 探求 心 は、ついに その 真実 を 明らか に し た。
+        english: His untiring spirit of inquiry finally revealed the truth.
+        hint: 「飽き ない」 is the standard modern negative, simply meaning 'not tiring'. 「飽き ざる」 carries a
+          more classical and profound nuance of being inherently insatiable, often used in literary descriptions
+          of persistent dedication. We're looking for a word that emphasizes an inherent, deep-seated
+          quality of relentless pursuit.
+      - competing_japanese:
+          - 彼 の 飽き {ず} 探求 心 は、ついに その 真実 を 明らか に し た。
+        english: His spirit of inquiry without tiring finally revealed the truth.
+        hint: 「飽き ず」 functions adverbially, meaning 'without tiring'. 「飽き ざる」 is an attributive form,
+          directly describing '探求心' as 'insatiable'. We need a form that modifies the noun to convey an
+          inherent characteristic.
+    scene: A biographer narrating the life of a great scholar known for his persistent research.
+    register: formal
+    setting: storytelling
+    nuance: The use of 「飽き ざる」 (飽きる + ざる) emphasizes the relentless and never-tiring nature of his curiosity,
+      highlighting a profound, almost inherent, intellectual drive that led to a significant discovery.
+      This formal expression suits a narrative about a dedicated scholar.
+    etymology: 「飽きる」 means to get tired of or to be satiated. Combined with 「ざる」, it forms a classical
+      negative emphasizing an unyielding or insatiable quality.
+post_example_writeup: As seen in the examples, 「〜ざる」 is often used in combination with nouns that express
+  abstract concepts or qualities, such as 「才能」 (talent), 「研究」 (research), 「事故」 (accident), 「賢さ」 (wisdom),
+  「決意」 (determination), 「経験」 (experience), 「敵」 (enemy), 「友情」 (friendship), 「姿」 (appearance), 「夢」 (dream),
+  or 「探求心」 (spirit of inquiry). This highlights its use in conveying a deep or inherent negation or characteristic
+  of these qualities, describing things like undiscovered talents, relentless efforts, unforeseen events,
+  quiet wisdom, unshakable resolve, rarely obtained experiences, unseen enemies, unbreakable bonds, unchanged
+  appearances, unattainable dreams, and insatiable curiosity. It also frequently appears in set phrases
+  like 「たゆま ざる 努力」 (unceasing effort) or 「予期 せ ざる 事態」 (unforeseen situation), which further cements its
+  role in more formal and literary expressions.
+sources:
+  bunpro: https://bunpro.jp/grammar_points/ざる

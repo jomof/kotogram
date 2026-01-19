@@ -1,0 +1,198 @@
+grammar_point: 以内 (within)
+matcher: ⌈ˢ以内ᵖn:~⌉
+learn_before:
+  - に限る (nothing better than)
+meaning: within (not exceeding)
+pronunciation:
+  katakana: イナイ
+  romaji: inai
+formation:
+  '[Noun (quantity/time/distance)] + 以内': Indicates that something is within a specified numerical limit
+    for quantity, time, or distance.
+  '[Noun (abstract limit)] + 以内': Indicates that something is within an abstract boundary or constraint,
+    like a budget or regulations.
+jlpt: N3
+etymology: The term 以内 combines 以 (i), meaning “by means of” or “from”, and 内 (nai), meaning “inside”
+  or “within”. Historically, 以 could denote a starting point or a boundary, while 内 clearly indicates
+  being contained. Together, they convey the sense of “within the bounds of” or “not going beyond” a specified
+  limit, with the stated value being explicitly included.
+writeup: |-
+  以内 is a grammar point used to express that something must be “within” a specified limit. This limit can be related to time, quantity, distance, or even abstract concepts like budget or regulations. The key characteristic of 以内 is its **inclusivity**: the stated number or value is always part of the permissible range. For example, 「10分以内」 means 'within 10 minutes, including the 10th minute'. This contrasts with expressions that strictly exclude the boundary.
+
+  This expression is generally used in more formal or precise contexts, such as official documents, instructions, rules, and technical specifications. It's less common in casual conversation where more approximate expressions like 「ぐらい」 or 「まで」 might be preferred, unless a strict limit needs to be clearly communicated.
+
+  Think of 以内 as setting a clear, non-negotiable ceiling or boundary. If an action or state falls on or below this ceiling, it is acceptable.
+false_friends:
+  - term: 未満
+    meaning: Less than (strictly)
+    kind: similar expression
+    nuance: Unlike 以内, which includes the stated value, 未満 (strictly less than) strictly excludes the
+      stated number or amount. For example, 「10歳未満」 means 'under 10 years old, not including 10'.
+    grammar_point: 未満 (strictly less than)
+  - term: 以上
+    meaning: More than or equal to
+    kind: similar expression
+    nuance: While 以内 sets an upper inclusive limit, 以上 (more than or equal to) sets a lower inclusive
+      limit. For example, 「10歳以上」 means '10 years old or older, including 10'.
+    grammar_point: '[Noun]以上 (more than or equal to)'
+  - term: まで
+    meaning: Until, Till, To (but no further than)
+    kind: similar expression
+    nuance: まで (limit extent) can mean 'up to' a point, but it's often more flexible and less formal than
+      以内 for strict numerical limits. While まで can imply inclusion of the endpoint, 以内 explicitly denotes
+      'inside' that boundary.
+    grammar_point: まで (limit extent)
+  - term: 中
+    meaning: Within, during, all throughout
+    kind: similar expression
+    nuance: While 以内 focuses on a precise, inclusive numerical boundary, 中 (chuu) refers to 'within' a
+      duration or space, emphasizing an ongoing state or being contained. It doesn't typically imply the
+      same strict, inclusive numerical upper limit as 以内.
+    grammar_point: 中 (duration・entirety)
+post_false_friends_writeup: Understanding the precise boundaries set by expressions like 以内, 未満, 以上, and
+  中 is crucial in Japanese, especially in formal or legal contexts. While they might seem similar, the
+  difference in whether the boundary value is included or excluded, or the nature of the “within” (precise
+  limit vs. general duration/containment), can significantly change the meaning. Always pay attention
+  to whether the context demands strict inclusivity (以内, 以上) or strict exclusivity (未満), or simply being
+  contained within a period/space (中).
+examples:
+  - english: Please submit the report within three days.
+    japanese:
+      - レポート は 三 日 {以内} に 提出 し て ください。
+      - レポート は 三 日 {以内} に 提出 願い ます。
+    english_literally: Report as for three days within submit please.
+    competing_grammar:
+      - competing_japanese:
+          - レポート は 三 日 まで に 出し て ください。
+        english: Please submit the report by three days.
+        hint: まで (limit extent) can also set a deadline, but 以内 emphasizes the duration or a precise boundary.
+    scene: Your boss is giving you a clear deadline for a crucial report.
+    register: formal
+    setting: professional
+  - english: The product warranty is within one year.
+    japanese:
+      - この 製品 の 保証 期間 は 一 年 {以内} です。
+      - 本 製品 の 保証 は 一 年 {以内} と なっ て おり ます。
+    english_literally: This product's warranty period as for one year within is.
+    competing_grammar:
+      - competing_japanese:
+          - この 製品 の 保証 期間 は 一 年 です。
+        english: This product's warranty period is one year.
+        hint: Adding 以内 specifies that the warranty is valid *up to and including* one year from purchase,
+          not just that it *lasts* one year.
+    scene: A customer service representative is explaining the terms of a warranty.
+    register: formal
+    setting: informative
+  - english: You must respond within 24 hours.
+    japanese:
+      - 24 時間 {以内} に 返信 し て ください。
+      - 24 時間 {以内} に ご 返信 お 願い し ます。
+    english_literally: 24 hours within reply please.
+    competing_grammar:
+      - competing_japanese:
+          - 24 時間 で 返信 し て ください。
+        english: Please reply in 24 hours.
+        hint: で (by time) suggests the action will be completed *within* 24 hours, but 以内 explicitly states
+          the 'not exceeding' limit.
+    scene: A supervisor is giving an urgent instruction to an employee.
+    register: semi-formal
+    setting: commanding
+  - english: The parking lot is within 500 meters of the station.
+    japanese:
+      - 駐車 場 は 駅 から 500 メートル {以内} に あり ます。
+      - 駅 より 500 メートル {以内} に 駐車 場 が ござい ます。
+    english_literally: Parking lot as for station from 500 meters within at exists.
+    competing_grammar:
+      - competing_japanese:
+          - 駐車 場 は 駅 から 500 メートル ぐらい の 所 に あり ます。
+        english: The parking lot is about 500 meters from the station.
+        hint: ぐらい (approximate quantity or degree) indicates an approximation, whereas 以内 specifies a
+          precise maximum distance.
+    scene: A local resident is giving directions to a tourist.
+    register: casual
+    setting: informative
+  - english: Please keep your expenses within the budget.
+    japanese:
+      - 経費 は 予算 {以内} に 抑え て ください。
+      - 経費 を 予算 {以内} に 収め て ください。
+    english_literally: Expenses as for budget within suppress please.
+    competing_grammar:
+      - competing_japanese:
+          - 経費 は 予算 を 超え ない よう に 抑え て ください。
+        english: Please keep expenses so they don't exceed the budget.
+        hint: This phrasing works, but 以内 offers a more concise way to express staying 'within' a limit.
+    scene: A financial manager is reminding their team about spending limits.
+    register: formal
+    setting: professional
+  - english: Applicants must be within the age of 30.
+    japanese:
+      - 応募 者 は 30 歳 {以内} の 方 に 限り ます。
+      - 応募 者 は 30 歳 {以内} で ある こと が 条件 です。
+    english_literally: Applicants as for 30 years old within of person to limited.
+    competing_grammar:
+      - competing_japanese:
+          - 応募 者 は 30 歳 未満 の 方 に 限り ます。
+        english: Applicants must be under 30 years old.
+        hint: 未満 (strictly less than) strictly excludes 30, meaning 29 and younger. 以内 includes 30, meaning
+          30 and younger.
+    scene: A recruiter is explaining job application requirements.
+    register: formal
+    setting: professional
+  - english: This offer is valid only if purchased within today.
+    japanese:
+      - 本日 の ご 購入 {以内} に 限り、この オファー は 有効 です。
+      - 本日 ご 購入 {以内} の お 客 様 に 限り、この オファー が 適用 さ れ ます。
+    english_literally: Today's purchase within limited to, this offer as for valid is.
+    competing_grammar:
+      - competing_japanese:
+          - 本日 中 に ご 購入 いただけれ ば、この オファー は 有効 です。
+        english: If you purchase within today, this offer is valid.
+        hint: 「本日中」 (honjitsu-chuu) emphasizes 'sometime during today' or 'throughout today', whereas
+          「以内」 specifies a precise and inclusive deadline, 'by the end of today'.
+    scene: An advertisement for a limited-time sale.
+    register: formal
+    setting: informative
+  - english: The issue should be resolved within two weeks.
+    japanese:
+      - 問題 は 二 週間 {以内} に 解決 さ れる べき です。
+      - 問題 は 二 週間 {以内} に 解決 する 必要 が あり ます。
+    english_literally: Problem as for two weeks within solved be should is.
+    competing_grammar:
+      - competing_japanese:
+          - 問題 は 二 週間 の うち に 解決 する べき です。
+        english: The problem should be resolved within two weeks.
+        hint: のうちに (within an interval) is also 'within', but 以内 is more formal and emphasizes the upper
+          limit of the timeframe.
+    scene: A project manager discusses a deadline for a critical task.
+    register: semi-formal
+    setting: serious
+  - english: All data must be kept within the specified range.
+    japanese:
+      - すべて の データ は 指定 さ れ た 範囲 {以内} に 保た れる 必要 が あり ます。
+      - データ は すべて 指定 範囲 {以内} に 維持 する 必要 が あり ます。
+    english_literally: All of data as for specified range within kept be necessity is.
+    competing_grammar:
+      - competing_japanese:
+          - すべて の データ は 指定 さ れ た 範囲 に 収め られる 必要 が あり ます。
+        english: All data needs to be contained within the specified range.
+        hint: に収める (ni osameru) implies containment, but 以内 specifically defines the boundary and includes
+          it.
+    scene: A system administrator explains data compliance rules.
+    register: formal
+    setting: technical
+  - english: I'll call you back within the hour.
+    japanese:
+      - 一 時間 {以内} に 折り返し 電話 し ます。
+      - 一 時間 {以内} に お 電話 差し上げ ます。
+    english_literally: One hour within return call do.
+    competing_grammar:
+      - competing_japanese:
+          - すぐ に 折り返し 電話 し ます。
+        english: I'll call you back right away.
+        hint: すぐ (immediately) is less precise than 以内 in specifying a time limit. 以内 sets a clear, although
+          short, deadline.
+    scene: A customer support agent reassures a caller about a callback time.
+    register: teineigo (polite)
+    setting: professional
+sources:
+  bunpro: https://bunpro.jp/grammar_points/%E4%BB%A5%E5%86%85
