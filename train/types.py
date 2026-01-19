@@ -421,6 +421,22 @@ class KCDiagnosticReport:
     mse_families: Dict[str, KCMseFamilyStats] = field(default_factory=dict)
 
 
+@dataclass
+class WorstSampleInfo:
+    """Tracks the sample with highest loss for a family during an epoch.
+
+    Used to identify problematic samples that the model struggles with.
+    """
+
+    sentence: str  # Original sentence text (or kotogram if sentence empty)
+    loss: float  # Per-sample loss value
+    target: float  # Target value (for MSE) or label count (for classification)
+    prediction: float  # Model's prediction
+    sample_idx: int = -1  # Dataset index of this sample
+    target_labels: str = ""  # Label names/IDs for classification families
+    pred_labels: str = ""  # Predicted labels for classification families
+
+
 @dataclass(frozen=True)
 class KcLossWeights:
     """Weights used for each loss component (for display scaling).
@@ -461,6 +477,9 @@ class KcEpochSummary:
     )  # Per-family accumulators
     kc_logits_used_count: int = 0  # Number of unique KC logits that fired
     kc_logits_used_percent: float = 0.0  # Percent of KC logits utilized
+    worst_samples: Dict[str, "WorstSampleInfo"] = field(
+        default_factory=dict
+    )  # Per-family worst sample
 
 
 @dataclass
