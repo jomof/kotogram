@@ -92,6 +92,7 @@ class TestTrainStyleScript(unittest.TestCase):
                 "[models]/style/labels.json ADDED",
                 "[models]/style/model_type.txt ADDED",
                 "[models]/style/continuation.json ADDED",
+                "[.cache]/checkpoint.pt ADDED",
                 "[history]/*confusion.csv ADDED",
                 "[history]/confusion_matrices/*.tsv ADDED",
             ]
