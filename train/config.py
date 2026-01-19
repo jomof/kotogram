@@ -140,8 +140,9 @@ class KCConfig:
     # Cost grows superlinearly: (count - 3)^1.5 * weight
     # First 3 unlabeled positives are free, subsequent ones become progressively expensive
     gp_progressive_fp_weight: float = (
-        0.001  # Weight for progressive false positive penalty
+        0.01  # Weight for progressive false positive penalty
     )
+    gp_labeled_weight: float = 10.0  # Weight for labeled (positive/negative) PNU loss
 
     # Style Oversampling (for addressing class imbalance in gender/formality)
     style_oversample: bool = True  # Enable oversampling of non-neutral examples
