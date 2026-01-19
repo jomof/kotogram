@@ -656,10 +656,32 @@ class Trainer:
             self.session_start_epoch = effective_start
         self.view.on_train_start(epochs, effective_start, self.start_batch)
 
+        # Cache last evaluation result for epochs where we skip evaluation
+        last_eval_res: Optional[EvaluationMetrics] = None
+
         for epoch in range(effective_start, epochs):
             tl, tfl, tgl, tgraml, trl = self.train_epoch(epoch=epoch)
-            eval_res = self.evaluate()
-            self.scheduler.step(eval_res.loss)
+
+            # Determine if we should run full evaluation this epoch
+            # Always eval: first epoch, last epoch, every N epochs
+            is_first = epoch == effective_start
+            is_last = epoch == epochs - 1
+            eval_interval = self.config.eval_every_n_epochs
+            is_nth = (epoch - effective_start) % eval_interval == 0
+            should_eval = is_first or is_last or is_nth
+
+            if should_eval:
+                eval_res = self.evaluate()
+                last_eval_res = eval_res
+                self.scheduler.step(eval_res.loss)
+            else:
+                # Skip evaluation, use training loss for scheduler
+                self.scheduler.step(tl)
+                # Use cached eval_res for history (or create minimal placeholder)
+                if last_eval_res is not None:
+                    eval_res = last_eval_res
+                else:
+                    eval_res = EvaluationMetrics()
 
             self.history.train_loss.append(tl)
             self.history.train_formality_loss.append(tfl)
@@ -691,95 +713,107 @@ class Trainer:
             self.train_timer_data.reset()
             self.train_timer_compute.reset()
 
-            avg_acc = (
-                eval_res.formality_accuracy
-                + eval_res.gender_accuracy
-                + eval_res.grammaticality_accuracy
-            ) / 3.0
+            # Only show detailed stats and update best model when we ran evaluation
+            if should_eval:
+                avg_acc = (
+                    eval_res.formality_accuracy
+                    + eval_res.gender_accuracy
+                    + eval_res.grammaticality_accuracy
+                ) / 3.0
 
-            # Build semantic epoch stats
-            f_population = ClassPopulation(
-                class0_count=eval_res.formality_class0_count,
-                class1_count=eval_res.formality_class1_count,
-            )
-            g_population = ClassPopulation(
-                class0_count=eval_res.gender_class0_count,
-                class1_count=eval_res.gender_class1_count,
-            )
-
-            grad_norms = None
-            if self.last_epoch_grad_norms:
-                gn = self.last_epoch_grad_norms
-                grad_norms = GradientNorms(
-                    formality=gn.get("formality", 0.0),
-                    gender=gn.get("gender", 0.0),
-                    grammaticality=gn.get("grammaticality", 0.0),
-                    encoder=gn.get("encoder", 0.0),
-                    pooler=gn.get("pooler", 0.0),
+                # Build semantic epoch stats
+                f_population = ClassPopulation(
+                    class0_count=eval_res.formality_class0_count,
+                    class1_count=eval_res.formality_class1_count,
+                )
+                g_population = ClassPopulation(
+                    class0_count=eval_res.gender_class0_count,
+                    class1_count=eval_res.gender_class1_count,
                 )
 
-            epoch_stats = StyleEpochStats(
-                formality=BinaryMetric(
-                    loss=eval_res.formality_loss,
-                    accuracy=eval_res.formality_accuracy,
-                    class0_accuracy=eval_res.formality_class0_accuracy,
-                    class1_accuracy=eval_res.formality_class1_accuracy,
-                    population=f_population,
-                ),
-                gender=BinaryMetric(
-                    loss=eval_res.gender_loss,
-                    accuracy=eval_res.gender_accuracy,
-                    class0_accuracy=eval_res.gender_class0_accuracy,
-                    class1_accuracy=eval_res.gender_class1_accuracy,
-                    population=g_population,
-                ),
-                grammaticality=GrammaticalityMetric(
-                    loss=eval_res.grammaticality_loss,
-                    accuracy=eval_res.grammaticality_accuracy,
-                    class0_accuracy=eval_res.gram_class0_accuracy,
-                    class1_accuracy=eval_res.gram_class1_accuracy,
-                    class0_count=eval_res.gram_class0_count,
-                    class1_count=eval_res.gram_class1_count,
-                ),
-                total_loss=eval_res.loss,
-                avg_accuracy=avg_acc,
-                grad_norms=grad_norms,
-            )
+                grad_norms = None
+                if self.last_epoch_grad_norms:
+                    gn = self.last_epoch_grad_norms
+                    grad_norms = GradientNorms(
+                        formality=gn.get("formality", 0.0),
+                        gender=gn.get("gender", 0.0),
+                        grammaticality=gn.get("grammaticality", 0.0),
+                        encoder=gn.get("encoder", 0.0),
+                        pooler=gn.get("pooler", 0.0),
+                    )
 
-            self.view.on_style_epoch_eval_stats(epoch + 1, epoch_stats)
+                epoch_stats = StyleEpochStats(
+                    formality=BinaryMetric(
+                        loss=eval_res.formality_loss,
+                        accuracy=eval_res.formality_accuracy,
+                        class0_accuracy=eval_res.formality_class0_accuracy,
+                        class1_accuracy=eval_res.formality_class1_accuracy,
+                        population=f_population,
+                    ),
+                    gender=BinaryMetric(
+                        loss=eval_res.gender_loss,
+                        accuracy=eval_res.gender_accuracy,
+                        class0_accuracy=eval_res.gender_class0_accuracy,
+                        class1_accuracy=eval_res.gender_class1_accuracy,
+                        population=g_population,
+                    ),
+                    grammaticality=GrammaticalityMetric(
+                        loss=eval_res.grammaticality_loss,
+                        accuracy=eval_res.grammaticality_accuracy,
+                        class0_accuracy=eval_res.gram_class0_accuracy,
+                        class1_accuracy=eval_res.gram_class1_accuracy,
+                        class0_count=eval_res.gram_class0_count,
+                        class1_count=eval_res.gram_class1_count,
+                    ),
+                    total_loss=eval_res.loss,
+                    avg_accuracy=avg_acc,
+                    grad_norms=grad_norms,
+                )
 
-            is_best = eval_res.loss < self.best_val_loss
-            if is_best:
-                self.best_val_loss, self.patience_counter = eval_res.loss, 0
-                # Save copy of best state dict (FULL state)
-                if hasattr(self.model, "module"):
-                    state = cast(Any, self.model).module.state_dict()
+                self.view.on_style_epoch_eval_stats(epoch + 1, epoch_stats)
+
+                is_best = eval_res.loss < self.best_val_loss
+                if is_best:
+                    self.best_val_loss, self.patience_counter = eval_res.loss, 0
+                    # Save copy of best state dict (FULL state)
+                    if hasattr(self.model, "module"):
+                        state = cast(Any, self.model).module.state_dict()
+                    else:
+                        state = self.model.state_dict()
+
+                    # Deep copy to avoid reference issues if model mutates?
+                    # State dict tensors share storage, but we don't mutate weights in place usually.
+                    # However, to be safe and independent:
+                    self.best_state = {k: v.cpu().clone() for k, v in state.items()}
+                    save_model(self.model, self.output_path, self.model.config)
+                    model_path = os.path.join(self.output_path, "model.pt")
+                    self.view.on_best_model_saved(model_path, self.best_val_loss)
                 else:
-                    state = self.model.state_dict()
+                    self.patience_counter += 1
+                    if self.patience_counter >= self.config.patience:
+                        self.view.on_early_stopping(epoch + 1)
+                        break
 
-                # Deep copy to avoid reference issues if model mutates?
-                # State dict tensors share storage, but we don't mutate weights in place usually.
-                # However, to be safe and independent:
-                self.best_state = {k: v.cpu().clone() for k, v in state.items()}
-                save_model(self.model, self.output_path, self.model.config)
-                model_path = os.path.join(self.output_path, "model.pt")
-                self.view.on_best_model_saved(model_path, self.best_val_loss)
+                self.view.on_epoch_end(
+                    epoch + 1,
+                    train_metrics=(tl, tfl, tgl, tgraml, trl),
+                    eval_metrics=eval_res,
+                    avg_acc=avg_acc,
+                    is_best=is_best,
+                    patience_counter=self.patience_counter,
+                )
             else:
-                self.patience_counter += 1
-                if self.patience_counter >= self.config.patience:
-                    self.view.on_early_stopping(epoch + 1)
-                    break
+                # Skipped evaluation - just notify epoch end without detailed stats
+                self.view.on_epoch_end(
+                    epoch + 1,
+                    train_metrics=(tl, tfl, tgl, tgraml, trl),
+                    eval_metrics=None,
+                    avg_acc=None,
+                    is_best=False,
+                    patience_counter=self.patience_counter,
+                )
 
             on_epoch_end(self.history)
-
-            self.view.on_epoch_end(
-                epoch + 1,
-                train_metrics=(tl, tfl, tgl, tgraml, trl),
-                eval_metrics=eval_res,
-                avg_acc=avg_acc,
-                is_best=is_best,
-                patience_counter=self.patience_counter,
-            )
 
         if self.best_state:
             # Restore best state (FULL state including kc_decoders).

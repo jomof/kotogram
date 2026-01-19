@@ -220,6 +220,10 @@ class TrainerConfig:
     label_only: bool = False  # Run only preprocessing/labeling phase
     report_only: bool = False  # Generate performance report and exit
 
+    # Evaluation frequency: run full validation every N epochs (1 = every epoch)
+    # Set higher to skip expensive accuracy computation on intermediate epochs
+    eval_every_n_epochs: int = 5
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "learning_rate": self.learning_rate,

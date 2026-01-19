@@ -88,8 +88,8 @@ class TrainerView(Protocol):
         self,
         epoch: int,
         train_metrics: Tuple[float, float, float, float, float],
-        eval_metrics: EvaluationMetrics,
-        avg_acc: float,
+        eval_metrics: Optional[EvaluationMetrics],
+        avg_acc: Optional[float],
         is_best: bool,
         patience_counter: int,
     ) -> None:
@@ -164,8 +164,8 @@ class TrainerDiagnosticsView(TrainerView):
         self,
         epoch: int,
         train_metrics: Tuple[float, float, float, float, float],
-        eval_metrics: EvaluationMetrics,
-        avg_acc: float,
+        eval_metrics: Optional[EvaluationMetrics],
+        avg_acc: Optional[float],
         is_best: bool,
         patience_counter: int,
     ) -> None:

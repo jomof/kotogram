@@ -122,8 +122,8 @@ class RecordingTrainerView(TrainerView):
         self,
         epoch: int,
         train_metrics: tuple[float, float, float, float, float],
-        eval_metrics: EvaluationMetrics,
-        avg_acc: float,
+        eval_metrics: EvaluationMetrics | None,
+        avg_acc: float | None,
         is_best: bool,
         patience_counter: int,
     ) -> None:
